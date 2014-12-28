@@ -39,9 +39,9 @@ public class StateHelper
 		case RIGHT:
 			return pos.offset(facing.rotateYCCW());
 		case UP:
-			return pos.offset(facing.getOpposite());
-		case DOWN:
 			return pos.offset(facing);
+		case DOWN:
+			return pos.offset(facing.getOpposite());
 		default:
 			return pos;
 		}

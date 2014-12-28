@@ -227,3 +227,29 @@ README.txt
 build.bat
 setup eclipse.bat
 setup workspace.bat
+*.gen
+eclipse/.recommenders/index/http___download_eclipse_org_recommenders_models_luna_/segments_1
+*.fdt
+*.fdx
+*.fnm
+*.frq
+*.nrm
+*.prx
+*.prx
+*.tii
+*.tis
+*.zip
+*.xml
+eclipse/.recommenders/repository/http___download_eclipse_org_recommenders_models_luna_/org/eclipse/recommenders/index/0.0.0-SNAPSHOT/resolver-status.properties
+*.gz
+*.dat
+*.mca
+eclipse/saves/New World/stats/07621e04-f7a0-3030-986e-2083b375ff85.json
+eclipse/usernamecache.json
+*.lock
+*.dat_mcr
+*.dat_old
+eclipse/options.txt
+eclipse/config/forge.cfg
+eclipse/.recommenders/repository/http___download_eclipse_org_recommenders_models_luna_/org/eclipse/recommenders/index/0.0.0-SNAPSHOT/_remote.repositories
+eclipse/config/forgeChunkLoading.cfg

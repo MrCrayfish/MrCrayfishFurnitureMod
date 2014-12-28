@@ -79,11 +79,11 @@ public class BlockCouch extends BlockFurnitureTile
 			{
 				if (!StateHelper.isAirBlock(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.LEFT))
 				{
-					right = true;
+					left = true;
 				}
 				if (!StateHelper.isAirBlock(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.RIGHT))
 				{
-					left = true;
+					right = true;
 				}
 				return state.withProperty(LEFT, Boolean.valueOf(left)).withProperty(RIGHT, Boolean.valueOf(right));
 			}
@@ -92,11 +92,11 @@ public class BlockCouch extends BlockFurnitureTile
 		{
 			if (!StateHelper.isAirBlock(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.LEFT))
 			{
-				right = true;
+				left = true;
 			}
 			if (!StateHelper.isAirBlock(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.RIGHT))
 			{
-				left = true;
+				right = true;
 			}
 			return state.withProperty(LEFT, Boolean.valueOf(left)).withProperty(RIGHT, Boolean.valueOf(right));
 		}

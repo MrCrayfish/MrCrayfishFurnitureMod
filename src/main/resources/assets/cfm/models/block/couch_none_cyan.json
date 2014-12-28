@@ -1,6 +1,6 @@
 {
 "parent": "cfm:block/couch_none",
 "textures": {
-"0": "blocks/example"
+"1": "blocks/wool_colored_cyan"
 }
 }

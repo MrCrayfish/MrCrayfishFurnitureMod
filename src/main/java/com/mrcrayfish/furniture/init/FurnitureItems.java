@@ -53,7 +53,7 @@ public class FurnitureItems
 	public static Item itemFlesh, itemCookedFlesh;
 
 	/** Garden Update */
-	public static Item itemHedgeBasic, itemHedgeSpruce, itemHedgeBirch, itemHedgeJungle;
+	public static Item itemHedgeBasic, itemHedgeSpruce, itemHedgeBirch, itemHedgeJungle, itemHedgeAcacia, itemHedgeDarkOak;
 	public static Item itemBirdBath, itemStonePath, itemWhiteFence, itemTap;
 	public static Item itemMailBox, itemHammer;
 	public static Item itemEnvelope, itemEnvelopeSigned;
@@ -105,18 +105,12 @@ public class FurnitureItems
 		itemOvenRangehood = new ItemPlacer(FurnitureBlocks.range_hood).setUnlocalizedName("item_range_hood").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		itemFlesh = new ItemFood(1, 2, false).setUnlocalizedName("item_flesh").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		itemCookedFlesh = new ItemFood(4, 4, false).setUnlocalizedName("item_flesh_cooked").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		// itemHedgeBasic = new ItemHedge(FurnitureBlocks.hedge,
-		// 0).setUnlocalizedName("itemhedgebasic");
-		// itemHedgeSpruce = new ItemHedge(FurnitureBlocks.hedge,
-		// 1).setUnlocalizedName("itemhedgespruce");
-		// itemHedgeBirch = new ItemHedge(FurnitureBlocks.hedge,
-		// 2).setUnlocalizedName("itemhedgebirch");
-		// itemHedgeJungle = new ItemHedge(FurnitureBlocks.hedge,
-		// 3).setUnlocalizedName("itemhedgejungle");
-		itemHedgeBasic = new ItemNotAdded().setUnlocalizedName("item_hedge_basic").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		itemHedgeSpruce = new ItemNotAdded().setUnlocalizedName("item_hedge_spruce").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		itemHedgeBirch = new ItemNotAdded().setUnlocalizedName("item_hedge_birch").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		itemHedgeJungle = new ItemNotAdded().setUnlocalizedName("item_hedge_jungle").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		itemHedgeBasic = new ItemPlacer(FurnitureBlocks.hedge_oak).setUnlocalizedName("item_hedge_basic").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		itemHedgeSpruce = new ItemPlacer(FurnitureBlocks.hedge_spruce).setUnlocalizedName("item_hedge_spruce").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		itemHedgeBirch = new ItemPlacer(FurnitureBlocks.hedge_birch).setUnlocalizedName("item_hedge_birch").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		itemHedgeJungle = new ItemPlacer(FurnitureBlocks.hedge_jungle).setUnlocalizedName("item_hedge_jungle").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		itemHedgeAcacia = new ItemPlacer(FurnitureBlocks.hedge_acacia).setUnlocalizedName("item_hedge_acacia").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		itemHedgeDarkOak = new ItemPlacer(FurnitureBlocks.hedge_dark_oak).setUnlocalizedName("item_hedge_dark_oak").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		itemBirdBath = new ItemNotAdded().setUnlocalizedName("item_bird_bath").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		itemStonePath = new ItemPlacer(FurnitureBlocks.stone_path).setUnlocalizedName("item_stone_path").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		itemWhiteFence = new ItemPlacer(FurnitureBlocks.white_fence).setUnlocalizedName("item_white_fence").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);

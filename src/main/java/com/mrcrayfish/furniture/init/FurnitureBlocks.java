@@ -85,7 +85,8 @@ public class FurnitureBlocks
 	public static Block oven, range_hood;
 
 	/** Garden Update */
-	public static Block hedge, bird_bath, stone_path, white_fence, tap, mail_box;
+	public static Block hedge_oak, hedge_spruce, hedge_birch, hedge_jungle, hedge_acacia, hedge_dark_oak; 
+	public static Block bird_bath, stone_path, white_fence, tap, mail_box;
 
 	/** Electronic Update */
 	public static Block tv, computer, printer, electric_fence, door_bell, stereo;
@@ -135,7 +136,13 @@ public class FurnitureBlocks
 		bedside_cabinet = new BlockBedsideCabinet(Material.wood).setUnlocalizedName("bedside_cabinet");
 		oven = new BlockOven(Material.rock).setUnlocalizedName("oven");
 		range_hood = new BlockRangeHood(Material.rock).setUnlocalizedName("range_hood");
-		hedge = new BlockHedge(Material.leaves).setUnlocalizedName("hedge");
+		hedge_oak = new BlockHedge(Material.leaves).setUnlocalizedName("hedge_oak");
+		hedge_spruce = new BlockHedge(Material.leaves).setUnlocalizedName("hedge_spruce");
+		hedge_birch = new BlockHedge(Material.leaves).setUnlocalizedName("hedge_birch");
+		hedge_jungle = new BlockHedge(Material.leaves).setUnlocalizedName("hedge_jungle");
+		hedge_acacia = new BlockHedge(Material.leaves).setUnlocalizedName("hedge_acacia");
+		hedge_dark_oak = new BlockHedge(Material.leaves).setUnlocalizedName("hedge_dark_oak");
+		
 		bird_bath = new BlockBirdBath(Material.rock).setUnlocalizedName("bird_bath");
 		stone_path = new BlockStonePath(Material.rock).setUnlocalizedName("stone_path");
 		white_fence = new BlockWhiteFence(Material.wood).setUnlocalizedName("white_fence");
@@ -202,7 +209,12 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(bedside_cabinet, bedside_cabinet.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(oven, oven.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(range_hood, range_hood.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(hedge, hedge.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(hedge_oak, hedge_oak.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(hedge_spruce, hedge_spruce.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(hedge_birch, hedge_birch.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(hedge_jungle, hedge_jungle.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(hedge_acacia, hedge_acacia.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(hedge_dark_oak, hedge_dark_oak.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(bird_bath, bird_bath.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(stone_path, stone_path.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(white_fence, white_fence.getUnlocalizedName().substring(5));
