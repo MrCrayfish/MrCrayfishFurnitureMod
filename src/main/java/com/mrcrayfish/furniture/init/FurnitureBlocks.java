@@ -142,7 +142,6 @@ public class FurnitureBlocks
 		hedge_jungle = new BlockHedge(Material.leaves).setUnlocalizedName("hedge_jungle");
 		hedge_acacia = new BlockHedge(Material.leaves).setUnlocalizedName("hedge_acacia");
 		hedge_dark_oak = new BlockHedge(Material.leaves).setUnlocalizedName("hedge_dark_oak");
-		
 		bird_bath = new BlockBirdBath(Material.rock).setUnlocalizedName("bird_bath");
 		stone_path = new BlockStonePath(Material.rock).setUnlocalizedName("stone_path");
 		white_fence = new BlockWhiteFence(Material.wood).setUnlocalizedName("white_fence");

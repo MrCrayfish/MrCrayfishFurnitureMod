@@ -26,6 +26,7 @@ import com.mrcrayfish.furniture.init.FurnitureItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -39,9 +40,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -54,30 +58,72 @@ public class BlockHedge extends Block
 
 	public BlockHedge(Material material)
 	{
-		super(material);
+		super(Material.leaves);
 		setHardness(1.0F);
 		setStepSound(Block.soundTypeWood);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube()
 	{
 		return false;
 	}
-
+	
 	@Override
-	public boolean isFullCube()
+	public boolean isNormalCube()
 	{
 		return false;
 	}
-	
+
+	@SideOnly(Side.CLIENT)
+	public int getBlockColor()
+	{
+		return ColorizerFoliage.getFoliageColor(0.5D, 1.0D);
+	}
+
+	@SideOnly(Side.CLIENT)
+	public int getRenderColor(IBlockState state)
+	{
+		if (state.getBlock() != this)
+		{
+			return super.getRenderColor(state);
+		}
+		else
+		{
+			return this == FurnitureBlocks.hedge_spruce ? ColorizerFoliage.getFoliageColorPine() : (this == FurnitureBlocks.hedge_birch ? ColorizerFoliage.getFoliageColorBirch() : ColorizerFoliage.getFoliageColorBasic());
+		}
+	}
+
+	@SideOnly(Side.CLIENT)
+	public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
+	{
+		if (this == FurnitureBlocks.hedge_spruce)
+		{
+			return ColorizerFoliage.getFoliageColorPine();
+		}
+		else if (this == FurnitureBlocks.hedge_birch)
+		{
+			return ColorizerFoliage.getFoliageColorBirch();
+		}
+		else
+		{
+			return ColorizerFoliage.getFoliageColorBasic();
+		}
+	}
+
+	@SideOnly(Side.CLIENT)
+	public EnumWorldBlockLayer getBlockLayer()
+	{
+		return EnumWorldBlockLayer.CUTOUT_MIPPED;
+	}
+
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
 	{
 		((EntityPlayer) placer).triggerAchievement(FurnitureAchievements.gardening);
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, BlockPos pos)
@@ -106,7 +152,7 @@ public class BlockHedge extends Block
 
 		setBlockBounds(f, 0.0F, f2, f1, 1.1F, f3);
 	}
-	
+
 	@Override
 	public void addCollisionBoxesToList(World world, BlockPos pos, IBlockState state, AxisAlignedBB mask, List list, Entity collidingEntity)
 	{
@@ -137,7 +183,7 @@ public class BlockHedge extends Block
 			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 		}
 	}
-	
+
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
@@ -149,7 +195,7 @@ public class BlockHedge extends Block
 	{
 		return new ItemStack(FurnitureItems.itemHedgeBasic);
 	}
-	
+
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
 	{
