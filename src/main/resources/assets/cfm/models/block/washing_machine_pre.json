@@ -1,0 +1,11 @@
+{
+"parent": "cfm:block/washing_machine",
+"textures": {
+"1": "blocks/quartz_block_bottom",
+"2": "blocks/stone",
+"3": "blocks/wool_colored_black",
+"4": "blocks/wool_colored_red",
+"5": "blocks/wool_colored_black",
+"6": "blocks/glass_white"
+}
+}

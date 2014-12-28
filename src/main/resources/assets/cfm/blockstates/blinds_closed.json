@@ -1,0 +1,8 @@
+{
+"variants": {
+"facing=north": {"model": "cfm:blinds_closed_pre", "y": 270},
+"facing=south": { "model": "cfm:blinds_closed_pre", "y": 90},
+"facing=east": { "model": "cfm:blinds_closed_pre"},
+"facing=west": { "model": "cfm:blinds_closed_pre", "y": 180}
+}
+}

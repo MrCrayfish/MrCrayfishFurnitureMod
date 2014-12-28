@@ -1,0 +1,8 @@
+{
+"variants": {
+"facing=north": {"model": "cfm:stone_path_2_pre", "y": 270},
+"facing=south": { "model": "cfm:stone_path_2_pre", "y": 90},
+"facing=east": { "model": "cfm:stone_path_2_pre"},
+"facing=west": { "model": "cfm:stone_path_2_pre", "y": 180}
+}
+}

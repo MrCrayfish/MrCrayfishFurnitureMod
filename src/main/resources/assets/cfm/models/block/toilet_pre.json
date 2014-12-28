@@ -1,0 +1,8 @@
+{
+"parent": "cfm:block/toilet",
+"textures": {
+"1": "blocks/quartz_block_bottom",
+"2": "blocks/hardened_clay_stained_cyan",
+"3": "blocks/water_still"
+}
+}

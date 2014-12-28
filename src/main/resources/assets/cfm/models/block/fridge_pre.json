@@ -1,0 +1,8 @@
+{
+"parent": "cfm:block/fridge",
+"textures": {
+"1": "blocks/iron_block",
+"2": "blocks/wool_colored_black",
+"3": "blocks/stone"
+}
+}
