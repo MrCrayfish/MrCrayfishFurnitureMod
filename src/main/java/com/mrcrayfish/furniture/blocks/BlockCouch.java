@@ -63,7 +63,7 @@ public class BlockCouch extends BlockFurnitureTile
 		boolean right = false;
 		
 		int colour = ((TileEntityCouch)world.getTileEntity(pos)).getColour();
-		state = state.withProperty(COLOUR, Integer.valueOf(0));
+		state = state.withProperty(COLOUR, Integer.valueOf(colour));
 
 		if (StateHelper.getBlock(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.DOWN) instanceof BlockCouch)
 		{
