@@ -4,7 +4,7 @@ itemGroup.tabFurniture = MrCrayfish的家具MOD
 item.itemlamp.name=灯
 item.itemcoffeetablewood.name=木制咖啡桌
 item.itemcoffeetablestone.name=石茶几
-item.itemtablewood.name=木制表
+item.itemtablewood.name=木制桌
 item.itemtablestone.name=石桌
 item.itemchairwood.name=木椅
 item.itemchairstone.name=石椅
@@ -75,6 +75,7 @@ item.itemsoap.name=香皂
 item.itemsoapwater.name=肥皂水
 item.itemsupersoapwater.name =超级肥皂水
 item.itemrecipebook.name=食谱书
+tile.barstool.name=酒吧椅
 
 achievement.cfm_install =你已经安装好了！
 achievement.cfm_install.desc =感谢您安装MrCrayfish的家具MOD
