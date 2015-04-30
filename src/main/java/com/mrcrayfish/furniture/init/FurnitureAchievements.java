@@ -58,6 +58,7 @@ public class FurnitureAchievements
 	public static void loadAchievements()
 	{
 		installMod = new Achievement("achievement.cfm_install", "cfm_install", 0, 0, new ItemStack(FurnitureItems.itemCrayfish), null).setSpecial();
+		installMod.registerStat();
 
 		mineKea = new Achievement("achievement.cfm_minekea", "cfm_minekea", 2, 0, new ItemStack(FurnitureItems.itemChairWood), installMod);
 		placeTree = new Achievement("achievement.cfm_placetree", "cfm_placetree", 3, 1, new ItemStack(FurnitureItems.itemTree), mineKea);
