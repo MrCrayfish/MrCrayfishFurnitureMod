@@ -240,6 +240,7 @@ public class FurnitureItems
 		GameRegistry.registerItem(itemSoapyWater, itemSoapyWater.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemSuperSoapyWater, itemSuperSoapyWater.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemRecipeBook, itemRecipeBook.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemCrayfish, itemCrayfish.getUnlocalizedName().substring(5));
 	}
 
 	public static void registerRenders()
