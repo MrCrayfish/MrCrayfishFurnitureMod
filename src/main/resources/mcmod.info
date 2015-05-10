@@ -1,14 +1,14 @@
 [
 {
   "modid": "cfm",
-  "name": "\u00A79MrCrayfish's Furniture Mod",
-  "description": "\u00A7bAdds over 40 unique pieces of furniture to the game!",
-  "version": "\u00A783.4.7",
-  "mcversion": "\u00A781.8",
-  "url": "\u00A78http://www.mrcrayfish.com/",
+  "name": "MrCrayfish's Furniture Mod",
+  "description": "Adds over 40 unique pieces of furniture to the game!",
+  "version": "3.4.7",
+  "mcversion": "1.8",
+  "url": "http://www.mrcrayfish.com/",
   "updateUrl": "http://http://www.mrcrayfish.com/furniture.php?p=2",
-  "authorList": ["\u00A78MrCrayfish"],
-  "logoFile": "/FurnitureBanner.png",
+  "authorList": ["MrCrayfish"],
+  "logoFile": "",
   "screenshots": [],
   "dependencies": []
 }
