@@ -128,10 +128,10 @@ public class BlockHedge extends Block
 	@SideOnly(Side.CLIENT)
 	public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, BlockPos pos)
 	{
-		float f = 0.4375F;
-		float f1 = 0.5625F;
-		float f2 = 0.4375F;
-		float f3 = 0.5625F;
+		float f = 0.1875F;
+		float f1 = 0.8125F;
+		float f2 = 0.1875F;
+		float f3 = 0.8125F;
 
 		if (blockAccess.getBlockState(pos.east()).getBlock() instanceof BlockHedge | blockAccess.getBlockState(pos.east()).getBlock() instanceof BlockFenceGate | blockAccess.getBlockState(pos.east()).getBlock().isNormalCube())
 		{
@@ -150,36 +150,36 @@ public class BlockHedge extends Block
 			f2 = 0.0F;
 		}
 
-		setBlockBounds(f, 0.0F, f2, f1, 1.1F, f3);
+		setBlockBounds(f, 0.0F, f2, f1, 1.0F, f3);
 	}
 
 	@Override
 	public void addCollisionBoxesToList(World world, BlockPos pos, IBlockState state, AxisAlignedBB mask, List list, Entity collidingEntity)
 	{
-		setBlockBounds(0.4375F, 0.0F, 0.4375F, 0.5625F, 1.0F, 0.5625F);
+		setBlockBounds(0.1875F, 0.0F, 0.1875F, 0.8125F, 1.5F, 0.8125F);
 		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 
 		if (world.getBlockState(pos.east()).getBlock() instanceof BlockHedge | world.getBlockState(pos.east()).getBlock() instanceof BlockFenceGate)
 		{
-			setBlockBounds(0.4375F, 0.0F, 0.4375F, 1.0F, 1.0F, 0.5625F);
+			setBlockBounds(0.8125F, 0.0F, 0.1875F, 1.0F, 1.5F, 0.8125F);
 			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 		}
 
 		if (world.getBlockState(pos.west()).getBlock() instanceof BlockHedge | world.getBlockState(pos.west()).getBlock() instanceof BlockFenceGate)
 		{
-			setBlockBounds(0.0F, 0.0F, 0.4375F, 0.5625F, 1.0F, 0.5625F);
+			setBlockBounds(0.0F, 0.0F, 0.1875F, 0.1875F, 1.5F, 0.8125F);
 			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 		}
 
 		if (world.getBlockState(pos.south()).getBlock() instanceof BlockHedge | world.getBlockState(pos.south()).getBlock() instanceof BlockFenceGate)
 		{
-			setBlockBounds(0.4375F, 0.0F, 0.4375F, 0.5625F, 1.0F, 1.0F);
+			setBlockBounds(0.1875F, 0.0F, 0.8125F, 0.8125F, 1.5F, 1.0F);
 			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 		}
 
 		if (world.getBlockState(pos.north()).getBlock() instanceof BlockHedge | world.getBlockState(pos.north()).getBlock() instanceof BlockFenceGate)
 		{
-			setBlockBounds(0.4375F, 0.0F, 0.0F, 0.5625F, 1.0F, 0.5625F);
+			setBlockBounds(0.1875F, 0.0F, 0.0F, 0.8125F, 1.5F, 0.1875F);
 			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 		}
 	}
