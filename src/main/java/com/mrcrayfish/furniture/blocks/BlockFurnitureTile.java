@@ -37,19 +37,7 @@ public abstract class BlockFurnitureTile extends BlockFurniture implements ITile
 		super(material);
 		this.isBlockContainer = true;
 	}
-
-	@Override
-	public boolean isOpaqueCube()
-	{
-		return false;
-	}
-
-	@Override
-	public boolean isFullCube()
-	{
-		return false;
-	}
-
+	
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{

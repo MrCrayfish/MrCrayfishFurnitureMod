@@ -22,6 +22,7 @@ import java.util.Random;
 
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.util.SittableUtil;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -45,7 +46,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockBarStool extends BlockSittable
+public class BlockBarStool extends Block
 {
 	public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
 
@@ -82,7 +83,7 @@ public class BlockBarStool extends BlockSittable
 				return true;
 			}
 		}
-		return this.sitOnBlock(world, pos.getX(), pos.getY(), pos.getZ(), player, 9 * 0.0625);
+		return SittableUtil.sitOnBlock(world, pos.getX(), pos.getY(), pos.getZ(), player, 9 * 0.0625);
 	}
 
 	@Override

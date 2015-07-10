@@ -48,8 +48,7 @@ public class ItemEnvelopeSigned extends Item implements IMail
 
 	public ItemEnvelopeSigned()
 	{
-		super();
-		this.maxStackSize = 1;
+		setMaxStackSize(1);
 	}
 
 	@Override

@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture;
 
+import java.awt.Color;
 import java.lang.reflect.Method;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -66,7 +67,6 @@ public class MrCrayfishFurnitureMod
 	public static CommonProxy proxy;
 
 	private GuiHandler gui_handler;
-	private InputHandler keyHandler;
 
 	public static CreativeTabs tabFurniture = new FurnitureTab("tabFurniture");
 
@@ -75,19 +75,31 @@ public class MrCrayfishFurnitureMod
 	{
 		/** Config Changed Event */
 		FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
-		
+
 		/** Block and Item Registring */
 		FurnitureBlocks.init();
 		FurnitureItems.init();
 		FurnitureBlocks.register();
 		FurnitureItems.registerItems();
-		
+
 		/** Achievement Registering */
 		FurnitureAchievements.loadAchievements();
 		FurnitureAchievements.registerPage();
-		
+
 		/** Packet Handler Init */
 		PacketHandler.init();
+		
+		/** Event Registering */
+		FMLCommonHandler.instance().bus().register(new CraftingHandler());
+		FMLCommonHandler.instance().bus().register(new PlayerEvents());
+		if (event.getSide() == Side.CLIENT)
+		{
+			FMLCommonHandler.instance().bus().register(new InputHandler());
+		}
+		else
+		{
+			FMLCommonHandler.instance().bus().register(new SyncEvent());
+		}
 	}
 
 	@EventHandler
@@ -105,22 +117,9 @@ public class MrCrayfishFurnitureMod
 
 		/** Entity Registering */
 		EntityRegistry.registerModEntity(EntitySittableBlock.class, "MountableBlock", 0, this, 80, 1, false);
-	
+
 		/** Crafting Recipes */
 		FurnitureCrafting.register();
-		
-		/** Event Registering */
-		FMLCommonHandler.instance().bus().register(new CraftingHandler());
-		FMLCommonHandler.instance().bus().register(new PlayerEvents());
-		if (event.getSide() == Side.CLIENT)
-		{
-			keyHandler = new InputHandler();
-			FMLCommonHandler.instance().bus().register(keyHandler);
-		}
-		else
-		{
-			FMLCommonHandler.instance().bus().register(new SyncEvent());
-		}
 	}
 
 	@EventHandler
@@ -131,6 +130,24 @@ public class MrCrayfishFurnitureMod
 		RecipeRegistry.registerConfigRecipes();
 		Recipes.addCommRecipesToLocal();
 		Recipes.updateDataList();
+		
+		
+		System.out.println(new Color(21,17,17).getRGB());
+		System.out.println(new Color(42,51,129).getRGB());
+		System.out.println(new Color(72,46,28).getRGB());
+		System.out.println(new Color(42,101,126).getRGB());
+		System.out.println(new Color(59,59,59).getRGB());
+		System.out.println(new Color(49,65,25).getRGB());
+		System.out.println(new Color(88,123,194).getRGB());
+		System.out.println(new Color(59,160,52).getRGB());
+		System.out.println(new Color(172,66,182).getRGB());
+		System.out.println(new Color(217,117,51).getRGB());
+		System.out.println(new Color(201,115,139).getRGB());
+		System.out.println(new Color(117,55,169).getRGB());
+		System.out.println(new Color(138,49,44).getRGB());
+		System.out.println(new Color(141,149,149).getRGB());
+		System.out.println(new Color(211,211,211).getRGB());
+		System.out.println(new Color(207,194,49).getRGB());
 	}
 
 	@EventHandler

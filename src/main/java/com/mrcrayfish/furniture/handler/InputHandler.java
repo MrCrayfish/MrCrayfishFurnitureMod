@@ -56,11 +56,10 @@ public class InputHandler
 		}
 	}
 
-	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void playerTick(PlayerTickEvent event)
 	{
-		if (event.player.worldObj.getBlockState(new BlockPos((int) Math.floor(event.player.posX), (int) Math.floor(event.player.posY - 1), (int) Math.floor(event.player.posZ))).getBlock() == FurnitureBlocks.toilet)
+		if (event.player.worldObj.getBlockState(new BlockPos((int) Math.floor(event.player.posX), (int) Math.floor(event.player.posY), (int) Math.floor(event.player.posZ))).getBlock() == FurnitureBlocks.toilet)
 		{
 			if (keyPressed)
 			{

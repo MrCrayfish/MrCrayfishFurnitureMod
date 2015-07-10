@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.network.message;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -79,9 +80,13 @@ public class MessageMineBayBuy implements IMessage, IMessageHandler<MessageMineB
 		if (tile_entity instanceof TileEntityComputer)
 		{
 			TileEntityComputer tileEntityComputer = (TileEntityComputer) tile_entity;
+			ItemStack buySlot = tileEntityComputer.getStackInSlot(0);
 			RecipeData[] data = Recipes.getMineBayItems();
 			int price = data[message.itemNum].getPrice();
-
+			
+			if(buySlot == null)
+				return null;
+			
 			if (message.shouldClear)
 			{
 				tileEntityComputer.clearInventory();

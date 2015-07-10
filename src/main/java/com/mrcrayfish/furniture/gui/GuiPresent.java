@@ -69,14 +69,7 @@ public class GuiPresent extends GuiContainer
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
 	{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		if (present.getItem() == FurnitureItems.itemPresentRed)
-		{
-			this.mc.getTextureManager().bindTexture(gui);
-		}
-		else
-		{
-			this.mc.getTextureManager().bindTexture(gui2);
-		}
+		this.mc.getTextureManager().bindTexture(gui);
 		int l = (width - xSize) / 2;
 		int i1 = (height - ySize) / 2;
 		this.drawTexturedModalRect(l, i1, 0, 0, xSize, ySize);

@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.network.message;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -28,6 +29,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.util.NBTHelper;
 
 //Server
 public class MessagePresentContents implements IMessage, IMessageHandler<MessagePresentContents, IMessage>
@@ -61,23 +63,13 @@ public class MessagePresentContents implements IMessage, IMessageHandler<Message
 	{
 		EntityPlayerMP player = ctx.getServerHandler().playerEntity;
 		ItemStack present = message.envelope;
-
-		if (present.getItem() == FurnitureItems.itemPresentRed)
-		{
-			ItemStack signedPresent = new ItemStack(FurnitureItems.itemPresentRed);
-			signedPresent.setTagCompound(present.getTagCompound());
-			signedPresent.setTagInfo("Author", new NBTTagString(player.getName()));
-			signedPresent.setStackDisplayName(EnumChatFormatting.RED + "Wrapped Present");
-			player.setCurrentItemOrArmor(0, signedPresent);
-		}
-		else
-		{
-			ItemStack signedPresent = new ItemStack(FurnitureItems.itemPresentGreen);
-			signedPresent.setTagCompound(present.getTagCompound());
-			signedPresent.setTagInfo("Author", new NBTTagString(player.getName()));
-			signedPresent.setStackDisplayName(EnumChatFormatting.GREEN + "Wrapped Present");
-			player.setCurrentItemOrArmor(0, signedPresent);
-		}
+		
+		ItemStack signedPresent = new ItemStack(FurnitureItems.itemPresent, 1, present.getMetadata());
+		signedPresent.setTagCompound(present.getTagCompound());
+		signedPresent.setTagInfo("Author", new NBTTagString(player.getName()));
+		signedPresent.setStackDisplayName(EnumChatFormatting.GREEN + "Wrapped Present");
+		player.setCurrentItemOrArmor(0, signedPresent);
+		
 		return null;
 	}
 

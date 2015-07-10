@@ -25,6 +25,9 @@ import com.mrcrayfish.furniture.init.FurnitureItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.Block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -35,13 +38,31 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockTable extends BlockFurniture
+public class BlockTable extends Block
 {
+	public static final PropertyBool BACK = PropertyBool.create("back");
+	public static final PropertyBool FORWARD = PropertyBool.create("forward");
+	public static final PropertyBool LEFT = PropertyBool.create("left");
+	public static final PropertyBool RIGHT = PropertyBool.create("right");
+	
 	public BlockTable(Material material, SoundType sound)
 	{
 		super(material);
 		setHardness(1.0F);
 		setStepSound(sound);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(BACK, false).withProperty(FORWARD, false).withProperty(LEFT, false).withProperty(RIGHT, false));
+	}
+	
+	@Override
+	public boolean isOpaqueCube()
+	{
+		return false;
+	}
+
+	@Override
+	public boolean isFullCube()
+	{
+		return false;
 	}
 	
 	@Override
@@ -78,5 +99,33 @@ public class BlockTable extends BlockFurniture
 			return true;
 		}
 		return false;
+	}
+	
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
+	{
+		boolean back = world.getBlockState(pos.south()).getBlock() == this;
+		boolean forward = world.getBlockState(pos.north()).getBlock() == this;
+		boolean left = world.getBlockState(pos.west()).getBlock() == this;
+		boolean right = world.getBlockState(pos.east()).getBlock() == this;
+		return state.withProperty(BACK, back).withProperty(FORWARD, forward).withProperty(LEFT, left).withProperty(RIGHT, right);
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state)
+	{
+		return 0;
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+	{
+		return this.getDefaultState();
+	}
+	
+	@Override
+	protected BlockState createBlockState()
+	{
+		return new BlockState(this, new IProperty[] { BACK, FORWARD, LEFT, RIGHT });
 	}
 }

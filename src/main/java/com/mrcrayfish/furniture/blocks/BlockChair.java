@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
@@ -42,8 +43,9 @@ import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.util.CollisionHelper;
+import com.mrcrayfish.furniture.util.SittableUtil;
 
-public class BlockChair extends BlockSittable
+public class BlockChair extends Block
 {
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
@@ -70,7 +72,7 @@ public class BlockChair extends BlockSittable
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		return this.sitOnBlock(world, pos.getX(), pos.getY(), pos.getZ(), player, 7 * 0.0625);
+		return SittableUtil.sitOnBlock(world, pos.getX(), pos.getY(), pos.getZ(), player, 7 * 0.0625);
 	}
 
 	@Override

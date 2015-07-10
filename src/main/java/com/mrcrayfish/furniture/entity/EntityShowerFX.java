@@ -60,7 +60,7 @@ public class EntityShowerFX extends EntityFX
 	@Override
 	public float getBrightness(float par1)
 	{
-		return 1.0F;
+		return super.getBrightness(par1);
 	}
 
 	/**

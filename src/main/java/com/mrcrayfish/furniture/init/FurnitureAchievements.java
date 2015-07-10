@@ -62,7 +62,7 @@ public class FurnitureAchievements
 
 		mineKea = new Achievement("achievement.cfm_minekea", "cfm_minekea", 2, 0, new ItemStack(FurnitureItems.itemChairWood), installMod);
 		placeTree = new Achievement("achievement.cfm_placetree", "cfm_placetree", 3, 1, new ItemStack(FurnitureItems.itemTree), mineKea);
-		unwrapPresent = new Achievement("achievement.cfm_unwrappresent", "cfm_unwrappresent", 4, 2, new ItemStack(FurnitureItems.itemPresentRed), placeTree);
+		unwrapPresent = new Achievement("achievement.cfm_unwrappresent", "cfm_unwrappresent", 4, 2, new ItemStack(FurnitureItems.itemPresent), placeTree);
 		privacy = new Achievement("achievement.cfm_privacy", "cfm_privacy", 4, 0, new ItemStack(FurnitureItems.itemCurtains), mineKea);
 
 		applianceCity = new Achievement("achievement.cfm_appliancecity", "cfm_appliancecity", 1, 2, new ItemStack(FurnitureItems.itemOven), installMod);
@@ -88,7 +88,7 @@ public class FurnitureAchievements
 		whatDidYouEat = new Achievement("achievement.cfm_whatdidyoueat", "cfm_whatdidyoueat", 3, -3, new ItemStack(FurnitureItems.itemToilet), bathroom);
 		allClean = new Achievement("achievement.cfm_allclean", "cfm_allclean", 1, -3, new ItemStack(FurnitureItems.itemShower), bathroom);
 
-		page = new AchievementPage("MrCrayfish's Furniture Mod", installMod, mineKea, placeTree, unwrapPresent, privacy, applianceCity, cookItem, freezeItem, modernTechnology, buyItem, copyItem, houseParty, heyeyey, dingDong, careful, gardening, mailBox, sendMail, firstMail, tapped, donator, bathroom, whatDidYouEat, allClean);
+		page = new AchievementPage("Furniture Mod", installMod, mineKea, placeTree, unwrapPresent, privacy, applianceCity, cookItem, freezeItem, modernTechnology, buyItem, copyItem, houseParty, heyeyey, dingDong, careful, gardening, mailBox, sendMail, firstMail, tapped, donator, bathroom, whatDidYouEat, allClean);
 	}
 
 	public static void registerPage()

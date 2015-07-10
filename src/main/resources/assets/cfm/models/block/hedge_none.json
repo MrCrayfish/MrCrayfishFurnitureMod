@@ -1,6 +1,6 @@
 {
 "textures":{
-"particle":"blocks/torch"
+"particle":"#1"
 },
 "elements":[
 {"from": [3.0,0.0,3.0],

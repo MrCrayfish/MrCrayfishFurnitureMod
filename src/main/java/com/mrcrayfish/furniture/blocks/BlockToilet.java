@@ -40,22 +40,21 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.util.CollisionHelper;
+import com.mrcrayfish.furniture.util.SittableUtil;
 
-public class BlockToilet extends BlockSittable
+public class BlockToilet extends BlockFurniture
 {
-	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-
 	public BlockToilet(Material material)
 	{
 		super(material);
 		setHardness(1.0F);
 		setStepSound(Block.soundTypeStone);
-		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 	}
-
+	
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
 	{
@@ -67,7 +66,7 @@ public class BlockToilet extends BlockSittable
 	{
 		if (!player.isSneaking())
 		{
-			if (this.sitOnBlockWithRotationOffset(world, pos.getX(), pos.getY(), pos.getZ(), player, 0.55D, getMetaFromState(state), 0.15D))
+			if (SittableUtil.sitOnBlockWithRotationOffset(world, pos.getX(), pos.getY(), pos.getZ(), player, 0.4D, getMetaFromState(state), 0.1D))
 			{
 				if (world.isRemote)
 				{
@@ -98,12 +97,20 @@ public class BlockToilet extends BlockSittable
 	@Override
 	public void addCollisionBoxesToList(World world, BlockPos pos, IBlockState state, AxisAlignedBB mask, List list, Entity collidingEntity)
 	{
-		int metadata = getMetaFromState(state);
-		float[] data = CollisionHelper.fixRotation(metadata, 0.65F, 0.0F, 1.0F, 1.0F);
-		this.setBlockBounds(data[0], 0.5F, data[1], data[2], 1.1F, data[3]);
-		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
-		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+		if (!(collidingEntity instanceof EntitySittableBlock))
+		{
+			int metadata = getMetaFromState(state);
+			float[] data = CollisionHelper.fixRotation(metadata, 0.65F, 0.0F, 1.0F, 1.0F);
+			this.setBlockBounds(data[0], 0.5F, data[1], data[2], 1.1F, data[3]);
+			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
+			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+		}
+		else
+		{
+			setBlockBounds(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F);
+			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+		}
 	}
 
 	@Override
@@ -116,17 +123,5 @@ public class BlockToilet extends BlockSittable
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
 		return new ItemStack(FurnitureItems.itemToilet);
-	}
-
-	@Override
-	public int getMetaFromState(IBlockState state)
-	{
-		return ((EnumFacing) state.getValue(FACING)).getHorizontalIndex();
-	}
-
-	@Override
-	protected BlockState createBlockState()
-	{
-		return new BlockState(this, new IProperty[] { FACING });
 	}
 }

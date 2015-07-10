@@ -32,8 +32,6 @@ public class ItemFridge extends Item
 {
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		int rotate = MathHelper.floor_double(((player.rotationYaw * 4F) / 360F) + 0.5D) & 3;
-
 		if (!player.isSneaking())
 		{
 			if (world.isAirBlock(pos.up(1)) && world.isAirBlock(pos.up(2)))
@@ -49,6 +47,5 @@ public class ItemFridge extends Item
 			System.out.println("X: " + pos.getX() + " Y: " + pos.getY() + " Z: " + pos.getZ());
 		}
 		return true;
-
 	}
 }

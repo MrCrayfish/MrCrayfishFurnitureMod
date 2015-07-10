@@ -91,8 +91,16 @@ public class BlockShowerHead extends BlockFurnitureTile
 	@Override
 	public boolean canPlaceBlockOnSide(World world, BlockPos pos, EnumFacing side)
 	{
-		return (side == EnumFacing.NORTH && this.isSideSolid(world, pos.north(), EnumFacing.NORTH)) || (side == EnumFacing.SOUTH && this.isSideSolid(world, pos.south(), EnumFacing.SOUTH)) || (side == EnumFacing.WEST && this.isSideSolid(world, pos.west(), EnumFacing.WEST)) || (side == EnumFacing.EAST && this.isSideSolid(world, pos.east(), EnumFacing.EAST));
+		return (side == EnumFacing.UP | side == EnumFacing.DOWN) ? false : world.isSideSolid(pos.offset(side.getOpposite()), side, true);
 	}
+	
+	@Override
+	public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+	{
+		IBlockState state = super.onBlockPlaced(world, pos, facing, hitX, hitY, hitZ, meta, placer);
+		return state.withProperty(FACING, facing.getOpposite());
+	}
+
 
 	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)

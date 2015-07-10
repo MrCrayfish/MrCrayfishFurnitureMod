@@ -22,47 +22,92 @@ import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.mrcrayfish.furniture.entity.EntitySittableBlock;
+import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
-import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
 import com.mrcrayfish.furniture.tileentity.TileEntityPresent;
+import com.mrcrayfish.furniture.util.InventoryUtil;
 
-public class BlockPresent extends BlockFurnitureTile
+public class BlockPresent extends Block implements ITileEntityProvider
 {
+	public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
+	
 	public BlockPresent(Material material)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeCloth);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeCloth);
+		this.isBlockContainer = true;
+		this.setDefaultState(this.blockState.getBaseState().withProperty(COLOUR, 0));
+	}
+	
+	@Override
+	public boolean isOpaqueCube()
+	{
+		return false;
 	}
 
 	@Override
-	public boolean removedByPlayer(World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
+	public boolean isFullCube()
 	{
-		TileEntityPresent mailBox = (TileEntityPresent) world.getTileEntity(pos);
-		if (mailBox != null)
+		return false;
+	}
+
+	@Override
+	public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player)
+	{
+		TileEntityPresent present = (TileEntityPresent) world.getTileEntity(pos);
+		if (present != null)
 		{
-			player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Merry Christmas" + EnumChatFormatting.RESET + " from " + EnumChatFormatting.RED + mailBox.ownerName));
+			world.playSoundEffect(pos.getX(), pos.getY(), pos.getZ(), "random.levelup", 0.75F, 1.0F);
+			player.addChatComponentMessage(new ChatComponentText(EnumChatFormatting.GREEN + "Merry Christmas" + EnumChatFormatting.RESET + " from " + EnumChatFormatting.RED + present.ownerName));
 			player.triggerAchievement(FurnitureAchievements.unwrapPresent);
 		}
-		return true;
+	}
+	
+	@Override
+	public void breakBlock(World world, BlockPos pos, IBlockState state)
+	{
+		TileEntity tileEntity = world.getTileEntity(pos);
+		if (tileEntity instanceof IInventory)
+		{
+			IInventory inv = (IInventory) tileEntity;
+			InventoryHelper.dropInventoryItems(world, pos, inv);
+		}
+		if (tileEntity instanceof ISimpleInventory)
+		{
+			ISimpleInventory inv = (ISimpleInventory) tileEntity;
+			InventoryUtil.dropInventoryItems(world, pos, inv);
+		}
+		super.breakBlock(world, pos, state);
 	}
 
 	@Override
@@ -81,21 +126,13 @@ public class BlockPresent extends BlockFurnitureTile
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		if (this == FurnitureBlocks.present_red)
-			return FurnitureItems.itemPresentRed;
-		if (this == FurnitureBlocks.present_green)
-			return FurnitureItems.itemPresentGreen;
 		return null;
 	}
 
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
-		if (this == FurnitureBlocks.present_red)
-			return new ItemStack(FurnitureItems.itemPresentRed);
-		if (this == FurnitureBlocks.present_green)
-			return new ItemStack(FurnitureItems.itemPresentGreen);
-		return null;
+		return new ItemStack(FurnitureItems.itemPresent);
 	}
 
 	@Override
@@ -107,5 +144,37 @@ public class BlockPresent extends BlockFurnitureTile
 	public int getDaysInbetween(Date date, Date date2)
 	{
 		return (int) (date2.getTime() - date.getTime()) / (1000 * 60 * 60 * 24);
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state)
+	{
+		return ((Integer) state.getValue(COLOUR)).intValue();
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+	{
+		return this.getDefaultState().withProperty(COLOUR, meta);
+	}
+
+	@Override
+	protected BlockState createBlockState()
+	{
+		return new BlockState(this, new IProperty[] { COLOUR });
+	}
+	
+	@Override
+	public boolean onBlockEventReceived(World worldIn, BlockPos pos, IBlockState state, int eventID, int eventParam)
+	{
+		super.onBlockEventReceived(worldIn, pos, state, eventID, eventParam);
+		TileEntity tileentity = worldIn.getTileEntity(pos);
+		return tileentity == null ? false : tileentity.receiveClientEvent(eventID, eventParam);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public EnumWorldBlockLayer getBlockLayer()
+	{
+		return EnumWorldBlockLayer.CUTOUT;
 	}
 }

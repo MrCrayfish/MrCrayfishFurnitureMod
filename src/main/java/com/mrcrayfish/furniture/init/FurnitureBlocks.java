@@ -106,7 +106,7 @@ public class FurnitureBlocks
 	public static Block cup, plate, cookie_jar, bar_stool, chopping_board;
 
 	/** Christmas Update */
-	public static Block present_red, present_green, tree_bottom, tree_top, string;
+	public static Block present, tree_bottom, tree_top, string;
 
 	/** Misc */
 	public static Block hey;
@@ -169,8 +169,7 @@ public class FurnitureBlocks
 		bin = new BlockBin(Material.rock).setUnlocalizedName("bin");
 		tree_top = new BlockTree(Material.wood).setUnlocalizedName("tree_top");
 		tree_bottom = new BlockTree(Material.wood).setUnlocalizedName("tree_bottom");
-		present_red = new BlockPresent(Material.cloth).setUnlocalizedName("present_red");
-		present_green = new BlockPresent(Material.cloth).setUnlocalizedName("present_green");
+		present = new BlockPresent(Material.cloth).setUnlocalizedName("present");
 		toaster = new BlockToaster(Material.wood).setUnlocalizedName("toaster");
 		microwave = new BlockMicrowave(Material.wood).setUnlocalizedName("microwave");
 		washing_machine = new BlockWashingMachine(Material.rock).setUnlocalizedName("washing_machine");
@@ -239,8 +238,7 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(shower_head_off, shower_head_off.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(shower_head_on, shower_head_on.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(bin, bin.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(present_red, present_red.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(present_green, present_green.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(present, present.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(tree_top, tree_top.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(tree_bottom, tree_bottom.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(toaster, toaster.getUnlocalizedName().substring(5));

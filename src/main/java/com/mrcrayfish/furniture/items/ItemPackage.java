@@ -35,8 +35,7 @@ public class ItemPackage extends Item implements IMail
 {
 	public ItemPackage()
 	{
-		super();
-		this.maxStackSize = 1;
+		setMaxStackSize(1);
 	}
 
 	@Override

@@ -17,12 +17,15 @@
  */
 package com.mrcrayfish.furniture.items;
 
+import java.awt.Color;
 import java.util.List;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -32,17 +35,27 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.blocks.BlockPresent;
 import com.mrcrayfish.furniture.gui.inventory.InventoryPresent;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessagePresent;
+import com.mrcrayfish.furniture.tileentity.TileEntityPresent;
 import com.mrcrayfish.furniture.util.NBTHelper;
 
 public class ItemPresent extends Item implements IMail
 {
+	public ItemPresent() {
+		this.setHasSubtypes(true);
+        this.setMaxDamage(0);
+	}
+	
+	
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag)
 	{
@@ -67,12 +80,6 @@ public class ItemPresent extends Item implements IMail
 	{
 		if (world.isSideSolid(pos, EnumFacing.UP))
 		{
-			int metadata = 0;
-			if (this == FurnitureItems.itemPresentGreen)
-			{
-				metadata = 1;
-			}
-
 			if (stack.hasTagCompound())
 			{
 				NBTTagCompound nbttagcompound = stack.getTagCompound();
@@ -83,22 +90,20 @@ public class ItemPresent extends Item implements IMail
 					NBTTagList itemList = (NBTTagList) NBTHelper.getCompoundTag(stack, "Present").getTag("Items");
 					if (itemList.tagCount() > 0)
 					{
-						IBlockState state = null;
-						if (this == FurnitureItems.itemPresentRed)
-						{
-							state = FurnitureBlocks.present_red.getDefaultState();
-						}
-						else
-						{
-							state = FurnitureBlocks.present_green.getDefaultState();
-						}
+						IBlockState state = FurnitureBlocks.present.getDefaultState().withProperty(BlockPresent.COLOUR, stack.getMetadata());
+						
 						world.setBlockState(pos.up(), state, 2);
 						world.playSoundEffect((pos.getX() + 0.5F), (pos.getY() + 0.5F), (pos.getZ() + 0.5F), state.getBlock().stepSound.getPlaceSound(), (state.getBlock().stepSound.getVolume() + 1.0F) / 2.0F, state.getBlock().stepSound.getFrequency() * 0.8F);
 
-						if (world.isRemote)
+						TileEntityPresent tep = new TileEntityPresent();
+						tep.setOwner(player.getName());
+
+						for (int i = 0; i < itemList.tagCount(); i++)
 						{
-							PacketHandler.INSTANCE.sendToServer(new MessagePresent(stack, pos.getX(), pos.getY() + 1, pos.getZ()));
+							tep.setInventorySlotContents(i, ItemStack.loadItemStackFromNBT(itemList.getCompoundTagAt(i)));
 						}
+
+						world.setTileEntity(pos.up(), tep);
 
 						--stack.stackSize;
 					}
@@ -155,6 +160,15 @@ public class ItemPresent extends Item implements IMail
 		}
 		return stack;
 	}
+	
+	@SideOnly(Side.CLIENT)
+    public void getSubItems(Item itemIn, CreativeTabs tab, List subItems)
+    {
+        for (int i = 0; i < 16; ++i)
+        {
+            subItems.add(new ItemStack(itemIn, 1, i));
+        }
+    }
 
 	public static IInventory getInv(EntityPlayer player)
 	{
@@ -165,5 +179,18 @@ public class ItemPresent extends Item implements IMail
 			invPresent = new InventoryPresent(player, present);
 		}
 		return invPresent;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public int getColorFromItemStack(ItemStack cup, int renderPass)
+	{
+		return renderPass < 1 ? 16777215 : ItemDye.dyeColors[cup.getMetadata()];
+	}
+
+	@SideOnly(Side.CLIENT)
+	public boolean requiresMultipleRenderPasses()
+	{
+		return true;
 	}
 }
