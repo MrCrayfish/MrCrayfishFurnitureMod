@@ -31,18 +31,32 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.util.CollisionHelper;
 
-public class BlockStonePath extends BlockFurniture
+public class BlockStonePath extends Block
 {
 	public BlockStonePath(Material material)
 	{
 		super(material);
 		setHardness(0.75F);
 		setStepSound(Block.soundTypeStone);
+	}
+	
+	@Override
+	public boolean isOpaqueCube()
+	{
+		return false;
+	}
+
+	@Override
+	public boolean isFullCube()
+	{
+		return false;
 	}
 	
 	@Override
@@ -64,6 +78,12 @@ public class BlockStonePath extends BlockFurniture
 	public boolean canBlockStay(World world, BlockPos pos)
 	{
 		return !world.isAirBlock(pos.down()) && world.getBlockState(pos.down()).getBlock().isNormalCube();
+	}
+	
+	@Override
+	public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, BlockPos pos)
+	{
+		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1F * 0.0625F, 1.0F);
 	}
 
 	@Override

@@ -1,11 +1,10 @@
 {
 "textures":{
-"particle":"blocks/torch"
+"particle":"#1"
 },
 "elements":[
 {"from": [12.0,9.6,0.0],
 "to": [16.0,19.2,16.0],
-"shade": true,
 "faces": {
 "up": {"uv": [ 12.0, 0.0, 16.0, 16.0 ],"texture":"#1"},
 "down": {"uv": [ 12.0, 0.0, 16.0, 16.0 ],"texture":"#1"},
@@ -18,7 +17,6 @@
 ,
 {"from": [0.0,0.0,0.0],
 "to": [16.0,9.6,16.0],
-"shade": false,
 "faces": {
 "up": {"uv": [ 0.0, 0.0, 16.0, 16.0 ],"texture":"#1"},
 "down": {"uv": [ 0.0, 0.0, 16.0, 16.0 ],"texture":"#1"},

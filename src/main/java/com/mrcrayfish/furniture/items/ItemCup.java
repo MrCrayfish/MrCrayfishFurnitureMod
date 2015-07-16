@@ -36,6 +36,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
@@ -51,7 +52,11 @@ public class ItemCup extends Item
 		this.hasLiquid = hasLiquid;
 		if (hasLiquid)
 		{
-			this.setMaxStackSize(1);
+			setMaxStackSize(1);
+		}
+		else
+		{
+			setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		}
 	}
 

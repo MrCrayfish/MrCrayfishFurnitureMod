@@ -22,6 +22,8 @@ import java.util.Random;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.tileentity.TileEntityCouch;
+import com.mrcrayfish.furniture.tileentity.TileEntityTree;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -30,7 +32,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
@@ -42,7 +46,7 @@ import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockTree extends BlockFurniture
+public class BlockTree extends BlockFurnitureTile
 {
 	public BlockTree(Material material)
 	{
@@ -82,6 +86,22 @@ public class BlockTree extends BlockFurniture
 		if (this == FurnitureBlocks.tree_bottom)
 			world.setBlockState(pos.up(), FurnitureBlocks.tree_top.getDefaultState());
 		return super.onBlockPlaced(world, pos, facing, hitX, hitY, hitZ, meta, placer);
+	}
+
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
+	{
+		ItemStack currentItem = playerIn.getCurrentEquippedItem();
+		TileEntity tileEntity = worldIn.getTileEntity(pos);
+		if (tileEntity instanceof TileEntityTree)
+		{
+			TileEntityTree tileEntityTree = (TileEntityTree) tileEntity;
+			tileEntityTree.addOrnament(playerIn.getHorizontalFacing(), currentItem);
+			if (currentItem != null)
+				currentItem.stackSize--;
+			worldIn.markBlockForUpdate(pos);
+		}
+		return true;
 	}
 
 	@Override
@@ -156,5 +176,11 @@ public class BlockTree extends BlockFurniture
 	public EnumWorldBlockLayer getBlockLayer()
 	{
 		return EnumWorldBlockLayer.CUTOUT;
+	}
+
+	@Override
+	public TileEntity createNewTileEntity(World worldIn, int meta)
+	{
+		return new TileEntityTree();
 	}
 }

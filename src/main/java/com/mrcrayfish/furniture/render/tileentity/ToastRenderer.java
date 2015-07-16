@@ -104,7 +104,7 @@ public class ToastRenderer extends TileEntitySpecialRenderer
 				}
 
 				double yOffset = tileEntityToaster.isToasting() ? -0.075 : 0.0;
-				Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(slots[i], 0.0D + xOffset, 0.1D + yOffset, 0.0D + zOffset, 0.0F, 0.0F);
+				Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(slots[i], 0.0D + xOffset, yOffset, 0.0D + zOffset, 0.0F, 0.0F);
 				GL11.glPopMatrix();
 			}
 		}

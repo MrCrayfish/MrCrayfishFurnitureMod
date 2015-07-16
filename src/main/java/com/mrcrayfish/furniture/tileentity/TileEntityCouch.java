@@ -29,7 +29,7 @@ public class TileEntityCouch extends TileEntity
 
 	public void setColour(int colour)
 	{
-		this.colour = colour;
+		this.colour = 15 - colour;
 	}
 
 	public int getColour()

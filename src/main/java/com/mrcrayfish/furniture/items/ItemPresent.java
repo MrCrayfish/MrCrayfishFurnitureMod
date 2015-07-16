@@ -51,8 +51,9 @@ import com.mrcrayfish.furniture.util.NBTHelper;
 public class ItemPresent extends Item implements IMail
 {
 	public ItemPresent() {
-		this.setHasSubtypes(true);
-        this.setMaxDamage(0);
+		setHasSubtypes(true);
+        setMaxDamage(0);
+        setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	
 	

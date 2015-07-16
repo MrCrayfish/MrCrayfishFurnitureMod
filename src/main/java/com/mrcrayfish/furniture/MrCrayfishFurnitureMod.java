@@ -100,6 +100,9 @@ public class MrCrayfishFurnitureMod
 		{
 			FMLCommonHandler.instance().bus().register(new SyncEvent());
 		}
+		
+		/** Configuration Handler Init */
+		ConfigurationHandler.init(event.getSuggestedConfigurationFile());
 	}
 
 	@EventHandler
@@ -130,24 +133,6 @@ public class MrCrayfishFurnitureMod
 		RecipeRegistry.registerConfigRecipes();
 		Recipes.addCommRecipesToLocal();
 		Recipes.updateDataList();
-		
-		
-		System.out.println(new Color(21,17,17).getRGB());
-		System.out.println(new Color(42,51,129).getRGB());
-		System.out.println(new Color(72,46,28).getRGB());
-		System.out.println(new Color(42,101,126).getRGB());
-		System.out.println(new Color(59,59,59).getRGB());
-		System.out.println(new Color(49,65,25).getRGB());
-		System.out.println(new Color(88,123,194).getRGB());
-		System.out.println(new Color(59,160,52).getRGB());
-		System.out.println(new Color(172,66,182).getRGB());
-		System.out.println(new Color(217,117,51).getRGB());
-		System.out.println(new Color(201,115,139).getRGB());
-		System.out.println(new Color(117,55,169).getRGB());
-		System.out.println(new Color(138,49,44).getRGB());
-		System.out.println(new Color(141,149,149).getRGB());
-		System.out.println(new Color(211,211,211).getRGB());
-		System.out.println(new Color(207,194,49).getRGB());
 	}
 
 	@EventHandler

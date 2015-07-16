@@ -587,7 +587,6 @@ public class GuiRecipeBook extends GuiScreen
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		this.mc.getTextureManager().bindTexture(page_1);
 		this.drawTexturedModalRect(x, y, 0, 200, 45, 18);
-		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glPopMatrix();
 	}
 

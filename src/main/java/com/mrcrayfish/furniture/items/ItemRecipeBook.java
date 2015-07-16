@@ -26,6 +26,11 @@ import net.minecraft.world.World;
 
 public class ItemRecipeBook extends Item
 {
+	public ItemRecipeBook()
+	{
+		setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+	}
+	
 	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
 	{
 		if (par2World.isRemote)

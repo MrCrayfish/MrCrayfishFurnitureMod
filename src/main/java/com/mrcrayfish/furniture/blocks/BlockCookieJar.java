@@ -145,13 +145,19 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
 	{
-		return state.withProperty(COOKIE_COUNT, Integer.valueOf(0));
+		return state.withProperty(COOKIE_COUNT, 0);
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		return ((Integer) state.getValue(COOKIE_COUNT)).intValue();
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+	{
+		return getDefaultState().withProperty(COOKIE_COUNT, meta);
 	}
 
 	@Override

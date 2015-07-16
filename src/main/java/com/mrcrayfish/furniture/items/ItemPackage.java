@@ -36,6 +36,7 @@ public class ItemPackage extends Item implements IMail
 	public ItemPackage()
 	{
 		setMaxStackSize(1);
+		setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
 	@Override

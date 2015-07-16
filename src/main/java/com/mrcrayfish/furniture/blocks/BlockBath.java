@@ -232,6 +232,17 @@ public class BlockBath extends BlockFurnitureTile
 		}
 		return true;
 	}
+	
+	@Override
+	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+	{
+		if(this == FurnitureBlocks.bath_1)
+		{
+			worldIn.destroyBlock(pos.offset((EnumFacing)state.getValue(FACING)), false);
+		} else {
+			worldIn.destroyBlock(pos.offset(((EnumFacing)state.getValue(FACING)).getOpposite()), false);
+		}
+	}
 
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)

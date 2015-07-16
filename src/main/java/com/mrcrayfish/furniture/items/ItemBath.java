@@ -29,12 +29,18 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.blocks.BlockBath;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 
 public class ItemBath extends Item
 {
 	private BlockBath block = (BlockBath) FurnitureBlocks.bath_1;
+	
+	public ItemBath()
+	{
+		setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+	}
 
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
 	{

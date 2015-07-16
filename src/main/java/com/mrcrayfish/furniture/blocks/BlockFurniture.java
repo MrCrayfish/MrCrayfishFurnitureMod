@@ -39,7 +39,7 @@ import net.minecraft.world.World;
 public class BlockFurniture extends Block
 {
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-
+	
 	public BlockFurniture(Material material)
 	{
 		super(material);

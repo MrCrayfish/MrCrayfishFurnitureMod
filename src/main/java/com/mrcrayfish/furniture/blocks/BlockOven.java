@@ -32,9 +32,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
@@ -115,5 +118,11 @@ public class BlockOven extends BlockFurnitureTile
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
 		return new ItemStack(FurnitureItems.itemOven);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public EnumWorldBlockLayer getBlockLayer()
+	{
+		return EnumWorldBlockLayer.CUTOUT;
 	}
 }

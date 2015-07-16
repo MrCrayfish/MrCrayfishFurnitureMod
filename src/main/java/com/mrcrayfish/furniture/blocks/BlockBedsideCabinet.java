@@ -77,10 +77,10 @@ public class BlockBedsideCabinet extends BlockFurnitureTile
 	@Override
 	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
 	{
-		if (world.getBlockState(pos.up()).getBlock() == FurnitureBlocks.lamp_on)
-		{
-			world.notifyBlockOfStateChange(pos, neighborBlock);
-		}
+		//if (neighborBlock instanceof BlockLampOn)
+		//{
+			//world.notifyNeighborsOfStateChange(pos, this);
+		//}
 	}
 
 	@Override

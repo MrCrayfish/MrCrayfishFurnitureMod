@@ -19,6 +19,12 @@ package com.mrcrayfish.furniture.init;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.statemap.StateMap;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import com.mrcrayfish.furniture.blocks.BlockBarStool;
@@ -39,6 +45,7 @@ import com.mrcrayfish.furniture.blocks.BlockComputer;
 import com.mrcrayfish.furniture.blocks.BlockCookieJar;
 import com.mrcrayfish.furniture.blocks.BlockCouch;
 import com.mrcrayfish.furniture.blocks.BlockCounter;
+import com.mrcrayfish.furniture.blocks.BlockCounterSink;
 import com.mrcrayfish.furniture.blocks.BlockCup;
 import com.mrcrayfish.furniture.blocks.BlockCurtains;
 import com.mrcrayfish.furniture.blocks.BlockDishwasher;
@@ -48,7 +55,7 @@ import com.mrcrayfish.furniture.blocks.BlockFireAlarm;
 import com.mrcrayfish.furniture.blocks.BlockFreezer;
 import com.mrcrayfish.furniture.blocks.BlockFridge;
 import com.mrcrayfish.furniture.blocks.BlockHedge;
-import com.mrcrayfish.furniture.blocks.BlockLampOff;
+import com.mrcrayfish.furniture.blocks.BlockLamp;
 import com.mrcrayfish.furniture.blocks.BlockLampOn;
 import com.mrcrayfish.furniture.blocks.BlockMailBox;
 import com.mrcrayfish.furniture.blocks.BlockMicrowave;
@@ -118,7 +125,7 @@ public class FurnitureBlocks
 	public static void init()
 	{
 		lamp_on = new BlockLampOn(Material.glass).setUnlocalizedName("lamp_on");
-		lamp_off = new BlockLampOff(Material.glass).setUnlocalizedName("lamp_off");
+		lamp_off = new BlockLamp(Material.glass).setUnlocalizedName("lamp_off");
 		coffee_table_wood = new BlockCoffeeTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("coffee_table_wood");
 		coffee_table_stone = new BlockCoffeeTable(Material.rock, Block.soundTypeStone).setUnlocalizedName("coffee_table_stone");
 		table_wood = new BlockTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("table_wood");
@@ -178,7 +185,7 @@ public class FurnitureBlocks
 		cup = new BlockCup(Material.glass).setUnlocalizedName("cup");
 		plate = new BlockPlate(Material.glass).setUnlocalizedName("plate");
 		counter = new BlockCounter(Material.wood).setUnlocalizedName("counter");
-		counter_sink = new BlockCounter(Material.wood).setUnlocalizedName("counter_sink");
+		counter_sink = new BlockCounterSink(Material.wood).setUnlocalizedName("counter_sink");
 		dishwasher = new BlockDishwasher(Material.rock).setUnlocalizedName("dishwasher");
 		kitchen_cabinet = new BlockCabinetKitchen(Material.wood).setUnlocalizedName("cabinet_kitchen");
 		chopping_board = new BlockChoppingBoard(Material.wood).setUnlocalizedName("chopping_board");

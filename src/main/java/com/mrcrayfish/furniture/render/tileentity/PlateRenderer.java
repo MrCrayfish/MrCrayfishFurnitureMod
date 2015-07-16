@@ -18,6 +18,8 @@
 package com.mrcrayfish.furniture.render.tileentity;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.tileentity.TileEntity;
@@ -43,29 +45,36 @@ public class PlateRenderer extends TileEntitySpecialRenderer
 
 			float xOffset = 0.0F;
 			float zOffset = 0.0F;
-
+			
 			switch (plate.getRotation())
 			{
 			case 0:
-				zOffset -= 0.1F;
+				zOffset -= 0.15F;
 				break;
 			case 1:
-				xOffset += 0.3F;
+				xOffset += 0.35F;
 				zOffset += 0.2F;
 				break;
 			case 2:
-				zOffset += 0.5F;
+				zOffset += 0.55F;
 				break;
 			case 3:
-				xOffset -= 0.3F;
+				xOffset -= 0.35F;
 				zOffset += 0.2F;
 				break;
 			}
+			
+			GL11.glDisable(GL11.GL_LIGHTING);
+			WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
+			renderer.setBrightness(15728880);
 
 			GL11.glTranslatef((float) posX + 0.5F + xOffset, (float) posY + 0.05F, (float) posZ + 0.3F + zOffset);
 			GL11.glRotatef(plate.getRotation() * -90F, 0, 1, 0);
 			GL11.glRotatef(180, 0, 1, 1);
 			Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(entityFood, 0.0D, 0.0D, 0.075D, 0.0F, 0.0F);
+			
+			GL11.glEnable(GL11.GL_LIGHTING);
+			
 			GL11.glPopMatrix();
 		}
 	}

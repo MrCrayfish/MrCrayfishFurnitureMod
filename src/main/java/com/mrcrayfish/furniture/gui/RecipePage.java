@@ -51,7 +51,6 @@ public class RecipePage
 	{
 		GL11.glPushMatrix();
 		RenderHelper.enableGUIStandardItemLighting();
-		GL11.glDisable(GL11.GL_LIGHTING);
 		GL11.glEnable(GL12.GL_RESCALE_NORMAL);
 		GL11.glEnable(GL11.GL_COLOR_MATERIAL);
 		GL11.glEnable(GL11.GL_LIGHTING);
@@ -298,46 +297,36 @@ public class RecipePage
 
 	private void drawOven(Minecraft mc, GuiRecipeBook gui, RecipeData data, int x, int y)
 	{
-		GL11.glEnable(GL11.GL_LIGHTING);
 		gui.getItemRenderer().zLevel = 100.0F;
 		gui.getItemRenderer().renderItemAndEffectIntoGUI(data.getInput(), x, y);
 		gui.getItemRenderer().renderItemOverlays(gui.getFontRenderer(), data.getInput(), x, y);
 		gui.getItemRenderer().renderItemAndEffectIntoGUI(data.getOutput(), x + 60, y);
 		gui.getItemRenderer().renderItemOverlays(gui.getFontRenderer(), data.getOutput(), x + 60, y);
 		gui.getItemRenderer().zLevel = 0.0F;
-		GL11.glDisable(GL11.GL_LIGHTING);
 	}
 
 	private void drawMineBay(Minecraft mc, GuiRecipeBook gui, RecipeData data, int x, int y)
 	{
-		GL11.glDisable(GL11.GL_LIGHTING);
 		gui.drawTag(x + 42, y - 1);
-		GL11.glEnable(GL11.GL_LIGHTING);
-		gui.getItemRenderer().zLevel = 100.0F;
 		gui.getItemRenderer().renderItemAndEffectIntoGUI(data.getInput(), x + 20, y);
-		gui.getItemRenderer().renderItemOverlays(gui.getFontRenderer(), data.getInput(), x + 20, y);
+		gui.getItemRenderer().renderItemOverlayIntoGUI(gui.getFontRenderer(), data.getInput(), x + 20, y, null);
 		gui.getItemRenderer().renderItemAndEffectIntoGUI(data.getCurrency(), x + 51, y);
-		gui.getItemRenderer().renderItemOverlays(gui.getFontRenderer(), data.getCurrency(), x + 51, y);
+		gui.getItemRenderer().renderItemOverlayIntoGUI(gui.getFontRenderer(), data.getCurrency(), x + 51, y, null);
 		gui.getFontRenderer().drawString("x" + Integer.toString(data.getPrice()), x + 68, y + 4, 0);
-		gui.getItemRenderer().zLevel = 0.0F;
-		GL11.glDisable(GL11.GL_LIGHTING);
 	}
 
 	private void drawPrinter(Minecraft mc, GuiRecipeBook gui, RecipeData data, int x, int y)
 	{
-		GL11.glEnable(GL11.GL_LIGHTING);
 		gui.getItemRenderer().zLevel = 100.0F;
 		gui.getItemRenderer().renderItemAndEffectIntoGUI(data.getInput(), x, y);
 		gui.getItemRenderer().renderItemOverlays(gui.getFontRenderer(), data.getInput(), x, y);
 		gui.getItemRenderer().zLevel = 0.0F;
-		GL11.glDisable(GL11.GL_LIGHTING);
 	}
 
 	private ItemStack knife = new ItemStack(FurnitureItems.itemKnife);
 
 	private void drawChoppingBoard(Minecraft mc, GuiRecipeBook gui, RecipeData data, int x, int y)
 	{
-		GL11.glEnable(GL11.GL_LIGHTING);
 		gui.getItemRenderer().zLevel = 100.0F;
 		gui.getItemRenderer().renderItemAndEffectIntoGUI(data.getInput(), x, y);
 		gui.getItemRenderer().renderItemOverlays(gui.getFontRenderer(), data.getInput(), x, y);
@@ -345,13 +334,11 @@ public class RecipePage
 		gui.getItemRenderer().renderItemAndEffectIntoGUI(data.getOutput(), x + 60, y);
 		gui.getItemRenderer().renderItemOverlays(gui.getFontRenderer(), data.getOutput(), x + 60, y);
 		gui.getItemRenderer().zLevel = 0.0F;
-		GL11.glDisable(GL11.GL_LIGHTING);
 	}
 
 	private void drawBlender(Minecraft mc, GuiRecipeBook gui, RecipeData data, int x, int y)
 	{
 		gui.getFontRenderer().drawString(fixName(data.getDrinkName()), x, y, 0);
-		GL11.glEnable(GL11.GL_LIGHTING);
 		for (int i = 0; i < data.getIngredients().size(); i++)
 		{
 			if (data.getIngredients().get(i) != null)
@@ -361,7 +348,6 @@ public class RecipePage
 			}
 		}
 		gui.drawProgressArrow(x + 45, y + 20);
-		GL11.glDisable(GL11.GL_LIGHTING);
 		gui.getItemRenderer().renderItemAndEffectIntoGUI(getDrink(data.getDrinkName(), data.getRed(), data.getGreen(), data.getBlue()), x + 80, y + 20);
 		gui.getItemRenderer().renderItemOverlays(gui.getFontRenderer(), getDrink(data.getDrinkName(), data.getRed(), data.getGreen(), data.getBlue()), x + 80, y + 20);
 	}

@@ -20,5 +20,6 @@
    "microwave_finish": {"category": "master","sounds": [{"name": "microwave_finish","stream": false}]},
    "toaster_down": {"category": "master","sounds": [{"name": "toaster_down","stream": false}]},
    "toaster_up": {"category": "master","sounds": [{"name": "toaster_up","stream": false}]},
-   "washing_machine": {"category": "master","sounds": [{"name": "washing_machine","stream": false}]}
+   "washing_machine": {"category": "master","sounds": [{"name": "washing_machine","stream": false}]},
+   "news": {"category": "master","sounds": [{"name": "news","stream": false}]}
 }

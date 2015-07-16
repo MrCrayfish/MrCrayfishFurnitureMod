@@ -17,6 +17,8 @@
  */
 package com.mrcrayfish.furniture.items;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSnow;
 import net.minecraft.block.state.IBlockState;
@@ -37,6 +39,7 @@ public class ItemPlacer extends Item
 	public ItemPlacer(Block block)
 	{
 		this.block = block;
+		setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)

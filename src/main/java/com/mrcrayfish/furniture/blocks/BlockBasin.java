@@ -53,19 +53,7 @@ public class BlockBasin extends BlockFurniture
 		setStepSound(Block.soundTypeStone);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(FILLED, Boolean.valueOf(false)));
 	}
-
-	@Override
-	public boolean isOpaqueCube()
-	{
-		return false;
-	}
-
-	@Override
-	public boolean isFullCube()
-	{
-		return false;
-	}
-
+	
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
 	{

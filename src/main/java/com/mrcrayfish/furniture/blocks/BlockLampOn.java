@@ -25,77 +25,50 @@ import com.mrcrayfish.furniture.init.FurnitureItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockLampOn extends BlockFurniture
+public class BlockLampOn extends BlockLamp
 {
 	public BlockLampOn(Material material)
 	{
 		super(material);
-		setLightLevel(1.0F);
-		setHardness(0.75F);
-		setStepSound(Block.soundTypeCloth);
-	}
-
-	@Override
-	public boolean isOpaqueCube()
-	{
-		return false;
-	}
-
-	@Override
-	public boolean isFullCube()
-	{
-		return false;
-	}
-
-	@Override
-	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-	{
-		((EntityPlayer) placer).triggerAchievement(FurnitureAchievements.modernTechnology);
-	}
-
-	@Override
-	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
-	{
-		if (!world.isBlockPowered(pos))
-		{
-			world.setBlockState(pos, FurnitureBlocks.lamp_off.getDefaultState(), 2);
-		}
+		this.setLightLevel(1.0F);
 	}
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		if (world.isBlockPowered(pos))
+		ItemStack currentItem = player.getCurrentEquippedItem();
+		if (currentItem != null)
 		{
-			world.setBlockState(pos, FurnitureBlocks.lamp_off.getDefaultState(), 2);
+			if (currentItem.getItem() instanceof ItemDye)
+			{
+				world.setBlockState(pos, state.withProperty(COLOUR, 15 - currentItem.getItemDamage()));
+				if (!player.capabilities.isCreativeMode)
+					currentItem.stackSize--;
+				return true;
+			}
 		}
+		world.setBlockState(pos, FurnitureBlocks.lamp_off.getDefaultState().withProperty(COLOUR, (Integer) state.getValue(COLOUR)), 2);
+		
 		if (world.getBlockState(pos.down()).getBlock() == FurnitureBlocks.bedside_cabinet)
 		{
-			world.notifyBlockOfStateChange(pos.down(), this);
+			world.notifyNeighborsOfStateChange(pos.down(), this);
 		}
 		return true;
-	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemLamp;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemLamp);
 	}
 }

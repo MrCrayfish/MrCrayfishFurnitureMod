@@ -29,7 +29,6 @@ import com.mrcrayfish.furniture.network.message.MessageEnvelope;
 import com.mrcrayfish.furniture.network.message.MessageFart;
 import com.mrcrayfish.furniture.network.message.MessageFillBasin;
 import com.mrcrayfish.furniture.network.message.MessageFillBath;
-import com.mrcrayfish.furniture.network.message.MessageFillSink;
 import com.mrcrayfish.furniture.network.message.MessageMicrowave;
 import com.mrcrayfish.furniture.network.message.MessageMineBayBrowse;
 import com.mrcrayfish.furniture.network.message.MessageMineBayBuy;
@@ -66,6 +65,5 @@ public class PacketHandler
 		INSTANCE.registerMessage(MessageMicrowave.class, MessageMicrowave.class, 15, Side.SERVER);
 		INSTANCE.registerMessage(MessageWashingMachine.class, MessageWashingMachine.class, 16, Side.SERVER);
 		INSTANCE.registerMessage(MessageDishwasher.class, MessageDishwasher.class, 17, Side.SERVER);
-		INSTANCE.registerMessage(MessageFillSink.class, MessageFillSink.class, 18, Side.CLIENT);
 	}
 }

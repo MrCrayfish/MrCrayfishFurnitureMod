@@ -2,10 +2,7 @@
 "parent": "cfm:block/tv",
 "textures": {
 "1": "blocks/log_oak",
-"2": "blocks/wool_colored_black",
-"3": "blocks/wool_colored_black",
-"4": "blocks/wool_colored_black",
-"5": "blocks/wool_colored_black",
-"6": "blocks/planks_oak"
+"2": "cfm:blocks/news",
+"3": "blocks/planks_oak"
 }
 }

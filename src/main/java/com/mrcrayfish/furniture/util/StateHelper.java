@@ -1,5 +1,7 @@
 package com.mrcrayfish.furniture.util;
 
+import org.lwjgl.Sys;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;
 import net.minecraft.util.BlockPos;
@@ -15,7 +17,7 @@ public class StateHelper
 		BlockPos target = getBlockPosRelativeTo(world, pos, facing, dir);
 		return world.getBlockState(target).getBlock();
 	}
-
+	
 	public static Direction getRotation(IBlockAccess world, BlockPos pos, EnumFacing facing, Direction dir)
 	{
 		BlockPos target = getBlockPosRelativeTo(world, pos, facing, dir);
@@ -29,7 +31,7 @@ public class StateHelper
 		BlockPos target = getBlockPosRelativeTo(world, pos, facing, dir);
 		return world.getBlockState(target).getBlock() instanceof BlockAir;
 	}
-
+	
 	private static BlockPos getBlockPosRelativeTo(IBlockAccess world, BlockPos pos, EnumFacing facing, Direction dir)
 	{
 		switch (dir)
@@ -61,11 +63,11 @@ public class StateHelper
 		case 0:
 			return Direction.DOWN;
 		case 1:
-			return Direction.RIGHT;
+			return Direction.LEFT;
 		case 2:
 			return Direction.UP;
 		case 3:
-			return Direction.LEFT;
+			return Direction.RIGHT;
 		}
 		return Direction.NONE;
 	}
