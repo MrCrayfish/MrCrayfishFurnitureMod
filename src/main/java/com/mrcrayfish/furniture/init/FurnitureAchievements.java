@@ -26,7 +26,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
 
-public class FurnitureAchievements
+public class FurnitureAchievements extends Achievement
 {
 	public static Achievement installMod;
 	public static Achievement mineKea;
@@ -94,5 +94,6 @@ public class FurnitureAchievements
 	public static void registerPage()
 	{
 		AchievementPage.registerAchievementPage(page);
+		registerStat();
 	}
 }
