@@ -249,3 +249,4 @@ SNAPSHOT/resolver-status.properties
 SNAPSHOT/_remote.repositories
 eclipse/
 build/
+clean.bat
