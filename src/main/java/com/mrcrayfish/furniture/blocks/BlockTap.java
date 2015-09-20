@@ -61,24 +61,10 @@ public class BlockTap extends BlockFurniture
 	{
 		if (!world.isRemote)
 		{
-			if (hasWaterSource(world, pos))
+			EnumFacing facing = (EnumFacing) state.getValue(FACING);
+			if (hasWaterSource(world, pos) && world.isAirBlock(pos.offset(facing.getOpposite())))
 			{
-				int l = getMetaFromState(state);
-				switch (l)
-				{
-				case 3:
-					world.setBlockState(pos.west(), Blocks.water.getDefaultState());
-					break;
-				case 1:
-					world.setBlockState(pos.east(), Blocks.water.getDefaultState());
-					break;
-				case 2:
-					world.setBlockState(pos.north(), Blocks.water.getDefaultState());
-					break;
-				case 0:
-					world.setBlockState(pos.south(), Blocks.water.getDefaultState());
-					break;
-				}
+				world.setBlockState(pos.offset(facing.getOpposite()), Blocks.water.getDefaultState());
 				world.setBlockToAir(pos.down(2));
 				player.triggerAchievement(FurnitureAchievements.tapped);
 			}
@@ -93,7 +79,9 @@ public class BlockTap extends BlockFurniture
 	@Override
 	public void addCollisionBoxesToList(World world, BlockPos pos, IBlockState state, AxisAlignedBB mask, List list, Entity collidingEntity)
 	{
-		setBlockBounds(0.4375F, 0.0F, 0.4375F, 0.5625F, 0.8F, 0.5625F);
+		int metadata = getMetaFromState(state);
+		float[] data = CollisionHelper.fixRotation(metadata, 0.125F, 0.4F, 0.5625F, 0.6F);
+		setBlockBounds(data[0], 0.0F, data[1], data[2], 1.0F, data[3]);
 		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 	}
 	

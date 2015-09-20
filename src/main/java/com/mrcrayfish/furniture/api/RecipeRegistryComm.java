@@ -17,6 +17,8 @@
  */
 package com.mrcrayfish.furniture.api;
 
+import java.util.Map;
+
 import com.mrcrayfish.furniture.handler.ConfigurationHandler;
 
 public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
@@ -36,13 +38,15 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
 	}
 
 	@Override
-	public void registerRecipe(String type, RecipeVariables params)
+	public void registerRecipe(String type, RecipeVariables variables)
 	{
+		Map<String, Object> varMap = variables.getMap();
+		
 		if (type.equalsIgnoreCase("minebay"))
 		{
-			if (RecipeConditions.hasMineBayArgs(params))
+			if (RecipeConditions.hasMineBayArgs(varMap))
 			{
-				addMineBayRecipe(RecipeData.convertFrom(params), COMM);
+				addMineBayRecipe(RecipeData.convertFrom(varMap), COMM);
 			}
 			else
 			{
@@ -54,9 +58,9 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
 		}
 		else if (type.equalsIgnoreCase("oven"))
 		{
-			if (RecipeConditions.hasOvenArgs(params))
+			if (RecipeConditions.hasOvenArgs(varMap))
 			{
-				addOvenRecipe(RecipeData.convertFrom(params), COMM);
+				addOvenRecipe(RecipeData.convertFrom(varMap), COMM);
 			}
 			else
 			{
@@ -68,9 +72,9 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
 		}
 		else if (type.equalsIgnoreCase("freezer"))
 		{
-			if (RecipeConditions.hasFreezerArgs(params))
+			if (RecipeConditions.hasFreezerArgs(varMap))
 			{
-				addFreezerRecipe(RecipeData.convertFrom(params), COMM);
+				addFreezerRecipe(RecipeData.convertFrom(varMap), COMM);
 			}
 			else
 			{
@@ -82,9 +86,9 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
 		}
 		else if (type.equalsIgnoreCase("printer"))
 		{
-			if (RecipeConditions.hasPrinterArgs(params))
+			if (RecipeConditions.hasPrinterArgs(varMap))
 			{
-				addPrinterRecipe(RecipeData.convertFrom(params), COMM);
+				addPrinterRecipe(RecipeData.convertFrom(varMap), COMM);
 			}
 			else
 			{
@@ -96,9 +100,9 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
 		}
 		else if (type.equalsIgnoreCase("toaster"))
 		{
-			if (RecipeConditions.hasToasterArgs(params))
+			if (RecipeConditions.hasToasterArgs(varMap))
 			{
-				addToasterRecipe(RecipeData.convertFrom(params), COMM);
+				addToasterRecipe(RecipeData.convertFrom(varMap), COMM);
 			}
 			else
 			{
@@ -110,9 +114,9 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
 		}
 		else if (type.equalsIgnoreCase("choppingboard"))
 		{
-			if (RecipeConditions.hasChoppingBoardArgs(params))
+			if (RecipeConditions.hasChoppingBoardArgs(varMap))
 			{
-				addChoppingBoardRecipe(RecipeData.convertFrom(params), COMM);
+				addChoppingBoardRecipe(RecipeData.convertFrom(varMap), COMM);
 			}
 			else
 			{
@@ -124,9 +128,9 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
 		}
 		else if (type.equalsIgnoreCase("blender"))
 		{
-			if (RecipeConditions.hasBlenderArgs(params))
+			if (RecipeConditions.hasBlenderArgs(varMap))
 			{
-				addBlenderRecipe(RecipeData.convertFrom(params), COMM);
+				addBlenderRecipe(RecipeData.convertFrom(varMap), COMM);
 			}
 			else
 			{
@@ -138,9 +142,9 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
 		}
 		else if (type.equalsIgnoreCase("microwave"))
 		{
-			if (RecipeConditions.hasMicrowaveArgs(params))
+			if (RecipeConditions.hasMicrowaveArgs(varMap))
 			{
-				addMicrowaveRecipe(RecipeData.convertFrom(params), COMM);
+				addMicrowaveRecipe(RecipeData.convertFrom(varMap), COMM);
 			}
 			else
 			{
@@ -152,9 +156,9 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
 		}
 		else if (type.equalsIgnoreCase("washingmachine"))
 		{
-			if (RecipeConditions.hasWashingMachineArgs(params))
+			if (RecipeConditions.hasWashingMachineArgs(varMap))
 			{
-				addWashingMachineRecipe(RecipeData.convertFrom(params), COMM);
+				addWashingMachineRecipe(RecipeData.convertFrom(varMap), COMM);
 			}
 			else
 			{
@@ -166,9 +170,9 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
 		}
 		else if (type.equalsIgnoreCase("dishwasher"))
 		{
-			if (RecipeConditions.hasDishwasherArgs(params))
+			if (RecipeConditions.hasDishwasherArgs(varMap))
 			{
-				addDishwasherRecipe(RecipeData.convertFrom(params), COMM);
+				addDishwasherRecipe(RecipeData.convertFrom(varMap), COMM);
 			}
 			else
 			{
@@ -188,6 +192,13 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
 				System.err.println("Type: " + type + " (Unknown)");
 			}
 		}
-		params.clear();
+		
+		varMap.clear();
+		varMap = null;
+	}
+
+	@Override
+	public void registerRecipe(RecipeType type, RecipeVariables variables) {
+		registerRecipe(type.toString(), variables);
 	}
 }

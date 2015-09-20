@@ -42,6 +42,7 @@ import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.tileentity.TileEntityBlender;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import com.mrcrayfish.furniture.util.SittableUtil;
 
@@ -72,7 +73,12 @@ public class BlockChair extends Block
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		return SittableUtil.sitOnBlock(world, pos.getX(), pos.getY(), pos.getZ(), player, 7 * 0.0625);
+		if(SittableUtil.sitOnBlock(world, pos.getX(), pos.getY(), pos.getZ(), player, 7 * 0.0625))
+		{
+			world.updateComparatorOutputLevel(pos, this);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -138,5 +144,17 @@ public class BlockChair extends Block
 	protected BlockState createBlockState()
 	{
 		return new BlockState(this, new IProperty[] { FACING });
+	}
+	
+	@Override
+	public boolean hasComparatorInputOverride() 
+	{
+		return true;
+	}
+	
+	@Override
+	public int getComparatorInputOverride(World world, BlockPos pos) 
+	{
+		return SittableUtil.isSomeoneSitting(world, pos.getX(), pos.getY(), pos.getZ()) ? 1 : 0;
 	}
 }

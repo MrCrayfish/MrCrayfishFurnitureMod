@@ -106,6 +106,7 @@ public class FurnitureCrafting
 		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemChoppingBoard), new Object[] { "LLL", "SSS", "LLL", 'L', new ItemStack(Blocks.log, 1, 0), 'S', new ItemStack(Blocks.wooden_slab, 1, 0) });
 		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemKnife), new Object[] { "I ", " S", 'I', Blocks.stone, 'S', Items.stick });
 		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemCup), new Object[] { "G G", "G G", "GGG", 'G', Blocks.glass_pane });
+		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemMirror), new Object[] { "BIB", "IGI", "BIB", 'I', Items.iron_ingot, 'G', new ItemStack(Blocks.stained_glass_pane, 1, 0), 'B', Blocks.iron_block });
 		GameRegistry.addSmelting(FurnitureItems.itemFlesh, new ItemStack(FurnitureItems.itemCookedFlesh), 0.05F);
 	}
 }

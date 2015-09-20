@@ -17,16 +17,6 @@
  */
 package com.mrcrayfish.furniture.init;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.statemap.StateMap;
-import net.minecraft.client.renderer.block.statemap.StateMapperBase;
-import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
 import com.mrcrayfish.furniture.blocks.BlockBarStool;
 import com.mrcrayfish.furniture.blocks.BlockBasin;
 import com.mrcrayfish.furniture.blocks.BlockBath;
@@ -43,11 +33,13 @@ import com.mrcrayfish.furniture.blocks.BlockChoppingBoard;
 import com.mrcrayfish.furniture.blocks.BlockCoffeeTable;
 import com.mrcrayfish.furniture.blocks.BlockComputer;
 import com.mrcrayfish.furniture.blocks.BlockCookieJar;
-import com.mrcrayfish.furniture.blocks.BlockCouch;
+import com.mrcrayfish.furniture.blocks.BlockCouchJeb;
+import com.mrcrayfish.furniture.blocks.BlockCouchNormal;
 import com.mrcrayfish.furniture.blocks.BlockCounter;
 import com.mrcrayfish.furniture.blocks.BlockCounterSink;
 import com.mrcrayfish.furniture.blocks.BlockCup;
-import com.mrcrayfish.furniture.blocks.BlockCurtains;
+import com.mrcrayfish.furniture.blocks.BlockCurtainsClosed;
+import com.mrcrayfish.furniture.blocks.BlockCurtainsOpen;
 import com.mrcrayfish.furniture.blocks.BlockDishwasher;
 import com.mrcrayfish.furniture.blocks.BlockDoorBell;
 import com.mrcrayfish.furniture.blocks.BlockElectricFence;
@@ -59,6 +51,7 @@ import com.mrcrayfish.furniture.blocks.BlockLamp;
 import com.mrcrayfish.furniture.blocks.BlockLampOn;
 import com.mrcrayfish.furniture.blocks.BlockMailBox;
 import com.mrcrayfish.furniture.blocks.BlockMicrowave;
+import com.mrcrayfish.furniture.blocks.BlockMirror;
 import com.mrcrayfish.furniture.blocks.BlockOven;
 import com.mrcrayfish.furniture.blocks.BlockPlate;
 import com.mrcrayfish.furniture.blocks.BlockPresent;
@@ -78,6 +71,10 @@ import com.mrcrayfish.furniture.blocks.BlockWallCabinet;
 import com.mrcrayfish.furniture.blocks.BlockWashingMachine;
 import com.mrcrayfish.furniture.blocks.BlockWhiteFence;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
 public class FurnitureBlocks
 {
 	/** Initial Furniture */
@@ -86,7 +83,7 @@ public class FurnitureBlocks
 	public static Block chair_wood, chair_stone;
 	public static Block freezer, fridge;
 	public static Block cabinet, bedside_cabinet;
-	public static Block couch;
+	public static Block couch, couch_jeb;
 	public static Block blinds, blinds_closed;
 	public static Block curtains, curtains_closed;
 	public static Block oven, range_hood;
@@ -114,6 +111,9 @@ public class FurnitureBlocks
 
 	/** Christmas Update */
 	public static Block present, tree_bottom, tree_top, string;
+	
+	/* Special */
+	public static Block mirror;
 
 	/** Misc */
 	public static Block hey;
@@ -135,11 +135,12 @@ public class FurnitureBlocks
 		freezer = new BlockFreezer(Material.rock).setUnlocalizedName("freezer");
 		fridge = new BlockFridge(Material.rock).setUnlocalizedName("fridge");
 		cabinet = new BlockCabinet(Material.wood).setUnlocalizedName("cabinet");
-		couch = new BlockCouch(Material.cloth).setUnlocalizedName("couch");
+		couch = new BlockCouchNormal().setUnlocalizedName("couch");
+		couch_jeb = new BlockCouchJeb().setUnlocalizedName("couch_jeb");
 		blinds = new BlockBlinds(Material.wood, true).setUnlocalizedName("blinds_open");
 		blinds_closed = new BlockBlinds(Material.wood, false).setUnlocalizedName("blinds_closed");
-		curtains = new BlockCurtains(Material.cloth, true).setUnlocalizedName("curtains_open");
-		curtains_closed = new BlockCurtains(Material.cloth, false).setUnlocalizedName("curtains_closed");
+		curtains = new BlockCurtainsOpen(Material.cloth).setUnlocalizedName("curtains_open");
+		curtains_closed = new BlockCurtainsClosed(Material.cloth).setUnlocalizedName("curtains_closed");
 		bedside_cabinet = new BlockBedsideCabinet(Material.wood).setUnlocalizedName("bedside_cabinet");
 		oven = new BlockOven(Material.rock).setUnlocalizedName("oven");
 		range_hood = new BlockRangeHood(Material.rock).setUnlocalizedName("range_hood");
@@ -190,6 +191,7 @@ public class FurnitureBlocks
 		kitchen_cabinet = new BlockCabinetKitchen(Material.wood).setUnlocalizedName("cabinet_kitchen");
 		chopping_board = new BlockChoppingBoard(Material.wood).setUnlocalizedName("chopping_board");
 		bar_stool = new BlockBarStool(Material.wood).setUnlocalizedName("bar_stool");
+		mirror = new BlockMirror(Material.glass).setUnlocalizedName("mirror");
 	}
 
 	public static void register()
@@ -207,6 +209,7 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(fridge, fridge.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(cabinet, cabinet.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(couch, couch.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(couch_jeb, couch_jeb.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(blinds, blinds.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(blinds_closed, blinds_closed.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(curtains, curtains.getUnlocalizedName().substring(5));
@@ -261,5 +264,6 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(kitchen_cabinet, kitchen_cabinet.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(chopping_board, chopping_board.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(bar_stool, bar_stool.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(mirror, mirror.getUnlocalizedName().substring(5));
 	}
 }

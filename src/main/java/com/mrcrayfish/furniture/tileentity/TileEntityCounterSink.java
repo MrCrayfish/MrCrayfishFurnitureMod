@@ -23,7 +23,6 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
-//TODO Convert to BlockState
 public class TileEntityCounterSink extends TileEntity
 {
 	private boolean hasWater = false;

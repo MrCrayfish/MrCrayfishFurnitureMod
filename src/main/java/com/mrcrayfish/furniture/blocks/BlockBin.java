@@ -41,6 +41,7 @@ import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityBin;
+import com.mrcrayfish.furniture.tileentity.TileEntityToaster;
 
 public class BlockBin extends BlockFurnitureTile
 {

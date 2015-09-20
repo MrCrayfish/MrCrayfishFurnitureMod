@@ -146,4 +146,11 @@ public class BlockBlender extends BlockFurnitureTile
 	{
 		return EnumWorldBlockLayer.TRANSLUCENT;
 	}
+
+	@Override
+	public int getComparatorInputOverride(World world, BlockPos pos) 
+	{
+		TileEntityBlender blender = (TileEntityBlender) world.getTileEntity(pos);
+		return blender.isBlending() ? 1 : 0;
+	}
 }

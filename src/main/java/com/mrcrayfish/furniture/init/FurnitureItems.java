@@ -17,28 +17,25 @@
  */
 package com.mrcrayfish.furniture.init;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.model.ModelResourceLocation;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.Item.ToolMaterial;
-import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemSword;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.Reference;
-import com.mrcrayfish.furniture.items.ItemBath;
 import com.mrcrayfish.furniture.items.ItemCup;
 import com.mrcrayfish.furniture.items.ItemEnvelope;
 import com.mrcrayfish.furniture.items.ItemEnvelopeSigned;
-import com.mrcrayfish.furniture.items.ItemFridge;
 import com.mrcrayfish.furniture.items.ItemGeneric;
+import com.mrcrayfish.furniture.items.ItemKnife;
 import com.mrcrayfish.furniture.items.ItemPackage;
 import com.mrcrayfish.furniture.items.ItemPackageSigned;
 import com.mrcrayfish.furniture.items.ItemPlacer;
 import com.mrcrayfish.furniture.items.ItemPresent;
 import com.mrcrayfish.furniture.items.ItemRecipeBook;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class FurnitureItems
 {
@@ -48,7 +45,7 @@ public class FurnitureItems
 	public static Item itemCabinet, itemBedsideCabinet;
 	public static Item itemCoffeeTableWood, itemCoffeeTableStone;
 	public static Item itemFridge, itemCoolPack;
-	public static Item itemCouch;
+	public static Item itemCouch, itemCouchJeb;
 	public static Item itemBlinds, itemCurtains;
 	public static Item itemOven, itemOvenRangehood;
 	public static Item itemFlesh, itemCookedFlesh;
@@ -66,7 +63,7 @@ public class FurnitureItems
 	public static Item itemCeilingLight, itemDoorBell, itemFireAlarm, itemLamp;
 
 	/** Bathroom Update */
-	public static Item itemToilet, itemBasin, itemWallCabinet, itemBath, itemShower, itemShowerHead, itemBin;
+	public static Item itemToilet, itemBasin, itemWallCabinet, itemBath, itemShower, itemShowerHead, itemBin, itemMirror;
 
 	/** Kitchen Update */
 	public static Item itemToaster, itemMicrowave, itemBlender, itemWashingMachine, itemDishWasher;
@@ -93,8 +90,9 @@ public class FurnitureItems
 		itemCabinet          = new ItemPlacer(FurnitureBlocks.cabinet).setUnlocalizedName("item_cabinet");
 		itemCoffeeTableWood  = new ItemPlacer(FurnitureBlocks.coffee_table_wood).setUnlocalizedName("item_coffee_table_wood");
 		itemCoffeeTableStone = new ItemPlacer(FurnitureBlocks.coffee_table_stone).setUnlocalizedName("item_coffee_table_stone");
-		itemFridge           = new ItemFridge().setUnlocalizedName("item_fridge").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);;
+		itemFridge           = new ItemPlacer(FurnitureBlocks.freezer).setUnlocalizedName("item_fridge");
 		itemCouch            = new ItemPlacer(FurnitureBlocks.couch).setUnlocalizedName("item_couch");
+		itemCouchJeb		 = new ItemPlacer(FurnitureBlocks.couch_jeb).setUnlocalizedName("item_couch_jeb").setCreativeTab(null);
 		itemBlinds           = new ItemPlacer(FurnitureBlocks.blinds).setUnlocalizedName("item_blinds");
 		itemCurtains         = new ItemPlacer(FurnitureBlocks.curtains).setUnlocalizedName("item_curtains");
 		itemLamp             = new ItemPlacer(FurnitureBlocks.lamp_off).setUnlocalizedName("item_lamp");
@@ -132,7 +130,7 @@ public class FurnitureItems
 		itemToilet           = new ItemPlacer(FurnitureBlocks.toilet).setUnlocalizedName("item_toilet");
 		itemBasin            = new ItemPlacer(FurnitureBlocks.basin).setUnlocalizedName("item_basin");
 		itemWallCabinet      = new ItemPlacer(FurnitureBlocks.wall_cabinet).setUnlocalizedName("item_wall_cabinet");
-		itemBath             = new ItemBath().setUnlocalizedName("item_bath");
+		itemBath             = new ItemPlacer(FurnitureBlocks.bath_1).setUnlocalizedName("item_bath");
 		itemShower           = new ItemPlacer(FurnitureBlocks.shower_bottom).setUnlocalizedName("item_shower");
 		itemShowerHead       = new ItemPlacer(FurnitureBlocks.shower_head_off).setUnlocalizedName("item_shower_head");
 		itemBin              = new ItemPlacer(FurnitureBlocks.bin).setUnlocalizedName("item_bin");
@@ -152,15 +150,16 @@ public class FurnitureItems
 		itemBarStool 	 	 = new ItemPlacer(FurnitureBlocks.bar_stool).setUnlocalizedName("item_bar_stool");
 		itemBreadSlice 		 = new ItemFood(2, false).setUnlocalizedName("item_bread_slice").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		itemToast 			 = new ItemFood(4, false).setUnlocalizedName("item_toast").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		itemKnife			 = new ItemSword(ToolMaterial.STONE).setMaxDamage(100).setUnlocalizedName("item_knife").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		itemKnife			 = new ItemKnife().setMaxDamage(100).setUnlocalizedName("item_knife");
 		itemCup 			 = new ItemCup(false).setUnlocalizedName("item_cup");
 		itemDrink 			 = new ItemCup(true).setUnlocalizedName("item_drink");
 		itemSoap 			 = new ItemGeneric().setUnlocalizedName("item_soap");
 		itemSoapyWater 		 = new ItemGeneric().setUnlocalizedName("item_soap_water").setContainerItem(Items.bucket);
 		itemSuperSoapyWater  = new ItemGeneric().setUnlocalizedName("item_super_soap_water").setContainerItem(Items.bucket);
 		itemRecipeBook 		 = new ItemRecipeBook().setUnlocalizedName("item_recipe_book");
-		itemCrayfish 		 = new ItemGeneric().setUnlocalizedName("item_crayfish").setMaxStackSize(1);
-		itemDollar 			 = new ItemGeneric().setUnlocalizedName("item_money").setMaxStackSize(1);
+		itemMirror           = new ItemPlacer(FurnitureBlocks.mirror).setUnlocalizedName("item_mirror");
+		itemCrayfish 		 = new Item().setUnlocalizedName("item_crayfish").setMaxStackSize(1);
+		itemDollar 			 = new Item().setUnlocalizedName("item_money").setMaxStackSize(1);
 	}
 
 	public static void registerItems()
@@ -176,6 +175,7 @@ public class FurnitureItems
 		GameRegistry.registerItem(itemFridge, itemFridge.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemCoolPack, itemCoolPack.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemCouch, itemCouch.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemCouchJeb, itemCouchJeb.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemBlinds, itemBlinds.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemCurtains, itemCurtains.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemOven, itemOven.getUnlocalizedName().substring(5));
@@ -238,7 +238,9 @@ public class FurnitureItems
 		GameRegistry.registerItem(itemSoapyWater, itemSoapyWater.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemSuperSoapyWater, itemSuperSoapyWater.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemRecipeBook, itemRecipeBook.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemMirror, itemMirror.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemCrayfish, itemCrayfish.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemDollar, itemDollar.getUnlocalizedName().substring(5));
 	}
 
 	public static void registerRenders()
@@ -254,6 +256,7 @@ public class FurnitureItems
 		registerRender(itemFridge);
 		registerRender(itemCoolPack);
 		registerRender(itemCouch);
+		registerRender(itemCouchJeb);
 		registerRender(itemBlinds);
 		registerRender(itemCurtains);
 		registerRender(itemOven);
@@ -315,9 +318,9 @@ public class FurnitureItems
 		registerRender(itemSoapyWater);
 		registerRender(itemSuperSoapyWater);
 		registerRender(itemRecipeBook);
+		registerRender(itemMirror);
 		registerRender(itemCrayfish);
 		registerRender(itemDollar);
-		
 		registerRender(itemPresent, 16);
 	}
 

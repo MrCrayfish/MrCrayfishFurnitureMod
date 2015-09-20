@@ -18,8 +18,14 @@
 package com.mrcrayfish.furniture.proxy;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.render.tileentity.BlenderRenderer;
@@ -27,6 +33,8 @@ import com.mrcrayfish.furniture.render.tileentity.ChoppingBoardRenderer;
 import com.mrcrayfish.furniture.render.tileentity.CookieRenderer;
 import com.mrcrayfish.furniture.render.tileentity.CupRenderer;
 import com.mrcrayfish.furniture.render.tileentity.MicrowaveRenderer;
+import com.mrcrayfish.furniture.render.tileentity.MirrorRenderer;
+import com.mrcrayfish.furniture.render.tileentity.OvenRenderer;
 import com.mrcrayfish.furniture.render.tileentity.PlateRenderer;
 import com.mrcrayfish.furniture.render.tileentity.ToastRenderer;
 import com.mrcrayfish.furniture.render.tileentity.TreeRenderer;
@@ -36,6 +44,8 @@ import com.mrcrayfish.furniture.tileentity.TileEntityChoppingBoard;
 import com.mrcrayfish.furniture.tileentity.TileEntityCookieJar;
 import com.mrcrayfish.furniture.tileentity.TileEntityCup;
 import com.mrcrayfish.furniture.tileentity.TileEntityMicrowave;
+import com.mrcrayfish.furniture.tileentity.TileEntityMirror;
+import com.mrcrayfish.furniture.tileentity.TileEntityOven;
 import com.mrcrayfish.furniture.tileentity.TileEntityPlate;
 import com.mrcrayfish.furniture.tileentity.TileEntityToaster;
 import com.mrcrayfish.furniture.tileentity.TileEntityTree;
@@ -43,14 +53,15 @@ import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
 
 public class ClientProxy extends CommonProxy
 {
-	public static int renderPass;
+	public static boolean rendering = false;
+	public static Entity renderEntity = null;
+	public static Entity backupEntity = null;
 
 	@Override
 	public void registerRenders()
 	{
 		FurnitureItems.registerRenders();
-		
-		
+
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCookieJar.class, new CookieRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlate.class, new PlateRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityToaster.class, new ToastRenderer());
@@ -60,6 +71,8 @@ public class ClientProxy extends CommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityWashingMachine.class, new WashingMachineRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCup.class, new CupRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTree.class, new TreeRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMirror.class, new MirrorRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityOven.class, new OvenRenderer());
 	}
 
 	@Override
@@ -78,5 +91,56 @@ public class ClientProxy extends CommonProxy
 	public boolean isDedicatedServer()
 	{
 		return false;
+	}
+
+	@Override
+	public void preInit()
+	{
+		MinecraftForge.EVENT_BUS.register(this);
+	}
+
+	@SubscribeEvent
+	public void onClientWorldLoad(WorldEvent.Load event)
+	{
+		if (event.world instanceof WorldClient)
+		{
+			MirrorRenderer.mirrorGlobalRenderer.setWorldAndLoadRenderers((WorldClient) event.world);
+		}
+	}
+
+	@SubscribeEvent
+	public void onClientWorldUnload(WorldEvent.Unload event)
+	{
+		if (event.world instanceof WorldClient)
+		{
+			MirrorRenderer.clearRegisteredMirrors();
+		}
+	}
+
+
+	@SubscribeEvent
+	public void onPrePlayerRender(RenderPlayerEvent.Pre event)
+	{
+		if(!rendering)
+			return;
+		
+		if(event.entityPlayer == renderEntity)
+		{
+			this.backupEntity = Minecraft.getMinecraft().getRenderManager().livingPlayer;
+			Minecraft.getMinecraft().getRenderManager().livingPlayer = renderEntity;
+		}
+	}
+
+	@SubscribeEvent
+	public void onPostPlayerRender(RenderPlayerEvent.Post event)
+	{
+		if(!rendering)
+			return;
+		
+		if (event.entityPlayer == renderEntity)
+		{
+			Minecraft.getMinecraft().getRenderManager().livingPlayer = backupEntity;
+			renderEntity = null;
+		}
 	}
 }

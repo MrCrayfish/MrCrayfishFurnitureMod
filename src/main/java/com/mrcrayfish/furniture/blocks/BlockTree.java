@@ -84,7 +84,7 @@ public class BlockTree extends BlockFurnitureTile
 	public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		if (this == FurnitureBlocks.tree_bottom)
-			world.setBlockState(pos.up(), FurnitureBlocks.tree_top.getDefaultState());
+			world.setBlockState(pos.up(), FurnitureBlocks.tree_top.getDefaultState().withProperty(FACING, placer.getHorizontalFacing()));
 		return super.onBlockPlaced(world, pos, facing, hitX, hitY, hitZ, meta, placer);
 	}
 

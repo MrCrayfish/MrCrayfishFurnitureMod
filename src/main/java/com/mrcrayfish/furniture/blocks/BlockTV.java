@@ -18,8 +18,18 @@
 package com.mrcrayfish.furniture.blocks;
 
 import java.lang.reflect.Field;
-import java.util.Map;
 import java.util.Random;
+
+import com.mrcrayfish.furniture.TVSound;
+import com.mrcrayfish.furniture.blocks.tv.Channel;
+import com.mrcrayfish.furniture.blocks.tv.Channels;
+import com.mrcrayfish.furniture.init.FurnitureAchievements;
+import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.network.PacketHandler;
+import com.mrcrayfish.furniture.network.message.MessageTVClient;
+import com.mrcrayfish.furniture.tileentity.TileEntityTV;
+import com.mrcrayfish.furniture.util.ReflectionUtil;
+import com.mrcrayfish.furniture.util.SittableUtil;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -28,37 +38,29 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.PositionedSound;
-import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import com.mrcrayfish.furniture.TVSound;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
-import com.mrcrayfish.furniture.init.FurnitureItems;
-import com.mrcrayfish.furniture.tileentity.TileEntityTV;
-import com.mrcrayfish.furniture.util.ReflectionUtil;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 public class BlockTV extends BlockFurnitureTile
 {
-	public static PropertyInteger CHANNEL = PropertyInteger.create("channel", 0, 16);
+	public static final PropertyInteger CHANNEL = PropertyInteger.create("channel", 0, 4);
 	
 	public BlockTV(Material material)
 	{
 		super(material);
 		setStepSound(Block.soundTypeWood);
+		setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(CHANNEL, 0));
 	}
 	
 	@Override
@@ -67,77 +69,39 @@ public class BlockTV extends BlockFurnitureTile
 		((EntityPlayer) placer).triggerAchievement(FurnitureAchievements.modernTechnology);
 	}
 	
-	private TVSound sound = new TVSound(new ResourceLocation("cfm:news"));
-	
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		TextureAtlasSprite atlas = Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry("cfm:blocks/news");
-		try
-		{
-			Field field = ReflectionUtil.getField(atlas.getClass(), "frameCounter");
-			ReflectionUtil.makeAccessible(field);
-			field.setInt(atlas, 0);
- 		}
-		catch (NoSuchFieldException e)
-		{
-			e.printStackTrace();
-		}
-		catch (IllegalArgumentException e)
-		{
-			e.printStackTrace();
-		}
-		catch (IllegalAccessException e)
-		{
-			e.printStackTrace();
-		}
-		
-		if(world.isRemote)
-		{
-			SoundHandler soundHandler = Minecraft.getMinecraft().getSoundHandler();
-			if (!soundHandler.isSoundPlaying(sound))
-			{
-				sound.setPosition(pos);
-				soundHandler.playSound(sound);
-			}
-			else
-			{
-				soundHandler.stopSound(sound);
-			}
-			
-		}
-		/*
 		TileEntity tile_entity = world.getTileEntity(pos);
 		if (tile_entity instanceof TileEntityTV)
 		{
-			TileEntityTV tileEntityTV = (TileEntityTV) tile_entity;
-			if (world.isRemote)
-			{
-				if (tileEntityTV.getChannel() == 3)
-				{
-					tileEntityTV.setChannel(0);
-				}
-				else
-				{
-					tileEntityTV.setChannel(tileEntityTV.getChannel() + 1);
-				}
-			}
-
 			world.playSoundEffect(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, "cfm:static", 0.75F, 1.0F);
+				
+			TileEntityTV tileEntityTV = (TileEntityTV) tile_entity;
+			int nextChannel = 0;
+			if(tileEntityTV.getChannel() < Channels.getChannelCount() - 1)
+			{
+				nextChannel = tileEntityTV.getChannel() + 1;
+			}
+			
+			Channels.getChannel(nextChannel).play(pos);
+			tileEntityTV.setChannel(nextChannel);
 			world.markBlockForUpdate(pos);
-			world.markBlockRangeForRenderUpdate(pos.getX(), pos.getY(), pos.getZ(), 20, 20, 20);
-
-			if (tileEntityTV.getChannel() == 1)
-			{
-				player.triggerAchievement(FurnitureAchievements.heyeyey);
-			}
-			if (world.isRemote)
-			{
-				PacketHandler.INSTANCE.sendToServer(new MessageTVServer(tileEntityTV.getChannel(), pos.getX(), pos.getY(), pos.getZ()));
-			}
-			Minecraft.getMinecraft().getSoundHandler().playSound(new PositionedSound(new ResourceLocation("")))
-		}*/
+			//PacketHandler.INSTANCE.sendToAllAround(new MessageTVClient(tileEntityTV.getChannel(), pos), new TargetPoint(player.dimension, pos.getX(), pos.getY(), pos.getZ(), 16));
+		}
 		return true;
+	}
+	
+	@Override
+	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
+		super.onBlockHarvested(worldIn, pos, state, player);
+		Channel.stopSound(pos);
+	}
+	
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+		TileEntityTV tileEntityTV = (TileEntityTV) worldIn.getTileEntity(pos);
+		return state.withProperty(CHANNEL, tileEntityTV.getChannel());
 	}
 	
 	@Override
@@ -167,6 +131,12 @@ public class BlockTV extends BlockFurnitureTile
 	@Override
 	protected BlockState createBlockState()
 	{
-		return new BlockState(this, new IProperty[] { FACING });
+		return new BlockState(this, new IProperty[] { FACING, CHANNEL });
+	}
+	
+	@Override
+	public int getComparatorInputOverride(World world, BlockPos pos) 
+	{
+		return (Integer) world.getBlockState(pos).getValue(CHANNEL);
 	}
 }

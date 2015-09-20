@@ -49,7 +49,6 @@ public class ItemEnvelopeSigned extends Item implements IMail
 	public ItemEnvelopeSigned()
 	{
 		setMaxStackSize(1);
-		setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
 	@Override

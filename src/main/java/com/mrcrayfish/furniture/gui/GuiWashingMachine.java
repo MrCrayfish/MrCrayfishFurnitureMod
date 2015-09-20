@@ -23,6 +23,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import scala.actors.threadpool.Arrays;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
@@ -79,6 +80,28 @@ public class GuiWashingMachine extends GuiContainer
 			{
 				PacketHandler.INSTANCE.sendToServer(new MessageWashingMachine(1, tileEntityWashingMachine.getPos().getX(), tileEntityWashingMachine.getPos().getY(), tileEntityWashingMachine.getPos().getZ()));
 			}
+		}
+	}
+	
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+		super.drawScreen(mouseX, mouseY, partialTicks);
+
+		if(isPointInRegion(37, 9, 11, 11, mouseX, mouseY))
+		{
+			if (tileEntityWashingMachine.isWashing())
+			{
+				drawHoveringText(Arrays.asList(new Object[]{"Running"}), mouseX, mouseY);
+			}
+			else
+			{
+				drawHoveringText(Arrays.asList(new Object[]{"Stopped"}), mouseX, mouseY);
+			}
+		}
+		
+		if(isPointInRegion(129, 30, 10, 73, mouseX, mouseY))
+		{
+			drawHoveringText(Arrays.asList(new Object[]{"Soap: " + tileEntityWashingMachine.timeRemaining + "/5000"}), mouseX, mouseY);
 		}
 	}
 

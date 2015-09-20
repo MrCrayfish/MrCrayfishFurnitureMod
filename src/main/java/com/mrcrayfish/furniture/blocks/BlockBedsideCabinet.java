@@ -73,14 +73,14 @@ public class BlockBedsideCabinet extends BlockFurnitureTile
 		}
 		return true;
 	}
-
+	
 	@Override
-	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
+	public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
 	{
-		//if (neighborBlock instanceof BlockLampOn)
-		//{
-			//world.notifyNeighborsOfStateChange(pos, this);
-		//}
+		if(neighborBlock instanceof BlockLamp)
+		{
+			worldIn.notifyBlockOfStateChange(pos.down(), this);
+		}
 	}
 
 	@Override

@@ -20,8 +20,14 @@ package com.mrcrayfish.furniture.tileentity;
 import java.util.Random;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemTool;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
@@ -29,16 +35,23 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
 
 import com.mrcrayfish.furniture.api.RecipeAPI;
 import com.mrcrayfish.furniture.api.RecipeData;
+import com.mrcrayfish.furniture.gui.containers.ContainerDishwasher;
+import com.mrcrayfish.furniture.gui.containers.ContainerFridge;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
-public class TileEntityDishwasher extends TileEntity implements ISidedInventory, IUpdatePlayerListBox
+public class TileEntityDishwasher extends TileEntityLockable implements ISidedInventory, IUpdatePlayerListBox
 {
+	private static final int[] slots_top = new int[] { 0, 1, 2, 3, 4, 5 };
+	private static final int[] slots_bottom = new int[] { 0, 1, 2, 3, 4, 5, 6 };
+	private static final int[] slots_sides = new int[] { 6 };
+	
 	private ItemStack[] inventory = new ItemStack[7];
 	private String customName;
 
@@ -83,13 +96,7 @@ public class TileEntityDishwasher extends TileEntity implements ISidedInventory,
 
 		if (inventory[6] != null && timeRemaining == 0)
 		{
-			if (inventory[6].getItem() != FurnitureItems.itemSoapyWater)
-			{
-				if (inventory[6].getItem() != FurnitureItems.itemSuperSoapyWater)
-				{
-					return false;
-				}
-			}
+			return isFuel(inventory[6]);
 		}
 
 		boolean flag = false;
@@ -115,6 +122,17 @@ public class TileEntityDishwasher extends TileEntity implements ISidedInventory,
 	{
 		return washing;
 	}
+	
+	public static boolean isFuel(ItemStack stack)
+	{
+		if(stack == null)
+			return false;
+		if(stack.getItem() == FurnitureItems.itemSoapyWater)
+			return true;
+		if(stack.getItem() == FurnitureItems.itemSuperSoapyWater)
+			return true;
+		return false;
+	}
 
 	private Random rand = new Random();
 	private int timer = 0;
@@ -124,6 +142,12 @@ public class TileEntityDishwasher extends TileEntity implements ISidedInventory,
 	{
 		if (washing)
 		{
+			if(!canWash())
+			{
+				washing = false;
+				return;
+			}
+			
 			if (canRepair())
 			{
 				for (int i = 0; i < 6; i++)
@@ -163,7 +187,7 @@ public class TileEntityDishwasher extends TileEntity implements ISidedInventory,
 					washing = false;
 				}
 			}
-
+			
 			progress++;
 
 			if (timer == 20)
@@ -313,12 +337,6 @@ public class TileEntityDishwasher extends TileEntity implements ISidedInventory,
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_)
-	{
-		return false;
-	}
-
-	@Override
 	public void openInventory(EntityPlayer player)
 	{		
 	}
@@ -370,20 +388,57 @@ public class TileEntityDishwasher extends TileEntity implements ISidedInventory,
 	}
 
 	@Override
-	public int[] getSlotsForFace(EnumFacing side)
+	public boolean isItemValidForSlot(int slot, ItemStack stack)
 	{
-		return null;
+		int target = ContainerDishwasher.toolToSlot(stack);
+		if(target != -1)
+		{
+			return slot == target;
+		}
+		return true;
 	}
 
 	@Override
-	public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction)
+	public int[] getSlotsForFace(EnumFacing side) 
 	{
+		if(side == EnumFacing.UP) return slots_top;
+		if(side == EnumFacing.DOWN) return slots_bottom;
+		return slots_sides;
+	}
+
+	@Override
+	public boolean canInsertItem(int index, ItemStack stack, EnumFacing side) 
+	{
+		if(isLocked())
+		{
+			return false;
+		}
+		if(side == EnumFacing.UP)
+		{
+			return RecipeAPI.getDishwasherRecipeFromInput(stack) != null;
+		}
+		if(side != EnumFacing.DOWN)
+		{
+			return isFuel(stack);
+		}
 		return false;
 	}
 
 	@Override
-	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction)
+	public boolean canExtractItem(int index, ItemStack stack, EnumFacing side) 
 	{
-		return false;
+		return side == EnumFacing.DOWN && !isFuel(stack) && stack.getItemDamage() == 0 && !isLocked();
+	}
+
+	@Override
+	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
+	{
+		return new ContainerDishwasher(playerInventory, this);
+	}
+
+	@Override
+	public String getGuiID() 
+	{
+		return "0";
 	}
 }

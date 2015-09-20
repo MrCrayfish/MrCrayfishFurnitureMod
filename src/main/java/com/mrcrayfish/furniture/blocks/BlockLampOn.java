@@ -63,12 +63,8 @@ public class BlockLampOn extends BlockLamp
 				return true;
 			}
 		}
-		world.setBlockState(pos, FurnitureBlocks.lamp_off.getDefaultState().withProperty(COLOUR, (Integer) state.getValue(COLOUR)), 2);
-		
-		if (world.getBlockState(pos.down()).getBlock() == FurnitureBlocks.bedside_cabinet)
-		{
-			world.notifyNeighborsOfStateChange(pos.down(), this);
-		}
+
+		world.setBlockState(pos, FurnitureBlocks.lamp_off.getDefaultState().withProperty(COLOUR, (Integer) state.getValue(COLOUR)), 3);
 		return true;
 	}
 }

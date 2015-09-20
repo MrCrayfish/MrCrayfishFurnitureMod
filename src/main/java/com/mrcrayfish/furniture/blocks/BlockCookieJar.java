@@ -106,6 +106,7 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
 				EntityItem var14 = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.8, pos.getZ() + 0.5, new ItemStack(Items.cookie));
 				world.spawnEntityInWorld(var14);
 			}
+			world.markBlockForUpdate(pos);
 			return true;
 		}
 		return false;
@@ -170,5 +171,11 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
 	public EnumWorldBlockLayer getBlockLayer()
 	{
 		return EnumWorldBlockLayer.TRANSLUCENT;
+	}
+	
+	@Override
+	public int getComparatorInputOverride(World world, BlockPos pos) 
+	{
+		return (Integer) world.getBlockState(pos).getValue(COOKIE_COUNT);
 	}
 }

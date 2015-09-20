@@ -27,6 +27,6 @@ public class GuiFurnitureConfig extends GuiConfig
 {
 	public GuiFurnitureConfig(GuiScreen parent)
 	{
-		super(parent, new ConfigElement(ConfigurationHandler.config.getCategory(ConfigurationHandler.CATEGORY_RECIPE_SETTINGS)).getChildElements(), "cfm", false, false, GuiConfig.getAbridgedConfigPath(ConfigurationHandler.config.toString()));
+		super(parent, new ConfigElement(ConfigurationHandler.config.getCategory(ConfigurationHandler.CATEGORY_SETTINGS)).getChildElements(), "cfm", false, false, GuiConfig.getAbridgedConfigPath(ConfigurationHandler.config.toString()));
 	}
 }

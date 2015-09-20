@@ -73,6 +73,7 @@ public class TileEntityBlender extends TileEntity implements IUpdatePlayerListBo
 				break;
 			}
 		}
+		worldObj.markBlockForUpdate(pos);
 	}
 
 	public boolean isFull()

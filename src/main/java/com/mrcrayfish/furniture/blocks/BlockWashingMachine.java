@@ -95,4 +95,11 @@ public class BlockWashingMachine extends BlockFurnitureTile
 	{
 		return EnumWorldBlockLayer.CUTOUT_MIPPED;
 	}
+	
+	@Override
+	public int getComparatorInputOverride(World world, BlockPos pos) 
+	{
+		TileEntityWashingMachine washing_machine = (TileEntityWashingMachine) world.getTileEntity(pos);
+		return washing_machine.isWashing() ? 1 : 0;
+	}
 }

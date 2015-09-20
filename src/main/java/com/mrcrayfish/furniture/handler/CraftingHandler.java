@@ -34,6 +34,7 @@ public class CraftingHandler
 		if (event.crafting.getItem() == FurnitureItems.itemChairWood | event.crafting.getItem() == FurnitureItems.itemChairStone)
 		{
 			event.player.triggerAchievement(FurnitureAchievements.mineKea);
+			return;
 		}
 
 		if (event.crafting.getItem() == FurnitureItems.itemSoapyWater)
@@ -46,7 +47,7 @@ public class CraftingHandler
 					if (item.getItem() == Items.water_bucket)
 					{
 						event.craftMatrix.setInventorySlotContents(i, null);
-						break;
+						return;
 					}
 				}
 			}
@@ -62,7 +63,7 @@ public class CraftingHandler
 					if (item.getItem() == FurnitureItems.itemSoapyWater)
 					{
 						event.craftMatrix.setInventorySlotContents(i, null);
-						break;
+						return;
 					}
 				}
 			}

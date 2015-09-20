@@ -41,6 +41,7 @@ import net.minecraft.world.World;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.tileentity.TileEntityBath;
 
 public class BlockBasin extends BlockFurniture
 {
@@ -202,5 +203,17 @@ public class BlockBasin extends BlockFurniture
 	public boolean hasWaterSource(World world, BlockPos pos)
 	{
 		return world.getBlockState(pos.add(0, -2, 0)) == Blocks.water.getDefaultState();
+	}
+	
+	@Override
+	public boolean hasComparatorInputOverride() 
+	{
+		return true;
+	}
+	
+	@Override
+	public int getComparatorInputOverride(World world, BlockPos pos) 
+	{
+		return (Boolean) world.getBlockState(pos).getValue(FILLED) ? 1 : 0;
 	}
 }

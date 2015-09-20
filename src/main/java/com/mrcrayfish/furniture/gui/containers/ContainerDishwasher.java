@@ -97,7 +97,7 @@ public class ContainerDishwasher extends Container
 
 				if (data != null)
 				{
-					int corroSlot = armourToSlot(item);
+					int corroSlot = toolToSlot(item);
 					if (slotNum != -1)
 					{
 						if (!this.mergeItemStack(item, corroSlot, corroSlot + 1, true))
@@ -142,7 +142,7 @@ public class ContainerDishwasher extends Container
 		return itemCopy;
 	}
 
-	public int armourToSlot(ItemStack stack)
+	public static int toolToSlot(ItemStack stack)
 	{
 		Item item = stack.getItem();
 		if (item instanceof ItemPickaxe)

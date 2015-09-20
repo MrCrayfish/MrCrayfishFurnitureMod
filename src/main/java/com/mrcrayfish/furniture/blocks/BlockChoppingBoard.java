@@ -23,6 +23,7 @@ import java.util.Random;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,6 +41,8 @@ import net.minecraft.world.World;
 import com.mrcrayfish.furniture.api.Recipes;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.render.tileentity.ChoppingBoardRenderer;
+import com.mrcrayfish.furniture.tileentity.TileEntityBin;
 import com.mrcrayfish.furniture.tileentity.TileEntityChoppingBoard;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 
@@ -50,7 +53,7 @@ public class BlockChoppingBoard extends BlockFurnitureTile
 		super(material);
 		setHardness(0.5F);
 		setStepSound(Block.soundTypeWood);
-	}
+	} 
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
@@ -64,14 +67,28 @@ public class BlockChoppingBoard extends BlockFurnitureTile
 			{
 				if (Recipes.getChoppingBoardRecipeFromInput(currentItem) != null && tileEntityChoppingBoard.getFood() == null)
 				{
-					tileEntityChoppingBoard.setFood(new ItemStack(currentItem.getItem(), 1));
-					world.markBlockForUpdate(pos);
-					currentItem.stackSize--;
-					return true;
+					if(tileEntityChoppingBoard.getFood() == null)
+					{
+						tileEntityChoppingBoard.setFood(new ItemStack(currentItem.getItem(), 1));
+						world.markBlockForUpdate(pos);
+						world.notifyNeighborsOfStateChange(pos, this);
+						currentItem.stackSize--;
+						return true;
+					}
+					else
+					{
+						if (!world.isRemote)
+						{
+							EntityItem entityFood = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.4, pos.getZ() + 0.5, tileEntityChoppingBoard.getFood());
+							world.spawnEntityInWorld(entityFood);
+						}
+						tileEntityChoppingBoard.setFood(null);
+						world.markBlockForUpdate(pos);
+					}
 				}
 				else if (currentItem.getItem() == FurnitureItems.itemKnife && tileEntityChoppingBoard.getFood() != null)
 				{
-					if (tileEntityChoppingBoard.chopFood(currentItem))
+					if (tileEntityChoppingBoard.chopFood())
 					{
 						currentItem.damageItem(1, player);
 					}
@@ -86,6 +103,7 @@ public class BlockChoppingBoard extends BlockFurnitureTile
 					world.spawnEntityInWorld(entityFood);
 				}
 				tileEntityChoppingBoard.setFood(null);
+				world.markBlockForUpdate(pos);
 			}
 		}
 		return true;
@@ -131,5 +149,12 @@ public class BlockChoppingBoard extends BlockFurnitureTile
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
 		return new ItemStack(FurnitureItems.itemChoppingBoard);
+	}
+
+	@Override
+	public int getComparatorInputOverride(World world, BlockPos pos) 
+	{
+		TileEntityChoppingBoard tecb = (TileEntityChoppingBoard) world.getTileEntity(pos);
+		return tecb.getFood() != null ? 1 : 0;
 	}
 }

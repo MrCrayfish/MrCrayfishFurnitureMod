@@ -17,10 +17,6 @@
  */
 package com.mrcrayfish.furniture.network;
 
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import net.minecraftforge.fml.relauncher.Side;
-
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.network.message.MessageConfig;
 import com.mrcrayfish.furniture.network.message.MessageDishwasher;
@@ -29,6 +25,7 @@ import com.mrcrayfish.furniture.network.message.MessageEnvelope;
 import com.mrcrayfish.furniture.network.message.MessageFart;
 import com.mrcrayfish.furniture.network.message.MessageFillBasin;
 import com.mrcrayfish.furniture.network.message.MessageFillBath;
+import com.mrcrayfish.furniture.network.message.MessageFreezer;
 import com.mrcrayfish.furniture.network.message.MessageMicrowave;
 import com.mrcrayfish.furniture.network.message.MessageMineBayBrowse;
 import com.mrcrayfish.furniture.network.message.MessageMineBayBuy;
@@ -37,9 +34,12 @@ import com.mrcrayfish.furniture.network.message.MessagePackage;
 import com.mrcrayfish.furniture.network.message.MessagePresent;
 import com.mrcrayfish.furniture.network.message.MessagePresentContents;
 import com.mrcrayfish.furniture.network.message.MessageTVClient;
-import com.mrcrayfish.furniture.network.message.MessageTVServer;
 import com.mrcrayfish.furniture.network.message.MessageTakeWater;
 import com.mrcrayfish.furniture.network.message.MessageWashingMachine;
+
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import net.minecraftforge.fml.relauncher.Side;
 
 public class PacketHandler
 {
@@ -61,9 +61,9 @@ public class PacketHandler
 		INSTANCE.registerMessage(MessagePresentContents.class, MessagePresentContents.class, 11, Side.SERVER);
 		INSTANCE.registerMessage(MessageTakeWater.class, MessageTakeWater.class, 12, Side.SERVER);
 		INSTANCE.registerMessage(MessageTVClient.class, MessageTVClient.class, 13, Side.CLIENT);
-		INSTANCE.registerMessage(MessageTVServer.class, MessageTVServer.class, 14, Side.SERVER);
-		INSTANCE.registerMessage(MessageMicrowave.class, MessageMicrowave.class, 15, Side.SERVER);
-		INSTANCE.registerMessage(MessageWashingMachine.class, MessageWashingMachine.class, 16, Side.SERVER);
-		INSTANCE.registerMessage(MessageDishwasher.class, MessageDishwasher.class, 17, Side.SERVER);
+		INSTANCE.registerMessage(MessageMicrowave.class, MessageMicrowave.class, 14, Side.SERVER);
+		INSTANCE.registerMessage(MessageWashingMachine.class, MessageWashingMachine.class, 15, Side.SERVER);
+		INSTANCE.registerMessage(MessageDishwasher.class, MessageDishwasher.class, 16, Side.SERVER);
+		INSTANCE.registerMessage(MessageFreezer.class, MessageFreezer.class, 17, Side.SERVER);
 	}
 }

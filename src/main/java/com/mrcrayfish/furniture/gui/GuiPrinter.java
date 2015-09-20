@@ -53,15 +53,35 @@ public class GuiPrinter extends GuiContainer
 		this.drawTexturedModalRect(l, i1 - 10, 0, 0, xSize, ySize + 21);
 		int var7;
 
+		//TODO switch these around!
 		if (this.printerInventory.isPrinting())
 		{
-			var7 = this.printerInventory.getPrintTimeRemainingScaled(16);
+			var7 = this.getPrintTimeRemainingScaled(16);
 			drawTexturedModalRect(l + 74, (i1 + 38) - var7, 179, 16 - var7, 3, var7);
 		}
 		if (this.printerInventory.getStackInSlot(0) != null && this.printerInventory.isPrinting())
 		{
-			var7 = this.printerInventory.getPrintingProgressScaled(16);
+			var7 = this.getPrintingProgressScaled(16);
 			drawTexturedModalRect(l + 80, (i1 + 37) - var7, 176, 15 - var7, 3, var7 + 1);
 		}
 	}
+	
+	private int getPrintTimeRemainingScaled(int scale)
+    {
+        int j = this.printerInventory.getField(2);
+        int k = this.printerInventory.getField(3);
+        return k != 0 && j != 0 ? j * scale / k : 0;
+    }
+	
+	private int getPrintingProgressScaled(int scale)
+    {
+        int j = this.printerInventory.getField(1);
+
+        if (j == 0)
+        {
+            j = 200;
+        }
+
+        return this.printerInventory.getField(0) * scale / j;
+    }
 }

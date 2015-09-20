@@ -17,133 +17,134 @@
  */
 package com.mrcrayfish.furniture.api;
 
+import java.util.Map;
+
 import net.minecraft.item.ItemStack;
 
 public class RecipeConditions
 {
-
-	public static boolean hasMineBayArgs(RecipeVariables params)
+	public static boolean hasMineBayArgs(Map<String, Object> variables)
 	{
-		if (params.get("input") == null)
+		if (variables.get("input") == null)
 			return false;
-		if (!(params.get("input") instanceof ItemStack))
+		if (!(variables.get("input") instanceof ItemStack))
 			return false;
 		return true;
 	}
 
-	public static boolean hasOvenArgs(RecipeVariables params)
+	public static boolean hasOvenArgs(Map<String, Object> variables)
 	{
-		if (params.get("input") == null)
+		if (variables.get("input") == null)
 			return false;
-		if (!(params.get("input") instanceof ItemStack))
+		if (!(variables.get("input") instanceof ItemStack))
 			return false;
-		if (params.get("output") == null)
+		if (variables.get("output") == null)
 			return false;
-		if (!(params.get("output") instanceof ItemStack))
+		if (!(variables.get("output") instanceof ItemStack))
 			return false;
 		return true;
 	}
 
-	public static boolean hasFreezerArgs(RecipeVariables params)
+	public static boolean hasFreezerArgs(Map<String, Object> variables)
 	{
-		if (params.get("input") == null)
+		if (variables.get("input") == null)
 			return false;
-		if (!(params.get("input") instanceof ItemStack))
+		if (!(variables.get("input") instanceof ItemStack))
 			return false;
-		if (params.get("output") == null)
+		if (variables.get("output") == null)
 			return false;
-		if (!(params.get("output") instanceof ItemStack))
+		if (!(variables.get("output") instanceof ItemStack))
 			return false;
 		return true;
 	}
 
-	public static boolean hasPrinterArgs(RecipeVariables params)
+	public static boolean hasPrinterArgs(Map<String, Object> variables)
 	{
-		if (params.get("input") == null)
+		if (variables.get("input") == null)
 			return false;
-		if (!(params.get("input") instanceof ItemStack))
+		if (!(variables.get("input") instanceof ItemStack))
 			return false;
 		return true;
 	}
 
-	public static boolean hasChoppingBoardArgs(RecipeVariables params)
+	public static boolean hasChoppingBoardArgs(Map<String, Object> variables)
 	{
-		if (params.get("input") == null)
+		if (variables.get("input") == null)
 			return false;
-		if (!(params.get("input") instanceof ItemStack))
+		if (!(variables.get("input") instanceof ItemStack))
 			return false;
-		if (params.get("output") == null)
+		if (variables.get("output") == null)
 			return false;
-		if (!(params.get("output") instanceof ItemStack))
+		if (!(variables.get("output") instanceof ItemStack))
 			return false;
 		return true;
 	}
 
-	public static boolean hasBlenderArgs(RecipeVariables params)
+	public static boolean hasBlenderArgs(Map<String, Object> variables)
 	{
-		if (params.get("name") == null)
+		if (variables.get("name") == null)
 			return false;
-		if (!(params.get("name") instanceof String))
+		if (!(variables.get("name") instanceof String))
 			return false;
-		if (params.get("heal") == null)
+		if (variables.get("heal") == null)
 			return false;
-		if (!(params.get("heal") instanceof Integer))
+		if (!(variables.get("heal") instanceof Integer))
 			return false;
-		if (params.get("ingredients") == null)
+		if (variables.get("ingredients") == null)
 			return false;
-		if (!(params.get("ingredients") instanceof ItemStack[]))
+		if (!(variables.get("ingredients") instanceof ItemStack[]))
 			return false;
-		if (((ItemStack[]) params.get("ingredients")).length == 0 | ((ItemStack[]) params.get("ingredients")).length > 4)
+		if (((ItemStack[]) variables.get("ingredients")).length == 0 | ((ItemStack[]) variables.get("ingredients")).length > 4)
 			return false;
-		if (params.get("colour") == null)
+		if (variables.get("colour") == null)
 			return false;
-		if (!(params.get("colour") instanceof int[]))
+		if (!(variables.get("colour") instanceof int[]))
 			return false;
-		if (((int[]) params.get("colour")).length != 3)
+		if (((int[]) variables.get("colour")).length != 3)
 			return false;
 		return true;
 	}
 
-	public static boolean hasMicrowaveArgs(RecipeVariables params)
+	public static boolean hasMicrowaveArgs(Map<String, Object> variables)
 	{
-		if (params.get("input") == null)
+		if (variables.get("input") == null)
 			return false;
-		if (!(params.get("input") instanceof ItemStack))
+		if (!(variables.get("input") instanceof ItemStack))
 			return false;
-		if (params.get("output") == null)
+		if (variables.get("output") == null)
 			return false;
-		if (!(params.get("output") instanceof ItemStack))
+		if (!(variables.get("output") instanceof ItemStack))
 			return false;
 		return true;
 	}
 
-	public static boolean hasWashingMachineArgs(RecipeVariables params)
+	public static boolean hasWashingMachineArgs(Map<String, Object> variables)
 	{
-		if (params.get("input") == null)
+		if (variables.get("input") == null)
 			return false;
-		if (!(params.get("input") instanceof ItemStack))
+		if (!(variables.get("input") instanceof ItemStack))
 			return false;
 		return true;
 	}
 
-	public static boolean hasToasterArgs(RecipeVariables params)
+	public static boolean hasToasterArgs(Map<String, Object> variables)
 	{
-		if (params.get("input") == null)
+		if (variables.get("input") == null)
 			return false;
-		if (!(params.get("input") instanceof ItemStack))
+		if (!(variables.get("input") instanceof ItemStack))
 			return false;
-		if (params.get("output") == null)
+		if (variables.get("output") == null)
 			return false;
-		if (!(params.get("output") instanceof ItemStack))
+		if (!(variables.get("output") instanceof ItemStack))
 			return false;
 		return true;
 	}
 
-	public static boolean hasDishwasherArgs(RecipeVariables params)
+	public static boolean hasDishwasherArgs(Map<String, Object> variables)
 	{
-		if (params.get("input") == null)
+		if (variables.get("input") == null)
 			return false;
-		if (!(params.get("input") instanceof ItemStack))
+		if (!(variables.get("input") instanceof ItemStack))
 			return false;
 		return true;
 	}

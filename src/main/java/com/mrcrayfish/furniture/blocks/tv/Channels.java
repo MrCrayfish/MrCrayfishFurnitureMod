@@ -17,8 +17,11 @@ public class Channels
 		return channels.get(channel);
 	}
 
-	public static void addChannel(String name)
+	public static void registerChannels(int count)
 	{
-		channels.add(new Channel(name));
+		for(int i = 0; i < count; i++)
+		{
+			channels.add(new Channel("channel_" + (i + 1)));
+		}
 	}
 }

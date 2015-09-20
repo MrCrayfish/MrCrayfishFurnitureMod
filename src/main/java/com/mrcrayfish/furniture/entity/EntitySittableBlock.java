@@ -94,6 +94,7 @@ public class EntitySittableBlock extends Entity
 			if (this.riddenByEntity == null | this.worldObj.isAirBlock(new BlockPos(blockPosX, blockPosY, blockPosZ)))
 			{
 				this.setDead();
+				worldObj.updateComparatorOutputLevel(getPosition(), worldObj.getBlockState(getPosition()).getBlock());
 			}
 		}
 	}

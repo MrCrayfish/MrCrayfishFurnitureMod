@@ -60,7 +60,7 @@ public class BlockHedge extends Block
 	{
 		super(Material.leaves);
 		setHardness(1.0F);
-		setStepSound(Block.soundTypeWood);
+		setStepSound(Block.soundTypeGrass);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
 	}
 
@@ -72,6 +72,12 @@ public class BlockHedge extends Block
 	
 	@Override
 	public boolean isNormalCube()
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isFullCube()
 	{
 		return false;
 	}

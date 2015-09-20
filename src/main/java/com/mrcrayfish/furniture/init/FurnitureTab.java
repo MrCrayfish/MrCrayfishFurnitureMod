@@ -19,20 +19,32 @@ package com.mrcrayfish.furniture.init;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class FurnitureTab extends CreativeTabs
+public class FurnitureTab extends CreativeTabs 
 {
-
-	public FurnitureTab(String label)
+	public FurnitureTab(String label) 
 	{
 		super(label);
-		this.setBackgroundImageName("furniture.png");
 	}
 
 	@Override
-	public Item getTabIconItem()
+	public Item getTabIconItem() 
 	{
 		return FurnitureItems.itemChairWood;
 	}
 
+	@SideOnly(Side.CLIENT)
+	public String getBackgroundImageName() 
+	{
+		return "furniture.png";
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public boolean drawInForegroundOfTab() 
+	{
+		return false;
+	}
 }

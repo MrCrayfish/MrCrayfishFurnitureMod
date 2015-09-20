@@ -34,10 +34,15 @@ public class ConfigurationHandler
 	public static final String CATEGORY_API = "recipe-api";
 	public static final String CATEGORY_SETTINGS = "settings";
 
-	public static String[] items = new String[0];
+	public static String[] items = {};
 	public static boolean canDisplay = true;
 	public static boolean hasDisplayedOnce = false;
 	public static boolean api_debug = true;
+	
+	public static boolean mirrorEnabled = true;
+	public static int mirrorQuality = 128;
+	public static float mirrorFov = 80F;
+	public static boolean mirrorClouds = false;
 
 	public static boolean printer_1 = true, printer_2 = true;
 	public static boolean oven_1 = true, oven_2 = true, oven_3 = true, oven_4 = true, oven_5 = true, oven_6 = true, oven_7 = true;
@@ -67,6 +72,10 @@ public class ConfigurationHandler
 
 	public static void loadConfig(boolean shouldChange)
 	{
+		mirrorEnabled = config.getBoolean("mirror-enabled", CATEGORY_SETTINGS, true, "Determines whether the mirror will be rendered.");
+		mirrorClouds = config.getBoolean("mirror-clouds", CATEGORY_SETTINGS, false, "Set whether the mirror should render clouds.");
+		mirrorFov = config.getFloat("mirror-fov", CATEGORY_SETTINGS, 80F, 10F, 100F, "Sets the field of view for the mirror.");
+		mirrorQuality = config.getInt("mirror-quality", CATEGORY_SETTINGS, 128, 16, 512, "Sets the resolution for the mirror. High number means better quality but worse performace.");
 		api_debug = config.getBoolean("recipe-api-debug", CATEGORY_SETTINGS, true, "If true, prints out information about RecipeAPI. Recommended 'true' for people trying to add custom recipe.");
 		canDisplay = config.getBoolean("display", CATEGORY_SETTINGS, canDisplay, "Enabled or disable the welcome message");
 		items = config.getStringList("custom-recipes", CATEGORY_API, items, "Insert custom recipes here");

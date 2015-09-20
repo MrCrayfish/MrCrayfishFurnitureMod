@@ -19,25 +19,30 @@ package com.mrcrayfish.furniture.tileentity;
 
 import java.util.Random;
 
+import com.mrcrayfish.furniture.api.RecipeAPI;
+import com.mrcrayfish.furniture.api.RecipeData;
+import com.mrcrayfish.furniture.gui.containers.ContainerMicrowave;
+import com.mrcrayfish.furniture.util.ParticleSpawner;
+
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
 
-import com.mrcrayfish.furniture.api.RecipeAPI;
-import com.mrcrayfish.furniture.api.RecipeData;
-import com.mrcrayfish.furniture.util.ParticleSpawner;
-
-public class TileEntityMicrowave extends TileEntity implements IInventory, IUpdatePlayerListBox
+public class TileEntityMicrowave extends TileEntityLockable implements ISidedInventory, IUpdatePlayerListBox
 {
+	private static final int[] slot = new int[] { 0 };
+	
 	private ItemStack item = null;
 	private String customName;
 	private boolean cooking = false;
@@ -228,13 +233,6 @@ public class TileEntityMicrowave extends TileEntity implements IInventory, IUpda
 		return this.worldObj.getTileEntity(pos) != this ? false : entityplayer.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64.0D;
 	}
 
-
-	@Override
-	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_)
-	{
-		return false;
-	}
-
 	@Override
 	public void openInventory(EntityPlayer player)
 	{		
@@ -284,5 +282,41 @@ public class TileEntityMicrowave extends TileEntity implements IInventory, IUpda
 	public IChatComponent getDisplayName()
 	{
 		return new ChatComponentText(getName());
+	}
+	
+	@Override
+	public boolean isItemValidForSlot(int index, ItemStack stack)
+	{
+		return RecipeAPI.getMicrowaveRecipeFromIngredients(stack) != null;
+	}
+
+	@Override
+	public int[] getSlotsForFace(EnumFacing side) 
+	{
+		return slot;
+	}
+
+	@Override
+	public boolean canInsertItem(int index, ItemStack stack, EnumFacing direction) 
+	{
+		return RecipeAPI.getMicrowaveRecipeFromIngredients(stack) != null;
+	}
+
+	@Override
+	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) 
+	{
+		return RecipeAPI.getMicrowaveRecipeFromIngredients(stack) == null;
+	}
+
+	@Override
+	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
+	{
+		return new ContainerMicrowave(playerInventory, this);
+	}
+
+	@Override
+	public String getGuiID() 
+	{
+		return "0";
 	}
 }

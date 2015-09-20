@@ -35,6 +35,7 @@ import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityBedsideCabinet;
+import com.mrcrayfish.furniture.tileentity.TileEntityDishwasher;
 import com.mrcrayfish.furniture.tileentity.TileEntityFreezer;
 
 public class BlockFreezer extends BlockFurnitureTile
@@ -45,13 +46,23 @@ public class BlockFreezer extends BlockFurnitureTile
 		setHardness(2.0F);
 		setStepSound(Block.soundTypeMetal);
 	}
-
-	public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+	
+	@Override
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, net.minecraft.entity.EntityLivingBase placer, ItemStack stack) 
 	{
-		if (worldIn.getBlockState(pos.up()).getBlock() != FurnitureBlocks.fridge)
-		{
-			worldIn.setBlockToAir(pos);
-		}
+		worldIn.setBlockState(pos.up(), FurnitureBlocks.fridge.getDefaultState().withProperty(FACING, state.getValue(FACING)));
+	}
+	
+	@Override
+	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+	{
+		return worldIn.isAirBlock(pos) && worldIn.isAirBlock(pos.up());
+	}
+
+	@Override
+	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+	{
+		worldIn.destroyBlock(pos.up(), false);
 	}
 	
 	@Override
@@ -85,5 +96,12 @@ public class BlockFreezer extends BlockFurnitureTile
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
 		return new ItemStack(FurnitureItems.itemFridge);
+	}
+	
+	@Override
+	public int getComparatorInputOverride(World world, BlockPos pos) 
+	{
+		TileEntityFreezer freezer = (TileEntityFreezer) world.getTileEntity(pos);
+		return freezer.isFreezing() ? 1 : 0;
 	}
 }

@@ -127,4 +127,11 @@ public class BlockMicrowave extends BlockFurnitureTile
 	{
 		return EnumWorldBlockLayer.CUTOUT_MIPPED;
 	}
+	
+	@Override
+	public int getComparatorInputOverride(World world, BlockPos pos) 
+	{
+		TileEntityMicrowave microwave = (TileEntityMicrowave) world.getTileEntity(pos);
+		return microwave.isCooking() ? 1 : 0;
+	}
 }

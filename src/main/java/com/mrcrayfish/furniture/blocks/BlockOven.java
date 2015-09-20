@@ -92,16 +92,7 @@ public class BlockOven extends BlockFurnitureTile
 	{
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
-	
-	@Override
-	public void addCollisionBoxesToList(World world, BlockPos pos, IBlockState state, AxisAlignedBB mask, List list, Entity collidingEntity)
-	{
-		int metadata = getMetaFromState(state);
-		float[] data = CollisionHelper.fixRotation(metadata, 2F * 0.0625F, 0F * 0.0625F, 14F * 0.0625F, 16F * 0.0625F);
-		setBlockBounds(data[0], 0.0F, data[1], data[2], 0.5625F, data[3]);
-		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
-	}
-	
+
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
@@ -124,5 +115,12 @@ public class BlockOven extends BlockFurnitureTile
 	public EnumWorldBlockLayer getBlockLayer()
 	{
 		return EnumWorldBlockLayer.CUTOUT;
+	}
+	
+	@Override
+	public int getComparatorInputOverride(World world, BlockPos pos) 
+	{
+		TileEntityOven oven = (TileEntityOven) world.getTileEntity(pos);
+		return oven.isCooking() ? 1 : 0;
 	}
 }

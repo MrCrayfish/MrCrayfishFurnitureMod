@@ -18,30 +18,28 @@
 package com.mrcrayfish.furniture.network.message;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
-import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-import com.mrcrayfish.furniture.network.PacketHandler;
-import com.mrcrayfish.furniture.tileentity.TileEntityTV;
+import com.mrcrayfish.furniture.tileentity.TileEntityDishwasher;
+import com.mrcrayfish.furniture.tileentity.TileEntityFreezer;
 
-//Server
-public class MessageTVServer implements IMessage, IMessageHandler<MessageTVServer, IMessage>
+public class MessageFreezer implements IMessage, IMessageHandler<MessageFreezer, IMessage>
 {
+	private int type;
+	private int x, y, z;
 
-	private int channel, x, y, z;
-
-	public MessageTVServer()
+	public MessageFreezer()
 	{
 	}
 
-	public MessageTVServer(int channel, int x, int y, int z)
+	public MessageFreezer(int type, int x, int y, int z)
 	{
-		this.channel = channel;
+		this.type = type;
 		this.x = x;
 		this.y = y;
 		this.z = z;
@@ -50,7 +48,7 @@ public class MessageTVServer implements IMessage, IMessageHandler<MessageTVServe
 	@Override
 	public void fromBytes(ByteBuf buf)
 	{
-		this.channel = buf.readInt();
+		this.type = buf.readInt();
 		this.x = buf.readInt();
 		this.y = buf.readInt();
 		this.z = buf.readInt();
@@ -59,25 +57,30 @@ public class MessageTVServer implements IMessage, IMessageHandler<MessageTVServe
 	@Override
 	public void toBytes(ByteBuf buf)
 	{
-		buf.writeInt(channel);
+		buf.writeInt(type);
 		buf.writeInt(x);
 		buf.writeInt(y);
 		buf.writeInt(z);
 	}
 
 	@Override
-	public IMessage onMessage(MessageTVServer message, MessageContext ctx)
+	public IMessage onMessage(MessageFreezer message, MessageContext ctx)
 	{
-		EntityPlayerMP player = ctx.getServerHandler().playerEntity;
-		TileEntity tile_entity = player.worldObj.getTileEntity(new BlockPos(message.x, message.y, message.z));
-		if (tile_entity instanceof TileEntityTV)
+		World world = ctx.getServerHandler().playerEntity.worldObj;
+		TileEntity tileEntity = world.getTileEntity(new BlockPos(message.x, message.y, message.z));
+		if (tileEntity instanceof TileEntityFreezer)
 		{
-			TileEntityTV tileEntityTV = (TileEntityTV) tile_entity;
-			tileEntityTV.setChannel(message.channel);
+			TileEntityFreezer tileEntityFreezer = (TileEntityFreezer) tileEntity;
+			if (message.type == 0)
+			{
+				tileEntityFreezer.startFreezing();
+			}
+			if (message.type == 1)
+			{
+				tileEntityFreezer.stopFreezing();
+			}
+			world.markBlockForUpdate(new BlockPos(message.x, message.y, message.z));
 		}
-		player.worldObj.markBlockForUpdate(new BlockPos(message.x, message.y, message.z));
-		PacketHandler.INSTANCE.sendToAllAround(new MessageTVClient(message.channel, message.x, message.y, message.z), new TargetPoint(player.dimension, x, y, z, 50));
 		return null;
 	}
-
 }

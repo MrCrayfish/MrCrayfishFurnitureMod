@@ -1,5 +1,6 @@
 {
 "variants": {
-"normal": {"model": "cfm:ceiling_light_pre"}
+"mode=right_click": {"model": "cfm:ceiling_light_off_pre"},
+"mode=redstone": {"model": "cfm:ceiling_light_off_pre"}
 }
 }

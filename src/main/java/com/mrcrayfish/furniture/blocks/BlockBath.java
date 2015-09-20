@@ -284,4 +284,11 @@ public class BlockBath extends BlockFurnitureTile
 	{
 		return world.getBlockState(pos.add(0, -2, 0)) == Blocks.water.getDefaultState();
 	}
+
+	@Override
+	public int getComparatorInputOverride(World world, BlockPos pos) 
+	{
+		TileEntityBath bath = (TileEntityBath) world.getTileEntity(pos);
+		return bath.getWaterLevel();
+	}
 }

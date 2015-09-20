@@ -19,9 +19,18 @@ package com.mrcrayfish.furniture.tileentity;
 
 import java.util.Random;
 
+import com.mrcrayfish.furniture.api.RecipeAPI;
+import com.mrcrayfish.furniture.api.RecipeData;
+import com.mrcrayfish.furniture.gui.containers.ContainerWashingMachine;
+import com.mrcrayfish.furniture.init.FurnitureItems;
+
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -29,17 +38,17 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
 
-import com.mrcrayfish.furniture.api.RecipeAPI;
-import com.mrcrayfish.furniture.api.RecipeData;
-import com.mrcrayfish.furniture.init.FurnitureItems;
-
-public class TileEntityWashingMachine extends TileEntity implements IInventory, IUpdatePlayerListBox
+public class TileEntityWashingMachine extends TileEntityLockable implements ISidedInventory, IUpdatePlayerListBox
 {
+	private static final int[] slots_top = new int[] { 0, 1, 2, 3 };
+	private static final int[] slots_bottom = new int[] { 0, 1, 2, 3, 4 };
+	private static final int[] slots_sides = new int[] { 4 };
+	
 	private ItemStack[] inventory = new ItemStack[5];
 
 	private boolean washing = false;
@@ -110,6 +119,24 @@ public class TileEntityWashingMachine extends TileEntity implements IInventory, 
 	{
 		return washing;
 	}
+	
+	public static boolean isFuel(ItemStack stack)
+	{
+		return getFuelTime(stack) > 0;
+	}
+	
+	private static int getFuelTime(ItemStack stack)
+	{
+		if(stack == null)
+			return 0;
+		if(stack.getItem() == Item.getItemFromBlock(Blocks.packed_ice))
+			return 3000;
+		if(stack.getItem() == Item.getItemFromBlock(Blocks.ice))
+			return 2000;
+		if(stack.getItem() == FurnitureItems.itemCoolPack)
+			return 400;
+		return 0;
+	}
 
 	private Random rand = new Random();
 	private int timer = 0;
@@ -119,19 +146,22 @@ public class TileEntityWashingMachine extends TileEntity implements IInventory, 
 	{
 		if (washing)
 		{
+			if(!canWash())
+			{
+				washing = false;
+				return;
+			}
+			
 			if (canRepair())
 			{
 				for (int i = 0; i < 4; i++)
 				{
 					if (inventory[i] != null)
 					{
-						// if (inventory[i].getMaxDamage() -
-						// inventory[i].getItemDamage() !=
-						// inventory[i].getMaxDamage())
-						// {
-						// inventory[i].setItemDamage(inventory[i].getItemDamage()
-						// - 1);
-						// }
+						if (inventory[i].getMaxDamage() - inventory[i].getItemDamage() != inventory[i].getMaxDamage())
+						{
+							inventory[i].setItemDamage(inventory[i].getItemDamage() - 1);
+						}
 					}
 				}
 			}
@@ -315,12 +345,6 @@ public class TileEntityWashingMachine extends TileEntity implements IInventory, 
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_)
-	{
-		return false;
-	}
-
-	@Override
 	public void openInventory(EntityPlayer player)
 	{
 	}
@@ -359,7 +383,7 @@ public class TileEntityWashingMachine extends TileEntity implements IInventory, 
 	@Override
 	public String getName()
 	{
-		return "Washign Machine";
+		return "Washing Machine";
 	}
 
 	@Override
@@ -372,5 +396,56 @@ public class TileEntityWashingMachine extends TileEntity implements IInventory, 
 	public IChatComponent getDisplayName()
 	{
 		return new ChatComponentText(getName());
+	}
+	
+	@Override
+	public boolean isItemValidForSlot(int slot, ItemStack stack)
+	{
+		if(stack.getItem() instanceof ItemArmor)
+		{
+			ItemArmor armour = (ItemArmor) stack.getItem();
+			return slot == armour.armorType;
+		}
+		return true;
+	}
+
+	@Override
+	public int[] getSlotsForFace(EnumFacing side) 
+	{
+		if(side == EnumFacing.UP) return slots_top;
+		if(side == EnumFacing.DOWN) return slots_bottom;
+		return slots_sides;
+	}
+
+	@Override
+	public boolean canInsertItem(int index, ItemStack stack, EnumFacing side) 
+	{
+		if(side == EnumFacing.UP)
+		{
+			return RecipeAPI.getWashingMachineRecipeFromInput(stack) != null;
+		}
+		if(side != EnumFacing.DOWN)
+		{
+			return isFuel(stack);
+		}
+		return false;
+	}
+
+	@Override
+	public boolean canExtractItem(int index, ItemStack stack, EnumFacing side) 
+	{
+		return side == EnumFacing.DOWN && !isFuel(stack) && stack.getItemDamage() == 0;
+	}
+
+	@Override
+	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
+	{
+		return new ContainerWashingMachine(playerInventory, this);
+	}
+
+	@Override
+	public String getGuiID() 
+	{
+		return "0";
 	}
 }

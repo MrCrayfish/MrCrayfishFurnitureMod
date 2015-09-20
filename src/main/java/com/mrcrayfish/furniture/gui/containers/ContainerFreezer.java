@@ -40,21 +40,21 @@ public class ContainerFreezer extends Container
 		this.freezerInventory = freezerInventory;
 		freezerInventory.openInventory(null);
 
-		this.addSlotToContainer(new Slot(freezerInventory, 0, 63, 27));
-		this.addSlotToContainer(new Slot(freezerInventory, 1, 32, 27));
-		this.addSlotToContainer(new SlotFreezer(freezerInventory, 2, 123, 27));
+		this.addSlotToContainer(new Slot(freezerInventory, 0, 130, 6));
+		this.addSlotToContainer(new Slot(freezerInventory, 1, 42, 32));
+		this.addSlotToContainer(new SlotFreezer(freezerInventory, 2, 89, 32));
 
 		for (int i = 0; i < 3; i++)
 		{
 			for (int j = 0; j < 9; ++j)
 			{
-				this.addSlotToContainer(new Slot(playerInventory, j + i * 9 + 9, j * 18 + 8, i * 18 + 84));
+				this.addSlotToContainer(new Slot(playerInventory, j + i * 9 + 9, j * 18 + 8, i * 18 + 77));
 			}
 		}
 
 		for (int i = 0; i < 9; i++)
 		{
-			this.addSlotToContainer(new Slot(playerInventory, i, i * 18 + 8, 142));
+			this.addSlotToContainer(new Slot(playerInventory, i, i * 18 + 8, 135));
 		}
 	}
 
@@ -108,7 +108,7 @@ public class ContainerFreezer extends Container
 						return null;
 					}
 				}
-				else if (TileEntityFreezer.isItemFuel(item))
+				else if (TileEntityFreezer.isFuel(item))
 				{
 					if (!this.mergeItemStack(item, 1, 2, false))
 					{

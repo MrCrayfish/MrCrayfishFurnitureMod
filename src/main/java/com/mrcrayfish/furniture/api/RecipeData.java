@@ -18,6 +18,7 @@
 package com.mrcrayfish.furniture.api;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -219,7 +220,7 @@ public class RecipeData
 		return result.substring(0, result.length() - 1);
 	}
 
-	public static RecipeData convertFrom(RecipeVariables params)
+	public static RecipeData convertFrom(Map<String, Object> params)
 	{
 		RecipeData data = new RecipeData();
 		if (params.containsKey("input"))

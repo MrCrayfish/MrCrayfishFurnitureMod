@@ -20,6 +20,13 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Random;
 
+import com.mrcrayfish.furniture.api.RecipeAPI;
+import com.mrcrayfish.furniture.api.RecipeData;
+import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.tileentity.TileEntityStereo;
+import com.mrcrayfish.furniture.tileentity.TileEntityToaster;
+import com.mrcrayfish.furniture.util.CollisionHelper;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -35,12 +42,6 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import com.mrcrayfish.furniture.api.RecipeAPI;
-import com.mrcrayfish.furniture.api.RecipeData;
-import com.mrcrayfish.furniture.init.FurnitureItems;
-import com.mrcrayfish.furniture.tileentity.TileEntityToaster;
-import com.mrcrayfish.furniture.util.CollisionHelper;
-
 public class BlockToaster extends BlockFurnitureTile
 {
 	public BlockToaster(Material material)
@@ -48,6 +49,21 @@ public class BlockToaster extends BlockFurnitureTile
 		super(material);
 		setHardness(0.5F);
 		setStepSound(Block.soundTypeAnvil);
+	}
+	
+	@Override
+	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
+	{
+		TileEntityToaster tileEntityToaster = (TileEntityToaster) world.getTileEntity(pos);
+		if(!tileEntityToaster.isToasting() && world.isBlockPowered(pos))
+		{
+			tileEntityToaster.startToasting();
+			world.markBlockForUpdate(pos);
+			if (!world.isRemote)
+			{
+				world.playSoundEffect(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, "cfm:toaster_down", 0.75F, 1.0F);
+			}
+		}
 	}
 
 	@Override
@@ -63,10 +79,15 @@ public class BlockToaster extends BlockFurnitureTile
 				RecipeData data = RecipeAPI.getToasterRecipeFromInput(currentItem);
 				if (data != null)
 				{
-					tileEntityToaster.addSlice(new ItemStack(currentItem.getItem(), 1));
-					world.markBlockForUpdate(pos);
-					currentItem.stackSize--;
-					return true;
+					if(tileEntityToaster.addSlice(new ItemStack(currentItem.getItem(), 1)))
+					{
+						world.markBlockForUpdate(pos);
+						currentItem.stackSize--;
+					}
+				}
+				else
+				{
+					tileEntityToaster.removeSlice();
 				}
 			}
 			else
@@ -76,6 +97,7 @@ public class BlockToaster extends BlockFurnitureTile
 					if (!tileEntityToaster.isToasting())
 					{
 						tileEntityToaster.startToasting();
+						world.updateComparatorOutputLevel(pos, this);
 						if (!world.isRemote)
 						{
 							world.playSoundEffect(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, "cfm:toaster_down", 0.75F, 1.0F);
@@ -124,5 +146,12 @@ public class BlockToaster extends BlockFurnitureTile
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
 		return new ItemStack(FurnitureItems.itemToaster);
+	}
+	
+	@Override
+	public int getComparatorInputOverride(World world, BlockPos pos) 
+	{
+		TileEntityToaster toaster = (TileEntityToaster) world.getTileEntity(pos);
+		return toaster.isToasting() ? 1 : 0;
 	}
 }

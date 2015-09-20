@@ -38,16 +38,17 @@ public class TileEntityToaster extends TileEntity implements IUpdatePlayerListBo
 	private int toastingTime = 0;
 	private boolean toasting = false;
 
-	public void addSlice(ItemStack item)
+	public boolean addSlice(ItemStack item)
 	{
 		for (int i = 0; i < slots.length; i++)
 		{
 			if (slots[i] == null)
 			{
 				slots[i] = item.copy();
-				return;
+				return true;
 			}
 		}
+		return false;
 	}
 
 	public void removeSlice()
@@ -65,6 +66,7 @@ public class TileEntityToaster extends TileEntity implements IUpdatePlayerListBo
 				return;
 			}
 		}
+		worldObj.markBlockForUpdate(pos);
 	}
 
 	public void startToasting()
@@ -108,6 +110,7 @@ public class TileEntityToaster extends TileEntity implements IUpdatePlayerListBo
 				}
 				toastingTime = 0;
 				toasting = false;
+				worldObj.updateComparatorOutputLevel(pos, blockType);
 			}
 			else
 			{

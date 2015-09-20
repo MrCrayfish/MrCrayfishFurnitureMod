@@ -1,0 +1,190 @@
+package com.mrcrayfish.furniture.render.tileentity;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.EntityRenderer;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderGlobal;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.client.settings.GameSettings;
+import net.minecraft.entity.Entity;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+
+import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL11;
+
+import com.mrcrayfish.furniture.MirrorRenderGlobal;
+import com.mrcrayfish.furniture.blocks.BlockMirror;
+import com.mrcrayfish.furniture.entity.EntityMirror;
+import com.mrcrayfish.furniture.handler.ConfigurationHandler;
+import com.mrcrayfish.furniture.proxy.ClientProxy;
+import com.mrcrayfish.furniture.tileentity.TileEntityMirror;
+
+public class MirrorRenderer extends TileEntitySpecialRenderer
+{
+	private static Minecraft mc = Minecraft.getMinecraft();
+	public static RenderGlobal mirrorGlobalRenderer = new MirrorRenderGlobal(mc);
+	private int quality = ConfigurationHandler.mirrorQuality;
+	private long renderEndNanoTime;
+	
+	private static Map<Entity, Integer> registerMirrors = new ConcurrentHashMap<Entity, Integer>();
+	private static List<Integer> pendingRemoval = Collections.synchronizedList(new ArrayList<Integer>());
+
+	public static void removeRegisteredMirror(Entity entity)
+	{
+		pendingRemoval.add(registerMirrors.get(entity));
+		registerMirrors.remove(entity);
+	}
+
+	public static void clearRegisteredMirrors()
+	{
+		registerMirrors.clear();
+	}
+
+	@Override
+	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
+	{
+		if(!ConfigurationHandler.mirrorEnabled)
+			return;
+		
+		if(TileEntityRendererDispatcher.instance.entity instanceof EntityMirror)
+			return;
+		
+		TileEntityMirror mirror = (TileEntityMirror) tileEntity;
+		IBlockState state = tileEntity.getWorld().getBlockState(tileEntity.getPos());
+		if (state.getBlock() instanceof BlockMirror)
+		{
+			if (!registerMirrors.containsKey(mirror.getMirror()))
+			{
+				int newTextureId = GL11.glGenTextures();
+				GL11.glBindTexture(GL11.GL_TEXTURE_2D, newTextureId);
+				GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, quality, quality, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, BufferUtils.createByteBuffer(3 * quality * quality));
+				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
+				registerMirrors.put(mirror.getMirror(), newTextureId);
+				return;
+			}
+			
+			((EntityMirror)mirror.getMirror()).rendering = true;
+
+			EnumFacing facing = (EnumFacing) state.getValue(BlockMirror.FACING);
+			GL11.glPushMatrix();
+			{
+				GL11.glDisable(GL11.GL_LIGHTING);
+				GlStateManager.bindTexture(registerMirrors.get(mirror.getMirror()).intValue());
+				GL11.glTranslatef((float) posX + 0.5F, (float) posY, (float) posZ + 0.5F);
+				GL11.glRotatef(-90F * facing.getHorizontalIndex() + 180F, 0, 1, 0);
+				GL11.glTranslatef(-0.5F, 0, -0.43F);
+				GL11.glBegin(GL11.GL_QUADS);
+				{
+					GL11.glTexCoord2d(1, 0);
+					GL11.glVertex3d(0.0625, 0.0625, 0);
+					GL11.glTexCoord2d(0, 0);
+					GL11.glVertex3d(0.9375, 0.0625, 0);
+					GL11.glTexCoord2d(0, 1);
+					GL11.glVertex3d(0.9375, 0.9375, 0);
+					GL11.glTexCoord2d(1, 1);
+					GL11.glVertex3d(0.0625, 0.9375, 0);
+				}
+				GL11.glEnd();
+			}
+			GL11.glPopMatrix();
+		}
+	}
+
+	@SubscribeEvent
+	public void onTick(TickEvent.RenderTickEvent event)
+	{		
+		if (event.phase.equals(TickEvent.Phase.END))
+			return;
+		
+		if(!ConfigurationHandler.mirrorEnabled)
+			return;
+
+		if (!pendingRemoval.isEmpty())
+		{
+			for (Integer integer : pendingRemoval)
+			{
+				System.out.println("Unregistering mirror " + integer);
+				GL11.glDeleteTextures(integer.intValue());
+			}
+			pendingRemoval.clear();
+		}
+
+		if (mc.inGameHasFocus)
+		{
+			for (Entity entity : registerMirrors.keySet())
+			{
+				if (entity == null)
+				{
+					registerMirrors.remove(entity);
+					continue;
+				}
+				
+				if(!((EntityMirror)entity).rendering)
+					continue;
+				
+				if(!mc.thePlayer.canEntityBeSeen(entity))
+					continue;
+				
+				if (entity.getDistanceToEntity(mc.thePlayer) < 5)
+				{
+					GameSettings settings = mc.gameSettings;
+					RenderGlobal renderBackup = mc.renderGlobal;
+					Entity entityBackup = mc.getRenderViewEntity();
+					int thirdPersonBackup = settings.thirdPersonView;
+					boolean hideGuiBackup = settings.hideGUI;
+					int mipmapBackup = settings.mipmapLevels;
+					float fovBackup = settings.fovSetting;
+					int widthBackup = mc.displayWidth;
+					int heightBackup = mc.displayHeight;
+
+					mc.renderGlobal = mirrorGlobalRenderer;
+					mc.setRenderViewEntity(entity);
+					settings.fovSetting = ConfigurationHandler.mirrorFov;
+					settings.thirdPersonView = 0;
+					settings.hideGUI = true;
+					settings.mipmapLevels = 3;
+					mc.displayWidth = quality;
+					mc.displayHeight = quality;
+
+					ClientProxy.rendering = true;
+					ClientProxy.renderEntity = mc.thePlayer;
+
+					int fps = Math.max(30, settings.limitFramerate);
+					EntityRenderer entityRenderer = mc.entityRenderer;
+					entityRenderer.renderWorld(event.renderTickTime, renderEndNanoTime + (1000000000 / fps));
+
+					GL11.glBindTexture(GL11.GL_TEXTURE_2D, registerMirrors.get(entity).intValue());
+					GL11.glCopyTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, 0, 0, quality, quality, 0);
+					
+					renderEndNanoTime = System.nanoTime();
+
+					ClientProxy.renderEntity = null;
+					ClientProxy.rendering = false;
+
+					mc.renderGlobal = renderBackup;
+					mc.setRenderViewEntity(entityBackup);
+					settings.fovSetting = fovBackup;
+					settings.thirdPersonView = thirdPersonBackup;
+					settings.hideGUI = hideGuiBackup;
+					settings.mipmapLevels = mipmapBackup;
+					mc.displayWidth = widthBackup;
+					mc.displayHeight = heightBackup;
+				}
+				
+				((EntityMirror)entity).rendering = false;
+			}
+		}
+	}
+}

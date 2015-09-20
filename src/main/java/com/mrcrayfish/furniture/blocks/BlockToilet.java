@@ -124,4 +124,16 @@ public class BlockToilet extends BlockFurniture
 	{
 		return new ItemStack(FurnitureItems.itemToilet);
 	}
+	
+	@Override
+	public boolean hasComparatorInputOverride() 
+	{
+		return true;
+	}
+	
+	@Override
+	public int getComparatorInputOverride(World world, BlockPos pos) 
+	{
+		return SittableUtil.isSomeoneSitting(world, pos.getX(), pos.getY(), pos.getZ()) ? 1 : 0;
+	}
 }

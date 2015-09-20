@@ -54,6 +54,12 @@ public class BlockFireAlarm extends BlockFurniture
 			this.setLightLevel(0.2F);
 		}
 	}
+	
+	@Override
+	public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, BlockPos pos)
+	{
+		setBlockBounds(5F * 0.0625F, 0.875F, 5F * 0.0625F, 11F * 0.0625F, 1.0F, 11F * 0.0625F);
+	}
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
@@ -131,16 +137,22 @@ public class BlockFireAlarm extends BlockFurniture
 	@Override
 	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
 	{
-		if (canBlockStay(world, pos))
+		if (!canBlockStay(world, pos))
 		{
 			this.dropBlockAsItem(world, pos, state, 0);
 			world.setBlockToAir(pos);
 		}
 	}
+	
+	@Override
+	public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side)
+	{
+		return side == EnumFacing.DOWN;
+	}
 
 	public boolean canBlockStay(World par1World, BlockPos pos)
 	{
-		return par1World.isAirBlock(pos.up());
+		return !par1World.isAirBlock(pos.up());
 	}
 
 	@Override

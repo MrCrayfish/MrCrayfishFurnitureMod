@@ -35,11 +35,17 @@ import net.minecraft.world.World;
 public class ItemPlacer extends Item
 {
 	private Block block;
+	private int flag = 3;
 
 	public ItemPlacer(Block block)
 	{
 		this.block = block;
 		setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+	}
+	
+	public void setFlag(int flag)
+	{
+		this.flag = flag;
 	}
 
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
@@ -70,7 +76,7 @@ public class ItemPlacer extends Item
 			{
 				IBlockState iblockstate1 = this.block.onBlockPlaced(world, pos, side, hitX, hitY, hitZ, 0, player);
 
-				if (world.setBlockState(pos, iblockstate1, 3))
+				if (world.setBlockState(pos, iblockstate1, flag))
 				{
 					iblockstate1 = world.getBlockState(pos);
 

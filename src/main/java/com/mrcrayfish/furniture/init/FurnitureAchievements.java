@@ -31,6 +31,7 @@ public class FurnitureAchievements
 	public static Achievement installMod;
 	public static Achievement mineKea;
 	public static Achievement placeTree;
+	public static Achievement jebCouch;
 	public static Achievement unwrapPresent;
 	public static Achievement houseParty;
 	public static Achievement applianceCity;
@@ -60,35 +61,36 @@ public class FurnitureAchievements
 		installMod = new Achievement("achievement.cfm_install", "cfm_install", 0, 0, new ItemStack(FurnitureItems.itemCrayfish), null).setSpecial();
 		installMod.registerStat();
 
-		mineKea = new Achievement("achievement.cfm_minekea", "cfm_minekea", 2, 0, new ItemStack(FurnitureItems.itemChairWood), installMod);
-		placeTree = new Achievement("achievement.cfm_placetree", "cfm_placetree", 3, 1, new ItemStack(FurnitureItems.itemTree), mineKea);
-		unwrapPresent = new Achievement("achievement.cfm_unwrappresent", "cfm_unwrappresent", 4, 2, new ItemStack(FurnitureItems.itemPresent), placeTree);
-		privacy = new Achievement("achievement.cfm_privacy", "cfm_privacy", 4, 0, new ItemStack(FurnitureItems.itemCurtains), mineKea);
+		mineKea = new Achievement("achievement.cfm_minekea", "cfm_minekea", 3, 0, new ItemStack(FurnitureItems.itemChairWood), installMod).func_180788_c();
+		placeTree = new Achievement("achievement.cfm_placetree", "cfm_placetree", 4, 1, new ItemStack(FurnitureItems.itemTree), mineKea).func_180788_c();
+		jebCouch = new Achievement("achievement.cfm_jebcouch", "cfm_jebcouch", 4, -1, new ItemStack(FurnitureItems.itemCouchJeb), mineKea).func_180788_c();
+		unwrapPresent = new Achievement("achievement.cfm_unwrappresent", "cfm_unwrappresent", 5, 2, new ItemStack(FurnitureItems.itemPresent), placeTree).func_180788_c();
+		privacy = new Achievement("achievement.cfm_privacy", "cfm_privacy", 5, 0, new ItemStack(FurnitureItems.itemCurtains), mineKea).func_180788_c();
 
-		applianceCity = new Achievement("achievement.cfm_appliancecity", "cfm_appliancecity", 1, 2, new ItemStack(FurnitureItems.itemOven), installMod);
-		cookItem = new Achievement("achievement.cfm_cookitem", "cfm_cookitem", 2, 3, new ItemStack(Items.cooked_chicken), applianceCity);
-		freezeItem = new Achievement("achievement.cfm_freezeitem", "cfm_freezeitem", 0, 3, new ItemStack(Blocks.ice), applianceCity);
+		applianceCity = new Achievement("achievement.cfm_appliancecity", "cfm_appliancecity", 1, 2, new ItemStack(FurnitureItems.itemOven), installMod).func_180788_c();
+		cookItem = new Achievement("achievement.cfm_cookitem", "cfm_cookitem", 2, 3, new ItemStack(Items.cooked_chicken), applianceCity).func_180788_c();
+		freezeItem = new Achievement("achievement.cfm_freezeitem", "cfm_freezeitem", 0, 3, new ItemStack(Blocks.ice), applianceCity).func_180788_c();
 
-		modernTechnology = new Achievement("achievement.cfm_moderntechnology", "cfm_moderntechnology", -3, 2, new ItemStack(FurnitureItems.itemComputer), installMod);
-		buyItem = new Achievement("achievement.cfm_buyitem", "cfm_buyitem", -2, 1, new ItemStack(Items.emerald), modernTechnology);
-		copyItem = new Achievement("achievement.cfm_copyitem", "cfm_copyitem", -4, 1, new ItemStack(Items.book), modernTechnology);
-		houseParty = new Achievement("achievement.cfm_houseparty", "cfm_houseparty", -3, 0, new ItemStack(FurnitureItems.itemStereo), modernTechnology);
-		heyeyey = new Achievement("achievement.cfm_heyeyey", "cfm_heyeyey", -4, 3, new ItemStack(FurnitureItems.itemTV), modernTechnology);
-		dingDong = new Achievement("achievement.cfm_dingdong", "cfm_dingdong", -3, 4, new ItemStack(FurnitureItems.itemDoorBell), modernTechnology);
-		careful = new Achievement("achievement.cfm_careful", "cfm_careful", -2, 3, new ItemStack(FurnitureItems.itemElectricFence), modernTechnology);
+		modernTechnology = new Achievement("achievement.cfm_moderntechnology", "cfm_moderntechnology", -3, 2, new ItemStack(FurnitureItems.itemComputer), installMod).func_180788_c();
+		buyItem = new Achievement("achievement.cfm_buyitem", "cfm_buyitem", -2, 1, new ItemStack(Items.emerald), modernTechnology).func_180788_c();
+		copyItem = new Achievement("achievement.cfm_copyitem", "cfm_copyitem", -4, 1, new ItemStack(Items.book), modernTechnology).func_180788_c();
+		houseParty = new Achievement("achievement.cfm_houseparty", "cfm_houseparty", -3, 0, new ItemStack(FurnitureItems.itemStereo), modernTechnology).func_180788_c();
+		heyeyey = new Achievement("achievement.cfm_heyeyey", "cfm_heyeyey", -4, 3, new ItemStack(FurnitureItems.itemTV), modernTechnology).func_180788_c();
+		dingDong = new Achievement("achievement.cfm_dingdong", "cfm_dingdong", -3, 4, new ItemStack(FurnitureItems.itemDoorBell), modernTechnology).func_180788_c();
+		careful = new Achievement("achievement.cfm_careful", "cfm_careful", -2, 3, new ItemStack(FurnitureItems.itemElectricFence), modernTechnology).func_180788_c();
 
-		gardening = new Achievement("achievement.cfm_gardening", "cfm_gardening", -2, -2, new ItemStack(FurnitureItems.itemHedgeBasic), installMod);
-		mailBox = new Achievement("achievement.cfm_mailbox", "cfm_mailbox", -3, -3, new ItemStack(FurnitureItems.itemMailBox), gardening);
-		sendMail = new Achievement("achievement.cfm_sendmail", "cfm_sendmail", -4, -4, new ItemStack(FurnitureItems.itemEnvelope), mailBox);
-		firstMail = new Achievement("achievement.cfm_firstmail", "cfm_firstmail", -4, -2, new ItemStack(FurnitureItems.itemPackage), mailBox);
-		tapped = new Achievement("achievement.cfm_tapped", "cfm_tapped", -1, -3, new ItemStack(FurnitureItems.itemTap), gardening);
-		donator = new Achievement("achievement.cfm_donator", "cfm_donator", -1, -4, new ItemStack(FurnitureItems.itemDollar), gardening);
+		gardening = new Achievement("achievement.cfm_gardening", "cfm_gardening", -2, -2, new ItemStack(FurnitureItems.itemHedgeBasic), installMod).func_180788_c();
+		mailBox = new Achievement("achievement.cfm_mailbox", "cfm_mailbox", -3, -3, new ItemStack(FurnitureItems.itemMailBox), gardening).func_180788_c();
+		sendMail = new Achievement("achievement.cfm_sendmail", "cfm_sendmail", -4, -4, new ItemStack(FurnitureItems.itemEnvelope), mailBox).func_180788_c();
+		firstMail = new Achievement("achievement.cfm_firstmail", "cfm_firstmail", -4, -2, new ItemStack(FurnitureItems.itemPackage), mailBox).func_180788_c();
+		tapped = new Achievement("achievement.cfm_tapped", "cfm_tapped", -1, -3, new ItemStack(FurnitureItems.itemTap), gardening).func_180788_c();
+		donator = new Achievement("achievement.cfm_donator", "cfm_donator", -1, -4, new ItemStack(FurnitureItems.itemDollar), gardening).func_180788_c();
 
-		bathroom = new Achievement("achievement.cfm_bathroom", "cfm_bathroom", 2, -2, new ItemStack(FurnitureItems.itemBasin), installMod);
-		whatDidYouEat = new Achievement("achievement.cfm_whatdidyoueat", "cfm_whatdidyoueat", 3, -3, new ItemStack(FurnitureItems.itemToilet), bathroom);
-		allClean = new Achievement("achievement.cfm_allclean", "cfm_allclean", 1, -3, new ItemStack(FurnitureItems.itemShower), bathroom);
-
-		page = new AchievementPage("Furniture Mod", installMod, mineKea, placeTree, unwrapPresent, privacy, applianceCity, cookItem, freezeItem, modernTechnology, buyItem, copyItem, houseParty, heyeyey, dingDong, careful, gardening, mailBox, sendMail, firstMail, tapped, donator, bathroom, whatDidYouEat, allClean);
+		bathroom = new Achievement("achievement.cfm_bathroom", "cfm_bathroom", 2, -2, new ItemStack(FurnitureItems.itemBasin), installMod).func_180788_c();
+		whatDidYouEat = new Achievement("achievement.cfm_whatdidyoueat", "cfm_whatdidyoueat", 3, -3, new ItemStack(FurnitureItems.itemToilet), bathroom).func_180788_c();
+		allClean = new Achievement("achievement.cfm_allclean", "cfm_allclean", 1, -3, new ItemStack(FurnitureItems.itemShower), bathroom).func_180788_c();
+		
+		page = new AchievementPage("Furniture Mod", installMod, mineKea, placeTree, jebCouch, unwrapPresent, privacy, applianceCity, cookItem, freezeItem, modernTechnology, buyItem, copyItem, houseParty, heyeyey, dingDong, careful, gardening, mailBox, sendMail, firstMail, tapped, donator, bathroom, whatDidYouEat, allClean);
 	}
 
 	public static void registerPage()

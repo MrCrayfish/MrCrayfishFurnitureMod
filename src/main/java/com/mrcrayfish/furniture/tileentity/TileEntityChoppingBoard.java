@@ -44,7 +44,7 @@ public class TileEntityChoppingBoard extends TileEntity implements ISimpleInvent
 		return food;
 	}
 
-	public boolean chopFood(ItemStack knife)
+	public boolean chopFood()
 	{
 		if (food != null)
 		{
@@ -58,6 +58,7 @@ public class TileEntityChoppingBoard extends TileEntity implements ISimpleInvent
 					worldObj.playSoundEffect(pos.getX(), pos.getY(), pos.getZ(), "cfm:knife_chop", 0.75F, 1.0F);
 				}
 				setFood(null);
+				worldObj.markBlockForUpdate(pos);
 				return true;
 			}
 		}
@@ -65,39 +66,36 @@ public class TileEntityChoppingBoard extends TileEntity implements ISimpleInvent
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+	public void readFromNBT(NBTTagCompound tagCompound)
 	{
-		super.readFromNBT(par1NBTTagCompound);
-		if (par1NBTTagCompound.hasKey("Items"))
+		super.readFromNBT(tagCompound);
+		NBTTagCompound nbt = tagCompound.getCompoundTag("Food");
+		if(!nbt.hasNoTags())
 		{
-			NBTTagList tagList = (NBTTagList) par1NBTTagCompound.getTag("Items");
-			for (int i = 0; i < tagList.tagCount(); ++i)
-			{
-				NBTTagCompound nbttagcompound1 = tagList.getCompoundTagAt(i);
-				ItemStack stack = ItemStack.loadItemStackFromNBT(nbttagcompound1);
-				this.setFood(stack);
-			}
+			food = ItemStack.loadItemStackFromNBT(nbt);
+		}
+		else
+		{
+			food = null;
 		}
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+	public void writeToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeToNBT(par1NBTTagCompound);
-		NBTTagList tagList = new NBTTagList();
-		ItemStack itemStack = food;
-		if (itemStack != null)
+		super.writeToNBT(tagCompound);
+		NBTTagCompound nbt = new NBTTagCompound();
+		if(food != null)
 		{
-			NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-			itemStack.writeToNBT(nbttagcompound1);
-			tagList.appendTag(nbttagcompound1);
-		}
-		par1NBTTagCompound.setTag("Items", tagList);
+			food.writeToNBT(nbt);
+			tagCompound.setTag("Food", nbt);
+		}	
 	}
 
 	@Override
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
 	{
+		System.out.println("Got packet!");
 		NBTTagCompound tagCom = pkt.getNbtCompound();
 		this.readFromNBT(tagCom);
 	}

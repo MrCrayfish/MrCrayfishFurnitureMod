@@ -40,6 +40,7 @@ import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.tileentity.TileEntityOven;
 import com.mrcrayfish.furniture.tileentity.TileEntityPrinter;
 
 public class BlockPrinter extends BlockFurnitureTile
@@ -47,7 +48,7 @@ public class BlockPrinter extends BlockFurnitureTile
 	public BlockPrinter(Material material)
 	{
 		super(material);
-//		setHardness(1.0F);
+		setHardness(1.0F);
 		setStepSound(Block.soundTypeAnvil);
 	}
 
@@ -113,5 +114,12 @@ public class BlockPrinter extends BlockFurnitureTile
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
 		return new ItemStack(FurnitureItems.itemPrinter);
+	}
+	
+	@Override
+	public int getComparatorInputOverride(World world, BlockPos pos) 
+	{
+		TileEntityPrinter printer = (TileEntityPrinter) world.getTileEntity(pos);
+		return printer.isPrinting() ? 1 : 0;
 	}
 }

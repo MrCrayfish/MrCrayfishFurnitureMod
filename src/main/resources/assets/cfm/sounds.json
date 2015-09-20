@@ -21,5 +21,9 @@
    "toaster_down": {"category": "master","sounds": [{"name": "toaster_down","stream": false}]},
    "toaster_up": {"category": "master","sounds": [{"name": "toaster_up","stream": false}]},
    "washing_machine": {"category": "master","sounds": [{"name": "washing_machine","stream": false}]},
-   "news": {"category": "master","sounds": [{"name": "news","stream": false}]}
+   "channel_1": {"category": "master","sounds": [{"name": "channel_1","stream": false}]},
+   "channel_2": {"category": "master","sounds": [{"name": "channel_2","stream": false}]},
+   "channel_3": {"category": "master","sounds": [{"name": "channel_3","stream": false}]},
+   "channel_4": {"category": "master","sounds": [{"name": "channel_4","stream": false}]},
+   "channel_5": {"category": "master","sounds": [{"name": "channel_5","stream": false}]}
 }

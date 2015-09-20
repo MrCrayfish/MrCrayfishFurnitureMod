@@ -60,23 +60,17 @@ public class BlockShower extends BlockFurniture
 		world.setBlockState(pos.up(), FurnitureBlocks.shower_top.getDefaultState().withProperty(FACING, state.getValue(FACING)), 2);
 		((EntityPlayer) placer).triggerAchievement(FurnitureAchievements.bathroom);
 	}
-
+	
 	@Override
-	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
+	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
 	{
 		if (this == FurnitureBlocks.shower_bottom)
 		{
-			if (world.getBlockState(pos.up()).getBlock() != FurnitureBlocks.shower_top)
-			{
-				world.setBlockToAir(pos);
-			}
+			worldIn.destroyBlock(pos.up(), false);
 		}
 		else
 		{
-			if (world.getBlockState(pos.down()).getBlock() != FurnitureBlocks.shower_bottom)
-			{
-				world.setBlockToAir(pos);
-			}
+			worldIn.destroyBlock(pos.down(), false);
 		}
 	}
 
@@ -99,8 +93,8 @@ public class BlockShower extends BlockFurniture
 		return true;
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, BlockPos pos)
 	{
 		int camera = Minecraft.getMinecraft().gameSettings.thirdPersonView;

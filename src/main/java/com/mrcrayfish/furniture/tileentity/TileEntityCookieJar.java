@@ -29,7 +29,7 @@ public class TileEntityCookieJar extends TileEntity implements ISimpleInventory
 	@Override
 	public int getSize()
 	{
-		return ((Integer) getBlockType().getMetaFromState(getWorld().getBlockState(getPos()))).intValue();
+		return getBlockType().getMetaFromState(getWorld().getBlockState(pos));
 	}
 
 	@Override

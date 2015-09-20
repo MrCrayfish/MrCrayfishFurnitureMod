@@ -17,18 +17,26 @@
  */
 package com.mrcrayfish.furniture.tileentity;
 
+import com.mrcrayfish.furniture.gui.containers.ContainerWallCabinet;
+
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.ItemPotion;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
 
-public class TileEntityWallCabinet extends TileEntity implements IInventory
+public class TileEntityWallCabinet extends TileEntityLockable implements ISidedInventory
 {
-	private ItemStack[] wallCabinetContents = new ItemStack[9];
+	private static final int[] slots = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+	
+	private ItemStack[] inventory = new ItemStack[9];
 
 	@Override
 	public int getSizeInventory()
@@ -39,28 +47,28 @@ public class TileEntityWallCabinet extends TileEntity implements IInventory
 	@Override
 	public ItemStack getStackInSlot(int i)
 	{
-		return wallCabinetContents[i];
+		return inventory[i];
 	}
 
 	@Override
 	public ItemStack decrStackSize(int par1, int par2)
 	{
-		if (this.wallCabinetContents[par1] != null)
+		if (this.inventory[par1] != null)
 		{
 			ItemStack var3;
 
-			if (this.wallCabinetContents[par1].stackSize <= par2)
+			if (this.inventory[par1].stackSize <= par2)
 			{
-				var3 = this.wallCabinetContents[par1];
-				this.wallCabinetContents[par1] = null;
+				var3 = this.inventory[par1];
+				this.inventory[par1] = null;
 				this.markDirty();
 				return var3;
 			}
-			var3 = this.wallCabinetContents[par1].splitStack(par2);
+			var3 = this.inventory[par1].splitStack(par2);
 
-			if (this.wallCabinetContents[par1].stackSize == 0)
+			if (this.inventory[par1].stackSize == 0)
 			{
-				this.wallCabinetContents[par1] = null;
+				this.inventory[par1] = null;
 			}
 
 			this.markDirty();
@@ -72,10 +80,10 @@ public class TileEntityWallCabinet extends TileEntity implements IInventory
 	@Override
 	public ItemStack getStackInSlotOnClosing(int par1)
 	{
-		if (this.wallCabinetContents[par1] != null)
+		if (this.inventory[par1] != null)
 		{
-			ItemStack var2 = this.wallCabinetContents[par1];
-			this.wallCabinetContents[par1] = null;
+			ItemStack var2 = this.inventory[par1];
+			this.inventory[par1] = null;
 			return var2;
 		}
 		return null;
@@ -84,7 +92,7 @@ public class TileEntityWallCabinet extends TileEntity implements IInventory
 	@Override
 	public void setInventorySlotContents(int i, ItemStack itemstack)
 	{
-		this.wallCabinetContents[i] = itemstack;
+		this.inventory[i] = itemstack;
 
 		if (itemstack != null && itemstack.stackSize > this.getInventoryStackLimit())
 		{
@@ -99,16 +107,16 @@ public class TileEntityWallCabinet extends TileEntity implements IInventory
 	{
 		super.readFromNBT(par1NBTTagCompound);
 		NBTTagList var2 = (NBTTagList) par1NBTTagCompound.getTag("Items");
-		this.wallCabinetContents = new ItemStack[this.getSizeInventory()];
+		this.inventory = new ItemStack[this.getSizeInventory()];
 
 		for (int var3 = 0; var3 < var2.tagCount(); ++var3)
 		{
 			NBTTagCompound var4 = (NBTTagCompound) var2.getCompoundTagAt(var3);
 			int var5 = var4.getByte("Slot") & 255;
 
-			if (var5 >= 0 && var5 < this.wallCabinetContents.length)
+			if (var5 >= 0 && var5 < this.inventory.length)
 			{
-				this.wallCabinetContents[var5] = ItemStack.loadItemStackFromNBT(var4);
+				this.inventory[var5] = ItemStack.loadItemStackFromNBT(var4);
 			}
 		}
 	}
@@ -119,13 +127,13 @@ public class TileEntityWallCabinet extends TileEntity implements IInventory
 		super.writeToNBT(par1NBTTagCompound);
 		NBTTagList var2 = new NBTTagList();
 
-		for (int var3 = 0; var3 < this.wallCabinetContents.length; ++var3)
+		for (int var3 = 0; var3 < this.inventory.length; ++var3)
 		{
-			if (this.wallCabinetContents[var3] != null)
+			if (this.inventory[var3] != null)
 			{
 				NBTTagCompound var4 = new NBTTagCompound();
 				var4.setByte("Slot", (byte) var3);
-				this.wallCabinetContents[var3].writeToNBT(var4);
+				this.inventory[var3].writeToNBT(var4);
 				var2.appendTag(var4);
 			}
 		}
@@ -188,9 +196,7 @@ public class TileEntityWallCabinet extends TileEntity implements IInventory
 	}
 
 	@Override
-	public void setField(int id, int value)
-	{		
-	}
+	public void setField(int id, int value) {}
 
 	@Override
 	public int getFieldCount()
@@ -201,9 +207,39 @@ public class TileEntityWallCabinet extends TileEntity implements IInventory
 	@Override
 	public void clear()
 	{
-		for (int i = 0; i < wallCabinetContents.length; i++)
+		for (int i = 0; i < inventory.length; i++)
 		{
-			wallCabinetContents[i] = null;
+			inventory[i] = null;
 		}
+	}
+	
+	@Override
+	public int[] getSlotsForFace(EnumFacing side) 
+	{
+		return slots;
+	}
+
+	@Override
+	public boolean canInsertItem(int index, ItemStack stack, EnumFacing direction) 
+	{
+		return stack.getItem() instanceof ItemPotion;
+	}
+
+	@Override
+	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) 
+	{
+		return true;
+	}
+
+	@Override
+	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
+	{
+		return new ContainerWallCabinet(playerInventory, this);
+	}
+
+	@Override
+	public String getGuiID() 
+	{
+		return "0";
 	}
 }

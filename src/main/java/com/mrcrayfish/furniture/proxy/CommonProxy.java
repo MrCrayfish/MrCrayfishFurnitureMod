@@ -49,4 +49,10 @@ public class CommonProxy implements ProxyInterface
 	{
 		return MinecraftServer.getServer().isDedicatedServer();
 	}
+
+	@Override
+	public void preInit()
+	{
+		
+	}
 }

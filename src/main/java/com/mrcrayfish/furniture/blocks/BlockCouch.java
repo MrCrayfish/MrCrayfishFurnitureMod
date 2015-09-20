@@ -31,6 +31,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
@@ -44,23 +45,40 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
+import com.mrcrayfish.furniture.init.FurnitureAchievements;
+import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityCouch;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import com.mrcrayfish.furniture.util.SittableUtil;
 import com.mrcrayfish.furniture.util.StateHelper;
 
-public class BlockCouch extends BlockFurnitureTile
+public abstract class BlockCouch extends BlockFurnitureTile
 {
 	public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
 	public static final PropertyEnum TYPE = PropertyEnum.create("type", CouchType.class);
-
-	public BlockCouch(Material material)
+	
+	public BlockCouch()
 	{
-		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeCloth);
-		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(TYPE, CouchType.BOTH).withProperty(COLOUR, Integer.valueOf(0)));
+		super(Material.cloth);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeCloth);
+		
+		IBlockState baseState = this.blockState.getBaseState();
+		if(isSpecial())
+		{
+			this.setDefaultState(baseState.withProperty(FACING, EnumFacing.NORTH).withProperty(TYPE, CouchType.BOTH));
+		}
+		else
+		{
+			this.setDefaultState(baseState.withProperty(FACING, EnumFacing.NORTH).withProperty(TYPE, CouchType.BOTH).withProperty(COLOUR, Integer.valueOf(0)));
+		}
+	}
+	
+	@Override
+	public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, BlockPos pos)
+	{
+		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 	}
 	
 	@Override
@@ -68,16 +86,55 @@ public class BlockCouch extends BlockFurnitureTile
 	{
 		if (!(collidingEntity instanceof EntitySittableBlock))
 		{
-			setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+			int facing = getMetaFromState(state);
+			
+			float[] data = CollisionHelper.fixRotation(facing, 0.80F, 0.0F, 1.0F, 1.0F);
+			this.setBlockBounds(data[0], 0.6F, data[1], data[2], 1.21F, data[3]);
 			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+			
+			setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.6F, 1.0F);
+			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+			
+			if (StateHelper.getBlock(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.DOWN) instanceof BlockCouch)
+			{
+				if (StateHelper.getRotation(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.DOWN) == StateHelper.Direction.RIGHT)
+				{
+					data = CollisionHelper.fixRotation(facing, 0.0F, 0.75F, 0.75F, 1.0F);
+					this.setBlockBounds(data[0], 0.6F, data[1], data[2], 1.21F, data[3]);
+					super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+				}
+				else if (StateHelper.getRotation(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.DOWN) == StateHelper.Direction.LEFT)
+				{
+					data = CollisionHelper.fixRotation(facing, 0.0F, 0.0F, 0.75F, 0.25F);
+					this.setBlockBounds(data[0], 0.6F, data[1], data[2], 1.21F, data[3]);
+					super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+				}
+				return;
+			}
+
+			if (StateHelper.isAirBlock(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.LEFT))
+			{
+				data = CollisionHelper.fixRotation(facing, 0.0F, 9.9F, 1.0F, 1.0F);
+				this.setBlockBounds(data[0], 0.5F, data[1], data[2], 0.9F, data[3]);
+				super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+			}
+			if (StateHelper.isAirBlock(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.RIGHT))
+			{
+				data = CollisionHelper.fixRotation(facing, 0.0F, 0.0F, 1.0F, 0.1F);
+				this.setBlockBounds(data[0], 0.5F, data[1], data[2], 0.9F, data[3]);
+				super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+			}
 		}
 	}
 
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
 	{
-		int colour = ((TileEntityCouch) world.getTileEntity(pos)).getColour();
-		state = state.withProperty(COLOUR, Integer.valueOf(colour));
+		if(!isSpecial())
+		{
+			int colour = ((TileEntityCouch) world.getTileEntity(pos)).getColour();
+			state = state.withProperty(COLOUR, Integer.valueOf(colour));
+		}
 		
 		if (StateHelper.getBlock(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.DOWN) instanceof BlockCouch)
 		{
@@ -121,25 +178,46 @@ public class BlockCouch extends BlockFurnitureTile
 	public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		IBlockState state = super.onBlockPlaced(world, pos, facing, hitX, hitY, hitZ, meta, placer);
-		return state.withProperty(COLOUR, Integer.valueOf(0));
+		if(!isSpecial())
+		{
+			state = state.withProperty(COLOUR, Integer.valueOf(0));
+		}
+		return state;
 	}
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		ItemStack currentItem = playerIn.getCurrentEquippedItem();
-		TileEntity tileEntity = worldIn.getTileEntity(pos);
-		if (tileEntity instanceof TileEntityCouch)
+		if(!isSpecial())
 		{
-			TileEntityCouch tileEntityCouch = (TileEntityCouch) tileEntity;
-			if (currentItem != null)
+			ItemStack currentItem = playerIn.getCurrentEquippedItem();
+			if(currentItem != null && currentItem.getItem() == Items.name_tag)
 			{
-				if (currentItem.getItem() instanceof ItemDye)
+				if(currentItem.hasDisplayName())
 				{
-					tileEntityCouch.setColour(currentItem.getItemDamage());
-					currentItem.stackSize--;
-					worldIn.markBlockForUpdate(pos);
-					return true;
+					if(currentItem.getDisplayName().equals("jeb_"))
+					{
+						playerIn.triggerAchievement(FurnitureAchievements.jebCouch);
+						worldIn.setBlockState(pos, FurnitureBlocks.couch_jeb.getDefaultState().withProperty(FACING, state.getValue(FACING)));
+						currentItem.stackSize--;
+						return true;
+					}
+				}
+			}
+			
+			TileEntity tileEntity = worldIn.getTileEntity(pos);
+			if (tileEntity instanceof TileEntityCouch) 
+			{
+				TileEntityCouch tileEntityCouch = (TileEntityCouch) tileEntity;
+				if (currentItem != null) 
+				{
+					if (currentItem.getItem() instanceof ItemDye) 
+					{
+						tileEntityCouch.setColour(currentItem.getItemDamage());
+						currentItem.stackSize--;
+						worldIn.markBlockForUpdate(pos);
+						return true;
+					}
 				}
 			}
 		}
@@ -155,20 +233,22 @@ public class BlockCouch extends BlockFurnitureTile
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return FurnitureItems.itemCouch;
+		return isSpecial() ? FurnitureItems.itemCouchJeb : FurnitureItems.itemCouch;
 	}
 
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
-		return new ItemStack(FurnitureItems.itemCouch);
+		return isSpecial() ? new ItemStack(FurnitureItems.itemCouchJeb) : new ItemStack(FurnitureItems.itemCouch);
 	}
 
 	@Override
 	protected BlockState createBlockState()
 	{
-		return new BlockState(this, new IProperty[] { FACING, COLOUR, TYPE });
+		return isSpecial() ? new BlockState(this,  new IProperty[] { FACING, TYPE }) : new BlockState(this, new IProperty[] { FACING, COLOUR, TYPE });
 	}
+	
+	public abstract boolean isSpecial();
 
 	public static enum CouchType implements IStringSerializable
 	{

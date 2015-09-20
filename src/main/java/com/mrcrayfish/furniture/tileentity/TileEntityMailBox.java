@@ -34,10 +34,9 @@ import net.minecraft.util.IChatComponent;
 public class TileEntityMailBox extends TileEntity implements IInventory
 {
 	public ItemStack[] mailBoxContents = new ItemStack[6];
-	public UUID ownerUUID = null;
+	public String ownerUUID = null;
 	public String ownerName = "";
 	public boolean locked = true;
-	private String customName;
 
 	@Override
 	public int getSizeInventory()
@@ -47,13 +46,13 @@ public class TileEntityMailBox extends TileEntity implements IInventory
 
 	public void setOwner(EntityPlayer player)
 	{
-		this.ownerUUID = player.getUniqueID();
+		this.ownerUUID = player.getUniqueID().toString();
 		this.ownerName = player.getName();
 	}
 
 	public void tryAndUpdateName(EntityPlayer player)
 	{
-		if (ownerUUID.toString().equalsIgnoreCase(player.getUniqueID().toString()))
+		if (ownerUUID != null && ownerUUID.equalsIgnoreCase(player.getUniqueID().toString()))
 		{
 			if (!ownerName.equalsIgnoreCase(player.getName()))
 			{
@@ -140,7 +139,7 @@ public class TileEntityMailBox extends TileEntity implements IInventory
 		NBTTagList var2 = (NBTTagList) par1NBTTagCompound.getTag("mailBoxItems");
 		if (par1NBTTagCompound.hasKey("OwnerUUID") && par1NBTTagCompound.hasKey("OwnerName"))
 		{
-			this.ownerUUID = UUID.fromString(par1NBTTagCompound.getString("OwnerUUID"));
+			this.ownerUUID = par1NBTTagCompound.getString("OwnerUUID");
 			this.ownerName = par1NBTTagCompound.getString("OwnerName");
 		}
 		this.locked = par1NBTTagCompound.getBoolean("Locked");
@@ -218,7 +217,7 @@ public class TileEntityMailBox extends TileEntity implements IInventory
 
 	public boolean canOpen(TileEntityMailBox mailBox, EntityPlayer player)
 	{
-		return mailBox.ownerUUID.toString().equalsIgnoreCase(player.getUniqueID().toString());
+		return mailBox.ownerUUID.equalsIgnoreCase(player.getUniqueID().toString());
 	}
 
 	public void addMail(ItemStack itemStack)
@@ -275,13 +274,13 @@ public class TileEntityMailBox extends TileEntity implements IInventory
 	@Override
 	public String getName()
 	{
-		return hasCustomName() ? customName : "Cabinet";
+		return "Mailbox";
 	}
 
 	@Override
 	public boolean hasCustomName()
 	{
-		return customName != null;
+		return false;
 	}
 
 	@Override

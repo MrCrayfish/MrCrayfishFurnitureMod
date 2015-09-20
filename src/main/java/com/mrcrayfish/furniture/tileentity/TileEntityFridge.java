@@ -17,8 +17,14 @@
  */
 package com.mrcrayfish.furniture.tileentity;
 
+import com.mrcrayfish.furniture.gui.containers.ContainerFridge;
+
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -26,11 +32,15 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
 
-public class TileEntityFridge extends TileEntity implements IInventory
+public class TileEntityFridge extends TileEntityLockable implements ISidedInventory
 {
+	private static final int[] slots = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14 };
+	
 	private ItemStack[] inventory = new ItemStack[15];
 	private String customName;
 
@@ -235,5 +245,35 @@ public class TileEntityFridge extends TileEntity implements IInventory
 		{
 			inventory[i] = null;
 		}
+	}
+
+	@Override
+	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
+	{
+		return new ContainerFridge(playerInventory, this);
+	}
+
+	@Override
+	public String getGuiID() 
+	{
+		return "0";
+	}
+
+	@Override
+	public int[] getSlotsForFace(EnumFacing side) 
+	{
+		return slots;
+	}
+
+	@Override
+	public boolean canInsertItem(int index, ItemStack stack, EnumFacing direction) 
+	{
+		return stack.getItem() instanceof ItemFood && !isLocked();
+	}
+
+	@Override
+	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) 
+	{
+		return !isLocked();
 	}
 }

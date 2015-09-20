@@ -23,6 +23,7 @@ import java.util.Random;
 
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.tileentity.TileEntityPrinter;
 import com.mrcrayfish.furniture.tileentity.TileEntityStereo;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 
@@ -181,5 +182,12 @@ public class BlockStereo extends BlockFurnitureTile
 				tileEntityStereo.setRecord((ItemStack) null);
 			}
 		}
+	}
+	
+	@Override
+	public int getComparatorInputOverride(World world, BlockPos pos) 
+	{
+		TileEntityStereo stereo = (TileEntityStereo) world.getTileEntity(pos);
+		return stereo.count;
 	}
 }

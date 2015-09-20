@@ -41,8 +41,7 @@ import com.mrcrayfish.furniture.util.NBTHelper;
 
 public class GuiPresent extends GuiContainer
 {
-	private static final ResourceLocation gui = new ResourceLocation("cfm:textures/gui/redpresent.png");
-	private static final ResourceLocation gui2 = new ResourceLocation("cfm:textures/gui/greenpresent.png");
+	private static final ResourceLocation gui = new ResourceLocation("cfm:textures/gui/present.png");
 	private GuiButton button_wrap;
 	private EntityPlayer player;
 	private InventoryPresent inventory;
@@ -83,7 +82,7 @@ public class GuiPresent extends GuiContainer
 		buttonList.clear();
 		int posX = width / 2 + 40;
 		int posY = height / 2 - 50;
-		button_wrap = new GuiButton(0, posX, posY, 40, 20, "Wrap");
+		button_wrap = new GuiButton(0, posX, posY - 10, 40, 20, "Wrap");
 		button_wrap.enabled = true;
 		buttonList.add(button_wrap);
 	}

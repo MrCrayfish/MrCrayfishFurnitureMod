@@ -155,13 +155,17 @@ public class BlockElectricFence extends Block
 			{
 				EntityCreeper creeper = (EntityCreeper) entity;
 				EntityLightningBolt lightning = new EntityLightningBolt(world, pos.getX(), pos.getY(), pos.getZ());
-				creeper.onStruckByLightning(lightning);
+				if(!creeper.getPowered())
+				{
+					creeper.setFire(1);
+					creeper.onStruckByLightning(lightning);
+				}
 			}
 			else if (entity instanceof EntityPlayer)
 			{
 				if (!((EntityPlayer) entity).capabilities.isCreativeMode)
 				{
-					entity.attackEntityFrom(this.electricFence, (int) 6.0F);
+					entity.attackEntityFrom(this.electricFence, (int) 2.0F);
 					world.playSoundEffect(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, "cfm:zap", 0.2F, 1.0F);
 					this.sparkle(world, pos);
 					((EntityPlayer) entity).triggerAchievement(FurnitureAchievements.careful);
@@ -169,7 +173,7 @@ public class BlockElectricFence extends Block
 			}
 			else
 			{
-				entity.attackEntityFrom(this.electricFence, (int) 6.0F);
+				entity.attackEntityFrom(this.electricFence, (int) 2.0F);
 				world.playSoundEffect(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, "cfm:zap", 0.2F, 1.0F);
 				this.sparkle(world, pos);
 			}

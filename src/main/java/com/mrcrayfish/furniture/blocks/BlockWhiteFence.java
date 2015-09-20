@@ -109,30 +109,30 @@ public class BlockWhiteFence extends Block
 	@Override
 	public void addCollisionBoxesToList(World world, BlockPos pos, IBlockState state, AxisAlignedBB mask, List list, Entity collidingEntity)
 	{
-		setBlockBounds(0.4375F, 0.0F, 0.4375F, 0.5625F, 1.0F, 0.5625F);
+		setBlockBounds(0.4375F, 0.0F, 0.4375F, 0.5625F, 1.25F, 0.5625F);
 		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 
 		if (world.getBlockState(pos.east()).getBlock() == FurnitureBlocks.white_fence | world.getBlockState(pos.east()).getBlock() instanceof BlockFenceGate)
 		{
-			setBlockBounds(0.4375F, 0.0F, 0.4375F, 1.0F, 1.0F, 0.5625F);
+			setBlockBounds(0.4375F, 0.0F, 0.4375F, 1.0F, 1.25F, 0.5625F);
 			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 		}
 
 		if (world.getBlockState(pos.west()).getBlock() == FurnitureBlocks.white_fence | world.getBlockState(pos.west()).getBlock() instanceof BlockFenceGate)
 		{
-			setBlockBounds(0.0F, 0.0F, 0.4375F, 0.5625F, 1.0F, 0.5625F);
+			setBlockBounds(0.0F, 0.0F, 0.4375F, 0.5625F, 1.25F, 0.5625F);
 			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 		}
 
 		if (world.getBlockState(pos.south()).getBlock() == FurnitureBlocks.white_fence | world.getBlockState(pos.south()).getBlock() instanceof BlockFenceGate)
 		{
-			setBlockBounds(0.4375F, 0.0F, 0.4375F, 0.5625F, 1.0F, 1.0F);
+			setBlockBounds(0.4375F, 0.0F, 0.4375F, 0.5625F, 1.25F, 1.0F);
 			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 		}
 
 		if (world.getBlockState(pos.north()).getBlock() == FurnitureBlocks.white_fence | world.getBlockState(pos.north()).getBlock() instanceof BlockFenceGate)
 		{
-			setBlockBounds(0.4375F, 0.0F, 0.0F, 0.5625F, 1.0F, 0.5625F);
+			setBlockBounds(0.4375F, 0.0F, 0.0F, 0.5625F, 1.25F, 0.5625F);
 			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 		}
 	}

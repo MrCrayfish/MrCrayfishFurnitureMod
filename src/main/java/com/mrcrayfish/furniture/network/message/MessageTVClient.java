@@ -18,6 +18,7 @@
 package com.mrcrayfish.furniture.network.message;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
@@ -26,24 +27,23 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.blocks.tv.Channels;
 import com.mrcrayfish.furniture.tileentity.TileEntityTV;
 
-//Server
 public class MessageTVClient implements IMessage, IMessageHandler<MessageTVClient, IMessage>
 {
-
 	private int channel, x, y, z;
 
 	public MessageTVClient()
 	{
 	}
 
-	public MessageTVClient(int channel, int x, int y, int z)
+	public MessageTVClient(int channel, BlockPos pos)
 	{
 		this.channel = channel;
-		this.x = x;
-		this.y = y;
-		this.z = z;
+		this.x = pos.getX();
+		this.y = pos.getY();
+		this.z = pos.getZ();
 	}
 
 	@Override
@@ -67,16 +67,12 @@ public class MessageTVClient implements IMessage, IMessageHandler<MessageTVClien
 	@Override
 	public IMessage onMessage(MessageTVClient message, MessageContext ctx)
 	{
+		System.out.println("Playing");
 		if (ctx.side.isClient())
 		{
-			EntityPlayer player = MrCrayfishFurnitureMod.proxy.getClientPlayer();
-			TileEntity tile_entity = player.worldObj.getTileEntity(new BlockPos(message.x, message.y, message.z));
-			if (tile_entity instanceof TileEntityTV)
-			{
-				TileEntityTV tileEntityTV = (TileEntityTV) tile_entity;
-				tileEntityTV.setChannel(message.channel);
-			}
-			player.worldObj.markBlockForUpdate(new BlockPos(message.x, message.y, message.z));
+			BlockPos pos = new BlockPos(message.x, message.y, message.z);
+			Minecraft.getMinecraft().theWorld.markBlockRangeForRenderUpdate(pos, pos);
+			Channels.getChannel(message.channel).play(pos);
 		}
 		return null;
 	}

@@ -17,16 +17,22 @@
  */
 package com.mrcrayfish.furniture.tileentity;
 
+import com.mrcrayfish.furniture.gui.containers.ContainerBedsideCabinet;
+import com.mrcrayfish.furniture.gui.containers.ContainerCabinet;
+
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;
 
-public class TileEntityBedsideCabinet extends TileEntity implements IInventory
+public class TileEntityBedsideCabinet extends TileEntityLockable implements IInventory
 {
 	private ItemStack[] bedsideCabinetContents = new ItemStack[9];
 	private String customName;
@@ -216,5 +222,17 @@ public class TileEntityBedsideCabinet extends TileEntity implements IInventory
 		{
 			bedsideCabinetContents[i] = null;
 		}
+	}
+
+	@Override
+	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
+	{
+		return new ContainerBedsideCabinet(playerInventory, this);
+	}
+
+	@Override
+	public String getGuiID() 
+	{
+		return "0";
 	}
 }

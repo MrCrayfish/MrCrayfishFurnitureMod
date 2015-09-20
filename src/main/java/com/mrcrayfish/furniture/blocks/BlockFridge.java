@@ -20,8 +20,6 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.Random;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockContainer;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -60,12 +58,9 @@ public class BlockFridge extends BlockFurnitureTile
 	}
 
 	@Override
-	public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
 	{
-		if (worldIn.getBlockState(pos.down()).getBlock() != FurnitureBlocks.freezer)
-		{
-			worldIn.setBlockToAir(pos);
-		}
+		worldIn.destroyBlock(pos.down(), false);
 	}
 
 	@Override

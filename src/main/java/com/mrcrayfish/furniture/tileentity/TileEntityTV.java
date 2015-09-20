@@ -54,7 +54,6 @@ public class TileEntityTV extends TileEntity
 	public void setChannel(int channel)
 	{
 		this.channel = channel;
-		this.markDirty();
 	}
 
 	@Override

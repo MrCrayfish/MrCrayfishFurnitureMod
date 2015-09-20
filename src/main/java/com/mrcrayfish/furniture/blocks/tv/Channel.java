@@ -1,83 +1,66 @@
 package com.mrcrayfish.furniture.blocks.tv;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-import net.minecraft.block.state.IBlockState;
+import com.mrcrayfish.furniture.util.ReflectionUtil;
+
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.mrcrayfish.furniture.TVSound;
-import com.mrcrayfish.furniture.blocks.BlockTV;
-import com.mrcrayfish.furniture.util.ReflectionUtil;
-
 @SideOnly(Side.CLIENT)
-public class Channel
-{
-	public static int uniqueId = 0;
+public class Channel {
+	private static Map<BlockPos, PositionedSoundRecord> currentSounds = new ConcurrentHashMap<BlockPos, PositionedSoundRecord>();
 	
-	private int id;
+	private String channelName;
 	private TextureAtlasSprite atlas = null;
-	private TVSound sound = null;
+	private ResourceLocation sound = null;
 	private SoundHandler soundHandler = null;
 	private Field counterField = null;
 
-	public Channel(String channelName)
-	{
-		this.atlas = Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry("cfm:blocks/" + channelName);
-		this.sound = new TVSound(new ResourceLocation("cfm:" + channelName));
+	public Channel(String channelName) {
+		this.channelName = channelName;
+		this.sound = new ResourceLocation("cfm:" + channelName);
 		this.soundHandler = Minecraft.getMinecraft().getSoundHandler();
-		this.id = uniqueId++;
-
-		initRefleciton();
 	}
 
-	private void initRefleciton()
-	{
-		try
-		{
+	private void initRefleciton() {
+		if (counterField != null)
+			return;
+		System.out.println("cfm:blocks/" + channelName);
+		if (atlas == null)
+			atlas = Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry("cfm:blocks/" + channelName);
+		System.out.println(atlas);
+		try {
 			this.counterField = ReflectionUtil.getField(atlas.getClass(), "frameCounter");
 			ReflectionUtil.makeAccessible(this.counterField);
-		}
-		catch (NoSuchFieldException e)
-		{
+		} catch (NoSuchFieldException e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	public IBlockState getTVState(IBlockState state)
-	{
-		return state.withProperty(BlockTV.CHANNEL, id);
-	}
-
-	public void play(World world, BlockPos pos)
-	{
+	public void play(BlockPos pos) {
 		resetAnimation();
 		playSound(pos);
 	}
 
-	private void resetAnimation()
-	{
-		if (atlas != null && counterField != null)
-		{
-			try
-			{
+	public void resetAnimation() {
+		initRefleciton();
+		if (atlas != null && counterField != null) {
+			try {
 				counterField.setInt(atlas, 0);
-			}
-			catch (IllegalArgumentException e)
-			{
+			} catch (IllegalArgumentException e) {
 				e.printStackTrace();
-			}
-			catch (IllegalAccessException e)
-			{
+			} catch (IllegalAccessException e) {
 				e.printStackTrace();
 			}
 		}
@@ -85,16 +68,46 @@ public class Channel
 
 	private void playSound(BlockPos pos)
 	{
-		if (sound != null)
+		stopSound(pos);
+		PositionedSoundRecord sound = PositionedSoundRecord.create(this.sound, (float)pos.getX() + 0.5F, (float)pos.getY() + 0.5F, (float)pos.getZ() + 0.5F);
+		currentSounds.put(pos, sound);
+		soundHandler.playSound(sound);
+	}
+
+	private static PositionedSoundRecord getSound(BlockPos soundPos) 
+	{
+		for(BlockPos currentPos : currentSounds.keySet())
 		{
-			if (!soundHandler.isSoundPlaying(sound))
+			if(currentPos.equals(soundPos))
 			{
-				sound.setPosition(pos);
-				soundHandler.playSound(sound);
+				return currentSounds.get(currentPos);
 			}
-			else
+		}
+		return null;
+	}
+	
+	public static void stopSound(BlockPos pos) 
+	{
+		PositionedSoundRecord sound = getSound(pos);
+		if(sound != null)
+		{
+			SoundHandler handler = Minecraft.getMinecraft().getSoundHandler();
+			if (handler.isSoundPlaying(sound)) 
 			{
-				soundHandler.stopSound(sound);
+				handler.stopSound(sound);
+			}
+			BlockPos found = null;
+			for(BlockPos currentPos : currentSounds.keySet())
+			{
+				if(currentPos.equals(pos))
+				{
+					found = currentPos;
+					break;
+				}
+			}
+			if(found != null)
+			{
+				currentSounds.remove(found);
 			}
 		}
 	}

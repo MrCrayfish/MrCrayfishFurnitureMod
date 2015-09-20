@@ -86,4 +86,11 @@ public class BlockDishwasher extends BlockFurnitureTile
 	{
 		return new ItemStack(FurnitureItems.itemDishWasher);
 	}
+	
+	@Override
+	public int getComparatorInputOverride(World world, BlockPos pos) 
+	{
+		TileEntityDishwasher dishwasher = (TileEntityDishwasher) world.getTileEntity(pos);
+		return dishwasher.isWashing() ? 1 : 0;
+	}
 }

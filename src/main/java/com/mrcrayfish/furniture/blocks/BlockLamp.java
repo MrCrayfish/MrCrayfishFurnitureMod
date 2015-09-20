@@ -22,6 +22,7 @@ import java.util.Random;
 import org.apache.logging.log4j.core.config.Property;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRedstoneWire;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -84,26 +85,6 @@ public class BlockLamp extends Block
 	}
 
 	@Override
-	public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
-	{
-		if (!(worldIn.getBlockState(pos.up()).getBlock() instanceof BlockLamp))
-		{
-			if (this instanceof BlockLampOn)
-			{
-				worldIn.setBlockState(pos, FurnitureBlocks.lamp_off.getDefaultState().withProperty(BlockLampOn.COLOUR, (Integer) state.getValue(COLOUR)), 2);
-			}
-			else
-			{
-				worldIn.setBlockState(pos, FurnitureBlocks.lamp_on.getDefaultState().withProperty(BlockLampOn.COLOUR, (Integer) state.getValue(COLOUR)), 2);
-			}
-		}
-		else
-		{
-			worldIn.notifyBlockOfStateChange(pos.up(), this);
-		}
-	}
-
-	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		ItemStack currentItem = player.getCurrentEquippedItem();
@@ -120,16 +101,24 @@ public class BlockLamp extends Block
 
 		if (!(world.getBlockState(pos.up()).getBlock() instanceof BlockLamp))
 		{
-			world.setBlockState(pos, FurnitureBlocks.lamp_on.getDefaultState().withProperty(BlockLampOn.COLOUR, (Integer) state.getValue(COLOUR)), 2);
+			world.setBlockState(pos, FurnitureBlocks.lamp_on.getDefaultState().withProperty(BlockLampOn.COLOUR, (Integer) state.getValue(COLOUR)), 3);
 		}
 		else
 		{
-			world.notifyBlockOfStateChange(pos.up(), this);
-		}
+			int yOffset = 1;
+			while (world.getBlockState(pos.up(++yOffset)).getBlock() instanceof BlockLamp)
+				;
 
-		if (world.getBlockState(pos.down()).getBlock() == FurnitureBlocks.bedside_cabinet)
-		{
-			world.notifyNeighborsOfStateChange(pos.down(), this);
+			int colour = (Integer) world.getBlockState(pos.up(yOffset).down()).getValue(COLOUR);
+
+			if (world.getBlockState(pos.up(yOffset).down()).getBlock() instanceof BlockLampOn)
+			{
+				world.setBlockState(pos.up(yOffset).down(), FurnitureBlocks.lamp_off.getDefaultState().withProperty(BlockLampOn.COLOUR, colour));
+			}
+			else
+			{
+				world.setBlockState(pos.up(yOffset).down(), FurnitureBlocks.lamp_on.getDefaultState().withProperty(BlockLampOn.COLOUR, colour));
+			}
 		}
 		return true;
 	}

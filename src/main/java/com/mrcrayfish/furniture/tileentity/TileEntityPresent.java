@@ -19,6 +19,7 @@ package com.mrcrayfish.furniture.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -27,10 +28,12 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
 
-public class TileEntityPresent extends TileEntity implements IInventory
+public class TileEntityPresent extends TileEntity implements ISidedInventory
 {
+	private static final int[] slots = new int[] { 0 };
 	public ItemStack[] presentContents = new ItemStack[4];
 	public String ownerName = "World";
 	public boolean locked = true;
@@ -254,5 +257,23 @@ public class TileEntityPresent extends TileEntity implements IInventory
 		{
 			presentContents[i] = null;
 		}	
+	}
+
+	@Override
+	public int[] getSlotsForFace(EnumFacing side) 
+	{
+		return slots;
+	}
+
+	@Override
+	public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) 
+	{
+		return false;
+	}
+
+	@Override
+	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) 
+	{
+		return false;
 	}
 }
