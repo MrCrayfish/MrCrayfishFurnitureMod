@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -42,7 +43,7 @@ import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 
-public class BlockWashingMachine extends BlockFurnitureTile
+public class BlockWashingMachine extends BlockFurnitureTile, BlockContainer
 {
 	public BlockWashingMachine(Material material)
 	{
