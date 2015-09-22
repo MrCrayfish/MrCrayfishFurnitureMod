@@ -61,6 +61,7 @@ public class TileEntityMicrowave extends TileEntityLockable implements ISidedInv
 			if (data != null)
 			{
 				cooking = true;
+				worldObj.updateComparatorOutputLevel(pos, blockType);
 			}
 		}
 	}
@@ -69,6 +70,7 @@ public class TileEntityMicrowave extends TileEntityLockable implements ISidedInv
 	{
 		this.cooking = false;
 		this.progress = 0;
+		worldObj.updateComparatorOutputLevel(pos, blockType);
 	}
 
 	public boolean isCooking()
@@ -109,6 +111,7 @@ public class TileEntityMicrowave extends TileEntityLockable implements ISidedInv
 				timer = 0;
 				progress = 0;
 				cooking = false;
+				worldObj.updateComparatorOutputLevel(pos, blockType);
 			}
 			else
 			{

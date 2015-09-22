@@ -78,6 +78,7 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 				timeRemaining = 5000;
 			}
 			washing = true;
+			worldObj.updateComparatorOutputLevel(pos, blockType);
 		}
 	}
 
@@ -85,6 +86,7 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 	{
 		progress = 0;
 		washing = false;
+		worldObj.updateComparatorOutputLevel(pos, blockType);
 	}
 
 	public boolean canWash()
@@ -145,6 +147,7 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 			if(!canWash())
 			{
 				washing = false;
+				worldObj.updateComparatorOutputLevel(pos, blockType);
 				return;
 			}
 			
@@ -185,6 +188,7 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 					timeRemaining = 0;
 					progress = 0;
 					washing = false;
+					worldObj.updateComparatorOutputLevel(pos, blockType);
 				}
 			}
 			
@@ -264,7 +268,7 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 	@Override
 	public int getInventoryStackLimit()
 	{
-		return 64;
+		return 1;
 	}
 
 	@Override

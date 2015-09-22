@@ -77,6 +77,7 @@ public class BlockBlender extends BlockFurnitureTile
 							if (tileEntityBlender.hasValidIngredients())
 							{
 								tileEntityBlender.startBlending();
+								world.updateComparatorOutputLevel(pos, this);
 							}
 						}
 					}

@@ -152,6 +152,7 @@ public class TileEntityBlender extends TileEntity implements IUpdatePlayerListBo
 				drinkCount = 6;
 				progress = 0;
 				blending = false;
+				worldObj.updateComparatorOutputLevel(pos, blockType);
 			}
 
 			if (timer == 20)

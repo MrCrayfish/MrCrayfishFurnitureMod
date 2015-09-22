@@ -48,9 +48,8 @@ import com.mrcrayfish.furniture.init.FurnitureItems;
 
 public class TileEntityFreezer extends TileEntityLockable implements ISidedInventory, IUpdatePlayerListBox
 {
-	private static final int[] slots_top = new int[] { 1 };
 	private static final int[] slots_bottom = new int[] { 2 };
-	private static final int[] slots_sides = new int[] { 0 };
+	private static final int[] slots_sides = new int[] { 0, 1 };
 
 	private ItemStack[] inventory = new ItemStack[3];
 
@@ -75,12 +74,14 @@ public class TileEntityFreezer extends TileEntityLockable implements ISidedInven
 				}
 			}
 			freezing = true;
+			worldObj.updateComparatorOutputLevel(pos, blockType);
 		}
 	}
 	
 	public void stopFreezing()
 	{
 		freezing = false;
+		worldObj.updateComparatorOutputLevel(pos, blockType);
 	}
 	
 	public boolean canFreeze()
@@ -192,6 +193,7 @@ public class TileEntityFreezer extends TileEntityLockable implements ISidedInven
 			if(!canFreeze())
 			{
 				freezing = false;
+				worldObj.updateComparatorOutputLevel(pos, blockType);
 				return;
 			}
 
@@ -220,6 +222,7 @@ public class TileEntityFreezer extends TileEntityLockable implements ISidedInven
 				{
 					timeRemaining = 0;
 					freezing = false;
+					worldObj.updateComparatorOutputLevel(pos, blockType);
 				}
 			}
 		}
@@ -429,7 +432,6 @@ public class TileEntityFreezer extends TileEntityLockable implements ISidedInven
 	@Override
 	public int[] getSlotsForFace(EnumFacing side)
 	{
-		if(side == EnumFacing.UP) return slots_top;
 		if(side == EnumFacing.DOWN) return slots_bottom;
 		return slots_sides;
 	}
@@ -438,16 +440,12 @@ public class TileEntityFreezer extends TileEntityLockable implements ISidedInven
 	public boolean canInsertItem(int slotIn, ItemStack stack, EnumFacing side)
 	{
 		if(isLocked())
-		{
 			return false;
-		}
-		if(side == EnumFacing.UP)
-		{
-			return RecipeAPI.getFreezerRecipeFromInput(stack) != null;
-		}
+
 		if(side != EnumFacing.DOWN)
 		{
-			return isFuel(stack);
+			if(slotIn == 0) return isFuel(stack);
+			if(slotIn == 1) return RecipeAPI.getFreezerRecipeFromInput(stack) != null;
 		}
 		return false;
 	}

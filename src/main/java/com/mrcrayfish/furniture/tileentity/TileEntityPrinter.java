@@ -55,7 +55,7 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
 	public int printerPrintTime;
 	public int currentItemPrintTime;
 	public int printingTime;
-	private int totalCookTime;
+	public int totalCookTime;
 
 	@Override
     public int getSizeInventory()
@@ -174,7 +174,7 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
         this.printerPrintTime = compound.getShort("BurnTime");
         this.printingTime = compound.getShort("CookTime");
         this.totalCookTime = compound.getShort("CookTimeTotal");
-        this.currentItemPrintTime = getItemPrintTime(this.inventory[1]);
+        this.currentItemPrintTime = compound.getInteger("CurrentTimePrintTime");
     }
 
     @Override
@@ -184,6 +184,7 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
         compound.setShort("BurnTime", (short)this.printerPrintTime);
         compound.setShort("CookTime", (short)this.printingTime);
         compound.setShort("CookTimeTotal", (short)this.totalCookTime);
+        compound.setInteger("CurrentTimePrintTime", currentItemPrintTime);
         NBTTagList nbttaglist = new NBTTagList();
 
         for (int i = 0; i < this.inventory.length; ++i)
@@ -235,6 +236,8 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
     @Override
     public void update()
     {
+    	boolean flag = this.printingTime > 0;
+    	
         boolean flag1 = false;
 
         if (this.isPrinting())
@@ -273,8 +276,14 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
                 }
 
                 if (this.isPrinting() && this.canPrint())
-                {
+                {            	
                     ++this.printingTime;
+                    
+                	if(!flag)
+        			{
+                		System.out.println("Starting");
+        				worldObj.updateComparatorOutputLevel(pos, blockType);
+        			}
 
                     if (this.printingTime == this.totalCookTime)
                     {
@@ -286,7 +295,7 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
                 }
                 else
                 {
-                    this.printingTime = 0;
+                	this.printingTime = 0;
                 }
             }
        
@@ -295,11 +304,17 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
         {
             this.markDirty();
         }
+        
+        if (flag && printingTime == 0)
+		{
+        	System.out.println("Stopping");
+			worldObj.updateComparatorOutputLevel(pos, blockType);
+		}
     }
 
     public int func_174904_a(ItemStack stack)
     {
-    	if(stack.getItem() == Items.enchanted_book)
+    	if(stack != null && stack.getItem() == Items.enchanted_book)
     	{
     		return 10000;
     	}

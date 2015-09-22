@@ -71,7 +71,7 @@ public class BlockChoppingBoard extends BlockFurnitureTile
 					{
 						tileEntityChoppingBoard.setFood(new ItemStack(currentItem.getItem(), 1));
 						world.markBlockForUpdate(pos);
-						world.notifyNeighborsOfStateChange(pos, this);
+						world.updateComparatorOutputLevel(pos, this);
 						currentItem.stackSize--;
 						return true;
 					}
@@ -84,6 +84,7 @@ public class BlockChoppingBoard extends BlockFurnitureTile
 						}
 						tileEntityChoppingBoard.setFood(null);
 						world.markBlockForUpdate(pos);
+						world.updateComparatorOutputLevel(pos, this);
 					}
 				}
 				else if (currentItem.getItem() == FurnitureItems.itemKnife && tileEntityChoppingBoard.getFood() != null)
@@ -104,6 +105,7 @@ public class BlockChoppingBoard extends BlockFurnitureTile
 				}
 				tileEntityChoppingBoard.setFood(null);
 				world.markBlockForUpdate(pos);
+				world.updateComparatorOutputLevel(pos, this);
 			}
 		}
 		return true;

@@ -135,6 +135,7 @@ public class BlockBath extends BlockFurnitureTile
 							}
 							tileEntityBath.removeWaterLevel();
 							tileEntityBath2.removeWaterLevel();
+							world.updateComparatorOutputLevel(pos, this);
 						}
 					}
 					else if (currentItem.getItem() == Items.water_bucket)
@@ -147,6 +148,7 @@ public class BlockBath extends BlockFurnitureTile
 							{
 								player.setCurrentItemOrArmor(0, new ItemStack(Items.bucket));
 							}
+							world.updateComparatorOutputLevel(pos, this);
 						}
 					}
 					else if (currentItem.getItem() == Items.glass_bottle)
@@ -169,6 +171,7 @@ public class BlockBath extends BlockFurnitureTile
 							}
 							tileEntityBath.removeWaterLevel();
 							tileEntityBath2.removeWaterLevel();
+							world.updateComparatorOutputLevel(pos, this);
 						}
 					}
 					else if (currentItem.getItem() == Items.potionitem && currentItem.getItemDamage() == 0)
@@ -181,6 +184,7 @@ public class BlockBath extends BlockFurnitureTile
 							{
 								player.setCurrentItemOrArmor(0, new ItemStack(Items.glass_bottle));
 							}
+							world.updateComparatorOutputLevel(pos, this);
 						}
 					}
 					else
@@ -195,6 +199,7 @@ public class BlockBath extends BlockFurnitureTile
 									tileEntityBath2.addWaterLevel();
 									world.playSoundEffect(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, "cfm:tap", 0.75F, 0.8F);
 									world.setBlockToAir(pos.add(0, -2, 0));
+									world.updateComparatorOutputLevel(pos, this);
 								}
 							}
 							else
@@ -216,6 +221,7 @@ public class BlockBath extends BlockFurnitureTile
 								tileEntityBath2.addWaterLevel();
 								world.playSoundEffect(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, "cfm:tap", 0.75F, 0.8F);
 								world.setBlockToAir(pos.add(0, -2, 0));
+								world.updateComparatorOutputLevel(pos, this);
 							}
 						}
 						else

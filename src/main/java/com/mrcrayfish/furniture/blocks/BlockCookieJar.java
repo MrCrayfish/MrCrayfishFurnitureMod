@@ -95,6 +95,7 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
 			{
 				world.setBlockState(pos, state.withProperty(COOKIE_COUNT, metadata + 1), 2);
 				currentItem.stackSize--;
+				world.updateComparatorOutputLevel(pos, this);
 				return true;
 			}
 		}
@@ -174,8 +175,15 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
 	}
 	
 	@Override
+	public boolean hasComparatorInputOverride() 
+	{
+		return true;
+	}
+	
+	@Override
 	public int getComparatorInputOverride(World world, BlockPos pos) 
 	{
-		return (Integer) world.getBlockState(pos).getValue(COOKIE_COUNT);
+		TileEntityCookieJar jar = (TileEntityCookieJar) world.getTileEntity(pos);
+		return jar.getSize();
 	}
 }

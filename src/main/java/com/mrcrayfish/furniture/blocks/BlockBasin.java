@@ -60,6 +60,18 @@ public class BlockBasin extends BlockFurniture
 	{
 		((EntityPlayer) placer).triggerAchievement(FurnitureAchievements.bathroom);
 	}
+	
+	@Override
+	public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) 
+	{
+		world.updateComparatorOutputLevel(pos, this);
+	}
+	
+	@Override
+	public void onBlockDestroyedByPlayer(World world, BlockPos pos, IBlockState state) 
+	{
+		world.updateComparatorOutputLevel(pos, this);
+	}
 
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
@@ -89,6 +101,7 @@ public class BlockBasin extends BlockFurniture
 							}
 						}
 						world.setBlockState(pos, state.withProperty(FILLED, Boolean.valueOf(false)));
+						world.updateComparatorOutputLevel(pos, this);
 					}
 				}
 				else if (currentItem.getItem() == Items.water_bucket)
@@ -100,6 +113,7 @@ public class BlockBasin extends BlockFurniture
 							player.setCurrentItemOrArmor(0, new ItemStack(Items.bucket));
 						}
 						world.setBlockState(pos, state.withProperty(FILLED, Boolean.valueOf(true)), 2);
+						world.updateComparatorOutputLevel(pos, this);
 					}
 				}
 				else if (currentItem.getItem() == Items.glass_bottle)
@@ -121,6 +135,7 @@ public class BlockBasin extends BlockFurniture
 							}
 						}
 						world.setBlockState(pos, state.withProperty(FILLED, Boolean.valueOf(false)), 2);
+						world.updateComparatorOutputLevel(pos, this);
 					}
 				}
 				else if (currentItem.getItem() == Items.potionitem && currentItem.getItemDamage() == 0)
@@ -132,6 +147,7 @@ public class BlockBasin extends BlockFurniture
 							player.setCurrentItemOrArmor(0, new ItemStack(Items.glass_bottle));
 						}
 						world.setBlockState(pos, state.withProperty(FILLED, Boolean.valueOf(true)), 2);
+						world.updateComparatorOutputLevel(pos, this);
 					}
 				}
 				else
@@ -143,6 +159,7 @@ public class BlockBasin extends BlockFurniture
 							world.setBlockState(pos, state.withProperty(FILLED, Boolean.valueOf(true)), 2);
 							world.playSoundEffect(pos.getX(), pos.getY(), pos.getZ(), "cfm:tap", 0.75F, 1.0F);
 							world.setBlockToAir(pos.add(0, -2, 0));
+							world.updateComparatorOutputLevel(pos, this);
 						}
 						else
 						{
@@ -160,6 +177,7 @@ public class BlockBasin extends BlockFurniture
 						world.setBlockState(pos, state.withProperty(FILLED, Boolean.valueOf(true)), 2);
 						world.playSoundEffect(pos.getX(), pos.getY(), pos.getZ(), "cfm:tap", 0.75F, 1.0F);
 						world.setBlockToAir(pos.add(0, -2, 0));
+						world.updateComparatorOutputLevel(pos, this);
 					}
 					else
 					{

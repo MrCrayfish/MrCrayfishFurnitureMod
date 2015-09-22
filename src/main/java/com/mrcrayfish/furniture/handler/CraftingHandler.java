@@ -37,35 +37,11 @@ public class CraftingHandler
 			return;
 		}
 
-		if (event.crafting.getItem() == FurnitureItems.itemSoapyWater)
+		if (event.crafting.getItem() == FurnitureItems.itemSoapyWater || event.crafting.getItem() == FurnitureItems.itemSuperSoapyWater)
 		{
 			for (int i = 0; i < 9; i++)
 			{
-				ItemStack item = event.craftMatrix.getStackInSlot(i);
-				if (item != null)
-				{
-					if (item.getItem() == Items.water_bucket)
-					{
-						event.craftMatrix.setInventorySlotContents(i, null);
-						return;
-					}
-				}
-			}
-		}
-
-		if (event.crafting.getItem() == FurnitureItems.itemSuperSoapyWater)
-		{
-			for (int i = 0; i < 9; i++)
-			{
-				ItemStack item = event.craftMatrix.getStackInSlot(i);
-				if (item != null)
-				{
-					if (item.getItem() == FurnitureItems.itemSoapyWater)
-					{
-						event.craftMatrix.setInventorySlotContents(i, null);
-						return;
-					}
-				}
+				event.craftMatrix.setInventorySlotContents(i, null);
 			}
 		}
 	}

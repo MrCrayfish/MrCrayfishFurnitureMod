@@ -37,21 +37,21 @@ public class ContainerPrinter extends Container
 	public ContainerPrinter(IInventory playerInventory, IInventory printerInventory)
 	{
 		this.printerInventory = printerInventory;
-		this.addSlotToContainer(new Slot(printerInventory, 0, 80, -3));
-		this.addSlotToContainer(new Slot(printerInventory, 1, 55, 22));
-		this.addSlotToContainer(new SlotPrinter(printerInventory, 2, 80, 53));
+		this.addSlotToContainer(new Slot(printerInventory, 0, 80, 5));
+		this.addSlotToContainer(new Slot(printerInventory, 1, 55, 30));
+		this.addSlotToContainer(new SlotPrinter(printerInventory, 2, 80, 61));
 		
 		for (int i = 0; i < 3; i++)
 		{
 			for (int j = 0; j < 9; ++j)
 			{
-				this.addSlotToContainer(new Slot(playerInventory, j + i * 9 + 9, j * 18 + 8, i * 18 + 95));
+				this.addSlotToContainer(new Slot(playerInventory, j + i * 9 + 9, j * 18 + 8, i * 18 + 103));
 			}
 		}
 
 		for (int i = 0; i < 9; i++)
 		{
-			this.addSlotToContainer(new Slot(playerInventory, i, i * 18 + 8, 153));
+			this.addSlotToContainer(new Slot(playerInventory, i, i * 18 + 8, 161));
 		}
 	}
 

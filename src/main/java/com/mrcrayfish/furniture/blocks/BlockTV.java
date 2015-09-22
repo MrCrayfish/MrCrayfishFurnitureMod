@@ -87,6 +87,7 @@ public class BlockTV extends BlockFurnitureTile
 			Channels.getChannel(nextChannel).play(pos);
 			tileEntityTV.setChannel(nextChannel);
 			world.markBlockForUpdate(pos);
+			world.updateComparatorOutputLevel(pos, this);
 			//PacketHandler.INSTANCE.sendToAllAround(new MessageTVClient(tileEntityTV.getChannel(), pos), new TargetPoint(player.dimension, pos.getX(), pos.getY(), pos.getZ(), 16));
 		}
 		return true;
@@ -137,6 +138,7 @@ public class BlockTV extends BlockFurnitureTile
 	@Override
 	public int getComparatorInputOverride(World world, BlockPos pos) 
 	{
-		return (Integer) world.getBlockState(pos).getValue(CHANNEL);
+		TileEntityTV tv = (TileEntityTV) world.getTileEntity(pos);
+		return tv.getChannel() + 1;
 	}
 }

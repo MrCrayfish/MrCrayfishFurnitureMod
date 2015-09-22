@@ -68,6 +68,7 @@ public class BlockToilet extends BlockFurniture
 		{
 			if (SittableUtil.sitOnBlockWithRotationOffset(world, pos.getX(), pos.getY(), pos.getZ(), player, 0.4D, getMetaFromState(state), 0.1D))
 			{
+				world.updateComparatorOutputLevel(pos, this);
 				if (world.isRemote)
 				{
 					player.addChatComponentMessage(new ChatComponentText("Press F for Farts."));

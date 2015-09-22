@@ -74,6 +74,7 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 				timeRemaining = 5000;
 			}
 			washing = true;
+			worldObj.updateComparatorOutputLevel(pos, blockType);
 		}
 	}
 
@@ -81,6 +82,7 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 	{
 		progress = 0;
 		washing = false;
+		worldObj.updateComparatorOutputLevel(pos, blockType);
 	}
 
 	public boolean canWash()
@@ -149,6 +151,7 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 			if(!canWash())
 			{
 				washing = false;
+				worldObj.updateComparatorOutputLevel(pos, blockType);
 				return;
 			}
 			
@@ -189,6 +192,7 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 					timeRemaining = 0;
 					progress = 0;
 					washing = false;
+					worldObj.updateComparatorOutputLevel(pos, blockType);
 				}
 			}
 
@@ -272,7 +276,7 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 	@Override
 	public int getInventoryStackLimit()
 	{
-		return 64;
+		return 1;
 	}
 
 	@Override

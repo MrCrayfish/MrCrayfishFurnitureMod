@@ -197,24 +197,22 @@ public class TileEntityOven extends TileEntityLockable implements ISidedInventor
 	@Override
 	public void update()
 	{
-		boolean flag = this.cookTime > 0;
-		boolean flag1 = false;
-
-		if (this.cookTime > 0)
-		{
-			--this.cookTime;
-		}
+		boolean flag = this.cookingTime > 0;
 
 		cookingItem = canCook();
 		if (cookingItem != -1)
 		{
 			++this.cookingTime;
+			
+			if(!flag)
+			{
+				worldObj.updateComparatorOutputLevel(pos, blockType);
+			}
 
 			if (this.cookingTime == COOK_TIME)
 			{
 				this.cookingTime = 0;
 				this.cookItems();
-				flag1 = true;
 			}
 
 			if (this.worldObj.isRemote)
@@ -229,14 +227,9 @@ public class TileEntityOven extends TileEntityLockable implements ISidedInventor
 			this.cookingTime = 0;
 		}
 
-		if (flag != this.cookTime > 0)
+		if (flag && cookingTime == 0)
 		{
-			flag1 = true;
-		}
-
-		if (flag1)
-		{
-			this.markDirty();
+			worldObj.updateComparatorOutputLevel(pos, blockType);
 		}
 	}
 

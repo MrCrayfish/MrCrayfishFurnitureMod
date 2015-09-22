@@ -154,8 +154,8 @@ public class FurnitureItems
 		itemCup 			 = new ItemCup(false).setUnlocalizedName("item_cup");
 		itemDrink 			 = new ItemCup(true).setUnlocalizedName("item_drink");
 		itemSoap 			 = new ItemGeneric().setUnlocalizedName("item_soap");
-		itemSoapyWater 		 = new ItemGeneric().setUnlocalizedName("item_soap_water").setContainerItem(Items.bucket);
-		itemSuperSoapyWater  = new ItemGeneric().setUnlocalizedName("item_super_soap_water").setContainerItem(Items.bucket);
+		itemSoapyWater 		 = new ItemGeneric().setUnlocalizedName("item_soap_water").setContainerItem(Items.bucket).setMaxStackSize(1);
+		itemSuperSoapyWater  = new ItemGeneric().setUnlocalizedName("item_super_soap_water").setContainerItem(Items.bucket).setMaxStackSize(1);;
 		itemRecipeBook 		 = new ItemRecipeBook().setUnlocalizedName("item_recipe_book");
 		itemMirror           = new ItemPlacer(FurnitureBlocks.mirror).setUnlocalizedName("item_mirror");
 		itemCrayfish 		 = new Item().setUnlocalizedName("item_crayfish").setMaxStackSize(1);
