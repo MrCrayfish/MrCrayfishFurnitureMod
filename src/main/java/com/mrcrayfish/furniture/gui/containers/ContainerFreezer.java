@@ -103,14 +103,14 @@ public class ContainerFreezer extends Container
 
 				if (data != null)
 				{
-					if (!this.mergeItemStack(item, 0, 1, false))
+					if (!this.mergeItemStack(item, 1, 2, false))
 					{
 						return null;
 					}
 				}
 				else if (TileEntityFreezer.isFuel(item))
 				{
-					if (!this.mergeItemStack(item, 1, 2, false))
+					if (!this.mergeItemStack(item, 0, 1, false))
 					{
 						return null;
 					}

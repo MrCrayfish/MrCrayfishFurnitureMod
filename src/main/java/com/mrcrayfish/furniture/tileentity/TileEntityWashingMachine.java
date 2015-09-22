@@ -124,20 +124,13 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 	
 	public static boolean isFuel(ItemStack stack)
 	{
-		return getFuelTime(stack) > 0;
-	}
-	
-	private static int getFuelTime(ItemStack stack)
-	{
 		if(stack == null)
-			return 0;
-		if(stack.getItem() == Item.getItemFromBlock(Blocks.packed_ice))
-			return 3000;
-		if(stack.getItem() == Item.getItemFromBlock(Blocks.ice))
-			return 2000;
-		if(stack.getItem() == FurnitureItems.itemCoolPack)
-			return 400;
-		return 0;
+			return false;
+		if(stack.getItem() == FurnitureItems.itemSoapyWater)
+			return true;
+		if(stack.getItem() == FurnitureItems.itemSuperSoapyWater)
+			return true;
+		return false;
 	}
 
 	private Random rand = new Random();
@@ -424,6 +417,10 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 	@Override
 	public boolean canInsertItem(int index, ItemStack stack, EnumFacing side) 
 	{
+		if(isLocked())
+		{
+			return false;
+		}
 		if(side == EnumFacing.UP)
 		{
 			return RecipeAPI.getWashingMachineRecipeFromInput(stack) != null;
@@ -438,7 +435,7 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 	@Override
 	public boolean canExtractItem(int index, ItemStack stack, EnumFacing side) 
 	{
-		return side == EnumFacing.DOWN && !isFuel(stack) && stack.getItemDamage() == 0;
+		return side == EnumFacing.DOWN && !isFuel(stack) && stack.getItemDamage() == 0 && !isLocked();
 	}
 
 	@Override

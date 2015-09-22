@@ -120,6 +120,7 @@ public class BlenderRenderer extends TileEntitySpecialRenderer
 			GL11.glEnable(GL11.GL_LIGHTING);
 			GL11.glEnable(GL11.GL_TEXTURE_2D);
 			GL11.glAlphaFunc(GL11.GL_GREATER, 0.5F);
+			GL11.glColor3f(1, 1, 1);
 
 			GL11.glPopMatrix();
 		}
