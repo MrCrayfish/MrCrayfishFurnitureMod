@@ -13,11 +13,12 @@ import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@SideOnly(Side.CLIENT)
-public class Channel {
+public class Channel 
+{
 	private static Map<BlockPos, PositionedSoundRecord> currentSounds = new ConcurrentHashMap<BlockPos, PositionedSoundRecord>();
 	
 	private String channelName;
@@ -26,13 +27,19 @@ public class Channel {
 	private SoundHandler soundHandler = null;
 	private Field counterField = null;
 
-	public Channel(String channelName) {
+	public Channel(String channelName) 
+	{
 		this.channelName = channelName;
-		this.sound = new ResourceLocation("cfm:" + channelName);
-		this.soundHandler = Minecraft.getMinecraft().getSoundHandler();
+		if(FMLCommonHandler.instance().getSide() == Side.CLIENT)
+		{
+			this.sound = new ResourceLocation("cfm:" + channelName);
+			this.soundHandler = Minecraft.getMinecraft().getSoundHandler();
+		}
 	}
 
-	private void initRefleciton() {
+	@SideOnly(Side.CLIENT)
+	private void initRefleciton() 
+	{
 		if (counterField != null)
 			return;
 		System.out.println("cfm:blocks/" + channelName);
@@ -48,11 +55,13 @@ public class Channel {
 
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void play(BlockPos pos) {
 		resetAnimation();
 		playSound(pos);
 	}
 
+	@SideOnly(Side.CLIENT)
 	public void resetAnimation() {
 		initRefleciton();
 		if (atlas != null && counterField != null) {
@@ -66,6 +75,7 @@ public class Channel {
 		}
 	}
 
+	@SideOnly(Side.CLIENT)
 	private void playSound(BlockPos pos)
 	{
 		stopSound(pos);
@@ -74,6 +84,7 @@ public class Channel {
 		soundHandler.playSound(sound);
 	}
 
+	@SideOnly(Side.CLIENT)
 	private static PositionedSoundRecord getSound(BlockPos soundPos) 
 	{
 		for(BlockPos currentPos : currentSounds.keySet())
@@ -86,6 +97,7 @@ public class Channel {
 		return null;
 	}
 	
+	@SideOnly(Side.CLIENT)
 	public static void stopSound(BlockPos pos) 
 	{
 		PositionedSoundRecord sound = getSound(pos);

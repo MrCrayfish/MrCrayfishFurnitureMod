@@ -34,6 +34,8 @@ public class MicrowaveRenderer extends TileEntitySpecialRenderer
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{
+		tileEntity.getWorld().scheduleUpdate(tileEntity.getPos(), tileEntity.getBlockType(), 10);
+		
 		TileEntityMicrowave microwave = (TileEntityMicrowave) tileEntity;
 		Block block = tileEntity.getBlockType();
 		int metadata = block.getMetaFromState(tileEntity.getWorld().getBlockState(tileEntity.getPos()));

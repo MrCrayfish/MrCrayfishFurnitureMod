@@ -63,15 +63,16 @@ public class TileEntityToaster extends TileEntity implements IUpdatePlayerListBo
 					worldObj.spawnEntityInWorld(entityItem);
 				}
 				slots[i] = null;
+				worldObj.markBlockForUpdate(pos);
 				return;
 			}
 		}
-		worldObj.markBlockForUpdate(pos);
 	}
 
 	public void startToasting()
 	{
 		this.toasting = true;
+		worldObj.markBlockForUpdate(pos);
 	}
 
 	public boolean isToasting()
@@ -110,6 +111,7 @@ public class TileEntityToaster extends TileEntity implements IUpdatePlayerListBo
 				}
 				toastingTime = 0;
 				toasting = false;
+				worldObj.markBlockForUpdate(pos);
 				worldObj.updateComparatorOutputLevel(pos, blockType);
 			}
 			else

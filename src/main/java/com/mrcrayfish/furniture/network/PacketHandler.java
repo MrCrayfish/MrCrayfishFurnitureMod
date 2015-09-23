@@ -35,6 +35,7 @@ import com.mrcrayfish.furniture.network.message.MessagePresent;
 import com.mrcrayfish.furniture.network.message.MessagePresentContents;
 import com.mrcrayfish.furniture.network.message.MessageTVClient;
 import com.mrcrayfish.furniture.network.message.MessageTakeWater;
+import com.mrcrayfish.furniture.network.message.MessageUpdateFields;
 import com.mrcrayfish.furniture.network.message.MessageWashingMachine;
 
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -65,5 +66,6 @@ public class PacketHandler
 		INSTANCE.registerMessage(MessageWashingMachine.class, MessageWashingMachine.class, 15, Side.SERVER);
 		INSTANCE.registerMessage(MessageDishwasher.class, MessageDishwasher.class, 16, Side.SERVER);
 		INSTANCE.registerMessage(MessageFreezer.class, MessageFreezer.class, 17, Side.SERVER);
+		INSTANCE.registerMessage(MessageUpdateFields.class, MessageUpdateFields.class, 18, Side.CLIENT);
 	}
 }

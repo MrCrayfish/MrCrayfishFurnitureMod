@@ -51,6 +51,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockTV extends BlockFurnitureTile
 {
@@ -84,30 +86,33 @@ public class BlockTV extends BlockFurnitureTile
 		TileEntity tile_entity = world.getTileEntity(pos);
 		if (tile_entity instanceof TileEntityTV)
 		{
-			world.playSoundEffect(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, "cfm:static", 0.75F, 1.0F);
-				
 			TileEntityTV tileEntityTV = (TileEntityTV) tile_entity;
-
 			
 			int nextChannel = 0;
 			if(tileEntityTV.getChannel() < Channels.getChannelCount() - 1)
 			{
 				nextChannel = tileEntityTV.getChannel() + 1;
 			}
+			tileEntityTV.setChannel(nextChannel);
+			
+			world.markBlockForUpdate(pos);
+			world.updateComparatorOutputLevel(pos, this);
+			world.playSoundEffect(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, "cfm:static", 0.75F, 1.0F);
 			
 			if(world.isRemote)
 			{
 				Channels.getChannel(nextChannel).play(pos);
 			}
-			tileEntityTV.setChannel(nextChannel);
-			world.markBlockForUpdate(pos);
-			world.updateComparatorOutputLevel(pos, this);
-			//PacketHandler.INSTANCE.sendToAllAround(new MessageTVClient(tileEntityTV.getChannel(), pos), new TargetPoint(player.dimension, pos.getX(), pos.getY(), pos.getZ(), 16));
+			else
+			{
+				PacketHandler.INSTANCE.sendToAllAround(new MessageTVClient(tileEntityTV.getChannel(), pos), new TargetPoint(player.dimension, pos.getX(), pos.getY(), pos.getZ(), 16));
+			}
 		}
 		return true;
 	}
 	
 	@Override
+	@SideOnly(Side.CLIENT)
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
 		super.onBlockHarvested(worldIn, pos, state, player);
 		Channel.stopSound(pos);

@@ -27,15 +27,27 @@ import net.minecraft.tileentity.TileEntity;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mrcrayfish.furniture.network.PacketHandler;
+import com.mrcrayfish.furniture.network.message.MessageUpdateFields;
 import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
 
 public class WashingMachineRenderer extends TileEntitySpecialRenderer
 {
 	private EntityItem armour = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D);
-
+	
+	private int counter = 0;
+	
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{
+		//TODO Make alternaltive
+				/*if(counter++ == 10)
+				{
+					PacketHandler.INSTANCE.sendToServer(new MessageUpdateFields(tileEntity.getPos()));
+					System.out.println("Sent packet");
+					counter = 0;
+				}*/
+
 		TileEntityWashingMachine tileEntityWashingMachine = (TileEntityWashingMachine) tileEntity;
 		Block block = tileEntity.getBlockType();
 		int metadata = block.getMetaFromState(tileEntity.getWorld().getBlockState(tileEntity.getPos()));

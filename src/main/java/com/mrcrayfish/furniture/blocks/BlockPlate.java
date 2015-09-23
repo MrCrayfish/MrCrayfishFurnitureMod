@@ -90,6 +90,7 @@ public class BlockPlate extends BlockFurnitureTile
 					world.spawnEntityInWorld(entityFood);
 				}
 				tileEntityPlate.setFood(null);
+				world.markBlockForUpdate(pos);
 			}
 		}
 		return true;

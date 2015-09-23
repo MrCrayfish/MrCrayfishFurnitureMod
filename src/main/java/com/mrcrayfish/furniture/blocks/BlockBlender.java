@@ -77,6 +77,7 @@ public class BlockBlender extends BlockFurnitureTile
 							if (tileEntityBlender.hasValidIngredients())
 							{
 								tileEntityBlender.startBlending();
+								world.markBlockForUpdate(pos);
 								world.updateComparatorOutputLevel(pos, this);
 							}
 						}
@@ -103,6 +104,7 @@ public class BlockBlender extends BlockFurnitureTile
 							currentItem.stackSize--;
 						}
 						tileEntityBlender.drinkCount--;
+						world.markBlockForUpdate(pos);
 					}
 					return true;
 				}

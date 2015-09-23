@@ -129,7 +129,7 @@ public class MrCrayfishFurnitureMod
 		/** Entity Registering */
 		EntityRegistry.registerModEntity(EntitySittableBlock.class, "MountableBlock", 0, this, 80, 1, false);
 		EntityRegistry.registerModEntity(EntityMirror.class, "Mirror", 0, this, 80, 1, false);
-
+		
 		/** Crafting Recipes */
 		FurnitureCrafting.register();
 	}
@@ -142,12 +142,7 @@ public class MrCrayfishFurnitureMod
 		RecipeRegistry.registerConfigRecipes();
 		Recipes.addCommRecipesToLocal();
 		Recipes.updateDataList();
-	}
-	
-	@EventHandler
-	@SideOnly(Side.CLIENT)
-	public void onLoadComplete(FMLLoadCompleteEvent event)
-	{
+		
 		Channels.registerChannels(5);
 	}
 

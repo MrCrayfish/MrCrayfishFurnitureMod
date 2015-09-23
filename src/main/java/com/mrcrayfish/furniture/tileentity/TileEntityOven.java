@@ -26,6 +26,9 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityLockable;
@@ -140,6 +143,7 @@ public class TileEntityOven extends TileEntityLockable implements ISidedInventor
 
 		this.cookTime = tagCompound.getShort("cookTime");
 		this.cookingTime = tagCompound.getShort("cookingTime");
+		System.out.println("Reading");
 	}
 
 	@Override
@@ -163,6 +167,22 @@ public class TileEntityOven extends TileEntityLockable implements ISidedInventor
 		}
 
 		tagCompound.setTag("inventory", tagList);
+		System.out.println("Writing to NBT");
+	}
+	
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+	{
+		NBTTagCompound tagCom = pkt.getNbtCompound();
+		this.readFromNBT(tagCom);
+	}
+
+	@Override
+	public Packet getDescriptionPacket()
+	{
+		NBTTagCompound tagCom = new NBTTagCompound();
+		this.writeToNBT(tagCom);
+		return new S35PacketUpdateTileEntity(pos, getBlockMetadata(), tagCom);
 	}
 
 	@Override

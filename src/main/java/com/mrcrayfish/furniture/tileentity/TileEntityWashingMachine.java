@@ -23,6 +23,8 @@ import com.mrcrayfish.furniture.api.RecipeAPI;
 import com.mrcrayfish.furniture.api.RecipeData;
 import com.mrcrayfish.furniture.gui.containers.ContainerWashingMachine;
 import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.network.PacketHandler;
+import com.mrcrayfish.furniture.network.message.MessageUpdateFields;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -42,6 +44,7 @@ import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IChatComponent;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
 public class TileEntityWashingMachine extends TileEntityLockable implements ISidedInventory, IUpdatePlayerListBox
 {
@@ -138,13 +141,20 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 
 	@Override
 	public void update()
-	{
+	{	
 		if (washing)
 		{
+			if(worldObj.isRemote)
+			{
+				progress++;
+				return;
+			}
+			
 			if(!canWash())
 			{
 				washing = false;
 				worldObj.updateComparatorOutputLevel(pos, blockType);
+				worldObj.markBlockForUpdate(pos);
 				return;
 			}
 			
@@ -159,6 +169,11 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 							inventory[i].setItemDamage(inventory[i].getItemDamage() - 1);
 						}
 					}
+				}
+				PacketHandler.INSTANCE.sendToAllAround(new MessageUpdateFields(this, pos), new TargetPoint(worldObj.provider.getDimensionId(), pos.getX(), pos.getY(), pos.getZ(), 32));
+				if(progress >= 360)
+				{
+					progress = 0;
 				}
 			}
 
@@ -187,13 +202,10 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 					washing = false;
 					worldObj.updateComparatorOutputLevel(pos, blockType);
 				}
+				worldObj.markBlockForUpdate(pos);
 			}
 
 			progress++;
-			if (progress >= 10000)
-			{
-				progress = 0;
-			}
 
 			if (timer == 20)
 			{
@@ -354,18 +366,32 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 	@Override
 	public int getField(int id)
 	{
+		switch(id)
+		{
+		case 0:
+			return this.progress;
+		case 1:
+			return this.timeRemaining;
+		}
 		return 0;
 	}
 
 	@Override
 	public void setField(int id, int value)
 	{
+		switch(id)
+		{
+		case 0:
+			this.progress = value;
+		case 1:
+			this.timeRemaining = value;
+		}
 	}
 
 	@Override
 	public int getFieldCount()
 	{
-		return 0;
+		return 2;
 	}
 
 	@Override

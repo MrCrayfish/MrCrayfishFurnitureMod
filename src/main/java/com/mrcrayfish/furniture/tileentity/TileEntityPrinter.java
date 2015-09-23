@@ -245,7 +245,8 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
             --this.printerPrintTime;
         }
 
-
+        //if(!worldObj.isRemote)ee
+        {
             if (!this.isPrinting() && (this.inventory[1] == null || this.inventory[0] == null))
             {
                 if (!this.isPrinting() && this.printingTime > 0)
@@ -282,7 +283,7 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
                 	if(!flag)
         			{
                 		System.out.println("Starting");
-        				worldObj.updateComparatorOutputLevel(pos, blockType);
+        				worldObj.markBlockForUpdate(pos);
         			}
 
                     if (this.printingTime == this.totalCookTime)
@@ -298,7 +299,7 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
                 	this.printingTime = 0;
                 }
             }
-       
+        }
 
         if (flag1)
         {
