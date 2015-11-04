@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
 import java.util.Random;
 
 import net.minecraft.block.Block;
@@ -25,6 +26,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -32,6 +34,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumFacing;
@@ -46,6 +49,7 @@ import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageFillBath;
 import com.mrcrayfish.furniture.tileentity.TileEntityBath;
+import com.mrcrayfish.furniture.util.CollisionHelper;
 
 public class BlockBath extends BlockFurnitureTile
 {
@@ -87,6 +91,35 @@ public class BlockBath extends BlockFurnitureTile
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
 	{
 		world.setBlockState(pos.offset(placer.getHorizontalFacing()), FurnitureBlocks.bath_2.getDefaultState().withProperty(FACING, state.getValue(FACING)).withProperty(WATER_LEVEL, state.getValue(WATER_LEVEL)));
+	}
+	
+	@Override
+	public void addCollisionBoxesToList(World world, BlockPos pos, IBlockState state, AxisAlignedBB mask, List list, Entity collidingEntity)
+	{
+		int metadata = getMetaFromState(state);
+
+		float[] bounds = CollisionHelper.fixRotation(metadata, 0.0F, 0.0F, 1.0F, 1.0F);
+		super.setBlockBounds(bounds[0], 0.0F, bounds[1], bounds[2], 0.125F, bounds[3]);
+		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+		bounds = CollisionHelper.fixRotation(metadata, 0.0F, 0.0F, 1.0F, 0.125F);
+		super.setBlockBounds(bounds[0], 0.0F, bounds[1], bounds[2], 0.9F, bounds[3]);
+		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+		bounds = CollisionHelper.fixRotation(metadata, 0.0F, 0.875F, 1.0F, 1.0F);
+		super.setBlockBounds(bounds[0], 0.0F, bounds[1], bounds[2], 0.9F, bounds[3]);
+		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+
+		if (this == FurnitureBlocks.bath_1)
+		{
+			float[] bounds3 = CollisionHelper.fixRotation(metadata, 0.0F, 0.125F, 0.125F, 0.875F);
+			super.setBlockBounds(bounds3[0], 0.0F, bounds3[1], bounds3[2], 0.9F, bounds3[3]);
+			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+		}
+		else
+		{
+			float[] bounds4 = CollisionHelper.fixRotation(metadata, 0.75F, 0.0F, 1.0F, 0.875F);
+			super.setBlockBounds(bounds4[0], 0.0F, bounds4[1], bounds4[2], 0.9F, bounds4[3]);
+			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+		}
 	}
 
 	@Override
