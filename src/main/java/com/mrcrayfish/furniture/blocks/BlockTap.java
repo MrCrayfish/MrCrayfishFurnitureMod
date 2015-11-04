@@ -62,11 +62,18 @@ public class BlockTap extends BlockFurniture
 		if (!world.isRemote)
 		{
 			EnumFacing facing = (EnumFacing) state.getValue(FACING);
-			if (hasWaterSource(world, pos) && world.isAirBlock(pos.offset(facing.getOpposite())))
+			if (hasWaterSource(world, pos))
 			{
-				world.setBlockState(pos.offset(facing.getOpposite()), Blocks.water.getDefaultState());
-				world.setBlockToAir(pos.down(2));
-				player.triggerAchievement(FurnitureAchievements.tapped);
+				if(world.isAirBlock(pos.offset(facing.getOpposite())))
+				{
+					world.setBlockState(pos.offset(facing.getOpposite()), Blocks.water.getDefaultState());
+					world.setBlockToAir(pos.down(2));
+					player.triggerAchievement(FurnitureAchievements.tapped);
+				}
+				else
+				{
+					player.addChatComponentMessage(new ChatComponentText("Something is blocking the tap."));
+				}
 			}
 			else
 			{
