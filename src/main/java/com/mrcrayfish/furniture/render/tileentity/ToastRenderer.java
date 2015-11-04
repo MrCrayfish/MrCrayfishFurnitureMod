@@ -38,7 +38,11 @@ public class ToastRenderer extends TileEntitySpecialRenderer
 	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{
 		TileEntityToaster tileEntityToaster = (TileEntityToaster) tileEntity;
+		
 		Block block = tileEntity.getBlockType();
+		if(block.isAir(getWorld(), tileEntity.getPos()))
+			return;
+		
 		int metadata = block.getMetaFromState(tileEntity.getWorld().getBlockState(tileEntity.getPos()));
 
 		for (int i = 0; i < 2; i++)

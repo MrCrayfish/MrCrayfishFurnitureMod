@@ -11,6 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import com.mrcrayfish.furniture.blocks.BlockMirror;
 import com.mrcrayfish.furniture.render.tileentity.MirrorRenderer;
 
+@SideOnly(Side.CLIENT)
 public class EntityMirror extends Entity
 {
 	private Minecraft mc = Minecraft.getMinecraft();
@@ -23,7 +24,6 @@ public class EntityMirror extends Entity
 		super(worldIn);
 	}
 	
-	@SideOnly(Side.CLIENT)
 	public EntityMirror(World worldIn, double x, double y, double z, EnumFacing facing)
 	{
 		super(worldIn);
@@ -34,7 +34,6 @@ public class EntityMirror extends Entity
 		setPostionConsideringRotation(x, y, z, facing.getHorizontalIndex());
 	}
 
-	@SideOnly(Side.CLIENT)
 	public void setPostionConsideringRotation(double x, double y, double z, int rotation)
 	{
 		double offset = -0.43;

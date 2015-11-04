@@ -128,7 +128,10 @@ public class MrCrayfishFurnitureMod
 
 		/** Entity Registering */
 		EntityRegistry.registerModEntity(EntitySittableBlock.class, "MountableBlock", 0, this, 80, 1, false);
-		EntityRegistry.registerModEntity(EntityMirror.class, "Mirror", 0, this, 80, 1, false);
+		if (event.getSide() == Side.CLIENT)
+		{
+			EntityRegistry.registerModEntity(EntityMirror.class, "Mirror", 0, this, 80, 1, false);
+		}
 		
 		/** Crafting Recipes */
 		FurnitureCrafting.register();

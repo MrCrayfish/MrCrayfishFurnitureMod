@@ -27,8 +27,11 @@ import net.minecraft.tileentity.TileEntity;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mrcrayfish.furniture.blocks.BlockChoppingBoard;
+import com.mrcrayfish.furniture.blocks.BlockWashingMachine;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageUpdateFields;
+import com.mrcrayfish.furniture.tileentity.TileEntityChoppingBoard;
 import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
 
 public class WashingMachineRenderer extends TileEntitySpecialRenderer
@@ -40,16 +43,11 @@ public class WashingMachineRenderer extends TileEntitySpecialRenderer
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{
-		//TODO Make alternaltive
-				/*if(counter++ == 10)
-				{
-					PacketHandler.INSTANCE.sendToServer(new MessageUpdateFields(tileEntity.getPos()));
-					System.out.println("Sent packet");
-					counter = 0;
-				}*/
-
-		TileEntityWashingMachine tileEntityWashingMachine = (TileEntityWashingMachine) tileEntity;
 		Block block = tileEntity.getBlockType();
+		if(block instanceof BlockWashingMachine)
+			return;
+		
+		TileEntityWashingMachine machine = (TileEntityWashingMachine) tileEntity;
 		int metadata = block.getMetaFromState(tileEntity.getWorld().getBlockState(tileEntity.getPos()));
 
 		GL11.glPushMatrix();
@@ -59,11 +57,11 @@ public class WashingMachineRenderer extends TileEntitySpecialRenderer
 
 		for (int i = 0; i < 4; i++)
 		{
-			if (tileEntityWashingMachine.getStackInSlot(i) != null)
+			if (machine.getStackInSlot(i) != null)
 			{
 				double zOffset = getOffsetZ(metadata, i);
-				armour.setEntityItemStack(tileEntityWashingMachine.getStackInSlot(i));
-				GL11.glRotated(tileEntityWashingMachine.progress * 5, 0, 0, 1);
+				armour.setEntityItemStack(machine.getStackInSlot(i));
+				GL11.glRotated(machine.progress * 5, 0, 0, 1);
 				Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(armour, 0.0, -0.35D, zOffset, 0.0F, 0.0F);
 			}
 		}

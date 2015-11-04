@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture.render.tileentity;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
@@ -36,9 +37,12 @@ public class ChoppingBoardRenderer extends TileEntitySpecialRenderer
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{
+		Block block = tileEntity.getBlockType();
+		if(block instanceof BlockChoppingBoard)
+			return;
+		
 		TileEntityChoppingBoard board = (TileEntityChoppingBoard) tileEntity;
-		BlockChoppingBoard choppingBoard = (BlockChoppingBoard) tileEntity.getBlockType();
-		int metadata = choppingBoard.getMetaFromState(tileEntity.getWorld().getBlockState(tileEntity.getPos()));
+		int metadata = block.getMetaFromState(tileEntity.getWorld().getBlockState(tileEntity.getPos()));
 
 		if (board.getFood() != null)
 		{

@@ -50,7 +50,11 @@ public class CookieRenderer extends TileEntitySpecialRenderer
 		GL11.glTranslatef((float) posX + 0.5F, (float) posY + 0.05F, (float) posZ + 0.18F);
 		GL11.glRotatef(180, 0, 1, 1);
 		GL11.glScalef(0.9F, 0.9F, 0.9F);
+		
 		Block block = tileEntity.getBlockType();
+		if(block.isAir(getWorld(), tileEntity.getPos()))
+			return;
+
 		int metadata = block.getMetaFromState(tileEntity.getWorld().getBlockState(tileEntity.getPos()));
 		for (int i = 0; i < metadata; i++)
 		{
