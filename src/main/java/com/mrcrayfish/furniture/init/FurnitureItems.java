@@ -23,6 +23,7 @@ import com.mrcrayfish.furniture.items.ItemCup;
 import com.mrcrayfish.furniture.items.ItemEnvelope;
 import com.mrcrayfish.furniture.items.ItemEnvelopeSigned;
 import com.mrcrayfish.furniture.items.ItemGeneric;
+import com.mrcrayfish.furniture.items.ItemHammer;
 import com.mrcrayfish.furniture.items.ItemKnife;
 import com.mrcrayfish.furniture.items.ItemPackage;
 import com.mrcrayfish.furniture.items.ItemPackageSigned;
@@ -117,7 +118,7 @@ public class FurnitureItems
 		itemEnvelopeSigned   = new ItemEnvelopeSigned().setUnlocalizedName("item_envelope_signed");
 		itemPackage          = new ItemPackage().setUnlocalizedName("item_package");
 		itemPackageSigned    = new ItemPackageSigned().setUnlocalizedName("item_package_signed");
-		itemHammer           = new ItemGeneric().setUnlocalizedName("item_hammer");
+		itemHammer           = new ItemHammer().setUnlocalizedName("item_hammer");
 		itemTV               = new ItemPlacer(FurnitureBlocks.tv).setUnlocalizedName("item_tv");
 		itemComputer         = new ItemPlacer(FurnitureBlocks.computer).setUnlocalizedName("item_computer");
 		itemPrinter          = new ItemPlacer(FurnitureBlocks.printer).setUnlocalizedName("item_printer");

@@ -67,7 +67,6 @@ public class MessageTVClient implements IMessage, IMessageHandler<MessageTVClien
 	@Override
 	public IMessage onMessage(MessageTVClient message, MessageContext ctx)
 	{
-		System.out.println("Playing");
 		if (ctx.side.isClient())
 		{
 			BlockPos pos = new BlockPos(message.x, message.y, message.z);

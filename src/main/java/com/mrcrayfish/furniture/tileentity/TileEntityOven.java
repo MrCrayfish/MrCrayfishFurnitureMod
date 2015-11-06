@@ -143,7 +143,6 @@ public class TileEntityOven extends TileEntityLockable implements ISidedInventor
 
 		this.cookTime = tagCompound.getShort("cookTime");
 		this.cookingTime = tagCompound.getShort("cookingTime");
-		System.out.println("Reading");
 	}
 
 	@Override
@@ -167,7 +166,6 @@ public class TileEntityOven extends TileEntityLockable implements ISidedInventor
 		}
 
 		tagCompound.setTag("inventory", tagList);
-		System.out.println("Writing to NBT");
 	}
 	
 	@Override

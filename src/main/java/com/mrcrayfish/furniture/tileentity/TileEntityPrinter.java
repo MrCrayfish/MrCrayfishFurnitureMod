@@ -282,7 +282,6 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
                     
                 	if(!flag)
         			{
-                		System.out.println("Starting");
         				worldObj.markBlockForUpdate(pos);
         			}
 
@@ -308,7 +307,6 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
         
         if (flag && printingTime == 0)
 		{
-        	System.out.println("Stopping");
 			worldObj.updateComparatorOutputLevel(pos, blockType);
 		}
     }

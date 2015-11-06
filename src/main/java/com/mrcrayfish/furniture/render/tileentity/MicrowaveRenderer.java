@@ -38,7 +38,7 @@ public class MicrowaveRenderer extends TileEntitySpecialRenderer
 	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{
 		Block block = tileEntity.getBlockType();
-		if(block instanceof BlockMicrowave)
+		if(!(block instanceof BlockMicrowave))
 			return;
 		
 		TileEntityMicrowave microwave = (TileEntityMicrowave) tileEntity;

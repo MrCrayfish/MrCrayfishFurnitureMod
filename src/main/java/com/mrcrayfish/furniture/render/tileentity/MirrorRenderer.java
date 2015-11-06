@@ -115,7 +115,6 @@ public class MirrorRenderer extends TileEntitySpecialRenderer
 		{
 			for (Integer integer : pendingRemoval)
 			{
-				System.out.println("Unregistering mirror " + integer);
 				GL11.glDeleteTextures(integer.intValue());
 			}
 			pendingRemoval.clear();

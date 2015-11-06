@@ -81,10 +81,11 @@ public class BlockChoppingBoard extends BlockFurnitureTile
 						{
 							EntityItem entityFood = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.4, pos.getZ() + 0.5, tileEntityChoppingBoard.getFood());
 							world.spawnEntityInWorld(entityFood);
+							tileEntityChoppingBoard.setFood(null);
+							world.markBlockForUpdate(pos);
 						}
-						tileEntityChoppingBoard.setFood(null);
-						world.markBlockForUpdate(pos);
 						world.updateComparatorOutputLevel(pos, this);
+						return true;
 					}
 				}
 				else if (currentItem.getItem() == FurnitureItems.itemKnife && tileEntityChoppingBoard.getFood() != null)

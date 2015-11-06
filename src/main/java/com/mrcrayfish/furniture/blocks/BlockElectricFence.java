@@ -149,7 +149,6 @@ public class BlockElectricFence extends Block
 	@Override
 	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
 	{
-		System.out.println("Somethign collided");
 		if (!(entity instanceof EntityItem) && !entity.getName().equals("unknown"))
 		{
 			if (entity instanceof EntityCreeper)

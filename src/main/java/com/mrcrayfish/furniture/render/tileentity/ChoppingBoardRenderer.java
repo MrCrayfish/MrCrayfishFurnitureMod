@@ -38,7 +38,7 @@ public class ChoppingBoardRenderer extends TileEntitySpecialRenderer
 	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{
 		Block block = tileEntity.getBlockType();
-		if(block instanceof BlockChoppingBoard)
+		if(!(block instanceof BlockChoppingBoard))
 			return;
 		
 		TileEntityChoppingBoard board = (TileEntityChoppingBoard) tileEntity;

@@ -69,14 +69,10 @@ public class TileEntityChoppingBoard extends TileEntity implements ISimpleInvent
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
 		super.readFromNBT(tagCompound);
-		NBTTagCompound nbt = tagCompound.getCompoundTag("Food");
-		if(!nbt.hasNoTags())
+		if(tagCompound.hasKey("Food"))
 		{
+			NBTTagCompound nbt = tagCompound.getCompoundTag("Food");
 			food = ItemStack.loadItemStackFromNBT(nbt);
-		}
-		else
-		{
-			food = null;
 		}
 	}
 
@@ -95,7 +91,6 @@ public class TileEntityChoppingBoard extends TileEntity implements ISimpleInvent
 	@Override
 	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
 	{
-		System.out.println("Got packet!");
 		NBTTagCompound tagCom = pkt.getNbtCompound();
 		this.readFromNBT(tagCom);
 	}

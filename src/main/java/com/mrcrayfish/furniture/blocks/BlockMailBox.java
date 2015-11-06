@@ -114,6 +114,7 @@ public class BlockMailBox extends BlockFurnitureTile
 				}
 				else
 				{
+					ItemStack current = player.getCurrentEquippedItem();
 					if (tileEntityMailBox.canOpen(tileEntityMailBox, player))
 					{
 						if (tileEntityMailBox.locked)

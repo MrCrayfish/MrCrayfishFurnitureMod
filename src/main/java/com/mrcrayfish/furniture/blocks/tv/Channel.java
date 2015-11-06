@@ -42,10 +42,10 @@ public class Channel
 	{
 		if (counterField != null)
 			return;
-		System.out.println("cfm:blocks/" + channelName);
+
 		if (atlas == null)
 			atlas = Minecraft.getMinecraft().getTextureMapBlocks().getTextureExtry("cfm:blocks/" + channelName);
-		System.out.println(atlas);
+
 		try {
 			this.counterField = ReflectionUtil.getField(atlas.getClass(), "frameCounter");
 			ReflectionUtil.makeAccessible(this.counterField);
