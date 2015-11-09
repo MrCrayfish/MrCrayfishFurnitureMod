@@ -115,8 +115,8 @@ public class MrCrayfishFurnitureMod
 		{
 			FMLCommonHandler.instance().bus().register(new MirrorRenderer());
 		}
-		MinecraftForge.EVENT_BUS.register(new PlayerEvents());
-
+		FMLCommonHandler.instance().bus().register(new PlayerEvents());
+		
 		/** Render Registering */
 		proxy.registerRenders();
 

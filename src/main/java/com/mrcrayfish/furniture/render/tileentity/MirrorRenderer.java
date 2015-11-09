@@ -67,7 +67,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer
 			if (!registerMirrors.containsKey(mirror.getMirror()))
 			{
 				int newTextureId = GL11.glGenTextures();
-				GL11.glBindTexture(GL11.GL_TEXTURE_2D, newTextureId);
+				GlStateManager.bindTexture(newTextureId);
 				GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, quality, quality, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, BufferUtils.createByteBuffer(3 * quality * quality));
 				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
@@ -78,13 +78,13 @@ public class MirrorRenderer extends TileEntitySpecialRenderer
 			((EntityMirror)mirror.getMirror()).rendering = true;
 
 			EnumFacing facing = (EnumFacing) state.getValue(BlockMirror.FACING);
-			GL11.glPushMatrix();
+			GlStateManager.pushMatrix();
 			{
-				GL11.glDisable(GL11.GL_LIGHTING);
+				GlStateManager.disableLighting();
 				GlStateManager.bindTexture(registerMirrors.get(mirror.getMirror()).intValue());
-				GL11.glTranslatef((float) posX + 0.5F, (float) posY, (float) posZ + 0.5F);
-				GL11.glRotatef(-90F * facing.getHorizontalIndex() + 180F, 0, 1, 0);
-				GL11.glTranslatef(-0.5F, 0, -0.43F);
+				GlStateManager.translate((float) posX + 0.5F, (float) posY, (float) posZ + 0.5F);
+				GlStateManager.rotate(-90F * facing.getHorizontalIndex() + 180F, 0, 1, 0);
+				GlStateManager.translate(-0.5F, 0, -0.43F);
 				GL11.glBegin(GL11.GL_QUADS);
 				{
 					GL11.glTexCoord2d(1, 0);
@@ -97,8 +97,9 @@ public class MirrorRenderer extends TileEntitySpecialRenderer
 					GL11.glVertex3d(0.0625, 0.9375, 0);
 				}
 				GL11.glEnd();
+				GlStateManager.enableLighting();
 			}
-			GL11.glPopMatrix();
+			GlStateManager.popMatrix();
 		}
 	}
 
@@ -115,7 +116,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer
 		{
 			for (Integer integer : pendingRemoval)
 			{
-				GL11.glDeleteTextures(integer.intValue());
+				GlStateManager.deleteTexture(integer.intValue());
 			}
 			pendingRemoval.clear();
 		}
@@ -164,7 +165,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer
 					EntityRenderer entityRenderer = mc.entityRenderer;
 					entityRenderer.renderWorld(event.renderTickTime, renderEndNanoTime + (1000000000 / fps));
 
-					GL11.glBindTexture(GL11.GL_TEXTURE_2D, registerMirrors.get(entity).intValue());
+					GlStateManager.bindTexture(registerMirrors.get(entity).intValue());
 					GL11.glCopyTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, 0, 0, quality, quality, 0);
 					
 					renderEndNanoTime = System.nanoTime();
