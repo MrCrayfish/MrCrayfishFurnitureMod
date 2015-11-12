@@ -96,7 +96,7 @@ public class EntityMirror extends Entity
 
 
 			double distance = getDistanceToEntity(mc.thePlayer);
-			double height = (mc.thePlayer.eyeHeight + mc.thePlayer.posY) - this.posY;
+			double height = (mc.thePlayer.getEyeHeight() + mc.thePlayer.posY) - this.posY;
 			double anglePitch = Math.atan2(height, distance) * (180D / Math.PI);
 			if (anglePitch > 45F)
 			{
