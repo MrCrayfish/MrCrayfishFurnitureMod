@@ -20,7 +20,8 @@ package com.mrcrayfish.furniture.gui;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import scala.actors.threadpool.Arrays;
+
+import java.util.Arrays;
 
 import org.lwjgl.opengl.GL11;
 
