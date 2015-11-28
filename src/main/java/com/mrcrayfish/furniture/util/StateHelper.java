@@ -1,14 +1,12 @@
 package com.mrcrayfish.furniture.util;
 
-import org.lwjgl.Sys;
+import com.mrcrayfish.furniture.blocks.BlockFurniture;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
-
-import com.mrcrayfish.furniture.blocks.BlockFurniture;
 
 public class StateHelper
 {

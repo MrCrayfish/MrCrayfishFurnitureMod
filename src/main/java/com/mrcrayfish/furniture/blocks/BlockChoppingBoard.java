@@ -20,16 +20,20 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Random;
 
+import com.mrcrayfish.furniture.api.Recipes;
+import com.mrcrayfish.furniture.entity.EntitySittableBlock;
+import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.tileentity.TileEntityChoppingBoard;
+import com.mrcrayfish.furniture.util.CollisionHelper;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
@@ -37,14 +41,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import com.mrcrayfish.furniture.api.Recipes;
-import com.mrcrayfish.furniture.entity.EntitySittableBlock;
-import com.mrcrayfish.furniture.init.FurnitureItems;
-import com.mrcrayfish.furniture.render.tileentity.ChoppingBoardRenderer;
-import com.mrcrayfish.furniture.tileentity.TileEntityBin;
-import com.mrcrayfish.furniture.tileentity.TileEntityChoppingBoard;
-import com.mrcrayfish.furniture.util.CollisionHelper;
 
 public class BlockChoppingBoard extends BlockFurnitureTile
 {

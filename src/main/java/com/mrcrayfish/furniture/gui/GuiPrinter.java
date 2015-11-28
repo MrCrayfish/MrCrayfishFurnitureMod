@@ -17,16 +17,16 @@
  */
 package com.mrcrayfish.furniture.gui;
 
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.ResourceLocation;
-
 import java.util.Arrays;
 
 import org.lwjgl.opengl.GL11;
 
 import com.mrcrayfish.furniture.gui.containers.ContainerPrinter;
 import com.mrcrayfish.furniture.tileentity.TileEntityPrinter;
+
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ResourceLocation;
 
 public class GuiPrinter extends GuiContainer
 {

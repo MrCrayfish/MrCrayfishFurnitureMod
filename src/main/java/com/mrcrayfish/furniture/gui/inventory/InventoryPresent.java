@@ -19,14 +19,14 @@ package com.mrcrayfish.furniture.gui.inventory;
 
 import java.util.UUID;
 
+import com.mrcrayfish.furniture.items.IMail;
+import com.mrcrayfish.furniture.util.NBTHelper;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-
-import com.mrcrayfish.furniture.items.IMail;
-import com.mrcrayfish.furniture.util.NBTHelper;
 
 public class InventoryPresent extends InventoryBasic
 {

@@ -20,10 +20,18 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Random;
 
+import com.mrcrayfish.furniture.entity.EntitySittableBlock;
+import com.mrcrayfish.furniture.init.FurnitureAchievements;
+import com.mrcrayfish.furniture.init.FurnitureBlocks;
+import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.tileentity.TileEntityCouch;
+import com.mrcrayfish.furniture.util.CollisionHelper;
+import com.mrcrayfish.furniture.util.SittableUtil;
+import com.mrcrayfish.furniture.util.StateHelper;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
@@ -43,15 +51,6 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import com.mrcrayfish.furniture.entity.EntitySittableBlock;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
-import com.mrcrayfish.furniture.init.FurnitureBlocks;
-import com.mrcrayfish.furniture.init.FurnitureItems;
-import com.mrcrayfish.furniture.tileentity.TileEntityCouch;
-import com.mrcrayfish.furniture.util.CollisionHelper;
-import com.mrcrayfish.furniture.util.SittableUtil;
-import com.mrcrayfish.furniture.util.StateHelper;
 
 public abstract class BlockCouch extends BlockFurnitureTile
 {

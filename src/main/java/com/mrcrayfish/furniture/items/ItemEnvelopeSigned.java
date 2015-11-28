@@ -19,6 +19,13 @@ package com.mrcrayfish.furniture.items;
 
 import java.util.List;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.gui.inventory.InventoryEnvelope;
+import com.mrcrayfish.furniture.init.FurnitureAchievements;
+import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
+import com.mrcrayfish.furniture.util.NBTHelper;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -34,13 +41,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.gui.inventory.InventoryEnvelope;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
-import com.mrcrayfish.furniture.init.FurnitureItems;
-import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
-import com.mrcrayfish.furniture.util.NBTHelper;
 
 public class ItemEnvelopeSigned extends Item implements IMail
 {

@@ -19,6 +19,9 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.Random;
 
+import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.util.StateHelper;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -33,9 +36,6 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import com.mrcrayfish.furniture.init.FurnitureItems;
-import com.mrcrayfish.furniture.util.StateHelper;
 
 public class BlockCounter extends BlockFurniture
 {

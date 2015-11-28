@@ -2,6 +2,9 @@ package com.mrcrayfish.furniture.render.tileentity;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mrcrayfish.furniture.init.FurnitureBlocks;
+import com.mrcrayfish.furniture.tileentity.TileEntityTree;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
@@ -10,9 +13,6 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-
-import com.mrcrayfish.furniture.init.FurnitureBlocks;
-import com.mrcrayfish.furniture.tileentity.TileEntityTree;
 
 public class TreeRenderer extends TileEntitySpecialRenderer
 {

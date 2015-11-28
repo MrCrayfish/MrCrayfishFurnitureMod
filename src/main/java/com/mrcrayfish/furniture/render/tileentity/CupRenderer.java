@@ -17,13 +17,13 @@
  */
 package com.mrcrayfish.furniture.render.tileentity;
 
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
-
 import org.lwjgl.opengl.GL11;
 
 import com.mrcrayfish.furniture.tileentity.TileEntityCup;
+
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.tileentity.TileEntity;
 
 public class CupRenderer extends TileEntitySpecialRenderer
 {

@@ -17,12 +17,12 @@
  */
 package com.mrcrayfish.furniture.gui.slots;
 
+import com.mrcrayfish.furniture.gui.inventory.InventoryEnvelope;
+import com.mrcrayfish.furniture.items.IMail;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-
-import com.mrcrayfish.furniture.gui.inventory.InventoryEnvelope;
-import com.mrcrayfish.furniture.items.IMail;
 
 public class SlotEnvelope extends Slot
 {

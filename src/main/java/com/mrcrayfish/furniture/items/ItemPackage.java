@@ -17,6 +17,10 @@
  */
 package com.mrcrayfish.furniture.items;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.gui.inventory.InventoryPackage;
+import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -26,10 +30,6 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
-
-import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.gui.inventory.InventoryPackage;
-import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
 
 public class ItemPackage extends Item implements IMail
 {

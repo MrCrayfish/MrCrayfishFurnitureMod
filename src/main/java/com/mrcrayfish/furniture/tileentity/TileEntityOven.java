@@ -19,6 +19,11 @@ package com.mrcrayfish.furniture.tileentity;
 
 import java.util.Random;
 
+import com.mrcrayfish.furniture.api.RecipeAPI;
+import com.mrcrayfish.furniture.api.RecipeData;
+import com.mrcrayfish.furniture.api.Recipes;
+import com.mrcrayfish.furniture.gui.containers.ContainerOven;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -30,7 +35,6 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumFacing;
@@ -38,13 +42,6 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.IChatComponent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import com.mrcrayfish.furniture.api.RecipeAPI;
-import com.mrcrayfish.furniture.api.RecipeData;
-import com.mrcrayfish.furniture.api.Recipes;
-import com.mrcrayfish.furniture.gui.containers.ContainerDishwasher;
-import com.mrcrayfish.furniture.gui.containers.ContainerOven;
-import com.mrcrayfish.furniture.util.ParticleSpawner;
 
 public class TileEntityOven extends TileEntityLockable implements ISidedInventory, IUpdatePlayerListBox
 {

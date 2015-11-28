@@ -6,6 +6,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.lwjgl.BufferUtils;
+import org.lwjgl.opengl.GL11;
+
+import com.mrcrayfish.furniture.MirrorRenderGlobal;
+import com.mrcrayfish.furniture.blocks.BlockMirror;
+import com.mrcrayfish.furniture.entity.EntityMirror;
+import com.mrcrayfish.furniture.handler.ConfigurationHandler;
+import com.mrcrayfish.furniture.proxy.ClientProxy;
+import com.mrcrayfish.furniture.tileentity.TileEntityMirror;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -19,16 +29,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-
-import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
-
-import com.mrcrayfish.furniture.MirrorRenderGlobal;
-import com.mrcrayfish.furniture.blocks.BlockMirror;
-import com.mrcrayfish.furniture.entity.EntityMirror;
-import com.mrcrayfish.furniture.handler.ConfigurationHandler;
-import com.mrcrayfish.furniture.proxy.ClientProxy;
-import com.mrcrayfish.furniture.tileentity.TileEntityMirror;
 
 public class MirrorRenderer extends TileEntitySpecialRenderer
 {

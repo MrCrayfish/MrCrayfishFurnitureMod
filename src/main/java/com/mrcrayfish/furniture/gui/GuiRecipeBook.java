@@ -23,6 +23,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+
+import com.mrcrayfish.furniture.api.RecipeData;
+import com.mrcrayfish.furniture.api.Recipes;
+import com.mrcrayfish.furniture.init.FurnitureItems;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -33,13 +40,6 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
-
-import com.mrcrayfish.furniture.api.RecipeData;
-import com.mrcrayfish.furniture.api.Recipes;
-import com.mrcrayfish.furniture.init.FurnitureItems;
 
 public class GuiRecipeBook extends GuiScreen
 {

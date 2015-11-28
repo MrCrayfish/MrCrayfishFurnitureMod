@@ -17,13 +17,13 @@
  */
 package com.mrcrayfish.furniture.gui.containers;
 
+import com.mrcrayfish.furniture.gui.slots.SlotPackage;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-
-import com.mrcrayfish.furniture.gui.slots.SlotPackage;
 
 public class ContainerPackage extends Container
 {

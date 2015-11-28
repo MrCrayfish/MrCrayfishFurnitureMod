@@ -17,16 +17,16 @@
  */
 package com.mrcrayfish.furniture.render.tileentity;
 
+import org.lwjgl.opengl.GL11;
+
+import com.mrcrayfish.furniture.tileentity.TileEntityPlate;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.tileentity.TileEntity;
-
-import org.lwjgl.opengl.GL11;
-
-import com.mrcrayfish.furniture.tileentity.TileEntityPlate;
 
 public class PlateRenderer extends TileEntitySpecialRenderer
 {

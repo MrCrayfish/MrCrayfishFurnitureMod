@@ -17,18 +17,16 @@
  */
 package com.mrcrayfish.furniture.render.tileentity;
 
+import org.lwjgl.opengl.GL11;
+
+import com.mrcrayfish.furniture.blocks.BlockMicrowave;
+import com.mrcrayfish.furniture.tileentity.TileEntityMicrowave;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.tileentity.TileEntity;
-
-import org.lwjgl.opengl.GL11;
-
-import com.mrcrayfish.furniture.blocks.BlockMicrowave;
-import com.mrcrayfish.furniture.blocks.BlockWashingMachine;
-import com.mrcrayfish.furniture.tileentity.TileEntityMicrowave;
-import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
 
 public class MicrowaveRenderer extends TileEntitySpecialRenderer
 {

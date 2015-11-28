@@ -1,5 +1,8 @@
 package com.mrcrayfish.furniture.entity;
 
+import com.mrcrayfish.furniture.blocks.BlockMirror;
+import com.mrcrayfish.furniture.render.tileentity.MirrorRenderer;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
@@ -7,9 +10,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import com.mrcrayfish.furniture.blocks.BlockMirror;
-import com.mrcrayfish.furniture.render.tileentity.MirrorRenderer;
 
 @SideOnly(Side.CLIENT)
 public class EntityMirror extends Entity

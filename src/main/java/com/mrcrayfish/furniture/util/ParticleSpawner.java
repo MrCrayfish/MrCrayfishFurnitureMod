@@ -17,12 +17,11 @@
  */
 package com.mrcrayfish.furniture.util;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
-import net.minecraft.client.particle.EntitySpellParticleFX;
-
 import com.mrcrayfish.furniture.entity.EnittySteamFX;
 import com.mrcrayfish.furniture.entity.EntityShowerFX;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.particle.EntityFX;
 
 public class ParticleSpawner
 {

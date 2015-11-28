@@ -17,6 +17,8 @@
  */
 package com.mrcrayfish.furniture.network.message;
 
+import com.mrcrayfish.furniture.tileentity.TileEntityComputer;
+
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
@@ -24,8 +26,6 @@ import net.minecraft.util.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-
-import com.mrcrayfish.furniture.tileentity.TileEntityComputer;
 
 //Server Side
 public class MessageMineBayClosed implements IMessage, IMessageHandler<MessageMineBayClosed, IMessage>

@@ -23,7 +23,6 @@ import java.util.Random;
 import com.mrcrayfish.furniture.api.RecipeAPI;
 import com.mrcrayfish.furniture.api.RecipeData;
 import com.mrcrayfish.furniture.init.FurnitureItems;
-import com.mrcrayfish.furniture.tileentity.TileEntityStereo;
 import com.mrcrayfish.furniture.tileentity.TileEntityToaster;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 

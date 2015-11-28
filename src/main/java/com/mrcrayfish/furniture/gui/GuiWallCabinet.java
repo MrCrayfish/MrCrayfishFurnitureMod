@@ -17,13 +17,13 @@
  */
 package com.mrcrayfish.furniture.gui;
 
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
 import com.mrcrayfish.furniture.gui.containers.ContainerWallCabinet;
+
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.util.ResourceLocation;
 
 public class GuiWallCabinet extends GuiContainer
 {

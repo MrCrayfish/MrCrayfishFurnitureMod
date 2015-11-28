@@ -17,6 +17,10 @@
  */
 package com.mrcrayfish.furniture.tileentity;
 
+import com.mrcrayfish.furniture.api.RecipeAPI;
+import com.mrcrayfish.furniture.api.RecipeData;
+import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -26,10 +30,6 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
-
-import com.mrcrayfish.furniture.api.RecipeAPI;
-import com.mrcrayfish.furniture.api.RecipeData;
-import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 
 public class TileEntityToaster extends TileEntity implements IUpdatePlayerListBox, ISimpleInventory
 {

@@ -17,11 +17,11 @@
  */
 package com.mrcrayfish.furniture.gui.slots;
 
+import com.mrcrayfish.furniture.tileentity.TileEntityMicrowave;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-
-import com.mrcrayfish.furniture.tileentity.TileEntityMicrowave;
 
 public class SlotMicrowave extends Slot
 {

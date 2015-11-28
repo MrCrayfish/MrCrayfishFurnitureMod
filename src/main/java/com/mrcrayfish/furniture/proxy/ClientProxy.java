@@ -17,16 +17,6 @@
  */
 package com.mrcrayfish.furniture.proxy;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.world.WorldEvent;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.render.tileentity.BlenderRenderer;
 import com.mrcrayfish.furniture.render.tileentity.ChoppingBoardRenderer;
@@ -50,6 +40,16 @@ import com.mrcrayfish.furniture.tileentity.TileEntityPlate;
 import com.mrcrayfish.furniture.tileentity.TileEntityToaster;
 import com.mrcrayfish.furniture.tileentity.TileEntityTree;
 import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ClientProxy extends CommonProxy
 {

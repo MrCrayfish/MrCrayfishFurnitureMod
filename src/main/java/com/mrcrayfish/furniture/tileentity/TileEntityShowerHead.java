@@ -20,6 +20,9 @@ package com.mrcrayfish.furniture.tileentity;
 import java.util.List;
 import java.util.Random;
 
+import com.mrcrayfish.furniture.init.FurnitureAchievements;
+import com.mrcrayfish.furniture.util.ParticleSpawner;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemArmor;
@@ -28,9 +31,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.gui.IUpdatePlayerListBox;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
-import com.mrcrayfish.furniture.util.ParticleSpawner;
 
 public class TileEntityShowerHead extends TileEntity implements IUpdatePlayerListBox
 {

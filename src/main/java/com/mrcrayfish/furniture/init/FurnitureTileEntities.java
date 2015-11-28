@@ -17,8 +17,6 @@
  */
 package com.mrcrayfish.furniture.init;
 
-import net.minecraftforge.fml.common.registry.GameRegistry;
-
 import com.mrcrayfish.furniture.tileentity.TileEntityBath;
 import com.mrcrayfish.furniture.tileentity.TileEntityBedsideCabinet;
 import com.mrcrayfish.furniture.tileentity.TileEntityBin;
@@ -47,6 +45,8 @@ import com.mrcrayfish.furniture.tileentity.TileEntityToaster;
 import com.mrcrayfish.furniture.tileentity.TileEntityTree;
 import com.mrcrayfish.furniture.tileentity.TileEntityWallCabinet;
 import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
+
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class FurnitureTileEntities
 {

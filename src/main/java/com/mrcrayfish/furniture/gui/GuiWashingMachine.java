@@ -17,13 +17,6 @@
  */
 package com.mrcrayfish.furniture.gui;
 
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.ResourceLocation;
-
 import java.util.Arrays;
 
 import org.lwjgl.input.Keyboard;
@@ -33,6 +26,13 @@ import com.mrcrayfish.furniture.gui.containers.ContainerWashingMachine;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageWashingMachine;
 import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
+
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ResourceLocation;
 
 public class GuiWashingMachine extends GuiContainer
 {

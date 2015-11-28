@@ -17,8 +17,6 @@
  */
 package com.mrcrayfish.furniture.tileentity;
 
-import java.util.UUID;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;

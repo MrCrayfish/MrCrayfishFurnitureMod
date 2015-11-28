@@ -17,18 +17,16 @@
  */
 package com.mrcrayfish.furniture.render.tileentity;
 
+import org.lwjgl.opengl.GL11;
+
+import com.mrcrayfish.furniture.tileentity.TileEntityToaster;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-
-import org.lwjgl.opengl.GL11;
-
-import com.mrcrayfish.furniture.tileentity.TileEntityToaster;
 
 public class ToastRenderer extends TileEntitySpecialRenderer
 {

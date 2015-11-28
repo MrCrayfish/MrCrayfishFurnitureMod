@@ -17,6 +17,11 @@
  */
 package com.mrcrayfish.furniture.render.tileentity;
 
+import org.lwjgl.opengl.GL11;
+
+import com.mrcrayfish.furniture.blocks.BlockChoppingBoard;
+import com.mrcrayfish.furniture.tileentity.TileEntityChoppingBoard;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
@@ -24,11 +29,6 @@ import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.tileentity.TileEntity;
-
-import org.lwjgl.opengl.GL11;
-
-import com.mrcrayfish.furniture.blocks.BlockChoppingBoard;
-import com.mrcrayfish.furniture.tileentity.TileEntityChoppingBoard;
 
 public class ChoppingBoardRenderer extends TileEntitySpecialRenderer
 {

@@ -17,11 +17,11 @@
  */
 package com.mrcrayfish.furniture.gui;
 
+import com.mrcrayfish.furniture.handler.ConfigurationHandler;
+
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.fml.client.config.GuiConfig;
-
-import com.mrcrayfish.furniture.handler.ConfigurationHandler;
 
 public class GuiFurnitureConfig extends GuiConfig
 {

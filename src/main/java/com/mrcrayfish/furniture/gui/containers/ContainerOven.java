@@ -17,17 +17,16 @@
  */
 package com.mrcrayfish.furniture.gui.containers;
 
+import com.mrcrayfish.furniture.api.RecipeAPI;
+import com.mrcrayfish.furniture.api.RecipeData;
+import com.mrcrayfish.furniture.gui.slots.SlotOven;
+import com.mrcrayfish.furniture.init.FurnitureAchievements;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-
-import com.mrcrayfish.furniture.api.RecipeAPI;
-import com.mrcrayfish.furniture.api.RecipeData;
-import com.mrcrayfish.furniture.gui.slots.SlotOven;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
-import com.mrcrayfish.furniture.tileentity.TileEntityOven;
 
 public class ContainerOven extends Container
 {

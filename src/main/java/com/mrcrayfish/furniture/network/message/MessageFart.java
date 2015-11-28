@@ -17,17 +17,16 @@
  */
 package com.mrcrayfish.furniture.network.message;
 
-import io.netty.buffer.ByteBuf;
-
 import java.util.Random;
 
+import com.mrcrayfish.furniture.entity.EntitySittableBlock;
+import com.mrcrayfish.furniture.init.FurnitureAchievements;
+
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-
-import com.mrcrayfish.furniture.entity.EntitySittableBlock;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 
 //Server Packet
 public class MessageFart implements IMessage, IMessageHandler<MessageFart, IMessage>

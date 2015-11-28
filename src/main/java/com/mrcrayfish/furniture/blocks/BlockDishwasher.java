@@ -22,7 +22,6 @@ import java.util.Random;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureItems;
-import com.mrcrayfish.furniture.tileentity.TileEntityBedsideCabinet;
 import com.mrcrayfish.furniture.tileentity.TileEntityDishwasher;
 
 import net.minecraft.block.Block;
@@ -36,7 +35,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockDishwasher extends BlockFurnitureTile

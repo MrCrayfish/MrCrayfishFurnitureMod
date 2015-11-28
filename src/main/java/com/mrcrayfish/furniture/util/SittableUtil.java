@@ -2,12 +2,11 @@ package com.mrcrayfish.furniture.util;
 
 import java.util.List;
 
+import com.mrcrayfish.furniture.entity.EntitySittableBlock;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-
-import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 
 public class SittableUtil {
 	

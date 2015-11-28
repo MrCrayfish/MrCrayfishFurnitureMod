@@ -17,11 +17,11 @@
  */
 package com.mrcrayfish.furniture.gui.slots;
 
+import com.mrcrayfish.furniture.items.IMail;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-
-import com.mrcrayfish.furniture.items.IMail;
 
 public class SlotMail extends Slot
 {

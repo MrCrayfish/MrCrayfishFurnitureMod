@@ -17,22 +17,16 @@
  */
 package com.mrcrayfish.furniture.render.tileentity;
 
+import org.lwjgl.opengl.GL11;
+
+import com.mrcrayfish.furniture.blocks.BlockWashingMachine;
+import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.tileentity.TileEntity;
-
-import org.lwjgl.opengl.GL11;
-
-import com.mrcrayfish.furniture.blocks.BlockChoppingBoard;
-import com.mrcrayfish.furniture.blocks.BlockWashingMachine;
-import com.mrcrayfish.furniture.network.PacketHandler;
-import com.mrcrayfish.furniture.network.message.MessageUpdateFields;
-import com.mrcrayfish.furniture.tileentity.TileEntityChoppingBoard;
-import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
 
 public class WashingMachineRenderer extends TileEntitySpecialRenderer
 {

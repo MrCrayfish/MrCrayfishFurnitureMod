@@ -23,7 +23,6 @@ import java.util.Random;
 
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureItems;
-import com.mrcrayfish.furniture.tileentity.TileEntityPrinter;
 import com.mrcrayfish.furniture.tileentity.TileEntityStereo;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 

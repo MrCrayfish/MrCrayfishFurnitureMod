@@ -2,7 +2,6 @@ package com.mrcrayfish.furniture.items;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemSword;
 
 public class ItemKnife extends ItemSword {

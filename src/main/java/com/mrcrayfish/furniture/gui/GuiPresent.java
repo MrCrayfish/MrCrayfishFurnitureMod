@@ -17,6 +17,16 @@
  */
 package com.mrcrayfish.furniture.gui;
 
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+
+import com.mrcrayfish.furniture.gui.containers.ContainerPresent;
+import com.mrcrayfish.furniture.gui.inventory.InventoryPresent;
+import com.mrcrayfish.furniture.items.ItemPresent;
+import com.mrcrayfish.furniture.network.PacketHandler;
+import com.mrcrayfish.furniture.network.message.MessagePresentContents;
+import com.mrcrayfish.furniture.util.NBTHelper;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -27,17 +37,6 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.ResourceLocation;
-
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
-
-import com.mrcrayfish.furniture.gui.containers.ContainerPresent;
-import com.mrcrayfish.furniture.gui.inventory.InventoryPresent;
-import com.mrcrayfish.furniture.init.FurnitureItems;
-import com.mrcrayfish.furniture.items.ItemPresent;
-import com.mrcrayfish.furniture.network.PacketHandler;
-import com.mrcrayfish.furniture.network.message.MessagePresentContents;
-import com.mrcrayfish.furniture.util.NBTHelper;
 
 public class GuiPresent extends GuiContainer
 {

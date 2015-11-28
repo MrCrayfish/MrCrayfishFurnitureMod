@@ -17,18 +17,14 @@
  */
 package com.mrcrayfish.furniture.network.message;
 
+import com.mrcrayfish.furniture.blocks.tv.Channels;
+
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-
-import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.blocks.tv.Channels;
-import com.mrcrayfish.furniture.tileentity.TileEntityTV;
 
 public class MessageTVClient implements IMessage, IMessageHandler<MessageTVClient, IMessage>
 {

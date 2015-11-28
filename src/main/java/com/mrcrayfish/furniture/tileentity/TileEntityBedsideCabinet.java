@@ -18,7 +18,6 @@
 package com.mrcrayfish.furniture.tileentity;
 
 import com.mrcrayfish.furniture.gui.containers.ContainerBedsideCabinet;
-import com.mrcrayfish.furniture.gui.containers.ContainerCabinet;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -27,7 +26,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IChatComponent;

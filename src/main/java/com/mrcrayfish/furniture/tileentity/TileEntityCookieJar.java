@@ -17,7 +17,6 @@
  */
 package com.mrcrayfish.furniture.tileentity;
 
-import com.mrcrayfish.furniture.blocks.BlockCookieJar;
 import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 
 import net.minecraft.init.Items;

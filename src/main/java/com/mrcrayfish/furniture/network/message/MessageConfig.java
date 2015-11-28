@@ -17,18 +17,17 @@
  */
 package com.mrcrayfish.furniture.network.message;
 
-import io.netty.buffer.ByteBuf;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mrcrayfish.furniture.api.RecipeRegistryRemote;
+import com.mrcrayfish.furniture.api.Recipes;
+
+import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-
-import com.mrcrayfish.furniture.api.RecipeRegistryRemote;
-import com.mrcrayfish.furniture.api.Recipes;
 
 public class MessageConfig implements IMessage, IMessageHandler<MessageConfig, IMessage>
 {

@@ -1,20 +1,15 @@
 package com.mrcrayfish.furniture.render.tileentity;
 
+import org.lwjgl.opengl.GL11;
+
+import com.mrcrayfish.furniture.tileentity.TileEntityOven;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-
-import org.lwjgl.opengl.GL11;
-
-import com.mrcrayfish.furniture.blocks.BlockOven;
-import com.mrcrayfish.furniture.init.FurnitureBlocks;
-import com.mrcrayfish.furniture.network.PacketHandler;
-import com.mrcrayfish.furniture.network.message.MessageUpdateFields;
-import com.mrcrayfish.furniture.tileentity.TileEntityOven;
 
 public class OvenRenderer extends TileEntitySpecialRenderer
 {

@@ -19,12 +19,12 @@ package com.mrcrayfish.furniture.handler;
 
 import java.io.File;
 
+import com.mrcrayfish.furniture.api.RecipeRegistry;
+import com.mrcrayfish.furniture.api.Recipes;
+
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-import com.mrcrayfish.furniture.api.RecipeRegistry;
-import com.mrcrayfish.furniture.api.Recipes;
 
 public class ConfigurationHandler
 {

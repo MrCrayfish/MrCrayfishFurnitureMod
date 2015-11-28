@@ -19,9 +19,9 @@ package com.mrcrayfish.furniture.api;
 
 import java.util.ArrayList;
 
-import net.minecraft.item.ItemStack;
-
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+
+import net.minecraft.item.ItemStack;
 
 public class Recipes
 {

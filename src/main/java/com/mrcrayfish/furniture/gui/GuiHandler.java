@@ -17,13 +17,6 @@
  */
 package com.mrcrayfish.furniture.gui;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.common.network.IGuiHandler;
-
 import com.mrcrayfish.furniture.gui.containers.ContainerBedsideCabinet;
 import com.mrcrayfish.furniture.gui.containers.ContainerBin;
 import com.mrcrayfish.furniture.gui.containers.ContainerCabinet;
@@ -59,6 +52,13 @@ import com.mrcrayfish.furniture.tileentity.TileEntityOven;
 import com.mrcrayfish.furniture.tileentity.TileEntityPrinter;
 import com.mrcrayfish.furniture.tileentity.TileEntityWallCabinet;
 import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler
 {

@@ -1,14 +1,14 @@
 package com.mrcrayfish.furniture.tileentity;
 
+import com.mrcrayfish.furniture.blocks.BlockMirror;
+import com.mrcrayfish.furniture.entity.EntityMirror;
+import com.mrcrayfish.furniture.render.tileentity.MirrorRenderer;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import com.mrcrayfish.furniture.blocks.BlockMirror;
-import com.mrcrayfish.furniture.entity.EntityMirror;
-import com.mrcrayfish.furniture.render.tileentity.MirrorRenderer;
 
 public class TileEntityMirror extends TileEntity
 {

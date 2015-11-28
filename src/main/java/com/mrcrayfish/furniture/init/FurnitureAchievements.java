@@ -17,9 +17,6 @@
  */
 package com.mrcrayfish.furniture.init;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

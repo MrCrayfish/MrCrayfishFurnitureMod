@@ -19,6 +19,9 @@ package com.mrcrayfish.furniture.api;
 
 import java.util.ArrayList;
 
+import com.mrcrayfish.furniture.handler.ConfigurationHandler;
+import com.mrcrayfish.furniture.init.FurnitureItems;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -26,10 +29,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumChatFormatting;
-
-import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.handler.ConfigurationHandler;
-import com.mrcrayfish.furniture.init.FurnitureItems;
 
 public class RecipeRegistry extends RecipeAPI
 {

@@ -19,13 +19,13 @@ package com.mrcrayfish.furniture.util;
 
 import java.util.Random;
 
+import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-
-import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 
 public class InventoryUtil
 {

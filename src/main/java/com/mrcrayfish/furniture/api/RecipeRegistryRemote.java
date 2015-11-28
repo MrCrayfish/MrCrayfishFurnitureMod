@@ -19,11 +19,11 @@ package com.mrcrayfish.furniture.api;
 
 import java.util.ArrayList;
 
+import com.mrcrayfish.furniture.handler.ConfigurationHandler;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
-
-import com.mrcrayfish.furniture.handler.ConfigurationHandler;
 
 public class RecipeRegistryRemote extends RecipeAPI
 {

@@ -17,6 +17,11 @@
  */
 package com.mrcrayfish.furniture.gui.containers;
 
+import com.mrcrayfish.furniture.api.RecipeAPI;
+import com.mrcrayfish.furniture.api.RecipeData;
+import com.mrcrayfish.furniture.gui.slots.SlotTool;
+import com.mrcrayfish.furniture.init.FurnitureItems;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -29,12 +34,6 @@ import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-
-import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.api.RecipeAPI;
-import com.mrcrayfish.furniture.api.RecipeData;
-import com.mrcrayfish.furniture.gui.slots.SlotTool;
-import com.mrcrayfish.furniture.init.FurnitureItems;
 
 public class ContainerDishwasher extends Container
 {

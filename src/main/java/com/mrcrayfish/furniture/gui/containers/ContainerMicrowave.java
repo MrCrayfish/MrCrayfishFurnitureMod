@@ -17,15 +17,14 @@
  */
 package com.mrcrayfish.furniture.gui.containers;
 
+import com.mrcrayfish.furniture.gui.slots.SlotMicrowave;
+import com.mrcrayfish.furniture.tileentity.TileEntityMicrowave;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-
-import com.mrcrayfish.furniture.gui.slots.SlotMicrowave;
-import com.mrcrayfish.furniture.tileentity.TileEntityMicrowave;
 
 public class ContainerMicrowave extends Container
 {

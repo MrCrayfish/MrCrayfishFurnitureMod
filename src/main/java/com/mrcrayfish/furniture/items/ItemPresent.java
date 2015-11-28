@@ -17,8 +17,14 @@
  */
 package com.mrcrayfish.furniture.items;
 
-import java.awt.Color;
 import java.util.List;
+
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.blocks.BlockPresent;
+import com.mrcrayfish.furniture.gui.inventory.InventoryPresent;
+import com.mrcrayfish.furniture.init.FurnitureBlocks;
+import com.mrcrayfish.furniture.tileentity.TileEntityPresent;
+import com.mrcrayfish.furniture.util.NBTHelper;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -37,16 +43,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.blocks.BlockPresent;
-import com.mrcrayfish.furniture.gui.inventory.InventoryPresent;
-import com.mrcrayfish.furniture.init.FurnitureBlocks;
-import com.mrcrayfish.furniture.init.FurnitureItems;
-import com.mrcrayfish.furniture.network.PacketHandler;
-import com.mrcrayfish.furniture.network.message.MessagePresent;
-import com.mrcrayfish.furniture.tileentity.TileEntityPresent;
-import com.mrcrayfish.furniture.util.NBTHelper;
 
 public class ItemPresent extends Item implements IMail
 {

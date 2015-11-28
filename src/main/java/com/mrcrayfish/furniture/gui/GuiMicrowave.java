@@ -17,11 +17,6 @@
  */
 package com.mrcrayfish.furniture.gui;
 
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
@@ -29,6 +24,11 @@ import com.mrcrayfish.furniture.gui.containers.ContainerMicrowave;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageMicrowave;
 import com.mrcrayfish.furniture.tileentity.TileEntityMicrowave;
+
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ResourceLocation;
 
 public class GuiMicrowave extends GuiContainer
 {

@@ -17,10 +17,8 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
-import java.lang.reflect.Field;
 import java.util.Random;
 
-import com.mrcrayfish.furniture.TVSound;
 import com.mrcrayfish.furniture.blocks.tv.Channel;
 import com.mrcrayfish.furniture.blocks.tv.Channels;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
@@ -28,8 +26,6 @@ import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageTVClient;
 import com.mrcrayfish.furniture.tileentity.TileEntityTV;
-import com.mrcrayfish.furniture.util.ReflectionUtil;
-import com.mrcrayfish.furniture.util.SittableUtil;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -37,8 +33,6 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -47,7 +41,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;

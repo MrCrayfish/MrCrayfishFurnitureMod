@@ -19,14 +19,13 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
 
+import com.mrcrayfish.furniture.entity.EntitySittableBlock;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-
-import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 
 public class BlockSittable extends Block
 {
