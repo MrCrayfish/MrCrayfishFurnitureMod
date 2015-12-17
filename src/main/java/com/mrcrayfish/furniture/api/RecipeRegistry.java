@@ -1156,6 +1156,9 @@ public class RecipeRegistry extends RecipeAPI
 			RecipeRegistry.getInstance().registerBlenderRecipe("Cookies and Cream Milkshake", 4, new ItemStack[] { new ItemStack(Items.cookie, 2), new ItemStack(Items.milk_bucket) }, new int[] { 255, 214, 164 });
 		if (ConfigurationHandler.blen_4)
 			RecipeRegistry.getInstance().registerBlenderRecipe("Energy Drink", 8, new ItemStack[] { new ItemStack(Items.redstone, 8), new ItemStack(Items.fire_charge, 1), new ItemStack(Items.sugar, 16) }, new int[] { 92, 23, 8 });
+			
+			RecipeRegistry.getInstance().registerBlenderRecipe("Egg Nog", 5, new ItemStack[] { new ItemStack(Items.egg, 4), new ItemStack(Items.milk_bucket, 1), new ItemStack(Items.sugar, 2)},  new int[] { 255, 234, 178 });
+		
 
 		if (ConfigurationHandler.chop_1)
 			RecipeRegistry.getInstance().registerChoppingBoardRecipe(new ItemStack(Items.bread), new ItemStack(FurnitureItems.itemBreadSlice, 6));

@@ -27,8 +27,10 @@ import com.mrcrayfish.furniture.blocks.BlockBlender;
 import com.mrcrayfish.furniture.blocks.BlockBlinds;
 import com.mrcrayfish.furniture.blocks.BlockCabinet;
 import com.mrcrayfish.furniture.blocks.BlockCabinetKitchen;
+import com.mrcrayfish.furniture.blocks.BlockCandle;
 import com.mrcrayfish.furniture.blocks.BlockCeilingLight;
 import com.mrcrayfish.furniture.blocks.BlockChair;
+import com.mrcrayfish.furniture.blocks.BlockChimney;
 import com.mrcrayfish.furniture.blocks.BlockChoppingBoard;
 import com.mrcrayfish.furniture.blocks.BlockCoffeeTable;
 import com.mrcrayfish.furniture.blocks.BlockComputer;
@@ -43,13 +45,16 @@ import com.mrcrayfish.furniture.blocks.BlockCurtainsOpen;
 import com.mrcrayfish.furniture.blocks.BlockDishwasher;
 import com.mrcrayfish.furniture.blocks.BlockDoorBell;
 import com.mrcrayfish.furniture.blocks.BlockElectricFence;
+import com.mrcrayfish.furniture.blocks.BlockFairyLight;
 import com.mrcrayfish.furniture.blocks.BlockFireAlarm;
 import com.mrcrayfish.furniture.blocks.BlockFreezer;
 import com.mrcrayfish.furniture.blocks.BlockFridge;
+import com.mrcrayfish.furniture.blocks.BlockGrandChair;
 import com.mrcrayfish.furniture.blocks.BlockHedge;
 import com.mrcrayfish.furniture.blocks.BlockLamp;
 import com.mrcrayfish.furniture.blocks.BlockLampOn;
 import com.mrcrayfish.furniture.blocks.BlockMailBox;
+import com.mrcrayfish.furniture.blocks.BlockMantelPiece;
 import com.mrcrayfish.furniture.blocks.BlockMicrowave;
 import com.mrcrayfish.furniture.blocks.BlockMirror;
 import com.mrcrayfish.furniture.blocks.BlockOven;
@@ -70,6 +75,7 @@ import com.mrcrayfish.furniture.blocks.BlockTree;
 import com.mrcrayfish.furniture.blocks.BlockWallCabinet;
 import com.mrcrayfish.furniture.blocks.BlockWashingMachine;
 import com.mrcrayfish.furniture.blocks.BlockWhiteFence;
+import com.mrcrayfish.furniture.blocks.BlockWreath;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -111,6 +117,13 @@ public class FurnitureBlocks
 
 	/** Christmas Update */
 	public static Block present, tree_bottom, tree_top, string;
+	public static Block mantel_piece, grand_chair_top, grand_chair_bottom, candle, chimney, toy_bear, wreath, fairy_light;
+	
+	//Sled
+	
+	//Fairy Light
+	
+	//Egg Nog - Eggs, Milk, Sugar
 	
 	/* Special */
 	public static Block mirror;
@@ -192,6 +205,14 @@ public class FurnitureBlocks
 		chopping_board = new BlockChoppingBoard(Material.wood).setUnlocalizedName("chopping_board");
 		bar_stool = new BlockBarStool(Material.wood).setUnlocalizedName("bar_stool");
 		mirror = new BlockMirror(Material.glass).setUnlocalizedName("mirror");
+		mantel_piece = new BlockMantelPiece(Material.rock).setUnlocalizedName("mantel_piece");
+		grand_chair_top = new BlockGrandChair(Material.wood).setUnlocalizedName("grand_chair_top");
+		grand_chair_bottom = new BlockGrandChair(Material.wood).setUnlocalizedName("grand_chair_bottom");
+		candle = new BlockCandle(Material.snow).setUnlocalizedName("candle");
+		chimney = new BlockChimney(Material.rock).setUnlocalizedName("chimney");
+		toy_bear = new Block(Material.cloth).setUnlocalizedName("toy_bear");
+		wreath = new BlockWreath(Material.cloth).setUnlocalizedName("wreath");
+		fairy_light = new BlockFairyLight(Material.glass).setUnlocalizedName("fairy_light");
 	}
 
 	public static void register()
@@ -265,5 +286,13 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(chopping_board, chopping_board.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(bar_stool, bar_stool.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(mirror, mirror.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(mantel_piece, mantel_piece.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(grand_chair_top, grand_chair_top.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(grand_chair_bottom, grand_chair_bottom.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(candle, candle.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(chimney, chimney.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(toy_bear, toy_bear.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(wreath, wreath.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(fairy_light, fairy_light.getUnlocalizedName().substring(5));
 	}
 }
