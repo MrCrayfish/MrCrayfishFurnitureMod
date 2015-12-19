@@ -25,6 +25,7 @@ import com.mrcrayfish.furniture.items.ItemEnvelopeSigned;
 import com.mrcrayfish.furniture.items.ItemGeneric;
 import com.mrcrayfish.furniture.items.ItemHammer;
 import com.mrcrayfish.furniture.items.ItemKnife;
+import com.mrcrayfish.furniture.items.ItemLog;
 import com.mrcrayfish.furniture.items.ItemPackage;
 import com.mrcrayfish.furniture.items.ItemPackageSigned;
 import com.mrcrayfish.furniture.items.ItemPlacer;
@@ -72,6 +73,9 @@ public class FurnitureItems
 	public static Item itemPlate, itemCookieJar, itemBarStool, itemChoppingBoard;
 	public static Item itemKnife, itemCup, itemDrink, itemSoap, itemSoapyWater, itemSuperSoapyWater;
 
+	/** Christmas Update */
+	public static Item itemLog;
+	
 	/** Food */
 	public static Item itemBreadSlice, itemToast;
 
@@ -161,6 +165,7 @@ public class FurnitureItems
 		itemMirror           = new ItemPlacer(FurnitureBlocks.mirror).setUnlocalizedName("item_mirror");
 		itemCrayfish 		 = new Item().setUnlocalizedName("item_crayfish").setMaxStackSize(1);
 		itemDollar 			 = new Item().setUnlocalizedName("item_money").setMaxStackSize(1);
+		itemLog              = new ItemLog(FurnitureBlocks.fire_pit).setUnlocalizedName("item_log").setMaxStackSize(16);
 	}
 
 	public static void registerItems()
@@ -242,6 +247,8 @@ public class FurnitureItems
 		GameRegistry.registerItem(itemMirror, itemMirror.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemCrayfish, itemCrayfish.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemDollar, itemDollar.getUnlocalizedName().substring(5));
+		
+		GameRegistry.registerItem(itemLog, itemLog.getUnlocalizedName().substring(5));
 	}
 
 	public static void registerRenders()
@@ -323,14 +330,15 @@ public class FurnitureItems
 		registerRender(itemCrayfish);
 		registerRender(itemDollar);
 		registerRender(itemPresent, 16);
+		registerRender(itemLog);
 	}
 
-	public static void registerRender(Item item)
+	private static void registerRender(Item item)
 	{
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
 	}
 
-	public static void registerRender(Item item, int maxMeta)
+	private static void registerRender(Item item, int maxMeta)
 	{
 		for (int i = 0; i < maxMeta; i++)
 		{
