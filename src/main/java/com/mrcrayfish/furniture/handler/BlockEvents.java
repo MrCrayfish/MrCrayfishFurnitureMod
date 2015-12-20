@@ -1,15 +1,7 @@
 package com.mrcrayfish.furniture.handler;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemFlintAndSteel;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-import com.mrcrayfish.furniture.blocks.BlockFirePit;
 
 public class BlockEvents {
 	

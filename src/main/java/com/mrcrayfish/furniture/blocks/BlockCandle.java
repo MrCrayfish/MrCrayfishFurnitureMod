@@ -2,7 +2,6 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.Random;
 
-import com.mrcrayfish.furniture.blocks.BlockChimney.ChimneyType;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
 import net.minecraft.block.Block;

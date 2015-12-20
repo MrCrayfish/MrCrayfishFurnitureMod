@@ -1,9 +1,7 @@
 package com.mrcrayfish.furniture.blocks;
 
-import java.util.List;
 import java.util.Random;
 
-import com.mrcrayfish.furniture.blocks.BlockChimney.ChimneyType;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 
@@ -13,7 +11,6 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
