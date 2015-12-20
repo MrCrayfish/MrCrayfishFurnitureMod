@@ -27,6 +27,7 @@ public class ItemLog extends ItemPlacer
 			int meta = block.getMetaFromState(state);
 			if(meta < 3)
 			{
+				world.playSoundEffect((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, Block.soundTypeWood.getPlaceSound(), 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
 				world.setBlockState(pos, state.withProperty(BlockFirePit.STAGE, meta + 1));
 				stack.stackSize--;
 				return true;

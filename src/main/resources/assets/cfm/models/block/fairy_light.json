@@ -5,7 +5,8 @@
         "1": "blocks/glass_green",
         "2": "blocks/glass_red",
 		"3": "cfm:blocks/lights_red",
-		"4": "cfm:blocks/lights_green"
+		"4": "cfm:blocks/lights_green",
+		"particle": "blocks/anvil_base"
     },
     "elements": [
         {

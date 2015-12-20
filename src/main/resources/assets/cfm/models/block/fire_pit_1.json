@@ -1,7 +1,8 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "0": "blocks/log_oak"
+        "0": "blocks/log_oak",
+		"particle": "blocks/log_oak"
     },
     "elements": [
         {

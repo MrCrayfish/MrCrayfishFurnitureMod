@@ -3,7 +3,8 @@
     "textures": {
         "0": "blocks/planks_spruce",
         "1": "blocks/wool_colored_red",
-        "2": "blocks/planks_big_oak"
+        "2": "blocks/planks_big_oak",
+		"particle": "blocks/planks_big_oak"
     },
     "elements": [
         {

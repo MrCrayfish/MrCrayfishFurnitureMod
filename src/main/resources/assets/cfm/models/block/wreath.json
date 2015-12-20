@@ -3,7 +3,8 @@
     "textures": {
         "0": "blocks/leaves_big_oak",
         "1": "blocks/wool_colored_red",
-        "2": "blocks/gold_block"
+        "2": "blocks/gold_block",
+		"particle": "blocks/leaves_big_oak"
     },
     "elements": [
         {

@@ -20,6 +20,8 @@ package com.mrcrayfish.furniture.handler;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
+import net.minecraft.item.ItemAxe;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 
@@ -39,6 +41,25 @@ public class CraftingHandler
 			for (int i = 0; i < 9; i++)
 			{
 				event.craftMatrix.setInventorySlotContents(i, null);
+			}
+		}
+		
+		if(event.crafting.getItem() == FurnitureItems.itemLog)
+		{
+			for (int i = 0; i < 9; i++)
+			{
+				ItemStack stack = event.craftMatrix.getStackInSlot(i);
+				if(stack != null)
+				{
+					if(stack.getItem() instanceof ItemAxe)
+					{
+						stack.damageItem(16, event.player);
+						if(!event.player.inventory.addItemStackToInventory(stack))
+						{
+							event.player.dropItem(stack, false, true);
+						}
+					}
+				}
 			}
 		}
 	}

@@ -33,6 +33,8 @@ public class BlockGrandChair extends BlockFurniture
 	public BlockGrandChair(Material materialIn) 
 	{
 		super(materialIn);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeWood);
 	}
 	
 	@Override
@@ -139,12 +141,12 @@ public class BlockGrandChair extends BlockFurniture
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return FurnitureItems.itemFridge;
+		return FurnitureItems.itemGrandChair;
 	}
 
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
-		return new ItemStack(FurnitureItems.itemFridge);
+		return new ItemStack(FurnitureItems.itemGrandChair);
 	}
 }

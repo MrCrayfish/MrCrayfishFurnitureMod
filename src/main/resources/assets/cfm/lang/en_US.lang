@@ -78,7 +78,13 @@ item.item_soap_water.name=Soapy Water
 item.item_super_soap_water.name=Super Soapy Water
 item.item_recipe_book.name=Recipe Book
 item.item_mirror.name=Mirror
-item.item_key.name=Key
+item.item_log.name=Chopped Log
+item.item_chimney.name=Chimney
+item.item_fairy_light.name=Fairy Light
+item.item_grand_chair.name=Grand Chair
+item.item_mantel_piece.name=Mantelpiece
+item.item_candle.name=Candle
+item.item_wreath.name=Wreath
 
 achievement.cfm_install=You've been installed!
 achievement.cfm_install.desc=Thank you for installing MrCrayfish's Furniture Mod

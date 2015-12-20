@@ -74,7 +74,7 @@ public class FurnitureItems
 	public static Item itemKnife, itemCup, itemDrink, itemSoap, itemSoapyWater, itemSuperSoapyWater;
 
 	/** Christmas Update */
-	public static Item itemLog;
+	public static Item itemLog, itemCandle, itemChimney, itemFairyLight, itemGrandChair, itemMantelpiece, itemWreath;
 	
 	/** Food */
 	public static Item itemBreadSlice, itemToast;
@@ -165,7 +165,13 @@ public class FurnitureItems
 		itemMirror           = new ItemPlacer(FurnitureBlocks.mirror).setUnlocalizedName("item_mirror");
 		itemCrayfish 		 = new Item().setUnlocalizedName("item_crayfish").setMaxStackSize(1);
 		itemDollar 			 = new Item().setUnlocalizedName("item_money").setMaxStackSize(1);
-		itemLog              = new ItemLog(FurnitureBlocks.fire_pit).setUnlocalizedName("item_log").setMaxStackSize(16);
+		itemLog              = new ItemLog(FurnitureBlocks.fire_pit_off).setUnlocalizedName("item_log").setMaxStackSize(16);
+		itemCandle           = new ItemPlacer(FurnitureBlocks.candle).setUnlocalizedName("item_candle");
+		itemChimney          = new ItemPlacer(FurnitureBlocks.chimney).setUnlocalizedName("item_chimney");
+		itemFairyLight       = new ItemPlacer(FurnitureBlocks.fairy_light).setUnlocalizedName("item_fairy_light");
+		itemGrandChair       = new ItemPlacer(FurnitureBlocks.grand_chair_bottom).setUnlocalizedName("item_grand_chair");
+		itemMantelpiece      = new ItemPlacer(FurnitureBlocks.mantel_piece).setUnlocalizedName("item_mantel_piece");
+		itemWreath           = new ItemPlacer(FurnitureBlocks.wreath).setUnlocalizedName("item_wreath");
 	}
 
 	public static void registerItems()
@@ -247,8 +253,13 @@ public class FurnitureItems
 		GameRegistry.registerItem(itemMirror, itemMirror.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemCrayfish, itemCrayfish.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemDollar, itemDollar.getUnlocalizedName().substring(5));
-		
 		GameRegistry.registerItem(itemLog, itemLog.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemCandle, itemCandle.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemChimney, itemChimney.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemFairyLight, itemFairyLight.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemGrandChair, itemGrandChair.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemMantelpiece, itemMantelpiece.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemWreath, itemWreath.getUnlocalizedName().substring(5));
 	}
 
 	public static void registerRenders()
@@ -331,6 +342,12 @@ public class FurnitureItems
 		registerRender(itemDollar);
 		registerRender(itemPresent, 16);
 		registerRender(itemLog);
+		registerRender(itemCandle); 
+		registerRender(itemChimney);
+		registerRender(itemFairyLight);
+		registerRender(itemGrandChair);
+		registerRender(itemMantelpiece);
+		registerRender(itemWreath);
 	}
 
 	private static void registerRender(Item item)

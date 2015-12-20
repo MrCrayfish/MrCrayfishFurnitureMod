@@ -47,7 +47,8 @@ import com.mrcrayfish.furniture.blocks.BlockDoorBell;
 import com.mrcrayfish.furniture.blocks.BlockElectricFence;
 import com.mrcrayfish.furniture.blocks.BlockFairyLight;
 import com.mrcrayfish.furniture.blocks.BlockFireAlarm;
-import com.mrcrayfish.furniture.blocks.BlockFirePit;
+import com.mrcrayfish.furniture.blocks.BlockFirePitOff;
+import com.mrcrayfish.furniture.blocks.BlockFirePitOn;
 import com.mrcrayfish.furniture.blocks.BlockFreezer;
 import com.mrcrayfish.furniture.blocks.BlockFridge;
 import com.mrcrayfish.furniture.blocks.BlockGrandChair;
@@ -65,7 +66,6 @@ import com.mrcrayfish.furniture.blocks.BlockPrinter;
 import com.mrcrayfish.furniture.blocks.BlockRangeHood;
 import com.mrcrayfish.furniture.blocks.BlockShower;
 import com.mrcrayfish.furniture.blocks.BlockShowerHead;
-import com.mrcrayfish.furniture.blocks.BlockStarLight;
 import com.mrcrayfish.furniture.blocks.BlockStereo;
 import com.mrcrayfish.furniture.blocks.BlockStonePath;
 import com.mrcrayfish.furniture.blocks.BlockTV;
@@ -119,7 +119,7 @@ public class FurnitureBlocks
 
 	/** Christmas Update */
 	public static Block present, tree_bottom, tree_top, string;
-	public static Block mantel_piece, grand_chair_top, grand_chair_bottom, candle, chimney, wreath, fairy_light, fire_pit;
+	public static Block mantel_piece, grand_chair_top, grand_chair_bottom, candle, chimney, wreath, fairy_light, fire_pit_off, fire_pit_on;
 	
 	//Sled
 	
@@ -206,11 +206,12 @@ public class FurnitureBlocks
 		mantel_piece = new BlockMantelPiece(Material.rock).setUnlocalizedName("mantel_piece");
 		grand_chair_top = new BlockGrandChair(Material.wood).setUnlocalizedName("grand_chair_top");
 		grand_chair_bottom = new BlockGrandChair(Material.wood).setUnlocalizedName("grand_chair_bottom");
-		candle = new BlockCandle(Material.snow).setUnlocalizedName("candle");
+		candle = new BlockCandle(Material.rock).setUnlocalizedName("candle");
 		chimney = new BlockChimney(Material.rock).setUnlocalizedName("chimney");
-		wreath = new BlockWreath(Material.cloth).setUnlocalizedName("wreath");
+		wreath = new BlockWreath(Material.leaves).setUnlocalizedName("wreath");
 		fairy_light = new BlockFairyLight(Material.glass).setUnlocalizedName("fairy_light");
-		fire_pit = new BlockFirePit(Material.wood).setUnlocalizedName("fire_pit");
+		fire_pit_off = new BlockFirePitOff(Material.wood).setUnlocalizedName("fire_pit_off");
+		fire_pit_on = new BlockFirePitOn(Material.wood).setUnlocalizedName("fire_pit_on");
 	}
 
 	public static void register()
@@ -291,6 +292,7 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(chimney, chimney.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(wreath, wreath.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(fairy_light, fairy_light.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(fire_pit, fire_pit.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(fire_pit_off, fire_pit_off.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(fire_pit_on, fire_pit_on.getUnlocalizedName().substring(5));
 	}
 }

@@ -2,7 +2,8 @@
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
         "0": "blocks/brick",
-        "1": "blocks/cobblestone"
+        "1": "blocks/cobblestone",
+		"particle": "blocks/brick"
     },
     "elements": [
         {

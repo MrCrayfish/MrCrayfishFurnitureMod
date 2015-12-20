@@ -16,7 +16,7 @@ public class BlockEvents {
 	@SubscribeEvent
 	public void onUseItemEvent(PlayerInteractEvent event)
 	{
-		World world = event.world;
+		/*World world = event.world;
 
 		if(event.action == PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK)
 		{
@@ -46,6 +46,6 @@ public class BlockEvents {
 				}
 				event.setCanceled(true);
 			}
-		}
+		}*/
 	}
 }

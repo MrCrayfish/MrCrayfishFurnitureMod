@@ -4,7 +4,8 @@
         "0": "blocks/cobblestone",
         "1": "blocks/stone",
         "2": "blocks/stone_andesite_smooth",
-        "3": "blocks/hardened_clay_stained_white"
+        "3": "blocks/hardened_clay_stained_white",
+		"particle": "blocks/stone"
     },
     "elements": [
         {

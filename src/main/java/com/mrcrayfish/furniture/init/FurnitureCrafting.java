@@ -17,6 +17,9 @@
  */
 package com.mrcrayfish.furniture.init;
 
+import com.mrcrayfish.furniture.handler.FuelHandler;
+
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -108,5 +111,17 @@ public class FurnitureCrafting
 		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemCup), new Object[] { "G G", "G G", "GGG", 'G', Blocks.glass_pane });
 		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemMirror), new Object[] { "BIB", "IGI", "BIB", 'I', Items.iron_ingot, 'G', new ItemStack(Blocks.stained_glass_pane, 1, 0), 'B', Blocks.iron_block });
 		GameRegistry.addSmelting(FurnitureItems.itemFlesh, new ItemStack(FurnitureItems.itemCookedFlesh), 0.05F);
+		GameRegistry.addShapelessRecipe(new ItemStack(FurnitureItems.itemLog, 16), Items.wooden_axe, new ItemStack(Blocks.log, 1, 0));
+		GameRegistry.addShapelessRecipe(new ItemStack(FurnitureItems.itemLog, 16), Items.stone_axe, new ItemStack(Blocks.log, 1, 0));
+		GameRegistry.addShapelessRecipe(new ItemStack(FurnitureItems.itemLog, 16), Items.iron_axe, new ItemStack(Blocks.log, 1, 0));
+		GameRegistry.addShapelessRecipe(new ItemStack(FurnitureItems.itemLog, 16), Items.golden_axe, new ItemStack(Blocks.log, 1, 0));
+		GameRegistry.addShapelessRecipe(new ItemStack(FurnitureItems.itemLog, 16), Items.diamond_axe, new ItemStack(Blocks.log, 1, 0));
+		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemCandle), "WWW", "SSS", " C ", 'W', new ItemStack(Blocks.stained_hardened_clay, 1, 0), 'S', Blocks.stone, 'C', Blocks.cobblestone);
+		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemChimney), "CCC", "BBB", "BBB", 'C', Blocks.cobblestone, 'B', Blocks.brick_block);
+		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemFairyLight), "SSS", "RGR", 'S', Items.string, 'R', new ItemStack(Blocks.stained_glass, 1, 14), 'G', new ItemStack(Blocks.stained_glass, 1, 13));
+		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemGrandChair), "  W", "RRW", "W W", 'W', new ItemStack(Blocks.planks, 1, 5), 'R', new ItemStack(Blocks.wool, 1, 14));
+		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemMantelpiece), "BBB", "B B", "B B", 'B', Blocks.brick_block);
+		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemWreath), "LLL", "L L", "LLL", 'L', new ItemStack(Blocks.leaves, 1, 0));
+		GameRegistry.registerFuelHandler(new FuelHandler());
 	}
 }
