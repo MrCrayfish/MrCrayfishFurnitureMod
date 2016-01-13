@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture.gui;
 
+import java.awt.Color;
 import java.util.Arrays;
 
 import org.lwjgl.input.Keyboard;
@@ -31,6 +32,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -150,17 +152,6 @@ public class GuiWashingMachine extends GuiContainer
 
 	public void drawColour(int x, int y, int width, int height, int par4)
 	{
-		WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		renderer.begin(GL11.GL_QUADS, format);
-		renderer.putColor4(par4);
-		renderer.putNormal(x, y, 0);
-		renderer.putNormal(x, y + height, 0);
-		renderer.putNormal(x + width, y + height, 0);
-		renderer.putNormal(x + width, y, 0);
-		Tessellator.getInstance().draw();
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		drawRect(x, y, x + width, y + height, par4);
 	}
-
 }

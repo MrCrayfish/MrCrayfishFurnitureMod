@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture.gui;
 
+import java.awt.Color;
 import java.util.Arrays;
 
 import org.lwjgl.input.Keyboard;
@@ -150,17 +151,7 @@ public class GuiDishwasher extends GuiContainer
 
 	public void drawColour(int x, int y, int width, int height, int par4)
 	{
-		WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		renderer.begin(GL11.GL_QUADS, format);
-		renderer.putColor4(par4);
-		renderer.putNormal(x, y, 0.0F);
-		renderer.putNormal(x, y + height, 0.0F);
-		renderer.putNormal(x + width, y + height, 0.0F);
-		renderer.putNormal(x + width, y, 0.0F);
-		Tessellator.getInstance().draw();
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		drawRect(x, y, x + width, y + height, par4);
 	}
 
 }
