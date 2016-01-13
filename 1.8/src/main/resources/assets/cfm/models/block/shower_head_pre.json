@@ -1,0 +1,7 @@
+{
+"parent": "cfm:block/shower_head",
+"textures": {
+"1": "blocks/stone",
+"2": "blocks/anvil_base"
+}
+}

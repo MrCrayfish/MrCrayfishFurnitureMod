@@ -1,0 +1,9 @@
+{
+"parent": "cfm:block/chair",
+"textures": {
+"0": "blocks/example",
+"1": "blocks/example",
+"2": "blocks/example",
+"3": "blocks/example"
+}
+}

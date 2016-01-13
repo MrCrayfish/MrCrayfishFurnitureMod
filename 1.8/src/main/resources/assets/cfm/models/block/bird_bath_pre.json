@@ -1,0 +1,7 @@
+{
+"parent": "cfm:block/bird_bath",
+"textures": {
+"1": "blocks/water_still",
+"2": "blocks/stone"
+}
+}

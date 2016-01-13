@@ -1,0 +1,7 @@
+{
+"parent": "cfm:block/table_leg_end",
+"textures": {
+    "0": "blocks/cobblestone",
+    "1": "blocks/stone"
+}
+}

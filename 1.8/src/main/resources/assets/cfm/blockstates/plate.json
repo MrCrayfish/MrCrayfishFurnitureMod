@@ -1,0 +1,8 @@
+{
+"variants": {
+"facing=north": {"model": "cfm:plate_pre", "y": 270},
+"facing=south": { "model": "cfm:plate_pre", "y": 90},
+"facing=east": { "model": "cfm:plate_pre"},
+"facing=west": { "model": "cfm:plate_pre", "y": 180}
+}
+}

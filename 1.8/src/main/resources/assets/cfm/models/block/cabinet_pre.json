@@ -1,0 +1,8 @@
+{
+"parent": "cfm:block/cabinet",
+"textures": {
+"1": "blocks/planks_spruce",
+"2": "blocks/iron_block",
+"3": "blocks/planks_oak"
+}
+}
