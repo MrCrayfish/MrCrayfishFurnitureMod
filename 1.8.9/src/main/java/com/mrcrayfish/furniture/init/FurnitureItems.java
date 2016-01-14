@@ -76,6 +76,9 @@ public class FurnitureItems {
 
 	/** Christmas Update */
 	public static Item itemLog, itemCandle, itemChimney, itemFairyLight, itemGrandChair, itemMantelpiece, itemWreath;
+	
+	/** Outdoor Update */
+	public static Item itemTrampoline;
 
 	/** Food */
 	public static Item itemBreadSlice, itemToast;
@@ -87,7 +90,8 @@ public class FurnitureItems {
 	public static Item itemCrayfish;
 	public static Item itemDollar;
 
-	public static void init() {
+	public static void init() 
+	{
 		itemTableWood = new ItemPlacer(FurnitureBlocks.table_wood).setUnlocalizedName("item_table_wood");
 		itemTableStone = new ItemPlacer(FurnitureBlocks.table_stone).setUnlocalizedName("item_table_stone");
 		itemChairWood = new ItemPlacer(FurnitureBlocks.chair_wood).setUnlocalizedName("item_chair_wood");
@@ -110,10 +114,8 @@ public class FurnitureItems {
 		itemOvenRangehood = new ItemPlacer(FurnitureBlocks.range_hood).setUnlocalizedName("item_range_hood");
 		itemFlesh = new ItemFood(1, 2, false).setUnlocalizedName("item_flesh")
 				.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		;
 		itemCookedFlesh = new ItemFood(4, 4, false).setUnlocalizedName("item_flesh_cooked")
 				.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		;
 		itemHedgeBasic = new ItemPlacer(FurnitureBlocks.hedge_oak).setUnlocalizedName("item_hedge_basic");
 		itemHedgeSpruce = new ItemPlacer(FurnitureBlocks.hedge_spruce).setUnlocalizedName("item_hedge_spruce");
 		itemHedgeBirch = new ItemPlacer(FurnitureBlocks.hedge_birch).setUnlocalizedName("item_hedge_birch");
@@ -172,7 +174,6 @@ public class FurnitureItems {
 				.setMaxStackSize(1);
 		itemSuperSoapyWater = new ItemGeneric().setUnlocalizedName("item_super_soap_water")
 				.setContainerItem(Items.bucket).setMaxStackSize(1);
-		;
 		itemRecipeBook = new ItemRecipeBook().setUnlocalizedName("item_recipe_book");
 		itemMirror = new ItemPlacer(FurnitureBlocks.mirror).setUnlocalizedName("item_mirror");
 		itemCrayfish = new Item().setUnlocalizedName("item_crayfish").setMaxStackSize(1);
@@ -184,6 +185,7 @@ public class FurnitureItems {
 		itemGrandChair = new ItemPlacer(FurnitureBlocks.grand_chair_bottom).setUnlocalizedName("item_grand_chair");
 		itemMantelpiece = new ItemPlacer(FurnitureBlocks.mantel_piece).setUnlocalizedName("item_mantel_piece");
 		itemWreath = new ItemPlacer(FurnitureBlocks.wreath).setUnlocalizedName("item_wreath");
+		itemTrampoline = new ItemPlacer(FurnitureBlocks.trampoline).setUnlocalizedName("item_trampoline");
 	}
 
 	public static void registerItems() {
@@ -271,6 +273,7 @@ public class FurnitureItems {
 		GameRegistry.registerItem(itemGrandChair, itemGrandChair.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemMantelpiece, itemMantelpiece.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemWreath, itemWreath.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemTrampoline, itemTrampoline.getUnlocalizedName().substring(5));
 	}
 
 	public static void registerRenders() {
@@ -358,6 +361,7 @@ public class FurnitureItems {
 		registerRender(itemGrandChair);
 		registerRender(itemMantelpiece);
 		registerRender(itemWreath);
+		registerRender(itemTrampoline);
 	}
 
 	private static void registerRender(Item item) {

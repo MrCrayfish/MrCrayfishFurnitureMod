@@ -25,5 +25,6 @@
    "channel_2": {"category": "master","sounds": [{"name": "channel_2","stream": false}]},
    "channel_3": {"category": "master","sounds": [{"name": "channel_3","stream": false}]},
    "channel_4": {"category": "master","sounds": [{"name": "channel_4","stream": false}]},
-   "channel_5": {"category": "master","sounds": [{"name": "channel_5","stream": false}]}
+   "channel_5": {"category": "master","sounds": [{"name": "channel_5","stream": false}]},
+   "boing": {"category": "master","sounds": [{"name": "boing","stream": false}]}
 }

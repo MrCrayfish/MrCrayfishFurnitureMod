@@ -73,6 +73,7 @@ import com.mrcrayfish.furniture.blocks.BlockTable;
 import com.mrcrayfish.furniture.blocks.BlockTap;
 import com.mrcrayfish.furniture.blocks.BlockToaster;
 import com.mrcrayfish.furniture.blocks.BlockToilet;
+import com.mrcrayfish.furniture.blocks.BlockTrampoline;
 import com.mrcrayfish.furniture.blocks.BlockTree;
 import com.mrcrayfish.furniture.blocks.BlockWallCabinet;
 import com.mrcrayfish.furniture.blocks.BlockWashingMachine;
@@ -121,7 +122,8 @@ public class FurnitureBlocks
 	public static Block present, tree_bottom, tree_top, string;
 	public static Block mantel_piece, grand_chair_top, grand_chair_bottom, candle, chimney, wreath, fairy_light, fire_pit_off, fire_pit_on;
 	
-	//Sled
+	/** Outdoor Update */
+	public static Block trampoline, grill, sprinkler;
 	
 	/* Special */
 	public static Block mirror;
@@ -212,6 +214,7 @@ public class FurnitureBlocks
 		fairy_light = new BlockFairyLight(Material.glass).setUnlocalizedName("fairy_light");
 		fire_pit_off = new BlockFirePitOff(Material.wood).setUnlocalizedName("fire_pit_off");
 		fire_pit_on = new BlockFirePitOn(Material.wood).setUnlocalizedName("fire_pit_on");
+		trampoline = new BlockTrampoline(Material.rock).setUnlocalizedName("trampoline");
 	}
 
 	public static void register()
@@ -294,5 +297,6 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(fairy_light, fairy_light.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(fire_pit_off, fire_pit_off.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(fire_pit_on, fire_pit_on.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(trampoline, trampoline.getUnlocalizedName().substring(5));
 	}
 }
