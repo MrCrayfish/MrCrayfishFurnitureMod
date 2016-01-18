@@ -3,7 +3,8 @@
     "textures": {
         "0": "blocks/planks_oak",
         "1": "blocks/log_oak",
-        "2": "blocks/glass_brown"
+        "2": "blocks/glass_brown",
+		"particle": "blocks/planks_oak"
     },
     "display": {
         "gui": {
