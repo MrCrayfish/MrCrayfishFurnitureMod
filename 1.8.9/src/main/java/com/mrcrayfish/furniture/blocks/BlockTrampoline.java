@@ -6,6 +6,9 @@ import com.mrcrayfish.furniture.util.ParticleSpawner;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -22,9 +25,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockTrampoline extends Block 
 {
+	public static final PropertyBool BACK = PropertyBool.create("back");
+	public static final PropertyBool FORWARD = PropertyBool.create("forward");
+	public static final PropertyBool LEFT = PropertyBool.create("left");
+	public static final PropertyBool RIGHT = PropertyBool.create("right");
+	
 	public BlockTrampoline(Material materialIn) 
 	{
 		super(materialIn);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(BACK, false).withProperty(FORWARD, false).withProperty(LEFT, false).withProperty(RIGHT, false));
 	}
 	
 	@Override
@@ -42,21 +51,18 @@ public class BlockTrampoline extends Block
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, BlockPos pos)
 	{
-		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 8 * 0.0625F, 1.0F);
+		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 13 * 0.0625F, 1.0F);
 	}
 	
 	@Override
 	public void addCollisionBoxesToList(World world, BlockPos pos, IBlockState state, AxisAlignedBB mask, List list, Entity collidingEntity)
 	{
-		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 8 * 0.0625F, 1.0F);
+		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 13 * 0.0625F, 1.0F);
 		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 	}
 	
 	@Override
-	public void onLanded(World worldIn, Entity entityIn) 
-	{
-		if(worldIn.isRemote) entityIn.fallDistance = 0;
-	}
+	public void onLanded(World worldIn, Entity entityIn) {}
 	
 	@Override
 	public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance) 
@@ -76,7 +82,7 @@ public class BlockTrampoline extends Block
 					{
 						double offsetX = -0.1 + 0.2 * RANDOM.nextDouble();
 						double offsetZ = -0.1 + 0.2 * RANDOM.nextDouble();
-						worldIn.spawnParticle(EnumParticleTypes.SPELL_MOB, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 1, 1, 1, 0);
+						worldIn.spawnParticle(EnumParticleTypes.SPELL_MOB, entityIn.posX, entityIn.posY, entityIn.posZ, 1, 1, 1, 0);
 					}
 				}
 			}
@@ -95,6 +101,33 @@ public class BlockTrampoline extends Block
 		return Math.sqrt(0.22 * height);
 	}
 	
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
+	{
+		boolean forward = world.getBlockState(pos.north()).getBlock() == this;
+		boolean back = world.getBlockState(pos.south()).getBlock() == this;
+		boolean left = world.getBlockState(pos.west()).getBlock() == this;
+		boolean right = world.getBlockState(pos.east()).getBlock() == this;
+		return state.withProperty(BACK, back).withProperty(FORWARD, forward).withProperty(LEFT, left).withProperty(RIGHT, right);
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state)
+	{
+		return 0;
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+	{
+		return this.getDefaultState();
+	}
+	
+	@Override
+	protected BlockState createBlockState()
+	{
+		return new BlockState(this, new IProperty[] { BACK, FORWARD, LEFT, RIGHT });
+	}
 	
 	@SideOnly(Side.CLIENT)
 	public EnumWorldBlockLayer getBlockLayer()

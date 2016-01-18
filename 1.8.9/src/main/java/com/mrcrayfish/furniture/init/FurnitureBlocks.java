@@ -21,6 +21,7 @@ import com.mrcrayfish.furniture.blocks.BlockBarStool;
 import com.mrcrayfish.furniture.blocks.BlockBasin;
 import com.mrcrayfish.furniture.blocks.BlockBath;
 import com.mrcrayfish.furniture.blocks.BlockBedsideCabinet;
+import com.mrcrayfish.furniture.blocks.BlockBench;
 import com.mrcrayfish.furniture.blocks.BlockBin;
 import com.mrcrayfish.furniture.blocks.BlockBirdBath;
 import com.mrcrayfish.furniture.blocks.BlockBlender;
@@ -59,6 +60,7 @@ import com.mrcrayfish.furniture.blocks.BlockMailBox;
 import com.mrcrayfish.furniture.blocks.BlockMantelPiece;
 import com.mrcrayfish.furniture.blocks.BlockMicrowave;
 import com.mrcrayfish.furniture.blocks.BlockMirror;
+import com.mrcrayfish.furniture.blocks.BlockOutdoorTable;
 import com.mrcrayfish.furniture.blocks.BlockOven;
 import com.mrcrayfish.furniture.blocks.BlockPlate;
 import com.mrcrayfish.furniture.blocks.BlockPresent;
@@ -123,7 +125,7 @@ public class FurnitureBlocks
 	public static Block mantel_piece, grand_chair_top, grand_chair_bottom, candle, chimney, wreath, fairy_light, fire_pit_off, fire_pit_on;
 	
 	/** Outdoor Update */
-	public static Block trampoline, grill, sprinkler;
+	public static Block trampoline, grill, sprinkler, crate, bench, table_outdoor;
 	
 	/* Special */
 	public static Block mirror;
@@ -215,6 +217,9 @@ public class FurnitureBlocks
 		fire_pit_off = new BlockFirePitOff(Material.wood).setUnlocalizedName("fire_pit_off");
 		fire_pit_on = new BlockFirePitOn(Material.wood).setUnlocalizedName("fire_pit_on");
 		trampoline = new BlockTrampoline(Material.rock).setUnlocalizedName("trampoline");
+		crate = new Block(Material.wood).setUnlocalizedName("crate");
+		bench = new BlockBench(Material.wood).setUnlocalizedName("bench");
+		table_outdoor = new BlockOutdoorTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("table_outdoor");
 	}
 
 	public static void register()
@@ -298,5 +303,8 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(fire_pit_off, fire_pit_off.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(fire_pit_on, fire_pit_on.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(trampoline, trampoline.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(crate, crate.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(bench, bench.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(table_outdoor, table_outdoor.getUnlocalizedName().substring(5));
 	}
 }
