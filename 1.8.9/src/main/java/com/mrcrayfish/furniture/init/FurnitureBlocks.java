@@ -53,6 +53,7 @@ import com.mrcrayfish.furniture.blocks.BlockFirePitOn;
 import com.mrcrayfish.furniture.blocks.BlockFreezer;
 import com.mrcrayfish.furniture.blocks.BlockFridge;
 import com.mrcrayfish.furniture.blocks.BlockGrandChair;
+import com.mrcrayfish.furniture.blocks.BlockGrill;
 import com.mrcrayfish.furniture.blocks.BlockHedge;
 import com.mrcrayfish.furniture.blocks.BlockLamp;
 import com.mrcrayfish.furniture.blocks.BlockLampOn;
@@ -83,6 +84,7 @@ import com.mrcrayfish.furniture.blocks.BlockWhiteFence;
 import com.mrcrayfish.furniture.blocks.BlockWreath;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -125,7 +127,7 @@ public class FurnitureBlocks
 	public static Block mantel_piece, grand_chair_top, grand_chair_bottom, candle, chimney, wreath, fairy_light, fire_pit_off, fire_pit_on;
 	
 	/** Outdoor Update */
-	public static Block trampoline, grill, sprinkler, crate, bench, table_outdoor;
+	public static Block trampoline, crate, bench, table_outdoor, grill, sprinkler;
 	
 	/* Special */
 	public static Block mirror;
@@ -220,6 +222,7 @@ public class FurnitureBlocks
 		crate = new Block(Material.wood).setUnlocalizedName("crate");
 		bench = new BlockBench(Material.wood).setUnlocalizedName("bench");
 		table_outdoor = new BlockOutdoorTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("table_outdoor");
+		grill = new BlockGrill(Material.anvil).setUnlocalizedName("grill");
 	}
 
 	public static void register()
@@ -306,5 +309,6 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(crate, crate.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(bench, bench.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(table_outdoor, table_outdoor.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(grill, grill.getUnlocalizedName().substring(5));
 	}
 }
