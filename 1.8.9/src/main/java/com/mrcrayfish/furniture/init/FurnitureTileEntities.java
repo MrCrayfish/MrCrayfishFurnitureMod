@@ -31,6 +31,7 @@ import com.mrcrayfish.furniture.tileentity.TileEntityCup;
 import com.mrcrayfish.furniture.tileentity.TileEntityDishwasher;
 import com.mrcrayfish.furniture.tileentity.TileEntityFreezer;
 import com.mrcrayfish.furniture.tileentity.TileEntityFridge;
+import com.mrcrayfish.furniture.tileentity.TileEntityGrill;
 import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
 import com.mrcrayfish.furniture.tileentity.TileEntityMicrowave;
 import com.mrcrayfish.furniture.tileentity.TileEntityMirror;
@@ -80,5 +81,6 @@ public class FurnitureTileEntities
 		GameRegistry.registerTileEntity(TileEntityCookieJar.class, "cfmCookieJar");
 		GameRegistry.registerTileEntity(TileEntityTree.class, "cfmTree");
 		GameRegistry.registerTileEntity(TileEntityMirror.class, "cfmMirror");
+		GameRegistry.registerTileEntity(TileEntityGrill.class, "cfmGrill");
 	}
 }

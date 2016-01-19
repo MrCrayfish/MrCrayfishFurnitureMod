@@ -22,6 +22,7 @@ import com.mrcrayfish.furniture.render.tileentity.BlenderRenderer;
 import com.mrcrayfish.furniture.render.tileentity.ChoppingBoardRenderer;
 import com.mrcrayfish.furniture.render.tileentity.CookieRenderer;
 import com.mrcrayfish.furniture.render.tileentity.CupRenderer;
+import com.mrcrayfish.furniture.render.tileentity.GrillRenderer;
 import com.mrcrayfish.furniture.render.tileentity.MicrowaveRenderer;
 import com.mrcrayfish.furniture.render.tileentity.MirrorRenderer;
 import com.mrcrayfish.furniture.render.tileentity.OvenRenderer;
@@ -33,6 +34,7 @@ import com.mrcrayfish.furniture.tileentity.TileEntityBlender;
 import com.mrcrayfish.furniture.tileentity.TileEntityChoppingBoard;
 import com.mrcrayfish.furniture.tileentity.TileEntityCookieJar;
 import com.mrcrayfish.furniture.tileentity.TileEntityCup;
+import com.mrcrayfish.furniture.tileentity.TileEntityGrill;
 import com.mrcrayfish.furniture.tileentity.TileEntityMicrowave;
 import com.mrcrayfish.furniture.tileentity.TileEntityMirror;
 import com.mrcrayfish.furniture.tileentity.TileEntityOven;
@@ -73,6 +75,7 @@ public class ClientProxy extends CommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTree.class, new TreeRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMirror.class, new MirrorRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityOven.class, new OvenRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGrill.class, new GrillRenderer());
 	}
 
 	@Override
