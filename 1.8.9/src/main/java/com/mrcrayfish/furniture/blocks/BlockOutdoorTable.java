@@ -17,4 +17,6 @@ public class BlockOutdoorTable extends BlockTable
 	{
 		return EnumWorldBlockLayer.TRANSLUCENT;
 	}
+	
+	//TODO FIX render
 }
