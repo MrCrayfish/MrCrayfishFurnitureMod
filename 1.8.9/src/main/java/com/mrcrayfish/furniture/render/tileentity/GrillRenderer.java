@@ -13,7 +13,7 @@ import net.minecraft.tileentity.TileEntity;
 
 public class GrillRenderer extends TileEntitySpecialRenderer 
 {
-	private ItemStack coal = new ItemStack(Items.coal);
+	private ItemStack coal = new ItemStack(Items.coal, 1, 1);
 	private EntityItem entityItem = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D, coal);
 	
 	private final float MAX_ANIM_TIME = 0.4F;
@@ -36,7 +36,7 @@ public class GrillRenderer extends TileEntitySpecialRenderer
 			GlStateManager.translate(x, y, z);
 			GlStateManager.translate(0.5, 0.85, 0.5);
 			GlStateManager.rotate(rotation * -90F, 0, 1, 0);
-			GlStateManager.translate(0.2, 0, -0.32);
+			GlStateManager.translate(0.18, 0, -0.35);
 			GlStateManager.rotate(90F, 1, 0, 0);
 			for(int i = 0; i < tileEntityGrill.getCoal(); i++)
 			{

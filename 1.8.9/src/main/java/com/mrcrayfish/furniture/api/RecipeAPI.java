@@ -253,6 +253,6 @@ public class RecipeAPI
 	
 	public static RecipeData getGrillRecipeFromInput(ItemStack itemStack)
 	{
-		return Recipes.getDishwasherRecipeFromInput(itemStack);
+		return Recipes.getGrillRecipeFromInput(itemStack);
 	}
 }

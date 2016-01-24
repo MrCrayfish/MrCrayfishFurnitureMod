@@ -24,9 +24,11 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 {
 	public ItemStack[] inventory = new ItemStack[2];
 	
-	public final int COOK_DURATION = 300;
+	private final int COOK_DURATION = 300;
+	private final int COAL_DURATION = COOK_DURATION * 10;
 	
 	private int coal = 0;
+	private int coalTick = 0;
 	private boolean fire = false;
 	
 	public boolean flippedLeft = false;
@@ -103,7 +105,7 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 					{
 						resetSide(clickedSide);
 						spawnItem(inventory[1]);
-						inventory[0] = null;
+						inventory[1] = null;
 					}
 				}
 			}
@@ -155,7 +157,7 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 	
 	public void startFire()
 	{
-		if(coal >= 3)
+		if(coal > 0)
 		{
 			fire = true;
 		} 
@@ -212,37 +214,65 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 		{
 			if(fire)
 			{
-				if(inventory[0] != null && RecipeAPI.getGrillRecipeFromInput(inventory[0]) != null)
+				if(inventory[0] != null)
 				{
-					if(leftCookTime >= COOK_DURATION)
+					RecipeData dataLeft = RecipeAPI.getGrillRecipeFromInput(inventory[0]);
+					if(dataLeft != null)
 					{
-						if(!leftCooked)
+						if(leftCookTime >= COOK_DURATION)
 						{
-							leftCooked = true;
+							if(!leftCooked)
+							{
+								if(flippedLeft)
+								{
+									inventory[0] = dataLeft.getOutput().copy();
+								}
+								leftCooked = true;
+							}
 							worldObj.markBlockForUpdate(getPos());
 						}
-					}
-					else
-					{
-						System.out.println("Running");
-						leftCookTime++;
+						else
+						{
+							leftCookTime++;
+						}
 					}
 				}
 				
-				if(inventory[1] != null && RecipeAPI.getGrillRecipeFromInput(inventory[1]) != null)
+				if(inventory[1] != null)
 				{
-					if(rightCookTime >= COOK_DURATION)
+					RecipeData dataRight = RecipeAPI.getGrillRecipeFromInput(inventory[1]);
+					if(dataRight != null)
 					{
-						if(!rightCooked)
+						if(rightCookTime >= COOK_DURATION)
 						{
-							rightCooked = true;
+							if(!rightCooked)
+							{
+								if(flippedRight)
+								{
+									inventory[1] = dataRight.getOutput().copy();
+								}
+								rightCooked = true;
+							}
 							worldObj.markBlockForUpdate(getPos());
 						}
+						else
+						{
+							rightCookTime++;
+						}
 					}
-					else
+				}
+				
+				coalTick++;
+				
+				if(coalTick >= COAL_DURATION)
+				{
+					coalTick = 0;
+					coal--;
+					if(coal <= 0)
 					{
-						rightCookTime++;
+						fire = false;
 					}
+					worldObj.markBlockForUpdate(getPos());
 				}
 			}
 		}
@@ -270,6 +300,7 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 		}
 		this.fire = compound.getBoolean("fire");
 		this.coal = compound.getInteger("coal");
+		this.coalTick = compound.getInteger("coalTick");
 		this.flippedLeft = compound.getBoolean("flipLeft");
 		this.flippedRight = compound.getBoolean("flipRight");
 		this.leftCookTime = compound.getInteger("leftCookTime");
@@ -296,6 +327,7 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 		compound.setTag("Items", tagList);
 		compound.setBoolean("fire", fire);
 		compound.setInteger("coal", this.coal);
+		compound.setInteger("coalTick", coalTick);
 		compound.setBoolean("flipLeft", flippedLeft);
 		compound.setBoolean("flipRight", flippedRight);
 		compound.setInteger("leftCookTime", leftCookTime);

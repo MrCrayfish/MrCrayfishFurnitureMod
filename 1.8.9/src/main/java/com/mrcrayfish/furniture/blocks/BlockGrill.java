@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.Random;
 
+import com.mrcrayfish.furniture.api.RecipeAPI;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityGrill;
 import com.mrcrayfish.furniture.util.CollisionHelper;
@@ -44,13 +45,13 @@ public class BlockGrill extends BlockFurnitureTile
 					double posZ = 0.2D + 0.6D * RANDOM.nextDouble();
 					worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + posX, pos.getY() + 1.0D, pos.getZ() + posZ, 0.0D, 0.0D, 0.0D, new int[0]);
 				}
-				if(tileEntityGrill.leftCooked)
+				if(tileEntityGrill.leftCooked && tileEntityGrill.getItem(0) != null && RecipeAPI.getGrillRecipeFromInput(tileEntityGrill.getItem(0)) != null)
 				{
 					int meta = getMetaFromState(state);
 					float[] leftFixed = ParticleHelper.fixRotation(meta, 0.5F, 0.25F);
 					worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + leftFixed[0], pos.getY() + 1.0D, pos.getZ() + leftFixed[1], 0.0D, 0.0D, 0.0D, new int[0]);
 				}
-				if(tileEntityGrill.rightCooked)
+				if(tileEntityGrill.rightCooked && tileEntityGrill.getItem(1) != null && RecipeAPI.getGrillRecipeFromInput(tileEntityGrill.getItem(1)) != null)
 				{
 					int meta = getMetaFromState(state);
 					float[] rightFixed = ParticleHelper.fixRotation(meta, 0.5F, 0.75F);
@@ -74,7 +75,7 @@ public class BlockGrill extends BlockFurnitureTile
 				
 				if(current != null)
 				{
-					if(current.getItem() == Items.coal)
+					if(current.getItem() == Items.coal && current.getItemDamage() == 1)
 					{
 						if(tileEntityGrill.addCoal())
 						{

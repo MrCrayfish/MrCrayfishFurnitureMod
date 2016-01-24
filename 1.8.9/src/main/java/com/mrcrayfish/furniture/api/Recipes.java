@@ -345,6 +345,10 @@ public class Recipes
 			{
 				return localDishwasherRecipes;
 			}
+			else if (type.equalsIgnoreCase("grill"))
+			{
+				return localGrillRecipes;
+			}
 		}
 		else
 		{
@@ -387,6 +391,10 @@ public class Recipes
 			else if (type.equalsIgnoreCase("dishwasher"))
 			{
 				return remoteDishwasherRecipes;
+			}
+			else if (type.equalsIgnoreCase("grill"))
+			{
+				return remoteGrillRecipes;
 			}
 		}
 		return new ArrayList<RecipeData>();
@@ -434,6 +442,10 @@ public class Recipes
 		{
 			localDishwasherRecipes.add(data);
 		}
+		for (RecipeData data : commGrillRecipes)
+		{
+			localGrillRecipes.add(data);
+		}
 	}
 
 	public static void clearLocalRecipes()
@@ -448,6 +460,7 @@ public class Recipes
 		localMicrowaveRecipes.clear();
 		localWashingMachineRecipes.clear();
 		localDishwasherRecipes.clear();
+		localGrillRecipes.clear();
 	}
 
 	public static void clearRemoteRecipes()
@@ -462,6 +475,7 @@ public class Recipes
 		remoteMicrowaveRecipes.clear();
 		remoteWashingMachineRecipes.clear();
 		remoteDishwasherRecipes.clear();
+		remoteGrillRecipes.clear();
 	}
 
 	public static void clearCommRecipes()
@@ -476,6 +490,7 @@ public class Recipes
 		commMicrowaveRecipes.clear();
 		commWashingMachineRecipes.clear();
 		commDishwasherRecipes.clear();
+		commGrillRecipes.clear();
 	}
 
 	public static void clearAll()
