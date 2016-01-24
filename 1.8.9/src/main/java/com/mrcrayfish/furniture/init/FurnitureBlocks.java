@@ -44,6 +44,7 @@ import com.mrcrayfish.furniture.blocks.BlockCup;
 import com.mrcrayfish.furniture.blocks.BlockCurtainsClosed;
 import com.mrcrayfish.furniture.blocks.BlockCurtainsOpen;
 import com.mrcrayfish.furniture.blocks.BlockDishwasher;
+import com.mrcrayfish.furniture.blocks.BlockDivingboard;
 import com.mrcrayfish.furniture.blocks.BlockDoorBell;
 import com.mrcrayfish.furniture.blocks.BlockElectricFence;
 import com.mrcrayfish.furniture.blocks.BlockFairyLight;
@@ -127,7 +128,7 @@ public class FurnitureBlocks
 	public static Block mantel_piece, grand_chair_top, grand_chair_bottom, candle, chimney, wreath, fairy_light, fire_pit_off, fire_pit_on;
 	
 	/** Outdoor Update */
-	public static Block trampoline, crate, bench, table_outdoor, grill, sprinkler;
+	public static Block trampoline, crate, bench, table_outdoor, grill, sprinkler, divingboard_base, divingboard_plank;
 	
 	/* Special */
 	public static Block mirror;
@@ -223,6 +224,8 @@ public class FurnitureBlocks
 		bench = new BlockBench(Material.wood).setUnlocalizedName("bench");
 		table_outdoor = new BlockOutdoorTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("table_outdoor");
 		grill = new BlockGrill(Material.anvil).setUnlocalizedName("grill");
+		divingboard_base = new BlockDivingboard(Material.rock).setUnlocalizedName("divingboard_base");
+		divingboard_plank = new BlockDivingboard(Material.rock).setUnlocalizedName("divingboard_plank");
 	}
 
 	public static void register()
@@ -310,5 +313,7 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(bench, bench.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(table_outdoor, table_outdoor.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(grill, grill.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(divingboard_base, divingboard_base.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(divingboard_plank, divingboard_plank.getUnlocalizedName().substring(5));
 	}
 }

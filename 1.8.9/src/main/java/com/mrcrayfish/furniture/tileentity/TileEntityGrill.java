@@ -49,6 +49,8 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 	@SideOnly(Side.CLIENT)
 	public float rightCurrentHeight = 0F;
 	
+	//TODO FIX FLIP BUG ON RELOAD
+	
 	public boolean addFood(BlockGrill.ClickedSide clickedSide, ItemStack food)
 	{
 		if(removeFood(clickedSide)) return false;

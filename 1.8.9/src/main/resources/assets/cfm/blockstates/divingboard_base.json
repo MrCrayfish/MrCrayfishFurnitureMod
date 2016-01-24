@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "cfm:divingboard_base"           },
+		"facing=south": { "model": "cfm:divingboard_base", "y": 180 },
+		"facing=east":  { "model": "cfm:divingboard_base", "y": 90  },
+		"facing=west":  { "model": "cfm:divingboard_base", "y": 270 }
+	}
+}
