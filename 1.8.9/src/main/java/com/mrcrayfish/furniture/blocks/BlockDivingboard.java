@@ -41,7 +41,14 @@ public class BlockDivingboard extends BlockFurniture
 	@Override
 	public void addCollisionBoxesToList(World world, BlockPos pos, IBlockState state, AxisAlignedBB mask, List list, Entity collidingEntity)
 	{
-		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 13 * 0.0625F, 1.0F);
+		if(this == FurnitureBlocks.divingboard_base)
+		{
+			setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.5F * 0.0625F);
+			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+			setBlockBounds(0.0F, 0.0F, 14.5F * 0.0625F, 1.0F, 1.0F, 16 * 0.0625F);
+			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+		}
+		setBlockBounds(0.0F, 4 * 0.0625F, 2 * 0.0625F, 1.0F, 6 * 0.0625F, 14 * 0.0625F);
 		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 	}
 	
@@ -66,7 +73,7 @@ public class BlockDivingboard extends BlockFurniture
 				worldIn.playSoundEffect(entityIn.posX, entityIn.posY, entityIn.posZ, "cfm:boing", 0.75F, 0.75F);
 				if(worldIn.isRemote)
 				{
-					for(int i = 0; i < 5; i++)
+					for(int i = 0; i < 3; i++)
 					{
 						double offsetX = -0.1 + 0.2 * RANDOM.nextDouble();
 						double offsetZ = -0.1 + 0.2 * RANDOM.nextDouble();
