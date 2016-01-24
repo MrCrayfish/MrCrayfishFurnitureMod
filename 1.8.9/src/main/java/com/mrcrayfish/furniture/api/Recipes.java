@@ -39,6 +39,7 @@ public class Recipes
 	public static ArrayList<RecipeData> localDishwasherRecipes = new ArrayList<RecipeData>();
 	public static ArrayList<RecipeData> localWashingMachineRecipes = new ArrayList<RecipeData>();
 	public static ArrayList<RecipeData> localMicrowaveRecipes = new ArrayList<RecipeData>();
+	public static ArrayList<RecipeData> localGrillRecipes = new ArrayList<RecipeData>();
 
 	/** Recipes registered through FMLInterModComms */
 	public static ArrayList<RecipeData> commMineBayRecipes = new ArrayList<RecipeData>();
@@ -51,6 +52,7 @@ public class Recipes
 	public static ArrayList<RecipeData> commDishwasherRecipes = new ArrayList<RecipeData>();
 	public static ArrayList<RecipeData> commWashingMachineRecipes = new ArrayList<RecipeData>();
 	public static ArrayList<RecipeData> commMicrowaveRecipes = new ArrayList<RecipeData>();
+	public static ArrayList<RecipeData> commGrillRecipes = new ArrayList<RecipeData>();
 
 	/** Recipes registered from a server */
 	public static ArrayList<RecipeData> remoteMineBayRecipes = new ArrayList<RecipeData>();
@@ -63,6 +65,7 @@ public class Recipes
 	public static ArrayList<RecipeData> remoteDishwasherRecipes = new ArrayList<RecipeData>();
 	public static ArrayList<RecipeData> remoteWashingMachineRecipes = new ArrayList<RecipeData>();
 	public static ArrayList<RecipeData> remoteMicrowaveRecipes = new ArrayList<RecipeData>();
+	public static ArrayList<RecipeData> remoteGrillRecipes = new ArrayList<RecipeData>();
 
 	public static RecipeData[] getMineBayItems()
 	{
@@ -231,6 +234,23 @@ public class Recipes
 			if (validItemStack.getItem() == itemStack.getItem())
 			{
 				return recipes.get(i);
+			}
+		}
+		return null;
+	}
+	
+	public static RecipeData getGrillRecipeFromInput(ItemStack itemStack)
+	{
+		ArrayList<RecipeData> recipes = getRecipes("grill");
+		for (int i = 0; i < recipes.size(); i++)
+		{
+			ItemStack validItemStack = recipes.get(i).getInput();
+			if (validItemStack.getItem() == itemStack.getItem())
+			{
+				if (validItemStack.getItemDamage() == itemStack.getItemDamage())
+				{
+					return recipes.get(i);
+				}
 			}
 		}
 		return null;

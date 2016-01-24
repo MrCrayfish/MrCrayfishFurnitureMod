@@ -184,6 +184,22 @@ public class RecipeAPI
 			break;
 		}
 	}
+	
+	public static void addGrillRecipe(RecipeData itemData, int type)
+	{
+		switch (type)
+		{
+		case LOCAL:
+			Recipes.localGrillRecipes.add(itemData);
+			break;
+		case REMOTE:
+			Recipes.remoteGrillRecipes.add(itemData);
+			break;
+		case COMM:
+			Recipes.commGrillRecipes.add(itemData);
+			break;
+		}
+	}
 
 	public static RecipeData[] getMineBayItems()
 	{
@@ -231,6 +247,11 @@ public class RecipeAPI
 	}
 
 	public static RecipeData getDishwasherRecipeFromInput(ItemStack itemStack)
+	{
+		return Recipes.getDishwasherRecipeFromInput(itemStack);
+	}
+	
+	public static RecipeData getGrillRecipeFromInput(ItemStack itemStack)
 	{
 		return Recipes.getDishwasherRecipeFromInput(itemStack);
 	}

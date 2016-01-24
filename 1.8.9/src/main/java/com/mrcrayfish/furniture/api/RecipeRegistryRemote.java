@@ -82,6 +82,11 @@ public class RecipeRegistryRemote extends RecipeAPI
 	{
 		addDishwasherRecipe(new RecipeData().setInput(input), REMOTE);
 	}
+	
+	public void registerGrillRecipe(ItemStack input)
+	{
+		addGrillRecipe(new RecipeData().setInput(input), REMOTE);
+	}
 
 	public void registerBlenderRecipe(String name, int heal, ItemStack[] ingredients, int[] rgb)
 	{

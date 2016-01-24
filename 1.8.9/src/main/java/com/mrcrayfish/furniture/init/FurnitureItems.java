@@ -31,6 +31,7 @@ import com.mrcrayfish.furniture.items.ItemPackageSigned;
 import com.mrcrayfish.furniture.items.ItemPlacer;
 import com.mrcrayfish.furniture.items.ItemPresent;
 import com.mrcrayfish.furniture.items.ItemRecipeBook;
+import com.mrcrayfish.furniture.items.ItemSpatula;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -79,6 +80,7 @@ public class FurnitureItems {
 	
 	/** Outdoor Update */
 	public static Item itemTrampoline;
+	public static Item itemSpatula;
 
 	/** Food */
 	public static Item itemBreadSlice, itemToast;
@@ -186,6 +188,7 @@ public class FurnitureItems {
 		itemMantelpiece = new ItemPlacer(FurnitureBlocks.mantel_piece).setUnlocalizedName("item_mantel_piece");
 		itemWreath = new ItemPlacer(FurnitureBlocks.wreath).setUnlocalizedName("item_wreath");
 		itemTrampoline = new ItemPlacer(FurnitureBlocks.trampoline).setUnlocalizedName("item_trampoline");
+		itemSpatula = new ItemSpatula().setUnlocalizedName("item_spatula");
 	}
 
 	public static void registerItems() {
@@ -274,6 +277,7 @@ public class FurnitureItems {
 		GameRegistry.registerItem(itemMantelpiece, itemMantelpiece.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemWreath, itemWreath.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemTrampoline, itemTrampoline.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemSpatula, itemSpatula.getUnlocalizedName().substring(5));
 	}
 
 	public static void registerRenders() {
@@ -362,6 +366,7 @@ public class FurnitureItems {
 		registerRender(itemMantelpiece);
 		registerRender(itemWreath);
 		registerRender(itemTrampoline);
+		registerRender(itemSpatula);
 	}
 
 	private static void registerRender(Item item) {
