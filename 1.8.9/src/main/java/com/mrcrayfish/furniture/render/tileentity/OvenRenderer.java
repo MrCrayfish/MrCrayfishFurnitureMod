@@ -20,15 +20,6 @@ public class OvenRenderer extends TileEntitySpecialRenderer
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{
-		//TODO Make alternaltive
-		/*if(counter++ == 10)
-		{
-			PacketHandler.INSTANCE.sendToServer(new MessageUpdateFields(tileEntity.getPos()));
-			System.out.println("Sent packet");
-			counter = 0;
-		}*/
-		
-		
 		ovenItem.hoverStart = 0.0F;
 		
 		GlStateManager.pushMatrix();

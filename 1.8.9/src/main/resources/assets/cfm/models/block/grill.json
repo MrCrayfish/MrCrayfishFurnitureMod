@@ -5,7 +5,8 @@
         "1": "blocks/stone_slab_top",
         "2": "cfm:blocks/mesh_grill",
         "3": "blocks/hardened_clay_stained_cyan",
-        "4": "cfm:blocks/mesh"
+        "4": "cfm:blocks/mesh",
+		"particle": "blocks/hardened_clay_stained_red"
     },
     "display": {
         "gui": {

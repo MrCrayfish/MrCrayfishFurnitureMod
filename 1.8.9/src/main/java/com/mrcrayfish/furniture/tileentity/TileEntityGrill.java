@@ -24,8 +24,9 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 {
 	public ItemStack[] inventory = new ItemStack[2];
 	
-	private final int COOK_DURATION = 300;
-	private final int COAL_DURATION = COOK_DURATION * 10;
+	private final int COOK_DURATION = 1;
+	private final int COAL_DURATION = 3000;
+	public final int FLIP_DURATION = 20; /* Ticks */
 	
 	private int coal = 0;
 	private int coalTick = 0;
@@ -41,11 +42,11 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 	public boolean rightCooked = false;
 	
 	@SideOnly(Side.CLIENT)
-	public float leftFlippingCount = 0.0F;
+	public int leftFlipCount = 0;
 	@SideOnly(Side.CLIENT)
 	public float leftCurrentHeight = 0F;
 	@SideOnly(Side.CLIENT)
-	public float rightFlippingCount = 0.0F;
+	public int rightFlipCount = 0;
 	@SideOnly(Side.CLIENT)
 	public float rightCurrentHeight = 0F;
 	
@@ -75,40 +76,36 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 			{
 				if(inventory[0] != null)
 				{
+					resetSide(clickedSide);
 					RecipeData data = RecipeAPI.getGrillRecipeFromInput(inventory[0]);
 					if(leftCooked && flippedLeft && data != null)
 					{
-						resetSide(clickedSide);
 						spawnItem(data.getOutput());
-						inventory[0] = null;
-						return true;
 					}
 					else
 					{
-						resetSide(clickedSide);
 						spawnItem(inventory[0]);
-						inventory[0] = null;
 					}
+					inventory[0] = null;
+					return true;
 				}
 			}
 			else if(flippedRight && clickedSide == BlockGrill.ClickedSide.RIGHT)
 			{
 				if(inventory[1] != null)
 				{
+					resetSide(clickedSide);
 					RecipeData data = RecipeAPI.getGrillRecipeFromInput(inventory[1]);
 					if(rightCooked && flippedRight && data != null)
 					{
-						resetSide(clickedSide);
 						spawnItem(data.getOutput());
-						inventory[1] = null;
-						return true;
 					}
 					else
 					{
-						resetSide(clickedSide);
 						spawnItem(inventory[1]);
-						inventory[1] = null;
 					}
+					inventory[1] = null;
+					return true;
 				}
 			}
 		}
@@ -125,6 +122,8 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 	public void flipFood(BlockGrill.ClickedSide clickedSide)
 	{
 		if(removeFood(clickedSide)) return;
+		
+		System.out.println("Flipping");
 		
 		if(!flippedLeft && clickedSide == BlockGrill.ClickedSide.LEFT)
 		{
@@ -177,13 +176,13 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 		{
 			leftCooked = false;
 			leftCookTime = 0;
-			flippedLeft = true;
+			flippedLeft = false;
 		}
 		else if(side == ClickedSide.RIGHT)
 		{
 			rightCooked = false;
 			rightCookTime = 0;
-			flippedRight = true;
+			flippedRight = false;
 		}
 	}
 	
@@ -276,6 +275,17 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 					}
 					worldObj.markBlockForUpdate(getPos());
 				}
+			}
+		}
+		else
+		{
+			if(flippedLeft && leftFlipCount < FLIP_DURATION)
+			{
+				leftFlipCount++;
+			}
+			if(flippedRight && rightFlipCount < FLIP_DURATION)
+			{
+				rightFlipCount++;
 			}
 		}
 	}

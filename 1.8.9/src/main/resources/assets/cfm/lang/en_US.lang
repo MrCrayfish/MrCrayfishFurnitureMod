@@ -86,6 +86,7 @@ item.item_mantel_piece.name=Mantelpiece
 item.item_candle.name=Candle
 item.item_wreath.name=Wreath
 item.item_trampoline.name=Trampoline
+item.item_spatula.name=Spatula
 
 achievement.cfm_install=You've been installed!
 achievement.cfm_install.desc=Thank you for installing MrCrayfish's Furniture Mod

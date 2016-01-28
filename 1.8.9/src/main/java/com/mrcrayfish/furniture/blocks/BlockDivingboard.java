@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
+import com.mrcrayfish.furniture.util.CollisionHelper;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -41,14 +42,15 @@ public class BlockDivingboard extends BlockFurniture
 	@Override
 	public void addCollisionBoxesToList(World world, BlockPos pos, IBlockState state, AxisAlignedBB mask, List list, Entity collidingEntity)
 	{
+		int meta = getMetaFromState(state);
 		if(this == FurnitureBlocks.divingboard_base)
 		{
-			setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.5F * 0.0625F);
+			CollisionHelper.setBlockBounds(this, meta, 0.0F, 0.0F, 0.0F, 0.875F, 1.0F, 1.5F * 0.0625F);
 			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
-			setBlockBounds(0.0F, 0.0F, 14.5F * 0.0625F, 1.0F, 1.0F, 16 * 0.0625F);
+			CollisionHelper.setBlockBounds(this, meta, 0.0F, 0.0F, 14.5F * 0.0625F, 0.875F, 1.0F, 16 * 0.0625F);
 			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 		}
-		setBlockBounds(0.0F, 4 * 0.0625F, 2 * 0.0625F, 1.0F, 6 * 0.0625F, 14 * 0.0625F);
+		CollisionHelper.setBlockBounds(this, meta, 0.0F, 4 * 0.0625F, 2 * 0.0625F, 1.0F, 6 * 0.0625F, 14 * 0.0625F);
 		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 	}
 	

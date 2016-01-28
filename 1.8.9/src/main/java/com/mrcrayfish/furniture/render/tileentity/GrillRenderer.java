@@ -16,11 +16,13 @@ public class GrillRenderer extends TileEntitySpecialRenderer
 	private ItemStack coal = new ItemStack(Items.coal, 1, 1);
 	private EntityItem entityItem = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D, coal);
 	
-	private final float MAX_ANIM_TIME = 0.4F;
+	private final float MAX_ANIM_TIME = 100F;
+	private final float FLIP_HEIGHT = 0.5F;
 	
 	@Override
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage) 
 	{
+		//System.out.println(partialTicks);
 		entityItem.hoverStart = 0;
 		
 		if(!(te.getBlockType() instanceof BlockGrill))
@@ -67,39 +69,41 @@ public class GrillRenderer extends TileEntitySpecialRenderer
 				{
 					if(tileEntityGrill.flippedLeft)
 					{
-						if(tileEntityGrill.leftFlippingCount < MAX_ANIM_TIME / 2)
+						float percent = (tileEntityGrill.leftFlipCount + partialTicks) / (float) tileEntityGrill.FLIP_DURATION;
+						
+						if(tileEntityGrill.leftFlipCount < tileEntityGrill.FLIP_DURATION / 2)
 						{
-							tileEntityGrill.leftCurrentHeight += 0.001F;
+							tileEntityGrill.leftCurrentHeight = (FLIP_HEIGHT / (tileEntityGrill.FLIP_DURATION / 2)) * (tileEntityGrill.leftFlipCount + partialTicks);
 						}
-						else
+						else if(tileEntityGrill.leftCurrentHeight > 0F)
 						{
-							tileEntityGrill.leftCurrentHeight -= 0.001F;
+							tileEntityGrill.leftCurrentHeight = (FLIP_HEIGHT * 2) - (FLIP_HEIGHT / (tileEntityGrill.FLIP_DURATION / 2)) * (tileEntityGrill.leftFlipCount + partialTicks);
 						}
 						
 						if(tileEntityGrill.leftCurrentHeight >= 0F)
 						{
 							GlStateManager.translate(0, 0, -Math.sqrt(tileEntityGrill.leftCurrentHeight));
 						}
-					}
-					
-					GlStateManager.rotate(tileEntityGrill.leftFlippingCount / MAX_ANIM_TIME * 180F, 0, 1, 0);
-					
-					entityItem.setEntityItemStack(tileEntityGrill.getItem(0));
-					Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(entityItem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
-					
-					if(tileEntityGrill.flippedLeft && tileEntityGrill.leftFlippingCount < MAX_ANIM_TIME)
-					{
-						if(tileEntityGrill.leftFlippingCount < MAX_ANIM_TIME)
+						
+						if(tileEntityGrill.leftFlipCount < tileEntityGrill.FLIP_DURATION)
 						{
-							tileEntityGrill.leftFlippingCount += 0.001F;
+							GlStateManager.rotate(180F * percent, 0, 1, 0);
 						}
 						else
 						{
-							tileEntityGrill.leftFlippingCount = 0F;
+							GlStateManager.rotate(180F, 0, 1, 0);
+							tileEntityGrill.leftCurrentHeight = 0F;
 						}
 					}
+
+					entityItem.setEntityItemStack(tileEntityGrill.getItem(0));
+					Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(entityItem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
 				}
 				GlStateManager.popMatrix();
+			}
+			else
+			{
+				tileEntityGrill.leftFlipCount = 0;
 			}
 			
 			GlStateManager.translate(-0.4, 0, 0);
@@ -111,39 +115,41 @@ public class GrillRenderer extends TileEntitySpecialRenderer
 				{
 					if(tileEntityGrill.flippedRight)
 					{
-						if(tileEntityGrill.rightFlippingCount < MAX_ANIM_TIME / 2)
+						float percent = (tileEntityGrill.rightFlipCount + partialTicks) / (float) tileEntityGrill.FLIP_DURATION;
+						
+						if(tileEntityGrill.rightFlipCount < tileEntityGrill.FLIP_DURATION / 2)
 						{
-							tileEntityGrill.rightCurrentHeight += 0.001F;
+							tileEntityGrill.rightCurrentHeight = (FLIP_HEIGHT / (tileEntityGrill.FLIP_DURATION / 2)) * (tileEntityGrill.rightFlipCount + partialTicks);
 						}
-						else
+						else if(tileEntityGrill.rightCurrentHeight > 0F)
 						{
-							tileEntityGrill.rightCurrentHeight -= 0.001F;
+							tileEntityGrill.rightCurrentHeight = (FLIP_HEIGHT * 2) - (FLIP_HEIGHT / (tileEntityGrill.FLIP_DURATION / 2)) * (tileEntityGrill.rightFlipCount + partialTicks);
 						}
 						
 						if(tileEntityGrill.rightCurrentHeight >= 0F)
 						{
 							GlStateManager.translate(0, 0, -Math.sqrt(tileEntityGrill.rightCurrentHeight));
 						}
-					}
-					
-					GlStateManager.rotate(tileEntityGrill.rightFlippingCount / MAX_ANIM_TIME * 180F, 0, 1, 0);
-					
-					entityItem.setEntityItemStack(tileEntityGrill.getItem(1));
-					Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(entityItem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
-					
-					if(tileEntityGrill.flippedRight && tileEntityGrill.rightFlippingCount < MAX_ANIM_TIME)
-					{
-						if(tileEntityGrill.rightFlippingCount < MAX_ANIM_TIME)
+						
+						if(tileEntityGrill.rightFlipCount < tileEntityGrill.FLIP_DURATION)
 						{
-							tileEntityGrill.rightFlippingCount += 0.001F;
+							GlStateManager.rotate(180F * percent, 0, 1, 0);
 						}
 						else
 						{
-							tileEntityGrill.rightFlippingCount = 0F;
+							GlStateManager.rotate(180F, 0, 1, 0);
+							tileEntityGrill.rightCurrentHeight = 0F;
 						}
 					}
+					
+					entityItem.setEntityItemStack(tileEntityGrill.getItem(1));
+					Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(entityItem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F);
 				}
 				GlStateManager.popMatrix();
+			}
+			else
+			{
+				tileEntityGrill.rightFlipCount = 0;
 			}
 		}
 		GlStateManager.popMatrix();
