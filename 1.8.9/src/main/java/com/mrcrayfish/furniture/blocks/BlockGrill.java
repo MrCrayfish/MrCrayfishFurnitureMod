@@ -141,6 +141,13 @@ public class BlockGrill extends BlockFurnitureTile
 	
 	public static enum ClickedSide 
 	{
-		LEFT, RIGHT, UNKNOWN;
+		LEFT(0), RIGHT(1), UNKNOWN(2);
+		
+		public int id;
+		
+		ClickedSide(int id) 
+		{
+			this.id = id;
+		}
 	}
 }

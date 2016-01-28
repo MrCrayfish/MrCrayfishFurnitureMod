@@ -24,9 +24,9 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 {
 	public ItemStack[] inventory = new ItemStack[2];
 	
-	private final int COOK_DURATION = 1;
-	private final int COAL_DURATION = 3000;
-	public final int FLIP_DURATION = 20; /* Ticks */
+	private static final int COOK_DURATION = 300;
+	private static final int COAL_DURATION = COOK_DURATION * 10;
+	public static final int FLIP_DURATION = 20; /* Ticks */
 	
 	private int coal = 0;
 	private int coalTick = 0;
@@ -50,20 +50,18 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 	@SideOnly(Side.CLIENT)
 	public float rightCurrentHeight = 0F;
 	
-	//TODO FIX FLIP BUG ON RELOAD
+	public int leftSoundLoop = 0;
+	public int rightSoundLoop = 0;
 	
 	public boolean addFood(BlockGrill.ClickedSide clickedSide, ItemStack food)
 	{
 		if(removeFood(clickedSide)) return false;
 		
-		for(int i = 0; i < inventory.length; i++)
+		if(clickedSide != ClickedSide.UNKNOWN)
 		{
-			if(inventory[i] == null)
-			{
-				inventory[i] = new ItemStack(food.getItem(), 1, food.getItemDamage());
-				worldObj.markBlockForUpdate(getPos());
-				return true;
-			}
+			inventory[clickedSide.id]  = new ItemStack(food.getItem(), 1, food.getItemDamage());
+			worldObj.markBlockForUpdate(pos);
+			return true;
 		}
 		return false;
 	}
@@ -72,39 +70,22 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 	{
 		if(!worldObj.isRemote)
 		{
-			if(flippedLeft && clickedSide == BlockGrill.ClickedSide.LEFT)
+			if(clickedSide.id <= 1 && isFlipped(clickedSide))
 			{
-				if(inventory[0] != null)
+				if(inventory[clickedSide.id] != null)
 				{
 					resetSide(clickedSide);
-					RecipeData data = RecipeAPI.getGrillRecipeFromInput(inventory[0]);
-					if(leftCooked && flippedLeft && data != null)
+					RecipeData data = RecipeAPI.getGrillRecipeFromInput(inventory[clickedSide.id]);
+					if(leftCooked && data != null)
 					{
 						spawnItem(data.getOutput());
 					}
 					else
 					{
-						spawnItem(inventory[0]);
+						spawnItem(inventory[clickedSide.id]);
 					}
-					inventory[0] = null;
-					return true;
-				}
-			}
-			else if(flippedRight && clickedSide == BlockGrill.ClickedSide.RIGHT)
-			{
-				if(inventory[1] != null)
-				{
-					resetSide(clickedSide);
-					RecipeData data = RecipeAPI.getGrillRecipeFromInput(inventory[1]);
-					if(rightCooked && flippedRight && data != null)
-					{
-						spawnItem(data.getOutput());
-					}
-					else
-					{
-						spawnItem(inventory[1]);
-					}
-					inventory[1] = null;
+					inventory[clickedSide.id] = null;
+					worldObj.markBlockForUpdate(getPos());
 					return true;
 				}
 			}
@@ -112,11 +93,16 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 		return false;
 	}
 	
+	private boolean isFlipped(BlockGrill.ClickedSide side)
+	{
+		if(side.id == 0) return flippedLeft;
+		return flippedRight;
+	}
+	
 	private void spawnItem(ItemStack stack)
 	{
 		EntityItem entityFood = new EntityItem(worldObj, pos.getX() + 0.5, pos.getY() + 1F, pos.getZ() + 0.5, stack);
 		worldObj.spawnEntityInWorld(entityFood);
-		worldObj.markBlockForUpdate(getPos());
 	}
 	
 	public void flipFood(BlockGrill.ClickedSide clickedSide)
@@ -125,17 +111,19 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 		
 		System.out.println("Flipping");
 		
-		if(!flippedLeft && clickedSide == BlockGrill.ClickedSide.LEFT)
+		if(leftCooked && !flippedLeft && clickedSide == BlockGrill.ClickedSide.LEFT)
 		{
 			leftCooked = false;
 			leftCookTime = 0;
 			flippedLeft = true;
+			leftSoundLoop = 0;
 		}
-		else if(!flippedRight && clickedSide == BlockGrill.ClickedSide.RIGHT)
+		else if(rightCooked && !flippedRight && clickedSide == BlockGrill.ClickedSide.RIGHT)
 		{
 			rightCooked = false;
 			rightCookTime = 0;
 			flippedRight = true;
+			rightSoundLoop = 0;
 		}
 		worldObj.markBlockForUpdate(getPos());
 	}
@@ -177,12 +165,14 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 			leftCooked = false;
 			leftCookTime = 0;
 			flippedLeft = false;
+			leftSoundLoop = 0;
 		}
 		else if(side == ClickedSide.RIGHT)
 		{
 			rightCooked = false;
 			rightCookTime = 0;
 			flippedRight = false;
+			rightSoundLoop = 0;
 		}
 	}
 	
@@ -229,16 +219,35 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 									inventory[0] = dataLeft.getOutput().copy();
 								}
 								leftCooked = true;
+								worldObj.markBlockForUpdate(getPos());
+								leftSoundLoop = 0;
 							}
-							worldObj.markBlockForUpdate(getPos());
+							if(leftSoundLoop % 20 == 0)
+							{
+								worldObj.playSoundEffect(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, "cfm:sizzle", 1.0F, 0.5F);
+							}
 						}
 						else
 						{
+							if(leftSoundLoop % 20 == 0)
+							{
+								if(!leftCooked)
+								{
+									if(flippedLeft && leftCookTime >= 20)
+									{
+										worldObj.playSoundEffect(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, "cfm:sizzle", 1.0F, 1.0F);
+									}
+									else if(!flippedLeft)
+									{
+										worldObj.playSoundEffect(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, "cfm:sizzle", 1.0F, 1.0F);
+									}
+								}
+							}
 							leftCookTime++;
 						}
+						leftSoundLoop++;
 					}
 				}
-				
 				if(inventory[1] != null)
 				{
 					RecipeData dataRight = RecipeAPI.getGrillRecipeFromInput(inventory[1]);
@@ -253,13 +262,33 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 									inventory[1] = dataRight.getOutput().copy();
 								}
 								rightCooked = true;
+								worldObj.markBlockForUpdate(getPos());
+								rightSoundLoop = 0;
 							}
-							worldObj.markBlockForUpdate(getPos());
+							if(rightSoundLoop % 20 == 0)
+							{
+								worldObj.playSoundEffect(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, "cfm:sizzle", 1.0F, 0.5F);
+							}
 						}
 						else
 						{
+							if(rightSoundLoop % 20 == 0)
+							{
+								if(!rightCooked)
+								{
+									if(flippedRight && rightCookTime >= 20)
+									{
+										worldObj.playSoundEffect(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, "cfm:sizzle", 1.0F, 1.0F);
+									}
+									else if(!flippedRight)
+									{
+										worldObj.playSoundEffect(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, "cfm:sizzle", 1.0F, 1.0F);
+									}
+								}
+							}
 							rightCookTime++;
 						}
+						rightSoundLoop++;
 					}
 				}
 				
