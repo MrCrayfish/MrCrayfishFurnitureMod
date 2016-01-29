@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "cfm:door_mat", "y": 180 },
+		"facing=south": { "model": "cfm:door_mat"           },
+		"facing=east":  { "model": "cfm:door_mat", "y": 90  },
+		"facing=west":  { "model": "cfm:door_mat", "y": 270 }
+	}
+}
