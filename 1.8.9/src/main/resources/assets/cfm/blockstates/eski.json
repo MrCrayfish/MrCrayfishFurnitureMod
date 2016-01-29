@@ -1,0 +1,12 @@
+{
+	"variants": {
+		"facing=north,open=false": { "model": "cfm:eski_closed", "y": 180 },
+		"facing=south,open=false": { "model": "cfm:eski_closed"           },
+		"facing=east,open=false":  { "model": "cfm:eski_closed", "y": 90  },
+		"facing=west,open=false":  { "model": "cfm:eski_closed", "y": 270 },
+		"facing=north,open=true":  { "model": "cfm:eski_opened", "y": 180 },
+		"facing=south,open=true":  { "model": "cfm:eski_opened"           },
+		"facing=east,open=true":   { "model": "cfm:eski_opened", "y": 90  },
+		"facing=west,open=true":   { "model": "cfm:eski_opened", "y": 270 }
+	}
+}
