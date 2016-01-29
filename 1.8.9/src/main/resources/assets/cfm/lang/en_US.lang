@@ -87,6 +87,10 @@ item.item_candle.name=Candle
 item.item_wreath.name=Wreath
 item.item_trampoline.name=Trampoline
 item.item_spatula.name=Spatula
+item.item_sausage.name=Sausage
+item.item_sausage_cooked.name=Cooked Sausage
+item.item_kebab.name=Raw Kebab
+item.item_kebab_cooked.name=Cooked Kebab
 
 achievement.cfm_install=You've been installed!
 achievement.cfm_install.desc=Thank you for installing MrCrayfish's Furniture Mod

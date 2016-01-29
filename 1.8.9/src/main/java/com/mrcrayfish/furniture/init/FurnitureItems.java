@@ -38,9 +38,11 @@ import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
+import net.minecraft.potion.Potion;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class FurnitureItems {
+public class FurnitureItems
+{
 	/** Initial Furniture */
 	public static Item itemTableWood, itemTableStone;
 	public static Item itemChairWood, itemChairStone;
@@ -53,8 +55,7 @@ public class FurnitureItems {
 	public static Item itemFlesh, itemCookedFlesh;
 
 	/** Garden Update */
-	public static Item itemHedgeBasic, itemHedgeSpruce, itemHedgeBirch, itemHedgeJungle, itemHedgeAcacia,
-			itemHedgeDarkOak;
+	public static Item itemHedgeBasic, itemHedgeSpruce, itemHedgeBirch, itemHedgeJungle, itemHedgeAcacia, itemHedgeDarkOak;
 	public static Item itemBirdBath, itemStonePath, itemWhiteFence, itemTap;
 	public static Item itemMailBox, itemHammer;
 	public static Item itemEnvelope, itemEnvelopeSigned;
@@ -66,8 +67,7 @@ public class FurnitureItems {
 	public static Item itemCeilingLight, itemDoorBell, itemFireAlarm, itemLamp;
 
 	/** Bathroom Update */
-	public static Item itemToilet, itemBasin, itemWallCabinet, itemBath, itemShower, itemShowerHead, itemBin,
-			itemMirror;
+	public static Item itemToilet, itemBasin, itemWallCabinet, itemBath, itemShower, itemShowerHead, itemBin, itemMirror;
 
 	/** Kitchen Update */
 	public static Item itemToaster, itemMicrowave, itemBlender, itemWashingMachine, itemDishWasher;
@@ -77,10 +77,10 @@ public class FurnitureItems {
 
 	/** Christmas Update */
 	public static Item itemLog, itemCandle, itemChimney, itemFairyLight, itemGrandChair, itemMantelpiece, itemWreath;
-	
+
 	/** Outdoor Update */
-	public static Item itemTrampoline;
-	public static Item itemSpatula;
+	public static Item itemTrampoline, itemGrill, itemOutdoorBench, itemOutdoorTable, itemCrate, itemDivingboard;
+	public static Item itemSpatula, itemSausage, itemSausageCooked, itemKebab, itemKebabCooked;
 
 	/** Food */
 	public static Item itemBreadSlice, itemToast;
@@ -92,21 +92,18 @@ public class FurnitureItems {
 	public static Item itemCrayfish;
 	public static Item itemDollar;
 
-	public static void init() 
+	public static void init()
 	{
 		itemTableWood = new ItemPlacer(FurnitureBlocks.table_wood).setUnlocalizedName("item_table_wood");
 		itemTableStone = new ItemPlacer(FurnitureBlocks.table_stone).setUnlocalizedName("item_table_stone");
 		itemChairWood = new ItemPlacer(FurnitureBlocks.chair_wood).setUnlocalizedName("item_chair_wood");
 		itemChairStone = new ItemPlacer(FurnitureBlocks.chair_stone).setUnlocalizedName("item_chair_stone");
 		itemCabinet = new ItemPlacer(FurnitureBlocks.cabinet).setUnlocalizedName("item_cabinet");
-		itemCoffeeTableWood = new ItemPlacer(FurnitureBlocks.coffee_table_wood)
-				.setUnlocalizedName("item_coffee_table_wood");
-		itemCoffeeTableStone = new ItemPlacer(FurnitureBlocks.coffee_table_stone)
-				.setUnlocalizedName("item_coffee_table_stone");
+		itemCoffeeTableWood = new ItemPlacer(FurnitureBlocks.coffee_table_wood).setUnlocalizedName("item_coffee_table_wood");
+		itemCoffeeTableStone = new ItemPlacer(FurnitureBlocks.coffee_table_stone).setUnlocalizedName("item_coffee_table_stone");
 		itemFridge = new ItemPlacer(FurnitureBlocks.freezer).setUnlocalizedName("item_fridge");
 		itemCouch = new ItemPlacer(FurnitureBlocks.couch).setUnlocalizedName("item_couch");
-		itemCouchJeb = new ItemPlacer(FurnitureBlocks.couch_jeb).setUnlocalizedName("item_couch_jeb")
-				.setCreativeTab(null);
+		itemCouchJeb = new ItemPlacer(FurnitureBlocks.couch_jeb).setUnlocalizedName("item_couch_jeb").setCreativeTab(null);
 		itemBlinds = new ItemPlacer(FurnitureBlocks.blinds).setUnlocalizedName("item_blinds");
 		itemCurtains = new ItemPlacer(FurnitureBlocks.curtains).setUnlocalizedName("item_curtains");
 		itemLamp = new ItemPlacer(FurnitureBlocks.lamp_off).setUnlocalizedName("item_lamp");
@@ -114,10 +111,8 @@ public class FurnitureItems {
 		itemCoolPack = new ItemGeneric().setUnlocalizedName("item_cool_pack");
 		itemOven = new ItemPlacer(FurnitureBlocks.oven).setUnlocalizedName("item_oven");
 		itemOvenRangehood = new ItemPlacer(FurnitureBlocks.range_hood).setUnlocalizedName("item_range_hood");
-		itemFlesh = new ItemFood(1, 2, false).setUnlocalizedName("item_flesh")
-				.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		itemCookedFlesh = new ItemFood(4, 4, false).setUnlocalizedName("item_flesh_cooked")
-				.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		itemFlesh = new ItemFood(1, 2, false).setUnlocalizedName("item_flesh").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		itemCookedFlesh = new ItemFood(4, 4, false).setUnlocalizedName("item_flesh_cooked").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		itemHedgeBasic = new ItemPlacer(FurnitureBlocks.hedge_oak).setUnlocalizedName("item_hedge_basic");
 		itemHedgeSpruce = new ItemPlacer(FurnitureBlocks.hedge_spruce).setUnlocalizedName("item_hedge_spruce");
 		itemHedgeBirch = new ItemPlacer(FurnitureBlocks.hedge_birch).setUnlocalizedName("item_hedge_birch");
@@ -164,18 +159,14 @@ public class FurnitureItems {
 		itemKitchenCabinet = new ItemPlacer(FurnitureBlocks.kitchen_cabinet).setUnlocalizedName("item_kitchen_cabinet");
 		itemChoppingBoard = new ItemPlacer(FurnitureBlocks.chopping_board).setUnlocalizedName("item_chopping_board");
 		itemBarStool = new ItemPlacer(FurnitureBlocks.bar_stool).setUnlocalizedName("item_bar_stool");
-		itemBreadSlice = new ItemFood(2, false).setUnlocalizedName("item_bread_slice")
-				.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		itemToast = new ItemFood(4, false).setUnlocalizedName("item_toast")
-				.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		itemBreadSlice = new ItemFood(2, false).setUnlocalizedName("item_bread_slice").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		itemToast = new ItemFood(4, false).setUnlocalizedName("item_toast").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		itemKnife = new ItemKnife().setMaxDamage(100).setUnlocalizedName("item_knife");
 		itemCup = new ItemCup(false).setUnlocalizedName("item_cup");
 		itemDrink = new ItemCup(true).setUnlocalizedName("item_drink");
 		itemSoap = new ItemGeneric().setUnlocalizedName("item_soap");
-		itemSoapyWater = new ItemGeneric().setUnlocalizedName("item_soap_water").setContainerItem(Items.bucket)
-				.setMaxStackSize(1);
-		itemSuperSoapyWater = new ItemGeneric().setUnlocalizedName("item_super_soap_water")
-				.setContainerItem(Items.bucket).setMaxStackSize(1);
+		itemSoapyWater = new ItemGeneric().setUnlocalizedName("item_soap_water").setContainerItem(Items.bucket).setMaxStackSize(1);
+		itemSuperSoapyWater = new ItemGeneric().setUnlocalizedName("item_super_soap_water").setContainerItem(Items.bucket).setMaxStackSize(1);
 		itemRecipeBook = new ItemRecipeBook().setUnlocalizedName("item_recipe_book");
 		itemMirror = new ItemPlacer(FurnitureBlocks.mirror).setUnlocalizedName("item_mirror");
 		itemCrayfish = new Item().setUnlocalizedName("item_crayfish").setMaxStackSize(1);
@@ -189,9 +180,14 @@ public class FurnitureItems {
 		itemWreath = new ItemPlacer(FurnitureBlocks.wreath).setUnlocalizedName("item_wreath");
 		itemTrampoline = new ItemPlacer(FurnitureBlocks.trampoline).setUnlocalizedName("item_trampoline");
 		itemSpatula = new ItemSpatula().setUnlocalizedName("item_spatula");
+		itemSausage = new ItemFood(1, false).setUnlocalizedName("item_sausage").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);;
+		itemSausageCooked = new ItemFood(4, false).setUnlocalizedName("item_sausage_cooked").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);;
+		itemKebab = new ItemFood(1, false).setPotionEffect(Potion.hunger.id, 30, 0, 0.3F).setUnlocalizedName("item_kebab").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);;
+		itemKebabCooked = new ItemFood(4, false).setUnlocalizedName("item_kebab_cooked").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);;
 	}
 
-	public static void registerItems() {
+	public static void registerItems()
+	{
 		GameRegistry.registerItem(itemTableWood, itemTableWood.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemTableStone, itemTableStone.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemChairWood, itemChairWood.getUnlocalizedName().substring(5));
@@ -278,9 +274,14 @@ public class FurnitureItems {
 		GameRegistry.registerItem(itemWreath, itemWreath.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemTrampoline, itemTrampoline.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemSpatula, itemSpatula.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemSausage, itemSausage.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemSausageCooked, itemSausageCooked.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemKebab, itemKebab.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemKebabCooked, itemKebabCooked.getUnlocalizedName().substring(5));
 	}
 
-	public static void registerRenders() {
+	public static void registerRenders()
+	{
 		registerRender(itemTableWood);
 		registerRender(itemTableStone);
 		registerRender(itemChairWood);
@@ -367,17 +368,22 @@ public class FurnitureItems {
 		registerRender(itemWreath);
 		registerRender(itemTrampoline);
 		registerRender(itemSpatula);
+		registerRender(itemSausage);
+		registerRender(itemSausageCooked);
+		registerRender(itemKebab);
+		registerRender(itemKebabCooked);
 	}
 
-	private static void registerRender(Item item) {
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(
-				Reference.MOD_ID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
+	private static void registerRender(Item item)
+	{
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
 	}
 
-	private static void registerRender(Item item, int maxMeta) {
-		for (int i = 0; i < maxMeta; i++) {
-			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, i, new ModelResourceLocation(
-					Reference.MOD_ID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
+	private static void registerRender(Item item, int maxMeta)
+	{
+		for (int i = 0; i < maxMeta; i++)
+		{
+			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, i, new ModelResourceLocation(Reference.MOD_ID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
 		}
 	}
 }

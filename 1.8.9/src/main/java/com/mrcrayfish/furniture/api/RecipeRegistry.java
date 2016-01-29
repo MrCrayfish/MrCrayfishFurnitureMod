@@ -1350,5 +1350,7 @@ public class RecipeRegistry extends RecipeAPI
 			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.diamond_boots));
 		
 		RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(Items.beef), new ItemStack(Items.cooked_beef));
+		RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(FurnitureItems.itemSausage), new ItemStack(FurnitureItems.itemSausageCooked));
+		RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(FurnitureItems.itemKebab), new ItemStack(FurnitureItems.itemKebabCooked));
 	}
 }
