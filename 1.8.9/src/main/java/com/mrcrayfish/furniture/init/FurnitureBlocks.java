@@ -130,7 +130,7 @@ public class FurnitureBlocks
 	public static Block mantel_piece, grand_chair_top, grand_chair_bottom, candle, chimney, wreath, fairy_light, fire_pit_off, fire_pit_on;
 	
 	/** Outdoor Update */
-	public static Block trampoline, crate, bench, table_outdoor, grill, sprinkler, divingboard_base, divingboard_plank, door_mat, eski;
+	public static Block trampoline, crate, bench, table_outdoor, grill, sprinkler, divingboard_base, divingboard_plank, door_mat, eski, white_fence_gate;
 	
 	/* Special */
 	public static Block mirror;

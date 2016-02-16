@@ -218,19 +218,19 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 	}
 
 	@Override
-	public ItemStack decrStackSize(int slot, int number)
+	public ItemStack decrStackSize(int slot, int count)
 	{
 		if (this.inventory[slot] != null)
 		{
 			ItemStack itemstack;
 
-			if (this.inventory[slot].stackSize <= number)
+			if (this.inventory[slot].stackSize <= count)
 			{
 				itemstack = this.inventory[slot];
 				this.inventory[slot] = null;
 				return itemstack;
 			}
-			itemstack = this.inventory[slot].splitStack(number);
+			itemstack = this.inventory[slot].splitStack(count);
 
 			if (this.inventory[slot].stackSize == 0)
 			{
@@ -245,17 +245,23 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 	@Override
 	public ItemStack removeStackFromSlot(int slot)
 	{
-		return inventory[slot];
+		if (this.inventory[slot] != null)
+		{
+			ItemStack itemstack = this.inventory[slot];
+			this.inventory[slot] = null;
+			return itemstack;
+		}
+		return null;
 	}
 
 	@Override
-	public void setInventorySlotContents(int slot, ItemStack par2ItemStack)
+	public void setInventorySlotContents(int slot, ItemStack stack)
 	{
-		this.inventory[slot] = par2ItemStack;
+		this.inventory[slot] = stack;
 
-		if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
+		if (stack != null && stack.stackSize > this.getInventoryStackLimit())
 		{
-			par2ItemStack.stackSize = this.getInventoryStackLimit();
+			stack.stackSize = this.getInventoryStackLimit();
 		}
 	}
 
