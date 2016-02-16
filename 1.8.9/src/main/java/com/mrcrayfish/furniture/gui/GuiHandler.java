@@ -45,6 +45,7 @@ import com.mrcrayfish.furniture.tileentity.TileEntityCabinet;
 import com.mrcrayfish.furniture.tileentity.TileEntityCabinetKitchen;
 import com.mrcrayfish.furniture.tileentity.TileEntityComputer;
 import com.mrcrayfish.furniture.tileentity.TileEntityDishwasher;
+import com.mrcrayfish.furniture.tileentity.TileEntityDoorMat;
 import com.mrcrayfish.furniture.tileentity.TileEntityEski;
 import com.mrcrayfish.furniture.tileentity.TileEntityFreezer;
 import com.mrcrayfish.furniture.tileentity.TileEntityFridge;
@@ -214,6 +215,10 @@ public class GuiHandler implements IGuiHandler
 		if (tile_entity instanceof TileEntityEski)
 		{
 			return new GuiEski(player.inventory, (TileEntityEski) tile_entity);
+		}
+		if (tile_entity instanceof TileEntityDoorMat)
+		{
+			return new GuiDoorMat(x, y, z);
 		}
 		ItemStack mail = null;
 		if (player.getCurrentEquippedItem() != null)

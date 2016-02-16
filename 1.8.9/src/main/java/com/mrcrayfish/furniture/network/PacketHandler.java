@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.network;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.network.message.MessageConfig;
 import com.mrcrayfish.furniture.network.message.MessageDishwasher;
+import com.mrcrayfish.furniture.network.message.MessageDoorMat;
 import com.mrcrayfish.furniture.network.message.MessageEmptyBin;
 import com.mrcrayfish.furniture.network.message.MessageEnvelope;
 import com.mrcrayfish.furniture.network.message.MessageFart;
@@ -67,5 +68,6 @@ public class PacketHandler
 		INSTANCE.registerMessage(MessageDishwasher.class, MessageDishwasher.class, 16, Side.SERVER);
 		INSTANCE.registerMessage(MessageFreezer.class, MessageFreezer.class, 17, Side.SERVER);
 		INSTANCE.registerMessage(MessageUpdateFields.class, MessageUpdateFields.class, 18, Side.CLIENT);
+		INSTANCE.registerMessage(MessageDoorMat.class, MessageDoorMat.class, 19, Side.SERVER);
 	}
 }

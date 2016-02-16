@@ -2,8 +2,7 @@
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
         "0": "blocks/hardened_clay_stained_brown",
-        "1": "blocks/wool_colored_brown",
-        "2": "cfm:blocks/doormat_message"
+        "1": "blocks/wool_colored_brown"
     },
     "display": {
         "gui": {
@@ -98,14 +97,6 @@
             "faces": {
                 "up": { "texture": "#1", "uv": [ 0.0, 0.0, 14.0, 10.0 ] },
                 "down": { "texture": "#1", "uv": [ 0.0, 0.0, 14.0, 10.0 ] }
-            }
-        },
-        {
-            "name": "message",
-            "from": [ 1.3, 0.1, 6.5 ], 
-            "to": [ 15.3, 1.1, 10.5 ], 
-            "faces": {
-                "up": { "texture": "#2", "uv": [ 0.0, 0.0, 16.0, 4.0 ] }
             }
         }
     ]
