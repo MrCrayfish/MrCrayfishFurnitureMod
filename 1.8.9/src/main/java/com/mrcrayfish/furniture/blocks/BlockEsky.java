@@ -3,7 +3,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.tileentity.TileEntityEski;
+import com.mrcrayfish.furniture.tileentity.TileEntityEsky;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 
 import net.minecraft.block.ITileEntityProvider;
@@ -22,11 +22,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockEski extends BlockFurniture implements ITileEntityProvider
+public class BlockEsky extends BlockFurniture implements ITileEntityProvider
 {
 	public static final PropertyBool OPENED = PropertyBool.create("open");
 	
-	public BlockEski(Material material)
+	public BlockEsky(Material material)
 	{
 		super(material);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(OPENED, Boolean.valueOf(false)));
@@ -106,6 +106,6 @@ public class BlockEski extends BlockFurniture implements ITileEntityProvider
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
-		return new TileEntityEski();
+		return new TileEntityEsky();
 	}
 }

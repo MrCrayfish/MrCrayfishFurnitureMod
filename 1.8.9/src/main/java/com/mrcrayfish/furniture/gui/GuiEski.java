@@ -3,7 +3,7 @@ package com.mrcrayfish.furniture.gui;
 import org.lwjgl.opengl.GL11;
 
 import com.mrcrayfish.furniture.gui.containers.ContainerEski;
-import com.mrcrayfish.furniture.tileentity.TileEntityEski;
+import com.mrcrayfish.furniture.tileentity.TileEntityEsky;
 import com.mrcrayfish.furniture.tileentity.TileEntityFreezer;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -15,7 +15,7 @@ public class GuiEski extends GuiContainer
 {
 	private static final ResourceLocation GUI = new ResourceLocation("cfm:textures/gui/eski.png");
 	
-	public GuiEski(InventoryPlayer playerInventory, TileEntityEski eskiInventory)
+	public GuiEski(InventoryPlayer playerInventory, TileEntityEsky eskiInventory)
 	{
 		super(new ContainerEski(playerInventory, eskiInventory));
 		this.xSize = 176;

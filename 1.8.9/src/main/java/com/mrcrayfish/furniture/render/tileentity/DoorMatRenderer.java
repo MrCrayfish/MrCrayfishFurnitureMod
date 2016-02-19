@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.List;
 
 import com.mrcrayfish.furniture.blocks.BlockDoorMat;
-import com.mrcrayfish.furniture.blocks.BlockEski;
+import com.mrcrayfish.furniture.blocks.BlockEsky;
 import com.mrcrayfish.furniture.tileentity.TileEntityDoorMat;
 import com.mrcrayfish.furniture.util.ParticleHelper;
 

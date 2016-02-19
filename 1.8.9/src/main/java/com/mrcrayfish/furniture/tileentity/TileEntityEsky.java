@@ -7,10 +7,15 @@ import net.minecraft.inventory.IInvBasic;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityLockable;
 
-public class TileEntityEski extends TileEntityLockable implements IInventory
+public class TileEntityEsky extends TileEntityLockable implements IInventory
 {
 	public ItemStack[] inventory = new ItemStack[8];
 
@@ -122,6 +127,60 @@ public class TileEntityEski extends TileEntityLockable implements IInventory
 		{
 			inventory[i] = null;
 		}
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound compound) 
+	{
+		super.readFromNBT(compound);
+		if (compound.hasKey("Items"))
+		{
+			NBTTagList tagList = (NBTTagList) compound.getTag("Items");
+			this.inventory = new ItemStack[6];
+
+			for (int i = 0; i < tagList.tagCount(); ++i)
+			{
+				NBTTagCompound nbt = (NBTTagCompound) tagList.getCompoundTagAt(i);
+				byte slot = nbt.getByte("Slot");
+
+				if (slot >= 0 && slot < this.inventory.length)
+				{
+					this.inventory[slot] = ItemStack.loadItemStackFromNBT(nbt);
+				}
+			}
+		}
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound compound) 
+	{
+		super.writeToNBT(compound);
+		NBTTagList tagList = new NBTTagList();
+		for (int slot = 0; slot < this.inventory.length; ++slot)
+		{
+			if (this.inventory[slot] != null)
+			{
+				NBTTagCompound nbt = new NBTTagCompound();
+				nbt.setByte("Slot", (byte) slot);
+				this.inventory[slot].writeToNBT(nbt);
+				tagList.appendTag(nbt);
+			}
+		}
+	}
+	
+	@Override
+	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+	{
+		NBTTagCompound tagCom = pkt.getNbtCompound();
+		this.readFromNBT(tagCom);
+	}
+
+	@Override
+	public Packet getDescriptionPacket()
+	{
+		NBTTagCompound tagCom = new NBTTagCompound();
+		this.writeToNBT(tagCom);
+		return new S35PacketUpdateTileEntity(pos, getBlockMetadata(), tagCom);
 	}
 	
 	@Override

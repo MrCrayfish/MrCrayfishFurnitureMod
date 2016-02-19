@@ -1,7 +1,7 @@
 package com.mrcrayfish.furniture.render.tileentity;
 
-import com.mrcrayfish.furniture.blocks.BlockEski;
-import com.mrcrayfish.furniture.tileentity.TileEntityEski;
+import com.mrcrayfish.furniture.blocks.BlockEsky;
+import com.mrcrayfish.furniture.tileentity.TileEntityEsky;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -9,20 +9,20 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 
-public class EskiRenderer extends TileEntitySpecialRenderer<TileEntityEski>
+public class EskyRenderer extends TileEntitySpecialRenderer<TileEntityEsky>
 {
 	private EntityItem item = new EntityItem(Minecraft.getMinecraft().theWorld);
 	
 	@Override
-	public void renderTileEntityAt(TileEntityEski eski, double x, double y, double z, float partialTicks, int destroyStage)
+	public void renderTileEntityAt(TileEntityEsky eski, double x, double y, double z, float partialTicks, int destroyStage)
 	{
 		item.hoverStart = 0;
 		
 		IBlockState state = getWorld().getBlockState(eski.getPos());
-		if(state.getBlock() instanceof BlockEski)
+		if(state.getBlock() instanceof BlockEsky)
 		{
-			int rotation = state.getValue(BlockEski.FACING).getHorizontalIndex();
-			if(state.getValue(BlockEski.OPENED))
+			int rotation = state.getValue(BlockEsky.FACING).getHorizontalIndex();
+			if(state.getValue(BlockEsky.OPENED))
 			{
 				GlStateManager.pushMatrix();
 				{
