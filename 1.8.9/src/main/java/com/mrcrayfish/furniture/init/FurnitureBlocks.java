@@ -233,7 +233,7 @@ public class FurnitureBlocks
 		divingboard_base = new BlockDivingboard(Material.rock).setUnlocalizedName("divingboard_base");
 		divingboard_plank = new BlockDivingboard(Material.rock).setUnlocalizedName("divingboard_plank");
 		door_mat = new BlockDoorMat(Material.cloth).setUnlocalizedName("door_mat");
-		esky = new BlockEsky(Material.clay).setUnlocalizedName("eski");
+		esky = new BlockEsky(Material.clay).setUnlocalizedName("esky");
 	}
 
 	public static void register()
@@ -331,6 +331,7 @@ public class FurnitureBlocks
 	{
 		registerRender(trampoline);
 		registerRender(crate);
+		registerRender(bench);
 		registerRender(table_outdoor);
 		registerRender(grill);
 		registerRender(divingboard_base);
