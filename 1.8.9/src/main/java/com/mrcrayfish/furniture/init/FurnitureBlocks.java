@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture.init;
 
+import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.blocks.BlockBarStool;
 import com.mrcrayfish.furniture.blocks.BlockBasin;
 import com.mrcrayfish.furniture.blocks.BlockBath;
@@ -40,6 +41,7 @@ import com.mrcrayfish.furniture.blocks.BlockCouchJeb;
 import com.mrcrayfish.furniture.blocks.BlockCouchNormal;
 import com.mrcrayfish.furniture.blocks.BlockCounter;
 import com.mrcrayfish.furniture.blocks.BlockCounterSink;
+import com.mrcrayfish.furniture.blocks.BlockCrate;
 import com.mrcrayfish.furniture.blocks.BlockCup;
 import com.mrcrayfish.furniture.blocks.BlockCurtainsClosed;
 import com.mrcrayfish.furniture.blocks.BlockCurtainsOpen;
@@ -87,8 +89,10 @@ import com.mrcrayfish.furniture.blocks.BlockWhiteFence;
 import com.mrcrayfish.furniture.blocks.BlockWreath;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class FurnitureBlocks
@@ -222,7 +226,7 @@ public class FurnitureBlocks
 		fire_pit_off = new BlockFirePitOff(Material.wood).setUnlocalizedName("fire_pit_off");
 		fire_pit_on = new BlockFirePitOn(Material.wood).setUnlocalizedName("fire_pit_on");
 		trampoline = new BlockTrampoline(Material.rock).setUnlocalizedName("trampoline");
-		crate = new Block(Material.wood).setUnlocalizedName("crate");
+		crate = new BlockCrate(Material.wood).setUnlocalizedName("crate");
 		bench = new BlockBench(Material.wood).setUnlocalizedName("bench");
 		table_outdoor = new BlockOutdoorTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("table_outdoor");
 		grill = new BlockGrill(Material.anvil).setUnlocalizedName("grill");
@@ -321,5 +325,22 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(divingboard_plank, divingboard_plank.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(door_mat, door_mat.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(esky, esky.getUnlocalizedName().substring(5));
+	}
+	
+	public static void registerRenders()
+	{
+		registerRender(trampoline);
+		registerRender(crate);
+		registerRender(table_outdoor);
+		registerRender(grill);
+		registerRender(divingboard_base);
+		registerRender(divingboard_plank);
+		registerRender(door_mat);
+		registerRender(esky);
+	}
+	
+	private static void registerRender(Block block)
+	{
+		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + block.getUnlocalizedName().substring(5), "inventory"));
 	}
 }

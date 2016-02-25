@@ -34,6 +34,7 @@ import com.mrcrayfish.furniture.network.message.MessageMineBayClosed;
 import com.mrcrayfish.furniture.network.message.MessagePackage;
 import com.mrcrayfish.furniture.network.message.MessagePresent;
 import com.mrcrayfish.furniture.network.message.MessagePresentContents;
+import com.mrcrayfish.furniture.network.message.MessageSealCrate;
 import com.mrcrayfish.furniture.network.message.MessageTVClient;
 import com.mrcrayfish.furniture.network.message.MessageTakeWater;
 import com.mrcrayfish.furniture.network.message.MessageUpdateFields;
@@ -69,5 +70,6 @@ public class PacketHandler
 		INSTANCE.registerMessage(MessageFreezer.class, MessageFreezer.class, 17, Side.SERVER);
 		INSTANCE.registerMessage(MessageUpdateFields.class, MessageUpdateFields.class, 18, Side.CLIENT);
 		INSTANCE.registerMessage(MessageDoorMat.class, MessageDoorMat.class, 19, Side.SERVER);
+		INSTANCE.registerMessage(MessageSealCrate.class, MessageSealCrate.class, 20, Side.SERVER);
 	}
 }

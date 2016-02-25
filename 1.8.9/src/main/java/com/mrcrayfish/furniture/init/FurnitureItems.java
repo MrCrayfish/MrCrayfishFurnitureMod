@@ -80,7 +80,7 @@ public class FurnitureItems
 
 	/** Outdoor Update */
 	public static Item itemTrampoline, itemGrill, itemOutdoorBench, itemOutdoorTable, itemCrate, itemDivingboard;
-	public static Item itemSpatula, itemSausage, itemSausageCooked, itemKebab, itemKebabCooked;
+	public static Item itemSpatula, itemSausage, itemSausageCooked, itemKebab, itemKebabCooked, itemCrowBar;
 
 	/** Food */
 	public static Item itemBreadSlice, itemToast;

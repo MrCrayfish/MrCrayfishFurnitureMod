@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture.proxy;
 
+import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.render.tileentity.BlenderRenderer;
 import com.mrcrayfish.furniture.render.tileentity.ChoppingBoardRenderer;
@@ -67,6 +68,7 @@ public class ClientProxy extends CommonProxy
 	public void registerRenders()
 	{
 		FurnitureItems.registerRenders();
+		FurnitureBlocks.registerRenders();
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCookieJar.class, new CookieRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlate.class, new PlateRenderer());

@@ -21,6 +21,7 @@ import com.mrcrayfish.furniture.gui.containers.ContainerBedsideCabinet;
 import com.mrcrayfish.furniture.gui.containers.ContainerBin;
 import com.mrcrayfish.furniture.gui.containers.ContainerCabinet;
 import com.mrcrayfish.furniture.gui.containers.ContainerComputer;
+import com.mrcrayfish.furniture.gui.containers.ContainerCrate;
 import com.mrcrayfish.furniture.gui.containers.ContainerDishwasher;
 import com.mrcrayfish.furniture.gui.containers.ContainerEnvelope;
 import com.mrcrayfish.furniture.gui.containers.ContainerEski;
@@ -44,6 +45,7 @@ import com.mrcrayfish.furniture.tileentity.TileEntityBin;
 import com.mrcrayfish.furniture.tileentity.TileEntityCabinet;
 import com.mrcrayfish.furniture.tileentity.TileEntityCabinetKitchen;
 import com.mrcrayfish.furniture.tileentity.TileEntityComputer;
+import com.mrcrayfish.furniture.tileentity.TileEntityCrate;
 import com.mrcrayfish.furniture.tileentity.TileEntityDishwasher;
 import com.mrcrayfish.furniture.tileentity.TileEntityDoorMat;
 import com.mrcrayfish.furniture.tileentity.TileEntityEsky;
@@ -128,6 +130,10 @@ public class GuiHandler implements IGuiHandler
 		if (tile_entity instanceof TileEntityEsky)
 		{
 			return new ContainerEski(player.inventory, (TileEntityEsky) tile_entity);
+		}
+		if (tile_entity instanceof TileEntityCrate)
+		{
+			return new ContainerCrate(player.inventory, (TileEntityCrate) tile_entity);
 		}
 		if (id == 5)
 		{
@@ -219,6 +225,10 @@ public class GuiHandler implements IGuiHandler
 		if (tile_entity instanceof TileEntityDoorMat)
 		{
 			return new GuiDoorMat(x, y, z);
+		}
+		if (tile_entity instanceof TileEntityCrate)
+		{
+			return new GuiCrate(player.inventory, (TileEntityCrate) tile_entity, x, y, z);
 		}
 		ItemStack mail = null;
 		if (player.getCurrentEquippedItem() != null)
