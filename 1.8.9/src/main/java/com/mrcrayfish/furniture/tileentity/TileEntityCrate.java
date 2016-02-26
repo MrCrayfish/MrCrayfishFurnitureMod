@@ -146,7 +146,7 @@ public class TileEntityCrate extends TileEntity implements IInventory
 		if (compound.hasKey("Items"))
 		{
 			NBTTagList tagList = (NBTTagList) compound.getTag("Items");
-			this.inventory = new ItemStack[6];
+			this.inventory = new ItemStack[16];
 
 			for (int i = 0; i < tagList.tagCount(); ++i)
 			{
@@ -178,6 +178,7 @@ public class TileEntityCrate extends TileEntity implements IInventory
 				tagList.appendTag(nbt);
 			}
 		}
+		compound.setTag("Items", tagList);
 		compound.setBoolean("Sealed", this.sealed);
 	}
 	

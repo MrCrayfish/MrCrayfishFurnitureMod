@@ -180,10 +180,11 @@ public class FurnitureItems
 		itemWreath = new ItemPlacer(FurnitureBlocks.wreath).setUnlocalizedName("item_wreath");
 		itemTrampoline = new ItemPlacer(FurnitureBlocks.trampoline).setUnlocalizedName("item_trampoline");
 		itemSpatula = new ItemSpatula().setUnlocalizedName("item_spatula");
-		itemSausage = new ItemFood(1, false).setUnlocalizedName("item_sausage").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);;
-		itemSausageCooked = new ItemFood(4, false).setUnlocalizedName("item_sausage_cooked").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);;
-		itemKebab = new ItemFood(1, false).setPotionEffect(Potion.hunger.id, 30, 0, 0.3F).setUnlocalizedName("item_kebab").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);;
-		itemKebabCooked = new ItemFood(4, false).setUnlocalizedName("item_kebab_cooked").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);;
+		itemSausage = new ItemFood(1, false).setUnlocalizedName("item_sausage").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		itemSausageCooked = new ItemFood(4, false).setUnlocalizedName("item_sausage_cooked").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		itemKebab = new ItemFood(1, false).setPotionEffect(Potion.hunger.id, 30, 0, 0.3F).setUnlocalizedName("item_kebab").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		itemKebabCooked = new ItemFood(4, false).setUnlocalizedName("item_kebab_cooked").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		itemCrowBar = new Item().setUnlocalizedName("item_crow_bar").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
 	public static void registerItems()
@@ -278,6 +279,7 @@ public class FurnitureItems
 		GameRegistry.registerItem(itemSausageCooked, itemSausageCooked.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemKebab, itemKebab.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemKebabCooked, itemKebabCooked.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemCrowBar, itemCrowBar.getUnlocalizedName().substring(5));
 	}
 
 	public static void registerRenders()
@@ -372,6 +374,7 @@ public class FurnitureItems
 		registerRender(itemSausageCooked);
 		registerRender(itemKebab);
 		registerRender(itemKebabCooked);
+		registerRender(itemCrowBar);
 	}
 
 	private static void registerRender(Item item)
