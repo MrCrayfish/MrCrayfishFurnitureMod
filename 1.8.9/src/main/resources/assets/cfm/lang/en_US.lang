@@ -91,6 +91,17 @@ item.item_sausage.name=Sausage
 item.item_sausage_cooked.name=Cooked Sausage
 item.item_kebab.name=Raw Kebab
 item.item_kebab_cooked.name=Cooked Kebab
+item.item_crow_bar.name=Crow Bar
+
+tile.trampoline.name=Trampoline
+tile.table_outdoor.name=Outdoor Table
+tile.bench.name=Outdoor Bench
+tile.crate.name=Crate
+tile.grill.name=Grill
+tile.divingboard_base.name=Divingboard
+tile.door_mat.name=Door Mat
+tile.esky.name=Cooler
+tile.water_tank.name=Water Tank
 
 achievement.cfm_install=You've been installed!
 achievement.cfm_install.desc=Thank you for installing MrCrayfish's Furniture Mod
