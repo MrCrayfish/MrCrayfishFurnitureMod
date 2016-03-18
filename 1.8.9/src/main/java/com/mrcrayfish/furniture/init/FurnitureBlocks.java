@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture.init;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.blocks.BlockBarStool;
 import com.mrcrayfish.furniture.blocks.BlockBasin;
@@ -85,6 +86,7 @@ import com.mrcrayfish.furniture.blocks.BlockTrampoline;
 import com.mrcrayfish.furniture.blocks.BlockTree;
 import com.mrcrayfish.furniture.blocks.BlockWallCabinet;
 import com.mrcrayfish.furniture.blocks.BlockWashingMachine;
+import com.mrcrayfish.furniture.blocks.BlockWaterTank;
 import com.mrcrayfish.furniture.blocks.BlockWhiteFence;
 import com.mrcrayfish.furniture.blocks.BlockWreath;
 
@@ -134,7 +136,7 @@ public class FurnitureBlocks
 	public static Block mantel_piece, grand_chair_top, grand_chair_bottom, candle, chimney, wreath, fairy_light, fire_pit_off, fire_pit_on;
 	
 	/** Outdoor Update */
-	public static Block trampoline, crate, bench, table_outdoor, grill, sprinkler, divingboard_base, divingboard_plank, door_mat, esky, white_fence_gate;
+	public static Block trampoline, crate, bench, table_outdoor, grill, sprinkler, divingboard_base, divingboard_plank, door_mat, esky, white_fence_gate, water_tank;
 	
 	/* Special */
 	public static Block mirror;
@@ -225,15 +227,16 @@ public class FurnitureBlocks
 		fairy_light = new BlockFairyLight(Material.glass).setUnlocalizedName("fairy_light");
 		fire_pit_off = new BlockFirePitOff(Material.wood).setUnlocalizedName("fire_pit_off");
 		fire_pit_on = new BlockFirePitOn(Material.wood).setUnlocalizedName("fire_pit_on");
-		trampoline = new BlockTrampoline(Material.rock).setUnlocalizedName("trampoline");
-		crate = new BlockCrate(Material.wood).setUnlocalizedName("crate");
-		bench = new BlockBench(Material.wood).setUnlocalizedName("bench");
-		table_outdoor = new BlockOutdoorTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("table_outdoor");
-		grill = new BlockGrill(Material.anvil).setUnlocalizedName("grill");
-		divingboard_base = new BlockDivingboard(Material.rock).setUnlocalizedName("divingboard_base");
+		trampoline = new BlockTrampoline(Material.rock).setUnlocalizedName("trampoline").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		crate = new BlockCrate(Material.wood).setUnlocalizedName("crate").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		bench = new BlockBench(Material.wood).setUnlocalizedName("bench").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		table_outdoor = new BlockOutdoorTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("table_outdoor").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		grill = new BlockGrill(Material.anvil).setUnlocalizedName("grill").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		divingboard_base = new BlockDivingboard(Material.rock).setUnlocalizedName("divingboard_base").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		divingboard_plank = new BlockDivingboard(Material.rock).setUnlocalizedName("divingboard_plank");
-		door_mat = new BlockDoorMat(Material.cloth).setUnlocalizedName("door_mat");
-		esky = new BlockEsky(Material.clay).setUnlocalizedName("esky");
+		door_mat = new BlockDoorMat(Material.cloth).setUnlocalizedName("door_mat").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		esky = new BlockEsky(Material.clay).setUnlocalizedName("esky").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		water_tank = new BlockWaterTank(Material.rock).setUnlocalizedName("water_tank").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
 	public static void register()
@@ -325,6 +328,7 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(divingboard_plank, divingboard_plank.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(door_mat, door_mat.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(esky, esky.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(water_tank, water_tank.getUnlocalizedName().substring(5));
 	}
 	
 	public static void registerRenders()
@@ -338,6 +342,7 @@ public class FurnitureBlocks
 		registerRender(divingboard_plank);
 		registerRender(door_mat);
 		registerRender(esky);
+		registerRender(water_tank);
 	}
 	
 	private static void registerRender(Block block)
