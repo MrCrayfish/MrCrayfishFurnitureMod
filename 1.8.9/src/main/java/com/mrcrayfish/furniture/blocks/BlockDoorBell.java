@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Random;
 
+import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
 import net.minecraft.block.Block;
@@ -175,6 +176,7 @@ public class BlockDoorBell extends BlockFurniture
 			worldIn.markBlockRangeForRenderUpdate(pos, pos);
 			worldIn.playSoundEffect((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, "cfm:doorbell", 1.0F, 1.0F);
 			worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));
+			playerIn.triggerAchievement(FurnitureAchievements.dingDong);
 			return true;
 		}
 	}
