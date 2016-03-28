@@ -42,9 +42,9 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockShowerHead extends BlockFurnitureTile
+public class BlockShowerHeadOn extends BlockFurnitureTile
 {
-	public BlockShowerHead(Material material)
+	public BlockShowerHeadOn(Material material)
 	{
 		super(material);
 		setHardness(1.0F);
@@ -75,16 +75,8 @@ public class BlockShowerHead extends BlockFurnitureTile
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		if (this == FurnitureBlocks.shower_head_off)
-		{
-			world.setBlockState(pos, FurnitureBlocks.shower_head_on.getDefaultState().withProperty(FACING, state.getValue(FACING)), 2);
-			world.playSoundEffect(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, "random.click", 0.3F, 0.6F);
-		}
-		else
-		{
-			world.setBlockState(pos, FurnitureBlocks.shower_head_off.getDefaultState().withProperty(FACING, state.getValue(FACING)), 2);
-			world.playSoundEffect(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, "random.click", 0.3F, 0.5F);
-		}
+		world.setBlockState(pos, FurnitureBlocks.shower_head_off.getDefaultState().withProperty(FACING, state.getValue(FACING)), 2);
+		world.playSoundEffect(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, "random.click", 0.3F, 0.5F);
 		return true;
 	}
 
@@ -141,11 +133,7 @@ public class BlockShowerHead extends BlockFurnitureTile
 	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
-		if (this == FurnitureBlocks.shower_head_on)
-		{
-			return new TileEntityShowerHead();
-		}
-		return null;
+		return new TileEntityShowerHead();
 	}
 
 	@Override
