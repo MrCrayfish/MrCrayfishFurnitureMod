@@ -38,7 +38,7 @@ public class CraftingHandler
 
 		if (event.crafting.getItem() == FurnitureItems.itemSoapyWater || event.crafting.getItem() == FurnitureItems.itemSuperSoapyWater)
 		{
-			for (int i = 0; i < 9; i++)
+			for (int i = 0; i < event.craftMatrix.getSizeInventory(); i++)
 			{
 				event.craftMatrix.setInventorySlotContents(i, null);
 			}
