@@ -19,30 +19,23 @@ package com.mrcrayfish.furniture.render.tileentity;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrcrayfish.furniture.blocks.BlockWashingMachine;
 import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.tileentity.TileEntity;
 
-public class WashingMachineRenderer extends TileEntitySpecialRenderer
+public class WashingMachineRenderer extends TileEntitySpecialRenderer<TileEntityWashingMachine>
 {
 	private EntityItem armour = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D);
 	
-	private int counter = 0;
+	@SuppressWarnings("unused")
+    private int counter = 0;
 	
 	@Override
-	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
+	public void renderTileEntityAt(TileEntityWashingMachine machine, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{
-		Block block = tileEntity.getBlockType();
-		if(!(block instanceof BlockWashingMachine))
-			return;
-		
-		TileEntityWashingMachine machine = (TileEntityWashingMachine) tileEntity;
-		int metadata = block.getMetaFromState(tileEntity.getWorld().getBlockState(tileEntity.getPos()));
+		int metadata = machine.getBlockMetadata();
 
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float) posX + 0.5F, (float) posY + 0.5F, (float) posZ + 0.5F);

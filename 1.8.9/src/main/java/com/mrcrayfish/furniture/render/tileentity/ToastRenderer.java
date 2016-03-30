@@ -21,27 +21,19 @@ import org.lwjgl.opengl.GL11;
 
 import com.mrcrayfish.furniture.tileentity.TileEntityToaster;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
-public class ToastRenderer extends TileEntitySpecialRenderer
+public class ToastRenderer extends TileEntitySpecialRenderer<TileEntityToaster>
 {
 	private EntityItem[] slots = { new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D), new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D) };
 
 	@Override
-	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
+	public void renderTileEntityAt(TileEntityToaster tileEntityToaster, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{
-		TileEntityToaster tileEntityToaster = (TileEntityToaster) tileEntity;
-		
-		Block block = tileEntity.getBlockType();
-		if(block.isAir(getWorld(), tileEntity.getPos()))
-			return;
-		
-		int metadata = block.getMetaFromState(tileEntity.getWorld().getBlockState(tileEntity.getPos()));
+		int metadata = tileEntityToaster.getBlockMetadata();
 
 		for (int i = 0; i < 2; i++)
 		{

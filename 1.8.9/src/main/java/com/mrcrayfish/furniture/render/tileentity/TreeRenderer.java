@@ -7,21 +7,17 @@ import com.mrcrayfish.furniture.tileentity.TileEntityTree;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
-public class TreeRenderer extends TileEntitySpecialRenderer
+public class TreeRenderer extends TileEntitySpecialRenderer<TileEntityTree>
 {
 	private EntityItem ornament = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D);
 
 	@Override
-	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
+	public void renderTileEntityAt(TileEntityTree tree, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{
-		TileEntityTree tree = (TileEntityTree) tileEntity;
 		Block block = tree.getWorld().getBlockState(tree.getPos()).getBlock();
 		
 		float yOffset = 0.0F;
@@ -48,7 +44,7 @@ public class TreeRenderer extends TileEntitySpecialRenderer
 				GL11.glPushMatrix();
 				
 				GL11.glDisable(GL11.GL_LIGHTING);
-				WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
+				//WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
 				//renderer.setBrightness(15728880);
 
 				GL11.glRotatef(-90 * i, 0, 1, 0);

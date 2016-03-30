@@ -22,20 +22,16 @@ import org.lwjgl.opengl.GL11;
 import com.mrcrayfish.furniture.tileentity.TileEntityPlate;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.tileentity.TileEntity;
 
-public class PlateRenderer extends TileEntitySpecialRenderer
+public class PlateRenderer extends TileEntitySpecialRenderer<TileEntityPlate>
 {
 	private EntityItem entityFood = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D);
 
 	@Override
-	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
+	public void renderTileEntityAt(TileEntityPlate plate, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{
-		TileEntityPlate plate = (TileEntityPlate) tileEntity;
 		if (plate.getFood() != null)
 		{
 			entityFood.setEntityItemStack(plate.getFood());
@@ -65,7 +61,7 @@ public class PlateRenderer extends TileEntitySpecialRenderer
 			}
 			
 			GL11.glDisable(GL11.GL_LIGHTING);
-			WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
+			//WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
 			//renderer.setBrightness(15728880);
 
 			GL11.glTranslatef((float) posX + 0.5F + xOffset, (float) posY + 0.05F, (float) posZ + 0.3F + zOffset);
