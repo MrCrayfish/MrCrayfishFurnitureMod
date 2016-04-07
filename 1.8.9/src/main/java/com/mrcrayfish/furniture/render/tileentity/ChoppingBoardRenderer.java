@@ -19,30 +19,20 @@ package com.mrcrayfish.furniture.render.tileentity;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrcrayfish.furniture.blocks.BlockChoppingBoard;
 import com.mrcrayfish.furniture.tileentity.TileEntityChoppingBoard;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.tileentity.TileEntity;
 
-public class ChoppingBoardRenderer extends TileEntitySpecialRenderer
+public class ChoppingBoardRenderer extends TileEntitySpecialRenderer<TileEntityChoppingBoard>
 {
 	private EntityItem entityFood = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D);
 
 	@Override
-	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
+	public void renderTileEntityAt(TileEntityChoppingBoard board, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{
-		Block block = tileEntity.getBlockType();
-		if(!(block instanceof BlockChoppingBoard))
-			return;
-		
-		TileEntityChoppingBoard board = (TileEntityChoppingBoard) tileEntity;
-		int metadata = block.getMetaFromState(tileEntity.getWorld().getBlockState(tileEntity.getPos()));
+		int metadata = board.getBlockMetadata();
 
 		if (board.getFood() != null)
 		{
@@ -73,7 +63,7 @@ public class ChoppingBoardRenderer extends TileEntitySpecialRenderer
 			}
 			
 			GL11.glDisable(GL11.GL_LIGHTING);
-			WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
+			//WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
 			//renderer.setBrightness(15728880);
 
 			GL11.glTranslatef((float) posX + 0.5F + xOffset, (float) posY + 0.02F, (float) posZ + 0.3F + zOffset);

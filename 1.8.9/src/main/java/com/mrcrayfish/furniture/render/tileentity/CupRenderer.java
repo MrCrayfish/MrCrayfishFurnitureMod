@@ -21,20 +21,16 @@ import org.lwjgl.opengl.GL11;
 
 import com.mrcrayfish.furniture.tileentity.TileEntityCup;
 
-import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
 
-public class CupRenderer extends TileEntitySpecialRenderer
+public class CupRenderer extends TileEntitySpecialRenderer<TileEntityCup>
 {
 
 	@Override
-	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
+	public void renderTileEntityAt(TileEntityCup tileEntityCup, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{
-		TileEntityCup tileEntityCup = (TileEntityCup) tileEntity;
 		if (tileEntityCup.getDrink() != null)
 		{
-			Tessellator tessellator = Tessellator.getInstance();
 			GL11.glPushMatrix();
 			{
 				GL11.glTranslatef((float) posX + 0.5F, (float) posY, (float) posZ + 0.5F);
