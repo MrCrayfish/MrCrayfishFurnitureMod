@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
@@ -51,9 +52,10 @@ public class BlockChair extends Block
 	public BlockChair(Material material, SoundType sound)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(sound);
+		this.setHardness(1.0F);
+		this.setStepSound(sound);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
 	@Override
@@ -107,7 +109,7 @@ public class BlockChair extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		if (this == FurnitureBlocks.chair_wood)
+		if (this == FurnitureBlocks.chair_oak)
 			return FurnitureItems.itemChairWood;
 		if (this == FurnitureBlocks.chair_stone)
 			return FurnitureItems.itemChairStone;
@@ -117,7 +119,7 @@ public class BlockChair extends Block
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
-		if (this == FurnitureBlocks.chair_wood)
+		if (this == FurnitureBlocks.chair_oak)
 			return new ItemStack(FurnitureItems.itemChairWood);
 		if (this == FurnitureBlocks.chair_stone)
 			return new ItemStack(FurnitureItems.itemChairStone);

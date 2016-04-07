@@ -86,7 +86,6 @@ import com.mrcrayfish.furniture.blocks.BlockTrampoline;
 import com.mrcrayfish.furniture.blocks.BlockTree;
 import com.mrcrayfish.furniture.blocks.BlockWallCabinet;
 import com.mrcrayfish.furniture.blocks.BlockWashingMachine;
-import com.mrcrayfish.furniture.blocks.BlockWaterTank;
 import com.mrcrayfish.furniture.blocks.BlockWhiteFence;
 import com.mrcrayfish.furniture.blocks.BlockWreath;
 
@@ -100,11 +99,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class FurnitureBlocks
 {
 	/** Initial Furniture */
-	public static Block coffee_table_wood, coffee_table_stone;
-	public static Block table_wood, table_stone;
-	public static Block chair_wood, chair_stone;
+	public static Block coffee_table_oak, coffee_table_stone;
+	public static Block table_oak, table_stone;
+	public static Block chair_oak, chair_stone;
 	public static Block freezer, fridge;
-	public static Block cabinet, bedside_cabinet;
+	public static Block cabinet_oak, bedside_cabinet_oak;
 	public static Block couch, couch_jeb;
 	public static Block blinds, blinds_closed;
 	public static Block curtains, curtains_closed;
@@ -136,7 +135,12 @@ public class FurnitureBlocks
 	public static Block mantel_piece, grand_chair_top, grand_chair_bottom, candle, chimney, wreath, fairy_light, fire_pit_off, fire_pit_on;
 	
 	/** Outdoor Update */
-	public static Block trampoline, crate, bench, table_outdoor, grill, sprinkler, divingboard_base, divingboard_plank, door_mat, esky, white_fence_gate, water_tank;
+	public static Block trampoline, crate, bench, table_outdoor, grill, sprinkler, divingboard_base, divingboard_plank, door_mat, esky, white_fence_gate;
+	public static Block coffee_table_spruce, coffee_table_birch, coffee_table_jungle, coffee_table_acacia, coffee_table_dark_oak;
+	public static Block chair_spruce, chair_birch, chair_jungle, chair_acacia, chair_dark_oak;
+	public static Block table_spruce, table_birch, table_jungle, table_acacia, table_dark_oak;
+	public static Block cabinet_spruce, cabinet_birch, cabinet_jungle, cabinet_acacia, cabinet_dark_oak;
+	public static Block bedside_cabinet_spruce, bedside_cabinet_birch, bedside_cabinet_jungle, bedside_cabinet_acacia, bedside_cabinet_dark_oak;
 	
 	/* Special */
 	public static Block mirror;
@@ -152,22 +156,47 @@ public class FurnitureBlocks
 	{
 		lamp_on = new BlockLampOn(Material.glass).setUnlocalizedName("lamp_on");
 		lamp_off = new BlockLamp(Material.glass).setUnlocalizedName("lamp_off");
-		coffee_table_wood = new BlockCoffeeTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("coffee_table_wood");
+		coffee_table_oak = new BlockCoffeeTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("coffee_table_oak");
+		coffee_table_spruce = new BlockCoffeeTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("coffee_table_spruce");
+		coffee_table_birch = new BlockCoffeeTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("coffee_table_birch");
+		coffee_table_jungle = new BlockCoffeeTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("coffee_table_jungle");
+		coffee_table_acacia = new BlockCoffeeTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("coffee_table_acacia");
+		coffee_table_dark_oak = new BlockCoffeeTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("coffee_table_dark_oak");
 		coffee_table_stone = new BlockCoffeeTable(Material.rock, Block.soundTypeStone).setUnlocalizedName("coffee_table_stone");
-		table_wood = new BlockTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("table_wood");
+		table_oak = new BlockTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("table_oak");
+		table_spruce = new BlockTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("table_spruce");
+		table_birch = new BlockTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("table_birch");
+		table_jungle = new BlockTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("table_jungle");
+		table_acacia = new BlockTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("table_acacia");
+		table_dark_oak = new BlockTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("table_dark_oak");
 		table_stone = new BlockTable(Material.rock, Block.soundTypeStone).setUnlocalizedName("table_stone");
-		chair_wood = new BlockChair(Material.wood, Block.soundTypeWood).setUnlocalizedName("chair_wood");
+		chair_oak = new BlockChair(Material.wood, Block.soundTypeWood).setUnlocalizedName("chair_oak");
+		chair_spruce = new BlockChair(Material.wood, Block.soundTypeWood).setUnlocalizedName("chair_spruce");
+		chair_birch = new BlockChair(Material.wood, Block.soundTypeWood).setUnlocalizedName("chair_birch");
+		chair_jungle = new BlockChair(Material.wood, Block.soundTypeWood).setUnlocalizedName("chair_jungle");
+		chair_acacia = new BlockChair(Material.wood, Block.soundTypeWood).setUnlocalizedName("chair_acacia");
+		chair_dark_oak = new BlockChair(Material.wood, Block.soundTypeWood).setUnlocalizedName("chair_dark_oak");
 		chair_stone = new BlockChair(Material.rock, Block.soundTypeStone).setUnlocalizedName("chair_stone");
 		freezer = new BlockFreezer(Material.rock).setUnlocalizedName("freezer");
 		fridge = new BlockFridge(Material.rock).setUnlocalizedName("fridge");
-		cabinet = new BlockCabinet(Material.wood).setUnlocalizedName("cabinet");
+		cabinet_oak = new BlockCabinet(Material.wood).setUnlocalizedName("cabinet_oak");
+		cabinet_spruce = new BlockCabinet(Material.wood).setUnlocalizedName("cabinet_spruce");
+		cabinet_birch = new BlockCabinet(Material.wood).setUnlocalizedName("cabinet_birch");
+		cabinet_jungle = new BlockCabinet(Material.wood).setUnlocalizedName("cabinet_jungle");
+		cabinet_acacia = new BlockCabinet(Material.wood).setUnlocalizedName("cabinet_acacia");
+		cabinet_dark_oak = new BlockCabinet(Material.wood).setUnlocalizedName("cabinet_dark_oak");
 		couch = new BlockCouchNormal().setUnlocalizedName("couch");
 		couch_jeb = new BlockCouchJeb().setUnlocalizedName("couch_jeb");
 		blinds = new BlockBlinds(Material.wood, true).setUnlocalizedName("blinds_open");
 		blinds_closed = new BlockBlinds(Material.wood, false).setUnlocalizedName("blinds_closed");
 		curtains = new BlockCurtainsOpen(Material.cloth).setUnlocalizedName("curtains_open");
 		curtains_closed = new BlockCurtainsClosed(Material.cloth).setUnlocalizedName("curtains_closed");
-		bedside_cabinet = new BlockBedsideCabinet(Material.wood).setUnlocalizedName("bedside_cabinet");
+		bedside_cabinet_oak = new BlockBedsideCabinet(Material.wood).setUnlocalizedName("bedside_cabinet_oak");
+		bedside_cabinet_spruce = new BlockBedsideCabinet(Material.wood).setUnlocalizedName("bedside_cabinet_spruce");
+		bedside_cabinet_birch = new BlockBedsideCabinet(Material.wood).setUnlocalizedName("bedside_cabinet_birch");
+		bedside_cabinet_jungle = new BlockBedsideCabinet(Material.wood).setUnlocalizedName("bedside_cabinet_jungle");
+		bedside_cabinet_acacia = new BlockBedsideCabinet(Material.wood).setUnlocalizedName("bedside_cabinet_acacia");
+		bedside_cabinet_dark_oak = new BlockBedsideCabinet(Material.wood).setUnlocalizedName("bedside_cabinet_dark_oak");
 		oven = new BlockOven(Material.rock).setUnlocalizedName("oven");
 		range_hood = new BlockRangeHood(Material.rock).setUnlocalizedName("range_hood");
 		hedge_oak = new BlockHedge(Material.leaves).setUnlocalizedName("hedge_oak");
@@ -236,7 +265,6 @@ public class FurnitureBlocks
 		divingboard_plank = new BlockDivingboard(Material.rock).setUnlocalizedName("divingboard_plank");
 		door_mat = new BlockDoorMat(Material.cloth).setUnlocalizedName("door_mat").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		esky = new BlockEsky(Material.clay).setUnlocalizedName("esky").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		water_tank = new BlockWaterTank(Material.rock).setUnlocalizedName("water_tank").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
 	public static void register()
@@ -244,22 +272,47 @@ public class FurnitureBlocks
 		/** Block Registering */
 		GameRegistry.registerBlock(lamp_on, lamp_on.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(lamp_off, lamp_off.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(coffee_table_wood, coffee_table_wood.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(coffee_table_oak, coffee_table_oak.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(coffee_table_spruce, coffee_table_spruce.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(coffee_table_birch, coffee_table_birch.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(coffee_table_jungle, coffee_table_jungle.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(coffee_table_acacia, coffee_table_acacia.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(coffee_table_dark_oak, coffee_table_dark_oak.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(coffee_table_stone, coffee_table_stone.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(table_wood, table_wood.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(table_oak, table_oak.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(table_spruce, table_spruce.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(table_birch, table_birch.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(table_jungle, table_jungle.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(table_acacia, table_acacia.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(table_dark_oak, table_dark_oak.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(table_stone, table_stone.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(chair_wood, chair_wood.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(chair_oak, chair_oak.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(chair_spruce, chair_spruce.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(chair_birch, chair_birch.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(chair_jungle, chair_jungle.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(chair_acacia, chair_acacia.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(chair_dark_oak, chair_dark_oak.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(chair_stone, chair_stone.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(freezer, freezer.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(fridge, fridge.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(cabinet, cabinet.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(cabinet_oak, cabinet_oak.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(cabinet_spruce, cabinet_spruce.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(cabinet_birch, cabinet_birch.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(cabinet_jungle, cabinet_jungle.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(cabinet_acacia, cabinet_acacia.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(cabinet_dark_oak, cabinet_dark_oak.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(couch, couch.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(couch_jeb, couch_jeb.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(blinds, blinds.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(blinds_closed, blinds_closed.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(curtains, curtains.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(curtains_closed, curtains_closed.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(bedside_cabinet, bedside_cabinet.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(bedside_cabinet_oak, bedside_cabinet_oak.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(bedside_cabinet_spruce, bedside_cabinet_spruce.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(bedside_cabinet_birch, bedside_cabinet_birch.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(bedside_cabinet_jungle, bedside_cabinet_jungle.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(bedside_cabinet_acacia, bedside_cabinet_acacia.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(bedside_cabinet_dark_oak, bedside_cabinet_dark_oak.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(oven, oven.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(range_hood, range_hood.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(hedge_oak, hedge_oak.getUnlocalizedName().substring(5));
@@ -328,11 +381,43 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(divingboard_plank, divingboard_plank.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(door_mat, door_mat.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(esky, esky.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(water_tank, water_tank.getUnlocalizedName().substring(5));
 	}
 	
 	public static void registerRenders()
 	{
+		registerRender(table_oak);
+		registerRender(table_spruce);
+		registerRender(table_birch);
+		registerRender(table_jungle);
+		registerRender(table_acacia);
+		registerRender(table_dark_oak);
+		registerRender(table_stone);
+		registerRender(coffee_table_oak);
+		registerRender(coffee_table_spruce);
+		registerRender(coffee_table_birch);
+		registerRender(coffee_table_jungle);
+		registerRender(coffee_table_acacia);
+		registerRender(coffee_table_dark_oak);
+		registerRender(coffee_table_stone);
+		registerRender(chair_oak);
+		registerRender(chair_spruce);
+		registerRender(chair_birch);
+		registerRender(chair_jungle);
+		registerRender(chair_acacia);
+		registerRender(chair_dark_oak);
+		registerRender(cabinet_oak);
+		registerRender(cabinet_spruce);
+		registerRender(cabinet_birch);
+		registerRender(cabinet_jungle);
+		registerRender(cabinet_acacia);
+		registerRender(cabinet_dark_oak);
+		registerRender(bedside_cabinet_oak);
+		registerRender(bedside_cabinet_spruce);
+		registerRender(bedside_cabinet_birch);
+		registerRender(bedside_cabinet_jungle);
+		registerRender(bedside_cabinet_acacia);
+		registerRender(bedside_cabinet_dark_oak);
+		registerRender(chair_stone);
 		registerRender(trampoline);
 		registerRender(crate);
 		registerRender(bench);
@@ -342,7 +427,6 @@ public class FurnitureBlocks
 		registerRender(divingboard_plank);
 		registerRender(door_mat);
 		registerRender(esky);
-		registerRender(water_tank);
 	}
 	
 	private static void registerRender(Block block)

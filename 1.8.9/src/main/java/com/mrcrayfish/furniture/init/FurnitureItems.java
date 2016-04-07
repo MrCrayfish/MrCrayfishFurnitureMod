@@ -94,12 +94,12 @@ public class FurnitureItems
 
 	public static void init()
 	{
-		itemTableWood = new ItemPlacer(FurnitureBlocks.table_wood).setUnlocalizedName("item_table_wood");
+		itemTableWood = new ItemPlacer(FurnitureBlocks.table_oak).setUnlocalizedName("item_table_wood");
 		itemTableStone = new ItemPlacer(FurnitureBlocks.table_stone).setUnlocalizedName("item_table_stone");
-		itemChairWood = new ItemPlacer(FurnitureBlocks.chair_wood).setUnlocalizedName("item_chair_wood");
+		itemChairWood = new ItemPlacer(FurnitureBlocks.chair_oak).setUnlocalizedName("item_chair_wood");
 		itemChairStone = new ItemPlacer(FurnitureBlocks.chair_stone).setUnlocalizedName("item_chair_stone");
-		itemCabinet = new ItemPlacer(FurnitureBlocks.cabinet).setUnlocalizedName("item_cabinet");
-		itemCoffeeTableWood = new ItemPlacer(FurnitureBlocks.coffee_table_wood).setUnlocalizedName("item_coffee_table_wood");
+		itemCabinet = new ItemPlacer(FurnitureBlocks.cabinet_oak).setUnlocalizedName("item_cabinet");
+		itemCoffeeTableWood = new ItemPlacer(FurnitureBlocks.coffee_table_oak).setUnlocalizedName("item_coffee_table_wood");
 		itemCoffeeTableStone = new ItemPlacer(FurnitureBlocks.coffee_table_stone).setUnlocalizedName("item_coffee_table_stone");
 		itemFridge = new ItemPlacer(FurnitureBlocks.freezer).setUnlocalizedName("item_fridge");
 		itemCouch = new ItemPlacer(FurnitureBlocks.couch).setUnlocalizedName("item_couch");
@@ -107,7 +107,7 @@ public class FurnitureItems
 		itemBlinds = new ItemPlacer(FurnitureBlocks.blinds).setUnlocalizedName("item_blinds");
 		itemCurtains = new ItemPlacer(FurnitureBlocks.curtains).setUnlocalizedName("item_curtains");
 		itemLamp = new ItemPlacer(FurnitureBlocks.lamp_off).setUnlocalizedName("item_lamp");
-		itemBedsideCabinet = new ItemPlacer(FurnitureBlocks.bedside_cabinet).setUnlocalizedName("item_bedside_cabinet");
+		itemBedsideCabinet = new ItemPlacer(FurnitureBlocks.bedside_cabinet_oak).setUnlocalizedName("item_bedside_cabinet");
 		itemCoolPack = new ItemGeneric().setUnlocalizedName("item_cool_pack");
 		itemOven = new ItemPlacer(FurnitureBlocks.oven).setUnlocalizedName("item_oven");
 		itemOvenRangehood = new ItemPlacer(FurnitureBlocks.range_hood).setUnlocalizedName("item_range_hood");

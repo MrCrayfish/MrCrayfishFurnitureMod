@@ -75,7 +75,7 @@ public class BlockLampOff extends BlockFurniture
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		if (world.isBlockPowered(pos) | world.getBlockState(pos.down()).getBlock() == FurnitureBlocks.bedside_cabinet)
+		if (world.isBlockPowered(pos) | world.getBlockState(pos.down()).getBlock() == FurnitureBlocks.bedside_cabinet_oak)
 		{
 			world.setBlockState(pos, FurnitureBlocks.lamp_on.getDefaultState(), 2);
 			world.notifyBlockOfStateChange(pos.down(), this);

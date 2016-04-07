@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
@@ -48,9 +49,10 @@ public class BlockCoffeeTable extends Block
 	public BlockCoffeeTable(Material material, SoundType sound)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(sound);
+		this.setHardness(1.0F);
+		this.setStepSound(sound);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
 	@Override
@@ -81,7 +83,7 @@ public class BlockCoffeeTable extends Block
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		if (this == FurnitureBlocks.coffee_table_wood)
+		if (this == FurnitureBlocks.coffee_table_oak)
 			return FurnitureItems.itemCoffeeTableWood;
 		if (this == FurnitureBlocks.coffee_table_stone)
 			return FurnitureItems.itemCoffeeTableStone;
@@ -91,7 +93,7 @@ public class BlockCoffeeTable extends Block
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
-		if (this == FurnitureBlocks.coffee_table_wood)
+		if (this == FurnitureBlocks.coffee_table_oak)
 			return new ItemStack(FurnitureItems.itemCoffeeTableWood);
 		if (this == FurnitureBlocks.coffee_table_stone)
 			return new ItemStack(FurnitureItems.itemCoffeeTableStone);
