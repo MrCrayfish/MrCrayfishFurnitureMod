@@ -58,7 +58,7 @@ public class FurnitureAchievements
 		installMod = new Achievement("achievement.cfm_install", "cfm_install", 0, 0, new ItemStack(FurnitureItems.itemCrayfish), null).setSpecial();
 		installMod.registerStat();
 
-		mineKea = new Achievement("achievement.cfm_minekea", "cfm_minekea", 3, 0, new ItemStack(FurnitureItems.itemChairWood), installMod).registerStat();
+		mineKea = new Achievement("achievement.cfm_minekea", "cfm_minekea", 3, 0, new ItemStack(FurnitureBlocks.chair_oak), installMod).registerStat();
 		placeTree = new Achievement("achievement.cfm_placetree", "cfm_placetree", 4, 1, new ItemStack(FurnitureItems.itemTree), mineKea).registerStat();
 		jebCouch = new Achievement("achievement.cfm_jebcouch", "cfm_jebcouch", 4, -1, new ItemStack(FurnitureItems.itemCouchJeb), mineKea).registerStat();
 		unwrapPresent = new Achievement("achievement.cfm_unwrappresent", "cfm_unwrappresent", 5, 2, new ItemStack(FurnitureItems.itemPresent), placeTree).registerStat();

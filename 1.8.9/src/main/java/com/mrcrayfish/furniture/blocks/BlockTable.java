@@ -67,26 +67,6 @@ public class BlockTable extends Block
 	}
 	
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		if (this == FurnitureBlocks.table_oak)
-			return FurnitureItems.itemTableWood;
-		if (this == FurnitureBlocks.table_stone)
-			return FurnitureItems.itemTableStone;
-		return null;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		if (this == FurnitureBlocks.table_oak)
-			return new ItemStack(FurnitureItems.itemTableWood);
-		if (this == FurnitureBlocks.table_stone)
-			return new ItemStack(FurnitureItems.itemTableStone);
-		return null;
-	}
-	
-	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
 		return false;

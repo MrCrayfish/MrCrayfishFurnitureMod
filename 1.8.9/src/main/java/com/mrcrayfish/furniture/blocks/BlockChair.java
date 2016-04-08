@@ -107,26 +107,6 @@ public class BlockChair extends Block
 	}
 
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		if (this == FurnitureBlocks.chair_oak)
-			return FurnitureItems.itemChairWood;
-		if (this == FurnitureBlocks.chair_stone)
-			return FurnitureItems.itemChairStone;
-		return null;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		if (this == FurnitureBlocks.chair_oak)
-			return new ItemStack(FurnitureItems.itemChairWood);
-		if (this == FurnitureBlocks.chair_stone)
-			return new ItemStack(FurnitureItems.itemChairStone);
-		return null;
-	}
-
-	@Override
 	public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		IBlockState state = super.onBlockPlaced(world, pos, facing, hitX, hitY, hitZ, meta, placer);

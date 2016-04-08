@@ -44,10 +44,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class FurnitureItems
 {
 	/** Initial Furniture */
-	public static Item itemTableWood, itemTableStone;
-	public static Item itemChairWood, itemChairStone;
-	public static Item itemCabinet, itemBedsideCabinet;
-	public static Item itemCoffeeTableWood, itemCoffeeTableStone;
 	public static Item itemFridge, itemCoolPack;
 	public static Item itemCouch, itemCouchJeb;
 	public static Item itemBlinds, itemCurtains;
@@ -94,20 +90,12 @@ public class FurnitureItems
 
 	public static void init()
 	{
-		itemTableWood = new ItemPlacer(FurnitureBlocks.table_oak).setUnlocalizedName("item_table_wood");
-		itemTableStone = new ItemPlacer(FurnitureBlocks.table_stone).setUnlocalizedName("item_table_stone");
-		itemChairWood = new ItemPlacer(FurnitureBlocks.chair_oak).setUnlocalizedName("item_chair_wood");
-		itemChairStone = new ItemPlacer(FurnitureBlocks.chair_stone).setUnlocalizedName("item_chair_stone");
-		itemCabinet = new ItemPlacer(FurnitureBlocks.cabinet_oak).setUnlocalizedName("item_cabinet");
-		itemCoffeeTableWood = new ItemPlacer(FurnitureBlocks.coffee_table_oak).setUnlocalizedName("item_coffee_table_wood");
-		itemCoffeeTableStone = new ItemPlacer(FurnitureBlocks.coffee_table_stone).setUnlocalizedName("item_coffee_table_stone");
 		itemFridge = new ItemPlacer(FurnitureBlocks.freezer).setUnlocalizedName("item_fridge");
 		itemCouch = new ItemPlacer(FurnitureBlocks.couch).setUnlocalizedName("item_couch");
 		itemCouchJeb = new ItemPlacer(FurnitureBlocks.couch_jeb).setUnlocalizedName("item_couch_jeb").setCreativeTab(null);
 		itemBlinds = new ItemPlacer(FurnitureBlocks.blinds).setUnlocalizedName("item_blinds");
 		itemCurtains = new ItemPlacer(FurnitureBlocks.curtains).setUnlocalizedName("item_curtains");
 		itemLamp = new ItemPlacer(FurnitureBlocks.lamp_off).setUnlocalizedName("item_lamp");
-		itemBedsideCabinet = new ItemPlacer(FurnitureBlocks.bedside_cabinet_oak).setUnlocalizedName("item_bedside_cabinet");
 		itemCoolPack = new ItemGeneric().setUnlocalizedName("item_cool_pack");
 		itemOven = new ItemPlacer(FurnitureBlocks.oven).setUnlocalizedName("item_oven");
 		itemOvenRangehood = new ItemPlacer(FurnitureBlocks.range_hood).setUnlocalizedName("item_range_hood");
@@ -189,14 +177,6 @@ public class FurnitureItems
 
 	public static void registerItems()
 	{
-		GameRegistry.registerItem(itemTableWood, itemTableWood.getUnlocalizedName().substring(5));
-		GameRegistry.registerItem(itemTableStone, itemTableStone.getUnlocalizedName().substring(5));
-		GameRegistry.registerItem(itemChairWood, itemChairWood.getUnlocalizedName().substring(5));
-		GameRegistry.registerItem(itemChairStone, itemChairStone.getUnlocalizedName().substring(5));
-		GameRegistry.registerItem(itemCabinet, itemCabinet.getUnlocalizedName().substring(5));
-		GameRegistry.registerItem(itemBedsideCabinet, itemBedsideCabinet.getUnlocalizedName().substring(5));
-		GameRegistry.registerItem(itemCoffeeTableWood, itemCoffeeTableWood.getUnlocalizedName().substring(5));
-		GameRegistry.registerItem(itemCoffeeTableStone, itemCoffeeTableStone.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemFridge, itemFridge.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemCoolPack, itemCoolPack.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemCouch, itemCouch.getUnlocalizedName().substring(5));
@@ -284,14 +264,6 @@ public class FurnitureItems
 
 	public static void registerRenders()
 	{
-		registerRender(itemTableWood);
-		registerRender(itemTableStone);
-		registerRender(itemChairWood);
-		registerRender(itemChairStone);
-		registerRender(itemCabinet);
-		registerRender(itemBedsideCabinet);
-		registerRender(itemCoffeeTableWood);
-		registerRender(itemCoffeeTableStone);
 		registerRender(itemFridge);
 		registerRender(itemCoolPack);
 		registerRender(itemCouch);

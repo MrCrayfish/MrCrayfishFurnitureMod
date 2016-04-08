@@ -81,26 +81,6 @@ public class BlockCoffeeTable extends Block
 	}
 
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		if (this == FurnitureBlocks.coffee_table_oak)
-			return FurnitureItems.itemCoffeeTableWood;
-		if (this == FurnitureBlocks.coffee_table_stone)
-			return FurnitureItems.itemCoffeeTableStone;
-		return null;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		if (this == FurnitureBlocks.coffee_table_oak)
-			return new ItemStack(FurnitureItems.itemCoffeeTableWood);
-		if (this == FurnitureBlocks.coffee_table_stone)
-			return new ItemStack(FurnitureItems.itemCoffeeTableStone);
-		return null;
-	}
-
-	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
 	{
 		return state.withProperty(NORTH, Boolean.valueOf(isCoffeeTable(world, pos.north()))).withProperty(EAST, Boolean.valueOf(isCoffeeTable(world, pos.east()))).withProperty(SOUTH, Boolean.valueOf(isCoffeeTable(world, pos.south()))).withProperty(WEST, Boolean.valueOf(isCoffeeTable(world, pos.west())));
