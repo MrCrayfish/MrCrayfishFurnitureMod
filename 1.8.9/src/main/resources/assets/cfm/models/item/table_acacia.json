@@ -1,3 +1,15 @@
 {
-	"parent": "cfm:block/table_leg_center_acacia"
+	"parent": "cfm:block/table_leg_center_acacia",
+	"display": {
+        "thirdperson": {
+            "rotation": [ 10, -45, 170 ],
+            "translation": [ 0, 1.5, -2.75 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        },
+		"gui": {
+			"rotation": [ 0, 0, 0 ],
+            "translation": [ 0, -1, 0 ],
+            "scale": [ 1, 1, 1 ]
+		}
+    }
 }
