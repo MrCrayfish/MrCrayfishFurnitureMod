@@ -17,6 +17,8 @@
  */
 package com.mrcrayfish.furniture.gui;
 
+import com.mrcrayfish.furniture.blocks.BlockBedsideCabinet;
+import com.mrcrayfish.furniture.blocks.BlockCabinet;
 import com.mrcrayfish.furniture.gui.containers.ContainerBedsideCabinet;
 import com.mrcrayfish.furniture.gui.containers.ContainerBin;
 import com.mrcrayfish.furniture.gui.containers.ContainerCabinet;
@@ -172,11 +174,11 @@ public class GuiHandler implements IGuiHandler
 		}
 		if (tile_entity instanceof TileEntityCabinet)
 		{
-			return new GuiCabinet(player.inventory, (TileEntityCabinet) tile_entity);
+			return new GuiCabinet(player.inventory, (TileEntityCabinet) tile_entity, (BlockCabinet) tile_entity.getBlockType());
 		}
 		if (tile_entity instanceof TileEntityBedsideCabinet)
 		{
-			return new GuiBedsideCabinet(player.inventory, (TileEntityBedsideCabinet) tile_entity);
+			return new GuiBedsideCabinet(player.inventory, (TileEntityBedsideCabinet) tile_entity, (BlockBedsideCabinet) tile_entity.getBlockType());
 		}
 		if (tile_entity instanceof TileEntityOven)
 		{
