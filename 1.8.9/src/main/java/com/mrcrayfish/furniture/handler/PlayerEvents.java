@@ -36,7 +36,6 @@ public class PlayerEvents
 	@SubscribeEvent
 	public void onPlayerLogin(PlayerLoggedInEvent e)
 	{
-		System.out.println("Hi");
 		EntityPlayer player = (EntityPlayer) e.player;
 		player.triggerAchievement(FurnitureAchievements.installMod);
 		if (ConfigurationHandler.canDisplay)

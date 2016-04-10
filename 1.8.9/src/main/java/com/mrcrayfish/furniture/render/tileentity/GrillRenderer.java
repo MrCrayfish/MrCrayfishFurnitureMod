@@ -22,7 +22,6 @@ public class GrillRenderer extends TileEntitySpecialRenderer
 	@Override
 	public void renderTileEntityAt(TileEntity te, double x, double y, double z, float partialTicks, int destroyStage) 
 	{
-		//System.out.println(partialTicks);
 		entityItem.hoverStart = 0;
 		
 		if(!(te.getBlockType() instanceof BlockGrill))

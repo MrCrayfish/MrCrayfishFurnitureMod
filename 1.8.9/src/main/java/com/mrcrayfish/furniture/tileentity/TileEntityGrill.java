@@ -109,8 +109,6 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 	{
 		if(removeFood(clickedSide)) return;
 		
-		System.out.println("Flipping");
-		
 		if(leftCooked && !flippedLeft && clickedSide == BlockGrill.ClickedSide.LEFT)
 		{
 			leftCooked = false;

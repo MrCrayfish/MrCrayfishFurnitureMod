@@ -64,7 +64,6 @@ public class BlockGrill extends BlockFurnitureTile
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ) 
 	{
-		System.out.println(hitX + " " + hitZ);
 		if(!worldIn.isRemote)
 		{
 			TileEntity tileEntity = worldIn.getTileEntity(pos);

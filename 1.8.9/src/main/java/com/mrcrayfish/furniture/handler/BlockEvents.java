@@ -18,15 +18,11 @@ public class BlockEvents {
 
 			if(!(block instanceof BlockFirePit))
 				return;
-			
-			System.out.println("3");
 		
 			ItemStack current = player.getCurrentEquippedItem();
 			
 			if(current == null)
 				return;
-			
-			System.out.println("4");
 			
 			if(current.getItem() instanceof ItemFlintAndSteel)
 			{
