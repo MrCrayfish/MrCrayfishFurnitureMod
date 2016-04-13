@@ -77,7 +77,7 @@ public class ConfigurationHandler
 		mirrorEnabled = config.getBoolean("mirror-enabled", CATEGORY_SETTINGS, true, "Determines whether the mirror will be rendered.");
 		mirrorClouds = config.getBoolean("mirror-clouds", CATEGORY_SETTINGS, false, "Set whether the mirror should render clouds.");
 		mirrorFov = config.getFloat("mirror-fov", CATEGORY_SETTINGS, 80F, 10F, 100F, "Sets the field of view for the mirror.");
-		mirrorQuality = config.getInt("mirror-quality", CATEGORY_SETTINGS, 128, 16, 512, "Sets the resolution for the mirror. High number means better quality but worse performace.");
+		mirrorQuality = config.getInt("mirror-quality", CATEGORY_SETTINGS, 64, 16, 512, "Sets the resolution for the mirror. High number means better quality but worse performace.");
 		api_debug = config.getBoolean("recipe-api-debug", CATEGORY_SETTINGS, true, "If true, prints out information about RecipeAPI. Recommended 'true' for people trying to add custom recipe.");
 		canDisplay = config.getBoolean("welcome_message", CATEGORY_SETTINGS, canDisplay, "Enabled or disable the welcome message");
 		items = config.getStringList("custom-recipes", CATEGORY_API, items, "Insert custom recipes here");
