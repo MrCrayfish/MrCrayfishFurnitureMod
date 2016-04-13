@@ -25,7 +25,6 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.Entity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -60,46 +59,44 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 		if(TileEntityRendererDispatcher.instance.entity instanceof EntityMirror)
 			return;
 		
-		IBlockState state = getWorld().getBlockState(mirror.getPos());
-		if (state.getBlock() instanceof BlockMirror)
+		if (!registerMirrors.containsKey(mirror.getMirror()))
 		{
-			if (!registerMirrors.containsKey(mirror.getMirror()))
-			{
-				int newTextureId = GL11.glGenTextures();
-				GlStateManager.bindTexture(newTextureId);
-				GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, quality, quality, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, BufferUtils.createByteBuffer(3 * quality * quality));
-				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-				registerMirrors.put(mirror.getMirror(), newTextureId);
-				return;
-			}
-			
-			mirror.getMirror().rendering = true;
-
-			EnumFacing facing = state.getValue(BlockMirror.FACING);
-			GlStateManager.pushMatrix();
-			{
-				GlStateManager.disableLighting();
-				GlStateManager.bindTexture(registerMirrors.get(mirror.getMirror()).intValue());
-				GlStateManager.translate(posX + 0.5, posY, posZ + 0.5);
-				GlStateManager.rotate(-90F * facing.getHorizontalIndex() + 180F, 0, 1, 0);
-				GlStateManager.translate(-0.5F, 0, -0.43F);
-				GL11.glBegin(GL11.GL_QUADS);
-				{
-					GL11.glTexCoord2d(1, 0);
-					GL11.glVertex3d(0.0625, 0.0625, 0);
-					GL11.glTexCoord2d(0, 0);
-					GL11.glVertex3d(0.9375, 0.0625, 0);
-					GL11.glTexCoord2d(0, 1);
-					GL11.glVertex3d(0.9375, 0.9375, 0);
-					GL11.glTexCoord2d(1, 1);
-					GL11.glVertex3d(0.0625, 0.9375, 0);
-				}
-				GL11.glEnd();
-				GlStateManager.enableLighting();
-			}
-			GlStateManager.popMatrix();
+			int newTextureId = GL11.glGenTextures();
+			GlStateManager.bindTexture(newTextureId);
+			GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, quality, quality, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, BufferUtils.createByteBuffer(3 * quality * quality));
+			GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+			GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
+			registerMirrors.put(mirror.getMirror(), newTextureId);
+			return;
 		}
+		
+		mirror.getMirror().rendering = true;
+
+		EnumFacing facing = EnumFacing.getHorizontal(mirror.getBlockMetadata());
+		GlStateManager.pushMatrix();
+		{
+			GlStateManager.disableLighting();
+			GlStateManager.bindTexture(registerMirrors.get(mirror.getMirror()).intValue());
+			GlStateManager.translate(posX + 0.5, posY, posZ + 0.5);
+			GlStateManager.rotate(-90F * facing.getHorizontalIndex() + 180F, 0, 1, 0);
+			GlStateManager.translate(-0.5F, 0, -0.43F);
+			GL11.glBegin(GL11.GL_QUADS);
+			{
+				GL11.glTexCoord2d(1, 0);
+				GL11.glVertex3d(0.0625, 0.0625, 0);
+				GL11.glTexCoord2d(0, 0);
+				GL11.glVertex3d(0.9375, 0.0625, 0);
+				GL11.glTexCoord2d(0, 1);
+				GL11.glVertex3d(0.9375, 0.9375, 0);
+				GL11.glTexCoord2d(1, 1);
+				GL11.glVertex3d(0.0625, 0.9375, 0);
+			}
+			GL11.glEnd();
+			GlStateManager.enableLighting();
+		}
+		GL11.glEnd();
+		GlStateManager.enableLighting();
+		GlStateManager.popMatrix();
 	}
 
 	@SubscribeEvent
