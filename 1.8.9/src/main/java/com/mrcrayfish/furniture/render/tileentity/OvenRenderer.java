@@ -9,16 +9,13 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
-public class OvenRenderer extends TileEntitySpecialRenderer
+public class OvenRenderer extends TileEntitySpecialRenderer<TileEntityOven>
 {
 	private EntityItem ovenItem = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D);
-
-	private int counter = 0;
 	
 	@Override
-	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
+	public void renderTileEntityAt(TileEntityOven oven, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{
 		ovenItem.hoverStart = 0.0F;
 		
@@ -28,7 +25,6 @@ public class OvenRenderer extends TileEntitySpecialRenderer
 			GlStateManager.translate(posX + 0.3, posY + 0.52, posZ + 0.5);
 			GlStateManager.scale(0.66, 0.66, 0.66);
 
-			TileEntityOven oven = (TileEntityOven) tileEntity;
 			for (int i = 0; i < oven.getSizeInventory(); i++)
 			{
 				double height = (i / 4) * -0.25D;

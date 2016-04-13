@@ -166,7 +166,7 @@ public class BlockDoorBell extends BlockFurniture
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		if (((Boolean) state.getValue(POWERED)).booleanValue())
+		if (state.getValue(POWERED))
 		{
 			return true;
 		}

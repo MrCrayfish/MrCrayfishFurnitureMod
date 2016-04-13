@@ -19,28 +19,20 @@ package com.mrcrayfish.furniture.render.tileentity;
 
 import org.lwjgl.opengl.GL11;
 
-import com.mrcrayfish.furniture.blocks.BlockMicrowave;
 import com.mrcrayfish.furniture.tileentity.TileEntityMicrowave;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.tileentity.TileEntity;
 
-public class MicrowaveRenderer extends TileEntitySpecialRenderer
+public class MicrowaveRenderer extends TileEntitySpecialRenderer<TileEntityMicrowave>
 {
 	private EntityItem entityFood = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D);
 
 	@Override
-	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
+	public void renderTileEntityAt(TileEntityMicrowave microwave, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{
-		Block block = tileEntity.getBlockType();
-		if(!(block instanceof BlockMicrowave))
-			return;
-		
-		TileEntityMicrowave microwave = (TileEntityMicrowave) tileEntity;
-		int metadata = block.getMetaFromState(tileEntity.getWorld().getBlockState(tileEntity.getPos()));
+		int metadata = microwave.getBlockMetadata();
 		
 		if (microwave.getItem() != null)
 		{
