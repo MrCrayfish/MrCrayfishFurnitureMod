@@ -17,6 +17,8 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -36,6 +38,7 @@ public class BlockFurniture extends Block
 	{
 		super(material);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	
 	@Override

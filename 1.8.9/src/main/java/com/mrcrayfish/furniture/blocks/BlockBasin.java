@@ -47,8 +47,8 @@ public class BlockBasin extends BlockFurniture
 	public BlockBasin(Material material)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeStone);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeStone);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(FILLED, Boolean.valueOf(false)));
 	}
 	

@@ -47,8 +47,8 @@ public class BlockComputer extends BlockFurnitureTile
 	public BlockComputer(Material material)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeAnvil);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeAnvil);
 	}
 
 	@Override

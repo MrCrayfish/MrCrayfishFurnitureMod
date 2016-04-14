@@ -40,8 +40,8 @@ public class BlockCabinetKitchen extends BlockFurnitureTile
 	public BlockCabinetKitchen(Material material)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeWood);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeWood);
 	}
 
 	@Override

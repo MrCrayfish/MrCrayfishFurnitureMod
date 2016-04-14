@@ -46,8 +46,8 @@ public class BlockTap extends BlockFurniture
 	public BlockTap(Material material)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeStone);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeStone);
 	}
 
 	@Override

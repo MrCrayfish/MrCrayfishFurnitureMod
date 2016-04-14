@@ -47,8 +47,8 @@ public class BlockShowerHeadOff extends BlockFurniture
 	public BlockShowerHeadOff(Material material)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeStone);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeStone);
 	}
 
 	@Override

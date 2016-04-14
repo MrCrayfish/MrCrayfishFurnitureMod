@@ -47,11 +47,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockShower extends BlockFurniture
 {
-	public BlockShower(Material material)
+	public BlockShower(Material material, boolean top)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeStone);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeStone);
+		if(top) this.setCreativeTab(null);
 	}
 
 	@Override

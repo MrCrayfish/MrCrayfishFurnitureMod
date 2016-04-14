@@ -50,8 +50,8 @@ public class BlockLamp extends Block
 	public BlockLamp(Material material)
 	{
 		super(material);
-		setHardness(0.75F);
-		setStepSound(Block.soundTypeCloth);
+		this.setHardness(0.75F);
+		this.setStepSound(Block.soundTypeCloth);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(COLOUR, 0));
 	}
 

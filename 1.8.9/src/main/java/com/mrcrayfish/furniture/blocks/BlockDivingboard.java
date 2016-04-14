@@ -19,9 +19,10 @@ import net.minecraft.world.WorldServer;
 
 public class BlockDivingboard extends BlockFurniture 
 {
-	public BlockDivingboard(Material material) 
+	public BlockDivingboard(Material material, boolean plank) 
 	{
 		super(material);
+		if(plank) this.setCreativeTab(null);
 	}
 	
 	@Override

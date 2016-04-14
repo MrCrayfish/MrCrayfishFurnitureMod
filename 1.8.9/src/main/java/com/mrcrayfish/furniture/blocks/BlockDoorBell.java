@@ -49,7 +49,7 @@ public class BlockDoorBell extends BlockFurniture
 	public BlockDoorBell(Material material)
 	{
 		super(material);
-		setStepSound(Block.soundTypeWood);
+		this.setStepSound(Block.soundTypeWood);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(POWERED, Boolean.valueOf(true)));
 		this.setTickRandomly(true);
 	}

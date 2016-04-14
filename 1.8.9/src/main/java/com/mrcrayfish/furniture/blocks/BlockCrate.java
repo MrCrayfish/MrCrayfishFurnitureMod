@@ -32,6 +32,7 @@ public class BlockCrate extends Block implements ITileEntityProvider
 		super(materialIn);
 		this.setHardness(1.0F);
 		this.setStepSound(Block.soundTypeWood);
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
 	@Override

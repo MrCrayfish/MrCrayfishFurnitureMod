@@ -44,12 +44,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockTree extends BlockFurnitureTile
 {
-	public BlockTree(Material material)
+	public BlockTree(Material material, boolean top)
 	{
 		super(material);
-		setStepSound(Block.soundTypeWood);
-		setLightLevel(0.3F);
-		setHardness(0.5F);
+		this.setStepSound(Block.soundTypeWood);
+		this.setLightLevel(0.3F);
+		this.setHardness(0.5F);
+		if(top) this.setCreativeTab(null);
 	}
 
 	@SideOnly(Side.CLIENT)

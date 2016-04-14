@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
@@ -47,8 +48,9 @@ public class BlockShowerHeadOn extends BlockFurnitureTile
 	public BlockShowerHeadOn(Material material)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeStone);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeStone);
+		this.setCreativeTab(null);
 	}
 
 	@Override

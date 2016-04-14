@@ -46,8 +46,8 @@ public class BlockOven extends BlockFurnitureTile
 	public BlockOven(Material material)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeMetal);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeMetal);
 	}
 	
 	@Override

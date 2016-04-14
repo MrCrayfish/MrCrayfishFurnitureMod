@@ -42,12 +42,13 @@ public class BlockFireAlarm extends BlockFurniture
 	public BlockFireAlarm(Material material, boolean on)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeStone);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeStone);
 		this.on = on;
 		if (on)
 		{
 			this.setLightLevel(1.0F);
+			this.setCreativeTab(null);
 		}
 		else
 		{

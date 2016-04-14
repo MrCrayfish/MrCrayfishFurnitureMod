@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.util.CollisionHelper;
@@ -57,6 +58,7 @@ public class BlockBlinds extends BlockFurniture
 		if(!open)
 		{
 			this.setLightOpacity(255);
+			this.setCreativeTab(null);
 		}
 		else
 		{

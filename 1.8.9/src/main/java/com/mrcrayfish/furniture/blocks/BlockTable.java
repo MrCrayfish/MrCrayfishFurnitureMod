@@ -48,8 +48,8 @@ public class BlockTable extends Block
 	public BlockTable(Material material, SoundType sound)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(sound);
+		this.setHardness(1.0F);
+		this.setStepSound(sound);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(BACK, false).withProperty(FORWARD, false).withProperty(LEFT, false).withProperty(RIGHT, false));
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}

@@ -49,8 +49,8 @@ public abstract class BlockCurtains extends BlockFurniture
 	public BlockCurtains(Material material)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeCloth);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeCloth);
 		if(!isOpen())
 		{
 			this.setLightOpacity(255);

@@ -49,7 +49,7 @@ public class BlockMailBox extends BlockFurnitureTile
 	public BlockMailBox(Material material)
 	{
 		super(material);
-		setStepSound(Block.soundTypeWood);
+		this.setStepSound(Block.soundTypeWood);
 	}
 	
 	@Override

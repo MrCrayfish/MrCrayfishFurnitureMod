@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
 import net.minecraft.block.Block;
@@ -26,6 +27,7 @@ public class BlockCandle extends Block {
 		this.setLightLevel(0.8F);
 		this.setHardness(1.0F);
 		this.setStepSound(Block.soundTypeStone);
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	
 	@Override

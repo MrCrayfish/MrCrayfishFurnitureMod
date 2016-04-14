@@ -51,8 +51,8 @@ public class BlockStereo extends BlockFurnitureTile
 	public BlockStereo(Material material)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeWood);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeWood);
 		records.add(new ItemStack(Items.record_13));
 		records.add(new ItemStack(Items.record_blocks));
 		records.add(new ItemStack(Items.record_cat));

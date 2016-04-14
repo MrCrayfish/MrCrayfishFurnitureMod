@@ -224,15 +224,15 @@ public class FurnitureBlocks
 		toilet = new BlockToilet(Material.rock).setUnlocalizedName("toilet");
 		basin = new BlockBasin(Material.rock).setUnlocalizedName("basin");
 		wall_cabinet = new BlockWallCabinet(Material.rock).setUnlocalizedName("wall_cabinet");
-		bath_1 = new BlockBath(Material.rock).setUnlocalizedName("bath_bottom");
-		bath_2 = new BlockBath(Material.rock).setUnlocalizedName("bath_top");
-		shower_bottom = new BlockShower(Material.rock).setUnlocalizedName("shower_bottom");
-		shower_top = new BlockShower(Material.rock).setUnlocalizedName("shower_top");
+		bath_1 = new BlockBath(Material.rock, false).setUnlocalizedName("bath_bottom");
+		bath_2 = new BlockBath(Material.rock, true).setUnlocalizedName("bath_top");
+		shower_bottom = new BlockShower(Material.rock, false).setUnlocalizedName("shower_bottom");
+		shower_top = new BlockShower(Material.rock, true).setUnlocalizedName("shower_top");
 		shower_head_off = new BlockShowerHeadOff(Material.rock).setUnlocalizedName("shower_head_off");
 		shower_head_on = new BlockShowerHeadOn(Material.rock).setUnlocalizedName("shower_head_on");
 		bin = new BlockBin(Material.rock).setUnlocalizedName("bin");
-		tree_top = new BlockTree(Material.wood).setUnlocalizedName("tree_top");
-		tree_bottom = new BlockTree(Material.wood).setUnlocalizedName("tree_bottom");
+		tree_top = new BlockTree(Material.wood, true).setUnlocalizedName("tree_top");
+		tree_bottom = new BlockTree(Material.wood, false).setUnlocalizedName("tree_bottom");
 		present = new BlockPresent(Material.cloth).setUnlocalizedName("present");
 		toaster = new BlockToaster(Material.wood).setUnlocalizedName("toaster");
 		microwave = new BlockMicrowave(Material.wood).setUnlocalizedName("microwave");
@@ -262,8 +262,8 @@ public class FurnitureBlocks
 		bench = new BlockBench(Material.wood).setUnlocalizedName("bench").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		table_outdoor = new BlockOutdoorTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("table_outdoor").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		grill = new BlockGrill(Material.anvil).setUnlocalizedName("grill").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		divingboard_base = new BlockDivingboard(Material.rock).setUnlocalizedName("divingboard_base").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		divingboard_plank = new BlockDivingboard(Material.rock).setUnlocalizedName("divingboard_plank");
+		divingboard_base = new BlockDivingboard(Material.rock, false).setUnlocalizedName("divingboard_base").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		divingboard_plank = new BlockDivingboard(Material.rock, true).setUnlocalizedName("divingboard_plank"); 
 		door_mat = new BlockDoorMat(Material.cloth).setUnlocalizedName("door_mat").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		esky = new BlockEsky(Material.clay).setUnlocalizedName("esky").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
@@ -406,6 +406,7 @@ public class FurnitureBlocks
 		registerRender(chair_jungle);
 		registerRender(chair_acacia);
 		registerRender(chair_dark_oak);
+		registerRender(chair_stone);
 		registerRender(cabinet_oak);
 		registerRender(cabinet_spruce);
 		registerRender(cabinet_birch);
@@ -418,7 +419,72 @@ public class FurnitureBlocks
 		registerRender(bedside_cabinet_jungle);
 		registerRender(bedside_cabinet_acacia);
 		registerRender(bedside_cabinet_dark_oak);
-		registerRender(chair_stone);
+		registerRender(fridge);
+		registerRender(freezer);
+		registerRender(couch);
+		registerRender(couch_jeb);
+		registerRender(oven);
+		registerRender(range_hood);
+		
+		registerRender(hedge_oak);
+		registerRender(hedge_spruce);
+		registerRender(hedge_birch);
+		registerRender(hedge_jungle);
+		registerRender(hedge_acacia);
+		registerRender(hedge_dark_oak );
+		registerRender(bird_bath);
+		registerRender(stone_path);
+		registerRender(white_fence);
+		registerRender(tap);
+		registerRender(mail_box);
+		
+		registerRender(tv);
+		registerRender(computer);
+		registerRender(printer);
+		registerRender(electric_fence);
+		registerRender(door_bell);
+		registerRender(stereo);
+		registerRender(fire_alarm_off);
+		registerRender(ceiling_light_off);
+		registerRender(lamp_off);
+		
+		registerRender(toilet);
+		registerRender(basin);
+		registerRender(bath_1);
+		registerRender(shower_bottom);
+		registerRender(shower_head_off );
+		registerRender(wall_cabinet);
+		registerRender(bin);
+		registerRender(mirror);
+		
+		registerRender(toaster);
+		registerRender(microwave);
+		registerRender(blender);
+		registerRender(washing_machine);
+		registerRender(dishwasher);
+		registerRender(counter);
+		registerRender(counter_sink);
+		registerRender(kitchen_cabinet);
+		registerRender(cup );
+		registerRender(plate);
+		registerRender(cookie_jar);
+		registerRender(bar_stool );
+		registerRender(chopping_board);
+		
+		registerRender(present);
+		registerRender(tree_bottom);
+		registerRender(mantel_piece);
+		registerRender(grand_chair_top);
+		registerRender(grand_chair_bottom);
+		registerRender(candle);
+		registerRender(chimney);
+		registerRender(wreath);
+		registerRender(fairy_light);
+		registerRender(fire_alarm_on);
+		registerRender(fire_pit_on);
+		
+		registerRender(blinds);
+		registerRender(curtains);
 		registerRender(trampoline);
 		registerRender(crate);
 		registerRender(bench);

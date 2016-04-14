@@ -47,8 +47,8 @@ public class BlockChoppingBoard extends BlockFurnitureTile
 	public BlockChoppingBoard(Material material)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeWood);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeWood);
 	} 
 
 	@Override

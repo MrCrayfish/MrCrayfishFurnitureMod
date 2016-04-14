@@ -19,6 +19,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
@@ -49,14 +50,16 @@ public class BlockCeilingLight extends Block
 	public BlockCeilingLight(Material material, boolean on)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeGlass);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeGlass);
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		if (on)
 		{
+			this.setCreativeTab(null);
 			this.setLightLevel(0.8F);
 		}
-
 		this.setDefaultState(this.blockState.getBaseState().withProperty(MODE, Mode.RIGHT_CLICK));
+		
 	}
 
 	@Override

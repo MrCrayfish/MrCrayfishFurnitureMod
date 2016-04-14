@@ -42,8 +42,8 @@ public class BlockDishwasher extends BlockFurnitureTile
 	public BlockDishwasher(Material material)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeAnvil);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeAnvil);
 	}
 	
 	@Override

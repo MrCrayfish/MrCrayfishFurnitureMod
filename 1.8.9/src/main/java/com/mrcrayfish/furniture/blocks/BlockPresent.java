@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureItems;
@@ -34,6 +35,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -63,6 +65,7 @@ public class BlockPresent extends Block implements ITileEntityProvider
 		this.setStepSound(Block.soundTypeCloth);
 		this.isBlockContainer = true;
 		this.setDefaultState(this.blockState.getBaseState().withProperty(COLOUR, 0));
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	
 	@Override

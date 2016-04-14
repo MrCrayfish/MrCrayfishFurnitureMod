@@ -43,9 +43,9 @@ public class BlockRangeHood extends BlockFurniture
 	public BlockRangeHood(Material material)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeMetal);
-		setLightLevel(0.5F);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeMetal);
+		this.setLightLevel(0.5F);
 	}
 
 	@Override

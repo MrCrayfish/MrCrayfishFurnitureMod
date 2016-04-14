@@ -46,8 +46,8 @@ public class BlockBlender extends BlockFurnitureTile
 	public BlockBlender(Material material)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeGlass);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeGlass);
 	}
 	
 	@Override

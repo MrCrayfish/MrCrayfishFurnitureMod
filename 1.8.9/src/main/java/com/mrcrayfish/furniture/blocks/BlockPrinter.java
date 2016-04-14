@@ -46,8 +46,8 @@ public class BlockPrinter extends BlockFurnitureTile
 	public BlockPrinter(Material material)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeAnvil);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeAnvil);
 	}
 
 	@Override

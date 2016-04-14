@@ -19,6 +19,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityCup;
 import com.mrcrayfish.furniture.util.CollisionHelper;
@@ -48,8 +49,8 @@ public class BlockCup extends Block implements ITileEntityProvider
 	public BlockCup(Material material)
 	{
 		super(material);
-		setStepSound(Block.soundTypeGlass);
-		setHardness(0.1F);
+		this.setStepSound(Block.soundTypeGlass);
+		this.setHardness(0.1F);
 		this.setDefaultState(this.blockState.getBaseState());
 	}
 

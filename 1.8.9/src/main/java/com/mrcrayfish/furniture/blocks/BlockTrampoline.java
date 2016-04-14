@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.util.ParticleSpawner;
 
 import net.minecraft.block.Block;
@@ -34,6 +35,7 @@ public class BlockTrampoline extends Block
 	{
 		super(materialIn);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(BACK, false).withProperty(FORWARD, false).withProperty(LEFT, false).withProperty(RIGHT, false));
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	
 	@Override

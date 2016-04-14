@@ -45,8 +45,8 @@ public class BlockWashingMachine extends BlockFurnitureTile
 	public BlockWashingMachine(Material material)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeStone);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeStone);
 	}
 	
 	@Override

@@ -24,6 +24,7 @@ import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityPlate;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -41,13 +42,13 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockPlate extends BlockFurnitureTile
+public class BlockPlate extends Block implements ITileEntityProvider
 {
 	public BlockPlate(Material material)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeStone);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeStone);
 	}
 	
 	@Override

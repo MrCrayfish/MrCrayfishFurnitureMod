@@ -54,8 +54,8 @@ public class BlockTV extends BlockFurnitureTile
 	public BlockTV(Material material)
 	{
 		super(material);
-		setStepSound(Block.soundTypeWood);
-		setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(CHANNEL, 0));
+		this.setStepSound(Block.soundTypeWood);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(CHANNEL, 0));
 	}
 	
 	@Override

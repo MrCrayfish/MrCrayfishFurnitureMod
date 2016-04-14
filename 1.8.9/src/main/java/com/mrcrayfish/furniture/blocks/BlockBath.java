@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.network.PacketHandler;
@@ -54,11 +55,12 @@ public class BlockBath extends BlockFurnitureTile
 {
 	public static final PropertyInteger WATER_LEVEL = PropertyInteger.create("level", 0, 16);
 
-	public BlockBath(Material material)
+	public BlockBath(Material material, boolean top)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeStone);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeStone);
+		if(top) this.setCreativeTab(null);
 	}
 
 	@Override

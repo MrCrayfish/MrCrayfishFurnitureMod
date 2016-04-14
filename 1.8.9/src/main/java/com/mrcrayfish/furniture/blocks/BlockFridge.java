@@ -40,8 +40,8 @@ public class BlockFridge extends BlockFurnitureTile
 	public BlockFridge(Material material)
 	{
 		super(material);
-		setHardness(2.0F);
-		setStepSound(Block.soundTypeMetal);
+		this.setHardness(2.0F);
+		this.setStepSound(Block.soundTypeMetal);
 	}
 	
 	@Override

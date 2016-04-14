@@ -19,6 +19,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
@@ -41,8 +42,9 @@ public class BlockLampOff extends BlockFurniture
 	public BlockLampOff(Material material)
 	{
 		super(material);
-		setHardness(0.75F);
-		setStepSound(Block.soundTypeCloth);
+		this.setHardness(0.75F);
+		this.setStepSound(Block.soundTypeCloth);
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
 	@Override
