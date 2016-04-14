@@ -30,11 +30,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BlockGrandChair extends BlockFurniture 
 {
 
-	public BlockGrandChair(Material materialIn) 
+	public BlockGrandChair(Material materialIn, boolean top) 
 	{
 		super(materialIn);
 		this.setHardness(1.0F);
 		this.setStepSound(Block.soundTypeWood);
+		if(top) this.setCreativeTab(null);
 	}
 	
 	@Override

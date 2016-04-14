@@ -249,8 +249,8 @@ public class FurnitureBlocks
 		bar_stool = new BlockBarStool(Material.wood).setUnlocalizedName("bar_stool");
 		mirror = new BlockMirror(Material.glass).setUnlocalizedName("mirror");
 		mantel_piece = new BlockMantelPiece(Material.rock).setUnlocalizedName("mantel_piece");
-		grand_chair_top = new BlockGrandChair(Material.wood).setUnlocalizedName("grand_chair_top");
-		grand_chair_bottom = new BlockGrandChair(Material.wood).setUnlocalizedName("grand_chair_bottom");
+		grand_chair_top = new BlockGrandChair(Material.wood, true).setUnlocalizedName("grand_chair_top");
+		grand_chair_bottom = new BlockGrandChair(Material.wood, false).setUnlocalizedName("grand_chair_bottom");
 		candle = new BlockCandle(Material.rock).setUnlocalizedName("candle");
 		chimney = new BlockChimney(Material.rock).setUnlocalizedName("chimney");
 		wreath = new BlockWreath(Material.leaves).setUnlocalizedName("wreath");

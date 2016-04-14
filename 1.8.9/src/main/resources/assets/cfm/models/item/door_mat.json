@@ -1,3 +1,10 @@
 {
-	"parent": "cfm:block/door_mat"
+	"parent": "cfm:block/door_mat",
+	"display": {
+		"gui": {
+			"rotation": [ 0, 0, 0 ],
+            "translation": [ -0.5, 3.5, 0 ],
+            "scale": [ 1.2, 1.2, 1.2 ]
+		}
+	}
 }
