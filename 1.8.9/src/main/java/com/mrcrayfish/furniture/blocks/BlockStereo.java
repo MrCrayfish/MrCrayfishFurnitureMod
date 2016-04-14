@@ -156,18 +156,6 @@ public class BlockStereo extends BlockFurnitureTile
 		return new TileEntityStereo();
 	}
 
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemStereo;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemStereo);
-	}
-
 	public void ejectRecord(World world, BlockPos pos)
 	{
 		if (!world.isRemote)

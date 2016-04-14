@@ -52,22 +52,4 @@ public class BlockMirror extends BlockFurnitureTile
 	{
 		return new TileEntityMirror();
 	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemMirror;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemMirror);
-	}
-	
-	@SideOnly(Side.CLIENT)
-    public Item getItem(World worldIn, BlockPos pos)
-    {
-        return FurnitureItems.itemMirror;
-    }
 }

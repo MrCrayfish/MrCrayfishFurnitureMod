@@ -103,18 +103,6 @@ public class BlockPrinter extends BlockFurnitureTile
 	}
 
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemPrinter;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemPrinter);
-	}
-	
-	@Override
 	public int getComparatorInputOverride(World world, BlockPos pos) 
 	{
 		TileEntityPrinter printer = (TileEntityPrinter) world.getTileEntity(pos);

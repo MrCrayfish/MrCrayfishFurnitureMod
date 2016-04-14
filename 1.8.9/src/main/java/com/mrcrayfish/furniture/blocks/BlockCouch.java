@@ -230,18 +230,6 @@ public abstract class BlockCouch extends BlockFurnitureTile
 	}
 
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return isSpecial() ? FurnitureItems.itemCouchJeb : FurnitureItems.itemCouch;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return isSpecial() ? new ItemStack(FurnitureItems.itemCouchJeb) : new ItemStack(FurnitureItems.itemCouch);
-	}
-
-	@Override
 	protected BlockState createBlockState()
 	{
 		return isSpecial() ? new BlockState(this,  new IProperty[] { FACING, TYPE }) : new BlockState(this, new IProperty[] { FACING, COLOUR, TYPE });

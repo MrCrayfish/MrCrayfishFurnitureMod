@@ -138,19 +138,7 @@ public class BlockWhiteFence extends Block
 			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 		}
 	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemWhiteFence;
-	}
 
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemWhiteFence);
-	}
-	
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
 	{

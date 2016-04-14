@@ -187,18 +187,6 @@ public class BlockBasin extends BlockFurniture
 	}
 
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemBasin;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemBasin);
-	}
-
-	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		return ((EnumFacing) state.getValue(FACING)).getIndex() + (((Boolean) state.getValue(FILLED)).booleanValue() ? 0 : 4);

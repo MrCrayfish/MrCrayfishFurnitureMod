@@ -134,18 +134,6 @@ public class BlockToaster extends BlockFurnitureTile
 	{
 		return new TileEntityToaster();
 	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemToaster;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemToaster);
-	}
 	
 	@Override
 	public int getComparatorInputOverride(World world, BlockPos pos) 

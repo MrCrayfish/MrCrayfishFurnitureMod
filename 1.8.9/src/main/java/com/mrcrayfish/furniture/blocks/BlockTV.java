@@ -128,19 +128,7 @@ public class BlockTV extends BlockFurnitureTile
 	{
 		return new TileEntityTV();
 	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemTV;
-	}
 
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemTV);
-	}
-	
 	@Override
 	protected BlockState createBlockState()
 	{

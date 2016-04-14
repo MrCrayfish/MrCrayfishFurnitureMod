@@ -109,19 +109,7 @@ public class BlockMicrowave extends BlockFurnitureTile
 	{
 		return new TileEntityMicrowave();
 	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemMicrowave;
-	}
 
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemMicrowave);
-	}
-	
 	@SideOnly(Side.CLIENT)
 	public EnumWorldBlockLayer getBlockLayer()
 	{

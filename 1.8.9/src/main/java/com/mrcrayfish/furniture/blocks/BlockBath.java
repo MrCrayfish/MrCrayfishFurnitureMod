@@ -293,13 +293,13 @@ public class BlockBath extends BlockFurnitureTile
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return FurnitureItems.itemBath;
+		return new ItemStack(FurnitureBlocks.bath_1).getItem();
 	}
 
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
-		return new ItemStack(FurnitureItems.itemBath);
+		return new ItemStack(FurnitureBlocks.bath_1);
 	}
 
 	@Override

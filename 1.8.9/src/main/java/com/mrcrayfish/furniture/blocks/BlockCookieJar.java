@@ -135,18 +135,6 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
 	}
 
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemCookieJar;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemCookieJar);
-	}
-	
-	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
 	{
 		return state.withProperty(COOKIE_COUNT, 0);

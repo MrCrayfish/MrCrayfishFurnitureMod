@@ -149,18 +149,6 @@ public class BlockCeilingLight extends Block
 	}
 
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemCeilingLight;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemCeilingLight);
-	}
-
-	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		return (Mode) state.getValue(MODE) == Mode.REDSTONE ? 1 : 0;

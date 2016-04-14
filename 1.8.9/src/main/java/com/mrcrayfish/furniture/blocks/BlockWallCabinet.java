@@ -147,18 +147,6 @@ public class BlockWallCabinet extends BlockFurnitureTile
 		return new TileEntityWallCabinet();
 	}
 
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemWallCabinet;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemWallCabinet);
-	}
-
 	private boolean canPlaceCheck(World world, BlockPos pos, IBlockState state)
 	{
 		if (!this.canPlaceBlockAt(world, pos))

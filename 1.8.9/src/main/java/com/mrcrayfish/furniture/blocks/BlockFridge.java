@@ -83,16 +83,4 @@ public class BlockFridge extends BlockFurnitureTile
 	{
 		return new TileEntityFridge();
 	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemFridge;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemFridge);
-	}
 }

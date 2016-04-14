@@ -130,18 +130,6 @@ public class BlockShowerHeadOff extends BlockFurniture
 		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 	}
 
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemShowerHead;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemShowerHead);
-	}
-
 	private boolean canPlaceCheck(World world, BlockPos pos, IBlockState state)
 	{
 		if (!this.canPlaceBlockAt(world, pos))

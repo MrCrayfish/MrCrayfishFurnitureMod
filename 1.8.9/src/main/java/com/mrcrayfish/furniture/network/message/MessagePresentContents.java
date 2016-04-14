@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture.network.message;
 
+import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
 import io.netty.buffer.ByteBuf;
@@ -62,7 +63,7 @@ public class MessagePresentContents implements IMessage, IMessageHandler<Message
 		EntityPlayerMP player = ctx.getServerHandler().playerEntity;
 		ItemStack present = message.envelope;
 		
-		ItemStack signedPresent = new ItemStack(FurnitureItems.itemPresent, 1, present.getMetadata());
+		ItemStack signedPresent = new ItemStack(FurnitureBlocks.present, 1, present.getMetadata());
 		signedPresent.setTagCompound(present.getTagCompound());
 		signedPresent.setTagInfo("Author", new NBTTagString(player.getName()));
 		signedPresent.setStackDisplayName(EnumChatFormatting.GREEN + "Wrapped Present");

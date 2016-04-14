@@ -158,15 +158,13 @@ public class BlockTree extends BlockFurnitureTile
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		if (this == FurnitureBlocks.tree_top)
-			return null;
-		return FurnitureItems.itemTree;
+		return new ItemStack(FurnitureBlocks.tree_bottom).getItem();
 	}
 
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
-		return new ItemStack(FurnitureItems.itemTree);
+		return new ItemStack(FurnitureBlocks.tree_bottom);
 	}
 
 	@SideOnly(Side.CLIENT)

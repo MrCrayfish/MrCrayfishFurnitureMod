@@ -161,18 +161,6 @@ public class BlockCounterSink extends BlockFurniture
 	}
 
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemCounterSink;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemCounterSink);
-	}
-	
-	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		return ((EnumFacing) state.getValue(FACING)).getIndex() + (((Boolean) state.getValue(FILLED)).booleanValue() ? 0 : 4);

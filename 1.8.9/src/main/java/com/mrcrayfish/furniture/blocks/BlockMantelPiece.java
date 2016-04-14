@@ -40,16 +40,4 @@ public class BlockMantelPiece extends BlockFurniture
 		float data[] = CollisionHelper.fixRotation(metadata, 0.625F, -0.25F, 1.0F, 1.25F);
 		setBlockBounds(data[0], 0F, data[1], data[2], 1.25F, data[3]);
 	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemMantelpiece;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemMantelpiece);
-	}
 }

@@ -100,19 +100,7 @@ public class BlockChimney extends Block {
 	{
 		return new BlockState(this,  new IProperty[] { TYPE });
 	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemChimney;
-	}
-	
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemChimney);
-	}
-	
+
 	public static enum ChimneyType implements IStringSerializable
 	{
 		TOP, BOTTOM;

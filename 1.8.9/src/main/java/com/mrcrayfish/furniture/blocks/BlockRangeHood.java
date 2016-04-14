@@ -82,16 +82,4 @@ public class BlockRangeHood extends BlockFurniture
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.3F, 1.0F);
 		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemOvenRangehood;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemOvenRangehood);
-	}
 }

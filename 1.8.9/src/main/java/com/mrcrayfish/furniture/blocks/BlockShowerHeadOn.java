@@ -141,13 +141,13 @@ public class BlockShowerHeadOn extends BlockFurnitureTile
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return FurnitureItems.itemShowerHead;
+		return new ItemStack(FurnitureBlocks.shower_head_off).getItem();
 	}
 
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
-		return new ItemStack(FurnitureItems.itemShowerHead);
+		return new ItemStack(FurnitureBlocks.shower_head_off);
 	}
 
 	private boolean canPlaceCheck(World world, BlockPos pos, IBlockState state)

@@ -178,13 +178,13 @@ public abstract class BlockCurtains extends BlockFurniture
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return FurnitureItems.itemCurtains;
+		return new ItemStack(FurnitureBlocks.curtains_closed).getItem();
 	}
 
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
-		return new ItemStack(FurnitureItems.itemCurtains);
+		return new ItemStack(FurnitureBlocks.curtains_closed);
 	}
 	
 	@Override

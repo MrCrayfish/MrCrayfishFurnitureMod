@@ -190,38 +190,6 @@ public class BlockHedge extends Block
 	}
 
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		if(this == FurnitureBlocks.hedge_birch)
-			return FurnitureItems.itemHedgeBirch;
-		if(this == FurnitureBlocks.hedge_spruce)
-			return FurnitureItems.itemHedgeSpruce;
-		if(this == FurnitureBlocks.hedge_jungle)
-			return FurnitureItems.itemHedgeJungle;
-		if(this == FurnitureBlocks.hedge_acacia)
-			return FurnitureItems.itemHedgeAcacia;
-		if(this == FurnitureBlocks.hedge_dark_oak)
-			return FurnitureItems.itemHedgeDarkOak;
-		return FurnitureItems.itemHedgeBasic;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		if(this == FurnitureBlocks.hedge_birch)
-			return new ItemStack(FurnitureItems.itemHedgeBirch);
-		if(this == FurnitureBlocks.hedge_spruce)
-			return new ItemStack(FurnitureItems.itemHedgeSpruce);
-		if(this == FurnitureBlocks.hedge_jungle)
-			return new ItemStack(FurnitureItems.itemHedgeJungle);
-		if(this == FurnitureBlocks.hedge_acacia)
-			return new ItemStack(FurnitureItems.itemHedgeAcacia);
-		if(this == FurnitureBlocks.hedge_dark_oak)
-			return new ItemStack(FurnitureItems.itemHedgeDarkOak);
-		return new ItemStack(FurnitureItems.itemHedgeBasic);
-	}
-
-	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
 	{
 		return state.withProperty(NORTH, Boolean.valueOf(isHedge(world, pos.north()))).withProperty(EAST, Boolean.valueOf(isHedge(world, pos.east()))).withProperty(SOUTH, Boolean.valueOf(isHedge(world, pos.south()))).withProperty(WEST, Boolean.valueOf(isHedge(world, pos.west())));

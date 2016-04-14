@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityPlate;
 
@@ -49,6 +50,7 @@ public class BlockPlate extends Block implements ITileEntityProvider
 		super(material);
 		this.setHardness(0.5F);
 		this.setStepSound(Block.soundTypeStone);
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	
 	@Override
@@ -113,17 +115,5 @@ public class BlockPlate extends Block implements ITileEntityProvider
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityPlate();
-	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemPlate;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemPlate);
 	}
 }

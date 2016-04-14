@@ -99,16 +99,4 @@ public class BlockComputer extends BlockFurnitureTile
 	{
 		return new TileEntityComputer();
 	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemComputer;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemComputer);
-	}
 }

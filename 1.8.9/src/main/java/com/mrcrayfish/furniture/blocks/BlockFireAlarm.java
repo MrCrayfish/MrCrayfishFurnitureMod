@@ -153,12 +153,12 @@ public class BlockFireAlarm extends BlockFurniture
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return FurnitureItems.itemFireAlarm;
+		return new ItemStack(FurnitureBlocks.fire_alarm_off).getItem();
 	}
 
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
-		return new ItemStack(FurnitureItems.itemFireAlarm);
+		return new ItemStack(FurnitureBlocks.fire_alarm_off);
 	}
 }

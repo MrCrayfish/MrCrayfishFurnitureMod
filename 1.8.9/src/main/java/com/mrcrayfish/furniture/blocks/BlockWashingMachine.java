@@ -75,18 +75,6 @@ public class BlockWashingMachine extends BlockFurnitureTile
 	{
 		return new TileEntityWashingMachine();
 	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemWashingMachine;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemWashingMachine);
-	}
 
 	@SideOnly(Side.CLIENT)
 	public EnumWorldBlockLayer getBlockLayer()

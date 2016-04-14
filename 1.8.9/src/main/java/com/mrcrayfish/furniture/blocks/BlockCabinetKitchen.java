@@ -64,16 +64,4 @@ public class BlockCabinetKitchen extends BlockFurnitureTile
 	{
 		return new TileEntityCabinetKitchen();
 	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemKitchenCabinet;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemKitchenCabinet);
-	}
 }

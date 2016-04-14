@@ -129,12 +129,6 @@ public class BlockPresent extends Block implements ITileEntityProvider
 	}
 
 	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemPresent);
-	}
-
-	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityPresent();

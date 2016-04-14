@@ -107,24 +107,6 @@ public class BlockBarStool extends Block
 	}
 
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemBarStool;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemBarStool);
-	}
-	
-	@SideOnly(Side.CLIENT)
-    public Item getItem(World worldIn, BlockPos pos)
-    {
-        return FurnitureItems.itemBarStool;
-    }
-
-	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		return ((Integer) state.getValue(COLOUR)).intValue();

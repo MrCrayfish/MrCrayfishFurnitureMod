@@ -61,16 +61,4 @@ public class BlockBirdBath extends Block
 	{
 		((EntityPlayer) placer).triggerAchievement(FurnitureAchievements.gardening);
 	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemBirdBath;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemBirdBath);
-	}
 }
