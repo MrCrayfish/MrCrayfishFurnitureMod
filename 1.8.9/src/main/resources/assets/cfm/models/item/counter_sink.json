@@ -1,5 +1,5 @@
 {
-	"parent": "cfm:block/counter_sink_pre",
+	"parent": "cfm:block/counter_sink_filled_pre",
 	"display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],
