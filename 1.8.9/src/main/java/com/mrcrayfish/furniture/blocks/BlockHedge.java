@@ -27,6 +27,7 @@ import com.mrcrayfish.furniture.init.FurnitureItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -44,6 +45,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -82,40 +84,38 @@ public class BlockHedge extends Block
 	}
 
 	@SideOnly(Side.CLIENT)
-	public int getBlockColor()
-	{
-		return ColorizerFoliage.getFoliageColor(0.5D, 1.0D);
-	}
+    public int getBlockColor()
+    {
+        return ColorizerFoliage.getFoliageColor(0.5D, 1.0D);
+    }
 
-	@SideOnly(Side.CLIENT)
-	public int getRenderColor(IBlockState state)
-	{
-		if (state.getBlock() != this)
-		{
-			return super.getRenderColor(state);
-		}
-		else
-		{
-			return this == FurnitureBlocks.hedge_spruce ? ColorizerFoliage.getFoliageColorPine() : (this == FurnitureBlocks.hedge_birch ? ColorizerFoliage.getFoliageColorBirch() : ColorizerFoliage.getFoliageColorBasic());
-		}
-	}
+    @SideOnly(Side.CLIENT)
+    public int getRenderColor(IBlockState state)
+    {
+    	if(this == FurnitureBlocks.hedge_spruce)
+    	{
+    		return ColorizerFoliage.getFoliageColorPine();
+    	}
+    	if(this == FurnitureBlocks.hedge_birch)
+    	{
+    		return ColorizerFoliage.getFoliageColorBirch();
+    	}
+        return ColorizerFoliage.getFoliageColorBasic();
+    }
 
-	@SideOnly(Side.CLIENT)
-	public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
-	{
-		if (this == FurnitureBlocks.hedge_spruce)
-		{
-			return ColorizerFoliage.getFoliageColorPine();
-		}
-		else if (this == FurnitureBlocks.hedge_birch)
-		{
-			return ColorizerFoliage.getFoliageColorBirch();
-		}
-		else
-		{
-			return ColorizerFoliage.getFoliageColorBasic();
-		}
-	}
+    @SideOnly(Side.CLIENT)
+    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
+    {
+    	if(this == FurnitureBlocks.hedge_spruce)
+    	{
+    		return ColorizerFoliage.getFoliageColorPine();
+    	}
+    	if(this == FurnitureBlocks.hedge_birch)
+    	{
+    		return ColorizerFoliage.getFoliageColorBirch();
+    	}
+        return BiomeColorHelper.getFoliageColorAtPos(worldIn, pos);
+    }
 
 	@SideOnly(Side.CLIENT)
 	public EnumWorldBlockLayer getBlockLayer()

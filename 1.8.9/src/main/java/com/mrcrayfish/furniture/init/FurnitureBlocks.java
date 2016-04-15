@@ -89,6 +89,8 @@ import com.mrcrayfish.furniture.blocks.BlockWallCabinet;
 import com.mrcrayfish.furniture.blocks.BlockWashingMachine;
 import com.mrcrayfish.furniture.blocks.BlockWhiteFence;
 import com.mrcrayfish.furniture.blocks.BlockWreath;
+import com.mrcrayfish.furniture.items.ItemHedge;
+import com.mrcrayfish.furniture.items.ItemWreath;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -316,12 +318,12 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(bedside_cabinet_dark_oak, bedside_cabinet_dark_oak.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(oven, oven.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(range_hood, range_hood.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(hedge_oak, hedge_oak.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(hedge_spruce, hedge_spruce.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(hedge_birch, hedge_birch.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(hedge_jungle, hedge_jungle.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(hedge_acacia, hedge_acacia.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(hedge_dark_oak, hedge_dark_oak.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(hedge_oak, ItemHedge.class, hedge_oak.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(hedge_spruce, ItemHedge.class, hedge_spruce.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(hedge_birch, ItemHedge.class, hedge_birch.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(hedge_jungle, ItemHedge.class, hedge_jungle.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(hedge_acacia, ItemHedge.class, hedge_acacia.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(hedge_dark_oak, ItemHedge.class, hedge_dark_oak.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(bird_bath, bird_bath.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(stone_path, stone_path.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(white_fence, white_fence.getUnlocalizedName().substring(5));
@@ -348,8 +350,8 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(shower_head_on, shower_head_on.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(bin, bin.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(present, present.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(tree_top, tree_top.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(tree_bottom, tree_bottom.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(tree_top, ItemWreath.class, tree_top.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(tree_bottom, ItemWreath.class, tree_bottom.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(toaster, toaster.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(microwave, microwave.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(washing_machine, washing_machine.getUnlocalizedName().substring(5));
@@ -369,7 +371,7 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(grand_chair_bottom, grand_chair_bottom.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(candle, candle.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(chimney, chimney.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(wreath, wreath.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(wreath, ItemWreath.class, wreath.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(fairy_light, fairy_light.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(fire_pit_off, fire_pit_off.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(fire_pit_on, fire_pit_on.getUnlocalizedName().substring(5));
