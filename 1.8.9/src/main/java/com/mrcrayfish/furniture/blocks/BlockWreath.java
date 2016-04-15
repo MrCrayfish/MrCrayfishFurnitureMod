@@ -16,6 +16,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -33,19 +34,19 @@ public class BlockWreath extends BlockFurniture {
 	@SideOnly(Side.CLIENT)
 	public int getBlockColor()
 	{
-		return 4764952;
+		return ColorizerFoliage.getFoliageColorPine();
 	}
 
 	@SideOnly(Side.CLIENT)
 	public int getRenderColor(IBlockState state)
 	{
-		return 4764952;
+		return ColorizerFoliage.getFoliageColorPine();
 	}
 
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
 	{
-		return 4764952;
+		return ColorizerFoliage.getFoliageColorPine();
 	}
 	
 	@Override
