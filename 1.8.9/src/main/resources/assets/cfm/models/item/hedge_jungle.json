@@ -1,5 +1,5 @@
 {
-	"parent": "cfm:block/hedge_all_jungle",
+	"parent": "cfm:block/hedge_none_jungle",
 	"display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

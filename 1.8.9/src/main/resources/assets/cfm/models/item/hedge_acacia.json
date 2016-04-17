@@ -1,5 +1,5 @@
 {
-	"parent": "cfm:block/hedge_all_acacia",
+	"parent": "cfm:block/hedge_none_acacia",
 	"display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],
