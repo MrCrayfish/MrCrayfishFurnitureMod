@@ -73,10 +73,6 @@ public class ItemPresent extends ItemBlock implements IMail
 				list.add(EnumChatFormatting.GRAY + "Unsigned");
 			}
 		}
-		else
-		{
-			list.add(getUnlocalizedName(stack));
-		}
 	}
 
 	@Override
