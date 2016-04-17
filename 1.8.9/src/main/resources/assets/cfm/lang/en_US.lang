@@ -1,89 +1,44 @@
 death.attack.electricFence=Someone was killed by an electric fence!
 itemGroup.tabFurniture=MrCrayfish's Furniture Mod
 
-item.item_lamp.name=Lamp
-item.item_fridge.name=Fridge
-item.item_cabinet.name=Cabinet
-item.item_couch.name=Couch
-item.item_couch_jeb.name=Rave Couch
-item.item_blinds.name=Blind
-item.item_curtains.name=Curtain
-item.item_oven.name=Oven
-item.item_range_hood.name=Oven Rangehood
-item.item_hedge_basic.name=Oak Hedge
-item.item_hedge_spruce.name=Spruce Hedge
-item.item_hedge_birch.name=Birch Hedge
-item.item_hedge_jungle.name=Jungle Hedge
-item.item_hedge_acacia.name=Acacia Hedge
-item.item_hedge_dark_oak.name=Dark Oak Hedge
-item.item_bird_bath.name=Bird Bath
-item.item_stone_path.name=Stone Path
-item.item_white_fence.name=White Fence
-item.item_tap.name=Tap
-item.item_mail_box.name=Mail Box
-item.item_tv.name=TV
-item.item_computer.name=Computer
-item.item_printer.name=Printer
-item.item_electric_fence.name=Electric Fence
-item.item_door_bell.name=Door Bell
-item.item_fire_alarm.name=Fire Alarm
-item.item_ceiling_light.name=Ceiling Light
-item.item_stereo.name=Stereo
-item.item_toilet.name=Toilet
-item.item_basin.name=Basin
-item.item_wall_cabinet.name=Wall Cabinet
-item.item_bath.name=Bath
-item.item_shower.name=Shower
-item.item_tree.name=Christmas Tree
-item.item_present.name=Empty Present
-item.item_cool_pack.name=Cooling Pack
 item.item_hammer.name=Hammer
 item.item_envelope.name=Envelope
 item.item_package.name=Package
 item.item_ink_cartridge.name=Ink Cartridge
 item.item_flesh.name=Flesh
 item.item_flesh_cooked.name=Cooked Flesh
-item.item_toilet.name=Toilet
-item.item_basin.name=Basin
-item.item_wall_cabinet.name=Wall Cabinet
-item.item_bath.name=Bath
-item.item_shower.name=Shower
-item.item_shower_head.name=Shower Head
-item.item_bin.name=Bin
+item.item_cool_pack.name=Cooling Pack
 item.item_bread_slice.name=Bread Slice
 item.item_toast.name=Toast
-item.item_toaster.name=Toaster
-item.item_microwave.name=Microwave
-item.item_washing_machine.name=Washing Machine
-item.item_cookie_jar.name=Cookie Jar
-item.item_blender.name=Blender
-item.item_plate.name=Plate
-item.item_kitchen_counter_sink.name=Kitchen Counter (Sink)
-item.item_kitchen_counter.name=Kitchen Counter
-item.item_dishwasher.name=Dishwasher
-item.item_kitchen_cabinet.name=Kitchen Cabinet
-item.item_bar_stool.name=Bar Stool
-item.item_chopping_board.name=Chopping Board
 item.item_knife.name=Knife
 item.item_cup.name=Cup
 item.item_soap.name=Soap
 item.item_soap_water.name=Soapy Water
 item.item_super_soap_water.name=Super Soapy Water
 item.item_recipe_book.name=Recipe Book
-item.item_mirror.name=Mirror
-item.item_log.name=Chopped Log
-item.item_chimney.name=Chimney
-item.item_fairy_light.name=Fairy Light
-item.item_grand_chair.name=Grand Chair
-item.item_mantel_piece.name=Mantelpiece
-item.item_candle.name=Candle
-item.item_wreath.name=Wreath
 item.item_spatula.name=Spatula
 item.item_sausage.name=Sausage
 item.item_sausage_cooked.name=Cooked Sausage
 item.item_kebab.name=Raw Kebab
 item.item_kebab_cooked.name=Cooked Kebab
 item.item_crow_bar.name=Crow Bar
+item.item_log.name=Chopped Log
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 tile.table_oak.name=Oak Table
 tile.table_spruce.name=Spruce Table
@@ -120,7 +75,90 @@ tile.bedside_cabinet_jungle.name=Jungle Bedside Cabinet
 tile.bedside_cabinet_acacia.name=Acacia Bedside Cabinet
 tile.bedside_cabinet_dark_oak.name=Dark Oak Bedside Cabinet
 tile.bedside_cabinet_stone.name=Stone Bedside Cabinet
-
+tile.lamp.name=Lamp
+tile.fridge.name=Fridge
+tile.cabinet.name=Cabinet
+tile.couch.name=Couch
+tile.couch_jeb.name=Rave Couch
+tile.blinds_closed.name=Blind
+tile.blinds_open.name=Blind
+tile.curtains_closed.name=Curtain
+tile.curtains_open.name=Curtain
+tile.oven.name=Oven
+tile.range_hood.name=Oven Rangehood
+tile.hedge_oak.name=Oak Hedge
+tile.hedge_spruce.name=Spruce Hedge
+tile.hedge_birch.name=Birch Hedge
+tile.hedge_jungle.name=Jungle Hedge
+tile.hedge_acacia.name=Acacia Hedge
+tile.hedge_dark_oak.name=Dark Oak Hedge
+tile.bird_bath.name=Bird Bath
+tile.stone_path.name=Stone Path
+tile.white_fence.name=White Fence
+tile.tap.name=Tap
+tile.mail_box.name=Mail Box
+tile.tv.name=TV
+tile.computer.name=Computer
+tile.printer.name=Printer
+tile.electric_fence.name=Electric Fence
+tile.door_bell.name=Door Bell
+tile.fire_alarm_off.name=Fire Alarm
+tile.fire_alarm_on.name=Fire Alarm (On)
+tile.ceiling_light_off.name=Ceiling Light
+tile.ceiling_light_on.name=Ceiling Light (On)
+tile.stereo.name=Stereo
+tile.wall_cabinet.name=Wall Cabinet
+tile.bath.name=Bath
+tile.toilet.name=Toilet
+tile.basin.name=Basin
+tile.wall_cabinet.name=Wall Cabinet
+tile.bath_bottom.name=Bath
+tile.bath_top.name=Bath
+tile.shower_bottom.name=Shower
+tile.shower_top.name=Shower
+tile.shower_head_off.name=Shower Head
+tile.shower_head_on.name=Shower Head (On)
+tile.bin.name=Bin
+tile.toaster.name=Toaster
+tile.microwave.name=Microwave
+tile.washing_machine.name=Washing Machine
+tile.cookie_jar.name=Cookie Jar
+tile.blender.name=Blender
+tile.plate.name=Plate
+tile.counter_sink.name=Kitchen Counter (Sink)
+tile.counter.name=Kitchen Counter
+tile.dishwasher.name=Dishwasher
+tile.cabinet_kitchen.name=Kitchen Cabinet
+tile.bar_stool.name=Bar Stool
+tile.chopping_board.name=Chopping Board
+tile.mirror.name=Mirror
+tile.chimney.name=Chimney
+tile.fairy_light.name=Fairy Light
+tile.grand_chair_bottom.name=Grand Chair
+tile.grand_chair_top.name=Grand Chair
+tile.mantel_piece.name=Mantelpiece
+tile.candle.name=Candle
+tile.wreath.name=Wreath
+tile.tree_bottom.name=Christmas Tree
+tile.tree_top.name=Christmas Tree
+tile.present_white.name=White Present
+tile.present_orange.name=Orange Present
+tile.present_magenta.name=Magenta Present
+tile.present_light_blue.name=Light Blue Present
+tile.present_yellow.name=Yellow Present
+tile.present_lime.name=Lime Present
+tile.present_pink.name=Pink Present
+tile.present_gray.name=Gray Present
+tile.present_silver.name=Light Gray Present
+tile.present_cyan.name=Cyan Present
+tile.present_purple.name=Purple Present
+tile.present_blue.name=Blue Present
+tile.present_brown.name=Brown Present
+tile.present_green.name=Green Present
+tile.present_red.name=Red Present
+tile.present_black.name=Black Present
+tile.fire_pit_on=Fire Pit
+tile.fire_pit_off=Fire Pit
 tile.trampoline.name=Trampoline
 tile.table_outdoor.name=Outdoor Table
 tile.bench.name=Outdoor Bench
