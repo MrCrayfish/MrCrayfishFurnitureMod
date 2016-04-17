@@ -41,10 +41,4 @@ public class FurnitureTab extends CreativeTabs
 	{
 		return "furniture.png";
 	}
-	
-	@SideOnly(Side.CLIENT)
-	public boolean drawInForegroundOfTab() 
-	{
-		return false;
-	}
 }
