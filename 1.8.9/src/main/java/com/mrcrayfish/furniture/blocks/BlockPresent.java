@@ -30,8 +30,10 @@ import com.mrcrayfish.furniture.util.InventoryUtil;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockState;
 import net.minecraft.block.state.IBlockState;
@@ -40,6 +42,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -56,7 +59,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockPresent extends Block implements ITileEntityProvider
 {
-	public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
+	public static final PropertyEnum<EnumDyeColor> COLOUR = PropertyEnum.<EnumDyeColor>create("colour", EnumDyeColor.class);
 	
 	public BlockPresent(Material material)
 	{
@@ -64,7 +67,7 @@ public class BlockPresent extends Block implements ITileEntityProvider
 		this.setHardness(0.5F);
 		this.setStepSound(Block.soundTypeCloth);
 		this.isBlockContainer = true;
-		this.setDefaultState(this.blockState.getBaseState().withProperty(COLOUR, 0));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(COLOUR, EnumDyeColor.WHITE));
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	
@@ -139,16 +142,27 @@ public class BlockPresent extends Block implements ITileEntityProvider
 		return (int) (date2.getTime() - date.getTime()) / (1000 * 60 * 60 * 24);
 	}
 	
+	public MapColor getMapColor(IBlockState state)
+    {
+        return ((EnumDyeColor)state.getValue(COLOUR)).getMapColor();
+    }
+	
+	@Override
+	public int damageDropped(IBlockState state)
+	{
+		return ((EnumDyeColor)state.getValue(COLOUR)).getMetadata();
+	}
+	
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((Integer) state.getValue(COLOUR)).intValue();
+		return ((EnumDyeColor)state.getValue(COLOUR)).getMetadata();
 	}
 	
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		return this.getDefaultState().withProperty(COLOUR, meta);
+		return this.getDefaultState().withProperty(COLOUR, EnumDyeColor.byMetadata(meta));
 	}
 
 	@Override
@@ -169,5 +183,15 @@ public class BlockPresent extends Block implements ITileEntityProvider
 	public EnumWorldBlockLayer getBlockLayer()
 	{
 		return EnumWorldBlockLayer.CUTOUT;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list)
+	{
+		for (EnumDyeColor dye : EnumDyeColor.values())
+		{
+			list.add(new ItemStack(itemIn, 1, dye.getMetadata()));
+		}
 	}
 }

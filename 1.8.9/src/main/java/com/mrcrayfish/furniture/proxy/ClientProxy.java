@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture.proxy;
 
+import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.render.tileentity.BlenderRenderer;
@@ -50,9 +51,13 @@ import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.Item;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -67,6 +72,11 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void registerRenders()
 	{
+		for(EnumDyeColor dye : EnumDyeColor.values())
+		{
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(FurnitureBlocks.present), dye.getMetadata(), new ModelResourceLocation(Reference.MOD_ID + ":" + "present_" + dye.getName(), "inventory"));
+		}
+		
 		FurnitureItems.registerRenders();
 		FurnitureBlocks.registerRenders();
 

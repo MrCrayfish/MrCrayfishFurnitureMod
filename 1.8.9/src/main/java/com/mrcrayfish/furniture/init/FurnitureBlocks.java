@@ -17,6 +17,9 @@
  */
 package com.mrcrayfish.furniture.init;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.blocks.BlockBarStool;
@@ -90,13 +93,16 @@ import com.mrcrayfish.furniture.blocks.BlockWashingMachine;
 import com.mrcrayfish.furniture.blocks.BlockWhiteFence;
 import com.mrcrayfish.furniture.blocks.BlockWreath;
 import com.mrcrayfish.furniture.items.ItemHedge;
+import com.mrcrayfish.furniture.items.ItemPresent;
 import com.mrcrayfish.furniture.items.ItemWreath;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class FurnitureBlocks
@@ -349,7 +355,7 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(shower_head_off, shower_head_off.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(shower_head_on, shower_head_on.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(bin, bin.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(present, present.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(present, ItemPresent.class, present.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(tree_top, ItemWreath.class, tree_top.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(tree_bottom, ItemWreath.class, tree_bottom.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(toaster, toaster.getUnlocalizedName().substring(5));
@@ -473,7 +479,6 @@ public class FurnitureBlocks
 		registerRender(bar_stool );
 		registerRender(chopping_board);
 		
-		registerRender(present);
 		registerRender(tree_bottom);
 		registerRender(mantel_piece);
 		registerRender(grand_chair_top);
@@ -496,10 +501,23 @@ public class FurnitureBlocks
 		registerRender(divingboard_plank);
 		registerRender(door_mat);
 		registerRender(esky);
+		
+		registerPresents();
 	}
 	
 	private static void registerRender(Block block)
 	{
 		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + block.getUnlocalizedName().substring(5), "inventory"));
+	}
+
+	private static void registerPresents()
+	{
+		Item blockItem = Item.getItemFromBlock(present);
+        List<ItemStack> subItems = new ArrayList<ItemStack>();
+		present.getSubBlocks(blockItem, null, subItems);
+		for(int i = 0; i < 16; i++)
+		{
+			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(blockItem, subItems.get(i).getMetadata(), new ModelResourceLocation(Reference.MOD_ID + ":" + "present_" + EnumDyeColor.values()[i].getName(), "inventory"));
+		}
 	}
 }

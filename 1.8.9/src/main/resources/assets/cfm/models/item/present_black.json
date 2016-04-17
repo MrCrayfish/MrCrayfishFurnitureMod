@@ -1,5 +1,5 @@
 {
-	"parent": "cfm:block/present_red",
+	"parent": "cfm:block/present_black",
 	"display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],
