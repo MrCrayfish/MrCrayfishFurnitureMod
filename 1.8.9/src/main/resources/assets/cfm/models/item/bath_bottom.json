@@ -1,5 +1,5 @@
 {
-	"parent": "cfm:block/bath_bottom_16_pre",
+	"parent": "cfm:block/bath",
 	"display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],
@@ -8,8 +8,8 @@
         },
 		"gui": {
 			"rotation": [ 0, -90, 0 ],
-            "translation": [ 0, 0, 0 ],
-            "scale": [ 1, 1, 1 ]
+            "translation": [ 2.5, 2, 0 ],
+            "scale": [ 0.66, 0.66, 0.66 ]
 		}
     }
 }
