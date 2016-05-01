@@ -19,6 +19,8 @@ import net.minecraft.world.WorldServer;
 
 public class BlockDivingboard extends BlockFurniture 
 {
+	public final int MAX_JUMP_HEIGHT = 4;
+	
 	public BlockDivingboard(Material material, boolean plank) 
 	{
 		super(material);
@@ -69,8 +71,7 @@ public class BlockDivingboard extends BlockFurniture
 			float height = entityIn.fallDistance;
 			if(height > 0 && !entityIn.isSneaking()) 
 			{
-				//TODO make final var instead
-				if(height > 4) height = 4;
+				if(height > MAX_JUMP_HEIGHT) height = MAX_JUMP_HEIGHT;
 				entityIn.motionY = 0;
 				entityIn.addVelocity(0, getRequiredVelocity(height + 1), 0);
 				worldIn.playSoundEffect(entityIn.posX, entityIn.posY, entityIn.posZ, "cfm:boing", 0.75F, 0.75F);

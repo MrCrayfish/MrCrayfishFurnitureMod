@@ -73,7 +73,6 @@ public class GuiPrinter extends GuiContainer
 		this.drawTexturedModalRect(l, i1, 0, 0, xSize, ySize + 21);
 		int var7;
 
-		//TODO switch these around!
 		if (this.printer.isPrinting())
 		{
 			var7 = this.getPrintTimeRemainingScaled(16);

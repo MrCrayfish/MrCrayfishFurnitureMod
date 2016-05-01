@@ -44,7 +44,6 @@ import net.minecraft.world.World;
 
 public class BlockWallCabinet extends BlockFurnitureTile
 {
-	//TODO Fix bug where items dont drop 
 	public BlockWallCabinet(Material material)
 	{
 		super(material);
