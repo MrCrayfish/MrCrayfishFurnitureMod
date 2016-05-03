@@ -1,0 +1,10 @@
+{
+"parent": "cfm:block/ender_cabinet",
+"textures": {
+"1": "blocks/obsidian",
+"2": "blocks/planks_oak",
+"3": "blocks/planks_oak",
+"4": "blocks/log_oak",
+"5": "blocks/gold_block"
+}
+}

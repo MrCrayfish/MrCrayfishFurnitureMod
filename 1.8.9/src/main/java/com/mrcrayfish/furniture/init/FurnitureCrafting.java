@@ -121,6 +121,7 @@ public class FurnitureCrafting
 		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemGrandChair), "  W", "RRW", "W W", 'W', new ItemStack(Blocks.planks, 1, 5), 'R', new ItemStack(Blocks.wool, 1, 14));
 		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemMantelpiece), "BBB", "B B", "B B", 'B', Blocks.brick_block);
 		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemWreath), "LLL", "L L", "LLL", 'L', new ItemStack(Blocks.leaves, 1, 0));
+		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemEnderCabinet), new Object[]{ "OGO", "EBE", "OOO", 'O', Blocks.obsidian, 'G', Items.gold_ingot, 'E', Items.ender_eye, 'B', FurnitureItems.itemBedsideCabinet });
 		GameRegistry.registerFuelHandler(new FuelHandler());
 	}
 }

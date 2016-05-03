@@ -17,68 +17,7 @@
  */
 package com.mrcrayfish.furniture.init;
 
-import com.mrcrayfish.furniture.blocks.BlockBarStool;
-import com.mrcrayfish.furniture.blocks.BlockBasin;
-import com.mrcrayfish.furniture.blocks.BlockBath;
-import com.mrcrayfish.furniture.blocks.BlockBedsideCabinet;
-import com.mrcrayfish.furniture.blocks.BlockBin;
-import com.mrcrayfish.furniture.blocks.BlockBirdBath;
-import com.mrcrayfish.furniture.blocks.BlockBlender;
-import com.mrcrayfish.furniture.blocks.BlockBlinds;
-import com.mrcrayfish.furniture.blocks.BlockCabinet;
-import com.mrcrayfish.furniture.blocks.BlockCabinetKitchen;
-import com.mrcrayfish.furniture.blocks.BlockCandle;
-import com.mrcrayfish.furniture.blocks.BlockCeilingLight;
-import com.mrcrayfish.furniture.blocks.BlockChair;
-import com.mrcrayfish.furniture.blocks.BlockChimney;
-import com.mrcrayfish.furniture.blocks.BlockChoppingBoard;
-import com.mrcrayfish.furniture.blocks.BlockCoffeeTable;
-import com.mrcrayfish.furniture.blocks.BlockComputer;
-import com.mrcrayfish.furniture.blocks.BlockCookieJar;
-import com.mrcrayfish.furniture.blocks.BlockCouchJeb;
-import com.mrcrayfish.furniture.blocks.BlockCouchNormal;
-import com.mrcrayfish.furniture.blocks.BlockCounter;
-import com.mrcrayfish.furniture.blocks.BlockCounterSink;
-import com.mrcrayfish.furniture.blocks.BlockCup;
-import com.mrcrayfish.furniture.blocks.BlockCurtainsClosed;
-import com.mrcrayfish.furniture.blocks.BlockCurtainsOpen;
-import com.mrcrayfish.furniture.blocks.BlockDishwasher;
-import com.mrcrayfish.furniture.blocks.BlockDoorBell;
-import com.mrcrayfish.furniture.blocks.BlockElectricFence;
-import com.mrcrayfish.furniture.blocks.BlockFairyLight;
-import com.mrcrayfish.furniture.blocks.BlockFireAlarm;
-import com.mrcrayfish.furniture.blocks.BlockFirePitOff;
-import com.mrcrayfish.furniture.blocks.BlockFirePitOn;
-import com.mrcrayfish.furniture.blocks.BlockFreezer;
-import com.mrcrayfish.furniture.blocks.BlockFridge;
-import com.mrcrayfish.furniture.blocks.BlockGrandChair;
-import com.mrcrayfish.furniture.blocks.BlockHedge;
-import com.mrcrayfish.furniture.blocks.BlockLamp;
-import com.mrcrayfish.furniture.blocks.BlockLampOn;
-import com.mrcrayfish.furniture.blocks.BlockMailBox;
-import com.mrcrayfish.furniture.blocks.BlockMantelPiece;
-import com.mrcrayfish.furniture.blocks.BlockMicrowave;
-import com.mrcrayfish.furniture.blocks.BlockMirror;
-import com.mrcrayfish.furniture.blocks.BlockOven;
-import com.mrcrayfish.furniture.blocks.BlockPlate;
-import com.mrcrayfish.furniture.blocks.BlockPresent;
-import com.mrcrayfish.furniture.blocks.BlockPrinter;
-import com.mrcrayfish.furniture.blocks.BlockRangeHood;
-import com.mrcrayfish.furniture.blocks.BlockShower;
-import com.mrcrayfish.furniture.blocks.BlockShowerHeadOff;
-import com.mrcrayfish.furniture.blocks.BlockShowerHeadOn;
-import com.mrcrayfish.furniture.blocks.BlockStereo;
-import com.mrcrayfish.furniture.blocks.BlockStonePath;
-import com.mrcrayfish.furniture.blocks.BlockTV;
-import com.mrcrayfish.furniture.blocks.BlockTable;
-import com.mrcrayfish.furniture.blocks.BlockTap;
-import com.mrcrayfish.furniture.blocks.BlockToaster;
-import com.mrcrayfish.furniture.blocks.BlockToilet;
-import com.mrcrayfish.furniture.blocks.BlockTree;
-import com.mrcrayfish.furniture.blocks.BlockWallCabinet;
-import com.mrcrayfish.furniture.blocks.BlockWashingMachine;
-import com.mrcrayfish.furniture.blocks.BlockWhiteFence;
-import com.mrcrayfish.furniture.blocks.BlockWreath;
+import com.mrcrayfish.furniture.blocks.*;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -133,6 +72,9 @@ public class FurnitureBlocks
 	public static Block pattern;
 	public static Block yellow_glow;
 	public static Block white_glass;
+
+	/** Ender */
+	public static Block ender_cabinet;
 
 	public static void init()
 	{
@@ -213,6 +155,7 @@ public class FurnitureBlocks
 		fairy_light = new BlockFairyLight(Material.glass).setUnlocalizedName("fairy_light");
 		fire_pit_off = new BlockFirePitOff(Material.wood).setUnlocalizedName("fire_pit_off");
 		fire_pit_on = new BlockFirePitOn(Material.wood).setUnlocalizedName("fire_pit_on");
+		ender_cabinet = new BlockEnderCabinet(Material.wood).setUnlocalizedName("ender_cabinet");
 	}
 
 	public static void register()
@@ -295,5 +238,6 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(fairy_light, fairy_light.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(fire_pit_off, fire_pit_off.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(fire_pit_on, fire_pit_on.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(ender_cabinet, ender_cabinet.getUnlocalizedName().substring(5));
 	}
 }
