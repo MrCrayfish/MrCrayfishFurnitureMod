@@ -87,6 +87,9 @@ public class FurnitureItems {
 	public static Item itemCrayfish;
 	public static Item itemDollar;
 
+	/** Ender */
+	public static Item itemEnderCabinet;
+
 	public static void init() {
 		itemTableWood = new ItemPlacer(FurnitureBlocks.table_wood).setUnlocalizedName("item_table_wood");
 		itemTableStone = new ItemPlacer(FurnitureBlocks.table_stone).setUnlocalizedName("item_table_stone");
@@ -184,6 +187,7 @@ public class FurnitureItems {
 		itemGrandChair = new ItemPlacer(FurnitureBlocks.grand_chair_bottom).setUnlocalizedName("item_grand_chair");
 		itemMantelpiece = new ItemPlacer(FurnitureBlocks.mantel_piece).setUnlocalizedName("item_mantel_piece");
 		itemWreath = new ItemPlacer(FurnitureBlocks.wreath).setUnlocalizedName("item_wreath");
+		itemEnderCabinet = new ItemPlacer(FurnitureBlocks.ender_cabinet).setUnlocalizedName("item_ender_cabinet");
 	}
 
 	public static void registerItems() {
@@ -271,6 +275,7 @@ public class FurnitureItems {
 		GameRegistry.registerItem(itemGrandChair, itemGrandChair.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemMantelpiece, itemMantelpiece.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemWreath, itemWreath.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemEnderCabinet, itemEnderCabinet.getUnlocalizedName().substring(5));
 	}
 
 	public static void registerRenders() {
@@ -358,6 +363,7 @@ public class FurnitureItems {
 		registerRender(itemGrandChair);
 		registerRender(itemMantelpiece);
 		registerRender(itemWreath);
+		registerRender(itemEnderCabinet);
 	}
 
 	private static void registerRender(Item item) {
