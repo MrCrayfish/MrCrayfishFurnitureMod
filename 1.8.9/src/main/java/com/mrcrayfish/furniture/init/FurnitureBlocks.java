@@ -92,6 +92,7 @@ import com.mrcrayfish.furniture.blocks.BlockWallCabinet;
 import com.mrcrayfish.furniture.blocks.BlockWashingMachine;
 import com.mrcrayfish.furniture.blocks.BlockWhiteFence;
 import com.mrcrayfish.furniture.blocks.BlockWreath;
+import com.mrcrayfish.furniture.items.ItemCrate;
 import com.mrcrayfish.furniture.items.ItemHedge;
 import com.mrcrayfish.furniture.items.ItemPresent;
 import com.mrcrayfish.furniture.items.ItemWreath;
@@ -382,7 +383,7 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(fire_pit_off, fire_pit_off.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(fire_pit_on, fire_pit_on.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(trampoline, trampoline.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(crate, crate.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(crate, ItemCrate.class, crate.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(bench, bench.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(table_outdoor, table_outdoor.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(grill, grill.getUnlocalizedName().substring(5));

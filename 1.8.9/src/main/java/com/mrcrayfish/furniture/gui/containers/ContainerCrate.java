@@ -1,5 +1,7 @@
 package com.mrcrayfish.furniture.gui.containers;
 
+import com.mrcrayfish.furniture.gui.slots.SlotMail;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -18,7 +20,7 @@ public class ContainerCrate extends Container
 		{
 			for (int x = 0; x < 4; ++x)
 			{
-				this.addSlotToContainer(new Slot(crateInventory, x + y * 4, x * 18 + 53, y * 18 + 8));
+				this.addSlotToContainer(new SlotMail(crateInventory, x + y * 4, x * 18 + 53, y * 18 + 8));
 			}
 		}
 
