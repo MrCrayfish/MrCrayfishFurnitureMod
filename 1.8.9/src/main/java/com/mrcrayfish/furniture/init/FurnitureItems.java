@@ -28,10 +28,7 @@ import com.mrcrayfish.furniture.items.ItemKnife;
 import com.mrcrayfish.furniture.items.ItemLog;
 import com.mrcrayfish.furniture.items.ItemPackage;
 import com.mrcrayfish.furniture.items.ItemPackageSigned;
-import com.mrcrayfish.furniture.items.ItemPlacer;
-import com.mrcrayfish.furniture.items.ItemPresent;
 import com.mrcrayfish.furniture.items.ItemRecipeBook;
-import com.mrcrayfish.furniture.items.ItemSpatula;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.model.ModelResourceLocation;
