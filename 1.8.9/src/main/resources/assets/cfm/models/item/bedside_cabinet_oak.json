@@ -2,8 +2,8 @@
 	"parent": "cfm:block/bedside_cabinet_oak",
 	"display": {
         "thirdperson": {
-            "rotation": [ 10, -45, 170 ],
-            "translation": [ 0, 1.5, -2.75 ],
+            "rotation": [ 10, 45, 180 ],
+            "translation": [ 0, 1, -2.75 ],
             "scale": [ 0.375, 0.375, 0.375 ]
         },
 		"gui": {

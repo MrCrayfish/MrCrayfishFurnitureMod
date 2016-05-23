@@ -2,8 +2,8 @@
 	"parent": "cfm:block/wall_cabinet_pre",
 	"display": {
         "thirdperson": {
-            "rotation": [ 10, -45, 170 ],
-            "translation": [ 0, 1.5, -2.75 ],
+            "rotation": [ 45, 0, 180 ],
+            "translation": [ 1, 1, -2.75 ],
             "scale": [ 0.375, 0.375, 0.375 ]
         },
 		"gui": {

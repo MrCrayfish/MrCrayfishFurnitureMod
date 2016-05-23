@@ -2,7 +2,7 @@
 	"parent": "cfm:block/counter_sink_filled_pre",
 	"display": {
         "thirdperson": {
-            "rotation": [ 10, -45, 170 ],
+            "rotation": [ 10, 45, 190 ],
             "translation": [ 0, 1.5, -2.75 ],
             "scale": [ 0.375, 0.375, 0.375 ]
         },

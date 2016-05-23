@@ -2,9 +2,9 @@
 	"parent": "cfm:block/fire_alarm_off_pre",
 	"display": {
         "thirdperson": {
-            "rotation": [ 10, -45, 170 ],
-            "translation": [ 0, 1.5, -2.75 ],
-            "scale": [ 0.375, 0.375, 0.375 ]
+            "rotation": [ 0, -45, 0 ],
+            "translation": [ 0, -1.75, -2.5 ],
+            "scale": [ 0.75, 0.75, 0.75 ]
         },
 		"gui": {
 			"rotation": [ 0, -90, 180 ],

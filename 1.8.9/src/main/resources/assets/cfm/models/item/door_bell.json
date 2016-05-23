@@ -2,14 +2,19 @@
 	"parent": "cfm:block/door_bell_pre",
 	"display": {
         "thirdperson": {
-            "rotation": [ 10, -45, 170 ],
-            "translation": [ 0, 1.5, -2.75 ],
-            "scale": [ 0.375, 0.375, 0.375 ]
+            "rotation": [ 10, -45, 90 ],
+            "translation": [ 0, -1.5, -2.75 ],
+            "scale": [ 0.75, 0.75, 0.75 ]
         },
 		"gui": {
 			"rotation": [ 0, -90, 0 ],
             "translation": [ -10, -8, 0 ],
             "scale": [ 3, 3, 3 ]
+		},
+		"ground": {
+			"rotation": [ 0, 0, 0 ],
+            "translation": [ -8, -8, 0 ],
+            "scale": [ 2, 2, 2 ]
 		}
     }
 }

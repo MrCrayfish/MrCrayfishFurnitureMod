@@ -1,18 +1,15 @@
 {
-"parent": "builtin/generated",
-"textures": {
-"layer0": "cfm:items/itemcouchjeb"
-},
-"display": {
-"thirdperson": {
-"rotation": [ -90, 0, 0 ],
-"translation": [ 0, 1, -3 ],
-"scale": [ 0.55, 0.55, 0.55 ]
-},
-"firstperson": {
-"rotation": [ 0, -135, 25 ],
-"translation": [ 0, 4, 2 ],
-"scale": [ 1.7, 1.7, 1.7 ]
-}
-}
+	"parent": "cfm:block/couch_all_rainbow",
+	"display": {
+        "thirdperson": {
+            "rotation": [ 20, 45, 190 ],
+            "translation": [ 0, 1, -3 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        },
+		"gui": {
+			"rotation": [ 0, -90, 0 ],
+            "translation": [ 0, -1, 0 ],
+            "scale": [ 0.8, 0.8, 0.8 ]
+		}
+    }
 }

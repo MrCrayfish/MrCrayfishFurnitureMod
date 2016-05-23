@@ -2,8 +2,8 @@
 	"parent": "cfm:block/shower",
 	"display": {
         "thirdperson": {
-            "rotation": [ 10, -45, 170 ],
-            "translation": [ 0, 1.5, -2.75 ],
+            "rotation": [ 30, 45, 210 ],
+            "translation": [ 0, 1, -3 ],
             "scale": [ 0.375, 0.375, 0.375 ]
         },
 		"gui": {
