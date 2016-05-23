@@ -96,7 +96,7 @@ public class FurnitureItems
 		itemCrayfish = new Item().setUnlocalizedName("item_crayfish").setMaxStackSize(1);
 		itemDollar = new Item().setUnlocalizedName("item_money").setMaxStackSize(1);
 		itemLog = new ItemLog(FurnitureBlocks.fire_pit_off).setUnlocalizedName("item_log").setMaxStackSize(16);
-		itemSpatula = new ItemSpatula().setUnlocalizedName("item_spatula");
+		itemSpatula = new Item().setUnlocalizedName("item_spatula").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		itemSausage = new ItemFood(1, false).setUnlocalizedName("item_sausage").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		itemSausageCooked = new ItemFood(4, false).setUnlocalizedName("item_sausage_cooked").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		itemKebab = new ItemFood(1, false).setPotionEffect(Potion.hunger.id, 30, 0, 0.3F).setUnlocalizedName("item_kebab").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
