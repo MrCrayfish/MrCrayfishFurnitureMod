@@ -145,6 +145,18 @@ public class FurnitureCrafting
 		GameRegistry.addRecipe(new ItemStack(FurnitureBlocks.grand_chair_bottom), "  W", "RRW", "W W", 'W', new ItemStack(Blocks.planks, 1, 5), 'R', new ItemStack(Blocks.wool, 1, 14));
 		GameRegistry.addRecipe(new ItemStack(FurnitureBlocks.mantel_piece), "BBB", "B B", "B B", 'B', Blocks.brick_block);
 		GameRegistry.addRecipe(new ItemStack(FurnitureBlocks.wreath), "LLL", "L L", "LLL", 'L', new ItemStack(Blocks.leaves, 1, 0));
+		GameRegistry.addRecipe(new ItemStack(FurnitureBlocks.trampoline), "WMW", "SWS", "S S", 'W', new ItemStack(Blocks.wool, 1, 11), 'M', new ItemStack(Items.string), 'S', new ItemStack(Blocks.stone));
+		GameRegistry.addRecipe(new ItemStack(FurnitureBlocks.crate), "DOD", "O O", "DOD", 'D', new ItemStack(Blocks.planks, 1, 0), 'O', new ItemStack(Blocks.planks, 1, 5));
+		GameRegistry.addRecipe(new ItemStack(FurnitureBlocks.bench), "LPL", "P P", 'L', new ItemStack(Blocks.log, 1, 0), 'P', new ItemStack(Blocks.planks, 1, 0));
+		GameRegistry.addRecipe(new ItemStack(FurnitureBlocks.table_outdoor), "LGL", "P P", "P P", 'L', new ItemStack(Blocks.log, 1, 0), 'P', new ItemStack(Blocks.planks, 1, 0), 'G', new ItemStack(Blocks.stained_glass, 1, 12));
+		GameRegistry.addRecipe(new ItemStack(FurnitureBlocks.grill), "CMC", "SCS", "SMS", 'C', new ItemStack(Blocks.stained_hardened_clay, 1, 14), 'M', new ItemStack(Blocks.iron_bars), 'S', new ItemStack(Blocks.stone));
+		GameRegistry.addRecipe(new ItemStack(FurnitureBlocks.divingboard_base), "C  ", "QQQ", "C  ", 'C', new ItemStack(Blocks.stained_hardened_clay, 1, 9), 'Q', new ItemStack(Blocks.quartz_block));
+		GameRegistry.addRecipe(new ItemStack(FurnitureBlocks.door_mat), "B", "C", 'B', new ItemStack(Items.dye, 1, 15), 'C', new ItemStack(Blocks.carpet, 1, 12));
+		GameRegistry.addRecipe(new ItemStack(FurnitureBlocks.esky), "BBB", "Q Q", "BBB", 'B', new ItemStack(Blocks.stained_hardened_clay, 1, 11), 'Q', new ItemStack(Blocks.quartz_block));
+		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemSpatula), "  M", " I ", "I  ", 'M', new ItemStack(Blocks.iron_bars), 'I', new ItemStack(Items.iron_ingot));
+		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemSausage, 16), "  B", " B ", "B  ", 'M', new ItemStack(Items.beef));
+		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemKebab, 2), "  S", " C ", "S  ", 'S', new ItemStack(Items.stick), 'C', new ItemStack(Items.chicken));
+		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemCrowBar), "  I", " C ", "I  ", 'C', new ItemStack(Blocks.stained_hardened_clay, 1, 14), 'I', new ItemStack(Items.iron_ingot));
 		GameRegistry.registerFuelHandler(new FuelHandler());
 	}
 }
