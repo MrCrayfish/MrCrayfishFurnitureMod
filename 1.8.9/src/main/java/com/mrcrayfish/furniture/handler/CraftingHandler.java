@@ -50,7 +50,7 @@ public class CraftingHandler
 		
 		if(item == FurnitureItems.itemLog)
 		{
-			for (int i = 0; i < 9; i++)
+			for (int i = 0; i < event.craftMatrix.getSizeInventory(); i++)
 			{
 				ItemStack stack = event.craftMatrix.getStackInSlot(i);
 				if(stack != null)
