@@ -1,5 +1,5 @@
 {
-	"parent": "cfm:block/tv_pre",
+	"parent": "cfm:block/tv_channel_1",
 	"display": {
         "thirdperson": {
             "rotation": [ 10, 45, 180 ],
