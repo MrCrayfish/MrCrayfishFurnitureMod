@@ -165,8 +165,6 @@ public class FurnitureBlocks
 
 	public static void init()
 	{
-		lamp_on = new BlockLampOn(Material.glass).setUnlocalizedName("lamp_on");
-		lamp_off = new BlockLamp(Material.glass).setUnlocalizedName("lamp_off");
 		coffee_table_oak = new BlockCoffeeTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("coffee_table_oak");
 		coffee_table_spruce = new BlockCoffeeTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("coffee_table_spruce");
 		coffee_table_birch = new BlockCoffeeTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("coffee_table_birch");
@@ -198,6 +196,8 @@ public class FurnitureBlocks
 		cabinet_dark_oak = new BlockCabinet(Material.wood).setUnlocalizedName("cabinet_dark_oak");
 		couch = new BlockCouchNormal().setUnlocalizedName("couch");
 		couch_jeb = new BlockCouchJeb().setUnlocalizedName("couch_jeb");
+		lamp_on = new BlockLampOn(Material.glass).setUnlocalizedName("lamp_on");
+		lamp_off = new BlockLamp(Material.glass, false).setUnlocalizedName("lamp_off");
 		blinds = new BlockBlinds(Material.wood, true).setUnlocalizedName("blinds_open");
 		blinds_closed = new BlockBlinds(Material.wood, false).setUnlocalizedName("blinds_closed");
 		curtains = new BlockCurtainsOpen(Material.cloth).setUnlocalizedName("curtains_open");

@@ -24,22 +24,6 @@ item.item_kebab_cooked.name=Cooked Kebab
 item.item_crow_bar.name=Crow Bar
 item.item_log.name=Chopped Log
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 tile.table_oak.name=Oak Table
 tile.table_spruce.name=Spruce Table
 tile.table_birch.name=Birch Table
@@ -75,7 +59,8 @@ tile.bedside_cabinet_jungle.name=Jungle Bedside Cabinet
 tile.bedside_cabinet_acacia.name=Acacia Bedside Cabinet
 tile.bedside_cabinet_dark_oak.name=Dark Oak Bedside Cabinet
 tile.bedside_cabinet_stone.name=Stone Bedside Cabinet
-tile.lamp.name=Lamp
+tile.lamp_off.name=Lamp
+tile.lamp_on.name=Lamp
 tile.fridge.name=Fridge
 tile.cabinet.name=Cabinet
 tile.couch.name=Couch

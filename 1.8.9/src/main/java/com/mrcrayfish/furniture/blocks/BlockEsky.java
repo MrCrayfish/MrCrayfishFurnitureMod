@@ -30,6 +30,7 @@ public class BlockEsky extends BlockFurniture implements ITileEntityProvider
 	{
 		super(material);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(OPENED, Boolean.valueOf(false)));
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	
 	@Override

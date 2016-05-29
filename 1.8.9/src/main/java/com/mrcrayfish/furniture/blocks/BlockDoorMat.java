@@ -23,6 +23,7 @@ public class BlockDoorMat extends BlockFurniture implements ITileEntityProvider
 	public BlockDoorMat(Material material)
 	{
 		super(material);
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	
 	@Override

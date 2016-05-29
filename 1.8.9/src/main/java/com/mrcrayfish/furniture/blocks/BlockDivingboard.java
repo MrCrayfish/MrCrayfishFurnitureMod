@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 
@@ -26,7 +27,10 @@ public class BlockDivingboard extends BlockFurniture
 	public BlockDivingboard(Material material, boolean plank) 
 	{
 		super(material);
-		if(plank) this.setCreativeTab(null);
+		if(!plank)
+		{
+			this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		}
 	}
 	
 	@Override

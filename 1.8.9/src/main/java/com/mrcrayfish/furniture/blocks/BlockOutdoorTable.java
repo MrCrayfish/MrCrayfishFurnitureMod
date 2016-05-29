@@ -1,5 +1,7 @@
 package com.mrcrayfish.furniture.blocks;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraftforge.fml.relauncher.Side;
