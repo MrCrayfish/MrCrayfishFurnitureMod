@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.items;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.blocks.BlockFirePit;
 
 import net.minecraft.block.Block;
@@ -15,6 +16,7 @@ public class ItemLog extends ItemPlacer
 	public ItemLog(Block block) 
 	{
 		super(block);
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)

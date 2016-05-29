@@ -281,8 +281,6 @@ public class FurnitureBlocks
 	public static void register()
 	{
 		/** Block Registering */
-		GameRegistry.registerBlock(lamp_on, lamp_on.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(lamp_off, lamp_off.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(coffee_table_oak, coffee_table_oak.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(coffee_table_spruce, coffee_table_spruce.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(coffee_table_birch, coffee_table_birch.getUnlocalizedName().substring(5));
@@ -314,6 +312,8 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(cabinet_dark_oak, cabinet_dark_oak.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(couch, couch.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(couch_jeb, couch_jeb.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(lamp_on, lamp_on.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(lamp_off, lamp_off.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(blinds, blinds.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(blinds_closed, blinds_closed.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(curtains, curtains.getUnlocalizedName().substring(5));
