@@ -92,6 +92,7 @@ import com.mrcrayfish.furniture.blocks.BlockWallCabinet;
 import com.mrcrayfish.furniture.blocks.BlockWashingMachine;
 import com.mrcrayfish.furniture.blocks.BlockWhiteFence;
 import com.mrcrayfish.furniture.blocks.BlockWreath;
+import com.mrcrayfish.furniture.items.ItemBath;
 import com.mrcrayfish.furniture.items.ItemCrate;
 import com.mrcrayfish.furniture.items.ItemHedge;
 import com.mrcrayfish.furniture.items.ItemPresent;
@@ -349,7 +350,7 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(toilet, toilet.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(basin, basin.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(wall_cabinet, wall_cabinet.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(bath_1, bath_1.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(bath_1, ItemBath.class, bath_1.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(bath_2, bath_2.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(shower_bottom, shower_bottom.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(shower_top, shower_top.getUnlocalizedName().substring(5));
@@ -387,7 +388,7 @@ public class FurnitureBlocks
 		GameRegistry.registerBlock(bench, bench.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(table_outdoor, table_outdoor.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(grill, grill.getUnlocalizedName().substring(5));
-		GameRegistry.registerBlock(divingboard_base, divingboard_base.getUnlocalizedName().substring(5));
+		GameRegistry.registerBlock(divingboard_base, ItemBath.class, divingboard_base.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(divingboard_plank, divingboard_plank.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(door_mat, door_mat.getUnlocalizedName().substring(5));
 		GameRegistry.registerBlock(esky, esky.getUnlocalizedName().substring(5));
