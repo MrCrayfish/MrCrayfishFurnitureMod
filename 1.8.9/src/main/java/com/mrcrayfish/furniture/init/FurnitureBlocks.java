@@ -267,15 +267,15 @@ public class FurnitureBlocks
 		fairy_light = new BlockFairyLight(Material.glass).setUnlocalizedName("fairy_light");
 		fire_pit_off = new BlockFirePitOff(Material.wood).setUnlocalizedName("fire_pit_off");
 		fire_pit_on = new BlockFirePitOn(Material.wood).setUnlocalizedName("fire_pit_on");
-		trampoline = new BlockTrampoline(Material.rock).setUnlocalizedName("trampoline").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		crate = new BlockCrate(Material.wood).setUnlocalizedName("crate").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		bench = new BlockBench(Material.wood).setUnlocalizedName("bench").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		table_outdoor = new BlockOutdoorTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("table_outdoor").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		grill = new BlockGrill(Material.anvil).setUnlocalizedName("grill").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		divingboard_base = new BlockDivingboard(Material.rock, false).setUnlocalizedName("divingboard_base").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		trampoline = new BlockTrampoline(Material.rock).setUnlocalizedName("trampoline");
+		crate = new BlockCrate(Material.wood).setUnlocalizedName("crate");
+		bench = new BlockBench(Material.wood).setUnlocalizedName("bench");
+		table_outdoor = new BlockOutdoorTable(Material.wood, Block.soundTypeWood).setUnlocalizedName("table_outdoor");
+		grill = new BlockGrill(Material.anvil).setUnlocalizedName("grill");
+		divingboard_base = new BlockDivingboard(Material.rock, false).setUnlocalizedName("divingboard_base");
 		divingboard_plank = new BlockDivingboard(Material.rock, true).setUnlocalizedName("divingboard_plank"); 
-		door_mat = new BlockDoorMat(Material.cloth).setUnlocalizedName("door_mat").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		esky = new BlockEsky(Material.clay).setUnlocalizedName("esky").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		door_mat = new BlockDoorMat(Material.cloth).setUnlocalizedName("door_mat");
+		esky = new BlockEsky(Material.clay).setUnlocalizedName("esky");
 	}
 
 	public static void register()

@@ -27,9 +27,8 @@ public class BlockDivingboard extends BlockFurniture
 	public BlockDivingboard(Material material, boolean plank) 
 	{
 		super(material);
-		if(!plank)
-		{
-			this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		if(plank) {
+			this.setCreativeTab(null);
 		}
 	}
 	
