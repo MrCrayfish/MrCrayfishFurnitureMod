@@ -54,7 +54,7 @@ public class BlockFreezer extends BlockFurnitureTile
 	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
-		return worldIn.isAirBlock(pos) && worldIn.isAirBlock(pos.up());
+		return worldIn.isAirBlock(pos.up());
 	}
 
 	@Override
