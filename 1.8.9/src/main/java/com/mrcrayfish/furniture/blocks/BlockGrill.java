@@ -71,7 +71,6 @@ public class BlockGrill extends BlockFurnitureTile
 			{
 				TileEntityGrill tileEntityGrill = (TileEntityGrill) tileEntity;
 				ItemStack current = playerIn.getCurrentEquippedItem();
-				
 				if(current != null)
 				{
 					if(current.getItem() == Items.coal && current.getItemDamage() == 1)
@@ -98,6 +97,16 @@ public class BlockGrill extends BlockFurnitureTile
 							current.stackSize--;
 						}
 					}
+					else
+					{
+						EnumFacing facing = state.getValue(FACING);
+						tileEntityGrill.removeFood(getClickedSide(facing, hitX, hitZ));
+					}
+				}
+				else
+				{
+					EnumFacing facing = state.getValue(FACING);
+					tileEntityGrill.removeFood(getClickedSide(facing, hitX, hitZ));
 				}
 			}
 		}

@@ -57,6 +57,8 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 	{
 		if(removeFood(clickedSide)) return false;
 		
+		if(RecipeAPI.getGrillRecipeFromInput(food) == null) return false;
+		
 		if(clickedSide != ClickedSide.UNKNOWN)
 		{
 			inventory[clickedSide.id]  = new ItemStack(food.getItem(), 1, food.getItemDamage());
@@ -70,13 +72,13 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 	{
 		if(!worldObj.isRemote)
 		{
-			if(clickedSide.id <= 1 && isFlipped(clickedSide))
+			if(clickedSide.id <= 1)
 			{
 				if(inventory[clickedSide.id] != null)
 				{
 					resetSide(clickedSide);
 					RecipeData data = RecipeAPI.getGrillRecipeFromInput(inventory[clickedSide.id]);
-					if(leftCooked && data != null)
+					if(isCooked(clickedSide) && data != null)
 					{
 						spawnItem(data.getOutput());
 					}
@@ -99,6 +101,13 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 		return flippedRight;
 	}
 	
+	private boolean isCooked(BlockGrill.ClickedSide side)
+	{
+		if(!isFlipped(side)) return false;
+		if(side.id == 0) return leftCooked;
+		return rightCooked;
+	}
+	
 	private void spawnItem(ItemStack stack)
 	{
 		EntityItem entityFood = new EntityItem(worldObj, pos.getX() + 0.5, pos.getY() + 1F, pos.getZ() + 0.5, stack);
@@ -107,13 +116,13 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 	
 	public void flipFood(BlockGrill.ClickedSide clickedSide)
 	{
-		if(removeFood(clickedSide)) return;
+		if(isCooked(clickedSide) && removeFood(clickedSide)) return;
 		
 		if(leftCooked && !flippedLeft && clickedSide == BlockGrill.ClickedSide.LEFT)
 		{
 			leftCooked = false;
 			leftCookTime = 0;
-			flippedLeft = true;
+			flippedLeft = true; 
 			leftSoundLoop = 0;
 		}
 		else if(rightCooked && !flippedRight && clickedSide == BlockGrill.ClickedSide.RIGHT)
