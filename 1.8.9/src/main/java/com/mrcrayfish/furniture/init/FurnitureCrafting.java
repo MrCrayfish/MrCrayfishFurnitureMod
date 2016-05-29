@@ -154,7 +154,7 @@ public class FurnitureCrafting
 		GameRegistry.addRecipe(new ItemStack(FurnitureBlocks.door_mat), "B", "C", 'B', new ItemStack(Items.dye, 1, 15), 'C', new ItemStack(Blocks.carpet, 1, 12));
 		GameRegistry.addRecipe(new ItemStack(FurnitureBlocks.esky), "BBB", "Q Q", "BBB", 'B', new ItemStack(Blocks.stained_hardened_clay, 1, 11), 'Q', new ItemStack(Blocks.quartz_block));
 		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemSpatula), "  M", " I ", "I  ", 'M', new ItemStack(Blocks.iron_bars), 'I', new ItemStack(Items.iron_ingot));
-		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemSausage, 16), "  B", " B ", "B  ", 'M', new ItemStack(Items.beef));
+		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemSausage, 16), "  B", " B ", "B  ", 'B', new ItemStack(Items.beef));
 		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemKebab, 2), "  S", " C ", "S  ", 'S', new ItemStack(Items.stick), 'C', new ItemStack(Items.chicken));
 		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemCrowBar), "  I", " C ", "I  ", 'C', new ItemStack(Blocks.stained_hardened_clay, 1, 14), 'I', new ItemStack(Items.iron_ingot));
 		GameRegistry.registerFuelHandler(new FuelHandler());
