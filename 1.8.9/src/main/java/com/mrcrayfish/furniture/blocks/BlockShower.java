@@ -54,6 +54,12 @@ public class BlockShower extends BlockFurniture
 		this.setStepSound(Block.soundTypeStone);
 		if(top) this.setCreativeTab(null);
 	}
+	
+	@Override
+	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+	{
+		return worldIn.isAirBlock(pos.up());
+	}
 
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
