@@ -40,7 +40,6 @@ public class FurnitureAchievements
 	public static Achievement mailBox;
 	public static Achievement sendMail;
 	public static Achievement firstMail;
-	public static Achievement donator;
 	public static Achievement privacy;
 	public static Achievement tapped;
 	public static Achievement heyeyey;
@@ -81,13 +80,12 @@ public class FurnitureAchievements
 		sendMail = new Achievement("achievement.cfm_sendmail", "cfm_sendmail", -4, -4, new ItemStack(FurnitureItems.itemEnvelope), mailBox).registerStat();
 		firstMail = new Achievement("achievement.cfm_firstmail", "cfm_firstmail", -4, -2, new ItemStack(FurnitureItems.itemPackage), mailBox).registerStat();
 		tapped = new Achievement("achievement.cfm_tapped", "cfm_tapped", -1, -3, new ItemStack(FurnitureBlocks.tap), gardening).registerStat();
-		donator = new Achievement("achievement.cfm_donator", "cfm_donator", -1, -4, new ItemStack(FurnitureItems.itemDollar), gardening).registerStat();
 
 		bathroom = new Achievement("achievement.cfm_bathroom", "cfm_bathroom", 2, -2, new ItemStack(FurnitureBlocks.basin), installMod).registerStat();
 		whatDidYouEat = new Achievement("achievement.cfm_whatdidyoueat", "cfm_whatdidyoueat", 3, -3, new ItemStack(FurnitureBlocks.toilet), bathroom).registerStat();
 		allClean = new Achievement("achievement.cfm_allclean", "cfm_allclean", 1, -3, new ItemStack(FurnitureBlocks.shower_bottom), bathroom).registerStat();
 		
-		page = new AchievementPage("Furniture Mod", installMod, mineKea, placeTree, jebCouch, unwrapPresent, privacy, applianceCity, cookItem, freezeItem, modernTechnology, buyItem, copyItem, houseParty, heyeyey, dingDong, careful, gardening, mailBox, sendMail, firstMail, tapped, donator, bathroom, whatDidYouEat, allClean);
+		page = new AchievementPage("Furniture Mod", installMod, mineKea, placeTree, jebCouch, unwrapPresent, privacy, applianceCity, cookItem, freezeItem, modernTechnology, buyItem, copyItem, houseParty, heyeyey, dingDong, careful, gardening, mailBox, sendMail, firstMail, tapped, bathroom, whatDidYouEat, allClean);
 	}
 
 	public static void registerPage()

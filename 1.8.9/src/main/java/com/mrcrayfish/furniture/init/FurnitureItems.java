@@ -68,7 +68,6 @@ public class FurnitureItems
 	/** Misc */
 	public static Item itemRecipeBook;
 	public static Item itemCrayfish;
-	public static Item itemDollar;
 
 	public static void init()
 	{
@@ -91,7 +90,6 @@ public class FurnitureItems
 		itemSuperSoapyWater = new ItemGeneric().setUnlocalizedName("item_super_soap_water").setContainerItem(Items.bucket).setMaxStackSize(1);
 		itemRecipeBook = new ItemRecipeBook().setUnlocalizedName("item_recipe_book");
 		itemCrayfish = new Item().setUnlocalizedName("item_crayfish").setMaxStackSize(1);
-		itemDollar = new Item().setUnlocalizedName("item_money").setMaxStackSize(1);
 		itemLog = new ItemLog(FurnitureBlocks.fire_pit_off).setUnlocalizedName("item_log").setMaxStackSize(16);
 		itemSpatula = new Item().setUnlocalizedName("item_spatula").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		itemSausage = new ItemFood(1, false).setUnlocalizedName("item_sausage").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
@@ -120,7 +118,6 @@ public class FurnitureItems
 		GameRegistry.registerItem(itemSuperSoapyWater, itemSuperSoapyWater.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemRecipeBook, itemRecipeBook.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemCrayfish, itemCrayfish.getUnlocalizedName().substring(5));
-		GameRegistry.registerItem(itemDollar, itemDollar.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemLog, itemLog.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemSpatula, itemSpatula.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemSausage, itemSausage.getUnlocalizedName().substring(5));
@@ -149,7 +146,6 @@ public class FurnitureItems
 		registerRender(itemSuperSoapyWater);
 		registerRender(itemRecipeBook);
 		registerRender(itemCrayfish);
-		registerRender(itemDollar);
 		registerRender(itemLog);
 		registerRender(itemSpatula);
 		registerRender(itemSausage);
