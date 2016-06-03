@@ -17,9 +17,9 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityCup;
 import com.mrcrayfish.furniture.util.CollisionHelper;
@@ -125,6 +125,22 @@ public class BlockCup extends Block implements ITileEntityProvider
 		{
 			return new ItemStack(FurnitureItems.itemCup);
 		}
+	}
+	
+	@Override
+	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+	{
+		List<ItemStack> drops = new ArrayList<ItemStack>();
+		TileEntityCup tileEntityCup = (TileEntityCup) world.getTileEntity(pos);
+		if (tileEntityCup.getDrink() != null)
+		{
+			drops.add(tileEntityCup.getDrink().copy());
+		}
+		else
+		{
+			drops.add(new ItemStack(FurnitureItems.itemCup));
+		}
+		return drops;
 	}
 	
 	@SideOnly(Side.CLIENT)
