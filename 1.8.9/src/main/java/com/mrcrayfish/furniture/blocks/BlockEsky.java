@@ -22,7 +22,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockEsky extends BlockFurniture implements ITileEntityProvider
+public class BlockEsky extends BlockFurnitureTile
 {
 	public static final PropertyBool OPENED = PropertyBool.create("open");
 	
