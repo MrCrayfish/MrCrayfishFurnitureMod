@@ -94,9 +94,8 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 			GL11.glEnd();
 			GlStateManager.enableLighting();
 		}
-		GL11.glEnd();
-		GlStateManager.enableLighting();
 		GlStateManager.popMatrix();
+		GlStateManager.enableLighting();
 	}
 
 	@SubscribeEvent
