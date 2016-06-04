@@ -21,6 +21,7 @@ import com.mrcrayfish.furniture.blocks.BlockChair;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemBlock;
@@ -39,15 +40,27 @@ public class CraftingHandler
 			event.player.triggerAchievement(FurnitureAchievements.mineKea);
 			return;
 		}
-
-		if (item == FurnitureItems.itemSoapyWater || item == FurnitureItems.itemSuperSoapyWater)
+		
+		if(item == FurnitureItems.itemSoapyWater || item == FurnitureItems.itemSuperSoapyWater) 
 		{
 			for (int i = 0; i < event.craftMatrix.getSizeInventory(); i++)
 			{
-				event.craftMatrix.setInventorySlotContents(i, null);
+				ItemStack stack = event.craftMatrix.getStackInSlot(i);
+				if(stack != null && stack.getItem() == FurnitureItems.itemSoap)
+				{
+					stack.stackSize--;
+					if(stack.stackSize > 0)
+					{
+						if(!event.player.inventory.addItemStackToInventory(stack))
+						{
+							event.player.dropItem(stack, false, true);
+						}
+					}
+				}
+				event.craftMatrix.setInventorySlotContents(i, null); 
 			}
 		}
-		
+
 		if(item == FurnitureItems.itemLog)
 		{
 			for (int i = 0; i < event.craftMatrix.getSizeInventory(); i++)
