@@ -34,6 +34,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -46,24 +47,24 @@ import net.minecraft.world.World;
 
 public class BlockStereo extends BlockFurnitureTile
 {
-	public static ArrayList records = new ArrayList();
+	public static ArrayList<ItemRecord> records = new ArrayList<ItemRecord>();
 
 	public BlockStereo(Material material)
 	{
 		super(material);
 		this.setHardness(1.0F);
 		this.setStepSound(Block.soundTypeWood);
-		records.add(new ItemStack(Items.record_13));
-		records.add(new ItemStack(Items.record_blocks));
-		records.add(new ItemStack(Items.record_cat));
-		records.add(new ItemStack(Items.record_chirp));
-		records.add(new ItemStack(Items.record_far));
-		records.add(new ItemStack(Items.record_mall));
-		records.add(new ItemStack(Items.record_mellohi));
-		records.add(new ItemStack(Items.record_stal));
-		records.add(new ItemStack(Items.record_strad));
-		records.add(new ItemStack(Items.record_wait));
-		records.add(new ItemStack(Items.record_ward));
+		records.add((ItemRecord) Items.record_13);
+		records.add((ItemRecord) Items.record_blocks);
+		records.add((ItemRecord) Items.record_cat);
+		records.add((ItemRecord) Items.record_chirp);
+		records.add((ItemRecord) Items.record_far);
+		records.add((ItemRecord) Items.record_mall);
+		records.add((ItemRecord) Items.record_mellohi);
+		records.add((ItemRecord) Items.record_stal);
+		records.add((ItemRecord) Items.record_strad);
+		records.add((ItemRecord) Items.record_wait);
+		records.add((ItemRecord) Items.record_ward);
 	}
 
 	@Override
@@ -75,57 +76,54 @@ public class BlockStereo extends BlockFurnitureTile
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		if (!world.isRemote)
+		TileEntity tile_entity = world.getTileEntity(pos);
+		if(tile_entity instanceof TileEntityStereo)
 		{
-			TileEntity tile_entity = world.getTileEntity(pos);
-			if (tile_entity instanceof TileEntityStereo)
+			TileEntityStereo tileEntityStereo = (TileEntityStereo) tile_entity;
+			if(!player.isSneaking())
 			{
-				TileEntityStereo tileEntityStereo = (TileEntityStereo) tile_entity;
-				if (!player.isSneaking())
+				if(tileEntityStereo.count == 13)
 				{
-					if (tileEntityStereo.count == 13)
-					{
-						tileEntityStereo.count = records.size();
-					}
-					else
-					{
-						tileEntityStereo.count++;
-					}
-					if (tileEntityStereo.count == records.size())
-					{
-						tileEntityStereo.count = 0;
-						tileEntityStereo.setRecord((ItemStack) this.records.get(0));
-					}
-					else
-					{
-						tileEntityStereo.setRecord((ItemStack) this.records.get(tileEntityStereo.count));
-					}
-					player.triggerAchievement(FurnitureAchievements.houseParty);
-
-					ItemStack itemstack = (ItemStack) BlockStereo.records.get(tileEntityStereo.count);
-					world.playAuxSFXAtEntity((EntityPlayer) null, 1005, pos.add(0.5, 0.5, 0.5), Item.getIdFromItem(itemstack.getItem()));
+					tileEntityStereo.count = records.size();
 				}
 				else
 				{
-					if (tileEntityStereo.count != 13)
-					{
-						tileEntityStereo.count = 13;
-						player.addChatComponentMessage(new ChatComponentText("Stereo is now turned off."));
-						world.playAuxSFX(1005, pos.add(0.5, 0.5, 0.5), 0);
-						world.playRecord(pos.add(0.5, 0.5, 0.5), (String) null);
-						tileEntityStereo.setRecord((ItemStack) null);
-					}
-					else
-					{
-						player.addChatComponentMessage(new ChatComponentText("Stereo is already turned off."));
-					}
+					tileEntityStereo.count++;
 				}
+				if(tileEntityStereo.count == records.size())
+				{
+					tileEntityStereo.count = 0;
+				}
+				player.triggerAchievement(FurnitureAchievements.houseParty);
+
+				world.playRecord(pos, "records." + records.get(tileEntityStereo.count).recordName);
+				//world.playAuxSFXAtEntity((EntityPlayer) null, 1005, pos, Item.getIdFromItem(records.get(tileEntityStereo.count).getItem()));
+			}
+			else
+			{
+				if(tileEntityStereo.count != 13)
+				{
+					tileEntityStereo.count = 13;
+					if(!world.isRemote)
+						player.addChatComponentMessage(new ChatComponentText("Stereo is now turned off."));
+					world.playAuxSFX(1005, pos, 0);
+					world.playRecord(pos, (String) null);
+				}
+				else
+				{
+					if(!world.isRemote)
+					player.addChatComponentMessage(new ChatComponentText("Stereo is already turned off."));
+				}
+			}
+			if(!world.isRemote)
+			{
+				world.markBlockForUpdate(pos);
 			}
 		}
 		return true;
 
 	}
-	
+
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{
@@ -158,21 +156,20 @@ public class BlockStereo extends BlockFurnitureTile
 
 	public void ejectRecord(World world, BlockPos pos)
 	{
-		if (!world.isRemote)
+		if(!world.isRemote)
 		{
 			TileEntityStereo tileEntityStereo = (TileEntityStereo) world.getTileEntity(pos);
 
-			if (tileEntityStereo != null)
+			if(tileEntityStereo != null)
 			{
-				world.playAuxSFX(1005, pos.add(0.5, 0.5, 0.5), 0);
-				world.playRecord(pos.add(0.5, 0.5, 0.5), (String) null);
-				tileEntityStereo.setRecord((ItemStack) null);
+				world.playAuxSFX(1005, pos, 0);
+				world.playRecord(pos, (String) null);
 			}
 		}
 	}
-	
+
 	@Override
-	public int getComparatorInputOverride(World world, BlockPos pos) 
+	public int getComparatorInputOverride(World world, BlockPos pos)
 	{
 		TileEntityStereo stereo = (TileEntityStereo) world.getTileEntity(pos);
 		return stereo.count;
