@@ -65,7 +65,7 @@ public class BlockChoppingBoard extends BlockFurnitureTile
 				{
 					if(tileEntityChoppingBoard.getFood() == null)
 					{
-						tileEntityChoppingBoard.setFood(new ItemStack(currentItem.getItem(), 1));
+						tileEntityChoppingBoard.setFood(new ItemStack(currentItem.getItem(), 1, currentItem.getItemDamage()));
 						world.markBlockForUpdate(pos);
 						world.updateComparatorOutputLevel(pos, this);
 						currentItem.stackSize--;
