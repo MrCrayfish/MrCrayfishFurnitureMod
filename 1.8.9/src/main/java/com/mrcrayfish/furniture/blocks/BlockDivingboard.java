@@ -16,6 +16,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -116,5 +117,11 @@ public class BlockDivingboard extends BlockFurniture
 		{
 			worldIn.destroyBlock(pos.offset(((EnumFacing)state.getValue(FACING)).getOpposite()), false);
 		}
+	}
+	
+	@Override
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos, EntityPlayer player)
+	{
+		return new ItemStack(FurnitureBlocks.divingboard_base);
 	}
 }
