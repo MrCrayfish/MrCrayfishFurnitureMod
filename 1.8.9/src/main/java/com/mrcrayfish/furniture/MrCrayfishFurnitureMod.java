@@ -27,7 +27,6 @@ import com.mrcrayfish.furniture.blocks.tv.Channels;
 import com.mrcrayfish.furniture.entity.EntityMirror;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.gui.GuiHandler;
-import com.mrcrayfish.furniture.handler.BlockEvents;
 import com.mrcrayfish.furniture.handler.ConfigurationHandler;
 import com.mrcrayfish.furniture.handler.CraftingHandler;
 import com.mrcrayfish.furniture.handler.InputHandler;
@@ -115,7 +114,6 @@ public class MrCrayfishFurnitureMod
 			FMLCommonHandler.instance().bus().register(new MirrorRenderer());
 		}
 		FMLCommonHandler.instance().bus().register(new PlayerEvents());
-		MinecraftForge.EVENT_BUS.register(new BlockEvents());
 		
 		/** Render Registering */
 		proxy.registerRenders();

@@ -49,7 +49,7 @@ public class BlockDoorBell extends BlockFurniture
 	public BlockDoorBell(Material material)
 	{
 		super(material);
-		setStepSound(Block.soundTypeWood);
+		this.setStepSound(Block.soundTypeWood);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(POWERED, Boolean.valueOf(true)));
 		this.setTickRandomly(true);
 	}
@@ -243,18 +243,6 @@ public class BlockDoorBell extends BlockFurniture
 		{
 			worldIn.scheduleUpdate(p_180680_2_, this, this.tickRate(worldIn));
 		}
-	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemDoorBell;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemDoorBell);
 	}
 
 	@Override

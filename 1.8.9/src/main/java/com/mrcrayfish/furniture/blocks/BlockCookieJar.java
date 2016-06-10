@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityCookieJar;
 
@@ -54,9 +55,10 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
 	public BlockCookieJar(Material material)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeGlass);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeGlass);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(COOKIE_COUNT, Integer.valueOf(0)));
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
 	@Override
@@ -132,18 +134,6 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
 		return new TileEntityCookieJar();
 	}
 
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemCookieJar;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemCookieJar);
-	}
-	
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
 	{

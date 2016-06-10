@@ -37,6 +37,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -44,30 +45,31 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockTree extends BlockFurnitureTile
 {
-	public BlockTree(Material material)
+	public BlockTree(Material material, boolean top)
 	{
 		super(material);
-		setStepSound(Block.soundTypeWood);
-		setLightLevel(0.3F);
-		setHardness(0.5F);
+		this.setStepSound(Block.soundTypeWood);
+		this.setLightLevel(0.3F);
+		this.setHardness(0.5F);
+		if(top) this.setCreativeTab(null);
 	}
 
 	@SideOnly(Side.CLIENT)
 	public int getBlockColor()
 	{
-		return 4764952;
+		return ColorizerFoliage.getFoliageColorPine();
 	}
 
 	@SideOnly(Side.CLIENT)
 	public int getRenderColor(IBlockState state)
 	{
-		return 4764952;
+		return ColorizerFoliage.getFoliageColorPine();
 	}
 
 	@SideOnly(Side.CLIENT)
 	public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
 	{
-		return 4764952;
+		return ColorizerFoliage.getFoliageColorPine();
 	}
 
 	@Override
@@ -157,15 +159,13 @@ public class BlockTree extends BlockFurnitureTile
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		if (this == FurnitureBlocks.tree_top)
-			return null;
-		return FurnitureItems.itemTree;
+		return new ItemStack(FurnitureBlocks.tree_bottom).getItem();
 	}
 
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
-		return new ItemStack(FurnitureItems.itemTree);
+		return new ItemStack(FurnitureBlocks.tree_bottom);
 	}
 
 	@SideOnly(Side.CLIENT)

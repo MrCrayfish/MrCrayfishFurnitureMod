@@ -48,8 +48,8 @@ public class BlockToilet extends BlockFurniture
 	public BlockToilet(Material material)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeStone);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeStone);
 	}
 	
 	@Override
@@ -111,18 +111,6 @@ public class BlockToilet extends BlockFurniture
 		}
 	}
 
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemToilet;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemToilet);
-	}
-	
 	@Override
 	public boolean hasComparatorInputOverride() 
 	{

@@ -13,22 +13,10 @@ import net.minecraft.item.ItemStack;
 public class OvenRenderer extends TileEntitySpecialRenderer<TileEntityOven>
 {
 	private EntityItem ovenItem = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D);
-
-	@SuppressWarnings("unused")
-    private int counter = 0;
 	
 	@Override
 	public void renderTileEntityAt(TileEntityOven oven, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{
-		//TODO Make alternaltive
-		/*if(counter++ == 10)
-		{
-			PacketHandler.INSTANCE.sendToServer(new MessageUpdateFields(tileEntity.getPos()));
-			System.out.println("Sent packet");
-			counter = 0;
-		}*/
-		
-		
 		ovenItem.hoverStart = 0.0F;
 		
 		GlStateManager.pushMatrix();

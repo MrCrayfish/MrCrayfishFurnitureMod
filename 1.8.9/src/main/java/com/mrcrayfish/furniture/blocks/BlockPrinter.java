@@ -46,8 +46,8 @@ public class BlockPrinter extends BlockFurnitureTile
 	public BlockPrinter(Material material)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeAnvil);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeAnvil);
 	}
 
 	@Override
@@ -102,18 +102,6 @@ public class BlockPrinter extends BlockFurnitureTile
 		return new TileEntityPrinter();
 	}
 
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemPrinter;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemPrinter);
-	}
-	
 	@Override
 	public int getComparatorInputOverride(World world, BlockPos pos) 
 	{

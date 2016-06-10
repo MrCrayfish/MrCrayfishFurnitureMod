@@ -44,12 +44,11 @@ import net.minecraft.world.World;
 
 public class BlockWallCabinet extends BlockFurnitureTile
 {
-	//TODO Fix bug where items dont drop 
 	public BlockWallCabinet(Material material)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeStone);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeStone);
 	}
 
 	@Override
@@ -145,18 +144,6 @@ public class BlockWallCabinet extends BlockFurnitureTile
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityWallCabinet();
-	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemWallCabinet;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemWallCabinet);
 	}
 
 	private boolean canPlaceCheck(World world, BlockPos pos, IBlockState state)

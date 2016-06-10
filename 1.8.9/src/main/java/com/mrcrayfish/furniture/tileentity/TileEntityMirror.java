@@ -12,10 +12,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityMirror extends TileEntity
 {
-	private Entity bindedMirror = null;
+	private EntityMirror bindedMirror = null;
 
 	@SideOnly(Side.CLIENT)
-	public Entity getMirror()
+	public EntityMirror getMirror()
 	{
 		if (bindedMirror == null)
 		{

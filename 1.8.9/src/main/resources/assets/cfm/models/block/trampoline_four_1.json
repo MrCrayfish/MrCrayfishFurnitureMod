@@ -1,0 +1,144 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
+    "textures": {
+        "0": "cfm:blocks/mesh",
+        "1": "blocks/wool_colored_blue",
+		"particle": "blocks/wool_colored_blue"
+    },
+    "display": {
+        "gui": {
+            "rotation": [ 30, 225, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 0.625, 0.625, 0.625 ]
+        },
+        "ground": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 3, 0 ],
+            "scale": [ 0.25, 0.25, 0.25 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 0.5, 0.5, 0.5 ]
+        },
+        "thirdperson_righthand": {
+            "rotation": [ 75, 45, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [ 75, 255, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 45, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.4, 0.4, 0.4 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ 0, 225, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.4, 0.4, 0.4 ]
+        }
+    },
+    "elements": [
+        {
+            "name": "mesh_1",
+            "from": [ 2.0, 7.5, 2.0 ], 
+            "to": [ 14.0, 7.5, 14.0 ], 
+            "faces": {
+                "up": { "texture": "#0", "uv": [ 0.0, 0.0, 15.5, 15.5 ] },
+                "down": { "texture": "#0", "uv": [ 0.0, 0.0, 15.5, 15.5 ] }
+            }
+        },
+        {
+            "name": "mesh_2",
+            "from": [ 14.0, 7.5, 2.0 ], 
+            "to": [ 16.0, 7.5, 14.0 ], 
+            "faces": {
+                "up": { "texture": "#0", "uv": [ 0.5, 0.0, 3.5, 15.5 ] },
+                "down": { "texture": "#0", "uv": [ 0.5, 0.0, 3.5, 15.5 ] }
+            }
+        },
+        {
+            "name": "mesh_3",
+            "from": [ 2.0, 7.5, 0.0 ], 
+            "to": [ 14.0, 7.5, 2.0 ], 
+            "faces": {
+                "up": { "texture": "#0", "uv": [ 0.0, 0.0, 15.5, 3.0 ] },
+                "down": { "texture": "#0", "uv": [ 0.0, 0.5, 15.5, 3.5 ] }
+            }
+        },
+        {
+            "name": "padding_corner_1",
+            "from": [ 14.0, 7.0, 0.0 ], 
+            "to": [ 16.0, 8.0, 2.0 ], 
+            "faces": {
+                "north": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+                "east": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+                "south": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+                "west": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+                "up": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+                "down": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 2.0 ] }
+            }
+        },
+        {
+            "name": "padding_corner_2",
+            "from": [ 14.0, 7.0, 14.0 ], 
+            "to": [ 16.0, 8.0, 16.0 ], 
+            "faces": {
+                "north": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+                "east": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+                "south": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+                "west": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+                "up": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+                "down": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 2.0 ] }
+            }
+        },
+        {
+            "name": "mesh_4",
+            "from": [ 2.0, 7.5, 14.0 ], 
+            "to": [ 14.0, 7.5, 16.0 ], 
+            "faces": {
+                "up": { "texture": "#0", "uv": [ 0.0, 0.5, 15.5, 3.5 ] },
+                "down": { "texture": "#0", "uv": [ 0.0, 0.0, 15.5, 3.0 ] }
+            }
+        },
+        {
+            "name": "padding_corner_3",
+            "from": [ 0.0, 7.0, 14.0 ], 
+            "to": [ 2.0, 8.0, 16.0 ], 
+            "faces": {
+                "north": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+                "east": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+                "south": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+                "west": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+                "up": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+                "down": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 2.0 ] }
+            }
+        },
+        {
+            "name": "padding_corner_4",
+            "from": [ 0.0, 7.0, 0.0 ], 
+            "to": [ 2.0, 8.0, 2.0 ], 
+            "faces": {
+                "north": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+                "east": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+                "south": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+                "west": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 1.0 ] },
+                "up": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 2.0 ] },
+                "down": { "texture": "#1", "uv": [ 0.0, 0.0, 2.0, 2.0 ] }
+            }
+        },
+        {
+            "name": "mesh_5",
+            "from": [ 0.0, 7.5, 2.0 ], 
+            "to": [ 2.0, 7.5, 14.0 ], 
+            "faces": {
+                "up": { "texture": "#0", "uv": [ 0.0, 0.0, 3.0, 15.5 ] },
+                "down": { "texture": "#0", "uv": [ 0.0, 0.0, 3.0, 15.5 ] }
+            }
+        }
+    ]
+}

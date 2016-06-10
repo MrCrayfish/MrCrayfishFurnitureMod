@@ -1,0 +1,20 @@
+{
+	"variants": {
+		"back=false,forward=true,left=false,right=true": {"model": "cfm:trampoline_two_1"},
+		"back=false,forward=true,left=true,right=false": {"model": "cfm:trampoline_two_2", "y": 180},
+		"back=true,forward=false,left=false,right=true": {"model": "cfm:trampoline_two_2"},
+		"back=true,forward=false,left=true,right=false": {"model": "cfm:trampoline_two_1", "y": 180},
+		"back=false,forward=true,left=false,right=false": {"model": "cfm:trampoline_one_1"},
+		"back=false,forward=false,left=false,right=true": {"model": "cfm:trampoline_one_2"},
+		"back=false,forward=false,left=true,right=false": {"model": "cfm:trampoline_one_2", "y": 180},
+		"back=true,forward=false,left=false,right=false": {"model": "cfm:trampoline_one_1", "y": 180},
+		"back=false,forward=false,left=false,right=false": {"model": "cfm:trampoline"},
+		"back=true,forward=true,left=false,right=false": {"model": "cfm:trampoline_two_3"},
+		"back=true,forward=true,left=true,right=false": {"model": "cfm:trampoline_three_1", "y": 180},
+		"back=true,forward=true,left=false,right=true": {"model": "cfm:trampoline_three_1"},
+		"back=false,forward=false,left=true,right=true": {"model": "cfm:trampoline_two_4", "y": 90},
+		"back=false,forward=true,left=true,right=true": {"model": "cfm:trampoline_three_2", "y": 270},
+		"back=true,forward=false,left=true,right=true": {"model": "cfm:trampoline_three_2", "y": 90},
+		"back=true,forward=true,left=true,right=true": {"model": "cfm:trampoline_four_2"}
+    }
+}

@@ -28,10 +28,7 @@ import net.minecraft.entity.item.EntityItem;
 public class WashingMachineRenderer extends TileEntitySpecialRenderer<TileEntityWashingMachine>
 {
 	private EntityItem armour = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D);
-	
-	@SuppressWarnings("unused")
-    private int counter = 0;
-	
+
 	@Override
 	public void renderTileEntityAt(TileEntityWashingMachine machine, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{

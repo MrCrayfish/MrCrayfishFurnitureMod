@@ -42,8 +42,8 @@ public class BlockDishwasher extends BlockFurnitureTile
 	public BlockDishwasher(Material material)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeAnvil);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeAnvil);
 	}
 	
 	@Override
@@ -72,19 +72,7 @@ public class BlockDishwasher extends BlockFurnitureTile
 	{
 		return new TileEntityDishwasher();
 	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemDishWasher;
-	}
 
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemDishWasher);
-	}
-	
 	@Override
 	public int getComparatorInputOverride(World world, BlockPos pos) 
 	{

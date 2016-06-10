@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
 import net.minecraft.block.Block;
@@ -26,6 +27,7 @@ public class BlockCandle extends Block {
 		this.setLightLevel(0.8F);
 		this.setHardness(1.0F);
 		this.setStepSound(Block.soundTypeStone);
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	
 	@Override
@@ -55,16 +57,4 @@ public class BlockCandle extends Block {
 		worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + (12.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (7.95 * 0.0625), 0.0D, 0.0D, 0.0D, new int[0]);
 		worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + (2.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (7.95 * 0.0625), 0.0D, 0.0D, 0.0D, new int[0]);
     }
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemCandle;
-	}
-	
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemCandle);
-	}
 }

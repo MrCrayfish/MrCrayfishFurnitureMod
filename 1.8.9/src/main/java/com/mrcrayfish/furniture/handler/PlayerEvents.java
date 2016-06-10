@@ -36,7 +36,6 @@ public class PlayerEvents
 	@SubscribeEvent
 	public void onPlayerLogin(PlayerLoggedInEvent e)
 	{
-		System.out.println("Hi");
 		EntityPlayer player = (EntityPlayer) e.player;
 		player.triggerAchievement(FurnitureAchievements.installMod);
 		if (ConfigurationHandler.canDisplay)
@@ -51,13 +50,12 @@ public class PlayerEvents
 					
 					ChatComponentText url;
 					Random rand = new Random();
-					int sel = rand.nextInt(3);
-					switch(sel)
+					switch(rand.nextInt(4))
 					{
 					case 0:
 						player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + PREFIX + EnumChatFormatting.GREEN + "Check out all MrCrayfish's Mods"));
 						url = new ChatComponentText(EnumChatFormatting.GOLD + PREFIX + EnumChatFormatting.RESET + "mrcrayfish.com");
-						url.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "http://www.mrcrayfish.com/mods.php"));
+						url.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://mrcrayfish.com/mods"));
 						url.getChatStyle().setChatHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ChatComponentText("Open URL")));
 						player.addChatMessage(url);
 						break;
@@ -72,6 +70,13 @@ public class PlayerEvents
 						player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + PREFIX + EnumChatFormatting.GREEN + "Check out MrCrayfish's YouTube"));
 						url = new ChatComponentText(EnumChatFormatting.GOLD + PREFIX + EnumChatFormatting.RESET + "youtube.com/user/MrCrayfishMinecraft");
 						url.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.youtube.com/user/MrCrayfishMinecraft"));
+						url.getChatStyle().setChatHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ChatComponentText("Open URL")));
+						player.addChatMessage(url);
+						break;
+					case 3:
+						player.addChatMessage(new ChatComponentText(EnumChatFormatting.GOLD + PREFIX + EnumChatFormatting.GREEN + "Check out the Community Edition for more Furniture!"));
+						url = new ChatComponentText(EnumChatFormatting.GOLD + PREFIX + EnumChatFormatting.RESET + "mrcrayfish.com/furniture-comm-edition");
+						url.getChatStyle().setChatClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://mrcrayfish.com/furniture-comm-edition"));
 						url.getChatStyle().setChatHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ChatComponentText("Open URL")));
 						player.addChatMessage(url);
 						break;

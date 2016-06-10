@@ -148,4 +148,17 @@ public class RecipeConditions
 			return false;
 		return true;
 	}
+	
+	public static boolean hasGrillArgs(Map<String, Object> variables)
+	{
+		if (variables.get("input") == null)
+			return false;
+		if (!(variables.get("input") instanceof ItemStack))
+			return false;
+		if (variables.get("output") == null)
+			return false;
+		if (!(variables.get("output") instanceof ItemStack))
+			return false;
+		return true;
+	}
 }

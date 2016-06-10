@@ -19,6 +19,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
@@ -47,12 +48,16 @@ public class BlockLamp extends Block
 	public static final PropertyBool UP = PropertyBool.create("up");
 	public static final PropertyBool DOWN = PropertyBool.create("down");
 
-	public BlockLamp(Material material)
+	public BlockLamp(Material material, boolean on)
 	{
 		super(material);
-		setHardness(0.75F);
-		setStepSound(Block.soundTypeCloth);
+		this.setHardness(0.75F);
+		this.setStepSound(Block.soundTypeCloth);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(COLOUR, 0));
+		if(!on)
+		{
+			this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		}
 	}
 
 	@Override
@@ -101,8 +106,7 @@ public class BlockLamp extends Block
 		else
 		{
 			int yOffset = 1;
-			while (world.getBlockState(pos.up(++yOffset)).getBlock() instanceof BlockLamp)
-				;
+			while (world.getBlockState(pos.up(++yOffset)).getBlock() instanceof BlockLamp);
 
 			int colour = (Integer) world.getBlockState(pos.up(yOffset).down()).getValue(COLOUR);
 
@@ -116,18 +120,6 @@ public class BlockLamp extends Block
 			}
 		}
 		return true;
-	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemLamp;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemLamp);
 	}
 
 	@Override

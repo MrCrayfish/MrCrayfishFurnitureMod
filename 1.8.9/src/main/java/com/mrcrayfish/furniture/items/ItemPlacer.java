@@ -40,7 +40,6 @@ public class ItemPlacer extends Item
 	public ItemPlacer(Block block)
 	{
 		this.block = block;
-		setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	
 	public void setFlag(int flag)

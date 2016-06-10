@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 
 import net.minecraft.block.material.Material;
@@ -19,6 +20,7 @@ public class BlockFirePitOn extends BlockFirePit
 	{
 		super(materialIn);
 		this.setLightLevel(1.0F);
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
 	@Override

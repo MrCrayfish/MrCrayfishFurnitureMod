@@ -30,11 +30,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class BlockGrandChair extends BlockFurniture 
 {
 
-	public BlockGrandChair(Material materialIn) 
+	public BlockGrandChair(Material materialIn, boolean top) 
 	{
 		super(materialIn);
 		this.setHardness(1.0F);
 		this.setStepSound(Block.soundTypeWood);
+		if(top) this.setCreativeTab(null);
 	}
 	
 	@Override
@@ -136,17 +137,5 @@ public class BlockGrandChair extends BlockFurniture
 	public int getComparatorInputOverride(World world, BlockPos pos) 
 	{
 		return SittableUtil.isSomeoneSitting(world, pos.getX(), pos.getY(), pos.getZ()) ? 1 : 0;
-	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemGrandChair;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemGrandChair);
 	}
 }

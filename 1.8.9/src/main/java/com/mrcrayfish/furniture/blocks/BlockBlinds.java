@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.util.CollisionHelper;
@@ -57,6 +58,7 @@ public class BlockBlinds extends BlockFurniture
 		if(!open)
 		{
 			this.setLightOpacity(255);
+			this.setCreativeTab(null);
 		}
 		else
 		{
@@ -104,13 +106,13 @@ public class BlockBlinds extends BlockFurniture
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return FurnitureItems.itemBlinds;
+		return new ItemStack(FurnitureBlocks.blinds_closed).getItem();
 	}
 
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
-		return new ItemStack(FurnitureItems.itemBlinds);
+		return new ItemStack(FurnitureBlocks.blinds_closed);
 	}
 	
 	@Override

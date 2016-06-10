@@ -22,6 +22,7 @@ import org.lwjgl.opengl.GL11;
 import com.mrcrayfish.furniture.tileentity.TileEntityBlender;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
@@ -36,83 +37,84 @@ public class BlenderRenderer extends TileEntitySpecialRenderer<TileEntityBlender
 		ItemStack[] ingredients = blender.getIngredients();
 
 		GL11.glPushMatrix();
-		GL11.glTranslatef((float) posX + 0.5F, (float) posY + 0.2F, (float) posZ + 0.5F);
-		GL11.glScalef(0.65F, 0.65F, 0.65F);
-		entityFood.hoverStart = 0.0F;
-		for (int i = 0; i < ingredients.length; i++)
 		{
-			if (ingredients[i] != null)
+			GL11.glTranslatef((float) posX + 0.5F, (float) posY + 0.2F, (float) posZ + 0.5F);
+			GL11.glScalef(0.65F, 0.65F, 0.65F);
+			entityFood.hoverStart = 0.0F;
+			for (int i = 0; i < ingredients.length; i++)
 			{
-				entityFood.setEntityItemStack(ingredients[i]);
-				GL11.glRotatef(i * -90F, 0, 1, 0);
-				GL11.glRotatef(blender.progress * 18F, 0, 1, 0);
-				Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(entityFood, 0.0D, 0.2D, 0.0D, 0.0F, 0.0F);
+				if (ingredients[i] != null)
+				{
+					entityFood.setEntityItemStack(ingredients[i]);
+					GL11.glRotatef(i * -90F, 0, 1, 0);
+					GL11.glRotatef(blender.progress * 18F, 0, 1, 0);
+					Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(entityFood, 0.0D, 0.2D, 0.0D, 0.0F, 0.0F);
+				}
 			}
 		}
 		GL11.glPopMatrix();
 
 		if (blender.isBlending() | blender.drinkCount > 0)
 		{
-			GL11.glPushMatrix();
-			GL11.glTranslatef((float) posX + 0.5F, (float) posY + 0.05F, (float) posZ + 0.5F);
-			GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
-			GL11.glDisable(GL11.GL_CULL_FACE);
-			GL11.glDisable(GL11.GL_TEXTURE_2D);
-			GL11.glDisable(GL11.GL_LIGHTING);
-			GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-			GL11.glEnable(GL11.GL_BLEND);
-
-			float alpha = blender.isBlending() ? (blender.progress / 200F) : (blender.drinkCount > 0 ? 1.0F : 0.0F);
-			GL11.glColor4f(blender.currentRed / 255F, blender.currentGreen / 255F, blender.currentBlue / 255F, alpha);
-
-			float height = blender.isBlending() ? 0.8F : (0.275F + (0.525F * (blender.drinkCount / 6F)));
-			GL11.glBegin(GL11.GL_QUADS);
-
-			// North Face
-			GL11.glVertex3d(-0.2, 0.275, -0.2);
-			GL11.glVertex3d(0.2, 0.275, -0.2);
-			GL11.glVertex3d(0.2, height, -0.2);
-			GL11.glVertex3d(-0.2, height, -0.2);
-
-			// South Face
-			GL11.glVertex3d(-0.2, 0.275, 0.2);
-			GL11.glVertex3d(0.2, 0.275, 0.2);
-			GL11.glVertex3d(0.2, height, 0.2);
-			GL11.glVertex3d(-0.2, height, 0.2);
-
-			// West Face
-			GL11.glVertex3d(-0.2, 0.275, -0.2);
-			GL11.glVertex3d(-0.2, 0.275, 0.2);
-			GL11.glVertex3d(-0.2, height, 0.2);
-			GL11.glVertex3d(-0.2, height, -0.2);
-
-			// East Face
-			GL11.glVertex3d(0.2, 0.275, -0.2);
-			GL11.glVertex3d(0.2, 0.275, 0.2);
-			GL11.glVertex3d(0.2, height, 0.2);
-			GL11.glVertex3d(0.2, height, -0.2);
-
-			// Top Face
-			GL11.glVertex3d(-0.2, height, -0.2);
-			GL11.glVertex3d(0.2, height, -0.2);
-			GL11.glVertex3d(0.2, height, 0.2);
-			GL11.glVertex3d(-0.2, height, 0.2);
-
-			// Bottom Face
-			GL11.glVertex3d(-0.2, 0.275, -0.2);
-			GL11.glVertex3d(0.2, 0.275, -0.2);
-			GL11.glVertex3d(0.2, 0.275, 0.2);
-			GL11.glVertex3d(-0.2, 0.275, 0.2);
-
-			GL11.glEnd();
-
-			GL11.glDisable(GL11.GL_BLEND);
-			GL11.glEnable(GL11.GL_LIGHTING);
-			GL11.glEnable(GL11.GL_TEXTURE_2D);
-			GL11.glAlphaFunc(GL11.GL_GREATER, 0.5F);
-			GL11.glColor3f(1, 1, 1);
-
-			GL11.glPopMatrix();
+			GlStateManager.pushMatrix();
+			{
+				GL11.glTranslatef((float) posX + 0.5F, (float) posY + 0.05F, (float) posZ + 0.5F);
+	
+				float alpha = blender.isBlending() ? (blender.progress / 200F) : (blender.drinkCount > 0 ? 1.0F : 0.0F);
+				GlStateManager.color(blender.currentRed / 255F, blender.currentGreen / 255F, blender.currentBlue / 255F, alpha);
+	
+				float height = blender.isBlending() ? 0.8F : (0.275F + (0.525F * (blender.drinkCount / 6F)));
+				
+				GlStateManager.enableAlpha();
+				GlStateManager.disableLighting();
+				GL11.glDisable(GL11.GL_TEXTURE_2D);
+				
+				renderCuboid(-0.2F, 0.275F, -0.2F, 0.2F, height, 0.2F);
+				
+				GL11.glEnable(GL11.GL_TEXTURE_2D);
+				GlStateManager.enableLighting();
+				GlStateManager.disableAlpha();
+			}
+			GlStateManager.popMatrix();
 		}
+		
+		GlStateManager.color(1F, 1F, 1F);
+	}
+	
+	public void renderCuboid(float x1, float y1, float z1, float x2, float y2, float z2)
+	{
+		GL11.glBegin(GL11.GL_QUADS);
+		{
+			GL11.glVertex3f(x1, y1, z1);
+			GL11.glVertex3f(x1, y1, z2);
+			GL11.glVertex3f(x1, y2, z2);
+			GL11.glVertex3f(x1, y2, z1);
+
+			GL11.glVertex3f(x2, y1, z1);
+			GL11.glVertex3f(x1, y1, z1);
+			GL11.glVertex3f(x1, y2, z1);
+			GL11.glVertex3f(x2, y2, z1);
+
+			GL11.glVertex3f(x1, y1, z2);
+			GL11.glVertex3f(x2, y1, z2);
+			GL11.glVertex3f(x2, y2, z2);
+			GL11.glVertex3f(x1, y2, z2);
+
+			GL11.glVertex3f(x2, y1, z2);
+			GL11.glVertex3f(x2, y1, z1);
+			GL11.glVertex3f(x2, y2, z1);
+			GL11.glVertex3f(x2, y2, z2);
+
+			GL11.glVertex3f(x1, y2, z1);
+			GL11.glVertex3f(x1, y2, z2);
+			GL11.glVertex3f(x2, y2, z2);
+			GL11.glVertex3f(x2, y2, z1);
+
+			GL11.glVertex3f(x1, y1, z1);
+			GL11.glVertex3f(x1, y1, z2);
+			GL11.glVertex3f(x2, y1, z2);
+			GL11.glVertex3f(x2, y1, z1);
+		}
+		GL11.glEnd();
 	}
 }

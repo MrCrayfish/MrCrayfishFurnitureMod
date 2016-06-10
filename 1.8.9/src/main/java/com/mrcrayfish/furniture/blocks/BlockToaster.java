@@ -46,8 +46,8 @@ public class BlockToaster extends BlockFurnitureTile
 	public BlockToaster(Material material)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeAnvil);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeAnvil);
 	}
 	
 	@Override
@@ -133,18 +133,6 @@ public class BlockToaster extends BlockFurnitureTile
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityToaster();
-	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemToaster;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemToaster);
 	}
 	
 	@Override

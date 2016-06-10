@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.network;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.network.message.MessageConfig;
 import com.mrcrayfish.furniture.network.message.MessageDishwasher;
+import com.mrcrayfish.furniture.network.message.MessageDoorMat;
 import com.mrcrayfish.furniture.network.message.MessageEmptyBin;
 import com.mrcrayfish.furniture.network.message.MessageEnvelope;
 import com.mrcrayfish.furniture.network.message.MessageFart;
@@ -33,6 +34,7 @@ import com.mrcrayfish.furniture.network.message.MessageMineBayClosed;
 import com.mrcrayfish.furniture.network.message.MessagePackage;
 import com.mrcrayfish.furniture.network.message.MessagePresent;
 import com.mrcrayfish.furniture.network.message.MessagePresentContents;
+import com.mrcrayfish.furniture.network.message.MessageSealCrate;
 import com.mrcrayfish.furniture.network.message.MessageTVClient;
 import com.mrcrayfish.furniture.network.message.MessageTakeWater;
 import com.mrcrayfish.furniture.network.message.MessageUpdateFields;
@@ -67,5 +69,7 @@ public class PacketHandler
 		INSTANCE.registerMessage(MessageDishwasher.class, MessageDishwasher.class, 16, Side.SERVER);
 		INSTANCE.registerMessage(MessageFreezer.class, MessageFreezer.class, 17, Side.SERVER);
 		INSTANCE.registerMessage(MessageUpdateFields.class, MessageUpdateFields.class, 18, Side.CLIENT);
+		INSTANCE.registerMessage(MessageDoorMat.class, MessageDoorMat.class, 19, Side.SERVER);
+		INSTANCE.registerMessage(MessageSealCrate.class, MessageSealCrate.class, 20, Side.SERVER);
 	}
 }

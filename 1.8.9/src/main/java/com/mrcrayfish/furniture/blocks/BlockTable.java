@@ -19,6 +19,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
@@ -47,9 +48,10 @@ public class BlockTable extends Block
 	public BlockTable(Material material, SoundType sound)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(sound);
+		this.setHardness(1.0F);
+		this.setStepSound(sound);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(BACK, false).withProperty(FORWARD, false).withProperty(LEFT, false).withProperty(RIGHT, false));
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	
 	@Override
@@ -62,26 +64,6 @@ public class BlockTable extends Block
 	public boolean isFullCube()
 	{
 		return false;
-	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		if (this == FurnitureBlocks.table_wood)
-			return FurnitureItems.itemTableWood;
-		if (this == FurnitureBlocks.table_stone)
-			return FurnitureItems.itemTableStone;
-		return null;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		if (this == FurnitureBlocks.table_wood)
-			return new ItemStack(FurnitureItems.itemTableWood);
-		if (this == FurnitureBlocks.table_stone)
-			return new ItemStack(FurnitureItems.itemTableStone);
-		return null;
 	}
 	
 	@Override

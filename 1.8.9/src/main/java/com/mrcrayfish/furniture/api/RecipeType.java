@@ -10,7 +10,8 @@ public enum RecipeType {
 	BLENDER("blender"), 
 	DISHWASHER("dishwasher"),
 	WASHING_MACHINE("washingmachine"),
-	MICROWAVE("microwave");
+	MICROWAVE("microwave"),
+	GRILL("grill");
 	
 	private String name;
 	

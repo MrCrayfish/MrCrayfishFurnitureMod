@@ -25,6 +25,7 @@ public class Channel
 	private ResourceLocation sound = null;
 	private SoundHandler soundHandler = null;
 	private Field counterField = null;
+	private static boolean init = false;
 
 	public Channel(String channelName) 
 	{
@@ -39,6 +40,9 @@ public class Channel
 	@SideOnly(Side.CLIENT)
 	private void initRefleciton() 
 	{
+		if(init)
+			return;
+		
 		if (counterField != null)
 			return;
 
@@ -49,9 +53,10 @@ public class Channel
 			this.counterField = ReflectionUtil.getField(atlas.getClass(), "frameCounter");
 			ReflectionUtil.makeAccessible(this.counterField);
 		} catch (NoSuchFieldException e) {
-			e.printStackTrace();
+			System.out.println("Unabled to initialized animation resetting for TV");
 		}
-
+		
+		init = true;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -107,19 +112,7 @@ public class Channel
 			{
 				handler.stopSound(sound);
 			}
-			BlockPos found = null;
-			for(BlockPos currentPos : currentSounds.keySet())
-			{
-				if(currentPos.equals(pos))
-				{
-					found = currentPos;
-					break;
-				}
-			}
-			if(found != null)
-			{
-				currentSounds.remove(found);
-			}
+			currentSounds.remove(sound);
 		}
 	}
 }

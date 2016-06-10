@@ -1,0 +1,7 @@
+{
+"parent": "cfm:block/table_leg_corner",
+"textures": {
+    "0": "blocks/planks_acacia",
+    "1": "blocks/log_acacia"
+}
+}

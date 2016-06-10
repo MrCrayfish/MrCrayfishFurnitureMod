@@ -26,11 +26,15 @@ import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityPresent;
 import com.mrcrayfish.furniture.util.NBTHelper;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemColored;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -44,14 +48,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemPresent extends Item implements IMail
+public class ItemPresent extends ItemBlock implements IMail
 {
-	public ItemPresent() {
-		setHasSubtypes(true);
-        setMaxDamage(0);
-        setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+	public ItemPresent(Block block) 
+	{
+		super(block);
+        this.setHasSubtypes(true);
 	}
-	
 	
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag)
@@ -87,7 +90,7 @@ public class ItemPresent extends Item implements IMail
 					NBTTagList itemList = (NBTTagList) NBTHelper.getCompoundTag(stack, "Present").getTag("Items");
 					if (itemList.tagCount() > 0)
 					{
-						IBlockState state = FurnitureBlocks.present.getDefaultState().withProperty(BlockPresent.COLOUR, stack.getMetadata());
+						IBlockState state = FurnitureBlocks.present.getDefaultState().withProperty(BlockPresent.COLOUR, EnumDyeColor.byMetadata(stack.getItemDamage()));
 						
 						world.setBlockState(pos.up(), state, 2);
 						world.playSoundEffect((pos.getX() + 0.5F), (pos.getY() + 0.5F), (pos.getZ() + 0.5F), state.getBlock().stepSound.getPlaceSound(), (state.getBlock().stepSound.getVolume() + 1.0F) / 2.0F, state.getBlock().stepSound.getFrequency() * 0.8F);
@@ -157,15 +160,6 @@ public class ItemPresent extends Item implements IMail
 		}
 		return stack;
 	}
-	
-	@SideOnly(Side.CLIENT)
-    public void getSubItems(Item itemIn, CreativeTabs tab, List subItems)
-    {
-        for (int i = 0; i < 16; ++i)
-        {
-            subItems.add(new ItemStack(itemIn, 1, i));
-        }
-    }
 
 	public static IInventory getInv(EntityPlayer player)
 	{
@@ -189,5 +183,17 @@ public class ItemPresent extends Item implements IMail
 	public boolean requiresMultipleRenderPasses()
 	{
 		return true;
+	}
+	
+	@Override
+	public int getMetadata(int damage)
+	{
+		return damage;
+	}
+	
+	@Override
+	public String getUnlocalizedName(ItemStack stack)
+	{
+		return super.getUnlocalizedName(stack) + "_" + EnumDyeColor.values()[stack.getItemDamage()].getName();
 	}
 }

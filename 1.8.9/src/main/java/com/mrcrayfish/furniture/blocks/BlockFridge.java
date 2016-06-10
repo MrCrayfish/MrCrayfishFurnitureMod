@@ -40,8 +40,9 @@ public class BlockFridge extends BlockFurnitureTile
 	public BlockFridge(Material material)
 	{
 		super(material);
-		setHardness(2.0F);
-		setStepSound(Block.soundTypeMetal);
+		this.setHardness(2.0F);
+		this.setStepSound(Block.soundTypeMetal);
+		this.setCreativeTab(null);
 	}
 	
 	@Override
@@ -82,17 +83,5 @@ public class BlockFridge extends BlockFurnitureTile
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityFridge();
-	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemFridge;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemFridge);
 	}
 }

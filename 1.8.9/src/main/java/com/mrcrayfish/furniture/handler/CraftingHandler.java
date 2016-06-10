@@ -17,10 +17,14 @@
  */
 package com.mrcrayfish.furniture.handler;
 
+import com.mrcrayfish.furniture.blocks.BlockChair;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
@@ -30,23 +34,36 @@ public class CraftingHandler
 	@SubscribeEvent
 	public void onCrafted(ItemCraftedEvent event)
 	{
-		if (event.crafting.getItem() == FurnitureItems.itemChairWood | event.crafting.getItem() == FurnitureItems.itemChairStone)
+		Item item = event.crafting.getItem();
+		if (item instanceof ItemBlock && ((ItemBlock) item).getBlock() instanceof BlockChair)
 		{
 			event.player.triggerAchievement(FurnitureAchievements.mineKea);
 			return;
 		}
-
-		if (event.crafting.getItem() == FurnitureItems.itemSoapyWater || event.crafting.getItem() == FurnitureItems.itemSuperSoapyWater)
+		
+		if(item == FurnitureItems.itemSoapyWater || item == FurnitureItems.itemSuperSoapyWater) 
 		{
 			for (int i = 0; i < event.craftMatrix.getSizeInventory(); i++)
 			{
-				event.craftMatrix.setInventorySlotContents(i, null);
+				ItemStack stack = event.craftMatrix.getStackInSlot(i);
+				if(stack != null && stack.getItem() == FurnitureItems.itemSoap)
+				{
+					stack.stackSize--;
+					if(stack.stackSize > 0)
+					{
+						if(!event.player.inventory.addItemStackToInventory(stack))
+						{
+							event.player.dropItem(stack, false, true);
+						}
+					}
+				}
+				event.craftMatrix.setInventorySlotContents(i, null); 
 			}
 		}
-		
-		if(event.crafting.getItem() == FurnitureItems.itemLog)
+
+		if(item == FurnitureItems.itemLog)
 		{
-			for (int i = 0; i < 9; i++)
+			for (int i = 0; i < event.craftMatrix.getSizeInventory(); i++)
 			{
 				ItemStack stack = event.craftMatrix.getStackInSlot(i);
 				if(stack != null)

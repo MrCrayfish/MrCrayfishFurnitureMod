@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mrcrayfish.furniture.init.FurnitureItems;
@@ -48,8 +49,8 @@ public class BlockCup extends Block implements ITileEntityProvider
 	public BlockCup(Material material)
 	{
 		super(material);
-		setStepSound(Block.soundTypeGlass);
-		setHardness(0.1F);
+		this.setStepSound(Block.soundTypeGlass);
+		this.setHardness(0.1F);
 		this.setDefaultState(this.blockState.getBaseState());
 	}
 
@@ -124,6 +125,22 @@ public class BlockCup extends Block implements ITileEntityProvider
 		{
 			return new ItemStack(FurnitureItems.itemCup);
 		}
+	}
+	
+	@Override
+	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+	{
+		List<ItemStack> drops = new ArrayList<ItemStack>();
+		TileEntityCup tileEntityCup = (TileEntityCup) world.getTileEntity(pos);
+		if (tileEntityCup.getDrink() != null)
+		{
+			drops.add(tileEntityCup.getDrink().copy());
+		}
+		else
+		{
+			drops.add(new ItemStack(FurnitureItems.itemCup));
+		}
+		return drops;
 	}
 	
 	@SideOnly(Side.CLIENT)

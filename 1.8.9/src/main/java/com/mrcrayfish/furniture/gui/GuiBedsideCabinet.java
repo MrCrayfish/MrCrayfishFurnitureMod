@@ -19,7 +19,10 @@ package com.mrcrayfish.furniture.gui;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mrcrayfish.furniture.blocks.BlockBedsideCabinet;
+import com.mrcrayfish.furniture.blocks.BlockCabinet;
 import com.mrcrayfish.furniture.gui.containers.ContainerBedsideCabinet;
+import com.mrcrayfish.furniture.init.FurnitureBlocks;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.IInventory;
@@ -27,18 +30,25 @@ import net.minecraft.util.ResourceLocation;
 
 public class GuiBedsideCabinet extends GuiContainer
 {
-	private IInventory upperChestInventory;
 	private IInventory lowerChestInventory;
-	private static final ResourceLocation gui = new ResourceLocation("cfm:textures/gui/bedsidecabinet.png");
+	
+	private static final ResourceLocation GUI_CABINET_OAK = new ResourceLocation("cfm:textures/gui/bedside_cabinet_oak.png");
+	private static final ResourceLocation GUI_CABINET_SPRUCE = new ResourceLocation("cfm:textures/gui/bedside_cabinet_spruce.png");
+	private static final ResourceLocation GUI_CABINET_BIRCH = new ResourceLocation("cfm:textures/gui/bedside_cabinet_birch.png");
+	private static final ResourceLocation GUI_CABINET_JUNGLE = new ResourceLocation("cfm:textures/gui/bedside_cabinet_jungle.png");
+	private static final ResourceLocation GUI_CABINET_ACACIA = new ResourceLocation("cfm:textures/gui/bedside_cabinet_acacia.png");
+	private static final ResourceLocation GUI_CABINET_DARK_OAK = new ResourceLocation("cfm:textures/gui/bedside_cabinet_dark_oak.png");
 
-	public GuiBedsideCabinet(IInventory par1IInventory, IInventory par2IInventory)
+	private final int type;
+
+	public GuiBedsideCabinet(IInventory playerInventory, IInventory bedsideCabinetInventory, BlockBedsideCabinet block)
 	{
-		super(new ContainerBedsideCabinet(par1IInventory, par2IInventory));
-		this.upperChestInventory = par1IInventory;
-		this.lowerChestInventory = par2IInventory;
+		super(new ContainerBedsideCabinet(playerInventory, bedsideCabinetInventory));
+		this.lowerChestInventory = bedsideCabinetInventory;
 		this.allowUserInput = false;
 		this.xSize = 176;
 		this.ySize = 168;
+		this.type = getType(block);
 	}
 
 	@Override
@@ -52,9 +62,46 @@ public class GuiBedsideCabinet extends GuiContainer
 	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
 	{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.getTextureManager().bindTexture(gui);
+		this.bindGuiTexture();
 		int var5 = (this.width - this.xSize) / 2;
 		int var6 = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(var5, var6, 0, 0, this.xSize, this.ySize);
+	}
+	
+	public void bindGuiTexture()
+	{
+		ResourceLocation resource;
+		switch (type)
+		{
+		case 1:
+			resource = GUI_CABINET_SPRUCE;
+			break;
+		case 2:
+			resource = GUI_CABINET_BIRCH;
+			break;
+		case 3:
+			resource = GUI_CABINET_JUNGLE;
+			break;
+		case 4:
+			resource = GUI_CABINET_ACACIA;
+			break;
+		case 5:
+			resource = GUI_CABINET_DARK_OAK;
+			break;
+		default:
+			resource = GUI_CABINET_OAK;
+			break;
+		}
+		this.mc.getTextureManager().bindTexture(resource);
+	}
+
+	public int getType(BlockBedsideCabinet block)
+	{
+		if (block == FurnitureBlocks.bedside_cabinet_spruce) return 1;
+		if (block == FurnitureBlocks.bedside_cabinet_birch) return 2;
+		if (block == FurnitureBlocks.bedside_cabinet_jungle) return 3;
+		if (block == FurnitureBlocks.bedside_cabinet_acacia) return 4;
+		if (block == FurnitureBlocks.bedside_cabinet_dark_oak) return 5;
+		return 0;
 	}
 }

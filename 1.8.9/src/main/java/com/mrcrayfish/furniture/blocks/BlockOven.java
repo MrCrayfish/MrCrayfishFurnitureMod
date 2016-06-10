@@ -46,8 +46,8 @@ public class BlockOven extends BlockFurnitureTile
 	public BlockOven(Material material)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeMetal);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeMetal);
 	}
 	
 	@Override
@@ -93,18 +93,6 @@ public class BlockOven extends BlockFurnitureTile
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityOven();
-	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemOven;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemOven);
 	}
 	
 	@SideOnly(Side.CLIENT)

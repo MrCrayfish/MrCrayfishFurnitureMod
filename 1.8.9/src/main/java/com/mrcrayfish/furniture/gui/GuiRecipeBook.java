@@ -28,12 +28,27 @@ import org.lwjgl.opengl.GL11;
 
 import com.mrcrayfish.furniture.api.RecipeData;
 import com.mrcrayfish.furniture.api.Recipes;
+import com.mrcrayfish.furniture.gui.page.PageBlender;
+import com.mrcrayfish.furniture.gui.page.PageChoppingBoard;
+import com.mrcrayfish.furniture.gui.page.PageContentsOne;
+import com.mrcrayfish.furniture.gui.page.PageContentsTwo;
+import com.mrcrayfish.furniture.gui.page.PageDishwasher;
+import com.mrcrayfish.furniture.gui.page.PageFreezer;
+import com.mrcrayfish.furniture.gui.page.PageGrill;
+import com.mrcrayfish.furniture.gui.page.PageMicrowave;
+import com.mrcrayfish.furniture.gui.page.PageMineBay;
+import com.mrcrayfish.furniture.gui.page.PageOven;
+import com.mrcrayfish.furniture.gui.page.PagePrinter;
+import com.mrcrayfish.furniture.gui.page.PageTitle;
+import com.mrcrayfish.furniture.gui.page.PageToaster;
+import com.mrcrayfish.furniture.gui.page.PageWashingMachine;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
@@ -46,32 +61,20 @@ public class GuiRecipeBook extends GuiScreen
 	private static final ResourceLocation page_1 = new ResourceLocation("cfm:textures/gui/recipebook_1.png");
 	private static final ResourceLocation page_2 = new ResourceLocation("cfm:textures/gui/recipebook_2.png");
 
-	private int bookWidth = 146;
-	private int bookHeight = 180;
+	public int bookWidth = 146;
+	public int bookHeight = 180;
 
 	private int xSize = bookWidth * 2;
 
 	private NextPageButton buttonNextPage;
 	private NextPageButton buttonPreviousPage;
-	private GuiButton link;
-	private GuiButton contents;
-
-	private GuiButton oven;
-	private GuiButton freezer;
-	private GuiButton minebay;
-	private GuiButton printer;
-	private GuiButton choppingboard;
-	private GuiButton toaster;
-	private GuiButton blender;
-	private GuiButton microwave;
-	private GuiButton dishwasher;
-	private GuiButton washingmachine;
+	private GuiButton buttonTutorial;
+	private GuiButton buttonContents;
 
 	private HashMap<Integer, RecipePage> pages = new HashMap<Integer, RecipePage>();
-	private int pageCount = 1;
-	private int pageNum;
+	private int pageCount = 0;
+	private int pageNum = 0;
 	private int progress = 0;
-	private long previousTime;
 
 	public GuiRecipeBook()
 	{
@@ -80,6 +83,15 @@ public class GuiRecipeBook extends GuiScreen
 
 	public void compilePages()
 	{
+		PageTitle titlePage = new PageTitle(this);
+		pages.put(pageCount++, titlePage);
+		
+		PageContentsOne contentsPageOne = new PageContentsOne(this);
+		pages.put(pageCount++, contentsPageOne);
+		
+		PageContentsTwo contentsPageTwo = new PageContentsTwo(this);
+		pages.put(pageCount, contentsPageTwo);
+		
 		ArrayList<RecipeData> oven = Recipes.getRecipes("oven");
 		for (int i = 0; i < oven.size(); i++)
 		{
@@ -94,7 +106,7 @@ public class GuiRecipeBook extends GuiScreen
 			}
 			else
 			{
-				pages.put(pageCount, new RecipePage("oven"));
+				pages.put(pageCount, new PageOven());
 				pages.get(pageCount).addRecipe(oven.get(i));
 			}
 		}
@@ -113,7 +125,7 @@ public class GuiRecipeBook extends GuiScreen
 			}
 			else
 			{
-				pages.put(pageCount, new RecipePage("freezer"));
+				pages.put(pageCount, new PageFreezer());
 				pages.get(pageCount).addRecipe(freezer.get(i));
 			}
 		}
@@ -132,7 +144,7 @@ public class GuiRecipeBook extends GuiScreen
 			}
 			else
 			{
-				pages.put(pageCount, new RecipePage("minebay"));
+				pages.put(pageCount, new PageMineBay());
 				pages.get(pageCount).addRecipe(minebay.get(i));
 			}
 		}
@@ -151,7 +163,7 @@ public class GuiRecipeBook extends GuiScreen
 			}
 			else
 			{
-				pages.put(pageCount, new RecipePage("printer"));
+				pages.put(pageCount, new PagePrinter());
 				pages.get(pageCount).addRecipe(printer.get(i));
 			}
 		}
@@ -170,7 +182,7 @@ public class GuiRecipeBook extends GuiScreen
 			}
 			else
 			{
-				pages.put(pageCount, new RecipePage("choppingboard"));
+				pages.put(pageCount, new PageChoppingBoard());
 				pages.get(pageCount).addRecipe(choppingboard.get(i));
 			}
 		}
@@ -189,7 +201,7 @@ public class GuiRecipeBook extends GuiScreen
 			}
 			else
 			{
-				pages.put(pageCount, new RecipePage("toaster"));
+				pages.put(pageCount, new PageToaster());
 				pages.get(pageCount).addRecipe(toaster.get(i));
 			}
 		}
@@ -208,7 +220,7 @@ public class GuiRecipeBook extends GuiScreen
 			}
 			else
 			{
-				pages.put(pageCount, new RecipePage("blender"));
+				pages.put(pageCount, new PageBlender());
 				pages.get(pageCount).addRecipe(blender.get(i));
 			}
 		}
@@ -227,7 +239,7 @@ public class GuiRecipeBook extends GuiScreen
 			}
 			else
 			{
-				pages.put(pageCount, new RecipePage("microwave"));
+				pages.put(pageCount, new PageMicrowave());
 				pages.get(pageCount).addRecipe(microwave.get(i));
 			}
 		}
@@ -246,7 +258,7 @@ public class GuiRecipeBook extends GuiScreen
 			}
 			else
 			{
-				pages.put(pageCount, new RecipePage("dishwasher"));
+				pages.put(pageCount, new PageDishwasher());
 				pages.get(pageCount).addRecipe(dishwasher.get(i));
 			}
 		}
@@ -265,47 +277,51 @@ public class GuiRecipeBook extends GuiScreen
 			}
 			else
 			{
-				pages.put(pageCount, new RecipePage("washingmachine"));
+				pages.put(pageCount, new PageWashingMachine());
 				pages.get(pageCount).addRecipe(washingmachine.get(i));
+			}
+		}
+		
+		ArrayList<RecipeData> grill = Recipes.getRecipes("grill");
+		for (int i = 0; i < grill.size(); i++)
+		{
+			if (i % 8 == 0)
+			{
+				pageCount++;
+			}
+
+			if (pages.containsKey(pageCount))
+			{
+				pages.get(pageCount).addRecipe(grill.get(i));
+			}
+			else
+			{
+				pages.put(pageCount, new PageGrill());
+				pages.get(pageCount).addRecipe(grill.get(i));
 			}
 		}
 	}
 
 	public void initGui()
 	{
-		this.buttonList.clear();
 		Keyboard.enableRepeatEvents(true);
 
 		int i = (this.width - 18) / 2;
 		this.buttonNextPage = new NextPageButton(1, i + 110, 160, true);
 		this.buttonPreviousPage = new NextPageButton(2, i - 110, 160, false);
-		this.link = new GuiButton(3, i + 50, 135, 60, 20, "Click here");
-		this.oven = new GuiButton(4, i, 0, 20, 20, "Go");
-		this.freezer = new GuiButton(5, i, 0, 20, 20, "Go");
-		this.minebay = new GuiButton(6, i, 0, 20, 20, "Go");
-		this.printer = new GuiButton(7, i, 0, 20, 20, "Go");
-		this.choppingboard = new GuiButton(8, i, 0, 20, 20, "Go");
-		this.toaster = new GuiButton(9, i, 0, 20, 20, "Go");
-		this.blender = new GuiButton(10, i, 0, 20, 20, "Go");
-		this.microwave = new GuiButton(11, i, 0, 20, 20, "Go");
-		this.dishwasher = new GuiButton(12, i, 0, 20, 20, "Go");
-		this.washingmachine = new GuiButton(13, i, 0, 20, 20, "Go");
-		this.contents = new GuiButton(14, i - 60, 152, 50, 20, "Contents");
+		this.buttonTutorial = new GuiButton(3, i + 50, 135, 60, 20, "Click here");
+		this.buttonContents = new GuiButton(14, i - 60, 152, 50, 20, "Contents");
 
-		this.buttonList.add(this.buttonNextPage);
-		this.buttonList.add(this.buttonPreviousPage);
-		this.buttonList.add(this.link);
-		this.buttonList.add(this.oven);
-		this.buttonList.add(this.freezer);
-		this.buttonList.add(this.minebay);
-		this.buttonList.add(this.printer);
-		this.buttonList.add(this.choppingboard);
-		this.buttonList.add(this.toaster);
-		this.buttonList.add(this.blender);
-		this.buttonList.add(this.microwave);
-		this.buttonList.add(this.dishwasher);
-		this.buttonList.add(this.washingmachine);
-		this.buttonList.add(this.contents);
+		this.buttonList.add(buttonNextPage);
+		this.buttonList.add(buttonPreviousPage);
+		this.buttonList.add(buttonTutorial);
+		this.buttonList.add(buttonContents);
+		
+		for(RecipePage page : pages.values())
+		{
+			page.init(buttonList);
+		}
+		
 		updateButtons();
 	}
 
@@ -314,29 +330,13 @@ public class GuiRecipeBook extends GuiScreen
 		if (pageNum == 0)
 		{
 			this.buttonPreviousPage.visible = false;
-			this.link.visible = true;
-			this.contents.visible = false;
-			disableContentsButtons();
-		}
-		else if (pageNum == 1)
-		{
-			this.buttonPreviousPage.visible = true;
-			if (pageNum == pages.size() + 1)
-			{
-				this.buttonNextPage.visible = false;
-			}
-			else
-			{
-				this.buttonNextPage.visible = true;
-			}
-			this.link.visible = false;
-			this.contents.visible = false;
-			enableContentsButtons();
+			this.buttonTutorial.visible = true;
+			this.buttonContents.visible = false;
 		}
 		else
 		{
 			this.buttonPreviousPage.visible = true;
-			if (pageNum == pages.size() + 1)
+			if (pageNum == pages.size() - 1)
 			{
 				this.buttonNextPage.visible = false;
 			}
@@ -344,95 +344,54 @@ public class GuiRecipeBook extends GuiScreen
 			{
 				this.buttonNextPage.visible = true;
 			}
-			this.link.visible = false;
-			this.contents.visible = true;
-			disableContentsButtons();
+			this.buttonTutorial.visible = false;
+			if(pageNum >= 3)
+			{
+				this.buttonContents.visible = true;
+			}
+			else
+			{
+				this.buttonContents.visible = false;
+			}
 		}
 	}
-
-	public void disableContentsButtons()
-	{
-		this.oven.visible = false;
-		this.freezer.visible = false;
-		this.minebay.visible = false;
-		this.printer.visible = false;
-		this.choppingboard.visible = false;
-		this.toaster.visible = false;
-		this.blender.visible = false;
-		this.microwave.visible = false;
-		this.dishwasher.visible = false;
-		this.washingmachine.visible = false;
-	}
-
-	public void enableContentsButtons()
-	{
-		this.oven.visible = true;
-		this.freezer.visible = true;
-		this.minebay.visible = true;
-		this.printer.visible = true;
-		this.choppingboard.visible = true;
-		this.toaster.visible = true;
-		this.blender.visible = true;
-		this.microwave.visible = true;
-		this.dishwasher.visible = true;
-		this.washingmachine.visible = true;
-	}
-
+	
 	protected void actionPerformed(GuiButton button)
 	{
-		switch (button.id)
+		pages.get(pageNum).onClose();
+		
+		if(button == buttonNextPage)
 		{
-		case 1:
 			pageNum++;
-			if (pageNum + 1 > pages.size() + 1)
+			if (pageNum > pages.size() - 1)
 			{
-				pageNum = pages.size() + 1;
+				pageNum = pages.size() - 1;
 			}
-			break;
-		case 2:
+		}
+		else if(button == buttonPreviousPage)
+		{
 			pageNum--;
 			if (pageNum < 0)
 			{
 				pageNum = 0;
 			}
-			break;
-		case 3:
-			openTutorial();
-			break;
-		case 4:
-			gotoPage("oven");
-			break;
-		case 5:
-			gotoPage("freezer");
-			break;
-		case 6:
-			gotoPage("minebay");
-			break;
-		case 7:
-			gotoPage("printer");
-			break;
-		case 8:
-			gotoPage("choppingboard");
-			break;
-		case 9:
-			gotoPage("toaster");
-			break;
-		case 10:
-			gotoPage("blender");
-			break;
-		case 11:
-			gotoPage("microwave");
-			break;
-		case 12:
-			gotoPage("dishwasher");
-			break;
-		case 13:
-			gotoPage("washingmachine");
-			break;
-		case 14:
-			pageNum = 1;
-			break;
 		}
+		else if(button == buttonContents)
+		{
+			gotoPage("contents");
+		}
+		else if(button == buttonTutorial)
+		{
+			openTutorial();
+		}
+		else
+		{
+			for(RecipePage page : pages.values())
+			{
+				page.handleButtonClick(button);
+			}
+		}
+		pages.get(pageNum).onShown();
 		this.updateButtons();
 	}
 
@@ -441,6 +400,17 @@ public class GuiRecipeBook extends GuiScreen
 	{
 		Keyboard.enableRepeatEvents(false);
 		this.pages = null;
+	}
+	
+	@Override
+	public void updateScreen()
+	{
+		super.updateScreen();
+		progress++;
+		if (progress >= 160)
+		{
+			progress = 0;
+		}
 	}
 
 	@Override
@@ -464,43 +434,28 @@ public class GuiRecipeBook extends GuiScreen
 
 		super.drawScreen(par1, par2, par3);
 
-		this.updatePage(par1, par2);
-
-		long currentTime = System.currentTimeMillis();
-		if (currentTime > previousTime)
-		{
-			previousTime = currentTime + 10;
-			progress++;
-			if (progress >= 160)
-			{
-				progress = 0;
-			}
-		}
+		this.updatePage(par1, par2, par3);
 	}
 
-	public void updatePage(int mouseX, int mouseY)
+	public void updatePage(int mouseX, int mouseY, float partialTicks)
 	{
 		int k = this.width / 2;
-		if (pageNum == 0)
+		RecipePage page = pages.get(pageNum);
+		GL11.glPushMatrix();
+		RenderHelper.enableGUIStandardItemLighting();
+		if(page.shouldDrawTitle()) 
 		{
-			this.drawMainPage();
+			fontRendererObj.drawString(EnumChatFormatting.BOLD + page.getTitle(), k - bookWidth + 20, 26, 1986677, false);
+			fontRendererObj.drawString(EnumChatFormatting.BOLD + page.getTitle(), k + 20, 26, 1986677, false);
 		}
-		else if (pageNum == 1)
-		{
-			this.drawContents();
-		}
-		else
-		{
-			if (pages.containsKey(pageNum))
-			{
-				this.pages.get(pageNum).drawPage(mc, this, k - 130, 40, mouseX, mouseY);
-			}
-		}
+		page.draw(this, k - 130, 40, mouseX, mouseY, partialTicks);
+		page.drawOverlay(mc, this, k - 130, 40, mouseX, mouseY, partialTicks);
+		GL11.glPopMatrix();
 	}
 
 	public void gotoPage(String type)
 	{
-		for (int i = 2; i < 2 + pages.size(); i++)
+		for (int i = 0; i < pages.size(); i++)
 		{
 			if (pages.get(i) != null)
 			{
@@ -513,78 +468,28 @@ public class GuiRecipeBook extends GuiScreen
 		}
 	}
 
-	public void drawMainPage()
-	{
-		int center = (this.width) / 2;
-		this.fontRendererObj.drawString("by MrCrayfish", center - 108, 105, 1986677);
-		this.fontRendererObj.drawString(EnumChatFormatting.UNDERLINE + "About", center + 55, 25, 1986677);
-		this.fontRendererObj.drawString("This book contains all", center + 18, 40, -16731470);
-		this.fontRendererObj.drawString("recipes registered in", center + 18, 50, -16731470);
-		this.fontRendererObj.drawString("the RecipeAPI. It will", center + 18, 60, -16731470);
-		this.fontRendererObj.drawString("help you discover", center + 18, 70, -16731470);
-		this.fontRendererObj.drawString("many hidden recipes.", center + 18, 80, -16731470);
-		this.fontRendererObj.drawString("Want to add your own", center + 18, 110, 0);
-		this.fontRendererObj.drawString("custom recipes?", center + 18, 120, 0);
-	}
-
-	public void drawContents()
-	{
-		int center_1 = (this.width) / 2 - (this.bookWidth / 2);
-		this.fontRendererObj.drawString(EnumChatFormatting.UNDERLINE + "Contents", center_1 - 22, 25, 1986677);
-		this.drawContentsLink(oven, "Oven", "oven", center_1 - 55, 45);
-		this.drawContentsLink(freezer, "Freezer", "freezer", center_1 - 55, 45 + (1 * 24));
-		this.drawContentsLink(minebay, "MineBay", "minebay", center_1 - 55, 45 + (2 * 24));
-		this.drawContentsLink(printer, "Printer", "printer", center_1 - 55, 45 + (3 * 24));
-		this.drawContentsLink(choppingboard, "Chopping Board", "choppingboard", center_1 - 55, 45 + (4 * 24));
-		int center_2 = (this.width) / 2 + (this.bookWidth / 2);
-		this.fontRendererObj.drawString(EnumChatFormatting.UNDERLINE + "Contents", center_2 - 22, 25, 1986677);
-		this.drawContentsLink(toaster, "Toaster", "toaster", center_2 - 55, 45);
-		this.drawContentsLink(blender, "Blender", "blender", center_2 - 55, 45 + (1 * 24));
-		this.drawContentsLink(microwave, "Microwave", "microwave", center_2 - 55, 45 + (2 * 24));
-		this.drawContentsLink(dishwasher, "Dishwasher", "dishwasher", center_2 - 55, 45 + (3 * 24));
-		this.drawContentsLink(washingmachine, "Washing Machine", "washingmachine", center_2 - 55, 45 + (4 * 24));
-	}
-
-	public void drawContentsLink(GuiButton button, String name, String type, int x, int y)
-	{
-		this.fontRendererObj.drawString(name, x, y, -16731470);
-		button.xPosition = x + 90;
-		button.yPosition = y - 5;
-	}
-
-	public void drawOvenRecipes()
-	{
-
-	}
-
 	public void drawPlainArrow(int x, int y)
 	{
 		GL11.glPushMatrix();
-		GL11.glEnable(GL11.GL_BLEND);
 		this.mc.getTextureManager().bindTexture(page_1);
 		this.drawTexturedModalRect(x, y, 36, 180, 22, 15);
-		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glPopMatrix();
 	}
 
-	public void drawProgressArrow(int x, int y)
+	public void drawProgressArrow(int x, int y, float partialTicks)
 	{
 		GL11.glPushMatrix();
-		GL11.glEnable(GL11.GL_BLEND);
 		this.mc.getTextureManager().bindTexture(page_1);
 		this.drawTexturedModalRect(x, y, 36, 180, 22, 15);
-		int percent = progress * 22 / 160;
+		int percent = (int) (progress + partialTicks) * 22 / 160;
 		this.drawTexturedModalRect(x, y, 58, 180, percent + 1, 16);
-		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glPopMatrix();
 	}
 
 	public void drawTag(int x, int y)
 	{
 		GL11.glPushMatrix();
-		GL11.glEnable(GL11.GL_BLEND);
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		GL11.glDisable(GL11.GL_CULL_FACE);
 		this.mc.getTextureManager().bindTexture(page_1);
 		this.drawTexturedModalRect(x, y, 0, 200, 45, 18);
 		GL11.glPopMatrix();
@@ -595,12 +500,10 @@ public class GuiRecipeBook extends GuiScreen
 	public void drawKnife(int x, int y)
 	{
 		GL11.glPushMatrix();
-		GL11.glEnable(GL11.GL_BLEND);
 		int percent = progress * 16 / 160;
 		if (percent >= 12)
 			percent = 12;
 		getItemRenderer().renderItemAndEffectIntoGUI(knife, x, y + percent);
-		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glPopMatrix();
 	}
 
@@ -630,12 +533,12 @@ public class GuiRecipeBook extends GuiScreen
 		}
 	}
 
-	protected boolean func_146978_c(int p_146978_1_, int p_146978_2_, int p_146978_3_, int p_146978_4_, int p_146978_5_, int p_146978_6_)
+	public boolean isMouseWithin(int posX, int posY, int width, int height, int mouseX, int mouseY)
 	{
-		return p_146978_5_ >= p_146978_1_ - 1 && p_146978_5_ < p_146978_1_ + p_146978_3_ + 1 && p_146978_6_ >= p_146978_2_ - 1 && p_146978_6_ < p_146978_2_ + p_146978_4_ + 1;
+		return mouseX >= posX - 1 && mouseX < posX + width + 1 && mouseY >= posY - 1 && mouseY < posY + height + 1;
 	}
 
-	protected void renderToolTip(ItemStack itemStack, int mouseX, int mouseY)
+	public void renderToolTip(ItemStack itemStack, int mouseX, int mouseY)
 	{
 		List list = itemStack.getTooltip(this.mc.thePlayer, this.mc.gameSettings.advancedItemTooltips);
 

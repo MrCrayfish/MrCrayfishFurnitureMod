@@ -47,8 +47,8 @@ public class BlockShowerHeadOff extends BlockFurniture
 	public BlockShowerHeadOff(Material material)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeStone);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeStone);
 	}
 
 	@Override
@@ -128,18 +128,6 @@ public class BlockShowerHeadOff extends BlockFurniture
 		float[] data = CollisionHelper.fixRotation(metadata, 0.35F, 0.35F, 1.0F, 0.65F);
 		setBlockBounds(data[0], 0.15F, data[1], data[2], 0.45F, data[3]);
 		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
-	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemShowerHead;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemShowerHead);
 	}
 
 	private boolean canPlaceCheck(World world, BlockPos pos, IBlockState state)

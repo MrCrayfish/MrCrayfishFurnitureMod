@@ -36,7 +36,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 	private int quality = ConfigurationHandler.mirrorQuality;
 	private long renderEndNanoTime;
 	
-	private static Map<Entity, Integer> registerMirrors = new ConcurrentHashMap<Entity, Integer>();
+	private static Map<EntityMirror, Integer> registerMirrors = new ConcurrentHashMap<EntityMirror, Integer>();
 	private static List<Integer> pendingRemoval = Collections.synchronizedList(new ArrayList<Integer>());
 
 	public static void removeRegisteredMirror(Entity entity)
@@ -51,18 +51,14 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 	}
 
 	@Override
-	public void renderTileEntityAt(TileEntityMirror mirror, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
+	public void renderTileEntityAt(TileEntityMirror mirror, double posX, double posY, double posZ, float partialTicks, int breakStage)
 	{
 		if(!ConfigurationHandler.mirrorEnabled)
 			return;
 		
 		if(TileEntityRendererDispatcher.instance.entity instanceof EntityMirror)
 			return;
-
-		IBlockState state = mirror.getWorld().getBlockState(mirror.getPos());
-		if(!(state.getBlock() instanceof BlockMirror))
-			return;
-
+		
 		if (!registerMirrors.containsKey(mirror.getMirror()))
 		{
 			int newTextureId = GL11.glGenTextures();
@@ -73,14 +69,15 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 			registerMirrors.put(mirror.getMirror(), newTextureId);
 			return;
 		}
+		
+		mirror.getMirror().rendering = true;
 
-		((EntityMirror)mirror.getMirror()).rendering = true;
-		EnumFacing facing = (EnumFacing) state.getValue(BlockMirror.FACING);
+		EnumFacing facing = EnumFacing.getHorizontal(mirror.getBlockMetadata());
 		GlStateManager.pushMatrix();
 		{
 			GlStateManager.disableLighting();
 			GlStateManager.bindTexture(registerMirrors.get(mirror.getMirror()).intValue());
-			GlStateManager.translate((float) posX + 0.5F, (float) posY, (float) posZ + 0.5F);
+			GlStateManager.translate(posX + 0.5, posY, posZ + 0.5);
 			GlStateManager.rotate(-90F * facing.getHorizontalIndex() + 180F, 0, 1, 0);
 			GlStateManager.translate(-0.5F, 0, -0.43F);
 			GL11.glBegin(GL11.GL_QUADS);
@@ -98,6 +95,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 			GlStateManager.enableLighting();
 		}
 		GlStateManager.popMatrix();
+		GlStateManager.enableLighting();
 	}
 
 	@SubscribeEvent
@@ -120,7 +118,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 
 		if (mc.inGameHasFocus)
 		{
-			for (Entity entity : registerMirrors.keySet())
+			for (EntityMirror entity : registerMirrors.keySet())
 			{
 				if (entity == null)
 				{
@@ -128,7 +126,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 					continue;
 				}
 				
-				if(!((EntityMirror)entity).rendering)
+				if(!entity.rendering)
 					continue;
 				
 				if(!mc.thePlayer.canEntityBeSeen(entity))
@@ -180,7 +178,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 					mc.displayHeight = heightBackup;
 				}
 				
-				((EntityMirror)entity).rendering = false;
+				entity.rendering = false;
 			}
 		}
 	}
