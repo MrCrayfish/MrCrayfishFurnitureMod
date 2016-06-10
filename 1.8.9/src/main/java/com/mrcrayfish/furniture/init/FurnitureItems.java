@@ -103,11 +103,13 @@ public class FurnitureItems
 	{
 		GameRegistry.registerItem(itemFlesh, itemFlesh.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemCookedFlesh, itemCookedFlesh.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemCoolPack, itemCoolPack.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemHammer, itemHammer.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemEnvelope, itemEnvelope.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemEnvelopeSigned, itemEnvelopeSigned.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemPackage, itemPackage.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemPackageSigned, itemPackageSigned.getUnlocalizedName().substring(5));
+		GameRegistry.registerItem(itemInkCartridge, itemInkCartridge.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemBreadSlice, itemBreadSlice.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemToast, itemToast.getUnlocalizedName().substring(5));
 		GameRegistry.registerItem(itemKnife, itemKnife.getUnlocalizedName().substring(5));
@@ -131,11 +133,13 @@ public class FurnitureItems
 	{
 		registerRender(itemFlesh);
 		registerRender(itemCookedFlesh);
+		registerRender(itemCoolPack);
 		registerRender(itemHammer);
 		registerRender(itemEnvelope);
 		registerRender(itemEnvelopeSigned);
 		registerRender(itemPackage);
 		registerRender(itemPackageSigned);
+		registerRender(itemInkCartridge);
 		registerRender(itemBreadSlice);
 		registerRender(itemToast);
 		registerRender(itemKnife);
