@@ -29,6 +29,7 @@ public class BlockEsky extends BlockFurnitureTile
 	public BlockEsky(Material material)
 	{
 		super(material);
+		this.setHardness(0.75F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(OPENED, Boolean.valueOf(false)));
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}

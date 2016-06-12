@@ -12,6 +12,7 @@ public class BlockOutdoorTable extends BlockTable
 	public BlockOutdoorTable(Material material, SoundType sound) 
 	{
 		super(material, sound);
+		this.setHardness(1.0F);
 	}
 	
 	@SideOnly(Side.CLIENT)

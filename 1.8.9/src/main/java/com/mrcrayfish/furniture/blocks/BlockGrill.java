@@ -29,6 +29,7 @@ public class BlockGrill extends BlockFurnitureTile
 	public BlockGrill(Material material) 
 	{
 		super(material);
+		this.setHardness(1.5F);
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	

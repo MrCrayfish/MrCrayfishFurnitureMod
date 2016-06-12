@@ -30,6 +30,7 @@ public class BlockDivingboard extends BlockFurniture
 	public BlockDivingboard(Material material, boolean plank) 
 	{
 		super(material);
+		this.setHardness(1.0F);
 		if(plank) {
 			this.setCreativeTab(null);
 		}

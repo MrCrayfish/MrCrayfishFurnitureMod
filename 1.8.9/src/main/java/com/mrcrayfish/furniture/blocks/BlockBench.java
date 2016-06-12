@@ -28,6 +28,7 @@ public class BlockBench extends BlockFurniture
 	public BlockBench(Material material) 
 	{
 		super(material);
+		this.setHardness(1.0F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(LEFT, false).withProperty(RIGHT, false));
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}

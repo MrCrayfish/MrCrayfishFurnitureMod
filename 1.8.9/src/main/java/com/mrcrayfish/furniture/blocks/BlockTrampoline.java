@@ -34,6 +34,7 @@ public class BlockTrampoline extends Block
 	public BlockTrampoline(Material materialIn) 
 	{
 		super(materialIn);
+		this.setHardness(0.5F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(BACK, false).withProperty(FORWARD, false).withProperty(LEFT, false).withProperty(RIGHT, false));
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
