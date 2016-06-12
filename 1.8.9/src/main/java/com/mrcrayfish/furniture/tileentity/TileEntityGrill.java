@@ -41,13 +41,9 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 	public boolean leftCooked = false;
 	public boolean rightCooked = false;
 	
-	@SideOnly(Side.CLIENT)
 	public int leftFlipCount = 0;
-	@SideOnly(Side.CLIENT)
 	public float leftCurrentHeight = 0F;
-	@SideOnly(Side.CLIENT)
 	public int rightFlipCount = 0;
-	@SideOnly(Side.CLIENT)
 	public float rightCurrentHeight = 0F;
 	
 	public int leftSoundLoop = 0;
