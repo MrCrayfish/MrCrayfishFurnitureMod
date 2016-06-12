@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.Random;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityFridge;
 
@@ -60,7 +61,10 @@ public class BlockFridge extends BlockFurnitureTile
 	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
 	{
-		worldIn.destroyBlock(pos.down(), false);
+		if(worldIn.getBlockState(pos.down()).getBlock() == FurnitureBlocks.freezer)
+		{
+			worldIn.destroyBlock(pos.down(), false);
+		}
 	}
 
 	@Override
@@ -83,5 +87,17 @@ public class BlockFridge extends BlockFurnitureTile
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityFridge();
+	}
+	
+	@Override
+	public Item getItemDropped(IBlockState state, Random rand, int fortune)
+	{
+		return new ItemStack(FurnitureBlocks.freezer).getItem();
+	}
+	
+	@Override
+	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
+	{
+		return new ItemStack(FurnitureBlocks.freezer);
 	}
 }

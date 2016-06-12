@@ -60,7 +60,10 @@ public class BlockFreezer extends BlockFurnitureTile
 	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
 	{
-		worldIn.destroyBlock(pos.up(), false);
+		if(worldIn.getBlockState(pos.up()).getBlock() == FurnitureBlocks.fridge)
+		{
+			worldIn.destroyBlock(pos.up(), false);
+		}
 	}
 	
 	@Override
