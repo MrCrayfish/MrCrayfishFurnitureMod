@@ -299,6 +299,10 @@ public class Recipes
 		{
 			recipeData.add("type=dishwasher," + data.toString());
 		}
+		for (RecipeData data : localGrillRecipes)
+		{
+			recipeData.add("type=grill," + data.toString());
+		}
 	}
 
 	public static ArrayList<RecipeData> getRecipes(String type)
