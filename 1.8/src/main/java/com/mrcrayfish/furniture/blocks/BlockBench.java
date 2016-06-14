@@ -41,6 +41,7 @@ public class BlockBench extends BlockFurniture
 	}
 	
 	@Override
+	public void addCollisionBoxesToList(World worldIn, BlockPos pos, IBlockState state, AxisAlignedBB mask, List list, Entity collidingEntity) 
 	{
 		if (!(collidingEntity instanceof EntitySittableBlock))
 		{
@@ -53,6 +54,7 @@ public class BlockBench extends BlockFurniture
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) 
 	{
+		EnumFacing facing = (EnumFacing) state.getValue(FACING);
 		if(facing == EnumFacing.NORTH | facing == EnumFacing.SOUTH)
 		{
 			IBlockState right = worldIn.getBlockState(pos.east());

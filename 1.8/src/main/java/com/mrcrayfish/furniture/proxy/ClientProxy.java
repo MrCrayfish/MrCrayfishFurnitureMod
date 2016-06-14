@@ -17,11 +17,16 @@
  */
 package com.mrcrayfish.furniture.proxy;
 
+import com.mrcrayfish.furniture.Reference;
+import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.render.tileentity.BlenderRenderer;
 import com.mrcrayfish.furniture.render.tileentity.ChoppingBoardRenderer;
 import com.mrcrayfish.furniture.render.tileentity.CookieRenderer;
 import com.mrcrayfish.furniture.render.tileentity.CupRenderer;
+import com.mrcrayfish.furniture.render.tileentity.DoorMatRenderer;
+import com.mrcrayfish.furniture.render.tileentity.EskyRenderer;
+import com.mrcrayfish.furniture.render.tileentity.GrillRenderer;
 import com.mrcrayfish.furniture.render.tileentity.MicrowaveRenderer;
 import com.mrcrayfish.furniture.render.tileentity.MirrorRenderer;
 import com.mrcrayfish.furniture.render.tileentity.OvenRenderer;
@@ -33,6 +38,9 @@ import com.mrcrayfish.furniture.tileentity.TileEntityBlender;
 import com.mrcrayfish.furniture.tileentity.TileEntityChoppingBoard;
 import com.mrcrayfish.furniture.tileentity.TileEntityCookieJar;
 import com.mrcrayfish.furniture.tileentity.TileEntityCup;
+import com.mrcrayfish.furniture.tileentity.TileEntityDoorMat;
+import com.mrcrayfish.furniture.tileentity.TileEntityEsky;
+import com.mrcrayfish.furniture.tileentity.TileEntityGrill;
 import com.mrcrayfish.furniture.tileentity.TileEntityMicrowave;
 import com.mrcrayfish.furniture.tileentity.TileEntityMirror;
 import com.mrcrayfish.furniture.tileentity.TileEntityOven;
@@ -43,9 +51,14 @@ import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.client.resources.model.ModelBakery;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.Item;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -58,9 +71,17 @@ public class ClientProxy extends CommonProxy
 	public static Entity backupEntity = null;
 
 	@Override
-	public void registerRenders()
+	public void registerRenders()	
 	{
+		for(EnumDyeColor dye : EnumDyeColor.values())
+		{
+			ModelResourceLocation model = new ModelResourceLocation(Reference.MOD_ID + ":" + "present_" + dye.getName(), "inventory");
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(FurnitureBlocks.present), dye.getMetadata(), model);
+			ModelBakery.addVariantName(Item.getItemFromBlock(FurnitureBlocks.present), Reference.MOD_ID + ":" + "present_" + dye.getName());
+		}
+		
 		FurnitureItems.registerRenders();
+		FurnitureBlocks.registerRenders();
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCookieJar.class, new CookieRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlate.class, new PlateRenderer());
@@ -73,6 +94,9 @@ public class ClientProxy extends CommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTree.class, new TreeRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityMirror.class, new MirrorRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityOven.class, new OvenRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGrill.class, new GrillRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEsky.class, new EskyRenderer());
+		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDoorMat.class, new DoorMatRenderer());
 	}
 
 	@Override
