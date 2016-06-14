@@ -40,8 +40,8 @@ public class BlockCabinetKitchen extends BlockFurnitureTile
 	public BlockCabinetKitchen(Material material)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeWood);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeWood);
 	}
 
 	@Override
@@ -63,17 +63,5 @@ public class BlockCabinetKitchen extends BlockFurnitureTile
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityCabinetKitchen();
-	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemKitchenCabinet;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemKitchenCabinet);
 	}
 }

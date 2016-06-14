@@ -45,8 +45,8 @@ public class BlockCounterSink extends BlockFurniture
 	public BlockCounterSink(Material material)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeStone);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeStone);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(FILLED, Boolean.valueOf(false)));
 	}
 	
@@ -160,18 +160,6 @@ public class BlockCounterSink extends BlockFurniture
 		return true;
 	}
 
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemCounterSink;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemCounterSink);
-	}
-	
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{

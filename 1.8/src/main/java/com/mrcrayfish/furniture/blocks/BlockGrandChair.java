@@ -29,12 +29,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockGrandChair extends BlockFurniture 
 {
-
-	public BlockGrandChair(Material materialIn) 
+	public BlockGrandChair(Material materialIn, boolean top) 
 	{
 		super(materialIn);
 		this.setHardness(1.0F);
 		this.setStepSound(Block.soundTypeWood);
+		if(top) this.setCreativeTab(null);
 	}
 	
 	@Override
@@ -42,11 +42,17 @@ public class BlockGrandChair extends BlockFurniture
 	{
 		if(this == FurnitureBlocks.grand_chair_bottom)
 		{
-			worldIn.destroyBlock(pos.up(), false);
+			if(worldIn.getBlockState(pos.up()).getBlock() == FurnitureBlocks.grand_chair_top)
+			{
+				worldIn.destroyBlock(pos.up(), false);
+			}
 		}
 		else
 		{
-			worldIn.destroyBlock(pos.down(), false);
+			if(worldIn.getBlockState(pos.down()).getBlock() == FurnitureBlocks.grand_chair_bottom)
+			{
+				worldIn.destroyBlock(pos.down(), false);
+			}
 		}
 	}
 	
@@ -141,12 +147,12 @@ public class BlockGrandChair extends BlockFurniture
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return FurnitureItems.itemGrandChair;
+		return new ItemStack(FurnitureBlocks.grand_chair_bottom).getItem();
 	}
-
+	
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
-		return new ItemStack(FurnitureItems.itemGrandChair);
+		return new ItemStack(FurnitureBlocks.grand_chair_bottom);
 	}
 }

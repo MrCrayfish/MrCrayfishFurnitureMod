@@ -39,6 +39,7 @@ public class Recipes
 	public static ArrayList<RecipeData> localDishwasherRecipes = new ArrayList<RecipeData>();
 	public static ArrayList<RecipeData> localWashingMachineRecipes = new ArrayList<RecipeData>();
 	public static ArrayList<RecipeData> localMicrowaveRecipes = new ArrayList<RecipeData>();
+	public static ArrayList<RecipeData> localGrillRecipes = new ArrayList<RecipeData>();
 
 	/** Recipes registered through FMLInterModComms */
 	public static ArrayList<RecipeData> commMineBayRecipes = new ArrayList<RecipeData>();
@@ -51,6 +52,7 @@ public class Recipes
 	public static ArrayList<RecipeData> commDishwasherRecipes = new ArrayList<RecipeData>();
 	public static ArrayList<RecipeData> commWashingMachineRecipes = new ArrayList<RecipeData>();
 	public static ArrayList<RecipeData> commMicrowaveRecipes = new ArrayList<RecipeData>();
+	public static ArrayList<RecipeData> commGrillRecipes = new ArrayList<RecipeData>();
 
 	/** Recipes registered from a server */
 	public static ArrayList<RecipeData> remoteMineBayRecipes = new ArrayList<RecipeData>();
@@ -63,6 +65,7 @@ public class Recipes
 	public static ArrayList<RecipeData> remoteDishwasherRecipes = new ArrayList<RecipeData>();
 	public static ArrayList<RecipeData> remoteWashingMachineRecipes = new ArrayList<RecipeData>();
 	public static ArrayList<RecipeData> remoteMicrowaveRecipes = new ArrayList<RecipeData>();
+	public static ArrayList<RecipeData> remoteGrillRecipes = new ArrayList<RecipeData>();
 
 	public static RecipeData[] getMineBayItems()
 	{
@@ -235,6 +238,23 @@ public class Recipes
 		}
 		return null;
 	}
+	
+	public static RecipeData getGrillRecipeFromInput(ItemStack itemStack)
+	{
+		ArrayList<RecipeData> recipes = getRecipes("grill");
+		for (int i = 0; i < recipes.size(); i++)
+		{
+			ItemStack validItemStack = recipes.get(i).getInput();
+			if (validItemStack.getItem() == itemStack.getItem())
+			{
+				if (validItemStack.getItemDamage() == itemStack.getItemDamage())
+				{
+					return recipes.get(i);
+				}
+			}
+		}
+		return null;
+	}
 
 	public static void updateDataList()
 	{
@@ -278,6 +298,10 @@ public class Recipes
 		for (RecipeData data : localDishwasherRecipes)
 		{
 			recipeData.add("type=dishwasher," + data.toString());
+		}
+		for (RecipeData data : localGrillRecipes)
+		{
+			recipeData.add("type=grill," + data.toString());
 		}
 	}
 
@@ -325,6 +349,10 @@ public class Recipes
 			{
 				return localDishwasherRecipes;
 			}
+			else if (type.equalsIgnoreCase("grill"))
+			{
+				return localGrillRecipes;
+			}
 		}
 		else
 		{
@@ -367,6 +395,10 @@ public class Recipes
 			else if (type.equalsIgnoreCase("dishwasher"))
 			{
 				return remoteDishwasherRecipes;
+			}
+			else if (type.equalsIgnoreCase("grill"))
+			{
+				return remoteGrillRecipes;
 			}
 		}
 		return new ArrayList<RecipeData>();
@@ -414,6 +446,10 @@ public class Recipes
 		{
 			localDishwasherRecipes.add(data);
 		}
+		for (RecipeData data : commGrillRecipes)
+		{
+			localGrillRecipes.add(data);
+		}
 	}
 
 	public static void clearLocalRecipes()
@@ -428,6 +464,7 @@ public class Recipes
 		localMicrowaveRecipes.clear();
 		localWashingMachineRecipes.clear();
 		localDishwasherRecipes.clear();
+		localGrillRecipes.clear();
 	}
 
 	public static void clearRemoteRecipes()
@@ -442,6 +479,7 @@ public class Recipes
 		remoteMicrowaveRecipes.clear();
 		remoteWashingMachineRecipes.clear();
 		remoteDishwasherRecipes.clear();
+		remoteGrillRecipes.clear();
 	}
 
 	public static void clearCommRecipes()
@@ -456,6 +494,7 @@ public class Recipes
 		commMicrowaveRecipes.clear();
 		commWashingMachineRecipes.clear();
 		commDishwasherRecipes.clear();
+		commGrillRecipes.clear();
 	}
 
 	public static void clearAll()

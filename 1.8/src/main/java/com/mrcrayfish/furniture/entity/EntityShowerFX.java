@@ -91,12 +91,4 @@ public class EntityShowerFX extends EntityFX
 			this.motionZ *= 0.699999988079071D;
 		}
 	}
-
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void func_180434_a(WorldRenderer renderer, Entity p_180434_2_, float p_180434_3_, float p_180434_4_, float p_180434_5_, float p_180434_6_, float p_180434_7_, float p_180434_8_)
-	{
-		renderer.setBrightness(200);
-		super.func_180434_a(renderer, p_180434_2_, p_180434_3_, p_180434_4_, p_180434_5_, p_180434_6_, p_180434_7_, p_180434_8_);
-	}
 }

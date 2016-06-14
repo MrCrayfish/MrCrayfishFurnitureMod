@@ -19,6 +19,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
@@ -41,8 +42,9 @@ public class BlockLampOff extends BlockFurniture
 	public BlockLampOff(Material material)
 	{
 		super(material);
-		setHardness(0.75F);
-		setStepSound(Block.soundTypeCloth);
+		this.setHardness(0.75F);
+		this.setStepSound(Block.soundTypeCloth);
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
 	@Override
@@ -75,7 +77,7 @@ public class BlockLampOff extends BlockFurniture
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		if (world.isBlockPowered(pos) | world.getBlockState(pos.down()).getBlock() == FurnitureBlocks.bedside_cabinet)
+		if (world.isBlockPowered(pos) | world.getBlockState(pos.down()).getBlock() == FurnitureBlocks.bedside_cabinet_oak)
 		{
 			world.setBlockState(pos, FurnitureBlocks.lamp_on.getDefaultState(), 2);
 			world.notifyBlockOfStateChange(pos.down(), this);
@@ -85,17 +87,5 @@ public class BlockLampOff extends BlockFurniture
 			player.addChatComponentMessage(new ChatComponentText("Make sure lamp is powered by redstone or placed on a bedside cabinet."));
 		}
 		return true;
-	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemLamp;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemLamp);
 	}
 }

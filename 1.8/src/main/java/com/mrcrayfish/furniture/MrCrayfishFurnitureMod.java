@@ -27,7 +27,6 @@ import com.mrcrayfish.furniture.blocks.tv.Channels;
 import com.mrcrayfish.furniture.entity.EntityMirror;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.gui.GuiHandler;
-import com.mrcrayfish.furniture.handler.BlockEvents;
 import com.mrcrayfish.furniture.handler.ConfigurationHandler;
 import com.mrcrayfish.furniture.handler.CraftingHandler;
 import com.mrcrayfish.furniture.handler.InputHandler;
@@ -60,7 +59,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, acceptedMinecraftVersions = "[1.8,1.8.9]")
+@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, acceptedMinecraftVersions = "[1.8]")
 public class MrCrayfishFurnitureMod
 {
 	@Instance(Reference.MOD_ID)
@@ -76,9 +75,6 @@ public class MrCrayfishFurnitureMod
 	{
 		/** Config Changed Event */
 		FMLCommonHandler.instance().bus().register(new ConfigurationHandler());
-
-		/** TileEntity Registering */
-		FurnitureTileEntities.register();
 		
 		/** Block and Item Registring */
 		FurnitureBlocks.init();
@@ -118,13 +114,15 @@ public class MrCrayfishFurnitureMod
 			FMLCommonHandler.instance().bus().register(new MirrorRenderer());
 		}
 		FMLCommonHandler.instance().bus().register(new PlayerEvents());
-		MinecraftForge.EVENT_BUS.register(new BlockEvents());
 		
 		/** Render Registering */
 		proxy.registerRenders();
 
 		/** GUI Handler Registering */
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+		
+		/** TileEntity Registering */
+		FurnitureTileEntities.register();
 
 		/** Entity Registering */
 		EntityRegistry.registerModEntity(EntitySittableBlock.class, "MountableBlock", 0, this, 80, 1, false);

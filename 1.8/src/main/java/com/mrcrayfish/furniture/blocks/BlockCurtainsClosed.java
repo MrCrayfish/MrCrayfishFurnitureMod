@@ -7,6 +7,7 @@ public class BlockCurtainsClosed extends BlockCurtains
 	public BlockCurtainsClosed(Material material) 
 	{
 		super(material);
+		this.setCreativeTab(null);
 	}
 
 	@Override

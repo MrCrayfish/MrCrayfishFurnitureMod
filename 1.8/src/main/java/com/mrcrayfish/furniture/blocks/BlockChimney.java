@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
 import net.minecraft.block.Block;
@@ -32,6 +33,7 @@ public class BlockChimney extends Block {
 		this.setTickRandomly(true);
 		this.setHardness(1.0F);
 		this.setStepSound(Block.soundTypeStone);
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	
 	@Override
@@ -98,19 +100,7 @@ public class BlockChimney extends Block {
 	{
 		return new BlockState(this,  new IProperty[] { TYPE });
 	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemChimney;
-	}
-	
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemChimney);
-	}
-	
+
 	public static enum ChimneyType implements IStringSerializable
 	{
 		TOP, BOTTOM;

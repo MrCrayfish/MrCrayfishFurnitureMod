@@ -40,8 +40,9 @@ public class BlockCabinet extends BlockFurnitureTile
 	public BlockCabinet(Material material)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeWood);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeWood);
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	
 	@Override
@@ -63,17 +64,5 @@ public class BlockCabinet extends BlockFurnitureTile
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityCabinet();
-	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemCabinet;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemCabinet);
 	}
 }

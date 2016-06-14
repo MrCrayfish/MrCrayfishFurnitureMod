@@ -1,18 +1,15 @@
 {
-"parent": "builtin/generated",
-"textures": {
-"layer0": "cfm:items/itembirdbath"
-},
-"display": {
-"thirdperson": {
-"rotation": [ -90, 0, 0 ],
-"translation": [ 0, 1, -3 ],
-"scale": [ 0.55, 0.55, 0.55 ]
-},
-"firstperson": {
-"rotation": [ 0, -135, 25 ],
-"translation": [ 0, 4, 2 ],
-"scale": [ 1.7, 1.7, 1.7 ]
-}
-}
+	"parent": "cfm:block/bird_bath_pre",
+	"display": {
+        "thirdperson": {
+            "rotation": [ 90, 0, 180 ],
+            "translation": [ 0, 0.5, -2.5 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        },
+		"gui": {
+			"rotation": [ 0, -90, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 1, 1, 1 ]
+		}
+    }
 }

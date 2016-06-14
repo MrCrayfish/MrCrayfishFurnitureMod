@@ -31,6 +31,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
@@ -38,6 +39,7 @@ public class GuiFreezer extends GuiContainer
 {
 	private TileEntityFreezer freezer;
 	private static final ResourceLocation gui = new ResourceLocation("cfm:textures/gui/freezer.png");
+	private VertexFormat format = new VertexFormat();
 
 	private GuiButton button_start;
 	
@@ -91,23 +93,23 @@ public class GuiFreezer extends GuiContainer
 		
 		if(isPointInRegion(110, 6, 16, 16, mouseX, mouseY))
 		{
-			drawHoveringText(Arrays.asList(new Object[]{"Ice Level: " + freezer.timeRemaining + "/" + freezer.fuelTime}), mouseX, mouseY);
+			drawHoveringText(Arrays.asList(new String[]{"Ice Level: " + freezer.timeRemaining + "/" + freezer.fuelTime}), mouseX, mouseY);
 		}
 		
 		if(isPointInRegion(107, 31, 4, 18, mouseX, mouseY))
 		{
-			drawHoveringText(Arrays.asList(new Object[]{"Freezing: " + freezer.progress + "/200"}), mouseX, mouseY);
+			drawHoveringText(Arrays.asList(new String[]{"Freezing: " + freezer.progress + "/200"}), mouseX, mouseY);
 		}
 		
 		if(isPointInRegion(32, 8, 11, 11, mouseX, mouseY))
 		{
 			if (freezer.isFreezing())
 			{
-				drawHoveringText(Arrays.asList(new Object[]{"Running"}), mouseX, mouseY);
+				drawHoveringText(Arrays.asList(new String[]{"Running"}), mouseX, mouseY);
 			}
 			else
 			{
-				drawHoveringText(Arrays.asList(new Object[]{"Stopped"}), mouseX, mouseY);
+				drawHoveringText(Arrays.asList(new String[]{"Stopped"}), mouseX, mouseY);
 			}
 		}
 	}
@@ -152,16 +154,6 @@ public class GuiFreezer extends GuiContainer
 	
 	public void drawColour(int x, int y, int width, int height, int par4)
 	{
-		WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		renderer.startDrawingQuads();
-		renderer.setColorOpaque_I(par4);
-		renderer.addVertex(x, y, 0.0D);
-		renderer.addVertex(x, y + height, 0.0D);
-		renderer.addVertex(x + width, y + height, 0.0D);
-		renderer.addVertex(x + width, y, 0.0D);
-		Tessellator.getInstance().draw();
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		drawRect(x, y, x + width, y + height, par4);
 	}
 }

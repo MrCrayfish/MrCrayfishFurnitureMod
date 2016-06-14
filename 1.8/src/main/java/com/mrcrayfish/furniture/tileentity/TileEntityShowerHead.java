@@ -46,43 +46,45 @@ public class TileEntityShowerHead extends TileEntity implements IUpdatePlayerLis
 			double posZ = pos.getZ() + 0.35D + (rand.nextDouble() / 3);
 			ParticleSpawner.spawnParticle("shower", posX, pos.getY() + 0.065D, posZ);
 		}
-
-		List<EntityPlayer> listPlayers = worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(pos.getX(), pos.getY() - 1, pos.getZ(), pos.getX() + 1.0D, pos.getY() - 1 + 1.0D, pos.getZ() + 1.0D));
-		for (EntityPlayer player : listPlayers)
+		else
 		{
-			if (player != null)
+			if (timer % 5 == 0)
 			{
-				player.curePotionEffects(new ItemStack(Items.milk_bucket));
-				player.triggerAchievement(FurnitureAchievements.allClean);
-
-				for (int i = 0; i < 4; i++)
+				List<EntityPlayer> listPlayers = worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(pos.getX(), pos.getY() - 1, pos.getZ(), pos.getX() + 1.0D, pos.getY() - 1 + 1.0D, pos.getZ() + 1.0D));
+				for (EntityPlayer player : listPlayers)
 				{
-					ItemStack itemstack = player.getCurrentArmor(i);
-					if (itemstack != null)
+					player.curePotionEffects(new ItemStack(Items.milk_bucket));
+					player.triggerAchievement(FurnitureAchievements.allClean);
+	
+					for (int i = 0; i < 4; i++)
 					{
-						if (itemstack.getItem() instanceof ItemArmor)
+						ItemStack itemstack = player.getCurrentArmor(i);
+						if (itemstack != null)
 						{
-							ItemArmor armour = (ItemArmor) itemstack.getItem();
-							if (armour.getArmorMaterial() == ArmorMaterial.LEATHER)
+							if (itemstack.getItem() instanceof ItemArmor)
 							{
-								player.setCurrentItemOrArmor(i + 1, new ItemStack(itemstack.getItem(), 1, itemstack.getItemDamage()));
+								ItemArmor armour = (ItemArmor) itemstack.getItem();
+								if (armour.getArmorMaterial() == ArmorMaterial.LEATHER)
+								{
+									player.setCurrentItemOrArmor(i + 1, new ItemStack(itemstack.getItem(), 1, itemstack.getItemDamage()));
+								}
 							}
 						}
 					}
-				}
-
-				if (player.isBurning())
-				{
-					player.extinguish();
+	
+					if (player.isBurning())
+					{
+						player.extinguish();
+					}
 				}
 			}
+	
+			if (timer >= 20)
+			{
+				worldObj.playSoundEffect(pos.getX(), pos.getY(), pos.getZ(), "cfm:shower", 0.75F, 1.0F);
+				timer = 0;
+			}
+			timer++;
 		}
-
-		if (timer >= 20)
-		{
-			worldObj.playSoundEffect(pos.getX(), pos.getY(), pos.getZ(), "cfm:shower", 0.75F, 1.0F);
-			timer = 0;
-		}
-		timer++;
 	}
 }

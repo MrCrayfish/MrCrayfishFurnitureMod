@@ -19,6 +19,7 @@ package com.mrcrayfish.furniture.init;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -32,18 +33,12 @@ public class FurnitureTab extends CreativeTabs
 	@Override
 	public Item getTabIconItem() 
 	{
-		return FurnitureItems.itemChairWood;
+		return new ItemStack(FurnitureBlocks.chair_oak).getItem();
 	}
 
 	@SideOnly(Side.CLIENT)
 	public String getBackgroundImageName() 
 	{
 		return "furniture.png";
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public boolean drawInForegroundOfTab() 
-	{
-		return false;
 	}
 }

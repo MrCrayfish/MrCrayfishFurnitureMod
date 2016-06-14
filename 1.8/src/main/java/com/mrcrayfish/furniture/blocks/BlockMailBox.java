@@ -49,7 +49,7 @@ public class BlockMailBox extends BlockFurnitureTile
 	public BlockMailBox(Material material)
 	{
 		super(material);
-		setStepSound(Block.soundTypeWood);
+		this.setStepSound(Block.soundTypeWood);
 	}
 	
 	@Override
@@ -194,19 +194,7 @@ public class BlockMailBox extends BlockFurnitureTile
 	{
 		return new TileEntityMailBox();
 	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemMailBox;
-	}
 
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemMailBox);
-	}
-	
 	@Override
 	public int getComparatorInputOverride(World world, BlockPos pos) 
 	{

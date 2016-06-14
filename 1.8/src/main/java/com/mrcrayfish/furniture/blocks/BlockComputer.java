@@ -47,8 +47,8 @@ public class BlockComputer extends BlockFurnitureTile
 	public BlockComputer(Material material)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeAnvil);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeAnvil);
 	}
 
 	@Override
@@ -98,17 +98,5 @@ public class BlockComputer extends BlockFurnitureTile
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityComputer();
-	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemComputer;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemComputer);
 	}
 }

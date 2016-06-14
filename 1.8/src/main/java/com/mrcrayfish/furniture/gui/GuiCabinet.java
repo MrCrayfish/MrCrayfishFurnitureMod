@@ -19,7 +19,9 @@ package com.mrcrayfish.furniture.gui;
 
 import org.lwjgl.opengl.GL11;
 
+import com.mrcrayfish.furniture.blocks.BlockCabinet;
 import com.mrcrayfish.furniture.gui.containers.ContainerCabinet;
+import com.mrcrayfish.furniture.init.FurnitureBlocks;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.IInventory;
@@ -27,13 +29,21 @@ import net.minecraft.util.ResourceLocation;
 
 public class GuiCabinet extends GuiContainer
 {
-	private static final ResourceLocation gui = new ResourceLocation("cfm:textures/gui/cabinet.png");
+	private static final ResourceLocation GUI_CABINET_OAK = new ResourceLocation("cfm:textures/gui/cabinet_oak.png");
+	private static final ResourceLocation GUI_CABINET_SPRUCE = new ResourceLocation("cfm:textures/gui/cabinet_spruce.png");
+	private static final ResourceLocation GUI_CABINET_BIRCH = new ResourceLocation("cfm:textures/gui/cabinet_birch.png");
+	private static final ResourceLocation GUI_CABINET_JUNGLE = new ResourceLocation("cfm:textures/gui/cabinet_jungle.png");
+	private static final ResourceLocation GUI_CABINET_ACACIA = new ResourceLocation("cfm:textures/gui/cabinet_acacia.png");
+	private static final ResourceLocation GUI_CABINET_DARK_OAK = new ResourceLocation("cfm:textures/gui/cabinet_dark_oak.png");
 
-	public GuiCabinet(IInventory par1IInventory, IInventory par2IInventory)
+	private final int type;
+
+	public GuiCabinet(IInventory playerInventory, IInventory cabinetInventory, BlockCabinet block)
 	{
-		super(new ContainerCabinet(par1IInventory, par2IInventory));
+		super(new ContainerCabinet(playerInventory, cabinetInventory));
 		this.xSize = 176;
 		this.ySize = 167;
+		this.type = getType(block);
 	}
 
 	@Override
@@ -47,9 +57,46 @@ public class GuiCabinet extends GuiContainer
 	protected void drawGuiContainerBackgroundLayer(float par1, int par2, int par3)
 	{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.getTextureManager().bindTexture(gui);
+		this.bindGuiTexture();
 		int l = (width - xSize) / 2;
 		int i1 = (height - ySize) / 2;
 		this.drawTexturedModalRect(l, i1, 0, 0, xSize, ySize);
+	}
+
+	public void bindGuiTexture()
+	{
+		ResourceLocation resource;
+		switch (type)
+		{
+		case 1:
+			resource = GUI_CABINET_SPRUCE;
+			break;
+		case 2:
+			resource = GUI_CABINET_BIRCH;
+			break;
+		case 3:
+			resource = GUI_CABINET_JUNGLE;
+			break;
+		case 4:
+			resource = GUI_CABINET_ACACIA;
+			break;
+		case 5:
+			resource = GUI_CABINET_DARK_OAK;
+			break;
+		default:
+			resource = GUI_CABINET_OAK;
+			break;
+		}
+		this.mc.getTextureManager().bindTexture(resource);
+	}
+
+	public int getType(BlockCabinet block)
+	{
+		if (block == FurnitureBlocks.cabinet_spruce) return 1;
+		if (block == FurnitureBlocks.cabinet_birch) return 2;
+		if (block == FurnitureBlocks.cabinet_jungle) return 3;
+		if (block == FurnitureBlocks.cabinet_acacia) return 4;
+		if (block == FurnitureBlocks.cabinet_dark_oak) return 5;
+		return 0;
 	}
 }

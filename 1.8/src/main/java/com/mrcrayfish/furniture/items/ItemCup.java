@@ -132,7 +132,7 @@ public class ItemCup extends Item
 
 						if (iblockstate1.getBlock() == this.cupBlock)
 						{
-							ItemBlock.setTileEntityNBT(world, pos, stack);
+							ItemBlock.setTileEntityNBT(world, pos, stack, player);
 							iblockstate1.getBlock().onBlockPlacedBy(world, pos, iblockstate1, player, stack);
 						}
 

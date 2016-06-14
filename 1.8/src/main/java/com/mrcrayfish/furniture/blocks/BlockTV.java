@@ -54,8 +54,8 @@ public class BlockTV extends BlockFurnitureTile
 	public BlockTV(Material material)
 	{
 		super(material);
-		setStepSound(Block.soundTypeWood);
-		setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(CHANNEL, 0));
+		this.setStepSound(Block.soundTypeWood);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(CHANNEL, 0));
 	}
 	
 	@Override
@@ -128,19 +128,7 @@ public class BlockTV extends BlockFurnitureTile
 	{
 		return new TileEntityTV();
 	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemTV;
-	}
 
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemTV);
-	}
-	
 	@Override
 	protected BlockState createBlockState()
 	{

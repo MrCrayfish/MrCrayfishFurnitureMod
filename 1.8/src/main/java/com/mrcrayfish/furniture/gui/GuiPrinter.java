@@ -48,12 +48,12 @@ public class GuiPrinter extends GuiContainer
 		
 		if(isPointInRegion(73, 30, 5, 18, mouseX, mouseY))
 		{
-			drawHoveringText(Arrays.asList(new Object[]{"Ink Level: " + printer.printerPrintTime + "/" + printer.currentItemPrintTime}), mouseX, mouseY);
+			drawHoveringText(Arrays.asList(new String[]{"Ink Level: " + printer.printerPrintTime + "/" + printer.currentItemPrintTime}), mouseX, mouseY);
 		}
 		
 		if(isPointInRegion(79, 30, 5, 18, mouseX, mouseY))
 		{
-			drawHoveringText(Arrays.asList(new Object[]{"Progress: " + printer.printingTime + "/" + printer.totalCookTime}), mouseX, mouseY);
+			drawHoveringText(Arrays.asList(new String[]{"Progress: " + printer.printingTime + "/" + printer.totalCookTime}), mouseX, mouseY);
 		}
 	}
 
@@ -73,7 +73,6 @@ public class GuiPrinter extends GuiContainer
 		this.drawTexturedModalRect(l, i1, 0, 0, xSize, ySize + 21);
 		int var7;
 
-		//TODO switch these around!
 		if (this.printer.isPrinting())
 		{
 			var7 = this.getPrintTimeRemainingScaled(16);

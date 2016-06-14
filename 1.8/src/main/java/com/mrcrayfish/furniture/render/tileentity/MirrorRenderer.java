@@ -37,7 +37,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer
 	private int quality = ConfigurationHandler.mirrorQuality;
 	private long renderEndNanoTime;
 	
-	private static Map<Entity, Integer> registerMirrors = new ConcurrentHashMap<Entity, Integer>();
+	private static Map<EntityMirror, Integer> registerMirrors = new ConcurrentHashMap<EntityMirror, Integer>();
 	private static List<Integer> pendingRemoval = Collections.synchronizedList(new ArrayList<Integer>());
 
 	public static void removeRegisteredMirror(Entity entity)
@@ -52,55 +52,53 @@ public class MirrorRenderer extends TileEntitySpecialRenderer
 	}
 
 	@Override
-	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
+	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float partialTicks, int breakStage)
 	{
+		TileEntityMirror mirror = (TileEntityMirror) tileEntity;
+		
 		if(!ConfigurationHandler.mirrorEnabled)
 			return;
 		
 		if(TileEntityRendererDispatcher.instance.entity instanceof EntityMirror)
 			return;
 		
-		TileEntityMirror mirror = (TileEntityMirror) tileEntity;
-		IBlockState state = tileEntity.getWorld().getBlockState(tileEntity.getPos());
-		if (state.getBlock() instanceof BlockMirror)
+		if (!registerMirrors.containsKey(mirror.getMirror()))
 		{
-			if (!registerMirrors.containsKey(mirror.getMirror()))
-			{
-				int newTextureId = GL11.glGenTextures();
-				GlStateManager.bindTexture(newTextureId);
-				GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, quality, quality, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, BufferUtils.createByteBuffer(3 * quality * quality));
-				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-				GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-				registerMirrors.put(mirror.getMirror(), newTextureId);
-				return;
-			}
-			
-			((EntityMirror)mirror.getMirror()).rendering = true;
-
-			EnumFacing facing = (EnumFacing) state.getValue(BlockMirror.FACING);
-			GlStateManager.pushMatrix();
-			{
-				GlStateManager.disableLighting();
-				GlStateManager.bindTexture(registerMirrors.get(mirror.getMirror()).intValue());
-				GlStateManager.translate((float) posX + 0.5F, (float) posY, (float) posZ + 0.5F);
-				GlStateManager.rotate(-90F * facing.getHorizontalIndex() + 180F, 0, 1, 0);
-				GlStateManager.translate(-0.5F, 0, -0.43F);
-				GL11.glBegin(GL11.GL_QUADS);
-				{
-					GL11.glTexCoord2d(1, 0);
-					GL11.glVertex3d(0.0625, 0.0625, 0);
-					GL11.glTexCoord2d(0, 0);
-					GL11.glVertex3d(0.9375, 0.0625, 0);
-					GL11.glTexCoord2d(0, 1);
-					GL11.glVertex3d(0.9375, 0.9375, 0);
-					GL11.glTexCoord2d(1, 1);
-					GL11.glVertex3d(0.0625, 0.9375, 0);
-				}
-				GL11.glEnd();
-				GlStateManager.enableLighting();
-			}
-			GlStateManager.popMatrix();
+			int newTextureId = GL11.glGenTextures();
+			GlStateManager.bindTexture(newTextureId);
+			GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, quality, quality, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, BufferUtils.createByteBuffer(3 * quality * quality));
+			GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+			GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
+			registerMirrors.put(mirror.getMirror(), newTextureId);
+			return;
 		}
+		
+		mirror.getMirror().rendering = true;
+
+		EnumFacing facing = EnumFacing.getHorizontal(mirror.getBlockMetadata());
+		GlStateManager.pushMatrix();
+		{
+			GlStateManager.disableLighting();
+			GlStateManager.bindTexture(registerMirrors.get(mirror.getMirror()).intValue());
+			GlStateManager.translate(posX + 0.5, posY, posZ + 0.5);
+			GlStateManager.rotate(-90F * facing.getHorizontalIndex() + 180F, 0, 1, 0);
+			GlStateManager.translate(-0.5F, 0, -0.43F);
+			GL11.glBegin(GL11.GL_QUADS);
+			{
+				GL11.glTexCoord2d(1, 0);
+				GL11.glVertex3d(0.0625, 0.0625, 0);
+				GL11.glTexCoord2d(0, 0);
+				GL11.glVertex3d(0.9375, 0.0625, 0);
+				GL11.glTexCoord2d(0, 1);
+				GL11.glVertex3d(0.9375, 0.9375, 0);
+				GL11.glTexCoord2d(1, 1);
+				GL11.glVertex3d(0.0625, 0.9375, 0);
+			}
+			GL11.glEnd();
+			GlStateManager.enableLighting();
+		}
+		GlStateManager.popMatrix();
+		GlStateManager.enableLighting();
 	}
 
 	@SubscribeEvent
@@ -123,7 +121,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer
 
 		if (mc.inGameHasFocus)
 		{
-			for (Entity entity : registerMirrors.keySet())
+			for (EntityMirror entity : registerMirrors.keySet())
 			{
 				if (entity == null)
 				{
@@ -131,7 +129,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer
 					continue;
 				}
 				
-				if(!((EntityMirror)entity).rendering)
+				if(!entity.rendering)
 					continue;
 				
 				if(!mc.thePlayer.canEntityBeSeen(entity))
@@ -183,7 +181,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer
 					mc.displayHeight = heightBackup;
 				}
 				
-				((EntityMirror)entity).rendering = false;
+				entity.rendering = false;
 			}
 		}
 	}

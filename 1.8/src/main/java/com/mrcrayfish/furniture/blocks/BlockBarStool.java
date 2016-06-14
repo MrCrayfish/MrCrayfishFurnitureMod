@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.util.SittableUtil;
@@ -51,9 +52,10 @@ public class BlockBarStool extends Block
 	public BlockBarStool(Material material)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeWood);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeWood);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(COLOUR, 0));
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
 	@Override
@@ -103,24 +105,6 @@ public class BlockBarStool extends Block
 		}
 		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemBarStool;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemBarStool);
-	}
-	
-	@SideOnly(Side.CLIENT)
-    public Item getItem(World worldIn, BlockPos pos)
-    {
-        return FurnitureItems.itemBarStool;
-    }
 
 	@Override
 	public int getMetaFromState(IBlockState state)

@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture.gui;
 
+import java.awt.Color;
 import java.util.Arrays;
 
 import org.lwjgl.input.Keyboard;
@@ -31,6 +32,8 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.WorldRenderer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
@@ -38,6 +41,7 @@ public class GuiWashingMachine extends GuiContainer
 {
 	private static final ResourceLocation gui = new ResourceLocation("cfm:textures/gui/washingmachine.png");
 	private TileEntityWashingMachine tileEntityWashingMachine;
+	private VertexFormat format = new VertexFormat();
 
 	private GuiButton button_start;
 
@@ -92,17 +96,17 @@ public class GuiWashingMachine extends GuiContainer
 		{
 			if (tileEntityWashingMachine.isWashing())
 			{
-				drawHoveringText(Arrays.asList(new Object[]{"Running"}), mouseX, mouseY);
+				drawHoveringText(Arrays.asList(new String[]{"Running"}), mouseX, mouseY);
 			}
 			else
 			{
-				drawHoveringText(Arrays.asList(new Object[]{"Stopped"}), mouseX, mouseY);
+				drawHoveringText(Arrays.asList(new String[]{"Stopped"}), mouseX, mouseY);
 			}
 		}
 		
 		if(isPointInRegion(129, 30, 10, 73, mouseX, mouseY))
 		{
-			drawHoveringText(Arrays.asList(new Object[]{"Soap: " + tileEntityWashingMachine.timeRemaining + "/5000"}), mouseX, mouseY);
+			drawHoveringText(Arrays.asList(new String[]{"Soap: " + tileEntityWashingMachine.timeRemaining + "/5000"}), mouseX, mouseY);
 		}
 	}
 
@@ -148,17 +152,6 @@ public class GuiWashingMachine extends GuiContainer
 
 	public void drawColour(int x, int y, int width, int height, int par4)
 	{
-		WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-		renderer.startDrawingQuads();
-		renderer.setColorOpaque_I(par4);
-		renderer.addVertex(x, y, 0.0D);
-		renderer.addVertex(x, y + height, 0.0D);
-		renderer.addVertex(x + width, y + height, 0.0D);
-		renderer.addVertex(x + width, y, 0.0D);
-		Tessellator.getInstance().draw();
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		drawRect(x, y, x + width, y + height, par4);
 	}
-
 }

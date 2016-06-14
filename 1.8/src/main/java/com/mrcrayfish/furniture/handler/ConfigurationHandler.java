@@ -37,7 +37,7 @@ public class ConfigurationHandler
 	public static String[] items = {};
 	public static boolean canDisplay = true;
 	public static boolean hasDisplayedOnce = false;
-	public static boolean api_debug = true;
+	public static boolean api_debug = false;
 	
 	public static boolean mirrorEnabled = true;
 	public static int mirrorQuality = 128;
@@ -60,6 +60,8 @@ public class ConfigurationHandler
 
 	public static boolean wash_1 = true, wash_2 = true, wash_3 = true, wash_4 = true, wash_5 = true, wash_6 = true, wash_7 = true, wash_8 = true, wash_9 = true, wash_10 = true;
 	public static boolean wash_11 = true, wash_12 = true, wash_13 = true, wash_14 = true, wash_15 = true, wash_16 = true, wash_17 = true, wash_18 = true, wash_19 = true, wash_20 = true;
+	
+	public static boolean grill_1 = true, grill_2 = true, grill_3 = true;
 
 	public static void init(File file)
 	{
@@ -75,8 +77,8 @@ public class ConfigurationHandler
 		mirrorEnabled = config.getBoolean("mirror-enabled", CATEGORY_SETTINGS, true, "Determines whether the mirror will be rendered.");
 		mirrorClouds = config.getBoolean("mirror-clouds", CATEGORY_SETTINGS, false, "Set whether the mirror should render clouds.");
 		mirrorFov = config.getFloat("mirror-fov", CATEGORY_SETTINGS, 80F, 10F, 100F, "Sets the field of view for the mirror.");
-		mirrorQuality = config.getInt("mirror-quality", CATEGORY_SETTINGS, 128, 16, 512, "Sets the resolution for the mirror. High number means better quality but worse performace.");
-		api_debug = config.getBoolean("recipe-api-debug", CATEGORY_SETTINGS, true, "If true, prints out information about RecipeAPI. Recommended 'true' for people trying to add custom recipe.");
+		mirrorQuality = config.getInt("mirror-quality", CATEGORY_SETTINGS, 64, 16, 512, "Sets the resolution for the mirror. High number means better quality but worse performace.");
+		api_debug = config.getBoolean("recipe-api-debug", CATEGORY_SETTINGS, false, "If true, prints out information about RecipeAPI. Recommended 'true' for people trying to add custom recipes.");
 		canDisplay = config.getBoolean("welcome_message", CATEGORY_SETTINGS, canDisplay, "Enabled or disable the welcome message");
 		items = config.getStringList("custom-recipes", CATEGORY_API, items, "Insert custom recipes here");
 		config.addCustomCategoryComment(CATEGORY_RECIPE_SETTINGS, "Enabled or disable the default recipes");
@@ -179,6 +181,10 @@ public class ConfigurationHandler
 		wash_18 = config.getBoolean("washing-machine-18", CATEGORY_RECIPE_SETTINGS, wash_18, "Diamond Chestplate");
 		wash_19 = config.getBoolean("washing-machine-19", CATEGORY_RECIPE_SETTINGS, wash_19, "Diamond Leggings");
 		wash_20 = config.getBoolean("washing-machine-20", CATEGORY_RECIPE_SETTINGS, wash_20, "Diamond Boots");
+		
+		grill_1 = config.getBoolean("grill-1", CATEGORY_RECIPE_SETTINGS, grill_1, "Beef -> Cooked Beef");
+		grill_2 = config.getBoolean("grill-2", CATEGORY_RECIPE_SETTINGS, grill_2, "Sausage -> Cooked Sausage");
+		grill_3 = config.getBoolean("grill-3", CATEGORY_RECIPE_SETTINGS, grill_3, "Raw Kebab -> Cooked Kebab");
 	}
 
 	@SubscribeEvent

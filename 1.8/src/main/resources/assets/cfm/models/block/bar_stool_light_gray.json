@@ -1,7 +1,7 @@
 {
 "parent": "cfm:block/bar_stool",
 "textures": {
-"1": "blocks/wool_colored_light_gray",
+"1": "blocks/wool_colored_silver",
 "2": "blocks/hardened_clay_stained_cyan",
 "3": "blocks/quartz_block_bottom",
 "4": "blocks/stone"

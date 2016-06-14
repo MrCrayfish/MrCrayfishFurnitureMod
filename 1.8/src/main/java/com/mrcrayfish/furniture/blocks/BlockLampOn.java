@@ -32,7 +32,7 @@ public class BlockLampOn extends BlockLamp
 {
 	public BlockLampOn(Material material)
 	{
-		super(material);
+		super(material, true);
 		this.setLightLevel(1.0F);
 	}
 

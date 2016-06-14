@@ -21,7 +21,6 @@ import org.lwjgl.opengl.GL11;
 
 import com.mrcrayfish.furniture.tileentity.TileEntityToaster;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
@@ -35,17 +34,12 @@ public class ToastRenderer extends TileEntitySpecialRenderer
 	@Override
 	public void renderTileEntityAt(TileEntity tileEntity, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
 	{
-		TileEntityToaster tileEntityToaster = (TileEntityToaster) tileEntity;
-		
-		Block block = tileEntity.getBlockType();
-		if(block.isAir(getWorld(), tileEntity.getPos()))
-			return;
-		
-		int metadata = block.getMetaFromState(tileEntity.getWorld().getBlockState(tileEntity.getPos()));
+		TileEntityToaster toaster = (TileEntityToaster) tileEntity;
+		int metadata = toaster.getBlockMetadata();
 
 		for (int i = 0; i < 2; i++)
 		{
-			ItemStack slice = tileEntityToaster.getSlice(i);
+			ItemStack slice = toaster.getSlice(i);
 			if (slice != null)
 			{
 				this.slots[i].setEntityItemStack(slice);
@@ -105,7 +99,7 @@ public class ToastRenderer extends TileEntitySpecialRenderer
 					break;
 				}
 
-				double yOffset = tileEntityToaster.isToasting() ? -0.075 : 0.0;
+				double yOffset = toaster.isToasting() ? -0.075 : 0.0;
 				Minecraft.getMinecraft().getRenderManager().renderEntityWithPosYaw(slots[i], 0.0D + xOffset, yOffset, 0.0D + zOffset, 0.0F, 0.0F);
 				GL11.glPopMatrix();
 			}

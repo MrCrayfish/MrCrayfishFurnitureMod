@@ -7,8 +7,6 @@ import com.mrcrayfish.furniture.tileentity.TileEntityTree;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
@@ -48,8 +46,8 @@ public class TreeRenderer extends TileEntitySpecialRenderer
 				GL11.glPushMatrix();
 				
 				GL11.glDisable(GL11.GL_LIGHTING);
-				WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
-				renderer.setBrightness(15728880);
+				//WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
+				//renderer.setBrightness(15728880);
 
 				GL11.glRotatef(-90 * i, 0, 1, 0);
 				GL11.glTranslatef(spread, 0.0F, 0.0F);

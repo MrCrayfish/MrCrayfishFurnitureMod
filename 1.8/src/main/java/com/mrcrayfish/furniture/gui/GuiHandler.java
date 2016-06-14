@@ -17,12 +17,16 @@
  */
 package com.mrcrayfish.furniture.gui;
 
+import com.mrcrayfish.furniture.blocks.BlockBedsideCabinet;
+import com.mrcrayfish.furniture.blocks.BlockCabinet;
 import com.mrcrayfish.furniture.gui.containers.ContainerBedsideCabinet;
 import com.mrcrayfish.furniture.gui.containers.ContainerBin;
 import com.mrcrayfish.furniture.gui.containers.ContainerCabinet;
 import com.mrcrayfish.furniture.gui.containers.ContainerComputer;
+import com.mrcrayfish.furniture.gui.containers.ContainerCrate;
 import com.mrcrayfish.furniture.gui.containers.ContainerDishwasher;
 import com.mrcrayfish.furniture.gui.containers.ContainerEnvelope;
+import com.mrcrayfish.furniture.gui.containers.ContainerEski;
 import com.mrcrayfish.furniture.gui.containers.ContainerFreezer;
 import com.mrcrayfish.furniture.gui.containers.ContainerFridge;
 import com.mrcrayfish.furniture.gui.containers.ContainerMailBox;
@@ -43,7 +47,10 @@ import com.mrcrayfish.furniture.tileentity.TileEntityBin;
 import com.mrcrayfish.furniture.tileentity.TileEntityCabinet;
 import com.mrcrayfish.furniture.tileentity.TileEntityCabinetKitchen;
 import com.mrcrayfish.furniture.tileentity.TileEntityComputer;
+import com.mrcrayfish.furniture.tileentity.TileEntityCrate;
 import com.mrcrayfish.furniture.tileentity.TileEntityDishwasher;
+import com.mrcrayfish.furniture.tileentity.TileEntityDoorMat;
+import com.mrcrayfish.furniture.tileentity.TileEntityEsky;
 import com.mrcrayfish.furniture.tileentity.TileEntityFreezer;
 import com.mrcrayfish.furniture.tileentity.TileEntityFridge;
 import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
@@ -122,6 +129,14 @@ public class GuiHandler implements IGuiHandler
 		{
 			return new ContainerCabinet(player.inventory, (TileEntityCabinetKitchen) tile_entity);
 		}
+		if (tile_entity instanceof TileEntityEsky)
+		{
+			return new ContainerEski(player.inventory, (TileEntityEsky) tile_entity);
+		}
+		if (tile_entity instanceof TileEntityCrate)
+		{
+			return new ContainerCrate(player.inventory, (TileEntityCrate) tile_entity);
+		}
 		if (id == 5)
 		{
 			return new ContainerEnvelope(player.inventory, ItemEnvelope.getInv(player));
@@ -159,11 +174,11 @@ public class GuiHandler implements IGuiHandler
 		}
 		if (tile_entity instanceof TileEntityCabinet)
 		{
-			return new GuiCabinet(player.inventory, (TileEntityCabinet) tile_entity);
+			return new GuiCabinet(player.inventory, (TileEntityCabinet) tile_entity, (BlockCabinet) tile_entity.getBlockType());
 		}
 		if (tile_entity instanceof TileEntityBedsideCabinet)
 		{
-			return new GuiBedsideCabinet(player.inventory, (TileEntityBedsideCabinet) tile_entity);
+			return new GuiBedsideCabinet(player.inventory, (TileEntityBedsideCabinet) tile_entity, (BlockBedsideCabinet) tile_entity.getBlockType());
 		}
 		if (tile_entity instanceof TileEntityOven)
 		{
@@ -204,6 +219,18 @@ public class GuiHandler implements IGuiHandler
 		if (tile_entity instanceof TileEntityCabinetKitchen)
 		{
 			return new GuiKitchenCabinet(player.inventory, (TileEntityCabinetKitchen) tile_entity);
+		}
+		if (tile_entity instanceof TileEntityEsky)
+		{
+			return new GuiEski(player.inventory, (TileEntityEsky) tile_entity);
+		}
+		if (tile_entity instanceof TileEntityDoorMat)
+		{
+			return new GuiDoorMat(x, y, z);
+		}
+		if (tile_entity instanceof TileEntityCrate)
+		{
+			return new GuiCrate(player.inventory, (TileEntityCrate) tile_entity, x, y, z);
 		}
 		ItemStack mail = null;
 		if (player.getCurrentEquippedItem() != null)

@@ -182,6 +182,20 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
 				}
 			}
 		}
+		else if (type.equalsIgnoreCase("grill"))
+		{
+			if (RecipeConditions.hasGrillArgs(varMap))
+			{
+				addGrillRecipe(RecipeData.convertFrom(varMap), COMM);
+			}
+			else
+			{
+				if (ConfigurationHandler.api_debug)
+				{
+					RecipeUtil.printRequired(type, "Missing required variables for " + type, modName);
+				}
+			}
+		}
 		else
 		{
 			if (ConfigurationHandler.api_debug)

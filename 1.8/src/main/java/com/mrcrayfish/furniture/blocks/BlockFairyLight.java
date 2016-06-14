@@ -81,19 +81,7 @@ public class BlockFairyLight extends BlockFurniture {
 	{
 		return EnumWorldBlockLayer.TRANSLUCENT;
 	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemFairyLight;
-	}
-	
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemFairyLight);
-	}
-	
+
 	public static enum FairyLightType implements IStringSerializable
 	{
 		EVEN, ODD;

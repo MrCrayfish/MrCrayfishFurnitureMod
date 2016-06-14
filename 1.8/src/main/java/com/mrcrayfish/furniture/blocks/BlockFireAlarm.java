@@ -42,12 +42,13 @@ public class BlockFireAlarm extends BlockFurniture
 	public BlockFireAlarm(Material material, boolean on)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeStone);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeStone);
 		this.on = on;
 		if (on)
 		{
 			this.setLightLevel(1.0F);
+			this.setCreativeTab(null);
 		}
 		else
 		{
@@ -70,17 +71,11 @@ public class BlockFireAlarm extends BlockFurniture
 		}
 		return true;
 	}
-
+	
 	@Override
-	public int isProvidingWeakPower(IBlockAccess world, BlockPos pos, IBlockState state, EnumFacing side)
+	public int isProvidingStrongPower(IBlockAccess worldIn, BlockPos pos, IBlockState state, EnumFacing side) 
 	{
-		return this == FurnitureBlocks.fire_alarm_on && side == EnumFacing.DOWN ? 15 : 0;
-	}
-
-	@Override
-	public int isProvidingStrongPower(IBlockAccess world, BlockPos pos, IBlockState state, EnumFacing side)
-	{
-		return side == EnumFacing.DOWN && this == FurnitureBlocks.fire_alarm_on ? this.isProvidingWeakPower(world, pos, state, side) : 0;
+		return side == EnumFacing.DOWN && this == FurnitureBlocks.fire_alarm_on ? 15 : 0;
 	}
 
 	@Override
@@ -158,12 +153,12 @@ public class BlockFireAlarm extends BlockFurniture
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return FurnitureItems.itemFireAlarm;
+		return new ItemStack(FurnitureBlocks.fire_alarm_off).getItem();
 	}
 
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
-		return new ItemStack(FurnitureItems.itemFireAlarm);
+		return new ItemStack(FurnitureBlocks.fire_alarm_off);
 	}
 }

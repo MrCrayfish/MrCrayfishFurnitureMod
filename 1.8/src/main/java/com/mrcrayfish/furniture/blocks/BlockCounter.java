@@ -44,8 +44,8 @@ public class BlockCounter extends BlockFurniture
 	public BlockCounter(Material material)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeStone);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeStone);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(TYPE, CounterType.NORMAL));
 	}
 
@@ -75,18 +75,6 @@ public class BlockCounter extends BlockFurniture
 			}
 		}
 		return state.withProperty(TYPE, CounterType.NORMAL);
-	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemCounterDoored;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemCounterDoored);
 	}
 
 	@Override

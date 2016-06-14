@@ -46,8 +46,8 @@ public class BlockBlender extends BlockFurnitureTile
 	public BlockBlender(Material material)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeGlass);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeGlass);
 	}
 	
 	@Override
@@ -129,18 +129,6 @@ public class BlockBlender extends BlockFurnitureTile
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityBlender();
-	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemBlender;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemBlender);
 	}
 	
 	@SideOnly(Side.CLIENT)

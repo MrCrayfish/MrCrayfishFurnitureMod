@@ -47,8 +47,8 @@ public class BlockBin extends BlockFurnitureTile
 	public BlockBin(Material material)
 	{
 		super(material);
-		setStepSound(Block.soundTypeAnvil);
-		setHardness(0.5F);
+		this.setStepSound(Block.soundTypeAnvil);
+		this.setHardness(0.5F);
 	}
 
 	@Override
@@ -108,17 +108,5 @@ public class BlockBin extends BlockFurnitureTile
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityBin();
-	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemBin;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemBin);
 	}
 }

@@ -32,7 +32,6 @@ import net.minecraft.util.EnumChatFormatting;
 
 public class RecipeRegistry extends RecipeAPI
 {
-
 	private static RecipeRegistry furnitureRegister = null;
 
 	public static RecipeRegistry getInstance()
@@ -88,6 +87,11 @@ public class RecipeRegistry extends RecipeAPI
 	{
 		addDishwasherRecipe(new RecipeData().setInput(input), LOCAL);
 	}
+	
+	public void registerGrillRecipe(ItemStack input, ItemStack output)
+	{
+		addGrillRecipe(new RecipeData().setInput(input).setOutput(output), LOCAL);
+	}
 
 	public void registerBlenderRecipe(String name, int heal, ItemStack[] ingredients, int[] rgb)
 	{
@@ -109,7 +113,7 @@ public class RecipeRegistry extends RecipeAPI
 
 		if (input_item != null)
 		{
-			Item input = (Item) Item.itemRegistry.getObject(input_item);
+			Item input = Item.getByNameOrId(input_item);
 			if (input != null)
 			{
 				int i_metadata = 0;
@@ -157,8 +161,8 @@ public class RecipeRegistry extends RecipeAPI
 		{
 			if (output_item != null)
 			{
-				Item input = (Item) Item.itemRegistry.getObject(input_item);
-				Item output = (Item) Item.itemRegistry.getObject(output_item);
+				Item input = Item.getByNameOrId(input_item);
+				Item output = Item.getByNameOrId(output_item);
 				if (input != null)
 				{
 					if (output != null)
@@ -252,8 +256,8 @@ public class RecipeRegistry extends RecipeAPI
 		{
 			if (output_item != null)
 			{
-				Item input = (Item) Item.itemRegistry.getObject(input_item);
-				Item output = (Item) Item.itemRegistry.getObject(output_item);
+				Item input = Item.getByNameOrId(input_item);
+				Item output = Item.getByNameOrId(output_item);
 				if (input != null)
 				{
 					if (output != null)
@@ -346,8 +350,8 @@ public class RecipeRegistry extends RecipeAPI
 
 		if (input_item != null)
 		{
-			Item input = (Item) Item.itemRegistry.getObject(input_item);
-			Item payment = (Item) Item.itemRegistry.getObject(payment_item);
+			Item input = Item.getByNameOrId(input_item);
+			Item payment = Item.getByNameOrId(payment_item);
 			if (input != null)
 			{
 				if (payment != null)
@@ -448,8 +452,8 @@ public class RecipeRegistry extends RecipeAPI
 		{
 			if (output_item != null)
 			{
-				Item input = (Item) Item.itemRegistry.getObject(input_item);
-				Item output = (Item) Item.itemRegistry.getObject(output_item);
+				Item input = Item.getByNameOrId(input_item);
+				Item output = Item.getByNameOrId(output_item);
 				if (input != null)
 				{
 					if (output != null)
@@ -543,8 +547,8 @@ public class RecipeRegistry extends RecipeAPI
 		{
 			if (output_item != null)
 			{
-				Item input = (Item) Item.itemRegistry.getObject(input_item);
-				Item output = (Item) Item.itemRegistry.getObject(output_item);
+				Item input = Item.getByNameOrId(input_item);
+				Item output = Item.getByNameOrId(output_item);
 				if (input != null)
 				{
 					if (output != null)
@@ -732,7 +736,7 @@ public class RecipeRegistry extends RecipeAPI
 				}
 			}
 
-			Item item = (Item) Item.itemRegistry.getObject(itemName);
+			Item item = Item.getByNameOrId(itemName);
 
 			int i_amount = 1;
 			try
@@ -873,8 +877,8 @@ public class RecipeRegistry extends RecipeAPI
 		{
 			if (output_item != null)
 			{
-				Item input = (Item) Item.itemRegistry.getObject(input_item);
-				Item output = (Item) Item.itemRegistry.getObject(output_item);
+				Item input = Item.getByNameOrId(input_item);
+				Item output = Item.getByNameOrId(output_item);
 				if (input != null)
 				{
 					if (output != null)
@@ -948,7 +952,7 @@ public class RecipeRegistry extends RecipeAPI
 
 		if (input_item != null)
 		{
-			Item input = (Item) Item.itemRegistry.getObject(input_item);
+			Item input = Item.getByNameOrId(input_item);
 			if (input != null)
 			{
 				RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(input));
@@ -976,7 +980,7 @@ public class RecipeRegistry extends RecipeAPI
 
 		if (input_item != null)
 		{
-			Item input = (Item) Item.itemRegistry.getObject(input_item);
+			Item input = Item.getByNameOrId(input_item);
 			if (input != null)
 			{
 				RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(input));
@@ -986,6 +990,86 @@ public class RecipeRegistry extends RecipeAPI
 				if (ConfigurationHandler.api_debug)
 				{
 					RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
+				}
+			}
+		}
+		else
+		{
+			if (ConfigurationHandler.api_debug)
+			{
+				RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
+			}
+		}
+	}
+	
+	public static void registerGrillRecipe(Parser parser, int num)
+	{
+		String input_item = parser.getValue("input-item", null);
+		String input_metadata = parser.getValue("input-metadata", "0");
+		String output_item = parser.getValue("output-item", null);
+		String output_metadata = parser.getValue("output-metadata", "0");
+
+		if (input_item != null)
+		{
+			if (output_item != null)
+			{
+				Item input = Item.getByNameOrId(input_item);
+				Item output = Item.getByNameOrId(output_item);
+				if (input != null)
+				{
+					if (output != null)
+					{
+						int i_metadata = 0;
+						try
+						{
+							i_metadata = Integer.parseInt(input_metadata);
+						}
+						catch (NumberFormatException e)
+						{
+							if (ConfigurationHandler.api_debug)
+							{
+								RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
+							}
+							return;
+						}
+
+						int o_metadata = 0;
+						try
+						{
+							o_metadata = Integer.parseInt(output_metadata);
+						}
+						catch (NumberFormatException e)
+						{
+							if (ConfigurationHandler.api_debug)
+							{
+								RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
+							}
+							return;
+						}
+
+						RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(input, 1, i_metadata), new ItemStack(output, 1, o_metadata));
+					}
+					else
+					{
+						if (ConfigurationHandler.api_debug)
+						{
+							RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
+						}
+					}
+				}
+				else
+				{
+					if (ConfigurationHandler.api_debug)
+					{
+						RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
+					}
+				}
+			}
+			else
+			{
+				if (ConfigurationHandler.api_debug)
+				{
+					RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
 				}
 			}
 		}
@@ -1264,5 +1348,12 @@ public class RecipeRegistry extends RecipeAPI
 			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.diamond_leggings));
 		if (ConfigurationHandler.wash_20)
 			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.diamond_boots));
+		
+		if (ConfigurationHandler.grill_1)
+			RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(Items.beef), new ItemStack(Items.cooked_beef));
+		if (ConfigurationHandler.grill_2)
+			RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(FurnitureItems.itemSausage), new ItemStack(FurnitureItems.itemSausageCooked));
+		if (ConfigurationHandler.grill_3)
+			RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(FurnitureItems.itemKebab), new ItemStack(FurnitureItems.itemKebabCooked));
 	}
 }

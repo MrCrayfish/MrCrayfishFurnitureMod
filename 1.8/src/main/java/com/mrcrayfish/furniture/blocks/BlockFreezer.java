@@ -41,8 +41,8 @@ public class BlockFreezer extends BlockFurnitureTile
 	public BlockFreezer(Material material)
 	{
 		super(material);
-		setHardness(2.0F);
-		setStepSound(Block.soundTypeMetal);
+		this.setHardness(2.0F);
+		this.setStepSound(Block.soundTypeMetal);
 	}
 	
 	@Override
@@ -54,13 +54,16 @@ public class BlockFreezer extends BlockFurnitureTile
 	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
-		return worldIn.isAirBlock(pos) && worldIn.isAirBlock(pos.up());
+		return worldIn.isAirBlock(pos.up());
 	}
 
 	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
 	{
-		worldIn.destroyBlock(pos.up(), false);
+		if(worldIn.getBlockState(pos.up()).getBlock() == FurnitureBlocks.fridge)
+		{
+			worldIn.destroyBlock(pos.up(), false);
+		}
 	}
 	
 	@Override
@@ -83,19 +86,7 @@ public class BlockFreezer extends BlockFurnitureTile
 	{
 		return new TileEntityFreezer();
 	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemFridge;
-	}
 
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemFridge);
-	}
-	
 	@Override
 	public int getComparatorInputOverride(World world, BlockPos pos) 
 	{

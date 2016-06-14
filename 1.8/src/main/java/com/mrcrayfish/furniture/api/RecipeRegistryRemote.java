@@ -82,6 +82,11 @@ public class RecipeRegistryRemote extends RecipeAPI
 	{
 		addDishwasherRecipe(new RecipeData().setInput(input), REMOTE);
 	}
+	
+	public void registerGrillRecipe(ItemStack input)
+	{
+		addGrillRecipe(new RecipeData().setInput(input), REMOTE);
+	}
 
 	public void registerBlenderRecipe(String name, int heal, ItemStack[] ingredients, int[] rgb)
 	{
@@ -103,7 +108,7 @@ public class RecipeRegistryRemote extends RecipeAPI
 
 		if (input_item != null)
 		{
-			Item input = (Item) Item.itemRegistry.getObject(input_item);
+			Item input = Item.getByNameOrId(input_item);
 			if (input != null)
 			{
 				int i_metadata = 0;
@@ -151,8 +156,8 @@ public class RecipeRegistryRemote extends RecipeAPI
 		{
 			if (output_item != null)
 			{
-				Item input = (Item) Item.itemRegistry.getObject(input_item);
-				Item output = (Item) Item.itemRegistry.getObject(output_item);
+				Item input = Item.getByNameOrId(input_item);
+				Item output = Item.getByNameOrId(output_item);
 				if (input != null)
 				{
 					if (output != null)
@@ -246,8 +251,8 @@ public class RecipeRegistryRemote extends RecipeAPI
 		{
 			if (output_item != null)
 			{
-				Item input = (Item) Item.itemRegistry.getObject(input_item);
-				Item output = (Item) Item.itemRegistry.getObject(output_item);
+				Item input = Item.getByNameOrId(input_item);
+				Item output = Item.getByNameOrId(output_item);
 				if (input != null)
 				{
 					if (output != null)
@@ -340,8 +345,8 @@ public class RecipeRegistryRemote extends RecipeAPI
 
 		if (input_item != null)
 		{
-			Item input = (Item) Item.itemRegistry.getObject(input_item);
-			Item payment = (Item) Item.itemRegistry.getObject(payment_item);
+			Item input = Item.getByNameOrId(input_item);
+			Item payment = Item.getByNameOrId(payment_item);
 			if (input != null)
 			{
 				if (payment != null)
@@ -442,8 +447,8 @@ public class RecipeRegistryRemote extends RecipeAPI
 		{
 			if (output_item != null)
 			{
-				Item input = (Item) Item.itemRegistry.getObject(input_item);
-				Item output = (Item) Item.itemRegistry.getObject(output_item);
+				Item input = Item.getByNameOrId(input_item);
+				Item output = Item.getByNameOrId(output_item);
 				if (input != null)
 				{
 					if (output != null)
@@ -537,8 +542,8 @@ public class RecipeRegistryRemote extends RecipeAPI
 		{
 			if (output_item != null)
 			{
-				Item input = (Item) Item.itemRegistry.getObject(input_item);
-				Item output = (Item) Item.itemRegistry.getObject(output_item);
+				Item input = Item.getByNameOrId(input_item);
+				Item output = Item.getByNameOrId(output_item);
 				if (input != null)
 				{
 					if (output != null)
@@ -725,7 +730,7 @@ public class RecipeRegistryRemote extends RecipeAPI
 					itemMetadata = itemData[3];
 				}
 			}
-			Item item = (Item) Item.itemRegistry.getObject(itemName);
+			Item item = Item.getByNameOrId(itemName);
 
 			int i_amount = 1;
 			try
@@ -866,8 +871,8 @@ public class RecipeRegistryRemote extends RecipeAPI
 		{
 			if (output_item != null)
 			{
-				Item input = (Item) Item.itemRegistry.getObject(input_item);
-				Item output = (Item) Item.itemRegistry.getObject(output_item);
+				Item input = Item.getByNameOrId(input_item);
+				Item output = Item.getByNameOrId(output_item);
 				if (input != null)
 				{
 					if (output != null)
@@ -941,7 +946,7 @@ public class RecipeRegistryRemote extends RecipeAPI
 
 		if (input_item != null)
 		{
-			Item input = (Item) Item.itemRegistry.getObject(input_item);
+			Item input = Item.getByNameOrId(input_item);
 			if (input != null)
 			{
 				RecipeRegistryRemote.getInstance().registerWashingMachineRecipe(new ItemStack(input));
@@ -969,7 +974,7 @@ public class RecipeRegistryRemote extends RecipeAPI
 
 		if (input_item != null)
 		{
-			Item input = (Item) Item.itemRegistry.getObject(input_item);
+			Item input = Item.getByNameOrId(input_item);
 			if (input != null)
 			{
 				RecipeRegistryRemote.getInstance().registerDishwasherRecipe(new ItemStack(input));

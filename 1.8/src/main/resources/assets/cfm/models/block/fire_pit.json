@@ -64,7 +64,7 @@
             "name": "fire_1",
             "from": [ 3.0, 3.0, 3.0 ], 
             "to": [ 13.0, 15.0, 13.0 ], 
-	    "shade": false,
+			"shade": false,
             "faces": {
                 "north": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
                 "east": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
@@ -77,7 +77,7 @@
             "from": [ 3.0, 3.0, 3.0 ], 
             "to": [ 13.0, 15.0, 13.0 ], 
             "rotation": { "origin": [ 8.0, 8.0, 8.0 ], "axis": "y", "angle": 45.0 },
-	    "shade": false,
+			"shade": false,
             "faces": {
                 "north": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },
                 "east": { "texture": "#1", "uv": [ 0.0, 0.0, 16.0, 16.0 ] },

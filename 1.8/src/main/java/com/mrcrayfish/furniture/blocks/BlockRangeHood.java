@@ -43,9 +43,9 @@ public class BlockRangeHood extends BlockFurniture
 	public BlockRangeHood(Material material)
 	{
 		super(material);
-		setHardness(0.5F);
-		setStepSound(Block.soundTypeMetal);
-		setLightLevel(0.5F);
+		this.setHardness(0.5F);
+		this.setStepSound(Block.soundTypeMetal);
+		this.setLightLevel(0.5F);
 	}
 
 	@Override
@@ -81,17 +81,5 @@ public class BlockRangeHood extends BlockFurniture
 		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.3F, 1.0F);
 		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
-	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemOvenRangehood;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemOvenRangehood);
 	}
 }

@@ -20,12 +20,14 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Random;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -43,6 +45,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -56,9 +59,10 @@ public class BlockHedge extends Block
 	public BlockHedge(Material material)
 	{
 		super(Material.leaves);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeGrass);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeGrass);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
 	@Override
@@ -80,40 +84,38 @@ public class BlockHedge extends Block
 	}
 
 	@SideOnly(Side.CLIENT)
-	public int getBlockColor()
-	{
-		return ColorizerFoliage.getFoliageColor(0.5D, 1.0D);
-	}
+    public int getBlockColor()
+    {
+        return ColorizerFoliage.getFoliageColor(0.5D, 1.0D);
+    }
 
-	@SideOnly(Side.CLIENT)
-	public int getRenderColor(IBlockState state)
-	{
-		if (state.getBlock() != this)
-		{
-			return super.getRenderColor(state);
-		}
-		else
-		{
-			return this == FurnitureBlocks.hedge_spruce ? ColorizerFoliage.getFoliageColorPine() : (this == FurnitureBlocks.hedge_birch ? ColorizerFoliage.getFoliageColorBirch() : ColorizerFoliage.getFoliageColorBasic());
-		}
-	}
+    @SideOnly(Side.CLIENT)
+    public int getRenderColor(IBlockState state)
+    {
+    	if(this == FurnitureBlocks.hedge_spruce)
+    	{
+    		return ColorizerFoliage.getFoliageColorPine();
+    	}
+    	if(this == FurnitureBlocks.hedge_birch)
+    	{
+    		return ColorizerFoliage.getFoliageColorBirch();
+    	}
+        return ColorizerFoliage.getFoliageColorBasic();
+    }
 
-	@SideOnly(Side.CLIENT)
-	public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
-	{
-		if (this == FurnitureBlocks.hedge_spruce)
-		{
-			return ColorizerFoliage.getFoliageColorPine();
-		}
-		else if (this == FurnitureBlocks.hedge_birch)
-		{
-			return ColorizerFoliage.getFoliageColorBirch();
-		}
-		else
-		{
-			return ColorizerFoliage.getFoliageColorBasic();
-		}
-	}
+    @SideOnly(Side.CLIENT)
+    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
+    {
+    	if(this == FurnitureBlocks.hedge_spruce)
+    	{
+    		return ColorizerFoliage.getFoliageColorPine();
+    	}
+    	if(this == FurnitureBlocks.hedge_birch)
+    	{
+    		return ColorizerFoliage.getFoliageColorBirch();
+    	}
+        return BiomeColorHelper.getFoliageColorAtPos(worldIn, pos);
+    }
 
 	@SideOnly(Side.CLIENT)
 	public EnumWorldBlockLayer getBlockLayer()
@@ -185,38 +187,6 @@ public class BlockHedge extends Block
 			setBlockBounds(0.1875F, 0.0F, 0.0F, 0.8125F, 1.5F, 0.1875F);
 			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
 		}
-	}
-
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		if(this == FurnitureBlocks.hedge_birch)
-			return FurnitureItems.itemHedgeBirch;
-		if(this == FurnitureBlocks.hedge_spruce)
-			return FurnitureItems.itemHedgeSpruce;
-		if(this == FurnitureBlocks.hedge_jungle)
-			return FurnitureItems.itemHedgeJungle;
-		if(this == FurnitureBlocks.hedge_acacia)
-			return FurnitureItems.itemHedgeAcacia;
-		if(this == FurnitureBlocks.hedge_dark_oak)
-			return FurnitureItems.itemHedgeDarkOak;
-		return FurnitureItems.itemHedgeBasic;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		if(this == FurnitureBlocks.hedge_birch)
-			return new ItemStack(FurnitureItems.itemHedgeBirch);
-		if(this == FurnitureBlocks.hedge_spruce)
-			return new ItemStack(FurnitureItems.itemHedgeSpruce);
-		if(this == FurnitureBlocks.hedge_jungle)
-			return new ItemStack(FurnitureItems.itemHedgeJungle);
-		if(this == FurnitureBlocks.hedge_acacia)
-			return new ItemStack(FurnitureItems.itemHedgeAcacia);
-		if(this == FurnitureBlocks.hedge_dark_oak)
-			return new ItemStack(FurnitureItems.itemHedgeDarkOak);
-		return new ItemStack(FurnitureItems.itemHedgeBasic);
 	}
 
 	@Override

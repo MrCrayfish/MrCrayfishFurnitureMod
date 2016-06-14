@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Random;
 
+import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
 import net.minecraft.block.Block;
@@ -48,7 +49,7 @@ public class BlockDoorBell extends BlockFurniture
 	public BlockDoorBell(Material material)
 	{
 		super(material);
-		setStepSound(Block.soundTypeWood);
+		this.setStepSound(Block.soundTypeWood);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(POWERED, Boolean.valueOf(true)));
 		this.setTickRandomly(true);
 	}
@@ -165,7 +166,7 @@ public class BlockDoorBell extends BlockFurniture
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		if (((Boolean) state.getValue(POWERED)).booleanValue())
+		if ((Boolean) state.getValue(POWERED))
 		{
 			return true;
 		}
@@ -175,6 +176,7 @@ public class BlockDoorBell extends BlockFurniture
 			worldIn.markBlockRangeForRenderUpdate(pos, pos);
 			worldIn.playSoundEffect((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, "cfm:doorbell", 1.0F, 1.0F);
 			worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));
+			playerIn.triggerAchievement(FurnitureAchievements.dingDong);
 			return true;
 		}
 	}
@@ -241,18 +243,6 @@ public class BlockDoorBell extends BlockFurniture
 		{
 			worldIn.scheduleUpdate(p_180680_2_, this, this.tickRate(worldIn));
 		}
-	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return FurnitureItems.itemDoorBell;
-	}
-
-	@Override
-	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
-	{
-		return new ItemStack(FurnitureItems.itemDoorBell);
 	}
 
 	@Override

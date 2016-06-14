@@ -65,6 +65,7 @@ public class BlenderRenderer extends TileEntitySpecialRenderer<TileEntityBlender
 	
 				float height = blender.isBlending() ? 0.8F : (0.275F + (0.525F * (blender.drinkCount / 6F)));
 				
+				GlStateManager.enableBlend();
 				GlStateManager.enableAlpha();
 				GlStateManager.disableLighting();
 				GL11.glDisable(GL11.GL_TEXTURE_2D);
@@ -74,6 +75,7 @@ public class BlenderRenderer extends TileEntitySpecialRenderer<TileEntityBlender
 				GL11.glEnable(GL11.GL_TEXTURE_2D);
 				GlStateManager.enableLighting();
 				GlStateManager.disableAlpha();
+				GlStateManager.disableBlend();
 			}
 			GlStateManager.popMatrix();
 		}

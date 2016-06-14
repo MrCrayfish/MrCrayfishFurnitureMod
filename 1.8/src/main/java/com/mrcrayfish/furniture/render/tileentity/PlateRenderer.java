@@ -22,8 +22,6 @@ import org.lwjgl.opengl.GL11;
 import com.mrcrayfish.furniture.tileentity.TileEntityPlate;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.tileentity.TileEntity;
@@ -65,8 +63,8 @@ public class PlateRenderer extends TileEntitySpecialRenderer
 			}
 			
 			GL11.glDisable(GL11.GL_LIGHTING);
-			WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
-			renderer.setBrightness(15728880);
+			//WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
+			//renderer.setBrightness(15728880);
 
 			GL11.glTranslatef((float) posX + 0.5F + xOffset, (float) posY + 0.05F, (float) posZ + 0.3F + zOffset);
 			GL11.glRotatef(plate.getRotation() * -90F, 0, 1, 0);

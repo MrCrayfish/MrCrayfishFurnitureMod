@@ -47,11 +47,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockShower extends BlockFurniture
 {
-	public BlockShower(Material material)
+	public BlockShower(Material material, boolean top)
 	{
 		super(material);
-		setHardness(1.0F);
-		setStepSound(Block.soundTypeStone);
+		this.setHardness(1.0F);
+		this.setStepSound(Block.soundTypeStone);
+		if(top) this.setCreativeTab(null);
+	}
+	
+	@Override
+	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+	{
+		return worldIn.isAirBlock(pos.up());
 	}
 
 	@Override
@@ -164,13 +171,13 @@ public class BlockShower extends BlockFurniture
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return FurnitureItems.itemShower;
+		return new ItemStack(FurnitureBlocks.shower_bottom).getItem();
 	}
 
 	@Override
 	public ItemStack getPickBlock(MovingObjectPosition target, World world, BlockPos pos)
 	{
-		return new ItemStack(FurnitureItems.itemShower);
+		return new ItemStack(FurnitureBlocks.shower_bottom);
 	}
 
 	@SideOnly(Side.CLIENT)
