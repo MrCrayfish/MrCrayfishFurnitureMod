@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "cfm:grill", "y": 180 },
+		"facing=south": { "model": "cfm:grill"           },
+		"facing=east":  { "model": "cfm:grill", "y": 90  },
+		"facing=west":  { "model": "cfm:grill", "y": 270 }
+	}
+}

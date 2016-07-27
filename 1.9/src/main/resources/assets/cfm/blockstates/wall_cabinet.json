@@ -1,0 +1,8 @@
+{
+"variants": {
+"facing=north": {"model": "cfm:wall_cabinet_pre", "y": 270},
+"facing=south": { "model": "cfm:wall_cabinet_pre", "y": 90},
+"facing=east": { "model": "cfm:wall_cabinet_pre"},
+"facing=west": { "model": "cfm:wall_cabinet_pre", "y": 180}
+}
+}

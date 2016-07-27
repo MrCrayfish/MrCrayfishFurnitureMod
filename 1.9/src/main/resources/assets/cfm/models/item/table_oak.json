@@ -1,0 +1,15 @@
+{
+	"parent": "cfm:block/table_leg_center_oak",
+	"display": {
+        "thirdperson": {
+            "rotation": [ 90, 0, 180 ],
+            "translation": [ 0, 0.5, -2.5 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        },
+		"gui": {
+			"rotation": [ 0, 0, 0 ],
+            "translation": [ 0, -1, 0 ],
+            "scale": [ 1, 1, 1 ]
+		}
+    }
+}

@@ -1,0 +1,15 @@
+{
+	"parent": "cfm:block/mirror",
+	"display": {
+        "thirdperson": {
+            "rotation": [ 90, -45, 170 ],
+            "translation": [ 0, -0.5, -2.75 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        },
+		"gui": {
+			"rotation": [ 0, 180, 0 ],
+            "translation": [ -4, -3.5, 0 ],
+            "scale": [ 1.2, 1.2, 1.2 ]
+		}
+    }
+}

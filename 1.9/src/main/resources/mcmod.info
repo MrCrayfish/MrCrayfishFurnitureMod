@@ -1,0 +1,13 @@
+{
+  "modListVersion": 2,
+  "modList": [{
+    "modid": "cfm",
+    "name": "MrCrayfish's Furniture Mod",
+    "description": "Adds over 50 unique pieces of furniture to the game!",
+    "version": "4.0.1",
+    "mcversion": "1.9",
+    "url": "https://mrcrayfish.com/mods?id=cfm",
+    "updateUrl": "",
+    "authorList": [ "MrCrayfish" ]
+  }]
+}

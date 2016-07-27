@@ -1,0 +1,7 @@
+{
+	"parent": "cfm:block/chair",
+	"textures": {
+		"1": "blocks/cobblestone",
+		"2": "blocks/stone"
+	}
+}

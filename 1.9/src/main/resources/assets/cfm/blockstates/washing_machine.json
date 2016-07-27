@@ -1,0 +1,8 @@
+{
+"variants": {
+"facing=north": {"model": "cfm:washing_machine_pre", "y": 270},
+"facing=south": { "model": "cfm:washing_machine_pre", "y": 90},
+"facing=east": { "model": "cfm:washing_machine_pre"},
+"facing=west": { "model": "cfm:washing_machine_pre", "y": 180}
+}
+}

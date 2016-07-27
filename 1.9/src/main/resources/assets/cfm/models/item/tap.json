@@ -1,0 +1,15 @@
+{
+	"parent": "cfm:block/tap_pre",
+	"display": {
+        "thirdperson": {
+            "rotation": [ 180, -90, 90 ],
+            "translation": [ 0, 0.75, -4.5 ],
+            "scale": [ 1, 1, 1 ]
+        },
+		"gui": {
+			"rotation": [ 0, -90, 0 ],
+            "translation": [ 1, 0, 0 ],
+            "scale": [ 1.4, 1.4, 1.4 ]
+		}
+    }
+}

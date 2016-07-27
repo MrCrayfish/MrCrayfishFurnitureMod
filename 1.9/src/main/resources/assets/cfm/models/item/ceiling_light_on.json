@@ -1,0 +1,15 @@
+{
+	"parent": "cfm:block/ceiling_light_off_pre",
+	"display": {
+        "thirdperson": {
+            "rotation": [ 90, 0, 0 ],
+            "translation": [ 0, 0.5, -4 ],
+            "scale": [ 0.75, 0.75, 0.75 ]
+        },
+		"gui": {
+			"rotation": [ 0, -90, 0 ],
+            "translation": [ 0, -5, 0 ],
+            "scale": [ 2.5, 2.5, 2.5 ]
+		}
+    }
+}
