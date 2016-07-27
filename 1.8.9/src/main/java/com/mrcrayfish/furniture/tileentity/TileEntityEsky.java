@@ -166,6 +166,7 @@ public class TileEntityEsky extends TileEntityLockable implements IInventory
 				tagList.appendTag(nbt);
 			}
 		}
+		compound.setTag("Items", tagList);
 	}
 	
 	@Override
