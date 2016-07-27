@@ -1,0 +1,28 @@
+{
+    "variants": {
+        "facing=north,type=both": {"model": "cfm:couch_all_rainbow", "y": 270 },
+        "facing=north,type=left": {"model": "cfm:couch_left_rainbow", "y": 270 },
+        "facing=north,type=right": {"model": "cfm:couch_right_rainbow", "y": 270 },
+        "facing=north,type=none": {"model": "cfm:couch_none_rainbow", "y": 270 },
+        "facing=north,type=corner_right": {"model": "cfm:couch_corner_rainbow"},
+        "facing=north,type=corner_left": {"model": "cfm:couch_corner_rainbow", "y": 270 },
+        "facing=east,type=both": {"model": "cfm:couch_all_rainbow"},
+        "facing=east,type=left": {"model": "cfm:couch_left_rainbow"},
+        "facing=east,type=right": {"model": "cfm:couch_right_rainbow"},
+        "facing=east,type=none": {"model": "cfm:couch_none_rainbow"},
+        "facing=east,type=corner_right": {"model": "cfm:couch_corner_rainbow", "y": 90},
+        "facing=east,type=corner_left": {"model": "cfm:couch_corner_rainbow"},
+        "facing=south,type=both": {"model": "cfm:couch_all_rainbow", "y": 90},
+        "facing=south,type=left": {"model": "cfm:couch_left_rainbow", "y": 90},
+        "facing=south,type=right": {"model": "cfm:couch_right_rainbow", "y": 90},
+        "facing=south,type=none": {"model": "cfm:couch_none_rainbow", "y": 90},
+        "facing=south,type=corner_right": {"model": "cfm:couch_corner_rainbow", "y": 180},
+        "facing=south,type=corner_left": {"model": "cfm:couch_corner_rainbow", "y": 90},
+        "facing=west,type=both": {"model": "cfm:couch_all_rainbow", "y": 180},
+        "facing=west,type=left": {"model": "cfm:couch_left_rainbow", "y": 180},
+        "facing=west,type=right": {"model": "cfm:couch_right_rainbow", "y": 180},
+        "facing=west,type=none": {"model": "cfm:couch_none_rainbow", "y": 180},
+        "facing=west,type=corner_right": {"model": "cfm:couch_corner_rainbow", "y": 270},
+        "facing=west,type=corner_left": {"model": "cfm:couch_corner_rainbow", "y": 180}
+    }
+}

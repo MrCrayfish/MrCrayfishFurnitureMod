@@ -1,0 +1,11 @@
+{
+    "parent": "cfm:block/computer",
+    "textures": {
+        "1": "blocks/iron_block",
+		"2": "blocks/gravel",
+		"3": "blocks/door_iron_lower",
+		"4": "blocks/quartz_block_bottom",
+		"5": "blocks/wool_colored_black",
+		"6": "blocks/stone"
+    }
+}

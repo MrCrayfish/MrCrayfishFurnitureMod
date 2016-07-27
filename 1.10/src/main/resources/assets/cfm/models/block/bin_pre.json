@@ -1,0 +1,7 @@
+{
+"parent": "cfm:block/bin",
+"textures": {
+"1": "blocks/iron_block",
+"2": "blocks/stone"
+}
+}

@@ -1,0 +1,7 @@
+{
+"parent": "cfm:block/fire_alarm",
+"textures": {
+"1": "blocks/wool_colored_pink",
+"2": "blocks/quartz_block_bottom"
+}
+}

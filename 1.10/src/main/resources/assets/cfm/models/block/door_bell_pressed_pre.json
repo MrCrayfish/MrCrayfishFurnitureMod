@@ -1,0 +1,7 @@
+{
+"parent": "cfm:block/door_bell_pressed",
+"textures": {
+"1": "blocks/log_oak",
+"2": "blocks/iron_block"
+}
+}

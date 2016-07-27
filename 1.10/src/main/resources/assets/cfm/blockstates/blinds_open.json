@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "facing=north,left=false": { "model": "cfm:blinds_open_pre", "y": 270 },
+        "facing=south,left=false": { "model": "cfm:blinds_open_pre", "y": 90  },
+        "facing=east,left=false": { "model": "cfm:blinds_open_pre"           },
+        "facing=west,left=false": { "model": "cfm:blinds_open_pre", "y": 180 },
+        "facing=north,left=true": { "model": "cfm:blinds_open_stringless_pre", "y": 270 },
+        "facing=south,left=true": { "model": "cfm:blinds_open_stringless_pre", "y": 90  },
+        "facing=east,left=true": { "model": "cfm:blinds_open_stringless_pre"           },
+        "facing=west,left=true": { "model": "cfm:blinds_open_stringless_pre", "y": 180 }
+    }
+}

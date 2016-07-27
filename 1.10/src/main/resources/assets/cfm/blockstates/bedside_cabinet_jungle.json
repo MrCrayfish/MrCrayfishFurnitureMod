@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "cfm:bedside_cabinet_jungle", "y": 270 },
+		"facing=south": { "model": "cfm:bedside_cabinet_jungle", "y": 90  },
+		"facing=east": 	{ "model": "cfm:bedside_cabinet_jungle"           },
+		"facing=west": 	{ "model": "cfm:bedside_cabinet_jungle", "y": 180 }
+	}
+}

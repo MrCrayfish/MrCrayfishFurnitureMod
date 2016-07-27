@@ -1,0 +1,9 @@
+{
+"parent": "cfm:block/oven",
+"textures": {
+"1": "blocks/quartz_block_bottom",
+"2": "blocks/obsidian",
+"3": "blocks/stone",
+"4": "blocks/stone"
+}
+}

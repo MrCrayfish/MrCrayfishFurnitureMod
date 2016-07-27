@@ -1,0 +1,15 @@
+{
+	"parent": "cfm:block/toilet_pre",
+	"display": {
+        "thirdperson": {
+            "rotation": [ 10, 45, 180 ],
+            "translation": [ 0, 1, -2.75 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        },
+		"gui": {
+			"rotation": [ 0, -90, 0 ],
+            "translation": [ -0.5, -1, 0 ],
+            "scale": [ 1, 1, 1 ]
+		}
+    }
+}

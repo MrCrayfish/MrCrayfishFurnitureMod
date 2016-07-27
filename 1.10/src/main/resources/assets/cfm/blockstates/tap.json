@@ -1,0 +1,8 @@
+{
+"variants": {
+"facing=north": {"model": "cfm:tap_pre", "y": 270},
+"facing=south": { "model": "cfm:tap_pre", "y": 90},
+"facing=east": { "model": "cfm:tap_pre"},
+"facing=west": { "model": "cfm:tap_pre", "y": 180}
+}
+}
