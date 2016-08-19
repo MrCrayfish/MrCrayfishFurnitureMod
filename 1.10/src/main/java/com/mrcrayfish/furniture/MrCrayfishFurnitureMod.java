@@ -45,7 +45,6 @@ import com.mrcrayfish.furniture.render.tileentity.MirrorRenderer;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -123,6 +122,9 @@ public class MrCrayfishFurnitureMod
 		
 		/** Render Registering */
 		proxy.registerRenders();
+
+		/** Item Colors */
+		proxy.registerItemColors();
 
 		/** GUI Handler Registering */
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());

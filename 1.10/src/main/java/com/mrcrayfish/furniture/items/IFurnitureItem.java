@@ -17,26 +17,7 @@
  */
 package com.mrcrayfish.furniture.items;
 
-import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.items.colors.ItemWreathColor;
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemBlock;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+public interface IFurnitureItem {
 
-public class ItemWreath extends ItemBlock implements IFurnitureItem
-{
-	public ItemWreath(Block block)
-	{
-		super(block);
-		MrCrayfishFurnitureMod.proxy.registerItemColor(this);
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerItemColor()
-	{
-		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ItemWreathColor(), this);
-	}
+	void registerItemColor();
 }

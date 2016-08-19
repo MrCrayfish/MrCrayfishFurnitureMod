@@ -14,6 +14,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -64,6 +65,11 @@ public class BlockBench extends BlockFurniture
 	
 	public int getRotationState(IBlockAccess source, BlockPos pos) 
 	{
+		if (source.isAirBlock(pos))
+		{
+			return 0;
+		}
+
 		return getMetaFromState(source.getBlockState(pos)) % 2;
 	}
 

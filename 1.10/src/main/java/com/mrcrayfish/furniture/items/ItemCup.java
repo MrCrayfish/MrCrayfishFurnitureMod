@@ -22,11 +22,11 @@ import java.awt.Color;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
-
+import com.mrcrayfish.furniture.items.colors.ItemCupColor;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSnow;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -47,7 +47,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 //Starting in a minute!
 
-public class ItemCup extends Item implements IItemColor
+public class ItemCup extends Item implements IFurnitureItem
 {
 	private boolean hasLiquid = false;
 	private Block cupBlock = FurnitureBlocks.cup;
@@ -63,6 +63,7 @@ public class ItemCup extends Item implements IItemColor
 		{
 			setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		}
+		MrCrayfishFurnitureMod.proxy.registerItemColor(this);
 	}
 
 	@Override
@@ -171,10 +172,11 @@ public class ItemCup extends Item implements IItemColor
 		}
 		return 16777215;
 	}
-	
+
+	@SideOnly(Side.CLIENT)
 	@Override
-	public int getColorFromItemstack(ItemStack stack, int tintIndex) 
+	public void registerItemColor()
 	{
-		return this.getColorFromCompound(stack);
+		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ItemCupColor(), this);
 	}
 }

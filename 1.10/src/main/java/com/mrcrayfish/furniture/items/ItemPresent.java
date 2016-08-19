@@ -23,17 +23,17 @@ import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.blocks.BlockPresent;
 import com.mrcrayfish.furniture.gui.inventory.InventoryPresent;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
+import com.mrcrayfish.furniture.items.colors.ItemPresentColor;
 import com.mrcrayfish.furniture.tileentity.TileEntityPresent;
 import com.mrcrayfish.furniture.util.NBTHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -50,16 +50,17 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemPresent extends ItemBlock implements IMail, IItemColor
+public class ItemPresent extends ItemBlock implements IMail, IFurnitureItem
 {
 	public ItemPresent(Block block) 
 	{
 		super(block);
-        this.setHasSubtypes(true);
+		this.setHasSubtypes(true);
+		MrCrayfishFurnitureMod.proxy.registerItemColor(this);
 	}
 	
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag)
+	public void addInformation(ItemStack stack, EntityPlayer player, List<String> list, boolean flag)
 	{
 		if (stack.hasTagCompound())
 		{
@@ -188,9 +189,10 @@ public class ItemPresent extends ItemBlock implements IMail, IItemColor
 		return super.getUnlocalizedName(stack) + "_" + EnumDyeColor.values()[stack.getItemDamage()].getName();
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
-	public int getColorFromItemstack(ItemStack stack, int tintIndex) 
+	public void registerItemColor()
 	{
-		return ItemDye.DYE_COLORS[stack.getMetadata()];
+		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ItemPresentColor(), this);
 	}
 }
