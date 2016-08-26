@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.proxy;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.items.IFurnitureItem;
 import com.mrcrayfish.furniture.render.tileentity.BlenderRenderer;
 import com.mrcrayfish.furniture.render.tileentity.ChoppingBoardRenderer;
 import com.mrcrayfish.furniture.render.tileentity.CookieRenderer;
@@ -63,11 +64,15 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ClientProxy extends CommonProxy
 {
 	public static boolean rendering = false;
 	public static Entity renderEntity = null;
 	public static Entity backupEntity = null;
+	public List<IFurnitureItem> itemColorsToRegister = new ArrayList<IFurnitureItem>();
 
 	@Override
 	public void registerRenders()
@@ -94,6 +99,21 @@ public class ClientProxy extends CommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGrill.class, new GrillRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEsky.class, new EskyRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDoorMat.class, new DoorMatRenderer());
+	}
+
+	@Override
+	public void registerItemColor(IFurnitureItem item)
+	{
+		this.itemColorsToRegister.add(item);
+	}
+
+	@Override
+	public void registerItemColors()
+	{
+		for (IFurnitureItem item : this.itemColorsToRegister)
+		{
+			item.registerItemColor();
+		}
 	}
 
 	@Override
@@ -147,7 +167,7 @@ public class ClientProxy extends CommonProxy
 		
 		if(event.getEntityPlayer() == renderEntity)
 		{
-			this.backupEntity = Minecraft.getMinecraft().getRenderManager().renderViewEntity;
+			backupEntity = Minecraft.getMinecraft().getRenderManager().renderViewEntity;
 			Minecraft.getMinecraft().getRenderManager().renderViewEntity = renderEntity;
 		}
 	}

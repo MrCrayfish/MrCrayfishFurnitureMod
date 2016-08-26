@@ -17,6 +17,8 @@
  */
 package com.mrcrayfish.furniture.proxy;
 
+import com.mrcrayfish.furniture.items.IFurnitureItem;
+
 public interface ProxyInterface
 {
 	public void preInit();
@@ -24,5 +26,9 @@ public interface ProxyInterface
 	public boolean isSinglePlayer();
 
 	public boolean isDedicatedServer();
+
+	void registerItemColor(IFurnitureItem item);
+
+	void registerItemColors();
 
 }

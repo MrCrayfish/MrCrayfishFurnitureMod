@@ -105,6 +105,11 @@ public class TileEntityCabinet extends TileEntityLockable implements IInventory
 	{
 		super.readFromNBT(par1NBTTagCompound);
 		NBTTagList var2 = (NBTTagList) par1NBTTagCompound.getTag("cabinetItems");
+		if (var2 == null) 
+		{
+			return;
+		}
+
 		this.cabinetContents = new ItemStack[this.getSizeInventory()];
 
 		for (int var3 = 0; var3 < var2.tagCount(); ++var3)

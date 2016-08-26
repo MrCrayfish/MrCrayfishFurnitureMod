@@ -15,28 +15,21 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.mrcrayfish.furniture.items;
+package com.mrcrayfish.furniture.items.colors;
 
-import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.items.colors.ItemWreathColor;
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.item.ItemDye;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemWreath extends ItemBlock implements IFurnitureItem
-{
-	public ItemWreath(Block block)
+@SideOnly(Side.CLIENT)
+public class ItemPresentColor implements IItemColor {
+
+	@Override
+	public int getColorFromItemstack(ItemStack stack, int tintIndex) 
 	{
-		super(block);
-		MrCrayfishFurnitureMod.proxy.registerItemColor(this);
+		return ItemDye.DYE_COLORS[stack.getMetadata()];
 	}
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerItemColor()
-	{
-		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ItemWreathColor(), this);
-	}
 }

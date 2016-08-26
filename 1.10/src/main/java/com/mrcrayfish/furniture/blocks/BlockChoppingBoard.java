@@ -136,6 +136,11 @@ public class BlockChoppingBoard extends BlockFurnitureTile
 	
 	public int getRotationState(IBlockAccess source, BlockPos pos) 
 	{
+		if (source.isAirBlock(pos))
+		{
+			return 0;
+		}
+
 		return getMetaFromState(source.getBlockState(pos)) % 2;
 	}
 

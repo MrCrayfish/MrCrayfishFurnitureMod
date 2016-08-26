@@ -17,9 +17,11 @@
  */
 package com.mrcrayfish.furniture.proxy;
 
-import net.minecraft.client.Minecraft;
+import com.mrcrayfish.furniture.items.IFurnitureItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class CommonProxy implements ProxyInterface
 {
@@ -47,12 +49,29 @@ public class CommonProxy implements ProxyInterface
 	@Override
 	public boolean isDedicatedServer()
 	{
-		return !Minecraft.getMinecraft().isIntegratedServerRunning();
+		MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
+		if (server != null && server.isDedicatedServer()) {
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override
 	public void preInit()
 	{
 		
+	}
+
+	@Override
+	public void registerItemColors()
+	{
+
+	}
+
+	@Override
+	public void registerItemColor(IFurnitureItem item)
+	{
+
 	}
 }

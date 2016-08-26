@@ -15,28 +15,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.mrcrayfish.furniture.items;
+package com.mrcrayfish.furniture.items.colors;
 
-import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.items.colors.ItemWreathColor;
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemWreath extends ItemBlock implements IFurnitureItem
-{
-	public ItemWreath(Block block)
+import java.awt.Color;
+
+@SideOnly(Side.CLIENT)
+public class ItemCupColor implements IItemColor {
+
+	public int getColorFromCompound(ItemStack cup)
 	{
-		super(block);
-		MrCrayfishFurnitureMod.proxy.registerItemColor(this);
+		if (cup.hasTagCompound())
+		{
+			if (cup.getTagCompound().hasKey("Colour"))
+			{
+				int[] colour = cup.getTagCompound().getIntArray("Colour");
+				Color color = new Color(colour[0], colour[1], colour[2]);
+				return color.getRGB();
+			}
+		}
+		return 16777215;
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void registerItemColor()
+	public int getColorFromItemstack(ItemStack stack, int tintIndex) 
 	{
-		Minecraft.getMinecraft().getItemColors().registerItemColorHandler(new ItemWreathColor(), this);
+		return this.getColorFromCompound(stack);
 	}
+
 }
