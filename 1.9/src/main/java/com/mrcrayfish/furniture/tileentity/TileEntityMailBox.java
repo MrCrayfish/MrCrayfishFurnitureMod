@@ -34,7 +34,6 @@ public class TileEntityMailBox extends TileEntity implements IInventory
 	public ItemStack[] mailBoxContents = new ItemStack[6];
 	public String ownerUUID = null;
 	public String ownerName = "";
-	public boolean locked = true;
 
 	@Override
 	public int getSizeInventory()
@@ -134,50 +133,54 @@ public class TileEntityMailBox extends TileEntity implements IInventory
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
 	{
 		super.readFromNBT(par1NBTTagCompound);
-		NBTTagList var2 = (NBTTagList) par1NBTTagCompound.getTag("mailBoxItems");
+
 		if (par1NBTTagCompound.hasKey("OwnerUUID") && par1NBTTagCompound.hasKey("OwnerName"))
 		{
 			this.ownerUUID = par1NBTTagCompound.getString("OwnerUUID");
 			this.ownerName = par1NBTTagCompound.getString("OwnerName");
 		}
-		this.locked = par1NBTTagCompound.getBoolean("Locked");
-		this.mailBoxContents = new ItemStack[this.getSizeInventory()];
-
-		for (int var3 = 0; var3 < var2.tagCount(); ++var3)
+		
+		if(par1NBTTagCompound.hasKey("mailBoxItems"))
 		{
-			NBTTagCompound var4 = (NBTTagCompound) var2.getCompoundTagAt(var3);
-			int var5 = var4.getByte("mailBoxSlot") & 255;
-
-			if (var5 >= 0 && var5 < this.mailBoxContents.length)
+			this.mailBoxContents = new ItemStack[this.getSizeInventory()];
+			NBTTagList tagList = (NBTTagList) par1NBTTagCompound.getTag("mailBoxItems");
+			for (int i = 0; i < tagList.tagCount(); ++i)
 			{
-				this.mailBoxContents[var5] = ItemStack.loadItemStackFromNBT(var4);
+				NBTTagCompound itemTag = (NBTTagCompound) tagList.getCompoundTagAt(i);
+				int slot = itemTag.getByte("mailBoxSlot") & 255;
+
+				if (slot >= 0 && slot < this.mailBoxContents.length)
+				{
+					this.mailBoxContents[slot] = ItemStack.loadItemStackFromNBT(itemTag);
+				}
 			}
 		}
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeToNBT(par1NBTTagCompound);
-		NBTTagList var2 = new NBTTagList();
+		super.writeToNBT(tagCompound);
+		
 		if (ownerUUID != null && ownerName != null)
 		{
-			par1NBTTagCompound.setString("OwnerUUID", ownerUUID.toString());
-			par1NBTTagCompound.setString("OwnerName", ownerName);
+			tagCompound.setString("OwnerUUID", ownerUUID.toString());
+			tagCompound.setString("OwnerName", ownerName);
 		}
-		par1NBTTagCompound.setBoolean("Locked", locked);
 
-		for (int var3 = 0; var3 < this.mailBoxContents.length; ++var3)
+		NBTTagList tagList = new NBTTagList();
+		for (int slot = 0; slot < this.mailBoxContents.length; ++slot)
 		{
-			if (this.mailBoxContents[var3] != null)
+			if (this.mailBoxContents[slot] != null)
 			{
-				NBTTagCompound var4 = new NBTTagCompound();
-				var4.setByte("mailBoxSlot", (byte) var3);
-				this.mailBoxContents[var3].writeToNBT(var4);
-				var2.appendTag(var4);
+				NBTTagCompound itemTag = new NBTTagCompound();
+				itemTag.setByte("mailBoxSlot", (byte) slot);
+				this.mailBoxContents[slot].writeToNBT(itemTag);
+				tagList.appendTag(itemTag);
 			}
 		}
-		par1NBTTagCompound.setTag("mailBoxItems", var2);
+		tagCompound.setTag("mailBoxItems", tagList);
+		return tagCompound;
 	}
 
 	@Override
@@ -188,7 +191,7 @@ public class TileEntityMailBox extends TileEntity implements IInventory
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);
@@ -213,9 +216,14 @@ public class TileEntityMailBox extends TileEntity implements IInventory
 		super.updateContainingBlockInfo();
 	}
 
-	public boolean canOpen(TileEntityMailBox mailBox, EntityPlayer player)
+	public boolean canOpen(EntityPlayer player)
 	{
-		return mailBox.ownerUUID.equalsIgnoreCase(player.getUniqueID().toString());
+		return ownerUUID != null && ownerUUID.equalsIgnoreCase(player.getUniqueID().toString());
+	}
+	
+	public boolean isClaimed()
+	{
+		return ownerUUID != null && !ownerName.isEmpty();
 	}
 
 	public void addMail(ItemStack itemStack)

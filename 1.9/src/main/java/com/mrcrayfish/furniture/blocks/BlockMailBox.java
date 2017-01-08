@@ -21,6 +21,7 @@ import java.util.List;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
+import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 
@@ -50,7 +51,7 @@ public class BlockMailBox extends BlockFurnitureTile
 	public BlockMailBox(Material material)
 	{
 		super(material);
-		this.setStepSound(SoundType.WOOD);
+		this.setSoundType(SoundType.WOOD);
 	}
 	
 	@Override
@@ -97,41 +98,14 @@ public class BlockMailBox extends BlockFurnitureTile
 				}
 
 				tileEntityMailBox.tryAndUpdateName(playerIn);
-
-				if (!playerIn.isSneaking())
+				
+				if (tileEntityMailBox.canOpen(playerIn))
 				{
-					if (tileEntityMailBox.canOpen(tileEntityMailBox, playerIn) && tileEntityMailBox.locked)
-					{
-						playerIn.openGui(MrCrayfishFurnitureMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
-					}
-					else if (!worldIn.isRemote && tileEntityMailBox.locked)
-					{
-						playerIn.addChatComponentMessage(new TextComponentString("This mail box belongs to " + TextFormatting.YELLOW + tileEntityMailBox.ownerName));
-					}
-					else if (!tileEntityMailBox.locked)
-					{
-						playerIn.openGui(MrCrayfishFurnitureMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
-					}
+					playerIn.openGui(MrCrayfishFurnitureMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
 				}
 				else
 				{
-					if (tileEntityMailBox.canOpen(tileEntityMailBox, playerIn))
-					{
-						if (tileEntityMailBox.locked)
-						{
-							tileEntityMailBox.locked = false;
-							playerIn.addChatComponentMessage(new TextComponentString(TextFormatting.GREEN + "Mailbox unlocked."));
-						}
-						else if (!tileEntityMailBox.locked)
-						{
-							tileEntityMailBox.locked = true;
-							playerIn.addChatComponentMessage(new TextComponentString(TextFormatting.GREEN + "Mailbox locked."));
-						}
-					}
-					else
-					{
-						playerIn.addChatComponentMessage(new TextComponentString(TextFormatting.RED + "You don't have permission to unlock this mail box."));
-					}
+					playerIn.addChatComponentMessage(new TextComponentString("This mail box belongs to " + TextFormatting.YELLOW + tileEntityMailBox.ownerName));
 				}
 			}
 		}
@@ -152,28 +126,29 @@ public class BlockMailBox extends BlockFurnitureTile
 	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
 	{
 		TileEntityMailBox tileEntityMailBox = (TileEntityMailBox) world.getTileEntity(pos);
-		
-		if (tileEntityMailBox == null)
+		if (tileEntityMailBox != null)
 		{
-			return false;
-		}
-
-		int metadata = getMetaFromState(world.getBlockState(pos));
-		if (tileEntityMailBox.locked)
-		{
-			world.setBlockState(pos, world.getBlockState(pos));
-			if (!world.isRemote)
+			if(tileEntityMailBox.canOpen(player) || !tileEntityMailBox.isClaimed() || isAuthorized(player))
 			{
-				player.addChatComponentMessage(new TextComponentString(TextFormatting.RED + "You need to unlock the mail box to destory it. Crouch and " + TextFormatting.RED + "right click with your bare hand to unlock."));
-				return false;
+				this.breakBlock(world, pos, world.getBlockState(pos));
+				world.setBlockToAir(pos);
+			}
+			else
+			{
+				world.setBlockState(pos, world.getBlockState(pos));
+				if (!world.isRemote)
+				{
+					player.addChatComponentMessage(new TextComponentString(TextFormatting.RED + "You need to be the owner of the mailbox to destroy it."));
+					return false;
+				}
 			}
 		}
-		else
-		{
-			world.setBlockToAir(pos);
-			this.breakBlock(world, pos, world.getBlockState(pos));
-		}
 		return true;
+	}
+	
+	public boolean isAuthorized(EntityPlayer player)
+	{
+		return player.capabilities.isCreativeMode && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == FurnitureItems.itemHammer;
 	}
 	
 	@Override
