@@ -106,43 +106,49 @@ public class TileEntityPresent extends TileEntity implements ISidedInventory
 	}
 	
 	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+	public void readFromNBT(NBTTagCompound tagCompound)
 	{
-		super.readFromNBT(par1NBTTagCompound);
-		NBTTagList var2 = (NBTTagList) par1NBTTagCompound.getTag("presentContents");
-		this.ownerName = par1NBTTagCompound.getString("OwnerName");
-		this.presentContents = new ItemStack[this.getSizeInventory()];
-
-		for (int var3 = 0; var3 < var2.tagCount(); ++var3)
+		super.readFromNBT(tagCompound);
+		this.ownerName = tagCompound.getString("OwnerName");
+		
+		if(tagCompound.hasKey("presentContents"))
 		{
-			NBTTagCompound var4 = (NBTTagCompound) var2.getCompoundTagAt(var3);
-			int var5 = var4.getByte("presentItem") & 255;
+			NBTTagList var2 = (NBTTagList) tagCompound.getTag("presentContents");
+			this.presentContents = new ItemStack[this.getSizeInventory()];
 
-			if (var5 >= 0 && var5 < this.presentContents.length)
+			for (int i = 0; i < var2.tagCount(); ++i)
 			{
-				this.presentContents[var5] = ItemStack.loadItemStackFromNBT(var4);
+				NBTTagCompound itemTag = (NBTTagCompound) var2.getCompoundTagAt(i);
+				int slot = itemTag.getByte("presentItem") & 255;
+
+				if (slot >= 0 && slot < this.presentContents.length)
+				{
+					this.presentContents[slot] = ItemStack.loadItemStackFromNBT(itemTag);
+				}
 			}
 		}
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeToNBT(par1NBTTagCompound);
-		NBTTagList var2 = new NBTTagList();
-		par1NBTTagCompound.setString("OwnerName", ownerName);
+		super.writeToNBT(tagCompound);
+		NBTTagList tagList = new NBTTagList();
+		tagCompound.setString("OwnerName", ownerName);
 
-		for (int var3 = 0; var3 < this.presentContents.length; ++var3)
+		for (int slot = 0; slot < this.presentContents.length; ++slot)
 		{
-			if (this.presentContents[var3] != null)
+			if (this.presentContents[slot] != null)
 			{
-				NBTTagCompound var4 = new NBTTagCompound();
-				var4.setByte("presentItem", (byte) var3);
-				this.presentContents[var3].writeToNBT(var4);
-				var2.appendTag(var4);
+				NBTTagCompound itemTag = new NBTTagCompound();
+				itemTag.setByte("presentItem", (byte) slot);
+				this.presentContents[slot].writeToNBT(itemTag);
+				tagList.appendTag(itemTag);
 			}
 		}
-		par1NBTTagCompound.setTag("presentContents", var2);
+		tagCompound.setTag("presentContents", tagList);
+		
+		return tagCompound;
 	}
 
 	@Override
@@ -197,7 +203,7 @@ public class TileEntityPresent extends TileEntity implements ISidedInventory
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

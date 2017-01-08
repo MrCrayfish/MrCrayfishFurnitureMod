@@ -22,10 +22,12 @@ import java.util.Random;
 import org.lwjgl.input.Keyboard;
 
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
+import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageFart;
 
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -41,7 +43,7 @@ public class InputHandler
 
 	public InputHandler()
 	{
-		key_fart = new KeyBinding("key.fart.desc", Keyboard.KEY_F, "keys.cfm.category");
+		key_fart = new KeyBinding("key.fart.desc", Keyboard.KEY_G, "keys.cfm.category");
 		ClientRegistry.registerKeyBinding(key_fart);
 	}
 
@@ -62,7 +64,7 @@ public class InputHandler
 			if (keyPressed)
 			{
 				keyPressed = false;
-				PacketHandler.INSTANCE.sendToServer(new MessageFart(event.player.posX, event.player.posY, event.player.posZ));
+				PacketHandler.INSTANCE.sendToServer(new MessageFart());
 			}
 		}
 	}

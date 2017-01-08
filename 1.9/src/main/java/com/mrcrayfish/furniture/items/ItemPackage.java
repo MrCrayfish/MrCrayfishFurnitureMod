@@ -26,7 +26,10 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
@@ -45,29 +48,32 @@ public class ItemPackage extends Item implements IMail
 		return true;
 	}
 
-	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+	@Override
+	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		TileEntity tile_entity = world.getTileEntity(pos);
-		if (!world.isRemote)
+		TileEntity tile_entity = worldIn.getTileEntity(pos);
+		if (!worldIn.isRemote)
 		{
 			if (tile_entity instanceof TileEntityMailBox)
 			{
-				if (player.isSneaking() && !world.isRemote)
+				if (playerIn.isSneaking() && !worldIn.isRemote)
 				{
-					player.addChatMessage(new TextComponentString("You must sign the package before depositing it."));
+					playerIn.addChatMessage(new TextComponentString("You must sign the package before depositing it."));
 				}
 			}
+			return EnumActionResult.SUCCESS;
 		}
-		return true;
+		return EnumActionResult.PASS;
 	}
 
-	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) 
 	{
-		if (!par2World.isRemote)
+		if (!worldIn.isRemote)
 		{
-			par3EntityPlayer.openGui(MrCrayfishFurnitureMod.instance, 7, par2World, 0, 0, 0);
+			playerIn.openGui(MrCrayfishFurnitureMod.instance, 7, worldIn, 0, 0, 0);
 		}
-		return par1ItemStack;
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
 	}
 
 	public static IInventory getInv(EntityPlayer par1EntityPlayer)

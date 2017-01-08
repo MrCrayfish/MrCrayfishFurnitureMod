@@ -1152,53 +1152,53 @@ public class RecipeRegistry extends RecipeAPI
 	public static void registerDefaultRecipes()
 	{
 		if (ConfigurationHandler.printer_1)
-			RecipeRegistry.getInstance().registerPrinterRecipe(new ItemStack(Items.enchanted_book));
+			RecipeRegistry.getInstance().registerPrinterRecipe(new ItemStack(Items.ENCHANTED_BOOK));
 		if (ConfigurationHandler.printer_2)
-			RecipeRegistry.getInstance().registerPrinterRecipe(new ItemStack(Items.written_book));
+			RecipeRegistry.getInstance().registerPrinterRecipe(new ItemStack(Items.WRITTEN_BOOK));
 
 		if (ConfigurationHandler.oven_1)
-			RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.beef), new ItemStack(Items.cooked_beef));
+			RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.BEEF), new ItemStack(Items.COOKED_BEEF));
 		if (ConfigurationHandler.oven_2)
-			RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.porkchop), new ItemStack(Items.cooked_porkchop));
+			RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.PORKCHOP), new ItemStack(Items.COOKED_PORKCHOP));
 		if (ConfigurationHandler.oven_3)
-			RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.potato), new ItemStack(Items.baked_potato));
+			RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.POTATO), new ItemStack(Items.BAKED_POTATO));
 		if (ConfigurationHandler.oven_4)
-			RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.chicken), new ItemStack(Items.cooked_chicken));
+			RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.CHICKEN), new ItemStack(Items.COOKED_CHICKEN));
 		if (ConfigurationHandler.oven_5)
-			RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.fish, 1, 0), new ItemStack(Items.cooked_fish, 1, 0));
+			RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.FISH, 1, 0), new ItemStack(Items.COOKED_FISH, 1, 0));
 		if (ConfigurationHandler.oven_6)
-			RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.fish, 1, 1), new ItemStack(Items.cooked_fish, 1, 1));
+			RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.FISH, 1, 1), new ItemStack(Items.COOKED_FISH, 1, 1));
 		if (ConfigurationHandler.oven_7)
 			RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(FurnitureItems.itemFlesh), new ItemStack(FurnitureItems.itemCookedFlesh));
 
 		if (ConfigurationHandler.frez_1)
-			RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.water_bucket), new ItemStack(Blocks.ice));
+			RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.WATER_BUCKET), new ItemStack(Blocks.ICE));
 		if (ConfigurationHandler.frez_2)
-			RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Blocks.ice), new ItemStack(Blocks.packed_ice));
+			RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Blocks.ICE), new ItemStack(Blocks.PACKED_ICE));
 		if (ConfigurationHandler.frez_3)
-			RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.lava_bucket), new ItemStack(Blocks.obsidian));
+			RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.LAVA_BUCKET), new ItemStack(Blocks.OBSIDIAN));
 		if (ConfigurationHandler.frez_4)
-			RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.slime_ball), new ItemStack(Items.snowball));
+			RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.SLIME_BALL), new ItemStack(Items.SNOWBALL));
 		if (ConfigurationHandler.frez_5)
-			RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.poisonous_potato), new ItemStack(Items.potato));
+			RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.POISONOUS_POTATO), new ItemStack(Items.POTATO));
 		if (ConfigurationHandler.frez_6)
-			RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.rotten_flesh), new ItemStack(FurnitureItems.itemFlesh));
+			RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.ROTTEN_FLESH), new ItemStack(FurnitureItems.itemFlesh));
 
 		if (ConfigurationHandler.mine_1)
-			RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Blocks.hardened_clay, 16), new ItemStack(Items.emerald), 1);
+			RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Blocks.HARDENED_CLAY, 16), new ItemStack(Items.EMERALD), 1);
 		if (ConfigurationHandler.mine_2)
-			RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.skull), new ItemStack(Items.emerald), 8);
+			RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.SKULL), new ItemStack(Items.EMERALD), 8);
 		if (ConfigurationHandler.mine_3)
-			RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.saddle), new ItemStack(Items.emerald), 4);
+			RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.SADDLE), new ItemStack(Items.EMERALD), 4);
 		if (ConfigurationHandler.mine_4)
-			RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.spawn_egg, 1, 100), new ItemStack(Items.emerald), 8);
+			RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.SPAWN_EGG, 1, 100), new ItemStack(Items.EMERALD), 8);
 		if (ConfigurationHandler.mine_5)
-			RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.diamond_horse_armor), new ItemStack(Items.diamond), 8);
+			RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.DIAMOND_HORSE_ARMOR), new ItemStack(Items.DIAMOND), 8);
 		if (ConfigurationHandler.mine_6)
-			RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.experience_bottle), new ItemStack(Items.iron_ingot), 1);
+			RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(Items.IRON_INGOT), 1);
 		if (ConfigurationHandler.mine_7)
 		{
-			ItemStack stack = new ItemStack(Items.fireworks, 4);
+			ItemStack stack = new ItemStack(Items.FIREWORKS, 4);
 			NBTTagCompound master = new NBTTagCompound();
 			NBTTagCompound firework = new NBTTagCompound();
 			firework.setByte("Flight", (byte) 1);
@@ -1212,11 +1212,11 @@ public class RecipeRegistry extends RecipeAPI
 			master.setTag("Fireworks", firework);
 			stack.setTagCompound(master);
 			stack.setStackDisplayName(TextFormatting.RED + "Christmas" + TextFormatting.GREEN + " Firework");
-			RecipeRegistry.getInstance().registerMineBayItem(stack, new ItemStack(Items.iron_ingot), 1);
+			RecipeRegistry.getInstance().registerMineBayItem(stack, new ItemStack(Items.IRON_INGOT), 1);
 		}
 		if (ConfigurationHandler.mine_8)
 		{
-			ItemStack stack = new ItemStack(Items.enchanted_book);
+			ItemStack stack = new ItemStack(Items.ENCHANTED_BOOK);
 			NBTTagCompound master = new NBTTagCompound();
 			NBTTagList list = new NBTTagList();
 			NBTTagCompound data = new NBTTagCompound();
@@ -1225,132 +1225,137 @@ public class RecipeRegistry extends RecipeAPI
 			list.appendTag(data);
 			master.setTag("StoredEnchantments", list);
 			stack.setTagCompound(master);
-			RecipeRegistry.getInstance().registerMineBayItem(stack, new ItemStack(Items.emerald), 8);
+			RecipeRegistry.getInstance().registerMineBayItem(stack, new ItemStack(Items.EMERALD), 8);
 		}
 		if (ConfigurationHandler.mine_9)
-			RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.potionitem, 2, 8270), new ItemStack(Items.emerald), 1);
+		{
+			ItemStack stack = new ItemStack(Items.POTIONITEM, 2);
+			NBTTagCompound data = new NBTTagCompound();
+			data.setString("Potion", "night_vision");
+			stack.setTagCompound(data);
+			RecipeRegistry.getInstance().registerMineBayItem(stack, new ItemStack(Items.EMERALD), 1);
+		}
 		if (ConfigurationHandler.mine_10)
-			RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(FurnitureItems.itemRecipeBook), new ItemStack(Items.emerald), 1);
-
+			RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(FurnitureItems.itemRecipeBook), new ItemStack(Items.EMERALD), 1);
 		if (ConfigurationHandler.blen_1)
-			RecipeRegistry.getInstance().registerBlenderRecipe("Fruit Crush", 4, new ItemStack[] { new ItemStack(Items.apple, 2), new ItemStack(Items.melon, 4) }, new int[] { 255, 58, 37 });
+			RecipeRegistry.getInstance().registerBlenderRecipe("Fruit Crush", 4, new ItemStack[] { new ItemStack(Items.APPLE, 2), new ItemStack(Items.MELON, 4) }, new int[] { 255, 58, 37 });
 		if (ConfigurationHandler.blen_2)
-			RecipeRegistry.getInstance().registerBlenderRecipe("Veggie Juice", 6, new ItemStack[] { new ItemStack(Items.carrot, 4), new ItemStack(Items.potato, 1), new ItemStack(Items.pumpkin_pie, 2) }, new int[] { 247, 139, 122 });
+			RecipeRegistry.getInstance().registerBlenderRecipe("Veggie Juice", 6, new ItemStack[] { new ItemStack(Items.CARROT, 4), new ItemStack(Items.POTATO, 1), new ItemStack(Items.PUMPKIN_PIE, 2) }, new int[] { 247, 139, 122 });
 		if (ConfigurationHandler.blen_3)
-			RecipeRegistry.getInstance().registerBlenderRecipe("Cookies and Cream Milkshake", 4, new ItemStack[] { new ItemStack(Items.cookie, 2), new ItemStack(Items.milk_bucket) }, new int[] { 255, 214, 164 });
+			RecipeRegistry.getInstance().registerBlenderRecipe("Cookies and Cream Milkshake", 4, new ItemStack[] { new ItemStack(Items.COOKIE, 2), new ItemStack(Items.MILK_BUCKET) }, new int[] { 255, 214, 164 });
 		if (ConfigurationHandler.blen_4)
-			RecipeRegistry.getInstance().registerBlenderRecipe("Energy Drink", 8, new ItemStack[] { new ItemStack(Items.redstone, 8), new ItemStack(Items.fire_charge, 1), new ItemStack(Items.sugar, 16) }, new int[] { 92, 23, 8 });
+			RecipeRegistry.getInstance().registerBlenderRecipe("Energy Drink", 8, new ItemStack[] { new ItemStack(Items.REDSTONE, 8), new ItemStack(Items.FIRE_CHARGE, 1), new ItemStack(Items.SUGAR, 16) }, new int[] { 92, 23, 8 });
 			
-			RecipeRegistry.getInstance().registerBlenderRecipe("Egg Nog", 5, new ItemStack[] { new ItemStack(Items.egg, 4), new ItemStack(Items.milk_bucket, 1), new ItemStack(Items.sugar, 2)},  new int[] { 255, 234, 178 });
+			RecipeRegistry.getInstance().registerBlenderRecipe("Egg Nog", 5, new ItemStack[] { new ItemStack(Items.EGG, 4), new ItemStack(Items.MILK_BUCKET, 1), new ItemStack(Items.SUGAR, 2)},  new int[] { 255, 234, 178 });
 		
 
 		if (ConfigurationHandler.chop_1)
-			RecipeRegistry.getInstance().registerChoppingBoardRecipe(new ItemStack(Items.bread), new ItemStack(FurnitureItems.itemBreadSlice, 6));
+			RecipeRegistry.getInstance().registerChoppingBoardRecipe(new ItemStack(Items.BREAD), new ItemStack(FurnitureItems.itemBreadSlice, 6));
 
 		if (ConfigurationHandler.dish_1)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.bow));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.BOW));
 		if (ConfigurationHandler.dish_2)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.wooden_pickaxe));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.WOODEN_PICKAXE));
 		if (ConfigurationHandler.dish_3)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.wooden_axe));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.WOODEN_AXE));
 		if (ConfigurationHandler.dish_4)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.wooden_shovel));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.WOODEN_SHOVEL));
 		if (ConfigurationHandler.dish_5)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.wooden_hoe));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.WOODEN_HOE));
 		if (ConfigurationHandler.dish_6)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.wooden_sword));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.WOODEN_SWORD));
 		if (ConfigurationHandler.dish_7)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.stone_pickaxe));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.STONE_PICKAXE));
 		if (ConfigurationHandler.dish_8)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.stone_axe));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.STONE_AXE));
 		if (ConfigurationHandler.dish_9)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.stone_shovel));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.STONE_SHOVEL));
 		if (ConfigurationHandler.dish_10)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.stone_hoe));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.STONE_HOE));
 		if (ConfigurationHandler.dish_11)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.stone_sword));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.STONE_SWORD));
 		if (ConfigurationHandler.dish_12)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.iron_pickaxe));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.IRON_PICKAXE));
 		if (ConfigurationHandler.dish_13)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.iron_axe));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.IRON_AXE));
 		if (ConfigurationHandler.dish_14)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.iron_shovel));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.IRON_SHOVEL));
 		if (ConfigurationHandler.dish_15)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.iron_hoe));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.IRON_HOE));
 		if (ConfigurationHandler.dish_16)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.iron_sword));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.IRON_SWORD));
 		if (ConfigurationHandler.dish_17)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.golden_pickaxe));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.GOLDEN_PICKAXE));
 		if (ConfigurationHandler.dish_18)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.golden_axe));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.GOLDEN_AXE));
 		if (ConfigurationHandler.dish_19)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.golden_shovel));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.GOLDEN_SHOVEL));
 		if (ConfigurationHandler.dish_20)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.golden_hoe));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.GOLDEN_HOE));
 		if (ConfigurationHandler.dish_21)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.golden_sword));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.GOLDEN_SWORD));
 		if (ConfigurationHandler.dish_22)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.diamond_pickaxe));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.DIAMOND_PICKAXE));
 		if (ConfigurationHandler.dish_23)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.diamond_axe));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.DIAMOND_AXE));
 		if (ConfigurationHandler.dish_24)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.diamond_shovel));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.DIAMOND_SHOVEL));
 		if (ConfigurationHandler.dish_25)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.diamond_hoe));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.DIAMOND_HOE));
 		if (ConfigurationHandler.dish_26)
-			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.diamond_sword));
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.DIAMOND_SWORD));
 
 		if (ConfigurationHandler.micr_1)
-			RecipeRegistry.getInstance().registerMicrowaveRecipe(new ItemStack(Items.beef), new ItemStack(Items.cooked_beef));
+			RecipeRegistry.getInstance().registerMicrowaveRecipe(new ItemStack(Items.BEEF), new ItemStack(Items.COOKED_BEEF));
 		if (ConfigurationHandler.micr_2)
-			RecipeRegistry.getInstance().registerMicrowaveRecipe(new ItemStack(Items.potato), new ItemStack(Items.baked_potato));
+			RecipeRegistry.getInstance().registerMicrowaveRecipe(new ItemStack(Items.POTATO), new ItemStack(Items.BAKED_POTATO));
 
 		if (ConfigurationHandler.toast_1)
 			RecipeRegistry.getInstance().registerToasterRecipe(new ItemStack(FurnitureItems.itemBreadSlice), new ItemStack(FurnitureItems.itemToast));
 
 		if (ConfigurationHandler.wash_1)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.leather_helmet));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.LEATHER_HELMET));
 		if (ConfigurationHandler.wash_2)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.leather_chestplate));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.LEATHER_CHESTPLATE));
 		if (ConfigurationHandler.wash_3)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.leather_leggings));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.LEATHER_LEGGINGS));
 		if (ConfigurationHandler.wash_4)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.leather_boots));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.LEATHER_BOOTS));
 		if (ConfigurationHandler.wash_5)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.chainmail_helmet));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.CHAINMAIL_HELMET));
 		if (ConfigurationHandler.wash_6)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.chainmail_chestplate));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.CHAINMAIL_CHESTPLATE));
 		if (ConfigurationHandler.wash_7)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.chainmail_leggings));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.CHAINMAIL_LEGGINGS));
 		if (ConfigurationHandler.wash_8)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.chainmail_boots));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.CHAINMAIL_BOOTS));
 		if (ConfigurationHandler.wash_9)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.iron_helmet));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.IRON_HELMET));
 		if (ConfigurationHandler.wash_10)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.iron_chestplate));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.IRON_CHESTPLATE));
 		if (ConfigurationHandler.wash_11)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.iron_leggings));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.IRON_LEGGINGS));
 		if (ConfigurationHandler.wash_12)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.iron_boots));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.IRON_BOOTS));
 		if (ConfigurationHandler.wash_13)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.golden_helmet));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.GOLDEN_HELMET));
 		if (ConfigurationHandler.wash_14)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.golden_chestplate));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.GOLDEN_CHESTPLATE));
 		if (ConfigurationHandler.wash_15)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.golden_leggings));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.GOLDEN_LEGGINGS));
 		if (ConfigurationHandler.wash_16)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.golden_boots));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.GOLDEN_BOOTS));
 		if (ConfigurationHandler.wash_17)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.diamond_helmet));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.DIAMOND_HELMET));
 		if (ConfigurationHandler.wash_18)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.diamond_chestplate));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.DIAMOND_CHESTPLATE));
 		if (ConfigurationHandler.wash_19)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.diamond_leggings));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.DIAMOND_LEGGINGS));
 		if (ConfigurationHandler.wash_20)
-			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.diamond_boots));
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.DIAMOND_BOOTS));
 		
 		if (ConfigurationHandler.grill_1)
-			RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(Items.beef), new ItemStack(Items.cooked_beef));
+			RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(Items.BEEF), new ItemStack(Items.COOKED_BEEF));
 		if (ConfigurationHandler.grill_2)
 			RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(FurnitureItems.itemSausage), new ItemStack(FurnitureItems.itemSausageCooked));
 		if (ConfigurationHandler.grill_3)

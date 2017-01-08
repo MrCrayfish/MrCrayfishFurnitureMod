@@ -322,12 +322,12 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 	}
 	
 	@Override
-	public void readFromNBT(NBTTagCompound compound) 
+	public void readFromNBT(NBTTagCompound tagCompound) 
 	{
-		super.readFromNBT(compound);
-		if (compound.hasKey("Items"))
+		super.readFromNBT(tagCompound);
+		if (tagCompound.hasKey("Items"))
 		{
-			NBTTagList tagList = (NBTTagList) compound.getTag("Items");
+			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
 			this.inventory = new ItemStack[6];
 
 			for (int i = 0; i < tagList.tagCount(); ++i)
@@ -341,21 +341,21 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 				}
 			}
 		}
-		this.fire = compound.getBoolean("fire");
-		this.coal = compound.getInteger("coal");
-		this.coalTick = compound.getInteger("coalTick");
-		this.flippedLeft = compound.getBoolean("flipLeft");
-		this.flippedRight = compound.getBoolean("flipRight");
-		this.leftCookTime = compound.getInteger("leftCookTime");
-		this.rightCookTime = compound.getInteger("rightCookTime");
-		this.leftCooked = compound.getBoolean("leftCooked");
-		this.rightCooked = compound.getBoolean("rightCooked");
+		this.fire = tagCompound.getBoolean("fire");
+		this.coal = tagCompound.getInteger("coal");
+		this.coalTick = tagCompound.getInteger("coalTick");
+		this.flippedLeft = tagCompound.getBoolean("flipLeft");
+		this.flippedRight = tagCompound.getBoolean("flipRight");
+		this.leftCookTime = tagCompound.getInteger("leftCookTime");
+		this.rightCookTime = tagCompound.getInteger("rightCookTime");
+		this.leftCooked = tagCompound.getBoolean("leftCooked");
+		this.rightCooked = tagCompound.getBoolean("rightCooked");
 	}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound compound) 
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) 
 	{
-		super.writeToNBT(compound);
+		super.writeToNBT(tagCompound);
 		NBTTagList tagList = new NBTTagList();
 		for (int slot = 0; slot < this.inventory.length; ++slot)
 		{
@@ -367,16 +367,17 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 				tagList.appendTag(nbt);
 			}
 		}
-		compound.setTag("Items", tagList);
-		compound.setBoolean("fire", fire);
-		compound.setInteger("coal", this.coal);
-		compound.setInteger("coalTick", coalTick);
-		compound.setBoolean("flipLeft", flippedLeft);
-		compound.setBoolean("flipRight", flippedRight);
-		compound.setInteger("leftCookTime", leftCookTime);
-		compound.setInteger("rightCookTime", rightCookTime);
-		compound.setBoolean("leftCooked", leftCooked);
-		compound.setBoolean("rightCooked", rightCooked);
+		tagCompound.setTag("Items", tagList);
+		tagCompound.setBoolean("fire", fire);
+		tagCompound.setInteger("coal", this.coal);
+		tagCompound.setInteger("coalTick", coalTick);
+		tagCompound.setBoolean("flipLeft", flippedLeft);
+		tagCompound.setBoolean("flipRight", flippedRight);
+		tagCompound.setInteger("leftCookTime", leftCookTime);
+		tagCompound.setInteger("rightCookTime", rightCookTime);
+		tagCompound.setBoolean("leftCooked", leftCooked);
+		tagCompound.setBoolean("rightCooked", rightCooked);
+		return tagCompound;
 	}
 	
 	@Override
@@ -387,7 +388,7 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

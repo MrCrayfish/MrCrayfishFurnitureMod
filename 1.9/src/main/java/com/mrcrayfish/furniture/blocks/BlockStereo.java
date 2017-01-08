@@ -64,18 +64,18 @@ public class BlockStereo extends BlockFurnitureTile
 	{
 		super(material);
 		this.setHardness(1.0F);
-		this.setStepSound(SoundType.WOOD);
-		records.add((ItemRecord) Items.record_13);
-		records.add((ItemRecord) Items.record_blocks);
-		records.add((ItemRecord) Items.record_cat);
-		records.add((ItemRecord) Items.record_chirp);
-		records.add((ItemRecord) Items.record_far);
-		records.add((ItemRecord) Items.record_mall);
-		records.add((ItemRecord) Items.record_mellohi);
-		records.add((ItemRecord) Items.record_stal);
-		records.add((ItemRecord) Items.record_strad);
-		records.add((ItemRecord) Items.record_wait);
-		records.add((ItemRecord) Items.record_ward);
+		this.setSoundType(SoundType.WOOD);
+		records.add((ItemRecord) Items.RECORD_13);
+		records.add((ItemRecord) Items.RECORD_BLOCKS);
+		records.add((ItemRecord) Items.RECORD_CAT);
+		records.add((ItemRecord) Items.RECORD_CHIRP);
+		records.add((ItemRecord) Items.RECORD_FAR);
+		records.add((ItemRecord) Items.RECORD_MALL);
+		records.add((ItemRecord) Items.RECORD_MELLOHI);
+		records.add((ItemRecord) Items.RECORD_STAL);
+		records.add((ItemRecord) Items.RECORD_STRAD);
+		records.add((ItemRecord) Items.RECORD_WAIT);
+		records.add((ItemRecord) Items.RECORD_WARD);
 	}
 
 	@Override
@@ -113,10 +113,11 @@ public class BlockStereo extends BlockFurnitureTile
 				if(tileEntityStereo.count != 13)
 				{
 					tileEntityStereo.count = 13;
-					if(!worldIn.isRemote)
+					if(!worldIn.isRemote) 
+					{
 						playerIn.addChatComponentMessage(new TextComponentString("Stereo is now turned off."));
-					worldIn.playAuxSFX(1005, pos, 0);
-					worldIn.playRecord(pos, (SoundEvent) null);
+					}
+					this.ejectRecord(worldIn, pos);
 				}
 				else
 				{
@@ -134,10 +135,10 @@ public class BlockStereo extends BlockFurnitureTile
 	}
 
 	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state)
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
-		this.ejectRecord(world, pos);
-		super.breakBlock(world, pos, state);
+		this.ejectRecord(worldIn, pos);
+		super.breakBlock(worldIn, pos, state);
 	}
 
 	@Override
@@ -160,18 +161,10 @@ public class BlockStereo extends BlockFurnitureTile
 		return new TileEntityStereo();
 	}
 
-	public void ejectRecord(World world, BlockPos pos)
+	public void ejectRecord(World worldIn, BlockPos pos)
 	{
-		if(!world.isRemote)
-		{
-			TileEntityStereo tileEntityStereo = (TileEntityStereo) world.getTileEntity(pos);
-
-			if(tileEntityStereo != null)
-			{
-				world.playAuxSFX(1005, pos, 0);
-				world.playRecord(pos, (SoundEvent) null);
-			}
-		}
+		worldIn.playEvent(1010, pos, 0);
+        worldIn.playRecord(pos, (SoundEvent)null);
 	}
 
 	@Override

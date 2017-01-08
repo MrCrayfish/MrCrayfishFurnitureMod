@@ -23,6 +23,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -66,8 +67,8 @@ public class MessagePackage implements IMessage, IMessageHandler<MessagePackage,
 		ItemStack signedMail = new ItemStack(FurnitureItems.itemPackageSigned);
 		signedMail.setTagCompound(mail.getTagCompound());
 		signedMail.setTagInfo("Author", new NBTTagString(player.getName()));
-		signedMail.setStackDisplayName("Mail");
-		player.inventory.setInventorySlotContents(message.slot, signedMail);
+		signedMail.setStackDisplayName(TextFormatting.YELLOW.toString() + TextFormatting.BOLD.toString() + "Mail");
+		player.setHeldItem(player.getActiveHand(), signedMail);
 		return null;
 	}
 

@@ -118,7 +118,7 @@ public class BlockDivingboard extends BlockFurniture
 	@Override
 	public boolean addLandingEffects(IBlockState state, WorldServer worldObj, BlockPos blockPosition, IBlockState iblockstate, EntityLivingBase entity, int numberOfParticles) 
 	{
-		return false;
+		return true;
 	}
 	
 	public double getRequiredVelocity(float height)

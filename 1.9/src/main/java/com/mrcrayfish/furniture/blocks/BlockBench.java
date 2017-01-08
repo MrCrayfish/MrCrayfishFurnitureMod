@@ -44,7 +44,7 @@ public class BlockBench extends BlockFurniture
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
 	{
-		if(getRotationState(source, pos) == 1)
+		if(getMetaFromState(state) % 2 == 1)
 		{
 			return BOUNDING_BOX_NORTH;
 		}
@@ -54,17 +54,12 @@ public class BlockBench extends BlockFurniture
 	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB axisAligned, List<AxisAlignedBB> axisAlignedList, Entity collidingEntity) 
 	{
-		if(getRotationState(worldIn, pos) == 1)
+		if(getMetaFromState(state) % 2 == 1)
 		{
 			super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_NORTH);
 			return;
 		}
 		super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_EAST);
-	}
-	
-	public int getRotationState(IBlockAccess source, BlockPos pos) 
-	{
-		return getMetaFromState(source.getBlockState(pos)) % 2;
 	}
 
 	@Override

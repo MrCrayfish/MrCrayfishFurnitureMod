@@ -140,12 +140,12 @@ public class TileEntityCrate extends TileEntity implements IInventory
 	}
 	
 	@Override
-	public void readFromNBT(NBTTagCompound compound) 
+	public void readFromNBT(NBTTagCompound tagCompound) 
 	{
-		super.readFromNBT(compound);
-		if (compound.hasKey("Items"))
+		super.readFromNBT(tagCompound);
+		if (tagCompound.hasKey("Items"))
 		{
-			NBTTagList tagList = (NBTTagList) compound.getTag("Items");
+			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
 			this.inventory = new ItemStack[16];
 
 			for (int i = 0; i < tagList.tagCount(); ++i)
@@ -160,13 +160,13 @@ public class TileEntityCrate extends TileEntity implements IInventory
 			}
 		}
 		
-		this.sealed = compound.getBoolean("Sealed");
+		this.sealed = tagCompound.getBoolean("Sealed");
 	}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound compound) 
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) 
 	{
-		super.writeToNBT(compound);
+		super.writeToNBT(tagCompound);
 		NBTTagList tagList = new NBTTagList();
 		for (int slot = 0; slot < this.inventory.length; ++slot)
 		{
@@ -178,8 +178,9 @@ public class TileEntityCrate extends TileEntity implements IInventory
 				tagList.appendTag(nbt);
 			}
 		}
-		compound.setTag("Items", tagList);
-		compound.setBoolean("Sealed", this.sealed);
+		tagCompound.setTag("Items", tagList);
+		tagCompound.setBoolean("Sealed", this.sealed);
+		return tagCompound;
 	}
 	
 	@Override
@@ -190,7 +191,7 @@ public class TileEntityCrate extends TileEntity implements IInventory
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

@@ -101,42 +101,43 @@ public class TileEntityCabinet extends TileEntityLockable implements IInventory
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+	public void readFromNBT(NBTTagCompound tagCompound)
 	{
-		super.readFromNBT(par1NBTTagCompound);
-		NBTTagList var2 = (NBTTagList) par1NBTTagCompound.getTag("cabinetItems");
-		this.cabinetContents = new ItemStack[this.getSizeInventory()];
-
-		for (int var3 = 0; var3 < var2.tagCount(); ++var3)
+		super.readFromNBT(tagCompound);
+		if(tagCompound.hasKey("cabinetItems"))
 		{
-			NBTTagCompound var4 = (NBTTagCompound) var2.getCompoundTagAt(var3);
-			int var5 = var4.getByte("cabinetSlot") & 255;
-
-			if (var5 >= 0 && var5 < this.cabinetContents.length)
+			NBTTagList tagList = (NBTTagList) tagCompound.getTag("cabinetItems");
+			this.cabinetContents = new ItemStack[this.getSizeInventory()];
+			for (int i = 0; i < tagList.tagCount(); ++i)
 			{
-				this.cabinetContents[var5] = ItemStack.loadItemStackFromNBT(var4);
+				NBTTagCompound itemTag = (NBTTagCompound) tagList.getCompoundTagAt(i);
+				int slot = itemTag.getByte("cabinetSlot") & 255;
+
+				if (slot >= 0 && slot < this.cabinetContents.length)
+				{
+					this.cabinetContents[slot] = ItemStack.loadItemStackFromNBT(itemTag);
+				}
 			}
 		}
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeToNBT(par1NBTTagCompound);
-		NBTTagList var2 = new NBTTagList();
-
-		for (int var3 = 0; var3 < this.cabinetContents.length; ++var3)
+		super.writeToNBT(tagCompound);
+		NBTTagList tagList = new NBTTagList();
+		for (int slot = 0; slot < this.cabinetContents.length; ++slot)
 		{
-			if (this.cabinetContents[var3] != null)
+			if (this.cabinetContents[slot] != null)
 			{
-				NBTTagCompound var4 = new NBTTagCompound();
-				var4.setByte("cabinetSlot", (byte) var3);
-				this.cabinetContents[var3].writeToNBT(var4);
-				var2.appendTag(var4);
+				NBTTagCompound itemTag = new NBTTagCompound();
+				itemTag.setByte("cabinetSlot", (byte) slot);
+				this.cabinetContents[slot].writeToNBT(itemTag);
+				tagList.appendTag(itemTag);
 			}
 		}
-
-		par1NBTTagCompound.setTag("cabinetItems", var2);
+		tagCompound.setTag("cabinetItems", tagList);
+		return tagCompound;
 	}
 
 	@Override

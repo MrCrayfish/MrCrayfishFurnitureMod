@@ -1,0 +1,6 @@
+{
+"parent": "cfm:block/hedge_three",
+"textures": {
+"1": "blocks/leaves_acacia"
+}
+}

@@ -1,0 +1,7 @@
+{
+"parent": "cfm:block/bath_bottom_3",
+"textures": {
+"1": "blocks/water_still",
+"2": "blocks/quartz_block_bottom"
+}
+}

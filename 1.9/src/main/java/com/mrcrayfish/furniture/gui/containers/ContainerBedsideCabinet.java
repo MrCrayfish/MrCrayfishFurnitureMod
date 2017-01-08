@@ -36,7 +36,7 @@ public class ContainerBedsideCabinet extends Container
 		{
 			for (int j = 0; j < 3; j++)
 			{
-				this.addSlotToContainer(new Slot(bedsideCabinetInventory, j + i * 3, 8 + j * 18 + 54, 18 + i * 18));
+				this.addSlotToContainer(new Slot(bedsideCabinetInventory, j + i * 3, 8 + j * 18 + 54, 21 + i * 18));
 			}
 		}
 

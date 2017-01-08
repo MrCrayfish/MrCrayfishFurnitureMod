@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture.gui;
 
+import java.awt.Color;
 import java.util.Arrays;
 
 import org.lwjgl.input.Keyboard;
@@ -29,6 +30,7 @@ import com.mrcrayfish.furniture.tileentity.TileEntityFreezer;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -36,7 +38,7 @@ import net.minecraft.util.ResourceLocation;
 public class GuiFreezer extends GuiContainer
 {
 	private TileEntityFreezer freezer;
-	private static final ResourceLocation gui = new ResourceLocation("cfm:textures/gui/freezer.png");
+	private static final ResourceLocation GUI = new ResourceLocation("cfm:textures/gui/freezer.png");
 	private VertexFormat format = new VertexFormat();
 
 	private GuiButton button_start;
@@ -116,39 +118,55 @@ public class GuiFreezer extends GuiContainer
 	protected void drawGuiContainerForegroundLayer(int par1, int par2)
 	{
 		this.fontRendererObj.drawString("Inventory", 8, (ySize - 95) + 2, 4210752);
+		
+		if (freezer.isFreezing())
+		{
+			drawColour(32, 8, 11, 11, -16711936);
+		}
+		else
+		{
+			drawColour(32, 8, 11, 11, -65280);
+		}
+		
+		int progress = freezer.progress * 16 / 200;
+		drawColour(108, 48 - progress, 2, progress, -7736321);
 	}
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
 	{
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.getTextureManager().bindTexture(gui);
-		int l = (width - xSize) / 2;
-		int i1 = (height - ySize) / 2;
-		this.drawTexturedModalRect(l, i1, 0, 0, xSize, ySize);
+		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+		this.mc.getTextureManager().bindTexture(GUI);
+		int guiLeft = (width - xSize) / 2;
+		int guiTop = (height - ySize) / 2;
+		this.drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 		int var7;
-
+		
 		if (freezer.isFreezing())
 		{
 			button_start.displayString = "Stop";
-			drawColour(l + 32, i1 + 8, 11, 11, 49475);
-			drawTexturedModalRect(l + 61, i1 + 31, 176, 0, freezer.progress % 25 + 1, 15);
+			drawTexturedModalRect(guiLeft + 61, guiTop + 31, 176, 0, freezer.progress % 25 + 1, 15);
 		}
 		else
 		{
 			button_start.displayString = "Start";
-			drawColour(l + 32, i1 + 8, 11, 11, 16711680);
 		}
 		
 		if(freezer.fuelTime > 0)
 		{
 			var7 = (int) Math.ceil(freezer.timeRemaining * 16 / freezer.fuelTime);
-			drawTexturedModalRect(l + 110, (i1 + 22) - var7, 176, 31 - var7, 16, var7);
+			drawTexturedModalRect(guiLeft + 110, (guiTop + 22) - var7, 176, 31 - var7, 16, var7);
 		}
 		
-		var7 = freezer.progress * 16 / 200;
-		drawColour(l + 108, (i1 + 48) - var7, 2, var7, 49475);
+		
 	}
+	
+	private int getFreezeTimeRemainingScaled(int scale)
+    {
+        int j = freezer.progress;
+        int k = 200;
+        return k != 0 && j != 0 ? j * scale / k : 0;
+    }
 	
 	public void drawColour(int x, int y, int width, int height, int par4)
 	{

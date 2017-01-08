@@ -40,7 +40,7 @@ public class BlockBedsideCabinet extends BlockFurnitureTile
 	{
 		super(material);
 		this.setHardness(1.0F);
-		this.setStepSound(SoundType.WOOD);
+		this.setSoundType(SoundType.WOOD);
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
@@ -72,9 +72,9 @@ public class BlockBedsideCabinet extends BlockFurnitureTile
 	}
 	
 	@Override
-	public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) 
 	{
-		if(neighborBlock instanceof BlockLamp)
+		if(blockIn instanceof BlockLamp)
 		{
 			worldIn.notifyBlockOfStateChange(pos.down(), this);
 		}

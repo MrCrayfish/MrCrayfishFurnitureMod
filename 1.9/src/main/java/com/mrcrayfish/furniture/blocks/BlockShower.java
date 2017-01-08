@@ -50,11 +50,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockShower extends BlockFurniture
 {
+	private static final AxisAlignedBB NOTHING = new AxisAlignedBB(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+	
+	private static final AxisAlignedBB SIDE_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.9375, 0.0, 0.0, 1.0, 1.0, 1.0);
+	private static final AxisAlignedBB SIDE_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.9375, 0.0, 0.0, 1.0, 1.0, 1.0);
+	private static final AxisAlignedBB SIDE_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.9375, 0.0, 0.0, 1.0, 1.0, 1.0);
+	private static final AxisAlignedBB SIDE_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.9375, 0.0, 0.0, 1.0, 1.0, 1.0);
+	
 	public BlockShower(Material material, boolean top)
 	{
 		super(material);
 		this.setHardness(1.0F);
-		this.setStepSound(SoundType.STONE);
+		this.setSoundType(SoundType.STONE);
 		if(top) this.setCreativeTab(null);
 	}
 	
@@ -93,84 +100,82 @@ public class BlockShower extends BlockFurniture
 		if (block == FurnitureBlocks.shower_head_off)
 		{
 			worldIn.setBlockState(pos.up(), FurnitureBlocks.shower_head_on.getDefaultState().withProperty(FACING, aboveState.getValue(FACING)), 2);
-			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.block_lever_click, SoundCategory.BLOCKS, 0.3F, 0.6F, false);
+			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.6F, false);
 		}
 		else if (block == FurnitureBlocks.shower_head_on)
 		{
 			worldIn.setBlockState(pos.up(), FurnitureBlocks.shower_head_off.getDefaultState().withProperty(FACING, aboveState.getValue(FACING)), 2);
-			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.block_lever_click, SoundCategory.BLOCKS, 0.3F, 0.5F, false);
+			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.5F, false);
 		}
 		return true;
 	}
-
-	//TODO FINISH
-	/*@Override
+	
+	@Override
 	@SideOnly(Side.CLIENT)
-	public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, BlockPos pos)
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
 	{
+		if(Minecraft.getMinecraft().thePlayer == null) return NOTHING;
+		
 		int camera = Minecraft.getMinecraft().gameSettings.thirdPersonView;
-		int direction = MathHelper.floor_double(((Minecraft.getMinecraft().thePlayer.rotationYaw * 4F) / 360F) + 0.5D) & 3;
-		int metadata = getMetaFromState(blockAccess.getBlockState(pos));
-
-		this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-
-		switch (metadata)
+		EnumFacing facing = Minecraft.getMinecraft().thePlayer.getHorizontalFacing();
+		int metadata = getMetaFromState(state);
+		
+		if (camera == 1 || camera == 2)
 		{
-		case 1:
-			metadata = 3;
-			break;
-		case 3:
-			metadata = 1;
-			break;
-		case 2:
-			metadata = 0;
-			break;
-		case 0:
-			metadata = 2;
-			break;
-		}
-
-		if (camera == 1 | camera == 2)
-		{
-			float[] data = CollisionHelper.fixRotation(direction, 0.9F, 0.0F, 1.0F, 1.0F);
-			if (direction != metadata)
+			if (facing != state.getValue(FACING).getOpposite())
 			{
-				this.setBlockBounds(data[0], 0.0F, data[1], data[2], 1.0F, data[3]);
+				switch(Minecraft.getMinecraft().thePlayer.getHorizontalFacing())
+				{
+				case EAST:
+					return SIDE_EAST;
+				case NORTH:
+					return SIDE_NORTH;
+				case SOUTH:
+					return SIDE_SOUTH;
+				case WEST:
+					return SIDE_WEST;
+				default:
+					break;
+				}
 			}
 			else
 			{
-				this.setBlockBounds(0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F);
+				return NOTHING;
 			}
 		}
+		return FULL_BLOCK_AABB;
 	}
-	
+
 	@Override
-	public void addCollisionBoxesToList(World world, BlockPos pos, IBlockState state, AxisAlignedBB mask, List list, Entity collidingEntity)
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB bounds, List<AxisAlignedBB> list, Entity collidingEntity) 
 	{
-		int metadata = getMetaFromState(state);
-
-		if (metadata == 3 || metadata == 2 || metadata == 0)
+		switch(state.getValue(FACING))
 		{
-			setBlockBounds(0.9F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+		case EAST:
+			this.addCollisionBoxToList(pos, bounds, list, SIDE_NORTH);
+			this.addCollisionBoxToList(pos, bounds, list, SIDE_EAST);
+			this.addCollisionBoxToList(pos, bounds, list, SIDE_SOUTH);
+			break;
+		case NORTH:
+			this.addCollisionBoxToList(pos, bounds, list, SIDE_WEST);
+			this.addCollisionBoxToList(pos, bounds, list, SIDE_NORTH);
+			this.addCollisionBoxToList(pos, bounds, list, SIDE_EAST);
+			break;
+		case SOUTH:
+			this.addCollisionBoxToList(pos, bounds, list, SIDE_EAST);
+			this.addCollisionBoxToList(pos, bounds, list, SIDE_SOUTH);
+			this.addCollisionBoxToList(pos, bounds, list, SIDE_WEST);
+			break;
+		case WEST:
+			this.addCollisionBoxToList(pos, bounds, list, SIDE_SOUTH);
+			this.addCollisionBoxToList(pos, bounds, list, SIDE_WEST);
+			this.addCollisionBoxToList(pos, bounds, list, SIDE_NORTH);
+			break;
+		default:
+			break;
 		}
-		if (metadata == 3 || metadata == 2 || metadata == 1)
-		{
-			setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 0.1F);
-			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
-		}
-
-		if (metadata == 3 || metadata == 1 || metadata == 0)
-		{
-			setBlockBounds(0.0F, 0.0F, 0.9F, 1.0F, 1.0F, 1.0F);
-			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
-		}
-		if (metadata == 2 || metadata == 1 || metadata == 0)
-		{
-			setBlockBounds(0.0F, 0.0F, 0.0F, 0.1F, 1.0F, 1.0F);
-			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
-		}
-	}*/
+		
+	}
 
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)

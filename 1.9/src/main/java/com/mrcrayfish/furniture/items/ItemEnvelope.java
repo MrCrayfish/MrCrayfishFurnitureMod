@@ -26,7 +26,10 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
@@ -45,35 +48,36 @@ public class ItemEnvelope extends Item implements IMail
 		return true;
 	}
 
-	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+	@Override
+	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		TileEntity tile_entity = world.getTileEntity(pos);
-		if (!world.isRemote)
+		TileEntity tile_entity = worldIn.getTileEntity(pos);
+		if (!worldIn.isRemote)
 		{
 			if (tile_entity instanceof TileEntityMailBox)
 			{
-				if (player.isSneaking())
+				if (playerIn.isSneaking())
 				{
-					player.addChatMessage(new TextComponentString("You must sign the envelope before depositing it."));
+					playerIn.addChatMessage(new TextComponentString("You must sign the envelope before depositing it."));
 				}
-				return false;
 			}
 			else
 			{
-				player.addChatMessage(new TextComponentString("To open the envelope, make sure you are not highlighting any block."));
-
+				playerIn.addChatMessage(new TextComponentString("To open the envelope, make sure you are not highlighting any block."));
 			}
 		}
-		return true;
+		return EnumActionResult.SUCCESS;
 	}
 
-	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) 
 	{
-		if (!par2World.isRemote)
+		if (!worldIn.isRemote)
 		{
-			par3EntityPlayer.openGui(MrCrayfishFurnitureMod.instance, 5, par2World, 0, 0, 0);
+			playerIn.openGui(MrCrayfishFurnitureMod.instance, 5, worldIn, 0, 0, 0);
+			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
 		}
-		return par1ItemStack;
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
 	}
 
 	public static IInventory getInv(EntityPlayer par1EntityPlayer)

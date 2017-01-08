@@ -51,7 +51,7 @@ public class BlockCeilingLight extends Block
 	{
 		super(material);
 		this.setHardness(0.5F);
-		this.setStepSound(SoundType.GLASS);
+		this.setSoundType(SoundType.GLASS);
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		if (on)
 		{
@@ -115,24 +115,24 @@ public class BlockCeilingLight extends Block
 	}
 	
 	@Override
-	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) 
 	{
-		if (!canBlockStay(world, pos))
+		if (!canBlockStay(worldIn, pos))
 		{
-			this.dropBlockAsItem(world, pos, state, 0);
-			world.setBlockToAir(pos);
+			this.dropBlockAsItem(worldIn, pos, state, 0);
+			worldIn.setBlockToAir(pos);
 			return;
 		}
 
 		if (((Mode) state.getValue(MODE)) == Mode.REDSTONE)
 		{
-			if (world.isBlockPowered(pos))
+			if (worldIn.isBlockPowered(pos))
 			{
-				world.setBlockState(pos, FurnitureBlocks.ceiling_light_on.getDefaultState().withProperty(MODE, state.getValue(MODE)), 2);
+				worldIn.setBlockState(pos, FurnitureBlocks.ceiling_light_on.getDefaultState().withProperty(MODE, state.getValue(MODE)), 2);
 			}
 			else
 			{
-				world.setBlockState(pos, FurnitureBlocks.ceiling_light_off.getDefaultState().withProperty(MODE, state.getValue(MODE)), 2);
+				worldIn.setBlockState(pos, FurnitureBlocks.ceiling_light_off.getDefaultState().withProperty(MODE, state.getValue(MODE)), 2);
 			}
 		}
 	}

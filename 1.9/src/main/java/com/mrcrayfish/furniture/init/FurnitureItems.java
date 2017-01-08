@@ -23,7 +23,6 @@ import com.mrcrayfish.furniture.items.ItemCup;
 import com.mrcrayfish.furniture.items.ItemEnvelope;
 import com.mrcrayfish.furniture.items.ItemEnvelopeSigned;
 import com.mrcrayfish.furniture.items.ItemGeneric;
-import com.mrcrayfish.furniture.items.ItemHammer;
 import com.mrcrayfish.furniture.items.ItemKnife;
 import com.mrcrayfish.furniture.items.ItemLog;
 import com.mrcrayfish.furniture.items.ItemPackage;
@@ -38,7 +37,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
 
 public class FurnitureItems
 {
@@ -81,22 +79,22 @@ public class FurnitureItems
 		itemEnvelopeSigned = new ItemEnvelopeSigned().setUnlocalizedName("item_envelope_signed").setRegistryName("item_envelope_signed");
 		itemPackage = new ItemPackage().setUnlocalizedName("item_package").setRegistryName("item_package");
 		itemPackageSigned = new ItemPackageSigned().setUnlocalizedName("item_package_signed").setRegistryName("item_package_signed");
-		itemHammer = new ItemHammer().setUnlocalizedName("item_hammer").setRegistryName("item_hammer");
+		itemHammer = new Item().setUnlocalizedName("item_hammer").setRegistryName("item_hammer");
 		itemBreadSlice = new ItemFood(2, false).setUnlocalizedName("item_bread_slice").setRegistryName("item_bread_slice").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		itemToast = new ItemFood(4, false).setUnlocalizedName("item_toast").setRegistryName("item_toast").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		itemKnife = new ItemKnife().setMaxDamage(100).setUnlocalizedName("item_knife").setRegistryName("item_knife");
 		itemCup = new ItemCup(false).setUnlocalizedName("item_cup").setRegistryName("item_cup");
 		itemDrink = new ItemCup(true).setUnlocalizedName("item_drink").setRegistryName("item_drink");
 		itemSoap = new ItemGeneric().setUnlocalizedName("item_soap").setRegistryName("item_soap");
-		itemSoapyWater = new ItemGeneric().setUnlocalizedName("item_soap_water").setRegistryName("item_soap_water").setContainerItem(Items.bucket).setMaxStackSize(1);
-		itemSuperSoapyWater = new ItemGeneric().setUnlocalizedName("item_super_soap_water").setRegistryName("item_super_soap_water").setContainerItem(Items.bucket).setMaxStackSize(1);
+		itemSoapyWater = new ItemGeneric().setUnlocalizedName("item_soap_water").setRegistryName("item_soap_water").setContainerItem(Items.BUCKET).setMaxStackSize(1);
+		itemSuperSoapyWater = new ItemGeneric().setUnlocalizedName("item_super_soap_water").setRegistryName("item_super_soap_water").setContainerItem(Items.BUCKET).setMaxStackSize(1);
 		itemRecipeBook = new ItemRecipeBook().setUnlocalizedName("item_recipe_book").setRegistryName("item_recipe_book");
 		itemCrayfish = new Item().setUnlocalizedName("item_crayfish").setRegistryName("item_crayfish").setMaxStackSize(1);
 		itemLog = new ItemLog(FurnitureBlocks.fire_pit_off).setUnlocalizedName("item_log").setRegistryName("item_log").setMaxStackSize(16);
 		itemSpatula = new Item().setUnlocalizedName("item_spatula").setRegistryName("item_spatula").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		itemSausage = new ItemFood(1, false).setUnlocalizedName("item_sausage").setRegistryName("item_sausage").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		itemSausageCooked = new ItemFood(4, false).setUnlocalizedName("item_sausage_cooked").setRegistryName("item_sausage_cooked").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-		itemKebab = new ItemFood(1, false).setPotionEffect(new PotionEffect(MobEffects.hunger, 600, 0), 0.3F).setUnlocalizedName("item_kebab").setRegistryName("item_kebab").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+		itemKebab = new ItemFood(1, false).setPotionEffect(new PotionEffect(MobEffects.HUNGER, 600, 0), 0.3F).setUnlocalizedName("item_kebab").setRegistryName("item_kebab").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		itemKebabCooked = new ItemFood(4, false).setUnlocalizedName("item_kebab_cooked").setRegistryName("item_kebab_cooked").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		itemCrowBar = new Item().setUnlocalizedName("item_crow_bar").setRegistryName("item_crow_bar").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}

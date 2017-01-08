@@ -48,17 +48,18 @@ public class TileEntityCounterSink extends TileEntity
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+	public void readFromNBT(NBTTagCompound tagCompound)
 	{
-		super.readFromNBT(par1NBTTagCompound);
-		this.hasWater = par1NBTTagCompound.getBoolean("hasWater");
+		super.readFromNBT(tagCompound);
+		this.hasWater = tagCompound.getBoolean("hasWater");
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeToNBT(par1NBTTagCompound);
-		par1NBTTagCompound.setBoolean("hasWater", hasWater);
+		super.writeToNBT(tagCompound);
+		tagCompound.setBoolean("hasWater", hasWater);
+		return tagCompound;
 	}
 
 	@Override
@@ -69,7 +70,7 @@ public class TileEntityCounterSink extends TileEntity
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

@@ -38,17 +38,18 @@ public class TileEntityCouch extends TileEntity
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+	public void readFromNBT(NBTTagCompound tagCompound)
 	{
-		super.readFromNBT(par1NBTTagCompound);
-		this.colour = par1NBTTagCompound.getInteger("colour");
+		super.readFromNBT(tagCompound);
+		this.colour = tagCompound.getInteger("colour");
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeToNBT(par1NBTTagCompound);
-		par1NBTTagCompound.setInteger("colour", colour);
+		super.writeToNBT(tagCompound);
+		tagCompound.setInteger("colour", colour);
+		return tagCompound;
 	}
 
 	@Override
@@ -59,7 +60,7 @@ public class TileEntityCouch extends TileEntity
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

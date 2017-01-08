@@ -19,7 +19,10 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
+import com.mrcrayfish.furniture.handler.InputHandler;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
@@ -32,6 +35,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayer.EnumChatVisibility;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -39,6 +43,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -62,7 +67,7 @@ public class BlockToilet extends BlockFurniture
 	{
 		super(material);
 		this.setHardness(1.0F);
-		this.setStepSound(SoundType.STONE);
+		this.setSoundType(SoundType.STONE);
 	}
 	
 	@Override
@@ -78,11 +83,8 @@ public class BlockToilet extends BlockFurniture
 		{
 			if (SittableUtil.sitOnBlockWithRotationOffset(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0.4D, getMetaFromState(state), 0.1D))
 			{
+				if(worldIn.isRemote) playerIn.addChatComponentMessage(new TextComponentString(TextFormatting.YELLOW + "Press " + Keyboard.getKeyName(InputHandler.key_fart.getKeyCode()) + " for Farts."));
 				worldIn.updateComparatorOutputLevel(pos, this);
-				if (worldIn.isRemote)
-				{
-					playerIn.addChatComponentMessage(new TextComponentString("Press F for Farts."));
-				}
 			}
 		}
 		else

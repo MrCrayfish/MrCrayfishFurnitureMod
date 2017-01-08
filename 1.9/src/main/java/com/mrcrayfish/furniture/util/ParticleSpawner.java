@@ -21,13 +21,13 @@ import com.mrcrayfish.furniture.entity.EnittySteamFX;
 import com.mrcrayfish.furniture.entity.EntityShowerFX;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.particle.Particle;
 
 public class ParticleSpawner
 {
 	private static Minecraft mc = Minecraft.getMinecraft();
-
-	public static EntityFX spawnParticle(String particleName, double par2, double par4, double par6)
+	
+	public static Particle spawnParticle(String particleName, double par2, double par4, double par6)
 	{
 		if (mc != null && mc.getRenderViewEntity() != null && mc.effectRenderer != null)
 		{
@@ -41,7 +41,7 @@ public class ParticleSpawner
 			double var15 = mc.getRenderViewEntity().posX - par2;
 			double var17 = mc.getRenderViewEntity().posY - par4;
 			double var19 = mc.getRenderViewEntity().posZ - par6;
-			EntityFX var21 = null;
+			Particle var21 = null;
 			double var22 = 16.0D;
 
 			if (var15 * var15 + var17 * var17 + var19 * var19 > var22 * var22)

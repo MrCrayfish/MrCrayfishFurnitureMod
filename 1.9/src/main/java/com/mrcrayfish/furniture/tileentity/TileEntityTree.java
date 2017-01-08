@@ -62,42 +62,47 @@ public class TileEntityTree extends TileEntity implements ITickable, ISimpleInve
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+	public void readFromNBT(NBTTagCompound tagCompound)
 	{
-		super.readFromNBT(par1NBTTagCompound);
-		NBTTagList var2 = (NBTTagList) par1NBTTagCompound.getTag("Items");
-		this.ornaments = new ItemStack[this.getSize()];
-
-		for (int var3 = 0; var3 < var2.tagCount(); ++var3)
+		super.readFromNBT(tagCompound);
+		
+		if(tagCompound.hasKey("Items"))
 		{
-			NBTTagCompound var4 = (NBTTagCompound) var2.getCompoundTagAt(var3);
-			int var5 = var4.getByte("Slot") & 255;
+			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
+			this.ornaments = new ItemStack[this.getSize()];
 
-			if (var5 >= 0 && var5 < this.ornaments.length)
+			for (int i = 0; i < tagList.tagCount(); ++i)
 			{
-				this.ornaments[var5] = ItemStack.loadItemStackFromNBT(var4);
+				NBTTagCompound itemTag = (NBTTagCompound) tagList.getCompoundTagAt(i);
+				int slot = itemTag.getByte("Slot") & 255;
+
+				if (slot >= 0 && slot < this.ornaments.length)
+				{
+					this.ornaments[slot] = ItemStack.loadItemStackFromNBT(itemTag);
+				}
 			}
 		}
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeToNBT(par1NBTTagCompound);
-		NBTTagList var2 = new NBTTagList();
+		super.writeToNBT(tagCompound);
+		NBTTagList tagList = new NBTTagList();
 
-		for (int var3 = 0; var3 < this.ornaments.length; ++var3)
+		for (int slot = 0; slot < this.ornaments.length; ++slot)
 		{
-			if (this.ornaments[var3] != null)
+			if (this.ornaments[slot] != null)
 			{
-				NBTTagCompound var4 = new NBTTagCompound();
-				var4.setByte("Slot", (byte) var3);
-				this.ornaments[var3].writeToNBT(var4);
-				var2.appendTag(var4);
+				NBTTagCompound itemTag = new NBTTagCompound();
+				itemTag.setByte("Slot", (byte) slot);
+				this.ornaments[slot].writeToNBT(itemTag);
+				tagList.appendTag(itemTag);
 			}
 		}
 
-		par1NBTTagCompound.setTag("Items", var2);
+		tagCompound.setTag("Items", tagList);
+		return tagCompound;
 	}
 	
 	@Override
@@ -108,7 +113,7 @@ public class TileEntityTree extends TileEntity implements ITickable, ISimpleInve
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket()
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

@@ -49,17 +49,23 @@ import com.mrcrayfish.furniture.tileentity.TileEntityToaster;
 import com.mrcrayfish.furniture.tileentity.TileEntityTree;
 import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.WorldEvent;
+import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -76,6 +82,17 @@ public class ClientProxy extends CommonProxy
 		{
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(FurnitureBlocks.present), dye.getMetadata(), new ModelResourceLocation(Reference.MOD_ID + ":" + "present_" + dye.getName(), "inventory"));
 		}
+		
+		FMLClientHandler.instance().getClient().getItemColors().registerItemColorHandler((IItemColor) FurnitureItems.itemDrink, FurnitureItems.itemDrink);
+		registerColorHandlerForBlock(FurnitureBlocks.hedge_oak);
+		registerColorHandlerForBlock(FurnitureBlocks.hedge_spruce);
+		registerColorHandlerForBlock(FurnitureBlocks.hedge_birch);
+		registerColorHandlerForBlock(FurnitureBlocks.hedge_jungle);
+		registerColorHandlerForBlock(FurnitureBlocks.hedge_acacia);
+		registerColorHandlerForBlock(FurnitureBlocks.hedge_dark_oak);
+		registerColorHandlerForBlock(FurnitureBlocks.tree_bottom);
+		registerColorHandlerForBlock(FurnitureBlocks.tree_top);
+		registerColorHandlerForBlock(FurnitureBlocks.wreath);
 		
 		FurnitureItems.registerRenders();
 		FurnitureBlocks.registerRenders();
@@ -94,6 +111,12 @@ public class ClientProxy extends CommonProxy
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGrill.class, new GrillRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEsky.class, new EskyRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDoorMat.class, new DoorMatRenderer());
+	}
+	
+	public void registerColorHandlerForBlock(Block block)
+	{
+		FMLClientHandler.instance().getClient().getItemColors().registerItemColorHandler((IItemColor) Item.getItemFromBlock(block), Item.getItemFromBlock(block));
+		FMLClientHandler.instance().getClient().getBlockColors().registerBlockColorHandler((IBlockColor) block, block);
 	}
 
 	@Override
@@ -147,8 +170,8 @@ public class ClientProxy extends CommonProxy
 		
 		if(event.getEntityPlayer() == renderEntity)
 		{
-			this.backupEntity = Minecraft.getMinecraft().getRenderManager().livingPlayer;
-			Minecraft.getMinecraft().getRenderManager().livingPlayer = renderEntity;
+			this.backupEntity = Minecraft.getMinecraft().getRenderManager().renderViewEntity;
+			Minecraft.getMinecraft().getRenderManager().renderViewEntity = renderEntity;
 		}
 	}
 
@@ -160,7 +183,7 @@ public class ClientProxy extends CommonProxy
 		
 		if (event.getEntityPlayer() == renderEntity)
 		{
-			Minecraft.getMinecraft().getRenderManager().livingPlayer = backupEntity;
+			Minecraft.getMinecraft().getRenderManager().renderViewEntity = backupEntity;
 			renderEntity = null;
 		}
 	}

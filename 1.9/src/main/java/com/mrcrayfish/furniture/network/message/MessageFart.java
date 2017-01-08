@@ -24,6 +24,7 @@ import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.SoundCategory;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -33,35 +34,23 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 //Server Packet
 public class MessageFart implements IMessage, IMessageHandler<MessageFart, IMessage>
 {
-
 	private Random rand = new Random();
-	private double x, y, z;
 
 	public MessageFart()
 	{
 	}
 
-	public MessageFart(double posX, double posY, double posZ)
-	{
-		this.x = posX;
-		this.y = posY;
-		this.z = posZ;
-	}
 
 	@Override
 	public void fromBytes(ByteBuf buf)
 	{
-		this.x = buf.readDouble();
-		this.y = buf.readDouble();
-		this.z = buf.readDouble();
+
 	}
 
 	@Override
 	public void toBytes(ByteBuf buf)
 	{
-		buf.writeDouble(x);
-		buf.writeDouble(y);
-		buf.writeDouble(z);
+		
 	}
 
 	@Override
@@ -70,7 +59,7 @@ public class MessageFart implements IMessage, IMessageHandler<MessageFart, IMess
 		EntityPlayerMP player = ctx.getServerHandler().playerEntity;
 		if (player.getRidingEntity() instanceof EntitySittableBlock)
 		{
-			player.worldObj.playSound(message.x + 0.5, message.y + 1, message.z + 0.5, FurnitureSounds.fart_1, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
+			player.worldObj.playSound((EntityPlayer)null, player.getPosition(), FurnitureSounds.getRandomFart(rand), SoundCategory.BLOCKS, 0.75F, rand.nextFloat());
 			player.addStat(FurnitureAchievements.whatDidYouEat);
 		}
 		return null;

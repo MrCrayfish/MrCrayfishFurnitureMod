@@ -131,30 +131,31 @@ public class TileEntityMicrowave extends TileEntityLockable implements ISidedInv
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+	public void readFromNBT(NBTTagCompound tagCompound)
 	{
-		super.readFromNBT(par1NBTTagCompound);
-		if (par1NBTTagCompound.hasKey("Item"))
+		super.readFromNBT(tagCompound);
+		if (tagCompound.hasKey("Item"))
 		{
-			NBTTagCompound nbt = par1NBTTagCompound.getCompoundTag("Item");
+			NBTTagCompound nbt = tagCompound.getCompoundTag("Item");
 			this.item = ItemStack.loadItemStackFromNBT(nbt);
 		}
-		this.cooking = par1NBTTagCompound.getBoolean("Coooking");
-		this.progress = par1NBTTagCompound.getInteger("Progress");
+		this.cooking = tagCompound.getBoolean("Coooking");
+		this.progress = tagCompound.getInteger("Progress");
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeToNBT(par1NBTTagCompound);
+		super.writeToNBT(tagCompound);
 		NBTTagCompound nbt = new NBTTagCompound();
 		if (item != null)
 		{
 			item.writeToNBT(nbt);
 		}
-		par1NBTTagCompound.setTag("Item", nbt);
-		par1NBTTagCompound.setBoolean("Coooking", cooking);
-		par1NBTTagCompound.setInteger("Progress", progress);
+		tagCompound.setTag("Item", nbt);
+		tagCompound.setBoolean("Coooking", cooking);
+		tagCompound.setInteger("Progress", progress);
+		return tagCompound;
 	}
 
 	@Override
@@ -165,7 +166,7 @@ public class TileEntityMicrowave extends TileEntityLockable implements ISidedInv
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

@@ -19,7 +19,6 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -45,7 +44,7 @@ public class BlockCounterSink extends BlockFurniture
 	{
 		super(material);
 		this.setHardness(0.5F);
-		this.setStepSound(SoundType.STONE);
+		this.setSoundType(SoundType.STONE);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(FILLED, Boolean.valueOf(false)));
 	}
 	
@@ -56,7 +55,7 @@ public class BlockCounterSink extends BlockFurniture
 		{
 			if (heldItem != null)
 			{
-				if (heldItem.getItem() == Items.bucket)
+				if (heldItem.getItem() == Items.BUCKET)
 				{
 					if (hasWater(state))
 					{
@@ -64,31 +63,31 @@ public class BlockCounterSink extends BlockFurniture
 						{
 							if (heldItem.stackSize > 1)
 							{
-								if (playerIn.inventory.addItemStackToInventory(new ItemStack(Items.water_bucket)))
+								if (playerIn.inventory.addItemStackToInventory(new ItemStack(Items.WATER_BUCKET)))
 								{
 									heldItem.stackSize--;
 								}
 							}
 							else
 							{
-								playerIn.setHeldItem(hand, new ItemStack(Items.water_bucket));
+								playerIn.setHeldItem(hand, new ItemStack(Items.WATER_BUCKET));
 							}
 						}
 						worldIn.setBlockState(pos, state.withProperty(FILLED, Boolean.valueOf(false)));
 					}
 				}
-				else if (heldItem.getItem() == Items.water_bucket)
+				else if (heldItem.getItem() == Items.WATER_BUCKET)
 				{
 					if (!hasWater(state))
 					{
 						if (!playerIn.capabilities.isCreativeMode)
 						{
-							playerIn.setHeldItem(hand, new ItemStack(Items.bucket));
+							playerIn.setHeldItem(hand, new ItemStack(Items.BUCKET));
 						}
 						worldIn.setBlockState(pos, state.withProperty(FILLED, Boolean.valueOf(true)), 2);
 					}
 				}
-				else if (heldItem.getItem() == Items.glass_bottle)
+				else if (heldItem.getItem() == Items.GLASS_BOTTLE)
 				{
 					if (hasWater(state))
 					{
@@ -96,26 +95,26 @@ public class BlockCounterSink extends BlockFurniture
 						{
 							if (heldItem.stackSize > 1)
 							{
-								if (playerIn.inventory.addItemStackToInventory(new ItemStack(Items.potionitem, 1, 0)))
+								if (playerIn.inventory.addItemStackToInventory(new ItemStack(Items.POTIONITEM, 1, 0)))
 								{
 									heldItem.stackSize--;
 								}
 							}
 							else
 							{
-								playerIn.setHeldItem(hand, new ItemStack(Items.potionitem, 1, 0));
+								playerIn.setHeldItem(hand, new ItemStack(Items.POTIONITEM, 1, 0));
 							}
 						}
 						worldIn.setBlockState(pos, state.withProperty(FILLED, Boolean.valueOf(false)), 2);
 					}
 				}
-				else if (heldItem.getItem() == Items.potionitem && heldItem.getItemDamage() == 0)
+				else if (heldItem.getItem() == Items.POTIONITEM && heldItem.getItemDamage() == 0)
 				{
 					if (!hasWater(state))
 					{
 						if (!playerIn.capabilities.isCreativeMode)
 						{
-							playerIn.setHeldItem(hand, new ItemStack(Items.glass_bottle));
+							playerIn.setHeldItem(hand, new ItemStack(Items.GLASS_BOTTLE));
 						}
 						worldIn.setBlockState(pos, state.withProperty(FILLED, Boolean.valueOf(true)), 2);
 					}
@@ -176,6 +175,6 @@ public class BlockCounterSink extends BlockFurniture
 
 	public boolean hasWaterSource(World world, BlockPos pos)
 	{
-		return world.getBlockState(pos.add(0, -2, 0)) == Blocks.water.getDefaultState();
+		return world.getBlockState(pos.add(0, -2, 0)) == Blocks.WATER.getDefaultState();
 	}
 }

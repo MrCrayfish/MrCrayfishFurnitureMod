@@ -28,31 +28,36 @@ public class TileEntityStereo extends TileEntity
 	public int count;
 
 	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+	public void readFromNBT(NBTTagCompound tagCompound)
 	{
-		super.readFromNBT(par1NBTTagCompound);
-		this.count = par1NBTTagCompound.getInteger("count");
+		super.readFromNBT(tagCompound);
+		this.count = tagCompound.getInteger("count");
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeToNBT(par1NBTTagCompound);
-		par1NBTTagCompound.setInteger("count", count);
+		super.writeToNBT(tagCompound);
+		tagCompound.setInteger("count", count);
+		return tagCompound;
 	}
 	
 	@Override
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
 	{
-		NBTTagCompound tagCom = pkt.getNbtCompound();
-		this.readFromNBT(tagCom);
+		NBTTagCompound tagCompound = pkt.getNbtCompound();
+		this.readFromNBT(tagCompound);
 	}
-
+	
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
-		NBTTagCompound tagCom = new NBTTagCompound();
-		this.writeToNBT(tagCom);
-		return new SPacketUpdateTileEntity(pos, getBlockMetadata(), tagCom);
+		return new SPacketUpdateTileEntity(pos, getBlockMetadata(), this.writeToNBT(new NBTTagCompound()));
+	}
+	
+	@Override
+	public NBTTagCompound getUpdateTag() 
+	{
+		return this.writeToNBT(new NBTTagCompound());
 	}
 }

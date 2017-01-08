@@ -52,7 +52,7 @@ public class BlockShowerHeadOff extends BlockFurniture
 	{
 		super(material);
 		this.setHardness(1.0F);
-		this.setStepSound(SoundType.STONE);
+		this.setSoundType(SoundType.STONE);
 	}
 
 	@Override
@@ -62,32 +62,17 @@ public class BlockShowerHeadOff extends BlockFurniture
 	}
 
 	@Override
-	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
-	{
-		if (this.canPlaceCheck(world, pos, state))
-		{
-			EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
-
-			if (!world.getBlockState(pos.offset(enumfacing)).getBlock().isNormalCube(state))
-			{
-				this.dropBlockAsItem(world, pos, state, 0);
-				world.setBlockToAir(pos);
-			}
-		}
-	}
-
-	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) 
 	{
 		worldIn.setBlockState(pos, FurnitureBlocks.shower_head_on.getDefaultState().withProperty(FACING, state.getValue(FACING)), 2);
-		worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D,SoundEvents.block_lever_click, SoundCategory.BLOCKS, 0.3F, 06F, false);
+		worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D,SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 06F, false);
 		return true;
 	}
 
 	@Override
 	public boolean canPlaceBlockOnSide(World world, BlockPos pos, EnumFacing side)
 	{
-		return (side == EnumFacing.UP | side == EnumFacing.DOWN) ? false : world.isSideSolid(pos.offset(side.getOpposite()), side, true);
+		return (side == EnumFacing.UP || side == EnumFacing.DOWN) ? false : world.isSideSolid(pos.offset(side.getOpposite()), side, true);
 	}
 	
 	@Override
@@ -97,24 +82,15 @@ public class BlockShowerHeadOff extends BlockFurniture
 		return state.withProperty(FACING, facing.getOpposite());
 	}
 
-
 	@Override
-	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
 	{
-		EnumFacing[] aenumfacing = EnumFacing.values();
-		int i = aenumfacing.length;
-
-		for (int j = 2; j < i; ++j)
+		EnumFacing facing = (EnumFacing) state.getValue(FACING);
+		if (!this.canPlaceBlockOnSide(worldIn, pos, facing.getOpposite()))
 		{
-			EnumFacing enumfacing = aenumfacing[j];
-
-			if (worldIn.getBlockState(pos.offset(enumfacing)).getBlock().isNormalCube(worldIn.getBlockState(pos)))
-			{
-				return true;
-			}
+			this.dropBlockAsItem(worldIn, pos, state, 0);
+			worldIn.setBlockToAir(pos);
 		}
-
-		return false;
 	}
 
 	@Override
@@ -129,19 +105,5 @@ public class BlockShowerHeadOff extends BlockFurniture
 	{
 		EnumFacing facing = state.getValue(FACING);
 		super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, BOUNDING_BOX[facing.getHorizontalIndex()]);
-	}
-
-	private boolean canPlaceCheck(World world, BlockPos pos, IBlockState state)
-	{
-		if (!this.canPlaceBlockAt(world, pos))
-		{
-			this.dropBlockAsItem(world, pos, state, 0);
-			world.setBlockToAir(pos);
-			return false;
-		}
-		else
-		{
-			return true;
-		}
 	}
 }

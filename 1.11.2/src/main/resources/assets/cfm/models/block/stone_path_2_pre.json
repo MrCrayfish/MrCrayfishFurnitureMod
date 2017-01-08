@@ -1,0 +1,6 @@
+{
+"parent": "cfm:block/stone_path_2",
+"textures": {
+"1": "blocks/stone"
+}
+}

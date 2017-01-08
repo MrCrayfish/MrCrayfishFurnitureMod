@@ -49,7 +49,7 @@ public class BlockBin extends BlockFurnitureTile
 	public BlockBin(Material material)
 	{
 		super(material);
-		this.setStepSound(SoundType.ANVIL);
+		this.setSoundType(SoundType.ANVIL);
 		this.setHardness(0.5F);
 	}
 
@@ -99,7 +99,6 @@ public class BlockBin extends BlockFurnitureTile
 		{
 			super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX);
 		}
-		//TODO If needed, add empty collision so sittable entity doesn't glitch
 	}
 
 	@Override

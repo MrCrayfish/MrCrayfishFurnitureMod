@@ -61,7 +61,7 @@ public class ContainerPrinter extends Container
 	}
 	
 	@Override
-	public ItemStack func_184996_a(int slotNum, int dragType, ClickType clickTypeIn, EntityPlayer player) 
+	public ItemStack slotClick(int slotNum, int dragType, ClickType clickTypeIn, EntityPlayer player) 
 	{
 		if (slotNum == 2 && clickTypeIn == ClickType.PICKUP)
 		{
@@ -71,7 +71,7 @@ public class ContainerPrinter extends Container
 				player.addStat(FurnitureAchievements.copyItem);
 			}
 		}
-		return super.func_184996_a(slotNum, dragType, clickTypeIn, player);
+		return super.slotClick(slotNum, dragType, clickTypeIn, player);
 	}
 	
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotNum)
@@ -95,7 +95,7 @@ public class ContainerPrinter extends Container
 			}
 			else if (slotNum != 1 && slotNum != 0)
 			{
-				if (itemCopy.getItem() == Items.enchanted_book | itemCopy.getItem() == Items.written_book)
+				if (itemCopy.getItem() == Items.ENCHANTED_BOOK | itemCopy.getItem() == Items.WRITTEN_BOOK)
 				{
 					if (!this.mergeItemStack(item, 0, 1, false))
 					{

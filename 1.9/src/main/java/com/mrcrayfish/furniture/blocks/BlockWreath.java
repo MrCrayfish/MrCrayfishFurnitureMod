@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -17,8 +18,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockWreath extends BlockFurniture {
-
+public class BlockWreath extends BlockFurniture implements IBlockColor 
+{
 	private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.8125, 0, 0, 1, 1, 1);
 	private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.8125, 0, 0, 1, 1, 1);
 	private static final AxisAlignedBB BOUNDING_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.8125, 0, 0, 1, 1, 1);
@@ -29,13 +30,7 @@ public class BlockWreath extends BlockFurniture {
 	{
 		super(materialIn);
 		this.setHardness(0.5F);
-		this.setStepSound(SoundType.GROUND);
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public int getBlockColor()
-	{
-		return ColorizerFoliage.getFoliageColorPine();
+		this.setSoundType(SoundType.GROUND);
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -45,23 +40,23 @@ public class BlockWreath extends BlockFurniture {
 	}
 
 	@SideOnly(Side.CLIENT)
-	public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
+	public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex)
 	{
 		return ColorizerFoliage.getFoliageColorPine();
 	}
-	
+
 	@Override
-	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
 	{
-		if (this.canPlaceCheck(world, pos, state))
+		if (this.canPlaceCheck(worldIn, pos, state))
 		{
 			EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
 
-			if (!world.getBlockState(pos.offset(enumfacing)).getBlock().isNormalCube(state))
+			if (!worldIn.getBlockState(pos.offset(enumfacing)).isNormalCube())
 			{
-				this.breakBlock(world, pos, state);
-				this.dropBlockAsItem(world, pos, state, 0);
-				world.setBlockToAir(pos);
+				this.breakBlock(worldIn, pos, state);
+				this.dropBlockAsItem(worldIn, pos, state, 0);
+				worldIn.setBlockToAir(pos);
 			}
 		}
 	}

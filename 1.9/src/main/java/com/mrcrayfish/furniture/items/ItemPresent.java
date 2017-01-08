@@ -95,7 +95,7 @@ public class ItemPresent extends ItemBlock implements IMail, IItemColor
 						IBlockState state = FurnitureBlocks.present.getDefaultState().withProperty(BlockPresent.COLOUR, EnumDyeColor.byMetadata(stack.getItemDamage()));
 						
 						worldIn.setBlockState(pos.up(), state, 2);
-						worldIn.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, state.getBlock().getStepSound().getPlaceSound(), SoundCategory.BLOCKS, (state.getBlock().getStepSound().getVolume() + 1.0F) / 2.0F, state.getBlock().getStepSound().getPitch() * 0.8F, false);
+						worldIn.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, state.getBlock().getSoundType().getPlaceSound(), SoundCategory.BLOCKS, (state.getBlock().getSoundType().getVolume() + 1.0F) / 2.0F, state.getBlock().getSoundType().getPitch() * 0.8F, false);
 						
 						
 						TileEntityPresent tep = new TileEntityPresent();
@@ -167,7 +167,7 @@ public class ItemPresent extends ItemBlock implements IMail, IItemColor
 
 	public static IInventory getInv(EntityPlayer player, EnumHand activeHand)
 	{
-		ItemStack present = player.getHeldItem(activeHand);
+		ItemStack present = player.getHeldItemMainhand();
 		InventoryPresent invPresent = null;
 		if (present != null && present.getItem() instanceof ItemPresent)
 		{
@@ -191,6 +191,6 @@ public class ItemPresent extends ItemBlock implements IMail, IItemColor
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) 
 	{
-		return ItemDye.dyeColors[stack.getMetadata()];
+		return ItemDye.DYE_COLORS[stack.getMetadata()];
 	}
 }

@@ -20,7 +20,10 @@ package com.mrcrayfish.furniture.api;
 import java.util.ArrayList;
 import java.util.Map;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.GameData;
 
 public class RecipeData
 {
@@ -175,24 +178,20 @@ public class RecipeData
 	@Override
 	public String toString()
 	{
-		//TODO Find a fix for this
 		String result = "";
 		if (input != null)
 		{
-			//String name = GameRegistry.findUniqueIdentifierFor(input.getItem()).toString();
-			String name = "feck";
+			String name = Item.REGISTRY.getNameForObject(input.getItem()).toString();
 			result += "input-item=" + name + ",input-amount=" + input.stackSize + ",input-metadata=" + input.getItemDamage() + ",";
 		}
 		if (output != null)
 		{
-			//String name = GameRegistry.findUniqueIdentifierFor(output.getItem()).toString();
-			String name = "feck";
+			String name = Item.REGISTRY.getNameForObject(output.getItem()).toString();
 			result += "output-item=" + name + ",output-amount=" + output.stackSize + ",output-metadata=" + output.getItemDamage() + ",";
 		}
 		if (currency != null)
 		{
-			//String name = GameRegistry.findUniqueIdentifierFor(currency.getItem()).toString();
-			String name = "feck";
+			String name = Item.REGISTRY.getNameForObject(currency.getItem()).toString();
 			result += "payment-item=" + name + ",output-item-metadata=" + currency.getItemDamage() + ",";
 			result += "payment-price=" + price + ",";
 		}
@@ -207,8 +206,7 @@ public class RecipeData
 			String pre = "ingredients=";
 			for (int i = 0; i < ingredients.size(); i++)
 			{
-				//String name = GameRegistry.findUniqueIdentifierFor(ingredients.get(i).getItem()).toString();
-				String name = "feck";
+				String name = Item.REGISTRY.getNameForObject(ingredients.get(i).getItem()).toString();
 				pre += name;
 				pre += ":";
 				pre += ingredients.get(i).stackSize;

@@ -111,17 +111,21 @@ public class TileEntityFridge extends TileEntityLockable implements ISidedInvent
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
 		super.readFromNBT(tagCompound);
-		NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
-		this.inventory = new ItemStack[this.getSizeInventory()];
-
-		for (int count = 0; count < tagList.tagCount(); ++count)
+		
+		if(tagCompound.hasKey("Items"))
 		{
-			NBTTagCompound nbt = (NBTTagCompound) tagList.getCompoundTagAt(count);
-			int slot = nbt.getByte("Slot") & 255;
+			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
+			this.inventory = new ItemStack[this.getSizeInventory()];
 
-			if (slot >= 0 && slot < this.inventory.length)
+			for (int i = 0; i < tagList.tagCount(); ++i)
 			{
-				this.inventory[slot] = ItemStack.loadItemStackFromNBT(nbt);
+				NBTTagCompound nbt = (NBTTagCompound) tagList.getCompoundTagAt(i);
+				int slot = nbt.getByte("Slot") & 255;
+
+				if (slot >= 0 && slot < this.inventory.length)
+				{
+					this.inventory[slot] = ItemStack.loadItemStackFromNBT(nbt);
+				}
 			}
 		}
 
@@ -132,9 +136,9 @@ public class TileEntityFridge extends TileEntityLockable implements ISidedInvent
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeToNBT(par1NBTTagCompound);
+		super.writeToNBT(tagCompound);
 		NBTTagList var2 = new NBTTagList();
 
 		for (int var3 = 0; var3 < this.inventory.length; ++var3)
@@ -147,8 +151,8 @@ public class TileEntityFridge extends TileEntityLockable implements ISidedInvent
 				var2.appendTag(var4);
 			}
 		}
-
-		par1NBTTagCompound.setTag("Items", var2);
+		tagCompound.setTag("Items", var2);
+		return tagCompound;
 	}
 
 	@Override
@@ -159,7 +163,7 @@ public class TileEntityFridge extends TileEntityLockable implements ISidedInvent
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

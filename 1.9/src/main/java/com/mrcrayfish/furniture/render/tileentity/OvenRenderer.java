@@ -38,6 +38,7 @@ public class OvenRenderer extends TileEntitySpecialRenderer<TileEntityOven>
 					{
 						GlStateManager.translate(xOffset, height, zOffset);
 						GlStateManager.rotate(-90F, 1, 0, 0);
+						GlStateManager.translate(0, -0.2, 0);
 						Minecraft.getMinecraft().getRenderManager().doRenderEntity(ovenItem, 0, 0, 0, 0.0F, 0.0F, false);
 					}
 					GlStateManager.popMatrix();

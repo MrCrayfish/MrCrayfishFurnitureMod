@@ -24,12 +24,13 @@ import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityTree;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -45,7 +46,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockTree extends BlockFurnitureTile
+public class BlockTree extends BlockFurnitureTile implements IBlockColor
 {
 	private static final AxisAlignedBB BOUNDING_BOX_BOTTOM = new AxisAlignedBB(0.0625, 0.0, 0.0625, 0.9375, 2.0, 0.9375);
 	private static final AxisAlignedBB BOUNDING_BOX_BOTTOM_ALT = new AxisAlignedBB(0.0625, 0.0, 0.0625, 0.9375, 1.0, 0.9375);
@@ -54,16 +55,10 @@ public class BlockTree extends BlockFurnitureTile
 	public BlockTree(Material material, boolean top)
 	{
 		super(material);
-		this.setStepSound(SoundType.WOOD);
+		this.setSoundType(SoundType.WOOD);
 		this.setLightLevel(0.3F);
 		this.setHardness(0.5F);
 		if(top) this.setCreativeTab(null);
-	}
-
-	@SideOnly(Side.CLIENT)
-	public int getBlockColor()
-	{
-		return ColorizerFoliage.getFoliageColorPine();
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -72,8 +67,9 @@ public class BlockTree extends BlockFurnitureTile
 		return ColorizerFoliage.getFoliageColorPine();
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
-	public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
+	public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex)
 	{
 		return ColorizerFoliage.getFoliageColorPine();
 	}
@@ -110,30 +106,28 @@ public class BlockTree extends BlockFurnitureTile
 	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
 	{
-		//TODO COME BACK TO THIS
-		/*if (this == FurnitureBlocks.tree_top)
+		if (this == FurnitureBlocks.tree_top)
 		{
-			if (player.getCurrentEquippedItem() != null)
+			if (player.getHeldItemMainhand() != null)
 			{
-				if (player.getCurrentEquippedItem().getItem() != Items.shears)
+				if (player.getHeldItemMainhand().getItem() != Items.SHEARS)
 				{
 					worldIn.destroyBlock(pos.down(), true);
 				}
 				else
 				{
-					player.getCurrentEquippedItem().damageItem(1, player);
+					player.getHeldItemMainhand().damageItem(1, player);
 				}
 			}
 			else
 			{
 				worldIn.destroyBlock(pos.down(), true);
-				// worldIn.setBlockToAir(pos.down());
 			}
 		}
 		else
 		{
 			worldIn.destroyBlock(pos.up(), true);
-		}*/
+		}
 	}
 	
 	@Override

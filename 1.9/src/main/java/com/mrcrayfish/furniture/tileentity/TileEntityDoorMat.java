@@ -21,20 +21,21 @@ public class TileEntityDoorMat extends TileEntity
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound compound) 
+	public void readFromNBT(NBTTagCompound tagCompound) 
 	{
-		super.readFromNBT(compound);
-		this.message = compound.getString("message");
+		super.readFromNBT(tagCompound);
+		this.message = tagCompound.getString("message");
 	}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound compound) 
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound) 
 	{
-		super.writeToNBT(compound);
+		super.writeToNBT(tagCompound);
 		if(this.message != null)
 		{
-			compound.setString("message", this.message);
+			tagCompound.setString("message", this.message);
 		}
+		return tagCompound;
 	}
 	
 	@Override
@@ -45,7 +46,7 @@ public class TileEntityDoorMat extends TileEntity
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

@@ -32,6 +32,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -47,7 +48,7 @@ import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockHedge extends Block
+public class BlockHedge extends Block implements IBlockColor
 {
 	public static final PropertyBool NORTH = PropertyBool.create("north");
 	public static final PropertyBool EAST = PropertyBool.create("east");
@@ -65,9 +66,9 @@ public class BlockHedge extends Block
 
 	public BlockHedge(Material material)
 	{
-		super(Material.leaves);
+		super(Material.LEAVES);
 		this.setHardness(1.0F);
-		this.setStepSound(SoundType.PLANT);
+		this.setSoundType(SoundType.PLANT);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
@@ -90,12 +91,6 @@ public class BlockHedge extends Block
 		return false;
 	}
 
-	@SideOnly(Side.CLIENT)
-    public int getBlockColor()
-    {
-        return ColorizerFoliage.getFoliageColor(0.5D, 1.0D);
-    }
-
     @SideOnly(Side.CLIENT)
     public int getRenderColor(IBlockState state)
     {
@@ -110,8 +105,9 @@ public class BlockHedge extends Block
         return ColorizerFoliage.getFoliageColorBasic();
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockAccess worldIn, BlockPos pos, int renderPass)
+    public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex)
     {
     	if(this == FurnitureBlocks.hedge_spruce)
     	{
@@ -217,4 +213,5 @@ public class BlockHedge extends Block
 	{
 		return world.getBlockState(pos).getBlock() instanceof BlockHedge || world.getBlockState(pos).getBlock().isNormalCube(world.getBlockState(pos));
 	}
+
 }

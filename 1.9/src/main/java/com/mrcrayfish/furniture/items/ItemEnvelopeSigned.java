@@ -34,7 +34,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
@@ -57,6 +60,7 @@ public class ItemEnvelopeSigned extends Item implements IMail
 		return true;
 	}
 
+	@Override
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
 	{
 		if (par1ItemStack.hasTagCompound())
@@ -71,53 +75,53 @@ public class ItemEnvelopeSigned extends Item implements IMail
 		}
 	}
 
-	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+	@Override
+	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		TileEntity tile_entity = world.getTileEntity(pos);
-		if (!world.isRemote)
+		TileEntity tile_entity = worldIn.getTileEntity(pos);
+		if (!worldIn.isRemote)
 		{
 			NBTTagList var2 = (NBTTagList) NBTHelper.getCompoundTag(stack, "Envelope").getTag("Items");
 			if (var2.tagCount() > 0)
 			{
-				if (player.capabilities.isCreativeMode && player.isSneaking() && tile_entity instanceof TileEntityMailBox)
+				if (playerIn.capabilities.isCreativeMode && playerIn.isSneaking() && tile_entity instanceof TileEntityMailBox)
 				{
-					player.addChatMessage(new TextComponentString("You cannot use this in creative."));
+					playerIn.addChatMessage(new TextComponentString("You cannot use this in creative."));
 				}
 				else if (tile_entity instanceof TileEntityMailBox)
 				{
 					TileEntityMailBox tileEntityMailBox = (TileEntityMailBox) tile_entity;
-					if (tileEntityMailBox.isMailBoxFull() == false && player.isSneaking() && !world.isRemote)
+					if (tileEntityMailBox.isMailBoxFull() == false && playerIn.isSneaking())
 					{
 						ItemStack itemStack = stack.copy();
 						tileEntityMailBox.addMail(itemStack);
-						player.addChatMessage(new TextComponentString("Thank you! - " + TextFormatting.YELLOW + tileEntityMailBox.ownerName));
-						player.addStat(FurnitureAchievements.sendMail);
+						playerIn.addChatMessage(new TextComponentString("Thank you! - " + TextFormatting.YELLOW + tileEntityMailBox.ownerName));
+						playerIn.addStat(FurnitureAchievements.sendMail);
 						stack.stackSize--;
 					}
-					else if (tileEntityMailBox.isMailBoxFull() == true && player.isSneaking())
+					else if (tileEntityMailBox.isMailBoxFull() == true && playerIn.isSneaking())
 					{
-						player.addChatMessage(new TextComponentString(TextFormatting.YELLOW + tileEntityMailBox.ownerName + "'s" + TextFormatting.WHITE + " mail box seems to be full. Try again later."));
+						playerIn.addChatMessage(new TextComponentString(TextFormatting.YELLOW + tileEntityMailBox.ownerName + "'s" + TextFormatting.WHITE + " mail box seems to be full. Try again later."));
 					}
 				}
 			}
 			else
 			{
-				player.addChatMessage(new TextComponentString("You cannot insert a used envelope."));
+				playerIn.addChatMessage(new TextComponentString("You cannot insert a used envelope."));
 			}
+			return EnumActionResult.SUCCESS;
 		}
-		return true;
+		return EnumActionResult.PASS;
 	}
 
-	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) 
 	{
-		if (!par2World.isRemote)
+		if (!worldIn.isRemote)
 		{
-			if (this == FurnitureItems.itemEnvelopeSigned)
-			{
-				par3EntityPlayer.openGui(MrCrayfishFurnitureMod.instance, 6, par2World, 0, 0, 0);
-			}
+			playerIn.openGui(MrCrayfishFurnitureMod.instance, 6, worldIn, 0, 0, 0);
 		}
-		return par1ItemStack;
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
 	}
 
 	public static IInventory getInv(EntityPlayer par1EntityPlayer)

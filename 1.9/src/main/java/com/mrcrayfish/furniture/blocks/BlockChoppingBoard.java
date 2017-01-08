@@ -44,17 +44,17 @@ import net.minecraft.world.World;
 
 public class BlockChoppingBoard extends BlockFurnitureTile
 {
-	private static final AxisAlignedBB BOUNDING_BOX_ONE = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 3 * 0.0625, 0.0, 0.0, 14 * 0.0625, 1.5 * 0.0625, 16 * 0.0625);
-	private static final AxisAlignedBB BOUNDING_BOX_TWO = CollisionHelper.getBlockBounds(EnumFacing.EAST, 3 * 0.0625, 0.0, 0.0, 14 * 0.0625, 1.5 * 0.0625, 16 * 0.0625);
+	private static final AxisAlignedBB BOUNDING_BOX_ONE = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.0, 0.0, 3 * 0.0625, 1.0, 1.5 * 0.0625, 13 * 0.0625);
+	private static final AxisAlignedBB BOUNDING_BOX_TWO = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.0, 0.0, 3 * 0.0625, 1.0, 1.5 * 0.0625, 13 * 0.0625);
 	
-	private static final AxisAlignedBB COLLISION_BOX_ONE = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 4 * 0.0625, 0.0, 1 * 0.0625, 13 * 0.0625, 1 * 0.0625, 15 * 0.0625);
-	private static final AxisAlignedBB COLLISION_BOX_TWO = CollisionHelper.getBlockBounds(EnumFacing.EAST, 4 * 0.0625, 0.0, 1 * 0.0625, 13 * 0.0625, 1 * 0.0625, 15 * 0.0625);
+	private static final AxisAlignedBB COLLISION_BOX_ONE = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.0, 0.0, 3 * 0.0625, 1.0, 0.0625, 13 * 0.0625);
+	private static final AxisAlignedBB COLLISION_BOX_TWO = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.0, 0.0, 3 * 0.0625, 1.0, 0.0625, 13 * 0.0625);
 	
 	public BlockChoppingBoard(Material material)
 	{
 		super(material);
 		this.setHardness(0.5F);
-		this.setStepSound(SoundType.WOOD);
+		this.setSoundType(SoundType.WOOD);
 	} 
 
 	@Override
@@ -116,7 +116,7 @@ public class BlockChoppingBoard extends BlockFurnitureTile
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
 	{
-		if(getRotationState(source, pos) == 1)
+		if(getMetaFromState(state) % 2 == 1)
 		{
 			return BOUNDING_BOX_ONE;
 		}
@@ -126,17 +126,12 @@ public class BlockChoppingBoard extends BlockFurnitureTile
 	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB axisAligned, List<AxisAlignedBB> axisAlignedList, Entity collidingEntity) 
 	{
-		if(getRotationState(worldIn, pos) == 1)
+		if(getMetaFromState(state) % 2 == 1)
 		{
 			super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_ONE);
 			return;
 		}
 		super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_TWO);
-	}
-	
-	public int getRotationState(IBlockAccess source, BlockPos pos) 
-	{
-		return getMetaFromState(source.getBlockState(pos)) % 2;
 	}
 
 	@Override

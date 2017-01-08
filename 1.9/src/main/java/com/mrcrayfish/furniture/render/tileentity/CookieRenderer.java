@@ -22,6 +22,7 @@ import org.lwjgl.opengl.GL11;
 import com.mrcrayfish.furniture.tileentity.TileEntityCookieJar;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Items;
@@ -29,7 +30,7 @@ import net.minecraft.item.ItemStack;
 
 public class CookieRenderer extends TileEntitySpecialRenderer<TileEntityCookieJar>
 {
-	private ItemStack cookie = new ItemStack(Items.cookie);
+	private ItemStack cookie = new ItemStack(Items.COOKIE);
 	private EntityItem entityItem = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D, cookie);
 
 	@Override
@@ -44,6 +45,7 @@ public class CookieRenderer extends TileEntitySpecialRenderer<TileEntityCookieJa
 		this.entityItem.hoverStart = 0.0F;
 		GL11.glTranslatef((float) posX + 0.5F, (float) posY + 0.05F, (float) posZ + 0.18F);
 		GL11.glRotatef(180, 0, 1, 1);
+		GlStateManager.translate(0, -0.1, 0);
 		GL11.glScalef(0.9F, 0.9F, 0.9F);
 		
 

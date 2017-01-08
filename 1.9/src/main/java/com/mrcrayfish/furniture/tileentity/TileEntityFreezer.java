@@ -171,9 +171,9 @@ public class TileEntityFreezer extends TileEntityLockable implements ISidedInven
 	{
 		if(stack == null)
 			return 0;
-		if(stack.getItem() == Item.getItemFromBlock(Blocks.packed_ice))
+		if(stack.getItem() == Item.getItemFromBlock(Blocks.PACKED_ICE))
 			return 3000;
-		if(stack.getItem() == Item.getItemFromBlock(Blocks.ice))
+		if(stack.getItem() == Item.getItemFromBlock(Blocks.ICE))
 			return 2000;
 		if(stack.getItem() == FurnitureItems.itemCoolPack)
 			return 400;
@@ -308,17 +308,19 @@ public class TileEntityFreezer extends TileEntityLockable implements ISidedInven
 	{
 		super.readFromNBT(tagCompound);
 		
-		NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
-		this.inventory = new ItemStack[this.getSizeInventory()];
-
-		for (int i = 0; i < tagList.tagCount(); ++i)
+		if(tagCompound.hasKey("Items"))
 		{
-			NBTTagCompound nbt = (NBTTagCompound) tagList.getCompoundTagAt(i);
-			byte slot = nbt.getByte("Slot");
-
-			if (slot >= 0 && slot < this.inventory.length)
+			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
+			this.inventory = new ItemStack[this.getSizeInventory()];
+			for (int i = 0; i < tagList.tagCount(); ++i)
 			{
-				this.inventory[slot] = ItemStack.loadItemStackFromNBT(nbt);
+				NBTTagCompound nbt = (NBTTagCompound) tagList.getCompoundTagAt(i);
+				byte slot = nbt.getByte("Slot");
+
+				if (slot >= 0 && slot < this.inventory.length)
+				{
+					this.inventory[slot] = ItemStack.loadItemStackFromNBT(nbt);
+				}
 			}
 		}
 
@@ -329,7 +331,7 @@ public class TileEntityFreezer extends TileEntityLockable implements ISidedInven
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound tagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
 		super.writeToNBT(tagCompound);
 		
@@ -349,6 +351,7 @@ public class TileEntityFreezer extends TileEntityLockable implements ISidedInven
 		tagCompound.setInteger("Progress", progress);
 		tagCompound.setInteger("FuelTime", fuelTime);
 		tagCompound.setInteger("Remaining", timeRemaining);
+		return tagCompound;
 	}
 	
 	@Override
@@ -359,7 +362,7 @@ public class TileEntityFreezer extends TileEntityLockable implements ISidedInven
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

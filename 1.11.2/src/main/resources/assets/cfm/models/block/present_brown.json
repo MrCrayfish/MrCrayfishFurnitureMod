@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/present",
+    "textures": {
+        "0": "blocks/wool_colored_brown"
+    }
+}

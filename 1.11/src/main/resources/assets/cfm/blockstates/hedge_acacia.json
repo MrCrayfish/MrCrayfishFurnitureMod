@@ -1,0 +1,21 @@
+{
+    "variants": {
+        "east=false,north=false,south=false,west=false": { "model": "cfm:hedge_none_acacia", "uvlock": true},
+        "east=false,north=true,south=false,west=false": { "model": "cfm:hedge_one_acacia", "uvlock": true},
+        "east=true,north=false,south=false,west=false": { "model": "cfm:hedge_one_acacia", "y": 90, "uvlock": true},
+        "east=false,north=false,south=true,west=false": { "model": "cfm:hedge_one_acacia", "y": 180, "uvlock": true},
+        "east=false,north=false,south=false,west=true": { "model": "cfm:hedge_one_acacia", "y": 270, "uvlock": true},
+        "east=true,north=true,south=false,west=false": { "model": "cfm:hedge_two_acacia", "uvlock": true},
+        "east=false,north=true,south=true,west=false": { "model": "cfm:hedge_two_alt_acacia", "uvlock": true},
+        "east=false,north=true,south=false,west=true": { "model": "cfm:hedge_two_acacia", "y": 270, "uvlock": true},
+        "east=true,north=false,south=false,west=true": { "model": "cfm:hedge_two_alt_acacia", "y": 90, "uvlock": true},
+        "east=true,north=false,south=true,west=false": { "model": "cfm:hedge_two_acacia", "y": 90, "uvlock": true},
+        "east=false,north=false,south=true,west=true": { "model": "cfm:hedge_two_acacia", "y": 180, "uvlock": true},
+        "east=true,north=true,south=true,west=true": { "model": "cfm:hedge_four_acacia","uvlock": true},
+        "east=true,north=true,south=true,west=false": { "model": "cfm:hedge_three_acacia", "uvlock": true},
+        "east=true,north=true,south=false,west=true": { "model": "cfm:hedge_three_acacia", "y": 270, "uvlock": true},
+        "east=false,north=true,south=true,west=true": { "model": "cfm:hedge_three_acacia", "y": 180, "uvlock": true },
+        "east=true,north=false,south=true,west=true": { "model": "cfm:hedge_three_acacia", "y": 90, "uvlock": true},
+        "east=true,north=true,south=true,west=true": { "model": "cfm:hedge_all_acacia", "uvlock": true}
+    }
+}

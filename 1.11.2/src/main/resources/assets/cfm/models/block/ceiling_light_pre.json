@@ -1,0 +1,10 @@
+{
+"parent": "cfm:block/ceiling_light",
+"textures": {
+"1": "blocks/obsidian",
+"2": "blocks/stone",
+"3": "blocks/glass_yellow",
+"4": "blocks/glass_white",
+"5": "blocks/glass_white"
+}
+}

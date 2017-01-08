@@ -22,7 +22,9 @@ import com.mrcrayfish.furniture.init.FurnitureItems;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -61,10 +63,10 @@ public class MessageEnvelope implements IMessage, IMessageHandler<MessageEnvelop
 		EntityPlayerMP player = ctx.getServerHandler().playerEntity;
 		ItemStack mail = message.envelope;
 		ItemStack signedMail = new ItemStack(FurnitureItems.itemEnvelopeSigned);
-		signedMail.setTagCompound(mail.getTagCompound());
+		signedMail.setTagCompound((NBTTagCompound) mail.getTagCompound().copy());
 		signedMail.setTagInfo("Author", new NBTTagString(player.getName()));
-		signedMail.setStackDisplayName("Mail");
-		player.setHeldItem(player.getActiveHand(), signedMail); //TODO Might need to change
+		signedMail.setStackDisplayName(TextFormatting.YELLOW.toString() + TextFormatting.BOLD.toString() + "Mail");
+		player.setHeldItem(player.getActiveHand(), signedMail);
 		return null;
 	}
 

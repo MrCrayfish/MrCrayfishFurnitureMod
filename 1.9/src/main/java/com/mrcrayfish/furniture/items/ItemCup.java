@@ -114,7 +114,7 @@ public class ItemCup extends Item implements IItemColor
 			IBlockState iblockstate = worldIn.getBlockState(pos);
 			Block block = iblockstate.getBlock();
 
-			if (block == Blocks.snow_layer && ((Integer) iblockstate.getValue(BlockSnow.LAYERS)).intValue() < 1)
+			if (block == Blocks.SNOW_LAYER && ((Integer) iblockstate.getValue(BlockSnow.LAYERS)).intValue() < 1)
 			{
 				side = EnumFacing.UP;
 			}
@@ -146,7 +146,7 @@ public class ItemCup extends Item implements IItemColor
 							iblockstate1.getBlock().onBlockPlacedBy(worldIn, pos, iblockstate1, playerIn, stack);
 						}
 						
-						worldIn.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, this.cupBlock.getStepSound().getPlaceSound(), SoundCategory.BLOCKS, 1.0F, this.cupBlock.getStepSound().getPitch() * 0.8F, false);
+						worldIn.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, this.cupBlock.getSoundType().getPlaceSound(), SoundCategory.BLOCKS, 1.0F, this.cupBlock.getSoundType().getPitch() * 0.8F, false);
 						--stack.stackSize;
 					}
 				}
@@ -175,6 +175,10 @@ public class ItemCup extends Item implements IItemColor
 	@Override
 	public int getColorFromItemstack(ItemStack stack, int tintIndex) 
 	{
-		return this.getColorFromCompound(stack);
+		if(tintIndex == 1)
+		{
+			return this.getColorFromCompound(stack);
+		}
+		return 16777215;
 	}
 }

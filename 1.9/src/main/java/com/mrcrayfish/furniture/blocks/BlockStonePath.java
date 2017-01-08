@@ -30,6 +30,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -37,11 +38,15 @@ import net.minecraft.world.World;
 
 public class BlockStonePath extends Block
 {
+	private static final AxisAlignedBB NOTHING = new AxisAlignedBB(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+	
+	private static final AxisAlignedBB BOUNDING = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.0625, 1.0);
+	
 	public BlockStonePath(Material material)
 	{
 		super(material);
 		this.setHardness(0.75F);
-		this.setStepSound(SoundType.STONE);
+		this.setSoundType(SoundType.STONE);
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	
@@ -63,32 +68,31 @@ public class BlockStonePath extends Block
 		((EntityPlayer) placer).addStat(FurnitureAchievements.gardening);
 	}
 
+
 	@Override
-	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) 
 	{
-		if (!this.canBlockStay(world, pos))
+		if (!this.canBlockStay(worldIn, pos))
 		{
-			this.dropBlockAsItem(world, pos, state, 0);
-			world.setBlockToAir(pos);
+			this.dropBlockAsItem(worldIn, pos, state, 0);
+			worldIn.setBlockToAir(pos);
 		}
 	}
 
 	public boolean canBlockStay(World world, BlockPos pos)
 	{
-		return !world.isAirBlock(pos.down()) && world.getBlockState(pos.down()).getBlock().isNormalCube(world.getBlockState(pos));
+		return world.getBlockState(pos.down()).isSideSolid(world, pos, EnumFacing.UP);
 	}
 	
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
-		//TODO convert to AABB with final var
-		//setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1F * 0.0625F, 1.0F);
-		return super.getBoundingBox(state, source, pos);
+		return BOUNDING;
 	}
 
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState worldIn, World pos, BlockPos state) 
 	{
-		return null;
+		return NOTHING;
 	}
 }

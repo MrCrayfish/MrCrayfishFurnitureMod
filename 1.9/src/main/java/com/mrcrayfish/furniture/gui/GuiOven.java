@@ -17,6 +17,8 @@
  */
 package com.mrcrayfish.furniture.gui;
 
+import java.util.Arrays;
+
 import org.lwjgl.opengl.GL11;
 
 import com.mrcrayfish.furniture.gui.containers.ContainerOven;
@@ -28,42 +30,76 @@ import net.minecraft.util.ResourceLocation;
 
 public class GuiOven extends GuiContainer
 {
-	private TileEntityOven OvenInventory;
-	private static final ResourceLocation gui = new ResourceLocation("cfm:textures/gui/oven.png");
+	private TileEntityOven oven;
+	private static final ResourceLocation GUI = new ResourceLocation("cfm:textures/gui/oven.png");
 
 	public GuiOven(InventoryPlayer inventoryplayer, TileEntityOven tileEntityFreezer)
 	{
 		super(new ContainerOven(inventoryplayer, tileEntityFreezer));
-		this.OvenInventory = tileEntityFreezer;
+		this.oven = tileEntityFreezer;
 		this.xSize = 176;
 		this.ySize = 228;
 	}
+	
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks) 
+	{
+		super.drawScreen(mouseX, mouseY, partialTicks);
+		
+		if(isPointInRegion(37, 9, 11, 11, mouseX, mouseY))
+		{
+			if (oven.isCooking())
+			{
+				drawHoveringText(Arrays.asList(new String[]{"Running"}), mouseX, mouseY);
+			}
+			else
+			{
+				drawHoveringText(Arrays.asList(new String[]{"Stopped"}), mouseX, mouseY);
+			}
+		}
+	}
 
+	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2)
 	{
 		this.fontRendererObj.drawString("Oven", 75, 6, 4210752);
 		this.fontRendererObj.drawString("Inventory", 8, (ySize - 96) + 2, 4210752);
 		
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.getTextureManager().bindTexture(gui);
-		if(OvenInventory.isCooking())
+		this.mc.getTextureManager().bindTexture(GUI);
+		if(oven.isCooking())
 		{
-			int progress = OvenInventory.getCookProgressScaled(14);
-			drawTexturedModalRect(54 + OvenInventory.getCookingItem() * 18, 55 + (14 - progress), 176, (14 - progress), 14, progress);
+			int progress = oven.getCookProgressScaled(14);
+			drawTexturedModalRect(54 + oven.getCookingItem() * 18, 55 + (14 - progress), 176, (14 - progress), 14, progress);
+		}
+		
+		if (oven.isCooking())
+		{
+			drawColour(37, 9, 11, 11, -16711936);
+		}
+		else
+		{
+			drawColour(37, 9, 11, 11, -65280);
 		}
 	}
 
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
 	{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.getTextureManager().bindTexture(gui);
+		this.mc.getTextureManager().bindTexture(GUI);
 		int l = (width - xSize) / 2;
 		int i1 = (height - ySize) / 2;
 		this.drawTexturedModalRect(l, i1, 0, 0, xSize, ySize);
 		int var7;
 
-		var7 = this.OvenInventory.getCookProgressScaled(24);
+		var7 = this.oven.getCookProgressScaled(24);
 		drawTexturedModalRect(l + 75, i1 + 20, 176, 14, var7 + 1, 16);
 		
+	}
+	
+	public void drawColour(int x, int y, int width, int height, int par4)
+	{
+		drawRect(x, y, x + width, y + height, par4);
 	}
 }

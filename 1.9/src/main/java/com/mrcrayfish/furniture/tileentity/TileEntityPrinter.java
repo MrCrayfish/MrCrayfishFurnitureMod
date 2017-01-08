@@ -154,51 +154,57 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
 	}
 
     @Override
-    public void readFromNBT(NBTTagCompound compound)
+    public void readFromNBT(NBTTagCompound tagCompound)
     {
-        super.readFromNBT(compound);
-        NBTTagList nbttaglist = compound.getTagList("Items", 10);
-        this.inventory = new ItemStack[this.getSizeInventory()];
-
-        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        super.readFromNBT(tagCompound);
+        
+        if(tagCompound.hasKey("Items"))
         {
-            NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
-            byte b0 = nbttagcompound1.getByte("Slot");
+        	NBTTagList tagList = tagCompound.getTagList("Items", 10);
+            this.inventory = new ItemStack[this.getSizeInventory()];
 
-            if (b0 >= 0 && b0 < this.inventory.length)
+            for (int i = 0; i < tagList.tagCount(); ++i)
             {
-                this.inventory[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+                NBTTagCompound itemTag = tagList.getCompoundTagAt(i);
+                byte slot = itemTag.getByte("Slot");
+
+                if (slot >= 0 && slot < this.inventory.length)
+                {
+                    this.inventory[slot] = ItemStack.loadItemStackFromNBT(itemTag);
+                }
             }
         }
 
-        this.printerPrintTime = compound.getShort("BurnTime");
-        this.printingTime = compound.getShort("CookTime");
-        this.totalCookTime = compound.getShort("CookTimeTotal");
-        this.currentItemPrintTime = compound.getInteger("CurrentTimePrintTime");
+        this.printerPrintTime = tagCompound.getShort("BurnTime");
+        this.printingTime = tagCompound.getShort("CookTime");
+        this.totalCookTime = tagCompound.getShort("CookTimeTotal");
+        this.currentItemPrintTime = tagCompound.getInteger("CurrentTimePrintTime");
     }
 
     @Override
-    public void writeToNBT(NBTTagCompound compound)
+    public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
     {
-        super.writeToNBT(compound);
-        compound.setShort("BurnTime", (short)this.printerPrintTime);
-        compound.setShort("CookTime", (short)this.printingTime);
-        compound.setShort("CookTimeTotal", (short)this.totalCookTime);
-        compound.setInteger("CurrentTimePrintTime", currentItemPrintTime);
-        NBTTagList nbttaglist = new NBTTagList();
-
-        for (int i = 0; i < this.inventory.length; ++i)
+        super.writeToNBT(tagCompound);
+        
+        tagCompound.setShort("BurnTime", (short)this.printerPrintTime);
+        tagCompound.setShort("CookTime", (short)this.printingTime);
+        tagCompound.setShort("CookTimeTotal", (short)this.totalCookTime);
+        tagCompound.setInteger("CurrentTimePrintTime", currentItemPrintTime);
+        
+        NBTTagList tagList = new NBTTagList();
+        for (int slot = 0; slot < this.inventory.length; ++slot)
         {
-            if (this.inventory[i] != null)
+            if (this.inventory[slot] != null)
             {
-                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-                nbttagcompound1.setByte("Slot", (byte)i);
-                this.inventory[i].writeToNBT(nbttagcompound1);
-                nbttaglist.appendTag(nbttagcompound1);
+                NBTTagCompound itemTag = new NBTTagCompound();
+                itemTag.setByte("Slot", (byte) slot);
+                this.inventory[slot].writeToNBT(itemTag);
+                tagList.appendTag(itemTag);
             }
         }
-
-        compound.setTag("Items", nbttaglist);
+        tagCompound.setTag("Items", tagList);
+        
+        return tagCompound;
     }
     
     @Override
@@ -209,7 +215,7 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);
@@ -313,7 +319,7 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
 
     public int func_174904_a(ItemStack stack)
     {
-    	if(stack != null && stack.getItem() == Items.enchanted_book)
+    	if(stack != null && stack.getItem() == Items.ENCHANTED_BOOK)
     	{
     		return 10000;
     	}
@@ -355,7 +361,7 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
 		Item i = stack.getItem();
 		if (stack.getItemDamage() == 0)
 		{
-			if (i == Items.dye)
+			if (i == Items.DYE)
 				return 1000;
 			if (i == FurnitureItems.itemInkCartridge)
 				return 5000;
@@ -457,7 +463,7 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
         {
             Item item = stack.getItem();
 
-            if (item != Items.water_bucket && item != Items.bucket)
+            if (item != Items.WATER_BUCKET && item != Items.BUCKET)
             {
                 return false;
             }

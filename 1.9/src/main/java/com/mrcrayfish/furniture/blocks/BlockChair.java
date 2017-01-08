@@ -58,7 +58,7 @@ public class BlockChair extends Block
 	{
 		super(material);
 		this.setHardness(1.0F);
-		this.setStepSound(sound);
+		this.setSoundType(sound);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
@@ -115,7 +115,6 @@ public class BlockChair extends Block
 			}
 			super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, CHAIR_BASE);
 		}
-		//TODO might need empty aabb object
 	}
 
 	@Override

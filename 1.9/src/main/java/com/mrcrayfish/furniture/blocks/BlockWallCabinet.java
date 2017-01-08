@@ -52,7 +52,7 @@ public class BlockWallCabinet extends BlockFurnitureTile
 	{
 		super(material);
 		this.setHardness(1.0F);
-		this.setStepSound(SoundType.STONE);
+		this.setSoundType(SoundType.STONE);
 	}
 
 	@Override
@@ -62,17 +62,17 @@ public class BlockWallCabinet extends BlockFurnitureTile
 	}
 
 	@Override
-	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
 	{
-		if (this.canPlaceCheck(world, pos, state))
+		if (this.canPlaceCheck(worldIn, pos, state))
 		{
 			EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
 
-			if (!world.getBlockState(pos.offset(enumfacing)).getBlock().isNormalCube(state))
+			if (!worldIn.getBlockState(pos.offset(enumfacing)).isNormalCube())
 			{
-				this.breakBlock(world, pos, state);
-				this.dropBlockAsItem(world, pos, state, 0);
-				world.setBlockToAir(pos);
+				this.breakBlock(worldIn, pos, state);
+				this.dropBlockAsItem(worldIn, pos, state, 0);
+				worldIn.setBlockToAir(pos);
 			}
 		}
 	}

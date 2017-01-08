@@ -22,6 +22,7 @@ import org.lwjgl.opengl.GL11;
 import com.mrcrayfish.furniture.tileentity.TileEntityChoppingBoard;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.item.EntityItem;
 
@@ -69,6 +70,7 @@ public class ChoppingBoardRenderer extends TileEntitySpecialRenderer<TileEntityC
 			GL11.glTranslatef((float) posX + 0.5F + xOffset, (float) posY + 0.02F, (float) posZ + 0.3F + zOffset);
 			GL11.glRotatef(metadata * -90F, 0, 1, 0);
 			GL11.glRotatef(180, 0, 1, 1);
+			GlStateManager.translate(0, -0.15, 0);
 			Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityFood, 0.0D, 0.0D, 0.075D, 0.0F, 0.0F, false);
 			
 			GL11.glEnable(GL11.GL_LIGHTING);

@@ -28,22 +28,21 @@ public class TileEntityTV extends TileEntity
 	private int channel = 0;
 
 	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+	public void readFromNBT(NBTTagCompound tagCompound)
 	{
-		super.readFromNBT(par1NBTTagCompound);
-
-		if (par1NBTTagCompound.hasKey("Channel"))
+		super.readFromNBT(tagCompound);
+		if (tagCompound.hasKey("Channel"))
 		{
-			this.channel = par1NBTTagCompound.getInteger("Channel");
+			this.channel = tagCompound.getInteger("Channel");
 		}
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeToNBT(par1NBTTagCompound);
-
-		par1NBTTagCompound.setInteger("Channel", this.getChannel());
+		super.writeToNBT(tagCompound);
+		tagCompound.setInteger("Channel", this.getChannel());
+		return tagCompound;
 	}
 
 	public int getChannel()
@@ -64,7 +63,7 @@ public class TileEntityTV extends TileEntity
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket()
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

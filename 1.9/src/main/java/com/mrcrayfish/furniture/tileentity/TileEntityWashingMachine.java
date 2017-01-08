@@ -317,7 +317,7 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound tagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
 		super.writeToNBT(tagCompound);
 		NBTTagList tagList = new NBTTagList();
@@ -336,6 +336,7 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 		tagCompound.setBoolean("SuperMode", superMode);
 		tagCompound.setInteger("Progress", progress);
 		tagCompound.setInteger("Remaining", timeRemaining);
+		return tagCompound;
 	}
 
 	@Override
@@ -346,7 +347,7 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

@@ -122,18 +122,21 @@ public class TileEntityOven extends TileEntityLockable implements ISidedInventor
 		super.readFromNBT(tagCompound);
 
 		this.inventory = new ItemStack[this.getSizeInventory()];
-
-		NBTTagList tagList = (NBTTagList) tagCompound.getTag("inventory");
-		if (tagList != null)
+		
+		if(tagCompound.hasKey("inventory"))
 		{
-			for (int i = 0; i < tagList.tagCount(); ++i)
+			NBTTagList tagList = (NBTTagList) tagCompound.getTag("inventory");
+			if (tagList != null)
 			{
-				NBTTagCompound tagCompound2 = (NBTTagCompound) tagList.getCompoundTagAt(i);
-				byte slot = tagCompound2.getByte("slot");
-
-				if (slot >= 0 && slot < this.inventory.length)
+				for (int i = 0; i < tagList.tagCount(); ++i)
 				{
-					this.inventory[slot] = ItemStack.loadItemStackFromNBT(tagCompound2);
+					NBTTagCompound itemTag = (NBTTagCompound) tagList.getCompoundTagAt(i);
+					byte slot = itemTag.getByte("slot");
+
+					if (slot >= 0 && slot < this.inventory.length)
+					{
+						this.inventory[slot] = ItemStack.loadItemStackFromNBT(itemTag);
+					}
 				}
 			}
 		}
@@ -143,7 +146,7 @@ public class TileEntityOven extends TileEntityLockable implements ISidedInventor
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound tagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
 		super.writeToNBT(tagCompound);
 
@@ -151,18 +154,19 @@ public class TileEntityOven extends TileEntityLockable implements ISidedInventor
 		tagCompound.setShort("cookingTime", (short) cookingTime);
 
 		NBTTagList tagList = new NBTTagList();
-		for (int i = 0; i < this.inventory.length; ++i)
+		for (int slot = 0; slot < this.inventory.length; ++slot)
 		{
-			if (this.inventory[i] != null)
+			if (this.inventory[slot] != null)
 			{
-				NBTTagCompound tagCompound2 = new NBTTagCompound();
-				tagCompound2.setByte("slot", (byte) i);
-				this.inventory[i].writeToNBT(tagCompound2);
-				tagList.appendTag(tagCompound2);
+				NBTTagCompound itemTag = new NBTTagCompound();
+				itemTag.setByte("slot", (byte) slot);
+				this.inventory[slot].writeToNBT(itemTag);
+				tagList.appendTag(itemTag);
 			}
 		}
 
 		tagCompound.setTag("inventory", tagList);
+		return tagCompound;
 	}
 	
 	@Override
@@ -173,7 +177,7 @@ public class TileEntityOven extends TileEntityLockable implements ISidedInventor
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

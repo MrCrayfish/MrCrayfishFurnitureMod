@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "colour=black": {"model": "cfm:present_black"},
+        "colour=red": {"model": "cfm:present_red"},
+        "colour=green": {"model": "cfm:present_green"},
+        "colour=brown": {"model": "cfm:present_brown"},
+        "colour=blue": {"model": "cfm:present_blue"},
+        "colour=purple": {"model": "cfm:present_purple"},
+        "colour=cyan": {"model": "cfm:present_cyan"},
+        "colour=silver": {"model": "cfm:present_light_grey"},
+        "colour=gray": {"model": "cfm:present_grey"},
+        "colour=pink": {"model": "cfm:present_pink"},
+        "colour=lime": {"model": "cfm:present_lime"},
+        "colour=yellow": {"model": "cfm:present_yellow"},
+        "colour=light_blue": {"model": "cfm:present_light_blue"},
+        "colour=magenta": {"model": "cfm:present_magenta"},
+        "colour=orange": {"model": "cfm:present_orange"},
+        "colour=white": {"model": "cfm:present_white"}
+    }
+}

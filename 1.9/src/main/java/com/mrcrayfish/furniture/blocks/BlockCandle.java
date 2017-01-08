@@ -26,7 +26,7 @@ public class BlockCandle extends Block
 		this.setTickRandomly(true);
 		this.setLightLevel(0.8F);
 		this.setHardness(1.0F);
-		this.setStepSound(SoundType.STONE);
+		this.setSoundType(SoundType.STONE);
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	
@@ -49,7 +49,7 @@ public class BlockCandle extends Block
 	}
 
 	@SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
     {
 		worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + (7.95 * 0.0625), pos.getY() + 1.45, pos.getZ() + (7.95 * 0.0625), 0.0D, 0.0D, 0.0D, new int[0]);
 		worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + (7.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (12.95 * 0.0625), 0.0D, 0.0D, 0.0D, new int[0]);

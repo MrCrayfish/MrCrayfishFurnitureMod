@@ -58,7 +58,7 @@ public class BlockDoorBell extends BlockFurniture
 	public BlockDoorBell(Material material)
 	{
 		super(material);
-		this.setStepSound(SoundType.WOOD);
+		this.setSoundType(SoundType.WOOD);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(POWERED, Boolean.valueOf(true)));
 		this.setTickRandomly(true);
 	}
@@ -88,22 +88,9 @@ public class BlockDoorBell extends BlockFurniture
 	}
 
 	@Override
-	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+	public boolean canPlaceBlockOnSide(World world, BlockPos pos, EnumFacing side)
 	{
-		EnumFacing[] aenumfacing = EnumFacing.values();
-		int i = aenumfacing.length;
-
-		for (int j = 2; j < i; ++j)
-		{
-			EnumFacing enumfacing = aenumfacing[j];
-
-			if (worldIn.getBlockState(pos.offset(enumfacing)).getBlock().isNormalCube(worldIn.getBlockState(pos)))
-			{
-				return true;
-			}
-		}
-
-		return false;
+		return (side == EnumFacing.UP || side == EnumFacing.DOWN) ? false : world.isSideSolid(pos.offset(side.getOpposite()), side, true);
 	}
 
 	@Override
@@ -113,34 +100,16 @@ public class BlockDoorBell extends BlockFurniture
 	}
 
 	@Override
-	public void onNeighborBlockChange(World worldIn, BlockPos pos, IBlockState state, Block neighborBlock)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
 	{
-		if (this.func_176583_e(worldIn, pos, state))
+		EnumFacing facing = (EnumFacing) state.getValue(FACING);
+		if (!this.canPlaceBlockOnSide(worldIn, pos, facing.getOpposite()))
 		{
-			EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
-
-			if (!worldIn.getBlockState(pos.offset(enumfacing)).getBlock().isNormalCube(worldIn.getBlockState(pos)))
-			{
-				this.dropBlockAsItem(worldIn, pos, state, 0);
-				worldIn.setBlockToAir(pos);
-			}
+			this.dropBlockAsItem(worldIn, pos, state, 0);
+			worldIn.setBlockToAir(pos);
 		}
 	}
 
-	private boolean func_176583_e(World worldIn, BlockPos p_176583_2_, IBlockState p_176583_3_)
-	{
-		if (!this.canPlaceBlockAt(worldIn, p_176583_2_))
-		{
-			this.dropBlockAsItem(worldIn, p_176583_2_, p_176583_3_, 0);
-			worldIn.setBlockToAir(p_176583_2_);
-			return false;
-		}
-		else
-		{
-			return true;
-		}
-	}
-	
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
 	{
@@ -151,7 +120,7 @@ public class BlockDoorBell extends BlockFurniture
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		if (state.getValue(POWERED))
+		if (state.getValue(POWERED) || worldIn.isRemote)
 		{
 			return true;
 		}
@@ -159,7 +128,7 @@ public class BlockDoorBell extends BlockFurniture
 		{
 			worldIn.setBlockState(pos, state.withProperty(POWERED, Boolean.valueOf(true)), 3);
 			worldIn.markBlockRangeForRenderUpdate(pos, pos);
-			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, FurnitureSounds.door_bell, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+			worldIn.playSound((EntityPlayer)null, pos, FurnitureSounds.door_bell, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));
 			playerIn.addStat(FurnitureAchievements.dingDong);
 			return true;
@@ -200,14 +169,14 @@ public class BlockDoorBell extends BlockFurniture
 		{
 			worldIn.setBlockState(pos, state.withProperty(POWERED, Boolean.valueOf(true)));
 			worldIn.markBlockRangeForRenderUpdate(pos, pos);
-			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.block_lever_click, SoundCategory.BLOCKS, 0.3F, 0.6F, false);
+			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.6F, false);
 		}
 
 		if (!flag && flag1)
 		{
 			worldIn.setBlockState(pos, state.withProperty(POWERED, Boolean.valueOf(false)));
 			worldIn.markBlockRangeForRenderUpdate(pos, pos);
-			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.block_lever_click, SoundCategory.BLOCKS, 0.3F, 0.5F, false);
+			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.5F, false);
 		}
 
 		if (flag)

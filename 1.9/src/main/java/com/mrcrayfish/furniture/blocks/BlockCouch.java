@@ -36,10 +36,12 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -80,9 +82,9 @@ public abstract class BlockCouch extends BlockFurnitureTile
 	
 	public BlockCouch()
 	{
-		super(Material.cloth);
+		super(Material.CLOTH);
 		this.setHardness(0.5F);
-		this.setStepSound(SoundType.CLOTH);
+		this.setSoundType(SoundType.CLOTH);
 		
 		IBlockState baseState = this.blockState.getBaseState();
 		if(isSpecial())
@@ -198,7 +200,7 @@ public abstract class BlockCouch extends BlockFurnitureTile
 	{
 		if(!isSpecial())
 		{
-			if(heldItem != null && heldItem.getItem() == Items.name_tag)
+			if(heldItem != null && heldItem.getItem() == Items.NAME_TAG)
 			{
 				if(heldItem.hasDisplayName())
 				{

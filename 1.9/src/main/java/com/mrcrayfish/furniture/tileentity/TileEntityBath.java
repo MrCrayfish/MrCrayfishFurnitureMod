@@ -22,6 +22,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.Constants.NBT;
 
 public class TileEntityBath extends TileEntity
 {
@@ -60,17 +61,18 @@ public class TileEntityBath extends TileEntity
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+	public void readFromNBT(NBTTagCompound tagCompound)
 	{
-		super.readFromNBT(par1NBTTagCompound);
-		this.waterLevel = par1NBTTagCompound.getInteger("waterLevel");
+		super.readFromNBT(tagCompound);
+		this.waterLevel = tagCompound.getInteger("waterLevel");
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeToNBT(par1NBTTagCompound);
-		par1NBTTagCompound.setInteger("waterLevel", waterLevel);
+		super.writeToNBT(tagCompound);
+		tagCompound.setInteger("waterLevel", waterLevel);
+		return tagCompound;
 	}
 
 	@Override
@@ -81,7 +83,7 @@ public class TileEntityBath extends TileEntity
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

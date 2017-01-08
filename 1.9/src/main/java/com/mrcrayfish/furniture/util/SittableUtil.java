@@ -23,7 +23,7 @@ public class SittableUtil {
 
 	public static boolean sitOnBlockWithRotationOffset(World par1World, double x, double y, double z, EntityPlayer par5EntityPlayer, double par6, int metadata, double offset)
 	{
-		if (!checkForExistingEntity(par1World, x, y, z, par5EntityPlayer))
+		if (!checkForExistingEntity(par1World, x, y, z, par5EntityPlayer) && !par1World.isRemote)
 		{
 			EntitySittableBlock nemb = new EntitySittableBlock(par1World, x, y, z, par6, metadata, offset);
 			par1World.spawnEntityInWorld(nemb);

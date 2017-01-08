@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture.init;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -25,6 +26,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class FurnitureTab extends CreativeTabs 
 {
+	private String title = "";
+	private boolean hoveringButton = false;
+
 	public FurnitureTab(String label) 
 	{
 		super(label);
@@ -35,10 +39,21 @@ public class FurnitureTab extends CreativeTabs
 	{
 		return new ItemStack(FurnitureBlocks.chair_oak).getItem();
 	}
-
-	@SideOnly(Side.CLIENT)
-	public String getBackgroundImageName() 
+	
+	@Override
+	public String getTranslatedTabLabel() 
 	{
-		return "furniture.png";
+		return hoveringButton ? title : "itemGroup.tabFurniture";
 	}
+	
+	public void setTitle(String title) 
+	{
+		this.title = title;
+	}
+	
+	public void setHoveringButton(boolean hoveringButton) 
+	{
+		this.hoveringButton = hoveringButton;
+	}
+	
 }

@@ -43,30 +43,30 @@ public class TileEntityCabinetKitchen extends TileEntityLockable implements IInv
 	}
 
 	@Override
-	public ItemStack getStackInSlot(int par1)
+	public ItemStack getStackInSlot(int slot)
 	{
-		return this.cabinetContents[par1];
+		return this.cabinetContents[slot];
 	}
 
 	@Override
-	public ItemStack decrStackSize(int par1, int par2)
+	public ItemStack decrStackSize(int slot, int amount)
 	{
-		if (this.cabinetContents[par1] != null)
+		if (this.cabinetContents[slot] != null)
 		{
 			ItemStack var3;
 
-			if (this.cabinetContents[par1].stackSize <= par2)
+			if (this.cabinetContents[slot].stackSize <= amount)
 			{
-				var3 = this.cabinetContents[par1];
-				this.cabinetContents[par1] = null;
+				var3 = this.cabinetContents[slot];
+				this.cabinetContents[slot] = null;
 				this.markDirty();
 				return var3;
 			}
-			var3 = this.cabinetContents[par1].splitStack(par2);
+			var3 = this.cabinetContents[slot].splitStack(amount);
 
-			if (this.cabinetContents[par1].stackSize == 0)
+			if (this.cabinetContents[slot].stackSize == 0)
 			{
-				this.cabinetContents[par1] = null;
+				this.cabinetContents[slot] = null;
 			}
 
 			this.markDirty();
@@ -76,67 +76,68 @@ public class TileEntityCabinetKitchen extends TileEntityLockable implements IInv
 	}
 
 	@Override
-	public ItemStack removeStackFromSlot(int par1)
+	public ItemStack removeStackFromSlot(int slot)
 	{
-		if (this.cabinetContents[par1] != null)
+		if (this.cabinetContents[slot] != null)
 		{
-			ItemStack var2 = this.cabinetContents[par1];
-			this.cabinetContents[par1] = null;
+			ItemStack var2 = this.cabinetContents[slot];
+			this.cabinetContents[slot] = null;
 			return var2;
 		}
 		return null;
 	}
 
 	@Override
-	public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
+	public void setInventorySlotContents(int slot, ItemStack stack)
 	{
-		this.cabinetContents[par1] = par2ItemStack;
+		this.cabinetContents[slot] = stack;
 
-		if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
+		if (stack != null && stack.stackSize > this.getInventoryStackLimit())
 		{
-			par2ItemStack.stackSize = this.getInventoryStackLimit();
+			stack.stackSize = this.getInventoryStackLimit();
 		}
 
 		this.markDirty();
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+	public void readFromNBT(NBTTagCompound tagCompound)
 	{
-		super.readFromNBT(par1NBTTagCompound);
-		NBTTagList var2 = (NBTTagList) par1NBTTagCompound.getTag("cabinetItems");
-		this.cabinetContents = new ItemStack[this.getSizeInventory()];
-
-		for (int var3 = 0; var3 < var2.tagCount(); ++var3)
+		super.readFromNBT(tagCompound);
+		if(tagCompound.hasKey("cabinetItems"))
 		{
-			NBTTagCompound var4 = (NBTTagCompound) var2.getCompoundTagAt(var3);
-			int var5 = var4.getByte("cabinetSlot") & 255;
-
-			if (var5 >= 0 && var5 < this.cabinetContents.length)
+			NBTTagList tagList = (NBTTagList) tagCompound.getTag("cabinetItems");
+			this.cabinetContents = new ItemStack[this.getSizeInventory()];
+			for (int i = 0; i < tagList.tagCount(); ++i)
 			{
-				this.cabinetContents[var5] = ItemStack.loadItemStackFromNBT(var4);
+				NBTTagCompound itemTag = (NBTTagCompound) tagList.getCompoundTagAt(i);
+				int slot = itemTag.getByte("cabinetSlot") & 255;
+
+				if (slot >= 0 && slot < this.cabinetContents.length)
+				{
+					this.cabinetContents[slot] = ItemStack.loadItemStackFromNBT(itemTag);
+				}
 			}
 		}
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeToNBT(par1NBTTagCompound);
-		NBTTagList var2 = new NBTTagList();
-
-		for (int var3 = 0; var3 < this.cabinetContents.length; ++var3)
+		super.writeToNBT(tagCompound);
+		NBTTagList tagList = new NBTTagList();
+		for (int slot = 0; slot < this.cabinetContents.length; ++slot)
 		{
-			if (this.cabinetContents[var3] != null)
+			if (this.cabinetContents[slot] != null)
 			{
-				NBTTagCompound var4 = new NBTTagCompound();
-				var4.setByte("cabinetSlot", (byte) var3);
-				this.cabinetContents[var3].writeToNBT(var4);
-				var2.appendTag(var4);
+				NBTTagCompound itemTag = new NBTTagCompound();
+				itemTag.setByte("cabinetSlot", (byte) slot);
+				this.cabinetContents[slot].writeToNBT(itemTag);
+				tagList.appendTag(itemTag);
 			}
 		}
-
-		par1NBTTagCompound.setTag("cabinetItems", var2);
+		tagCompound.setTag("cabinetItems", tagList);
+		return tagCompound;
 	}
 
 	@Override
@@ -146,9 +147,9 @@ public class TileEntityCabinetKitchen extends TileEntityLockable implements IInv
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer)
+	public boolean isUseableByPlayer(EntityPlayer player)
 	{
-		return this.worldObj.getTileEntity(pos) != this ? false : entityplayer.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64.0D;
+		return this.worldObj.getTileEntity(pos) != this ? false : player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64.0D;
 	}
 
 	@Override
@@ -159,7 +160,7 @@ public class TileEntityCabinetKitchen extends TileEntityLockable implements IInv
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int par1, ItemStack par2ItemStack)
+	public boolean isItemValidForSlot(int slot, ItemStack stack)
 	{
 		return true;
 	}

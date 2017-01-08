@@ -67,7 +67,7 @@ public class TileEntityCup extends TileEntity implements ISimpleInventory
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound tagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
 		super.writeToNBT(tagCompound);
 		NBTTagList tagList = new NBTTagList();
@@ -81,6 +81,7 @@ public class TileEntityCup extends TileEntity implements ISimpleInventory
 		tagCompound.setInteger("Red", red);
 		tagCompound.setInteger("Green", green);
 		tagCompound.setInteger("Blue", blue);
+		return tagCompound;
 	}
 
 	@Override
@@ -91,7 +92,7 @@ public class TileEntityCup extends TileEntity implements ISimpleInventory
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

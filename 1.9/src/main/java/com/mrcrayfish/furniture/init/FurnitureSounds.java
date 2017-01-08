@@ -1,6 +1,6 @@
 package com.mrcrayfish.furniture.init;
 
-import com.mrcrayfish.furniture.Reference;
+import java.util.Random;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -40,41 +40,54 @@ public class FurnitureSounds {
 	
 	public static void register()
 	{
-		door_bell = registerSound("door_bell");
-		fire_alarm = registerSound("fire_alarm");
-		white_noise = registerSound("white_noise");
-		zap = registerSound("zap");
-		flush = registerSound("flush");
-		shower = registerSound("shower");
-		bin_open = registerSound("bin_open");
-		bin_close = registerSound("bin_close");
-		tap = registerSound("tap");
-		cabinet_open = registerSound("cabinet_open");
-		cabinet_close = registerSound("cabinet_close");
-		fart_1 = registerSound("fart_1");
-		fart_2 = registerSound("fart_2");
-		fart_3 = registerSound("fart_3");
-		blender = registerSound("blender");
-		dishwasher = registerSound("dishwasher");
-		knife_chop = registerSound("knife_chop");
-		microwave_running = registerSound("microwave_running");
-		microwave_finish = registerSound("microwave_finish");
-		toaster_down = registerSound("toaster_down");
-		toaster_up = registerSound("toaster_up");
-		washing_machine = registerSound("washing_machine");
-		channel_news = registerSound("channel_news");
-		channel_cooking = registerSound("channel_cooking");
-		channel_sam_tabor = registerSound("channel_sam_tabor");
-		channel_heman = registerSound("channel_heman");
-		channel_switch = registerSound("channel_switch");
-		boing = registerSound("boing");
-		sizzle = registerSound("sizzle");
+		door_bell = registerSound("cfm:door_bell");
+		fire_alarm = registerSound("cfm:fire_alarm");
+		white_noise = registerSound("cfm:white_noise");
+		zap = registerSound("cfm:zap");
+		flush = registerSound("cfm:flush");
+		shower = registerSound("cfm:shower");
+		bin_open = registerSound("cfm:bin_open");
+		bin_close = registerSound("cfm:bin_close");
+		tap = registerSound("cfm:tap");
+		cabinet_open = registerSound("cfm:cabinet_open");
+		cabinet_close = registerSound("cfm:cabinet_close");
+		fart_1 = registerSound("cfm:fart_1");
+		fart_2 = registerSound("cfm:fart_2");
+		fart_3 = registerSound("cfm:fart_3");
+		blender = registerSound("cfm:blender");
+		dishwasher = registerSound("cfm:dishwasher");
+		knife_chop = registerSound("cfm:knife_chop");
+		microwave_running = registerSound("cfm:microwave_running");
+		microwave_finish = registerSound("cfm:microwave_finish");
+		toaster_down = registerSound("cfm:toaster_down");
+		toaster_up = registerSound("cfm:toaster_up");
+		washing_machine = registerSound("cfm:washing_machine");
+		channel_news = registerSound("cfm:channel_news");
+		channel_cooking = registerSound("cfm:channel_cooking");
+		channel_sam_tabor = registerSound("cfm:channel_sam_tabor");
+		channel_heman = registerSound("cfm:channel_heman");
+		channel_switch = registerSound("cfm:channel_switch");
+		boing = registerSound("cfm:boing");
+		sizzle = registerSound("cfm:sizzle");
+	}
+	
+	public static SoundEvent getRandomFart(Random rand) 
+	{
+		int num = rand.nextInt(3);
+		switch(num)
+		{
+		case 1:
+			return fart_2;
+		case 2:
+			return fart_3;
+		default:
+			return fart_1;
+		}
 	}
 	
 	private static SoundEvent registerSound(String soundNameIn)
     {
-        ResourceLocation resource = new ResourceLocation(Reference.MOD_ID, soundNameIn);
-        GameRegistry.register(new SoundEvent(resource).setRegistryName(soundNameIn));
-        return SoundEvent.soundEventRegistry.getObject(resource);
+		ResourceLocation sound = new ResourceLocation(soundNameIn);
+        return GameRegistry.register(new SoundEvent(sound).setRegistryName(soundNameIn));
     }
 }

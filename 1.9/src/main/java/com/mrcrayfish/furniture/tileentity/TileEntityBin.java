@@ -41,30 +41,30 @@ public class TileEntityBin extends TileEntity implements IInventory
 	}
 
 	@Override
-	public ItemStack getStackInSlot(int i)
+	public ItemStack getStackInSlot(int slot)
 	{
-		return binContents[i];
+		return binContents[slot];
 	}
 
 	@Override
-	public ItemStack decrStackSize(int par1, int par2)
+	public ItemStack decrStackSize(int slot, int amount)
 	{
-		if (this.binContents[par1] != null)
+		if (this.binContents[slot] != null)
 		{
 			ItemStack var3;
 
-			if (this.binContents[par1].stackSize <= par2)
+			if (this.binContents[slot].stackSize <= amount)
 			{
-				var3 = this.binContents[par1];
-				this.binContents[par1] = null;
+				var3 = this.binContents[slot];
+				this.binContents[slot] = null;
 				this.markDirty();
 				return var3;
 			}
-			var3 = this.binContents[par1].splitStack(par2);
+			var3 = this.binContents[slot].splitStack(amount);
 
-			if (this.binContents[par1].stackSize == 0)
+			if (this.binContents[slot].stackSize == 0)
 			{
-				this.binContents[par1] = null;
+				this.binContents[slot] = null;
 			}
 
 			this.markDirty();
@@ -74,67 +74,68 @@ public class TileEntityBin extends TileEntity implements IInventory
 	}
 
 	@Override
-	public ItemStack removeStackFromSlot(int par1)
+	public ItemStack removeStackFromSlot(int slot)
 	{
-		if (this.binContents[par1] != null)
+		if (this.binContents[slot] != null)
 		{
-			ItemStack var2 = this.binContents[par1];
-			this.binContents[par1] = null;
+			ItemStack var2 = this.binContents[slot];
+			this.binContents[slot] = null;
 			return var2;
 		}
 		return null;
 	}
 
 	@Override
-	public void setInventorySlotContents(int i, ItemStack itemstack)
+	public void setInventorySlotContents(int slot, ItemStack stack)
 	{
-		this.binContents[i] = itemstack;
+		this.binContents[slot] = stack;
 
-		if (itemstack != null && itemstack.stackSize > this.getInventoryStackLimit())
+		if (stack != null && stack.stackSize > this.getInventoryStackLimit())
 		{
-			itemstack.stackSize = this.getInventoryStackLimit();
+			stack.stackSize = this.getInventoryStackLimit();
 		}
 
 		this.markDirty();
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+	public void readFromNBT(NBTTagCompound tagCompound)
 	{
-		super.readFromNBT(par1NBTTagCompound);
-		NBTTagList var2 = (NBTTagList) par1NBTTagCompound.getTag("Items");
-		this.binContents = new ItemStack[this.getSizeInventory()];
-
-		for (int var3 = 0; var3 < var2.tagCount(); ++var3)
+		super.readFromNBT(tagCompound);
+		if(tagCompound.hasKey("Items"))
 		{
-			NBTTagCompound var4 = (NBTTagCompound) var2.getCompoundTagAt(var3);
-			int var5 = var4.getByte("Slot") & 255;
-
-			if (var5 >= 0 && var5 < this.binContents.length)
+			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
+			this.binContents = new ItemStack[this.getSizeInventory()];
+			for (int i = 0; i < tagList.tagCount(); ++i)
 			{
-				this.binContents[var5] = ItemStack.loadItemStackFromNBT(var4);
+				NBTTagCompound itemTag = (NBTTagCompound) tagList.getCompoundTagAt(i);
+				int slot = itemTag.getByte("Slot") & 255;
+
+				if (slot >= 0 && slot < this.binContents.length)
+				{
+					this.binContents[slot] = ItemStack.loadItemStackFromNBT(itemTag);
+				}
 			}
 		}
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeToNBT(par1NBTTagCompound);
-		NBTTagList var2 = new NBTTagList();
-
-		for (int var3 = 0; var3 < this.binContents.length; ++var3)
+		super.writeToNBT(tagCompound);
+		NBTTagList tagList = new NBTTagList();
+		for (int i = 0; i < this.binContents.length; ++i)
 		{
-			if (this.binContents[var3] != null)
+			if (this.binContents[i] != null)
 			{
-				NBTTagCompound var4 = new NBTTagCompound();
-				var4.setByte("Slot", (byte) var3);
-				this.binContents[var3].writeToNBT(var4);
-				var2.appendTag(var4);
+				NBTTagCompound itemTag = new NBTTagCompound();
+				itemTag.setByte("Slot", (byte) i);
+				this.binContents[i].writeToNBT(itemTag);
+				tagList.appendTag(itemTag);
 			}
 		}
-
-		par1NBTTagCompound.setTag("Items", var2);
+		tagCompound.setTag("Items", tagList);
+		return tagCompound;
 	}
 
 	@Override
@@ -144,13 +145,13 @@ public class TileEntityBin extends TileEntity implements IInventory
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer)
+	public boolean isUseableByPlayer(EntityPlayer player)
 	{
-		return this.worldObj.getTileEntity(pos) != this ? false : entityplayer.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64.0D;
+		return this.worldObj.getTileEntity(pos) != this ? false : player.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64.0D;
 	}
 
 	@Override
-	public boolean isItemValidForSlot(int i, ItemStack itemstack)
+	public boolean isItemValidForSlot(int slot, ItemStack stack)
 	{
 		return true;
 	}

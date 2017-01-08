@@ -29,6 +29,7 @@ import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.gui.GuiHandler;
 import com.mrcrayfish.furniture.handler.ConfigurationHandler;
 import com.mrcrayfish.furniture.handler.CraftingHandler;
+import com.mrcrayfish.furniture.handler.GuiDrawHandler;
 import com.mrcrayfish.furniture.handler.InputHandler;
 import com.mrcrayfish.furniture.handler.PlayerEvents;
 import com.mrcrayfish.furniture.handler.SyncEvent;
@@ -45,7 +46,6 @@ import com.mrcrayfish.furniture.render.tileentity.MirrorRenderer;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -58,7 +58,6 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.common.registry.GameData;
 import net.minecraftforge.fml.relauncher.Side;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, acceptedMinecraftVersions = "[1.9,1.9.4]")
@@ -77,7 +76,6 @@ public class MrCrayfishFurnitureMod
 	{
 		/** Config Changed Event */
 		MinecraftForge.EVENT_BUS.register(new ConfigurationHandler());
-		
 		
 		/** Block and Item Registring */
 		FurnitureBlocks.init();
@@ -100,6 +98,7 @@ public class MrCrayfishFurnitureMod
 		if (event.getSide() == Side.CLIENT)
 		{
 			MinecraftForge.EVENT_BUS.register(new InputHandler());
+			MinecraftForge.EVENT_BUS.register(new GuiDrawHandler());
 		}
 		else
 		{
@@ -134,7 +133,7 @@ public class MrCrayfishFurnitureMod
 		EntityRegistry.registerModEntity(EntitySittableBlock.class, "MountableBlock", 0, this, 80, 1, false);
 		if (event.getSide() == Side.CLIENT)
 		{
-			EntityRegistry.registerModEntity(EntityMirror.class, "Mirror", 0, this, 80, 1, false);
+			EntityRegistry.registerModEntity(EntityMirror.class, "Mirror", 1, this, 80, 1, false);
 		}
 		
 		/** Crafting Recipes */
@@ -151,8 +150,6 @@ public class MrCrayfishFurnitureMod
 		Recipes.updateDataList();
 		
 		Channels.registerChannels(5);
-		
-		System.out.println(GameData.getItemRegistry().getNameForObject(FurnitureItems.itemBreadSlice).toString());
 	}
 
 	@EventHandler

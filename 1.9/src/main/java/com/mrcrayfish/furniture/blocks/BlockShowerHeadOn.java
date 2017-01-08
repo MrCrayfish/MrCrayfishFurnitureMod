@@ -59,7 +59,7 @@ public class BlockShowerHeadOn extends BlockFurnitureTile
 	{
 		super(material);
 		this.setHardness(1.0F);
-		this.setStepSound(SoundType.STONE);
+		this.setSoundType(SoundType.STONE);
 		this.setCreativeTab(null);
 	}
 
@@ -70,16 +70,16 @@ public class BlockShowerHeadOn extends BlockFurnitureTile
 	}
 
 	@Override
-	public void onNeighborBlockChange(World world, BlockPos pos, IBlockState state, Block neighborBlock)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
 	{
-		if (this.canPlaceCheck(world, pos, state))
+		if (this.canPlaceCheck(worldIn, pos, state))
 		{
 			EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
 
-			if (!world.getBlockState(pos.offset(enumfacing)).getBlock().isNormalCube(state))
+			if (!worldIn.getBlockState(pos.offset(enumfacing)).getBlock().isNormalCube(state))
 			{
-				this.dropBlockAsItem(world, pos, state, 0);
-				world.setBlockToAir(pos);
+				this.dropBlockAsItem(worldIn, pos, state, 0);
+				worldIn.setBlockToAir(pos);
 			}
 		}
 	}
@@ -88,7 +88,7 @@ public class BlockShowerHeadOn extends BlockFurnitureTile
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) 
 	{
 		worldIn.setBlockState(pos, FurnitureBlocks.shower_head_off.getDefaultState().withProperty(FACING, state.getValue(FACING)), 2);
-		worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D,SoundEvents.block_lever_click, SoundCategory.BLOCKS, 0.3F, 0.5F, false);
+		worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D,SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.5F, false);
 		return true;
 	}
 

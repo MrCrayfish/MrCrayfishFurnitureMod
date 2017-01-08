@@ -70,9 +70,9 @@ public class TileEntityPlate extends TileEntity implements ISimpleInventory
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeToNBT(par1NBTTagCompound);
+		super.writeToNBT(tagCompound);
 		NBTTagList tagList = new NBTTagList();
 		ItemStack itemStack = food;
 		if (itemStack != null)
@@ -81,8 +81,9 @@ public class TileEntityPlate extends TileEntity implements ISimpleInventory
 			itemStack.writeToNBT(nbttagcompound1);
 			tagList.appendTag(nbttagcompound1);
 		}
-		par1NBTTagCompound.setTag("Items", tagList);
-		par1NBTTagCompound.setInteger("Rotation", rotation);
+		tagCompound.setTag("Items", tagList);
+		tagCompound.setInteger("Rotation", rotation);
+		return tagCompound;
 	}
 
 	@Override
@@ -93,7 +94,7 @@ public class TileEntityPlate extends TileEntity implements ISimpleInventory
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

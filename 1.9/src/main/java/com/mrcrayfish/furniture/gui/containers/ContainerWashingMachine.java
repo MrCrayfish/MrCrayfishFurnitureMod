@@ -85,13 +85,12 @@ public class ContainerWashingMachine extends Container
 			else if (slotNum > 4)
 			{
 				RecipeData data = RecipeAPI.getWashingMachineRecipeFromInput(item);
-
 				if (data != null)
 				{
 					if (data.getInput().getItem() instanceof ItemArmor)
 					{
 						ItemArmor armour = (ItemArmor) data.getInput().getItem();
-						if (!this.mergeItemStack(item, armour.armorType.getIndex(), armour.armorType.getIndex() + 1, true))
+						if (!this.mergeItemStack(item, 0, 4, true))
 						{
 							return null;
 						}

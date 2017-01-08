@@ -68,7 +68,7 @@ public class BlockPresent extends Block implements ITileEntityProvider
 	{
 		super(material);
 		this.setHardness(0.5F);
-		this.setStepSound(SoundType.CLOTH);
+		this.setSoundType(SoundType.CLOTH);
 		this.isBlockContainer = true;
 		this.setDefaultState(this.blockState.getBaseState().withProperty(COLOUR, EnumDyeColor.WHITE));
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
@@ -92,7 +92,7 @@ public class BlockPresent extends Block implements ITileEntityProvider
 		TileEntityPresent present = (TileEntityPresent) world.getTileEntity(pos);
 		if (present != null)
 		{
-			world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.entity_player_levelup, SoundCategory.BLOCKS, 0.75F, 1.0F, false);
+			world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 0.75F, 1.0F, false);
 			player.addChatComponentMessage(new TextComponentString(TextFormatting.GREEN + "Merry Christmas" + TextFormatting.RESET + " from " + TextFormatting.RED + present.ownerName));
 			player.addStat(FurnitureAchievements.unwrapPresent);
 		}
@@ -172,15 +172,7 @@ public class BlockPresent extends Block implements ITileEntityProvider
 	{
 		return new BlockStateContainer(this, new IProperty[] { COLOUR });
 	}
-	
-	@Override
-	public boolean onBlockEventReceived(World worldIn, BlockPos pos, IBlockState state, int eventID, int eventParam)
-	{
-		super.onBlockEventReceived(worldIn, pos, state, eventID, eventParam);
-		TileEntity tileentity = worldIn.getTileEntity(pos);
-		return tileentity == null ? false : tileentity.receiveClientEvent(eventID, eventParam);
-	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public BlockRenderLayer getBlockLayer()
 	{

@@ -126,46 +126,48 @@ public class TileEntityToaster extends TileEntity implements ITickable, ISimpleI
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+	public void readFromNBT(NBTTagCompound tagCompound)
 	{
-		super.readFromNBT(par1NBTTagCompound);
-		NBTTagList nbttaglist = (NBTTagList) par1NBTTagCompound.getTag("Items");
-		this.slots = new ItemStack[2];
-
-		for (int i = 0; i < nbttaglist.tagCount(); ++i)
+		super.readFromNBT(tagCompound);
+		if(tagCompound.hasKey("Items"))
 		{
-			NBTTagCompound nbttagcompound1 = (NBTTagCompound) nbttaglist.getCompoundTagAt(i);
-			byte b0 = nbttagcompound1.getByte("Slot");
-
-			if (b0 >= 0 && b0 < this.slots.length)
+			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
+			this.slots = new ItemStack[2];
+			for (int i = 0; i < tagList.tagCount(); ++i)
 			{
-				this.slots[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+				NBTTagCompound itemTag = (NBTTagCompound) tagList.getCompoundTagAt(i);
+				byte slot = itemTag.getByte("Slot");
+
+				if (slot >= 0 && slot < this.slots.length)
+				{
+					this.slots[slot] = ItemStack.loadItemStackFromNBT(itemTag);
+				}
 			}
 		}
-
-		this.toastingTime = par1NBTTagCompound.getInteger("ToastTime");
-		this.toasting = par1NBTTagCompound.getBoolean("Toasting");
+		this.toastingTime = tagCompound.getInteger("ToastTime");
+		this.toasting = tagCompound.getBoolean("Toasting");
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeToNBT(par1NBTTagCompound);
-		NBTTagList nbttaglist = new NBTTagList();
+		super.writeToNBT(tagCompound);
+		NBTTagList tagList = new NBTTagList();
 
-		for (int i = 0; i < this.slots.length; ++i)
+		for (int slot = 0; slot < this.slots.length; ++slot)
 		{
-			if (this.slots[i] != null)
+			if (this.slots[slot] != null)
 			{
-				NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-				nbttagcompound1.setByte("Slot", (byte) i);
-				this.slots[i].writeToNBT(nbttagcompound1);
-				nbttaglist.appendTag(nbttagcompound1);
+				NBTTagCompound itemTag = new NBTTagCompound();
+				itemTag.setByte("Slot", (byte) slot);
+				this.slots[slot].writeToNBT(itemTag);
+				tagList.appendTag(itemTag);
 			}
 		}
-		par1NBTTagCompound.setTag("Items", nbttaglist);
-		par1NBTTagCompound.setInteger("ToastTime", this.toastingTime);
-		par1NBTTagCompound.setBoolean("Toasting", toasting);
+		tagCompound.setTag("Items", tagList);
+		tagCompound.setInteger("ToastTime", this.toastingTime);
+		tagCompound.setBoolean("Toasting", toasting);
+		return tagCompound;
 	}
 
 	@Override
@@ -176,7 +178,7 @@ public class TileEntityToaster extends TileEntity implements ITickable, ISimpleI
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket()
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

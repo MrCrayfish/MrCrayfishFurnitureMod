@@ -26,6 +26,7 @@ import com.mrcrayfish.furniture.util.ParticleSpawner;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
@@ -55,7 +56,7 @@ public class TileEntityShowerHead extends TileEntity implements ITickable
 				List<EntityPlayer> listPlayers = worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(pos.getX(), pos.getY() - 1, pos.getZ(), pos.getX() + 1.0D, pos.getY() - 1 + 1.0D, pos.getZ() + 1.0D));
 				for (EntityPlayer player : listPlayers)
 				{
-					player.curePotionEffects(new ItemStack(Items.milk_bucket));
+					player.curePotionEffects(new ItemStack(Items.MILK_BUCKET));
 					player.addStat(FurnitureAchievements.allClean);
 	
 					for (int i = 0; i < 4; i++)
@@ -83,7 +84,7 @@ public class TileEntityShowerHead extends TileEntity implements ITickable
 	
 			if (timer >= 20)
 			{
-				worldObj.playSound(pos.getX(), pos.getY(), pos.getZ(), FurnitureSounds.shower, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
+				worldObj.playSound((EntityPlayer)null, pos, FurnitureSounds.shower, SoundCategory.BLOCKS, 0.75F, 1.0F);
 				timer = 0;
 			}
 			timer++;

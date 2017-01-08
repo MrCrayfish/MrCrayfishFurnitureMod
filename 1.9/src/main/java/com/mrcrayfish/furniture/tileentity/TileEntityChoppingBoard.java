@@ -79,7 +79,7 @@ public class TileEntityChoppingBoard extends TileEntity implements ISimpleInvent
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound tagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
 		super.writeToNBT(tagCompound);
 		NBTTagCompound nbt = new NBTTagCompound();
@@ -88,6 +88,7 @@ public class TileEntityChoppingBoard extends TileEntity implements ISimpleInvent
 			food.writeToNBT(nbt);
 			tagCompound.setTag("Food", nbt);
 		}	
+		return tagCompound;
 	}
 
 	@Override
@@ -98,7 +99,7 @@ public class TileEntityChoppingBoard extends TileEntity implements ISimpleInvent
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

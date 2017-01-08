@@ -105,42 +105,46 @@ public class TileEntityWallCabinet extends TileEntityLockable implements ISidedI
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+	public void readFromNBT(NBTTagCompound tagCompound)
 	{
-		super.readFromNBT(par1NBTTagCompound);
-		NBTTagList var2 = (NBTTagList) par1NBTTagCompound.getTag("Items");
-		this.inventory = new ItemStack[this.getSizeInventory()];
-
-		for (int var3 = 0; var3 < var2.tagCount(); ++var3)
+		super.readFromNBT(tagCompound);
+		if(tagCompound.hasKey("Items"))
 		{
-			NBTTagCompound var4 = (NBTTagCompound) var2.getCompoundTagAt(var3);
-			int var5 = var4.getByte("Slot") & 255;
+			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
+			this.inventory = new ItemStack[this.getSizeInventory()];
 
-			if (var5 >= 0 && var5 < this.inventory.length)
+			for (int i = 0; i < tagList.tagCount(); ++i)
 			{
-				this.inventory[var5] = ItemStack.loadItemStackFromNBT(var4);
+				NBTTagCompound itemTag = (NBTTagCompound) tagList.getCompoundTagAt(i);
+				int slot = itemTag.getByte("Slot") & 255;
+
+				if (slot >= 0 && slot < this.inventory.length)
+				{
+					this.inventory[slot] = ItemStack.loadItemStackFromNBT(itemTag);
+				}
 			}
 		}
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeToNBT(par1NBTTagCompound);
-		NBTTagList var2 = new NBTTagList();
-
-		for (int var3 = 0; var3 < this.inventory.length; ++var3)
+		super.writeToNBT(tagCompound);
+		
+		NBTTagList tagList = new NBTTagList();
+		for (int slot = 0; slot < this.inventory.length; ++slot)
 		{
-			if (this.inventory[var3] != null)
+			if (this.inventory[slot] != null)
 			{
-				NBTTagCompound var4 = new NBTTagCompound();
-				var4.setByte("Slot", (byte) var3);
-				this.inventory[var3].writeToNBT(var4);
-				var2.appendTag(var4);
+				NBTTagCompound itemTag = new NBTTagCompound();
+				itemTag.setByte("Slot", (byte) slot);
+				this.inventory[slot].writeToNBT(itemTag);
+				tagList.appendTag(itemTag);
 			}
 		}
-
-		par1NBTTagCompound.setTag("Items", var2);
+		tagCompound.setTag("Items", tagList);
+		
+		return tagCompound;
 	}
 
 	@Override

@@ -35,7 +35,7 @@ public class BlockCrate extends Block implements ITileEntityProvider
 	{
 		super(materialIn);
 		this.setHardness(1.0F);
-		this.setStepSound(SoundType.WOOD);
+		this.setSoundType(SoundType.WOOD);
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
@@ -95,7 +95,6 @@ public class BlockCrate extends Block implements ITileEntityProvider
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
 	{
-		
 		super.breakBlock(worldIn, pos, state);
 	}
 	
@@ -117,7 +116,7 @@ public class BlockCrate extends Block implements ITileEntityProvider
 				{
 					if(heldItem != null && heldItem.getItem() == FurnitureItems.itemCrowBar)
 					{
-						worldIn.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.entity_zombie_break_door_wood, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
+						worldIn.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.ENTITY_ZOMBIE_BREAK_DOOR_WOOD, SoundCategory.BLOCKS, 1.0F, 1.0F, false);
 						InventoryHelper.dropInventoryItems(worldIn, pos, crate);
 						worldIn.destroyBlock(pos, false);
 					}

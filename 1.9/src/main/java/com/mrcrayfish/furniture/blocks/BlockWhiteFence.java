@@ -22,6 +22,7 @@ import java.util.List;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
+import com.mrcrayfish.furniture.util.CollisionHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
@@ -35,6 +36,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -49,11 +51,19 @@ public class BlockWhiteFence extends Block
 	public static final PropertyBool SOUTH = PropertyBool.create("south");
 	public static final PropertyBool WEST = PropertyBool.create("west");
 	
+	protected static final AxisAlignedBB[] BOUNDING_BOX = new AxisAlignedBB[] { new AxisAlignedBB(0.4375, 0.0, 0.4375, 0.5625, 1.0, 0.5625), new AxisAlignedBB(0.4375, 0.0, 0.4375, 0.5625, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.4375, 0.5625, 1.0, 0.5625), new AxisAlignedBB(0.0, 0.0, 0.4375, 0.5625, 1.0, 1.0), new AxisAlignedBB(0.4375, 0.0, 0.0, 0.5625, 1.0, 0.5625), new AxisAlignedBB(0.4375, 0.0, 0.0, 0.5625, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.0, 0.5625, 1.0, 0.5625), new AxisAlignedBB(0.0, 0.0, 0.0, 0.5625, 1.0, 1.0), new AxisAlignedBB(0.4375, 0.0, 0.4375, 1.0, 1.0, 0.5625), new AxisAlignedBB(0.4375, 0.0, 0.4375, 1.0, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.4375, 1.0, 1.0, 0.5625), new AxisAlignedBB(0.0, 0.0, 0.4375, 1.0, 1.0, 1.0), new AxisAlignedBB(0.4375, 0.0, 0.0, 1.0, 1.0, 0.5625), new AxisAlignedBB(0.4375, 0.0, 0.0, 1.0, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 0.5625), new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 1.0) };
+	
+	private static final AxisAlignedBB COLLISION_BOX_CENTER = new AxisAlignedBB(0.4375, 0.0, 0.4375, 0.5625, 1.5, 0.5625);
+	private static final AxisAlignedBB COLLISION_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.5625, 0.0, 0.4375, 1.0, 1.5, 0.5625);
+	private static final AxisAlignedBB COLLISION_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.5625, 0.0, 0.4375, 1.0, 1.5, 0.5625);
+	private static final AxisAlignedBB COLLISION_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.5625, 0.0, 0.4375, 1.0, 1.5, 0.5625);
+	private static final AxisAlignedBB COLLISION_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.5625, 0.0, 0.4375, 1.0, 1.5, 0.5625);
+	
 	public BlockWhiteFence(Material material)
 	{
 		super(material);
 		this.setHardness(1.0F);
-		this.setStepSound(SoundType.WOOD);
+		this.setSoundType(SoundType.WOOD);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
@@ -76,65 +86,67 @@ public class BlockWhiteFence extends Block
 		((EntityPlayer) placer).addStat(FurnitureAchievements.gardening);
 	}
 	
-	/*@Override
-	@SideOnly(Side.CLIENT)
-	public void setBlockBoundsBasedOnState(IBlockAccess blockAccess, BlockPos pos)
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
 	{
-		float f = 0.4375F;
-		float f1 = 0.5625F;
-		float f2 = 0.4375F;
-		float f3 = 0.5625F;
-
-		if (blockAccess.getBlockState(pos.east()).getBlock() == FurnitureBlocks.white_fence || blockAccess.getBlockState(pos.east()).getBlock() instanceof BlockFenceGate || blockAccess.getBlockState(pos.east()).getBlock().isNormalCube())
-		{
-			f1 = 1.0F;
-		}
-		if (blockAccess.getBlockState(pos.west()).getBlock() == FurnitureBlocks.white_fence || blockAccess.getBlockState(pos.west()).getBlock() instanceof BlockFenceGate || blockAccess.getBlockState(pos.west()).getBlock().isNormalCube())
-		{
-			f = 0.0F;
-		}
-		if (blockAccess.getBlockState(pos.south()).getBlock() == FurnitureBlocks.white_fence || blockAccess.getBlockState(pos.south()).getBlock() instanceof BlockFenceGate || blockAccess.getBlockState(pos.south()).getBlock().isNormalCube())
-		{
-			f3 = 1.0F;
-		}
-		if (blockAccess.getBlockState(pos.north()).getBlock() == FurnitureBlocks.white_fence || blockAccess.getBlockState(pos.north()).getBlock() instanceof BlockFenceGate || blockAccess.getBlockState(pos.north()).getBlock().isNormalCube())
-		{
-			f2 = 0.0F;
-		}
-
-		setBlockBounds(f, 0.0F, f2, f1, 1.1F, f3);
+		state = state.getActualState(source, pos);
+		return BOUNDING_BOX[getBoundingBoxId(state)];
 	}
 	
+	private static int getBoundingBoxId(IBlockState state)
+    {
+        int i = 0;
+
+        if (((Boolean)state.getValue(NORTH)).booleanValue())
+        {
+            i |= 1 << EnumFacing.NORTH.getHorizontalIndex();
+        }
+
+        if (((Boolean)state.getValue(EAST)).booleanValue())
+        {
+            i |= 1 << EnumFacing.EAST.getHorizontalIndex();
+        }
+
+        if (((Boolean)state.getValue(SOUTH)).booleanValue())
+        {
+            i |= 1 << EnumFacing.SOUTH.getHorizontalIndex();
+        }
+
+        if (((Boolean)state.getValue(WEST)).booleanValue())
+        {
+            i |= 1 << EnumFacing.WEST.getHorizontalIndex();
+        }
+
+        return i;
+    }
+	
 	@Override
-	public void addCollisionBoxesToList(World world, BlockPos pos, IBlockState state, AxisAlignedBB mask, List list, Entity collidingEntity)
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB axisAligned, List<AxisAlignedBB> axisAlignedList, Entity collidingEntity) 
 	{
-		setBlockBounds(0.4375F, 0.0F, 0.4375F, 0.5625F, 1.25F, 0.5625F);
-		super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
+		state = state.getActualState(worldIn, pos);
+		
+		if (state.getValue(NORTH))
+        {
+            super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_NORTH);
+        }
 
-		if (world.getBlockState(pos.east()).getBlock() == FurnitureBlocks.white_fence || world.getBlockState(pos.east()).getBlock() instanceof BlockFenceGate)
-		{
-			setBlockBounds(0.4375F, 0.0F, 0.4375F, 1.0F, 1.25F, 0.5625F);
-			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
-		}
+        if (state.getValue(EAST))
+        {
+        	super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_EAST);
+        }
 
-		if (world.getBlockState(pos.west()).getBlock() == FurnitureBlocks.white_fence || world.getBlockState(pos.west()).getBlock() instanceof BlockFenceGate)
-		{
-			setBlockBounds(0.0F, 0.0F, 0.4375F, 0.5625F, 1.25F, 0.5625F);
-			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
-		}
+        if (state.getValue(SOUTH))
+        {
+        	super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_SOUTH);
+        }
 
-		if (world.getBlockState(pos.south()).getBlock() == FurnitureBlocks.white_fence || world.getBlockState(pos.south()).getBlock() instanceof BlockFenceGate)
-		{
-			setBlockBounds(0.4375F, 0.0F, 0.4375F, 0.5625F, 1.25F, 1.0F);
-			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
-		}
-
-		if (world.getBlockState(pos.north()).getBlock() == FurnitureBlocks.white_fence || world.getBlockState(pos.north()).getBlock() instanceof BlockFenceGate)
-		{
-			setBlockBounds(0.4375F, 0.0F, 0.0F, 0.5625F, 1.25F, 0.5625F);
-			super.addCollisionBoxesToList(world, pos, state, mask, list, collidingEntity);
-		}
-	}*/
+        if (state.getValue(WEST))
+        {
+        	super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_WEST);
+        }
+        
+        super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_CENTER);
+	}
 
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)

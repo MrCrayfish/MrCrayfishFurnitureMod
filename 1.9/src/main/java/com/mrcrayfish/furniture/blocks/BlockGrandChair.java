@@ -44,7 +44,7 @@ public class BlockGrandChair extends BlockFurniture
 	{
 		super(materialIn);
 		this.setHardness(1.0F);
-		this.setStepSound(SoundType.WOOD);
+		this.setSoundType(SoundType.WOOD);
 		if(top) this.setCreativeTab(null);
 	}
 	
@@ -106,9 +106,6 @@ public class BlockGrandChair extends BlockFurniture
 	@SideOnly(Side.CLIENT)
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
 	{
-		if(Minecraft.getMinecraft().thePlayer.getRidingEntity() instanceof EntitySittableBlock)
-			return NULL_AABB;
-		
 		if(this == FurnitureBlocks.grand_chair_bottom)
 		{
 			return BOUNDING_BOX_BOTTOM;

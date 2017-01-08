@@ -190,60 +190,61 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+	public void readFromNBT(NBTTagCompound tagCompound)
 	{
-		super.readFromNBT(par1NBTTagCompound);
-		if (par1NBTTagCompound.hasKey("Items"))
+		super.readFromNBT(tagCompound);
+		if (tagCompound.hasKey("Items"))
 		{
-			NBTTagList tagList = (NBTTagList) par1NBTTagCompound.getTag("Items");
+			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
 			this.ingredients = new ItemStack[4];
 
 			for (int i = 0; i < tagList.tagCount(); ++i)
 			{
-				NBTTagCompound nbt = (NBTTagCompound) tagList.getCompoundTagAt(i);
-				byte s = nbt.getByte("Slot");
+				NBTTagCompound itemTag = (NBTTagCompound) tagList.getCompoundTagAt(i);
+				byte slot = itemTag.getByte("Slot");
 
-				if (s >= 0 && s < this.ingredients.length)
+				if (slot >= 0 && slot < this.ingredients.length)
 				{
-					this.ingredients[s] = ItemStack.loadItemStackFromNBT(nbt);
+					this.ingredients[slot] = ItemStack.loadItemStackFromNBT(itemTag);
 				}
 			}
 		}
 
-		this.blending = par1NBTTagCompound.getBoolean("Blending");
-		this.progress = par1NBTTagCompound.getInteger("Progress");
-		this.drinkCount = par1NBTTagCompound.getInteger("DrinkCount");
-		this.drinkName = par1NBTTagCompound.getString("DrinkName");
-		this.healAmount = par1NBTTagCompound.getInteger("HealAmount");
-		this.currentRed = par1NBTTagCompound.getInteger("CurrentRed");
-		this.currentGreen = par1NBTTagCompound.getInteger("CurrentGreen");
-		this.currentBlue = par1NBTTagCompound.getInteger("CurrentBlue");
+		this.blending = tagCompound.getBoolean("Blending");
+		this.progress = tagCompound.getInteger("Progress");
+		this.drinkCount = tagCompound.getInteger("DrinkCount");
+		this.drinkName = tagCompound.getString("DrinkName");
+		this.healAmount = tagCompound.getInteger("HealAmount");
+		this.currentRed = tagCompound.getInteger("CurrentRed");
+		this.currentGreen = tagCompound.getInteger("CurrentGreen");
+		this.currentBlue = tagCompound.getInteger("CurrentBlue");
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound par1NBTTagCompound)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
-		super.writeToNBT(par1NBTTagCompound);
+		super.writeToNBT(tagCompound);
 		NBTTagList tagList = new NBTTagList();
 		for (int i = 0; i < this.ingredients.length; ++i)
 		{
 			if (this.ingredients[i] != null)
 			{
-				NBTTagCompound nbt = new NBTTagCompound();
-				nbt.setByte("Slot", (byte) i);
-				this.ingredients[i].writeToNBT(nbt);
-				tagList.appendTag(nbt);
+				NBTTagCompound itemTag = new NBTTagCompound();
+				itemTag.setByte("Slot", (byte) i);
+				this.ingredients[i].writeToNBT(itemTag);
+				tagList.appendTag(itemTag);
 			}
 		}
-		par1NBTTagCompound.setTag("Items", tagList);
-		par1NBTTagCompound.setBoolean("Blending", blending);
-		par1NBTTagCompound.setInteger("Progress", progress);
-		par1NBTTagCompound.setString("DrinkName", drinkName);
-		par1NBTTagCompound.setInteger("DrinkCount", drinkCount);
-		par1NBTTagCompound.setInteger("HealAmount", healAmount);
-		par1NBTTagCompound.setInteger("CurrentRed", currentRed);
-		par1NBTTagCompound.setInteger("CurrentGreen", currentGreen);
-		par1NBTTagCompound.setInteger("CurrentBlue", currentBlue);
+		tagCompound.setTag("Items", tagList);
+		tagCompound.setBoolean("Blending", blending);
+		tagCompound.setInteger("Progress", progress);
+		tagCompound.setString("DrinkName", drinkName);
+		tagCompound.setInteger("DrinkCount", drinkCount);
+		tagCompound.setInteger("HealAmount", healAmount);
+		tagCompound.setInteger("CurrentRed", currentRed);
+		tagCompound.setInteger("CurrentGreen", currentGreen);
+		tagCompound.setInteger("CurrentBlue", currentBlue);
+		return tagCompound;
 	}
 
 	@Override
@@ -254,7 +255,7 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	}
 
 	@Override
-	public Packet getDescriptionPacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
 		NBTTagCompound tagCom = new NBTTagCompound();
 		this.writeToNBT(tagCom);

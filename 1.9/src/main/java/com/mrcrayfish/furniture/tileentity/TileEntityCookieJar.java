@@ -34,7 +34,7 @@ public class TileEntityCookieJar extends TileEntity implements ISimpleInventory
 	@Override
 	public ItemStack getItem(int i)
 	{
-		return new ItemStack(Items.cookie);
+		return new ItemStack(Items.COOKIE);
 	}
 
 	@Override
