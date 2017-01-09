@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 
 public class TreeRenderer extends TileEntitySpecialRenderer<TileEntityTree>
 {
-	private EntityItem ornament = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D);
+	private EntityItem ornament = new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D);
 
 	@Override
 	public void renderTileEntityAt(TileEntityTree tree, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)

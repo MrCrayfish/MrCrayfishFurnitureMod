@@ -41,29 +41,36 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
-public class TileEntityMicrowave extends TileEntityLockable implements ISidedInventory, ITickable
+public class TileEntityMicrowave extends TileEntityFurniture implements ISidedInventory, ITickable
 {
+	private Random rand = new Random();
+	
 	private static final int[] slot = new int[] { 0 };
 	
-	private ItemStack item = null;
 	private String customName;
 	private boolean cooking = false;
 	public int progress = 0;
+	private int timer = 0;
+	
+	public TileEntityMicrowave() 
+	{
+		super("microwave", 1);
+	}
 
 	public ItemStack getItem()
 	{
-		return item;
+		return getStackInSlot(0);
 	}
 
 	public void startCooking()
 	{
-		if (item != null)
+		if (!getStackInSlot(0).isEmpty())
 		{
-			RecipeData data = RecipeAPI.getMicrowaveRecipeFromIngredients(item);
+			RecipeData data = RecipeAPI.getMicrowaveRecipeFromIngredients(getStackInSlot(0));
 			if (data != null)
 			{
 				cooking = true;
-				worldObj.updateComparatorOutputLevel(pos, blockType);
+				world.updateComparatorOutputLevel(pos, blockType);
 			}
 		}
 	}
@@ -72,7 +79,7 @@ public class TileEntityMicrowave extends TileEntityLockable implements ISidedInv
 	{
 		this.cooking = false;
 		this.progress = 0;
-		worldObj.updateComparatorOutputLevel(pos, blockType);
+		world.updateComparatorOutputLevel(pos, blockType);
 	}
 
 	public boolean isCooking()
@@ -80,15 +87,12 @@ public class TileEntityMicrowave extends TileEntityLockable implements ISidedInv
 		return cooking;
 	}
 
-	private Random rand = new Random();
-	private int timer = 0;
-
 	@Override
 	public void update()
 	{
 		if (cooking)
 		{
-			if (this.worldObj.isRemote)
+			if (this.world.isRemote)
 			{
 				double posX = pos.getX() + 0.35D + (rand.nextDouble() / 3);
 				double posZ = pos.getZ() + 0.35D + (rand.nextDouble() / 3);
@@ -98,22 +102,22 @@ public class TileEntityMicrowave extends TileEntityLockable implements ISidedInv
 			progress++;
 			if (progress >= 40)
 			{
-				if (item != null)
+				if (!getStackInSlot(0).isEmpty())
 				{
-					RecipeData data = RecipeAPI.getMicrowaveRecipeFromIngredients(item);
+					RecipeData data = RecipeAPI.getMicrowaveRecipeFromIngredients(getStackInSlot(0));
 					if (data != null)
 					{
-						this.item = data.getOutput().copy();
+						this.setInventorySlotContents(0, data.getOutput().copy());
 					}
 				}
-				if (!worldObj.isRemote)
+				if (!world.isRemote)
 				{
-					worldObj.playSound(pos.getX(), pos.getY(), pos.getZ(), FurnitureSounds.microwave_finish, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
+					world.playSound(pos.getX(), pos.getY(), pos.getZ(), FurnitureSounds.microwave_finish, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
 				}
 				timer = 0;
 				progress = 0;
 				cooking = false;
-				worldObj.updateComparatorOutputLevel(pos, blockType);
+				world.updateComparatorOutputLevel(pos, blockType);
 			}
 			else
 			{
@@ -123,7 +127,7 @@ public class TileEntityMicrowave extends TileEntityLockable implements ISidedInv
 				}
 				if (timer == 0)
 				{
-					worldObj.playSound(pos.getX(), pos.getY(), pos.getZ(), FurnitureSounds.microwave_running, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
+					world.playSound(pos.getX(), pos.getY(), pos.getZ(), FurnitureSounds.microwave_running, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
 				}
 				timer++;
 			}
@@ -134,11 +138,6 @@ public class TileEntityMicrowave extends TileEntityLockable implements ISidedInv
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
 		super.readFromNBT(tagCompound);
-		if (tagCompound.hasKey("Item"))
-		{
-			NBTTagCompound nbt = tagCompound.getCompoundTag("Item");
-			this.item = ItemStack.loadItemStackFromNBT(nbt);
-		}
 		this.cooking = tagCompound.getBoolean("Coooking");
 		this.progress = tagCompound.getInteger("Progress");
 	}
@@ -147,84 +146,9 @@ public class TileEntityMicrowave extends TileEntityLockable implements ISidedInv
 	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
 		super.writeToNBT(tagCompound);
-		NBTTagCompound nbt = new NBTTagCompound();
-		if (item != null)
-		{
-			item.writeToNBT(nbt);
-		}
-		tagCompound.setTag("Item", nbt);
 		tagCompound.setBoolean("Coooking", cooking);
 		tagCompound.setInteger("Progress", progress);
 		return tagCompound;
-	}
-
-	@Override
-	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-	{
-		NBTTagCompound tagCom = pkt.getNbtCompound();
-		this.readFromNBT(tagCom);
-	}
-
-	@Override
-	public SPacketUpdateTileEntity getUpdatePacket() 
-	{
-		NBTTagCompound tagCom = new NBTTagCompound();
-		this.writeToNBT(tagCom);
-		return new SPacketUpdateTileEntity(pos, getBlockMetadata(), tagCom);
-	}
-
-	@Override
-	public int getSizeInventory()
-	{
-		return 1;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int slot)
-	{
-		return this.item;
-	}
-
-	@Override
-	public ItemStack decrStackSize(int slot, int number)
-	{
-		if (this.item != null)
-		{
-			ItemStack itemstack;
-
-			if (this.item.stackSize <= number)
-			{
-				itemstack = this.item;
-				this.item = null;
-				return itemstack;
-			}
-			itemstack = this.item.splitStack(number);
-
-			if (this.item.stackSize == 0)
-			{
-				this.item = null;
-			}
-
-			return itemstack;
-		}
-		return null;
-	}
-
-	@Override
-	public ItemStack removeStackFromSlot(int slot)
-	{
-		return item;
-	}
-
-	@Override
-	public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
-	{
-		this.item = par2ItemStack;
-
-		if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
-		{
-			par2ItemStack.stackSize = this.getInventoryStackLimit();
-		}
 	}
 
 	@Override
@@ -233,63 +157,6 @@ public class TileEntityMicrowave extends TileEntityLockable implements ISidedInv
 		return 1;
 	}
 
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer)
-	{
-		return this.worldObj.getTileEntity(pos) != this ? false : entityplayer.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64.0D;
-	}
-
-	@Override
-	public void openInventory(EntityPlayer player)
-	{		
-	}
-
-	@Override
-	public void closeInventory(EntityPlayer player)
-	{	
-	}
-
-	@Override
-	public int getField(int id)
-	{
-		return 0;
-	}
-
-	@Override
-	public void setField(int id, int value)
-	{		
-	}
-
-	@Override
-	public int getFieldCount()
-	{
-		return 0;
-	}
-
-	@Override
-	public void clear()
-	{
-		item = null;
-	}
-
-	@Override
-	public String getName()
-	{
-		return hasCustomName() ? customName : "Microwave";
-	}
-
-	@Override
-	public boolean hasCustomName()
-	{
-		return customName != null;
-	}
-
-	@Override
-	public ITextComponent getDisplayName() 
-	{
-		return new TextComponentString(getName());
-	}
-	
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack)
 	{
@@ -318,11 +185,5 @@ public class TileEntityMicrowave extends TileEntityLockable implements ISidedInv
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
 	{
 		return new ContainerMicrowave(playerInventory, this);
-	}
-
-	@Override
-	public String getGuiID() 
-	{
-		return "0";
 	}
 }

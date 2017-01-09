@@ -25,8 +25,9 @@ public class ItemLog extends ItemBlockSpecial
 	}
 	
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) 
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) 
 	{
+		ItemStack stack = player.getHeldItem(hand);
 		IBlockState state = worldIn.getBlockState(pos);
 		Block block = worldIn.getBlockState(pos).getBlock();
 		if(block instanceof BlockFirePit)
@@ -34,13 +35,13 @@ public class ItemLog extends ItemBlockSpecial
 			int meta = block.getMetaFromState(state);
 			if(meta < 3)
 			{
-				worldIn.playSound(playerIn, pos, SoundType.WOOD.getPlaceSound(), SoundCategory.BLOCKS, 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
+				worldIn.playSound(player, pos, SoundType.WOOD.getPlaceSound(), SoundCategory.BLOCKS, 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
 				worldIn.setBlockState(pos, state.withProperty(BlockFirePit.STAGE, meta + 1));
-				stack.stackSize--;
+				stack.shrink(1);
 				return EnumActionResult.SUCCESS;
 			}
 			return EnumActionResult.FAIL;
 		}
-		return super.onItemUse(stack, playerIn, worldIn, pos, hand, facing, hitX, hitY, hitZ);
+		return super.onItemUse(player, worldIn, pos, hand, facing, hitX, hitY, hitZ);
 	}
 }

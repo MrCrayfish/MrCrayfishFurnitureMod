@@ -89,12 +89,12 @@ public class EntitySittableBlock extends Entity
 	@Override
 	public void onEntityUpdate()
 	{
-		if (!this.worldObj.isRemote)
+		if (!this.world.isRemote)
 		{
-			if (!this.isBeingRidden() || this.worldObj.isAirBlock(new BlockPos(blockPosX, blockPosY, blockPosZ)))
+			if (!this.isBeingRidden() || this.world.isAirBlock(new BlockPos(blockPosX, blockPosY, blockPosZ)))
 			{
 				this.setDead();
-				worldObj.updateComparatorOutputLevel(getPosition(), worldObj.getBlockState(getPosition()).getBlock());
+				world.updateComparatorOutputLevel(getPosition(), world.getBlockState(getPosition()).getBlock());
 			}
 		}
 	}

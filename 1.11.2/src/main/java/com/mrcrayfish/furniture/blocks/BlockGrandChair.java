@@ -74,18 +74,19 @@ public class BlockGrandChair extends BlockFurniture
 	}
 	
 	@Override
-	public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) 
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) 
 	{
 		if(this == FurnitureBlocks.grand_chair_bottom)
 		{
 			world.setBlockState(pos.up(), FurnitureBlocks.grand_chair_top.getDefaultState().withProperty(FACING, placer.getHorizontalFacing()));
 		}
-		return super.onBlockPlaced(world, pos, facing, hitX, hitY, hitZ, meta, placer);
+		return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
 	}
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
+		ItemStack heldItem = playerIn.getHeldItem(hand);
 		if(this == FurnitureBlocks.grand_chair_bottom)
 		{
 			if(SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 6 * 0.0625))
@@ -96,7 +97,7 @@ public class BlockGrandChair extends BlockFurniture
 		}
 		else
 		{
-			worldIn.getBlockState(pos.down()).getBlock().onBlockActivated(worldIn, pos.down(), state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
+			worldIn.getBlockState(pos.down()).getBlock().onBlockActivated(worldIn, pos.down(), state, playerIn, hand, facing, hitX, hitY, hitZ);
 		}
 		return false;
 	}	
@@ -117,18 +118,18 @@ public class BlockGrandChair extends BlockFurniture
 	}
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB axisAligned, List<AxisAlignedBB> axisAlignedList, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
-		if (!(collidingEntity instanceof EntitySittableBlock))
+		if (!(entityIn instanceof EntitySittableBlock))
 		{
 			if(this == FurnitureBlocks.grand_chair_bottom)
 			{
-				super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_BOTTOM);
+				super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_BOTTOM);
 			}
 			else
 			{
 				EnumFacing facing = state.getValue(FACING);
-				super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_TOP[facing.getHorizontalIndex()]);
+				super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_TOP[facing.getHorizontalIndex()]);
 			}
 		}
 	}

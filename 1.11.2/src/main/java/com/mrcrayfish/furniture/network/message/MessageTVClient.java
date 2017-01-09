@@ -66,7 +66,7 @@ public class MessageTVClient implements IMessage, IMessageHandler<MessageTVClien
 		if (ctx.side.isClient())
 		{
 			BlockPos pos = new BlockPos(message.x, message.y, message.z);
-			Minecraft.getMinecraft().theWorld.markBlockRangeForRenderUpdate(pos, pos);
+			Minecraft.getMinecraft().world.markBlockRangeForRenderUpdate(pos, pos);
 			Channels.getChannel(message.channel).play(pos);
 		}
 		return null;

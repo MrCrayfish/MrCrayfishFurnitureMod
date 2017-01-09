@@ -101,32 +101,32 @@ public class FurnitureItems
 
 	public static void registerItems()
 	{
-		GameRegistry.registerItem(itemFlesh);
-		GameRegistry.registerItem(itemCookedFlesh);
-		GameRegistry.registerItem(itemCoolPack);
-		GameRegistry.registerItem(itemHammer);
-		GameRegistry.registerItem(itemEnvelope);
-		GameRegistry.registerItem(itemEnvelopeSigned);
-		GameRegistry.registerItem(itemPackage);
-		GameRegistry.registerItem(itemPackageSigned);
-		GameRegistry.registerItem(itemInkCartridge);
-		GameRegistry.registerItem(itemBreadSlice);
-		GameRegistry.registerItem(itemToast);
-		GameRegistry.registerItem(itemKnife);
-		GameRegistry.registerItem(itemCup);
-		GameRegistry.registerItem(itemDrink);
-		GameRegistry.registerItem(itemSoap);
-		GameRegistry.registerItem(itemSoapyWater);
-		GameRegistry.registerItem(itemSuperSoapyWater);
-		GameRegistry.registerItem(itemRecipeBook);
-		GameRegistry.registerItem(itemCrayfish);
-		GameRegistry.registerItem(itemLog);
-		GameRegistry.registerItem(itemSpatula);
-		GameRegistry.registerItem(itemSausage);
-		GameRegistry.registerItem(itemSausageCooked);
-		GameRegistry.registerItem(itemKebab);
-		GameRegistry.registerItem(itemKebabCooked);
-		GameRegistry.registerItem(itemCrowBar);
+		GameRegistry.register(itemFlesh);
+		GameRegistry.register(itemCookedFlesh);
+		GameRegistry.register(itemCoolPack);
+		GameRegistry.register(itemHammer);
+		GameRegistry.register(itemEnvelope);
+		GameRegistry.register(itemEnvelopeSigned);
+		GameRegistry.register(itemPackage);
+		GameRegistry.register(itemPackageSigned);
+		GameRegistry.register(itemInkCartridge);
+		GameRegistry.register(itemBreadSlice);
+		GameRegistry.register(itemToast);
+		GameRegistry.register(itemKnife);
+		GameRegistry.register(itemCup);
+		GameRegistry.register(itemDrink);
+		GameRegistry.register(itemSoap);
+		GameRegistry.register(itemSoapyWater);
+		GameRegistry.register(itemSuperSoapyWater);
+		GameRegistry.register(itemRecipeBook);
+		GameRegistry.register(itemCrayfish);
+		GameRegistry.register(itemLog);
+		GameRegistry.register(itemSpatula);
+		GameRegistry.register(itemSausage);
+		GameRegistry.register(itemSausageCooked);
+		GameRegistry.register(itemKebab);
+		GameRegistry.register(itemKebabCooked);
+		GameRegistry.register(itemCrowBar);
 	}
 
 	public static void registerRenders()

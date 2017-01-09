@@ -71,6 +71,7 @@ public class BlockBasin extends BlockFurniture
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
+		ItemStack heldItem = playerIn.getHeldItem(hand);
 		if (!worldIn.isRemote)
 		{
 			if (heldItem != null)
@@ -81,11 +82,11 @@ public class BlockBasin extends BlockFurniture
 					{
 						if (!playerIn.capabilities.isCreativeMode)
 						{
-							if (heldItem.stackSize > 1)
+							if (heldItem.getCount() > 1)
 							{
 								if (playerIn.inventory.addItemStackToInventory(new ItemStack(Items.WATER_BUCKET)))
 								{
-									heldItem.stackSize--;
+									heldItem.shrink(1);
 								}
 							}
 							else
@@ -115,11 +116,11 @@ public class BlockBasin extends BlockFurniture
 					{
 						if (!playerIn.capabilities.isCreativeMode)
 						{
-							if (heldItem.stackSize > 1)
+							if (heldItem.getCount() > 1)
 							{
 								if (playerIn.inventory.addItemStackToInventory(new ItemStack(Items.POTIONITEM, 1, 0)))
 								{
-									heldItem.stackSize--;
+									heldItem.shrink(1);
 								}
 							}
 							else
@@ -156,7 +157,7 @@ public class BlockBasin extends BlockFurniture
 						}
 						else
 						{
-							playerIn.addChatComponentMessage(new TextComponentString("You need to have a water source under the block the basin is on to fill it. Alternatively you can use a water bucket to fill it."));
+							playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the basin is on to fill it. Alternatively you can use a water bucket to fill it."));
 						}
 					}
 				}
@@ -174,7 +175,7 @@ public class BlockBasin extends BlockFurniture
 					}
 					else
 					{
-						playerIn.addChatComponentMessage(new TextComponentString("You need to have a water source under the block the basin is on to fill it. Alternatively you can use a water bucket to fill it."));
+						playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the basin is on to fill it. Alternatively you can use a water bucket to fill it."));
 					}
 				}
 			}

@@ -66,6 +66,7 @@ public class BlockToaster extends BlockFurnitureTile
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
+		ItemStack heldItem = playerIn.getHeldItem(hand);
 		TileEntity tileEntity = worldIn.getTileEntity(pos);
 		if (tileEntity instanceof TileEntityToaster)
 		{
@@ -78,7 +79,7 @@ public class BlockToaster extends BlockFurnitureTile
 					if(tileEntityToaster.addSlice(new ItemStack(heldItem.getItem(), 1)))
 					{
 						TileEntityUtil.markBlockForUpdate(worldIn, pos);
-						heldItem.stackSize--;
+						heldItem.shrink(1);
 					}
 				}
 				else
@@ -117,10 +118,10 @@ public class BlockToaster extends BlockFurnitureTile
 	}
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB axisAligned, List<AxisAlignedBB> axisAlignedList, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
 		EnumFacing facing = state.getValue(FACING);
-		super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX[facing.getHorizontalIndex()]);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX[facing.getHorizontalIndex()]);
 	}
 
 	@Override

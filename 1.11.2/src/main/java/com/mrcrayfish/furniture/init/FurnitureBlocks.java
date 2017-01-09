@@ -106,6 +106,7 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class FurnitureBlocks
@@ -521,9 +522,9 @@ public class FurnitureBlocks
 	private static void registerPresents()
 	{
 		Item blockItem = Item.getItemFromBlock(present);
-        List<ItemStack> subItems = new ArrayList<ItemStack>();
+		NonNullList<ItemStack> subItems = NonNullList.create();
 		present.getSubBlocks(blockItem, null, subItems);
-		for(int i = 0; i < 16; i++)
+		for(int i = 0; i < subItems.size(); i++)
 		{
 			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(blockItem, subItems.get(i).getMetadata(), new ModelResourceLocation(Reference.MOD_ID + ":" + "present_" + EnumDyeColor.values()[i].getName(), "inventory"));
 		}

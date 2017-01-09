@@ -11,7 +11,7 @@ import net.minecraft.entity.item.EntityItem;
 
 public class EskyRenderer extends TileEntitySpecialRenderer<TileEntityEsky>
 {
-	private EntityItem item = new EntityItem(Minecraft.getMinecraft().theWorld);
+	private EntityItem item = new EntityItem(Minecraft.getMinecraft().world);
 	
 	@Override
 	public void renderTileEntityAt(TileEntityEsky eski, double x, double y, double z, float partialTicks, int destroyStage)
@@ -30,11 +30,11 @@ public class EskyRenderer extends TileEntitySpecialRenderer<TileEntityEsky>
 					GlStateManager.translate(0.5, 0, 0.5);
 					GlStateManager.rotate(-90F * rotation, 0, 1, 0);
 					GlStateManager.translate(0.22, 0, 0.15);
-					for(int i = 0; i < eski.inventory.length; i++)
+					for(int i = 0; i < eski.getSizeInventory(); i++)
 					{
-						if(eski.inventory[i] != null)
+						if(!eski.getStackInSlot(i).isEmpty())
 						{
-							item.setEntityItemStack(eski.inventory[i]);
+							item.setEntityItemStack(eski.getStackInSlot(i));
 							GlStateManager.pushMatrix();
 							{
 								GlStateManager.translate(-0.15 * (i % 4), 0, 0);

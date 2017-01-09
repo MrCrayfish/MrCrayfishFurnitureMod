@@ -54,17 +54,18 @@ public class BlockBlender extends BlockFurnitureTile
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
+		ItemStack heldItem = playerIn.getHeldItem(hand);
 		TileEntity tileEntity = worldIn.getTileEntity(pos);
 		if (tileEntity instanceof TileEntityBlender)
 		{
 			TileEntityBlender tileEntityBlender = (TileEntityBlender) tileEntity;
 			if (tileEntityBlender.drinkCount == 0)
 			{
-				if (heldItem != null && !tileEntityBlender.isFull() && !tileEntityBlender.isBlending())
+				if (!heldItem.isEmpty() && !tileEntityBlender.isFull() && !tileEntityBlender.isBlending())
 				{
 					tileEntityBlender.addIngredient(heldItem.copy());
 					TileEntityUtil.markBlockForUpdate(worldIn, pos);
-					heldItem.stackSize = 0;
+					heldItem.setCount(0);
 					return true;
 				}
 				else
@@ -89,18 +90,18 @@ public class BlockBlender extends BlockFurnitureTile
 			}
 			else
 			{
-				if (heldItem != null && tileEntityBlender.hasDrink())
+				if (!heldItem.isEmpty() && tileEntityBlender.hasDrink())
 				{
 					if (heldItem.getItem() == FurnitureItems.itemCup)
 					{
-						if (heldItem.stackSize == 0 | heldItem.stackSize == 1)
+						if (heldItem.getCount()== 0 | heldItem.getCount()== 1)
 						{
 							playerIn.setHeldItem(hand, tileEntityBlender.getDrink());
 						}
 						else
 						{
 							playerIn.inventory.addItemStackToInventory(tileEntityBlender.getDrink());
-							heldItem.stackSize--;
+							heldItem.shrink(1);
 						}
 						tileEntityBlender.drinkCount--;
 						TileEntityUtil.markBlockForUpdate(worldIn, pos);
@@ -119,9 +120,9 @@ public class BlockBlender extends BlockFurnitureTile
 	}
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB axisAligned, List<AxisAlignedBB> axisAlignedList, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
-		super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, BOUNDING_BOX);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
 	}
 	
 	@Override

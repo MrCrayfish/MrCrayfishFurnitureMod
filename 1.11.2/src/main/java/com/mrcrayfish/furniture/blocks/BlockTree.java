@@ -81,23 +81,24 @@ public class BlockTree extends BlockFurnitureTile implements IBlockColor
 	}
 
 	@Override
-	public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		if (this == FurnitureBlocks.tree_bottom)
 			world.setBlockState(pos.up(), FurnitureBlocks.tree_top.getDefaultState().withProperty(FACING, placer.getHorizontalFacing()));
-		return super.onBlockPlaced(world, pos, facing, hitX, hitY, hitZ, meta, placer);
+		return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
 	}
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
+		ItemStack heldItem = playerIn.getHeldItem(hand);
 		TileEntity tileEntity = worldIn.getTileEntity(pos);
 		if (tileEntity instanceof TileEntityTree)
 		{
 			TileEntityTree tileEntityTree = (TileEntityTree) tileEntity;
 			tileEntityTree.addOrnament(playerIn.getHorizontalFacing(), heldItem);
 			if (heldItem != null)
-				heldItem.stackSize--;
+				heldItem.shrink(1);
 			TileEntityUtil.markBlockForUpdate(worldIn, pos);
 		}
 		return true;

@@ -49,35 +49,36 @@ public class ItemEnvelope extends Item implements IMail
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) 
 	{
 		TileEntity tile_entity = worldIn.getTileEntity(pos);
 		if (!worldIn.isRemote)
 		{
 			if (tile_entity instanceof TileEntityMailBox)
 			{
-				if (playerIn.isSneaking())
+				if (player.isSneaking())
 				{
-					playerIn.addChatMessage(new TextComponentString("You must sign the envelope before depositing it."));
+					player.sendMessage(new TextComponentString("You must sign the envelope before depositing it."));
 				}
 			}
 			else
 			{
-				playerIn.addChatMessage(new TextComponentString("To open the envelope, make sure you are not highlighting any block."));
+				player.sendMessage(new TextComponentString("To open the envelope, make sure you are not highlighting any block."));
 			}
 		}
 		return EnumActionResult.SUCCESS;
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) 
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) 
 	{
+		ItemStack stack = playerIn.getHeldItem(hand);
 		if (!worldIn.isRemote)
 		{
 			playerIn.openGui(MrCrayfishFurnitureMod.instance, 5, worldIn, 0, 0, 0);
-			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 	}
 
 	public static IInventory getInv(EntityPlayer par1EntityPlayer)

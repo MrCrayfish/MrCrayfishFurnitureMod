@@ -41,7 +41,7 @@ public class ContainerCrate extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer par1EntityPlayer)
 	{
-		return this.crateInventory.isUseableByPlayer(par1EntityPlayer);
+		return this.crateInventory.isUsableByPlayer(par1EntityPlayer);
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class ContainerCrate extends Container
 				return null;
 			}
 
-			if (item.stackSize == 0)
+			if (item.getCount() == 0)
 			{
 				slot.putStack((ItemStack) null);
 			}

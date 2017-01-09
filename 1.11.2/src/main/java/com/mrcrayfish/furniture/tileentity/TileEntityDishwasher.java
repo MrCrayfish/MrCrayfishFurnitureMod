@@ -42,19 +42,24 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
-public class TileEntityDishwasher extends TileEntityLockable implements ISidedInventory, ITickable
+public class TileEntityDishwasher extends TileEntityFurniture implements ISidedInventory, ITickable
 {
+	private Random rand = new Random();
+	
 	private static final int[] slots_top = new int[] { 0, 1, 2, 3, 4, 5 };
 	private static final int[] slots_bottom = new int[] { 0, 1, 2, 3, 4, 5, 6 };
 	private static final int[] slots_sides = new int[] { 6 };
 	
-	private ItemStack[] inventory = new ItemStack[7];
-	private String customName;
-
 	private boolean washing = false;
 	public boolean superMode = false;
 	public int progress = 0;
 	public int timeRemaining = 0;
+	private int timer = 0;
+	
+	public TileEntityDishwasher() 
+	{
+		super("diswasher", 7);
+	}
 
 	public void startWashing()
 	{
@@ -62,7 +67,7 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 		{
 			if (timeRemaining == 0)
 			{
-				if (inventory[6].getItem() == FurnitureItems.itemSuperSoapyWater)
+				if (inventory.get(6).getItem() == FurnitureItems.itemSuperSoapyWater)
 				{
 					superMode = true;
 				}
@@ -70,11 +75,11 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 				{
 					superMode = false;
 				}
-				inventory[6] = new ItemStack(inventory[6].getItem().getContainerItem());
+				inventory.set(6, new ItemStack(inventory.get(6).getItem().getContainerItem()));
 				timeRemaining = 5000;
 			}
 			washing = true;
-			worldObj.updateComparatorOutputLevel(pos, blockType);
+			world.updateComparatorOutputLevel(pos, blockType);
 		}
 	}
 
@@ -82,35 +87,32 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 	{
 		progress = 0;
 		washing = false;
-		worldObj.updateComparatorOutputLevel(pos, blockType);
+		world.updateComparatorOutputLevel(pos, blockType);
 	}
 
 	public boolean canWash()
 	{
-		if (inventory[6] == null && timeRemaining == 0)
+		if (inventory.get(6) == null && timeRemaining == 0)
 		{
 			return false;
 		}
 
-		if (inventory[6] != null && timeRemaining == 0)
+		if (inventory.get(6) != null && timeRemaining == 0)
 		{
-			return isFuel(inventory[6]);
+			return isFuel(inventory.get(6));
 		}
 
 		boolean flag = false;
 		for (int i = 0; i < 6; i++)
 		{
-			if (inventory[i] != null)
+			RecipeData data = RecipeAPI.getDishwasherRecipeFromInput(inventory.get(i));
+			if (data == null)
 			{
-				RecipeData data = RecipeAPI.getDishwasherRecipeFromInput(inventory[i]);
-				if (data == null)
-				{
-					return false;
-				}
-				else
-				{
-					flag = true;
-				}
+				return false;
+			}
+			else
+			{
+				flag = true;
 			}
 		}
 		return flag;
@@ -132,9 +134,6 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 		return false;
 	}
 
-	private Random rand = new Random();
-	private int timer = 0;
-
 	@Override
 	public void update()
 	{
@@ -143,7 +142,7 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 			if(!canWash())
 			{
 				washing = false;
-				worldObj.updateComparatorOutputLevel(pos, blockType);
+				world.updateComparatorOutputLevel(pos, blockType);
 				return;
 			}
 			
@@ -151,11 +150,11 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 			{
 				for (int i = 0; i < 6; i++)
 				{
-					if (inventory[i] != null)
+					if (inventory.get(i) != null)
 					{
-						if (inventory[i].getMaxDamage() - inventory[i].getItemDamage() != inventory[i].getMaxDamage())
+						if (inventory.get(i).getMaxDamage() - inventory.get(i).getItemDamage() != inventory.get(i).getMaxDamage())
 						{
-							inventory[i].setItemDamage(inventory[i].getItemDamage() - 1);
+							inventory.get(i).setItemDamage(inventory.get(i).getItemDamage() - 1);
 						}
 					}
 				}
@@ -164,18 +163,18 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 			timeRemaining--;
 			if (timeRemaining <= 0)
 			{
-				if (inventory[4] != null)
+				if (inventory.get(4) != null)
 				{
-					if (inventory[4].getItem() == FurnitureItems.itemSoapyWater)
+					if (inventory.get(4).getItem() == FurnitureItems.itemSoapyWater)
 					{
 						this.superMode = false;
-						inventory[4] = new ItemStack(FurnitureItems.itemSoapyWater.getContainerItem());
+						inventory.set(4, new ItemStack(FurnitureItems.itemSoapyWater.getContainerItem()));
 						timeRemaining = 5000;
 					}
-					else if (inventory[4].getItem() == FurnitureItems.itemSuperSoapyWater)
+					else if (inventory.get(4).getItem() == FurnitureItems.itemSuperSoapyWater)
 					{
 						this.superMode = true;
-						inventory[4] = new ItemStack(FurnitureItems.itemSuperSoapyWater.getContainerItem());
+						inventory.set(4, new ItemStack(FurnitureItems.itemSuperSoapyWater.getContainerItem()));
 						timeRemaining = 5000;
 					}
 				}
@@ -184,7 +183,7 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 					timeRemaining = 0;
 					progress = 0;
 					washing = false;
-					worldObj.updateComparatorOutputLevel(pos, blockType);
+					world.updateComparatorOutputLevel(pos, blockType);
 				}
 			}
 			
@@ -196,7 +195,7 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 			}
 			if (timer == 0)
 			{
-				worldObj.playSound(pos.getX(), pos.getY(), pos.getZ(), FurnitureSounds.dishwasher, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
+				world.playSound(pos.getX(), pos.getY(), pos.getZ(), FurnitureSounds.dishwasher, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
 			}
 			timer++;
 		}
@@ -208,97 +207,15 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 	}
 
 	@Override
-	public int getSizeInventory()
-	{
-		return 7;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int slot)
-	{
-		return this.inventory[slot];
-	}
-
-	@Override
-	public ItemStack decrStackSize(int slot, int count)
-	{
-		if (this.inventory[slot] != null)
-		{
-			ItemStack itemstack;
-
-			if (this.inventory[slot].stackSize <= count)
-			{
-				itemstack = this.inventory[slot];
-				this.inventory[slot] = null;
-				return itemstack;
-			}
-			itemstack = this.inventory[slot].splitStack(count);
-
-			if (this.inventory[slot].stackSize == 0)
-			{
-				this.inventory[slot] = null;
-			}
-
-			return itemstack;
-		}
-		return null;
-	}
-
-	@Override
-	public ItemStack removeStackFromSlot(int slot)
-	{
-		if (this.inventory[slot] != null)
-		{
-			ItemStack itemstack = this.inventory[slot];
-			this.inventory[slot] = null;
-			return itemstack;
-		}
-		return null;
-	}
-
-	@Override
-	public void setInventorySlotContents(int slot, ItemStack stack)
-	{
-		this.inventory[slot] = stack;
-
-		if (stack != null && stack.stackSize > this.getInventoryStackLimit())
-		{
-			stack.stackSize = this.getInventoryStackLimit();
-		}
-	}
-
-	@Override
 	public int getInventoryStackLimit()
 	{
 		return 1;
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer)
-	{
-		return this.worldObj.getTileEntity(pos) != this ? false : entityplayer.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64.0D;
-	}
-
-	@Override
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
 		super.readFromNBT(tagCompound);
-		if (tagCompound.hasKey("Items"))
-		{
-			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
-			this.inventory = new ItemStack[7];
-
-			for (int i = 0; i < tagList.tagCount(); ++i)
-			{
-				NBTTagCompound nbt = (NBTTagCompound) tagList.getCompoundTagAt(i);
-				byte slot = nbt.getByte("Slot");
-
-				if (slot >= 0 && slot < this.inventory.length)
-				{
-					this.inventory[slot] = ItemStack.loadItemStackFromNBT(nbt);
-				}
-			}
-		}
 		this.washing = tagCompound.getBoolean("Washing");
 		this.superMode = tagCompound.getBoolean("SuperMode");
 		this.progress = tagCompound.getInteger("Progress");
@@ -309,89 +226,11 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
 		super.writeToNBT(tagCompound);
-		NBTTagList tagList = new NBTTagList();
-		for (int slot = 0; slot < this.inventory.length; ++slot)
-		{
-			if (this.inventory[slot] != null)
-			{
-				NBTTagCompound nbt = new NBTTagCompound();
-				nbt.setByte("Slot", (byte) slot);
-				this.inventory[slot].writeToNBT(nbt);
-				tagList.appendTag(nbt);
-			}
-		}
-		tagCompound.setTag("Items", tagList);
 		tagCompound.setBoolean("Washing", washing);
 		tagCompound.setBoolean("SuperMode", superMode);
 		tagCompound.setInteger("Progress", progress);
 		tagCompound.setInteger("Remaining", timeRemaining);
 		return tagCompound;
-	}
-
-	@Override
-	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-	{
-		NBTTagCompound tagCom = pkt.getNbtCompound();
-		this.readFromNBT(tagCom);
-	}
-
-	@Override
-	public SPacketUpdateTileEntity getUpdatePacket() 
-	{
-		NBTTagCompound tagCom = new NBTTagCompound();
-		this.writeToNBT(tagCom);
-		return new SPacketUpdateTileEntity(pos, getBlockMetadata(), tagCom);
-	}
-
-	@Override
-	public void openInventory(EntityPlayer player)
-	{		
-	}
-
-	@Override
-	public void closeInventory(EntityPlayer player)
-	{		
-	}
-
-	@Override
-	public int getField(int id)
-	{
-		return 0;
-	}
-
-	@Override
-	public void setField(int id, int value)
-	{		
-	}
-
-	@Override
-	public int getFieldCount()
-	{
-		return 0;
-	}
-
-	@Override
-	public void clear()
-	{
-		
-	}
-
-	@Override
-	public String getName()
-	{
-		return hasCustomName() ? customName : "Dishwasher";
-	}
-
-	@Override
-	public boolean hasCustomName()
-	{
-		return customName != null;
-	}
-
-	@Override
-	public ITextComponent getDisplayName() 
-	{
-		return new TextComponentString(getName());
 	}
 
 	@Override
@@ -441,11 +280,5 @@ public class TileEntityDishwasher extends TileEntityLockable implements ISidedIn
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
 	{
 		return new ContainerDishwasher(playerInventory, this);
-	}
-
-	@Override
-	public String getGuiID() 
-	{
-		return "0";
 	}
 }

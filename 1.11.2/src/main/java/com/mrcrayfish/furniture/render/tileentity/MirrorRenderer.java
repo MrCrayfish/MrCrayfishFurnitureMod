@@ -127,10 +127,10 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 				if(!entity.rendering)
 					continue;
 				
-				if(!mc.thePlayer.canEntityBeSeen(entity))
+				if(!mc.player.canEntityBeSeen(entity))
 					continue;
 				
-				if (entity.getDistanceToEntity(mc.thePlayer) < 5)
+				if (entity.getDistanceToEntity(mc.player) < 5)
 				{
 					GameSettings settings = mc.gameSettings;
 					RenderGlobal renderBackup = mc.renderGlobal;
@@ -152,7 +152,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 					mc.displayHeight = quality;
 
 					ClientProxy.rendering = true;
-					ClientProxy.renderEntity = mc.thePlayer;
+					ClientProxy.renderEntity = mc.player;
 
 					int fps = Math.max(30, settings.limitFramerate);
 					EntityRenderer entityRenderer = mc.entityRenderer;

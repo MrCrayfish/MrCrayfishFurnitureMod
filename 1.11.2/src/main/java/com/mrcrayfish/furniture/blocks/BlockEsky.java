@@ -57,10 +57,10 @@ public class BlockEsky extends BlockFurnitureTile
 	}
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB axisAligned, List<AxisAlignedBB> axisAlignedList, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
 		EnumFacing facing = state.getValue(FACING);
-		super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX[facing.getHorizontalIndex()]);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX[facing.getHorizontalIndex()]);
 	}
 
 	@Override
@@ -95,9 +95,9 @@ public class BlockEsky extends BlockFurnitureTile
 	}
 	
 	@Override
-	public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
-		IBlockState state = super.onBlockPlaced(world, pos, facing, hitX, hitY, hitZ, meta, placer);
+		IBlockState state = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
 		return state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(OPENED, Boolean.valueOf(false));
 	}
 	

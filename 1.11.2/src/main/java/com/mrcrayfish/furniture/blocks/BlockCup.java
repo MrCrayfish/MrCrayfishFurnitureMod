@@ -92,9 +92,9 @@ public class BlockCup extends Block implements ITileEntityProvider
 	}
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB axisAligned, List<AxisAlignedBB> axisAlignedList, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
-		super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, BOUNDING_BOX);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
 	}
 	
 	@Override
@@ -108,7 +108,7 @@ public class BlockCup extends Block implements ITileEntityProvider
 	{
 		ItemStack drink = getPickBlock(state, null, worldIn, pos, player);
 		EntityItem entity = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, drink);
-		worldIn.spawnEntityInWorld(entity);
+		worldIn.spawnEntity(entity);
 	}
 
 	@Override

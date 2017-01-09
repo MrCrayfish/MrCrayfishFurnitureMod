@@ -63,7 +63,7 @@ public class BlockLampOff extends BlockFurniture
 	}
 
 	@Override
-	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) 
 	{
 		if (worldIn.isBlockPowered(pos))
 		{
@@ -77,11 +77,11 @@ public class BlockLampOff extends BlockFurniture
 		if (worldIn.isBlockPowered(pos) || worldIn.getBlockState(pos.down()).getBlock() == FurnitureBlocks.bedside_cabinet_oak)
 		{
 			worldIn.setBlockState(pos, FurnitureBlocks.lamp_on.getDefaultState(), 2);
-			worldIn.notifyBlockOfStateChange(pos.down(), this);
+			worldIn.notifyNeighborsOfStateChange(pos.down(), this, true);
 		}
 		else if (!worldIn.isRemote)
 		{
-			playerIn.addChatComponentMessage(new TextComponentString("Make sure lamp is powered by redstone or placed on a bedside cabinet."));
+			playerIn.sendMessage(new TextComponentString("Make sure lamp is powered by redstone or placed on a bedside cabinet."));
 		}
 		return true;
 	}

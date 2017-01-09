@@ -60,7 +60,7 @@ public class ContainerFreezer extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer par1EntityPlayer)
 	{
-		return this.freezerInventory.isUseableByPlayer(par1EntityPlayer);
+		return this.freezerInventory.isUsableByPlayer(par1EntityPlayer);
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public class ContainerFreezer extends Container
 				return null;
 			}
 
-			if (item.stackSize == 0)
+			if (item.getCount() == 0)
 			{
 				slot.putStack((ItemStack) null);
 			}
@@ -140,12 +140,12 @@ public class ContainerFreezer extends Container
 				slot.onSlotChanged();
 			}
 
-			if (item.stackSize == itemCopy.stackSize)
+			if (item.getCount() == itemCopy.getCount())
 			{
 				return null;
 			}
 
-			slot.onPickupFromSlot(player, item);
+			slot.onTake(player, item);
 		}
 
 		return itemCopy;

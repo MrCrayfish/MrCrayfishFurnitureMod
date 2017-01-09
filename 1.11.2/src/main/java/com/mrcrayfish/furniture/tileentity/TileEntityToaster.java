@@ -60,13 +60,13 @@ public class TileEntityToaster extends TileEntity implements ITickable, ISimpleI
 		{
 			if (slots[i] != null)
 			{
-				if (!worldObj.isRemote)
+				if (!world.isRemote)
 				{
-					EntityItem entityItem = new EntityItem(worldObj, pos.getX() + 0.5, pos.getY() + 0.6, pos.getZ() + 0.5, slots[i]);
-					worldObj.spawnEntityInWorld(entityItem);
+					EntityItem entityItem = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.6, pos.getZ() + 0.5, slots[i]);
+					world.spawnEntity(entityItem);
 				}
 				slots[i] = null;
-				TileEntityUtil.markBlockForUpdate(worldObj, pos);
+				TileEntityUtil.markBlockForUpdate(world, pos);
 				return;
 			}
 		}
@@ -75,7 +75,7 @@ public class TileEntityToaster extends TileEntity implements ITickable, ISimpleI
 	public void startToasting()
 	{
 		this.toasting = true;
-		TileEntityUtil.markBlockForUpdate(worldObj, pos);
+		TileEntityUtil.markBlockForUpdate(world, pos);
 	}
 
 	public boolean isToasting()
@@ -99,24 +99,24 @@ public class TileEntityToaster extends TileEntity implements ITickable, ISimpleI
 				{
 					if (slots[i] != null)
 					{
-						if (!worldObj.isRemote)
+						if (!world.isRemote)
 						{
 							RecipeData data = RecipeAPI.getToasterRecipeFromInput(slots[i]);
-							EntityItem entityItem = new EntityItem(worldObj, pos.getX() + 0.5, pos.getY() + 0.6, pos.getZ() + 0.5, data.getOutput().copy());
-							worldObj.spawnEntityInWorld(entityItem);
+							EntityItem entityItem = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.6, pos.getZ() + 0.5, data.getOutput().copy());
+							world.spawnEntity(entityItem);
 						}
 						slots[i] = null;
 					}
 				}
-				if (!worldObj.isRemote)
+				if (!world.isRemote)
 				{
-					worldObj.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FurnitureSounds.toaster_down, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
+					world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FurnitureSounds.toaster_down, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
 					
 				}
 				toastingTime = 0;
 				toasting = false;
-				TileEntityUtil.markBlockForUpdate(worldObj, pos);
-				worldObj.updateComparatorOutputLevel(pos, blockType);
+				TileEntityUtil.markBlockForUpdate(world, pos);
+				world.updateComparatorOutputLevel(pos, blockType);
 			}
 			else
 			{
@@ -140,7 +140,7 @@ public class TileEntityToaster extends TileEntity implements ITickable, ISimpleI
 
 				if (slot >= 0 && slot < this.slots.length)
 				{
-					this.slots[slot] = ItemStack.loadItemStackFromNBT(itemTag);
+					this.slots[slot] = new ItemStack(itemTag);
 				}
 			}
 		}

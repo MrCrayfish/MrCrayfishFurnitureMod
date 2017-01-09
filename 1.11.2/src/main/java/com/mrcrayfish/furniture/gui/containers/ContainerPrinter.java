@@ -57,7 +57,7 @@ public class ContainerPrinter extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer par1EntityPlayer)
 	{
-		return this.printerInventory.isUseableByPlayer(par1EntityPlayer);
+		return this.printerInventory.isUsableByPlayer(par1EntityPlayer);
 	}
 	
 	@Override
@@ -126,7 +126,7 @@ public class ContainerPrinter extends Container
 				return null;
 			}
 
-			if (item.stackSize == 0)
+			if (item.getCount() == 0)
 			{
 				slot.putStack((ItemStack) null);
 			}
@@ -135,12 +135,12 @@ public class ContainerPrinter extends Container
 				slot.onSlotChanged();
 			}
 
-			if (item.stackSize == itemCopy.stackSize)
+			if (item.getCount() == itemCopy.getCount())
 			{
 				return null;
 			}
 
-			slot.onPickupFromSlot(player, item);
+			slot.onTake(player, item);
 		}
 
 		return itemCopy;

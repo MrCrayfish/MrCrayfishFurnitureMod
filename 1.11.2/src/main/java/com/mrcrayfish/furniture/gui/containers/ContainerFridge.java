@@ -63,7 +63,7 @@ public class ContainerFridge extends Container
 
 	public boolean canInteractWith(EntityPlayer par1EntityPlayer)
 	{
-		return this.lowerChestInventory.isUseableByPlayer(par1EntityPlayer);
+		return this.lowerChestInventory.isUsableByPlayer(par1EntityPlayer);
 	}
 
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
@@ -91,7 +91,7 @@ public class ContainerFridge extends Container
 				return null;
 			}
 
-			if (var5.stackSize == 0)
+			if (var5.getCount() == 0)
 			{
 				var4.putStack((ItemStack) null);
 			}

@@ -69,7 +69,7 @@ public class ContainerDishwasher extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer player)
 	{
-		return this.dishwasherInventory.isUseableByPlayer(player);
+		return this.dishwasherInventory.isUsableByPlayer(player);
 	}
 
 	@Override
@@ -128,7 +128,7 @@ public class ContainerDishwasher extends Container
 				}
 			}
 
-			if (item.stackSize == 0)
+			if (item.getCount() == 0)
 			{
 				slot.putStack((ItemStack) null);
 			}

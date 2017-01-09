@@ -65,23 +65,23 @@ public class BlockTap extends BlockFurniture
 	{
 		if (!worldIn.isRemote)
 		{
-			EnumFacing facing = (EnumFacing) state.getValue(FACING);
+			EnumFacing side = (EnumFacing) state.getValue(FACING);
 			if (hasWaterSource(worldIn, pos))
 			{
-				if(worldIn.isAirBlock(pos.offset(facing.getOpposite())))
+				if(worldIn.isAirBlock(pos.offset(side.getOpposite())))
 				{
-					worldIn.setBlockState(pos.offset(facing.getOpposite()), Blocks.WATER.getDefaultState());
+					worldIn.setBlockState(pos.offset(side.getOpposite()), Blocks.WATER.getDefaultState());
 					worldIn.setBlockToAir(pos.down(2));
 					playerIn.addStat(FurnitureAchievements.tapped);
 				}
 				else
 				{
-					playerIn.addChatComponentMessage(new TextComponentString("Something is blocking the tap."));
+					playerIn.sendMessage(new TextComponentString("Something is blocking the tap."));
 				}
 			}
 			else
 			{
-				playerIn.addChatComponentMessage(new TextComponentString("You need to have a water source under the block the tap is on to use it."));
+				playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the tap is on to use it."));
 			}
 		}
 		return true;
@@ -95,10 +95,10 @@ public class BlockTap extends BlockFurniture
 	}
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB axisAligned, List<AxisAlignedBB> axisAlignedList, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
 		EnumFacing facing = state.getValue(FACING);
-		super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, BOUNDING_BOX[facing.getHorizontalIndex()]);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX[facing.getHorizontalIndex()]);
 	}
 
 	public boolean hasWaterSource(World world, BlockPos pos)

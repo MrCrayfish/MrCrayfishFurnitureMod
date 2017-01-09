@@ -66,7 +66,7 @@ public class MessageFreezer implements IMessage, IMessageHandler<MessageFreezer,
 	@Override
 	public IMessage onMessage(MessageFreezer message, MessageContext ctx)
 	{
-		World world = ctx.getServerHandler().playerEntity.worldObj;
+		World world = ctx.getServerHandler().playerEntity.world;
 		TileEntity tileEntity = world.getTileEntity(new BlockPos(message.x, message.y, message.z));
 		if (tileEntity instanceof TileEntityFreezer)
 		{
@@ -80,7 +80,7 @@ public class MessageFreezer implements IMessage, IMessageHandler<MessageFreezer,
 				tileEntityFreezer.stopFreezing();
 			}
 			BlockPos pos = new BlockPos(message.x, message.y, message.z);
-			TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().playerEntity.worldObj, pos);
+			TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().playerEntity.world, pos);
 		}
 		return null;
 	}

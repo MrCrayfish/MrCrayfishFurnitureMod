@@ -53,20 +53,20 @@ public class TileEntityPlate extends TileEntity implements ISimpleInventory
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+	public void readFromNBT(NBTTagCompound tagCompound)
 	{
-		super.readFromNBT(par1NBTTagCompound);
-		if (par1NBTTagCompound.hasKey("Items"))
+		super.readFromNBT(tagCompound);
+		if (tagCompound.hasKey("Items"))
 		{
-			NBTTagList tagList = (NBTTagList) par1NBTTagCompound.getTag("Items");
+			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
 			for (int i = 0; i < tagList.tagCount(); ++i)
 			{
-				NBTTagCompound nbttagcompound1 = tagList.getCompoundTagAt(i);
-				ItemStack stack = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+				NBTTagCompound itemTag = tagList.getCompoundTagAt(i);
+				ItemStack stack = new ItemStack(itemTag);
 				this.setFood(stack);
 			}
 		}
-		this.rotation = par1NBTTagCompound.getInteger("Rotation");
+		this.rotation = tagCompound.getInteger("Rotation");
 	}
 
 	@Override
@@ -77,9 +77,9 @@ public class TileEntityPlate extends TileEntity implements ISimpleInventory
 		ItemStack itemStack = food;
 		if (itemStack != null)
 		{
-			NBTTagCompound nbttagcompound1 = new NBTTagCompound();
-			itemStack.writeToNBT(nbttagcompound1);
-			tagList.appendTag(nbttagcompound1);
+			NBTTagCompound itemTag = new NBTTagCompound();
+			itemStack.writeToNBT(itemTag);
+			tagList.appendTag(itemTag);
 		}
 		tagCompound.setTag("Items", tagList);
 		tagCompound.setInteger("Rotation", rotation);

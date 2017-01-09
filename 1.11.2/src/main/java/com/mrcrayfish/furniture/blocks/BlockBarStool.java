@@ -67,23 +67,17 @@ public class BlockBarStool extends Block
     {
         return false;
     }
-	
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) 
-	{
-		// TODO Auto-generated method stub
-		return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
-	}
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
+		ItemStack heldItem = playerIn.getHeldItem(hand);
 		if (heldItem != null)
 		{
 			if (heldItem.getItem() instanceof ItemDye)
 			{
 				worldIn.setBlockState(pos, state.withProperty(COLOUR, 15 - heldItem.getItemDamage()));
-				heldItem.stackSize--;
+				heldItem.shrink(1);
 				return true;
 			}
 		}
@@ -97,11 +91,11 @@ public class BlockBarStool extends Block
 	}
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB bounds, List<AxisAlignedBB> list, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
-		if (!(collidingEntity instanceof EntitySittableBlock))
+		if (!(entityIn instanceof EntitySittableBlock))
 		{
-			addCollisionBoxToList(pos, bounds, list, BOUNDS);
+			addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDS);
 		}	
 	}
 

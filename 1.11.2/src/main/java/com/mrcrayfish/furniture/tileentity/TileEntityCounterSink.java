@@ -61,19 +61,4 @@ public class TileEntityCounterSink extends TileEntity
 		tagCompound.setBoolean("hasWater", hasWater);
 		return tagCompound;
 	}
-
-	@Override
-	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-	{
-		NBTTagCompound tagCom = pkt.getNbtCompound();
-		this.readFromNBT(tagCom);
-	}
-
-	@Override
-	public SPacketUpdateTileEntity getUpdatePacket() 
-	{
-		NBTTagCompound tagCom = new NBTTagCompound();
-		this.writeToNBT(tagCom);
-		return new SPacketUpdateTileEntity(pos, getBlockMetadata(), tagCom);
-	}
 }

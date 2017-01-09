@@ -58,7 +58,7 @@ public class MessageTakeWater implements IMessage, IMessageHandler<MessageTakeWa
 	@Override
 	public IMessage onMessage(MessageTakeWater message, MessageContext ctx)
 	{
-		ctx.getServerHandler().playerEntity.worldObj.setBlockToAir(new BlockPos(message.x, message.y, message.z));
+		ctx.getServerHandler().playerEntity.world.setBlockToAir(new BlockPos(message.x, message.y, message.z));
 		return null;
 	}
 

@@ -40,7 +40,7 @@ public class BlockDoorMat extends BlockFurniture implements ITileEntityProvider
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState worldIn, World pos, BlockPos state) 
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) 
 	{
 		return NULL_AABB;
 	}

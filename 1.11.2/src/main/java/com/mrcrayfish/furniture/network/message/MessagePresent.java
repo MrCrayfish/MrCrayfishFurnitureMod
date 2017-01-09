@@ -75,13 +75,13 @@ public class MessagePresent implements IMessage, IMessageHandler<MessagePresent,
 		InventoryPresent presentInventory = new InventoryPresent(player, message.present);
 
 		String author = NBTHelper.getString(message.present, "Author");
-		TileEntity tile_entity = player.worldObj.getTileEntity(new BlockPos(message.x, message.y, message.z));
+		TileEntity tile_entity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
 		if (tile_entity instanceof TileEntityPresent)
 		{
 			TileEntityPresent tileEntityPresent = (TileEntityPresent) tile_entity;
 			for (int i = 0; i < presentInventory.getSizeInventory(); i++)
 			{
-				tileEntityPresent.setContents(i, presentInventory.getStackInSlot(i));
+				tileEntityPresent.setInventorySlotContents(i, presentInventory.getStackInSlot(i));
 			}
 			tileEntityPresent.setOwner(author);
 		}

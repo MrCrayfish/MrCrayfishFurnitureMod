@@ -33,7 +33,7 @@ public class ParticleSpawner
 		{
 			int var14 = mc.gameSettings.particleSetting;
 
-			if (var14 == 1 && mc.theWorld.rand.nextInt(3) == 0)
+			if (var14 == 1 && mc.world.rand.nextInt(3) == 0)
 			{
 				var14 = 2;
 			}
@@ -56,11 +56,11 @@ public class ParticleSpawner
 			{
 				if (particleName.equals("shower"))
 				{
-					var21 = new EntityShowerFX(mc.theWorld, par2, par4, par6);
+					var21 = new EntityShowerFX(mc.world, par2, par4, par6);
 				}
 				else if (particleName.equals("smoke"))
 				{
-					var21 = new EnittySteamFX(mc.theWorld, par2, par4, par6, 0.01, 0.0000001, 0.01);
+					var21 = new EnittySteamFX(mc.world, par2, par4, par6, 0.01, 0.0000001, 0.01);
 				}
 
 				mc.effectRenderer.addEffect(var21);

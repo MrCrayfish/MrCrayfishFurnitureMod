@@ -17,7 +17,11 @@
  */
 package com.mrcrayfish.furniture.tileentity;
 
+import com.mrcrayfish.furniture.gui.containers.ContainerComputer;
+
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -25,112 +29,20 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
-public class TileEntityComputer extends TileEntity implements IInventory
+public class TileEntityComputer extends TileEntityFurniture
 {
-	private ItemStack paySlot = null;
-	private String customName;
-	public int stockNum = 0;
+	private int stockNum = 0;
 	private boolean isTrading = false;
-
-	@Override
-	public int getSizeInventory()
+	
+	public TileEntityComputer() 
 	{
-		return 1;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int par1)
-	{
-		return paySlot;
-	}
-
-	@Override
-	public ItemStack decrStackSize(int par1, int par2)
-	{
-		if (this.paySlot != null)
-		{
-			ItemStack var3;
-
-			if (this.paySlot.stackSize <= par2)
-			{
-				var3 = this.paySlot;
-				this.paySlot = null;
-				this.markDirty();
-				return var3;
-			}
-			var3 = this.paySlot.splitStack(par2);
-
-			if (this.paySlot.stackSize == 0)
-			{
-				this.paySlot = null;
-			}
-
-			this.markDirty();
-			return var3;
-		}
-		return null;
-	}
-
-	@Override
-	public ItemStack removeStackFromSlot(int par1)
-	{
-		if (this.paySlot != null)
-		{
-			ItemStack var2 = this.paySlot;
-			this.paySlot = null;
-			return var2;
-		}
-		return null;
-	}
-
-	@Override
-	public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
-	{
-		this.paySlot = par2ItemStack;
-
-		if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
-		{
-			par2ItemStack.stackSize = this.getInventoryStackLimit();
-		}
-
-		this.markDirty();
-	}
-
-	/**
-	 * Returns the name of the inventory.
-	 */
-	public String getInvName()
-	{
-		return "Computer";
+		super("computer", 1);
 	}
 
 	public void takeEmeraldFromSlot(int price)
 	{
-		if (this.paySlot != null)
-		{
-			this.paySlot.stackSize -= price;
-		}
+		this.getStackInSlot(0).shrink(price);
 		this.markDirty();
-	}
-
-	public void clearInventory()
-	{
-		this.paySlot = null;
-	}
-
-	@Override
-	public void readFromNBT(NBTTagCompound tagCompound)
-	{
-		super.readFromNBT(tagCompound);
-		this.stockNum = tagCompound.getInteger("StockNum");
-	}
-
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
-	{
-		super.writeToNBT(tagCompound);
-		tagCompound.setInteger("StockNum", stockNum);
-		return tagCompound;
 	}
 
 	public void setBrowsingInfo(int stockNum)
@@ -152,58 +64,27 @@ public class TileEntityComputer extends TileEntity implements IInventory
 	{
 		return isTrading;
 	}
+	
 
-	public int getInventoryStackLimit()
+	@Override
+	public void readFromNBT(NBTTagCompound tagCompound)
 	{
-		return 64;
+		super.readFromNBT(tagCompound);
+		this.stockNum = tagCompound.getInteger("StockNum");
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer)
+	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
-		return this.worldObj.getTileEntity(pos) != this ? false : entityplayer.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64.0D;
-	}
-
-	@Override
-	public void updateContainingBlockInfo()
-	{
-		super.updateContainingBlockInfo();
-	}
-
-	@Override
-	public void invalidate()
-	{
-		this.updateContainingBlockInfo();
-		super.invalidate();
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int i, ItemStack itemstack)
-	{
-		return false;
-	}
-
-	@Override
-	public String getName()
-	{
-		return hasCustomName() ? customName : "Computer";
-	}
-
-	@Override
-	public boolean hasCustomName()
-	{
-		return customName != null;
-	}
-
-	@Override
-	public ITextComponent getDisplayName() 
-	{
-		return new TextComponentString(getName());
+		super.writeToNBT(tagCompound);
+		tagCompound.setInteger("StockNum", stockNum);
+		return tagCompound;
 	}
 
 	@Override
 	public void openInventory(EntityPlayer player)
 	{
+		setTrading(true);
 	}
 
 	@Override
@@ -213,25 +94,8 @@ public class TileEntityComputer extends TileEntity implements IInventory
 	}
 
 	@Override
-	public int getField(int id)
+	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
 	{
-		return 0;
-	}
-
-	@Override
-	public void setField(int id, int value)
-	{
-	}
-
-	@Override
-	public int getFieldCount()
-	{
-		return 4;
-	}
-
-	@Override
-	public void clear()
-	{
-		paySlot = null;
+		return new ContainerComputer(playerInventory, this);
 	}
 }

@@ -69,6 +69,7 @@ public class BlockPlate extends Block implements ITileEntityProvider
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
+		ItemStack heldItem = playerIn.getHeldItem(hand);
 		TileEntity tileEntity = worldIn.getTileEntity(pos);
 		if (tileEntity instanceof TileEntityPlate)
 		{
@@ -80,7 +81,7 @@ public class BlockPlate extends Block implements ITileEntityProvider
 					tileEntityPlate.setFood(new ItemStack(heldItem.getItem(), 1, heldItem.getItemDamage()));
 					tileEntityPlate.setRotation(playerIn.getHorizontalFacing().getHorizontalIndex());
 					TileEntityUtil.markBlockForUpdate(worldIn, pos);
-					heldItem.stackSize--;
+					heldItem.shrink(1);
 					return true;
 				}
 			}
@@ -89,7 +90,7 @@ public class BlockPlate extends Block implements ITileEntityProvider
 				if (!worldIn.isRemote)
 				{
 					EntityItem entityFood = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.4, pos.getZ() + 0.5, tileEntityPlate.getFood());
-					worldIn.spawnEntityInWorld(entityFood);
+					worldIn.spawnEntity(entityFood);
 				}
 				tileEntityPlate.setFood(null);
 				TileEntityUtil.markBlockForUpdate(worldIn, pos);
@@ -105,9 +106,9 @@ public class BlockPlate extends Block implements ITileEntityProvider
 	}
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB axisAligned, List<AxisAlignedBB> axisAlignedList, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
-		super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, BOUNDING_BOX);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
 	}
 	
 	@Override

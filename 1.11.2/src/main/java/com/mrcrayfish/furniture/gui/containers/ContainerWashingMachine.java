@@ -61,7 +61,7 @@ public class ContainerWashingMachine extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer player)
 	{
-		return this.washingMachineInventory.isUseableByPlayer(player);
+		return this.washingMachineInventory.isUsableByPlayer(player);
 	}
 
 	@Override
@@ -123,7 +123,7 @@ public class ContainerWashingMachine extends Container
 				return null;
 			}
 
-			if (item.stackSize == 0)
+			if (item.getCount() == 0)
 			{
 				slot.putStack((ItemStack) null);
 			}

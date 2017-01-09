@@ -45,136 +45,26 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileEntityPrinter extends TileEntityLockable implements ISidedInventory, ITickable
+public class TileEntityPrinter extends TileEntityFurniture implements ISidedInventory, ITickable
 {
 	private static final int[] slots_top = new int[] { 0 };
 	private static final int[] slots_bottom = new int[] { 2, 1 };
 	private static final int[] slots_sides = new int[] { 1 };
 
-	private ItemStack[] inventory = new ItemStack[3];
-
 	public int printerPrintTime;
 	public int currentItemPrintTime;
 	public int printingTime;
 	public int totalCookTime;
-
-	@Override
-    public int getSizeInventory()
-    {
-        return this.inventory.length;
-    }
-
-	@Override
-    public ItemStack getStackInSlot(int index)
-    {
-        return this.inventory[index];
-    }
-
-	@Override
-    public ItemStack decrStackSize(int index, int count)
-    {
-        if (this.inventory[index] != null)
-        {
-            ItemStack itemstack;
-
-            if (this.inventory[index].stackSize <= count)
-            {
-                itemstack = this.inventory[index];
-                this.inventory[index] = null;
-                return itemstack;
-            }
-            else
-            {
-                itemstack = this.inventory[index].splitStack(count);
-
-                if (this.inventory[index].stackSize == 0)
-                {
-                    this.inventory[index] = null;
-                }
-
-                return itemstack;
-            }
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-	@Override
-    public ItemStack removeStackFromSlot(int index)
-    {
-        if (this.inventory[index] != null)
-        {
-            ItemStack itemstack = this.inventory[index];
-            this.inventory[index] = null;
-            return itemstack;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-	@Override
-    public void setInventorySlotContents(int index, ItemStack stack)
-    {
-        boolean flag = stack != null && stack.isItemEqual(this.inventory[index]) && ItemStack.areItemStackTagsEqual(stack, this.inventory[index]);
-        this.inventory[index] = stack;
-
-        if (stack != null && stack.stackSize > this.getInventoryStackLimit())
-        {
-            stack.stackSize = this.getInventoryStackLimit();
-        }
-
-        if (index == 0 && !flag)
-        {
-            this.totalCookTime = this.func_174904_a(stack);
-            this.printingTime = 0;
-            this.markDirty();
-        }
-    }
-
-	@Override
-    public String getName()
-    {
-        return "Printer";
-    }
-
-    @Override
-    public boolean hasCustomName()
-    {
-        return false;
-    }
-    
-    @Override
-	public ITextComponent getDisplayName() 
+	
+	public TileEntityPrinter() 
 	{
-		return new TextComponentString(getName());
+		super("printer", 3);
 	}
 
     @Override
     public void readFromNBT(NBTTagCompound tagCompound)
     {
         super.readFromNBT(tagCompound);
-        
-        if(tagCompound.hasKey("Items"))
-        {
-        	NBTTagList tagList = tagCompound.getTagList("Items", 10);
-            this.inventory = new ItemStack[this.getSizeInventory()];
-
-            for (int i = 0; i < tagList.tagCount(); ++i)
-            {
-                NBTTagCompound itemTag = tagList.getCompoundTagAt(i);
-                byte slot = itemTag.getByte("Slot");
-
-                if (slot >= 0 && slot < this.inventory.length)
-                {
-                    this.inventory[slot] = ItemStack.loadItemStackFromNBT(itemTag);
-                }
-            }
-        }
-
         this.printerPrintTime = tagCompound.getShort("BurnTime");
         this.printingTime = tagCompound.getShort("CookTime");
         this.totalCookTime = tagCompound.getShort("CookTimeTotal");
@@ -185,58 +75,16 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
     public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
     {
         super.writeToNBT(tagCompound);
-        
         tagCompound.setShort("BurnTime", (short)this.printerPrintTime);
         tagCompound.setShort("CookTime", (short)this.printingTime);
         tagCompound.setShort("CookTimeTotal", (short)this.totalCookTime);
         tagCompound.setInteger("CurrentTimePrintTime", currentItemPrintTime);
-        
-        NBTTagList tagList = new NBTTagList();
-        for (int slot = 0; slot < this.inventory.length; ++slot)
-        {
-            if (this.inventory[slot] != null)
-            {
-                NBTTagCompound itemTag = new NBTTagCompound();
-                itemTag.setByte("Slot", (byte) slot);
-                this.inventory[slot].writeToNBT(itemTag);
-                tagList.appendTag(itemTag);
-            }
-        }
-        tagCompound.setTag("Items", tagList);
-        
         return tagCompound;
-    }
-    
-    @Override
-	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-	{
-		NBTTagCompound tagCom = pkt.getNbtCompound();
-		this.readFromNBT(tagCom);
-	}
-
-	@Override
-	public SPacketUpdateTileEntity getUpdatePacket() 
-	{
-		NBTTagCompound tagCom = new NBTTagCompound();
-		this.writeToNBT(tagCom);
-		return new SPacketUpdateTileEntity(pos, getBlockMetadata(), tagCom);
-	}
-
-    @Override
-    public int getInventoryStackLimit()
-    {
-        return 64;
     }
 
     public boolean isPrinting()
     {
         return this.printerPrintTime > 0;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public static boolean isPrinting(IInventory p_174903_0_)
-    {
-        return p_174903_0_.getField(0) > 0;
     }
 
     @Override
@@ -251,58 +99,55 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
             --this.printerPrintTime;
         }
 
-        //if(!worldObj.isRemote)ee
+        if (!this.isPrinting() && (getStackInSlot(1).isEmpty() || getStackInSlot(0).isEmpty()))
         {
-            if (!this.isPrinting() && (this.inventory[1] == null || this.inventory[0] == null))
+            if (!this.isPrinting() && this.printingTime > 0)
             {
-                if (!this.isPrinting() && this.printingTime > 0)
+                this.printingTime = MathHelper.clamp(this.printingTime - 2, 0, this.totalCookTime);
+            }
+        }
+        else
+        {
+            if (!this.isPrinting() && this.canPrint())
+            {
+                this.currentItemPrintTime = this.printerPrintTime = getItemPrintTime(getStackInSlot(1));
+
+                if (this.isPrinting())
                 {
-                    this.printingTime = MathHelper.clamp_int(this.printingTime - 2, 0, this.totalCookTime);
+                    flag1 = true;
+
+                    if (!getStackInSlot(1).isEmpty())
+                    {
+                    	getStackInSlot(1).shrink(1);
+
+                        if (getStackInSlot(1).getCount() == 0)
+                        {
+                        	setInventorySlotContents(1, getStackInSlot(1).getItem().getContainerItem(getStackInSlot(1)));
+                        }
+                    }
+                }
+            }
+
+            if (this.isPrinting() && this.canPrint())
+            {            	
+                ++this.printingTime;
+                
+            	if(!flag)
+    			{
+            		TileEntityUtil.markBlockForUpdate(world, pos);
+    			}
+
+                if (this.printingTime == this.totalCookTime)
+                {
+                    this.printingTime = 0;
+                    this.totalCookTime = this.getPrintTime(getStackInSlot(0));
+                    this.printItem();
+                    flag1 = true;
                 }
             }
             else
             {
-                if (!this.isPrinting() && this.canPrint())
-                {
-                    this.currentItemPrintTime = this.printerPrintTime = getItemPrintTime(this.inventory[1]);
-
-                    if (this.isPrinting())
-                    {
-                        flag1 = true;
-
-                        if (this.inventory[1] != null)
-                        {
-                            --this.inventory[1].stackSize;
-
-                            if (this.inventory[1].stackSize == 0)
-                            {
-                                this.inventory[1] = inventory[1].getItem().getContainerItem(inventory[1]);
-                            }
-                        }
-                    }
-                }
-
-                if (this.isPrinting() && this.canPrint())
-                {            	
-                    ++this.printingTime;
-                    
-                	if(!flag)
-        			{
-                		TileEntityUtil.markBlockForUpdate(worldObj, pos);
-        			}
-
-                    if (this.printingTime == this.totalCookTime)
-                    {
-                        this.printingTime = 0;
-                        this.totalCookTime = this.func_174904_a(this.inventory[0]);
-                        this.printItem();
-                        flag1 = true;
-                    }
-                }
-                else
-                {
-                	this.printingTime = 0;
-                }
+            	this.printingTime = 0;
             }
         }
 
@@ -313,11 +158,11 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
         
         if (flag && printingTime == 0)
 		{
-			worldObj.updateComparatorOutputLevel(pos, blockType);
+			world.updateComparatorOutputLevel(pos, blockType);
 		}
     }
 
-    public int func_174904_a(ItemStack stack)
+    public int getPrintTime(ItemStack stack)
     {
     	if(stack != null && stack.getItem() == Items.ENCHANTED_BOOK)
     	{
@@ -328,14 +173,13 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
 
     private boolean canPrint()
     {
-    	if (this.inventory[0] == null)
+    	if (getStackInSlot(0).isEmpty())
 		{
 			return false;
 		}
-		if (RecipeAPI.getPrinterRecipeFromInput(inventory[0]) != null)
+		if (RecipeAPI.getPrinterRecipeFromInput(getStackInSlot(0)) != null)
 		{
-			if (this.inventory[2] == null)
-				return true;
+			return getStackInSlot(2).isEmpty();
 		}
 		return false;
     }
@@ -344,10 +188,10 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
     {
     	if (this.canPrint())
 		{
-			ItemStack itemstack = this.inventory[0];
-			if (this.inventory[2] == null)
+			ItemStack stack = getStackInSlot(0);
+			if (getStackInSlot(2).isEmpty())
 			{
-				this.inventory[2] = itemstack.copy();
+				setInventorySlotContents(2, stack.copy());
 			}
 		}
     }
@@ -374,18 +218,6 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
         return getItemPrintTime(stack) > 0;
     }
 
-    @Override
-    public boolean isUseableByPlayer(EntityPlayer player)
-    {
-        return this.worldObj.getTileEntity(this.pos) != this ? false : player.getDistanceSq((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D) <= 64.0D;
-    }
-    
-    @Override
-    public void openInventory(EntityPlayer player) {}
-    
-    @Override
-    public void closeInventory(EntityPlayer player) {}
-    
     @Override
     public int getField(int id)
     {
@@ -429,15 +261,6 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
         return 4;
     }
 
-    @Override
-    public void clear()
-    {
-        for (int i = 0; i < this.inventory.length; ++i)
-        {
-            this.inventory[i] = null;
-        }
-    }
-	
 	@Override
     public boolean isItemValidForSlot(int index, ItemStack stack)
     {
@@ -476,11 +299,5 @@ public class TileEntityPrinter extends TileEntityLockable implements ISidedInven
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
         return new ContainerPrinter(playerInventory, this);
-    }
-
-    @Override
-    public String getGuiID()
-    {
-        return "0";
     }
 }

@@ -67,16 +67,16 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 		{
 			if (ingredients[i] != null)
 			{
-				if (!worldObj.isRemote)
+				if (!world.isRemote)
 				{
-					EntityItem entityItem = new EntityItem(worldObj, pos.getX() + 0.5, pos.getY() + 1.0D, pos.getZ() + 0.5, ingredients[i]);
-					worldObj.spawnEntityInWorld(entityItem);
+					EntityItem entityItem = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 1.0D, pos.getZ() + 0.5, ingredients[i]);
+					world.spawnEntity(entityItem);
 				}
 				ingredients[i] = null;
 				break;
 			}
 		}
-		TileEntityUtil.markBlockForUpdate(worldObj, pos);
+		TileEntityUtil.markBlockForUpdate(world, pos);
 	}
 
 	public boolean isFull()
@@ -155,7 +155,7 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 				drinkCount = 6;
 				progress = 0;
 				blending = false;
-				worldObj.updateComparatorOutputLevel(pos, blockType);
+				world.updateComparatorOutputLevel(pos, blockType);
 			}
 
 			if (timer == 20)
@@ -164,7 +164,7 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 			}
 			if (timer == 0)
 			{
-				worldObj.playSound(pos.getX(), pos.getY(), pos.getZ(), FurnitureSounds.blender, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
+				world.playSound(pos.getX(), pos.getY(), pos.getZ(), FurnitureSounds.blender, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
 			}
 			timer++;
 		}
@@ -178,10 +178,10 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 			{
 				if (ingredients[i].getItem().hasContainerItem())
 				{
-					if (!worldObj.isRemote)
+					if (!world.isRemote)
 					{
-						EntityItem entityItem = new EntityItem(worldObj, pos.getX() + 0.5, pos.getY() + 0.6, pos.getZ() + 0.5, new ItemStack(ingredients[i].getItem().getContainerItem()));
-						worldObj.spawnEntityInWorld(entityItem);
+						EntityItem entityItem = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.6, pos.getZ() + 0.5, new ItemStack(ingredients[i].getItem().getContainerItem()));
+						world.spawnEntity(entityItem);
 					}
 				}
 				ingredients[i] = null;
@@ -205,7 +205,7 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 
 				if (slot >= 0 && slot < this.ingredients.length)
 				{
-					this.ingredients[slot] = ItemStack.loadItemStackFromNBT(itemTag);
+					this.ingredients[slot] = new ItemStack(itemTag);
 				}
 			}
 		}

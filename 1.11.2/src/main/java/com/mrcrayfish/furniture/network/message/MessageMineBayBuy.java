@@ -76,7 +76,7 @@ public class MessageMineBayBuy implements IMessage, IMessageHandler<MessageMineB
 	{
 		EntityPlayerMP player = ctx.getServerHandler().playerEntity;
 
-		TileEntity tile_entity = player.worldObj.getTileEntity(new BlockPos(message.x, message.y, message.z));
+		TileEntity tile_entity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
 		if (tile_entity instanceof TileEntityComputer)
 		{
 			TileEntityComputer tileEntityComputer = (TileEntityComputer) tile_entity;
@@ -89,15 +89,15 @@ public class MessageMineBayBuy implements IMessage, IMessageHandler<MessageMineB
 			
 			if (message.shouldClear)
 			{
-				tileEntityComputer.clearInventory();
+				tileEntityComputer.clear();
 			}
 			else
 			{
 				tileEntityComputer.takeEmeraldFromSlot(price);
 			}
 
-			EntityItem var14 = new EntityItem(player.worldObj, player.posX, player.posY + 1, player.posZ, data[message.itemNum].getInput().copy());
-			player.worldObj.spawnEntityInWorld(var14);
+			EntityItem entityItem = new EntityItem(player.world, player.posX, player.posY + 1, player.posZ, data[message.itemNum].getInput().copy());
+			player.world.spawnEntity(entityItem);
 			player.addStat(FurnitureAchievements.buyItem);
 		}
 		return null;

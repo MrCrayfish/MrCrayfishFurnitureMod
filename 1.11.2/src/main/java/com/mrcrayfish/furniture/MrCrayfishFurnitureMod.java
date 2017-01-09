@@ -45,6 +45,7 @@ import com.mrcrayfish.furniture.proxy.CommonProxy;
 import com.mrcrayfish.furniture.render.tileentity.MirrorRenderer;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
@@ -60,7 +61,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, acceptedMinecraftVersions = "[1.9,1.9.4]")
+@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, acceptedMinecraftVersions = Reference.ACCEPTED_MC_VERSIONS)
 public class MrCrayfishFurnitureMod
 {
 	@Instance(Reference.MOD_ID)
@@ -130,10 +131,10 @@ public class MrCrayfishFurnitureMod
 		FurnitureTileEntities.register();
 
 		/** Entity Registering */
-		EntityRegistry.registerModEntity(null, EntitySittableBlock.class, "MountableBlock", 0, this, 80, 1, false);
+		EntityRegistry.registerModEntity(new ResourceLocation("cfm:mountable_block"), EntitySittableBlock.class, "MountableBlock", 0, this, 80, 1, false);
 		if (event.getSide() == Side.CLIENT)
 		{
-			EntityRegistry.registerModEntity(EntityMirror.class, "Mirror", 1, this, 80, 1, false);
+			EntityRegistry.registerModEntity(new ResourceLocation("cfm:mirror"), EntityMirror.class, "Mirror", 1, this, 80, 1, false);
 		}
 		
 		/** Crafting Recipes */

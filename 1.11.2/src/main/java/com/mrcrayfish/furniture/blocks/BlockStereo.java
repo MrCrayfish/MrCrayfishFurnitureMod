@@ -115,14 +115,14 @@ public class BlockStereo extends BlockFurnitureTile
 					tileEntityStereo.count = 13;
 					if(!worldIn.isRemote) 
 					{
-						playerIn.addChatComponentMessage(new TextComponentString("Stereo is now turned off."));
+						playerIn.sendMessage(new TextComponentString("Stereo is now turned off."));
 					}
 					this.ejectRecord(worldIn, pos);
 				}
 				else
 				{
 					if(!worldIn.isRemote)
-						playerIn.addChatComponentMessage(new TextComponentString("Stereo is already turned off."));
+						playerIn.sendMessage(new TextComponentString("Stereo is already turned off."));
 				}
 			}
 			if(!worldIn.isRemote)
@@ -149,10 +149,10 @@ public class BlockStereo extends BlockFurnitureTile
 	}
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB axisAligned, List<AxisAlignedBB> axisAlignedList, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
 		EnumFacing facing = state.getValue(FACING);
-		super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX[facing.getHorizontalIndex()]);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX[facing.getHorizontalIndex()]);
 	}
 
 	@Override

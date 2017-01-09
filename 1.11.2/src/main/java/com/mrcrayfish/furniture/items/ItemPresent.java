@@ -78,8 +78,9 @@ public class ItemPresent extends ItemBlock implements IMail, IItemColor
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) 
 	{
+		ItemStack stack = player.getHeldItem(hand);
 		if (worldIn.isSideSolid(pos, EnumFacing.UP))
 		{
 			if (stack.hasTagCompound())
@@ -99,23 +100,23 @@ public class ItemPresent extends ItemBlock implements IMail, IItemColor
 						
 						
 						TileEntityPresent tep = new TileEntityPresent();
-						tep.setOwner(playerIn.getName());
+						tep.setOwner(player.getName());
 
 						for (int i = 0; i < itemList.tagCount(); i++)
 						{
-							tep.setInventorySlotContents(i, ItemStack.loadItemStackFromNBT(itemList.getCompoundTagAt(i)));
+							tep.setInventorySlotContents(i, new ItemStack(itemList.getCompoundTagAt(i)));
 						}
 
 						worldIn.setTileEntity(pos.up(), tep);
 
-						--stack.stackSize;
+						stack.shrink(1);
 						return EnumActionResult.SUCCESS;
 					}
 					else
 					{
 						if (worldIn.isRemote)
 						{
-							playerIn.addChatMessage(new TextComponentString("You some how have no items in the present. You cannot use this present."));
+							player.sendMessage(new TextComponentString("You some how have no items in the present. You cannot use this present."));
 						}
 					}
 				}
@@ -123,7 +124,7 @@ public class ItemPresent extends ItemBlock implements IMail, IItemColor
 				{
 					if (worldIn.isRemote)
 					{
-						playerIn.addChatMessage(new TextComponentString("You need to sign it before you can place it"));
+						player.sendMessage(new TextComponentString("You need to sign it before you can place it"));
 					}
 				}
 			}
@@ -131,7 +132,7 @@ public class ItemPresent extends ItemBlock implements IMail, IItemColor
 			{
 				if (worldIn.isRemote)
 				{
-					playerIn.addChatMessage(new TextComponentString("You need to sign it before you can place it"));
+					player.sendMessage(new TextComponentString("You need to sign it before you can place it"));
 				}
 			}
 		}
@@ -139,13 +140,14 @@ public class ItemPresent extends ItemBlock implements IMail, IItemColor
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) 
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) 
 	{
+		ItemStack stack = playerIn.getHeldItem(hand);
 		if (!worldIn.isRemote)
 		{
-			if (itemStackIn.hasTagCompound())
+			if (stack.hasTagCompound())
 			{
-				NBTTagCompound nbttagcompound = itemStackIn.getTagCompound();
+				NBTTagCompound nbttagcompound = stack.getTagCompound();
 				NBTTagString nbttagstring = (NBTTagString) nbttagcompound.getTag("Author");
 
 				if (nbttagstring == null)
@@ -154,7 +156,7 @@ public class ItemPresent extends ItemBlock implements IMail, IItemColor
 				}
 				else if (nbttagstring.getString().equals(""))
 				{
-					playerIn.addChatMessage(new TextComponentString("You cannot unwrap the present once signed"));
+					playerIn.sendMessage(new TextComponentString("You cannot unwrap the present once signed"));
 				}
 			}
 			else
@@ -162,7 +164,7 @@ public class ItemPresent extends ItemBlock implements IMail, IItemColor
 				playerIn.openGui(MrCrayfishFurnitureMod.instance, 9, worldIn, 0, 0, 0);
 			}
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 	}
 
 	public static IInventory getInv(EntityPlayer player, EnumHand activeHand)

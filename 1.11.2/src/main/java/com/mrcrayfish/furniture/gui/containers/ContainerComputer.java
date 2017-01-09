@@ -50,7 +50,7 @@ public class ContainerComputer extends Container
 
 	public boolean canInteractWith(EntityPlayer entityPlayer)
 	{
-		return this.computerInventory.isUseableByPlayer(entityPlayer);
+		return this.computerInventory.isUsableByPlayer(entityPlayer);
 	}
 
 	@Override
@@ -76,7 +76,7 @@ public class ContainerComputer extends Container
 				return null;
 			}
 
-			if (item.stackSize == 0)
+			if (item.getCount() == 0)
 			{
 				slot.putStack((ItemStack) null);
 			}

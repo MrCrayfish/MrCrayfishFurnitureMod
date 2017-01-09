@@ -15,7 +15,7 @@ public class SittableUtil {
 		if (!checkForExistingEntity(par1World, x, y, z, par5EntityPlayer))
 		{
 			EntitySittableBlock nemb = new EntitySittableBlock(par1World, x, y, z, par6);
-			par1World.spawnEntityInWorld(nemb);
+			par1World.spawnEntity(nemb);
 			par5EntityPlayer.startRiding(nemb);
 		}
 		return true;
@@ -26,7 +26,7 @@ public class SittableUtil {
 		if (!checkForExistingEntity(par1World, x, y, z, par5EntityPlayer) && !par1World.isRemote)
 		{
 			EntitySittableBlock nemb = new EntitySittableBlock(par1World, x, y, z, par6, metadata, offset);
-			par1World.spawnEntityInWorld(nemb);
+			par1World.spawnEntity(nemb);
 			par5EntityPlayer.startRiding(nemb);
 		}
 		return true;

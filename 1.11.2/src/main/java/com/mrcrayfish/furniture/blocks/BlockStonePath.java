@@ -70,7 +70,7 @@ public class BlockStonePath extends Block
 
 
 	@Override
-	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) 
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) 
 	{
 		if (!this.canBlockStay(worldIn, pos))
 		{
@@ -91,7 +91,7 @@ public class BlockStonePath extends Block
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState worldIn, World pos, BlockPos state) 
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) 
 	{
 		return NOTHING;
 	}

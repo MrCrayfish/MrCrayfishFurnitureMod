@@ -83,7 +83,7 @@ public class BlockToilet extends BlockFurniture
 		{
 			if (SittableUtil.sitOnBlockWithRotationOffset(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0.4D, getMetaFromState(state), 0.1D))
 			{
-				if(worldIn.isRemote) playerIn.addChatComponentMessage(new TextComponentString(TextFormatting.YELLOW + "Press " + Keyboard.getKeyName(InputHandler.key_fart.getKeyCode()) + " for Farts."));
+				if(worldIn.isRemote) playerIn.sendMessage(new TextComponentString(TextFormatting.YELLOW + "Press " + Keyboard.getKeyName(InputHandler.key_fart.getKeyCode()) + " for Farts."));
 				worldIn.updateComparatorOutputLevel(pos, this);
 			}
 		}
@@ -107,13 +107,13 @@ public class BlockToilet extends BlockFurniture
 	}
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB axisAligned, List<AxisAlignedBB> axisAlignedList, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
-		if (!(collidingEntity instanceof EntitySittableBlock))
+		if (!(entityIn instanceof EntitySittableBlock))
 		{
 			EnumFacing facing = state.getValue(FACING);
-			super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_TANK[facing.getHorizontalIndex()]);
-			super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_SEAT);
+			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_TANK[facing.getHorizontalIndex()]);
+			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_SEAT);
 		}
 	}
 

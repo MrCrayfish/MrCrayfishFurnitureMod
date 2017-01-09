@@ -53,6 +53,7 @@ public class BlockCounterSink extends BlockFurniture
 	{
 		if (!worldIn.isRemote)
 		{
+			ItemStack heldItem = playerIn.getHeldItem(hand);
 			if (heldItem != null)
 			{
 				if (heldItem.getItem() == Items.BUCKET)
@@ -61,11 +62,11 @@ public class BlockCounterSink extends BlockFurniture
 					{
 						if (!playerIn.capabilities.isCreativeMode)
 						{
-							if (heldItem.stackSize > 1)
+							if (heldItem.getCount() > 1)
 							{
 								if (playerIn.inventory.addItemStackToInventory(new ItemStack(Items.WATER_BUCKET)))
 								{
-									heldItem.stackSize--;
+									heldItem.shrink(1);
 								}
 							}
 							else
@@ -93,11 +94,11 @@ public class BlockCounterSink extends BlockFurniture
 					{
 						if (!playerIn.capabilities.isCreativeMode)
 						{
-							if (heldItem.stackSize > 1)
+							if (heldItem.getCount() > 1)
 							{
 								if (playerIn.inventory.addItemStackToInventory(new ItemStack(Items.POTIONITEM, 1, 0)))
 								{
-									heldItem.stackSize--;
+									heldItem.shrink(1);
 								}
 							}
 							else
@@ -131,7 +132,7 @@ public class BlockCounterSink extends BlockFurniture
 						}
 						else
 						{
-							playerIn.addChatComponentMessage(new TextComponentString("You need to have a water source under the block the basin is on to fill it. Alternatively you can use a water bucket to fill it."));
+							playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the basin is on to fill it. Alternatively you can use a water bucket to fill it."));
 						}
 					}
 				}
@@ -148,7 +149,7 @@ public class BlockCounterSink extends BlockFurniture
 					}
 					else
 					{
-						playerIn.addChatComponentMessage(new TextComponentString("You need to have a water source under the block the basin is on to fill it. Alternatively you can use a water bucket to fill it."));
+						playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the basin is on to fill it. Alternatively you can use a water bucket to fill it."));
 					}
 				}
 			}

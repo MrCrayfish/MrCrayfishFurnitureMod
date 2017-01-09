@@ -56,7 +56,7 @@ public class ContainerPresent extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer player)
 	{
-		return this.presentInventory.isUseableByPlayer(player);
+		return this.presentInventory.isUsableByPlayer(player);
 	}
 
 	@Override
@@ -87,7 +87,7 @@ public class ContainerPresent extends Container
 				return null;
 			}
 
-			if (item.stackSize == 0)
+			if (item.getCount() == 0)
 			{
 				slot.putStack((ItemStack) null);
 			}

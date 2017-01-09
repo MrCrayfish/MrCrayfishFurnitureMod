@@ -60,7 +60,7 @@ public class ContainerWallCabinet extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer par1EntityPlayer)
 	{
-		return this.wallCabinetInventory.isUseableByPlayer(par1EntityPlayer);
+		return this.wallCabinetInventory.isUsableByPlayer(par1EntityPlayer);
 	}
 
 	@Override
@@ -89,7 +89,7 @@ public class ContainerWallCabinet extends Container
 				return null;
 			}
 
-			if (item.stackSize == 0)
+			if (item.getCount() == 0)
 			{
 				slot.putStack((ItemStack) null);
 			}

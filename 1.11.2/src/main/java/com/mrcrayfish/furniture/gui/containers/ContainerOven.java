@@ -63,7 +63,7 @@ public class ContainerOven extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer player)
 	{
-		return this.ovenInventory.isUseableByPlayer(player);
+		return this.ovenInventory.isUsableByPlayer(player);
 	}
 
 	@Override
@@ -122,7 +122,7 @@ public class ContainerOven extends Container
 				}
 			}
 
-			if (item.stackSize == 0)
+			if (item.getCount() == 0)
 			{
 				slot.putStack((ItemStack) null);
 			}

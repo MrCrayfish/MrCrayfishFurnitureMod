@@ -36,7 +36,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntityLockable;
 import net.minecraft.util.EnumFacing;
@@ -46,18 +45,21 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
-public class TileEntityWashingMachine extends TileEntityLockable implements ISidedInventory, ITickable
+public class TileEntityWashingMachine extends TileEntityFurniture implements ISidedInventory, ITickable
 {
 	private static final int[] slots_top = new int[] { 0, 1, 2, 3 };
 	private static final int[] slots_bottom = new int[] { 0, 1, 2, 3, 4 };
 	private static final int[] slots_sides = new int[] { 4 };
-	
-	private ItemStack[] inventory = new ItemStack[5];
 
 	private boolean washing = false;
 	public boolean superMode = false;
 	public int progress = 0;
 	public int timeRemaining = 0;
+	
+	public TileEntityWashingMachine() 
+	{
+		super("washing_machine", 5);
+	}
 
 	public void startWashing()
 	{
@@ -65,7 +67,7 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 		{
 			if (timeRemaining == 0)
 			{
-				if (inventory[4].getItem() == FurnitureItems.itemSuperSoapyWater)
+				if (getStackInSlot(4).getItem() == FurnitureItems.itemSuperSoapyWater)
 				{
 					superMode = true;
 				}
@@ -73,11 +75,11 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 				{
 					superMode = false;
 				}
-				inventory[4] = new ItemStack(inventory[4].getItem().getContainerItem());
+				setInventorySlotContents(4,  new ItemStack(getStackInSlot(4).getItem().getContainerItem()));
 				timeRemaining = 5000;
 			}
 			washing = true;
-			worldObj.updateComparatorOutputLevel(pos, blockType);
+			world.updateComparatorOutputLevel(pos, blockType);
 		}
 	}
 
@@ -85,21 +87,21 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 	{
 		progress = 0;
 		washing = false;
-		worldObj.updateComparatorOutputLevel(pos, blockType);
+		world.updateComparatorOutputLevel(pos, blockType);
 	}
 
 	public boolean canWash()
 	{
-		if (inventory[4] == null && timeRemaining == 0)
+		if (getStackInSlot(4).isEmpty() && timeRemaining == 0)
 		{
 			return false;
 		}
 
-		if (inventory[4] != null && timeRemaining == 0)
+		if (!getStackInSlot(4).isEmpty() && timeRemaining == 0)
 		{
-			if (inventory[4].getItem() != FurnitureItems.itemSoapyWater)
+			if (getStackInSlot(4).getItem() != FurnitureItems.itemSoapyWater)
 			{
-				if (inventory[4].getItem() != FurnitureItems.itemSuperSoapyWater)
+				if (getStackInSlot(4).getItem() != FurnitureItems.itemSuperSoapyWater)
 				{
 					return false;
 				}
@@ -108,9 +110,9 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 
 		for (int i = 0; i < 4; i++)
 		{
-			if (inventory[i] != null)
+			if (!getStackInSlot(i).isEmpty())
 			{
-				RecipeData data = RecipeAPI.getWashingMachineRecipeFromInput(inventory[i]);
+				RecipeData data = RecipeAPI.getWashingMachineRecipeFromInput(getStackInSlot(i));
 				if (data != null)
 				{
 					return true;
@@ -144,7 +146,7 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 	{	
 		if (washing)
 		{
-			if(worldObj.isRemote)
+			if(world.isRemote)
 			{
 				progress++;
 				return;
@@ -153,7 +155,7 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 			if(!canWash())
 			{
 				washing = false;
-				worldObj.updateComparatorOutputLevel(pos, blockType);
+				world.updateComparatorOutputLevel(pos, blockType);
 				this.markDirty();
 				return;
 			}
@@ -162,15 +164,15 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 			{
 				for (int i = 0; i < 4; i++)
 				{
-					if (inventory[i] != null)
+					if (!getStackInSlot(i).isEmpty())
 					{
-						if (inventory[i].getMaxDamage() - inventory[i].getItemDamage() != inventory[i].getMaxDamage())
+						if (getStackInSlot(i).getMaxDamage() - getStackInSlot(i).getItemDamage() != getStackInSlot(i).getMaxDamage())
 						{
-							inventory[i].setItemDamage(inventory[i].getItemDamage() - 1);
+							getStackInSlot(i).setItemDamage(getStackInSlot(i).getItemDamage() - 1);
 						}
 					}
 				}
-				PacketHandler.INSTANCE.sendToAllAround(new MessageUpdateFields(this, pos), new TargetPoint(worldObj.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 32));
+				PacketHandler.INSTANCE.sendToAllAround(new MessageUpdateFields(this, pos), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 32));
 				if(progress >= 360)
 				{
 					progress = 0;
@@ -180,18 +182,18 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 			timeRemaining--;
 			if (timeRemaining <= 0)
 			{
-				if (inventory[4] != null)
+				if (!getStackInSlot(4).isEmpty())
 				{
-					if (inventory[4].getItem() == FurnitureItems.itemSoapyWater)
+					if (getStackInSlot(4).getItem() == FurnitureItems.itemSoapyWater)
 					{
 						this.superMode = false;
-						inventory[4] = new ItemStack(FurnitureItems.itemSoapyWater.getContainerItem());
+						setInventorySlotContents(4, new ItemStack(FurnitureItems.itemSoapyWater.getContainerItem()));
 						timeRemaining = 5000;
 					}
-					else if (inventory[4].getItem() == FurnitureItems.itemSuperSoapyWater)
+					else if (getStackInSlot(4).getItem() == FurnitureItems.itemSuperSoapyWater)
 					{
 						this.superMode = true;
-						inventory[4] = new ItemStack(FurnitureItems.itemSuperSoapyWater.getContainerItem());
+						setInventorySlotContents(4, new ItemStack(FurnitureItems.itemSuperSoapyWater.getContainerItem()));
 						timeRemaining = 5000;
 					}
 				}
@@ -200,7 +202,7 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 					timeRemaining = 0;
 					progress = 0;
 					washing = false;
-					worldObj.updateComparatorOutputLevel(pos, blockType);
+					world.updateComparatorOutputLevel(pos, blockType);
 				}
 				this.markDirty();
 			}
@@ -213,7 +215,7 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 			}
 			if (timer == 0)
 			{
-				worldObj.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FurnitureSounds.washing_machine, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
+				world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FurnitureSounds.washing_machine, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
 			}
 			timer++;
 		}
@@ -225,91 +227,15 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 	}
 
 	@Override
-	public int getSizeInventory()
-	{
-		return inventory.length;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int slot)
-	{
-		return this.inventory[slot];
-	}
-
-	@Override
-	public ItemStack decrStackSize(int slot, int number)
-	{
-		if (this.inventory[slot] != null)
-		{
-			ItemStack itemstack;
-
-			if (this.inventory[slot].stackSize <= number)
-			{
-				itemstack = this.inventory[slot];
-				this.inventory[slot] = null;
-				return itemstack;
-			}
-			itemstack = this.inventory[slot].splitStack(number);
-
-			if (this.inventory[slot].stackSize == 0)
-			{
-				this.inventory[slot] = null;
-			}
-
-			return itemstack;
-		}
-		return null;
-	}
-
-	@Override
-	public ItemStack removeStackFromSlot(int slot)
-	{
-		return inventory[slot];
-	}
-
-	@Override
-	public void setInventorySlotContents(int slot, ItemStack par2ItemStack)
-	{
-		this.inventory[slot] = par2ItemStack;
-
-		if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
-		{
-			par2ItemStack.stackSize = this.getInventoryStackLimit();
-		}
-	}
-
-	@Override
 	public int getInventoryStackLimit()
 	{
 		return 1;
 	}
 
 	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer)
-	{
-		return this.worldObj.getTileEntity(pos) != this ? false : entityplayer.getDistanceSq(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D) <= 64.0D;
-	}
-
-	@Override
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
 		super.readFromNBT(tagCompound);
-		if (tagCompound.hasKey("Items"))
-		{
-			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
-			this.inventory = new ItemStack[6];
-
-			for (int i = 0; i < tagList.tagCount(); ++i)
-			{
-				NBTTagCompound nbt = (NBTTagCompound) tagList.getCompoundTagAt(i);
-				byte slot = nbt.getByte("Slot");
-
-				if (slot >= 0 && slot < this.inventory.length)
-				{
-					this.inventory[slot] = ItemStack.loadItemStackFromNBT(nbt);
-				}
-			}
-		}
 		this.washing = tagCompound.getBoolean("Washing");
 		this.superMode = tagCompound.getBoolean("SuperMode");
 		this.progress = tagCompound.getInteger("Progress");
@@ -320,48 +246,11 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
 		super.writeToNBT(tagCompound);
-		NBTTagList tagList = new NBTTagList();
-		for (int slot = 0; slot < this.inventory.length; ++slot)
-		{
-			if (this.inventory[slot] != null)
-			{
-				NBTTagCompound nbt = new NBTTagCompound();
-				nbt.setByte("Slot", (byte) slot);
-				this.inventory[slot].writeToNBT(nbt);
-				tagList.appendTag(nbt);
-			}
-		}
-		tagCompound.setTag("Items", tagList);
 		tagCompound.setBoolean("Washing", washing);
 		tagCompound.setBoolean("SuperMode", superMode);
 		tagCompound.setInteger("Progress", progress);
 		tagCompound.setInteger("Remaining", timeRemaining);
 		return tagCompound;
-	}
-
-	@Override
-	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-	{
-		NBTTagCompound tagCom = pkt.getNbtCompound();
-		this.readFromNBT(tagCom);
-	}
-
-	@Override
-	public SPacketUpdateTileEntity getUpdatePacket() 
-	{
-		NBTTagCompound tagCom = new NBTTagCompound();
-		this.writeToNBT(tagCom);
-		return new SPacketUpdateTileEntity(pos, getBlockMetadata(), tagCom);
-	}
-
-	@Override
-	public void openInventory(EntityPlayer player)
-	{
-	}
-
-	@Override
-	public void closeInventory(EntityPlayer player)
-	{
 	}
 
 	@Override
@@ -395,33 +284,6 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 		return 2;
 	}
 
-	@Override
-	public void clear()
-	{
-		for (int i = 0; i < inventory.length; i++)
-		{
-			inventory[i] = null;
-		}
-	}
-
-	@Override
-	public String getName()
-	{
-		return "Washing Machine";
-	}
-
-	@Override
-	public boolean hasCustomName()
-	{
-		return false;
-	}
-
-	@Override
-	public ITextComponent getDisplayName() 
-	{
-		return new TextComponentString(getName());
-	}
-	
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack)
 	{
@@ -469,11 +331,5 @@ public class TileEntityWashingMachine extends TileEntityLockable implements ISid
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
 	{
 		return new ContainerWashingMachine(playerInventory, this);
-	}
-
-	@Override
-	public String getGuiID() 
-	{
-		return "0";
 	}
 }

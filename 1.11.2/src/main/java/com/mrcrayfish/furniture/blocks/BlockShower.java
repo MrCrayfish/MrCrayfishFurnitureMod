@@ -114,17 +114,17 @@ public class BlockShower extends BlockFurniture
 	@SideOnly(Side.CLIENT)
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
 	{
-		if(Minecraft.getMinecraft().thePlayer == null) return NOTHING;
+		if(Minecraft.getMinecraft().player == null) return NOTHING;
 		
 		int camera = Minecraft.getMinecraft().gameSettings.thirdPersonView;
-		EnumFacing facing = Minecraft.getMinecraft().thePlayer.getHorizontalFacing();
+		EnumFacing facing = Minecraft.getMinecraft().player.getHorizontalFacing();
 		int metadata = getMetaFromState(state);
 		
 		if (camera == 1 || camera == 2)
 		{
 			if (facing != state.getValue(FACING).getOpposite())
 			{
-				switch(Minecraft.getMinecraft().thePlayer.getHorizontalFacing())
+				switch(Minecraft.getMinecraft().player.getHorizontalFacing())
 				{
 				case EAST:
 					return SIDE_EAST;
@@ -147,29 +147,29 @@ public class BlockShower extends BlockFurniture
 	}
 
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB bounds, List<AxisAlignedBB> list, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
 		switch(state.getValue(FACING))
 		{
 		case EAST:
-			this.addCollisionBoxToList(pos, bounds, list, SIDE_NORTH);
-			this.addCollisionBoxToList(pos, bounds, list, SIDE_EAST);
-			this.addCollisionBoxToList(pos, bounds, list, SIDE_SOUTH);
+			this.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_NORTH);
+			this.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_EAST);
+			this.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_SOUTH);
 			break;
 		case NORTH:
-			this.addCollisionBoxToList(pos, bounds, list, SIDE_WEST);
-			this.addCollisionBoxToList(pos, bounds, list, SIDE_NORTH);
-			this.addCollisionBoxToList(pos, bounds, list, SIDE_EAST);
+			this.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_WEST);
+			this.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_NORTH);
+			this.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_EAST);
 			break;
 		case SOUTH:
-			this.addCollisionBoxToList(pos, bounds, list, SIDE_EAST);
-			this.addCollisionBoxToList(pos, bounds, list, SIDE_SOUTH);
-			this.addCollisionBoxToList(pos, bounds, list, SIDE_WEST);
+			this.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_EAST);
+			this.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_SOUTH);
+			this.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_WEST);
 			break;
 		case WEST:
-			this.addCollisionBoxToList(pos, bounds, list, SIDE_SOUTH);
-			this.addCollisionBoxToList(pos, bounds, list, SIDE_WEST);
-			this.addCollisionBoxToList(pos, bounds, list, SIDE_NORTH);
+			this.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_SOUTH);
+			this.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_WEST);
+			this.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_NORTH);
 			break;
 		default:
 			break;

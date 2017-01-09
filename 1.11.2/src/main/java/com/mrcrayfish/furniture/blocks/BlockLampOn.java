@@ -40,6 +40,7 @@ public class BlockLampOn extends BlockLamp
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
+		ItemStack heldItem = playerIn.getHeldItem(hand);
 		if (heldItem != null)
 		{
 			if (heldItem.getItem() instanceof ItemDye)
@@ -47,7 +48,7 @@ public class BlockLampOn extends BlockLamp
 				worldIn.setBlockState(pos, state.withProperty(COLOUR, 15 - heldItem.getItemDamage()));
 				if (!playerIn.capabilities.isCreativeMode)
 				{
-					heldItem.stackSize--;
+					heldItem.shrink(1);
 				}
 				return true;
 			}

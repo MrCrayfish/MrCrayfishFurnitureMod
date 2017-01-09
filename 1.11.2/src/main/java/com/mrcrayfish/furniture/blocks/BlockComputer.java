@@ -73,7 +73,7 @@ public class BlockComputer extends BlockFurnitureTile
 				}
 				else
 				{
-					playerIn.addChatComponentMessage(new TextComponentString("Someone is using the computer."));
+					playerIn.sendMessage(new TextComponentString("Someone is using the computer."));
 				}
 			}
 		}
@@ -87,9 +87,9 @@ public class BlockComputer extends BlockFurnitureTile
 	}
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB bounds, List<AxisAlignedBB> list, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
-		super.addCollisionBoxToList(pos, bounds, list, BOUNDING_BOX);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
 	}
 
 	@Override

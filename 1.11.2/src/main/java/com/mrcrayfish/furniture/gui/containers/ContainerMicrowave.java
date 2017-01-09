@@ -53,7 +53,7 @@ public class ContainerMicrowave extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer player)
 	{
-		return this.microwaveInventory.isUseableByPlayer(player);
+		return this.microwaveInventory.isUsableByPlayer(player);
 	}
 
 	@Override
@@ -86,7 +86,7 @@ public class ContainerMicrowave extends Container
 				return null;
 			}
 
-			if (item.stackSize == 0)
+			if (item.getCount() == 0)
 			{
 				slot.putStack((ItemStack) null);
 			}

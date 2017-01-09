@@ -66,7 +66,7 @@ public class MessageDishwasher implements IMessage, IMessageHandler<MessageDishw
 	@Override
 	public IMessage onMessage(MessageDishwasher message, MessageContext ctx)
 	{
-		World world = ctx.getServerHandler().playerEntity.worldObj;
+		World world = ctx.getServerHandler().playerEntity.world;
 		TileEntity tileEntity = world.getTileEntity(new BlockPos(message.x, message.y, message.z));
 		if (tileEntity instanceof TileEntityDishwasher)
 		{

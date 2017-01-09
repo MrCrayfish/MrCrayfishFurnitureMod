@@ -57,7 +57,7 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 		if(clickedSide != ClickedSide.UNKNOWN)
 		{
 			inventory[clickedSide.id]  = new ItemStack(food.getItem(), 1, food.getItemDamage());
-			TileEntityUtil.markBlockForUpdate(worldObj, pos);
+			TileEntityUtil.markBlockForUpdate(world, pos);
 			return true;
 		}
 		return false;
@@ -65,7 +65,7 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 	
 	public boolean removeFood(BlockGrill.ClickedSide clickedSide)
 	{
-		if(!worldObj.isRemote)
+		if(!world.isRemote)
 		{
 			if(clickedSide.id <= 1)
 			{
@@ -82,7 +82,7 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 						spawnItem(inventory[clickedSide.id]);
 					}
 					inventory[clickedSide.id] = null;
-					TileEntityUtil.markBlockForUpdate(worldObj, pos);
+					TileEntityUtil.markBlockForUpdate(world, pos);
 					return true;
 				}
 			}
@@ -105,8 +105,8 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 	
 	private void spawnItem(ItemStack stack)
 	{
-		EntityItem entityFood = new EntityItem(worldObj, pos.getX() + 0.5, pos.getY() + 1F, pos.getZ() + 0.5, stack);
-		worldObj.spawnEntityInWorld(entityFood);
+		EntityItem entityFood = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 1F, pos.getZ() + 0.5, stack);
+		world.spawnEntity(entityFood);
 	}
 	
 	public void flipFood(BlockGrill.ClickedSide clickedSide)
@@ -127,7 +127,7 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 			flippedRight = true;
 			rightSoundLoop = 0;
 		}
-		TileEntityUtil.markBlockForUpdate(worldObj, pos);
+		TileEntityUtil.markBlockForUpdate(world, pos);
 	}
 	
 	public boolean addCoal()
@@ -135,7 +135,7 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 		if(coal < 3)
 		{
 			coal++;
-			TileEntityUtil.markBlockForUpdate(worldObj, pos);
+			TileEntityUtil.markBlockForUpdate(world, pos);
 			return true;
 		}
 		return false;
@@ -152,7 +152,7 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 		{
 			fire = true;
 		} 
-		TileEntityUtil.markBlockForUpdate(worldObj, pos);
+		TileEntityUtil.markBlockForUpdate(world, pos);
 	}
 	
 	public boolean isFireStarted()
@@ -203,7 +203,7 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 	@Override
 	public void update() 
 	{
-		if(!worldObj.isRemote)
+		if(!world.isRemote)
 		{
 			if(fire)
 			{
@@ -221,12 +221,12 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 									inventory[0] = dataLeft.getOutput().copy();
 								}
 								leftCooked = true;
-								TileEntityUtil.markBlockForUpdate(worldObj, pos);
+								TileEntityUtil.markBlockForUpdate(world, pos);
 								leftSoundLoop = 0;
 							}
 							if(leftSoundLoop % 20 == 0)
 							{
-								worldObj.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 0.5F, true);
+								world.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 0.5F, true);
 							}
 						}
 						else
@@ -237,11 +237,11 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 								{
 									if(flippedLeft && leftCookTime >= 20)
 									{
-										worldObj.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 1.0F, true);
+										world.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 1.0F, true);
 									}
 									else if(!flippedLeft)
 									{
-										worldObj.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 1.0F, true);
+										world.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 1.0F, true);
 									}
 								}
 							}
@@ -264,12 +264,12 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 									inventory[1] = dataRight.getOutput().copy();
 								}
 								rightCooked = true;
-								TileEntityUtil.markBlockForUpdate(worldObj, pos);
+								TileEntityUtil.markBlockForUpdate(world, pos);
 								rightSoundLoop = 0;
 							}
 							if(rightSoundLoop % 20 == 0)
 							{
-								worldObj.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 0.5F, true);
+								world.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 0.5F, true);
 							}
 						}
 						else
@@ -280,11 +280,11 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 								{
 									if(flippedRight && rightCookTime >= 20)
 									{
-										worldObj.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 1.0F, true);
+										world.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 1.0F, true);
 									}
 									else if(!flippedRight)
 									{
-										worldObj.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 1.0F, true);
+										world.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 1.0F, true);
 									}
 								}
 							}
@@ -304,7 +304,7 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 					{
 						fire = false;
 					}
-					TileEntityUtil.markBlockForUpdate(worldObj, pos);
+					TileEntityUtil.markBlockForUpdate(world, pos);
 				}
 			}
 		}
@@ -337,7 +337,7 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 
 				if (slot >= 0 && slot < this.inventory.length)
 				{
-					this.inventory[slot] = ItemStack.loadItemStackFromNBT(nbt);
+					this.inventory[slot] = new ItemStack(nbt);
 				}
 			}
 		}

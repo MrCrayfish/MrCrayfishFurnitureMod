@@ -85,7 +85,7 @@ public class BlockCrate extends Block implements ITileEntityProvider
 					compound.removeTag("id");
 					drop.setTagCompound(compound);
 					
-					worldIn.spawnEntityInWorld(new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, drop));
+					worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, drop));
 				}
 			}
 		}
@@ -103,6 +103,7 @@ public class BlockCrate extends Block implements ITileEntityProvider
 	{
 		if (!worldIn.isRemote)
 		{
+			ItemStack heldItem = playerIn.getHeldItem(hand);
 			TileEntity tileEntity = worldIn.getTileEntity(pos);
 
 			if (tileEntity instanceof TileEntityCrate)

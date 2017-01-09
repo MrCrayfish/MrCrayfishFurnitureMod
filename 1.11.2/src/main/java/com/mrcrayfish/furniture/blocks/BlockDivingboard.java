@@ -72,14 +72,14 @@ public class BlockDivingboard extends BlockFurniture
 	}
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB axisAligned, List<AxisAlignedBB> axisAlignedList, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
 		EnumFacing facing = state.getValue(FACING);
-		super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, BOARD[facing.getHorizontalIndex() % 2]);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOARD[facing.getHorizontalIndex() % 2]);
 		if(this == FurnitureBlocks.divingboard_base)
 		{
-			super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, HANDLE_LEFT[facing.getHorizontalIndex()]);
-			super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, HANDLE_RIGHT[facing.getHorizontalIndex()]);
+			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, HANDLE_LEFT[facing.getHorizontalIndex()]);
+			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, HANDLE_RIGHT[facing.getHorizontalIndex()]);
 		}
 	}
 	

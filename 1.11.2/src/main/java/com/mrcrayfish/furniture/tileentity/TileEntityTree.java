@@ -48,10 +48,10 @@ public class TileEntityTree extends TileEntity implements ITickable, ISimpleInve
 		ItemStack temp = ornaments[facing.getHorizontalIndex()];
 		if (temp != null)
 		{
-			if (!worldObj.isRemote)
+			if (!world.isRemote)
 			{
-				EntityItem entityItem = new EntityItem(worldObj, pos.getX() + 0.5, pos.getY() + 1.0D, pos.getZ() + 0.5, temp);
-				worldObj.spawnEntityInWorld(entityItem);
+				EntityItem entityItem = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 1.0D, pos.getZ() + 0.5, temp);
+				world.spawnEntity(entityItem);
 			}
 			ornaments[facing.getHorizontalIndex()] = null;
 		}
@@ -78,7 +78,7 @@ public class TileEntityTree extends TileEntity implements ITickable, ISimpleInve
 
 				if (slot >= 0 && slot < this.ornaments.length)
 				{
-					this.ornaments[slot] = ItemStack.loadItemStackFromNBT(itemTag);
+					this.ornaments[slot] = new ItemStack(itemTag);
 				}
 			}
 		}

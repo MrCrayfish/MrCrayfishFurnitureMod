@@ -69,6 +69,7 @@ public class BlockGrill extends BlockFurnitureTile
 	{
 		if(!worldIn.isRemote)
 		{
+			ItemStack heldItem = playerIn.getHeldItem(hand);
 			TileEntity tileEntity = worldIn.getTileEntity(pos);
 			if(tileEntity instanceof TileEntityGrill)
 			{
@@ -79,36 +80,36 @@ public class BlockGrill extends BlockFurnitureTile
 					{
 						if(tileEntityGrill.addCoal())
 						{
-							heldItem.stackSize--;
+							heldItem.shrink(1);
 						}
 					}
 					else if(heldItem.getItem() == Items.FLINT_AND_STEEL)
 					{
 						tileEntityGrill.startFire();
 					}
-					else if(heldItem.getItem() == FurnitureItems.itemSpatula && side == EnumFacing.UP)
+					else if(heldItem.getItem() == FurnitureItems.itemSpatula && facing == EnumFacing.UP)
 					{
-						EnumFacing facing = state.getValue(FACING);
-						tileEntityGrill.flipFood(getClickedSide(facing, hitX, hitZ));
+						EnumFacing side = state.getValue(FACING);
+						tileEntityGrill.flipFood(getClickedSide(side, hitX, hitZ));
 					}
-					else if(heldItem.getItem() instanceof ItemFood && side == EnumFacing.UP)
+					else if(heldItem.getItem() instanceof ItemFood && facing == EnumFacing.UP)
 					{
-						EnumFacing facing = state.getValue(FACING);
-						if(tileEntityGrill.addFood(getClickedSide(facing, hitX, hitZ), heldItem))
+						EnumFacing side = state.getValue(FACING);
+						if(tileEntityGrill.addFood(getClickedSide(side, hitX, hitZ), heldItem))
 						{
-							heldItem.stackSize--;
+							heldItem.shrink(1);
 						}
 					}
 					else
 					{
-						EnumFacing facing = state.getValue(FACING);
-						tileEntityGrill.removeFood(getClickedSide(facing, hitX, hitZ));
+						EnumFacing side = state.getValue(FACING);
+						tileEntityGrill.removeFood(getClickedSide(side, hitX, hitZ));
 					}
 				}
 				else
 				{
-					EnumFacing facing = state.getValue(FACING);
-					tileEntityGrill.removeFood(getClickedSide(facing, hitX, hitZ));
+					EnumFacing side = state.getValue(FACING);
+					tileEntityGrill.removeFood(getClickedSide(side, hitX, hitZ));
 				}
 			}
 		}

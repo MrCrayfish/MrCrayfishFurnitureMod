@@ -53,14 +53,14 @@ public class TileEntityChoppingBoard extends TileEntity implements ISimpleInvent
 			RecipeData data = RecipeAPI.getChoppingBoardRecipeFromInput(food);
 			if (data != null)
 			{
-				if (!worldObj.isRemote)
+				if (!world.isRemote)
 				{
-					EntityItem entityItem = new EntityItem(worldObj, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5, data.getOutput().copy());
-					worldObj.spawnEntityInWorld(entityItem);
-					worldObj.playSound(pos.getX(), pos.getY(), pos.getZ(), FurnitureSounds.knife_chop, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
+					EntityItem entityItem = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5, data.getOutput().copy());
+					world.spawnEntity(entityItem);
+					world.playSound(pos.getX(), pos.getY(), pos.getZ(), FurnitureSounds.knife_chop, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
 				}
 				setFood(null);
-				TileEntityUtil.markBlockForUpdate(worldObj, pos);
+				TileEntityUtil.markBlockForUpdate(world, pos);
 				return true;
 			}
 		}
@@ -74,7 +74,7 @@ public class TileEntityChoppingBoard extends TileEntity implements ISimpleInvent
 		if(tagCompound.hasKey("Food"))
 		{
 			NBTTagCompound nbt = tagCompound.getCompoundTag("Food");
-			food = ItemStack.loadItemStackFromNBT(nbt);
+			food = new ItemStack(nbt);
 		}
 	}
 

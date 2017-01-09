@@ -82,7 +82,7 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
 			for (int i = 0; i < getMetaFromState(state); i++)
 			{
 				EntityItem cookie = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.8, pos.getZ() + 0.5, new ItemStack(Items.COOKIE));
-				world.spawnEntityInWorld(cookie);
+				world.spawnEntity(cookie);
 			}
 		}
 	}
@@ -90,13 +90,14 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
+		ItemStack heldItem = playerIn.getHeldItem(hand);
 		int metadata = getMetaFromState(state);
 		if (heldItem != null)
 		{
 			if (heldItem.getItem() == Items.COOKIE && metadata < 6)
 			{
 				worldIn.setBlockState(pos, state.withProperty(COOKIE_COUNT, metadata + 1), 2);
-				heldItem.stackSize--;
+				heldItem.shrink(1);
 				worldIn.updateComparatorOutputLevel(pos, this);
 				return true;
 			}
@@ -107,7 +108,7 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
 			if (!worldIn.isRemote)
 			{
 				EntityItem var14 = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.8, pos.getZ() + 0.5, new ItemStack(Items.COOKIE));
-				worldIn.spawnEntityInWorld(var14);
+				worldIn.spawnEntity(var14);
 			}
 			TileEntityUtil.markBlockForUpdate(worldIn, pos);
 			return true;
@@ -122,9 +123,9 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
 	}
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB bounds, List<AxisAlignedBB> list, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
-		super.addCollisionBoxToList(pos, bounds, list, BOUNDING_BOX);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
 	}
 
 	@Override

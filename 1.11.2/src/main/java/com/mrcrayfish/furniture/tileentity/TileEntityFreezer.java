@@ -41,79 +41,82 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 
-public class TileEntityFreezer extends TileEntityLockable implements ISidedInventory, ITickable
+public class TileEntityFreezer extends TileEntityFurniture implements ISidedInventory, ITickable
 {
 	private static final int[] slots_bottom = new int[] { 2 };
 	private static final int[] slots_sides = new int[] { 0, 1 };
-
-	private ItemStack[] inventory = new ItemStack[3];
 
 	private boolean freezing = false;
 	public int progress = 0;
 	public int timeRemaining = 0;
 	public int fuelTime = 0;
 	
+	public TileEntityFreezer() 
+	{
+		super("freezer", 3);
+	}
+
 	public void startFreezing()
 	{
 		if(canFreeze())
 		{
 			if(timeRemaining == 0)
 			{
-				fuelTime = getFuelTime(inventory[0]);
+				fuelTime = getFuelTime(inventory.get(0));
 				timeRemaining = fuelTime;
 				
-				inventory[0].stackSize--;
-				if(inventory[0].stackSize <= 0)
+				inventory.get(0).shrink(1);
+				if(inventory.get(0).getCount() <= 0)
 				{
-					inventory[0] = null;
+					removeStackFromSlot(0);
 				}
 			}
 			freezing = true;
-			worldObj.updateComparatorOutputLevel(pos, blockType);
+			world.updateComparatorOutputLevel(pos, blockType);
 		}
 	}
 	
 	public void stopFreezing()
 	{
 		freezing = false;
-		worldObj.updateComparatorOutputLevel(pos, blockType);
+		world.updateComparatorOutputLevel(pos, blockType);
 	}
 	
 	public boolean canFreeze()
 	{
-		if (inventory[0] == null && timeRemaining == 0)
+		if (inventory.get(0) == ItemStack.EMPTY && timeRemaining == 0)
 		{
 			return false;
 		}
 		
-		if (inventory[0] != null && timeRemaining == 0)
+		if (inventory.get(0) != ItemStack.EMPTY && timeRemaining == 0)
 		{
-			if(!isFuel(inventory[0]))
+			if(!isFuel(inventory.get(0)))
 			{
 				return false;
 			}
 		}
 		
-		if (inventory[1] != null)
+		if (inventory.get(1) != ItemStack.EMPTY)
 		{
-			RecipeData data = Recipes.getFreezerRecipeFromInput(inventory[1]);
+			RecipeData data = Recipes.getFreezerRecipeFromInput(inventory.get(1));
 
 			if (data == null)
 			{
 				return false;
 			}
 
-			if (inventory[2] == null)
+			if (inventory.get(2) == ItemStack.EMPTY)
 			{
 				return true;
 			}
 
-			if (inventory[2].getItem() != data.getOutput().getItem())
+			if (inventory.get(2).getItem() != data.getOutput().getItem())
 			{
 				return false;
 			}
 
-			if (inventory[2].stackSize < this.getInventoryStackLimit() && inventory[2].stackSize < inventory[2].getMaxStackSize())
+			if (inventory.get(2).getCount() < this.getInventoryStackLimit() && inventory.get(2).getCount() < inventory.get(2).getMaxStackSize())
 			{
 				return true;
 			}
@@ -123,36 +126,36 @@ public class TileEntityFreezer extends TileEntityLockable implements ISidedInven
 	
 	public void freezeItem()
 	{
-		if (inventory[1] != null)
+		if (inventory.get(1) != ItemStack.EMPTY)
 		{
-			RecipeData data = Recipes.getFreezerRecipeFromInput(inventory[1]);
+			RecipeData data = Recipes.getFreezerRecipeFromInput(inventory.get(1));
 
 			if (data == null)
 			{
 				return;
 			}
 
-			if (inventory[2] == null)
+			if (inventory.get(2) == ItemStack.EMPTY)
 			{
-				inventory[2] = data.getOutput().copy();
+				inventory.set(2, data.getOutput().copy());
 			}
-			else if (inventory[2].getItem() == data.getOutput().getItem() && inventory[2].getItemDamage() == data.getOutput().getItemDamage())
+			else if (inventory.get(2).getItem() == data.getOutput().getItem() && inventory.get(2).getItemDamage() == data.getOutput().getItemDamage())
 			{
-				inventory[2].stackSize += data.getOutput().copy().stackSize;
+				inventory.get(2).grow(data.getOutput().copy().getCount());
 			}
 
-			if (inventory[1].getItem().hasContainerItem())
+			if (inventory.get(2).getItem().hasContainerItem())
 			{
-				inventory[1] = new ItemStack(inventory[1].getItem().getContainerItem());
+				inventory.set(1, new ItemStack(inventory.get(1).getItem().getContainerItem()));
 			}
 			else
 			{
-				inventory[1].stackSize--;
+				inventory.get(1).shrink(1);
 			}
 
-			if (inventory[1].stackSize <= 0)
+			if (inventory.get(1).getCount() <= 0)
 			{
-				inventory[1] = null;
+				removeStackFromSlot(1);
 			}
 		}
 	}
@@ -188,7 +191,7 @@ public class TileEntityFreezer extends TileEntityLockable implements ISidedInven
 			if(!canFreeze())
 			{
 				freezing = false;
-				worldObj.updateComparatorOutputLevel(pos, blockType);
+				world.updateComparatorOutputLevel(pos, blockType);
 				return;
 			}
 
@@ -202,22 +205,22 @@ public class TileEntityFreezer extends TileEntityLockable implements ISidedInven
 			timeRemaining--;
 			if (timeRemaining <= 0)
 			{
-				if(inventory[0] != null && isFuel(inventory[0]))
+				if(inventory.get(0) != ItemStack.EMPTY && isFuel(inventory.get(0)))
 				{
-					fuelTime = getFuelTime(inventory[0]);
+					fuelTime = getFuelTime(inventory.get(0));
 					timeRemaining = fuelTime;
 					
-					inventory[0].stackSize--;
-					if(inventory[0].stackSize <= 0)
+					inventory.get(0).shrink(1);
+					if(inventory.get(0).getCount() <= 0)
 					{
-						inventory[0] = null;
+						removeStackFromSlot(0);
 					}
 				}
 				else
 				{
 					timeRemaining = 0;
 					freezing = false;
-					worldObj.updateComparatorOutputLevel(pos, blockType);
+					world.updateComparatorOutputLevel(pos, blockType);
 				}
 			}
 		}
@@ -230,100 +233,11 @@ public class TileEntityFreezer extends TileEntityLockable implements ISidedInven
 		}
 	}
 
-	@Override
-	public int getSizeInventory()
-	{
-		return this.inventory.length;
-	}
-
-	@Override
-	public ItemStack getStackInSlot(int par1)
-	{
-		return this.inventory[par1];
-	}
-
-	@Override
-	public ItemStack decrStackSize(int par1, int par2)
-	{
-		if (this.inventory[par1] != null)
-		{
-			ItemStack itemstack;
-
-			if (this.inventory[par1].stackSize <= par2)
-			{
-				itemstack = this.inventory[par1];
-				this.inventory[par1] = null;
-				return itemstack;
-			}
-			itemstack = this.inventory[par1].splitStack(par2);
-
-			if (this.inventory[par1].stackSize == 0)
-			{
-				this.inventory[par1] = null;
-			}
-
-			return itemstack;
-		}
-		return null;
-	}
-
-	@Override
-	public ItemStack removeStackFromSlot(int par1)
-	{
-		if (this.inventory[par1] != null)
-		{
-			ItemStack itemstack = this.inventory[par1];
-			this.inventory[par1] = null;
-			return itemstack;
-		}
-		return null;
-	}
-
-	@Override
-	public void setInventorySlotContents(int par1, ItemStack par2ItemStack)
-	{
-		this.inventory[par1] = par2ItemStack;
-
-		if (par2ItemStack != null && par2ItemStack.stackSize > this.getInventoryStackLimit())
-		{
-			par2ItemStack.stackSize = this.getInventoryStackLimit();
-		}
-	}
-	
-
-	@Override
-	public int getInventoryStackLimit()
-	{
-		return 64;
-	}
-
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer entityplayer)
-	{
-		return this.worldObj.getTileEntity(this.pos) != this ? false : entityplayer.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
-	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
 		super.readFromNBT(tagCompound);
-		
-		if(tagCompound.hasKey("Items"))
-		{
-			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
-			this.inventory = new ItemStack[this.getSizeInventory()];
-			for (int i = 0; i < tagList.tagCount(); ++i)
-			{
-				NBTTagCompound nbt = (NBTTagCompound) tagList.getCompoundTagAt(i);
-				byte slot = nbt.getByte("Slot");
-
-				if (slot >= 0 && slot < this.inventory.length)
-				{
-					this.inventory[slot] = ItemStack.loadItemStackFromNBT(nbt);
-				}
-			}
-		}
-
 		this.freezing = tagCompound.getBoolean("Freezing");
 		this.progress = tagCompound.getInteger("Progress");
 		this.fuelTime = tagCompound.getInteger("FuelTime");
@@ -334,99 +248,13 @@ public class TileEntityFreezer extends TileEntityLockable implements ISidedInven
 	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
 		super.writeToNBT(tagCompound);
-		
-		NBTTagList tagList = new NBTTagList();
-		for (int slot = 0; slot < this.inventory.length; ++slot)
-		{
-			if (this.inventory[slot] != null)
-			{
-				NBTTagCompound nbt = new NBTTagCompound();
-				nbt.setByte("Slot", (byte) slot);
-				this.inventory[slot].writeToNBT(nbt);
-				tagList.appendTag(nbt);
-			}
-		}
-		tagCompound.setTag("Items", tagList);
 		tagCompound.setBoolean("Freezing", freezing);
 		tagCompound.setInteger("Progress", progress);
 		tagCompound.setInteger("FuelTime", fuelTime);
 		tagCompound.setInteger("Remaining", timeRemaining);
 		return tagCompound;
 	}
-	
-	@Override
-	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-	{
-		NBTTagCompound tagCom = pkt.getNbtCompound();
-		this.readFromNBT(tagCom);
-	}
 
-	@Override
-	public SPacketUpdateTileEntity getUpdatePacket() 
-	{
-		NBTTagCompound tagCom = new NBTTagCompound();
-		this.writeToNBT(tagCom);
-		return new SPacketUpdateTileEntity(pos, getBlockMetadata(), tagCom);
-	}
-
-	@Override
-	public void openInventory(EntityPlayer player)
-	{
-	}
-
-	@Override
-	public void closeInventory(EntityPlayer player)
-	{
-	}
-
-	@Override
-	public int getField(int id)
-	{
-		return 0;
-	}
-
-	@Override
-	public void setField(int id, int value)
-	{
-	}
-
-	@Override
-	public int getFieldCount()
-	{
-		return 0;
-	}
-
-	@Override
-	public void clear()
-	{
-		for (int i = 0; i < inventory.length; i++)
-		{
-			inventory[i] = null;
-		}
-	}
-
-	public String getName()
-	{
-		return "Freezer";
-	}
-
-	public boolean hasCustomName()
-	{
-		return false;
-	}
-
-	@Override
-	public ITextComponent getDisplayName() 
-	{
-		return new TextComponentString(getName());
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int slot, ItemStack stack)
-	{
-		return true;
-	}
-	
 	@Override
 	public int[] getSlotsForFace(EnumFacing side)
 	{
@@ -458,11 +286,5 @@ public class TileEntityFreezer extends TileEntityLockable implements ISidedInven
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
 	{
 		return new ContainerFreezer(playerInventory, this);
-	}
-
-	@Override
-	public String getGuiID() 
-	{
-		return "0";
 	}
 }

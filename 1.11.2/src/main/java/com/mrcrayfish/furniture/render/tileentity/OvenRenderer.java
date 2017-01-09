@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 
 public class OvenRenderer extends TileEntitySpecialRenderer<TileEntityOven>
 {
-	private EntityItem ovenItem = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D);
+	private EntityItem ovenItem = new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D);
 	
 	@Override
 	public void renderTileEntityAt(TileEntityOven oven, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)

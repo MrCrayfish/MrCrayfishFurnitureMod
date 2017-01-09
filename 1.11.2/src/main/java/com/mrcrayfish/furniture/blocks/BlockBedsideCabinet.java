@@ -26,7 +26,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -72,11 +71,11 @@ public class BlockBedsideCabinet extends BlockFurnitureTile
 	}
 	
 	@Override
-	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) 
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) 
 	{
 		if(blockIn instanceof BlockLamp)
 		{
-			worldIn.notifyBlockOfStateChange(pos.down(), this);
+			worldIn.notifyNeighborsOfStateChange(pos.down(), this, true);
 		}
 	}
 

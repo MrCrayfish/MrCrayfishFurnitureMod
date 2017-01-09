@@ -59,7 +59,7 @@ public class ContainerEski extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer par1EntityPlayer)
 	{
-		return this.inventory.isUseableByPlayer(par1EntityPlayer);
+		return this.inventory.isUsableByPlayer(par1EntityPlayer);
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class ContainerEski extends Container
 				return null;
 			}
 
-			if (item.stackSize == 0)
+			if (item.getCount() == 0)
 			{
 				slot.putStack((ItemStack) null);
 			}

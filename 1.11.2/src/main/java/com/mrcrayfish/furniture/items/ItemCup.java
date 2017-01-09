@@ -25,6 +25,7 @@ import com.mrcrayfish.furniture.init.FurnitureItems;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSnow;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.entity.Entity;
@@ -94,7 +95,7 @@ public class ItemCup extends Item implements IItemColor
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack cup, World worldIn, EntityPlayer playerIn, EnumHand hand) 
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) 
 	{
 		if (hasLiquid)
 		{
@@ -103,59 +104,41 @@ public class ItemCup extends Item implements IItemColor
 				playerIn.setActiveHand(hand);
 			}
 		}
-		return new ActionResult(EnumActionResult.PASS, cup);
+		return new ActionResult(EnumActionResult.PASS, playerIn.getHeldItem(hand));
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
-	{
-		if (playerIn.isSneaking())
-		{
-			IBlockState iblockstate = worldIn.getBlockState(pos);
-			Block block = iblockstate.getBlock();
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        IBlockState iblockstate = worldIn.getBlockState(pos);
+        Block block = iblockstate.getBlock();
 
-			if (block == Blocks.SNOW_LAYER && ((Integer) iblockstate.getValue(BlockSnow.LAYERS)).intValue() < 1)
-			{
-				side = EnumFacing.UP;
-			}
-			else if (!block.isReplaceable(worldIn, pos))
-			{
-				pos = pos.offset(side);
-			}
+        if (!block.isReplaceable(worldIn, pos))
+        {
+            pos = pos.offset(facing);
+        }
 
-			if (!playerIn.canPlayerEdit(pos, side, stack))
-			{
-				return EnumActionResult.FAIL;
-			}
-			else if (stack.stackSize == 0)
-			{
-				return EnumActionResult.FAIL;
-			}
-			else
-			{
-				if (worldIn.canBlockBePlaced(this.cupBlock, pos, false, side, (Entity) null, stack))
-				{
-					IBlockState iblockstate1 = this.cupBlock.getDefaultState();
-					if (worldIn.setBlockState(pos, iblockstate1, 3))
-					{
-						iblockstate1 = worldIn.getBlockState(pos);
+        ItemStack itemstack = player.getHeldItem(hand);
 
-						if (iblockstate1.getBlock() == this.cupBlock)
-						{
-							ItemBlock.setTileEntityNBT(worldIn, playerIn, pos, stack);
-							iblockstate1.getBlock().onBlockPlacedBy(worldIn, pos, iblockstate1, playerIn, stack);
-						}
-						
-						worldIn.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, this.cupBlock.getSoundType().getPlaceSound(), SoundCategory.BLOCKS, 1.0F, this.cupBlock.getSoundType().getPitch() * 0.8F, false);
-						--stack.stackSize;
-					}
-				}
+        if (!itemstack.isEmpty() && player.canPlayerEdit(pos, facing, itemstack) && worldIn.mayPlace(this.cupBlock, pos, false, facing, (Entity)null))
+        {
+            int i = this.getMetadata(itemstack.getMetadata());
+            IBlockState iblockstate1 = this.cupBlock.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, i, player, hand);
 
-				return EnumActionResult.SUCCESS;
-			}
-		}
-		return EnumActionResult.FAIL;
-	}
+            if (placeBlockAt(itemstack, player, worldIn, pos, facing, hitX, hitY, hitZ, iblockstate1))
+            {
+                SoundType soundtype = worldIn.getBlockState(pos).getBlock().getSoundType(worldIn.getBlockState(pos), worldIn, pos, player);
+                worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                itemstack.shrink(1);
+            }
+
+            return EnumActionResult.SUCCESS;
+        }
+        else
+        {
+            return EnumActionResult.FAIL;
+        }
+    }
 
 	@SideOnly(Side.CLIENT)
 	public int getColorFromCompound(ItemStack cup)
@@ -181,4 +164,18 @@ public class ItemCup extends Item implements IItemColor
 		}
 		return 16777215;
 	}
+	
+	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState)
+    {
+        if (!world.setBlockState(pos, newState, 11)) return false;
+
+        IBlockState state = world.getBlockState(pos);
+        if (state.getBlock() == this.cupBlock)
+        {
+            ItemBlock.setTileEntityNBT(world, player, pos, stack);
+            this.cupBlock.onBlockPlacedBy(world, pos, state, player, stack);
+        }
+
+        return true;
+    }
 }

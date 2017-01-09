@@ -69,8 +69,8 @@ public class EntityMirror extends Entity
 
 		if (rendering)
 		{
-			double dy = this.posZ - mc.thePlayer.posZ;
-			double dx = this.posX - mc.thePlayer.posX;
+			double dy = this.posZ - mc.player.posZ;
+			double dx = this.posX - mc.player.posX;
 			double angleYaw = Math.atan2(dy, dx) * (180D / Math.PI);
 				
 			if(facing == 1)
@@ -95,8 +95,8 @@ public class EntityMirror extends Entity
 			this.rotationYaw = (float) (-90F + facing * 90F - angleYaw);
 
 
-			double distance = getDistanceToEntity(mc.thePlayer);
-			double height = (mc.thePlayer.getEyeHeight() + mc.thePlayer.posY) - this.posY;
+			double distance = getDistanceToEntity(mc.player);
+			double height = (mc.player.getEyeHeight() + mc.player.posY) - this.posY;
 			double anglePitch = Math.atan2(height, distance) * (180D / Math.PI);
 			if (anglePitch > 45F)
 			{
@@ -109,7 +109,7 @@ public class EntityMirror extends Entity
 			this.rotationPitch = (float) anglePitch;
 		}
 		
-		if (!(worldObj.getBlockState(getPosition().down()).getBlock() instanceof BlockMirror))
+		if (!(world.getBlockState(getPosition().down()).getBlock() instanceof BlockMirror))
 		{
 			MirrorRenderer.removeRegisteredMirror(this);
 			this.setDead();

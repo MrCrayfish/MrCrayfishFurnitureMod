@@ -72,14 +72,14 @@ public class MessageFillSink implements IMessage, IMessageHandler<MessageFillSin
 		if (ctx.side.isClient())
 		{
 			EntityPlayer player = MrCrayfishFurnitureMod.proxy.getClientPlayer();
-			TileEntity tile_entity = player.worldObj.getTileEntity(new BlockPos(message.x, message.y, message.z));
+			TileEntity tile_entity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
 			if (tile_entity instanceof TileEntityCounterSink)
 			{
 				TileEntityCounterSink tileEntityCounterSink = (TileEntityCounterSink) tile_entity;
 				tileEntityCounterSink.setHasWater(message.hasWater);
 			}
 			BlockPos pos = new BlockPos(message.x, message.y, message.z);
-			TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().playerEntity.worldObj, pos);
+			TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().playerEntity.world, pos);
 		}
 		return null;
 	}

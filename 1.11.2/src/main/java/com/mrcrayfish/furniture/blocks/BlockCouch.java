@@ -104,35 +104,35 @@ public abstract class BlockCouch extends BlockFurnitureTile
 	}
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB bounds, List<AxisAlignedBB> list, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
-		if (!(collidingEntity instanceof EntitySittableBlock))
+		if (!(entityIn instanceof EntitySittableBlock))
 		{
 			int facing = getMetaFromState(state);
 			
-			super.addCollisionBoxToList(pos, bounds, list, COUCH_BACKREST[facing]);
-			super.addCollisionBoxToList(pos, bounds, list, COUCH_BASE);
+			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COUCH_BACKREST[facing]);
+			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COUCH_BASE);
 			
 			if (StateHelper.getBlock(worldIn, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.DOWN) instanceof BlockCouch)
 			{
 				if (StateHelper.getRotation(worldIn, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.DOWN) == StateHelper.Direction.RIGHT)
 				{
-					super.addCollisionBoxToList(pos, bounds, list, COUCH_BACKREST_RIGHT[facing]);
+					super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COUCH_BACKREST_RIGHT[facing]);
 				}
 				else if (StateHelper.getRotation(worldIn, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.DOWN) == StateHelper.Direction.LEFT)
 				{
-					super.addCollisionBoxToList(pos, bounds, list, COUCH_BACKREST_LEFT[facing]);
+					super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COUCH_BACKREST_LEFT[facing]);
 				}
 				return;
 			}
 
 			if (StateHelper.isAirBlock(worldIn, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.LEFT))
 			{
-				super.addCollisionBoxToList(pos, bounds, list, COUCH_ARMREST_LEFT[facing]);
+				super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COUCH_ARMREST_LEFT[facing]);
 			}
 			if (StateHelper.isAirBlock(worldIn, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.RIGHT))
 			{
-				super.addCollisionBoxToList(pos, bounds, list, COUCH_ARMREST_RIGHT[facing]);
+				super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COUCH_ARMREST_RIGHT[facing]);
 			}
 		}
 	}
@@ -185,9 +185,9 @@ public abstract class BlockCouch extends BlockFurnitureTile
 	}
 
 	@Override
-	public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
-		IBlockState state = super.onBlockPlaced(world, pos, facing, hitX, hitY, hitZ, meta, placer);
+		IBlockState state = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
 		if(!isSpecial())
 		{
 			state = state.withProperty(COLOUR, Integer.valueOf(0));
@@ -198,6 +198,7 @@ public abstract class BlockCouch extends BlockFurnitureTile
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
+		ItemStack heldItem = playerIn.getHeldItem(hand);
 		if(!isSpecial())
 		{
 			if(heldItem != null && heldItem.getItem() == Items.NAME_TAG)
@@ -208,7 +209,7 @@ public abstract class BlockCouch extends BlockFurnitureTile
 					{
 						playerIn.addStat(FurnitureAchievements.jebCouch);
 						worldIn.setBlockState(pos, FurnitureBlocks.couch_jeb.getDefaultState().withProperty(FACING, state.getValue(FACING)));
-						heldItem.stackSize--;
+						heldItem.shrink(1);
 						return true;
 					}
 				}
@@ -223,7 +224,7 @@ public abstract class BlockCouch extends BlockFurnitureTile
 					if (heldItem.getItem() instanceof ItemDye) 
 					{
 						tileEntityCouch.setColour(heldItem.getItemDamage());
-						heldItem.stackSize--;
+						heldItem.shrink(1);
 						TileEntityUtil.markBlockForUpdate(worldIn, pos);
 						return true;
 					}

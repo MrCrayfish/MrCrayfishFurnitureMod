@@ -43,7 +43,7 @@ public class TileEntityShowerHead extends TileEntity implements ITickable
 	@Override
 	public void update()
 	{
-		if (this.worldObj.isRemote)
+		if (this.world.isRemote)
 		{
 			double posX = pos.getX() + 0.35D + (rand.nextDouble() / 3);
 			double posZ = pos.getZ() + 0.35D + (rand.nextDouble() / 3);
@@ -53,7 +53,7 @@ public class TileEntityShowerHead extends TileEntity implements ITickable
 		{
 			if (timer % 5 == 0)
 			{
-				List<EntityPlayer> listPlayers = worldObj.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(pos.getX(), pos.getY() - 1, pos.getZ(), pos.getX() + 1.0D, pos.getY() - 1 + 1.0D, pos.getZ() + 1.0D));
+				List<EntityPlayer> listPlayers = world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(pos.getX(), pos.getY() - 1, pos.getZ(), pos.getX() + 1.0D, pos.getY() - 1 + 1.0D, pos.getZ() + 1.0D));
 				for (EntityPlayer player : listPlayers)
 				{
 					player.curePotionEffects(new ItemStack(Items.MILK_BUCKET));
@@ -69,7 +69,7 @@ public class TileEntityShowerHead extends TileEntity implements ITickable
 								ItemArmor armour = (ItemArmor) itemstack.getItem();
 								if (armour.getArmorMaterial() == ArmorMaterial.LEATHER)
 								{
-									player.inventory.armorInventory[i] = new ItemStack(itemstack.getItem(), 1, itemstack.getItemDamage());
+									player.inventory.armorInventory.set(i,  new ItemStack(itemstack.getItem(), 1, itemstack.getItemDamage()));
 								}
 							}
 						}
@@ -84,7 +84,7 @@ public class TileEntityShowerHead extends TileEntity implements ITickable
 	
 			if (timer >= 20)
 			{
-				worldObj.playSound((EntityPlayer)null, pos, FurnitureSounds.shower, SoundCategory.BLOCKS, 0.75F, 1.0F);
+				world.playSound((EntityPlayer)null, pos, FurnitureSounds.shower, SoundCategory.BLOCKS, 0.75F, 1.0F);
 				timer = 0;
 			}
 			timer++;

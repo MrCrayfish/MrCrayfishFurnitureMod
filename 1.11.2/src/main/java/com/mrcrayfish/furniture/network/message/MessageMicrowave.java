@@ -66,7 +66,7 @@ public class MessageMicrowave implements IMessage, IMessageHandler<MessageMicrow
 	@Override
 	public IMessage onMessage(MessageMicrowave message, MessageContext ctx)
 	{
-		World world = ctx.getServerHandler().playerEntity.worldObj;
+		World world = ctx.getServerHandler().playerEntity.world;
 		TileEntity tileEntity = world.getTileEntity(new BlockPos(message.x, message.y, message.z));
 		if (tileEntity instanceof TileEntityMicrowave)
 		{
@@ -80,7 +80,7 @@ public class MessageMicrowave implements IMessage, IMessageHandler<MessageMicrow
 				tileEntityMicrowave.stopCooking();
 			}
 			BlockPos pos = new BlockPos(message.x, message.y, message.z);
-			TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().playerEntity.worldObj, pos);
+			TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().playerEntity.world, pos);
 		}
 		return null;
 	}

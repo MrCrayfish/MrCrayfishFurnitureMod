@@ -79,9 +79,9 @@ public class BlockBath extends BlockFurnitureTile
 	}
 
 	@Override
-	public IBlockState onBlockPlaced(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
-		IBlockState state = super.onBlockPlaced(world, pos, facing, hitX, hitY, hitZ, meta, placer);
+		IBlockState state = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
 		return state.withProperty(WATER_LEVEL, Integer.valueOf(0));
 	}
 
@@ -92,32 +92,33 @@ public class BlockBath extends BlockFurnitureTile
 	}
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB bounds, List<AxisAlignedBB> list, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
 		EnumFacing facing = state.getValue(FACING);
 		if(facing.getHorizontalIndex() % 2 == 0)
 		{
-			addCollisionBoxToList(pos, bounds, list, SIDE_NORTH);
-			addCollisionBoxToList(pos, bounds, list, SIDE_SOUTH);
+			addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_NORTH);
+			addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_SOUTH);
 		}
 		else
 		{
-			addCollisionBoxToList(pos, bounds, list, SIDE_EAST);
-			addCollisionBoxToList(pos, bounds, list, SIDE_WEST);
+			addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_EAST);
+			addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_WEST);
 		}
 		if (this == FurnitureBlocks.bath_1)
 		{
-			addCollisionBoxToList(pos, bounds, list, HEADS[facing.getHorizontalIndex()]);
+			addCollisionBoxToList(pos, entityBox, collidingBoxes, HEADS[facing.getHorizontalIndex()]);
 		}
 		else
 		{
-			addCollisionBoxToList(pos, bounds, list, TAILS[facing.getHorizontalIndex()]);
+			addCollisionBoxToList(pos, entityBox, collidingBoxes, TAILS[facing.getHorizontalIndex()]);
 		}
 	}
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
+		ItemStack heldItem = playerIn.getHeldItem(hand);
 		if (!worldIn.isRemote)
 		{
 			BlockPos otherBathPos = null;
@@ -145,11 +146,11 @@ public class BlockBath extends BlockFurnitureTile
 						{
 							if (!playerIn.capabilities.isCreativeMode)
 							{
-								if (heldItem.stackSize > 1)
+								if (heldItem.getCount() > 1)
 								{
 									if (playerIn.inventory.addItemStackToInventory(new ItemStack(Items.WATER_BUCKET)))
 									{
-										heldItem.stackSize--;
+										heldItem.shrink(1);
 									}
 								}
 								else
@@ -181,11 +182,11 @@ public class BlockBath extends BlockFurnitureTile
 						{
 							if (!playerIn.capabilities.isCreativeMode)
 							{
-								if (heldItem.stackSize > 1)
+								if (heldItem.getCount() > 1)
 								{
 									if (playerIn.inventory.addItemStackToInventory(new ItemStack(Items.POTIONITEM, 1, 0)))
 									{
-										heldItem.stackSize--;
+										heldItem.shrink(1);
 									}
 								}
 								else
@@ -228,7 +229,7 @@ public class BlockBath extends BlockFurnitureTile
 							}
 							else
 							{
-								playerIn.addChatComponentMessage(new TextComponentString("You need to have a water source under the block the bath head is on to fill it. Alternatively you can use a water bucket to fill it."));
+								playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the bath head is on to fill it. Alternatively you can use a water bucket to fill it."));
 							}
 						}
 					}
@@ -250,7 +251,7 @@ public class BlockBath extends BlockFurnitureTile
 						}
 						else
 						{
-							playerIn.addChatComponentMessage(new TextComponentString("You need to have a water source under the block the bath head is on to fill it. Alternatively you can use a water bucket to fill it."));
+							playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the bath head is on to fill it. Alternatively you can use a water bucket to fill it."));
 						}
 					}
 

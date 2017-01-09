@@ -34,7 +34,7 @@ public class MessageUpdateFields implements IMessage, IMessageHandler<MessageUpd
 		if (ctx.side.isClient())
 		{
 			BlockPos pos = new BlockPos(message.x, message.y, message.z);
-			TileEntity tileEntity = Minecraft.getMinecraft().theWorld.getTileEntity(pos);
+			TileEntity tileEntity = Minecraft.getMinecraft().world.getTileEntity(pos);
 			if(tileEntity instanceof IInventory)
 			{
 				IInventory inventory = (IInventory) tileEntity;

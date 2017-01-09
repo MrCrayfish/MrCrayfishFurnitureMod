@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 public class GrillRenderer extends TileEntitySpecialRenderer<TileEntityGrill> 
 {
 	private ItemStack coal = new ItemStack(Items.COAL, 1, 1);
-	private EntityItem entityItem = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D, coal);
+	private EntityItem entityItem = new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D, coal);
 	
 	private final float MAX_ANIM_TIME = 100F;
 	private final float FLIP_HEIGHT = 0.5F;

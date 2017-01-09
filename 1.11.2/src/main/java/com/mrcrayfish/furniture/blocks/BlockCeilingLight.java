@@ -91,12 +91,12 @@ public class BlockCeilingLight extends Block
 				if (mode == Mode.RIGHT_CLICK)
 				{
 					worldIn.setBlockState(pos, state.withProperty(MODE, Mode.REDSTONE));
-					playerIn.addChatComponentMessage(new TextComponentString("Ceiling Light now in Redstone mode"));
+					playerIn.sendMessage(new TextComponentString("Ceiling Light now in Redstone mode"));
 				}
 				else
 				{
 					worldIn.setBlockState(pos, state.withProperty(MODE, Mode.RIGHT_CLICK));
-					playerIn.addChatComponentMessage(new TextComponentString("Ceiling Light now in Right Click mode"));
+					playerIn.sendMessage(new TextComponentString("Ceiling Light now in Right Click mode"));
 				}
 			}
 			else if (((Mode) state.getValue(MODE)) == Mode.RIGHT_CLICK)
@@ -113,9 +113,9 @@ public class BlockCeilingLight extends Block
 		}
 		return true;
 	}
-	
+
 	@Override
-	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn) 
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) 
 	{
 		if (!canBlockStay(worldIn, pos))
 		{
@@ -137,9 +137,9 @@ public class BlockCeilingLight extends Block
 		}
 	}
 
-	public boolean canBlockStay(World par1World, BlockPos pos)
+	public boolean canBlockStay(IBlockAccess worldIn, BlockPos pos)
 	{
-		return !par1World.isAirBlock(pos.up());
+		return !worldIn.isAirBlock(pos.up());
 	}
 
 	@Override

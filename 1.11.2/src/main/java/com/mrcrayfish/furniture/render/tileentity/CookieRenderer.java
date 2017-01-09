@@ -31,7 +31,7 @@ import net.minecraft.item.ItemStack;
 public class CookieRenderer extends TileEntitySpecialRenderer<TileEntityCookieJar>
 {
 	private ItemStack cookie = new ItemStack(Items.COOKIE);
-	private EntityItem entityItem = new EntityItem(Minecraft.getMinecraft().theWorld, 0D, 0D, 0D, cookie);
+	private EntityItem entityItem = new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D, cookie);
 
 	@Override
 	public void renderTileEntityAt(TileEntityCookieJar cookieJar, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)

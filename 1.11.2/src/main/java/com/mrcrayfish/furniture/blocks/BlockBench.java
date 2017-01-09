@@ -52,16 +52,15 @@ public class BlockBench extends BlockFurniture
 	}
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB axisAligned, List<AxisAlignedBB> axisAlignedList, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
 		if(getMetaFromState(state) % 2 == 1)
 		{
-			super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_NORTH);
+			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_NORTH);
 			return;
 		}
-		super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_EAST);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_EAST);
 	}
-
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) 
 	{

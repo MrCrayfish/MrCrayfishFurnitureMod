@@ -57,7 +57,7 @@ public class ContainerBedsideCabinet extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer entityPlayer)
 	{
-		return this.bedsideCabinetInventory.isUseableByPlayer(entityPlayer);
+		return this.bedsideCabinetInventory.isUsableByPlayer(entityPlayer);
 	}
 
 	@Override
@@ -83,7 +83,7 @@ public class ContainerBedsideCabinet extends Container
 				return null;
 			}
 
-			if (item.stackSize == 0)
+			if (item.getCount() == 0)
 			{
 				slot.putStack((ItemStack) null);
 			}

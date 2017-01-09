@@ -134,31 +134,31 @@ public class BlockElectricFence extends Block
     }
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB axisAligned, List<AxisAlignedBB> axisAlignedList, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
 		state = state.getActualState(worldIn, pos);
 		
 		if (state.getValue(NORTH))
         {
-            super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_NORTH);
+            super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_NORTH);
         }
 
         if (state.getValue(EAST))
         {
-        	super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_EAST);
+        	super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_EAST);
         }
 
         if (state.getValue(SOUTH))
         {
-        	super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_SOUTH);
+        	super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_SOUTH);
         }
 
         if (state.getValue(WEST))
         {
-        	super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_WEST);
+        	super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_WEST);
         }
         
-        super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, COLLISION_BOX_CENTER);
+        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_CENTER);
 	}
 
 	@Override

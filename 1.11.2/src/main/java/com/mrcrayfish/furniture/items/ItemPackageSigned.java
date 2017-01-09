@@ -83,7 +83,7 @@ public class ItemPackageSigned extends Item implements IMail
 			{
 				if (player.capabilities.isCreativeMode && player.isSneaking() && tile_entity instanceof TileEntityMailBox)
 				{
-					player.addChatMessage(new TextComponentString("You cannot use this in creative."));
+					player.sendMessage(new TextComponentString("You cannot use this in creative."));
 				}
 				else if (tile_entity instanceof TileEntityMailBox)
 				{
@@ -92,26 +92,27 @@ public class ItemPackageSigned extends Item implements IMail
 					{
 						ItemStack itemStack = stack.copy();
 						tileEntityMailBox.addMail(itemStack);
-						player.addChatComponentMessage(new TextComponentString("Thank you! - " + TextFormatting.YELLOW + tileEntityMailBox.ownerName));
-						stack.stackSize--;
+						player.sendMessage(new TextComponentString("Thank you! - " + TextFormatting.YELLOW + tileEntityMailBox.ownerName));
+						stack.shrink(1);
 					}
 					else if (tileEntityMailBox.isMailBoxFull() == true && player.isSneaking())
 					{
-						player.addChatMessage(new TextComponentString(TextFormatting.YELLOW + tileEntityMailBox.ownerName + "'s" + TextFormatting.WHITE + " mail box seems to be full. Try again later."));
+						player.sendMessage(new TextComponentString(TextFormatting.YELLOW + tileEntityMailBox.ownerName + "'s" + TextFormatting.WHITE + " mail box seems to be full. Try again later."));
 					}
 				}
 			}
 			else
 			{
-				player.addChatMessage(new TextComponentString("You cannot insert a used package."));
+				player.sendMessage(new TextComponentString("You cannot insert a used package."));
 			}
 		}
 		return true;
 	}
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) 
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) 
 	{
+		ItemStack stack = playerIn.getHeldItem(hand);
 		if (!worldIn.isRemote)
 		{
 			if (this == FurnitureItems.itemPackageSigned)
@@ -120,7 +121,7 @@ public class ItemPackageSigned extends Item implements IMail
 				playerIn.addStat(FurnitureAchievements.firstMail);
 			}
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 	}
 
 	public static IInventory getInv(EntityPlayer player)

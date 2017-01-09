@@ -54,7 +54,7 @@ public class ContainerEnvelope extends Container
 	@Override
 	public boolean canInteractWith(EntityPlayer player)
 	{
-		return this.envelopInventory.isUseableByPlayer(player);
+		return this.envelopInventory.isUsableByPlayer(player);
 	}
 
 	@Override
@@ -80,7 +80,7 @@ public class ContainerEnvelope extends Container
 				return null;
 			}
 
-			if (item.stackSize == 0)
+			if (item.getCount() == 0)
 			{
 				slot.putStack((ItemStack) null);
 			}

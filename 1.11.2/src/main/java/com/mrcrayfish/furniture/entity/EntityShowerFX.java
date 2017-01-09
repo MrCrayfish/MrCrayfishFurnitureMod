@@ -46,12 +46,6 @@ public class EntityShowerFX extends Particle
 	}
 
 	@Override
-	public int getBrightnessForRender(float par1)
-	{
-		return super.getBrightnessForRender(par1);
-	}
-
-	@Override
 	public void onUpdate()
 	{
 		this.prevPosX = this.posX;
@@ -62,7 +56,7 @@ public class EntityShowerFX extends Particle
 		this.particleGreen = 0.3F;
 		this.particleBlue = 1.0F;
 
-		this.moveEntity(this.motionX, this.motionY, this.motionZ);
+		this.move(this.motionX, this.motionY, this.motionZ);
 		this.motionY = -0.2D;
 
 		if (this.particleMaxAge-- <= 0)
@@ -70,7 +64,7 @@ public class EntityShowerFX extends Particle
 			this.setExpired();
 		}
 
-		if (this.isCollided)
+		if (this.onGround)
 		{
 			this.particleScale -= 0.1F;
 			this.motionX *= 0.699999988079071D;

@@ -46,7 +46,7 @@ public class BlockWreath extends BlockFurniture implements IBlockColor
 	}
 
 	@Override
-	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
 	{
 		if (this.canPlaceCheck(worldIn, pos, state))
 		{
@@ -88,7 +88,7 @@ public class BlockWreath extends BlockFurniture implements IBlockColor
 	}
 
 	@Override
-	public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		return this.getDefaultState().withProperty(FACING, facing.getOpposite());
 	}
@@ -99,9 +99,9 @@ public class BlockWreath extends BlockFurniture implements IBlockColor
 		EnumFacing facing = state.getValue(FACING);
 		return BOUNDING_BOX[facing.getHorizontalIndex()];
 	}
-	
+
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState worldIn, World pos, BlockPos state) 
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
 		return NULL_AABB;
 	}

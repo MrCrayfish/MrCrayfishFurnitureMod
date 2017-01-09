@@ -76,38 +76,39 @@ public class ItemEnvelopeSigned extends Item implements IMail
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) 
 	{
+		ItemStack stack = player.getHeldItem(hand);
 		TileEntity tile_entity = worldIn.getTileEntity(pos);
 		if (!worldIn.isRemote)
 		{
 			NBTTagList var2 = (NBTTagList) NBTHelper.getCompoundTag(stack, "Envelope").getTag("Items");
 			if (var2.tagCount() > 0)
 			{
-				if (playerIn.capabilities.isCreativeMode && playerIn.isSneaking() && tile_entity instanceof TileEntityMailBox)
+				if (player.capabilities.isCreativeMode && player.isSneaking() && tile_entity instanceof TileEntityMailBox)
 				{
-					playerIn.addChatMessage(new TextComponentString("You cannot use this in creative."));
+					player.sendMessage(new TextComponentString("You cannot use this in creative."));
 				}
 				else if (tile_entity instanceof TileEntityMailBox)
 				{
 					TileEntityMailBox tileEntityMailBox = (TileEntityMailBox) tile_entity;
-					if (tileEntityMailBox.isMailBoxFull() == false && playerIn.isSneaking())
+					if (tileEntityMailBox.isMailBoxFull() == false && player.isSneaking())
 					{
 						ItemStack itemStack = stack.copy();
 						tileEntityMailBox.addMail(itemStack);
-						playerIn.addChatMessage(new TextComponentString("Thank you! - " + TextFormatting.YELLOW + tileEntityMailBox.ownerName));
-						playerIn.addStat(FurnitureAchievements.sendMail);
-						stack.stackSize--;
+						player.sendMessage(new TextComponentString("Thank you! - " + TextFormatting.YELLOW + tileEntityMailBox.ownerName));
+						player.addStat(FurnitureAchievements.sendMail);
+						stack.shrink(1);
 					}
-					else if (tileEntityMailBox.isMailBoxFull() == true && playerIn.isSneaking())
+					else if (tileEntityMailBox.isMailBoxFull() == true && player.isSneaking())
 					{
-						playerIn.addChatMessage(new TextComponentString(TextFormatting.YELLOW + tileEntityMailBox.ownerName + "'s" + TextFormatting.WHITE + " mail box seems to be full. Try again later."));
+						player.sendMessage(new TextComponentString(TextFormatting.YELLOW + tileEntityMailBox.ownerName + "'s" + TextFormatting.WHITE + " mail box seems to be full. Try again later."));
 					}
 				}
 			}
 			else
 			{
-				playerIn.addChatMessage(new TextComponentString("You cannot insert a used envelope."));
+				player.sendMessage(new TextComponentString("You cannot insert a used envelope."));
 			}
 			return EnumActionResult.SUCCESS;
 		}
@@ -115,13 +116,14 @@ public class ItemEnvelopeSigned extends Item implements IMail
 	}
 
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) 
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) 
 	{
+		ItemStack stack = playerIn.getHeldItem(hand);
 		if (!worldIn.isRemote)
 		{
 			playerIn.openGui(MrCrayfishFurnitureMod.instance, 6, worldIn, 0, 0, 0);
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 	}
 
 	public static IInventory getInv(EntityPlayer par1EntityPlayer)

@@ -75,7 +75,7 @@ public class BlockMailBox extends BlockFurnitureTile
 			player.addStat(FurnitureAchievements.mailBox);
 			if (!world.isRemote)
 			{
-				player.addChatComponentMessage(new TextComponentString("Now right click the mailbox to claim ownership"));
+				player.sendMessage(new TextComponentString("Now right click the mailbox to claim ownership"));
 			}
 		}
 	}
@@ -92,7 +92,7 @@ public class BlockMailBox extends BlockFurnitureTile
 				if (tileEntityMailBox.ownerName.isEmpty())
 				{
 					tileEntityMailBox.setOwner(playerIn);
-					playerIn.addChatComponentMessage(new TextComponentString("Successfully set the owner of the mail box to " + TextFormatting.YELLOW + playerIn.getName()));
+					playerIn.sendMessage(new TextComponentString("Successfully set the owner of the mail box to " + TextFormatting.YELLOW + playerIn.getName()));
 					TileEntityUtil.markBlockForUpdate(worldIn, pos);
 					return true;
 				}
@@ -105,7 +105,7 @@ public class BlockMailBox extends BlockFurnitureTile
 				}
 				else
 				{
-					playerIn.addChatComponentMessage(new TextComponentString("This mail box belongs to " + TextFormatting.YELLOW + tileEntityMailBox.ownerName));
+					playerIn.sendMessage(new TextComponentString("This mail box belongs to " + TextFormatting.YELLOW + tileEntityMailBox.ownerName));
 				}
 			}
 		}
@@ -138,7 +138,7 @@ public class BlockMailBox extends BlockFurnitureTile
 				world.setBlockState(pos, world.getBlockState(pos));
 				if (!world.isRemote)
 				{
-					player.addChatComponentMessage(new TextComponentString(TextFormatting.RED + "You need to be the owner of the mailbox to destroy it."));
+					player.sendMessage(new TextComponentString(TextFormatting.RED + "You need to be the owner of the mailbox to destroy it."));
 					return false;
 				}
 			}
@@ -158,9 +158,9 @@ public class BlockMailBox extends BlockFurnitureTile
 	}
 	
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB axisAligned, List<AxisAlignedBB> axisAlignedList, Entity collidingEntity) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
 	{
-		super.addCollisionBoxToList(pos, axisAligned, axisAlignedList, BOUNDING_BOX);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
 	}
 	
 	@Override

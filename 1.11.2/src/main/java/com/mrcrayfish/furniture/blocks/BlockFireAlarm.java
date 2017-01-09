@@ -132,11 +132,11 @@ public class BlockFireAlarm extends BlockFurniture
 		{
 			world.scheduleUpdate(pos, this, 1);
 		}
-		world.notifyBlockOfStateChange(pos, this);
+		world.notifyNeighborsOfStateChange(pos, this, true);
 	}
 
 	@Override
-	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) 
 	{
 		if (!canBlockStay(worldIn, pos))
 		{

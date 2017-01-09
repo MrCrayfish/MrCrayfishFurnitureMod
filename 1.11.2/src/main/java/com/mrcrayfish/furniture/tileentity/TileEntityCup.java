@@ -58,7 +58,7 @@ public class TileEntityCup extends TileEntity implements ISimpleInventory
 			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Item");
 			if (tagList.tagCount() > 0)
 			{
-				this.item = ItemStack.loadItemStackFromNBT(tagList.getCompoundTagAt(0));
+				this.item = new ItemStack(tagList.getCompoundTagAt(0));
 			}
 		}
 		this.red = tagCompound.getInteger("Red");

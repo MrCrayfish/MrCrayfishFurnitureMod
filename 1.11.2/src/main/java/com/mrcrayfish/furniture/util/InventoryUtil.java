@@ -50,16 +50,15 @@ public class InventoryUtil
 		float f1 = RANDOM.nextFloat() * 0.8F + 0.1F;
 		float f2 = RANDOM.nextFloat() * 0.8F + 0.1F;
 
-		while (stack.stackSize > 0)
+		while (stack.getCount() > 0)
 		{
 			int i = RANDOM.nextInt(21) + 10;
 
-			if (i > stack.stackSize)
+			if (i > stack.getCount())
 			{
-				i = stack.stackSize;
+				i = stack.getCount();
 			}
-
-			stack.stackSize -= i;
+			stack.shrink(i);
 			EntityItem entityitem = new EntityItem(world, posX + (double) f, posY + (double) f1, posZ + (double) f2, new ItemStack(stack.getItem(), i, stack.getMetadata()));
 
 			if (stack.hasTagCompound())
@@ -71,7 +70,7 @@ public class InventoryUtil
 			entityitem.motionX = RANDOM.nextGaussian() * (double) f3;
 			entityitem.motionY = RANDOM.nextGaussian() * (double) f3 + 0.20000000298023224D;
 			entityitem.motionZ = RANDOM.nextGaussian() * (double) f3;
-			world.spawnEntityInWorld(entityitem);
+			world.spawnEntity(entityitem);
 		}
 	}
 }
