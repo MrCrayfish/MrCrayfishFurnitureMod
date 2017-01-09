@@ -17,8 +17,6 @@
  */
 package com.mrcrayfish.furniture.items;
 
-import java.awt.Color;
-
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
@@ -26,7 +24,6 @@ import com.mrcrayfish.furniture.init.FurnitureItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSnow;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -42,12 +39,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-//Starting in a minute!
-
-public class ItemCup extends Item implements IItemColor
+public class ItemCup extends Item
 {
 	private boolean hasLiquid = false;
 	private Block cupBlock = FurnitureBlocks.cup;
@@ -155,30 +148,5 @@ public class ItemCup extends Item implements IItemColor
 			}
 		}
 		return EnumActionResult.FAIL;
-	}
-
-	@SideOnly(Side.CLIENT)
-	public int getColorFromCompound(ItemStack cup)
-	{
-		if (cup.hasTagCompound())
-		{
-			if (cup.getTagCompound().hasKey("Colour"))
-			{
-				int[] colour = cup.getTagCompound().getIntArray("Colour");
-				Color color = new Color(colour[0], colour[1], colour[2]);
-				return color.getRGB();
-			}
-		}
-		return 16777215;
-	}
-	
-	@Override
-	public int getColorFromItemstack(ItemStack stack, int tintIndex) 
-	{
-		if(tintIndex == 1)
-		{
-			return this.getColorFromCompound(stack);
-		}
-		return 16777215;
-	}
+	}	
 }

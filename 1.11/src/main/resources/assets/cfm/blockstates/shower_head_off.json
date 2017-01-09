@@ -1,8 +1,0 @@
-{
-"variants": {
-"facing=north": {"model": "cfm:shower_head_pre", "y": 270},
-"facing=south": { "model": "cfm:shower_head_pre", "y": 90},
-"facing=east": { "model": "cfm:shower_head_pre"},
-"facing=west": { "model": "cfm:shower_head_pre", "y": 180}
-}
-}
