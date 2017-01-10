@@ -24,14 +24,11 @@ import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSnow;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -46,9 +43,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-//Starting in a minute!
-
-public class ItemCup extends Item implements IItemColor
+public class ItemCup extends Item
 {
 	private boolean hasLiquid = false;
 	private Block cupBlock = FurnitureBlocks.cup;
@@ -154,17 +149,7 @@ public class ItemCup extends Item implements IItemColor
 		}
 		return 16777215;
 	}
-	
-	@Override
-	public int getColorFromItemstack(ItemStack stack, int tintIndex) 
-	{
-		if(tintIndex == 1)
-		{
-			return this.getColorFromCompound(stack);
-		}
-		return 16777215;
-	}
-	
+
 	public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, IBlockState newState)
     {
         if (!world.setBlockState(pos, newState, 11)) return false;

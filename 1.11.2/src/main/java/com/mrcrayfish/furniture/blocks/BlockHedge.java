@@ -21,18 +21,15 @@ import java.util.List;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
-import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -41,14 +38,12 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockHedge extends Block implements IBlockColor
+public class BlockHedge extends Block
 {
 	public static final PropertyBool NORTH = PropertyBool.create("north");
 	public static final PropertyBool EAST = PropertyBool.create("east");
@@ -90,35 +85,6 @@ public class BlockHedge extends Block implements IBlockColor
 	{
 		return false;
 	}
-
-    @SideOnly(Side.CLIENT)
-    public int getRenderColor(IBlockState state)
-    {
-    	if(this == FurnitureBlocks.hedge_spruce)
-    	{
-    		return ColorizerFoliage.getFoliageColorPine();
-    	}
-    	if(this == FurnitureBlocks.hedge_birch)
-    	{
-    		return ColorizerFoliage.getFoliageColorBirch();
-    	}
-        return ColorizerFoliage.getFoliageColorBasic();
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex)
-    {
-    	if(this == FurnitureBlocks.hedge_spruce)
-    	{
-    		return ColorizerFoliage.getFoliageColorPine();
-    	}
-    	if(this == FurnitureBlocks.hedge_birch)
-    	{
-    		return ColorizerFoliage.getFoliageColorBirch();
-    	}
-        return BiomeColorHelper.getFoliageColorAtPos(worldIn, pos);
-    }
 
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getBlockLayer()

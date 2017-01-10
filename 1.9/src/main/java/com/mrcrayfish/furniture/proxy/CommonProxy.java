@@ -47,7 +47,7 @@ public class CommonProxy implements ProxyInterface
 	@Override
 	public boolean isDedicatedServer()
 	{
-		return !Minecraft.getMinecraft().isIntegratedServerRunning();
+		return true;
 	}
 
 	@Override
