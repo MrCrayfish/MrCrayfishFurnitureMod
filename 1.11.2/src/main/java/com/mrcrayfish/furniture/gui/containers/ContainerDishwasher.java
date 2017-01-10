@@ -75,7 +75,7 @@ public class ContainerDishwasher extends Container
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotNum)
 	{
-		ItemStack itemCopy = null;
+		ItemStack itemCopy = ItemStack.EMPTY;
 		Slot slot = (Slot) this.inventorySlots.get(slotNum);
 
 		if (slot != null && slot.getHasStack())
@@ -87,7 +87,7 @@ public class ContainerDishwasher extends Container
 			{
 				if (!this.mergeItemStack(item, 7, this.inventorySlots.size(), false))
 				{
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 			else if (slotNum > 6)
@@ -101,7 +101,7 @@ public class ContainerDishwasher extends Container
 					{
 						if (!this.mergeItemStack(item, corroSlot, corroSlot + 1, true))
 						{
-							return null;
+							return ItemStack.EMPTY;
 						}
 					}
 				}
@@ -109,28 +109,28 @@ public class ContainerDishwasher extends Container
 				{
 					if (!this.mergeItemStack(item, 6, 7, false))
 					{
-						return null;
+						return ItemStack.EMPTY;
 					}
 				}
 				else if (slotNum > 6 && slotNum < this.inventorySlots.size() - 9)
 				{
 					if (!this.mergeItemStack(item, this.inventorySlots.size() - 9, this.inventorySlots.size(), false))
 					{
-						return null;
+						return ItemStack.EMPTY;
 					}
 				}
 				else if (slotNum >= this.inventorySlots.size() - 9 && slotNum < this.inventorySlots.size())
 				{
 					if (!this.mergeItemStack(item, 7, this.inventorySlots.size() - 9, false))
 					{
-						return null;
+						return ItemStack.EMPTY;
 					}
 				}
 			}
 
 			if (item.getCount() == 0)
 			{
-				slot.putStack((ItemStack) null);
+				slot.putStack(ItemStack.EMPTY);
 			}
 			else
 			{

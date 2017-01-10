@@ -76,7 +76,7 @@ public class ContainerPrinter extends Container
 	
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotNum)
 	{
-		ItemStack itemCopy = null;
+		ItemStack itemCopy = ItemStack.EMPTY;
 		Slot slot = (Slot) this.inventorySlots.get(slotNum);
 
 		if (slot != null && slot.getHasStack())
@@ -88,7 +88,7 @@ public class ContainerPrinter extends Container
 			{
 				if (!this.mergeItemStack(item, 3, 39, true))
 				{
-					return null;
+					return ItemStack.EMPTY;
 				}
 
 				slot.onSlotChange(item, itemCopy);
@@ -99,36 +99,36 @@ public class ContainerPrinter extends Container
 				{
 					if (!this.mergeItemStack(item, 0, 1, false))
 					{
-						return null;
+						return ItemStack.EMPTY;
 					}
 				}
 				else if (TileEntityPrinter.isItemFuel(item))
 				{
 					if (!this.mergeItemStack(item, 1, 2, false))
 					{
-						return null;
+						return ItemStack.EMPTY;
 					}
 				}
 				else if (slotNum >= 3 && slotNum < 30)
 				{
 					if (!this.mergeItemStack(item, 30, 39, false))
 					{
-						return null;
+						return ItemStack.EMPTY;
 					}
 				}
 				else if (slotNum >= 30 && slotNum < 39 && !this.mergeItemStack(item, 3, 30, false))
 				{
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 			else if (!this.mergeItemStack(item, 3, 39, false))
 			{
-				return null;
+				return ItemStack.EMPTY;
 			}
 
 			if (item.getCount() == 0)
 			{
-				slot.putStack((ItemStack) null);
+				slot.putStack(ItemStack.EMPTY);
 			}
 			else
 			{

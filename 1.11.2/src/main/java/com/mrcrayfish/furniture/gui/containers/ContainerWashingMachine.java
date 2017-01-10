@@ -67,7 +67,7 @@ public class ContainerWashingMachine extends Container
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotNum)
 	{
-		ItemStack itemCopy = null;
+		ItemStack itemCopy = ItemStack.EMPTY;
 		Slot slot = (Slot) this.inventorySlots.get(slotNum);
 
 		if (slot != null && slot.getHasStack())
@@ -79,7 +79,7 @@ public class ContainerWashingMachine extends Container
 			{
 				if (!this.mergeItemStack(item, 5, this.inventorySlots.size(), false))
 				{
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 			else if (slotNum > 4)
@@ -92,7 +92,7 @@ public class ContainerWashingMachine extends Container
 						ItemArmor armour = (ItemArmor) data.getInput().getItem();
 						if (!this.mergeItemStack(item, 0, 4, true))
 						{
-							return null;
+							return ItemStack.EMPTY;
 						}
 					}
 				}
@@ -100,32 +100,32 @@ public class ContainerWashingMachine extends Container
 				{
 					if (!this.mergeItemStack(item, 4, 5, false))
 					{
-						return null;
+						return ItemStack.EMPTY;
 					}
 				}
 				else if (slotNum > 4 && slotNum < this.inventorySlots.size() - 9)
 				{
 					if (!this.mergeItemStack(item, this.inventorySlots.size() - 9, this.inventorySlots.size(), false))
 					{
-						return null;
+						return ItemStack.EMPTY;
 					}
 				}
 				else if (slotNum >= this.inventorySlots.size() - 9 && slotNum < this.inventorySlots.size())
 				{
 					if (!this.mergeItemStack(item, 5, this.inventorySlots.size() - 9, false))
 					{
-						return null;
+						return ItemStack.EMPTY;
 					}
 				}
 			}
 			else if (!this.mergeItemStack(item, 0, 9, false))
 			{
-				return null;
+				return ItemStack.EMPTY;
 			}
 
 			if (item.getCount() == 0)
 			{
-				slot.putStack((ItemStack) null);
+				slot.putStack(ItemStack.EMPTY);
 			}
 			else
 			{

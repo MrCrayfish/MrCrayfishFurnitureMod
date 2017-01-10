@@ -47,7 +47,7 @@ public class ContainerCrate extends Container
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotNum)
 	{
-		ItemStack itemCopy = null;
+		ItemStack itemCopy = ItemStack.EMPTY;
 		Slot slot = (Slot) this.inventorySlots.get(slotNum);
 
 		if (slot != null && slot.getHasStack())
@@ -59,17 +59,17 @@ public class ContainerCrate extends Container
 			{
 				if (!this.mergeItemStack(item, crateInventory.getSizeInventory(), this.inventorySlots.size(), true))
 				{
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 			else if (!this.mergeItemStack(item, 0, crateInventory.getSizeInventory(), false))
 			{
-				return null;
+				return ItemStack.EMPTY;
 			}
 
 			if (item.getCount() == 0)
 			{
-				slot.putStack((ItemStack) null);
+				slot.putStack(ItemStack.EMPTY);
 			}
 			else
 			{

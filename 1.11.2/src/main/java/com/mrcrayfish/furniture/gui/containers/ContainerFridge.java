@@ -68,7 +68,7 @@ public class ContainerFridge extends Container
 
 	public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
 	{
-		ItemStack var3 = null;
+		ItemStack var3 = ItemStack.EMPTY;
 		Slot var4 = (Slot) this.inventorySlots.get(par2);
 
 		if (var4 != null && var4.getHasStack())
@@ -77,23 +77,23 @@ public class ContainerFridge extends Container
 			var3 = var5.copy();
 
 			if (!(var5.getItem() instanceof ItemFood))
-				return null;
+				return ItemStack.EMPTY;
 
 			if (par2 < 16)
 			{
 				if (!this.mergeItemStack(var5, 16, this.inventorySlots.size(), true))
 				{
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 			else if (!this.mergeItemStack(var5, 0, 16, false))
 			{
-				return null;
+				return ItemStack.EMPTY;
 			}
 
 			if (var5.getCount() == 0)
 			{
-				var4.putStack((ItemStack) null);
+				var4.putStack(ItemStack.EMPTY);
 			}
 			else
 			{

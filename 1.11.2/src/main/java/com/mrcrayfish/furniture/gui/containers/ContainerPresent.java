@@ -62,7 +62,7 @@ public class ContainerPresent extends Container
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotNum)
 	{
-		ItemStack itemCopy = null;
+		ItemStack itemCopy = ItemStack.EMPTY;
 		Slot slot = (Slot) this.inventorySlots.get(slotNum);
 
 		if (slot != null && slot.getHasStack())
@@ -72,24 +72,24 @@ public class ContainerPresent extends Container
 
 			if (item.getItem() instanceof IMail)
 			{
-				return null;
+				return ItemStack.EMPTY;
 			}
 
 			if (slotNum < 4)
 			{
 				if (!this.mergeItemStack(item, 4, this.inventorySlots.size(), true))
 				{
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 			else if (!this.mergeItemStack(item, 0, 4, false))
 			{
-				return null;
+				return ItemStack.EMPTY;
 			}
 
 			if (item.getCount() == 0)
 			{
-				slot.putStack((ItemStack) null);
+				slot.putStack(ItemStack.EMPTY);
 			}
 			else
 			{

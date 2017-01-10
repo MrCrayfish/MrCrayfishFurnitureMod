@@ -65,7 +65,7 @@ public class ContainerEski extends Container
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotNum)
 	{
-		ItemStack itemCopy = null;
+		ItemStack itemCopy = ItemStack.EMPTY;
 		Slot slot = (Slot) this.inventorySlots.get(slotNum);
 
 		if (slot != null && slot.getHasStack())
@@ -74,23 +74,23 @@ public class ContainerEski extends Container
 			itemCopy = item.copy();
 
 			if (!(item.getItem() instanceof ItemPotion))
-				return null;
+				return ItemStack.EMPTY;
 
 			if (slotNum < inventory.getSizeInventory())
 			{
 				if (!this.mergeItemStack(item, inventory.getSizeInventory(), this.inventorySlots.size(), true))
 				{
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 			else if (!this.mergeItemStack(item, 0, inventory.getSizeInventory(), false))
 			{
-				return null;
+				return ItemStack.EMPTY;
 			}
 
 			if (item.getCount() == 0)
 			{
-				slot.putStack((ItemStack) null);
+				slot.putStack(ItemStack.EMPTY);
 			}
 			else
 			{
