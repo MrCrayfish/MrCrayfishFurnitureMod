@@ -97,6 +97,12 @@ public class BlockBarStool extends Block
 			addCollisionBoxToList(pos, bounds, list, BOUNDS);
 		}	
 	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta) 
+	{
+		return this.getDefaultState().withProperty(COLOUR, meta);
+	}
 
 	@Override
 	public int getMetaFromState(IBlockState state)
