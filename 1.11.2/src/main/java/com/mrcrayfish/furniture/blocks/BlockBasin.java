@@ -74,7 +74,7 @@ public class BlockBasin extends BlockFurniture
 		ItemStack heldItem = playerIn.getHeldItem(hand);
 		if (!worldIn.isRemote)
 		{
-			if (heldItem != null)
+			if (!heldItem.isEmpty())
 			{
 				if (heldItem.getItem() == Items.BUCKET)
 				{

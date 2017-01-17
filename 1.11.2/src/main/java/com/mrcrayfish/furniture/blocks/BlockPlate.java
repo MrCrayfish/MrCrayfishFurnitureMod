@@ -74,7 +74,7 @@ public class BlockPlate extends Block implements ITileEntityProvider
 		if (tileEntity instanceof TileEntityPlate)
 		{
 			TileEntityPlate tileEntityPlate = (TileEntityPlate) tileEntity;
-			if (heldItem != null && tileEntityPlate.getFood() == null)
+			if (!heldItem.isEmpty() && tileEntityPlate.getFood() == null)
 			{
 				if (heldItem.getItem() instanceof ItemFood)
 				{

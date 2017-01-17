@@ -201,7 +201,7 @@ public abstract class BlockCouch extends BlockFurnitureTile
 		ItemStack heldItem = playerIn.getHeldItem(hand);
 		if(!isSpecial())
 		{
-			if(heldItem != null && heldItem.getItem() == Items.NAME_TAG)
+			if(!heldItem.isEmpty() && heldItem.getItem() == Items.NAME_TAG)
 			{
 				if(heldItem.hasDisplayName())
 				{
@@ -219,7 +219,7 @@ public abstract class BlockCouch extends BlockFurnitureTile
 			if (tileEntity instanceof TileEntityCouch) 
 			{
 				TileEntityCouch tileEntityCouch = (TileEntityCouch) tileEntity;
-				if (heldItem != null) 
+				if (!heldItem.isEmpty()) 
 				{
 					if (heldItem.getItem() instanceof ItemDye) 
 					{

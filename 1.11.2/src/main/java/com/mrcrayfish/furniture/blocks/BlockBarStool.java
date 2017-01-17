@@ -72,7 +72,7 @@ public class BlockBarStool extends Block
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		ItemStack heldItem = playerIn.getHeldItem(hand);
-		if (heldItem != null)
+		if (!heldItem.isEmpty())
 		{
 			if (heldItem.getItem() instanceof ItemDye)
 			{

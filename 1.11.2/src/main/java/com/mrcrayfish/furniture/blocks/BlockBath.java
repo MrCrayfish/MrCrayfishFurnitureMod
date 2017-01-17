@@ -138,7 +138,7 @@ public class BlockBath extends BlockFurnitureTile
 				TileEntityBath tileEntityBath = (TileEntityBath) tile_entity_1;
 				TileEntityBath tileEntityBath2 = (TileEntityBath) tile_entity_2;
 
-				if (heldItem != null)
+				if (!heldItem.isEmpty())
 				{
 					if (heldItem.getItem() == Items.BUCKET)
 					{

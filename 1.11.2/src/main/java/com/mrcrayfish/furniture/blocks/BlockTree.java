@@ -82,7 +82,7 @@ public class BlockTree extends BlockFurnitureTile
 		{
 			TileEntityTree tileEntityTree = (TileEntityTree) tileEntity;
 			tileEntityTree.addOrnament(playerIn.getHorizontalFacing(), heldItem);
-			if (heldItem != null)
+			if (!heldItem.isEmpty())
 				heldItem.shrink(1);
 			TileEntityUtil.markBlockForUpdate(worldIn, pos);
 		}

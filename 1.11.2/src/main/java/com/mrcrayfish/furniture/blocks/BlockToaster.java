@@ -71,7 +71,7 @@ public class BlockToaster extends BlockFurnitureTile
 		if (tileEntity instanceof TileEntityToaster)
 		{
 			TileEntityToaster tileEntityToaster = (TileEntityToaster) tileEntity;
-			if (heldItem != null && !tileEntityToaster.isToasting())
+			if (!heldItem.isEmpty() && !tileEntityToaster.isToasting())
 			{
 				RecipeData data = RecipeAPI.getToasterRecipeFromInput(heldItem);
 				if (data != null)

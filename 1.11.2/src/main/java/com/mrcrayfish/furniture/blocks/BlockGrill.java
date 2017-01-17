@@ -74,7 +74,7 @@ public class BlockGrill extends BlockFurnitureTile
 			if(tileEntity instanceof TileEntityGrill)
 			{
 				TileEntityGrill tileEntityGrill = (TileEntityGrill) tileEntity;
-				if(heldItem != null)
+				if(!heldItem.isEmpty())
 				{
 					if(heldItem.getItem() == Items.COAL && heldItem.getItemDamage() == 1)
 					{

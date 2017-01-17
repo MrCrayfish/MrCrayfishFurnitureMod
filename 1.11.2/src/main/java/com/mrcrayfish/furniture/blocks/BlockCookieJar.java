@@ -92,7 +92,7 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
 	{
 		ItemStack heldItem = playerIn.getHeldItem(hand);
 		int metadata = getMetaFromState(state);
-		if (heldItem != null)
+		if (!heldItem.isEmpty())
 		{
 			if (heldItem.getItem() == Items.COOKIE && metadata < 6)
 			{

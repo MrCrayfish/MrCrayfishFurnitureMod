@@ -54,7 +54,7 @@ public class BlockCounterSink extends BlockFurniture
 		if (!worldIn.isRemote)
 		{
 			ItemStack heldItem = playerIn.getHeldItem(hand);
-			if (heldItem != null)
+			if (!heldItem.isEmpty())
 			{
 				if (heldItem.getItem() == Items.BUCKET)
 				{

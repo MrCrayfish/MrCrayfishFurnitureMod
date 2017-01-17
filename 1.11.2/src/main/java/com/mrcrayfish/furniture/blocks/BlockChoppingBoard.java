@@ -65,7 +65,7 @@ public class BlockChoppingBoard extends BlockFurnitureTile
 		if (tileEntity instanceof TileEntityChoppingBoard)
 		{
 			TileEntityChoppingBoard tileEntityChoppingBoard = (TileEntityChoppingBoard) tileEntity;
-			if (heldItem != null)
+			if (!heldItem.isEmpty())
 			{
 				if (Recipes.getChoppingBoardRecipeFromInput(heldItem) != null && tileEntityChoppingBoard.getFood() == null)
 				{
