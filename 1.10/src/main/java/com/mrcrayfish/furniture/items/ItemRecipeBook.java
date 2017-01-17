@@ -22,6 +22,9 @@ import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 
 public class ItemRecipeBook extends Item
@@ -30,13 +33,14 @@ public class ItemRecipeBook extends Item
 	{
 		setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
-	
-	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(ItemStack stack, World worldIn, EntityPlayer playerIn, EnumHand hand) 
 	{
-		if (par2World.isRemote)
+		if (worldIn.isRemote)
 		{
-			par3EntityPlayer.openGui(MrCrayfishFurnitureMod.instance, 10, par2World, 0, 0, 0);
+			playerIn.openGui(MrCrayfishFurnitureMod.instance, 10, worldIn, 0, 0, 0);
 		}
-		return par1ItemStack;
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 	}
 }

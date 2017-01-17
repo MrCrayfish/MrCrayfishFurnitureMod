@@ -76,7 +76,6 @@ public class ItemEnvelope extends Item implements IMail
 		if (!worldIn.isRemote)
 		{
 			playerIn.openGui(MrCrayfishFurnitureMod.instance, 5, worldIn, 0, 0, 0);
-			return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
 	}
