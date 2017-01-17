@@ -150,6 +150,24 @@ public class TileEntityMicrowave extends TileEntityFurniture implements ISidedIn
 		tagCompound.setInteger("Progress", progress);
 		return tagCompound;
 	}
+	
+	@Override
+	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
+	{
+		this.readFromNBT(pkt.getNbtCompound());
+	}
+
+	@Override
+	public SPacketUpdateTileEntity getUpdatePacket() 
+	{
+		return new SPacketUpdateTileEntity(pos, getBlockMetadata(), this.writeToNBT(new NBTTagCompound()));
+	}
+	
+	@Override
+	public NBTTagCompound getUpdateTag() 
+	{
+		return this.writeToNBT(new NBTTagCompound());
+	}
 
 	@Override
 	public int getInventoryStackLimit()

@@ -173,16 +173,19 @@ public class TileEntityToaster extends TileEntity implements ITickable, ISimpleI
 	@Override
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
 	{
-		NBTTagCompound tagCom = pkt.getNbtCompound();
-		this.readFromNBT(tagCom);
+		this.readFromNBT(pkt.getNbtCompound());
 	}
 
 	@Override
-	public SPacketUpdateTileEntity getUpdatePacket()
+	public SPacketUpdateTileEntity getUpdatePacket() 
 	{
-		NBTTagCompound tagCom = new NBTTagCompound();
-		this.writeToNBT(tagCom);
-		return new SPacketUpdateTileEntity(pos, getBlockMetadata(), tagCom);
+		return new SPacketUpdateTileEntity(pos, getBlockMetadata(), this.writeToNBT(new NBTTagCompound()));
+	}
+	
+	@Override
+	public NBTTagCompound getUpdateTag() 
+	{
+		return this.writeToNBT(new NBTTagCompound());
 	}
 
 	@Override
