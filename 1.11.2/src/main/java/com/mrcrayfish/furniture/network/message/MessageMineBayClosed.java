@@ -22,6 +22,7 @@ import com.mrcrayfish.furniture.util.TileEntityUtil;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -71,10 +72,10 @@ public class MessageMineBayClosed implements IMessage, IMessageHandler<MessageMi
 		{
 			TileEntityComputer tileEntityComputer = (TileEntityComputer) tile_entity;
 
-			if (tileEntityComputer.getStackInSlot(0) != null)
+			if (!tileEntityComputer.getStackInSlot(0).isEmpty())
 			{
 				player.entityDropItem(tileEntityComputer.getStackInSlot(0), 1);
-				tileEntityComputer.setInventorySlotContents(0, null);
+				tileEntityComputer.setInventorySlotContents(0, ItemStack.EMPTY);
 			}
 			tileEntityComputer.setTrading(false);
 		}
