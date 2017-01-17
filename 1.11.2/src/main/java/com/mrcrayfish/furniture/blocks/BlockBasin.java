@@ -182,6 +182,12 @@ public class BlockBasin extends BlockFurniture
 		}
 		return true;
 	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta) 
+	{
+		return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta % 4)).withProperty(FILLED, meta >= 4);
+	}
 
 	@Override
 	public int getMetaFromState(IBlockState state)
