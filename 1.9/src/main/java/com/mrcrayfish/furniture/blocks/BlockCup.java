@@ -106,9 +106,12 @@ public class BlockCup extends Block implements ITileEntityProvider
 	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) 
 	{
-		ItemStack drink = getPickBlock(state, null, worldIn, pos, player);
-		EntityItem entity = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, drink);
-		worldIn.spawnEntityInWorld(entity);
+		if(worldIn.isRemote)
+		{
+			ItemStack drink = getPickBlock(state, null, worldIn, pos, player);
+			EntityItem entity = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, drink);
+			worldIn.spawnEntityInWorld(entity);
+		}
 	}
 
 	@Override

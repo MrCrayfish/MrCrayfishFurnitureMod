@@ -19,6 +19,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityCup;
@@ -33,6 +34,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -106,9 +108,18 @@ public class BlockCup extends Block implements ITileEntityProvider
 	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) 
 	{
-		ItemStack drink = getPickBlock(state, null, worldIn, pos, player);
-		EntityItem entity = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, drink);
-		worldIn.spawnEntity(entity);
+		if(!worldIn.isRemote)
+		{
+			ItemStack drink = getPickBlock(state, null, worldIn, pos, player);
+			EntityItem entity = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, drink);
+			worldIn.spawnEntity(entity);
+		}
+	}
+	
+	@Override
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) 
+	{
+		return null;
 	}
 
 	@Override
@@ -123,22 +134,6 @@ public class BlockCup extends Block implements ITileEntityProvider
 		{
 			return new ItemStack(FurnitureItems.itemCup);
 		}
-	}
-	
-	@Override
-	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
-	{
-		List<ItemStack> drops = new ArrayList<ItemStack>();
-		TileEntityCup tileEntityCup = (TileEntityCup) world.getTileEntity(pos);
-		if (tileEntityCup.getDrink() != null)
-		{
-			drops.add(tileEntityCup.getDrink().copy());
-		}
-		else
-		{
-			drops.add(new ItemStack(FurnitureItems.itemCup));
-		}
-		return drops;
 	}
 	
 	@SideOnly(Side.CLIENT)
