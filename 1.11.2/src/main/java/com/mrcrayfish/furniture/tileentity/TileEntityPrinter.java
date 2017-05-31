@@ -111,6 +111,7 @@ public class TileEntityPrinter extends TileEntityFurniture implements ISidedInve
             if (!this.isPrinting() && this.canPrint())
             {
                 this.currentItemPrintTime = this.printerPrintTime = getItemPrintTime(getStackInSlot(1));
+                this.totalCookTime = this.getPrintTime(getStackInSlot(0));
 
                 if (this.isPrinting())
                 {
@@ -140,7 +141,6 @@ public class TileEntityPrinter extends TileEntityFurniture implements ISidedInve
                 if (this.printingTime == this.totalCookTime)
                 {
                     this.printingTime = 0;
-                    this.totalCookTime = this.getPrintTime(getStackInSlot(0));
                     this.printItem();
                     flag1 = true;
                 }
