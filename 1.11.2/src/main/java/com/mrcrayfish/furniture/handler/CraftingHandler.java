@@ -45,7 +45,7 @@ public class CraftingHandler
 			for (int i = 0; i < event.craftMatrix.getSizeInventory(); i++)
 			{
 				ItemStack stack = event.craftMatrix.getStackInSlot(i);
-				if(stack != null && stack.getItem() == FurnitureItems.itemSoap)
+				if(stack != null)
 				{
 					stack.shrink(1);
 					if(stack.getCount() > 0)
@@ -56,7 +56,7 @@ public class CraftingHandler
 						}
 					}
 				}
-				event.craftMatrix.setInventorySlotContents(i, null); 
+				//event.craftMatrix.setInventorySlotContents(i, null); 
 			}
 		}
 
