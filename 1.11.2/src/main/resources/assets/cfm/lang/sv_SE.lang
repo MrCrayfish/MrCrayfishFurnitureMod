@@ -152,7 +152,7 @@ tile.crate.name=Låda
 tile.grill.name=Grill
 tile.divingboard_base.name=Trampolin
 tile.door_mat.name=Dörrmatta
-tile.esky.name=Kyllåda
+tile.esky.name=Kylväska
 tile.water_tank.name=Vattentank
 
 achievement.cfm_install=Du har installerats!
