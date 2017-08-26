@@ -19,10 +19,8 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
-
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -94,7 +92,7 @@ public class BlockBasin extends BlockFurniture
 								playerIn.setHeldItem(hand, new ItemStack(Items.WATER_BUCKET));
 							}
 						}
-						worldIn.setBlockState(pos, state.withProperty(FILLED, Boolean.valueOf(false)));
+						worldIn.setBlockState(pos, state.withProperty(FILLED, false));
 						worldIn.updateComparatorOutputLevel(pos, this);
 					}
 				}
@@ -106,7 +104,7 @@ public class BlockBasin extends BlockFurniture
 						{
 							playerIn.setHeldItem(hand, new ItemStack(Items.BUCKET));
 						}
-						worldIn.setBlockState(pos, state.withProperty(FILLED, Boolean.valueOf(true)), 2);
+						worldIn.setBlockState(pos, state.withProperty(FILLED, true), 2);
 						worldIn.updateComparatorOutputLevel(pos, this);
 					}
 				}
@@ -128,7 +126,7 @@ public class BlockBasin extends BlockFurniture
 								playerIn.setHeldItem(hand, new ItemStack(Items.POTIONITEM, 1, 0));
 							}
 						}
-						worldIn.setBlockState(pos, state.withProperty(FILLED, Boolean.valueOf(false)), 2);
+						worldIn.setBlockState(pos, state.withProperty(FILLED, false), 2);
 						worldIn.updateComparatorOutputLevel(pos, this);
 					}
 				}
@@ -140,7 +138,7 @@ public class BlockBasin extends BlockFurniture
 						{
 							playerIn.setHeldItem(hand, new ItemStack(Items.GLASS_BOTTLE));
 						}
-						worldIn.setBlockState(pos, state.withProperty(FILLED, Boolean.valueOf(true)), 2);
+						worldIn.setBlockState(pos, state.withProperty(FILLED, true), 2);
 						worldIn.updateComparatorOutputLevel(pos, this);
 					}
 				}
@@ -150,7 +148,7 @@ public class BlockBasin extends BlockFurniture
 					{
 						if (hasWaterSource(worldIn, pos))
 						{
-							worldIn.setBlockState(pos, state.withProperty(FILLED, Boolean.valueOf(true)), 2);
+							worldIn.setBlockState(pos, state.withProperty(FILLED, true), 2);
 							worldIn.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
 							worldIn.setBlockToAir(pos.add(0, -2, 0));
 							worldIn.updateComparatorOutputLevel(pos, this);
@@ -168,7 +166,7 @@ public class BlockBasin extends BlockFurniture
 				{
 					if (hasWaterSource(worldIn, pos))
 					{
-						worldIn.setBlockState(pos, state.withProperty(FILLED, Boolean.valueOf(true)), 2);
+						worldIn.setBlockState(pos, state.withProperty(FILLED, true), 2);
 						worldIn.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
 						worldIn.setBlockToAir(pos.add(0, -2, 0));
 						worldIn.updateComparatorOutputLevel(pos, this);
@@ -186,27 +184,27 @@ public class BlockBasin extends BlockFurniture
 	@Override
 	public IBlockState getStateFromMeta(int meta) 
 	{
-		return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta % 4)).withProperty(FILLED, meta >= 4);
+		return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta)).withProperty(FILLED, meta > 3);
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((EnumFacing) state.getValue(FACING)).getIndex() + (((Boolean) state.getValue(FILLED)).booleanValue() ? 0 : 4);
+		return state.getValue(FACING).getHorizontalIndex() + (state.getValue(FILLED) ? 0 : 4);
 	}
 
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, new IProperty[] { FACING, FILLED });
+		return new BlockStateContainer(this, FACING, FILLED);
 	}
 
-	public boolean hasWater(IBlockState state)
+	private boolean hasWater(IBlockState state)
 	{
-		return ((Boolean) state.getValue(FILLED)).booleanValue();
+		return state.getValue(FILLED);
 	}
 
-	public boolean hasWaterSource(World world, BlockPos pos)
+	private boolean hasWaterSource(World world, BlockPos pos)
 	{
 		return world.getBlockState(pos.add(0, -2, 0)) == Blocks.WATER.getDefaultState();
 	}
@@ -220,6 +218,6 @@ public class BlockBasin extends BlockFurniture
 	@Override
 	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos) 
 	{
-		return (Boolean) world.getBlockState(pos).getValue(FILLED) ? 1 : 0;
+		return world.getBlockState(pos).getValue(FILLED) ? 1 : 0;
 	}
 }
