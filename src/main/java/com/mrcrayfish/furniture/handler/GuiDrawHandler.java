@@ -31,7 +31,7 @@ public class GuiDrawHandler
 	private int guiCenterY = 0;
 	
 	@SubscribeEvent
-	public void onDrawGui(InitGuiEvent event)
+	public void onDrawGui(InitGuiEvent.Post event)
 	{
 		if(event.getGui() instanceof GuiContainerCreative)
 		{
@@ -46,7 +46,7 @@ public class GuiDrawHandler
 	}
 	
 	@SubscribeEvent
-	public void onDrawGui(DrawScreenEvent.Pre event)
+	public void onDrawGui(DrawScreenEvent.Post event)
 	{
 		if(event.getGui() instanceof GuiContainerCreative)
 		{
@@ -69,7 +69,7 @@ public class GuiDrawHandler
 	}
 	
 	@SubscribeEvent
-	public void onButtonClick(ActionPerformedEvent event)
+	public void onButtonClick(ActionPerformedEvent.Post event)
 	{
 		if(event.getButton() instanceof GuiLinkImageButton)
 		{
