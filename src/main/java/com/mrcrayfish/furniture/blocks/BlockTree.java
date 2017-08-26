@@ -98,7 +98,7 @@ public class BlockTree extends BlockFurnitureTile
 			{
 				if (player.getHeldItemMainhand().getItem() != Items.SHEARS)
 				{
-					worldIn.destroyBlock(pos.down(), true);
+					worldIn.destroyBlock(pos.down(), false);
 				}
 				else
 				{
@@ -107,12 +107,12 @@ public class BlockTree extends BlockFurnitureTile
 			}
 			else
 			{
-				worldIn.destroyBlock(pos.down(), true);
+				worldIn.destroyBlock(pos.down(), false);
 			}
 		}
 		else
 		{
-			worldIn.destroyBlock(pos.up(), true);
+			worldIn.destroyBlock(pos.up(), false);
 		}
 	}
 	
