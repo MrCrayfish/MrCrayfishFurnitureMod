@@ -126,9 +126,9 @@ public class BlockDoorBell extends BlockFurniture
 		}
 		else
 		{
-			worldIn.setBlockState(pos, state.withProperty(POWERED, Boolean.valueOf(true)), 3);
+			worldIn.setBlockState(pos, state.withProperty(POWERED, true), 3);
 			worldIn.markBlockRangeForRenderUpdate(pos, pos);
-			worldIn.playSound((EntityPlayer)null, pos, FurnitureSounds.door_bell, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			worldIn.playSound(null, pos, FurnitureSounds.door_bell, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));
 			playerIn.addStat(FurnitureAchievements.dingDong);
 			return true;
@@ -140,7 +140,7 @@ public class BlockDoorBell extends BlockFurniture
 	{
 		if (!worldIn.isRemote)
 		{
-			if (((Boolean) state.getValue(POWERED)).booleanValue())
+			if (state.getValue(POWERED))
 			{
 				this.handleArrow(worldIn, pos, state);
 			}
@@ -152,7 +152,7 @@ public class BlockDoorBell extends BlockFurniture
 	{
 		if (!worldIn.isRemote)
 		{
-			if (!((Boolean) state.getValue(POWERED)).booleanValue())
+			if (!state.getValue(POWERED))
 			{
 				this.handleArrow(worldIn, pos, state);
 			}
@@ -167,14 +167,14 @@ public class BlockDoorBell extends BlockFurniture
 
 		if (flag && !flag1)
 		{
-			worldIn.setBlockState(pos, state.withProperty(POWERED, Boolean.valueOf(true)));
+			worldIn.setBlockState(pos, state.withProperty(POWERED, true));
 			worldIn.markBlockRangeForRenderUpdate(pos, pos);
 			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.6F, false);
 		}
 
 		if (!flag && flag1)
 		{
-			worldIn.setBlockState(pos, state.withProperty(POWERED, Boolean.valueOf(false)));
+			worldIn.setBlockState(pos, state.withProperty(POWERED, false));
 			worldIn.markBlockRangeForRenderUpdate(pos, pos);
 			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.5F, false);
 		}
@@ -188,34 +188,14 @@ public class BlockDoorBell extends BlockFurniture
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		EnumFacing enumfacing;
-
-		switch (meta)
-		{
-		case 0:
-			enumfacing = EnumFacing.NORTH;
-			break;
-		case 1:
-			enumfacing = EnumFacing.EAST;
-			break;
-		case 2:
-			enumfacing = EnumFacing.SOUTH;
-			break;
-		case 3:
-			enumfacing = EnumFacing.WEST;
-			break;
-		default:
-			enumfacing = EnumFacing.NORTH;
-		}
-
-		return this.getDefaultState().withProperty(FACING, enumfacing).withProperty(POWERED, Boolean.valueOf(meta > 3));
+		return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta)).withProperty(POWERED, meta > 3);
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		int meta = ((EnumFacing) state.getValue(FACING)).getIndex();
-		if (((Boolean) state.getValue(POWERED)).booleanValue())
+		int meta = state.getValue(FACING).getHorizontalIndex();
+		if (state.getValue(POWERED))
 		{
 			meta += 4;
 		}
@@ -225,6 +205,6 @@ public class BlockDoorBell extends BlockFurniture
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, new IProperty[] { FACING, POWERED });
+		return new BlockStateContainer(this, FACING, POWERED);
 	}
 }
