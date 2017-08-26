@@ -21,7 +21,12 @@ import com.mrcrayfish.furniture.handler.FuelHandler;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.InventoryCrafting;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.util.NonNullList;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class FurnitureCrafting
@@ -116,7 +121,6 @@ public class FurnitureCrafting
 		GameRegistry.addRecipe(new ItemStack(FurnitureBlocks.bath_1, 1), "B  ", "Q Q", "QQQ", 'Q', Blocks.QUARTZ_BLOCK, 'B', Blocks.STONE_BUTTON);
 		GameRegistry.addRecipe(new ItemStack(FurnitureBlocks.shower_head_off, 1), "II ", " I ", "SSS", 'S', Blocks.STONE, 'I', Items.IRON_INGOT);
 		GameRegistry.addShapelessRecipe(new ItemStack(FurnitureItems.itemSoap), Items.CLAY_BALL, new ItemStack(Items.DYE, 1, 15), new ItemStack(Items.DYE, 1, 12));
-		GameRegistry.addShapelessRecipe(new ItemStack(FurnitureItems.itemSoapyWater), Items.WATER_BUCKET, FurnitureItems.itemSoap);
 		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemSuperSoapyWater), "GGG", "GSG", "GGG", 'G', Items.GOLD_INGOT, 'S', FurnitureItems.itemSoapyWater);
 		GameRegistry.addRecipe(new ItemStack(FurnitureBlocks.toaster), "QBQ", "QPS", "WWW", 'Q', Blocks.QUARTZ_BLOCK, 'B', Blocks.IRON_BARS, 'S', Blocks.STONE, 'P', Blocks.PISTON, 'W', new ItemStack(Blocks.WOOL, 1, 15));
 		GameRegistry.addRecipe(new ItemStack(FurnitureBlocks.microwave), "IIQ", "GGB", "IIQ", 'I', Items.IRON_INGOT, 'Q', Blocks.QUARTZ_BLOCK, 'G', Blocks.GLASS_PANE, 'B', Blocks.STONE_BUTTON);
@@ -158,5 +162,77 @@ public class FurnitureCrafting
 		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemKebab, 2), "  S", " C ", "S  ", 'S', new ItemStack(Items.STICK), 'C', new ItemStack(Items.CHICKEN));
 		GameRegistry.addRecipe(new ItemStack(FurnitureItems.itemCrowBar), "  I", " C ", "I  ", 'C', new ItemStack(Blocks.STAINED_HARDENED_CLAY, 1, 14), 'I', new ItemStack(Items.IRON_INGOT));
 		GameRegistry.registerFuelHandler(new FuelHandler());
+
+		GameRegistry.addRecipe(new IRecipe()
+		{
+			@Override
+			public boolean matches(InventoryCrafting inv, World worldIn)
+			{
+				int size = 0;
+
+				for(int i = 0; i < inv.getSizeInventory(); i++)
+				{
+					ItemStack stack = inv.getStackInSlot(i);
+					if(!stack.isEmpty())
+					{
+						size++;
+					}
+				}
+
+				for(int i = 0; i < inv.getSizeInventory() - inv.getWidth(); i++)
+				{
+					ItemStack above = inv.getStackInSlot(i);
+					if(!above.isEmpty() && above.getItem() == FurnitureItems.itemSoap)
+					{
+						ItemStack below = inv.getStackInSlot(i + inv.getWidth());
+						if(!below.isEmpty() && below.getItem() == Items.WATER_BUCKET)
+						{
+							return size == 2;
+						}
+					}
+				}
+				return false;
+			}
+
+			@Override
+			public ItemStack getCraftingResult(InventoryCrafting inv)
+			{
+				return new ItemStack(FurnitureItems.itemSoapyWater);
+			}
+
+			@Override
+			public int getRecipeSize()
+			{
+				return 2;
+			}
+
+			@Override
+			public ItemStack getRecipeOutput()
+			{
+				return ItemStack.EMPTY;
+			}
+
+			@Override
+			public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
+			{
+				NonNullList<ItemStack> items = NonNullList.withSize(inv.getSizeInventory(), ItemStack.EMPTY);
+
+				for(int i = 0; i < inv.getSizeInventory(); i++)
+				{
+					ItemStack stack = inv.getStackInSlot(i);
+					if(!stack.isEmpty() && stack.getItem() == FurnitureItems.itemSoap)
+					{
+						ItemStack soap = stack.copy();
+						soap.shrink(1);
+						items.set(i, soap);
+						break;
+					}
+				}
+
+				inv.clear();
+
+				return items;
+			}
+		});
 	}
 }
