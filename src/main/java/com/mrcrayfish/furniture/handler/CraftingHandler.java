@@ -21,6 +21,7 @@ import com.mrcrayfish.furniture.blocks.BlockChair;
 import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemBlock;
@@ -39,41 +40,23 @@ public class CraftingHandler
 			event.player.addStat(FurnitureAchievements.mineKea);
 			return;
 		}
-		
-		if(item == FurnitureItems.itemSoapyWater || item == FurnitureItems.itemSuperSoapyWater) 
-		{
-			for (int i = 0; i < event.craftMatrix.getSizeInventory(); i++)
-			{
-				ItemStack stack = event.craftMatrix.getStackInSlot(i);
-				if(stack != null)
-				{
-					stack.shrink(1);
-					if(stack.getCount() > 0)
-					{
-						if(!event.player.inventory.addItemStackToInventory(stack))
-						{
-							event.player.dropItem(stack, false, true);
-						}
-					}
-				}
-				//event.craftMatrix.setInventorySlotContents(i, null); 
-			}
-		}
 
 		if(item == FurnitureItems.itemLog)
 		{
 			for (int i = 0; i < event.craftMatrix.getSizeInventory(); i++)
 			{
 				ItemStack stack = event.craftMatrix.getStackInSlot(i);
-				if(stack != null)
+				if(stack != ItemStack.EMPTY)
 				{
 					if(stack.getItem() instanceof ItemAxe)
 					{
-						stack.damageItem(16, event.player);
-						if(!event.player.inventory.addItemStackToInventory(stack))
+						ItemStack axe = stack.copy();
+						axe.damageItem(16, event.player);
+						if(!event.player.inventory.addItemStackToInventory(axe))
 						{
-							event.player.dropItem(stack, false, true);
+							event.player.dropItem(axe, false, false);
 						}
+						break;
 					}
 				}
 			}
