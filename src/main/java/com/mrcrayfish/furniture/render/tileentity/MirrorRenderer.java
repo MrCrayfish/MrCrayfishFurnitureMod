@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import net.minecraft.client.renderer.OpenGlHelper;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 
@@ -73,11 +74,23 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 		EnumFacing facing = EnumFacing.getHorizontal(mirror.getBlockMetadata());
 		GlStateManager.pushMatrix();
 		{
+			GlStateManager.enableBlend();
+			OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+
 			GlStateManager.disableLighting();
+			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 			GlStateManager.bindTexture(registerMirrors.get(mirror.getMirror()).intValue());
+
+			GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
+			GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+
 			GlStateManager.translate(posX + 0.5, posY, posZ + 0.5);
 			GlStateManager.rotate(-90F * facing.getHorizontalIndex() + 180F, 0, 1, 0);
 			GlStateManager.translate(-0.5F, 0, -0.43F);
+
+			GlStateManager.enableRescaleNormal();
+
+			// Render
 			GL11.glBegin(GL11.GL_QUADS);
 			{
 				GL11.glTexCoord2d(1, 0);
@@ -90,10 +103,12 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 				GL11.glVertex3d(0.0625, 0.9375, 0);
 			}
 			GL11.glEnd();
+
+			GlStateManager.disableRescaleNormal();
+			GlStateManager.disableBlend();
 			GlStateManager.enableLighting();
 		}
 		GlStateManager.popMatrix();
-		GlStateManager.enableLighting();
 	}
 
 	@SubscribeEvent
