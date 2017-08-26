@@ -20,6 +20,8 @@ package com.mrcrayfish.furniture.gui.containers;
 import com.mrcrayfish.furniture.gui.slots.SlotEnvelope;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -27,15 +29,19 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerEnvelope extends Container
 {
+	private int index;
 	private IInventory envelopInventory;
 
 	public ContainerEnvelope(IInventory playerInventory, IInventory envelopInventory)
 	{
+		this.index = ((InventoryPlayer) playerInventory).currentItem;
 		this.envelopInventory = envelopInventory;
 		envelopInventory.openInventory(null);
 
-		this.addSlotToContainer(new SlotEnvelope(envelopInventory, 0, 8 + 0 * 18 + 63, 18));
-		this.addSlotToContainer(new SlotEnvelope(envelopInventory, 1, 8 + 0 * 18 + 81, 18));
+		for (int i = 0; i < 9; i++)
+		{
+			this.addSlotToContainer(new Slot(playerInventory, i, i * 18 + 8, 142));
+		}
 
 		for (int i = 0; i < 3; i++)
 		{
@@ -45,10 +51,8 @@ public class ContainerEnvelope extends Container
 			}
 		}
 
-		for (int i = 0; i < 9; i++)
-		{
-			this.addSlotToContainer(new Slot(playerInventory, i, i * 18 + 8, 142));
-		}
+		this.addSlotToContainer(new SlotEnvelope(envelopInventory, 0, 8 + 0 * 18 + 63, 18));
+		this.addSlotToContainer(new SlotEnvelope(envelopInventory, 1, 8 + 0 * 18 + 81, 18));
 	}
 
 	@Override
@@ -60,6 +64,8 @@ public class ContainerEnvelope extends Container
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotNum)
 	{
+		if(slotNum == index) return ItemStack.EMPTY;
+
 		ItemStack itemCopy = ItemStack.EMPTY;
 		Slot slot = (Slot) this.inventorySlots.get(slotNum);
 
@@ -94,9 +100,9 @@ public class ContainerEnvelope extends Container
 	}
 
 	@Override
-	public void onContainerClosed(EntityPlayer player)
+	public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player)
 	{
-		super.onContainerClosed(player);
-		envelopInventory.closeInventory(player);
+		if(slotId == index) return ItemStack.EMPTY;
+		return super.slotClick(slotId, dragType, clickTypeIn, player);
 	}
 }

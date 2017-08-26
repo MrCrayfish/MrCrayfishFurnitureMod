@@ -25,6 +25,7 @@ import com.mrcrayfish.furniture.util.NBTHelper;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.InventoryBasic;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -164,7 +165,7 @@ public class InventoryPackage extends InventoryBasic
 		NBTTagList itemList = new NBTTagList();
 		for (int i = 0; i < getSizeInventory(); i++)
 		{
-			if (getStackInSlot(i) != null)
+			if (getStackInSlot(i) != ItemStack.EMPTY)
 			{
 				NBTTagCompound slotEntry = new NBTTagCompound();
 				slotEntry.setByte("Slot", (byte) i);

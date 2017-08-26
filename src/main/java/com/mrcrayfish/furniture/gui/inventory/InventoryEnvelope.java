@@ -164,7 +164,7 @@ public class InventoryEnvelope extends InventoryBasic
 		NBTTagList itemList = new NBTTagList();
 		for (int i = 0; i < getSizeInventory(); i++)
 		{
-			if (getStackInSlot(i) != null)
+			if (getStackInSlot(i) != ItemStack.EMPTY)
 			{
 				NBTTagCompound slotEntry = new NBTTagCompound();
 				slotEntry.setByte("Slot", (byte) i);

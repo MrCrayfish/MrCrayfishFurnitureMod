@@ -40,6 +40,7 @@ import net.minecraft.util.text.TextComponentString;
 public class GuiPackage extends GuiContainer
 {
 	private static final ResourceLocation gui = new ResourceLocation("cfm:textures/gui/package.png");
+
 	private GuiButton buttonOk;
 	private EntityPlayer player;
 	private InventoryPackage inventory;
