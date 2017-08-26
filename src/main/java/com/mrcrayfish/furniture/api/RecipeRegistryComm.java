@@ -208,7 +208,6 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
 		}
 		
 		varMap.clear();
-		varMap = null;
 	}
 
 	@Override

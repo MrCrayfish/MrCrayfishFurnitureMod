@@ -83,9 +83,9 @@ public class RecipeRegistryRemote extends RecipeAPI
 		addDishwasherRecipe(new RecipeData().setInput(input), REMOTE);
 	}
 	
-	public void registerGrillRecipe(ItemStack input)
+	public void registerGrillRecipe(ItemStack input, ItemStack output)
 	{
-		addGrillRecipe(new RecipeData().setInput(input), REMOTE);
+		addGrillRecipe(new RecipeData().setInput(input).setOutput(output), REMOTE);
 	}
 
 	public void registerBlenderRecipe(String name, int heal, ItemStack[] ingredients, int[] rgb)
@@ -704,6 +704,101 @@ public class RecipeRegistryRemote extends RecipeAPI
 		}
 	}
 
+	public static void registerGrillRecipe(Parser parser, int num)
+	{
+		String input_item = parser.getValue("input-item", null);
+		String input_metadata = parser.getValue("input-metadata", "0");
+		String output_item = parser.getValue("output-item", null);
+		String output_metadata = parser.getValue("output-metadata", "0");
+		String output_amount = parser.getValue("output-amount", "1");
+
+		if (input_item != null)
+		{
+			if (output_item != null)
+			{
+				Item input = Item.getByNameOrId(input_item);
+				Item output = Item.getByNameOrId(output_item);
+				if (input != null)
+				{
+					if (output != null)
+					{
+						int i_metadata = 0;
+						try
+						{
+							i_metadata = Integer.parseInt(input_metadata);
+						}
+						catch (NumberFormatException e)
+						{
+							if (ConfigurationHandler.api_debug)
+							{
+								RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
+							}
+							return;
+						}
+
+						int o_amount = 1;
+						try
+						{
+							o_amount = Integer.parseInt(output_amount);
+						}
+						catch (NumberFormatException e)
+						{
+							if (ConfigurationHandler.api_debug)
+							{
+								RecipeUtil.printReport(parser, num, "output-amount", "Could not parse the value '" + output_amount + "' to an integer");
+							}
+							return;
+						}
+
+						int o_metadata = 0;
+						try
+						{
+							o_metadata = Integer.parseInt(output_metadata);
+						}
+						catch (NumberFormatException e)
+						{
+							if (ConfigurationHandler.api_debug)
+							{
+								RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
+							}
+							return;
+						}
+
+						RecipeRegistryRemote.getInstance().registerGrillRecipe(new ItemStack(input, 1, i_metadata), new ItemStack(output, o_amount, o_metadata));
+					}
+					else
+					{
+						if (ConfigurationHandler.api_debug)
+						{
+							RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
+						}
+					}
+				}
+				else
+				{
+					if (ConfigurationHandler.api_debug)
+					{
+						RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
+					}
+				}
+			}
+			else
+			{
+				if (ConfigurationHandler.api_debug)
+				{
+					RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
+				}
+			}
+		}
+		else
+		{
+			if (ConfigurationHandler.api_debug)
+			{
+				RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
+			}
+		}
+	}
+
 	public static ItemStack[] parseIngredients(Parser parser, String ingredients, int num)
 	{
 		ArrayList<ItemStack> list = new ArrayList<ItemStack>();
@@ -1052,6 +1147,10 @@ public class RecipeRegistryRemote extends RecipeAPI
 				else if (type.equalsIgnoreCase("dishwasher"))
 				{
 					registerDishwasherRecipe(parser, realNum);
+				}
+				else if (type.equalsIgnoreCase("grill"))
+				{
+					registerGrillRecipe(parser, realNum);
 				}
 				else
 				{

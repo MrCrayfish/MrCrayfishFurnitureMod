@@ -1138,6 +1138,10 @@ public class RecipeRegistry extends RecipeAPI
 				{
 					registerDishwasherRecipe(parser, realNum);
 				}
+				else if (type.equalsIgnoreCase("grill"))
+				{
+					registerGrillRecipe(parser, realNum);
+				}
 				else
 				{
 					if (ConfigurationHandler.api_debug)

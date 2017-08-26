@@ -401,7 +401,7 @@ public class Recipes
 				return remoteGrillRecipes;
 			}
 		}
-		return new ArrayList<RecipeData>();
+		return new ArrayList<>();
 	}
 
 	public static void addCommRecipesToLocal()

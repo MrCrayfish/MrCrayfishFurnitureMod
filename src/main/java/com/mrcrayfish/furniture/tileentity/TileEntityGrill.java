@@ -56,7 +56,7 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 		
 		if(clickedSide != ClickedSide.UNKNOWN)
 		{
-			inventory[clickedSide.id]  = new ItemStack(food.getItem(), 1, food.getItemDamage());
+			inventory[clickedSide.id] = new ItemStack(food.getItem(), 1, food.getItemDamage());
 			TileEntityUtil.markBlockForUpdate(world, pos);
 			return true;
 		}
