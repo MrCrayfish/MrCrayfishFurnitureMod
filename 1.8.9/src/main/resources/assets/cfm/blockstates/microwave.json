@@ -1,8 +1,0 @@
-{
-"variants": {
-"facing=north": {"model": "cfm:microwave_pre", "y": 270},
-"facing=south": { "model": "cfm:microwave_pre", "y": 90},
-"facing=east": { "model": "cfm:microwave_pre"},
-"facing=west": { "model": "cfm:microwave_pre", "y": 180}
-}
-}

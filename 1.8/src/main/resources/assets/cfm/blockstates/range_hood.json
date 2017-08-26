@@ -1,8 +1,0 @@
-{
-"variants": {
-"facing=north": {"model": "cfm:range_hood_pre", "y": 270},
-"facing=south": { "model": "cfm:range_hood_pre", "y": 90},
-"facing=east": { "model": "cfm:range_hood_pre"},
-"facing=west": { "model": "cfm:range_hood_pre", "y": 180}
-}
-}

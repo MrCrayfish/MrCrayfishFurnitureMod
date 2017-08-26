@@ -1,8 +1,0 @@
-{
-"variants": {
-"facing=north": {"model": "cfm:fire_alarm_on_pre", "y": 270},
-"facing=south": { "model": "cfm:fire_alarm_on_pre", "y": 90},
-"facing=east": { "model": "cfm:fire_alarm_on_pre"},
-"facing=west": { "model": "cfm:fire_alarm_on_pre", "y": 180}
-}
-}

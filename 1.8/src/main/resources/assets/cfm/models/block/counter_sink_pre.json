@@ -1,9 +1,0 @@
-{
-"parent": "cfm:block/counter_sink",
-"textures": {
-"0": "blocks/quartz_block_bottom",
-"1": "blocks/hardened_clay_stained_cyan",
-"2": "blocks/stone",
-"3": "blocks/hardened_clay_stained_cyan"
-}
-}

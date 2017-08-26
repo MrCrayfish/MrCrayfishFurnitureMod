@@ -1,8 +1,0 @@
-{
-"variants": {
-"facing=north": {"model": "cfm:mail_box_pre", "y": 270},
-"facing=south": { "model": "cfm:mail_box_pre", "y": 90},
-"facing=east": { "model": "cfm:mail_box_pre"},
-"facing=west": { "model": "cfm:mail_box_pre", "y": 180}
-}
-}

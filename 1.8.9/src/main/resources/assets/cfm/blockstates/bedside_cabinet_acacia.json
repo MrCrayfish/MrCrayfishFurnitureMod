@@ -1,8 +1,0 @@
-{
-	"variants": {
-		"facing=north": { "model": "cfm:bedside_cabinet_acacia", "y": 270 },
-		"facing=south": { "model": "cfm:bedside_cabinet_acacia", "y": 90  },
-		"facing=east": 	{ "model": "cfm:bedside_cabinet_acacia"           },
-		"facing=west": 	{ "model": "cfm:bedside_cabinet_acacia", "y": 180 }
-	}
-}

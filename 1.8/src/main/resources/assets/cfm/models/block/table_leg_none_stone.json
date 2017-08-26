@@ -1,6 +1,0 @@
-{
-"parent": "cfm:block/table_leg_none",
-"textures": {
-    "0": "blocks/stone"
-}
-}

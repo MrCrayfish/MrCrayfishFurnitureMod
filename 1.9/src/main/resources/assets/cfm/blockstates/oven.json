@@ -1,8 +1,0 @@
-{
-"variants": {
-"facing=north": {"model": "cfm:oven", "y": 270},
-"facing=south": { "model": "cfm:oven", "y": 90},
-"facing=east": { "model": "cfm:oven"},
-"facing=west": { "model": "cfm:oven", "y": 180}
-}
-}
