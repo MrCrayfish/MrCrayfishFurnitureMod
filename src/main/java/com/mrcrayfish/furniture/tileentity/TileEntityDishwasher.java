@@ -92,30 +92,28 @@ public class TileEntityDishwasher extends TileEntityFurniture implements ISidedI
 
 	public boolean canWash()
 	{
-		if (inventory.get(6) == null && timeRemaining == 0)
+		if (inventory.get(6).isEmpty() && timeRemaining == 0)
 		{
 			return false;
 		}
 
-		if (inventory.get(6) != null && timeRemaining == 0)
+		if (!inventory.get(6).isEmpty() && timeRemaining == 0)
 		{
 			return isFuel(inventory.get(6));
 		}
 
-		boolean flag = false;
 		for (int i = 0; i < 6; i++)
 		{
-			RecipeData data = RecipeAPI.getDishwasherRecipeFromInput(inventory.get(i));
-			if (data == null)
+			if(!inventory.get(i).isEmpty())
 			{
-				return false;
-			}
-			else
-			{
-				flag = true;
+				RecipeData data = RecipeAPI.getDishwasherRecipeFromInput(inventory.get(i));
+				if(data == null)
+				{
+					return false;
+				}
 			}
 		}
-		return flag;
+		return true;
 	}
 
 	public boolean isWashing()
@@ -129,9 +127,7 @@ public class TileEntityDishwasher extends TileEntityFurniture implements ISidedI
 			return false;
 		if(stack.getItem() == FurnitureItems.itemSoapyWater)
 			return true;
-		if(stack.getItem() == FurnitureItems.itemSuperSoapyWater)
-			return true;
-		return false;
+		return stack.getItem() == FurnitureItems.itemSuperSoapyWater;
 	}
 
 	@Override
@@ -150,7 +146,7 @@ public class TileEntityDishwasher extends TileEntityFurniture implements ISidedI
 			{
 				for (int i = 0; i < 6; i++)
 				{
-					if (inventory.get(i) != null)
+					if (inventory.get(i) != ItemStack.EMPTY)
 					{
 						if (inventory.get(i).getMaxDamage() - inventory.get(i).getItemDamage() != inventory.get(i).getMaxDamage())
 						{
@@ -163,7 +159,7 @@ public class TileEntityDishwasher extends TileEntityFurniture implements ISidedI
 			timeRemaining--;
 			if (timeRemaining <= 0)
 			{
-				if (inventory.get(4) != null)
+				if (inventory.get(4) != ItemStack.EMPTY)
 				{
 					if (inventory.get(4).getItem() == FurnitureItems.itemSoapyWater)
 					{
@@ -189,7 +185,7 @@ public class TileEntityDishwasher extends TileEntityFurniture implements ISidedI
 			
 			progress++;
 
-			if (timer == 20)
+			if (timer == 19)
 			{
 				timer = 0;
 			}
