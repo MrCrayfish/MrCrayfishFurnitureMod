@@ -11,9 +11,9 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
-version = "1.0"
+version = "4.1.3"
 group = "com.mrcrayfish.furniture" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "furntiure"
+archivesBaseName = "furniture"
 
 sourceCompatibility = targetCompatibility = "1.8" // Need this here so eclipse task generates correctly.
 compileJava {
