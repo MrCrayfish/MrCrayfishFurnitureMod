@@ -191,7 +191,7 @@ public class TileEntityDishwasher extends TileEntityFurniture implements ISidedI
 			}
 			if (timer == 0)
 			{
-				world.playSound(pos.getX(), pos.getY(), pos.getZ(), FurnitureSounds.dishwasher, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
+				world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), FurnitureSounds.dishwasher, SoundCategory.BLOCKS, 0.75F, 1.0F);
 			}
 			timer++;
 		}

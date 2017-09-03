@@ -65,14 +65,14 @@ public class BlockShowerHeadOff extends BlockFurniture
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) 
 	{
 		worldIn.setBlockState(pos, FurnitureBlocks.shower_head_on.getDefaultState().withProperty(FACING, state.getValue(FACING)), 2);
-		worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D,SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 06F, false);
+		worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D,SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.6F, false);
 		return true;
 	}
 
 	@Override
 	public boolean canPlaceBlockOnSide(World world, BlockPos pos, EnumFacing side)
 	{
-		return (side == EnumFacing.UP || side == EnumFacing.DOWN) ? false : world.isSideSolid(pos.offset(side.getOpposite()), side, true);
+		return !(side == EnumFacing.UP || side == EnumFacing.DOWN) && world.isSideSolid(pos.offset(side.getOpposite()), side, true);
 	}
 	
 	@Override

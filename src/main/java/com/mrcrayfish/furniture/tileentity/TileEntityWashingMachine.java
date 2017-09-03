@@ -215,7 +215,7 @@ public class TileEntityWashingMachine extends TileEntityFurniture implements ISi
 			}
 			if (timer == 0)
 			{
-				world.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FurnitureSounds.washing_machine, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
+				world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FurnitureSounds.washing_machine, SoundCategory.BLOCKS, 0.75F, 1.0F);
 			}
 			timer++;
 		}

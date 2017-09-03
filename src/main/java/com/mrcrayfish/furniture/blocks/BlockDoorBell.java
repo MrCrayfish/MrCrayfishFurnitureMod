@@ -169,14 +169,14 @@ public class BlockDoorBell extends BlockFurniture
 		{
 			worldIn.setBlockState(pos, state.withProperty(POWERED, true));
 			worldIn.markBlockRangeForRenderUpdate(pos, pos);
-			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.6F, false);
+			worldIn.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.6F);
 		}
 
 		if (!flag && flag1)
 		{
 			worldIn.setBlockState(pos, state.withProperty(POWERED, false));
 			worldIn.markBlockRangeForRenderUpdate(pos, pos);
-			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.5F, false);
+			worldIn.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.5F);
 		}
 
 		if (flag)

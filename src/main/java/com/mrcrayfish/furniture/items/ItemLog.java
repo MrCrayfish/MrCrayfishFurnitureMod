@@ -35,7 +35,7 @@ public class ItemLog extends ItemBlockSpecial
 			int meta = block.getMetaFromState(state);
 			if(meta < 3)
 			{
-				worldIn.playSound(player, pos, SoundType.WOOD.getPlaceSound(), SoundCategory.BLOCKS, 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
+				worldIn.playSound(null, pos, SoundType.WOOD.getPlaceSound(), SoundCategory.BLOCKS, 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
 				worldIn.setBlockState(pos, state.withProperty(BlockFirePit.STAGE, meta + 1));
 				stack.shrink(1);
 				return EnumActionResult.SUCCESS;

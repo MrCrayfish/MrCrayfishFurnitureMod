@@ -226,7 +226,7 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 							}
 							if(leftSoundLoop % 20 == 0)
 							{
-								world.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 0.5F, true);
+								world.playSound(null, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 0.5F);
 							}
 						}
 						else
@@ -237,11 +237,11 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 								{
 									if(flippedLeft && leftCookTime >= 20)
 									{
-										world.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 1.0F, true);
+										world.playSound(null, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 1.0F);
 									}
 									else if(!flippedLeft)
 									{
-										world.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 1.0F, true);
+										world.playSound(null, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 1.0F);
 									}
 								}
 							}
@@ -269,7 +269,7 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 							}
 							if(rightSoundLoop % 20 == 0)
 							{
-								world.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 0.5F, true);
+								world.playSound(null, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 0.5F);
 							}
 						}
 						else
@@ -280,11 +280,11 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 								{
 									if(flippedRight && rightCookTime >= 20)
 									{
-										world.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 1.0F, true);
+										world.playSound(null, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 1.0F);
 									}
 									else if(!flippedRight)
 									{
-										world.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 1.0F, true);
+										world.playSound(null, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.sizzle, SoundCategory.BLOCKS, 1.0F, 1.0F);
 									}
 								}
 							}

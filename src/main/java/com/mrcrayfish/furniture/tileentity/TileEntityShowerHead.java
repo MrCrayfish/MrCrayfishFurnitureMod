@@ -84,7 +84,7 @@ public class TileEntityShowerHead extends TileEntity implements ITickable
 	
 			if (timer >= 20)
 			{
-				world.playSound((EntityPlayer)null, pos, FurnitureSounds.shower, SoundCategory.BLOCKS, 0.75F, 1.0F);
+				world.playSound(null, pos, FurnitureSounds.shower, SoundCategory.BLOCKS, 0.75F, 1.0F);
 				timer = 0;
 			}
 			timer++;

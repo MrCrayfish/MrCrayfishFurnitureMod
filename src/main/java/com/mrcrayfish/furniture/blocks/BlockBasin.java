@@ -149,7 +149,7 @@ public class BlockBasin extends BlockFurniture
 						if (hasWaterSource(worldIn, pos))
 						{
 							worldIn.setBlockState(pos, state.withProperty(FILLED, true), 2);
-							worldIn.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
+							worldIn.playSound(null, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 1.0F);
 							worldIn.setBlockToAir(pos.add(0, -2, 0));
 							worldIn.updateComparatorOutputLevel(pos, this);
 						}
@@ -167,7 +167,7 @@ public class BlockBasin extends BlockFurniture
 					if (hasWaterSource(worldIn, pos))
 					{
 						worldIn.setBlockState(pos, state.withProperty(FILLED, true), 2);
-						worldIn.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
+						worldIn.playSound(null, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 1.0F);
 						worldIn.setBlockToAir(pos.add(0, -2, 0));
 						worldIn.updateComparatorOutputLevel(pos, this);
 					}

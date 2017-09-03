@@ -127,7 +127,7 @@ public class BlockCounterSink extends BlockFurniture
 						if (hasWaterSource(worldIn, pos))
 						{
 							worldIn.setBlockState(pos, state.withProperty(FILLED, true), 2);
-							worldIn.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 1.0F, false);
+							worldIn.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 1.0F);
 							worldIn.setBlockToAir(pos.add(0, -2, 0));
 						}
 						else
@@ -144,7 +144,7 @@ public class BlockCounterSink extends BlockFurniture
 					if (hasWaterSource(worldIn, pos))
 					{
 						worldIn.setBlockState(pos, state.withProperty(FILLED, true), 2);
-						worldIn.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 1.0F, false);
+						worldIn.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 1.0F);
 						worldIn.setBlockToAir(pos.add(0, -2, 0));
 					}
 					else

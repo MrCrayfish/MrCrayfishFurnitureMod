@@ -181,7 +181,7 @@ public class BlockElectricFence extends Block
 				if (!((EntityPlayer) entity).capabilities.isCreativeMode)
 				{
 					entity.attackEntityFrom(this.electricFence, (int) 2.0F);
-					world.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, FurnitureSounds.zap, SoundCategory.BLOCKS, 0.2F, 1.0F, false);
+					world.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, FurnitureSounds.zap, SoundCategory.BLOCKS, 0.2F, 1.0F);
 					
 					this.sparkle(world, pos);
 					((EntityPlayer) entity).addStat(FurnitureAchievements.careful);
@@ -190,7 +190,7 @@ public class BlockElectricFence extends Block
 			else
 			{
 				entity.attackEntityFrom(this.electricFence, (int) 2.0F);
-				world.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, FurnitureSounds.zap, SoundCategory.BLOCKS, 0.2F, 1.0F, false);
+				world.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, FurnitureSounds.zap, SoundCategory.BLOCKS, 0.2F, 1.0F);
 				this.sparkle(world, pos);
 			}
 		}

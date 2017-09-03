@@ -57,7 +57,7 @@ public class TileEntityChoppingBoard extends TileEntity implements ISimpleInvent
 				{
 					EntityItem entityItem = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5, data.getOutput().copy());
 					world.spawnEntity(entityItem);
-					world.playSound(pos.getX(), pos.getY(), pos.getZ(), FurnitureSounds.knife_chop, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
+					world.playSound(null, pos.getX(), pos.getY(), pos.getZ(), FurnitureSounds.knife_chop, SoundCategory.BLOCKS, 0.75F, 1.0F);
 				}
 				setFood(null);
 				TileEntityUtil.markBlockForUpdate(world, pos);

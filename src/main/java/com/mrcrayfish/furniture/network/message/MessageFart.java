@@ -59,7 +59,7 @@ public class MessageFart implements IMessage, IMessageHandler<MessageFart, IMess
 		EntityPlayerMP player = ctx.getServerHandler().playerEntity;
 		if (player.getRidingEntity() instanceof EntitySittableBlock)
 		{
-			player.world.playSound((EntityPlayer)null, player.getPosition(), FurnitureSounds.getRandomFart(rand), SoundCategory.BLOCKS, 0.75F, rand.nextFloat());
+			player.world.playSound(null, player.getPosition(), FurnitureSounds.getRandomFart(rand), SoundCategory.BLOCKS, 0.75F, rand.nextFloat());
 			player.addStat(FurnitureAchievements.whatDidYouEat);
 		}
 		return null;
