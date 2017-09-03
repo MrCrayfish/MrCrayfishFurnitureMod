@@ -89,7 +89,7 @@ public class BlockMailBox extends BlockFurnitureTile
 			if (tile_entity instanceof TileEntityMailBox)
 			{
 				TileEntityMailBox tileEntityMailBox = (TileEntityMailBox) tile_entity;
-				if (tileEntityMailBox.ownerName.isEmpty())
+				if (!tileEntityMailBox.hasOwner())
 				{
 					tileEntityMailBox.setOwner(playerIn);
 					playerIn.sendMessage(new TextComponentString("Successfully set the owner of the mail box to " + TextFormatting.YELLOW + playerIn.getName()));
@@ -105,7 +105,7 @@ public class BlockMailBox extends BlockFurnitureTile
 				}
 				else
 				{
-					playerIn.sendMessage(new TextComponentString("This mail box belongs to " + TextFormatting.YELLOW + tileEntityMailBox.ownerName));
+					playerIn.sendMessage(new TextComponentString("This mail box belongs to " + TextFormatting.YELLOW + tileEntityMailBox.getOwner()));
 				}
 			}
 		}

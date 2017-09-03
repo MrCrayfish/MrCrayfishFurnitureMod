@@ -35,8 +35,8 @@ import net.minecraft.util.text.TextComponentString;
 
 public class TileEntityMailBox extends TileEntityFurniture
 {
-	public String ownerUUID = null;
-	public String ownerName = "";
+	private String ownerUUID = null;
+	private String ownerName = "";
 	
 	public TileEntityMailBox() 
 	{
@@ -47,6 +47,12 @@ public class TileEntityMailBox extends TileEntityFurniture
 	{
 		this.ownerUUID = player.getUniqueID().toString();
 		this.ownerName = player.getName();
+		markDirty();
+	}
+
+	public boolean hasOwner()
+	{
+		return this.ownerUUID != null;
 	}
 
 	public void tryAndUpdateName(EntityPlayer player)
@@ -56,6 +62,7 @@ public class TileEntityMailBox extends TileEntityFurniture
 			if (!ownerName.equalsIgnoreCase(player.getName()))
 			{
 				ownerName = player.getName();
+				markDirty();
 			}
 		}
 	}
@@ -82,7 +89,7 @@ public class TileEntityMailBox extends TileEntityFurniture
 		
 		if (tagCompound.hasKey("OwnerName"))
 		{
-			this.ownerUUID = tagCompound.getString("OwnerUUID");
+			this.ownerName = tagCompound.getString("OwnerName");
 		}
 	}
 
@@ -121,22 +128,15 @@ public class TileEntityMailBox extends TileEntityFurniture
 			if (this.inventory.get(i).isEmpty())
 			{
 				setInventorySlotContents(i, stack);
+				markDirty();
 				break;
 			}
 		}
-		this.markDirty();
 	}
 
 	public boolean isMailBoxFull()
 	{
-		for (int i = 0; i < 6; i++)
-		{
-			if (this.inventory.get(i).isEmpty())
-			{
-				return false;
-			}
-		}
-		return true;
+		return this.inventory.stream().anyMatch(ItemStack::isEmpty);
 	}
 
 	public String getOwner()

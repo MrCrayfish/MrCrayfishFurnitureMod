@@ -96,13 +96,13 @@ public class ItemEnvelopeSigned extends Item implements IMail
 					{
 						ItemStack itemStack = stack.copy();
 						tileEntityMailBox.addMail(itemStack);
-						player.sendMessage(new TextComponentString("Thank you! - " + TextFormatting.YELLOW + tileEntityMailBox.ownerName));
+						player.sendMessage(new TextComponentString("Thank you! - " + TextFormatting.YELLOW + tileEntityMailBox.getOwner()));
 						player.addStat(FurnitureAchievements.sendMail);
 						stack.shrink(1);
 					}
 					else if (tileEntityMailBox.isMailBoxFull() == true && player.isSneaking())
 					{
-						player.sendMessage(new TextComponentString(TextFormatting.YELLOW + tileEntityMailBox.ownerName + "'s" + TextFormatting.WHITE + " mail box seems to be full. Try again later."));
+						player.sendMessage(new TextComponentString(TextFormatting.YELLOW + tileEntityMailBox.getOwner() + "'s" + TextFormatting.WHITE + " mail box seems to be full. Try again later."));
 					}
 				}
 			}
