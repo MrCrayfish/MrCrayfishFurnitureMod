@@ -17,7 +17,6 @@
  */
 package com.mrcrayfish.furniture.proxy;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 

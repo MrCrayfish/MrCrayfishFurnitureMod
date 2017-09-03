@@ -17,40 +17,11 @@
  */
 package com.mrcrayfish.furniture.proxy;
 
-import java.awt.Color;
-
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
-import com.mrcrayfish.furniture.render.tileentity.BlenderRenderer;
-import com.mrcrayfish.furniture.render.tileentity.ChoppingBoardRenderer;
-import com.mrcrayfish.furniture.render.tileentity.CookieRenderer;
-import com.mrcrayfish.furniture.render.tileentity.CupRenderer;
-import com.mrcrayfish.furniture.render.tileentity.DoorMatRenderer;
-import com.mrcrayfish.furniture.render.tileentity.EskyRenderer;
-import com.mrcrayfish.furniture.render.tileentity.GrillRenderer;
-import com.mrcrayfish.furniture.render.tileentity.MicrowaveRenderer;
-import com.mrcrayfish.furniture.render.tileentity.MirrorRenderer;
-import com.mrcrayfish.furniture.render.tileentity.OvenRenderer;
-import com.mrcrayfish.furniture.render.tileentity.PlateRenderer;
-import com.mrcrayfish.furniture.render.tileentity.ToastRenderer;
-import com.mrcrayfish.furniture.render.tileentity.TreeRenderer;
-import com.mrcrayfish.furniture.render.tileentity.WashingMachineRenderer;
-import com.mrcrayfish.furniture.tileentity.TileEntityBlender;
-import com.mrcrayfish.furniture.tileentity.TileEntityChoppingBoard;
-import com.mrcrayfish.furniture.tileentity.TileEntityCookieJar;
-import com.mrcrayfish.furniture.tileentity.TileEntityCup;
-import com.mrcrayfish.furniture.tileentity.TileEntityDoorMat;
-import com.mrcrayfish.furniture.tileentity.TileEntityEsky;
-import com.mrcrayfish.furniture.tileentity.TileEntityGrill;
-import com.mrcrayfish.furniture.tileentity.TileEntityMicrowave;
-import com.mrcrayfish.furniture.tileentity.TileEntityMirror;
-import com.mrcrayfish.furniture.tileentity.TileEntityOven;
-import com.mrcrayfish.furniture.tileentity.TileEntityPlate;
-import com.mrcrayfish.furniture.tileentity.TileEntityToaster;
-import com.mrcrayfish.furniture.tileentity.TileEntityTree;
-import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
-
+import com.mrcrayfish.furniture.render.tileentity.*;
+import com.mrcrayfish.furniture.tileentity.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -73,8 +44,8 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.awt.*;
 
 public class ClientProxy extends CommonProxy
 {
