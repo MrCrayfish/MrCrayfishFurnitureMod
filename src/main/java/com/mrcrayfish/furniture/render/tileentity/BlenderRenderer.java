@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture.render.tileentity;
 
+import net.minecraft.client.renderer.OpenGlHelper;
 import org.lwjgl.opengl.GL11;
 
 import com.mrcrayfish.furniture.tileentity.TileEntityBlender;
@@ -54,28 +55,33 @@ public class BlenderRenderer extends TileEntitySpecialRenderer<TileEntityBlender
 		}
 		GL11.glPopMatrix();
 
-		if (blender.isBlending() | blender.drinkCount > 0)
+		if (blender.isBlending() || blender.drinkCount > 0)
 		{
 			GlStateManager.pushMatrix();
 			{
 				GL11.glTranslatef((float) posX + 0.5F, (float) posY + 0.05F, (float) posZ + 0.5F);
-	
+
+				GlStateManager.enableBlend();
+				OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+				GlStateManager.disableLighting();
+				GlStateManager.disableTexture2D();
+
 				float alpha = blender.isBlending() ? (blender.progress / 200F) : (blender.drinkCount > 0 ? 1.0F : 0.0F);
 				GlStateManager.color(blender.currentRed / 255F, blender.currentGreen / 255F, blender.currentBlue / 255F, alpha);
-	
+
+				GlStateManager.enableRescaleNormal();
+
 				float height = blender.isBlending() ? 0.8F : (0.275F + (0.525F * (blender.drinkCount / 6F)));
-				
-				GlStateManager.enableBlend();
-				GlStateManager.enableAlpha();
-				GlStateManager.disableLighting();
-				GL11.glDisable(GL11.GL_TEXTURE_2D);
-				
-				renderCuboid(-0.2F, 0.275F, -0.2F, 0.2F, height, 0.2F);
-				
-				GL11.glEnable(GL11.GL_TEXTURE_2D);
-				GlStateManager.enableLighting();
-				GlStateManager.disableAlpha();
+				GlStateManager.pushMatrix();
+				{
+					renderCuboid(-0.2F, 0.275F, -0.2F, 0.2F, height, 0.2F);
+				}
+				GlStateManager.popMatrix();
+
+				GlStateManager.disableRescaleNormal();
 				GlStateManager.disableBlend();
+				GlStateManager.enableLighting();
+				GlStateManager.enableTexture2D();
 			}
 			GlStateManager.popMatrix();
 		}
