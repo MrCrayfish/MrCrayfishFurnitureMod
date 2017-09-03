@@ -144,7 +144,7 @@ public class TileEntityFreezer extends TileEntityFurniture implements ISidedInve
 				inventory.get(2).grow(data.getOutput().copy().getCount());
 			}
 
-			if (inventory.get(2).getItem().hasContainerItem())
+			if (inventory.get(1).getItem().hasContainerItem())
 			{
 				inventory.set(1, new ItemStack(inventory.get(1).getItem().getContainerItem()));
 			}
