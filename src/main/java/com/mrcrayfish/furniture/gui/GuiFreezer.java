@@ -81,10 +81,11 @@ public class GuiFreezer extends GuiContainer
 			}
 		}
 	}
-	
+
 	@Override
-	public void drawScreen(int mouseX, int mouseY, float partialTicks) 
+	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
+		this.drawDefaultBackground();
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		
 		if(isPointInRegion(110, 6, 16, 16, mouseX, mouseY))

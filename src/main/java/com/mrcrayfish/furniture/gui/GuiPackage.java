@@ -52,12 +52,21 @@ public class GuiPackage extends GuiContainer
 		this.mail = mail;
 	}
 
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks)
+	{
+		this.drawDefaultBackground();
+		super.drawScreen(mouseX, mouseY, partialTicks);
+	}
+
+	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2)
 	{
 		this.fontRenderer.drawString("Package", xSize / 2 - 19, 5, 9999999);
 		this.fontRenderer.drawString("Inventory", 8, (ySize - 96) + 2, 4210752);
 	}
 
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
 	{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);

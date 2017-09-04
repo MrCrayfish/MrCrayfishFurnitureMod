@@ -38,10 +38,11 @@ public class GuiOven extends GuiContainer
 		this.xSize = 176;
 		this.ySize = 228;
 	}
-	
+
 	@Override
-	public void drawScreen(int mouseX, int mouseY, float partialTicks) 
+	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
+		this.drawDefaultBackground();
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		
 		if(isPointInRegion(37, 9, 11, 11, mouseX, mouseY))

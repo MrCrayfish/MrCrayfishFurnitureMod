@@ -40,6 +40,13 @@ public class GuiCrate extends GuiContainer
 	}
 
 	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks)
+	{
+		this.drawDefaultBackground();
+		super.drawScreen(mouseX, mouseY, partialTicks);
+	}
+
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
 	{
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);

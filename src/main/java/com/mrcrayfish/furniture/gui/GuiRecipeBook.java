@@ -341,7 +341,8 @@ public class GuiRecipeBook extends GuiScreen
 			}
 		}
 	}
-	
+
+	@Override
 	protected void actionPerformed(GuiButton button)
 	{
 		pages.get(pageNum).onClose();
@@ -402,6 +403,8 @@ public class GuiRecipeBook extends GuiScreen
 	@Override
 	public void drawScreen(int par1, int par2, float par3)
 	{
+		this.drawDefaultBackground();
+
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		int k = (this.width - this.bookWidth) / 2;
 

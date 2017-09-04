@@ -138,6 +138,7 @@ public class GuiComputer extends GuiContainer
 		super.onGuiClosed();
 	}
 
+	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2)
 	{
 		this.fontRenderer.drawString("Inventory", 8, (ySize - 103), 4210752);
@@ -186,6 +187,7 @@ public class GuiComputer extends GuiContainer
 
 	public void drawScreen(int par1, int par2, float par3)
 	{
+		this.drawDefaultBackground();
 		super.drawScreen(par1, par2, par3);
 		ItemStack stock = itemdata[itemNum].getInput();
 		if (this.isPointInRegion(80, 16, 16, 16, par1, par2))

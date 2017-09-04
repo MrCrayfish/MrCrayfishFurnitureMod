@@ -42,6 +42,7 @@ public class GuiPrinter extends GuiContainer
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks) 
 	{
+		this.drawDefaultBackground();
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		
 		if(isPointInRegion(73, 30, 5, 18, mouseX, mouseY))

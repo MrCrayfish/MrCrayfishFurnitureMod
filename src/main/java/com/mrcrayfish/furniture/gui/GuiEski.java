@@ -17,6 +17,13 @@ public class GuiEski extends GuiContainer
 		this.xSize = 176;
 		this.ySize = 167;
 	}
+
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks)
+	{
+		this.drawDefaultBackground();
+		super.drawScreen(mouseX, mouseY, partialTicks);
+	}
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2)

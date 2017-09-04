@@ -83,7 +83,9 @@ public class GuiDishwasher extends GuiContainer
 	}
 	
 	@Override
-	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+	public void drawScreen(int mouseX, int mouseY, float partialTicks)
+	{
+		this.drawDefaultBackground();
 		super.drawScreen(mouseX, mouseY, partialTicks);
 
 		if(isPointInRegion(37, 9, 11, 11, mouseX, mouseY))
