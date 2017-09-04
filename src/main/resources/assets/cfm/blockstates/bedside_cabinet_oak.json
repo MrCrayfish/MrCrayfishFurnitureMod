@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "cfm:bedside_cabinet_oak", "y": 270 },
+		"facing=south": { "model": "cfm:bedside_cabinet_oak", "y": 90  },
+		"facing=east": 	{ "model": "cfm:bedside_cabinet_oak"           },
+		"facing=west": 	{ "model": "cfm:bedside_cabinet_oak", "y": 180 }
+	}
+}

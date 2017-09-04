@@ -1,0 +1,100 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "particle": "blocks/planks_oak",
+        "0": "blocks/planks_oak",
+        "1": "blocks/log_oak"
+    },
+    "display": {
+        "gui": {
+            "rotation": [ 30, 45, 0 ],
+            "translation": [ 0, 3, 0],
+            "scale":[ 0.625, 0.625, 0.625 ]
+        },
+        "ground": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 3, 0],
+            "scale":[ 0.4, 0.4, 0.4 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 0, 0],
+            "scale":[ 0.5, 0.5, 0.5 ]
+        },
+        "thirdperson_righthand": {
+            "rotation": [ 75, 45, 0 ],
+            "translation": [ 0, 2.5, 3],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        },
+		"thirdperson_lefthand": {
+            "rotation": [ 75, 225, 0 ],
+            "translation": [ 0, 2.5, 3],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 45, 0 ],
+            "translation": [ 0, 4, 0 ],
+            "scale": [ 0.40, 0.40, 0.40 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ 0, 225, 0 ],
+            "translation": [ 0, 4, 0 ],
+            "scale": [ 0.40, 0.40, 0.40 ]
+        }
+    },
+    "elements": [
+        {
+            "name": "Element",
+            "from": [ 3.50, 0.00, 1.00 ], 
+            "to": [ 12.50, 1.00, 15.00 ], 
+            "faces": {
+                "up": { "texture": "#0", "uv": [ 4.00, 1.00, 13.00, 15.00 ] },
+                "down": { "texture": "#0", "uv": [ 4.00, 1.00, 13.00, 15.00 ] }
+            }
+        },
+        {
+            "name": "Element",
+            "from": [ 3.00, 0.00, 0.50 ], 
+            "to": [ 13.00, 1.00, 1.00 ], 
+            "faces": {
+                "north": { "texture": "#1", "uv": [ 3.50, 0.00, 13.50, 1.00 ] },
+                "east": { "texture": "#1", "uv": [ 0.50, 0.00, 1.00, 1.00 ] },
+                "west": { "texture": "#1", "uv": [ 0.50, 0.00, 1.00, 1.00 ] },
+                "up": { "texture": "#1", "uv": [ 3.50, 0.50, 13.50, 1.00 ] },
+                "down": { "texture": "#1", "uv": [ 3.50, 0.50, 13.50, 1.00 ] }
+            }
+        },
+        {
+            "name": "Element",
+            "from": [ 3.00, 0.00, 15.00 ], 
+            "to": [ 13.00, 1.00, 15.50 ], 
+            "faces": {
+                "east": { "texture": "#1", "uv": [ 15.00, 0.00, 15.50, 1.00 ] },
+                "south": { "texture": "#1", "uv": [ 3.50, 0.00, 13.50, 1.00 ] },
+                "west": { "texture": "#1", "uv": [ 15.00, 0.00, 15.50, 1.00 ] },
+                "up": { "texture": "#1", "uv": [ 3.50, 15.00, 13.50, 15.50 ] },
+                "down": { "texture": "#1", "uv": [ 3.50, 15.00, 13.50, 15.50 ] }
+            }
+        },
+        {
+            "name": "Element",
+            "from": [ 12.50, 0.00, 1.00 ], 
+            "to": [ 13.00, 1.00, 15.00 ], 
+            "faces": {
+                "east": { "texture": "#1", "uv": [ 1.00, 0.00, 15.00, 1.00 ] },
+                "up": { "texture": "#1", "uv": [ 13.00, 1.00, 13.50, 15.00 ] },
+                "down": { "texture": "#1", "uv": [ 13.00, 1.00, 13.50, 15.00 ] }
+            }
+        },
+        {
+            "name": "Element",
+            "from": [ 3.00, 0.00, 1.00 ], 
+            "to": [ 3.50, 1.00, 15.00 ], 
+            "faces": {
+                "west": { "texture": "#1", "uv": [ 1.00, 0.00, 15.00, 1.00 ] },
+                "up": { "texture": "#1", "uv": [ 3.50, 1.00, 3.00, 14.00 ] },
+                "down": { "texture": "#1", "uv": [ 3.50, 1.00, 4.00, 15.00 ] }
+            }
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+"parent": "cfm:block/microwave",
+"textures": {
+"1": "blocks/iron_block",
+"2": "blocks/wool_colored_black",
+"3": "blocks/stone",
+"4": "blocks/glass_white",
+"5": "blocks/stone"
+}
+}

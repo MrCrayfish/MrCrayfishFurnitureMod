@@ -1,0 +1,80 @@
+{
+    "variants": {
+        "east=false,north=false,south=false,west=false": {
+            "model": "cfm:coffee_table_dark_oak_all", 
+			"uvlock": true
+        },
+        "east=false,north=true,south=false,west=false": {
+            "model": "cfm:coffee_table_dark_oak_two_leg", 
+			"uvlock": true
+        },
+        "east=true,north=false,south=false,west=false": {
+            "model": "cfm:coffee_table_dark_oak_two_leg",
+            "y": 90, 
+			"uvlock": true
+        },
+        "east=false,north=false,south=true,west=false": {
+            "model": "cfm:coffee_table_dark_oak_two_leg",
+            "y": 180, 
+			"uvlock": true
+        },
+        "east=false,north=false,south=false,west=true": {
+            "model": "cfm:coffee_table_dark_oak_two_leg",
+            "y": 270, 
+			"uvlock": true
+        },
+        "east=true,north=true,south=false,west=false": {
+            "model": "cfm:coffee_table_dark_oak_one_leg",
+            "y": 90, 
+			"uvlock": true
+        },
+        "east=false,north=true,south=true,west=false": {
+            "model": "cfm:coffee_table_dark_oak_none", 
+			"uvlock": true
+        },
+		"east=false,north=true,south=false,west=true": {
+            "model": "cfm:coffee_table_dark_oak_one_leg", 
+			"uvlock": true
+        },
+        "east=true,north=false,south=false,west=true": {
+            "model": "cfm:coffee_table_dark_oak_one_leg",
+            "y": 90, 
+			"uvlock": true
+        },
+        "east=true,north=false,south=true,west=false": {
+            "model": "cfm:coffee_table_dark_oak_one_leg",
+            "y": 180, 
+			"uvlock": true
+        },
+        "east=true,north=false,south=false,west=true": {
+            "model": "cfm:coffee_table_dark_oak_none",
+            "y": 180, 
+			"uvlock": true
+        },
+        "east=false,north=false,south=true,west=true": {
+            "model": "cfm:coffee_table_dark_oak_one_leg",
+            "y": 270, 
+			"uvlock": true
+        },
+        "east=true,north=true,south=true,west=true": {
+            "model": "cfm:coffee_table_dark_oak_none", 
+			"uvlock": true
+        },
+        "east=true,north=true,south=true,west=false": {
+            "model": "cfm:coffee_table_dark_oak_none", 
+			"uvlock": true
+        },
+        "east=true,north=true,south=false,west=true": {
+            "model": "cfm:coffee_table_dark_oak_none", 
+			"uvlock": true
+        },
+        "east=false,north=true,south=true,west=true": {
+            "model": "cfm:coffee_table_dark_oak_none", 
+			"uvlock": true
+        },
+        "east=true,north=false,south=true,west=true": {
+            "model": "cfm:coffee_table_dark_oak_none", 
+			"uvlock": true
+        }
+    }
+}

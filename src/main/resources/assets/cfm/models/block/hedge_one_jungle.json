@@ -1,0 +1,6 @@
+{
+"parent": "cfm:block/hedge_one",
+"textures": {
+"1": "blocks/leaves_jungle"
+}
+}

@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "cfm:chair_acacia", "y": 270 },
+		"facing=south": { "model": "cfm:chair_acacia", "y": 90  },
+		"facing=east":  { "model": "cfm:chair_acacia"           },
+		"facing=west":  { "model": "cfm:chair_acacia", "y": 180 }
+	}
+}
