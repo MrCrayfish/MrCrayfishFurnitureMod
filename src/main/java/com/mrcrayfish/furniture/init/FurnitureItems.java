@@ -20,19 +20,17 @@ package com.mrcrayfish.furniture.init;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.items.*;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -97,7 +95,7 @@ public class FurnitureItems
 		itemCrowBar = new Item().setUnlocalizedName("item_crow_bar").setRegistryName("item_crow_bar").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
-	public static void registerItems()
+	public static void register()
 	{
 		registerItem(itemFlesh);
 		registerItem(itemCookedFlesh);
@@ -164,15 +162,7 @@ public class FurnitureItems
 
 	private static void registerRender(Item item)
 	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
-	}
-
-	private static void registerRender(Item item, int maxMeta)
-	{
-		for (int i = 0; i < maxMeta; i++)
-		{
-			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, i, new ModelResourceLocation(Reference.MOD_ID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
-		}
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
 	}
 
 	@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
@@ -183,6 +173,8 @@ public class FurnitureItems
 		@SubscribeEvent
 		public static void registerItems(final RegistryEvent.Register<Item> event)
 		{
+			FurnitureItems.init();
+			FurnitureItems.register();
 			ITEMS.stream().forEach(item -> event.getRegistry().register(item));
 		}
 	}

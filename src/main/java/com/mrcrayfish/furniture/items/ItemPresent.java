@@ -26,6 +26,7 @@ import com.mrcrayfish.furniture.util.NBTHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.EnumDyeColor;
@@ -48,7 +49,9 @@ public class ItemPresent extends ItemBlock implements IMail
 	public ItemPresent(Block block) 
 	{
 		super(block);
+		this.setMaxDamage(0);
         this.setHasSubtypes(true);
+        this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
 	@Override
@@ -181,5 +184,14 @@ public class ItemPresent extends ItemBlock implements IMail
 	public String getUnlocalizedName(ItemStack stack)
 	{
 		return super.getUnlocalizedName(stack) + "_" + EnumDyeColor.values()[stack.getItemDamage()].getName();
+	}
+
+	@Override
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
+	{
+		for (int i = 0; i < 16; ++i)
+		{
+			items.add(new ItemStack(this, 1, i));
+		}
 	}
 }

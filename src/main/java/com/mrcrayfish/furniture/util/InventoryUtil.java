@@ -20,7 +20,6 @@ package com.mrcrayfish.furniture.util;
 import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 

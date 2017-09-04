@@ -18,6 +18,8 @@
 package com.mrcrayfish.furniture.proxy;
 
 import com.mrcrayfish.furniture.Reference;
+import com.mrcrayfish.furniture.handler.GuiDrawHandler;
+import com.mrcrayfish.furniture.handler.InputHandler;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.render.tileentity.*;
@@ -26,24 +28,24 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
 import java.awt.*;
 
@@ -56,15 +58,7 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void registerRenders()
 	{
-		for(EnumDyeColor dye : EnumDyeColor.values())
-		{
-			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(FurnitureBlocks.present), dye.getMetadata(), new ModelResourceLocation(Reference.MOD_ID + ":" + "present_" + dye.getName(), "inventory"));
-		}
-		
 		registerColorHandlers();
-		
-		FurnitureItems.registerRenders();
-		FurnitureBlocks.registerRenders();
 
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCookieJar.class, new CookieRenderer());
 		ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPlate.class, new PlateRenderer());
@@ -190,6 +184,8 @@ public class ClientProxy extends CommonProxy
 	public void preInit()
 	{
 		MinecraftForge.EVENT_BUS.register(this);
+		MinecraftForge.EVENT_BUS.register(new InputHandler());
+		MinecraftForge.EVENT_BUS.register(new GuiDrawHandler());
 	}
 
 	@SubscribeEvent
@@ -234,6 +230,17 @@ public class ClientProxy extends CommonProxy
 		{
 			Minecraft.getMinecraft().getRenderManager().renderViewEntity = backupEntity;
 			renderEntity = null;
+		}
+	}
+
+	@Mod.EventBusSubscriber(modid = Reference.MOD_ID, value = Side.CLIENT)
+	public static class RegistrationHandler
+	{
+		@SubscribeEvent
+		public static void registerModels(ModelRegistryEvent event)
+		{
+			FurnitureItems.registerRenders();
+			FurnitureBlocks.registerRenders();
 		}
 	}
 }

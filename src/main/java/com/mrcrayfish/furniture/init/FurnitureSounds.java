@@ -1,13 +1,11 @@
 package com.mrcrayfish.furniture.init;
 
 import com.mrcrayfish.furniture.Reference;
-import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -108,6 +106,7 @@ public class FurnitureSounds {
 		@SubscribeEvent
 		public static void registerItems(final RegistryEvent.Register<SoundEvent> event)
 		{
+			register();
 			SOUNDS.stream().forEach(sound -> event.getRegistry().register(sound));
 		}
 	}

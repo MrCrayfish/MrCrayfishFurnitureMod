@@ -17,8 +17,11 @@
  */
 package com.mrcrayfish.furniture.proxy;
 
+import com.mrcrayfish.furniture.handler.CraftingHandler;
+import com.mrcrayfish.furniture.handler.SyncEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 
 public class CommonProxy implements ProxyInterface
 {
@@ -52,6 +55,7 @@ public class CommonProxy implements ProxyInterface
 	@Override
 	public void preInit()
 	{
-		
+		MinecraftForge.EVENT_BUS.register(new CraftingHandler());
+		MinecraftForge.EVENT_BUS.register(new SyncEvent());
 	}
 }

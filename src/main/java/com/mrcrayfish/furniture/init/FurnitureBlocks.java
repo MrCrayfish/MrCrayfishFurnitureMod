@@ -17,23 +17,25 @@
  */
 package com.mrcrayfish.furniture.init;
 
+import com.google.common.collect.ImmutableList;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.blocks.*;
 import com.mrcrayfish.furniture.items.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.DefaultStateMapper;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -445,17 +447,19 @@ public class FurnitureBlocks
 	
 	private static void registerRender(Block block)
 	{
-		Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + block.getUnlocalizedName().substring(5), "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + block.getUnlocalizedName().substring(5), "inventory"));
 	}
 
 	private static void registerPresents()
 	{
-		Item blockItem = Item.getItemFromBlock(present);
-		NonNullList<ItemStack> subItems = NonNullList.create();
-		present.getSubBlocks(null, subItems);
-		for(int i = 0; i < subItems.size(); i++)
-		{
-			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(blockItem, subItems.get(i).getMetadata(), new ModelResourceLocation(Reference.MOD_ID + ":" + "present_" + EnumDyeColor.values()[i].getName(), "inventory"));
+		ItemBlock blockItem = (ItemBlock) Item.getItemFromBlock(present);
+		Block block = blockItem.getBlock();
+		StateMapperBase b = new DefaultStateMapper();
+		BlockStateContainer bsc = block.getBlockState();
+		ImmutableList<IBlockState> values = bsc.getValidStates();
+		for(IBlockState state : values) {
+			String str = b.getPropertyString(state.getProperties());
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(present), block.getMetaFromState(state), new ModelResourceLocation(Reference.MOD_ID + ":" + "present_" + EnumDyeColor.values()[block.getMetaFromState(state)].getName(), str));
 		}
 	}
 
@@ -467,6 +471,8 @@ public class FurnitureBlocks
 		@SubscribeEvent
 		public static void registerItems(final RegistryEvent.Register<Block> event)
 		{
+			FurnitureBlocks.init();
+			FurnitureBlocks.register();
 			BLOCKS.stream().forEach(block -> event.getRegistry().register(block));
 		}
 	}

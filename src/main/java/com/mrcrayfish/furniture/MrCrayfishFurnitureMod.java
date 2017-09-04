@@ -25,8 +25,11 @@ import com.mrcrayfish.furniture.blocks.tv.Channels;
 import com.mrcrayfish.furniture.entity.EntityMirror;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.gui.GuiHandler;
-import com.mrcrayfish.furniture.handler.*;
-import com.mrcrayfish.furniture.init.*;
+import com.mrcrayfish.furniture.handler.ConfigurationHandler;
+import com.mrcrayfish.furniture.handler.PlayerEvents;
+import com.mrcrayfish.furniture.init.FurnitureCrafting;
+import com.mrcrayfish.furniture.init.FurnitureTab;
+import com.mrcrayfish.furniture.init.FurnitureTileEntities;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.proxy.CommonProxy;
 import com.mrcrayfish.furniture.render.tileentity.MirrorRenderer;
@@ -65,39 +68,13 @@ public class MrCrayfishFurnitureMod
 	{
 		/** Config Changed Event */
 		MinecraftForge.EVENT_BUS.register(new ConfigurationHandler());
-		
-		/** Block and Item Registring */
-		FurnitureBlocks.init();
-		FurnitureItems.init();
-		FurnitureBlocks.register();
-		FurnitureItems.registerItems();
-		
-		/** Sound Registering */
-		FurnitureSounds.register();
 
 		/** Crafting Recipes */
 		FurnitureCrafting.register();
 
 		/** Packet Handler Init */
 		PacketHandler.init();
-		
-		/** Event Registering */
-		MinecraftForge.EVENT_BUS.register(new FurnitureItems.RegistrationHandler());
-		MinecraftForge.EVENT_BUS.register(new FurnitureBlocks.RegistrationHandler());
-		MinecraftForge.EVENT_BUS.register(new FurnitureSounds.RegistrationHandler());
-		MinecraftForge.EVENT_BUS.register(new FurnitureCrafting.RegistrationHandler());
 
-		MinecraftForge.EVENT_BUS.register(new CraftingHandler());
-		if (event.getSide() == Side.CLIENT)
-		{
-			MinecraftForge.EVENT_BUS.register(new InputHandler());
-			MinecraftForge.EVENT_BUS.register(new GuiDrawHandler());
-		}
-		else
-		{
-			MinecraftForge.EVENT_BUS.register(new SyncEvent());
-		}
-		
 		/** Configuration Handler Init */
 		ConfigurationHandler.init(event.getSuggestedConfigurationFile());
 		

@@ -17,11 +17,9 @@
  */
 package com.mrcrayfish.furniture.handler;
 
-import com.mrcrayfish.furniture.blocks.BlockChair;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;

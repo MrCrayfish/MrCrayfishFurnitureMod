@@ -18,7 +18,6 @@
 package com.mrcrayfish.furniture.render.tileentity;
 
 import com.mrcrayfish.furniture.tileentity.TileEntityCookieJar;
-import com.mrcrayfish.furniture.tileentity.TileEntityCup;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
