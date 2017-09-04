@@ -1,6 +1,0 @@
-{
-    "parent": "cfm:block/couch_corner",
-    "textures": {
-        "0": "cfm:blocks/wool_coloured_rainbow"
-    }
-}

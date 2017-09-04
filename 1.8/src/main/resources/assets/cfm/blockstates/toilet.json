@@ -1,8 +1,0 @@
-{
-"variants": {
-"facing=north": {"model": "cfm:toilet_pre", "y": 270},
-"facing=south": { "model": "cfm:toilet_pre", "y": 90},
-"facing=east": { "model": "cfm:toilet_pre"},
-"facing=west": { "model": "cfm:toilet_pre", "y": 180}
-}
-}

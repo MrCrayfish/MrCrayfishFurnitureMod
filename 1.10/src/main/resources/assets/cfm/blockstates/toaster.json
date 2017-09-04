@@ -1,8 +1,0 @@
-{
-"variants": {
-"facing=north": {"model": "cfm:toaster_pre", "y": 270},
-"facing=south": { "model": "cfm:toaster_pre", "y": 90},
-"facing=east": { "model": "cfm:toaster_pre"},
-"facing=west": { "model": "cfm:toaster_pre", "y": 180}
-}
-}

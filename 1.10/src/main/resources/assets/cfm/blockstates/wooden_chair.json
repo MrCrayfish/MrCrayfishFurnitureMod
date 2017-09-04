@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "cfm:wooden_chair", "y": 270},
-		"facing=south": { "model": "cfm:wooden_chair", "y": 90},
-		"facing=east": { "model": "cfm:wooden_chair"},
-		"facing=west": { "model": "cfm:wooden_chair", "y": 180}
-    }
-}

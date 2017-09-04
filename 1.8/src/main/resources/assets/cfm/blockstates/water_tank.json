@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "cfm:water_tank"           },
-        "facing=south": { "model": "cfm:water_tank", "y": 180 },
-        "facing=east":  { "model": "cfm:water_tank", "y": 90  },
-        "facing=west":  { "model": "cfm:water_tank", "y": 270 }
-    }
-}

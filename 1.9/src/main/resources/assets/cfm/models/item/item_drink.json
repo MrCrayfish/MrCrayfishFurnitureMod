@@ -1,7 +1,0 @@
-{
-	"parent": "item/generated",
-	"textures": {
-		"layer0": "cfm:items/itemdrink",
-		"layer1": "cfm:items/cup_overlay"
-	}
-}

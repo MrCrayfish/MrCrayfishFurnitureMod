@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "stage=0": {"model": "cfm:fire_pit_0"},
-        "stage=1": { "model": "cfm:fire_pit_1"},
-        "stage=2": { "model": "cfm:fire_pit_2"},
-        "stage=3": { "model": "cfm:fire_pit_3"}
-    }
-}

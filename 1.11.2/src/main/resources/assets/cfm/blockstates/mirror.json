@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": {"model": "cfm:mirror"},
-        "facing=south": { "model": "cfm:mirror", "y": 180},
-        "facing=east": { "model": "cfm:mirror", "y": 90},
-        "facing=west": { "model": "cfm:mirror", "y": 270}
-    }
-}

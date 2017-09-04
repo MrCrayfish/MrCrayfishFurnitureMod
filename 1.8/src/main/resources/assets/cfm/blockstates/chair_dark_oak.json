@@ -1,8 +1,0 @@
-{
-	"variants": {
-		"facing=north": { "model": "cfm:chair_dark_oak", "y": 270 },
-		"facing=south": { "model": "cfm:chair_dark_oak", "y": 90  },
-		"facing=east":  { "model": "cfm:chair_dark_oak"           },
-		"facing=west":  { "model": "cfm:chair_dark_oak", "y": 180 }
-	}
-}
