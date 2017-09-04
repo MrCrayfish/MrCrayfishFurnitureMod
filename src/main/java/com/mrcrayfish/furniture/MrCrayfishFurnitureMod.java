@@ -50,6 +50,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, acceptedMinecraftVersions = Reference.ACCEPTED_MC_VERSIONS)
@@ -89,9 +90,6 @@ public class MrCrayfishFurnitureMod
 			MinecraftForge.EVENT_BUS.register(new MirrorRenderer());
 		}
 		MinecraftForge.EVENT_BUS.register(new PlayerEvents());
-		
-		/** Render Registering */
-		proxy.registerRenders();
 
 		/** GUI Handler Registering */
 		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
@@ -105,6 +103,8 @@ public class MrCrayfishFurnitureMod
 		{
 			EntityRegistry.registerModEntity(new ResourceLocation("cfm:mirror"), EntityMirror.class, "Mirror", 1, this, 80, 1, false);
 		}
+
+		proxy.init();
 	}
 
 	@EventHandler
@@ -116,7 +116,7 @@ public class MrCrayfishFurnitureMod
 		Recipes.addCommRecipesToLocal();
 		Recipes.updateDataList();
 		
-		Channels.registerChannels(5);
+		Channels.registerChannels();
 	}
 
 	@EventHandler
@@ -154,16 +154,9 @@ public class MrCrayfishFurnitureMod
 			Method registerMethod = clazz.getDeclaredMethod(methodName, IRecipeRegistry.class);
 			registerMethod.invoke(null, (IRecipeRegistry) RecipeRegistryComm.getInstance(modName));
 		}
-		catch (ClassNotFoundException e)
-		{
-			e.printStackTrace();
-		}
-		catch (NoSuchMethodException e)
-		{
-			e.printStackTrace();
-		}
 		catch (Exception e)
 		{
+			System.out.println("RecipeAPI: Unable to register comm recipes for " + modid);
 			e.printStackTrace();
 		}
 	}

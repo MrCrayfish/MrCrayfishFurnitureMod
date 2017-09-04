@@ -19,10 +19,12 @@ package com.mrcrayfish.furniture.proxy;
 
 public interface ProxyInterface
 {
-	public void preInit();
-	
-	public boolean isSinglePlayer();
+	default void preInit() {};
 
-	public boolean isDedicatedServer();
+	default void init() {};
+	
+	boolean isSinglePlayer();
+
+	boolean isDedicatedServer();
 
 }

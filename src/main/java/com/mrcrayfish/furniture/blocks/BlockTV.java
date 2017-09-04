@@ -17,21 +17,21 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
-import com.mrcrayfish.furniture.blocks.tv.Channel;
 import com.mrcrayfish.furniture.blocks.tv.Channels;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.network.PacketHandler;
-import com.mrcrayfish.furniture.network.message.MessageTVClient;
+import com.mrcrayfish.furniture.network.message.MessageTVPlaySound;
+import com.mrcrayfish.furniture.network.message.MessageTVStopSound;
 import com.mrcrayfish.furniture.tileentity.TileEntityTV;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
@@ -59,38 +59,21 @@ public class BlockTV extends BlockFurnitureTile
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if(worldIn.isRemote)
+		if(!worldIn.isRemote)
 		{
 			if(playerIn.isSneaking())
 			{
-				Channel.stopSound(pos);
+				PacketHandler.INSTANCE.sendToAllAround(new MessageTVStopSound(pos), new TargetPoint(playerIn.dimension, pos.getX(), pos.getY(), pos.getZ(), 64));
 				return true;
 			}
-		}
-		
-		TileEntity tile_entity = worldIn.getTileEntity(pos);
-		if (tile_entity instanceof TileEntityTV)
-		{
-			TileEntityTV tileEntityTV = (TileEntityTV) tile_entity;
-			
-			int nextChannel = 0;
-			if(tileEntityTV.getChannel() < Channels.getChannelCount() - 1)
+
+			TileEntity tileEntity = worldIn.getTileEntity(pos);
+			if (tileEntity instanceof TileEntityTV)
 			{
-				nextChannel = tileEntityTV.getChannel() + 1;
-			}
-			tileEntityTV.setChannel(nextChannel);
-			
-			TileEntityUtil.markBlockForUpdate(worldIn, pos);
-			worldIn.updateComparatorOutputLevel(pos, this);
-			worldIn.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FurnitureSounds.channel_switch, SoundCategory.BLOCKS, 0.75F, 1.0F, false);
-			
-			if(worldIn.isRemote)
-			{
-				Channels.getChannel(nextChannel).play(pos);
-			}
-			else
-			{
-				PacketHandler.INSTANCE.sendToAllAround(new MessageTVClient(tileEntityTV.getChannel(), pos), new TargetPoint(playerIn.dimension, pos.getX(), pos.getY(), pos.getZ(), 16));
+				TileEntityTV tileEntityTelevision = (TileEntityTV) tileEntity;
+				tileEntityTelevision.nextChannel();
+				worldIn.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FurnitureSounds.white_noise, SoundCategory.BLOCKS, 0.75F, 1.0F);
+				PacketHandler.INSTANCE.sendToAllAround(new MessageTVPlaySound(pos, Channels.getChannel(tileEntityTelevision.getChannel()).getChannelName()), new TargetPoint(playerIn.dimension, pos.getX(), pos.getY(), pos.getZ(), 64));
 			}
 		}
 		return true;
@@ -100,7 +83,10 @@ public class BlockTV extends BlockFurnitureTile
 	@SideOnly(Side.CLIENT)
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
 		super.onBlockHarvested(worldIn, pos, state, player);
-		Channel.stopSound(pos);
+		if(!worldIn.isRemote)
+		{
+			PacketHandler.INSTANCE.sendToAllAround(new MessageTVStopSound(pos), new TargetPoint(player.dimension, pos.getX(), pos.getY(), pos.getZ(), 64));
+		}
 	}
 	
 	@Override
@@ -108,7 +94,7 @@ public class BlockTV extends BlockFurnitureTile
 		TileEntityTV tileEntityTV = (TileEntityTV) worldIn.getTileEntity(pos);
 		return state.withProperty(CHANNEL, tileEntityTV.getChannel());
 	}
-	
+
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
 	{
@@ -124,7 +110,7 @@ public class BlockTV extends BlockFurnitureTile
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, new IProperty[] { FACING, CHANNEL });
+		return new BlockStateContainer(this, FACING, CHANNEL);
 	}
 	
 	@Override
@@ -132,5 +118,11 @@ public class BlockTV extends BlockFurnitureTile
 	{
 		TileEntityTV tv = (TileEntityTV) world.getTileEntity(pos);
 		return tv.getChannel() + 1;
+	}
+
+	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state)
+	{
+		return EnumBlockRenderType.MODEL;
 	}
 }

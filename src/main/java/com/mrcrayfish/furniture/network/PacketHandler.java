@@ -42,13 +42,14 @@ public class PacketHandler
 		INSTANCE.registerMessage(MessagePresent.class, MessagePresent.class, 10, Side.SERVER);
 		INSTANCE.registerMessage(MessagePresentContents.class, MessagePresentContents.class, 11, Side.SERVER);
 		INSTANCE.registerMessage(MessageTakeWater.class, MessageTakeWater.class, 12, Side.SERVER);
-		INSTANCE.registerMessage(MessageTVClient.class, MessageTVClient.class, 13, Side.CLIENT);
-		INSTANCE.registerMessage(MessageMicrowave.class, MessageMicrowave.class, 14, Side.SERVER);
-		INSTANCE.registerMessage(MessageWashingMachine.class, MessageWashingMachine.class, 15, Side.SERVER);
-		INSTANCE.registerMessage(MessageDishwasher.class, MessageDishwasher.class, 16, Side.SERVER);
-		INSTANCE.registerMessage(MessageFreezer.class, MessageFreezer.class, 17, Side.SERVER);
-		INSTANCE.registerMessage(MessageUpdateFields.class, MessageUpdateFields.class, 18, Side.CLIENT);
-		INSTANCE.registerMessage(MessageDoorMat.class, MessageDoorMat.class, 19, Side.SERVER);
-		INSTANCE.registerMessage(MessageSealCrate.class, MessageSealCrate.class, 20, Side.SERVER);
+		INSTANCE.registerMessage(MessageMicrowave.class, MessageMicrowave.class, 13, Side.SERVER);
+		INSTANCE.registerMessage(MessageWashingMachine.class, MessageWashingMachine.class, 14, Side.SERVER);
+		INSTANCE.registerMessage(MessageDishwasher.class, MessageDishwasher.class, 15, Side.SERVER);
+		INSTANCE.registerMessage(MessageFreezer.class, MessageFreezer.class, 16, Side.SERVER);
+		INSTANCE.registerMessage(MessageUpdateFields.class, MessageUpdateFields.class, 17, Side.CLIENT);
+		INSTANCE.registerMessage(MessageDoorMat.class, MessageDoorMat.class, 18, Side.SERVER);
+		INSTANCE.registerMessage(MessageSealCrate.class, MessageSealCrate.class, 19, Side.SERVER);
+		INSTANCE.registerMessage(MessageTVPlaySound.class, MessageTVPlaySound.class, 20, Side.CLIENT);
+		INSTANCE.registerMessage(MessageTVStopSound.class, MessageTVStopSound.class, 21, Side.CLIENT);
 	}
 }

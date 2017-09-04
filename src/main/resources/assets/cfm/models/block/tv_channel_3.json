@@ -2,7 +2,7 @@
 	"parent": "cfm:block/tv",
 	"textures": {
 		"1": "blocks/log_oak",
-		"2": "cfm:blocks/channel_3",
+		"2": "cfm:blocks/channel_sam_tabor",
 		"3": "blocks/planks_oak"
 	}
 }

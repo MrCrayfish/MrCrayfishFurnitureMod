@@ -36,6 +36,8 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -444,12 +446,14 @@ public class FurnitureBlocks
 		registerRender(esky);
 		registerPresents();
 	}
-	
+
+	@SideOnly(Side.CLIENT)
 	private static void registerRender(Block block)
 	{
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + block.getUnlocalizedName().substring(5), "inventory"));
 	}
 
+	@SideOnly(Side.CLIENT)
 	private static void registerPresents()
 	{
 		ItemBlock blockItem = (ItemBlock) Item.getItemFromBlock(present);

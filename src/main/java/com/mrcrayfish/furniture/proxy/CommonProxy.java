@@ -17,19 +17,22 @@
  */
 package com.mrcrayfish.furniture.proxy;
 
+import com.google.common.collect.ImmutableList;
+import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.handler.CraftingHandler;
 import com.mrcrayfish.furniture.handler.SyncEvent;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class CommonProxy implements ProxyInterface
 {
-	public void registerRenders()
-	{
-
-	}
-
 	public World getClientWorld()
 	{
 		return null;
@@ -57,5 +60,31 @@ public class CommonProxy implements ProxyInterface
 	{
 		MinecraftForge.EVENT_BUS.register(new CraftingHandler());
 		MinecraftForge.EVENT_BUS.register(new SyncEvent());
+		MinecraftForge.EVENT_BUS.register(this);
+	}
+
+	private static final List<String> IGNORE_SOUNDS;
+
+	static
+	{
+		ImmutableList.Builder<String> builder = ImmutableList.builder();
+		builder.add("channel_news");
+		builder.add("channel_sam_tabor");
+		builder.add("channel_heman");
+		builder.add("channel_switch");
+		builder.add("channel_cooking");
+		IGNORE_SOUNDS = builder.build();
+	}
+
+	@SubscribeEvent
+	public void onMissingMap(RegistryEvent.MissingMappings<SoundEvent> event)
+	{
+		for(RegistryEvent.MissingMappings.Mapping<SoundEvent> missing : event.getMappings())
+		{
+			if(missing.key.getResourceDomain().equals(Reference.MOD_ID) && IGNORE_SOUNDS.contains(missing.key.getResourcePath().toString()))
+			{
+				missing.ignore();
+			}
+		}
 	}
 }

@@ -17,10 +17,15 @@
  */
 package com.mrcrayfish.furniture.tileentity;
 
+import com.mrcrayfish.furniture.blocks.tv.Channels;
+import com.mrcrayfish.furniture.util.TileEntityUtil;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public class TileEntityTV extends TileEntity
 {
@@ -54,18 +59,33 @@ public class TileEntityTV extends TileEntity
 		this.channel = channel;
 	}
 
+	public void nextChannel()
+	{
+		int nextChannel = 0;
+		if(channel < Channels.getChannelCount() - 1)
+		{
+			nextChannel = channel + 1;
+		}
+		setChannel(nextChannel);
+		markDirty();
+		TileEntityUtil.markBlockForUpdate(world, pos);
+	}
+
 	@Override
 	public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
 	{
-		NBTTagCompound tagCom = pkt.getNbtCompound();
-		this.readFromNBT(tagCom);
+		this.readFromNBT(pkt.getNbtCompound());
 	}
 
 	@Override
 	public SPacketUpdateTileEntity getUpdatePacket()
 	{
-		NBTTagCompound tagCom = new NBTTagCompound();
-		this.writeToNBT(tagCom);
-		return new SPacketUpdateTileEntity(pos, getBlockMetadata(), tagCom);
+		return new SPacketUpdateTileEntity(pos, getBlockMetadata(), this.writeToNBT(new NBTTagCompound()));
+	}
+
+	@Override
+	public NBTTagCompound getUpdateTag()
+	{
+		return this.writeToNBT(new NBTTagCompound());
 	}
 }
