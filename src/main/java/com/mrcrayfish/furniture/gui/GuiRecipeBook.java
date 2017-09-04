@@ -527,6 +527,7 @@ public class GuiRecipeBook extends GuiScreen
 		return mouseX >= posX - 1 && mouseX < posX + width + 1 && mouseY >= posY - 1 && mouseY < posY + height + 1;
 	}
 
+	@Override
 	public void renderToolTip(ItemStack itemStack, int mouseX, int mouseY)
 	{
 		List list = itemStack.getTooltip(this.mc.player, this.mc.gameSettings.advancedItemTooltips ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL);
@@ -551,7 +552,6 @@ public class GuiRecipeBook extends GuiScreen
 	static class NextPageButton extends GuiButton
 	{
 		private final boolean rightButton;
-		private static final String __OBFID = "CL_00000745";
 
 		public NextPageButton(int id, int posX, int posY, boolean rightButton)
 		{
@@ -559,10 +559,8 @@ public class GuiRecipeBook extends GuiScreen
 			this.rightButton = rightButton;
 		}
 
-		/**
-		 * Draws this button to the screen.
-		 */
-		public void drawButton(Minecraft mc, int mouseX, int mouseY)
+		@Override
+		public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks)
 		{
 			if (this.visible)
 			{

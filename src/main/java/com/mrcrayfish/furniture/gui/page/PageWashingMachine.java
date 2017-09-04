@@ -48,6 +48,6 @@ public class PageWashingMachine extends RecipePage
 	@Override
 	public String getTitle()
 	{
-		return "Washing Mac.";
+		return "Washing Machine";
 	}
 }
