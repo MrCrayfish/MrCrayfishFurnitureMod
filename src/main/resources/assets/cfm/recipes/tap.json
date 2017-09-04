@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "cfm:tap"
+  },
+  "pattern": [
+    " @ ",
+    "***",
+    "  *"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "@": {
+      "item": "minecraft:iron_ingot"
+    },
+    "*": {
+      "item": "minecraft:stone",
+      "data": 0
+    }
+  }
+}

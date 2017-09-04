@@ -41,6 +41,6 @@ public class ItemRecipeBook extends Item
 		{
 			playerIn.openGui(MrCrayfishFurnitureMod.instance, 10, worldIn, 0, 0, 0);
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+		return new ActionResult<>(EnumActionResult.SUCCESS, stack);
 	}
 }

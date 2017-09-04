@@ -14,7 +14,7 @@ public class TreeRenderer extends TileEntitySpecialRenderer<TileEntityTree>
 	private EntityItem ornament = new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D);
 
 	@Override
-	public void renderTileEntityAt(TileEntityTree tree, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
+	public void render(TileEntityTree tree, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
 	{
 		Block block = tree.getWorld().getBlockState(tree.getPos()).getBlock();
 		
@@ -28,7 +28,7 @@ public class TreeRenderer extends TileEntitySpecialRenderer<TileEntityTree>
 		}
 
 		GL11.glPushMatrix();
-		GL11.glTranslatef((float) posX + 0.5F, (float) posY + yOffset, (float) posZ + 0.5F);
+		GL11.glTranslatef((float) x + 0.5F, (float) y + yOffset, (float) z + 0.5F);
 		GL11.glRotatef(90, 0, 1, 0);
 
 		for (int i = 0; i < tree.getSize(); i++)
@@ -36,7 +36,7 @@ public class TreeRenderer extends TileEntitySpecialRenderer<TileEntityTree>
 			ItemStack item = tree.getItem(i);
 			if (item != null)
 			{
-				this.ornament.setEntityItemStack(item);
+				this.ornament.setItem(item);
 				this.ornament.hoverStart = 0.0F;
 				
 				GL11.glPushMatrix();

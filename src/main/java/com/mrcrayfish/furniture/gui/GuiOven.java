@@ -60,8 +60,8 @@ public class GuiOven extends GuiContainer
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2)
 	{
-		this.fontRendererObj.drawString("Oven", 75, 6, 4210752);
-		this.fontRendererObj.drawString("Inventory", 8, (ySize - 96) + 2, 4210752);
+		this.fontRenderer.drawString("Oven", 75, 6, 4210752);
+		this.fontRenderer.drawString("Inventory", 8, (ySize - 96) + 2, 4210752);
 		
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(GUI);

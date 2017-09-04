@@ -17,14 +17,12 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -47,13 +45,7 @@ public class BlockBasin extends BlockFurniture
 		this.setSoundType(SoundType.STONE);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(FILLED, Boolean.valueOf(false)));
 	}
-	
-	@Override
-	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-	{
-		((EntityPlayer) placer).addStat(FurnitureAchievements.bathroom);
-	}
-	
+
 	@Override
 	public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player) 
 	{

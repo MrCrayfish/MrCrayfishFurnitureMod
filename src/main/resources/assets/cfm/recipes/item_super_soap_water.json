@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "cfm:item_super_soap_water"
+  },
+  "pattern": [
+    "GGG",
+    "GSG",
+    "GGG"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "cfm:item_soap_water"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    }
+  }
+}

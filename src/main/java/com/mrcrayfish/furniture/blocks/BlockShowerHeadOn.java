@@ -17,7 +17,6 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityShowerHead;
 import com.mrcrayfish.furniture.util.CollisionHelper;
@@ -58,12 +57,6 @@ public class BlockShowerHeadOn extends BlockFurnitureTile
 		this.setHardness(1.0F);
 		this.setSoundType(SoundType.STONE);
 		this.setCreativeTab(null);
-	}
-
-	@Override
-	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-	{
-		((EntityPlayer) placer).addStat(FurnitureAchievements.bathroom);
 	}
 
 	@Override

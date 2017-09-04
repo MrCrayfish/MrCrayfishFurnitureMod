@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "cfm:door_bell"
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:noteblock"
+    },
+    {
+      "item": "minecraft:stone_button"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

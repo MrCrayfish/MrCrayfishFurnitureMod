@@ -1,0 +1,15 @@
+{
+  "result": {
+    "item": "cfm:coffee_table_stone"
+  },
+  "pattern": [
+    "***",
+    "* *"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "*": {
+      "item": "minecraft:cobblestone"
+    }
+  }
+}

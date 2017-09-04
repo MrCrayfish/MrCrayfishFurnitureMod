@@ -19,13 +19,11 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.tileentity.TileEntityPresent;
 import com.mrcrayfish.furniture.util.InventoryUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -93,7 +91,6 @@ public class BlockPresent extends Block implements ITileEntityProvider
 		{
 			world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 0.75F, 1.0F, false);
 			player.sendMessage(new TextComponentString(TextFormatting.GREEN + "Merry Christmas" + TextFormatting.RESET + " from " + TextFormatting.RED + present.ownerName));
-			player.addStat(FurnitureAchievements.unwrapPresent);
 		}
 	}
 	
@@ -142,22 +139,17 @@ public class BlockPresent extends Block implements ITileEntityProvider
 	{
 		return (int) (date2.getTime() - date.getTime()) / (1000 * 60 * 60 * 24);
 	}
-	
-	public MapColor getMapColor(IBlockState state)
-    {
-        return ((EnumDyeColor)state.getValue(COLOUR)).getMapColor();
-    }
-	
+
 	@Override
 	public int damageDropped(IBlockState state)
 	{
-		return ((EnumDyeColor)state.getValue(COLOUR)).getMetadata();
+		return state.getValue(COLOUR).getMetadata();
 	}
 	
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return ((EnumDyeColor)state.getValue(COLOUR)).getMetadata();
+		return state.getValue(COLOUR).getMetadata();
 	}
 	
 	@Override
@@ -180,11 +172,11 @@ public class BlockPresent extends Block implements ITileEntityProvider
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubBlocks(Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
+	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
 	{
 		for (EnumDyeColor dye : EnumDyeColor.values())
 		{
-			list.add(new ItemStack(itemIn, 1, dye.getMetadata()));
+			list.add(new ItemStack(this, 1, dye.getMetadata()));
 		}
 	}
 }

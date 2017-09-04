@@ -78,7 +78,7 @@ public class MessageFillSink implements IMessage, IMessageHandler<MessageFillSin
 				tileEntityCounterSink.setHasWater(message.hasWater);
 			}
 			BlockPos pos = new BlockPos(message.x, message.y, message.z);
-			TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().playerEntity.world, pos);
+			TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().player.world, pos);
 		}
 		return null;
 	}

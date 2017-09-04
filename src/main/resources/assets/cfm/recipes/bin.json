@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "cfm:bin"
+  },
+  "pattern": [
+    "BSB",
+    "I I",
+    "III"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:heavy_weighted_pressure_plate"
+    },
+    "S": {
+      "item": "minecraft:stone",
+      "data": 0
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  }
+}

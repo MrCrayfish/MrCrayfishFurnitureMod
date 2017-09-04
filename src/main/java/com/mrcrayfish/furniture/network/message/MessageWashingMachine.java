@@ -64,7 +64,7 @@ public class MessageWashingMachine implements IMessage, IMessageHandler<MessageW
 	@Override
 	public IMessage onMessage(MessageWashingMachine message, MessageContext ctx)
 	{
-		World world = ctx.getServerHandler().playerEntity.world;
+		World world = ctx.getServerHandler().player.world;
 		TileEntity tileEntity = world.getTileEntity(new BlockPos(message.x, message.y, message.z));
 		if (tileEntity instanceof TileEntityWashingMachine)
 		{

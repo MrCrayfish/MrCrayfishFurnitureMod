@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "cfm:plate"
+  },
+  "pattern": [
+    "Q Q",
+    " Q "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "Q": {
+      "item": "minecraft:quartz_block",
+      "data": 0
+    }
+  }
+}

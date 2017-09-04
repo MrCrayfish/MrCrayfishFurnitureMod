@@ -17,7 +17,6 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.Block;
@@ -73,7 +72,6 @@ public class BlockShower extends BlockFurniture
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
 	{
 		world.setBlockState(pos.up(), FurnitureBlocks.shower_top.getDefaultState().withProperty(FACING, state.getValue(FACING)), 2);
-		((EntityPlayer) placer).addStat(FurnitureAchievements.bathroom);
 	}
 	
 	@Override

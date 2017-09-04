@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "cfm:coffee_table_acacia"
+  },
+  "pattern": [
+    "***",
+    "* *"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "*": {
+      "item": "minecraft:planks",
+      "data": 4
+    }
+  }
+}

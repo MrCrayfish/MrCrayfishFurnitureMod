@@ -31,20 +31,20 @@ public class BlenderRenderer extends TileEntitySpecialRenderer<TileEntityBlender
 	private EntityItem entityFood = new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D);
 
 	@Override
-	public void renderTileEntityAt(TileEntityBlender blender, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
+	public void render(TileEntityBlender blender, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
 	{
 		ItemStack[] ingredients = blender.getIngredients();
 
 		GL11.glPushMatrix();
 		{
-			GL11.glTranslatef((float) posX + 0.5F, (float) posY + 0.2F, (float) posZ + 0.5F);
+			GL11.glTranslated((float) x + 0.5F, (float) y + 0.2F, (float) z + 0.5F);
 			GL11.glScalef(0.65F, 0.65F, 0.65F);
 			entityFood.hoverStart = 0.0F;
 			for (int i = 0; i < ingredients.length; i++)
 			{
 				if (ingredients[i] != null)
 				{
-					entityFood.setEntityItemStack(ingredients[i]);
+					entityFood.setItem(ingredients[i]);
 					GL11.glRotatef(i * -90F, 0, 1, 0);
 					GL11.glRotatef(blender.progress * 18F, 0, 1, 0);
 					Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityFood, 0.0D, 0.2D, 0.0D, 0.0F, 0.0F, false);
@@ -57,15 +57,15 @@ public class BlenderRenderer extends TileEntitySpecialRenderer<TileEntityBlender
 		{
 			GlStateManager.pushMatrix();
 			{
-				GL11.glTranslatef((float) posX + 0.5F, (float) posY + 0.05F, (float) posZ + 0.5F);
+				GL11.glTranslatef((float) x + 0.5F, (float) y + 0.05F, (float) z + 0.5F);
 
 				GlStateManager.enableBlend();
 				OpenGlHelper.glBlendFunc(770, 771, 1, 0);
 				GlStateManager.disableLighting();
 				GlStateManager.disableTexture2D();
 
-				float alpha = blender.isBlending() ? (blender.progress / 200F) : (blender.drinkCount > 0 ? 1.0F : 0.0F);
-				GlStateManager.color(blender.currentRed / 255F, blender.currentGreen / 255F, blender.currentBlue / 255F, alpha);
+				float liquidAlpha = blender.isBlending() ? (blender.progress / 200F) : (blender.drinkCount > 0 ? 1.0F : 0.0F);
+				GlStateManager.color(blender.currentRed / 255F, blender.currentGreen / 255F, blender.currentBlue / 255F, liquidAlpha);
 
 				GlStateManager.enableRescaleNormal();
 

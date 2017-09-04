@@ -13,14 +13,14 @@ public class OvenRenderer extends TileEntitySpecialRenderer<TileEntityOven>
 	private EntityItem ovenItem = new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D);
 	
 	@Override
-	public void renderTileEntityAt(TileEntityOven oven, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
+	public void render(TileEntityOven oven, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
 	{
 		ovenItem.hoverStart = 0.0F;
 		
 		GlStateManager.pushMatrix();
 		{
 			GL11.glDisable(GL11.GL_LIGHTING);
-			GlStateManager.translate(posX + 0.3, posY + 0.52, posZ + 0.5);
+			GlStateManager.translate(x + 0.3, y + 0.52, z + 0.5);
 			GlStateManager.scale(0.66, 0.66, 0.66);
 
 			for (int i = 0; i < oven.getSizeInventory(); i++)
@@ -31,7 +31,7 @@ public class OvenRenderer extends TileEntitySpecialRenderer<TileEntityOven>
 				ItemStack food = oven.getStackInSlot(i);
 				if (food != null)
 				{
-					ovenItem.setEntityItemStack(food);
+					ovenItem.setItem(food);
 					GlStateManager.pushMatrix();
 					{
 						GlStateManager.translate(xOffset, height, zOffset);

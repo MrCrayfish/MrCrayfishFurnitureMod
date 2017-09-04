@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "cfm:item_kebab",
+    "count": 2
+  },
+  "pattern": [
+    "  S",
+    " C ",
+    "S  "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "C": {
+      "item": "minecraft:chicken"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "cfm:shower_bottom"
+  },
+  "pattern": [
+    "QGQ",
+    "QGQ",
+    "QGQ"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "Q": {
+      "item": "minecraft:quartz_block",
+      "data": 0
+    },
+    "G": {
+      "item": "minecraft:glass"
+    }
+  }
+}

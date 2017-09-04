@@ -18,7 +18,6 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityCouch;
 import com.mrcrayfish.furniture.util.CollisionHelper;
@@ -203,7 +202,6 @@ public abstract class BlockCouch extends BlockFurnitureTile
 				{
 					if(heldItem.getDisplayName().equals("jeb_"))
 					{
-						playerIn.addStat(FurnitureAchievements.jebCouch);
 						worldIn.setBlockState(pos, FurnitureBlocks.couch_jeb.getDefaultState().withProperty(FACING, state.getValue(FACING)));
 						heldItem.shrink(1);
 						return true;

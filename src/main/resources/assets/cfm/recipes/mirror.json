@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "cfm:mirror"
+  },
+  "pattern": [
+    "BIB",
+    "IGI",
+    "BIB"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:iron_block"
+    },
+    "G": {
+      "item": "minecraft:stained_glass_pane",
+      "data": 0
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "cfm:washing_machine"
+  },
+  "pattern": [
+    "QQQ",
+    "QGQ",
+    "QFQ"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "Q": {
+      "item": "minecraft:quartz_block",
+      "data": 0
+    },
+    "F": {
+      "item": "minecraft:furnace"
+    },
+    "G": {
+      "item": "minecraft:glass_pane"
+    }
+  }
+}

@@ -17,7 +17,6 @@
  */
 package com.mrcrayfish.furniture.tileentity;
 
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.util.ParticleSpawner;
 import net.minecraft.entity.player.EntityPlayer;
@@ -55,7 +54,6 @@ public class TileEntityShowerHead extends TileEntity implements ITickable
 				for (EntityPlayer player : listPlayers)
 				{
 					player.curePotionEffects(new ItemStack(Items.MILK_BUCKET));
-					player.addStat(FurnitureAchievements.allClean);
 	
 					for (int i = 0; i < 4; i++)
 					{

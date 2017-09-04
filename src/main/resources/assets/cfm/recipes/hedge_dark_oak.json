@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "cfm:hedge_dark_oak",
+    "count": 4
+  },
+  "pattern": [
+    "***",
+    "***"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "*": {
+      "item": "minecraft:leaves2",
+      "data": 1
+    }
+  }
+}

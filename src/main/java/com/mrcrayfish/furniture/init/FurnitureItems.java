@@ -27,7 +27,14 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class FurnitureItems
 {
@@ -92,32 +99,37 @@ public class FurnitureItems
 
 	public static void registerItems()
 	{
-		GameRegistry.register(itemFlesh);
-		GameRegistry.register(itemCookedFlesh);
-		GameRegistry.register(itemCoolPack);
-		GameRegistry.register(itemHammer);
-		GameRegistry.register(itemEnvelope);
-		GameRegistry.register(itemEnvelopeSigned);
-		GameRegistry.register(itemPackage);
-		GameRegistry.register(itemPackageSigned);
-		GameRegistry.register(itemInkCartridge);
-		GameRegistry.register(itemBreadSlice);
-		GameRegistry.register(itemToast);
-		GameRegistry.register(itemKnife);
-		GameRegistry.register(itemCup);
-		GameRegistry.register(itemDrink);
-		GameRegistry.register(itemSoap);
-		GameRegistry.register(itemSoapyWater);
-		GameRegistry.register(itemSuperSoapyWater);
-		GameRegistry.register(itemRecipeBook);
-		GameRegistry.register(itemCrayfish);
-		GameRegistry.register(itemLog);
-		GameRegistry.register(itemSpatula);
-		GameRegistry.register(itemSausage);
-		GameRegistry.register(itemSausageCooked);
-		GameRegistry.register(itemKebab);
-		GameRegistry.register(itemKebabCooked);
-		GameRegistry.register(itemCrowBar);
+		registerItem(itemFlesh);
+		registerItem(itemCookedFlesh);
+		registerItem(itemCoolPack);
+		registerItem(itemHammer);
+		registerItem(itemEnvelope);
+		registerItem(itemEnvelopeSigned);
+		registerItem(itemPackage);
+		registerItem(itemPackageSigned);
+		registerItem(itemInkCartridge);
+		registerItem(itemBreadSlice);
+		registerItem(itemToast);
+		registerItem(itemKnife);
+		registerItem(itemCup);
+		registerItem(itemDrink);
+		registerItem(itemSoap);
+		registerItem(itemSoapyWater);
+		registerItem(itemSuperSoapyWater);
+		registerItem(itemRecipeBook);
+		registerItem(itemCrayfish);
+		registerItem(itemLog);
+		registerItem(itemSpatula);
+		registerItem(itemSausage);
+		registerItem(itemSausageCooked);
+		registerItem(itemKebab);
+		registerItem(itemKebabCooked);
+		registerItem(itemCrowBar);
+	}
+
+	public static void registerItem(Item item)
+	{
+		RegistrationHandler.ITEMS.add(item);
 	}
 
 	public static void registerRenders()
@@ -160,6 +172,18 @@ public class FurnitureItems
 		for (int i = 0; i < maxMeta; i++)
 		{
 			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, i, new ModelResourceLocation(Reference.MOD_ID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
+		}
+	}
+
+	@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
+	public static class RegistrationHandler
+	{
+		public static final List<Item> ITEMS = new LinkedList<>();
+
+		@SubscribeEvent
+		public static void registerItems(final RegistryEvent.Register<Item> event)
+		{
+			ITEMS.stream().forEach(item -> event.getRegistry().register(item));
 		}
 	}
 }

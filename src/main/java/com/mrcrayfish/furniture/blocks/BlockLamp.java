@@ -18,7 +18,6 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -28,7 +27,6 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
@@ -75,12 +73,6 @@ public class BlockLamp extends Block
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
 	{
 		return BOUNDING_BOX;
-	}
-
-	@Override
-	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-	{
-		((EntityPlayer) placer).addStat(FurnitureAchievements.modernTechnology);
 	}
 
 	@Override

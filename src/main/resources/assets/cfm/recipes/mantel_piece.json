@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "cfm:mantel_piece"
+  },
+  "pattern": [
+    "BBB",
+    "B B",
+    "B B"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:brick_block"
+    }
+  }
+}

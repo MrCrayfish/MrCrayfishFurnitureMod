@@ -18,7 +18,6 @@
 package com.mrcrayfish.furniture.network.message;
 
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -54,11 +53,10 @@ public class MessageFart implements IMessage, IMessageHandler<MessageFart, IMess
 	@Override
 	public IMessage onMessage(MessageFart message, MessageContext ctx)
 	{
-		EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+		EntityPlayerMP player = ctx.getServerHandler().player;
 		if (player.getRidingEntity() instanceof EntitySittableBlock)
 		{
 			player.world.playSound(null, player.getPosition(), FurnitureSounds.getRandomFart(rand), SoundCategory.BLOCKS, 0.75F, rand.nextFloat());
-			player.addStat(FurnitureAchievements.whatDidYouEat);
 		}
 		return null;
 	}

@@ -18,7 +18,6 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -28,9 +27,6 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -74,13 +70,7 @@ public class BlockWhiteFence extends Block
 	{
 		return false;
 	}
-	
-	@Override
-	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-	{
-		((EntityPlayer) placer).addStat(FurnitureAchievements.gardening);
-	}
-	
+
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
 	{

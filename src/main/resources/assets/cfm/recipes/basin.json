@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "cfm:basin"
+  },
+  "pattern": [
+    "BIB",
+    "QQQ",
+    " Q "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "Q": {
+      "item": "minecraft:quartz_block",
+      "data": 0
+    },
+    "B": {
+      "item": "minecraft:stone_button"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  }
+}

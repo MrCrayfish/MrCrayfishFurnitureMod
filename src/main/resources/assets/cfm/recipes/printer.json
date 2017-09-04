@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "cfm:printer"
+  },
+  "pattern": [
+    "*@*",
+    "\u0026R\u0026",
+    "***"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "@": {
+      "item": "minecraft:paper"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    },
+    "\u0026": {
+      "item": "minecraft:iron_block"
+    },
+    "*": {
+      "item": "minecraft:stone",
+      "data": 0
+    }
+  }
+}

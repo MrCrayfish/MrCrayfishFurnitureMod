@@ -17,7 +17,6 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityTree;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
@@ -133,12 +132,6 @@ public class BlockTree extends BlockFurnitureTile
 		{
 			return BOUNDING_BOX_TOP;
 		}
-	}
-
-	@Override
-	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-	{
-		((EntityPlayer) placer).addStat(FurnitureAchievements.placeTree);
 	}
 
 	@Override

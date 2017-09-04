@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "cfm:electric_fence",
+    "count": 8
+  },
+  "pattern": [
+    "***",
+    "*@*",
+    "*#*"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "@": {
+      "item": "cfm:white_fence"
+    },
+    "#": {
+      "item": "minecraft:redstone_torch"
+    },
+    "*": {
+      "item": "minecraft:iron_ingot"
+    }
+  }
+}

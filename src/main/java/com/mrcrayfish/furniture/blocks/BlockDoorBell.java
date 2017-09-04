@@ -17,7 +17,6 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.Block;
@@ -127,7 +126,6 @@ public class BlockDoorBell extends BlockFurniture
 			worldIn.markBlockRangeForRenderUpdate(pos, pos);
 			worldIn.playSound(null, pos, FurnitureSounds.door_bell, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));
-			playerIn.addStat(FurnitureAchievements.dingDong);
 			return true;
 		}
 	}

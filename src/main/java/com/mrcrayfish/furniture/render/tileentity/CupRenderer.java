@@ -25,15 +25,14 @@ import org.lwjgl.opengl.GL11;
 
 public class CupRenderer extends TileEntitySpecialRenderer<TileEntityCup>
 {
-
 	@Override
-	public void renderTileEntityAt(TileEntityCup tileEntityCup, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
+	public void render(TileEntityCup tileEntityCup, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
 	{
 		if (tileEntityCup.getDrink() != null)
 		{
 			GlStateManager.pushMatrix();
 			{
-				GL11.glTranslatef((float) posX + 0.5F, (float) posY, (float) posZ + 0.5F);
+				GL11.glTranslatef((float) x + 0.5F, (float) y, (float) z + 0.5F);
 
 				GlStateManager.enableBlend();
 				OpenGlHelper.glBlendFunc(770, 771, 1, 0);

@@ -55,8 +55,8 @@ public class GuiEnvelope extends GuiContainer
 
 	protected void drawGuiContainerForegroundLayer(int par1, int par2)
 	{
-		this.fontRendererObj.drawString("Envelope", xSize / 2 - 22, 5, 9999999);
-		this.fontRendererObj.drawString("Inventory", 8, (ySize - 96) + 2, 4210752);
+		this.fontRenderer.drawString("Envelope", xSize / 2 - 22, 5, 9999999);
+		this.fontRenderer.drawString("Inventory", 8, (ySize - 96) + 2, 4210752);
 	}
 
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j)

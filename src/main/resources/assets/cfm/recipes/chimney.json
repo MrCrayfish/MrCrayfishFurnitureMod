@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "cfm:chimney"
+  },
+  "pattern": [
+    "CCC",
+    "BBB",
+    "BBB"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:brick_block"
+    },
+    "C": {
+      "item": "minecraft:cobblestone"
+    }
+  }
+}

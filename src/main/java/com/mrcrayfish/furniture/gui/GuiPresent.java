@@ -59,7 +59,7 @@ public class GuiPresent extends GuiContainer
 			this.mc.player.closeScreen();
 		}
 
-		this.fontRendererObj.drawString("Inventory", 8, (ySize - 96) + 2, 4210752);
+		this.fontRenderer.drawString("Inventory", 8, (ySize - 96) + 2, 4210752);
 	}
 
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j)

@@ -28,7 +28,7 @@ public class GuiDoorMat extends GuiScreen
 	public void initGui()
     {
         Keyboard.enableRepeatEvents(true);
-        messageTextField = new GuiDoorMatTextField(2, fontRendererObj, this.width / 2 - 150, this.height / 2 - 20, 300, 20, 50, 4);
+        messageTextField = new GuiDoorMatTextField(2, fontRenderer, this.width / 2 - 150, this.height / 2 - 20, 300, 20, 50, 4);
         messageTextField.setFocused(true);
         messageTextField.setMaxStringLength(100);
         doneBtn = new GuiButton(0, this.width / 2 - 4 - 150, this.height / 4 + 120 + 12, 150, 20, I18n.format("gui.done", new Object[0]));
@@ -48,7 +48,7 @@ public class GuiDoorMat extends GuiScreen
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();
-		this.drawCenteredString(fontRendererObj, "Enter Message", this.width / 2, this.height / 2 - 40, 16777215);
+		this.drawCenteredString(fontRenderer, "Enter Message", this.width / 2, this.height / 2 - 40, 16777215);
 		messageTextField.drawTextBox();
 		super.drawScreen(mouseX, mouseY, partialTicks);
 	}

@@ -76,7 +76,7 @@ public class ItemEnvelope extends Item implements IMail
 		{
 			playerIn.openGui(MrCrayfishFurnitureMod.instance, 5, worldIn, 0, 0, 0);
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+		return new ActionResult<>(EnumActionResult.SUCCESS, stack);
 	}
 
 	public static IInventory getInv(EntityPlayer par1EntityPlayer)

@@ -17,7 +17,6 @@
  */
 package com.mrcrayfish.furniture.handler;
 
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
@@ -36,7 +35,6 @@ public class PlayerEvents
 	public void onPlayerLogin(PlayerLoggedInEvent e)
 	{
 		EntityPlayer player = (EntityPlayer) e.player;
-		player.addStat(FurnitureAchievements.installMod);
 		if (ConfigurationHandler.canDisplay)
 		{
 			if (!player.world.isRemote)

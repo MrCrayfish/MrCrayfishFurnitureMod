@@ -18,11 +18,9 @@
 package com.mrcrayfish.furniture.gui.containers;
 
 import com.mrcrayfish.furniture.gui.slots.SlotPrinter;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.tileentity.TileEntityPrinter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -58,21 +56,8 @@ public class ContainerPrinter extends Container
 	{
 		return this.printerInventory.isUsableByPlayer(par1EntityPlayer);
 	}
-	
+
 	@Override
-	public ItemStack slotClick(int slotNum, int dragType, ClickType clickTypeIn, EntityPlayer player) 
-	{
-		if (slotNum == 2 && clickTypeIn == ClickType.PICKUP)
-		{
-			Slot var4 = (Slot) this.inventorySlots.get(slotNum);
-			if (var4 != null && var4.getHasStack())
-			{
-				player.addStat(FurnitureAchievements.copyItem);
-			}
-		}
-		return super.slotClick(slotNum, dragType, clickTypeIn, player);
-	}
-	
 	public ItemStack transferStackInSlot(EntityPlayer player, int slotNum)
 	{
 		ItemStack itemCopy = ItemStack.EMPTY;

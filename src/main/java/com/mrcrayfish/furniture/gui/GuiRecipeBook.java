@@ -27,6 +27,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
@@ -430,8 +431,8 @@ public class GuiRecipeBook extends GuiScreen
 		RenderHelper.enableGUIStandardItemLighting();
 		if(page.shouldDrawTitle()) 
 		{
-			fontRendererObj.drawString(TextFormatting.BOLD + page.getTitle(), k - bookWidth + 20, 26, 1986677, false);
-			fontRendererObj.drawString(TextFormatting.BOLD + page.getTitle(), k + 20, 26, 1986677, false);
+			fontRenderer.drawString(TextFormatting.BOLD + page.getTitle(), k - bookWidth + 20, 26, 1986677, false);
+			fontRenderer.drawString(TextFormatting.BOLD + page.getTitle(), k + 20, 26, 1986677, false);
 		}
 		page.draw(this, k - 130, 40, mouseX, mouseY, partialTicks);
 		page.drawOverlay(mc, this, k - 130, 40, mouseX, mouseY, partialTicks);
@@ -499,7 +500,7 @@ public class GuiRecipeBook extends GuiScreen
 
 	public FontRenderer getFontRenderer()
 	{
-		return fontRendererObj;
+		return fontRenderer;
 	}
 
 	public void openTutorial()
@@ -525,7 +526,7 @@ public class GuiRecipeBook extends GuiScreen
 
 	public void renderToolTip(ItemStack itemStack, int mouseX, int mouseY)
 	{
-		List list = itemStack.getTooltip(this.mc.player, this.mc.gameSettings.advancedItemTooltips);
+		List list = itemStack.getTooltip(this.mc.player, this.mc.gameSettings.advancedItemTooltips ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL);
 
 		for (int k = 0; k < list.size(); ++k)
 		{
@@ -540,7 +541,7 @@ public class GuiRecipeBook extends GuiScreen
 		}
 
 		FontRenderer font = itemStack.getItem().getFontRenderer(itemStack);
-		drawHoveringText(list, mouseX, mouseY, (font == null ? fontRendererObj : font));
+		drawHoveringText(list, mouseX, mouseY, (font == null ? fontRenderer : font));
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -567,7 +568,7 @@ public class GuiRecipeBook extends GuiScreen
 
 				int u = 0;
 				int v = 180;
-				boolean flag = mouseX >= xPosition && mouseY >= yPosition && mouseX < xPosition + width && mouseY < yPosition + height;
+				boolean flag = mouseX >= x && mouseY >= y && mouseX < x + width && mouseY < y + height;
 
 				if (flag)
 				{
@@ -579,7 +580,7 @@ public class GuiRecipeBook extends GuiScreen
 					v += height;
 				}
 
-				this.drawTexturedModalRect(xPosition, yPosition, u, v, width, height);
+				this.drawTexturedModalRect(x, y, u, v, width, height);
 			}
 		}
 	}

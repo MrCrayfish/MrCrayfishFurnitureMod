@@ -64,7 +64,7 @@ public class PageContentsOne extends RecipePage
 	public void draw(GuiRecipeBook gui, int x, int y, int mouseX, int mouseY, float partialTicks)
 	{
 		int leftPageCenter = (book.width) / 2 - (book.bookWidth / 2);
-		FontRenderer fontRendererObj = Minecraft.getMinecraft().fontRendererObj;
+		FontRenderer fontRendererObj = Minecraft.getMinecraft().fontRenderer;
 		fontRendererObj.drawString("Oven", leftPageCenter - 55, 45, 16739840);
 		fontRendererObj.drawString("Freezer", leftPageCenter - 55, 45 + (1 * 24), 16739840);
 		fontRendererObj.drawString("MineBay", leftPageCenter - 55, 45 + (2 * 24), 16739840);

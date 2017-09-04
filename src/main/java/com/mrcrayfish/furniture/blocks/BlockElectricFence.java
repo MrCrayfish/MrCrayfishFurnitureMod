@@ -19,7 +19,6 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.DamageSourceFence;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.Block;
@@ -30,12 +29,10 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
@@ -84,12 +81,6 @@ public class BlockElectricFence extends Block
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
-	}
-
-	@Override
-	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-	{
-		((EntityPlayer) placer).addStat(FurnitureAchievements.modernTechnology);
 	}
 
 	@Override
@@ -177,7 +168,6 @@ public class BlockElectricFence extends Block
 					world.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, FurnitureSounds.zap, SoundCategory.BLOCKS, 0.2F, 1.0F);
 					
 					this.sparkle(world, pos);
-					((EntityPlayer) entity).addStat(FurnitureAchievements.careful);
 				}
 			}
 			else

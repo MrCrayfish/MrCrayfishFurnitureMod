@@ -35,7 +35,7 @@ public class PageContentsTwo extends RecipePage
 	public void draw(GuiRecipeBook gui, int x, int y, int mouseX, int mouseY, float partialTicks)
 	{
 		int leftPageCenter = (book.width) / 2 - (book.bookWidth / 2);
-		FontRenderer fontRendererObj = Minecraft.getMinecraft().fontRendererObj;
+		FontRenderer fontRendererObj = Minecraft.getMinecraft().fontRenderer;
 		fontRendererObj.drawString("Grill", leftPageCenter - 55, 45, 16739840);
 	}
 	

@@ -66,7 +66,7 @@ public class MessageMineBayBrowse implements IMessage, IMessageHandler<MessageMi
 	@Override
 	public IMessage onMessage(MessageMineBayBrowse message, MessageContext ctx)
 	{
-		EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+		EntityPlayerMP player = ctx.getServerHandler().player;
 
 		TileEntity tile_entity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
 		if (tile_entity instanceof TileEntityComputer)
@@ -75,7 +75,7 @@ public class MessageMineBayBrowse implements IMessage, IMessageHandler<MessageMi
 			tileEntityComputer.setBrowsingInfo(message.itemNum);
 		}
 		BlockPos pos = new BlockPos(message.x, message.y, message.z);
-		TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().playerEntity.world, pos);
+		TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().player.world, pos);
 		return null;
 	}
 }

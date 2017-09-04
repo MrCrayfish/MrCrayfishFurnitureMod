@@ -19,7 +19,6 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.blocks.tv.Channel;
 import com.mrcrayfish.furniture.blocks.tv.Channels;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageTVClient;
@@ -31,9 +30,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -58,13 +55,7 @@ public class BlockTV extends BlockFurnitureTile
 		this.setSoundType(SoundType.WOOD);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(CHANNEL, 0));
 	}
-	
-	@Override
-	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-	{
-		((EntityPlayer) placer).addStat(FurnitureAchievements.modernTechnology);
-	}
-	
+
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{

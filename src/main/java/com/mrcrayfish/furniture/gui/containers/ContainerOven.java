@@ -20,9 +20,7 @@ package com.mrcrayfish.furniture.gui.containers;
 import com.mrcrayfish.furniture.api.RecipeAPI;
 import com.mrcrayfish.furniture.api.RecipeData;
 import com.mrcrayfish.furniture.gui.slots.SlotOven;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -63,20 +61,6 @@ public class ContainerOven extends Container
 	public boolean canInteractWith(EntityPlayer player)
 	{
 		return this.ovenInventory.isUsableByPlayer(player);
-	}
-
-	@Override
-	public ItemStack slotClick(int slotNum, int dragType, ClickType clickTypeIn, EntityPlayer player) 
-	{
-		if (slotNum > 8 && slotNum < 18 && clickTypeIn == ClickType.PICKUP)
-		{
-			Slot slot = (Slot) this.inventorySlots.get(slotNum);
-			if (slot != null && slot.getHasStack())
-			{
-				player.addStat(FurnitureAchievements.cookItem);
-			}
-		}
-		return super.slotClick(slotNum, dragType, clickTypeIn, player);
 	}
 
 	@Override

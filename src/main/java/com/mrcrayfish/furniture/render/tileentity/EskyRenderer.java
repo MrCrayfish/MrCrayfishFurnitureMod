@@ -13,7 +13,7 @@ public class EskyRenderer extends TileEntitySpecialRenderer<TileEntityEsky>
 	private EntityItem item = new EntityItem(Minecraft.getMinecraft().world);
 	
 	@Override
-	public void renderTileEntityAt(TileEntityEsky eski, double x, double y, double z, float partialTicks, int destroyStage)
+	public void render(TileEntityEsky eski, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
 	{
 		item.hoverStart = 0;
 		
@@ -33,7 +33,7 @@ public class EskyRenderer extends TileEntitySpecialRenderer<TileEntityEsky>
 					{
 						if(!eski.getStackInSlot(i).isEmpty())
 						{
-							item.setEntityItemStack(eski.getStackInSlot(i));
+							item.setItem(eski.getStackInSlot(i));
 							GlStateManager.pushMatrix();
 							{
 								GlStateManager.translate(-0.15 * (i % 4), 0, 0);

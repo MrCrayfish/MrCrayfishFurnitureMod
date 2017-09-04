@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "cfm:item_envelope"
+  },
+  "pattern": [
+    "**"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "*": {
+      "item": "minecraft:paper"
+    }
+  }
+}

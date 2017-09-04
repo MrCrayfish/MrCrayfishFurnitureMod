@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "cfm:range_hood"
+  },
+  "pattern": [
+    " * ",
+    " * ",
+    "*@*"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "@": {
+      "item": "minecraft:glowstone"
+    },
+    "*": {
+      "item": "minecraft:iron_ingot"
+    }
+  }
+}

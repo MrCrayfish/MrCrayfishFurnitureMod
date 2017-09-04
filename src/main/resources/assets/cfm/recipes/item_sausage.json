@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "cfm:item_sausage",
+    "count": 16
+  },
+  "pattern": [
+    "  B",
+    " B ",
+    "B  "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:beef"
+    }
+  }
+}

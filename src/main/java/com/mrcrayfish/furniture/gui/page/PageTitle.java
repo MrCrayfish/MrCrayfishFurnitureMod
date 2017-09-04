@@ -20,7 +20,7 @@ public class PageTitle extends RecipePage
 	public void draw(GuiRecipeBook gui, int x, int y, int mouseX, int mouseY, float partialTicks)
 	{
 		int center = (book.width) / 2;
-		FontRenderer fontRendererObj = Minecraft.getMinecraft().fontRendererObj;
+		FontRenderer fontRendererObj = Minecraft.getMinecraft().fontRenderer;
 		fontRendererObj.drawString("by MrCrayfish", center - 108, 105, 1986677);
 		fontRendererObj.drawString(TextFormatting.UNDERLINE + "About", center + 55, 25, 1986677);
 		fontRendererObj.drawString("This book contains all", center + 18, 40, 16739840);

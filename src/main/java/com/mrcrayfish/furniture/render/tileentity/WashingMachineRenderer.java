@@ -28,12 +28,12 @@ public class WashingMachineRenderer extends TileEntitySpecialRenderer<TileEntity
 	private EntityItem armour = new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D);
 
 	@Override
-	public void renderTileEntityAt(TileEntityWashingMachine machine, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
+	public void render(TileEntityWashingMachine machine, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
 	{
 		int metadata = machine.getBlockMetadata();
 
 		GL11.glPushMatrix();
-		GL11.glTranslatef((float) posX + 0.5F, (float) posY + 0.5F, (float) posZ + 0.5F);
+		GL11.glTranslatef((float) x + 0.5F, (float) y + 0.5F, (float) z + 0.5F);
 		GL11.glRotatef(metadata * -90F, 0, 1, 0);
 		this.armour.hoverStart = 0.0F;
 
@@ -42,7 +42,7 @@ public class WashingMachineRenderer extends TileEntitySpecialRenderer<TileEntity
 			if (machine.getStackInSlot(i) != null)
 			{
 				double zOffset = getOffsetZ(metadata, i);
-				armour.setEntityItemStack(machine.getStackInSlot(i));
+				armour.setItem(machine.getStackInSlot(i));
 				GL11.glRotated(machine.progress * 5, 0, 0, 1);
 				Minecraft.getMinecraft().getRenderManager().doRenderEntity(armour, 0.0, -0.35D, zOffset, 0.0F, 0.0F, false);
 			}

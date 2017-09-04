@@ -140,7 +140,7 @@ public class GuiComputer extends GuiContainer
 
 	protected void drawGuiContainerForegroundLayer(int par1, int par2)
 	{
-		this.fontRendererObj.drawString("Inventory", 8, (ySize - 103), 4210752);
+		this.fontRenderer.drawString("Inventory", 8, (ySize - 103), 4210752);
 
 		GL11.glPushMatrix();
 		RenderHelper.enableGUIStandardItemLighting();
@@ -155,28 +155,28 @@ public class GuiComputer extends GuiContainer
 		{
 			ItemStack pre = itemdata[itemNum - 1].getInput();
 			itemRender.renderItemAndEffectIntoGUI(pre, 57, 16);
-			itemRender.renderItemOverlays(this.fontRendererObj, pre, 57, 16);
+			itemRender.renderItemOverlays(this.fontRenderer, pre, 57, 16);
 		}
 
 		ItemStack stock = itemdata[itemNum].getInput();
 		itemRender.renderItemAndEffectIntoGUI(stock, 80, 16);
-		itemRender.renderItemOverlays(this.fontRendererObj, stock, 80, 16);
+		itemRender.renderItemOverlays(this.fontRenderer, stock, 80, 16);
 
 		if ((itemNum + 1) < itemdata.length)
 		{
 			ItemStack post = itemdata[itemNum + 1].getInput();
 			itemRender.renderItemAndEffectIntoGUI(post, 103, 16);
-			itemRender.renderItemOverlays(this.fontRendererObj, post, 103, 16);
+			itemRender.renderItemOverlays(this.fontRenderer, post, 103, 16);
 		}
 
 		ItemStack currency = itemdata[itemNum].getCurrency();
 		itemRender.renderItemAndEffectIntoGUI(currency, 73, 40);
-		itemRender.renderItemOverlays(this.fontRendererObj, currency, 73, 40);
+		itemRender.renderItemOverlays(this.fontRenderer, currency, 73, 40);
 		itemRender.zLevel = 0.0F;
 		GL11.glDisable(GL11.GL_LIGHTING);
 
 		int price = itemdata[itemNum].getPrice();
-		this.fontRendererObj.drawString("x" + Integer.toString(price), 90, 44, 0);
+		this.fontRenderer.drawString("x" + Integer.toString(price), 90, 44, 0);
 
 		GL11.glPopMatrix();
 		GL11.glEnable(GL11.GL_LIGHTING);

@@ -17,7 +17,7 @@ public class GrillRenderer extends TileEntitySpecialRenderer<TileEntityGrill>
 	private final float FLIP_HEIGHT = 0.5F;
 	
 	@Override
-	public void renderTileEntityAt(TileEntityGrill tileEntityGrill, double x, double y, double z, float partialTicks, int destroyStage)
+	public void render(TileEntityGrill tileEntityGrill, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
 	{
 		entityItem.hoverStart = 0;
 
@@ -35,7 +35,7 @@ public class GrillRenderer extends TileEntitySpecialRenderer<TileEntityGrill>
 				GlStateManager.pushMatrix();
 				{
 					GlStateManager.rotate(15F, 0, 1, 0);
-					entityItem.setEntityItemStack(coal);
+					entityItem.setItem(coal);
 					Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityItem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F, false);
 				}
 				GlStateManager.popMatrix();
@@ -86,7 +86,7 @@ public class GrillRenderer extends TileEntitySpecialRenderer<TileEntityGrill>
 						}
 					}
 
-					entityItem.setEntityItemStack(tileEntityGrill.getItem(0));
+					entityItem.setItem(tileEntityGrill.getItem(0));
 					Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityItem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F, false);
 				}
 				GlStateManager.popMatrix();
@@ -132,7 +132,7 @@ public class GrillRenderer extends TileEntitySpecialRenderer<TileEntityGrill>
 						}
 					}
 					
-					entityItem.setEntityItemStack(tileEntityGrill.getItem(1));
+					entityItem.setItem(tileEntityGrill.getItem(1));
 					Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityItem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F, false);
 				}
 				GlStateManager.popMatrix();

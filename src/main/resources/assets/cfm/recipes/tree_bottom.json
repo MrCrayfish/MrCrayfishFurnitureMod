@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "cfm:tree_bottom"
+  },
+  "pattern": [
+    " L ",
+    "LLL",
+    " P "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "P": {
+      "item": "minecraft:flower_pot"
+    },
+    "L": {
+      "item": "minecraft:leaves",
+      "data": 0
+    }
+  }
+}

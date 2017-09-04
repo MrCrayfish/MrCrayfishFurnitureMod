@@ -18,7 +18,6 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
@@ -70,7 +69,6 @@ public class BlockMailBox extends BlockFurnitureTile
 		if (placer instanceof EntityPlayer)
 		{
 			EntityPlayer player = (EntityPlayer) placer;
-			player.addStat(FurnitureAchievements.mailBox);
 			if (!world.isRemote)
 			{
 				player.sendMessage(new TextComponentString("Now right click the mailbox to claim ownership"));

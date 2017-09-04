@@ -13,7 +13,7 @@ import java.util.List;
 public class DoorMatRenderer extends TileEntitySpecialRenderer<TileEntityDoorMat>
 {
 	@Override
-	public void renderTileEntityAt(TileEntityDoorMat doorMat, double x, double y, double z, float partialTicks, int destroyStage)
+	public void render(TileEntityDoorMat doorMat, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
 	{
 		if (doorMat.getMessage() != null)
 		{

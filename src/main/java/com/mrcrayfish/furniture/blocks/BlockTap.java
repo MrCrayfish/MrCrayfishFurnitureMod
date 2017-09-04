@@ -17,16 +17,13 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -53,12 +50,6 @@ public class BlockTap extends BlockFurniture
 	}
 
 	@Override
-	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-	{
-		((EntityPlayer) placer).addStat(FurnitureAchievements.gardening);
-	}
-
-	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		if (!worldIn.isRemote)
@@ -70,7 +61,6 @@ public class BlockTap extends BlockFurniture
 				{
 					worldIn.setBlockState(pos.offset(side.getOpposite()), Blocks.WATER.getDefaultState());
 					worldIn.setBlockToAir(pos.down(2));
-					playerIn.addStat(FurnitureAchievements.tapped);
 				}
 				else
 				{

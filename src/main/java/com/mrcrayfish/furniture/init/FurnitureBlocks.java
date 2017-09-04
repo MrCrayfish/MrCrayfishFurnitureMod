@@ -30,7 +30,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class FurnitureBlocks
 {
@@ -326,9 +332,9 @@ public class FurnitureBlocks
 	
 	public static void registerBlock(Block block, ItemBlock item) 
 	{
-		GameRegistry.register(block);
+		RegistrationHandler.BLOCKS.add(block);
 		item.setRegistryName(block.getRegistryName());
-		GameRegistry.register(item);
+		FurnitureItems.RegistrationHandler.ITEMS.add(item);
 	}
 	
 	public static void registerRenders()
@@ -446,10 +452,22 @@ public class FurnitureBlocks
 	{
 		Item blockItem = Item.getItemFromBlock(present);
 		NonNullList<ItemStack> subItems = NonNullList.create();
-		present.getSubBlocks(blockItem, null, subItems);
+		present.getSubBlocks(null, subItems);
 		for(int i = 0; i < subItems.size(); i++)
 		{
 			Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(blockItem, subItems.get(i).getMetadata(), new ModelResourceLocation(Reference.MOD_ID + ":" + "present_" + EnumDyeColor.values()[i].getName(), "inventory"));
+		}
+	}
+
+	@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
+	public static class RegistrationHandler
+	{
+		public static final List<Block> BLOCKS = new LinkedList<>();
+
+		@SubscribeEvent
+		public static void registerItems(final RegistryEvent.Register<Block> event)
+		{
+			BLOCKS.stream().forEach(block -> event.getRegistry().register(block));
 		}
 	}
 }

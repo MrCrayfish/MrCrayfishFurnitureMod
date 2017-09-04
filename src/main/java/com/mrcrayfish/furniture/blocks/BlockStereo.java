@@ -17,7 +17,6 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.tileentity.TileEntityStereo;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
@@ -25,11 +24,9 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemRecord;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -78,12 +75,6 @@ public class BlockStereo extends BlockFurnitureTile
 	}
 
 	@Override
-	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-	{
-		((EntityPlayer) placer).addStat(FurnitureAchievements.modernTechnology);
-	}
-
-	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		TileEntity tile_entity = worldIn.getTileEntity(pos);
@@ -104,7 +95,6 @@ public class BlockStereo extends BlockFurnitureTile
 				{
 					tileEntityStereo.count = 0;
 				}
-				playerIn.addStat(FurnitureAchievements.houseParty);
 				worldIn.playRecord(pos, records.get(tileEntityStereo.count).getSound());
 			}
 			else

@@ -21,7 +21,7 @@ public class GuiEski extends GuiContainer
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2)
 	{
-		this.fontRendererObj.drawString("Inventory", 8, this.ySize - 96 + 2, 4210752);
+		this.fontRenderer.drawString("Inventory", 8, this.ySize - 96 + 2, 4210752);
 	}
 	
 	@Override

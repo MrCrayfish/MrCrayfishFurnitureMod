@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "cfm:item_cup"
+  },
+  "pattern": [
+    "G G",
+    "G G",
+    "GGG"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "G": {
+      "item": "minecraft:glass_pane"
+    }
+  }
+}

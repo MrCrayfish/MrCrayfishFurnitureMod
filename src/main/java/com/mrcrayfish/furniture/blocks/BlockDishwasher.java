@@ -18,14 +18,11 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.tileentity.TileEntityDishwasher;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -40,13 +37,7 @@ public class BlockDishwasher extends BlockFurnitureTile
 		this.setHardness(0.5F);
 		this.setSoundType(SoundType.ANVIL);
 	}
-	
-	@Override
-	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-	{
-		((EntityPlayer) placer).addStat(FurnitureAchievements.applianceCity);
-	}
-	
+
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{

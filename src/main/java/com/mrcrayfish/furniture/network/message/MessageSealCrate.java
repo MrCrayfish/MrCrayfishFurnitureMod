@@ -41,7 +41,7 @@ public class MessageSealCrate implements IMessage, IMessageHandler<MessageSealCr
 	@Override
 	public IMessage onMessage(MessageSealCrate message, MessageContext ctx)
 	{
-		World world = ctx.getServerHandler().playerEntity.world;
+		World world = ctx.getServerHandler().player.world;
 		BlockPos pos = new BlockPos(message.x, message.y, message.z);
 		TileEntity tileEntity = world.getTileEntity(pos);
 		if(tileEntity instanceof TileEntityCrate)

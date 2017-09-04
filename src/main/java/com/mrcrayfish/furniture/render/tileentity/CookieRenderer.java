@@ -18,6 +18,7 @@
 package com.mrcrayfish.furniture.render.tileentity;
 
 import com.mrcrayfish.furniture.tileentity.TileEntityCookieJar;
+import com.mrcrayfish.furniture.tileentity.TileEntityCup;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -32,16 +33,14 @@ public class CookieRenderer extends TileEntitySpecialRenderer<TileEntityCookieJa
 	private EntityItem entityItem = new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D, cookie);
 
 	@Override
-	public void renderTileEntityAt(TileEntityCookieJar cookieJar, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
-	{	
+	public void render(TileEntityCookieJar cookieJar, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
+	{
 		GL11.glPushMatrix();
 		
 		GL11.glDisable(GL11.GL_LIGHTING);
-		//WorldRenderer renderer = Tessellator.getInstance().getWorldRenderer();
-		//renderer.setBrightness(15728880);
-		
+
 		this.entityItem.hoverStart = 0.0F;
-		GL11.glTranslatef((float) posX + 0.5F, (float) posY + 0.05F, (float) posZ + 0.18F);
+		GL11.glTranslatef((float) x + 0.5F, (float) y + 0.05F, (float) z + 0.18F);
 		GL11.glRotatef(180, 0, 1, 1);
 		GlStateManager.translate(0, -0.1, 0);
 		GL11.glScalef(0.9F, 0.9F, 0.9F);

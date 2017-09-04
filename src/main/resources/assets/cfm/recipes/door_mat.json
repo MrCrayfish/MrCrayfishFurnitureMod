@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "cfm:door_mat"
+  },
+  "pattern": [
+    "B",
+    "C"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": {
+      "item": "minecraft:dye",
+      "data": 15
+    },
+    "C": {
+      "item": "minecraft:carpet",
+      "data": 12
+    }
+  }
+}

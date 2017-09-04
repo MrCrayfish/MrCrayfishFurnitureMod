@@ -19,7 +19,6 @@ package com.mrcrayfish.furniture.network.message;
 
 import com.mrcrayfish.furniture.api.RecipeData;
 import com.mrcrayfish.furniture.api.Recipes;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.tileentity.TileEntityComputer;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.item.EntityItem;
@@ -73,7 +72,7 @@ public class MessageMineBayBuy implements IMessage, IMessageHandler<MessageMineB
 	@Override
 	public IMessage onMessage(MessageMineBayBuy message, MessageContext ctx)
 	{
-		EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+		EntityPlayerMP player = ctx.getServerHandler().player;
 
 		TileEntity tile_entity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
 		if (tile_entity instanceof TileEntityComputer)
@@ -97,7 +96,6 @@ public class MessageMineBayBuy implements IMessage, IMessageHandler<MessageMineB
 
 			EntityItem entityItem = new EntityItem(player.world, player.posX, player.posY + 1, player.posZ, data[message.itemNum].getInput().copy());
 			player.world.spawnEntity(entityItem);
-			player.addStat(FurnitureAchievements.buyItem);
 		}
 		return null;
 	}

@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "cfm:tv"
+  },
+  "pattern": [
+    "***",
+    "*@*",
+    "*\u0026*"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "@": {
+      "item": "minecraft:glass_pane"
+    },
+    "\u0026": {
+      "item": "minecraft:redstone"
+    },
+    "*": {
+      "item": "minecraft:log",
+      "data": 0
+    }
+  }
+}

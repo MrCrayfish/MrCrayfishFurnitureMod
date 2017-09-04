@@ -19,10 +19,10 @@ package com.mrcrayfish.furniture.items;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.gui.inventory.InventoryPackage;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
 import com.mrcrayfish.furniture.util.NBTHelper;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -42,6 +42,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemPackageSigned extends Item implements IMail
@@ -57,16 +58,16 @@ public class ItemPackageSigned extends Item implements IMail
 		return true;
 	}
 
-	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
-		if (par1ItemStack.hasTagCompound())
+		if (stack.hasTagCompound())
 		{
-			NBTTagCompound nbttagcompound = par1ItemStack.getTagCompound();
+			NBTTagCompound nbttagcompound = stack.getTagCompound();
 			NBTTagString nbttagstring = (NBTTagString) nbttagcompound.getTag("Author");
 
 			if (nbttagstring != null)
 			{
-				par3List.add(TextFormatting.GRAY + "from " + nbttagstring.getString());
+				tooltip.add(TextFormatting.GRAY + "from " + nbttagstring.getString());
 			}
 		}
 	}
@@ -116,7 +117,6 @@ public class ItemPackageSigned extends Item implements IMail
 			if (this == FurnitureItems.itemPackageSigned)
 			{
 				playerIn.openGui(MrCrayfishFurnitureMod.instance, 8, worldIn, 0, 0, 0);
-				playerIn.addStat(FurnitureAchievements.firstMail);
 			}
 		}
 		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);

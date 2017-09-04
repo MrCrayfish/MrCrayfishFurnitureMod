@@ -48,7 +48,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 	}
 
 	@Override
-	public void renderTileEntityAt(TileEntityMirror mirror, double posX, double posY, double posZ, float partialTicks, int breakStage)
+	public void render(TileEntityMirror mirror, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
 	{
 		if(!ConfigurationHandler.mirrorEnabled)
 			return;
@@ -82,7 +82,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 			GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
 			GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
-			GlStateManager.translate(posX + 0.5, posY, posZ + 0.5);
+			GlStateManager.translate(x + 0.5, y, z + 0.5);
 			GlStateManager.rotate(-90F * facing.getHorizontalIndex() + 180F, 0, 1, 0);
 			GlStateManager.translate(-0.5F, 0, -0.43F);
 

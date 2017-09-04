@@ -61,7 +61,7 @@ public class MessagePackage implements IMessage, IMessageHandler<MessagePackage,
 	@Override
 	public IMessage onMessage(MessagePackage message, MessageContext ctx)
 	{
-		EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+		EntityPlayerMP player = ctx.getServerHandler().player;
 		ItemStack mail = message.package_;
 		ItemStack signedMail = new ItemStack(FurnitureItems.itemPackageSigned);
 		signedMail.setTagCompound(mail.getTagCompound());

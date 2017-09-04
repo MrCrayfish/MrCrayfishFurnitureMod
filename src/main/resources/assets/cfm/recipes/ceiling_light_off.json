@@ -1,0 +1,24 @@
+{
+  "result": {
+    "item": "cfm:ceiling_light_off",
+    "count": 4
+  },
+  "pattern": [
+    "O",
+    "S",
+    "G"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "minecraft:stone",
+      "data": 0
+    },
+    "G": {
+      "item": "minecraft:glowstone"
+    },
+    "O": {
+      "item": "minecraft:obsidian"
+    }
+  }
+}

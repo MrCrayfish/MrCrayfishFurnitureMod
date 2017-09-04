@@ -18,7 +18,6 @@
 package com.mrcrayfish.furniture.handler;
 
 import com.mrcrayfish.furniture.blocks.BlockChair;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemAxe;
@@ -33,12 +32,6 @@ public class CraftingHandler
 	public void onCrafted(ItemCraftedEvent event)
 	{
 		Item item = event.crafting.getItem();
-		if (item instanceof ItemBlock && ((ItemBlock) item).getBlock() instanceof BlockChair)
-		{
-			event.player.addStat(FurnitureAchievements.mineKea);
-			return;
-		}
-
 		if(item == FurnitureItems.itemLog)
 		{
 			for (int i = 0; i < event.craftMatrix.getSizeInventory(); i++)

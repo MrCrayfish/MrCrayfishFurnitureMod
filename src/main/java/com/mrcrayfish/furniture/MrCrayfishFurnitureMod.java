@@ -75,14 +75,18 @@ public class MrCrayfishFurnitureMod
 		/** Sound Registering */
 		FurnitureSounds.register();
 
-		/** Achievement Registering */
-		FurnitureAchievements.loadAchievements();
-		FurnitureAchievements.registerPage();
+		/** Crafting Recipes */
+		FurnitureCrafting.register();
 
 		/** Packet Handler Init */
 		PacketHandler.init();
 		
 		/** Event Registering */
+		MinecraftForge.EVENT_BUS.register(new FurnitureItems.RegistrationHandler());
+		MinecraftForge.EVENT_BUS.register(new FurnitureBlocks.RegistrationHandler());
+		MinecraftForge.EVENT_BUS.register(new FurnitureSounds.RegistrationHandler());
+		MinecraftForge.EVENT_BUS.register(new FurnitureCrafting.RegistrationHandler());
+
 		MinecraftForge.EVENT_BUS.register(new CraftingHandler());
 		if (event.getSide() == Side.CLIENT)
 		{
@@ -124,9 +128,6 @@ public class MrCrayfishFurnitureMod
 		{
 			EntityRegistry.registerModEntity(new ResourceLocation("cfm:mirror"), EntityMirror.class, "Mirror", 1, this, 80, 1, false);
 		}
-		
-		/** Crafting Recipes */
-		FurnitureCrafting.register();
 	}
 
 	@EventHandler

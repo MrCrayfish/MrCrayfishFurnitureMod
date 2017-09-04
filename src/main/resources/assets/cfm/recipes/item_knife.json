@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "cfm:item_knife"
+  },
+  "pattern": [
+    "I ",
+    " S"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "I": {
+      "item": "minecraft:stone",
+      "data": 0
+    }
+  }
+}

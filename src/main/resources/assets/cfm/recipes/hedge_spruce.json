@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "cfm:hedge_spruce",
+    "count": 4
+  },
+  "pattern": [
+    "***",
+    "***"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "*": {
+      "item": "minecraft:leaves",
+      "data": 1
+    }
+  }
+}

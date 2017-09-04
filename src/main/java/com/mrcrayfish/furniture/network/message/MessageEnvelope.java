@@ -59,7 +59,7 @@ public class MessageEnvelope implements IMessage, IMessageHandler<MessageEnvelop
 	@Override
 	public IMessage onMessage(MessageEnvelope message, MessageContext ctx)
 	{
-		EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+		EntityPlayerMP player = ctx.getServerHandler().player;
 		ItemStack mail = message.envelope;
 		ItemStack signedMail = new ItemStack(FurnitureItems.itemEnvelopeSigned);
 		signedMail.setTagCompound((NBTTagCompound) mail.getTagCompound().copy());

@@ -62,7 +62,7 @@ public class InventoryUtil
 
 			if (stack.hasTagCompound())
 			{
-				entityitem.getEntityItem().setTagCompound((NBTTagCompound) stack.getTagCompound().copy());
+				entityitem.getItem().setTagCompound(stack.getTagCompound().copy());
 			}
 
 			float f3 = 0.05F;

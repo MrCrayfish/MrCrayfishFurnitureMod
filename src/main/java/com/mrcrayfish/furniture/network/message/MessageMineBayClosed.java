@@ -64,7 +64,7 @@ public class MessageMineBayClosed implements IMessage, IMessageHandler<MessageMi
 	@Override
 	public IMessage onMessage(MessageMineBayClosed message, MessageContext ctx)
 	{
-		EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+		EntityPlayerMP player = ctx.getServerHandler().player;
 
 		TileEntity tile_entity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
 		if (tile_entity instanceof TileEntityComputer)
@@ -79,7 +79,7 @@ public class MessageMineBayClosed implements IMessage, IMessageHandler<MessageMi
 			tileEntityComputer.setTrading(false);
 		}
 		BlockPos pos = new BlockPos(message.x, message.y, message.z);
-		TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().playerEntity.world, pos);
+		TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().player.world, pos);
 		return null;
 	}
 

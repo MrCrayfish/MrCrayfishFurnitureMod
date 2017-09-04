@@ -58,7 +58,7 @@ public class MessagePresentContents implements IMessage, IMessageHandler<Message
 	@Override
 	public IMessage onMessage(MessagePresentContents message, MessageContext ctx)
 	{
-		EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+		EntityPlayerMP player = ctx.getServerHandler().player;
 		ItemStack present = message.envelope;
 		
 		ItemStack signedPresent = new ItemStack(FurnitureBlocks.present, 1, present.getMetadata());

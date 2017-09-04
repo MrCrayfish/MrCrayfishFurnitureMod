@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "cfm:blinds_open",
+    "count": 2
+  },
+  "pattern": [
+    "***",
+    "***",
+    "***"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "*": {
+      "item": "minecraft:stick"
+    }
+  }
+}

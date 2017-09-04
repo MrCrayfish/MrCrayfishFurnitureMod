@@ -19,7 +19,6 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.handler.InputHandler;
-import com.mrcrayfish.furniture.init.FurnitureAchievements;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import com.mrcrayfish.furniture.util.SittableUtil;
@@ -27,10 +26,8 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
@@ -65,12 +62,6 @@ public class BlockToilet extends BlockFurniture
 		super(material);
 		this.setHardness(1.0F);
 		this.setSoundType(SoundType.STONE);
-	}
-	
-	@Override
-	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-	{
-		((EntityPlayer) placer).addStat(FurnitureAchievements.bathroom);
 	}
 
 	@Override

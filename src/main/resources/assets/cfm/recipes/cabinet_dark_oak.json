@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "cfm:cabinet_dark_oak"
+  },
+  "pattern": [
+    "***",
+    "*@*",
+    "***"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "@": {
+      "item": "minecraft:chest"
+    },
+    "*": {
+      "item": "minecraft:planks",
+      "data": 5
+    }
+  }
+}

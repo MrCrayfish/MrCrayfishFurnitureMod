@@ -62,14 +62,14 @@ public class MessageEmptyBin implements IMessage, IMessageHandler<MessageEmptyBi
 	@Override
 	public IMessage onMessage(MessageEmptyBin message, MessageContext ctx)
 	{
-		TileEntity tile_entity = ctx.getServerHandler().playerEntity.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
+		TileEntity tile_entity = ctx.getServerHandler().player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
 		if (tile_entity instanceof TileEntityBin)
 		{
 			TileEntityBin tileEntityBin = (TileEntityBin) tile_entity;
 			tileEntityBin.clear();
 		}
 		BlockPos pos = new BlockPos(message.x, message.y, message.z);
-		TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().playerEntity.world, pos);
+		TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().player.world, pos);
 		return null;
 	}
 }

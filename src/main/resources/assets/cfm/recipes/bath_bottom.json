@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "cfm:bath_bottom"
+  },
+  "pattern": [
+    "B  ",
+    "Q Q",
+    "QQQ"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "Q": {
+      "item": "minecraft:quartz_block",
+      "data": 0
+    },
+    "B": {
+      "item": "minecraft:stone_button"
+    }
+  }
+}

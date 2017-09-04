@@ -25,6 +25,7 @@ import com.mrcrayfish.furniture.tileentity.TileEntityPresent;
 import com.mrcrayfish.furniture.util.NBTHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.EnumDyeColor;
@@ -39,6 +40,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemPresent extends ItemBlock implements IMail
@@ -48,9 +50,9 @@ public class ItemPresent extends ItemBlock implements IMail
 		super(block);
         this.setHasSubtypes(true);
 	}
-	
+
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean flag)
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
 		if (stack.hasTagCompound())
 		{
@@ -59,11 +61,11 @@ public class ItemPresent extends ItemBlock implements IMail
 
 			if (nbttagstring != null)
 			{
-				list.add(TextFormatting.GRAY + "from " + nbttagstring.getString());
+				tooltip.add(TextFormatting.GRAY + "from " + nbttagstring.getString());
 			}
 			else
 			{
-				list.add(TextFormatting.GRAY + "Unsigned");
+				tooltip.add(TextFormatting.GRAY + "Unsigned");
 			}
 		}
 	}
@@ -155,7 +157,7 @@ public class ItemPresent extends ItemBlock implements IMail
 				playerIn.openGui(MrCrayfishFurnitureMod.instance, 9, worldIn, 0, 0, 0);
 			}
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+		return new ActionResult<>(EnumActionResult.SUCCESS, stack);
 	}
 
 	public static IInventory getInv(EntityPlayer player, EnumHand activeHand)

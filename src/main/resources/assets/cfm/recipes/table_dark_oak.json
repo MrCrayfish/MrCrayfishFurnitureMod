@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "cfm:table_dark_oak"
+  },
+  "pattern": [
+    "***",
+    " * ",
+    " * "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "*": {
+      "item": "minecraft:planks",
+      "data": 5
+    }
+  }
+}

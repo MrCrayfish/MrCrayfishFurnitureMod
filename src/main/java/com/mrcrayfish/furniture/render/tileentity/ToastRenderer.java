@@ -29,7 +29,7 @@ public class ToastRenderer extends TileEntitySpecialRenderer<TileEntityToaster>
 	private EntityItem[] slots = { new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D), new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D) };
 
 	@Override
-	public void renderTileEntityAt(TileEntityToaster tileEntityToaster, double posX, double posY, double posZ, float p_180535_8_, int p_180535_9_)
+	public void render(TileEntityToaster tileEntityToaster, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
 	{
 		int metadata = tileEntityToaster.getBlockMetadata();
 
@@ -38,10 +38,10 @@ public class ToastRenderer extends TileEntitySpecialRenderer<TileEntityToaster>
 			ItemStack slice = tileEntityToaster.getSlice(i);
 			if (slice != null)
 			{
-				this.slots[i].setEntityItemStack(slice);
+				this.slots[i].setItem(slice);
 				GL11.glPushMatrix();
 				slots[i].hoverStart = 0.0F;
-				GL11.glTranslatef((float) posX + 0.5F, (float) posY + 0.05F, (float) posZ + 0.3F);
+				GL11.glTranslatef((float) x + 0.5F, (float) y + 0.05F, (float) z + 0.3F);
 
 				double xOffset = 0.0D;
 				double zOffset = 0.0D;

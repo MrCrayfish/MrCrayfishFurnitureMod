@@ -70,7 +70,7 @@ public class MessagePresent implements IMessage, IMessageHandler<MessagePresent,
 	@Override
 	public IMessage onMessage(MessagePresent message, MessageContext ctx)
 	{
-		EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+		EntityPlayerMP player = ctx.getServerHandler().player;
 		InventoryPresent presentInventory = new InventoryPresent(player, message.present);
 
 		String author = NBTHelper.getString(message.present, "Author");

@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "cfm:item_log",
+    "count": 16
+  },
+  "ingredients": [
+    {
+      "item": "minecraft:golden_axe"
+    },
+    {
+      "item": "minecraft:log",
+      "data": 0
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}
