@@ -48,7 +48,7 @@ public class CookieRenderer extends TileEntitySpecialRenderer<TileEntityCookieJa
 		int metadata = cookieJar.getBlockMetadata();
 		for (int i = 0; i < metadata; i++)
 		{
-			Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityItem, 0.0D, 0.0D, 0.1D * i, 0.0F, 0.0F, false);
+			Minecraft.getMinecraft().getRenderManager().renderEntity(entityItem, 0.0D, 0.0D, 0.1D * i, 0.0F, 0.0F, false);
 		}
 		
 		GL11.glEnable(GL11.GL_LIGHTING);

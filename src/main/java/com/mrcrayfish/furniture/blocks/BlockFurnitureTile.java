@@ -34,7 +34,7 @@ public abstract class BlockFurnitureTile extends BlockFurniture implements ITile
 	public BlockFurnitureTile(Material material)
 	{
 		super(material);
-		this.isBlockContainer = true;
+		this.hasTileEntity = true;
 	}
 	
 	@Override

@@ -47,7 +47,7 @@ public class BlenderRenderer extends TileEntitySpecialRenderer<TileEntityBlender
 					entityFood.setItem(ingredients[i]);
 					GL11.glRotatef(i * -90F, 0, 1, 0);
 					GL11.glRotatef(blender.progress * 18F, 0, 1, 0);
-					Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityFood, 0.0D, 0.2D, 0.0D, 0.0F, 0.0F, false);
+					Minecraft.getMinecraft().getRenderManager().renderEntity(entityFood, 0.0D, 0.2D, 0.0D, 0.0F, 0.0F, false);
 				}
 			}
 		}
