@@ -1,5 +1,20 @@
 Changelog:
-Build 2512:
+Build 2517:
+	mezz: Clean up Forge commands. Add HelpCommand. Fix #4444 (#4451)
+
+Build 1.11.2-13.20.1.2516:
+	bartek.bok: Fix stacked entity item rendering (#3886)
+
+Build 1.12.2-14.23.0.2515:
+	bs2609: Fix some more test mod warnings (#4469)
+
+Build 1.12.2-14.23.0.2514:
+	mincrmatt12: [1.12.x] [Animation API] Add rotation origin variable (#4466)
+
+Build 1.11.2-13.20.1.2513:
+	bs2609: Save/restore dormant chunk entity data from NBT (#3940)
+
+Build 1.12.2-14.23.0.2512:
 	bs2609: Fix some warnings produced by test mods (#4456)
 
 Build 1.10.2-12.18.3.2511:
@@ -11451,7 +11466,7 @@ Build 6.0.1.345:
 	CovertJaguar:
 		Added vanilla wood + dye to the Ore Dict
 		
-		Should help simplify interaction between mods that add similar items.
+		Should help simplify interaction between mods that add similar items.
 	LexManos: Added Stonghold, Village, and Spawn biome management helpers for PR 207
 	LexManos: Fix compile issue.
 
@@ -13033,4 +13048,3 @@ Build 1.3.2.2:
 		Added new hooks for connection events, See IConnectionHandler for more details.
 		Added Packet250CustomPayload handeling and channel registraction management, see MessageManager and IPacketHandler for more details.
 		Forge now uses unsed fields in C->S Packet1Login to identify itself. None Forge clients will get a graceful disconnect message instead of the 'Unknown packet 230'
-
