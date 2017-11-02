@@ -1,5 +1,60 @@
-Changelog:
-Build 2517:
+﻿Changelog:
+Build 2528:
+	bartek.bok: Add LivingDamageEvent (#4349)
+
+Build 1.12.2-14.23.0.2527:
+	Zaggy1024: Added a cloud renderer that uploads geometry to the GPU. (#4143)
+	bartek.bok: Add InputUpdateEvent (#4356)
+	yrsegal:
+		Create IRecipeContainer interface and implementation to allow RecipeBook
+		to work on custom GUIs (#4480)
+
+Build 1.12.2-14.23.0.2526:
+	bs2609: [1.12] Replace ThrowableImpactEvent with a more generic version (#4040)
+
+Build 1.12.2-14.23.0.2525:
+	bs2609: Clean up more deprecated library functions (#4283)
+	PProvenzano: Allow custom selector types to be defined (#4259)
+	ctmods01: Fix GameData#revert ignoring RegistryManager parameter (#4232)
+	joe.flatt: Fixed property losing state after rename. (#4123)
+	bs2609: Clean up BlockSnapshot code (#3737)
+
+Build 1.12.2-14.23.0.2524:
+	williewillus: Move reach distance to an attribute (#4331)
+	AEnterprise: Improve performance of World.collidesWithAnyBlock (#4286)
+
+Build 1.12.2-14.23.0.2523:
+	bs2609: Further reduce quad count of generated item models  (#4448)
+	bs2609: Prevent fake players from making advancements (#4438)
+	mezz: Improve the Forge Bucket (#4435)
+	Bward7864:
+		Resolve a crash relating to plantFlower when biome has no flowers
+		(#4381)
+
+Build 1.12.2-14.23.0.2522:
+	bs2609: Recalculate chunk height map minimum on load (#4453)
+	bs2609: Fix killing blow causing combat tracker to lose data (MC-121048) (#4452)
+
+Build 1.12.2-14.23.0.2521:
+	bs2609: Improve performance of inserting into inventory wrappers (#4468)
+	julian_abelar:
+		Changed BlockFluidBase "fog" color use color from Fluid getColor()
+		method (#4462)
+
+Build 1.12.2-14.23.0.2520:
+	LexManos:
+		Fix some locations where State Sensitive Materials were not used. Closes
+		#4474
+
+Build 1.12.2-14.23.0.2519:
+	bs2609: Add caching of data for flat lighting (#4358)
+
+Build 1.12.2-14.23.0.2518:
+	bs2609:
+		Fix spider/chicken jockeys being unable to spawn naturally (MC-103516)
+		(#4429)
+
+Build 1.12.2-14.23.0.2517:
 	mezz: Clean up Forge commands. Add HelpCommand. Fix #4444 (#4451)
 
 Build 1.11.2-13.20.1.2516:
