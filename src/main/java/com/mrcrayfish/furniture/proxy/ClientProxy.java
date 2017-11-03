@@ -81,7 +81,7 @@ public class ClientProxy extends CommonProxy
 	{
 		FMLClientHandler.instance().getClient().getItemColors().registerItemColorHandler(new IItemColor() {
 			@Override
-			public int getColorFromItemstack(ItemStack stack, int tintIndex) 
+			public int colorMultiplier(ItemStack stack, int tintIndex)
 			{
 				if(tintIndex == 1)
 				{
@@ -101,7 +101,7 @@ public class ClientProxy extends CommonProxy
 		IItemColor hedgeItemColor = new IItemColor() 
 		{
 			@Override
-			public int getColorFromItemstack(ItemStack stack, int tintIndex) 
+			public int colorMultiplier(ItemStack stack, int tintIndex)
 			{
 				if(stack.getItem() == Item.getItemFromBlock(FurnitureBlocks.hedge_spruce))
 				{
@@ -139,7 +139,7 @@ public class ClientProxy extends CommonProxy
 		IItemColor christmasItemColor = new IItemColor() 
 		{
 			@Override
-			public int getColorFromItemstack(ItemStack stack, int tintIndex) 
+			public int colorMultiplier(ItemStack stack, int tintIndex)
 			{
 				return ColorizerFoliage.getFoliageColorPine();
 			}

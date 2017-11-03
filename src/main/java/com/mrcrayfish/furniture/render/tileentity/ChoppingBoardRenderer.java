@@ -67,7 +67,7 @@ public class ChoppingBoardRenderer extends TileEntitySpecialRenderer<TileEntityC
 			GL11.glRotatef(metadata * -90F, 0, 1, 0);
 			GL11.glRotatef(180, 0, 1, 1);
 			GlStateManager.translate(0, -0.15, 0);
-			Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityFood, 0.0D, 0.0D, 0.075D, 0.0F, 0.0F, false);
+			Minecraft.getMinecraft().getRenderManager().renderEntity(entityFood, 0.0D, 0.0D, 0.075D, 0.0F, 0.0F, false);
 			
 			GL11.glEnable(GL11.GL_LIGHTING);
 			

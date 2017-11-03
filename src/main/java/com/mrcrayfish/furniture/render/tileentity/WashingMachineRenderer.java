@@ -44,7 +44,7 @@ public class WashingMachineRenderer extends TileEntitySpecialRenderer<TileEntity
 				double zOffset = getOffsetZ(metadata, i);
 				armour.setItem(machine.getStackInSlot(i));
 				GL11.glRotated(machine.progress * 5, 0, 0, 1);
-				Minecraft.getMinecraft().getRenderManager().doRenderEntity(armour, 0.0, -0.35D, zOffset, 0.0F, 0.0F, false);
+				Minecraft.getMinecraft().getRenderManager().renderEntity(armour, 0.0, -0.35D, zOffset, 0.0F, 0.0F, false);
 			}
 		}
 		
