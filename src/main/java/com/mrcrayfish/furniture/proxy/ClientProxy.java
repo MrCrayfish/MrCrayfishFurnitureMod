@@ -1,12 +1,12 @@
 /**
  * MrCrayfish's Furniture Mod
  * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -26,7 +26,6 @@ import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.render.tileentity.*;
 import com.mrcrayfish.furniture.tileentity.*;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -34,10 +33,7 @@ import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
-import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -79,79 +75,54 @@ public class ClientProxy extends CommonProxy
 	
 	public void registerColorHandlers()
 	{
-		FMLClientHandler.instance().getClient().getItemColors().registerItemColorHandler(new IItemColor() {
-			@Override
-			public int getColorFromItemstack(ItemStack stack, int tintIndex) 
-			{
-				if(tintIndex == 1)
-				{
-					if (stack.hasTagCompound())
-					{
-						if (stack.getTagCompound().hasKey("Colour"))
-						{
-							int[] colour = stack.getTagCompound().getIntArray("Colour");
-							Color color = new Color(colour[0], colour[1], colour[2]);
-							return color.getRGB();
-						}
-					}
-				}
-				return 16777215;
-			}
-		}, FurnitureItems.itemDrink);
-		IItemColor hedgeItemColor = new IItemColor() 
+		FMLClientHandler.instance().getClient().getItemColors().registerItemColorHandler((stack, tintIndex) ->
 		{
-			@Override
-			public int getColorFromItemstack(ItemStack stack, int tintIndex) 
-			{
-				if(stack.getItem() == Item.getItemFromBlock(FurnitureBlocks.hedge_spruce))
-				{
-					return ColorizerFoliage.getFoliageColorPine();
-				}
-				else if(stack.getItem() == Item.getItemFromBlock(FurnitureBlocks.hedge_birch))
-				{
-					return ColorizerFoliage.getFoliageColorBirch();
-				}
-		        return ColorizerFoliage.getFoliageColorBasic();
-			}
-		};
-		IBlockColor hedgeBlockColor = new IBlockColor() 
+            if(tintIndex == 1)
+            {
+                if (stack.hasTagCompound())
+                {
+                    if (stack.getTagCompound().hasKey("Colour"))
+                    {
+                        int[] colour = stack.getTagCompound().getIntArray("Colour");
+                        Color color = new Color(colour[0], colour[1], colour[2]);
+                        return color.getRGB();
+                    }
+                }
+            }
+            return 16777215;
+        }, FurnitureItems.itemDrink);
+		IItemColor hedgeItemColor = (stack, tintIndex) ->
 		{
-			@Override
-			public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) 
-			{
-				if(state.getBlock() == FurnitureBlocks.hedge_spruce)
-				{
-					return ColorizerFoliage.getFoliageColorPine();
-				}
-				else if(state.getBlock() == FurnitureBlocks.hedge_birch)
-				{
-					return ColorizerFoliage.getFoliageColorBirch();
-				}
-		        return ColorizerFoliage.getFoliageColorBasic();
-			}
-		};
+            if(stack.getItem() == Item.getItemFromBlock(FurnitureBlocks.hedge_spruce))
+            {
+                return ColorizerFoliage.getFoliageColorPine();
+            }
+            else if(stack.getItem() == Item.getItemFromBlock(FurnitureBlocks.hedge_birch))
+            {
+                return ColorizerFoliage.getFoliageColorBirch();
+            }
+            return ColorizerFoliage.getFoliageColorBasic();
+        };
+		IBlockColor hedgeBlockColor = (state, worldIn, pos, tintIndex) ->
+		{
+            if(state.getBlock() == FurnitureBlocks.hedge_spruce)
+            {
+                return ColorizerFoliage.getFoliageColorPine();
+            }
+            else if(state.getBlock() == FurnitureBlocks.hedge_birch)
+            {
+                return ColorizerFoliage.getFoliageColorBirch();
+            }
+            return ColorizerFoliage.getFoliageColorBasic();
+        };
 		registerColorHandlerForBlock(FurnitureBlocks.hedge_oak, hedgeBlockColor, hedgeItemColor);
 		registerColorHandlerForBlock(FurnitureBlocks.hedge_spruce, hedgeBlockColor, hedgeItemColor);
 		registerColorHandlerForBlock(FurnitureBlocks.hedge_birch, hedgeBlockColor, hedgeItemColor);
 		registerColorHandlerForBlock(FurnitureBlocks.hedge_jungle, hedgeBlockColor, hedgeItemColor);
 		registerColorHandlerForBlock(FurnitureBlocks.hedge_acacia, hedgeBlockColor, hedgeItemColor);
 		registerColorHandlerForBlock(FurnitureBlocks.hedge_dark_oak, hedgeBlockColor, hedgeItemColor);
-		IItemColor christmasItemColor = new IItemColor() 
-		{
-			@Override
-			public int getColorFromItemstack(ItemStack stack, int tintIndex) 
-			{
-				return ColorizerFoliage.getFoliageColorPine();
-			}
-		};
-		IBlockColor christmasBlockColor = new IBlockColor() 
-		{
-			@Override
-			public int colorMultiplier(IBlockState state, IBlockAccess worldIn, BlockPos pos, int tintIndex) 
-			{
-				return ColorizerFoliage.getFoliageColorPine();
-			}
-		};
+		IItemColor christmasItemColor = (stack, tintIndex) -> ColorizerFoliage.getFoliageColorPine();
+		IBlockColor christmasBlockColor = (state, worldIn, pos, tintIndex) -> ColorizerFoliage.getFoliageColorPine();
 		registerColorHandlerForBlock(FurnitureBlocks.tree_bottom, christmasBlockColor, christmasItemColor);
 		registerColorHandlerForBlock(FurnitureBlocks.tree_top, christmasBlockColor, christmasItemColor);
 		registerColorHandlerForBlock(FurnitureBlocks.wreath, christmasBlockColor, christmasItemColor);

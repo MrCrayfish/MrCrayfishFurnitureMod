@@ -62,7 +62,7 @@ public class BlockPresent extends Block implements ITileEntityProvider
 		super(material);
 		this.setHardness(0.5F);
 		this.setSoundType(SoundType.CLOTH);
-		this.isBlockContainer = true;
+		this.hasTileEntity = true;
 		this.setDefaultState(this.blockState.getBaseState().withProperty(COLOUR, EnumDyeColor.WHITE));
 	}
 	

@@ -39,7 +39,7 @@ public class EskyRenderer extends TileEntitySpecialRenderer<TileEntityEsky>
 								GlStateManager.translate(-0.15 * (i % 4), 0, 0);
 								GlStateManager.translate(0, 0, Math.floor(i / 4) * -0.26);
 								GlStateManager.rotate(45F, 0, 1, 0);
-								Minecraft.getMinecraft().getRenderManager().doRenderEntity(item, 0, 0, 0, 0, 0, false);
+								Minecraft.getMinecraft().getRenderManager().renderEntity(item, 0, 0, 0, 0, 0, false);
 							}
 							GlStateManager.popMatrix();
 						}

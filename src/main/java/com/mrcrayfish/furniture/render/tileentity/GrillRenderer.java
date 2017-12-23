@@ -36,7 +36,7 @@ public class GrillRenderer extends TileEntitySpecialRenderer<TileEntityGrill>
 				{
 					GlStateManager.rotate(15F, 0, 1, 0);
 					entityItem.setItem(coal);
-					Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityItem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F, false);
+					Minecraft.getMinecraft().getRenderManager().renderEntity(entityItem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F, false);
 				}
 				GlStateManager.popMatrix();
 				GlStateManager.translate(-0.2, 0, 0);
@@ -87,7 +87,7 @@ public class GrillRenderer extends TileEntitySpecialRenderer<TileEntityGrill>
 					}
 
 					entityItem.setItem(tileEntityGrill.getItem(0));
-					Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityItem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F, false);
+					Minecraft.getMinecraft().getRenderManager().renderEntity(entityItem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F, false);
 				}
 				GlStateManager.popMatrix();
 			}
@@ -133,7 +133,7 @@ public class GrillRenderer extends TileEntitySpecialRenderer<TileEntityGrill>
 					}
 					
 					entityItem.setItem(tileEntityGrill.getItem(1));
-					Minecraft.getMinecraft().getRenderManager().doRenderEntity(entityItem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F, false);
+					Minecraft.getMinecraft().getRenderManager().renderEntity(entityItem, 0.0D, 0.0D, 0.0D, 0.0F, 0.0F, false);
 				}
 				GlStateManager.popMatrix();
 			}

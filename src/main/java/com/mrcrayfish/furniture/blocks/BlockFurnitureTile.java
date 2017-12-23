@@ -34,7 +34,7 @@ public abstract class BlockFurnitureTile extends BlockFurniture implements ITile
 	public BlockFurnitureTile(Material material)
 	{
 		super(material);
-		this.isBlockContainer = true;
+		this.hasTileEntity = true;
 	}
 	
 	@Override
@@ -65,5 +65,12 @@ public abstract class BlockFurnitureTile extends BlockFurniture implements ITile
 			InventoryUtil.dropInventoryItems(world, pos, inv);
 		}
 		super.breakBlock(world, pos, state);
+	}
+
+	@Override
+	public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param)
+	{
+		TileEntity tileentity = worldIn.getTileEntity(pos);
+		return tileentity != null && tileentity.receiveClientEvent(id, param);
 	}
 }

@@ -50,7 +50,7 @@ public class TreeRenderer extends TileEntitySpecialRenderer<TileEntityTree>
 				GL11.glRotatef(90, 0, 1, 0);
 				GL11.glRotatef(-15, 1, 0, 0);
 				GL11.glScalef(0.9F, 0.9F, 0.9F);
-				Minecraft.getMinecraft().getRenderManager().doRenderEntity(ornament, 0.0D, 0.0D, 0.0D, 180.0F, 0.0F, false);
+				Minecraft.getMinecraft().getRenderManager().renderEntity(ornament, 0.0D, 0.0D, 0.0D, 180.0F, 0.0F, false);
 				
 				GL11.glEnable(GL11.GL_LIGHTING);
 				

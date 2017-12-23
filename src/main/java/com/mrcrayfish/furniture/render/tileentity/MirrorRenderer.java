@@ -143,7 +143,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 				if(!mc.player.canEntityBeSeen(entity))
 					continue;
 				
-				if (entity.getDistanceToEntity(mc.player) < 5)
+				if (entity.getDistance(mc.player) < 5)
 				{
 					GameSettings settings = mc.gameSettings;
 					RenderGlobal renderBackup = mc.renderGlobal;
