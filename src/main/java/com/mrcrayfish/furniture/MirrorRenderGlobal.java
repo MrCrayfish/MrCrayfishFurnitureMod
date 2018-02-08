@@ -17,4 +17,16 @@ public class MirrorRenderGlobal extends RenderGlobal
 		if(ConfigurationHandler.mirrorClouds)
 			super.renderClouds(partialTicks, pass, p_180447_3_, p_180447_5_, p_180447_7_);
 	}
+	
+	@Override
+	public void playRecord(SoundEvent soundIn, BlockPos pos) {}
+
+	@Override
+	public void playSoundToAllNearExcept(EntityPlayer player, SoundEvent soundIn, SoundCategory category, double x, double y, double z, float volume, float pitch) {}
+
+	@Override
+	public void broadcastSound(int soundID, BlockPos pos, int data) {}
+
+	@Override
+	public void playEvent(EntityPlayer player, int type, BlockPos blockPosIn, int data) {}
 }
