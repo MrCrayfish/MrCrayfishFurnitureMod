@@ -3,6 +3,10 @@ package com.mrcrayfish.furniture;
 import com.mrcrayfish.furniture.handler.ConfigurationHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderGlobal;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 
 public class MirrorRenderGlobal extends RenderGlobal
 {
