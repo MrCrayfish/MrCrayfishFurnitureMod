@@ -54,11 +54,11 @@ public class TileEntityFreezer extends TileEntityFurniture implements ISidedInve
 		{
 			if(timeRemaining == 0)
 			{
-				fuelTime = getFuelTime(inventory.get(0));
+				fuelTime = getFuelTime(INVENTORY.get(0));
 				timeRemaining = fuelTime;
 				
-				inventory.get(0).shrink(1);
-				if(inventory.get(0).getCount() <= 0)
+				INVENTORY.get(0).shrink(1);
+				if(INVENTORY.get(0).getCount() <= 0)
 				{
 					removeStackFromSlot(0);
 				}
@@ -76,39 +76,39 @@ public class TileEntityFreezer extends TileEntityFurniture implements ISidedInve
 	
 	public boolean canFreeze()
 	{
-		if (inventory.get(0) == ItemStack.EMPTY && timeRemaining == 0)
+		if (INVENTORY.get(0) == ItemStack.EMPTY && timeRemaining == 0)
 		{
 			return false;
 		}
 		
-		if (inventory.get(0) != ItemStack.EMPTY && timeRemaining == 0)
+		if (INVENTORY.get(0) != ItemStack.EMPTY && timeRemaining == 0)
 		{
-			if(!isFuel(inventory.get(0)))
+			if(!isFuel(INVENTORY.get(0)))
 			{
 				return false;
 			}
 		}
 		
-		if (inventory.get(1) != ItemStack.EMPTY)
+		if (INVENTORY.get(1) != ItemStack.EMPTY)
 		{
-			RecipeData data = Recipes.getFreezerRecipeFromInput(inventory.get(1));
+			RecipeData data = Recipes.getFreezerRecipeFromInput(INVENTORY.get(1));
 
 			if (data == null)
 			{
 				return false;
 			}
 
-			if (inventory.get(2) == ItemStack.EMPTY)
+			if (INVENTORY.get(2) == ItemStack.EMPTY)
 			{
 				return true;
 			}
 
-			if (inventory.get(2).getItem() != data.getOutput().getItem())
+			if (INVENTORY.get(2).getItem() != data.getOutput().getItem())
 			{
 				return false;
 			}
 
-			if (inventory.get(2).getCount() < this.getInventoryStackLimit() && inventory.get(2).getCount() < inventory.get(2).getMaxStackSize())
+			if (INVENTORY.get(2).getCount() < this.getInventoryStackLimit() && INVENTORY.get(2).getCount() < INVENTORY.get(2).getMaxStackSize())
 			{
 				return true;
 			}
@@ -118,34 +118,34 @@ public class TileEntityFreezer extends TileEntityFurniture implements ISidedInve
 	
 	public void freezeItem()
 	{
-		if (inventory.get(1) != ItemStack.EMPTY)
+		if (INVENTORY.get(1) != ItemStack.EMPTY)
 		{
-			RecipeData data = Recipes.getFreezerRecipeFromInput(inventory.get(1));
+			RecipeData data = Recipes.getFreezerRecipeFromInput(INVENTORY.get(1));
 
 			if (data == null)
 			{
 				return;
 			}
 
-			if (inventory.get(2) == ItemStack.EMPTY)
+			if (INVENTORY.get(2) == ItemStack.EMPTY)
 			{
-				inventory.set(2, data.getOutput().copy());
+				INVENTORY.set(2, data.getOutput().copy());
 			}
-			else if (inventory.get(2).getItem() == data.getOutput().getItem() && inventory.get(2).getItemDamage() == data.getOutput().getItemDamage())
+			else if (INVENTORY.get(2).getItem() == data.getOutput().getItem() && INVENTORY.get(2).getItemDamage() == data.getOutput().getItemDamage())
 			{
-				inventory.get(2).grow(data.getOutput().copy().getCount());
+				INVENTORY.get(2).grow(data.getOutput().copy().getCount());
 			}
 
-			if (inventory.get(1).getItem().hasContainerItem())
+			if (INVENTORY.get(1).getItem().hasContainerItem())
 			{
-				inventory.set(1, new ItemStack(inventory.get(1).getItem().getContainerItem()));
+				INVENTORY.set(1, new ItemStack(INVENTORY.get(1).getItem().getContainerItem()));
 			}
 			else
 			{
-				inventory.get(1).shrink(1);
+				INVENTORY.get(1).shrink(1);
 			}
 
-			if (inventory.get(1).getCount() <= 0)
+			if (INVENTORY.get(1).getCount() <= 0)
 			{
 				removeStackFromSlot(1);
 			}
@@ -197,13 +197,13 @@ public class TileEntityFreezer extends TileEntityFurniture implements ISidedInve
 			timeRemaining--;
 			if (timeRemaining <= 0)
 			{
-				if(inventory.get(0) != ItemStack.EMPTY && isFuel(inventory.get(0)))
+				if(INVENTORY.get(0) != ItemStack.EMPTY && isFuel(INVENTORY.get(0)))
 				{
-					fuelTime = getFuelTime(inventory.get(0));
+					fuelTime = getFuelTime(INVENTORY.get(0));
 					timeRemaining = fuelTime;
 					
-					inventory.get(0).shrink(1);
-					if(inventory.get(0).getCount() <= 0)
+					INVENTORY.get(0).shrink(1);
+					if(INVENTORY.get(0).getCount() <= 0)
 					{
 						removeStackFromSlot(0);
 					}
@@ -277,6 +277,7 @@ public class TileEntityFreezer extends TileEntityFurniture implements ISidedInve
 	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
 	{
+		this.fillWithLoot(playerIn);
 		return new ContainerFreezer(playerInventory, this);
 	}
 }

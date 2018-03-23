@@ -85,6 +85,7 @@ public class TileEntityPresent extends TileEntityFurniture implements ISidedInve
 	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
 	{
+		this.fillWithLoot(playerIn);
 		return new ContainerPresent(playerInventory, this);
 	}
 }

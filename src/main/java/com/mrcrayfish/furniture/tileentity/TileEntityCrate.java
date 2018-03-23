@@ -5,17 +5,22 @@ import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 
 public class TileEntityCrate extends TileEntityFurniture
 {
+	public boolean sealed = false;
+
 	public TileEntityCrate() 
 	{
 		super("crate", 16);
 	}
 
-	public boolean sealed = false;
-	
+	/**
+	 * Seals the crate so the player can't open unless they break it with a crow bar.
+	 */
 	public void seal()
 	{
 		if(!sealed)
@@ -43,6 +48,7 @@ public class TileEntityCrate extends TileEntityFurniture
 	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
 	{
+		this.fillWithLoot(playerIn);
 		return new ContainerCrate(playerInventory, this);
 	}
 }

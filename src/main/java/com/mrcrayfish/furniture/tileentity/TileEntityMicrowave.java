@@ -197,6 +197,7 @@ public class TileEntityMicrowave extends TileEntityFurniture implements ISidedIn
 	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
 	{
+		this.fillWithLoot(playerIn);
 		return new ContainerMicrowave(playerInventory, this);
 	}
 }

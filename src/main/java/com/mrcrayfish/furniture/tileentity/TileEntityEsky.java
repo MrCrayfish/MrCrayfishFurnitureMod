@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.tileentity;
 
+import com.mrcrayfish.furniture.gui.containers.ContainerEski;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -20,6 +21,7 @@ public class TileEntityEsky extends TileEntityFurniture
 	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
 	{
-		return null;
+		this.fillWithLoot(playerIn);
+		return new ContainerEski(playerInventory, this);
 	}
 }

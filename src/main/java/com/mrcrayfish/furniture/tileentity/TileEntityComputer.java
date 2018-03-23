@@ -90,6 +90,7 @@ public class TileEntityComputer extends TileEntityFurniture
 	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
 	{
+		this.fillWithLoot(playerIn);
 		return new ContainerComputer(playerInventory, this);
 	}
 }

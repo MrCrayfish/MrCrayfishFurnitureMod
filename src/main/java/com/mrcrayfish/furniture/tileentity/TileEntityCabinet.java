@@ -46,6 +46,7 @@ public class TileEntityCabinet extends TileEntityFurniture
 	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
 	{
+		this.fillWithLoot(playerIn);
 		return new ContainerCabinet(playerInventory, this);
 	}
 }

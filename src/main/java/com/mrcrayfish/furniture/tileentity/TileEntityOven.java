@@ -261,6 +261,7 @@ public class TileEntityOven extends TileEntityFurniture implements ISidedInvento
 	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
 	{
+		this.fillWithLoot(playerIn);
 		return new ContainerOven(playerInventory, this);
 	}
 }

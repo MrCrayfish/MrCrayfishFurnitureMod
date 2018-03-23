@@ -70,6 +70,7 @@ public class TileEntityWallCabinet extends TileEntityFurniture implements ISided
 	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
 	{
+		this.fillWithLoot(playerIn);
 		return new ContainerWallCabinet(playerInventory, this);
 	}
 }

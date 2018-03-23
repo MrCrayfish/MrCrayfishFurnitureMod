@@ -323,6 +323,7 @@ public class TileEntityWashingMachine extends TileEntityFurniture implements ISi
 	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
 	{
+		this.fillWithLoot(playerIn);
 		return new ContainerWashingMachine(playerInventory, this);
 	}
 }

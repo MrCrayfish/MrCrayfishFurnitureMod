@@ -287,6 +287,7 @@ public class TileEntityPrinter extends TileEntityFurniture implements ISidedInve
     @Override
     public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
     {
+        this.fillWithLoot(playerIn);
         return new ContainerPrinter(playerInventory, this);
     }
 }

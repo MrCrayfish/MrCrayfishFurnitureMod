@@ -61,7 +61,7 @@ public class TileEntityMailBox extends TileEntityFurniture
 	public int getMailCount()
 	{
 		int count = 0;
-		for(ItemStack stack : this.inventory)
+		for(ItemStack stack : this.INVENTORY)
 		{
 			if(stack != ItemStack.EMPTY) count++;
 		}
@@ -116,7 +116,7 @@ public class TileEntityMailBox extends TileEntityFurniture
 	{
 		for (int i = 0; i < 6; i++)
 		{
-			if (this.inventory.get(i).isEmpty())
+			if (this.INVENTORY.get(i).isEmpty())
 			{
 				setInventorySlotContents(i, stack);
 				markDirty();
@@ -127,7 +127,7 @@ public class TileEntityMailBox extends TileEntityFurniture
 
 	public boolean isMailBoxFull()
 	{
-		return !this.inventory.stream().anyMatch(ItemStack::isEmpty);
+		return !this.INVENTORY.stream().anyMatch(ItemStack::isEmpty);
 	}
 
 	public String getOwner()
@@ -142,6 +142,7 @@ public class TileEntityMailBox extends TileEntityFurniture
 	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
 	{
+		this.fillWithLoot(playerIn);
 		return new ContainerMailBox(playerInventory, this);
 	}
 }
