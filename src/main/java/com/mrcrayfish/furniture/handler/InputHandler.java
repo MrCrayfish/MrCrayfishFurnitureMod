@@ -32,21 +32,20 @@ import java.util.Random;
 
 public class InputHandler
 {
-	public static KeyBinding key_fart;
+	public static final KeyBinding KEY_FART = new KeyBinding("key.fart.desc", Keyboard.KEY_G, "keys.cfm.category");;
 	public static boolean keyPressed = false;
 	public static boolean keyHasBeenPressed = false;
 	private Random rand = new Random();
 
 	public InputHandler()
 	{
-		key_fart = new KeyBinding("key.fart.desc", Keyboard.KEY_G, "keys.cfm.category");
-		ClientRegistry.registerKeyBinding(key_fart);
+		ClientRegistry.registerKeyBinding(KEY_FART);
 	}
 
 	@SubscribeEvent
 	public void onKeyInput(KeyInputEvent event)
 	{
-		if (key_fart.isPressed())
+		if (KEY_FART.isPressed())
 		{
 			keyPressed = true;
 		}
@@ -67,6 +66,6 @@ public class InputHandler
 
 	public KeyBinding getFartKey()
 	{
-		return key_fart;
+		return KEY_FART;
 	}
 }

@@ -71,7 +71,7 @@ public class BlockToilet extends BlockFurniture
 		{
 			if (SittableUtil.sitOnBlockWithRotationOffset(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0.4D, getMetaFromState(state), 0.1D))
 			{
-				if(worldIn.isRemote) playerIn.sendMessage(new TextComponentString(TextFormatting.YELLOW + "Press " + Keyboard.getKeyName(InputHandler.key_fart.getKeyCode()) + " for Farts."));
+				if(worldIn.isRemote) playerIn.sendMessage(new TextComponentString(TextFormatting.YELLOW + "Press " + Keyboard.getKeyName(InputHandler.KEY_FART.getKeyCode()) + " for Farts."));
 				worldIn.updateComparatorOutputLevel(pos, this);
 			}
 		}
