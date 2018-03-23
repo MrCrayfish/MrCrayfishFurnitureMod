@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.handler;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
@@ -95,9 +96,10 @@ public class PlayerEvents
 		EntityPlayer player = event.getPlayer();
 		World world = event.getWorld();
 		BlockPos pos = event.getPos();
-		TileEntityMailBox tileEntityMailBox = (TileEntityMailBox) world.getTileEntity(pos);
-		if (tileEntityMailBox != null)
+		TileEntity tileEntity = world.getTileEntity(pos);
+		if (tileEntity instanceof TileEntityMailBox)
 		{
+			TileEntityMailBox tileEntityMailBox = (TileEntityMailBox) tileEntity;
 			if(tileEntityMailBox.canOpen(player) || !tileEntityMailBox.isClaimed() || isAuthorized(player))
 			{
 				event.setCanceled(true);
