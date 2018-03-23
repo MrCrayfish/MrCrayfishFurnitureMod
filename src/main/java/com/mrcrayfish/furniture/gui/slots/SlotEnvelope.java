@@ -19,8 +19,11 @@ package com.mrcrayfish.furniture.gui.slots;
 
 import com.mrcrayfish.furniture.gui.inventory.InventoryEnvelope;
 import com.mrcrayfish.furniture.items.IMail;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemShulkerBox;
 import net.minecraft.item.ItemStack;
 
 public class SlotEnvelope extends Slot
@@ -36,11 +39,11 @@ public class SlotEnvelope extends Slot
 	@Override
 	public boolean isItemValid(ItemStack par1ItemStack)
 	{
-		if (this.inventoryEnv.isSigned())
+		if (InventoryEnvelope.isSigned())
 		{
 			return false;
 		}
-		return par1ItemStack != null && par1ItemStack.getItem() instanceof IMail ? false : true;
+		return !(!par1ItemStack.isEmpty() && par1ItemStack.getItem() instanceof IMail || par1ItemStack.getItem() instanceof ItemShulkerBox);
 	}
 
 }
