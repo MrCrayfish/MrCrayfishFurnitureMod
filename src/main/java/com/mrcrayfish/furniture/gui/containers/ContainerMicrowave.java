@@ -17,6 +17,8 @@
  */
 package com.mrcrayfish.furniture.gui.containers;
 
+import com.mrcrayfish.furniture.api.RecipeAPI;
+import com.mrcrayfish.furniture.api.RecipeData;
 import com.mrcrayfish.furniture.gui.slots.SlotMicrowave;
 import com.mrcrayfish.furniture.tileentity.TileEntityMicrowave;
 import net.minecraft.entity.player.EntityPlayer;
@@ -66,9 +68,18 @@ public class ContainerMicrowave extends Container
 			ItemStack item = slot.getStack();
 			itemCopy = item.copy();
 
+			RecipeData data = RecipeAPI.getMicrowaveRecipeFromIngredients(item);
+
 			if (slotNum < 1)
 			{
 				if (!this.mergeItemStack(item, 1, this.inventorySlots.size(), false))
+				{
+					return ItemStack.EMPTY;
+				}
+			}
+			else if (data != null)
+			{
+				if (!this.mergeItemStack(item, 0, 1, false))
 				{
 					return ItemStack.EMPTY;
 				}
@@ -94,7 +105,7 @@ public class ContainerMicrowave extends Container
 				slot.onSlotChanged();
 			}
 		}
-		return null;
+		return itemCopy;
 	}
 	
 	@Override
