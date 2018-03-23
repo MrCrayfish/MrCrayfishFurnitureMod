@@ -72,12 +72,14 @@ public class ItemPackageSigned extends Item implements IMail
 		}
 	}
 
-	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+	@Override
+	public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand)
 	{
+		ItemStack heldItem = player.getHeldItem(hand);
 		TileEntity tile_entity = world.getTileEntity(pos);
 		if (!world.isRemote)
 		{
-			NBTTagList var2 = (NBTTagList) NBTHelper.getCompoundTag(stack, "Package").getTag("Items");
+			NBTTagList var2 = (NBTTagList) NBTHelper.getCompoundTag(heldItem, "Package").getTag("Items");
 			if (var2.tagCount() > 0)
 			{
 				if (player.capabilities.isCreativeMode && player.isSneaking() && tile_entity instanceof TileEntityMailBox)
@@ -87,16 +89,19 @@ public class ItemPackageSigned extends Item implements IMail
 				else if (tile_entity instanceof TileEntityMailBox)
 				{
 					TileEntityMailBox tileEntityMailBox = (TileEntityMailBox) tile_entity;
-					if (tileEntityMailBox.isMailBoxFull() == false && player.isSneaking() && !world.isRemote)
+					if(player.isSneaking())
 					{
-						ItemStack itemStack = stack.copy();
-						tileEntityMailBox.addMail(itemStack);
-						player.sendMessage(new TextComponentString("Thank you! - " + TextFormatting.YELLOW + tileEntityMailBox.getOwner()));
-						stack.shrink(1);
-					}
-					else if (tileEntityMailBox.isMailBoxFull() == true && player.isSneaking())
-					{
-						player.sendMessage(new TextComponentString(TextFormatting.YELLOW + tileEntityMailBox.getOwner() + "'s" + TextFormatting.WHITE + " mail box seems to be full. Try again later."));
+						if (!tileEntityMailBox.isMailBoxFull())
+						{
+							ItemStack itemStack = heldItem.copy();
+							tileEntityMailBox.addMail(itemStack);
+							player.sendMessage(new TextComponentString("Thank you! - " + TextFormatting.YELLOW + tileEntityMailBox.getOwner()));
+							heldItem.shrink(1);
+						}
+						else
+						{
+							player.sendMessage(new TextComponentString(TextFormatting.YELLOW + tileEntityMailBox.getOwner() + "'s" + TextFormatting.WHITE + " mail box seems to be full. Try again later."));
+						}
 					}
 				}
 			}
@@ -105,9 +110,9 @@ public class ItemPackageSigned extends Item implements IMail
 				player.sendMessage(new TextComponentString("You cannot insert a used package."));
 			}
 		}
-		return true;
+		return EnumActionResult.SUCCESS;
 	}
-	
+
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) 
 	{

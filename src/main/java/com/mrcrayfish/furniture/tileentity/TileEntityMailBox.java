@@ -127,7 +127,7 @@ public class TileEntityMailBox extends TileEntityFurniture
 
 	public boolean isMailBoxFull()
 	{
-		return this.inventory.stream().anyMatch(ItemStack::isEmpty);
+		return !this.inventory.stream().anyMatch(ItemStack::isEmpty);
 	}
 
 	public String getOwner()
