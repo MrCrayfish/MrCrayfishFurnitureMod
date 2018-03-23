@@ -49,6 +49,7 @@ public class BlockMailBox extends BlockFurnitureTile
 	{
 		super(material);
 		this.setSoundType(SoundType.WOOD);
+		this.setHardness(1.0F);
 	}
 	
 	@Override
@@ -116,35 +117,6 @@ public class BlockMailBox extends BlockFurnitureTile
 			return 1000;
 		}
 		return this.blockResistance / 5.0F;
-	}
-
-	@Override
-	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
-	{
-		TileEntityMailBox tileEntityMailBox = (TileEntityMailBox) world.getTileEntity(pos);
-		if (tileEntityMailBox != null)
-		{
-			if(tileEntityMailBox.canOpen(player) || !tileEntityMailBox.isClaimed() || isAuthorized(player))
-			{
-				this.breakBlock(world, pos, world.getBlockState(pos));
-				world.setBlockToAir(pos);
-			}
-			else
-			{
-				world.setBlockState(pos, world.getBlockState(pos));
-				if (!world.isRemote)
-				{
-					player.sendMessage(new TextComponentString(TextFormatting.RED + "You need to be the owner of the mailbox to destroy it."));
-					return false;
-				}
-			}
-		}
-		return true;
-	}
-	
-	public boolean isAuthorized(EntityPlayer player)
-	{
-		return player.capabilities.isCreativeMode && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == FurnitureItems.itemHammer;
 	}
 	
 	@Override

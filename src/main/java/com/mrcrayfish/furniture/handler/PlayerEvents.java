@@ -17,11 +17,16 @@
  */
 package com.mrcrayfish.furniture.handler;
 
+import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
+import net.minecraft.world.World;
+import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 
@@ -82,5 +87,31 @@ public class PlayerEvents
 				}
 			}
 		}
+	}
+
+	@SubscribeEvent
+	public void onBlockBreak(BlockEvent.BreakEvent event)
+	{
+		EntityPlayer player = event.getPlayer();
+		World world = event.getWorld();
+		BlockPos pos = event.getPos();
+		TileEntityMailBox tileEntityMailBox = (TileEntityMailBox) world.getTileEntity(pos);
+		if (tileEntityMailBox != null)
+		{
+			if(tileEntityMailBox.canOpen(player) || !tileEntityMailBox.isClaimed() || isAuthorized(player))
+			{
+				event.setCanceled(true);
+			}
+			else if(!player.world.isRemote)
+			{
+				player.sendMessage(new TextComponentString(TextFormatting.RED + "You need to be the owner of the mailbox to destroy it."));
+			}
+		}
+		event.setCanceled(true);
+	}
+
+	private boolean isAuthorized(EntityPlayer player)
+	{
+		return player.capabilities.isCreativeMode && !player.getHeldItemMainhand().isEmpty() && player.getHeldItemMainhand().getItem() == FurnitureItems.itemHammer;
 	}
 }
