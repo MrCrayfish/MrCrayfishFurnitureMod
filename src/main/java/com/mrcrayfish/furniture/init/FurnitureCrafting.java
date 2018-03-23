@@ -41,102 +41,85 @@ public class FurnitureCrafting
 	{
 		GameRegistry.addSmelting(FurnitureItems.itemFlesh, new ItemStack(FurnitureItems.itemCookedFlesh), 0.05F);
 		GameRegistry.registerFuelHandler(new FuelHandler());
-		RegistrationHandler.RECIPES.add(new IRecipe()
+		RegistrationHandler.RECIPES.add(new RecipeSoapyWater().setRegistryName("cfm:recipe_soapy_water"));
+	}
+
+	private static class RecipeSoapyWater extends net.minecraftforge.registries.IForgeRegistryEntry.Impl<IRecipe> implements IRecipe
+	{
+		@Override
+		public boolean matches(InventoryCrafting inv, World worldIn)
 		{
-			@Override
-			public IRecipe setRegistryName(ResourceLocation name)
-			{
-				return null;
-			}
+			int size = 0;
 
-			@Nullable
-			@Override
-			public ResourceLocation getRegistryName()
+			for(int i = 0; i < inv.getSizeInventory(); i++)
 			{
-				return new ResourceLocation("cfm:recipe_soapy_water");
-			}
-
-			@Override
-			public Class<IRecipe> getRegistryType()
-			{
-				return null;
-			}
-
-			@Override
-			public boolean matches(InventoryCrafting inv, World worldIn)
-			{
-				int size = 0;
-
-				for(int i = 0; i < inv.getSizeInventory(); i++)
+				ItemStack stack = inv.getStackInSlot(i);
+				if(!stack.isEmpty())
 				{
-					ItemStack stack = inv.getStackInSlot(i);
-					if(!stack.isEmpty())
+					size++;
+				}
+			}
+
+			for(int i = 0; i < inv.getSizeInventory() - inv.getWidth(); i++)
+			{
+				ItemStack above = inv.getStackInSlot(i);
+				if(!above.isEmpty() && above.getItem() == FurnitureItems.itemSoap)
+				{
+					ItemStack below = inv.getStackInSlot(i + inv.getWidth());
+					if(!below.isEmpty() && below.getItem() == Items.WATER_BUCKET)
 					{
-						size++;
+						return size == 2;
 					}
 				}
+			}
+			return false;
+		}
 
-				for(int i = 0; i < inv.getSizeInventory() - inv.getWidth(); i++)
+		@Override
+		public ItemStack getCraftingResult(InventoryCrafting inv)
+		{
+			return new ItemStack(FurnitureItems.itemSoapyWater);
+		}
+
+		@Override
+		public boolean canFit(int width, int height)
+		{
+			return width > 0 && height > 1;
+		}
+
+		@Override
+		public ItemStack getRecipeOutput()
+		{
+			return new ItemStack(FurnitureItems.itemSoapyWater);
+		}
+
+		@Override
+		public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
+		{
+			NonNullList<ItemStack> items = NonNullList.withSize(inv.getSizeInventory(), ItemStack.EMPTY);
+
+			for(int i = 0; i < inv.getSizeInventory(); i++)
+			{
+				ItemStack stack = inv.getStackInSlot(i);
+				if(!stack.isEmpty() && stack.getItem() == FurnitureItems.itemSoap)
 				{
-					ItemStack above = inv.getStackInSlot(i);
-					if(!above.isEmpty() && above.getItem() == FurnitureItems.itemSoap)
-					{
-						ItemStack below = inv.getStackInSlot(i + inv.getWidth());
-						if(!below.isEmpty() && below.getItem() == Items.WATER_BUCKET)
-						{
-							return size == 2;
-						}
-					}
+					ItemStack soap = stack.copy();
+					soap.shrink(1);
+					items.set(i, soap);
+					break;
 				}
-				return false;
 			}
 
-			@Override
-			public ItemStack getCraftingResult(InventoryCrafting inv)
-			{
-				return new ItemStack(FurnitureItems.itemSoapyWater);
-			}
+			inv.clear();
 
-			@Override
-			public boolean canFit(int width, int height)
-			{
-				return width > 0 && height > 1;
-			}
+			return items;
+		}
 
-			@Override
-			public ItemStack getRecipeOutput()
-			{
-				return new ItemStack(FurnitureItems.itemSoapyWater);
-			}
-
-			@Override
-			public NonNullList<ItemStack> getRemainingItems(InventoryCrafting inv)
-			{
-				NonNullList<ItemStack> items = NonNullList.withSize(inv.getSizeInventory(), ItemStack.EMPTY);
-
-				for(int i = 0; i < inv.getSizeInventory(); i++)
-				{
-					ItemStack stack = inv.getStackInSlot(i);
-					if(!stack.isEmpty() && stack.getItem() == FurnitureItems.itemSoap)
-					{
-						ItemStack soap = stack.copy();
-						soap.shrink(1);
-						items.set(i, soap);
-						break;
-					}
-				}
-
-				inv.clear();
-
-				return items;
-			}
-
-			@Override
-			public String getGroup()
-			{
-				return "tabFurniture";
-			}
-		});
+		@Override
+		public String getGroup()
+		{
+			return "tabFurniture";
+		}
 	}
 
 	@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
