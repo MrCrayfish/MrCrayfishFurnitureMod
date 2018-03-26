@@ -35,87 +35,27 @@ public class GuiHandler implements IGuiHandler
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
 	{
 		TileEntity tile_entity = world.getTileEntity(new BlockPos(x, y, z));
-		if (tile_entity instanceof TileEntityFridge)
+		if (tile_entity instanceof TileEntityFurniture)
 		{
-			return new ContainerFridge(player.inventory, (TileEntityFridge) tile_entity);
+			return ((TileEntityFurniture) tile_entity).createContainer(player.inventory, player);
 		}
-		if (tile_entity instanceof TileEntityFreezer)
-		{
-			return new ContainerFreezer(player.inventory, (TileEntityFreezer) tile_entity);
-		}
-		if (tile_entity instanceof TileEntityCabinet)
-		{
-			return new ContainerCabinet(player.inventory, (TileEntityCabinet) tile_entity);
-		}
-		if (tile_entity instanceof TileEntityBedsideCabinet)
-		{
-			return new ContainerBedsideCabinet(player.inventory, (TileEntityBedsideCabinet) tile_entity);
-		}
-		if (tile_entity instanceof TileEntityOven)
-		{
-			return new ContainerOven(player.inventory, (TileEntityOven) tile_entity);
-		}
-		if (tile_entity instanceof TileEntityMailBox)
-		{
-			return new ContainerMailBox(player.inventory, (TileEntityMailBox) tile_entity);
-		}
-		if (tile_entity instanceof TileEntityComputer)
-		{
-			return new ContainerComputer(player.inventory, (TileEntityComputer) tile_entity);
-		}
-		if (tile_entity instanceof TileEntityPrinter)
-		{
-			return new ContainerPrinter(player.inventory, (TileEntityPrinter) tile_entity);
-		}
-		if (tile_entity instanceof TileEntityBin)
-		{
-			return new ContainerBin(player.inventory, (TileEntityBin) tile_entity);
-		}
-		if (tile_entity instanceof TileEntityWallCabinet)
-		{
-			return new ContainerWallCabinet(player.inventory, (TileEntityWallCabinet) tile_entity);
-		}
-		if (tile_entity instanceof TileEntityMicrowave)
-		{
-			return new ContainerMicrowave(player.inventory, (TileEntityMicrowave) tile_entity);
-		}
-		if (tile_entity instanceof TileEntityWashingMachine)
-		{
-			return new ContainerWashingMachine(player.inventory, (TileEntityWashingMachine) tile_entity);
-		}
-		if (tile_entity instanceof TileEntityDishwasher)
-		{
-			return new ContainerDishwasher(player.inventory, (TileEntityDishwasher) tile_entity);
-		}
-		if (tile_entity instanceof TileEntityCabinetKitchen)
-		{
-			return new ContainerCabinet(player.inventory, (TileEntityCabinetKitchen) tile_entity);
-		}
-		if (tile_entity instanceof TileEntityEsky)
-		{
-			return new ContainerEski(player.inventory, (TileEntityEsky) tile_entity);
-		}
-		if (tile_entity instanceof TileEntityCrate)
-		{
-			return new ContainerCrate(player.inventory, (TileEntityCrate) tile_entity);
-		}
-		if (id == 5)
+		else if (id == 5)
 		{
 			return new ContainerEnvelope(player.inventory, ItemEnvelope.getInv(player));
 		}
-		if (id == 6)
+		else if (id == 6)
 		{
 			return new ContainerEnvelope(player.inventory, ItemEnvelopeSigned.getInv(player));
 		}
-		if (id == 7)
+		else if (id == 7)
 		{
 			return new ContainerPackage(player.inventory, ItemPackage.getInv(player));
 		}
-		if (id == 8)
+		else if (id == 8)
 		{
 			return new ContainerPackage(player.inventory, ItemPackageSigned.getInv(player));
 		}
-		if (id == 9)
+		else if (id == 9)
 		{
 			return new ContainerPresent(player.inventory, ItemPresent.getInv(player, player.getActiveHand()));
 		}

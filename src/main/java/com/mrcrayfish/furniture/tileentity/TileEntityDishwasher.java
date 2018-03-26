@@ -59,7 +59,7 @@ public class TileEntityDishwasher extends TileEntityFurniture implements ISidedI
 		{
 			if (timeRemaining == 0)
 			{
-				if (INVENTORY.get(6).getItem() == FurnitureItems.itemSuperSoapyWater)
+				if (inventory.get(6).getItem() == FurnitureItems.itemSuperSoapyWater)
 				{
 					superMode = true;
 				}
@@ -67,7 +67,7 @@ public class TileEntityDishwasher extends TileEntityFurniture implements ISidedI
 				{
 					superMode = false;
 				}
-				INVENTORY.set(6, new ItemStack(INVENTORY.get(6).getItem().getContainerItem()));
+				inventory.set(6, new ItemStack(inventory.get(6).getItem().getContainerItem()));
 				timeRemaining = 5000;
 			}
 			washing = true;
@@ -84,21 +84,21 @@ public class TileEntityDishwasher extends TileEntityFurniture implements ISidedI
 
 	public boolean canWash()
 	{
-		if (INVENTORY.get(6).isEmpty() && timeRemaining == 0)
+		if (inventory.get(6).isEmpty() && timeRemaining == 0)
 		{
 			return false;
 		}
 
-		if (!INVENTORY.get(6).isEmpty() && timeRemaining == 0)
+		if (!inventory.get(6).isEmpty() && timeRemaining == 0)
 		{
-			return isFuel(INVENTORY.get(6));
+			return isFuel(inventory.get(6));
 		}
 
 		for (int i = 0; i < 6; i++)
 		{
-			if(!INVENTORY.get(i).isEmpty())
+			if(!inventory.get(i).isEmpty())
 			{
-				RecipeData data = RecipeAPI.getDishwasherRecipeFromInput(INVENTORY.get(i));
+				RecipeData data = RecipeAPI.getDishwasherRecipeFromInput(inventory.get(i));
 				if(data == null)
 				{
 					return false;
@@ -138,11 +138,11 @@ public class TileEntityDishwasher extends TileEntityFurniture implements ISidedI
 			{
 				for (int i = 0; i < 6; i++)
 				{
-					if (INVENTORY.get(i) != ItemStack.EMPTY)
+					if (inventory.get(i) != ItemStack.EMPTY)
 					{
-						if (INVENTORY.get(i).getMaxDamage() - INVENTORY.get(i).getItemDamage() != INVENTORY.get(i).getMaxDamage())
+						if (inventory.get(i).getMaxDamage() - inventory.get(i).getItemDamage() != inventory.get(i).getMaxDamage())
 						{
-							INVENTORY.get(i).setItemDamage(INVENTORY.get(i).getItemDamage() - 1);
+							inventory.get(i).setItemDamage(inventory.get(i).getItemDamage() - 1);
 						}
 					}
 				}
@@ -151,18 +151,18 @@ public class TileEntityDishwasher extends TileEntityFurniture implements ISidedI
 			timeRemaining--;
 			if (timeRemaining <= 0)
 			{
-				if (INVENTORY.get(4) != ItemStack.EMPTY)
+				if (inventory.get(4) != ItemStack.EMPTY)
 				{
-					if (INVENTORY.get(4).getItem() == FurnitureItems.itemSoapyWater)
+					if (inventory.get(4).getItem() == FurnitureItems.itemSoapyWater)
 					{
 						this.superMode = false;
-						INVENTORY.set(4, new ItemStack(FurnitureItems.itemSoapyWater.getContainerItem()));
+						inventory.set(4, new ItemStack(FurnitureItems.itemSoapyWater.getContainerItem()));
 						timeRemaining = 5000;
 					}
-					else if (INVENTORY.get(4).getItem() == FurnitureItems.itemSuperSoapyWater)
+					else if (inventory.get(4).getItem() == FurnitureItems.itemSuperSoapyWater)
 					{
 						this.superMode = true;
-						INVENTORY.set(4, new ItemStack(FurnitureItems.itemSuperSoapyWater.getContainerItem()));
+						inventory.set(4, new ItemStack(FurnitureItems.itemSuperSoapyWater.getContainerItem()));
 						timeRemaining = 5000;
 					}
 				}

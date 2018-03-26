@@ -54,11 +54,11 @@ public class TileEntityFreezer extends TileEntityFurniture implements ISidedInve
 		{
 			if(timeRemaining == 0)
 			{
-				fuelTime = getFuelTime(INVENTORY.get(0));
+				fuelTime = getFuelTime(inventory.get(0));
 				timeRemaining = fuelTime;
 				
-				INVENTORY.get(0).shrink(1);
-				if(INVENTORY.get(0).getCount() <= 0)
+				inventory.get(0).shrink(1);
+				if(inventory.get(0).getCount() <= 0)
 				{
 					removeStackFromSlot(0);
 				}
@@ -76,39 +76,39 @@ public class TileEntityFreezer extends TileEntityFurniture implements ISidedInve
 	
 	public boolean canFreeze()
 	{
-		if (INVENTORY.get(0) == ItemStack.EMPTY && timeRemaining == 0)
+		if (inventory.get(0) == ItemStack.EMPTY && timeRemaining == 0)
 		{
 			return false;
 		}
 		
-		if (INVENTORY.get(0) != ItemStack.EMPTY && timeRemaining == 0)
+		if (inventory.get(0) != ItemStack.EMPTY && timeRemaining == 0)
 		{
-			if(!isFuel(INVENTORY.get(0)))
+			if(!isFuel(inventory.get(0)))
 			{
 				return false;
 			}
 		}
 		
-		if (INVENTORY.get(1) != ItemStack.EMPTY)
+		if (inventory.get(1) != ItemStack.EMPTY)
 		{
-			RecipeData data = Recipes.getFreezerRecipeFromInput(INVENTORY.get(1));
+			RecipeData data = Recipes.getFreezerRecipeFromInput(inventory.get(1));
 
 			if (data == null)
 			{
 				return false;
 			}
 
-			if (INVENTORY.get(2) == ItemStack.EMPTY)
+			if (inventory.get(2) == ItemStack.EMPTY)
 			{
 				return true;
 			}
 
-			if (INVENTORY.get(2).getItem() != data.getOutput().getItem())
+			if (inventory.get(2).getItem() != data.getOutput().getItem())
 			{
 				return false;
 			}
 
-			if (INVENTORY.get(2).getCount() < this.getInventoryStackLimit() && INVENTORY.get(2).getCount() < INVENTORY.get(2).getMaxStackSize())
+			if (inventory.get(2).getCount() < this.getInventoryStackLimit() && inventory.get(2).getCount() < inventory.get(2).getMaxStackSize())
 			{
 				return true;
 			}
@@ -118,34 +118,34 @@ public class TileEntityFreezer extends TileEntityFurniture implements ISidedInve
 	
 	public void freezeItem()
 	{
-		if (INVENTORY.get(1) != ItemStack.EMPTY)
+		if (inventory.get(1) != ItemStack.EMPTY)
 		{
-			RecipeData data = Recipes.getFreezerRecipeFromInput(INVENTORY.get(1));
+			RecipeData data = Recipes.getFreezerRecipeFromInput(inventory.get(1));
 
 			if (data == null)
 			{
 				return;
 			}
 
-			if (INVENTORY.get(2) == ItemStack.EMPTY)
+			if (inventory.get(2) == ItemStack.EMPTY)
 			{
-				INVENTORY.set(2, data.getOutput().copy());
+				inventory.set(2, data.getOutput().copy());
 			}
-			else if (INVENTORY.get(2).getItem() == data.getOutput().getItem() && INVENTORY.get(2).getItemDamage() == data.getOutput().getItemDamage())
+			else if (inventory.get(2).getItem() == data.getOutput().getItem() && inventory.get(2).getItemDamage() == data.getOutput().getItemDamage())
 			{
-				INVENTORY.get(2).grow(data.getOutput().copy().getCount());
+				inventory.get(2).grow(data.getOutput().copy().getCount());
 			}
 
-			if (INVENTORY.get(1).getItem().hasContainerItem())
+			if (inventory.get(1).getItem().hasContainerItem())
 			{
-				INVENTORY.set(1, new ItemStack(INVENTORY.get(1).getItem().getContainerItem()));
+				inventory.set(1, new ItemStack(inventory.get(1).getItem().getContainerItem()));
 			}
 			else
 			{
-				INVENTORY.get(1).shrink(1);
+				inventory.get(1).shrink(1);
 			}
 
-			if (INVENTORY.get(1).getCount() <= 0)
+			if (inventory.get(1).getCount() <= 0)
 			{
 				removeStackFromSlot(1);
 			}
@@ -197,13 +197,13 @@ public class TileEntityFreezer extends TileEntityFurniture implements ISidedInve
 			timeRemaining--;
 			if (timeRemaining <= 0)
 			{
-				if(INVENTORY.get(0) != ItemStack.EMPTY && isFuel(INVENTORY.get(0)))
+				if(inventory.get(0) != ItemStack.EMPTY && isFuel(inventory.get(0)))
 				{
-					fuelTime = getFuelTime(INVENTORY.get(0));
+					fuelTime = getFuelTime(inventory.get(0));
 					timeRemaining = fuelTime;
 					
-					INVENTORY.get(0).shrink(1);
-					if(INVENTORY.get(0).getCount() <= 0)
+					inventory.get(0).shrink(1);
+					if(inventory.get(0).getCount() <= 0)
 					{
 						removeStackFromSlot(0);
 					}

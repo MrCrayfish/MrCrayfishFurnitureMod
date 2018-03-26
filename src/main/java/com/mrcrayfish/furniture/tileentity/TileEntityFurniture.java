@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.tileentity;
 
 import com.mrcrayfish.furniture.Reference;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
@@ -13,16 +14,18 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 
+import javax.annotation.Nullable;
+
 public abstract class TileEntityFurniture extends TileEntityLockableLoot implements IInventory
 {
 	private final String ID;
-	protected final NonNullList<ItemStack> INVENTORY;
+	protected NonNullList<ItemStack> inventory;
 	protected String customName;
 	
 	public TileEntityFurniture(String id, int inventorySize) 
 	{
 		this.ID = id;
-		this.INVENTORY = NonNullList.<ItemStack>withSize(inventorySize, ItemStack.EMPTY);
+		this.inventory = NonNullList.<ItemStack>withSize(inventorySize, ItemStack.EMPTY);
 	}
 	
 	@Override
@@ -55,15 +58,59 @@ public abstract class TileEntityFurniture extends TileEntityLockableLoot impleme
 	}
 
 	@Override
+	public ItemStack getStackInSlot(int index)
+	{
+		return this.getItems().get(index);
+	}
+
+	@Override
+	public ItemStack decrStackSize(int index, int count)
+	{
+		ItemStack itemstack = ItemStackHelper.getAndSplit(this.getItems(), index, count);
+
+		if (!itemstack.isEmpty())
+		{
+			this.markDirty();
+		}
+
+		return itemstack;
+	}
+
+	@Override
+	public ItemStack removeStackFromSlot(int index)
+	{
+		return ItemStackHelper.getAndRemove(this.getItems(), index);
+	}
+
+	@Override
+	public void setInventorySlotContents(int index, @Nullable ItemStack stack)
+	{
+		this.getItems().set(index, stack);
+
+		if (stack.getCount() > this.getInventoryStackLimit())
+		{
+			stack.setCount(this.getInventoryStackLimit());
+		}
+
+		this.markDirty();
+	}
+
+	@Override
+	public void clear()
+	{
+		this.getItems().clear();
+	}
+
+	@Override
 	public int getSizeInventory() 
 	{
-		return INVENTORY.size();
+		return inventory.size();
 	}
 
 	@Override
 	public boolean isEmpty() 
 	{
-		for(ItemStack itemstack : this.INVENTORY)
+		for(ItemStack itemstack : this.inventory)
         {
             if(!itemstack.isEmpty())
             {
@@ -83,9 +130,12 @@ public abstract class TileEntityFurniture extends TileEntityLockableLoot impleme
 	public void readFromNBT(NBTTagCompound compound)
     {
         super.readFromNBT(compound);
-        this.INVENTORY.clear();
+		this.inventory = NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
 
-        ItemStackHelper.loadAllItems(compound, this.INVENTORY);
+		if (!this.checkLootAndRead(compound))
+		{
+			ItemStackHelper.loadAllItems(compound, this.inventory);
+		}
 
         if (compound.hasKey("CustomName", 8))
         {
@@ -98,7 +148,10 @@ public abstract class TileEntityFurniture extends TileEntityLockableLoot impleme
     {
         super.writeToNBT(compound);
 
-        ItemStackHelper.saveAllItems(compound, this.INVENTORY);
+		if (!this.checkLootAndWrite(compound))
+		{
+			ItemStackHelper.saveAllItems(compound, this.inventory);
+		}
 
         if (this.hasCustomName())
         {
@@ -129,6 +182,6 @@ public abstract class TileEntityFurniture extends TileEntityLockableLoot impleme
 	@Override
 	protected NonNullList<ItemStack> getItems()
 	{
-		return this.INVENTORY;
+		return this.inventory;
 	}
 }
