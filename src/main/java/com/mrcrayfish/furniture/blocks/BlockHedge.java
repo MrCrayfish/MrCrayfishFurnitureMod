@@ -59,7 +59,7 @@ public class BlockHedge extends Block
 		this.setHardness(1.0F);
 		this.setLightOpacity(1);
 		this.setSoundType(SoundType.PLANT);
-		this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
+		this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false));
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
@@ -97,22 +97,22 @@ public class BlockHedge extends Block
     {
         int i = 0;
 
-        if (((Boolean)state.getValue(NORTH)).booleanValue())
+        if (state.getValue(NORTH))
         {
             i |= 1 << EnumFacing.NORTH.getHorizontalIndex();
         }
 
-        if (((Boolean)state.getValue(EAST)).booleanValue())
+        if (state.getValue(EAST))
         {
             i |= 1 << EnumFacing.EAST.getHorizontalIndex();
         }
 
-        if (((Boolean)state.getValue(SOUTH)).booleanValue())
+        if (state.getValue(SOUTH))
         {
             i |= 1 << EnumFacing.SOUTH.getHorizontalIndex();
         }
 
-        if (((Boolean)state.getValue(WEST)).booleanValue())
+        if (state.getValue(WEST))
         {
             i |= 1 << EnumFacing.WEST.getHorizontalIndex();
         }
@@ -125,31 +125,31 @@ public class BlockHedge extends Block
 	{
 		if (state.getValue(NORTH))
         {
-            super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_NORTH);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_NORTH);
         }
 
         if (state.getValue(EAST))
         {
-        	super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_EAST);
+        	addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_EAST);
         }
 
         if (state.getValue(SOUTH))
         {
-        	super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_SOUTH);
+        	addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_SOUTH);
         }
 
         if (state.getValue(WEST))
         {
-        	super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_WEST);
+        	addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_WEST);
         }
         
-        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_CENTER);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_CENTER);
 	}
 
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
 	{
-		return state.withProperty(NORTH, Boolean.valueOf(isHedge(world, pos.north()))).withProperty(EAST, Boolean.valueOf(isHedge(world, pos.east()))).withProperty(SOUTH, Boolean.valueOf(isHedge(world, pos.south()))).withProperty(WEST, Boolean.valueOf(isHedge(world, pos.west())));
+		return state.withProperty(NORTH, isHedge(world, pos.north())).withProperty(EAST, isHedge(world, pos.east())).withProperty(SOUTH, isHedge(world, pos.south())).withProperty(WEST, isHedge(world, pos.west()));
 	}
 
 	@Override
@@ -161,10 +161,10 @@ public class BlockHedge extends Block
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, new IProperty[] { NORTH, EAST, SOUTH, WEST });
+		return new BlockStateContainer(this, NORTH, EAST, SOUTH, WEST);
 	}
 
-	public boolean isHedge(IBlockAccess world, BlockPos pos)
+	private boolean isHedge(IBlockAccess world, BlockPos pos)
 	{
 		return world.getBlockState(pos).getBlock() instanceof BlockHedge || world.getBlockState(pos).getBlock().isNormalCube(world.getBlockState(pos));
 	}
