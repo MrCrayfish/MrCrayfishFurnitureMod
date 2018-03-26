@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.items;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.blocks.BlockFirePit;
+import com.mrcrayfish.furniture.blocks.BlockFirePitOff;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
@@ -29,7 +30,7 @@ public class ItemLog extends ItemBlockSpecial
 		ItemStack stack = player.getHeldItem(hand);
 		IBlockState state = worldIn.getBlockState(pos);
 		Block block = worldIn.getBlockState(pos).getBlock();
-		if(block instanceof BlockFirePit)
+		if(block instanceof BlockFirePitOff)
 		{
 			int meta = block.getMetaFromState(state);
 			if(meta < 3)
