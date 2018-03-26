@@ -8,10 +8,13 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
 
+@SideOnly(Side.CLIENT)
 public class GuiCrate extends GuiContainer
 {
 	private static final ResourceLocation GUI = new ResourceLocation("cfm:textures/gui/crate.png");
@@ -44,6 +47,7 @@ public class GuiCrate extends GuiContainer
 	{
 		this.drawDefaultBackground();
 		super.drawScreen(mouseX, mouseY, partialTicks);
+		this.renderHoveredToolTip(mouseX, mouseY);
 	}
 
 	@Override

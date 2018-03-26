@@ -185,14 +185,17 @@ public class GuiComputer extends GuiContainer
 		RenderHelper.enableStandardItemLighting();
 	}
 
-	public void drawScreen(int par1, int par2, float par3)
+	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
 		this.drawDefaultBackground();
-		super.drawScreen(par1, par2, par3);
+		super.drawScreen(mouseX, mouseY, partialTicks);
+		this.renderHoveredToolTip(mouseX, mouseY);
+
 		ItemStack stock = itemdata[itemNum].getInput();
-		if (this.isPointInRegion(80, 16, 16, 16, par1, par2))
+		if (this.isPointInRegion(80, 16, 16, 16, mouseX, mouseY))
 		{
-			this.renderToolTip(stock, par1, par2);
+			this.renderToolTip(stock, mouseX, mouseY);
 		}
 	}
 

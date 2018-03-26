@@ -44,6 +44,7 @@ public class GuiOven extends GuiContainer
 	{
 		this.drawDefaultBackground();
 		super.drawScreen(mouseX, mouseY, partialTicks);
+		this.renderHoveredToolTip(mouseX, mouseY);
 		
 		if(isPointInRegion(37, 9, 11, 11, mouseX, mouseY))
 		{

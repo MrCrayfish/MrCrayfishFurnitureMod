@@ -87,6 +87,7 @@ public class GuiFreezer extends GuiContainer
 	{
 		this.drawDefaultBackground();
 		super.drawScreen(mouseX, mouseY, partialTicks);
+		this.renderHoveredToolTip(mouseX, mouseY);
 		
 		if(isPointInRegion(110, 6, 16, 16, mouseX, mouseY))
 		{

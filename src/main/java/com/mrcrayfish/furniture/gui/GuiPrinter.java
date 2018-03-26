@@ -44,6 +44,7 @@ public class GuiPrinter extends GuiContainer
 	{
 		this.drawDefaultBackground();
 		super.drawScreen(mouseX, mouseY, partialTicks);
+		this.renderHoveredToolTip(mouseX, mouseY);
 		
 		if(isPointInRegion(73, 30, 5, 18, mouseX, mouseY))
 		{

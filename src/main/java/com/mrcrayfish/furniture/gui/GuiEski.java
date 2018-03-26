@@ -23,6 +23,7 @@ public class GuiEski extends GuiContainer
 	{
 		this.drawDefaultBackground();
 		super.drawScreen(mouseX, mouseY, partialTicks);
+		this.renderHoveredToolTip(mouseX, mouseY);
 	}
 	
 	@Override
