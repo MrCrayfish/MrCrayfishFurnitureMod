@@ -100,16 +100,15 @@ public class PlayerEvents
 		if (tileEntity instanceof TileEntityMailBox)
 		{
 			TileEntityMailBox tileEntityMailBox = (TileEntityMailBox) tileEntity;
-			if(tileEntityMailBox.canOpen(player) || !tileEntityMailBox.isClaimed() || isAuthorized(player))
+			if(tileEntityMailBox.isClaimed() && !tileEntityMailBox.canOpen(player) && !isAuthorized(player))
 			{
-				event.setCanceled(true);
-			}
-			else if(!player.world.isRemote)
-			{
-				player.sendMessage(new TextComponentString(TextFormatting.RED + "You need to be the owner of the mailbox to destroy it."));
+				if(!player.world.isRemote)
+				{
+					player.sendMessage(new TextComponentString(TextFormatting.RED + "You need to be the owner of the mailbox to destroy it."));
+					event.setCanceled(true);
+				}
 			}
 		}
-		event.setCanceled(true);
 	}
 
 	private boolean isAuthorized(EntityPlayer player)
