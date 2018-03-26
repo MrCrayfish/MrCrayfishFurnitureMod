@@ -247,12 +247,12 @@ public class FurnitureBlocks
 		registerBlock(cabinet_dark_oak);
 		registerBlock(couch);
 		registerBlock(couch_jeb);
-		registerBlock(lamp_on);
+		registerBlock(lamp_on, null);
 		registerBlock(lamp_off);
 		registerBlock(blinds);
-		registerBlock(blinds_closed);
+		registerBlock(blinds_closed, null);
 		registerBlock(curtains);
-		registerBlock(curtains_closed);
+		registerBlock(curtains_closed, null);
 		registerBlock(bedside_cabinet_oak);
 		registerBlock(bedside_cabinet_spruce);
 		registerBlock(bedside_cabinet_birch);
@@ -280,20 +280,20 @@ public class FurnitureBlocks
 		registerBlock(fire_alarm_off);
 		registerBlock(fire_alarm_on);
 		registerBlock(ceiling_light_off);
-		registerBlock(ceiling_light_on);
+		registerBlock(ceiling_light_on, null);
 		registerBlock(stereo);
 		registerBlock(toilet);
 		registerBlock(basin);
 		registerBlock(wall_cabinet);
 		registerBlock(bath_1, new ItemBath(bath_1));
-		registerBlock(bath_2);
+		registerBlock(bath_2, null);
 		registerBlock(shower_bottom);
-		registerBlock(shower_top);
+		registerBlock(shower_top, null);
 		registerBlock(shower_head_off);
-		registerBlock(shower_head_on);
+		registerBlock(shower_head_on, null);
 		registerBlock(bin);
 		registerBlock(present, new ItemPresent(present));
-		registerBlock(tree_top, new ItemWreath(tree_top));
+		registerBlock(tree_top, null);
 		registerBlock(tree_bottom, new ItemWreath(tree_bottom));
 		registerBlock(toaster);
 		registerBlock(microwave);
@@ -316,7 +316,7 @@ public class FurnitureBlocks
 		registerBlock(chimney);
 		registerBlock(wreath, new ItemWreath(wreath));
 		registerBlock(fairy_light);
-		registerBlock(fire_pit_off);
+		registerBlock(fire_pit_off, null);
 		registerBlock(fire_pit_on);
 		registerBlock(trampoline);
 		registerBlock(crate, new ItemCrate(crate));
@@ -337,8 +337,11 @@ public class FurnitureBlocks
 	public static void registerBlock(Block block, ItemBlock item) 
 	{
 		RegistrationHandler.BLOCKS.add(block);
-		item.setRegistryName(block.getRegistryName());
-		FurnitureItems.RegistrationHandler.ITEMS.add(item);
+		if(item != null)
+		{
+			item.setRegistryName(block.getRegistryName());
+			FurnitureItems.RegistrationHandler.ITEMS.add(item);
+		}
 	}
 	
 	public static void registerRenders()

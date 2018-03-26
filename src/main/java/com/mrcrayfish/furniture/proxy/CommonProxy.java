@@ -22,6 +22,7 @@ import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.handler.CraftingHandler;
 import com.mrcrayfish.furniture.handler.SyncEvent;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -64,6 +65,7 @@ public class CommonProxy implements ProxyInterface
 	}
 
 	private static final List<String> IGNORE_SOUNDS;
+	private static final List<String> IGNORE_ITEMS;
 
 	static
 	{
@@ -74,6 +76,18 @@ public class CommonProxy implements ProxyInterface
 		builder.add("channel_switch");
 		builder.add("channel_cooking");
 		IGNORE_SOUNDS = builder.build();
+
+		builder = ImmutableList.builder();
+		builder.add("shower_head_on");
+		builder.add("fire_pit_off");
+		builder.add("lamp_on");
+		builder.add("tree_top");
+		builder.add("shower_top");
+		builder.add("bath_top");
+		builder.add("curtains_closed");
+		builder.add("ceiling_light_on");
+		builder.add("blinds_closed");
+		IGNORE_ITEMS = builder.build();
 	}
 
 	@SubscribeEvent
@@ -81,7 +95,19 @@ public class CommonProxy implements ProxyInterface
 	{
 		for(RegistryEvent.MissingMappings.Mapping<SoundEvent> missing : event.getMappings())
 		{
-			if(missing.key.getResourceDomain().equals(Reference.MOD_ID) && IGNORE_SOUNDS.contains(missing.key.getResourcePath().toString()))
+			if(missing.key.getResourceDomain().equals(Reference.MOD_ID) && IGNORE_SOUNDS.contains(missing.key.getResourcePath()))
+			{
+				missing.ignore();
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public void onMissingItems(RegistryEvent.MissingMappings<Item> event)
+	{
+		for(RegistryEvent.MissingMappings.Mapping<Item> missing : event.getMappings())
+		{
+			if(missing.key.getResourceDomain().equals(Reference.MOD_ID) && IGNORE_ITEMS.contains(missing.key.getResourcePath()))
 			{
 				missing.ignore();
 			}
