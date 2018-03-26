@@ -23,9 +23,13 @@ import com.mrcrayfish.furniture.handler.GuiDrawHandler;
 import com.mrcrayfish.furniture.handler.InputHandler;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.render.tileentity.*;
 import com.mrcrayfish.furniture.tileentity.*;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockOldLeaf;
+import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -33,7 +37,11 @@ import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -93,34 +101,35 @@ public class ClientProxy extends CommonProxy
         }, FurnitureItems.itemDrink);
 		IItemColor hedgeItemColor = (stack, tintIndex) ->
 		{
-            if(stack.getItem() == Item.getItemFromBlock(FurnitureBlocks.hedge_spruce))
-            {
-                return ColorizerFoliage.getFoliageColorPine();
-            }
-            else if(stack.getItem() == Item.getItemFromBlock(FurnitureBlocks.hedge_birch))
-            {
-                return ColorizerFoliage.getFoliageColorBirch();
-            }
-            return ColorizerFoliage.getFoliageColorBasic();
+			IBlockState iblockstate = ((ItemBlock)stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
+			return Minecraft.getMinecraft().getBlockColors().colorMultiplier(iblockstate, null, null, tintIndex);
         };
-		IBlockColor hedgeBlockColor = (state, worldIn, pos, tintIndex) ->
+		IBlockColor hedgeBlockColorOld = (state, worldIn, pos, tintIndex) ->
 		{
-            if(state.getBlock() == FurnitureBlocks.hedge_spruce)
-            {
-                return ColorizerFoliage.getFoliageColorPine();
-            }
-            else if(state.getBlock() == FurnitureBlocks.hedge_birch)
-            {
-                return ColorizerFoliage.getFoliageColorBirch();
-            }
-            return ColorizerFoliage.getFoliageColorBasic();
+			Block block = state.getBlock();
+			if (block == FurnitureBlocks.hedge_spruce)
+			{
+				return ColorizerFoliage.getFoliageColorPine();
+			}
+			else if (block == FurnitureBlocks.hedge_birch)
+			{
+				return ColorizerFoliage.getFoliageColorBirch();
+			}
+			else
+			{
+				return worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
+			}
         };
-		registerColorHandlerForBlock(FurnitureBlocks.hedge_oak, hedgeBlockColor, hedgeItemColor);
-		registerColorHandlerForBlock(FurnitureBlocks.hedge_spruce, hedgeBlockColor, hedgeItemColor);
-		registerColorHandlerForBlock(FurnitureBlocks.hedge_birch, hedgeBlockColor, hedgeItemColor);
-		registerColorHandlerForBlock(FurnitureBlocks.hedge_jungle, hedgeBlockColor, hedgeItemColor);
-		registerColorHandlerForBlock(FurnitureBlocks.hedge_acacia, hedgeBlockColor, hedgeItemColor);
-		registerColorHandlerForBlock(FurnitureBlocks.hedge_dark_oak, hedgeBlockColor, hedgeItemColor);
+		IBlockColor hedgeBlockColorNew = (state, worldIn, pos, tintIndex) ->
+		{
+			return worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
+		};
+		registerColorHandlerForBlock(FurnitureBlocks.hedge_oak, hedgeBlockColorOld, hedgeItemColor);
+		registerColorHandlerForBlock(FurnitureBlocks.hedge_spruce, hedgeBlockColorOld, hedgeItemColor);
+		registerColorHandlerForBlock(FurnitureBlocks.hedge_birch, hedgeBlockColorOld, hedgeItemColor);
+		registerColorHandlerForBlock(FurnitureBlocks.hedge_jungle, hedgeBlockColorOld, hedgeItemColor);
+		registerColorHandlerForBlock(FurnitureBlocks.hedge_acacia, hedgeBlockColorNew, hedgeItemColor);
+		registerColorHandlerForBlock(FurnitureBlocks.hedge_dark_oak, hedgeBlockColorNew, hedgeItemColor);
 		IItemColor christmasItemColor = (stack, tintIndex) -> ColorizerFoliage.getFoliageColorPine();
 		IBlockColor christmasBlockColor = (state, worldIn, pos, tintIndex) -> ColorizerFoliage.getFoliageColorPine();
 		registerColorHandlerForBlock(FurnitureBlocks.tree_bottom, christmasBlockColor, christmasItemColor);
