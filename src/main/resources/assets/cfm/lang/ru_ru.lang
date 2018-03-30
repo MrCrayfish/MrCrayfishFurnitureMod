@@ -150,8 +150,11 @@ tile.crate.name=Ящик
 tile.grill.name=Гриль
 tile.divingboard_base.name=Трамплин для прыжков в воду
 tile.door_mat.name=Коврик у двери
-tile.esky.name=Переносной холожильник
+tile.esky.name=Переносной холодильник
 tile.water_tank.name=Бочка
+
+keys.cfm.category=MrCrayfish's Furniture Mod
+key.fart.desc=Справить нужду
 
 achievement.cfm_install=Вы установили!
 achievement.cfm_install.desc=Благодарим за установку MrCrayfish's Furniture Mod
