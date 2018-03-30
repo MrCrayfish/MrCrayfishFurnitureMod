@@ -153,6 +153,9 @@ tile.door_mat.name=Door Mat
 tile.esky.name=Cooler
 tile.water_tank.name=Water Tank
 
++keys.cfm.category=MrCrayfish's Furniture Mod
++key.fart.desc=Fart
+
 achievement.cfm_install=You've been installed!
 achievement.cfm_install.desc=Thank you for installing MrCrayfish's Furniture Mod
 achievement.cfm_minekea=MineKea
