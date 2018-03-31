@@ -21,6 +21,7 @@ import java.util.Random;
 
 import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -34,7 +35,7 @@ public class InventoryUtil
 	private static final Random RANDOM = new Random();
 
 	/**
-	 * Drops the items that are in a tile entity's inventory. Does nothing if the tile entity is not an instance of an {@link ISimpleInventory}.
+	 * Drops the items that are in a tile entity's inventory. Does nothing if the tile entity is not an instance of an {@link ISimpleInventory} or {@link IInventory}.
 	 * 
 	 * @param world
 	 *            The world to drop the items in
@@ -47,6 +48,9 @@ public class InventoryUtil
 	{
 		if (te instanceof ISimpleInventory) {
 			dropInventoryItems(world, pos, (ISimpleInventory) te);
+		}
+		if(te instanceof IInventory) {
+			InventoryHelper.dropInventoryItems(world, pos, (IInventory )te);
 		}
 	}
 
@@ -72,7 +76,7 @@ public class InventoryUtil
 	}
 
 	/**
-	 * Calculates an IItemHandler's redstone capacity based on the amount of items inside divided by the maximum number of items.
+	 * Calculates an IItemHandler's redstone capacity based on the amount of items inside.
 	 * 
 	 * @param inventory
 	 *            The inventory to drop the items out of
