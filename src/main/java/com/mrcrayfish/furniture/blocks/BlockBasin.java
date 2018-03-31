@@ -17,14 +17,17 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
+
+import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -36,12 +39,19 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockBasin extends BlockFurniture
 {
+	public static final AxisAlignedBB[] PILLAR = new AxisAlignedBB[] { new AxisAlignedBB(3 * 0.0625, 0, 8 * 0.0625, 13 * 0.0625, 11 * 0.0625, 1), new AxisAlignedBB(0, 0, 3 * 0.0625, 8 * 0.0625, 11 * 0.0625, 13 * 0.0625), new AxisAlignedBB(3 * 0.0625, 0, 0, 13 * 0.0625, 11 * 0.0625, 8 * 0.0625), new AxisAlignedBB(8 * 0.0625, 0, 3 * 0.0625, 1, 11 * 0.0625, 13 * 0.0625) };
+	public static final AxisAlignedBB TOP = new AxisAlignedBB(0, 11 * 0.0625, 0, 1, 1, 1);
+
 	public static final PropertyBool FILLED = PropertyBool.create("filled");
 
 	public BlockBasin(Material material) {
@@ -49,6 +59,14 @@ public class BlockBasin extends BlockFurniture
 		this.setHardness(1.0F);
 		this.setSoundType(SoundType.STONE);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(FILLED, Boolean.valueOf(false)));
+	}
+
+	@Override
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
+	{
+		EnumFacing facing = state.getValue(FACING);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, PILLAR[facing.getHorizontalIndex()]);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, TOP);
 	}
 
 	@Override
@@ -167,13 +185,13 @@ public class BlockBasin extends BlockFurniture
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta)).withProperty(FILLED, meta > 3);
+		return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta)).withProperty(FILLED, meta / 4 >= 1);
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return state.getValue(FACING).getHorizontalIndex() + (state.getValue(FILLED) ? 0 : 4);
+		return state.getValue(FACING).getHorizontalIndex() + (state.getValue(FILLED) ? 4 : 0);
 	}
 
 	@Override
@@ -202,5 +220,40 @@ public class BlockBasin extends BlockFurniture
 	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
 	{
 		return world.getBlockState(pos).getValue(FILLED) ? 1 : 0;
+	}
+
+	private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
+	{
+		List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
+		EnumFacing facing = state.getValue(FACING);
+		list.add(PILLAR[facing.getHorizontalIndex()]);
+		list.add(TOP);
+		return list;
+	}
+
+	@Override
+	public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
+	{
+		List<RayTraceResult> list = Lists.<RayTraceResult>newArrayList();
+
+		for (AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos))) {
+			list.add(this.rayTrace(pos, start, end, axisalignedbb));
+		}
+
+		RayTraceResult raytraceresult1 = null;
+		double d1 = 0.0D;
+
+		for (RayTraceResult raytraceresult : list) {
+			if (raytraceresult != null) {
+				double d0 = raytraceresult.hitVec.squareDistanceTo(end);
+
+				if (d0 > d1) {
+					raytraceresult1 = raytraceresult;
+					d1 = d0;
+				}
+			}
+		}
+
+		return raytraceresult1;
 	}
 }
