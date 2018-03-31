@@ -26,11 +26,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockBirdBath extends Block
@@ -39,14 +39,14 @@ public class BlockBirdBath extends Block
 	public static final AxisAlignedBB BOTTOM_LIP = new AxisAlignedBB(4 * 0.0625, 0, 4 * 0.0625, 12 * 0.0625, 1.5 * 0.0625, 12 * 0.0625);
 	public static final AxisAlignedBB TOP = new AxisAlignedBB(1 * 0.0625, 11.25 * 0.0625, 1 * 0.0625, 15 * 0.0625, 12.75 * 0.0625, 15 * 0.0625);
 	public static final AxisAlignedBB BOWL = new AxisAlignedBB(0, 12.75 * 0.0625, 0, 1, 14.5 * 0.0625, 1);
-	
+
 	public BlockBirdBath(Material material) {
 		super(material);
 		this.setHardness(1.0F);
 		this.setSoundType(SoundType.STONE);
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
@@ -57,6 +57,15 @@ public class BlockBirdBath extends Block
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
+	}
+
+	@Override
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
+	{
+		List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
+		for (AxisAlignedBB box : list) {
+			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
+		}
 	}
 
 	private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)

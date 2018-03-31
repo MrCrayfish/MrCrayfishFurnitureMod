@@ -64,9 +64,10 @@ public class BlockBasin extends BlockFurniture
 	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
 	{
-		EnumFacing facing = state.getValue(FACING);
-		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, PILLAR[facing.getHorizontalIndex()]);
-		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, TOP);
+		List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
+		for (AxisAlignedBB box : list) {
+			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
+		}
 	}
 
 	@Override

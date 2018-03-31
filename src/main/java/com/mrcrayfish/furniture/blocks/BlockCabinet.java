@@ -52,8 +52,10 @@ public class BlockCabinet extends BlockFurnitureTile
 	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
 	{
-		EnumFacing facing = state.getValue(FACING);
-		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[facing.getHorizontalIndex()]);
+		List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
+		for (AxisAlignedBB box : list) {
+			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
+		}
 	}
 
 	@Override
