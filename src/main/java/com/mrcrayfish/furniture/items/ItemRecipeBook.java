@@ -30,12 +30,14 @@ public class ItemRecipeBook extends Item
 {
 	public ItemRecipeBook()
 	{
+		setMaxStackSize(16);
 		setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) 
 	{
+		setMaxStackSize(16);
 		ItemStack stack = playerIn.getHeldItem(hand);
 		if (worldIn.isRemote)
 		{
