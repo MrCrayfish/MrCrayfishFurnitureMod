@@ -17,9 +17,12 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
+
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.util.SittableUtil;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -35,18 +38,16 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import java.util.List;
 
 public class BlockBarStool extends Block
 {
 	public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
-	
+
 	private static final AxisAlignedBB BOUNDS = new AxisAlignedBB(2 * 0.0625, 0, 2 * 0.0625, 14 * 0.0625, 13 * 0.0625, 14 * 0.0625);
 
-	public BlockBarStool(Material material)
-	{
+	public BlockBarStool(Material material) {
 		super(material);
 		this.setHardness(0.5F);
 		this.setSoundType(SoundType.WOOD);
@@ -56,49 +57,49 @@ public class BlockBarStool extends Block
 
 	@Override
 	public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
+	{
+		return false;
+	}
 
 	@Override
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
+	public boolean isFullCube(IBlockState state)
+	{
+		return false;
+	}
 
+	// TODO you should really try to support modded dyes as well as vanilla ones
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		ItemStack heldItem = playerIn.getHeldItem(hand);
-		if (!heldItem.isEmpty())
-		{
-			if (heldItem.getItem() instanceof ItemDye)
-			{
-				worldIn.setBlockState(pos, state.withProperty(COLOUR, 15 - heldItem.getItemDamage()));
-				heldItem.shrink(1);
-				return true;
+		if (!heldItem.isEmpty()) {
+			if (heldItem.getItem() instanceof ItemDye) {
+				if (state.getValue(COLOUR) != 15 - heldItem.getItemDamage()) {
+					worldIn.setBlockState(pos, state.withProperty(COLOUR, 15 - heldItem.getItemDamage()));
+					heldItem.shrink(1);
+					return true;
+				}
 			}
 		}
-		return SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 9 * 0.0625);
+		return playerIn.isSneaking() ? false : SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 9 * 0.0625);
 	}
 
 	@Override
-	public AxisAlignedBB getSelectedBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) 
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return BOUNDS;
 	}
-	
+
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
 	{
-		if (!(entityIn instanceof EntitySittableBlock))
-		{
+		if (!(entityIn instanceof EntitySittableBlock)) {
 			addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDS);
-		}	
+		}
 	}
-	
+
 	@Override
-	public IBlockState getStateFromMeta(int meta) 
+	public IBlockState getStateFromMeta(int meta)
 	{
 		return this.getDefaultState().withProperty(COLOUR, meta);
 	}
