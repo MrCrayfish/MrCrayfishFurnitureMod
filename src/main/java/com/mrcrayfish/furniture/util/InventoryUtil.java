@@ -39,13 +39,13 @@ public class InventoryUtil
 		for (int i = 0; i < inv.getSize(); i++) {
 			ItemStack stack = inv.getItem(i);
 
-			if (!stack.isEmpty()) {
+			if (stack != null && !stack.isEmpty()) {
 				spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stack);
 			}
 		}
 	}
 
-	private static void spawnItemStack(World world, double posX, double posY, double posZ, ItemStack stack)
+	public static void spawnItemStack(World world, double posX, double posY, double posZ, ItemStack stack)
 	{
 		float f = RANDOM.nextFloat() * 0.8F + 0.1F;
 		float f1 = RANDOM.nextFloat() * 0.8F + 0.1F;
