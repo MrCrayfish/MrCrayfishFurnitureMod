@@ -22,6 +22,7 @@ import com.mrcrayfish.furniture.api.RecipeData;
 import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
+import com.mrcrayfish.furniture.util.InventoryUtil;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 
 import net.minecraft.entity.item.EntityItem;
@@ -48,16 +49,10 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	public int currentGreen;
 	public int currentBlue;
 
-	public TileEntityBlender() {
-		for (int i = 0; i < ingredients.length; i++) {
-			ingredients[i] = ItemStack.EMPTY;
-		}
-	}
-
 	public void addIngredient(ItemStack ingredient)
 	{
 		for (int i = 0; i < ingredients.length; i++) {
-			if (this.ingredients[i] == null || ingredients[i].isEmpty()) {
+			if (this.ingredients[i] == null) {
 				ingredients[i] = ingredient.copy();
 				break;
 			}
@@ -67,12 +62,12 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	public void removeIngredient()
 	{
 		for (int i = ingredients.length - 1; i >= 0; i--) {
-			if (this.ingredients[i] != null && !ingredients[i].isEmpty()) {
+			if (this.ingredients[i] != null) {
 				if (!world.isRemote) {
 					EntityItem entityItem = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 1.0D, pos.getZ() + 0.5, ingredients[i]);
 					world.spawnEntity(entityItem);
 				}
-				ingredients[i] = ItemStack.EMPTY;
+				ingredients[i] = null;
 				break;
 			}
 		}
@@ -82,7 +77,7 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	public boolean isFull()
 	{
 		for (int i = 0; i < ingredients.length; i++) {
-			if (this.ingredients[i] != null && ingredients[i].isEmpty()) {
+			if (this.ingredients[i] == null) {
 				return false;
 			}
 		}
@@ -165,14 +160,14 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	public void clearIngredients()
 	{
 		for (int i = 0; i < ingredients.length; i++) {
-			if (this.ingredients[i] != null && !ingredients[i].isEmpty()) {
+			if (this.ingredients[i] != null) {
 				if (ingredients[i].getItem().hasContainerItem()) {
 					if (!world.isRemote) {
 						EntityItem entityItem = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.6, pos.getZ() + 0.5, new ItemStack(ingredients[i].getItem().getContainerItem()));
 						world.spawnEntity(entityItem);
 					}
 				}
-				ingredients[i] = ItemStack.EMPTY;
+				ingredients[i] = null;
 			}
 		}
 	}
@@ -183,17 +178,7 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 		super.readFromNBT(tagCompound);
 		if (tagCompound.hasKey("Items")) {
 			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
-			this.ingredients = new ItemStack[4];
-			this.clear();
-
-			for (int i = 0; i < tagList.tagCount(); ++i) {
-				NBTTagCompound itemTag = (NBTTagCompound) tagList.getCompoundTagAt(i);
-				byte slot = itemTag.getByte("Slot");
-
-				if (slot >= 0 && slot < this.ingredients.length) {
-					this.ingredients[slot] = new ItemStack(itemTag);
-				}
-			}
+			this.ingredients = InventoryUtil.readInventoryFromNBT(this, tagList);
 		}
 
 		this.blending = tagCompound.getBoolean("Blending");
@@ -210,16 +195,7 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
 		super.writeToNBT(tagCompound);
-		NBTTagList tagList = new NBTTagList();
-		for (int i = 0; i < this.ingredients.length; ++i) {
-			if (this.ingredients[i] != null && !this.ingredients[i].isEmpty()) {
-				NBTTagCompound itemTag = new NBTTagCompound();
-				itemTag.setByte("Slot", (byte) i);
-				this.ingredients[i].writeToNBT(itemTag);
-				tagList.appendTag(itemTag);
-			}
-		}
-		tagCompound.setTag("Items", tagList);
+		tagCompound.setTag("Items", InventoryUtil.writeInventoryToNBT(this, new NBTTagList()));
 		tagCompound.setBoolean("Blending", blending);
 		tagCompound.setInteger("Progress", progress);
 		tagCompound.setString("DrinkName", drinkName);
@@ -258,14 +234,14 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	@Override
 	public ItemStack getItem(int i)
 	{
-		return ingredients[i];
+		return ingredients[i] == null ? ItemStack.EMPTY : ingredients[i];
 	}
 
 	@Override
 	public void clear()
 	{
 		for (int i = 0; i < ingredients.length; i++) {
-			ingredients[i] = ItemStack.EMPTY;
+			ingredients[i] = null;
 		}
 	}
 }

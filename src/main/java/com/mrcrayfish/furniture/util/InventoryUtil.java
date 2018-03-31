@@ -24,6 +24,8 @@ import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -49,8 +51,8 @@ public class InventoryUtil
 		if (te instanceof ISimpleInventory) {
 			dropInventoryItems(world, pos, (ISimpleInventory) te);
 		}
-		if(te instanceof IInventory) {
-			InventoryHelper.dropInventoryItems(world, pos, (IInventory )te);
+		if (te instanceof IInventory) {
+			InventoryHelper.dropInventoryItems(world, pos, (IInventory) te);
 		}
 	}
 
@@ -102,5 +104,55 @@ public class InventoryUtil
 			f = f / (float) inventory.getSlots();
 			return MathHelper.floor(f * 14.0F) + (i > 0 ? 1 : 0);
 		}
+	}
+
+	/**
+	 * Writes the contents of an inventory to nbt.
+	 * 
+	 * @param inventory
+	 *            The inventory to get the items from
+	 * @param nbt
+	 *            The list to put the items into.
+	 */
+	public static NBTTagList writeInventoryToNBT(ISimpleInventory inventory, NBTTagList nbt)
+	{
+		if (nbt != null) {
+			for (int i = 0; i < inventory.getSize(); ++i) {
+				ItemStack stack = inventory.getItem(i);
+				if (stack != null && !stack.isEmpty()) {
+					NBTTagCompound itemTag = new NBTTagCompound();
+					itemTag.setByte("Slot", (byte) i);
+					stack.writeToNBT(itemTag);
+					nbt.appendTag(itemTag);
+				}
+			}
+		}
+		return nbt;
+	}
+
+	/**
+	 * Reads the items from nbt.
+	 * 
+	 * @param inventory
+	 *            The inventory to get the items size from
+	 * @param nbt
+	 *            The list to get the items from
+	 * @return The items put into an array
+	 */
+	public static ItemStack[] readInventoryFromNBT(ISimpleInventory inventory, NBTTagList nbt)
+	{
+		ItemStack[] items = new ItemStack[inventory.getSize()];
+
+		if (nbt != null) {
+			for (int i = 0; i < nbt.tagCount(); ++i) {
+				NBTTagCompound itemTag = (NBTTagCompound) nbt.getCompoundTagAt(i);
+				byte slot = itemTag.getByte("Slot");
+
+				if (slot >= 0 && slot < items.length) {
+					items[slot] = new ItemStack(itemTag);
+				}
+			}
+		}
+		return items;
 	}
 }

@@ -115,6 +115,9 @@ public class TileEntityCup extends TileEntity implements ISimpleInventory
 	@Override
 	public void clear()
 	{
+		red = 0;
+		green = 0;
+		blue = 0;
 		item = null;
 	}
 }

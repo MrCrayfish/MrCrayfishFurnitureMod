@@ -94,7 +94,7 @@ public class ItemCup extends Item
 				playerIn.setActiveHand(hand);
 			}
 		}
-		return new ActionResult(EnumActionResult.PASS, playerIn.getHeldItem(hand));
+		return new ActionResult(EnumActionResult.FAIL, playerIn.getHeldItem(hand));
 	}
 
 	@Override

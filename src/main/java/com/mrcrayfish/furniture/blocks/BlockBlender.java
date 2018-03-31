@@ -19,18 +19,16 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
 
-import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityBlender;
-import com.mrcrayfish.furniture.util.InventoryUtil;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
@@ -65,19 +63,19 @@ public class BlockBlender extends BlockFurnitureTile
 				if (!heldItem.isEmpty() && !tileEntityBlender.isFull() && !tileEntityBlender.isBlending()) {
 					tileEntityBlender.addIngredient(heldItem.copy());
 					TileEntityUtil.markBlockForUpdate(worldIn, pos);
-					heldItem.setCount(0);
+					playerIn.setHeldItem(hand, ItemStack.EMPTY);
 					return true;
 				} else {
-					if (playerIn.isSneaking()) {
-						if (!tileEntityBlender.isBlending()) {
+					if (!tileEntityBlender.isBlending()) {
+						if (playerIn.isSneaking()) {
 							if (tileEntityBlender.hasValidIngredients()) {
 								tileEntityBlender.startBlending();
 								TileEntityUtil.markBlockForUpdate(worldIn, pos);
 								worldIn.updateComparatorOutputLevel(pos, this);
 							}
+						} else {
+							tileEntityBlender.removeIngredient();
 						}
-					} else if (!tileEntityBlender.isBlending()) {
-						tileEntityBlender.removeIngredient();
 					}
 				}
 			} else {
@@ -89,6 +87,7 @@ public class BlockBlender extends BlockFurnitureTile
 							playerIn.inventory.addItemStackToInventory(tileEntityBlender.getDrink());
 							heldItem.shrink(1);
 						}
+						playerIn.playSound(SoundEvents.ITEM_BOTTLE_FILL, 1.0F, 1.5F);
 						tileEntityBlender.drinkCount--;
 						TileEntityUtil.markBlockForUpdate(worldIn, pos);
 					}
