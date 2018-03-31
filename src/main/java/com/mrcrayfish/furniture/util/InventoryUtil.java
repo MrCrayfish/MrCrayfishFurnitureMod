@@ -17,13 +17,18 @@
  */
 package com.mrcrayfish.furniture.util;
 
+import java.util.Random;
+
 import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-
-import java.util.Random;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 
 public class InventoryUtil
 {
@@ -31,12 +36,10 @@ public class InventoryUtil
 
 	public static void dropInventoryItems(World world, BlockPos pos, ISimpleInventory inv)
 	{
-		for (int i = 0; i < inv.getSize(); i++)
-		{
+		for (int i = 0; i < inv.getSize(); i++) {
 			ItemStack stack = inv.getItem(i);
 
-			if (stack != null)
-			{
+			if (stack != null) {
 				spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stack);
 			}
 		}
@@ -48,19 +51,16 @@ public class InventoryUtil
 		float f1 = RANDOM.nextFloat() * 0.8F + 0.1F;
 		float f2 = RANDOM.nextFloat() * 0.8F + 0.1F;
 
-		while (stack.getCount() > 0)
-		{
+		while (stack.getCount() > 0) {
 			int i = RANDOM.nextInt(21) + 10;
 
-			if (i > stack.getCount())
-			{
+			if (i > stack.getCount()) {
 				i = stack.getCount();
 			}
 			stack.shrink(i);
 			EntityItem entityitem = new EntityItem(world, posX + (double) f, posY + (double) f1, posZ + (double) f2, new ItemStack(stack.getItem(), i, stack.getMetadata()));
 
-			if (stack.hasTagCompound())
-			{
+			if (stack.hasTagCompound()) {
 				entityitem.getItem().setTagCompound(stack.getTagCompound().copy());
 			}
 
@@ -69,6 +69,29 @@ public class InventoryUtil
 			entityitem.motionY = RANDOM.nextGaussian() * (double) f3 + 0.20000000298023224D;
 			entityitem.motionZ = RANDOM.nextGaussian() * (double) f3;
 			world.spawnEntity(entityitem);
+		}
+	}
+
+	public static int calculateTileEntityRedstone(TileEntity tileEntity)
+	{
+		IItemHandler inventory = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+		if (inventory == null) {
+			return 0;
+		} else {
+			int i = 0;
+			float f = 0.0F;
+
+			for (int j = 0; j < inventory.getSlots(); ++j) {
+				ItemStack itemstack = inventory.getStackInSlot(j);
+
+				if (!itemstack.isEmpty()) {
+					f += (float) itemstack.getCount() / (float) Math.min(inventory.getSlotLimit(j), itemstack.getMaxStackSize());
+					++i;
+				}
+			}
+
+			f = f / (float) inventory.getSlots();
+			return MathHelper.floor(f * 14.0F) + (i > 0 ? 1 : 0);
 		}
 	}
 }
