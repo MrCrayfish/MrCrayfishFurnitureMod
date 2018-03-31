@@ -21,13 +21,13 @@ import java.util.List;
 
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityBlender;
-import com.mrcrayfish.furniture.util.InventoryUtil;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -135,7 +135,12 @@ public class BlockBlender extends BlockFurnitureTile
 	{
 		if (world.getTileEntity(pos) instanceof TileEntityBlender) {
 			TileEntityBlender blender = (TileEntityBlender) world.getTileEntity(pos);
-			InventoryUtil.dropInventoryItems(world, pos, blender);
+			for (int i = 0; i < blender.getSize(); i++) {
+				ItemStack stack = blender.getItem(i);
+				if (stack != null && !stack.isEmpty()) {
+					world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 1.0D, pos.getZ() + 0.5, stack));
+				}
+			}
 		}
 	}
 }
