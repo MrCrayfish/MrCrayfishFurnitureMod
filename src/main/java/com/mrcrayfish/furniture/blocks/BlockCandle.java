@@ -82,49 +82,13 @@ public class BlockCandle extends Block
 	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
 	{
-		List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
-		for (AxisAlignedBB box : list) {
-			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-		}
-	}
-
-	private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
-	{
-		List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
-		list.add(BOTTOM_LIP);
-		list.add(BOTTOM);
-		list.add(CENTER_PILLAR);
-		list.add(CROSS_1);
-		list.add(CROSS_2);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOTTOM_LIP);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOTTOM);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, CENTER_PILLAR);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, CROSS_1);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, CROSS_2);
 		for (int i = 0; i < CANDLES.length; i++) {
-			list.add(CANDLES[i]);
+			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, CANDLES[i]);
 		}
-		return list;
-	}
-
-	@Override
-	public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
-	{
-		List<RayTraceResult> list = Lists.<RayTraceResult>newArrayList();
-
-		for (AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos))) {
-			list.add(this.rayTrace(pos, start, end, axisalignedbb));
-		}
-
-		RayTraceResult raytraceresult1 = null;
-		double d1 = 0.0D;
-
-		for (RayTraceResult raytraceresult : list) {
-			if (raytraceresult != null) {
-				double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-				if (d0 > d1) {
-					raytraceresult1 = raytraceresult;
-					d1 = d0;
-				}
-			}
-		}
-
-		return raytraceresult1;
 	}
 }
