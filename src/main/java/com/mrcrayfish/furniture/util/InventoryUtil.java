@@ -39,7 +39,7 @@ public class InventoryUtil
 		for (int i = 0; i < inv.getSize(); i++) {
 			ItemStack stack = inv.getItem(i);
 
-			if (stack != null) {
+			if (!stack.isEmpty()) {
 				spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stack);
 			}
 		}
