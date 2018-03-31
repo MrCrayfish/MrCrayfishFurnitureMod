@@ -64,7 +64,7 @@ public class BlockChoppingBoard extends BlockFurnitureTile
 		if (tileEntity instanceof TileEntityChoppingBoard) {
 			TileEntityChoppingBoard tileEntityChoppingBoard = (TileEntityChoppingBoard) tileEntity;
 			if (!heldItem.isEmpty()) {
-				if (Recipes.getChoppingBoardRecipeFromInput(heldItem) != null && tileEntityChoppingBoard.getFood() == null) {
+				if (Recipes.getChoppingBoardRecipeFromInput(heldItem) != null) {
 					if (tileEntityChoppingBoard.getFood() == null) {
 						tileEntityChoppingBoard.setFood(new ItemStack(heldItem.getItem(), 1, heldItem.getItemDamage()));
 						TileEntityUtil.markBlockForUpdate(worldIn, pos);
@@ -129,15 +129,10 @@ public class BlockChoppingBoard extends BlockFurnitureTile
 	@Override
 	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
 	{
-		TileEntityChoppingBoard tecb = (TileEntityChoppingBoard) world.getTileEntity(pos);
-		return tecb.getFood() != null ? 1 : 0;
-	}
-
-	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state)
-	{
-		if (world.getTileEntity(pos) instanceof ISimpleInventory) {
-			InventoryUtil.dropInventoryItems(world, pos, (ISimpleInventory) world.getTileEntity(pos));
+		if (world.getTileEntity(pos) instanceof TileEntityChoppingBoard) {
+			TileEntityChoppingBoard tecb = (TileEntityChoppingBoard) world.getTileEntity(pos);
+			return tecb.getFood() != null ? 1 : 0;
 		}
+		return 0;
 	}
 }

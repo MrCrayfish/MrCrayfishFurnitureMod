@@ -18,6 +18,8 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.util.InventoryUtil;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -31,25 +33,24 @@ import net.minecraft.world.World;
 public class BlockFurniture extends Block
 {
 	public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-	
-	public BlockFurniture(Material material)
-	{
+
+	public BlockFurniture(Material material) {
 		super(material, material.getMaterialMapColor());
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
-	
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
 
 	@Override
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
+	public boolean isOpaqueCube(IBlockState state)
+	{
+		return false;
+	}
+
+	@Override
+	public boolean isFullCube(IBlockState state)
+	{
+		return false;
+	}
 
 	@Override
 	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
@@ -63,7 +64,7 @@ public class BlockFurniture extends Block
 	{
 		return state.getValue(FACING).getHorizontalIndex();
 	}
-	
+
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
@@ -75,7 +76,10 @@ public class BlockFurniture extends Block
 	{
 		return new BlockStateContainer(this, FACING);
 	}
-	
-	
 
+	@Override
+	public void breakBlock(World world, BlockPos pos, IBlockState state)
+	{
+		InventoryUtil.dropTileEntityInventoryItems(world, pos, world.getTileEntity(pos));
+	}
 }

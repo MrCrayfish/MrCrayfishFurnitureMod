@@ -132,12 +132,4 @@ public class BlockBlender extends BlockFurnitureTile
 		}
 		return 0;
 	}
-
-	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state)
-	{
-		if (world.getTileEntity(pos) instanceof ISimpleInventory) {
-			InventoryUtil.dropInventoryItems(world, pos, (ISimpleInventory) world.getTileEntity(pos));
-		}
-	}
 }

@@ -21,22 +21,45 @@ import java.util.Random;
 
 import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 
-import net.minecraft.block.BlockChest;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
 public class InventoryUtil
 {
 	private static final Random RANDOM = new Random();
 
+	/**
+	 * Drops the items that are in a tile entity's inventory. Does nothing if the tile entity is not an instance of an {@link ISimpleInventory}.
+	 * 
+	 * @param world
+	 *            The world to drop the items in
+	 * @param pos
+	 *            The position to drop the items
+	 * @param te
+	 *            The tile entity to get the items from
+	 */
+	public static void dropTileEntityInventoryItems(World world, BlockPos pos, TileEntity te)
+	{
+		if (te instanceof ISimpleInventory) {
+			dropInventoryItems(world, pos, (ISimpleInventory) te);
+		}
+	}
+
+	/**
+	 * Drops the items in an {@link ISimpleInventory}.
+	 * 
+	 * @param world
+	 *            The world to drop the items in
+	 * @param pos
+	 *            The position to drop the items
+	 * @param inv
+	 *            The inventory to drop the items out of
+	 */
 	public static void dropInventoryItems(World world, BlockPos pos, ISimpleInventory inv)
 	{
 		for (int i = 0; i < inv.getSize(); i++) {
@@ -48,6 +71,13 @@ public class InventoryUtil
 		}
 	}
 
+	/**
+	 * Calculates an IItemHandler's redstone capacity based on the amount of items inside divided by the maximum number of items.
+	 * 
+	 * @param inventory
+	 *            The inventory to drop the items out of
+	 * @return The redstone level from 0-15 based on how full the inventory is
+	 */
 	public static int calculateTileEntityRedstone(IItemHandler inventory)
 	{
 		if (inventory == null) {
