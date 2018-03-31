@@ -23,6 +23,7 @@ import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -47,12 +48,16 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	public int currentGreen;
 	public int currentBlue;
 
+	public TileEntityBlender() {
+		for (int i = 0; i < ingredients.length; i++) {
+			ingredients[i] = ItemStack.EMPTY;
+		}
+	}
+
 	public void addIngredient(ItemStack ingredient)
 	{
-		for (int i = 0; i < ingredients.length; i++)
-		{
-			if (ingredients[i] == null)
-			{
+		for (int i = 0; i < ingredients.length; i++) {
+			if (this.ingredients[i] == null || ingredients[i].isEmpty()) {
 				ingredients[i] = ingredient.copy();
 				break;
 			}
@@ -61,16 +66,13 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 
 	public void removeIngredient()
 	{
-		for (int i = ingredients.length - 1; i >= 0; i--)
-		{
-			if (ingredients[i] != null)
-			{
-				if (!world.isRemote)
-				{
+		for (int i = ingredients.length - 1; i >= 0; i--) {
+			if (this.ingredients[i] != null && !ingredients[i].isEmpty()) {
+				if (!world.isRemote) {
 					EntityItem entityItem = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 1.0D, pos.getZ() + 0.5, ingredients[i]);
 					world.spawnEntity(entityItem);
 				}
-				ingredients[i] = null;
+				ingredients[i] = ItemStack.EMPTY;
 				break;
 			}
 		}
@@ -79,10 +81,8 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 
 	public boolean isFull()
 	{
-		for (int i = 0; i < ingredients.length; i++)
-		{
-			if (ingredients[i] == null)
-			{
+		for (int i = 0; i < ingredients.length; i++) {
+			if (this.ingredients[i] != null && ingredients[i].isEmpty()) {
 				return false;
 			}
 		}
@@ -97,8 +97,7 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	public boolean hasValidIngredients()
 	{
 		RecipeData data = RecipeAPI.getBlenderRecipeDataFromIngredients(ingredients);
-		if (data == null)
-		{
+		if (data == null) {
 			return false;
 		}
 		drinkName = data.getDrinkName();
@@ -121,8 +120,7 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 
 	public boolean hasDrink()
 	{
-		if (this.drinkCount > 0)
-		{
+		if (this.drinkCount > 0) {
 			return true;
 		}
 		return false;
@@ -144,11 +142,9 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	@Override
 	public void update()
 	{
-		if (blending)
-		{
+		if (blending) {
 			progress++;
-			if (progress == 200)
-			{
+			if (progress == 200) {
 				clearIngredients();
 				drinkCount = 6;
 				progress = 0;
@@ -156,12 +152,10 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 				world.updateComparatorOutputLevel(pos, blockType);
 			}
 
-			if (timer == 20)
-			{
+			if (timer == 20) {
 				timer = 0;
 			}
-			if (timer == 0)
-			{
+			if (timer == 0) {
 				world.playSound(pos.getX(), pos.getY(), pos.getZ(), FurnitureSounds.blender, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
 			}
 			timer++;
@@ -170,19 +164,15 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 
 	public void clearIngredients()
 	{
-		for (int i = 0; i < ingredients.length; i++)
-		{
-			if (ingredients[i] != null)
-			{
-				if (ingredients[i].getItem().hasContainerItem())
-				{
-					if (!world.isRemote)
-					{
+		for (int i = 0; i < ingredients.length; i++) {
+			if (this.ingredients[i] != null && !ingredients[i].isEmpty()) {
+				if (ingredients[i].getItem().hasContainerItem()) {
+					if (!world.isRemote) {
 						EntityItem entityItem = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.6, pos.getZ() + 0.5, new ItemStack(ingredients[i].getItem().getContainerItem()));
 						world.spawnEntity(entityItem);
 					}
 				}
-				ingredients[i] = null;
+				ingredients[i] = ItemStack.EMPTY;
 			}
 		}
 	}
@@ -191,18 +181,16 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
 		super.readFromNBT(tagCompound);
-		if (tagCompound.hasKey("Items"))
-		{
+		if (tagCompound.hasKey("Items")) {
 			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
 			this.ingredients = new ItemStack[4];
+			this.clear();
 
-			for (int i = 0; i < tagList.tagCount(); ++i)
-			{
+			for (int i = 0; i < tagList.tagCount(); ++i) {
 				NBTTagCompound itemTag = (NBTTagCompound) tagList.getCompoundTagAt(i);
 				byte slot = itemTag.getByte("Slot");
 
-				if (slot >= 0 && slot < this.ingredients.length)
-				{
+				if (slot >= 0 && slot < this.ingredients.length) {
 					this.ingredients[slot] = new ItemStack(itemTag);
 				}
 			}
@@ -223,10 +211,8 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	{
 		super.writeToNBT(tagCompound);
 		NBTTagList tagList = new NBTTagList();
-		for (int i = 0; i < this.ingredients.length; ++i)
-		{
-			if (this.ingredients[i] != null)
-			{
+		for (int i = 0; i < this.ingredients.length; ++i) {
+			if (this.ingredients[i] != null && !this.ingredients[i].isEmpty()) {
 				NBTTagCompound itemTag = new NBTTagCompound();
 				itemTag.setByte("Slot", (byte) i);
 				this.ingredients[i].writeToNBT(itemTag);
@@ -252,13 +238,13 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	}
 
 	@Override
-	public SPacketUpdateTileEntity getUpdatePacket() 
+	public SPacketUpdateTileEntity getUpdatePacket()
 	{
 		return new SPacketUpdateTileEntity(pos, getBlockMetadata(), this.writeToNBT(new NBTTagCompound()));
 	}
-	
+
 	@Override
-	public NBTTagCompound getUpdateTag() 
+	public NBTTagCompound getUpdateTag()
 	{
 		return this.writeToNBT(new NBTTagCompound());
 	}
@@ -278,9 +264,8 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	@Override
 	public void clear()
 	{
-		for (int i = 0; i < ingredients.length; i++)
-		{
-			ingredients[i] = null;
+		for (int i = 0; i < ingredients.length; i++) {
+			ingredients[i] = ItemStack.EMPTY;
 		}
 	}
 }
