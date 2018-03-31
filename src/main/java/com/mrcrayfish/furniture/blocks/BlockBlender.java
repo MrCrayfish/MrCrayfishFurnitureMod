@@ -43,7 +43,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockBlender extends BlockFurnitureTile
 {
-	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(4 * 0.0625, 0.0, 4 * 0.0625, 12 * 0.0625, 1.0, 12 * 0.0625);
+	public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(4 * 0.0625, 0.0, 4 * 0.0625, 12 * 0.0625, 1.0, 12 * 0.0625);
+	public static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(4.5 * 0.0625, 0, 4.5 * 0.0625, 11.5 * 0.0625, 15 * 0.0625, 11.5 * 0.0625);;
 
 	public BlockBlender(Material material) {
 		super(material);
@@ -105,7 +106,7 @@ public class BlockBlender extends BlockFurnitureTile
 	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
 	{
-		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX);
 	}
 
 	@Override
