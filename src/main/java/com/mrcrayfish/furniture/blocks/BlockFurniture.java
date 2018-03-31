@@ -34,7 +34,7 @@ public class BlockFurniture extends Block
 	
 	public BlockFurniture(Material material)
 	{
-		super(material);
+		super(material, material.getMaterialMapColor());
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
