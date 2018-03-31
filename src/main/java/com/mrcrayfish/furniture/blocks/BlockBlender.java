@@ -19,8 +19,10 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
 
+import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityBlender;
+import com.mrcrayfish.furniture.util.InventoryUtil;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 
 import net.minecraft.block.SoundType;
@@ -134,14 +136,8 @@ public class BlockBlender extends BlockFurnitureTile
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{
-		if (world.getTileEntity(pos) instanceof TileEntityBlender) {
-			TileEntityBlender blender = (TileEntityBlender) world.getTileEntity(pos);
-			for (int i = 0; i < blender.getSize(); i++) {
-				ItemStack stack = blender.getItem(i);
-				if (stack != null && !stack.isEmpty()) {
-					world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 1.0D, pos.getZ() + 0.5, stack));
-				}
-			}
+		if (world.getTileEntity(pos) instanceof ISimpleInventory) {
+			InventoryUtil.dropInventoryItems(world, pos, (ISimpleInventory) world.getTileEntity(pos));
 		}
 	}
 }

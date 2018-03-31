@@ -21,7 +21,10 @@ import java.util.Random;
 
 import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 
+import net.minecraft.block.BlockChest;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.inventory.InventoryBasic;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -40,41 +43,13 @@ public class InventoryUtil
 			ItemStack stack = inv.getItem(i);
 
 			if (stack != null && !stack.isEmpty()) {
-				spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stack);
+				InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), stack);
 			}
 		}
 	}
 
-	public static void spawnItemStack(World world, double posX, double posY, double posZ, ItemStack stack)
+	public static int calculateTileEntityRedstone(IItemHandler inventory)
 	{
-		float f = RANDOM.nextFloat() * 0.8F + 0.1F;
-		float f1 = RANDOM.nextFloat() * 0.8F + 0.1F;
-		float f2 = RANDOM.nextFloat() * 0.8F + 0.1F;
-
-		while (stack.getCount() > 0) {
-			int i = RANDOM.nextInt(21) + 10;
-
-			if (i > stack.getCount()) {
-				i = stack.getCount();
-			}
-			stack.shrink(i);
-			EntityItem entityitem = new EntityItem(world, posX + (double) f, posY + (double) f1, posZ + (double) f2, new ItemStack(stack.getItem(), i, stack.getMetadata()));
-
-			if (stack.hasTagCompound()) {
-				entityitem.getItem().setTagCompound(stack.getTagCompound().copy());
-			}
-
-			float f3 = 0.05F;
-			entityitem.motionX = RANDOM.nextGaussian() * (double) f3;
-			entityitem.motionY = RANDOM.nextGaussian() * (double) f3 + 0.20000000298023224D;
-			entityitem.motionZ = RANDOM.nextGaussian() * (double) f3;
-			world.spawnEntity(entityitem);
-		}
-	}
-
-	public static int calculateTileEntityRedstone(TileEntity tileEntity)
-	{
-		IItemHandler inventory = tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 		if (inventory == null) {
 			return 0;
 		} else {
