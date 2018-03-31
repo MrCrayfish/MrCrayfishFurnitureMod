@@ -212,35 +212,41 @@ public class BlockBath extends BlockFurnitureTile
 						}
 					}
 				} else {
-					if (!worldIn.isRemote) {
-						if (this == FurnitureBlocks.bath_1 || this == FurnitureBlocks.bath_2) {
-							if (hasWaterSource(worldIn, pos)) {
-								if (!tileEntityBath.isFull()) {
+					if (hasWaterSource(worldIn, pos)) {
+						if (!tileEntityBath.isFull()) {
+							if (this == FurnitureBlocks.bath_2) {
+								if (!worldIn.isRemote) {
 									tileEntityBath.addWaterLevel();
 									tileEntityBath2.addWaterLevel();
-									worldIn.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 0.8F, true);
 									worldIn.setBlockToAir(pos.add(0, -2, 0));
 									worldIn.updateComparatorOutputLevel(pos, this);
+								} else {
+									worldIn.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 0.8F, true);
 								}
 							} else {
-								playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the bath head is on to fill it. Alternatively you can use a water bucket to fill it."));
+								if (!worldIn.isRemote) {
+									playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the bath head is on to fill it. Alternatively you can use a water bucket to fill it."));
+								}
 							}
 						}
 					}
 				}
 			} else {
-				if (!worldIn.isRemote) {
-					if (this == FurnitureBlocks.bath_1 || this == FurnitureBlocks.bath_2) {
-						if (hasWaterSource(worldIn, pos)) {
-							if (!tileEntityBath.isFull()) {
+				if (hasWaterSource(worldIn, pos)) {
+					if (!tileEntityBath.isFull()) {
+						if (this == FurnitureBlocks.bath_2) {
+							if (!worldIn.isRemote) {
 								tileEntityBath.addWaterLevel();
 								tileEntityBath2.addWaterLevel();
-								worldIn.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 0.8F, true);
 								worldIn.setBlockToAir(pos.add(0, -2, 0));
 								worldIn.updateComparatorOutputLevel(pos, this);
+							} else {
+								worldIn.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 0.8F, true);
 							}
 						} else {
-							playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the bath head is on to fill it. Alternatively you can use a water bucket to fill it."));
+							if (!worldIn.isRemote) {
+								playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the bath head is on to fill it. Alternatively you can use a water bucket to fill it."));
+							}
 						}
 					}
 				}
@@ -250,6 +256,7 @@ public class BlockBath extends BlockFurnitureTile
 			worldIn.markBlockRangeForRenderUpdate(otherBathPos, otherBathPos);
 		}
 		return true;
+
 	}
 
 	@Override
