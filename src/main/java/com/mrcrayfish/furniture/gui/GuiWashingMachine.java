@@ -30,7 +30,6 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiWashingMachine extends GuiContainer
@@ -127,15 +126,16 @@ public class GuiWashingMachine extends GuiContainer
 
 		if (tileEntityWashingMachine.isWashing()) {
 			button_start.displayString = "Stop";
-			drawColour(l + 37, i1 + 9, 11, 11, 49475);
+			drawColour(l + 37, i1 + 9, 11, 11, -16711936);
 		} else {
 			button_start.displayString = "Start";
-			drawColour(l + 37, i1 + 9, 11, 11, 16711680);
+			drawColour(l + 37, i1 + 9, 11, 11, -65280);
 		}
 	}
 
 	public void drawColour(int x, int y, int width, int height, int par4)
 	{
 		drawRect(x, y, x + width, y + height, par4);
+		GlStateManager.color(1, 1, 1, 1);
 	}
 }
