@@ -128,11 +128,9 @@ public class BlockCup extends Block implements ITileEntityProvider
 	@Override
 	public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack)
 	{
-		if (world.getTileEntity(pos) instanceof TileEntityCup) {
-			TileEntityCup tileEntityCup = (TileEntityCup) world.getTileEntity(pos);
-			if (tileEntityCup.getDrink() != null) {
-				world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), tileEntityCup.getDrink().copy()));
-			}
+		if (te instanceof TileEntityCup) {
+			TileEntityCup tileEntityCup = (TileEntityCup) te;
+			world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), tileEntityCup.getDrink() != null ? tileEntityCup.getDrink().copy() : new ItemStack(FurnitureItems.itemCup)));
 		} else {
 			world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(FurnitureItems.itemCup)));
 		}

@@ -84,7 +84,7 @@ public class BlockGrandChair extends BlockFurniture
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		ItemStack heldItem = playerIn.getHeldItem(hand);
-		if(this == FurnitureBlocks.grand_chair_bottom)
+		if(this == FurnitureBlocks.grand_chair_bottom && !playerIn.isSneaking())
 		{
 			if(SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 6 * 0.0625))
 			{
