@@ -23,11 +23,16 @@ import com.mrcrayfish.furniture.gui.slots.SlotArmour;
 import com.mrcrayfish.furniture.gui.slots.SlotSoapyWater;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
 public class ContainerWashingMachine extends Container
@@ -37,7 +42,7 @@ public class ContainerWashingMachine extends Container
 	public ContainerWashingMachine(IInventory playerInventory, IInventory washingMachineInventory) {
 		this.washingMachineInventory = washingMachineInventory;
 
-		this.addSlotToContainer(new SlotArmour(washingMachineInventory, 0, 80, 43, EntityEquipmentSlot.HEAD));
+		this.addSlotToContainer(new SlotArmour(washingMachineInventory, 0, 80, 44, EntityEquipmentSlot.HEAD));
 		this.addSlotToContainer(new SlotArmour(washingMachineInventory, 1, 64, 60, EntityEquipmentSlot.CHEST));
 		this.addSlotToContainer(new SlotArmour(washingMachineInventory, 2, 96, 60, EntityEquipmentSlot.LEGS));
 		this.addSlotToContainer(new SlotArmour(washingMachineInventory, 3, 80, 76, EntityEquipmentSlot.FEET));
@@ -76,10 +81,18 @@ public class ContainerWashingMachine extends Container
 				}
 			} else if (slotNum > 4) {
 				RecipeData data = RecipeAPI.getWashingMachineRecipeFromInput(item);
-				if (data != null) {
+				if (data != null && (itemCopy.getItem() == Item.getItemFromBlock(Blocks.PUMPKIN) || itemCopy.getItem() == Items.SKULL || itemCopy.getItem().getEquipmentSlot(itemCopy) != null || (itemCopy.getItem() instanceof ItemArmor && ((ItemArmor) itemCopy.getItem()).armorType != null) || EntityLiving.getSlotForItemStack(itemCopy) != EntityEquipmentSlot.HEAD)) {
 					ItemStack input = data.getInput();
 					if (!this.mergeItemStack(item, 0, 4, true)) {
 						return ItemStack.EMPTY;
+					} else if (slotNum > 4 && slotNum < this.inventorySlots.size() - 9) {
+						if (!this.mergeItemStack(item, this.inventorySlots.size() - 9, this.inventorySlots.size(), false)) {
+							return ItemStack.EMPTY;
+						}
+					} else if (slotNum >= this.inventorySlots.size() - 9 && slotNum < this.inventorySlots.size()) {
+						if (!this.mergeItemStack(item, 5, this.inventorySlots.size() - 9, false)) {
+							return ItemStack.EMPTY;
+						}
 					}
 				} else if (item.getItem() == FurnitureItems.itemSoapyWater | item.getItem() == FurnitureItems.itemSuperSoapyWater) {
 					if (!this.mergeItemStack(item, 4, 5, false)) {

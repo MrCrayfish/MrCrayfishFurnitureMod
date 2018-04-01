@@ -17,6 +17,8 @@
  */
 package com.mrcrayfish.furniture.gui.slots;
 
+import com.mrcrayfish.furniture.api.RecipeAPI;
+
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.inventory.IInventory;
@@ -44,11 +46,10 @@ public class SlotArmour extends Slot
 			return false;
 		}
 
-		if (EntityLiving.getSlotForItemStack(stack) != armourType) {
+		if (RecipeAPI.getWashingMachineRecipeFromInput(stack) == null)
 			return false;
-		}
 
-		if (!stack.isItemStackDamageable()) {
+		if (EntityLiving.getSlotForItemStack(stack) != armourType) {
 			return false;
 		}
 
