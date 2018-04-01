@@ -323,7 +323,7 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
 	public void readFromNBT(NBTTagCompound tagCompound) 
 	{
 		super.readFromNBT(tagCompound);
-		if (tagCompound.hasKey("Items"))
+		if (tagCompound.hasKey("Items", 9))
 		{
 			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
 			this.inventory = new ItemStack[6];

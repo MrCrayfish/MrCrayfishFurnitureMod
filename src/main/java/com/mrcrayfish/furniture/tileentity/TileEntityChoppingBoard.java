@@ -69,7 +69,7 @@ public class TileEntityChoppingBoard extends TileEntity implements ISimpleInvent
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
 		super.readFromNBT(tagCompound);
-		if(tagCompound.hasKey("Food"))
+		if(tagCompound.hasKey("Food", 10))
 		{
 			NBTTagCompound nbt = tagCompound.getCompoundTag("Food");
 			food = new ItemStack(nbt);

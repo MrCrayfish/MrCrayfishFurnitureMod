@@ -127,8 +127,8 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 		NBTTagCompound nbt = new NBTTagCompound();
 		nbt.setIntArray("Colour", new int[] { currentRed, currentGreen, currentBlue });
 		nbt.setInteger("HealAmount", healAmount);
+		nbt.setString("Name", drinkName);
 		cup.setTagCompound(nbt);
-		cup.setStackDisplayName(new String(drinkName));
 		return cup;
 	}
 
@@ -176,7 +176,7 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
 		super.readFromNBT(tagCompound);
-		if (tagCompound.hasKey("Items")) {
+		if (tagCompound.hasKey("Items", 9)) {
 			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
 			this.ingredients = InventoryUtil.readInventoryFromNBT(this, tagList);
 		}

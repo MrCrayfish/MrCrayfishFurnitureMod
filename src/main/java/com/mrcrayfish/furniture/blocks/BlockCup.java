@@ -130,9 +130,13 @@ public class BlockCup extends Block implements ITileEntityProvider
 	{
 		if (te instanceof TileEntityCup) {
 			TileEntityCup tileEntityCup = (TileEntityCup) te;
-			world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), tileEntityCup.getDrink() != null ? tileEntityCup.getDrink().copy() : new ItemStack(FurnitureItems.itemCup)));
+			EntityItem item = new EntityItem(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, tileEntityCup.getDrink() != null ? tileEntityCup.getDrink().copy() : new ItemStack(FurnitureItems.itemCup));
+			item.setDefaultPickupDelay();
+			world.spawnEntity(item);
 		} else {
-			world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(FurnitureItems.itemCup)));
+			EntityItem item = new EntityItem(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, new ItemStack(FurnitureItems.itemCup));
+			item.setDefaultPickupDelay();
+			world.spawnEntity(item);
 		}
 	}
 
