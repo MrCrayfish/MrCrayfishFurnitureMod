@@ -75,8 +75,8 @@ public abstract class RecipePage
 
 	public ItemStack getDrink(String name, int red, int green, int blue)
 	{
-		drink.setStackDisplayName(name);
 		drink.getTagCompound().setIntArray("Colour", new int[] { red, green, blue });
+		drink.getTagCompound().setString("Name", name);
 		return drink;
 	}
 
