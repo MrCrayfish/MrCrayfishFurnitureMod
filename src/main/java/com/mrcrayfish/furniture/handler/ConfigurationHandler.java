@@ -17,13 +17,17 @@
  */
 package com.mrcrayfish.furniture.handler;
 
+import java.io.File;
+
 import com.mrcrayfish.furniture.api.RecipeRegistry;
 import com.mrcrayfish.furniture.api.Recipes;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-import java.io.File;
 
 public class ConfigurationHandler
 {
@@ -37,7 +41,7 @@ public class ConfigurationHandler
 	public static boolean canDisplay = true;
 	public static boolean hasDisplayedOnce = false;
 	public static boolean api_debug = false;
-	
+
 	public static boolean mirrorEnabled = true;
 	public static int mirrorQuality = 128;
 	public static float mirrorFov = 80F;
@@ -51,21 +55,20 @@ public class ConfigurationHandler
 	public static boolean chop_1 = true;
 	public static boolean dish_1 = true, dish_2 = true, dish_3 = true, dish_4 = true, dish_5 = true, dish_6 = true, dish_7 = true, dish_8 = true, dish_9 = true, dish_10 = true;
 	public static boolean dish_11 = true, dish_12 = true, dish_13 = true, dish_14 = true, dish_15 = true, dish_16 = true, dish_17 = true, dish_18 = true, dish_19 = true, dish_20 = true;
-	public static boolean dish_21 = true, dish_22 = true, dish_23 = true, dish_24 = true, dish_25 = true, dish_26 = true;
+	public static boolean dish_21 = true, dish_22 = true, dish_23 = true, dish_24 = true, dish_25 = true, dish_26 = true, dish_27 = true, dish_28 = true, dish_29 = true, dish_30 = true;
 
 	public static boolean micr_1 = true, micr_2 = true;
 
 	public static boolean toast_1 = true;
 
 	public static boolean wash_1 = true, wash_2 = true, wash_3 = true, wash_4 = true, wash_5 = true, wash_6 = true, wash_7 = true, wash_8 = true, wash_9 = true, wash_10 = true;
-	public static boolean wash_11 = true, wash_12 = true, wash_13 = true, wash_14 = true, wash_15 = true, wash_16 = true, wash_17 = true, wash_18 = true, wash_19 = true, wash_20 = true;
-	
+	public static boolean wash_11 = true, wash_12 = true, wash_13 = true, wash_14 = true, wash_15 = true, wash_16 = true, wash_17 = true, wash_18 = true, wash_19 = true, wash_20 = true, wash_21 = true;
+
 	public static boolean grill_1 = true, grill_2 = true, grill_3 = true;
 
 	public static void init(File file)
 	{
-		if (config == null)
-		{
+		if (config == null) {
 			config = new Configuration(file);
 			loadConfig(false);
 		}
@@ -84,8 +87,7 @@ public class ConfigurationHandler
 		config.addCustomCategoryComment(CATEGORY_API, "RecipeAPI Configuration. How to use: http://mrcrayfishs-furniture-mod.wikia.com/wiki/Configuration");
 		updateEnabledRecipes();
 
-		if (config.hasChanged() && shouldChange)
-		{
+		if (config.hasChanged() && shouldChange) {
 			Recipes.clearLocalRecipes();
 			Recipes.clearCommRecipes();
 			RecipeRegistry.registerDefaultRecipes();
@@ -154,6 +156,10 @@ public class ConfigurationHandler
 		dish_24 = config.getBoolean("dishwasher-24", CATEGORY_RECIPE_SETTINGS, dish_24, "Diamond Shovel");
 		dish_25 = config.getBoolean("dishwasher-25", CATEGORY_RECIPE_SETTINGS, dish_25, "Diamond Hoe");
 		dish_26 = config.getBoolean("dishwasher-26", CATEGORY_RECIPE_SETTINGS, dish_26, "Diamond Sword");
+		dish_27 = config.getBoolean("dishwasher-27", CATEGORY_RECIPE_SETTINGS, dish_27, "Fishing Rod");
+		dish_28 = config.getBoolean("dishwasher-28", CATEGORY_RECIPE_SETTINGS, dish_28, "Flint and Steel");
+		dish_29 = config.getBoolean("dishwasher-29", CATEGORY_RECIPE_SETTINGS, dish_29, "Shears");
+		dish_30 = config.getBoolean("dishwasher-30", CATEGORY_RECIPE_SETTINGS, dish_30, "Shield");
 
 		micr_1 = config.getBoolean("microwave-1", CATEGORY_RECIPE_SETTINGS, micr_1, "Beef -> Cooked Beef");
 		micr_2 = config.getBoolean("microwave-2", CATEGORY_RECIPE_SETTINGS, micr_2, "Potato -> Baked Potato");
@@ -180,7 +186,8 @@ public class ConfigurationHandler
 		wash_18 = config.getBoolean("washing-machine-18", CATEGORY_RECIPE_SETTINGS, wash_18, "Diamond Chestplate");
 		wash_19 = config.getBoolean("washing-machine-19", CATEGORY_RECIPE_SETTINGS, wash_19, "Diamond Leggings");
 		wash_20 = config.getBoolean("washing-machine-20", CATEGORY_RECIPE_SETTINGS, wash_20, "Diamond Boots");
-		
+		wash_21 = config.getBoolean("washing-machine-21", CATEGORY_RECIPE_SETTINGS, wash_21, "Elytra");
+
 		grill_1 = config.getBoolean("grill-1", CATEGORY_RECIPE_SETTINGS, grill_1, "Beef -> Cooked Beef");
 		grill_2 = config.getBoolean("grill-2", CATEGORY_RECIPE_SETTINGS, grill_2, "Sausage -> Cooked Sausage");
 		grill_3 = config.getBoolean("grill-3", CATEGORY_RECIPE_SETTINGS, grill_3, "Raw Kebab -> Cooked Kebab");
@@ -189,8 +196,7 @@ public class ConfigurationHandler
 	@SubscribeEvent
 	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs)
 	{
-		if (eventArgs.getModID().equals("cfm"))
-		{
+		if (eventArgs.getModID().equals("cfm")) {
 			loadConfig(true);
 		}
 	}

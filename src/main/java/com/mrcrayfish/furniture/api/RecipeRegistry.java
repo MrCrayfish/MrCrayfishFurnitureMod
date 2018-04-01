@@ -17,8 +17,11 @@
  */
 package com.mrcrayfish.furniture.api;
 
+import java.util.ArrayList;
+
 import com.mrcrayfish.furniture.handler.ConfigurationHandler;
 import com.mrcrayfish.furniture.init.FurnitureItems;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -27,16 +30,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.text.TextFormatting;
 
-import java.util.ArrayList;
-
 public class RecipeRegistry extends RecipeAPI
 {
 	private static RecipeRegistry furnitureRegister = null;
 
 	public static RecipeRegistry getInstance()
 	{
-		if (furnitureRegister == null)
-		{
+		if (furnitureRegister == null) {
 			furnitureRegister = new RecipeRegistry();
 		}
 		return furnitureRegister;
@@ -86,7 +86,7 @@ public class RecipeRegistry extends RecipeAPI
 	{
 		addDishwasherRecipe(new RecipeData().setInput(input), LOCAL);
 	}
-	
+
 	public void registerGrillRecipe(ItemStack input, ItemStack output)
 	{
 		addGrillRecipe(new RecipeData().setInput(input).setOutput(output), LOCAL);
@@ -97,8 +97,7 @@ public class RecipeRegistry extends RecipeAPI
 		RecipeData data = new RecipeData();
 		data.setName(name);
 		data.setHeal(heal);
-		for (ItemStack item : ingredients)
-		{
+		for (ItemStack item : ingredients) {
 			data.addIngredient(item);
 		}
 		data.setColour(rgb[0], rgb[1], rgb[2]);
@@ -110,39 +109,27 @@ public class RecipeRegistry extends RecipeAPI
 		String input_item = parser.getValue("input-item", null);
 		String input_metadata = parser.getValue("input-metadata", "0");
 
-		if (input_item != null)
-		{
+		if (input_item != null) {
 			Item input = Item.getByNameOrId(input_item);
-			if (input != null)
-			{
+			if (input != null) {
 				int i_metadata = 0;
-				try
-				{
+				try {
 					i_metadata = Integer.parseInt(input_metadata);
-				}
-				catch (NumberFormatException e)
-				{
-					if (ConfigurationHandler.api_debug)
-					{
+				} catch (NumberFormatException e) {
+					if (ConfigurationHandler.api_debug) {
 						RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer.");
 					}
 					return;
 				}
 
 				RecipeRegistry.getInstance().registerPrinterRecipe(new ItemStack(input, 1, i_metadata));
-			}
-			else
-			{
-				if (ConfigurationHandler.api_debug)
-				{
+			} else {
+				if (ConfigurationHandler.api_debug) {
 					RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
 				}
 			}
-		}
-		else
-		{
-			if (ConfigurationHandler.api_debug)
-			{
+		} else {
+			if (ConfigurationHandler.api_debug) {
 				RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
 			}
 		}
@@ -156,88 +143,60 @@ public class RecipeRegistry extends RecipeAPI
 		String output_metadata = parser.getValue("output-metadata", "0");
 		String output_amount = parser.getValue("output-amount", "1");
 
-		if (input_item != null)
-		{
-			if (output_item != null)
-			{
+		if (input_item != null) {
+			if (output_item != null) {
 				Item input = Item.getByNameOrId(input_item);
 				Item output = Item.getByNameOrId(output_item);
-				if (input != null)
-				{
-					if (output != null)
-					{
+				if (input != null) {
+					if (output != null) {
 						int i_metadata = 0;
-						try
-						{
+						try {
 							i_metadata = Integer.parseInt(input_metadata);
-						}
-						catch (NumberFormatException e)
-						{
-							if (ConfigurationHandler.api_debug)
-							{
+						} catch (NumberFormatException e) {
+							if (ConfigurationHandler.api_debug) {
 								RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
 							}
 							return;
 						}
 
 						int o_amount = 1;
-						try
-						{
+						try {
 							o_amount = Integer.parseInt(output_amount);
-						}
-						catch (NumberFormatException e)
-						{
-							if (ConfigurationHandler.api_debug)
-							{
+						} catch (NumberFormatException e) {
+							if (ConfigurationHandler.api_debug) {
 								RecipeUtil.printReport(parser, num, "output-amount", "Could not parse the value '" + output_amount + "' to an integer");
 							}
 							return;
 						}
 
 						int o_metadata = 0;
-						try
-						{
+						try {
 							o_metadata = Integer.parseInt(output_metadata);
-						}
-						catch (NumberFormatException e)
-						{
-							if (ConfigurationHandler.api_debug)
-							{
+						} catch (NumberFormatException e) {
+							if (ConfigurationHandler.api_debug) {
 								RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
 							}
 							return;
 						}
 
 						RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(input, 1, i_metadata), new ItemStack(output, o_amount, o_metadata));
-					}
-					else
-					{
-						if (ConfigurationHandler.api_debug)
-						{
+					} else {
+						if (ConfigurationHandler.api_debug) {
 							RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
 						}
 					}
-				}
-				else
-				{
-					if (ConfigurationHandler.api_debug)
-					{
+				} else {
+					if (ConfigurationHandler.api_debug) {
 						RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
 					}
 				}
-			}
-			else
-			{
-				if (ConfigurationHandler.api_debug)
-				{
+			} else {
+				if (ConfigurationHandler.api_debug) {
 					RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
 				}
 			}
-		}
-		else
-		{
-			if (ConfigurationHandler.api_debug)
-			{
+		} else {
+			if (ConfigurationHandler.api_debug) {
 				RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
 			}
 		}
@@ -251,88 +210,60 @@ public class RecipeRegistry extends RecipeAPI
 		String output_metadata = parser.getValue("output-metadata", "0");
 		String output_amount = parser.getValue("output-amount", "1");
 
-		if (input_item != null)
-		{
-			if (output_item != null)
-			{
+		if (input_item != null) {
+			if (output_item != null) {
 				Item input = Item.getByNameOrId(input_item);
 				Item output = Item.getByNameOrId(output_item);
-				if (input != null)
-				{
-					if (output != null)
-					{
+				if (input != null) {
+					if (output != null) {
 						int i_metadata = 0;
-						try
-						{
+						try {
 							i_metadata = Integer.parseInt(input_metadata);
-						}
-						catch (NumberFormatException e)
-						{
-							if (ConfigurationHandler.api_debug)
-							{
+						} catch (NumberFormatException e) {
+							if (ConfigurationHandler.api_debug) {
 								RecipeUtil.printReport(parser, num, "input-metdata", "Could not parse the value '" + input_metadata + "' to an integer");
 							}
 							return;
 						}
 
 						int o_amount = 1;
-						try
-						{
+						try {
 							o_amount = Integer.parseInt(output_amount);
-						}
-						catch (NumberFormatException e)
-						{
-							if (ConfigurationHandler.api_debug)
-							{
+						} catch (NumberFormatException e) {
+							if (ConfigurationHandler.api_debug) {
 								RecipeUtil.printReport(parser, num, "output-amount", "Could not parse the value '" + output_amount + "' to an integer");
 							}
 							return;
 						}
 
 						int o_metadata = 0;
-						try
-						{
+						try {
 							o_metadata = Integer.parseInt(output_metadata);
-						}
-						catch (NumberFormatException e)
-						{
-							if (ConfigurationHandler.api_debug)
-							{
+						} catch (NumberFormatException e) {
+							if (ConfigurationHandler.api_debug) {
 								RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
 							}
 							return;
 						}
 
 						RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(input, 1, i_metadata), new ItemStack(output, o_amount, o_metadata));
-					}
-					else
-					{
-						if (ConfigurationHandler.api_debug)
-						{
+					} else {
+						if (ConfigurationHandler.api_debug) {
 							RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
 						}
 					}
-				}
-				else
-				{
-					if (ConfigurationHandler.api_debug)
-					{
+				} else {
+					if (ConfigurationHandler.api_debug) {
 						RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
 					}
 				}
-			}
-			else
-			{
-				if (ConfigurationHandler.api_debug)
-				{
+			} else {
+				if (ConfigurationHandler.api_debug) {
 					RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
 				}
 			}
-		}
-		else
-		{
-			if (ConfigurationHandler.api_debug)
-			{
+		} else {
+			if (ConfigurationHandler.api_debug) {
 				RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
 			}
 		}
@@ -347,93 +278,65 @@ public class RecipeRegistry extends RecipeAPI
 		String payment_item_metadata = parser.getValue("payment-metadata", "0");
 		String price = parser.getValue("payment-price", "1");
 
-		if (input_item != null)
-		{
+		if (input_item != null) {
 			Item input = Item.getByNameOrId(input_item);
 			Item payment = Item.getByNameOrId(payment_item);
-			if (input != null)
-			{
-				if (payment != null)
-				{
+			if (input != null) {
+				if (payment != null) {
 
 					int i_metadata = 0;
-					try
-					{
+					try {
 						i_metadata = Integer.parseInt(input_metadata);
-					}
-					catch (NumberFormatException e)
-					{
-						if (ConfigurationHandler.api_debug)
-						{
+					} catch (NumberFormatException e) {
+						if (ConfigurationHandler.api_debug) {
 							RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
 						}
 						return;
 					}
 
 					int i_amount = 0;
-					try
-					{
+					try {
 						i_amount = Integer.parseInt(input_amount);
-					}
-					catch (NumberFormatException e)
-					{
-						if (ConfigurationHandler.api_debug)
-						{
+					} catch (NumberFormatException e) {
+						if (ConfigurationHandler.api_debug) {
 							RecipeUtil.printReport(parser, num, "input-amount", "Could not parse the value '" + input_amount + "' to an integer");
 						}
 						return;
 					}
 
 					int p_metadata = 0;
-					try
-					{
+					try {
 						p_metadata = Integer.parseInt(payment_item_metadata);
-					}
-					catch (NumberFormatException e)
-					{
-						if (ConfigurationHandler.api_debug)
-						{
+					} catch (NumberFormatException e) {
+						if (ConfigurationHandler.api_debug) {
 							RecipeUtil.printReport(parser, num, "payment-metadata", "Could not parse the value '" + p_metadata + "' to an integer");
 						}
 						return;
 					}
 
 					int p_price = 1;
-					try
-					{
+					try {
 						p_price = Integer.parseInt(price);
-					}
-					catch (NumberFormatException e)
-					{
-						if (ConfigurationHandler.api_debug)
-						{
+					} catch (NumberFormatException e) {
+						if (ConfigurationHandler.api_debug) {
 							RecipeUtil.printReport(parser, num, "price", "Could not parse the value '" + p_price + "' to an integer");
 						}
 						return;
 					}
 
 					RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(input, i_amount, i_metadata), new ItemStack(payment, 1, p_metadata), p_price);
-				}
-				else
-				{
-					if (ConfigurationHandler.api_debug)
-					{
+				} else {
+					if (ConfigurationHandler.api_debug) {
 						RecipeUtil.printReport(parser, num, "payment-item", "The payment-item '" + payment_item + "' does not exist");
 					}
 				}
-			}
-			else
-			{
-				if (ConfigurationHandler.api_debug)
-				{
+			} else {
+				if (ConfigurationHandler.api_debug) {
 					RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
 				}
 			}
-		}
-		else
-		{
-			if (ConfigurationHandler.api_debug)
-			{
+		} else {
+			if (ConfigurationHandler.api_debug) {
 				RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
 			}
 		}
@@ -447,88 +350,60 @@ public class RecipeRegistry extends RecipeAPI
 		String output_metadata = parser.getValue("output-metadata", "0");
 		String output_amount = parser.getValue("output-amount", "1");
 
-		if (input_item != null)
-		{
-			if (output_item != null)
-			{
+		if (input_item != null) {
+			if (output_item != null) {
 				Item input = Item.getByNameOrId(input_item);
 				Item output = Item.getByNameOrId(output_item);
-				if (input != null)
-				{
-					if (output != null)
-					{
+				if (input != null) {
+					if (output != null) {
 						int i_metadata = 0;
-						try
-						{
+						try {
 							i_metadata = Integer.parseInt(input_metadata);
-						}
-						catch (NumberFormatException e)
-						{
-							if (ConfigurationHandler.api_debug)
-							{
+						} catch (NumberFormatException e) {
+							if (ConfigurationHandler.api_debug) {
 								RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
 							}
 							return;
 						}
 
 						int o_amount = 1;
-						try
-						{
+						try {
 							o_amount = Integer.parseInt(output_amount);
-						}
-						catch (NumberFormatException e)
-						{
-							if (ConfigurationHandler.api_debug)
-							{
+						} catch (NumberFormatException e) {
+							if (ConfigurationHandler.api_debug) {
 								RecipeUtil.printReport(parser, num, "output-amount", "Could not parse the value '" + output_amount + "' to an integer");
 							}
 							return;
 						}
 
 						int o_metadata = 0;
-						try
-						{
+						try {
 							o_metadata = Integer.parseInt(output_metadata);
-						}
-						catch (NumberFormatException e)
-						{
-							if (ConfigurationHandler.api_debug)
-							{
+						} catch (NumberFormatException e) {
+							if (ConfigurationHandler.api_debug) {
 								RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
 							}
 							return;
 						}
 
 						RecipeRegistry.getInstance().registerToasterRecipe(new ItemStack(input, 1, i_metadata), new ItemStack(output, o_amount, o_metadata));
-					}
-					else
-					{
-						if (ConfigurationHandler.api_debug)
-						{
+					} else {
+						if (ConfigurationHandler.api_debug) {
 							RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
 						}
 					}
-				}
-				else
-				{
-					if (ConfigurationHandler.api_debug)
-					{
+				} else {
+					if (ConfigurationHandler.api_debug) {
 						RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
 					}
 				}
-			}
-			else
-			{
-				if (ConfigurationHandler.api_debug)
-				{
+			} else {
+				if (ConfigurationHandler.api_debug) {
 					RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
 				}
 			}
-		}
-		else
-		{
-			if (ConfigurationHandler.api_debug)
-			{
+		} else {
+			if (ConfigurationHandler.api_debug) {
 				RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
 			}
 		}
@@ -542,88 +417,60 @@ public class RecipeRegistry extends RecipeAPI
 		String output_metadata = parser.getValue("output-metadata", "0");
 		String output_amount = parser.getValue("output-amount", "1");
 
-		if (input_item != null)
-		{
-			if (output_item != null)
-			{
+		if (input_item != null) {
+			if (output_item != null) {
 				Item input = Item.getByNameOrId(input_item);
 				Item output = Item.getByNameOrId(output_item);
-				if (input != null)
-				{
-					if (output != null)
-					{
+				if (input != null) {
+					if (output != null) {
 						int i_metadata = 0;
-						try
-						{
+						try {
 							i_metadata = Integer.parseInt(input_metadata);
-						}
-						catch (NumberFormatException e)
-						{
-							if (ConfigurationHandler.api_debug)
-							{
+						} catch (NumberFormatException e) {
+							if (ConfigurationHandler.api_debug) {
 								RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
 							}
 							return;
 						}
 
 						int o_amount = 1;
-						try
-						{
+						try {
 							o_amount = Integer.parseInt(output_amount);
-						}
-						catch (NumberFormatException e)
-						{
-							if (ConfigurationHandler.api_debug)
-							{
+						} catch (NumberFormatException e) {
+							if (ConfigurationHandler.api_debug) {
 								RecipeUtil.printReport(parser, num, "output-amount", "Could not parse the value '" + output_amount + "' to an integer");
 							}
 							return;
 						}
 
 						int o_metadata = 0;
-						try
-						{
+						try {
 							o_metadata = Integer.parseInt(output_metadata);
-						}
-						catch (NumberFormatException e)
-						{
-							if (ConfigurationHandler.api_debug)
-							{
+						} catch (NumberFormatException e) {
+							if (ConfigurationHandler.api_debug) {
 								RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
 							}
 							return;
 						}
 
 						RecipeRegistry.getInstance().registerChoppingBoardRecipe(new ItemStack(input, 1, i_metadata), new ItemStack(output, o_amount, o_metadata));
-					}
-					else
-					{
-						if (ConfigurationHandler.api_debug)
-						{
+					} else {
+						if (ConfigurationHandler.api_debug) {
 							RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
 						}
 					}
-				}
-				else
-				{
-					if (ConfigurationHandler.api_debug)
-					{
+				} else {
+					if (ConfigurationHandler.api_debug) {
 						RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
 					}
 				}
-			}
-			else
-			{
-				if (ConfigurationHandler.api_debug)
-				{
+			} else {
+				if (ConfigurationHandler.api_debug) {
 					RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
 				}
 			}
-		}
-		else
-		{
-			if (ConfigurationHandler.api_debug)
-			{
+		} else {
+			if (ConfigurationHandler.api_debug) {
 				RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
 			}
 		}
@@ -636,73 +483,51 @@ public class RecipeRegistry extends RecipeAPI
 		String ingredients = parser.getValue("ingredients", null);
 		String colour = parser.getValue("colour", null);
 
-		if (name != null)
-		{
-			if (heal_amount != null)
-			{
-				if (ingredients != null)
-				{
-					if (colour != null)
-					{
+		if (name != null) {
+			if (heal_amount != null) {
+				if (ingredients != null) {
+					if (colour != null) {
 						int h_amount = 0;
-						try
-						{
+						try {
 							h_amount = Integer.parseInt(heal_amount);
-						}
-						catch (NumberFormatException e)
-						{
-							if (ConfigurationHandler.api_debug)
-							{
+						} catch (NumberFormatException e) {
+							if (ConfigurationHandler.api_debug) {
 								RecipeUtil.printReport(parser, num, "heal", "Could not parse the value '" + heal_amount + "' to an integer");
 							}
 							return;
 						}
 
 						ItemStack[] in = parseIngredients(ingredients, num, parser);
-						if (in == null)
-						{
+						if (in == null) {
 							return;
 						}
 
 						int[] rgb = parseColour(colour, num, parser);
-						if (rgb == null)
-						{
+						if (rgb == null) {
 							return;
 						}
 
 						name = parseFormatting(parseSpaces(name));
 
 						RecipeRegistry.getInstance().registerBlenderRecipe(name, h_amount, in, rgb);
-					}
-					else
-					{
+					} else {
 
-						if (ConfigurationHandler.api_debug)
-						{
+						if (ConfigurationHandler.api_debug) {
 							RecipeUtil.printMissing(parser, num, "colour", "A colour is required");
 						}
 					}
-				}
-				else
-				{
-					if (ConfigurationHandler.api_debug)
-					{
+				} else {
+					if (ConfigurationHandler.api_debug) {
 						RecipeUtil.printMissing(parser, num, "ingredients", "Ingredients are required");
 					}
 				}
-			}
-			else
-			{
-				if (ConfigurationHandler.api_debug)
-				{
+			} else {
+				if (ConfigurationHandler.api_debug) {
 					RecipeUtil.printMissing(parser, num, "heal", "A heal amount is required");
 				}
 			}
-		}
-		else
-		{
-			if (ConfigurationHandler.api_debug)
-			{
+		} else {
+			if (ConfigurationHandler.api_debug) {
 				RecipeUtil.printMissing(parser, num, "name", "A name is required");
 			}
 		}
@@ -713,24 +538,20 @@ public class RecipeRegistry extends RecipeAPI
 		ArrayList<ItemStack> list = new ArrayList<ItemStack>();
 		String[] ingredientData = ingredients.split("/");
 
-		if (ingredientData.length == 0)
-		{
+		if (ingredientData.length == 0) {
 			return null;
 		}
 
 		int length = ingredientData.length > 4 ? 4 : ingredientData.length;
-		for (int i = 0; i < length; i++)
-		{
+		for (int i = 0; i < length; i++) {
 			String[] itemData = ingredientData[i].split(":");
 			String itemName = itemData[0] + ":" + itemData[1];
 			String itemAmount = "1";
 			String itemMetadata = "0";
 
-			if (itemData.length > 2)
-			{
+			if (itemData.length > 2) {
 				itemAmount = itemData[2];
-				if (itemData.length > 3)
-				{
+				if (itemData.length > 3) {
 					itemMetadata = itemData[3];
 				}
 			}
@@ -738,28 +559,20 @@ public class RecipeRegistry extends RecipeAPI
 			Item item = Item.getByNameOrId(itemName);
 
 			int i_amount = 1;
-			try
-			{
+			try {
 				i_amount = Integer.parseInt(itemAmount);
-			}
-			catch (NumberFormatException e)
-			{
-				if (ConfigurationHandler.api_debug)
-				{
+			} catch (NumberFormatException e) {
+				if (ConfigurationHandler.api_debug) {
 					RecipeUtil.printReport(parser, num, "ingredients", "Could not parse the value '" + itemAmount + "' to an integer for ingredient number " + i);
 				}
 				return null;
 			}
 
 			int i_metadata = 0;
-			try
-			{
+			try {
 				i_metadata = Integer.parseInt(itemMetadata);
-			}
-			catch (NumberFormatException e)
-			{
-				if (ConfigurationHandler.api_debug)
-				{
+			} catch (NumberFormatException e) {
+				if (ConfigurationHandler.api_debug) {
 					RecipeUtil.printReport(parser, num, "ingredients", "Could not parse the value '" + itemMetadata + "' to an integer for ingredient number " + i);
 				}
 				return null;
@@ -773,60 +586,44 @@ public class RecipeRegistry extends RecipeAPI
 	public static int[] parseColour(String colour, int num, Parser parser)
 	{
 		String[] rgb = colour.split(":");
-		if (rgb.length == 3)
-		{
+		if (rgb.length == 3) {
 			String r = rgb[0];
 			String g = rgb[1];
 			String b = rgb[2];
 
 			int red = 0;
-			try
-			{
+			try {
 				red = Integer.parseInt(r);
-			}
-			catch (NumberFormatException e)
-			{
-				if (ConfigurationHandler.api_debug)
-				{
+			} catch (NumberFormatException e) {
+				if (ConfigurationHandler.api_debug) {
 					RecipeUtil.printReport(parser, num, "colour", "Could not parse the value '" + r + "' to an integer");
 				}
 				return null;
 			}
 
 			int green = 0;
-			try
-			{
+			try {
 				green = Integer.parseInt(g);
-			}
-			catch (NumberFormatException e)
-			{
-				if (ConfigurationHandler.api_debug)
-				{
+			} catch (NumberFormatException e) {
+				if (ConfigurationHandler.api_debug) {
 					RecipeUtil.printReport(parser, num, "colour", "Could not parse the value '" + g + "' to an integer");
 				}
 				return null;
 			}
 
 			int blue = 0;
-			try
-			{
+			try {
 				blue = Integer.parseInt(b);
-			}
-			catch (NumberFormatException e)
-			{
-				if (ConfigurationHandler.api_debug)
-				{
+			} catch (NumberFormatException e) {
+				if (ConfigurationHandler.api_debug) {
 					RecipeUtil.printReport(parser, num, "colour", "Could not parse the value '" + b + "' to an integer");
 				}
 				return null;
 			}
 
 			return new int[] { red, green, blue };
-		}
-		else
-		{
-			if (ConfigurationHandler.api_debug)
-			{
+		} else {
+			if (ConfigurationHandler.api_debug) {
 				RecipeUtil.printReport(parser, num, "colour", "The colour variable doesn't have all three rgb values set, it needs to be colour=r-g-b");
 			}
 			return null;
@@ -872,74 +669,50 @@ public class RecipeRegistry extends RecipeAPI
 		String output_item = parser.getValue("output-item", null);
 		String output_metadata = parser.getValue("output-metadata", "0");
 
-		if (input_item != null)
-		{
-			if (output_item != null)
-			{
+		if (input_item != null) {
+			if (output_item != null) {
 				Item input = Item.getByNameOrId(input_item);
 				Item output = Item.getByNameOrId(output_item);
-				if (input != null)
-				{
-					if (output != null)
-					{
+				if (input != null) {
+					if (output != null) {
 						int i_metadata = 0;
-						try
-						{
+						try {
 							i_metadata = Integer.parseInt(input_metadata);
-						}
-						catch (NumberFormatException e)
-						{
-							if (ConfigurationHandler.api_debug)
-							{
+						} catch (NumberFormatException e) {
+							if (ConfigurationHandler.api_debug) {
 								RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
 							}
 							return;
 						}
 
 						int o_metadata = 0;
-						try
-						{
+						try {
 							o_metadata = Integer.parseInt(output_metadata);
-						}
-						catch (NumberFormatException e)
-						{
-							if (ConfigurationHandler.api_debug)
-							{
+						} catch (NumberFormatException e) {
+							if (ConfigurationHandler.api_debug) {
 								RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
 							}
 							return;
 						}
 
 						RecipeRegistry.getInstance().registerMicrowaveRecipe(new ItemStack(input, 1, i_metadata), new ItemStack(output, 1, o_metadata));
-					}
-					else
-					{
-						if (ConfigurationHandler.api_debug)
-						{
+					} else {
+						if (ConfigurationHandler.api_debug) {
 							RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
 						}
 					}
-				}
-				else
-				{
-					if (ConfigurationHandler.api_debug)
-					{
+				} else {
+					if (ConfigurationHandler.api_debug) {
 						RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
 					}
 				}
-			}
-			else
-			{
-				if (ConfigurationHandler.api_debug)
-				{
+			} else {
+				if (ConfigurationHandler.api_debug) {
 					RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
 				}
 			}
-		}
-		else
-		{
-			if (ConfigurationHandler.api_debug)
-			{
+		} else {
+			if (ConfigurationHandler.api_debug) {
 				RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
 			}
 		}
@@ -949,25 +722,17 @@ public class RecipeRegistry extends RecipeAPI
 	{
 		String input_item = parser.getValue("input-item", null);
 
-		if (input_item != null)
-		{
+		if (input_item != null) {
 			Item input = Item.getByNameOrId(input_item);
-			if (input != null)
-			{
+			if (input != null) {
 				RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(input));
-			}
-			else
-			{
-				if (ConfigurationHandler.api_debug)
-				{
+			} else {
+				if (ConfigurationHandler.api_debug) {
 					RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
 				}
 			}
-		}
-		else
-		{
-			if (ConfigurationHandler.api_debug)
-			{
+		} else {
+			if (ConfigurationHandler.api_debug) {
 				RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
 			}
 		}
@@ -977,30 +742,22 @@ public class RecipeRegistry extends RecipeAPI
 	{
 		String input_item = parser.getValue("input-item", null);
 
-		if (input_item != null)
-		{
+		if (input_item != null) {
 			Item input = Item.getByNameOrId(input_item);
-			if (input != null)
-			{
+			if (input != null) {
 				RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(input));
-			}
-			else
-			{
-				if (ConfigurationHandler.api_debug)
-				{
+			} else {
+				if (ConfigurationHandler.api_debug) {
 					RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
 				}
 			}
-		}
-		else
-		{
-			if (ConfigurationHandler.api_debug)
-			{
+		} else {
+			if (ConfigurationHandler.api_debug) {
 				RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
 			}
 		}
 	}
-	
+
 	public static void registerGrillRecipe(Parser parser, int num)
 	{
 		String input_item = parser.getValue("input-item", null);
@@ -1008,74 +765,50 @@ public class RecipeRegistry extends RecipeAPI
 		String output_item = parser.getValue("output-item", null);
 		String output_metadata = parser.getValue("output-metadata", "0");
 
-		if (input_item != null)
-		{
-			if (output_item != null)
-			{
+		if (input_item != null) {
+			if (output_item != null) {
 				Item input = Item.getByNameOrId(input_item);
 				Item output = Item.getByNameOrId(output_item);
-				if (input != null)
-				{
-					if (output != null)
-					{
+				if (input != null) {
+					if (output != null) {
 						int i_metadata = 0;
-						try
-						{
+						try {
 							i_metadata = Integer.parseInt(input_metadata);
-						}
-						catch (NumberFormatException e)
-						{
-							if (ConfigurationHandler.api_debug)
-							{
+						} catch (NumberFormatException e) {
+							if (ConfigurationHandler.api_debug) {
 								RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
 							}
 							return;
 						}
 
 						int o_metadata = 0;
-						try
-						{
+						try {
 							o_metadata = Integer.parseInt(output_metadata);
-						}
-						catch (NumberFormatException e)
-						{
-							if (ConfigurationHandler.api_debug)
-							{
+						} catch (NumberFormatException e) {
+							if (ConfigurationHandler.api_debug) {
 								RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
 							}
 							return;
 						}
 
 						RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(input, 1, i_metadata), new ItemStack(output, 1, o_metadata));
-					}
-					else
-					{
-						if (ConfigurationHandler.api_debug)
-						{
+					} else {
+						if (ConfigurationHandler.api_debug) {
 							RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
 						}
 					}
-				}
-				else
-				{
-					if (ConfigurationHandler.api_debug)
-					{
+				} else {
+					if (ConfigurationHandler.api_debug) {
 						RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
 					}
 				}
-			}
-			else
-			{
-				if (ConfigurationHandler.api_debug)
-				{
+			} else {
+				if (ConfigurationHandler.api_debug) {
 					RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
 				}
 			}
-		}
-		else
-		{
-			if (ConfigurationHandler.api_debug)
-			{
+		} else {
+			if (ConfigurationHandler.api_debug) {
 				RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
 			}
 		}
@@ -1083,68 +816,41 @@ public class RecipeRegistry extends RecipeAPI
 
 	public static void registerConfigRecipes()
 	{
-		if (ConfigurationHandler.items.length > 0 && ConfigurationHandler.api_debug)
-		{
+		if (ConfigurationHandler.items.length > 0 && ConfigurationHandler.api_debug) {
 			System.out.println("RecipeAPI (Configuration): Registering " + ConfigurationHandler.items.length + " recipes from the config.");
 		}
 		Parser parser = Parser.getInstance();
-		for (int i = 0; i < ConfigurationHandler.items.length; i++)
-		{
+		for (int i = 0; i < ConfigurationHandler.items.length; i++) {
 			parser.parseLine(ConfigurationHandler.items[i], true);
 			String type = parser.getValue("type", null);
 
 			int realNum = i + 1;
 
-			if (type != null)
-			{
-				if (type.equalsIgnoreCase("printer"))
-				{
+			if (type != null) {
+				if (type.equalsIgnoreCase("printer")) {
 					registerPrinterRecipe(parser, realNum);
-				}
-				else if (type.equalsIgnoreCase("oven"))
-				{
+				} else if (type.equalsIgnoreCase("oven")) {
 					registerOvenRecipe(parser, realNum);
-				}
-				else if (type.equalsIgnoreCase("freezer"))
-				{
+				} else if (type.equalsIgnoreCase("freezer")) {
 					registerFreezerRecipe(parser, realNum);
-				}
-				else if (type.equalsIgnoreCase("minebay"))
-				{
+				} else if (type.equalsIgnoreCase("minebay")) {
 					registerMineBayRecipe(parser, realNum);
-				}
-				else if (type.equalsIgnoreCase("choppingboard"))
-				{
+				} else if (type.equalsIgnoreCase("choppingboard")) {
 					registerChoppingBoardRecipe(parser, realNum);
-				}
-				else if (type.equalsIgnoreCase("toaster"))
-				{
+				} else if (type.equalsIgnoreCase("toaster")) {
 					registerToasterRecipe(parser, realNum);
-				}
-				else if (type.equalsIgnoreCase("microwave"))
-				{
+				} else if (type.equalsIgnoreCase("microwave")) {
 					registerMicrowaveRecipe(parser, realNum);
-				}
-				else if (type.equalsIgnoreCase("blender"))
-				{
+				} else if (type.equalsIgnoreCase("blender")) {
 					registerBlenderRecipe(parser, realNum);
-				}
-				else if (type.equalsIgnoreCase("washingmachine"))
-				{
+				} else if (type.equalsIgnoreCase("washingmachine")) {
 					registerWashingMachineRecipe(parser, realNum);
-				}
-				else if (type.equalsIgnoreCase("dishwasher"))
-				{
+				} else if (type.equalsIgnoreCase("dishwasher")) {
 					registerDishwasherRecipe(parser, realNum);
-				}
-				else if (type.equalsIgnoreCase("grill"))
-				{
+				} else if (type.equalsIgnoreCase("grill")) {
 					registerGrillRecipe(parser, realNum);
-				}
-				else
-				{
-					if (ConfigurationHandler.api_debug)
-					{
+				} else {
+					if (ConfigurationHandler.api_debug) {
 						RecipeUtil.printReport(parser, realNum, "type", "The recipe type '" + type + "' does not exist");
 					}
 				}
@@ -1199,8 +905,7 @@ public class RecipeRegistry extends RecipeAPI
 			RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.DIAMOND_HORSE_ARMOR), new ItemStack(Items.DIAMOND), 8);
 		if (ConfigurationHandler.mine_6)
 			RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(Items.IRON_INGOT), 1);
-		if (ConfigurationHandler.mine_7)
-		{
+		if (ConfigurationHandler.mine_7) {
 			ItemStack stack = new ItemStack(Items.FIREWORKS, 4);
 			NBTTagCompound master = new NBTTagCompound();
 			NBTTagCompound firework = new NBTTagCompound();
@@ -1217,8 +922,7 @@ public class RecipeRegistry extends RecipeAPI
 			stack.setStackDisplayName(TextFormatting.RED + "Christmas" + TextFormatting.GREEN + " Firework");
 			RecipeRegistry.getInstance().registerMineBayItem(stack, new ItemStack(Items.IRON_INGOT), 1);
 		}
-		if (ConfigurationHandler.mine_8)
-		{
+		if (ConfigurationHandler.mine_8) {
 			ItemStack stack = new ItemStack(Items.ENCHANTED_BOOK);
 			NBTTagCompound master = new NBTTagCompound();
 			NBTTagList list = new NBTTagList();
@@ -1230,8 +934,7 @@ public class RecipeRegistry extends RecipeAPI
 			stack.setTagCompound(master);
 			RecipeRegistry.getInstance().registerMineBayItem(stack, new ItemStack(Items.EMERALD), 8);
 		}
-		if (ConfigurationHandler.mine_9)
-		{
+		if (ConfigurationHandler.mine_9) {
 			ItemStack stack = new ItemStack(Items.POTIONITEM, 2);
 			NBTTagCompound data = new NBTTagCompound();
 			data.setString("Potion", "night_vision");
@@ -1248,9 +951,8 @@ public class RecipeRegistry extends RecipeAPI
 			RecipeRegistry.getInstance().registerBlenderRecipe("Cookies and Cream Milkshake", 4, new ItemStack[] { new ItemStack(Items.COOKIE, 2), new ItemStack(Items.MILK_BUCKET) }, new int[] { 255, 214, 164 });
 		if (ConfigurationHandler.blen_4)
 			RecipeRegistry.getInstance().registerBlenderRecipe("Energy Drink", 8, new ItemStack[] { new ItemStack(Items.REDSTONE, 8), new ItemStack(Items.FIRE_CHARGE, 1), new ItemStack(Items.SUGAR, 16) }, new int[] { 92, 23, 8 });
-			
-			RecipeRegistry.getInstance().registerBlenderRecipe("Egg Nog", 5, new ItemStack[] { new ItemStack(Items.EGG, 4), new ItemStack(Items.MILK_BUCKET, 1), new ItemStack(Items.SUGAR, 2)},  new int[] { 255, 234, 178 });
-		
+
+		RecipeRegistry.getInstance().registerBlenderRecipe("Egg Nog", 5, new ItemStack[] { new ItemStack(Items.EGG, 4), new ItemStack(Items.MILK_BUCKET, 1), new ItemStack(Items.SUGAR, 2) }, new int[] { 255, 234, 178 });
 
 		if (ConfigurationHandler.chop_1)
 			RecipeRegistry.getInstance().registerChoppingBoardRecipe(new ItemStack(Items.BREAD), new ItemStack(FurnitureItems.itemBreadSlice, 6));
@@ -1307,6 +1009,14 @@ public class RecipeRegistry extends RecipeAPI
 			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.DIAMOND_HOE));
 		if (ConfigurationHandler.dish_26)
 			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.DIAMOND_SWORD));
+		if (ConfigurationHandler.dish_27)
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.FISHING_ROD));
+		if (ConfigurationHandler.dish_28)
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.FLINT_AND_STEEL));
+		if (ConfigurationHandler.dish_29)
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.SHEARS));
+		if (ConfigurationHandler.dish_30)
+			RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.SHIELD));
 
 		if (ConfigurationHandler.micr_1)
 			RecipeRegistry.getInstance().registerMicrowaveRecipe(new ItemStack(Items.BEEF), new ItemStack(Items.COOKED_BEEF));
@@ -1356,7 +1066,9 @@ public class RecipeRegistry extends RecipeAPI
 			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.DIAMOND_LEGGINGS));
 		if (ConfigurationHandler.wash_20)
 			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.DIAMOND_BOOTS));
-		
+		if (ConfigurationHandler.wash_21)
+			RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.ELYTRA));
+
 		if (ConfigurationHandler.grill_1)
 			RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(Items.BEEF), new ItemStack(Items.COOKED_BEEF));
 		if (ConfigurationHandler.grill_2)

@@ -17,19 +17,21 @@
  */
 package com.mrcrayfish.furniture.gui;
 
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+
 import com.mrcrayfish.furniture.gui.containers.ContainerWashingMachine;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageWashingMachine;
 import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemArmor;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
-
-import java.util.Arrays;
 
 public class GuiWashingMachine extends GuiContainer
 {
@@ -39,8 +41,7 @@ public class GuiWashingMachine extends GuiContainer
 
 	private GuiButton button_start;
 
-	public GuiWashingMachine(InventoryPlayer inventoryPlayer, TileEntityWashingMachine tileEntityWashingMachine)
-	{
+	public GuiWashingMachine(InventoryPlayer inventoryPlayer, TileEntityWashingMachine tileEntityWashingMachine) {
 		super(new ContainerWashingMachine(inventoryPlayer, tileEntityWashingMachine));
 		this.tileEntityWashingMachine = tileEntityWashingMachine;
 		this.xSize = 176;
@@ -64,24 +65,19 @@ public class GuiWashingMachine extends GuiContainer
 	@Override
 	protected void actionPerformed(GuiButton guibutton)
 	{
-		if (!guibutton.enabled)
-		{
+		if (!guibutton.enabled) {
 			return;
 		}
-				
-		if (guibutton.id == 0)
-		{
-			if (!tileEntityWashingMachine.isWashing())
-			{
+
+		if (guibutton.id == 0) {
+			if (!tileEntityWashingMachine.isWashing()) {
 				PacketHandler.INSTANCE.sendToServer(new MessageWashingMachine(0, tileEntityWashingMachine.getPos().getX(), tileEntityWashingMachine.getPos().getY(), tileEntityWashingMachine.getPos().getZ()));
-			}
-			else
-			{
+			} else {
 				PacketHandler.INSTANCE.sendToServer(new MessageWashingMachine(1, tileEntityWashingMachine.getPos().getX(), tileEntityWashingMachine.getPos().getY(), tileEntityWashingMachine.getPos().getZ()));
 			}
 		}
 	}
-	
+
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
@@ -89,21 +85,16 @@ public class GuiWashingMachine extends GuiContainer
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		this.renderHoveredToolTip(mouseX, mouseY);
 
-		if(isPointInRegion(37, 9, 11, 11, mouseX, mouseY))
-		{
-			if (tileEntityWashingMachine.isWashing())
-			{
-				drawHoveringText(Arrays.asList(new String[]{"Running"}), mouseX, mouseY);
-			}
-			else
-			{
-				drawHoveringText(Arrays.asList(new String[]{"Stopped"}), mouseX, mouseY);
+		if (isPointInRegion(37, 9, 11, 11, mouseX, mouseY)) {
+			if (tileEntityWashingMachine.isWashing()) {
+				drawHoveringText("Running", mouseX, mouseY);
+			} else {
+				drawHoveringText("Stopped", mouseX, mouseY);
 			}
 		}
-		
-		if(isPointInRegion(129, 30, 10, 73, mouseX, mouseY))
-		{
-			drawHoveringText(Arrays.asList(new String[]{"Soap: " + tileEntityWashingMachine.timeRemaining + "/5000"}), mouseX, mouseY);
+
+		if (isPointInRegion(129, 30, 10, 73, mouseX, mouseY)) {
+			drawHoveringText("Soap: " + tileEntityWashingMachine.timeRemaining + "/5000", mouseX, mouseY);
 		}
 	}
 
@@ -122,8 +113,7 @@ public class GuiWashingMachine extends GuiContainer
 		int i1 = (height - ySize) / 2;
 		this.drawTexturedModalRect(l, i1, 0, 0, xSize, ySize);
 
-		if (tileEntityWashingMachine.isWashing())
-		{
+		if (tileEntityWashingMachine.isWashing()) {
 			int superMode = tileEntityWashingMachine.superMode ? 20 : 50;
 			int percent = (tileEntityWashingMachine.progress % superMode) * 73 / superMode;
 			drawTexturedModalRect((l + 34), (i1 + 104) - percent, 176, 73 - percent, 16, percent);
@@ -135,13 +125,10 @@ public class GuiWashingMachine extends GuiContainer
 
 		drawTexturedModalRect((l + 129), (i1 + 30), 202, 0, 10, 73);
 
-		if (tileEntityWashingMachine.isWashing())
-		{
+		if (tileEntityWashingMachine.isWashing()) {
 			button_start.displayString = "Stop";
 			drawColour(l + 37, i1 + 9, 11, 11, 49475);
-		}
-		else
-		{
+		} else {
 			button_start.displayString = "Start";
 			drawColour(l + 37, i1 + 9, 11, 11, 16711680);
 		}

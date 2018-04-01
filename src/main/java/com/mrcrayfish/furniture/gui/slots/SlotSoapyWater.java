@@ -17,47 +17,35 @@
  */
 package com.mrcrayfish.furniture.gui.slots;
 
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.inventory.EntityEquipmentSlot;
+import com.mrcrayfish.furniture.Reference;
+import com.mrcrayfish.furniture.init.FurnitureItems;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemArmor;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class SlotArmour extends Slot
+public class SlotSoapyWater extends Slot
 {
-	private EntityEquipmentSlot armourType;
 
-	public SlotArmour(IInventory machine, int id, int x, int y, EntityEquipmentSlot armourType) {
-		super(machine, id, x, y);
-		this.armourType = armourType;
+	public SlotSoapyWater(IInventory inventory, int id, int x, int y) {
+		super(inventory, id, x, y);
 	}
 
 	@Override
-	public boolean isItemValid(ItemStack stack)
+	public boolean isItemValid(ItemStack par1ItemStack)
 	{
-		if (stack == null) {
+		if (par1ItemStack == null) {
 			return false;
 		}
 
-		if (stack.isEmpty()) {
-			return false;
-		}
-
-		if (EntityLiving.getSlotForItemStack(stack) != armourType) {
-			return false;
-		}
-
-		if (!stack.isItemStackDamageable()) {
-			return false;
-		}
-
-		return true;
+		Item item = par1ItemStack.getItem();
+		return item == FurnitureItems.itemSoapyWater || item == FurnitureItems.itemSuperSoapyWater;
 	}
 
 	@Override
 	public String getSlotTexture()
 	{
-		return ItemArmor.EMPTY_SLOT_NAMES[armourType.getIndex()];
+		return Reference.MOD_ID + ":items/outline_bucket";
 	}
 }
