@@ -17,16 +17,18 @@
  */
 package com.mrcrayfish.furniture.gui;
 
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+
 import com.mrcrayfish.furniture.gui.containers.ContainerMicrowave;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageMicrowave;
 import com.mrcrayfish.furniture.tileentity.TileEntityMicrowave;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
 
 public class GuiMicrowave extends GuiContainer
 {
@@ -35,8 +37,7 @@ public class GuiMicrowave extends GuiContainer
 
 	private GuiButton button_start;
 
-	public GuiMicrowave(InventoryPlayer inventoryPlayer, TileEntityMicrowave tileEntityMicrowave)
-	{
+	public GuiMicrowave(InventoryPlayer inventoryPlayer, TileEntityMicrowave tileEntityMicrowave) {
 		super(new ContainerMicrowave(inventoryPlayer, tileEntityMicrowave));
 		this.tileEntityMicrowave = tileEntityMicrowave;
 		this.xSize = 176;
@@ -60,19 +61,14 @@ public class GuiMicrowave extends GuiContainer
 	@Override
 	protected void actionPerformed(GuiButton guibutton)
 	{
-		if (!guibutton.enabled)
-		{
+		if (!guibutton.enabled) {
 			return;
 		}
 
-		if (guibutton.id == 0)
-		{
-			if (!tileEntityMicrowave.isCooking())
-			{
+		if (guibutton.id == 0) {
+			if (!tileEntityMicrowave.isCooking()) {
 				PacketHandler.INSTANCE.sendToServer(new MessageMicrowave(0, tileEntityMicrowave.getPos().getX(), tileEntityMicrowave.getPos().getY(), tileEntityMicrowave.getPos().getZ()));
-			}
-			else
-			{
+			} else {
 				PacketHandler.INSTANCE.sendToServer(new MessageMicrowave(1, tileEntityMicrowave.getPos().getX(), tileEntityMicrowave.getPos().getY(), tileEntityMicrowave.getPos().getZ()));
 			}
 		}
@@ -84,6 +80,10 @@ public class GuiMicrowave extends GuiContainer
 		this.drawDefaultBackground();
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		this.renderHoveredToolTip(mouseX, mouseY);
+
+		if (isPointInRegion(120, 26, 27, 5, mouseX, mouseY)) {
+			drawHoveringText((tileEntityMicrowave.progress * 27 / 10) + "% Complete", mouseX, mouseY);
+		}
 	}
 
 	@Override
@@ -104,12 +104,9 @@ public class GuiMicrowave extends GuiContainer
 		int percent = tileEntityMicrowave.progress * 27 / 40;
 		drawTexturedModalRect(l + 120, i1 + 26, 176, 0, percent, 5);
 
-		if (tileEntityMicrowave.isCooking())
-		{
+		if (tileEntityMicrowave.isCooking()) {
 			button_start.displayString = "Stop";
-		}
-		else
-		{
+		} else {
 			button_start.displayString = "Start";
 		}
 	}
