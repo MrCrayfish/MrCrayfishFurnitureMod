@@ -29,6 +29,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -37,7 +38,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -71,6 +71,7 @@ public class BlockCup extends Block implements ITileEntityProvider
 						int heal = cup.getTagCompound().getInteger("HealAmount");
 						player.getFoodStats().addStats(heal, 0.5F);
 					} else {
+						world.playSound(player, player.getPosition(), SoundEvents.ENTITY_GENERIC_DRINK, SoundCategory.PLAYERS, 1.0F, 1.0F);
 						world.playSound(player, player.getPosition(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 1.0F, 1.0F);
 					}
 					return true;
@@ -125,11 +126,15 @@ public class BlockCup extends Block implements ITileEntityProvider
 	}
 
 	@Override
-	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+	public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack)
 	{
 		if (world.getTileEntity(pos) instanceof TileEntityCup) {
 			TileEntityCup tileEntityCup = (TileEntityCup) world.getTileEntity(pos);
-			drops.add(tileEntityCup.getDrink() != null ? tileEntityCup.getDrink().copy() : new ItemStack(FurnitureItems.itemCup));
+			if (tileEntityCup.getDrink() != null) {
+				world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), tileEntityCup.getDrink().copy()));
+			}
+		} else {
+			world.spawnEntity(new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(FurnitureItems.itemCup)));
 		}
 	}
 

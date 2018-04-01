@@ -60,6 +60,7 @@ public class BlockCrate extends Block implements ITileEntityProvider
 	{
 		return null;
 	}
+	
 	@Override
 	public boolean removedByPlayer(IBlockState state, World worldIn, BlockPos pos, EntityPlayer playerIn, boolean willHarvest) 
 	{
@@ -86,12 +87,6 @@ public class BlockCrate extends Block implements ITileEntityProvider
 			}
 		}
 		return super.removedByPlayer(state, worldIn, pos, playerIn, willHarvest);
-	}
-
-	@Override
-	public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
-	{
-		super.breakBlock(worldIn, pos, state);
 	}
 	
 	@Override
