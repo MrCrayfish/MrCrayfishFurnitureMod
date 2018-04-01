@@ -49,7 +49,7 @@ public class BlockWashingMachine extends BlockFurnitureTile
 	public BlockWashingMachine(Material material) {
 		super(material);
 		this.setHardness(1.0F);
-		this.setSoundType(SoundType.STONE);
+		this.setSoundType(SoundType.ANVIL);
 	}
 
 	@Override
@@ -99,11 +99,11 @@ public class BlockWashingMachine extends BlockFurnitureTile
 	}
 
 	@Override
-	public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
+	public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
 	{
 		List<RayTraceResult> list = Lists.<RayTraceResult>newArrayList();
 
-		for (AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos))) {
+		for (AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos))) {
 			list.add(this.rayTrace(pos, start, end, axisalignedbb));
 		}
 
