@@ -90,7 +90,7 @@ public class BlockHedge extends Block
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
 	{
-		return BOUNDING_BOX[getBoundingBoxId(state)];
+		return BOUNDING_BOX[getBoundingBoxId(this.getActualState(state, source, pos))];
 	}
 	
 	private static int getBoundingBoxId(IBlockState state)
