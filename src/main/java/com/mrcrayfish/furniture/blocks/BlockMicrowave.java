@@ -40,10 +40,10 @@ import java.util.List;
 
 public class BlockMicrowave extends BlockFurnitureTile
 {
-	private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 2 * 0.0625, 0.0, 0 * 0.0625, 14 * 0.0625, 1.0, 16 * 0.0625);
-	private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 2 * 0.0625, 0.0, 0 * 0.0625, 14 * 0.0625, 1.0, 16 * 0.0625);
-	private static final AxisAlignedBB BOUNDING_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 2 * 0.0625, 0.0, 0 * 0.0625, 14 * 0.0625, 1.0, 16 * 0.0625);
-	private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 2 * 0.0625, 0.0, 0 * 0.0625, 14 * 0.0625, 1.0, 16 * 0.0625);
+	private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 2 * 0.0625, 0.0, 0 * 0.0625, 14 * 0.0625, 10 * 0.0625, 16 * 0.0625);
+	private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 2 * 0.0625, 0.0, 0 * 0.0625, 14 * 0.0625, 10 * 0.0625, 16 * 0.0625);
+	private static final AxisAlignedBB BOUNDING_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 2 * 0.0625, 0.0, 0 * 0.0625, 14 * 0.0625, 10 * 0.0625, 16 * 0.0625);
+	private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 2 * 0.0625, 0.0, 0 * 0.0625, 14 * 0.0625, 10 * 0.0625, 16 * 0.0625);
 	private static final AxisAlignedBB[] BOUNDING_BOX = { BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST };
 	
 	public BlockMicrowave(Material material)
