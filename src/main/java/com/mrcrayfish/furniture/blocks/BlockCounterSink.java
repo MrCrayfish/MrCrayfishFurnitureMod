@@ -88,17 +88,7 @@ public class BlockCounterSink extends BlockFurniture
 		List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
 		EnumFacing facing = state.getValue(FACING);
 		list.add(BlockCounter.COUNTER_TOP);
-
-		if (state.getValue(BlockCounter.TYPE) == CounterType.INVERT_LEFT) {
-			list.add(BlockCounter.LEFT_CORNER_BOXES[facing.getHorizontalIndex()]);
-		} else if (state.getValue(BlockCounter.TYPE) == CounterType.INVERT_RIGHT) {
-			list.add(BlockCounter.RIGHT_CORNER_BOXES[facing.getHorizontalIndex()]);
-		} else if (state.getValue(BlockCounter.TYPE) == CounterType.NORMAL) {
-			list.add(BlockCounter.FORWARD_BOXES[facing.getHorizontalIndex()]);
-		} else {
-			list.add(FULL_BLOCK_AABB);
-		}
-
+		list.add(BlockCounter.FORWARD_BOXES[facing.getHorizontalIndex()]);
 		return list;
 	}
 
