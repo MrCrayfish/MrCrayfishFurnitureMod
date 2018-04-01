@@ -22,6 +22,7 @@ import com.mrcrayfish.furniture.init.FurnitureItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,8 +76,10 @@ public abstract class RecipePage
 
 	public ItemStack getDrink(String name, int red, int green, int blue)
 	{
-		drink.getTagCompound().setIntArray("Colour", new int[] { red, green, blue });
-		drink.getTagCompound().setString("Name", name);
+		NBTTagCompound nbt = new NBTTagCompound();
+		nbt.setIntArray("Colour", new int[] { red, green, blue });
+		nbt.setString("Name", name);
+		drink.setTagCompound(nbt);
 		return drink;
 	}
 
