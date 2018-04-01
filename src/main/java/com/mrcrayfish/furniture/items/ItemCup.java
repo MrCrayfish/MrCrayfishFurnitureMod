@@ -30,6 +30,7 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -54,6 +55,18 @@ public class ItemCup extends Item
 		{
 			setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		}
+	}
+	
+	@Override
+	public String getItemStackDisplayName(ItemStack stack)
+	{
+		if(stack.hasTagCompound()) {
+			NBTTagCompound nbt = stack.getTagCompound();
+			if(nbt.hasKey("Name", 8)) {
+				return nbt.getString("Name");
+			}
+		}
+		return super.getItemStackDisplayName(stack);
 	}
 
 	@Override
