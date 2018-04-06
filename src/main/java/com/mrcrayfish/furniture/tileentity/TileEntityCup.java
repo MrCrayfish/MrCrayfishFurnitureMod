@@ -51,7 +51,7 @@ public class TileEntityCup extends TileEntity implements ISimpleInventory
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
 		super.readFromNBT(tagCompound);
-		if (tagCompound.hasKey("Item"))
+		if (tagCompound.hasKey("Item", 9))
 		{
 			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Item");
 			if (tagList.tagCount() > 0)
@@ -115,6 +115,9 @@ public class TileEntityCup extends TileEntity implements ISimpleInventory
 	@Override
 	public void clear()
 	{
+		red = 0;
+		green = 0;
+		blue = 0;
 		item = null;
 	}
 }

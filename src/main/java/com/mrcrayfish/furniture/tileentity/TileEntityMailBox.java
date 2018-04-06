@@ -73,12 +73,12 @@ public class TileEntityMailBox extends TileEntityFurniture
 	{
 		super.readFromNBT(tagCompound);
 
-		if (tagCompound.hasKey("OwnerUUID"))
+		if (tagCompound.hasKey("OwnerUUID", 8))
 		{
 			this.ownerUUID = tagCompound.getString("OwnerUUID");
 		}
 		
-		if (tagCompound.hasKey("OwnerName"))
+		if (tagCompound.hasKey("OwnerName", 8))
 		{
 			this.ownerName = tagCompound.getString("OwnerName");
 		}

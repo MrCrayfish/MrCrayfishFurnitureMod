@@ -26,6 +26,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -112,11 +113,11 @@ public class BlockMailBox extends BlockFurnitureTile
 	@Override
 	public float getExplosionResistance(Entity entity)
 	{
-		if (entity instanceof EntityCreeper)
+		if (entity instanceof EntityCreeper || entity instanceof EntityTNTPrimed)
 		{
 			return 1000;
 		}
-		return this.blockResistance / 5.0F;
+		return super.getExplosionResistance(entity);
 	}
 	
 	@Override

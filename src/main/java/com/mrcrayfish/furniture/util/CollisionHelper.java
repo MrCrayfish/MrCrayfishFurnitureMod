@@ -17,6 +17,11 @@
  */
 package com.mrcrayfish.furniture.util;
 
+import java.util.List;
+
+import com.google.common.collect.Lists;
+
+import net.minecraft.block.Block;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 

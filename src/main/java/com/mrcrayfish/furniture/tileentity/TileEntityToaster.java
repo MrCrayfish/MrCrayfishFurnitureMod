@@ -127,7 +127,7 @@ public class TileEntityToaster extends TileEntity implements ITickable, ISimpleI
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
 		super.readFromNBT(tagCompound);
-		if(tagCompound.hasKey("Items"))
+		if(tagCompound.hasKey("Items", 9))
 		{
 			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
 			this.slots = new ItemStack[2];

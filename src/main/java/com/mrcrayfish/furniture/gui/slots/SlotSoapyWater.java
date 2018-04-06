@@ -15,34 +15,37 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package com.mrcrayfish.furniture.items;
+package com.mrcrayfish.furniture.gui.slots;
 
-import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import net.minecraft.entity.player.EntityPlayer;
+import com.mrcrayfish.furniture.Reference;
+import com.mrcrayfish.furniture.init.FurnitureItems;
+
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.world.World;
 
-public class ItemRecipeBook extends Item
+public class SlotSoapyWater extends Slot
 {
-	public ItemRecipeBook()
-	{
-		setMaxStackSize(16);
-		setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+
+	public SlotSoapyWater(IInventory inventory, int id, int x, int y) {
+		super(inventory, id, x, y);
 	}
-	
+
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) 
+	public boolean isItemValid(ItemStack par1ItemStack)
 	{
-		setMaxStackSize(16);
-		ItemStack stack = playerIn.getHeldItem(hand);
-		if (worldIn.isRemote)
-		{
-			playerIn.openGui(MrCrayfishFurnitureMod.instance, 10, worldIn, 0, 0, 0);
+		if (par1ItemStack == null) {
+			return false;
 		}
-		return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+
+		Item item = par1ItemStack.getItem();
+		return item == FurnitureItems.itemSoapyWater || item == FurnitureItems.itemSuperSoapyWater;
+	}
+
+	@Override
+	public String getSlotTexture()
+	{
+		return Reference.MOD_ID + ":items/outline_bucket";
 	}
 }

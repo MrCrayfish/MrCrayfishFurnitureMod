@@ -17,8 +17,12 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
+import java.util.Random;
+
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -38,27 +42,23 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.List;
-import java.util.Random;
-
 public class BlockDoorBell extends BlockFurniture
 {
 	public static final PropertyBool POWERED = PropertyBool.create("powered");
-	
+
 	private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.85, 0.3, 0.4, 1.0, 0.7, 0.6);
 	private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.85, 0.3, 0.4, 1.0, 0.7, 0.6);
 	private static final AxisAlignedBB BOUNDING_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.85, 0.3, 0.4, 1.0, 0.7, 0.6);
 	private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.85, 0.3, 0.4, 1.0, 0.7, 0.6);
 	private static final AxisAlignedBB[] BOUNDING_BOX = { BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST };
 
-	public BlockDoorBell(Material material)
-	{
+	public BlockDoorBell(Material material) {
 		super(material);
 		this.setSoundType(SoundType.WOOD);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(POWERED, Boolean.valueOf(true)));
 		this.setTickRandomly(true);
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
@@ -72,7 +72,7 @@ public class BlockDoorBell extends BlockFurniture
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) 
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
 		return NULL_AABB;
 	}
@@ -96,18 +96,17 @@ public class BlockDoorBell extends BlockFurniture
 	}
 
 	@Override
-	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) 
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
 	{
 		EnumFacing facing = (EnumFacing) state.getValue(FACING);
-		if (!this.canPlaceBlockOnSide(worldIn, pos, facing.getOpposite()))
-		{
+		if (!this.canPlaceBlockOnSide(worldIn, pos, facing.getOpposite())) {
 			this.dropBlockAsItem(worldIn, pos, state, 0);
 			worldIn.setBlockToAir(pos);
 		}
 	}
 
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		EnumFacing facing = state.getValue(FACING);
 		return BOUNDING_BOX[facing.getHorizontalIndex()];
@@ -116,12 +115,9 @@ public class BlockDoorBell extends BlockFurniture
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (state.getValue(POWERED) || worldIn.isRemote)
-		{
+		if (state.getValue(POWERED) || worldIn.isRemote) {
 			return true;
-		}
-		else
-		{
+		} else {
 			worldIn.setBlockState(pos, state.withProperty(POWERED, true), 3);
 			worldIn.markBlockRangeForRenderUpdate(pos, pos);
 			worldIn.playSound(null, pos, FurnitureSounds.door_bell, SoundCategory.BLOCKS, 1.0F, 1.0F);
@@ -133,10 +129,8 @@ public class BlockDoorBell extends BlockFurniture
 	@Override
 	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 	{
-		if (!worldIn.isRemote)
-		{
-			if (state.getValue(POWERED))
-			{
+		if (!worldIn.isRemote) {
+			if (state.getValue(POWERED)) {
 				this.handleArrow(worldIn, pos, state);
 			}
 		}
@@ -145,10 +139,8 @@ public class BlockDoorBell extends BlockFurniture
 	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
-		if (!worldIn.isRemote)
-		{
-			if (!state.getValue(POWERED))
-			{
+		if (!worldIn.isRemote) {
+			if (!state.getValue(POWERED)) {
 				this.handleArrow(worldIn, pos, state);
 			}
 		}
@@ -156,26 +148,23 @@ public class BlockDoorBell extends BlockFurniture
 
 	private void handleArrow(World worldIn, BlockPos pos, IBlockState state)
 	{
-		List <? extends Entity > list = worldIn.<Entity>getEntitiesWithinAABB(EntityArrow.class, state.getBoundingBox(worldIn, pos).offset(pos));
+		List<? extends Entity> list = worldIn.<Entity>getEntitiesWithinAABB(EntityArrow.class, state.getBoundingBox(worldIn, pos).offset(pos));
 		boolean flag = !list.isEmpty();
 		boolean flag1 = state.getValue(POWERED);
 
-		if (flag && !flag1)
-		{
+		if (flag && !flag1) {
 			worldIn.setBlockState(pos, state.withProperty(POWERED, true));
 			worldIn.markBlockRangeForRenderUpdate(pos, pos);
 			worldIn.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.6F);
 		}
 
-		if (!flag && flag1)
-		{
+		if (!flag && flag1) {
 			worldIn.setBlockState(pos, state.withProperty(POWERED, false));
 			worldIn.markBlockRangeForRenderUpdate(pos, pos);
 			worldIn.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.5F);
 		}
 
-		if (flag)
-		{
+		if (flag) {
 			worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));
 		}
 	}
@@ -190,8 +179,7 @@ public class BlockDoorBell extends BlockFurniture
 	public int getMetaFromState(IBlockState state)
 	{
 		int meta = state.getValue(FACING).getHorizontalIndex();
-		if (state.getValue(POWERED))
-		{
+		if (state.getValue(POWERED)) {
 			meta += 4;
 		}
 		return meta;
@@ -201,5 +189,21 @@ public class BlockDoorBell extends BlockFurniture
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, FACING, POWERED);
+	}
+
+	@Override
+	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+	{
+		return ((Boolean) blockState.getValue(POWERED)).booleanValue() ? 15 : 0;
+	}
+
+	@Override
+	public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+	{
+		if (!((Boolean) blockState.getValue(POWERED)).booleanValue()) {
+			return 0;
+		} else {
+			return blockState.getValue(FACING) == side ? 15 : 0;
+		}
 	}
 }

@@ -29,9 +29,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockStonePath extends Block
-{
-	private static final AxisAlignedBB NOTHING = new AxisAlignedBB(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-	
+{	
 	private static final AxisAlignedBB BOUNDING = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.0625, 1.0);
 	
 	public BlockStonePath(Material material)
@@ -78,6 +76,6 @@ public class BlockStonePath extends Block
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) 
 	{
-		return NOTHING;
+		return NULL_AABB;
 	}
 }

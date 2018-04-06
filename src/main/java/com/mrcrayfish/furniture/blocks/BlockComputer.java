@@ -17,8 +17,11 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
+
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.tileentity.TileEntityComputer;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -33,14 +36,11 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.List;
-
 public class BlockComputer extends BlockFurnitureTile
 {
 	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.1, 0.0, 0.1, 0.9, 1.0, 0.9);
-	
-	public BlockComputer(Material material)
-	{
+
+	public BlockComputer(Material material) {
 		super(material);
 		this.setHardness(1.0F);
 		this.setSoundType(SoundType.ANVIL);
@@ -49,37 +49,32 @@ public class BlockComputer extends BlockFurnitureTile
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (!worldIn.isRemote)
-		{
-			TileEntity tile_entity = worldIn.getTileEntity(pos);
+		TileEntity tile_entity = worldIn.getTileEntity(pos);
 
-			if (tile_entity instanceof TileEntityComputer)
-			{
-				TileEntityComputer computer = (TileEntityComputer) tile_entity;
-				if (!computer.isTrading())
-				{
-					computer.setTrading(true);
-					playerIn.openGui(MrCrayfishFurnitureMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
-				}
-				else
-				{
+		if (tile_entity instanceof TileEntityComputer) {
+			TileEntityComputer computer = (TileEntityComputer) tile_entity;
+			if (!computer.isTrading()) {
+				computer.setTrading(true);
+				playerIn.openGui(MrCrayfishFurnitureMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
+			} else {
+				if (!worldIn.isRemote) {
 					playerIn.sendMessage(new TextComponentString("Someone is using the computer."));
 				}
 			}
 		}
 		return true;
 	}
-	
+
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return BOUNDING_BOX;
 	}
-	
+
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
 	{
-		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
+		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, state.getCollisionBoundingBox(worldIn, pos));
 	}
 
 	@Override

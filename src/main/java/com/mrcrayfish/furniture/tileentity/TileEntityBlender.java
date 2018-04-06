@@ -22,7 +22,9 @@ import com.mrcrayfish.furniture.api.RecipeData;
 import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
+import com.mrcrayfish.furniture.util.InventoryUtil;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -49,10 +51,8 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 
 	public void addIngredient(ItemStack ingredient)
 	{
-		for (int i = 0; i < ingredients.length; i++)
-		{
-			if (ingredients[i] == null)
-			{
+		for (int i = 0; i < ingredients.length; i++) {
+			if (this.ingredients[i] == null) {
 				ingredients[i] = ingredient.copy();
 				break;
 			}
@@ -61,12 +61,9 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 
 	public void removeIngredient()
 	{
-		for (int i = ingredients.length - 1; i >= 0; i--)
-		{
-			if (ingredients[i] != null)
-			{
-				if (!world.isRemote)
-				{
+		for (int i = ingredients.length - 1; i >= 0; i--) {
+			if (this.ingredients[i] != null) {
+				if (!world.isRemote) {
 					EntityItem entityItem = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 1.0D, pos.getZ() + 0.5, ingredients[i]);
 					world.spawnEntity(entityItem);
 				}
@@ -79,10 +76,8 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 
 	public boolean isFull()
 	{
-		for (int i = 0; i < ingredients.length; i++)
-		{
-			if (ingredients[i] == null)
-			{
+		for (int i = 0; i < ingredients.length; i++) {
+			if (this.ingredients[i] == null) {
 				return false;
 			}
 		}
@@ -97,8 +92,7 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	public boolean hasValidIngredients()
 	{
 		RecipeData data = RecipeAPI.getBlenderRecipeDataFromIngredients(ingredients);
-		if (data == null)
-		{
+		if (data == null) {
 			return false;
 		}
 		drinkName = data.getDrinkName();
@@ -121,8 +115,7 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 
 	public boolean hasDrink()
 	{
-		if (this.drinkCount > 0)
-		{
+		if (this.drinkCount > 0) {
 			return true;
 		}
 		return false;
@@ -134,8 +127,8 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 		NBTTagCompound nbt = new NBTTagCompound();
 		nbt.setIntArray("Colour", new int[] { currentRed, currentGreen, currentBlue });
 		nbt.setInteger("HealAmount", healAmount);
+		nbt.setString("Name", drinkName);
 		cup.setTagCompound(nbt);
-		cup.setStackDisplayName(new String(drinkName));
 		return cup;
 	}
 
@@ -144,11 +137,9 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	@Override
 	public void update()
 	{
-		if (blending)
-		{
+		if (blending) {
 			progress++;
-			if (progress == 200)
-			{
+			if (progress == 200) {
 				clearIngredients();
 				drinkCount = 6;
 				progress = 0;
@@ -156,12 +147,10 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 				world.updateComparatorOutputLevel(pos, blockType);
 			}
 
-			if (timer == 20)
-			{
+			if (timer == 20) {
 				timer = 0;
 			}
-			if (timer == 0)
-			{
+			if (timer == 0) {
 				world.playSound(pos.getX(), pos.getY(), pos.getZ(), FurnitureSounds.blender, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
 			}
 			timer++;
@@ -170,14 +159,10 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 
 	public void clearIngredients()
 	{
-		for (int i = 0; i < ingredients.length; i++)
-		{
-			if (ingredients[i] != null)
-			{
-				if (ingredients[i].getItem().hasContainerItem())
-				{
-					if (!world.isRemote)
-					{
+		for (int i = 0; i < ingredients.length; i++) {
+			if (this.ingredients[i] != null) {
+				if (ingredients[i].getItem().hasContainerItem()) {
+					if (!world.isRemote) {
 						EntityItem entityItem = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.6, pos.getZ() + 0.5, new ItemStack(ingredients[i].getItem().getContainerItem()));
 						world.spawnEntity(entityItem);
 					}
@@ -191,21 +176,9 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
 		super.readFromNBT(tagCompound);
-		if (tagCompound.hasKey("Items"))
-		{
+		if (tagCompound.hasKey("Items", 9)) {
 			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
-			this.ingredients = new ItemStack[4];
-
-			for (int i = 0; i < tagList.tagCount(); ++i)
-			{
-				NBTTagCompound itemTag = (NBTTagCompound) tagList.getCompoundTagAt(i);
-				byte slot = itemTag.getByte("Slot");
-
-				if (slot >= 0 && slot < this.ingredients.length)
-				{
-					this.ingredients[slot] = new ItemStack(itemTag);
-				}
-			}
+			this.ingredients = InventoryUtil.readInventoryFromNBT(this, tagList);
 		}
 
 		this.blending = tagCompound.getBoolean("Blending");
@@ -222,18 +195,7 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
 	{
 		super.writeToNBT(tagCompound);
-		NBTTagList tagList = new NBTTagList();
-		for (int i = 0; i < this.ingredients.length; ++i)
-		{
-			if (this.ingredients[i] != null)
-			{
-				NBTTagCompound itemTag = new NBTTagCompound();
-				itemTag.setByte("Slot", (byte) i);
-				this.ingredients[i].writeToNBT(itemTag);
-				tagList.appendTag(itemTag);
-			}
-		}
-		tagCompound.setTag("Items", tagList);
+		tagCompound.setTag("Items", InventoryUtil.writeInventoryToNBT(this, new NBTTagList()));
 		tagCompound.setBoolean("Blending", blending);
 		tagCompound.setInteger("Progress", progress);
 		tagCompound.setString("DrinkName", drinkName);
@@ -252,13 +214,13 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	}
 
 	@Override
-	public SPacketUpdateTileEntity getUpdatePacket() 
+	public SPacketUpdateTileEntity getUpdatePacket()
 	{
 		return new SPacketUpdateTileEntity(pos, getBlockMetadata(), this.writeToNBT(new NBTTagCompound()));
 	}
-	
+
 	@Override
-	public NBTTagCompound getUpdateTag() 
+	public NBTTagCompound getUpdateTag()
 	{
 		return this.writeToNBT(new NBTTagCompound());
 	}
@@ -272,14 +234,13 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 	@Override
 	public ItemStack getItem(int i)
 	{
-		return ingredients[i];
+		return ingredients[i] == null ? ItemStack.EMPTY : ingredients[i];
 	}
 
 	@Override
 	public void clear()
 	{
-		for (int i = 0; i < ingredients.length; i++)
-		{
+		for (int i = 0; i < ingredients.length; i++) {
 			ingredients[i] = null;
 		}
 	}

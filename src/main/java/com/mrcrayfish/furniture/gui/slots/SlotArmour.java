@@ -17,6 +17,9 @@
  */
 package com.mrcrayfish.furniture.gui.slots;
 
+import com.mrcrayfish.furniture.api.RecipeAPI;
+
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -27,30 +30,35 @@ public class SlotArmour extends Slot
 {
 	private EntityEquipmentSlot armourType;
 
-	public SlotArmour(IInventory machine, int id, int x, int y, EntityEquipmentSlot armourType)
-	{
+	public SlotArmour(IInventory machine, int id, int x, int y, EntityEquipmentSlot armourType) {
 		super(machine, id, x, y);
 		this.armourType = armourType;
 	}
 
 	@Override
-	public boolean isItemValid(ItemStack par1ItemStack)
+	public boolean isItemValid(ItemStack stack)
 	{
-		if (par1ItemStack == null)
-		{
+		if (stack == null) {
 			return false;
 		}
 
-		if (!(par1ItemStack.getItem() instanceof ItemArmor))
-		{
+		if (stack.isEmpty()) {
 			return false;
 		}
 
-		if (((ItemArmor) par1ItemStack.getItem()).armorType != armourType)
-		{
+		if (RecipeAPI.getWashingMachineRecipeFromInput(stack) == null)
+			return false;
+
+		if (EntityLiving.getSlotForItemStack(stack) != armourType) {
 			return false;
 		}
 
 		return true;
+	}
+
+	@Override
+	public String getSlotTexture()
+	{
+		return ItemArmor.EMPTY_SLOT_NAMES[armourType.getIndex()];
 	}
 }

@@ -84,7 +84,7 @@ public class BlockLamp extends Block
 			if (heldItem.getItem() instanceof ItemDye)
 			{
 				worldIn.setBlockState(pos, state.withProperty(COLOUR, 15 - heldItem.getItemDamage()));
-				if (!playerIn.capabilities.isCreativeMode)
+				if (!playerIn.isCreative())
 					heldItem.shrink(1);
 				return true;
 			}

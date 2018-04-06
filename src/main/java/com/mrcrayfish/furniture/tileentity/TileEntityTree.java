@@ -64,7 +64,7 @@ public class TileEntityTree extends TileEntity implements ITickable, ISimpleInve
 	{
 		super.readFromNBT(tagCompound);
 		
-		if(tagCompound.hasKey("Items"))
+		if(tagCompound.hasKey("Items", 9))
 		{
 			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
 			this.ornaments = new ItemStack[this.getSize()];

@@ -17,154 +17,55 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
-import com.mrcrayfish.furniture.init.FurnitureSounds;
+import java.util.List;
+
+import com.google.common.collect.Lists;
+import com.mrcrayfish.furniture.blocks.BlockCounter.CounterType;
+import com.mrcrayfish.furniture.init.FurnitureBlocks;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class BlockCounterSink extends BlockFurniture
 {
 	public static final PropertyBool FILLED = PropertyBool.create("filled");
-	
-	public BlockCounterSink(Material material)
-	{
+
+	public BlockCounterSink(Material material) {
 		super(material);
 		this.setHardness(0.5F);
 		this.setSoundType(SoundType.STONE);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(FILLED, Boolean.valueOf(false)));
 	}
-	
+
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		if (!worldIn.isRemote)
-		{
-			ItemStack heldItem = playerIn.getHeldItem(hand);
-			if (!heldItem.isEmpty())
-			{
-				if (heldItem.getItem() == Items.BUCKET)
-				{
-					if (hasWater(state))
-					{
-						if (!playerIn.capabilities.isCreativeMode)
-						{
-							if (heldItem.getCount() > 1)
-							{
-								if (playerIn.inventory.addItemStackToInventory(new ItemStack(Items.WATER_BUCKET)))
-								{
-									heldItem.shrink(1);
-								}
-							}
-							else
-							{
-								playerIn.setHeldItem(hand, new ItemStack(Items.WATER_BUCKET));
-							}
-						}
-						worldIn.setBlockState(pos, state.withProperty(FILLED, true));
-					}
-				}
-				else if (heldItem.getItem() == Items.WATER_BUCKET)
-				{
-					if (!hasWater(state))
-					{
-						if (!playerIn.capabilities.isCreativeMode)
-						{
-							playerIn.setHeldItem(hand, new ItemStack(Items.BUCKET));
-						}
-						worldIn.setBlockState(pos, state.withProperty(FILLED, true), 2);
-					}
-				}
-				else if (heldItem.getItem() == Items.GLASS_BOTTLE)
-				{
-					if (hasWater(state))
-					{
-						if (!playerIn.capabilities.isCreativeMode)
-						{
-							if (heldItem.getCount() > 1)
-							{
-								if (playerIn.inventory.addItemStackToInventory(new ItemStack(Items.POTIONITEM, 1, 0)))
-								{
-									heldItem.shrink(1);
-								}
-							}
-							else
-							{
-								playerIn.setHeldItem(hand, new ItemStack(Items.POTIONITEM, 1, 0));
-							}
-						}
-						worldIn.setBlockState(pos, state.withProperty(FILLED, false), 2);
-					}
-				}
-				else if (heldItem.getItem() == Items.POTIONITEM && heldItem.getItemDamage() == 0)
-				{
-					if (!hasWater(state))
-					{
-						if (!playerIn.capabilities.isCreativeMode)
-						{
-							playerIn.setHeldItem(hand, new ItemStack(Items.GLASS_BOTTLE));
-						}
-						worldIn.setBlockState(pos, state.withProperty(FILLED, true), 2);
-					}
-				}
-				else
-				{
-					if (!hasWater(state))
-					{
-						if (hasWaterSource(worldIn, pos))
-						{
-							worldIn.setBlockState(pos, state.withProperty(FILLED, true), 2);
-							worldIn.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 1.0F);
-							worldIn.setBlockToAir(pos.add(0, -2, 0));
-						}
-						else
-						{
-							playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the basin is on to fill it. Alternatively you can use a water bucket to fill it."));
-						}
-					}
-				}
-			}
-			else
-			{
-				if (!hasWater(state))
-				{
-					if (hasWaterSource(worldIn, pos))
-					{
-						worldIn.setBlockState(pos, state.withProperty(FILLED, true), 2);
-						worldIn.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 1.0F);
-						worldIn.setBlockToAir(pos.add(0, -2, 0));
-					}
-					else
-					{
-						playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the basin is on to fill it. Alternatively you can use a water bucket to fill it."));
-					}
-				}
-			}
-		}
-		return true;
+		return FurnitureBlocks.basin.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 	}
-	
+
 	@Override
-	public IBlockState getStateFromMeta(int meta) 
+	public IBlockState getStateFromMeta(int meta)
 	{
-		return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta)).withProperty(FILLED, meta > 3);
+		return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta)).withProperty(FILLED, meta / 4 > 0);
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		return state.getValue(FACING).getHorizontalIndex() + (state.getValue(FILLED) ? 0 : 4);
+		return state.getValue(FACING).getHorizontalIndex() + (state.getValue(FILLED) ? 4 : 0);
 	}
 
 	@Override
@@ -172,14 +73,48 @@ public class BlockCounterSink extends BlockFurniture
 	{
 		return new BlockStateContainer(this, FACING, FILLED);
 	}
-	
-	private boolean hasWater(IBlockState state)
+
+	@Override
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
 	{
-		return state.getValue(FILLED);
+		List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
+		for (AxisAlignedBB box : list) {
+			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
+		}
 	}
 
-	private boolean hasWaterSource(World world, BlockPos pos)
+	private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
 	{
-		return world.getBlockState(pos.add(0, -2, 0)) == Blocks.WATER.getDefaultState();
+		List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
+		EnumFacing facing = state.getValue(FACING);
+		list.add(BlockCounter.COUNTER_TOP);
+		list.add(BlockCounter.FORWARD_BOXES[facing.getHorizontalIndex()]);
+		return list;
+	}
+
+	@Override
+	public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
+	{
+		List<RayTraceResult> list = Lists.<RayTraceResult>newArrayList();
+
+		for (AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos))) {
+			list.add(this.rayTrace(pos, start, end, axisalignedbb));
+		}
+
+		RayTraceResult raytraceresult1 = null;
+		double d1 = 0.0D;
+
+		for (RayTraceResult raytraceresult : list) {
+			if (raytraceresult != null) {
+				double d0 = raytraceresult.hitVec.squareDistanceTo(end);
+
+				if (d0 > d1) {
+					raytraceresult1 = raytraceresult;
+					d1 = d0;
+				}
+			}
+		}
+
+		return raytraceresult1;
 	}
 }

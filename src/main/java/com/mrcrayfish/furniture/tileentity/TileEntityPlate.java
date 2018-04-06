@@ -54,7 +54,7 @@ public class TileEntityPlate extends TileEntity implements ISimpleInventory
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
 		super.readFromNBT(tagCompound);
-		if (tagCompound.hasKey("Items"))
+		if (tagCompound.hasKey("Items", 9))
 		{
 			NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
 			for (int i = 0; i < tagList.tagCount(); ++i)

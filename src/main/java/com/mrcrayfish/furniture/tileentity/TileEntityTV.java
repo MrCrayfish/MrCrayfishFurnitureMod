@@ -35,7 +35,7 @@ public class TileEntityTV extends TileEntity
 	public void readFromNBT(NBTTagCompound tagCompound)
 	{
 		super.readFromNBT(tagCompound);
-		if (tagCompound.hasKey("Channel"))
+		if (tagCompound.hasKey("Channel", 3))
 		{
 			this.channel = tagCompound.getInteger("Channel");
 		}

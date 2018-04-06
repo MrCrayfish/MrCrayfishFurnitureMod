@@ -17,19 +17,22 @@
  */
 package com.mrcrayfish.furniture.gui;
 
+import java.util.Arrays;
+
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
+
 import com.mrcrayfish.furniture.gui.containers.ContainerDishwasher;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageDishwasher;
 import com.mrcrayfish.furniture.tileentity.TileEntityDishwasher;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.vertex.VertexFormat;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.opengl.GL11;
-
-import java.util.Arrays;
 
 public class GuiDishwasher extends GuiContainer
 {
@@ -39,8 +42,7 @@ public class GuiDishwasher extends GuiContainer
 
 	private GuiButton button_start;
 
-	public GuiDishwasher(InventoryPlayer inventoryPlayer, TileEntityDishwasher dishwasher)
-	{
+	public GuiDishwasher(InventoryPlayer inventoryPlayer, TileEntityDishwasher dishwasher) {
 		super(new ContainerDishwasher(inventoryPlayer, dishwasher));
 		this.tileEntityDishwasher = dishwasher;
 		this.xSize = 176;
@@ -64,24 +66,19 @@ public class GuiDishwasher extends GuiContainer
 	@Override
 	protected void actionPerformed(GuiButton guibutton)
 	{
-		if (!guibutton.enabled)
-		{
+		if (!guibutton.enabled) {
 			return;
 		}
 
-		if (guibutton.id == 0)
-		{
-			if (!tileEntityDishwasher.isWashing())
-			{
+		if (guibutton.id == 0) {
+			if (!tileEntityDishwasher.isWashing()) {
 				PacketHandler.INSTANCE.sendToServer(new MessageDishwasher(0, tileEntityDishwasher.getPos().getX(), tileEntityDishwasher.getPos().getY(), tileEntityDishwasher.getPos().getZ()));
-			}
-			else
-			{
+			} else {
 				PacketHandler.INSTANCE.sendToServer(new MessageDishwasher(1, tileEntityDishwasher.getPos().getX(), tileEntityDishwasher.getPos().getY(), tileEntityDishwasher.getPos().getZ()));
 			}
 		}
 	}
-	
+
 	@Override
 	public void drawScreen(int mouseX, int mouseY, float partialTicks)
 	{
@@ -89,21 +86,16 @@ public class GuiDishwasher extends GuiContainer
 		super.drawScreen(mouseX, mouseY, partialTicks);
 		this.renderHoveredToolTip(mouseX, mouseY);
 
-		if(isPointInRegion(37, 9, 11, 11, mouseX, mouseY))
-		{
-			if (tileEntityDishwasher.isWashing())
-			{
-				drawHoveringText(Arrays.asList(new String[]{"Running"}), mouseX, mouseY);
-			}
-			else
-			{
-				drawHoveringText(Arrays.asList(new String[]{"Stopped"}), mouseX, mouseY);
+		if (isPointInRegion(37, 9, 11, 11, mouseX, mouseY)) {
+			if (tileEntityDishwasher.isWashing()) {
+				drawHoveringText(Arrays.asList(new String[] { "Running" }), mouseX, mouseY);
+			} else {
+				drawHoveringText(Arrays.asList(new String[] { "Stopped" }), mouseX, mouseY);
 			}
 		}
-		
-		if(isPointInRegion(129, 39, 7, 55, mouseX, mouseY))
-		{
-			drawHoveringText(Arrays.asList(new String[]{"Soap: " + tileEntityDishwasher.timeRemaining + "/5000"}), mouseX, mouseY);
+
+		if (isPointInRegion(129, 39, 7, 55, mouseX, mouseY)) {
+			drawHoveringText(Arrays.asList(new String[] { "Soap: " + tileEntityDishwasher.timeRemaining + "/5000" }), mouseX, mouseY);
 		}
 	}
 
@@ -122,8 +114,7 @@ public class GuiDishwasher extends GuiContainer
 		int i1 = (height - ySize) / 2;
 		this.drawTexturedModalRect(l, i1, 0, 0, xSize, ySize);
 
-		if (tileEntityDishwasher.isWashing())
-		{
+		if (tileEntityDishwasher.isWashing()) {
 			int superMode = tileEntityDishwasher.superMode ? 20 : 50;
 			int percent = (tileEntityDishwasher.progress % superMode) * 55 / superMode;
 			drawTexturedModalRect((l + 39), (i1 + 94) - percent, 176, 55 - percent, 9, percent);
@@ -135,21 +126,19 @@ public class GuiDishwasher extends GuiContainer
 
 		drawTexturedModalRect((l + 129), (i1 + 39), 192, 0, 7, 55);
 
-		if (tileEntityDishwasher.isWashing())
-		{
+		if (tileEntityDishwasher.isWashing()) {
 			button_start.displayString = "Stop";
-			drawColour(l + 37, i1 + 9, 11, 11, 49475);
-		}
-		else
-		{
+			drawColour(l + 37, i1 + 9, 11, 11, -16711936);
+		} else {
 			button_start.displayString = "Start";
-			drawColour(l + 37, i1 + 9, 11, 11, 16711680);
+			drawColour(l + 37, i1 + 9, 11, 11, -65280);
 		}
 	}
 
 	public void drawColour(int x, int y, int width, int height, int par4)
 	{
 		drawRect(x, y, x + width, y + height, par4);
+		GlStateManager.color(1, 1, 1, 1);
 	}
 
 }

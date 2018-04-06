@@ -19,13 +19,21 @@ package com.mrcrayfish.furniture.gui.containers;
 
 import com.mrcrayfish.furniture.api.RecipeAPI;
 import com.mrcrayfish.furniture.api.RecipeData;
+import com.mrcrayfish.furniture.gui.slots.SlotSoapyWater;
 import com.mrcrayfish.furniture.gui.slots.SlotTool;
 import com.mrcrayfish.furniture.init.FurnitureItems;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemAxe;
+import net.minecraft.item.ItemHoe;
+import net.minecraft.item.ItemPickaxe;
+import net.minecraft.item.ItemSpade;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
 
 public class ContainerDishwasher extends Container
 {
@@ -42,7 +50,7 @@ public class ContainerDishwasher extends Container
 		this.addSlotToContainer(new SlotTool(dishwasherInventory, 3, 56, 74, 3));
 		this.addSlotToContainer(new SlotTool(dishwasherInventory, 4, 80, 74, 4));
 		this.addSlotToContainer(new SlotTool(dishwasherInventory, 5, 104, 74, 5));
-		this.addSlotToContainer(new Slot(dishwasherInventory, 6, 125, 7));
+		this.addSlotToContainer(new SlotSoapyWater(dishwasherInventory, 6, 125, 7));
 
 		for (int i = 0; i < 3; i++)
 		{
@@ -89,12 +97,9 @@ public class ContainerDishwasher extends Container
 				if (data != null)
 				{
 					int corroSlot = toolToSlot(item);
-					if (slotNum != -1)
+					if (!this.mergeItemStack(item, corroSlot, corroSlot + 1, true))
 					{
-						if (!this.mergeItemStack(item, corroSlot, corroSlot + 1, true))
-						{
-							return ItemStack.EMPTY;
-						}
+						return ItemStack.EMPTY;
 					}
 				}
 				else if (item.getItem() == FurnitureItems.itemSoapyWater | item.getItem() == FurnitureItems.itemSuperSoapyWater)
@@ -160,11 +165,7 @@ public class ContainerDishwasher extends Container
 		{
 			return 4;
 		}
-
-		if (item instanceof ItemBow)
-		{
-			return 5;
-		}
-		return -1;
+		
+		return 5;
 	}
 }

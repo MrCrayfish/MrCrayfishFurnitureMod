@@ -105,7 +105,7 @@ public class TileEntityMicrowave extends TileEntityFurniture implements ISidedIn
 						this.setInventorySlotContents(0, data.getOutput().copy());
 					}
 				}
-				if (!world.isRemote)
+				if (world.isRemote)
 				{
 					world.playSound(pos.getX(), pos.getY(), pos.getZ(), FurnitureSounds.microwave_finish, SoundCategory.BLOCKS, 0.75F, 1.0F, true);
 				}
