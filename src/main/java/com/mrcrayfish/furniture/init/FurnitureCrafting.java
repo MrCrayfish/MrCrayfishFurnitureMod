@@ -46,11 +46,6 @@ public class FurnitureCrafting
 
 	private static class RecipeSoapyWater extends net.minecraftforge.registries.IForgeRegistryEntry.Impl<IRecipe> implements IRecipe
 	{
-		public RecipeSoapyWater()
-		{
-			this.setRegistryName(Reference.MOD_ID + ":white_fence");
-		}
-
 		@Override
 		public boolean matches(InventoryCrafting inv, World worldIn)
 		{
