@@ -93,8 +93,6 @@ tile.fire_alarm_on.name=Fire Alarm (On)
 tile.ceiling_light_off.name=Ceiling Light
 tile.ceiling_light_on.name=Ceiling Light (On)
 tile.stereo.name=Stereo
-tile.wall_cabinet.name=Wall Cabinet
-tile.bath.name=Bath
 tile.toilet.name=Toilet
 tile.basin.name=Basin
 tile.wall_cabinet.name=Wall Cabinet
@@ -154,6 +152,9 @@ tile.divingboard_base.name=Divingboard
 tile.door_mat.name=Door Mat
 tile.esky.name=Cooler
 tile.water_tank.name=Water Tank
+
+keys.cfm.category=MrCrayfish's Furniture Mod
+key.fart.desc=Fart
 
 achievement.cfm_install=You've been installed!
 achievement.cfm_install.desc=Thank you for installing MrCrayfish's Furniture Mod
