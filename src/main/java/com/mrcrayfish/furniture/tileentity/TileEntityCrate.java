@@ -51,4 +51,10 @@ public class TileEntityCrate extends TileEntityFurniture
 		this.fillWithLoot(playerIn);
 		return new ContainerCrate(playerInventory, this);
 	}
+	
+	@Override
+	public boolean isUsableByPlayer(EntityPlayer player)
+	{
+		return super.isUsableByPlayer(player) && !sealed;
+	}
 }
