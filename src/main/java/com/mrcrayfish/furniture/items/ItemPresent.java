@@ -51,7 +51,6 @@ public class ItemPresent extends ItemBlock implements IMail
 		super(block);
 		this.setMaxDamage(0);
         this.setHasSubtypes(true);
-        this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
 
 	@Override
@@ -184,17 +183,5 @@ public class ItemPresent extends ItemBlock implements IMail
 	public String getUnlocalizedName(ItemStack stack)
 	{
 		return super.getUnlocalizedName(stack) + "_" + EnumDyeColor.values()[stack.getItemDamage()].getName();
-	}
-
-	@Override
-	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
-	{
-		if(this.isInCreativeTab(tab))
-		{
-			for (int i = 0; i < 16; ++i)
-			{
-				items.add(new ItemStack(this, 1, i));
-			}
-		}
 	}
 }

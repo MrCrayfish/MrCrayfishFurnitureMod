@@ -1,7 +1,7 @@
 {
   "result": {
     "item": "cfm:present",
-    "data": 12,
+    "data": 4,
     "count": 4
   },
   "pattern": [
@@ -16,7 +16,7 @@
     },
     "W": {
       "item": "minecraft:wool",
-      "data": 14
+      "data": 4
     }
   }
 }
