@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.text.ITextComponent;
@@ -32,6 +33,6 @@ public class DamageSourceFence extends DamageSource
 	@Override
 	public ITextComponent getDeathMessage(EntityLivingBase entityLivingBaseIn) 
 	{
-		return new TextComponentString(entityLivingBaseIn.getName() + " was zapped to death");
+		return new TextComponentString(I18n.format("death.block.electric_fence", entityLivingBaseIn.getDisplayName()));
 	}
 }
