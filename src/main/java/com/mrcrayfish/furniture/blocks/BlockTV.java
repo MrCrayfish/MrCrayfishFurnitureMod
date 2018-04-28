@@ -23,14 +23,15 @@ import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageTVPlaySound;
 import com.mrcrayfish.furniture.network.message.MessageTVStopSound;
 import com.mrcrayfish.furniture.tileentity.TileEntityTV;
-import com.mrcrayfish.furniture.util.TileEntityUtil;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -70,8 +71,7 @@ public class BlockTV extends BlockFurnitureTile
 				TileEntityTV tileEntityTelevision = (TileEntityTV) tileEntity;
 				tileEntityTelevision.nextChannel();
 				worldIn.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FurnitureSounds.white_noise, SoundCategory.BLOCKS, 0.75F, 1.0F);
-				PacketHandler.INSTANCE.sendToAllAround(new MessageTVPlaySound(pos, Channels.getChannel(tileEntityTelevision.getChannel()).getChannelName()), new TargetPoint(playerIn.dimension, pos.getX(), pos.getY(), pos.getZ(), 64));
-				TileEntityUtil.markBlockForUpdate(worldIn, pos);
+				PacketHandler.INSTANCE.sendToAllAround(new MessageTVPlaySound(pos.add(0.5, 0.5, 0.5), Channels.getChannel(tileEntityTelevision.getChannel()).getChannelName()), new TargetPoint(playerIn.dimension, pos.getX(), pos.getY(), pos.getZ(), 64));
 			}
 		}
 		return true;

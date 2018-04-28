@@ -25,7 +25,7 @@ public class BlockWreath extends BlockFurniture
 	{
 		super(materialIn);
 		this.setHardness(0.5F);
-		this.setSoundType(SoundType.GROUND);
+		this.setSoundType(SoundType.PLANT);
 	}
 
 	@Override

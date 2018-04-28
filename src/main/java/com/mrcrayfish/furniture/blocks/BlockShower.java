@@ -80,12 +80,22 @@ public class BlockShower extends BlockFurniture
 	}
 
 	@Override
-	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+	public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player)
 	{
-		if (this == FurnitureBlocks.shower_bottom) {
-			worldIn.destroyBlock(pos.up(), false);
-		} else {
-			worldIn.destroyBlock(pos.down(), false);
+		world.destroyBlock(this == FurnitureBlocks.shower_bottom ? pos.up() : pos.down(), false);
+	}
+
+	@Override
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
+	{
+		if (entity instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) entity;
+			boolean top = this == FurnitureBlocks.shower_top;
+
+			IBlockState head = world.getBlockState(pos.up(top ? 1 : 2));
+			if (head.getBlock() == FurnitureBlocks.shower_head_on) {
+				Triggers.trigger(Triggers.PLAYER_SHOWER, player);
+			}
 		}
 	}
 
@@ -101,7 +111,6 @@ public class BlockShower extends BlockFurniture
 		} else if (block == FurnitureBlocks.shower_head_on) {
 			worldIn.setBlockState(pos.up(), FurnitureBlocks.shower_head_off.getDefaultState().withProperty(FACING, aboveState.getValue(FACING)), 2);
 			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.5F, false);
-			Triggers.trigger(Triggers.PLAYER_SHOWER, playerIn);
 		}
 		return true;
 	}
