@@ -57,7 +57,7 @@ public class Triggers
 	 * @param player
 	 *            The player that is triggering the trigger
 	 */
-	public static void trigger(BasicTrigger trigger, EntityPlayer player)
+	public static void trigger(IModTrigger trigger, EntityPlayer player)
 	{
 		if (player instanceof EntityPlayerMP) {
 			trigger.trigger((EntityPlayerMP) player);

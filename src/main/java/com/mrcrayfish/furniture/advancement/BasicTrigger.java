@@ -16,7 +16,7 @@ import net.minecraft.advancements.critereon.AbstractCriterionInstance;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
 
-public class BasicTrigger implements ICriterionTrigger
+public class BasicTrigger implements ICriterionTrigger, IModTrigger
 {
 	private final ResourceLocation id;
 	private final Map<PlayerAdvancements, BasicTrigger.Listeners> listeners = Maps.<PlayerAdvancements, BasicTrigger.Listeners>newHashMap();
@@ -91,12 +91,12 @@ public class BasicTrigger implements ICriterionTrigger
 	 * @param parPlayer
 	 *            the player
 	 */
-	public void trigger(EntityPlayerMP parPlayer)
+	public void trigger(EntityPlayerMP player)
 	{
-		BasicTrigger.Listeners tameanimaltrigger$listeners = this.listeners.get(parPlayer.getAdvancements());
+		BasicTrigger.Listeners listeners = this.listeners.get(player.getAdvancements());
 
-		if (tameanimaltrigger$listeners != null) {
-			tameanimaltrigger$listeners.trigger(parPlayer);
+		if (listeners != null) {
+			listeners.trigger(player);
 		}
 	}
 

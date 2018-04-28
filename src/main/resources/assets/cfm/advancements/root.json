@@ -9,7 +9,7 @@
         "description": {
             "translate": "advancements.cfm.title.desc"
         },
-		"background": "minecraft:textures/blocks/brick.png",
+		"background": "minecraft:textures/blocks/log_oak.png",
         "show_toast": false,
         "announce_to_chat": false
     },
