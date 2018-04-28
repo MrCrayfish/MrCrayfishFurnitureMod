@@ -25,8 +25,10 @@ import com.mrcrayfish.furniture.api.Recipes;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import com.mrcrayfish.furniture.integration.crafttweaker.CraftTweakerIntegration;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ConfigurationHandler
@@ -95,6 +97,11 @@ public class ConfigurationHandler
             RecipeRegistry.registerDefaultRecipes();
             RecipeRegistry.registerConfigRecipes();
             Recipes.addCommRecipesToLocal();
+            /** Craft Tweaker Integration **/
+            if (Loader.isModLoaded("crafttweaker"))
+            {
+                CraftTweakerIntegration.apply();
+            }
             Recipes.updateDataList();
         }
         config.save();

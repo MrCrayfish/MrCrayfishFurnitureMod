@@ -32,6 +32,7 @@ import com.mrcrayfish.furniture.handler.PlayerEvents;
 import com.mrcrayfish.furniture.init.FurnitureTab;
 import com.mrcrayfish.furniture.init.FurnitureTileEntities;
 import com.mrcrayfish.furniture.init.RegistrationHandler;
+import com.mrcrayfish.furniture.integration.crafttweaker.CraftTweakerIntegration;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.proxy.CommonProxy;
 import com.mrcrayfish.furniture.render.tileentity.MirrorRenderer;
@@ -55,7 +56,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Method;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, acceptedMinecraftVersions = Reference.ACCEPTED_MC_VERSIONS)
+@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, dependencies = Reference.DEPENDENCIES, guiFactory = Reference.GUI_FACTORY_CLASS, acceptedMinecraftVersions = Reference.ACCEPTED_MC_VERSIONS)
 public class MrCrayfishFurnitureMod
 {
     @Instance(Reference.MOD_ID)
@@ -123,6 +124,11 @@ public class MrCrayfishFurnitureMod
         RecipeRegistry.registerDefaultRecipes();
         RecipeRegistry.registerConfigRecipes();
         Recipes.addCommRecipesToLocal();
+        /* Craft Tweaker Integration */
+        if (Loader.isModLoaded("crafttweaker"))
+        {
+            CraftTweakerIntegration.apply();
+        }
         Recipes.updateDataList();
 
         Channels.registerChannels();
