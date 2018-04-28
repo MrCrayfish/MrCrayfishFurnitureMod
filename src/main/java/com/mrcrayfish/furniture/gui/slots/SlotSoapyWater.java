@@ -42,7 +42,7 @@ public class SlotSoapyWater extends Slot
 		Item item = par1ItemStack.getItem();
 		return item == FurnitureItems.itemSoapyWater || item == FurnitureItems.itemSuperSoapyWater;
 	}
-
+	
 	@Override
 	public String getSlotTexture()
 	{

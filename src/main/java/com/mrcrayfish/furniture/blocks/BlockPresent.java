@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 import com.mrcrayfish.furniture.tileentity.TileEntityPresent;
 import com.mrcrayfish.furniture.util.InventoryUtil;
@@ -37,6 +38,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
@@ -92,6 +94,7 @@ public class BlockPresent extends Block implements ITileEntityProvider
 			if (world.isRemote) {
 				player.sendMessage(new TextComponentString(TextFormatting.GREEN + "Merry Christmas" + TextFormatting.RESET + " from " + TextFormatting.RED + present.ownerName));
 			}
+			Triggers.trigger(Triggers.UNWRAP_PRESENT, player);
 		}
 	}
 

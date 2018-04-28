@@ -1,0 +1,20 @@
+{
+    "display": {
+        "icon": {
+            "item": "cfm:present",
+			"data": 0
+        },
+        "title": {
+            "translate": "advancements.cfm.unwrappresent"
+        },
+        "description": {
+            "translate": "advancements.cfm.unwrappresent.desc"
+        }
+    },
+	"parent": "cfm:place_tree",
+	"criteria": {
+        "unwrap_present": {
+            "trigger": "cfm:unwrap_present"
+        }
+	}
+}

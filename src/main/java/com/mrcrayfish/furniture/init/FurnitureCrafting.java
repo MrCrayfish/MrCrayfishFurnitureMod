@@ -160,12 +160,6 @@ public class FurnitureCrafting
 			return remainingItems;
 		}
 
-		@Override
-		public String getGroup()
-		{
-			return group == null ? "" : group.toString();
-		}
-
 		public static class Factory implements IRecipeFactory
 		{
 			@Override

@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.blocks;
 
+import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.util.CollisionHelper;
@@ -43,6 +44,17 @@ public class BlockGrandChair extends BlockFurniture
 		this.setHardness(1.0F);
 		this.setSoundType(SoundType.WOOD);
 		if(top) this.setCreativeTab(null);
+	}
+
+	@Override
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+	{
+		if (placer instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) placer;
+			Triggers.trigger(Triggers.PLACE_CHAIR, player);
+			Triggers.trigger(Triggers.PLACE_CHAIR_OR_TABLE, player);
+		}
+		super.onBlockPlacedBy(world, pos, state, placer, stack);
 	}
 	
 	@Override

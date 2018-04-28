@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
+import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.Block;
@@ -27,6 +28,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
@@ -50,6 +52,15 @@ public class BlockShowerHeadOff extends BlockFurniture
 		super(material);
 		this.setHardness(1.0F);
 		this.setSoundType(SoundType.STONE);
+	}
+
+	@Override
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+	{
+		if (placer instanceof EntityPlayer) {
+			Triggers.trigger(Triggers.PLACE_BATHTROOM_FURNITURE, (EntityPlayer) placer);
+		}
+		super.onBlockPlacedBy(world, pos, state, placer, stack);
 	}
 
 	@Override

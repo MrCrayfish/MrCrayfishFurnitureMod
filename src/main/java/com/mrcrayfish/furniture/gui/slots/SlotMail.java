@@ -17,15 +17,18 @@
  */
 package com.mrcrayfish.furniture.gui.slots;
 
+import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.items.IMail;
+
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class SlotMail extends Slot
 {
-	public SlotMail(IInventory inventory, int slotIndex, int x, int y)
-	{
+	public SlotMail(IInventory inventory, int slotIndex, int x, int y) {
 		super(inventory, slotIndex, x, y);
 	}
 

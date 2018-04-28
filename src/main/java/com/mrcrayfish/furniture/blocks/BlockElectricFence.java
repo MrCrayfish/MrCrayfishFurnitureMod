@@ -17,10 +17,14 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
+
 import com.mrcrayfish.furniture.DamageSourceFence;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -41,8 +45,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import java.util.List;
 
 public class BlockElectricFence extends Block
 {
@@ -162,10 +164,12 @@ public class BlockElectricFence extends Block
 			}
 			else if (entity instanceof EntityPlayer)
 			{
-				if (!((EntityPlayer) entity).capabilities.isCreativeMode)
+				EntityPlayer player = (EntityPlayer)entity;
+				if (!player.isCreative())
 				{
 					entity.attackEntityFrom(this.electricFence, (int) 2.0F);
 					world.playSound(null, pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, FurnitureSounds.zap, SoundCategory.BLOCKS, 0.2F, 1.0F);
+					Triggers.trigger(Triggers.PLAYER_ZAPPED, player);
 					
 					this.sparkle(world, pos);
 				}

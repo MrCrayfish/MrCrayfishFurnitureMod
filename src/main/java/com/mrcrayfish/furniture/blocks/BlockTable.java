@@ -18,6 +18,8 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.advancement.Triggers;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -25,7 +27,10 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
@@ -46,6 +51,17 @@ public class BlockTable extends Block
 		this.setSoundType(sound);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(BACK, false).withProperty(FORWARD, false).withProperty(LEFT, false).withProperty(RIGHT, false));
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+	}
+
+	@Override
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+	{
+		if (placer instanceof EntityPlayer) {
+			EntityPlayer player = (EntityPlayer) placer;
+			Triggers.trigger(Triggers.PLACE_TABLE, player);
+			Triggers.trigger(Triggers.PLACE_CHAIR_OR_TABLE, player);
+		}
+		super.onBlockPlacedBy(world, pos, state, placer, stack);
 	}
 	
 	@Override

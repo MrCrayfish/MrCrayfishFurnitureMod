@@ -17,8 +17,13 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
+import java.util.Random;
+
+import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.util.CollisionHelper;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -42,26 +47,23 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
-import java.util.Random;
-
 public class BlockShower extends BlockFurniture
 {
 	private static final AxisAlignedBB NOTHING = new AxisAlignedBB(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-	
+
 	private static final AxisAlignedBB SIDE_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.9375, 0.0, 0.0, 1.0, 1.0, 1.0);
 	private static final AxisAlignedBB SIDE_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.9375, 0.0, 0.0, 1.0, 1.0, 1.0);
 	private static final AxisAlignedBB SIDE_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.9375, 0.0, 0.0, 1.0, 1.0, 1.0);
 	private static final AxisAlignedBB SIDE_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.9375, 0.0, 0.0, 1.0, 1.0, 1.0);
-	
-	public BlockShower(Material material, boolean top)
-	{
+
+	public BlockShower(Material material, boolean top) {
 		super(material);
 		this.setHardness(1.0F);
 		this.setSoundType(SoundType.STONE);
-		if(top) this.setCreativeTab(null);
+		if (top)
+			this.setCreativeTab(null);
 	}
-	
+
 	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
@@ -72,17 +74,17 @@ public class BlockShower extends BlockFurniture
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
 	{
 		world.setBlockState(pos.up(), FurnitureBlocks.shower_top.getDefaultState().withProperty(FACING, state.getValue(FACING)), 2);
+		if (placer instanceof EntityPlayer) {
+			Triggers.trigger(Triggers.PLACE_BATHTROOM_FURNITURE, (EntityPlayer) placer);
+		}
 	}
-	
+
 	@Override
 	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
 	{
-		if (this == FurnitureBlocks.shower_bottom)
-		{
+		if (this == FurnitureBlocks.shower_bottom) {
 			worldIn.destroyBlock(pos.up(), false);
-		}
-		else
-		{
+		} else {
 			worldIn.destroyBlock(pos.down(), false);
 		}
 	}
@@ -93,35 +95,31 @@ public class BlockShower extends BlockFurniture
 		IBlockState aboveState = worldIn.getBlockState(pos.up());
 		Block block = aboveState.getBlock();
 		int metadata = getMetaFromState(state);
-		if (block == FurnitureBlocks.shower_head_off)
-		{
+		if (block == FurnitureBlocks.shower_head_off) {
 			worldIn.setBlockState(pos.up(), FurnitureBlocks.shower_head_on.getDefaultState().withProperty(FACING, aboveState.getValue(FACING)), 2);
 			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.6F, false);
-		}
-		else if (block == FurnitureBlocks.shower_head_on)
-		{
+		} else if (block == FurnitureBlocks.shower_head_on) {
 			worldIn.setBlockState(pos.up(), FurnitureBlocks.shower_head_off.getDefaultState().withProperty(FACING, aboveState.getValue(FACING)), 2);
 			worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, SoundEvents.BLOCK_LEVER_CLICK, SoundCategory.BLOCKS, 0.3F, 0.5F, false);
+			Triggers.trigger(Triggers.PLAYER_SHOWER, playerIn);
 		}
 		return true;
 	}
-	
+
 	@Override
 	@SideOnly(Side.CLIENT)
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
-		if(Minecraft.getMinecraft().player == null) return NOTHING;
-		
+		if (Minecraft.getMinecraft().player == null)
+			return NOTHING;
+
 		int camera = Minecraft.getMinecraft().gameSettings.thirdPersonView;
 		EnumFacing facing = Minecraft.getMinecraft().player.getHorizontalFacing();
 		int metadata = getMetaFromState(state);
-		
-		if (camera == 1 || camera == 2)
-		{
-			if (facing != state.getValue(FACING).getOpposite())
-			{
-				switch(Minecraft.getMinecraft().player.getHorizontalFacing())
-				{
+
+		if (camera == 1 || camera == 2) {
+			if (facing != state.getValue(FACING).getOpposite()) {
+				switch (Minecraft.getMinecraft().player.getHorizontalFacing()) {
 				case EAST:
 					return SIDE_EAST;
 				case NORTH:
@@ -133,9 +131,7 @@ public class BlockShower extends BlockFurniture
 				default:
 					break;
 				}
-			}
-			else
-			{
+			} else {
 				return NOTHING;
 			}
 		}
@@ -143,10 +139,9 @@ public class BlockShower extends BlockFurniture
 	}
 
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
 	{
-		switch(state.getValue(FACING))
-		{
+		switch (state.getValue(FACING)) {
 		case EAST:
 			this.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_NORTH);
 			this.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_EAST);
@@ -170,7 +165,7 @@ public class BlockShower extends BlockFurniture
 		default:
 			break;
 		}
-		
+
 	}
 
 	@Override
@@ -178,9 +173,9 @@ public class BlockShower extends BlockFurniture
 	{
 		return new ItemStack(FurnitureBlocks.shower_bottom).getItem();
 	}
-	
+
 	@Override
-	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) 
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
 	{
 		return new ItemStack(FurnitureBlocks.shower_bottom);
 	}

@@ -1,0 +1,19 @@
+{
+    "display": {
+        "icon": {
+            "item": "cfm:oven"
+        },
+        "title": {
+            "translate": "advancements.cfm.appliancecity"
+        },
+        "description": {
+            "translate": "advancements.cfm.appliancecity.desc"
+        }
+    },
+	"parent": "cfm:install",
+	"criteria": {
+        "place_appliance": {
+            "trigger": "cfm:place_appliance"
+        }
+	}
+}

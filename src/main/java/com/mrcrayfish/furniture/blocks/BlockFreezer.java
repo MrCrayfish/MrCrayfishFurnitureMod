@@ -18,11 +18,13 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityFreezer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -44,6 +46,9 @@ public class BlockFreezer extends BlockFurnitureTile
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, net.minecraft.entity.EntityLivingBase placer, ItemStack stack) 
 	{
 		worldIn.setBlockState(pos.up(), FurnitureBlocks.fridge.getDefaultState().withProperty(FACING, state.getValue(FACING)));
+		if (placer instanceof EntityPlayer) {
+			Triggers.trigger(Triggers.PLACE_APPLIANCE, (EntityPlayer) placer);
+		}
 	}
 	
 	@Override

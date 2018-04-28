@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 
 import com.google.common.collect.Lists;
+import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 
 import net.minecraft.block.SoundType;
@@ -28,6 +29,7 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -59,6 +61,15 @@ public class BlockBasin extends BlockFurniture
 		this.setHardness(1.0F);
 		this.setSoundType(SoundType.STONE);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(FILLED, Boolean.valueOf(false)));
+	}
+
+	@Override
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+	{
+		if (placer instanceof EntityPlayer) {
+			Triggers.trigger(Triggers.PLACE_BATHTROOM_FURNITURE, (EntityPlayer) placer);
+		}
+		super.onBlockPlacedBy(world, pos, state, placer, stack);
 	}
 
 	@Override

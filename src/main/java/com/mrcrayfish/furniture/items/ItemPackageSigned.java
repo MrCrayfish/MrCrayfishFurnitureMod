@@ -18,6 +18,7 @@
 package com.mrcrayfish.furniture.items;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.gui.inventory.InventoryPackage;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
@@ -105,6 +106,7 @@ public class ItemPackageSigned extends Item implements IMail
 							tileEntityMailBox.addMail(itemStack);
 							player.sendMessage(new TextComponentString("Thank you! - " + TextFormatting.YELLOW + tileEntityMailBox.getOwner()));
 							heldItem.shrink(1);
+							Triggers.trigger(Triggers.PLAYER_SENT_MAIL, player);
 						}
 						else
 						{

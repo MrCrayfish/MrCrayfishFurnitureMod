@@ -21,13 +21,16 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -50,6 +53,15 @@ public class BlockWashingMachine extends BlockFurnitureTile
 		super(material);
 		this.setHardness(1.0F);
 		this.setSoundType(SoundType.ANVIL);
+	}
+
+	@Override
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+	{
+		if (placer instanceof EntityPlayer) {
+			Triggers.trigger(Triggers.PLACE_APPLIANCE, (EntityPlayer) placer);
+		}
+		super.onBlockPlacedBy(world, pos, state, placer, stack);
 	}
 
 	@Override

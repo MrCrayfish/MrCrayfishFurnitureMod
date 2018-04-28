@@ -1,0 +1,22 @@
+{
+    "display": {
+        "icon": {
+            "item": "cfm:mail_box"
+        },
+        "title": {
+            "translate": "advancements.cfm.mailbox"
+        },
+        "description": {
+            "translate": "advancements.cfm.mailbox.desc"
+        }
+    },
+	"parent": "cfm:gardening",
+	"criteria": {
+        "place_mail_box": {
+            "trigger": "minecraft:placed_block",
+            "conditions": {
+                "block": "cfm:mail_box"
+            }
+        }
+	}
+}

@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Random;
 
+import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 
@@ -122,6 +123,7 @@ public class BlockDoorBell extends BlockFurniture
 			worldIn.markBlockRangeForRenderUpdate(pos, pos);
 			worldIn.playSound(null, pos, FurnitureSounds.door_bell, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			worldIn.scheduleUpdate(pos, this, this.tickRate(worldIn));
+			Triggers.trigger(Triggers.CLICKED_DOORBELL, playerIn);
 			return true;
 		}
 	}

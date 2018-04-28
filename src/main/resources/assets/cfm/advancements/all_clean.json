@@ -1,0 +1,19 @@
+{
+    "display": {
+        "icon": {
+            "item": "cfm:shower_bottom"
+        },
+        "title": {
+            "translate": "advancements.cfm.allclean"
+        },
+        "description": {
+            "translate": "advancements.cfm.allclean.desc"
+        }
+    },
+	"parent": "cfm:bathroom",
+	"criteria": {
+        "player_shower": {
+            "trigger": "cfm:player_shower"
+        }
+	}
+}

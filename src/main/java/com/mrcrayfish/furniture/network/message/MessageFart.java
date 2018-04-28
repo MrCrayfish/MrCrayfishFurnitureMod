@@ -17,8 +17,12 @@
  */
 package com.mrcrayfish.furniture.network.message;
 
+import java.util.Random;
+
+import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
+
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.SoundCategory;
@@ -26,17 +30,13 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-import java.util.Random;
-
 //Server Packet
 public class MessageFart implements IMessage, IMessageHandler<MessageFart, IMessage>
 {
 	private Random rand = new Random();
 
-	public MessageFart()
-	{
+	public MessageFart() {
 	}
-
 
 	@Override
 	public void fromBytes(ByteBuf buf)
@@ -47,16 +47,16 @@ public class MessageFart implements IMessage, IMessageHandler<MessageFart, IMess
 	@Override
 	public void toBytes(ByteBuf buf)
 	{
-		
+
 	}
 
 	@Override
 	public IMessage onMessage(MessageFart message, MessageContext ctx)
 	{
 		EntityPlayerMP player = ctx.getServerHandler().player;
-		if (player.getRidingEntity() instanceof EntitySittableBlock)
-		{
+		if (player.getRidingEntity() instanceof EntitySittableBlock) {
 			player.world.playSound(null, player.getPosition(), FurnitureSounds.getRandomFart(rand), SoundCategory.BLOCKS, 0.75F, rand.nextFloat());
+			Triggers.trigger(Triggers.PLAYER_FART, player);
 		}
 		return null;
 	}

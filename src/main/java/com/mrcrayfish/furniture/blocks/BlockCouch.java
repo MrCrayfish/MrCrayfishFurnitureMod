@@ -19,6 +19,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
 
+import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityCouch;
@@ -37,6 +38,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
@@ -181,6 +183,7 @@ public abstract class BlockCouch extends BlockFurnitureTile
 						if (!playerIn.isCreative()) {
 							heldItem.shrink(1);
 						}
+						Triggers.trigger(Triggers.CREATE_COUCH_JEB, playerIn);
 						return true;
 					}
 				}

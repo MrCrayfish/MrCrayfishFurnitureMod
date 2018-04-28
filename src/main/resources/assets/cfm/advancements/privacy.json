@@ -1,0 +1,19 @@
+{
+    "display": {
+        "icon": {
+            "item": "cfm:curtains_open"
+        },
+        "title": {
+            "translate": "advancements.cfm.privacy"
+        },
+        "description": {
+            "translate": "advancements.cfm.privacy.desc"
+        }
+    },
+	"parent": "cfm:mineKea",
+	"criteria": {
+        "get_blinds_or_curtains": {
+            "trigger": "cfm:get_blinds_or_curtains"
+        }
+	}
+}
