@@ -1,0 +1,7 @@
+{
+	"parent": "cfm:block/table_leg_corner",
+	"textures": {
+		"0": "blocks/stone_granite",
+		"1": "blocks/stone_granite_smooth"
+	}
+}

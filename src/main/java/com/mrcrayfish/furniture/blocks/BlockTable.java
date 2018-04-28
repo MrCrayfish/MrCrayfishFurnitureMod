@@ -173,6 +173,7 @@ public class BlockTable extends Block
 				}
 			}
 		}
+		boxes.add(TOP);
 
 		return boxes;
 	}

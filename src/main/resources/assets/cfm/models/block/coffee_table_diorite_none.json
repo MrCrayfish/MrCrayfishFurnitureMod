@@ -1,0 +1,6 @@
+{
+	"parent": "cfm:block/coffee_table_none",
+	"textures": {
+		"1": "blocks/stone_diorite_smooth"
+	}
+}

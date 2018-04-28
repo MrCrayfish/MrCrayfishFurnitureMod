@@ -1,0 +1,7 @@
+{
+	"parent": "cfm:block/coffee_table_all",
+	"textures": {
+		"1": "blocks/stone_granite_smooth",
+		"2": "blocks/stone_granite"
+	}
+}

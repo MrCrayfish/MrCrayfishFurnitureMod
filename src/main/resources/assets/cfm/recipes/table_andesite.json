@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "cfm:table_andesite"
+  },
+  "pattern": [
+    "***",
+    " * ",
+    " * "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "*": {
+      "item": "minecraft:stone",
+	  "data": 5
+    }
+  }
+}

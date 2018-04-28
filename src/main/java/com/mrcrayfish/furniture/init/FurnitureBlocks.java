@@ -20,7 +20,6 @@ package com.mrcrayfish.furniture.init;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.google.common.collect.ImmutableList;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.blocks.BlockBarStool;
 import com.mrcrayfish.furniture.blocks.BlockBasin;
@@ -102,17 +101,12 @@ import com.mrcrayfish.furniture.items.ItemWreath;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.BlockStateContainer;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.DefaultStateMapper;
-import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent.LeftClickEmpty;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -163,6 +157,11 @@ public class FurnitureBlocks
 	public static Block table_spruce, table_birch, table_jungle, table_acacia, table_dark_oak;
 	public static Block cabinet_spruce, cabinet_birch, cabinet_jungle, cabinet_acacia, cabinet_dark_oak;
 	public static Block bedside_cabinet_spruce, bedside_cabinet_birch, bedside_cabinet_jungle, bedside_cabinet_acacia, bedside_cabinet_dark_oak;
+
+	/** More Stone Furniture Update */
+	public static Block coffee_table_granite, coffee_table_diorite, coffee_table_andesite;
+	public static Block table_granite, table_diorite, table_andesite;
+	public static Block chair_granite, chair_diorite, chair_andesite;
 
 	/** Special */
 	public static Block mirror;
@@ -287,6 +286,15 @@ public class FurnitureBlocks
 		divingboard_plank = new BlockDivingboard(Material.ROCK, true).setUnlocalizedName("divingboard_plank").setRegistryName("divingboard_plank");
 		door_mat = new BlockDoorMat(Material.CLOTH).setUnlocalizedName("door_mat").setRegistryName("door_mat");
 		esky = new BlockEsky(Material.CLAY).setUnlocalizedName("esky").setRegistryName("esky");
+		coffee_table_granite = new BlockCoffeeTable(Material.ROCK, SoundType.STONE, "coffee_table_granite");
+		coffee_table_diorite = new BlockCoffeeTable(Material.ROCK, SoundType.STONE, "coffee_table_diorite");
+		coffee_table_andesite = new BlockCoffeeTable(Material.ROCK, SoundType.STONE, "coffee_table_andesite");
+		table_granite = new BlockTable(Material.ROCK, SoundType.STONE).setUnlocalizedName("table_granite").setRegistryName("table_granite");
+		table_diorite = new BlockTable(Material.ROCK, SoundType.STONE).setUnlocalizedName("table_diorite").setRegistryName("table_diorite");
+		table_andesite = new BlockTable(Material.ROCK, SoundType.STONE).setUnlocalizedName("table_andesite").setRegistryName("table_andesite");
+		chair_granite = new BlockChair(Material.ROCK, SoundType.STONE).setUnlocalizedName("chair_granite").setRegistryName("chair_granite");
+		chair_diorite = new BlockChair(Material.ROCK, SoundType.STONE).setUnlocalizedName("chair_diorite").setRegistryName("chair_diorite");
+		chair_andesite = new BlockChair(Material.ROCK, SoundType.STONE).setUnlocalizedName("chair_andesite").setRegistryName("chair_andesite");
 	}
 
 	public static void register()
@@ -299,6 +307,9 @@ public class FurnitureBlocks
 		registerBlock(coffee_table_acacia);
 		registerBlock(coffee_table_dark_oak);
 		registerBlock(coffee_table_stone);
+		registerBlock(coffee_table_granite);
+		registerBlock(coffee_table_diorite);
+		registerBlock(coffee_table_andesite);
 		registerBlock(table_oak);
 		registerBlock(table_spruce);
 		registerBlock(table_birch);
@@ -306,6 +317,9 @@ public class FurnitureBlocks
 		registerBlock(table_acacia);
 		registerBlock(table_dark_oak);
 		registerBlock(table_stone);
+		registerBlock(table_granite);
+		registerBlock(table_diorite);
+		registerBlock(table_andesite);
 		registerBlock(chair_oak);
 		registerBlock(chair_spruce);
 		registerBlock(chair_birch);
@@ -313,6 +327,9 @@ public class FurnitureBlocks
 		registerBlock(chair_acacia);
 		registerBlock(chair_dark_oak);
 		registerBlock(chair_stone);
+		registerBlock(chair_granite);
+		registerBlock(chair_diorite);
+		registerBlock(chair_andesite);
 		registerBlock(freezer);
 		registerBlock(fridge, null);
 		registerBlock(cabinet_oak);
@@ -412,8 +429,16 @@ public class FurnitureBlocks
 
 	public static void registerBlock(Block block, ItemBlock item)
 	{
+		if (RegistrationHandler.BLOCKS.contains(block)) {
+			throw new RuntimeException("Duplicate block " + block.getRegistryName());
+		}
+
 		RegistrationHandler.BLOCKS.add(block);
 		if (item != null) {
+			if (FurnitureItems.RegistrationHandler.ITEMS.contains(item)) {
+				throw new RuntimeException("Duplicate block " + block.getRegistryName());
+			}
+			
 			item.setRegistryName(block.getRegistryName());
 			FurnitureItems.RegistrationHandler.ITEMS.add(item);
 		}
@@ -428,6 +453,9 @@ public class FurnitureBlocks
 		registerRender(table_acacia);
 		registerRender(table_dark_oak);
 		registerRender(table_stone);
+		registerRender(table_granite);
+		registerRender(table_diorite);
+		registerRender(table_andesite);
 		registerRender(coffee_table_oak);
 		registerRender(coffee_table_spruce);
 		registerRender(coffee_table_birch);
@@ -435,6 +463,9 @@ public class FurnitureBlocks
 		registerRender(coffee_table_acacia);
 		registerRender(coffee_table_dark_oak);
 		registerRender(coffee_table_stone);
+		registerRender(coffee_table_granite);
+		registerRender(coffee_table_diorite);
+		registerRender(coffee_table_andesite);
 		registerRender(chair_oak);
 		registerRender(chair_spruce);
 		registerRender(chair_birch);
@@ -442,6 +473,9 @@ public class FurnitureBlocks
 		registerRender(chair_acacia);
 		registerRender(chair_dark_oak);
 		registerRender(chair_stone);
+		registerRender(chair_granite);
+		registerRender(chair_diorite);
+		registerRender(chair_andesite);
 		registerRender(cabinet_oak);
 		registerRender(cabinet_spruce);
 		registerRender(cabinet_birch);

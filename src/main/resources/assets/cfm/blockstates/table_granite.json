@@ -1,0 +1,20 @@
+{
+"variants": {
+    "back=false,forward=true,left=false,right=true": {"model": "cfm:table_leg_corner_granite", "y": 270,"uvlock": true},
+    "back=false,forward=true,left=true,right=false": {"model": "cfm:table_leg_corner_granite", "y": 180,"uvlock": true},
+    "back=true,forward=false,left=false,right=true": {"model": "cfm:table_leg_corner_granite","uvlock": true},
+    "back=true,forward=false,left=true,right=false": {"model": "cfm:table_leg_corner_granite", "y": 90,"uvlock": true},
+    "back=false,forward=true,left=false,right=false": {"model": "cfm:table_leg_end_granite", "y": 270,"uvlock": true},
+    "back=false,forward=false,left=false,right=true": {"model": "cfm:table_leg_end_granite","uvlock": true},
+    "back=false,forward=false,left=true,right=false": {"model": "cfm:table_leg_end_granite", "y": 180,"uvlock": true},
+    "back=true,forward=false,left=false,right=false": {"model": "cfm:table_leg_end_granite", "y": 90,"uvlock": true},
+    "back=false,forward=false,left=false,right=false": {"model": "cfm:table_leg_center_granite","uvlock": true},
+    "back=true,forward=true,left=false,right=false": {"model": "cfm:table_leg_none_granite","uvlock": true},
+    "back=true,forward=true,left=true,right=false": {"model": "cfm:table_leg_none_granite","uvlock": true},
+    "back=true,forward=true,left=false,right=true": {"model": "cfm:table_leg_none_granite","uvlock": true},
+    "back=false,forward=false,left=true,right=true": {"model": "cfm:table_leg_none_granite","uvlock": true},
+    "back=false,forward=true,left=true,right=true": {"model": "cfm:table_leg_none_granite","uvlock": true},
+    "back=true,forward=false,left=true,right=true": {"model": "cfm:table_leg_none_granite","uvlock": true},
+    "back=true,forward=true,left=true,right=true": {"model": "cfm:table_leg_none_granite","uvlock": true}
+    }
+}
