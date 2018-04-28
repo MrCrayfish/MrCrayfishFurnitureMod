@@ -64,7 +64,6 @@ public class MessageEnvelope implements IMessage, IMessageHandler<MessageEnvelop
 		ItemStack signedMail = new ItemStack(FurnitureItems.itemEnvelopeSigned);
 		signedMail.setTagCompound((NBTTagCompound) mail.getTagCompound().copy());
 		signedMail.setTagInfo("Author", new NBTTagString(player.getName()));
-		signedMail.setStackDisplayName(TextFormatting.YELLOW.toString() + TextFormatting.BOLD.toString() + "Mail");
 		player.setHeldItem(player.getActiveHand(), signedMail);
 		return null;
 	}

@@ -17,7 +17,6 @@
  */
 package com.mrcrayfish.furniture.init;
 
-import java.rmi.registry.RegistryHandler;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -113,6 +112,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.LeftClickEmpty;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -324,7 +324,7 @@ public class FurnitureBlocks
 		registerBlock(couch, new ItemBlockMeta(couch));
 		registerBlock(couch_jeb);
 		registerBlock(lamp_on, null);
-		registerBlock(lamp_off);
+		registerBlock(lamp_off, new ItemBlockMeta(lamp_off));
 		registerBlock(blinds);
 		registerBlock(blinds_closed, null);
 		registerBlock(curtains);
@@ -383,7 +383,7 @@ public class FurnitureBlocks
 		registerBlock(dishwasher);
 		registerBlock(kitchen_cabinet);
 		registerBlock(chopping_board);
-		registerBlock(bar_stool);
+		registerBlock(bar_stool, new ItemBlockMeta(bar_stool));
 		registerBlock(mirror);
 		registerBlock(mantel_piece);
 		registerBlock(grand_chair_top, null);
@@ -478,7 +478,6 @@ public class FurnitureBlocks
 		registerRender(stereo);
 		registerRender(fire_alarm_off);
 		registerRender(ceiling_light_off);
-		registerRender(lamp_off);
 		registerRender(toilet);
 		registerRender(basin);
 		registerRender(bath_1);
@@ -498,7 +497,6 @@ public class FurnitureBlocks
 		registerRender(cup);
 		registerRender(plate);
 		registerRender(cookie_jar);
-		registerRender(bar_stool);
 		registerRender(chopping_board);
 		registerRender(tree_bottom);
 		registerRender(mantel_piece);
@@ -521,45 +519,26 @@ public class FurnitureBlocks
 		registerRender(divingboard_plank);
 		registerRender(door_mat);
 		registerRender(esky);
-		registerPresents();
-		
-		for(int i = 0; i < EnumDyeColor.values().length; i++) {
-			registerRender(couch, i, "couch_" + EnumDyeColor.values()[i].getName());
+
+		for (int i = 0; i < EnumDyeColor.values().length; i++) {
+			String color = EnumDyeColor.values()[i].getName();
+			registerRender(present, i, "present_" + color);
+			registerRender(couch, i, "couch_" + color);
+			registerRender(bar_stool, i, "bar_stool_" + color);
+			registerRender(lamp_off, i, "lamp_" + color);
 		}
 	}
 
 	@SideOnly(Side.CLIENT)
 	private static void registerRender(Block block)
 	{
-		registerRender(block, 0, block.getUnlocalizedName().substring(5));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation(Reference.MOD_ID + ":" + block.getUnlocalizedName().substring(5), "inventory"));
 	}
 
 	@SideOnly(Side.CLIENT)
 	private static void registerRender(Block block, int metadata, String fileName)
 	{
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), metadata, new ModelResourceLocation(Reference.MOD_ID + ":" + fileName, "inventory"));
-	}
-
-	@SideOnly(Side.CLIENT)
-	private static void registerRender(Block block, String... fileNames)
-	{
-		for (int i = 0; i < fileNames.length; i++) {
-			registerRender(block, i, fileNames[i]);
-		}
-	}
-
-	@SideOnly(Side.CLIENT)
-	private static void registerPresents()
-	{
-		ItemBlock blockItem = (ItemBlock) Item.getItemFromBlock(present);
-		Block block = blockItem.getBlock();
-		StateMapperBase b = new DefaultStateMapper();
-		BlockStateContainer bsc = block.getBlockState();
-		ImmutableList<IBlockState> values = bsc.getValidStates();
-		for (IBlockState state : values) {
-			String str = b.getPropertyString(state.getProperties());
-			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(present), block.getMetaFromState(state), new ModelResourceLocation(Reference.MOD_ID + ":" + "present_" + EnumDyeColor.values()[block.getMetaFromState(state)].getName(), str));
-		}
 	}
 
 	@Mod.EventBusSubscriber(modid = Reference.MOD_ID)

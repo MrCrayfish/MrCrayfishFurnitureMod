@@ -1,6 +1,7 @@
 {
   "result": {
-    "item": "cfm:bar_stool"
+    "item": "cfm:bar_stool",
+	"data": 4
   },
   "pattern": [
     "WWW",
@@ -19,7 +20,7 @@
     },
     "W": {
       "item": "minecraft:wool",
-      "data": 0
+      "data": 4
     }
   }
 }

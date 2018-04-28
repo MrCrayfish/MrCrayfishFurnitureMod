@@ -18,7 +18,9 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.blocks.item.IMetaBlockName;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -27,32 +29,35 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockLamp extends Block
+public class BlockLamp extends Block implements IMetaBlockName
 {
 	public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
 	public static final PropertyBool UP = PropertyBool.create("up");
 	public static final PropertyBool DOWN = PropertyBool.create("down");
-	
+
 	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.0625, 0.0, 0.0625, 0.9375, 14 * 0.0625, 0.9375);
 
-	public BlockLamp(Material material, boolean on)
-	{
+	public BlockLamp(Material material, boolean on) {
 		super(material);
 		this.setHardness(0.75F);
 		this.setSoundType(SoundType.CLOTH);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(COLOUR, 0));
-		if(!on)
-		{
+		if (!on) {
 			this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		}
 	}
@@ -68,9 +73,9 @@ public class BlockLamp extends Block
 	{
 		return false;
 	}
-	
+
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return BOUNDING_BOX;
 	}
@@ -79,10 +84,8 @@ public class BlockLamp extends Block
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		ItemStack heldItem = playerIn.getHeldItem(hand);
-		if (!heldItem.isEmpty())
-		{
-			if (heldItem.getItem() instanceof ItemDye)
-			{
+		if (!heldItem.isEmpty()) {
+			if (heldItem.getItem() instanceof ItemDye) {
 				worldIn.setBlockState(pos, state.withProperty(COLOUR, 15 - heldItem.getItemDamage()));
 				if (!playerIn.isCreative())
 					heldItem.shrink(1);
@@ -90,23 +93,18 @@ public class BlockLamp extends Block
 			}
 		}
 
-		if (!(worldIn.getBlockState(pos.up()).getBlock() instanceof BlockLamp))
-		{
+		if (!(worldIn.getBlockState(pos.up()).getBlock() instanceof BlockLamp)) {
 			worldIn.setBlockState(pos, FurnitureBlocks.lamp_on.getDefaultState().withProperty(BlockLampOn.COLOUR, (Integer) state.getValue(COLOUR)), 3);
-		}
-		else
-		{
+		} else {
 			int yOffset = 1;
-			while (worldIn.getBlockState(pos.up(++yOffset)).getBlock() instanceof BlockLamp);
+			while (worldIn.getBlockState(pos.up(++yOffset)).getBlock() instanceof BlockLamp)
+				;
 
 			int colour = worldIn.getBlockState(pos.up(yOffset).down()).getValue(COLOUR);
 
-			if (worldIn.getBlockState(pos.up(yOffset).down()).getBlock() instanceof BlockLampOn)
-			{
+			if (worldIn.getBlockState(pos.up(yOffset).down()).getBlock() instanceof BlockLampOn) {
 				worldIn.setBlockState(pos.up(yOffset).down(), FurnitureBlocks.lamp_off.getDefaultState().withProperty(BlockLampOn.COLOUR, colour));
-			}
-			else
-			{
+			} else {
 				worldIn.setBlockState(pos.up(yOffset).down(), FurnitureBlocks.lamp_on.getDefaultState().withProperty(BlockLampOn.COLOUR, colour));
 			}
 		}
@@ -137,5 +135,41 @@ public class BlockLamp extends Block
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { COLOUR, UP, DOWN });
+	}
+
+	@Override
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
+	{
+		return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand).withProperty(COLOUR, Math.min(meta, 15));
+	}
+
+	@Override
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+	{
+		drops.add(new ItemStack(FurnitureBlocks.lamp_off, 1, Math.min(state.getValue(COLOUR), 15)));
+	}
+
+	@Override
+	public void getSubBlocks(CreativeTabs item, NonNullList<ItemStack> items)
+	{
+		for (int i = 0; i < EnumDyeColor.values().length; i++) {
+			items.add(new ItemStack(this, 1, i));
+		}
+	}
+
+	@Override
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+	{
+		return new ItemStack(FurnitureBlocks.lamp_off, 1, state.getValue(COLOUR));
+	}
+
+	@Override
+	public String getSpecialName(ItemStack stack)
+	{
+		int metadata = stack.getMetadata();
+		if (metadata < 0 || metadata >= EnumDyeColor.values().length) {
+			return EnumDyeColor.WHITE.getDyeColorName();
+		}
+		return EnumDyeColor.values()[metadata].getDyeColorName();
 	}
 }

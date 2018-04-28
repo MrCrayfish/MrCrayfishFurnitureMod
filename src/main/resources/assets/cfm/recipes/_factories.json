@@ -1,0 +1,5 @@
+{
+	"recipes": {
+		"cutting_shapeless": "com.mrcrayfish.furniture.init.FurnitureCrafting$RecipeCuttingShapeless$Factory"
+	}
+}

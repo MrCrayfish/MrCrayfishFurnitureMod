@@ -66,7 +66,6 @@ public class MessagePackage implements IMessage, IMessageHandler<MessagePackage,
 		ItemStack signedMail = new ItemStack(FurnitureItems.itemPackageSigned);
 		signedMail.setTagCompound(mail.getTagCompound());
 		signedMail.setTagInfo("Author", new NBTTagString(player.getName()));
-		signedMail.setStackDisplayName(TextFormatting.YELLOW.toString() + TextFormatting.BOLD.toString() + "Mail");
 		player.setHeldItem(player.getActiveHand(), signedMail);
 		return null;
 	}

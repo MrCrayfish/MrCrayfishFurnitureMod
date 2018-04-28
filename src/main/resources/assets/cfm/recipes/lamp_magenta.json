@@ -1,6 +1,7 @@
 {
   "result": {
     "item": "cfm:lamp_off",
+	"data": 2,
     "count": 2
   },
   "pattern": [
@@ -18,7 +19,7 @@
     },
     "*": {
       "item": "minecraft:wool",
-      "data": 0
+      "data": 2
     }
   }
 }
