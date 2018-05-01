@@ -39,7 +39,7 @@ public class FurnitureTab extends CreativeTabs
 	@Override
 	public String getTranslatedTabLabel() 
 	{
-		return hoveringButton ? title : "itemGroup.tabFurniture";
+		return hoveringButton ? title : this.getTabLabel();
 	}
 	
 	public void setTitle(String title) 

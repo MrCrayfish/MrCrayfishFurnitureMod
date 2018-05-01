@@ -23,22 +23,25 @@ import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageTVPlaySound;
 import com.mrcrayfish.furniture.network.message.MessageTVStopSound;
 import com.mrcrayfish.furniture.tileentity.TileEntityTV;
+import com.mrcrayfish.furniture.util.TileEntityUtil;
 
+import net.minecraft.block.BlockCauldron;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
@@ -70,6 +73,7 @@ public class BlockTV extends BlockFurnitureTile
 			if (tileEntity instanceof TileEntityTV) {
 				TileEntityTV tileEntityTelevision = (TileEntityTV) tileEntity;
 				tileEntityTelevision.nextChannel();
+		        worldIn.updateComparatorOutputLevel(pos, this);
 				worldIn.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FurnitureSounds.white_noise, SoundCategory.BLOCKS, 0.75F, 1.0F);
 				PacketHandler.INSTANCE.sendToAllAround(new MessageTVPlaySound(pos.add(0.5, 0.5, 0.5), Channels.getChannel(tileEntityTelevision.getChannel()).getChannelName()), new TargetPoint(playerIn.dimension, pos.getX(), pos.getY(), pos.getZ(), 64));
 			}
@@ -83,6 +87,7 @@ public class BlockTV extends BlockFurnitureTile
 	{
 		super.onBlockHarvested(worldIn, pos, state, player);
 		if (!worldIn.isRemote) {
+			worldIn.updateComparatorOutputLevel(pos, this);
 			PacketHandler.INSTANCE.sendToAllAround(new MessageTVStopSound(pos), new TargetPoint(player.dimension, pos.getX(), pos.getY(), pos.getZ(), 64));
 		}
 	}
@@ -91,7 +96,7 @@ public class BlockTV extends BlockFurnitureTile
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
 	{
 		TileEntityTV tileEntityTV = (TileEntityTV) worldIn.getTileEntity(pos);
-		return state.withProperty(CHANNEL, tileEntityTV.getChannel());
+		return super.getActualState(state, worldIn, pos).withProperty(CHANNEL, tileEntityTV.getChannel());
 	}
 
 	@Override
@@ -113,15 +118,30 @@ public class BlockTV extends BlockFurnitureTile
 	}
 
 	@Override
-	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
+	public int getMetaFromState(IBlockState state)
 	{
-		TileEntityTV tv = (TileEntityTV) world.getTileEntity(pos);
-		return tv.getChannel() + 1;
+		return state.getValue(FACING).getHorizontalIndex();
 	}
 
 	@Override
-	public EnumBlockRenderType getRenderType(IBlockState state)
+	public IBlockState getStateFromMeta(int meta)
 	{
-		return EnumBlockRenderType.MODEL;
+		return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta % 4));
+	}
+
+	@Override
+	public boolean hasComparatorInputOverride(IBlockState state)
+	{
+		return true;
+	}
+
+	@Override
+	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
+	{
+		if (world.getTileEntity(pos) instanceof TileEntityTV) {
+			TileEntityTV tv = (TileEntityTV) world.getTileEntity(pos);
+			return tv.getChannel() + 1;
+		}
+		return 0;
 	}
 }

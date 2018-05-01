@@ -102,6 +102,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -438,7 +439,7 @@ public class FurnitureBlocks
 			if (FurnitureItems.RegistrationHandler.ITEMS.contains(item)) {
 				throw new RuntimeException("Duplicate block " + block.getRegistryName());
 			}
-			
+
 			item.setRegistryName(block.getRegistryName());
 			FurnitureItems.RegistrationHandler.ITEMS.add(item);
 		}
@@ -561,6 +562,8 @@ public class FurnitureBlocks
 			registerRender(bar_stool, i, "bar_stool_" + color);
 			registerRender(lamp_off, i, "lamp_" + color);
 		}
+
+		createStateMappers();
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -573,6 +576,11 @@ public class FurnitureBlocks
 	private static void registerRender(Block block, int metadata, String fileName)
 	{
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), metadata, new ModelResourceLocation(Reference.MOD_ID + ":" + fileName, "inventory"));
+	}
+
+	@SideOnly(Side.CLIENT)
+	private static void createStateMappers()
+	{
 	}
 
 	@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
