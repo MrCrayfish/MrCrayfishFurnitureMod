@@ -19,6 +19,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
 
+import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
@@ -38,23 +39,25 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public abstract class BlockCouch extends BlockFurnitureTile
 {
 	public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
-	public static final PropertyEnum TYPE = PropertyEnum.create("type", CouchType.class);
+	public static final PropertyEnum<CouchType> TYPE = PropertyEnum.<CouchType>create("type", CouchType.class);
 
 	private static final AxisAlignedBB COUCH_BASE = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.6, 1.0);
 
@@ -95,33 +98,6 @@ public abstract class BlockCouch extends BlockFurnitureTile
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return FULL_BLOCK_AABB;
-	}
-
-	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-	{
-		if (!(entityIn instanceof EntitySittableBlock)) {
-			int facing = getMetaFromState(state);
-
-			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COUCH_BACKREST[facing]);
-			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COUCH_BASE);
-
-			if (StateHelper.getBlock(worldIn, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.DOWN) instanceof BlockCouch) {
-				if (StateHelper.getRotation(worldIn, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.DOWN) == StateHelper.Direction.RIGHT) {
-					super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COUCH_BACKREST_RIGHT[facing]);
-				} else if (StateHelper.getRotation(worldIn, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.DOWN) == StateHelper.Direction.LEFT) {
-					super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COUCH_BACKREST_LEFT[facing]);
-				}
-				return;
-			}
-
-			if (StateHelper.isAirBlock(worldIn, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.LEFT)) {
-				super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COUCH_ARMREST_LEFT[facing]);
-			}
-			if (StateHelper.isAirBlock(worldIn, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.RIGHT)) {
-				super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COUCH_ARMREST_RIGHT[facing]);
-			}
-		}
 	}
 
 	@Override
@@ -205,6 +181,77 @@ public abstract class BlockCouch extends BlockFurnitureTile
 			}
 		}
 		return SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0.45);
+	}
+
+	private List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
+	{
+		List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
+		EnumFacing facing = state.getValue(FACING);
+
+		IBlockState actualState = this.getActualState(state, world, pos);
+
+		list.add(COUCH_BACKREST[facing.getHorizontalIndex()]);
+		list.add(COUCH_BASE);
+
+		if (actualState.getValue(TYPE) == CouchType.CORNER_LEFT) {
+			if (facing.getAxis() == Axis.X) {
+				list.add(COUCH_BACKREST[(facing.getHorizontalIndex() - 1) < 0 ? 3 : facing.getHorizontalIndex() - 1]);
+			} else {
+				list.add(COUCH_BACKREST[(facing.getHorizontalIndex() + 1) % 4]);
+			}
+		} else if (actualState.getValue(TYPE) == CouchType.CORNER_RIGHT) {
+			if (facing.getAxis() == Axis.X) {
+				list.add(COUCH_BACKREST[(facing.getHorizontalIndex() + 1) % 4]);
+			} else {
+				list.add(COUCH_BACKREST[(facing.getHorizontalIndex() - 1) < 0 ? 3 : facing.getHorizontalIndex() - 1]);
+			}
+		} else {
+			if (StateHelper.isAirBlock(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.LEFT)) {
+				list.add(COUCH_ARMREST_LEFT[facing.getHorizontalIndex()]);
+			}
+			if (StateHelper.isAirBlock(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.RIGHT)) {
+				list.add(COUCH_ARMREST_RIGHT[facing.getHorizontalIndex()]);
+			}
+		}
+
+		return list;
+	}
+
+	@Override
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entity, boolean p_185477_7_)
+	{
+		if (!(entity instanceof EntitySittableBlock)) {
+			List<AxisAlignedBB> boxes = this.getCollisionBoxList(this.getActualState(state, worldIn, pos), worldIn, pos);
+			for (AxisAlignedBB box : boxes) {
+				super.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
+			}
+		}
+	}
+
+	@Override
+	public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
+	{
+		List<RayTraceResult> list = Lists.<RayTraceResult>newArrayList();
+
+		for (AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos), world, pos)) {
+			list.add(this.rayTrace(pos, start, end, axisalignedbb));
+		}
+
+		RayTraceResult raytraceresult1 = null;
+		double d1 = 0.0D;
+
+		for (RayTraceResult raytraceresult : list) {
+			if (raytraceresult != null) {
+				double d0 = raytraceresult.hitVec.squareDistanceTo(end);
+
+				if (d0 > d1) {
+					raytraceresult1 = raytraceresult;
+					d1 = d0;
+				}
+			}
+		}
+
+		return raytraceresult1;
 	}
 
 	@Override
