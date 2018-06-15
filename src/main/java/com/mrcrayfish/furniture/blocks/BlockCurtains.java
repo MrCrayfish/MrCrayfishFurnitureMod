@@ -103,11 +103,11 @@ public abstract class BlockCurtains extends BlockFurniture
     {
         if(isOpen())
         {
-            return worldIn.setBlockState(pos, FurnitureBlocks.curtains_closed.getDefaultState().withProperty(FACING, state.getValue(FACING)));
+            return worldIn.setBlockState(pos, FurnitureBlocks.CURTAINS_CLOSED.getDefaultState().withProperty(FACING, state.getValue(FACING)));
         }
         else
         {
-            return worldIn.setBlockState(pos, FurnitureBlocks.curtains.getDefaultState().withProperty(FACING, state.getValue(FACING)));
+            return worldIn.setBlockState(pos, FurnitureBlocks.CURTAINS.getDefaultState().withProperty(FACING, state.getValue(FACING)));
         }
     }
 
@@ -192,13 +192,13 @@ public abstract class BlockCurtains extends BlockFurniture
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return new ItemStack(FurnitureBlocks.curtains_closed).getItem();
+        return new ItemStack(FurnitureBlocks.CURTAINS_CLOSED).getItem();
     }
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(FurnitureBlocks.curtains_closed);
+        return new ItemStack(FurnitureBlocks.CURTAINS_CLOSED);
     }
 
     @Override

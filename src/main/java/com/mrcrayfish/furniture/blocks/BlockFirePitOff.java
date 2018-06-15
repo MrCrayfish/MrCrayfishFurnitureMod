@@ -42,7 +42,7 @@ public class BlockFirePitOff extends BlockFirePit
                 if(getMetaFromState(state) == 3)
                 {
                     worldIn.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.ITEM_FLINTANDSTEEL_USE, SoundCategory.BLOCKS, 1.0F, RANDOM.nextFloat() * 0.4F + 0.8F);
-                    worldIn.setBlockState(pos, FurnitureBlocks.fire_pit_on.getDefaultState());
+                    worldIn.setBlockState(pos, FurnitureBlocks.FIRE_PIT_ON.getDefaultState());
                     heldItem.damageItem(1, playerIn);
                 }
                 return true;
@@ -60,6 +60,6 @@ public class BlockFirePitOff extends BlockFirePit
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return FurnitureItems.itemLog;
+        return FurnitureItems.LOG;
     }
 }

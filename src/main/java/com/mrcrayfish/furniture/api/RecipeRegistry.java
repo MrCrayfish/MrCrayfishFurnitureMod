@@ -1173,7 +1173,7 @@ public class RecipeRegistry extends RecipeAPI
         if(ConfigurationHandler.oven_6)
             RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.FISH, 1, 1), new ItemStack(Items.COOKED_FISH, 1, 1));
         if(ConfigurationHandler.oven_7)
-            RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(FurnitureItems.itemFlesh), new ItemStack(FurnitureItems.itemCookedFlesh));
+            RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(FurnitureItems.FLESH), new ItemStack(FurnitureItems.COOKED_FLESH));
 
         if(ConfigurationHandler.frez_1)
             RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.WATER_BUCKET), new ItemStack(Blocks.ICE));
@@ -1186,7 +1186,7 @@ public class RecipeRegistry extends RecipeAPI
         if(ConfigurationHandler.frez_5)
             RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.POISONOUS_POTATO), new ItemStack(Items.POTATO));
         if(ConfigurationHandler.frez_6)
-            RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.ROTTEN_FLESH), new ItemStack(FurnitureItems.itemFlesh));
+            RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.ROTTEN_FLESH), new ItemStack(FurnitureItems.FLESH));
 
         if(ConfigurationHandler.mine_1)
             RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Blocks.HARDENED_CLAY, 16), new ItemStack(Items.EMERALD), 1);
@@ -1240,7 +1240,7 @@ public class RecipeRegistry extends RecipeAPI
             RecipeRegistry.getInstance().registerMineBayItem(stack, new ItemStack(Items.EMERALD), 1);
         }
         if(ConfigurationHandler.mine_10)
-            RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(FurnitureItems.itemRecipeBook), new ItemStack(Items.EMERALD), 1);
+            RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(FurnitureItems.RECIPE_BOOk), new ItemStack(Items.EMERALD), 1);
         if(ConfigurationHandler.blen_1)
             RecipeRegistry.getInstance().registerBlenderRecipe("Fruit Crush", 4, new ItemStack[]{new ItemStack(Items.APPLE, 2), new ItemStack(Items.MELON, 4)}, new int[]{255, 58, 37});
         if(ConfigurationHandler.blen_2)
@@ -1253,7 +1253,7 @@ public class RecipeRegistry extends RecipeAPI
         RecipeRegistry.getInstance().registerBlenderRecipe("Egg Nog", 5, new ItemStack[]{new ItemStack(Items.EGG, 4), new ItemStack(Items.MILK_BUCKET, 1), new ItemStack(Items.SUGAR, 2)}, new int[]{255, 234, 178});
 
         if(ConfigurationHandler.chop_1)
-            RecipeRegistry.getInstance().registerChoppingBoardRecipe(new ItemStack(Items.BREAD), new ItemStack(FurnitureItems.itemBreadSlice, 6));
+            RecipeRegistry.getInstance().registerChoppingBoardRecipe(new ItemStack(Items.BREAD), new ItemStack(FurnitureItems.BREAD_SLICE, 6));
 
         if(ConfigurationHandler.dish_1)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.BOW));
@@ -1322,7 +1322,7 @@ public class RecipeRegistry extends RecipeAPI
             RecipeRegistry.getInstance().registerMicrowaveRecipe(new ItemStack(Items.POTATO), new ItemStack(Items.BAKED_POTATO));
 
         if(ConfigurationHandler.toast_1)
-            RecipeRegistry.getInstance().registerToasterRecipe(new ItemStack(FurnitureItems.itemBreadSlice), new ItemStack(FurnitureItems.itemToast));
+            RecipeRegistry.getInstance().registerToasterRecipe(new ItemStack(FurnitureItems.BREAD_SLICE), new ItemStack(FurnitureItems.TOAST));
 
         if(ConfigurationHandler.wash_1)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.LEATHER_HELMET));
@@ -1370,8 +1370,8 @@ public class RecipeRegistry extends RecipeAPI
         if(ConfigurationHandler.grill_1)
             RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(Items.BEEF), new ItemStack(Items.COOKED_BEEF));
         if(ConfigurationHandler.grill_2)
-            RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(FurnitureItems.itemSausage), new ItemStack(FurnitureItems.itemSausageCooked));
+            RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(FurnitureItems.SAUSAGE), new ItemStack(FurnitureItems.SAUSAGE_COOKED));
         if(ConfigurationHandler.grill_3)
-            RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(FurnitureItems.itemKebab), new ItemStack(FurnitureItems.itemKebabCooked));
+            RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(FurnitureItems.KEBAB), new ItemStack(FurnitureItems.KEBAB_COOKED));
     }
 }

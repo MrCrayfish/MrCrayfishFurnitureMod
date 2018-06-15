@@ -18,24 +18,16 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.blocks.item.IMetaBlockName;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockLampOff extends BlockFurniture
@@ -65,16 +57,16 @@ public class BlockLampOff extends BlockFurniture
     {
         if(worldIn.isBlockPowered(pos))
         {
-            worldIn.setBlockState(pos, FurnitureBlocks.lamp_on.getDefaultState(), 2);
+            worldIn.setBlockState(pos, FurnitureBlocks.LAMP_ON.getDefaultState(), 2);
         }
     }
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if(worldIn.isBlockPowered(pos) || worldIn.getBlockState(pos.down()).getBlock() == FurnitureBlocks.bedside_cabinet_oak)
+        if(worldIn.isBlockPowered(pos) || worldIn.getBlockState(pos.down()).getBlock() == FurnitureBlocks.BEDSIDE_CABINET_OAK)
         {
-            worldIn.setBlockState(pos, FurnitureBlocks.lamp_on.getDefaultState(), 2);
+            worldIn.setBlockState(pos, FurnitureBlocks.LAMP_ON.getDefaultState(), 2);
             worldIn.notifyNeighborsOfStateChange(pos.down(), this, true);
         }
         else if(!worldIn.isRemote)

@@ -89,7 +89,7 @@ public class GuiEnvelope extends GuiContainer
         int posX = width / 2 + 40;
         int posY = height / 2 - 50;
 
-        if(mail.getItem() == FurnitureItems.itemEnvelope)
+        if(mail.getItem() == FurnitureItems.ENVELOPE)
         {
             buttonOk = new GuiButton(0, posX, posY, 40, 20, "Sign");
             buttonOk.enabled = true;

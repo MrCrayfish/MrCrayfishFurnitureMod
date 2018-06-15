@@ -59,7 +59,7 @@ public class TileEntityDishwasher extends TileEntityFurniture implements ISidedI
         {
             if(timeRemaining == 0)
             {
-                if(inventory.get(6).getItem() == FurnitureItems.itemSuperSoapyWater)
+                if(inventory.get(6).getItem() == FurnitureItems.SUPER_SOAPY_WATER)
                 {
                     superMode = true;
                 }
@@ -116,8 +116,8 @@ public class TileEntityDishwasher extends TileEntityFurniture implements ISidedI
     public static boolean isFuel(ItemStack stack)
     {
         if(stack == null) return false;
-        if(stack.getItem() == FurnitureItems.itemSoapyWater) return true;
-        return stack.getItem() == FurnitureItems.itemSuperSoapyWater;
+        if(stack.getItem() == FurnitureItems.SOAPY_WATER) return true;
+        return stack.getItem() == FurnitureItems.SUPER_SOAPY_WATER;
     }
 
     @Override
@@ -151,16 +151,16 @@ public class TileEntityDishwasher extends TileEntityFurniture implements ISidedI
             {
                 if(inventory.get(4) != ItemStack.EMPTY)
                 {
-                    if(inventory.get(4).getItem() == FurnitureItems.itemSoapyWater)
+                    if(inventory.get(4).getItem() == FurnitureItems.SOAPY_WATER)
                     {
                         this.superMode = false;
-                        inventory.set(4, new ItemStack(FurnitureItems.itemSoapyWater.getContainerItem()));
+                        inventory.set(4, new ItemStack(FurnitureItems.SOAPY_WATER.getContainerItem()));
                         timeRemaining = 5000;
                     }
-                    else if(inventory.get(4).getItem() == FurnitureItems.itemSuperSoapyWater)
+                    else if(inventory.get(4).getItem() == FurnitureItems.SUPER_SOAPY_WATER)
                     {
                         this.superMode = true;
-                        inventory.set(4, new ItemStack(FurnitureItems.itemSuperSoapyWater.getContainerItem()));
+                        inventory.set(4, new ItemStack(FurnitureItems.SUPER_SOAPY_WATER.getContainerItem()));
                         timeRemaining = 5000;
                     }
                 }

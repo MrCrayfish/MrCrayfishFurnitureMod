@@ -33,7 +33,7 @@ public class BlockFirePitOn extends BlockFirePit
     @Override
     public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
     {
-        worldIn.setBlockState(pos, FurnitureBlocks.fire_pit_off.getDefaultState().withProperty(STAGE, 3));
+        worldIn.setBlockState(pos, FurnitureBlocks.FIRE_PIT_OFF.getDefaultState().withProperty(STAGE, 3));
     }
 
     @SideOnly(Side.CLIENT)

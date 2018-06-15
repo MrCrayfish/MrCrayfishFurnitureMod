@@ -106,7 +106,7 @@ public class BlockCrate extends Block implements ITileEntityProvider
                 }
                 else
                 {
-                    if(!heldItem.isEmpty() && heldItem.getItem() == FurnitureItems.itemCrowBar)
+                    if(!heldItem.isEmpty() && heldItem.getItem() == FurnitureItems.CROWBAR)
                     {
                         worldIn.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, SoundEvents.ENTITY_ZOMBIE_BREAK_DOOR_WOOD, SoundCategory.BLOCKS, 1.0F, 1.0F);
                         InventoryHelper.dropInventoryItems(worldIn, pos, crate);

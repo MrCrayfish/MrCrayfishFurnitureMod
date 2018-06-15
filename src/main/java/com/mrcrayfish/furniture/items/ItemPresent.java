@@ -18,6 +18,7 @@
 package com.mrcrayfish.furniture.items;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.blocks.BlockPresent;
 import com.mrcrayfish.furniture.gui.inventory.InventoryPresent;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
@@ -26,7 +27,6 @@ import com.mrcrayfish.furniture.util.NBTHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.EnumDyeColor;
@@ -44,7 +44,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemPresent extends ItemBlock implements IMail
+public class ItemPresent extends ItemBlock implements IMail, SubItems
 {
     public ItemPresent(Block block)
     {
@@ -88,7 +88,7 @@ public class ItemPresent extends ItemBlock implements IMail
                     NBTTagList itemList = (NBTTagList) NBTHelper.getCompoundTag(stack, "Present").getTag("Items");
                     if(itemList.tagCount() > 0)
                     {
-                        IBlockState state = FurnitureBlocks.present.getDefaultState().withProperty(BlockPresent.COLOUR, EnumDyeColor.byMetadata(stack.getItemDamage()));
+                        IBlockState state = FurnitureBlocks.PRESENT.getDefaultState().withProperty(BlockPresent.COLOUR, EnumDyeColor.byMetadata(stack.getItemDamage()));
 
                         worldIn.setBlockState(pos.up(), state, 2);
                         worldIn.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, state.getBlock().getSoundType().getPlaceSound(), SoundCategory.BLOCKS, (state.getBlock().getSoundType().getVolume() + 1.0F) / 2.0F, state.getBlock().getSoundType().getPitch() * 0.8F, false);
@@ -183,5 +183,16 @@ public class ItemPresent extends ItemBlock implements IMail
     public String getUnlocalizedName(ItemStack stack)
     {
         return super.getUnlocalizedName(stack) + "_" + EnumDyeColor.values()[stack.getItemDamage()].getName();
+    }
+
+    @Override
+    public NonNullList<ResourceLocation> getModels()
+    {
+        NonNullList<ResourceLocation> modelLocations = NonNullList.create();
+        for(EnumDyeColor color : EnumDyeColor.values())
+        {
+            modelLocations.add(new ResourceLocation(Reference.MOD_ID, getUnlocalizedName().substring(5) + "_" + color.getName()));
+        }
+        return modelLocations;
     }
 }

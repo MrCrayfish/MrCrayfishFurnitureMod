@@ -53,7 +53,7 @@ public class BlockLampOn extends BlockLamp
             }
         }
 
-        worldIn.setBlockState(pos, FurnitureBlocks.lamp_off.getDefaultState().withProperty(COLOUR, (Integer) state.getValue(COLOUR)), 3);
+        worldIn.setBlockState(pos, FurnitureBlocks.LAMP_OFF.getDefaultState().withProperty(COLOUR, (Integer) state.getValue(COLOUR)), 3);
         return true;
     }
 }

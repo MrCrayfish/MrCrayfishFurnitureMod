@@ -83,7 +83,7 @@ public class BlockBedsideCabinet extends BlockFurnitureTile
     @Override
     public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
     {
-        if(blockAccess.getBlockState(pos.up()).getBlock() == FurnitureBlocks.lamp_on)
+        if(blockAccess.getBlockState(pos.up()).getBlock() == FurnitureBlocks.LAMP_ON)
         {
             return 15;
         }

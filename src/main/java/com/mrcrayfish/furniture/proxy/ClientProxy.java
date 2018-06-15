@@ -23,12 +23,9 @@ import com.mrcrayfish.furniture.handler.GuiDrawHandler;
 import com.mrcrayfish.furniture.handler.InputHandler;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
-import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.render.tileentity.*;
 import com.mrcrayfish.furniture.tileentity.*;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockOldLeaf;
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -38,9 +35,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerFoliage;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
@@ -98,7 +93,7 @@ public class ClientProxy extends CommonProxy
                 }
             }
             return 16777215;
-        }, FurnitureItems.itemDrink);
+        }, FurnitureItems.DRINK);
         IItemColor hedgeItemColor = (stack, tintIndex) ->
         {
             IBlockState iblockstate = ((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
@@ -107,11 +102,11 @@ public class ClientProxy extends CommonProxy
         IBlockColor hedgeBlockColorOld = (state, worldIn, pos, tintIndex) ->
         {
             Block block = state.getBlock();
-            if(block == FurnitureBlocks.hedge_spruce)
+            if(block == FurnitureBlocks.HEDGE_SPRUCE)
             {
                 return ColorizerFoliage.getFoliageColorPine();
             }
-            else if(block == FurnitureBlocks.hedge_birch)
+            else if(block == FurnitureBlocks.HEDGE_BIRCH)
             {
                 return ColorizerFoliage.getFoliageColorBirch();
             }
@@ -124,17 +119,17 @@ public class ClientProxy extends CommonProxy
         {
             return worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
         };
-        registerColorHandlerForBlock(FurnitureBlocks.hedge_oak, hedgeBlockColorOld, hedgeItemColor);
-        registerColorHandlerForBlock(FurnitureBlocks.hedge_spruce, hedgeBlockColorOld, hedgeItemColor);
-        registerColorHandlerForBlock(FurnitureBlocks.hedge_birch, hedgeBlockColorOld, hedgeItemColor);
-        registerColorHandlerForBlock(FurnitureBlocks.hedge_jungle, hedgeBlockColorOld, hedgeItemColor);
-        registerColorHandlerForBlock(FurnitureBlocks.hedge_acacia, hedgeBlockColorNew, hedgeItemColor);
-        registerColorHandlerForBlock(FurnitureBlocks.hedge_dark_oak, hedgeBlockColorNew, hedgeItemColor);
+        registerColorHandlerForBlock(FurnitureBlocks.HEDGE_OAK, hedgeBlockColorOld, hedgeItemColor);
+        registerColorHandlerForBlock(FurnitureBlocks.HEDGE_SPRUCE, hedgeBlockColorOld, hedgeItemColor);
+        registerColorHandlerForBlock(FurnitureBlocks.HEDGE_BIRCH, hedgeBlockColorOld, hedgeItemColor);
+        registerColorHandlerForBlock(FurnitureBlocks.HEDGE_JUNGLE, hedgeBlockColorOld, hedgeItemColor);
+        registerColorHandlerForBlock(FurnitureBlocks.HEDGE_ACACIA, hedgeBlockColorNew, hedgeItemColor);
+        registerColorHandlerForBlock(FurnitureBlocks.HEDGE_DARK_OAK, hedgeBlockColorNew, hedgeItemColor);
         IItemColor christmasItemColor = (stack, tintIndex) -> ColorizerFoliage.getFoliageColorPine();
         IBlockColor christmasBlockColor = (state, worldIn, pos, tintIndex) -> ColorizerFoliage.getFoliageColorPine();
-        registerColorHandlerForBlock(FurnitureBlocks.tree_bottom, christmasBlockColor, christmasItemColor);
-        registerColorHandlerForBlock(FurnitureBlocks.tree_top, christmasBlockColor, christmasItemColor);
-        registerColorHandlerForBlock(FurnitureBlocks.wreath, christmasBlockColor, christmasItemColor);
+        registerColorHandlerForBlock(FurnitureBlocks.TREE_BOTTOM, christmasBlockColor, christmasItemColor);
+        registerColorHandlerForBlock(FurnitureBlocks.TREE_TOP, christmasBlockColor, christmasItemColor);
+        registerColorHandlerForBlock(FurnitureBlocks.WREATH, christmasBlockColor, christmasItemColor);
     }
 
     public void registerColorHandlerForBlock(Block block, IBlockColor blockColor, IItemColor itemColor)
@@ -210,17 +205,6 @@ public class ClientProxy extends CommonProxy
         {
             Minecraft.getMinecraft().getRenderManager().renderViewEntity = backupEntity;
             renderEntity = null;
-        }
-    }
-
-    @Mod.EventBusSubscriber(modid = Reference.MOD_ID, value = Side.CLIENT)
-    public static class RegistrationHandler
-    {
-        @SubscribeEvent
-        public static void registerModels(ModelRegistryEvent event)
-        {
-            FurnitureItems.registerRenders();
-            FurnitureBlocks.registerRenders();
         }
     }
 }

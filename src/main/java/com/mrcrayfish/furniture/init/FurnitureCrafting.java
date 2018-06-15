@@ -17,20 +17,13 @@
  */
 package com.mrcrayfish.furniture.init;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
-
 import com.google.gson.JsonObject;
-import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.handler.FuelHandler;
 import com.mrcrayfish.furniture.util.RecipeUtil;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryCrafting;
-import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.Ingredient;
@@ -43,19 +36,18 @@ import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.IRecipeFactory;
 import net.minecraftforge.common.crafting.JsonContext;
 import net.minecraftforge.event.ForgeEventFactory;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+
+import java.util.Random;
 
 public class FurnitureCrafting
 {
     public static void register()
     {
-        GameRegistry.addSmelting(FurnitureItems.itemFlesh, new ItemStack(FurnitureItems.itemCookedFlesh), 0.05F);
+        GameRegistry.addSmelting(FurnitureItems.FLESH, new ItemStack(FurnitureItems.COOKED_FLESH), 0.05F);
         GameRegistry.registerFuelHandler(new FuelHandler());
-        RegistrationHandler.RECIPES.add(new RecipeSoapyWater().setRegistryName("cfm:recipe_soapy_water"));
+        RegistrationHandler.Recipes.add(new RecipeSoapyWater().setRegistryName("cfm:recipe_soapy_water"));
     }
 
     private static class RecipeSoapyWater extends net.minecraftforge.registries.IForgeRegistryEntry.Impl<IRecipe> implements IRecipe
@@ -77,7 +69,7 @@ public class FurnitureCrafting
             for(int i = 0; i < inv.getSizeInventory() - inv.getWidth(); i++)
             {
                 ItemStack above = inv.getStackInSlot(i);
-                if(!above.isEmpty() && above.getItem() == FurnitureItems.itemSoap)
+                if(!above.isEmpty() && above.getItem() == FurnitureItems.SOAP)
                 {
                     ItemStack below = inv.getStackInSlot(i + inv.getWidth());
                     if(!below.isEmpty() && below.getItem() == Items.WATER_BUCKET)
@@ -92,7 +84,7 @@ public class FurnitureCrafting
         @Override
         public ItemStack getCraftingResult(InventoryCrafting inv)
         {
-            return new ItemStack(FurnitureItems.itemSoapyWater);
+            return new ItemStack(FurnitureItems.SOAPY_WATER);
         }
 
         @Override
@@ -104,7 +96,7 @@ public class FurnitureCrafting
         @Override
         public ItemStack getRecipeOutput()
         {
-            return new ItemStack(FurnitureItems.itemSoapyWater);
+            return new ItemStack(FurnitureItems.SOAPY_WATER);
         }
 
         @Override
@@ -115,7 +107,7 @@ public class FurnitureCrafting
             for(int i = 0; i < inv.getSizeInventory(); i++)
             {
                 ItemStack stack = inv.getStackInSlot(i);
-                if(!stack.isEmpty() && stack.getItem() == FurnitureItems.itemSoap)
+                if(!stack.isEmpty() && stack.getItem() == FurnitureItems.SOAP)
                 {
                     ItemStack soap = stack.copy();
                     soap.shrink(1);
@@ -184,18 +176,6 @@ public class FurnitureCrafting
 
                 return new RecipeCuttingShapeless(group.isEmpty() ? null : new ResourceLocation(group), ingredients, result);
             }
-        }
-    }
-
-    @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
-    public static class RegistrationHandler
-    {
-        public static final List<IRecipe> RECIPES = new LinkedList<>();
-
-        @SubscribeEvent
-        public static void registerItems(final RegistryEvent.Register<IRecipe> event)
-        {
-            RECIPES.stream().forEach(recipe -> event.getRegistry().register(recipe));
         }
     }
 }

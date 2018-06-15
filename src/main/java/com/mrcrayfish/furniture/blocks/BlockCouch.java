@@ -174,7 +174,7 @@ public abstract class BlockCouch extends BlockFurnitureTile
                 {
                     if(heldItem.getDisplayName().equals("jeb_"))
                     {
-                        worldIn.setBlockState(pos, FurnitureBlocks.couch_jeb.getDefaultState().withProperty(FACING, state.getValue(FACING)));
+                        worldIn.setBlockState(pos, FurnitureBlocks.COUCH_JEB.getDefaultState().withProperty(FACING, state.getValue(FACING)));
                         if(!playerIn.isCreative())
                         {
                             heldItem.shrink(1);

@@ -107,7 +107,7 @@ public class BlockBlender extends BlockFurnitureTile
             {
                 if(!heldItem.isEmpty() && tileEntityBlender.hasDrink())
                 {
-                    if(heldItem.getItem() == FurnitureItems.itemCup)
+                    if(heldItem.getItem() == FurnitureItems.CUP)
                     {
                         if(heldItem.getCount() == 0 | heldItem.getCount() == 1)
                         {

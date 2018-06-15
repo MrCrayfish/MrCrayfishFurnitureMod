@@ -99,13 +99,13 @@ public class BlockCeilingLight extends Block
             }
             else if(((Mode) state.getValue(MODE)) == Mode.RIGHT_CLICK)
             {
-                if(this == FurnitureBlocks.ceiling_light_on)
+                if(this == FurnitureBlocks.CEILING_LIGHT_ON)
                 {
-                    worldIn.setBlockState(pos, FurnitureBlocks.ceiling_light_off.getDefaultState(), 2);
+                    worldIn.setBlockState(pos, FurnitureBlocks.CEILING_LIGHT_OFF.getDefaultState(), 2);
                 }
                 else
                 {
-                    worldIn.setBlockState(pos, FurnitureBlocks.ceiling_light_on.getDefaultState(), 2);
+                    worldIn.setBlockState(pos, FurnitureBlocks.CEILING_LIGHT_ON.getDefaultState(), 2);
                 }
             }
         }
@@ -126,11 +126,11 @@ public class BlockCeilingLight extends Block
         {
             if(worldIn.isBlockPowered(pos))
             {
-                worldIn.setBlockState(pos, FurnitureBlocks.ceiling_light_on.getDefaultState().withProperty(MODE, state.getValue(MODE)), 2);
+                worldIn.setBlockState(pos, FurnitureBlocks.CEILING_LIGHT_ON.getDefaultState().withProperty(MODE, state.getValue(MODE)), 2);
             }
             else
             {
-                worldIn.setBlockState(pos, FurnitureBlocks.ceiling_light_off.getDefaultState().withProperty(MODE, state.getValue(MODE)), 2);
+                worldIn.setBlockState(pos, FurnitureBlocks.CEILING_LIGHT_OFF.getDefaultState().withProperty(MODE, state.getValue(MODE)), 2);
             }
         }
     }

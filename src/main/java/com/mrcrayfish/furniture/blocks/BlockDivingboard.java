@@ -58,9 +58,9 @@ public class BlockDivingboard extends BlockFurniture
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        if(this == FurnitureBlocks.divingboard_base)
+        if(this == FurnitureBlocks.DIVING_BOARD_BASE)
         {
-            world.setBlockState(pos.offset(placer.getHorizontalFacing()), FurnitureBlocks.divingboard_plank.getDefaultState().withProperty(FACING, state.getValue(FACING)));
+            world.setBlockState(pos.offset(placer.getHorizontalFacing()), FurnitureBlocks.DIVING_BOARD_PLANK.getDefaultState().withProperty(FACING, state.getValue(FACING)));
         }
     }
 
@@ -75,7 +75,7 @@ public class BlockDivingboard extends BlockFurniture
     {
         EnumFacing facing = state.getValue(FACING);
         super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOARD[facing.getHorizontalIndex() % 2]);
-        if(this == FurnitureBlocks.divingboard_base)
+        if(this == FurnitureBlocks.DIVING_BOARD_BASE)
         {
             super.addCollisionBoxToList(pos, entityBox, collidingBoxes, HANDLE_LEFT[facing.getHorizontalIndex()]);
             super.addCollisionBoxToList(pos, entityBox, collidingBoxes, HANDLE_RIGHT[facing.getHorizontalIndex()]);
@@ -85,13 +85,13 @@ public class BlockDivingboard extends BlockFurniture
     @Override
     public void onLanded(World worldIn, Entity entityIn)
     {
-        if(this == FurnitureBlocks.divingboard_base) super.onLanded(worldIn, entityIn);
+        if(this == FurnitureBlocks.DIVING_BOARD_BASE) super.onLanded(worldIn, entityIn);
     }
 
     @Override
     public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
     {
-        if(this == FurnitureBlocks.divingboard_plank && entityIn instanceof EntityLivingBase)
+        if(this == FurnitureBlocks.DIVING_BOARD_PLANK && entityIn instanceof EntityLivingBase)
         {
             float height = entityIn.fallDistance;
             if(height > 0 && !entityIn.isSneaking())
@@ -128,7 +128,7 @@ public class BlockDivingboard extends BlockFurniture
     @Override
     public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
     {
-        if(this == FurnitureBlocks.divingboard_base)
+        if(this == FurnitureBlocks.DIVING_BOARD_BASE)
         {
             worldIn.destroyBlock(pos.offset((EnumFacing) state.getValue(FACING)), false);
         }
@@ -141,12 +141,12 @@ public class BlockDivingboard extends BlockFurniture
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return new ItemStack(FurnitureBlocks.divingboard_base).getItem();
+        return new ItemStack(FurnitureBlocks.DIVING_BOARD_BASE).getItem();
     }
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(FurnitureBlocks.divingboard_base);
+        return new ItemStack(FurnitureBlocks.DIVING_BOARD_BASE);
     }
 }

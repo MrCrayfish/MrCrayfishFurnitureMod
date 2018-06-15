@@ -89,7 +89,7 @@ public class BlockBath extends BlockFurnitureTile
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        world.setBlockState(pos.offset(placer.getHorizontalFacing()), FurnitureBlocks.bath_2.getDefaultState().withProperty(FACING, state.getValue(FACING)).withProperty(WATER_LEVEL, state.getValue(WATER_LEVEL)));
+        world.setBlockState(pos.offset(placer.getHorizontalFacing()), FurnitureBlocks.BATH_2.getDefaultState().withProperty(FACING, state.getValue(FACING)).withProperty(WATER_LEVEL, state.getValue(WATER_LEVEL)));
         if(placer instanceof EntityPlayer)
         {
             Triggers.trigger(Triggers.PLACE_BATHTROOM_FURNITURE, (EntityPlayer) placer);
@@ -100,7 +100,7 @@ public class BlockBath extends BlockFurnitureTile
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
         EnumFacing facing = state.getValue(FACING);
-        return state.getBlock() == FurnitureBlocks.bath_1 ? BOTTOM_BOXES[facing.getHorizontalIndex()] : TOP_BOXES[facing.getHorizontalIndex()];
+        return state.getBlock() == FurnitureBlocks.BATH_1 ? BOTTOM_BOXES[facing.getHorizontalIndex()] : TOP_BOXES[facing.getHorizontalIndex()];
     }
 
     @Override
@@ -108,7 +108,7 @@ public class BlockBath extends BlockFurnitureTile
     {
         EnumFacing facing = state.getValue(FACING);
         super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOTTOM);
-        if(this == FurnitureBlocks.bath_1)
+        if(this == FurnitureBlocks.BATH_1)
         {
             if(facing != EnumFacing.WEST)
                 super.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_NORTH);
@@ -137,7 +137,7 @@ public class BlockBath extends BlockFurnitureTile
     {
         ItemStack heldItem = playerIn.getHeldItem(hand);
         BlockPos otherBathPos = null;
-        if(this == FurnitureBlocks.bath_1)
+        if(this == FurnitureBlocks.BATH_1)
         {
             otherBathPos = pos.offset((EnumFacing) state.getValue(FACING));
         }
@@ -265,7 +265,7 @@ public class BlockBath extends BlockFurnitureTile
                     {
                         if(!tileEntityBath.isFull())
                         {
-                            if(this == FurnitureBlocks.bath_2)
+                            if(this == FurnitureBlocks.BATH_2)
                             {
                                 if(!worldIn.isRemote)
                                 {
@@ -296,7 +296,7 @@ public class BlockBath extends BlockFurnitureTile
                 {
                     if(!tileEntityBath.isFull())
                     {
-                        if(this == FurnitureBlocks.bath_2)
+                        if(this == FurnitureBlocks.BATH_2)
                         {
                             if(!worldIn.isRemote)
                             {
@@ -331,7 +331,7 @@ public class BlockBath extends BlockFurnitureTile
     @Override
     public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
     {
-        if(this == FurnitureBlocks.bath_1)
+        if(this == FurnitureBlocks.BATH_1)
         {
             worldIn.destroyBlock(pos.offset((EnumFacing) state.getValue(FACING)), false);
         }
@@ -350,13 +350,13 @@ public class BlockBath extends BlockFurnitureTile
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return new ItemStack(FurnitureBlocks.bath_1).getItem();
+        return new ItemStack(FurnitureBlocks.BATH_1).getItem();
     }
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(FurnitureBlocks.bath_1);
+        return new ItemStack(FurnitureBlocks.BATH_1);
     }
 
     @Override

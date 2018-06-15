@@ -64,7 +64,7 @@ public class InventoryPackage extends InventoryBasic
     public static boolean isSigned()
     {
         boolean isValid = false;
-        if(packag3.getItem() == FurnitureItems.itemPackageSigned)
+        if(packag3.getItem() == FurnitureItems.PACKAGE_SIGNED)
         {
             isValid = true;
         }

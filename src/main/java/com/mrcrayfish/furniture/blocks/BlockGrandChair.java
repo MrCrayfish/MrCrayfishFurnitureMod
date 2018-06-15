@@ -61,16 +61,16 @@ public class BlockGrandChair extends BlockFurniture
     @Override
     public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
     {
-        if(this == FurnitureBlocks.grand_chair_bottom)
+        if(this == FurnitureBlocks.GRAND_CHAIR_BOTTOM)
         {
-            if(worldIn.getBlockState(pos.up()).getBlock() == FurnitureBlocks.grand_chair_top)
+            if(worldIn.getBlockState(pos.up()).getBlock() == FurnitureBlocks.GRAND_CHAIR_TOP)
             {
                 worldIn.destroyBlock(pos.up(), false);
             }
         }
         else
         {
-            if(worldIn.getBlockState(pos.down()).getBlock() == FurnitureBlocks.grand_chair_bottom)
+            if(worldIn.getBlockState(pos.down()).getBlock() == FurnitureBlocks.GRAND_CHAIR_BOTTOM)
             {
                 worldIn.destroyBlock(pos.down(), false);
             }
@@ -86,9 +86,9 @@ public class BlockGrandChair extends BlockFurniture
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        if(this == FurnitureBlocks.grand_chair_bottom)
+        if(this == FurnitureBlocks.GRAND_CHAIR_BOTTOM)
         {
-            world.setBlockState(pos.up(), FurnitureBlocks.grand_chair_top.getDefaultState().withProperty(FACING, placer.getHorizontalFacing()));
+            world.setBlockState(pos.up(), FurnitureBlocks.GRAND_CHAIR_TOP.getDefaultState().withProperty(FACING, placer.getHorizontalFacing()));
         }
         return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
     }
@@ -97,7 +97,7 @@ public class BlockGrandChair extends BlockFurniture
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         ItemStack heldItem = playerIn.getHeldItem(hand);
-        if(this == FurnitureBlocks.grand_chair_bottom && !playerIn.isSneaking())
+        if(this == FurnitureBlocks.GRAND_CHAIR_BOTTOM && !playerIn.isSneaking())
         {
             if(SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 6 * 0.0625))
             {
@@ -117,7 +117,7 @@ public class BlockGrandChair extends BlockFurniture
     @SideOnly(Side.CLIENT)
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        if(this == FurnitureBlocks.grand_chair_bottom)
+        if(this == FurnitureBlocks.GRAND_CHAIR_BOTTOM)
         {
             return BOUNDING_BOX_BOTTOM;
         }
@@ -132,7 +132,7 @@ public class BlockGrandChair extends BlockFurniture
     {
         if(!(entityIn instanceof EntitySittableBlock))
         {
-            if(this == FurnitureBlocks.grand_chair_bottom)
+            if(this == FurnitureBlocks.GRAND_CHAIR_BOTTOM)
             {
                 super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_BOTTOM);
             }
@@ -159,12 +159,12 @@ public class BlockGrandChair extends BlockFurniture
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return new ItemStack(FurnitureBlocks.grand_chair_bottom).getItem();
+        return new ItemStack(FurnitureBlocks.GRAND_CHAIR_BOTTOM).getItem();
     }
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(FurnitureBlocks.grand_chair_bottom);
+        return new ItemStack(FurnitureBlocks.GRAND_CHAIR_BOTTOM);
     }
 }

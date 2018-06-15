@@ -61,7 +61,7 @@ public class MessagePresentContents implements IMessage, IMessageHandler<Message
         EntityPlayerMP player = ctx.getServerHandler().player;
         ItemStack present = message.envelope;
 
-        ItemStack signedPresent = new ItemStack(FurnitureBlocks.present, 1, present.getMetadata());
+        ItemStack signedPresent = new ItemStack(FurnitureBlocks.PRESENT, 1, present.getMetadata());
         signedPresent.setTagCompound(present.getTagCompound());
         signedPresent.setTagInfo("Author", new NBTTagString(player.getName()));
         signedPresent.setStackDisplayName(TextFormatting.GREEN + "Wrapped Present");

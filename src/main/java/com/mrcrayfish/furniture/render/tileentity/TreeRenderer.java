@@ -21,7 +21,7 @@ public class TreeRenderer extends TileEntitySpecialRenderer<TileEntityTree>
         float yOffset = 0.0F;
         float spread = 0.3F;
 
-        if(block == FurnitureBlocks.tree_bottom)
+        if(block == FurnitureBlocks.TREE_BOTTOM)
         {
             spread = 0.45F;
             yOffset = 0.5F;

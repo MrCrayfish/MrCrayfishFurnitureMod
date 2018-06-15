@@ -129,7 +129,7 @@ public class ItemPackageSigned extends Item implements IMail
         ItemStack stack = playerIn.getHeldItem(hand);
         if(!worldIn.isRemote)
         {
-            if(this == FurnitureItems.itemPackageSigned)
+            if(this == FurnitureItems.PACKAGE_SIGNED)
             {
                 playerIn.openGui(MrCrayfishFurnitureMod.instance, 8, worldIn, 0, 0, 0);
             }

@@ -85,7 +85,7 @@ public class GuiPackage extends GuiContainer
         buttonList.clear();
         int posX = width / 2 + 40;
         int posY = height / 2 - 50;
-        if(mail.getItem() == FurnitureItems.itemPackage)
+        if(mail.getItem() == FurnitureItems.PACKAGE)
         {
             buttonOk = new GuiButton(0, posX, posY, 40, 20, "Sign");
             buttonOk.enabled = true;

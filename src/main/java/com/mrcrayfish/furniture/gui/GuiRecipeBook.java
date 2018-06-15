@@ -484,7 +484,7 @@ public class GuiRecipeBook extends GuiScreen
         GL11.glPopMatrix();
     }
 
-    private ItemStack knife = new ItemStack(FurnitureItems.itemKnife);
+    private ItemStack knife = new ItemStack(FurnitureItems.KNIFE);
 
     public void drawKnife(int x, int y)
     {

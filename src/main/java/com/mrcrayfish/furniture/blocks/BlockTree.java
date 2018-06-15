@@ -66,8 +66,8 @@ public class BlockTree extends BlockFurnitureTile
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        if(this == FurnitureBlocks.tree_bottom)
-            world.setBlockState(pos.up(), FurnitureBlocks.tree_top.getDefaultState().withProperty(FACING, placer.getHorizontalFacing()));
+        if(this == FurnitureBlocks.TREE_BOTTOM)
+            world.setBlockState(pos.up(), FurnitureBlocks.TREE_TOP.getDefaultState().withProperty(FACING, placer.getHorizontalFacing()));
         return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
     }
 
@@ -89,7 +89,7 @@ public class BlockTree extends BlockFurnitureTile
     @Override
     public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
     {
-        if(this == FurnitureBlocks.tree_top)
+        if(this == FurnitureBlocks.TREE_TOP)
         {
             if(player.getHeldItemMainhand() != null)
             {
@@ -116,9 +116,9 @@ public class BlockTree extends BlockFurnitureTile
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        if(this == FurnitureBlocks.tree_bottom)
+        if(this == FurnitureBlocks.TREE_BOTTOM)
         {
-            if(source.getBlockState(pos.up()).getBlock() == FurnitureBlocks.tree_top)
+            if(source.getBlockState(pos.up()).getBlock() == FurnitureBlocks.TREE_TOP)
             {
                 return BOUNDING_BOX_BOTTOM;
             }
@@ -136,13 +136,13 @@ public class BlockTree extends BlockFurnitureTile
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return new ItemStack(FurnitureBlocks.tree_bottom).getItem();
+        return new ItemStack(FurnitureBlocks.TREE_BOTTOM).getItem();
     }
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(FurnitureBlocks.tree_bottom);
+        return new ItemStack(FurnitureBlocks.TREE_BOTTOM);
     }
 
     @SideOnly(Side.CLIENT)

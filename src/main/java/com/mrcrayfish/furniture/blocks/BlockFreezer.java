@@ -57,7 +57,7 @@ public class BlockFreezer extends BlockFurnitureTile
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, net.minecraft.entity.EntityLivingBase placer, ItemStack stack)
     {
-        worldIn.setBlockState(pos.up(), FurnitureBlocks.fridge.getDefaultState().withProperty(FACING, state.getValue(FACING)));
+        worldIn.setBlockState(pos.up(), FurnitureBlocks.FRIDGE.getDefaultState().withProperty(FACING, state.getValue(FACING)));
         if(placer instanceof EntityPlayer)
         {
             Triggers.trigger(Triggers.PLACE_APPLIANCE, (EntityPlayer) placer);
@@ -73,7 +73,7 @@ public class BlockFreezer extends BlockFurnitureTile
     @Override
     public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
     {
-        if(worldIn.getBlockState(pos.up()).getBlock() == FurnitureBlocks.fridge)
+        if(worldIn.getBlockState(pos.up()).getBlock() == FurnitureBlocks.FRIDGE)
         {
             worldIn.destroyBlock(pos.up(), false);
         }

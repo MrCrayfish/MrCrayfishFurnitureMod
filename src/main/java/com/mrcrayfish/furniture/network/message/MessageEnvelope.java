@@ -23,7 +23,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagString;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -61,7 +60,7 @@ public class MessageEnvelope implements IMessage, IMessageHandler<MessageEnvelop
     {
         EntityPlayerMP player = ctx.getServerHandler().player;
         ItemStack mail = message.envelope;
-        ItemStack signedMail = new ItemStack(FurnitureItems.itemEnvelopeSigned);
+        ItemStack signedMail = new ItemStack(FurnitureItems.ENVELOPE_SIGNED);
         signedMail.setTagCompound((NBTTagCompound) mail.getTagCompound().copy());
         signedMail.setTagInfo("Author", new NBTTagString(player.getName()));
         player.setHeldItem(player.getActiveHand(), signedMail);

@@ -82,7 +82,7 @@ public abstract class RecipePage
         return name;
     }
 
-    private ItemStack drink = new ItemStack(FurnitureItems.itemDrink);
+    private ItemStack drink = new ItemStack(FurnitureItems.DRINK);
 
     public ItemStack getDrink(String name, int red, int green, int blue)
     {

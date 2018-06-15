@@ -55,7 +55,7 @@ public class InputHandler
     @SubscribeEvent
     public void playerTick(PlayerTickEvent event)
     {
-        if(event.player.world.getBlockState(new BlockPos((int) Math.floor(event.player.posX), (int) Math.floor(event.player.posY), (int) Math.floor(event.player.posZ))).getBlock() == FurnitureBlocks.toilet)
+        if(event.player.world.getBlockState(new BlockPos((int) Math.floor(event.player.posX), (int) Math.floor(event.player.posY), (int) Math.floor(event.player.posZ))).getBlock() == FurnitureBlocks.TOILET)
         {
             if(keyPressed)
             {

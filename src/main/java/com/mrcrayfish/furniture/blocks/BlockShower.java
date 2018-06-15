@@ -75,7 +75,7 @@ public class BlockShower extends BlockFurniture
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        world.setBlockState(pos.up(), FurnitureBlocks.shower_top.getDefaultState().withProperty(FACING, state.getValue(FACING)), 2);
+        world.setBlockState(pos.up(), FurnitureBlocks.SHOWER_TOP.getDefaultState().withProperty(FACING, state.getValue(FACING)), 2);
         if(placer instanceof EntityPlayer)
         {
             Triggers.trigger(Triggers.PLACE_BATHTROOM_FURNITURE, (EntityPlayer) placer);
@@ -85,7 +85,7 @@ public class BlockShower extends BlockFurniture
     @Override
     public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player)
     {
-        world.destroyBlock(this == FurnitureBlocks.shower_bottom ? pos.up() : pos.down(), false);
+        world.destroyBlock(this == FurnitureBlocks.SHOWER_BOTTOM ? pos.up() : pos.down(), false);
     }
 
     @Override
@@ -94,10 +94,10 @@ public class BlockShower extends BlockFurniture
         if(entity instanceof EntityPlayer)
         {
             EntityPlayer player = (EntityPlayer) entity;
-            boolean top = this == FurnitureBlocks.shower_top;
+            boolean top = this == FurnitureBlocks.SHOWER_TOP;
 
             IBlockState head = world.getBlockState(pos.up(top ? 1 : 2));
-            if(head.getBlock() == FurnitureBlocks.shower_head_on)
+            if(head.getBlock() == FurnitureBlocks.SHOWER_HEAD_ON)
             {
                 Triggers.trigger(Triggers.PLAYER_SHOWER, player);
             }
@@ -150,19 +150,19 @@ public class BlockShower extends BlockFurniture
         // return NOTHING;
         // }
         // }
-        return state.getBlock() == FurnitureBlocks.shower_top ? TOP_BOUNDING_BOX : BOTTOM_BOUNDING_BOX;
+        return state.getBlock() == FurnitureBlocks.SHOWER_TOP ? TOP_BOUNDING_BOX : BOTTOM_BOUNDING_BOX;
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return new ItemStack(FurnitureBlocks.shower_bottom).getItem();
+        return new ItemStack(FurnitureBlocks.SHOWER_BOTTOM).getItem();
     }
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(FurnitureBlocks.shower_bottom);
+        return new ItemStack(FurnitureBlocks.SHOWER_BOTTOM);
     }
 
     @SideOnly(Side.CLIENT)
@@ -176,7 +176,7 @@ public class BlockShower extends BlockFurniture
         List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
         EnumFacing facing = state.getValue(FACING);
 
-        if(state.getBlock() == FurnitureBlocks.shower_bottom)
+        if(state.getBlock() == FurnitureBlocks.SHOWER_BOTTOM)
         {
             list.add(BOTTOM);
         }

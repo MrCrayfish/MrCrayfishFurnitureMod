@@ -17,13 +17,9 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
-import java.util.List;
-
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.blocks.item.IMetaBlockName;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.util.SittableUtil;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -47,7 +43,9 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockBarStool extends Block implements IMetaBlockName
+import java.util.List;
+
+public class BlockBarStool extends Block
 {
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
 
@@ -155,16 +153,5 @@ public class BlockBarStool extends Block implements IMetaBlockName
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(this, 1, state.getValue(COLOUR));
-    }
-
-    @Override
-    public String getSpecialName(ItemStack stack)
-    {
-        int metadata = stack.getMetadata();
-        if(metadata < 0 || metadata >= EnumDyeColor.values().length)
-        {
-            return EnumDyeColor.WHITE.getDyeColorName();
-        }
-        return EnumDyeColor.values()[metadata].getDyeColorName();
     }
 }

@@ -132,7 +132,7 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
 
     public ItemStack getDrink()
     {
-        ItemStack cup = new ItemStack(FurnitureItems.itemDrink);
+        ItemStack cup = new ItemStack(FurnitureItems.DRINK);
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setIntArray("Colour", new int[]{currentRed, currentGreen, currentBlue});
         nbt.setInteger("HealAmount", healAmount);

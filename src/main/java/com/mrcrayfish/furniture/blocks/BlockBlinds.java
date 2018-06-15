@@ -17,7 +17,6 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
-import java.util.List;
 import java.util.Random;
 
 import com.mrcrayfish.furniture.advancement.Triggers;
@@ -30,7 +29,6 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -101,19 +99,19 @@ public class BlockBlinds extends BlockFurniture
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         playerIn.playSound(SoundEvents.BLOCK_WOOD_PLACE, 1.0F, 1.0F);
-        return open ? worldIn.setBlockState(pos, FurnitureBlocks.blinds_closed.getDefaultState().withProperty(FACING, state.getValue(FACING))) : worldIn.setBlockState(pos, FurnitureBlocks.blinds.getDefaultState().withProperty(FACING, state.getValue(FACING)));
+        return open ? worldIn.setBlockState(pos, FurnitureBlocks.BLINDS_CLOSED.getDefaultState().withProperty(FACING, state.getValue(FACING))) : worldIn.setBlockState(pos, FurnitureBlocks.BLINDS.getDefaultState().withProperty(FACING, state.getValue(FACING)));
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return new ItemStack(FurnitureBlocks.blinds).getItem();
+        return new ItemStack(FurnitureBlocks.BLINDS).getItem();
     }
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(FurnitureBlocks.blinds);
+        return new ItemStack(FurnitureBlocks.BLINDS);
     }
 
     @Override

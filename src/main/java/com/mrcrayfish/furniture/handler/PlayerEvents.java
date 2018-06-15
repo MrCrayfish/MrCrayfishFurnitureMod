@@ -113,6 +113,6 @@ public class PlayerEvents
 
     private boolean isAuthorized(EntityPlayer player)
     {
-        return player.capabilities.isCreativeMode && !player.getHeldItemMainhand().isEmpty() && player.getHeldItemMainhand().getItem() == FurnitureItems.itemHammer;
+        return player.capabilities.isCreativeMode && !player.getHeldItemMainhand().isEmpty() && player.getHeldItemMainhand().getItem() == FurnitureItems.HAMMER;
     }
 }

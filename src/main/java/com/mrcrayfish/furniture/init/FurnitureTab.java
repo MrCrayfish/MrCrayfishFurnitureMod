@@ -33,7 +33,7 @@ public class FurnitureTab extends CreativeTabs
     @Override
     public ItemStack getTabIconItem()
     {
-        return new ItemStack(FurnitureBlocks.chair_oak);
+        return new ItemStack(FurnitureBlocks.CHAIR_OAK);
     }
 
     @Override

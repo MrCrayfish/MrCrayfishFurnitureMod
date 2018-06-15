@@ -20,11 +20,9 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 
 import com.mrcrayfish.furniture.api.Recipes;
-import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityChoppingBoard;
 import com.mrcrayfish.furniture.util.CollisionHelper;
-import com.mrcrayfish.furniture.util.InventoryUtil;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 
 import net.minecraft.block.SoundType;
@@ -90,7 +88,7 @@ public class BlockChoppingBoard extends BlockFurnitureTile
                         return true;
                     }
                 }
-                else if(heldItem.getItem() == FurnitureItems.itemKnife && tileEntityChoppingBoard.getFood() != null)
+                else if(heldItem.getItem() == FurnitureItems.KNIFE && tileEntityChoppingBoard.getFood() != null)
                 {
                     if(tileEntityChoppingBoard.chopFood())
                     {

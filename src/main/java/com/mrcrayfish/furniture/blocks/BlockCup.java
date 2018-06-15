@@ -140,13 +140,13 @@ public class BlockCup extends Block implements ITileEntityProvider
         if(te instanceof TileEntityCup)
         {
             TileEntityCup tileEntityCup = (TileEntityCup) te;
-            EntityItem item = new EntityItem(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, tileEntityCup.getDrink() != null ? tileEntityCup.getDrink().copy() : new ItemStack(FurnitureItems.itemCup));
+            EntityItem item = new EntityItem(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, tileEntityCup.getDrink() != null ? tileEntityCup.getDrink().copy() : new ItemStack(FurnitureItems.CUP));
             item.setDefaultPickupDelay();
             world.spawnEntity(item);
         }
         else
         {
-            EntityItem item = new EntityItem(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, new ItemStack(FurnitureItems.itemCup));
+            EntityItem item = new EntityItem(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, new ItemStack(FurnitureItems.CUP));
             item.setDefaultPickupDelay();
             world.spawnEntity(item);
         }
@@ -163,7 +163,7 @@ public class BlockCup extends Block implements ITileEntityProvider
                 return tileEntityCup.getDrink().copy();
             }
         }
-        return new ItemStack(FurnitureItems.itemCup);
+        return new ItemStack(FurnitureItems.CUP);
     }
 
     @SideOnly(Side.CLIENT)

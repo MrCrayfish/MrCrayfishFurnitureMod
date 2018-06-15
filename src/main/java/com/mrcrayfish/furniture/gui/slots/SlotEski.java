@@ -34,7 +34,7 @@ public class SlotEski extends Slot
     @Override
     public boolean isItemValid(ItemStack stack)
     {
-        return stack != null && stack.getItem() instanceof ItemPotion || stack.getItem() == FurnitureItems.itemDrink || stack.getItem() == Items.MILK_BUCKET || stack.getItem() == Items.WATER_BUCKET;
+        return stack != null && stack.getItem() instanceof ItemPotion || stack.getItem() == FurnitureItems.DRINK || stack.getItem() == Items.MILK_BUCKET || stack.getItem() == Items.WATER_BUCKET;
     }
 
 }

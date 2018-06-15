@@ -64,7 +64,7 @@ public class InventoryEnvelope extends InventoryBasic
     public static boolean isSigned()
     {
         boolean isValid = false;
-        if(envelope.getItem() == FurnitureItems.itemEnvelopeSigned)
+        if(envelope.getItem() == FurnitureItems.ENVELOPE_SIGNED)
         {
             isValid = true;
         }

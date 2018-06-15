@@ -30,7 +30,7 @@ public class CraftingHandler
     public void onCrafted(ItemCraftedEvent event)
     {
         Item item = event.crafting.getItem();
-        if(item == FurnitureItems.itemLog)
+        if(item == FurnitureItems.LOG)
         {
             for(int i = 0; i < event.craftMatrix.getSizeInventory(); i++)
             {

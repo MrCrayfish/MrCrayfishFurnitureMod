@@ -19,6 +19,7 @@ package com.mrcrayfish.furniture;
 
 import java.lang.reflect.Method;
 
+import com.mrcrayfish.furniture.init.RegistrationHandler;
 import org.apache.logging.log4j.Logger;
 
 import com.mrcrayfish.furniture.advancement.Triggers;
@@ -77,8 +78,7 @@ public class MrCrayfishFurnitureMod
         /** Config Changed Event */
         MinecraftForge.EVENT_BUS.register(new ConfigurationHandler());
 
-        /** Crafting Recipes */
-        FurnitureCrafting.register();
+        RegistrationHandler.init();
 
         /** Packet Handler Init */
         PacketHandler.init();

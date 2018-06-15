@@ -167,7 +167,7 @@ public class TileEntityFreezer extends TileEntityFurniture implements ISidedInve
         if(stack == null) return 0;
         if(stack.getItem() == Item.getItemFromBlock(Blocks.PACKED_ICE)) return 3000;
         if(stack.getItem() == Item.getItemFromBlock(Blocks.ICE)) return 2000;
-        if(stack.getItem() == FurnitureItems.itemCoolPack) return 400;
+        if(stack.getItem() == FurnitureItems.COOL_PACK) return 400;
         return 0;
     }
 

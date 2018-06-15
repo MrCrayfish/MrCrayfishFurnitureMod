@@ -42,7 +42,7 @@ public class SlotSoapyWater extends Slot
         }
 
         Item item = par1ItemStack.getItem();
-        return item == FurnitureItems.itemSoapyWater || item == FurnitureItems.itemSuperSoapyWater;
+        return item == FurnitureItems.SOAPY_WATER || item == FurnitureItems.SUPER_SOAPY_WATER;
     }
 
     @Override

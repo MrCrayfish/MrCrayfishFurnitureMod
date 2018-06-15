@@ -94,7 +94,7 @@ public abstract class BlockFirePit extends Block
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(FurnitureItems.itemLog);
+        return new ItemStack(FurnitureItems.LOG);
     }
 
     public abstract boolean isBurning();

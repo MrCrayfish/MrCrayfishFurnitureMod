@@ -42,7 +42,7 @@ import java.awt.*;
 public class ItemCup extends Item
 {
     private boolean hasLiquid = false;
-    private Block cupBlock = FurnitureBlocks.cup;
+    private Block cupBlock = FurnitureBlocks.CUP;
 
     public ItemCup(boolean hasLiquid)
     {
@@ -81,7 +81,7 @@ public class ItemCup extends Item
             {
                 int heal = cup.getTagCompound().getInteger("HealAmount");
                 player.getFoodStats().addStats(heal, 0.5F);
-                return new ItemStack(FurnitureItems.itemCup);
+                return new ItemStack(FurnitureItems.CUP);
             }
         }
         return cup;

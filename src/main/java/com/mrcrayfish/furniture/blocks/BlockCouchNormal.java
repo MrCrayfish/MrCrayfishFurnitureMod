@@ -1,8 +1,6 @@
 package com.mrcrayfish.furniture.blocks;
 
-import com.mrcrayfish.furniture.blocks.item.IMetaBlockName;
 import com.mrcrayfish.furniture.tileentity.TileEntityCouch;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,7 +16,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockCouchNormal extends BlockCouch implements IMetaBlockName
+public class BlockCouchNormal extends BlockCouch
 {
     @Override
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
@@ -67,16 +65,5 @@ public class BlockCouchNormal extends BlockCouch implements IMetaBlockName
     public boolean isSpecial()
     {
         return false;
-    }
-
-    @Override
-    public String getSpecialName(ItemStack stack)
-    {
-        int metadata = stack.getMetadata();
-        if(metadata < 0 || metadata >= EnumDyeColor.values().length)
-        {
-            return EnumDyeColor.WHITE.getDyeColorName();
-        }
-        return EnumDyeColor.values()[metadata].getDyeColorName();
     }
 }

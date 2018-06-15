@@ -102,7 +102,7 @@ public class ContainerDishwasher extends Container
                         return ItemStack.EMPTY;
                     }
                 }
-                else if(item.getItem() == FurnitureItems.itemSoapyWater | item.getItem() == FurnitureItems.itemSuperSoapyWater)
+                else if(item.getItem() == FurnitureItems.SOAPY_WATER | item.getItem() == FurnitureItems.SUPER_SOAPY_WATER)
                 {
                     if(!this.mergeItemStack(item, 6, 7, false))
                     {

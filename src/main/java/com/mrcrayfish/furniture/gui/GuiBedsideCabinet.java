@@ -102,11 +102,11 @@ public class GuiBedsideCabinet extends GuiContainer
 
     public int getType(BlockBedsideCabinet block)
     {
-        if(block == FurnitureBlocks.bedside_cabinet_spruce) return 1;
-        if(block == FurnitureBlocks.bedside_cabinet_birch) return 2;
-        if(block == FurnitureBlocks.bedside_cabinet_jungle) return 3;
-        if(block == FurnitureBlocks.bedside_cabinet_acacia) return 4;
-        if(block == FurnitureBlocks.bedside_cabinet_dark_oak) return 5;
+        if(block == FurnitureBlocks.BEDSIDE_CABINET_SPRUCE) return 1;
+        if(block == FurnitureBlocks.BEDSIDE_CABINET_BIRCH) return 2;
+        if(block == FurnitureBlocks.BEDSIDE_CABINET_JUNGLE) return 3;
+        if(block == FurnitureBlocks.BEDSIDE_CABINET_ACACIA) return 4;
+        if(block == FurnitureBlocks.BEDSIDE_CABINET_DARK_OAK) return 5;
         return 0;
     }
 }

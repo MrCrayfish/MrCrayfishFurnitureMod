@@ -85,7 +85,7 @@ public class BlockFireAlarm extends BlockFurniture
     {
         if(on)
         {
-            worldIn.setBlockState(pos, FurnitureBlocks.fire_alarm_off.getDefaultState(), 2);
+            worldIn.setBlockState(pos, FurnitureBlocks.FIRE_ALARM_OFF.getDefaultState(), 2);
         }
         return true;
     }
@@ -93,7 +93,7 @@ public class BlockFireAlarm extends BlockFurniture
     @Override
     public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
     {
-        return side == EnumFacing.DOWN && this == FurnitureBlocks.fire_alarm_on ? 15 : 0;
+        return side == EnumFacing.DOWN && this == FurnitureBlocks.FIRE_ALARM_ON ? 15 : 0;
     }
 
     @Override
@@ -115,7 +115,7 @@ public class BlockFireAlarm extends BlockFurniture
                                 if(world.getBlockState(pos.add(-4 + x, -4 + y, -4 + z)).getBlock() == Blocks.FIRE)
                                 {
                                     world.playSound(null, pos.getX() + 0.5, pos.getY() + 1.0, pos.getZ() + 0.5, FurnitureSounds.fire_alarm, SoundCategory.BLOCKS, 5.0F, 1.0F);
-                                    world.setBlockState(pos, FurnitureBlocks.fire_alarm_on.getDefaultState(), 2);
+                                    world.setBlockState(pos, FurnitureBlocks.FIRE_ALARM_ON.getDefaultState(), 2);
                                     break scanner;
                                 }
                                 if(x == 8 && y == 8 && z == 8)
@@ -174,12 +174,12 @@ public class BlockFireAlarm extends BlockFurniture
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return new ItemStack(FurnitureBlocks.fire_alarm_off).getItem();
+        return new ItemStack(FurnitureBlocks.FIRE_ALARM_OFF).getItem();
     }
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(FurnitureBlocks.fire_alarm_off);
+        return new ItemStack(FurnitureBlocks.FIRE_ALARM_OFF);
     }
 }

@@ -21,11 +21,8 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.blocks.BlockCouch.CouchType;
-import com.mrcrayfish.furniture.blocks.item.IMetaBlockName;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
-import com.mrcrayfish.furniture.util.StateHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -52,7 +49,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockLamp extends Block implements IMetaBlockName
+public class BlockLamp extends Block
 {
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
     public static final PropertyBool UP = PropertyBool.create("up");
@@ -106,7 +103,7 @@ public class BlockLamp extends Block implements IMetaBlockName
 
         if(!(worldIn.getBlockState(pos.up()).getBlock() instanceof BlockLamp))
         {
-            worldIn.setBlockState(pos, FurnitureBlocks.lamp_on.getDefaultState().withProperty(BlockLampOn.COLOUR, (Integer) state.getValue(COLOUR)), 3);
+            worldIn.setBlockState(pos, FurnitureBlocks.LAMP_ON.getDefaultState().withProperty(BlockLampOn.COLOUR, (Integer) state.getValue(COLOUR)), 3);
         }
         else
         {
@@ -117,11 +114,11 @@ public class BlockLamp extends Block implements IMetaBlockName
 
             if(worldIn.getBlockState(pos.up(yOffset).down()).getBlock() instanceof BlockLampOn)
             {
-                worldIn.setBlockState(pos.up(yOffset).down(), FurnitureBlocks.lamp_off.getDefaultState().withProperty(BlockLampOn.COLOUR, colour));
+                worldIn.setBlockState(pos.up(yOffset).down(), FurnitureBlocks.LAMP_OFF.getDefaultState().withProperty(BlockLampOn.COLOUR, colour));
             }
             else
             {
-                worldIn.setBlockState(pos.up(yOffset).down(), FurnitureBlocks.lamp_on.getDefaultState().withProperty(BlockLampOn.COLOUR, colour));
+                worldIn.setBlockState(pos.up(yOffset).down(), FurnitureBlocks.LAMP_ON.getDefaultState().withProperty(BlockLampOn.COLOUR, colour));
             }
         }
         return true;
@@ -162,7 +159,7 @@ public class BlockLamp extends Block implements IMetaBlockName
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        drops.add(new ItemStack(FurnitureBlocks.lamp_off, 1, Math.min(state.getValue(COLOUR), 15)));
+        drops.add(new ItemStack(FurnitureBlocks.LAMP_OFF, 1, Math.min(state.getValue(COLOUR), 15)));
     }
 
     @Override
@@ -177,7 +174,7 @@ public class BlockLamp extends Block implements IMetaBlockName
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(FurnitureBlocks.lamp_off, 1, state.getValue(COLOUR));
+        return new ItemStack(FurnitureBlocks.LAMP_OFF, 1, state.getValue(COLOUR));
     }
 
     private List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
@@ -232,16 +229,5 @@ public class BlockLamp extends Block implements IMetaBlockName
         }
 
         return raytraceresult1;
-    }
-
-    @Override
-    public String getSpecialName(ItemStack stack)
-    {
-        int metadata = stack.getMetadata();
-        if(metadata < 0 || metadata >= EnumDyeColor.values().length)
-        {
-            return EnumDyeColor.WHITE.getDyeColorName();
-        }
-        return EnumDyeColor.values()[metadata].getDyeColorName();
     }
 }

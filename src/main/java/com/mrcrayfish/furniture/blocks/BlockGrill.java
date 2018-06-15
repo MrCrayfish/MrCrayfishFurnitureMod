@@ -117,7 +117,7 @@ public class BlockGrill extends BlockFurnitureTile
                     {
                         tileEntityGrill.startFire();
                     }
-                    else if(heldItem.getItem() == FurnitureItems.itemSpatula && facing == EnumFacing.UP)
+                    else if(heldItem.getItem() == FurnitureItems.SPATULA && facing == EnumFacing.UP)
                     {
                         EnumFacing side = state.getValue(FACING);
                         tileEntityGrill.flipFood(getClickedSide(side, hitX, hitZ));
