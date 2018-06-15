@@ -181,6 +181,11 @@ public class FurnitureBlocks
     public static Block chair_granite, chair_diorite, chair_andesite;
 
     /**
+     * The Bedroom Update
+     */
+    public static Block bedside_cabinet_stone, bedside_cabinet_granite, bedside_cabinet_diorite, bedside_cabinet_andesite;
+
+    /**
      * Special
      */
     public static Block mirror;
@@ -189,10 +194,7 @@ public class FurnitureBlocks
      * Misc
      */
     public static Block hey;
-    public static Block nyan;
     public static Block pattern;
-    public static Block yellow_glow;
-    public static Block white_glass;
 
     public static void init()
     {
@@ -316,6 +318,10 @@ public class FurnitureBlocks
         chair_granite = new BlockChair(Material.ROCK, SoundType.STONE).setUnlocalizedName("chair_granite").setRegistryName("chair_granite");
         chair_diorite = new BlockChair(Material.ROCK, SoundType.STONE).setUnlocalizedName("chair_diorite").setRegistryName("chair_diorite");
         chair_andesite = new BlockChair(Material.ROCK, SoundType.STONE).setUnlocalizedName("chair_andesite").setRegistryName("chair_andesite");
+        bedside_cabinet_stone = new BlockBedsideCabinet(Material.ROCK).setUnlocalizedName("bedside_cabinet_stone").setRegistryName("bedside_cabinet_stone");
+        bedside_cabinet_granite = new BlockBedsideCabinet(Material.ROCK).setUnlocalizedName("bedside_cabinet_granite").setRegistryName("bedside_cabinet_granite");
+        bedside_cabinet_diorite = new BlockBedsideCabinet(Material.ROCK).setUnlocalizedName("bedside_cabinet_diorite").setRegistryName("bedside_cabinet_diorite");
+        bedside_cabinet_andesite = new BlockBedsideCabinet(Material.ROCK).setUnlocalizedName("bedside_cabinet_andesite").setRegistryName("bedside_cabinet_andesite");
     }
 
     public static void register()
@@ -373,6 +379,10 @@ public class FurnitureBlocks
         registerBlock(bedside_cabinet_jungle);
         registerBlock(bedside_cabinet_acacia);
         registerBlock(bedside_cabinet_dark_oak);
+        registerBlock(bedside_cabinet_stone);
+        registerBlock(bedside_cabinet_granite);
+        registerBlock(bedside_cabinet_diorite);
+        registerBlock(bedside_cabinet_andesite);
         registerBlock(oven);
         registerBlock(range_hood);
         registerBlock(hedge_oak, new ItemHedge(hedge_oak));
@@ -512,6 +522,10 @@ public class FurnitureBlocks
         registerRender(bedside_cabinet_jungle);
         registerRender(bedside_cabinet_acacia);
         registerRender(bedside_cabinet_dark_oak);
+        registerRender(bedside_cabinet_stone);
+        registerRender(bedside_cabinet_granite);
+        registerRender(bedside_cabinet_diorite);
+        registerRender(bedside_cabinet_andesite);
         registerRender(fridge);
         registerRender(freezer);
         registerRender(couch_jeb);
@@ -586,8 +600,6 @@ public class FurnitureBlocks
             registerRender(bar_stool, i, "bar_stool_" + color);
             registerRender(lamp_off, i, "lamp_" + color);
         }
-
-        createStateMappers();
     }
 
     @SideOnly(Side.CLIENT)
@@ -600,11 +612,6 @@ public class FurnitureBlocks
     private static void registerRender(Block block, int metadata, String fileName)
     {
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), metadata, new ModelResourceLocation(Reference.MOD_ID + ":" + fileName, "inventory"));
-    }
-
-    @SideOnly(Side.CLIENT)
-    private static void createStateMappers()
-    {
     }
 
     @Mod.EventBusSubscriber(modid = Reference.MOD_ID)

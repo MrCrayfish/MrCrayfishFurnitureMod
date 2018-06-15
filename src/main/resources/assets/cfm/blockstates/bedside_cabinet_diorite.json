@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "cfm:bedside_cabinet_diorite", "y": 270 },
+		"facing=south": { "model": "cfm:bedside_cabinet_diorite", "y": 90  },
+		"facing=east": 	{ "model": "cfm:bedside_cabinet_diorite"           },
+		"facing=west": 	{ "model": "cfm:bedside_cabinet_diorite", "y": 180 }
+	}
+}

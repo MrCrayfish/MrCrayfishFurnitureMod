@@ -1,0 +1,8 @@
+{
+	"variants": {
+		"facing=north": { "model": "cfm:bedside_cabinet_granite", "y": 270 },
+		"facing=south": { "model": "cfm:bedside_cabinet_granite", "y": 90  },
+		"facing=east": 	{ "model": "cfm:bedside_cabinet_granite"           },
+		"facing=west": 	{ "model": "cfm:bedside_cabinet_granite", "y": 180 }
+	}
+}

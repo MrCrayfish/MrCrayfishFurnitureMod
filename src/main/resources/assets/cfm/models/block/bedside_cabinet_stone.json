@@ -1,0 +1,9 @@
+{
+	"parent": "cfm:block/bedside_cabinet",
+	"textures": {
+		"1": "blocks/stone",
+		"2": "blocks/stone_slab_top",
+		"draw": "blocks/stone",
+		"handle": "blocks/concrete_powder_gray"
+	}
+}

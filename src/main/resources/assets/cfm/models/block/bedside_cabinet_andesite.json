@@ -1,0 +1,8 @@
+{
+	"parent": "cfm:block/bedside_cabinet",
+	"textures": {
+		"1": "blocks/stone_andesite_smooth",
+		"2": "blocks/concrete_silver",
+		"handle": "blocks/concrete_silver"
+	}
+}
