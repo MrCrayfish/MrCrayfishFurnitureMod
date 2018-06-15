@@ -8,19 +8,20 @@ import net.minecraft.item.ItemStack;
 
 public class SlotPrinterInput extends Slot
 {
-	public SlotPrinterInput(IInventory inventory, int slotIndex, int x, int y) {
-		super(inventory, slotIndex, x, y);
-	}
+    public SlotPrinterInput(IInventory inventory, int slotIndex, int x, int y)
+    {
+        super(inventory, slotIndex, x, y);
+    }
 
-	@Override
-	public boolean isItemValid(ItemStack stack)
-	{
-		return RecipeAPI.getPrinterRecipeFromInput(new ItemStack(stack.getItem())) != null;
-	}
+    @Override
+    public boolean isItemValid(ItemStack stack)
+    {
+        return RecipeAPI.getPrinterRecipeFromInput(new ItemStack(stack.getItem())) != null;
+    }
 
-	@Override
-	public int getSlotStackLimit()
-	{
-		return 1;
-	}
+    @Override
+    public int getSlotStackLimit()
+    {
+        return 1;
+    }
 }

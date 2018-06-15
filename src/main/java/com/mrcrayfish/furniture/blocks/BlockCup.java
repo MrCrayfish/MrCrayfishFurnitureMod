@@ -1,17 +1,17 @@
 /**
  * MrCrayfish's Furniture Mod
  * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * 
+ * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -49,112 +49,126 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockCup extends Block implements ITileEntityProvider
 {
-	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(5 * 0.0625, 0.0, 5 * 0.0625, 11 * 0.0625, 7.5 * 0.0625, 11 * 0.0625);
+    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(5 * 0.0625, 0.0, 5 * 0.0625, 11 * 0.0625, 7.5 * 0.0625, 11 * 0.0625);
 
-	public BlockCup(Material material) {
-		super(material);
-		this.setSoundType(SoundType.GLASS);
-		this.setHardness(0.1F);
-		this.setDefaultState(this.blockState.getBaseState());
-	}
+    public BlockCup(Material material)
+    {
+        super(material);
+        this.setSoundType(SoundType.GLASS);
+        this.setHardness(0.1F);
+        this.setDefaultState(this.blockState.getBaseState());
+    }
 
-	@Override
-	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
-		if (player.isSneaking() && !player.isCreative() && player.getFoodStats().needFood()) {
-			if (world.getTileEntity(pos) instanceof TileEntityCup) {
-				TileEntityCup tileEntityCup = (TileEntityCup) world.getTileEntity(pos);
-				ItemStack cup = tileEntityCup.getDrink();
-				if (cup != null && cup.hasTagCompound()) {
-					tileEntityCup.clear();
-					if (!world.isRemote) {
-						int heal = cup.getTagCompound().getInteger("HealAmount");
-						player.getFoodStats().addStats(heal, 0.5F);
-					} else {
-						world.playSound(player, player.getPosition(), SoundEvents.ENTITY_GENERIC_DRINK, SoundCategory.PLAYERS, 1.0F, 1.0F);
-						world.playSound(player, player.getPosition(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 1.0F, 1.0F);
-					}
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        if(player.isSneaking() && !player.isCreative() && player.getFoodStats().needFood())
+        {
+            if(world.getTileEntity(pos) instanceof TileEntityCup)
+            {
+                TileEntityCup tileEntityCup = (TileEntityCup) world.getTileEntity(pos);
+                ItemStack cup = tileEntityCup.getDrink();
+                if(cup != null && cup.hasTagCompound())
+                {
+                    tileEntityCup.clear();
+                    if(!world.isRemote)
+                    {
+                        int heal = cup.getTagCompound().getInteger("HealAmount");
+                        player.getFoodStats().addStats(heal, 0.5F);
+                    }
+                    else
+                    {
+                        world.playSound(player, player.getPosition(), SoundEvents.ENTITY_GENERIC_DRINK, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                        world.playSound(player, player.getPosition(), SoundEvents.ENTITY_PLAYER_BURP, SoundCategory.PLAYERS, 1.0F, 1.0F);
+                    }
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
 
-	@Override
-	public boolean isFullCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
 
-	@Override
-	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-	{
-		if (stack.hasTagCompound()) {
-			NBTTagCompound nbt = stack.getTagCompound();
-			if (nbt.hasKey("Colour")) {
-				int[] rgb = nbt.getIntArray("Colour");
-				TileEntityCup tileEntityCup = (TileEntityCup) world.getTileEntity(pos);
-				tileEntityCup.setColour(rgb);
-				tileEntityCup.setItem(stack);
-			}
-		}
-	}
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
+        if(stack.hasTagCompound())
+        {
+            NBTTagCompound nbt = stack.getTagCompound();
+            if(nbt.hasKey("Colour"))
+            {
+                int[] rgb = nbt.getIntArray("Colour");
+                TileEntityCup tileEntityCup = (TileEntityCup) world.getTileEntity(pos);
+                tileEntityCup.setColour(rgb);
+                tileEntityCup.setItem(stack);
+            }
+        }
+    }
 
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
-		return BOUNDING_BOX;
-	}
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX;
+    }
 
-	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-	{
-		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
-	}
+    @Override
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
+    {
+        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
+    }
 
-	@Override
-	public TileEntity createNewTileEntity(World world, int meta)
-	{
-		return new TileEntityCup();
-	}
+    @Override
+    public TileEntity createNewTileEntity(World world, int meta)
+    {
+        return new TileEntityCup();
+    }
 
-	@Override
-	public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack)
-	{
-		if (te instanceof TileEntityCup) {
-			TileEntityCup tileEntityCup = (TileEntityCup) te;
-			EntityItem item = new EntityItem(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, tileEntityCup.getDrink() != null ? tileEntityCup.getDrink().copy() : new ItemStack(FurnitureItems.itemCup));
-			item.setDefaultPickupDelay();
-			world.spawnEntity(item);
-		} else {
-			EntityItem item = new EntityItem(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, new ItemStack(FurnitureItems.itemCup));
-			item.setDefaultPickupDelay();
-			world.spawnEntity(item);
-		}
-	}
+    @Override
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, TileEntity te, ItemStack stack)
+    {
+        if(te instanceof TileEntityCup)
+        {
+            TileEntityCup tileEntityCup = (TileEntityCup) te;
+            EntityItem item = new EntityItem(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, tileEntityCup.getDrink() != null ? tileEntityCup.getDrink().copy() : new ItemStack(FurnitureItems.itemCup));
+            item.setDefaultPickupDelay();
+            world.spawnEntity(item);
+        }
+        else
+        {
+            EntityItem item = new EntityItem(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, new ItemStack(FurnitureItems.itemCup));
+            item.setDefaultPickupDelay();
+            world.spawnEntity(item);
+        }
+    }
 
-	@Override
-	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
-	{
-		if (world.getTileEntity(pos) instanceof TileEntityCup) {
-			TileEntityCup tileEntityCup = (TileEntityCup) world.getTileEntity(pos);
-			if (tileEntityCup.getDrink() != null) {
-				return tileEntityCup.getDrink().copy();
-			}
-		}
-		return new ItemStack(FurnitureItems.itemCup);
-	}
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+    {
+        if(world.getTileEntity(pos) instanceof TileEntityCup)
+        {
+            TileEntityCup tileEntityCup = (TileEntityCup) world.getTileEntity(pos);
+            if(tileEntityCup.getDrink() != null)
+            {
+                return tileEntityCup.getDrink().copy();
+            }
+        }
+        return new ItemStack(FurnitureItems.itemCup);
+    }
 
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
-	{
-		return BlockRenderLayer.TRANSLUCENT;
-	}
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer()
+    {
+        return BlockRenderLayer.TRANSLUCENT;
+    }
 }

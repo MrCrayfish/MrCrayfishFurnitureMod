@@ -1,17 +1,17 @@
 /**
  * MrCrayfish's Furniture Mod
  * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * 
+ * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -46,93 +46,101 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockWashingMachine extends BlockFurnitureTile
 {
-	public static final AxisAlignedBB CENTER_BOX_AND_PANEL = new AxisAlignedBB(1 * 0.0625, 0, 1 * 0.0625, 15 * 0.0625, 1, 15 * 0.0625);
-	public static final AxisAlignedBB[] CENTER_BOXES = new AxisAlignedBB[] { new AxisAlignedBB(1 * 0.0625, 0, 2 * 0.0625, 15 * 0.0625, 1, 15 * 0.0625), new AxisAlignedBB(1 * 0.0625, 0, 1 * 0.0625, 14 * 0.0625, 1, 15 * 0.0625), new AxisAlignedBB(1 * 0.0625, 0, 1 * 0.0625, 15 * 0.0625, 1, 14 * 0.0625), new AxisAlignedBB(2 * 0.0625, 0, 1 * 0.0625, 15 * 0.0625, 1, 15 * 0.0625) };
+    public static final AxisAlignedBB CENTER_BOX_AND_PANEL = new AxisAlignedBB(1 * 0.0625, 0, 1 * 0.0625, 15 * 0.0625, 1, 15 * 0.0625);
+    public static final AxisAlignedBB[] CENTER_BOXES = new AxisAlignedBB[]{new AxisAlignedBB(1 * 0.0625, 0, 2 * 0.0625, 15 * 0.0625, 1, 15 * 0.0625), new AxisAlignedBB(1 * 0.0625, 0, 1 * 0.0625, 14 * 0.0625, 1, 15 * 0.0625), new AxisAlignedBB(1 * 0.0625, 0, 1 * 0.0625, 15 * 0.0625, 1, 14 * 0.0625), new AxisAlignedBB(2 * 0.0625, 0, 1 * 0.0625, 15 * 0.0625, 1, 15 * 0.0625)};
 
-	public BlockWashingMachine(Material material) {
-		super(material);
-		this.setHardness(1.0F);
-		this.setSoundType(SoundType.ANVIL);
-	}
+    public BlockWashingMachine(Material material)
+    {
+        super(material);
+        this.setHardness(1.0F);
+        this.setSoundType(SoundType.ANVIL);
+    }
 
-	@Override
-	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-	{
-		if (placer instanceof EntityPlayer) {
-			Triggers.trigger(Triggers.PLACE_APPLIANCE, (EntityPlayer) placer);
-		}
-		super.onBlockPlacedBy(world, pos, state, placer, stack);
-	}
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
+        if(placer instanceof EntityPlayer)
+        {
+            Triggers.trigger(Triggers.PLACE_APPLIANCE, (EntityPlayer) placer);
+        }
+        super.onBlockPlacedBy(world, pos, state, placer, stack);
+    }
 
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
-		if (!worldIn.isRemote) {
-			TileEntity tile_entity = worldIn.getTileEntity(pos);
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        if(!worldIn.isRemote)
+        {
+            TileEntity tile_entity = worldIn.getTileEntity(pos);
 
-			if (tile_entity instanceof TileEntityWashingMachine) {
-				playerIn.openGui(MrCrayfishFurnitureMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
-			}
-		}
-		return true;
-	}
+            if(tile_entity instanceof TileEntityWashingMachine)
+            {
+                playerIn.openGui(MrCrayfishFurnitureMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
+            }
+        }
+        return true;
+    }
 
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta)
-	{
-		return new TileEntityWashingMachine();
-	}
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta)
+    {
+        return new TileEntityWashingMachine();
+    }
 
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
-	{
-		return BlockRenderLayer.CUTOUT_MIPPED;
-	}
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer()
+    {
+        return BlockRenderLayer.CUTOUT_MIPPED;
+    }
 
-	@Override
-	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
-	{
-		TileEntityWashingMachine washing_machine = (TileEntityWashingMachine) world.getTileEntity(pos);
-		return washing_machine.isWashing() ? 1 : 0;
-	}
+    @Override
+    public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
+    {
+        TileEntityWashingMachine washing_machine = (TileEntityWashingMachine) world.getTileEntity(pos);
+        return washing_machine.isWashing() ? 1 : 0;
+    }
 
-	@Override
-	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entity, boolean isActualState)
-	{
-		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, CENTER_BOX_AND_PANEL);
-	}
+    @Override
+    public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entity, boolean isActualState)
+    {
+        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, CENTER_BOX_AND_PANEL);
+    }
 
-	private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
-	{
-		List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
-		EnumFacing facing = state.getValue(FACING);
-		list.add(CENTER_BOXES[facing.getHorizontalIndex()]);
-		return list;
-	}
+    private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
+    {
+        List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
+        EnumFacing facing = state.getValue(FACING);
+        list.add(CENTER_BOXES[facing.getHorizontalIndex()]);
+        return list;
+    }
 
-	@Override
-	public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
-	{
-		List<RayTraceResult> list = Lists.<RayTraceResult>newArrayList();
+    @Override
+    public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
+    {
+        List<RayTraceResult> list = Lists.<RayTraceResult>newArrayList();
 
-		for (AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos))) {
-			list.add(this.rayTrace(pos, start, end, axisalignedbb));
-		}
+        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos)))
+        {
+            list.add(this.rayTrace(pos, start, end, axisalignedbb));
+        }
 
-		RayTraceResult raytraceresult1 = null;
-		double d1 = 0.0D;
+        RayTraceResult raytraceresult1 = null;
+        double d1 = 0.0D;
 
-		for (RayTraceResult raytraceresult : list) {
-			if (raytraceresult != null) {
-				double d0 = raytraceresult.hitVec.squareDistanceTo(end);
+        for(RayTraceResult raytraceresult : list)
+        {
+            if(raytraceresult != null)
+            {
+                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
 
-				if (d0 > d1) {
-					raytraceresult1 = raytraceresult;
-					d1 = d0;
-				}
-			}
-		}
+                if(d0 > d1)
+                {
+                    raytraceresult1 = raytraceresult;
+                    d1 = d0;
+                }
+            }
+        }
 
-		return raytraceresult1;
-	}
+        return raytraceresult1;
+    }
 }

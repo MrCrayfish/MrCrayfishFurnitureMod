@@ -1,17 +1,17 @@
 /**
  * MrCrayfish's Furniture Mod
  * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * 
+ * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -59,111 +59,119 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, acceptedMinecraftVersions = Reference.ACCEPTED_MC_VERSIONS)
 public class MrCrayfishFurnitureMod
 {
-	@Instance(Reference.MOD_ID)
-	public static MrCrayfishFurnitureMod instance;
+    @Instance(Reference.MOD_ID)
+    public static MrCrayfishFurnitureMod instance;
 
-	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
-	public static CommonProxy proxy;
+    @SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
+    public static CommonProxy proxy;
 
-	public static CreativeTabs tabFurniture = new FurnitureTab("tabFurniture");
+    public static CreativeTabs tabFurniture = new FurnitureTab("tabFurniture");
 
-	private static Logger logger;
-	
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event)
-	{
-		logger = event.getModLog();
-		
-		/** Config Changed Event */
-		MinecraftForge.EVENT_BUS.register(new ConfigurationHandler());
+    private static Logger logger;
 
-		/** Crafting Recipes */
-		FurnitureCrafting.register();
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event)
+    {
+        logger = event.getModLog();
 
-		/** Packet Handler Init */
-		PacketHandler.init();
+        /** Config Changed Event */
+        MinecraftForge.EVENT_BUS.register(new ConfigurationHandler());
 
-		/** Configuration Handler Init */
-		ConfigurationHandler.init(event.getSuggestedConfigurationFile());
+        /** Crafting Recipes */
+        FurnitureCrafting.register();
 
-		/** Custom triggers Init */
-		Triggers.init();
+        /** Packet Handler Init */
+        PacketHandler.init();
 
-		proxy.preInit();
-	}
+        /** Configuration Handler Init */
+        ConfigurationHandler.init(event.getSuggestedConfigurationFile());
 
-	@EventHandler
-	public void init(FMLInitializationEvent event)
-	{
-		if (event.getSide() == Side.CLIENT) {
-			MinecraftForge.EVENT_BUS.register(new MirrorRenderer());
-		}
-		MinecraftForge.EVENT_BUS.register(new PlayerEvents());
+        /** Custom triggers Init */
+        Triggers.init();
 
-		/** GUI Handler Registering */
-		NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
+        proxy.preInit();
+    }
 
-		/** TileEntity Registering */
-		FurnitureTileEntities.register();
+    @EventHandler
+    public void init(FMLInitializationEvent event)
+    {
+        if(event.getSide() == Side.CLIENT)
+        {
+            MinecraftForge.EVENT_BUS.register(new MirrorRenderer());
+        }
+        MinecraftForge.EVENT_BUS.register(new PlayerEvents());
 
-		/** Entity Registering */
-		EntityRegistry.registerModEntity(new ResourceLocation("cfm:mountable_block"), EntitySittableBlock.class, "MountableBlock", 0, this, 80, 1, false);
-		if (event.getSide() == Side.CLIENT) {
-			EntityRegistry.registerModEntity(new ResourceLocation("cfm:mirror"), EntityMirror.class, "Mirror", 1, this, 80, 1, false);
-		}
+        /** GUI Handler Registering */
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
-		proxy.init();
-	}
+        /** TileEntity Registering */
+        FurnitureTileEntities.register();
 
-	@EventHandler
-	public void postInit(FMLPostInitializationEvent event)
-	{
-		/** Initialize API */
-		RecipeRegistry.registerDefaultRecipes();
-		RecipeRegistry.registerConfigRecipes();
-		Recipes.addCommRecipesToLocal();
-		Recipes.updateDataList();
+        /** Entity Registering */
+        EntityRegistry.registerModEntity(new ResourceLocation("cfm:mountable_block"), EntitySittableBlock.class, "MountableBlock", 0, this, 80, 1, false);
+        if(event.getSide() == Side.CLIENT)
+        {
+            EntityRegistry.registerModEntity(new ResourceLocation("cfm:mirror"), EntityMirror.class, "Mirror", 1, this, 80, 1, false);
+        }
 
-		Channels.registerChannels();
-	}
+        proxy.init();
+    }
 
-	@EventHandler
-	public void processIMC(FMLInterModComms.IMCEvent event)
-	{
-		if (event.getMessages().size() > 0) {
-			if (ConfigurationHandler.api_debug) {
-				logger.info("RecipeAPI (InterModComm): Registering recipes from " + event.getMessages().size() + " mod(s).");
-			}
-		}
-		for (IMCMessage imcMessage : event.getMessages()) {
-			if (!imcMessage.isStringMessage())
-				continue;
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event)
+    {
+        /** Initialize API */
+        RecipeRegistry.registerDefaultRecipes();
+        RecipeRegistry.registerConfigRecipes();
+        Recipes.addCommRecipesToLocal();
+        Recipes.updateDataList();
 
-			if (imcMessage.key.equalsIgnoreCase("register")) {
-				register(imcMessage.getStringValue(), imcMessage.getSender());
-			}
-		}
-	}
+        Channels.registerChannels();
+    }
 
-	public void register(String method, String modid)
-	{
-		String[] data = method.split("\\.");
-		String methodName = data[data.length - 1];
-		String className = method.substring(0, method.length() - methodName.length() - 1);
-		String modName = Loader.instance().getIndexedModList().get(modid).getName();
+    @EventHandler
+    public void processIMC(FMLInterModComms.IMCEvent event)
+    {
+        if(event.getMessages().size() > 0)
+        {
+            if(ConfigurationHandler.api_debug)
+            {
+                logger.info("RecipeAPI (InterModComm): Registering recipes from " + event.getMessages().size() + " mod(s).");
+            }
+        }
+        for(IMCMessage imcMessage : event.getMessages())
+        {
+            if(!imcMessage.isStringMessage()) continue;
 
-		try {
-			Class clazz = Class.forName(className);
-			Method registerMethod = clazz.getDeclaredMethod(methodName, IRecipeRegistry.class);
-			registerMethod.invoke(null, (IRecipeRegistry) RecipeRegistryComm.getInstance(modName));
-		} catch (Exception e) {
-			logger.info("RecipeAPI: Unable to register comm recipes for " + modid);
-			e.printStackTrace();
-		}
-	}
+            if(imcMessage.key.equalsIgnoreCase("register"))
+            {
+                register(imcMessage.getStringValue(), imcMessage.getSender());
+            }
+        }
+    }
 
-	public static Logger logger()
-	{
-		return logger;
-	}
+    public void register(String method, String modid)
+    {
+        String[] data = method.split("\\.");
+        String methodName = data[data.length - 1];
+        String className = method.substring(0, method.length() - methodName.length() - 1);
+        String modName = Loader.instance().getIndexedModList().get(modid).getName();
+
+        try
+        {
+            Class clazz = Class.forName(className);
+            Method registerMethod = clazz.getDeclaredMethod(methodName, IRecipeRegistry.class);
+            registerMethod.invoke(null, (IRecipeRegistry) RecipeRegistryComm.getInstance(modName));
+        }
+        catch(Exception e)
+        {
+            logger.info("RecipeAPI: Unable to register comm recipes for " + modid);
+            e.printStackTrace();
+        }
+    }
+
+    public static Logger logger()
+    {
+        return logger;
+    }
 }

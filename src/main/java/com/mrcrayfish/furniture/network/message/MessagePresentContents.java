@@ -1,17 +1,17 @@
 /**
  * MrCrayfish's Furniture Mod
  * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * 
+ * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -32,42 +32,42 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 public class MessagePresentContents implements IMessage, IMessageHandler<MessagePresentContents, IMessage>
 {
 
-	private ItemStack envelope;
+    private ItemStack envelope;
 
-	public MessagePresentContents()
-	{
-	}
+    public MessagePresentContents()
+    {
+    }
 
-	public MessagePresentContents(ItemStack envelope)
-	{
-		this.envelope = envelope;
-	}
+    public MessagePresentContents(ItemStack envelope)
+    {
+        this.envelope = envelope;
+    }
 
-	@Override
-	public void fromBytes(ByteBuf buf)
-	{
-		this.envelope = ByteBufUtils.readItemStack(buf);
-	}
+    @Override
+    public void fromBytes(ByteBuf buf)
+    {
+        this.envelope = ByteBufUtils.readItemStack(buf);
+    }
 
-	@Override
-	public void toBytes(ByteBuf buf)
-	{
-		ByteBufUtils.writeItemStack(buf, envelope);
-	}
+    @Override
+    public void toBytes(ByteBuf buf)
+    {
+        ByteBufUtils.writeItemStack(buf, envelope);
+    }
 
-	@Override
-	public IMessage onMessage(MessagePresentContents message, MessageContext ctx)
-	{
-		EntityPlayerMP player = ctx.getServerHandler().player;
-		ItemStack present = message.envelope;
-		
-		ItemStack signedPresent = new ItemStack(FurnitureBlocks.present, 1, present.getMetadata());
-		signedPresent.setTagCompound(present.getTagCompound());
-		signedPresent.setTagInfo("Author", new NBTTagString(player.getName()));
-		signedPresent.setStackDisplayName(TextFormatting.GREEN + "Wrapped Present");
-		player.inventory.setInventorySlotContents(player.inventory.currentItem, signedPresent);
-		
-		return null;
-	}
+    @Override
+    public IMessage onMessage(MessagePresentContents message, MessageContext ctx)
+    {
+        EntityPlayerMP player = ctx.getServerHandler().player;
+        ItemStack present = message.envelope;
+
+        ItemStack signedPresent = new ItemStack(FurnitureBlocks.present, 1, present.getMetadata());
+        signedPresent.setTagCompound(present.getTagCompound());
+        signedPresent.setTagInfo("Author", new NBTTagString(player.getName()));
+        signedPresent.setStackDisplayName(TextFormatting.GREEN + "Wrapped Present");
+        player.inventory.setInventorySlotContents(player.inventory.currentItem, signedPresent);
+
+        return null;
+    }
 
 }

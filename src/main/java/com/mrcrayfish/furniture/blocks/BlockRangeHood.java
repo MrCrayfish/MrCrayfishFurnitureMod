@@ -1,17 +1,17 @@
 /**
  * MrCrayfish's Furniture Mod
  * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * 
+ * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -36,75 +36,81 @@ import net.minecraft.world.World;
 
 public class BlockRangeHood extends BlockFurniture
 {
-	public static final AxisAlignedBB COLLISION_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.5, 0.0, 0.2, 1.0, 1.0, 0.8);
-	public static final AxisAlignedBB COLLISION_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.5, 0.0, 0.2, 1.0, 1.0, 0.8);
-	public static final AxisAlignedBB COLLISION_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.5, 0.0, 0.2, 1.0, 1.0, 0.8);
-	public static final AxisAlignedBB COLLISION_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.5, 0.0, 0.2, 1.0, 1.0, 0.8);
-	public static final AxisAlignedBB[] COLLISION_BOX = { COLLISION_BOX_SOUTH, COLLISION_BOX_WEST, COLLISION_BOX_NORTH, COLLISION_BOX_EAST };
-	public static final AxisAlignedBB COLLISION_BOTTOM = new AxisAlignedBB(0, 0, 0, 1, 4 * 0.0625, 1);
+    public static final AxisAlignedBB COLLISION_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.5, 0.0, 0.2, 1.0, 1.0, 0.8);
+    public static final AxisAlignedBB COLLISION_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.5, 0.0, 0.2, 1.0, 1.0, 0.8);
+    public static final AxisAlignedBB COLLISION_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.5, 0.0, 0.2, 1.0, 1.0, 0.8);
+    public static final AxisAlignedBB COLLISION_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.5, 0.0, 0.2, 1.0, 1.0, 0.8);
+    public static final AxisAlignedBB[] COLLISION_BOX = {COLLISION_BOX_SOUTH, COLLISION_BOX_WEST, COLLISION_BOX_NORTH, COLLISION_BOX_EAST};
+    public static final AxisAlignedBB COLLISION_BOTTOM = new AxisAlignedBB(0, 0, 0, 1, 4 * 0.0625, 1);
 
-	public BlockRangeHood(Material material) {
-		super(material);
-		this.setHardness(0.5F);
-		this.setSoundType(SoundType.METAL);
-		this.setLightLevel(0.5F);
-	}
+    public BlockRangeHood(Material material)
+    {
+        super(material);
+        this.setHardness(0.5F);
+        this.setSoundType(SoundType.METAL);
+        this.setLightLevel(0.5F);
+    }
 
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
 
-	@Override
-	public boolean isFullCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
 
-	protected List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
-	{
-		List<AxisAlignedBB> boxes = new ArrayList<AxisAlignedBB>();
-		EnumFacing facing = state.getValue(FACING);
+    protected List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
+    {
+        List<AxisAlignedBB> boxes = new ArrayList<AxisAlignedBB>();
+        EnumFacing facing = state.getValue(FACING);
 
-		boxes.add(COLLISION_BOTTOM);
-		boxes.add(COLLISION_BOX[facing.getHorizontalIndex()]);
+        boxes.add(COLLISION_BOTTOM);
+        boxes.add(COLLISION_BOX[facing.getHorizontalIndex()]);
 
-		return boxes;
-	}
+        return boxes;
+    }
 
-	@Override
-	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-	{
-		List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, world, pos), world, pos);
-		for (AxisAlignedBB box : list) {
-			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-		}
-	}
+    @Override
+    public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
+    {
+        List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, world, pos), world, pos);
+        for(AxisAlignedBB box : list)
+        {
+            super.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
+        }
+    }
 
-	@Override
-	public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
-	{
-		List<RayTraceResult> list = Lists.<RayTraceResult>newArrayList();
+    @Override
+    public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
+    {
+        List<RayTraceResult> list = Lists.<RayTraceResult>newArrayList();
 
-		for (AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos), world, pos)) {
-			list.add(this.rayTrace(pos, start, end, axisalignedbb));
-		}
+        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos), world, pos))
+        {
+            list.add(this.rayTrace(pos, start, end, axisalignedbb));
+        }
 
-		RayTraceResult raytraceresult1 = null;
-		double d1 = 0.0D;
+        RayTraceResult raytraceresult1 = null;
+        double d1 = 0.0D;
 
-		for (RayTraceResult raytraceresult : list) {
-			if (raytraceresult != null) {
-				double d0 = raytraceresult.hitVec.squareDistanceTo(end);
+        for(RayTraceResult raytraceresult : list)
+        {
+            if(raytraceresult != null)
+            {
+                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
 
-				if (d0 > d1) {
-					raytraceresult1 = raytraceresult;
-					d1 = d0;
-				}
-			}
-		}
+                if(d0 > d1)
+                {
+                    raytraceresult1 = raytraceresult;
+                    d1 = d0;
+                }
+            }
+        }
 
-		return raytraceresult1;
-	}
+        return raytraceresult1;
+    }
 }

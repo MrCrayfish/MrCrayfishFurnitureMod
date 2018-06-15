@@ -1,17 +1,17 @@
 /**
  * MrCrayfish's Furniture Mod
  * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * 
+ * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -44,114 +44,123 @@ import net.minecraft.world.World;
 
 public class BlockFridge extends BlockFurnitureTile
 {
-	public static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(0.0625, 0, 0.0625, 0.0625 * 15, 1, 0.0625 * 15);
+    public static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(0.0625, 0, 0.0625, 0.0625 * 15, 1, 0.0625 * 15);
 
-	public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0, -1, 0, 1, 1, 1);
+    public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0, -1, 0, 1, 1, 1);
 
-	public BlockFridge(Material material) {
-		super(material);
-		this.setHardness(2.0F);
-		this.setSoundType(SoundType.METAL);
-		this.setCreativeTab(null);
-	}
+    public BlockFridge(Material material)
+    {
+        super(material);
+        this.setHardness(2.0F);
+        this.setSoundType(SoundType.METAL);
+        this.setCreativeTab(null);
+    }
 
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
 
-	@Override
-	public boolean isFullCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
 
-	@Override
-	public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
-	{
-		if (worldIn.getBlockState(pos.down()).getBlock() == FurnitureBlocks.freezer) {
-			worldIn.destroyBlock(pos.down(), false);
-		}
-	}
+    @Override
+    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+    {
+        if(worldIn.getBlockState(pos.down()).getBlock() == FurnitureBlocks.freezer)
+        {
+            worldIn.destroyBlock(pos.down(), false);
+        }
+    }
 
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
-		if (!worldIn.isRemote) {
-			TileEntity te = worldIn.getTileEntity(pos);
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        if(!worldIn.isRemote)
+        {
+            TileEntity te = worldIn.getTileEntity(pos);
 
-			if (te instanceof TileEntityFridge) {
-				playerIn.openGui(MrCrayfishFurnitureMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
-			}
+            if(te instanceof TileEntityFridge)
+            {
+                playerIn.openGui(MrCrayfishFurnitureMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
+            }
 
-		}
-		return true;
-	}
+        }
+        return true;
+    }
 
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta)
-	{
-		return new TileEntityFridge();
-	}
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta)
+    {
+        return new TileEntityFridge();
+    }
 
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
-		return new ItemStack(FurnitureBlocks.freezer).getItem();
-	}
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        return new ItemStack(FurnitureBlocks.freezer).getItem();
+    }
 
-	@Override
-	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
-	{
-		return new ItemStack(FurnitureBlocks.freezer);
-	}
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+    {
+        return new ItemStack(FurnitureBlocks.freezer);
+    }
 
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
-		return BOUNDING_BOX;
-	}
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX;
+    }
 
-	private List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
-	{
-		List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
-		list.add(COLLISION_BOX);
-		return list;
-	}
+    private List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
+    {
+        List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
+        list.add(COLLISION_BOX);
+        return list;
+    }
 
-	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-	{
-		List<AxisAlignedBB> boxes = this.getCollisionBoxList(this.getActualState(state, worldIn, pos), worldIn, pos);
-		for (AxisAlignedBB box : boxes) {
-			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-		}
-	}
+    @Override
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
+    {
+        List<AxisAlignedBB> boxes = this.getCollisionBoxList(this.getActualState(state, worldIn, pos), worldIn, pos);
+        for(AxisAlignedBB box : boxes)
+        {
+            super.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
+        }
+    }
 
-	@Override
-	public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
-	{
-		List<RayTraceResult> list = Lists.<RayTraceResult>newArrayList();
+    @Override
+    public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
+    {
+        List<RayTraceResult> list = Lists.<RayTraceResult>newArrayList();
 
-		for (AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos), world, pos)) {
-			list.add(this.rayTrace(pos, start, end, axisalignedbb));
-		}
+        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos), world, pos))
+        {
+            list.add(this.rayTrace(pos, start, end, axisalignedbb));
+        }
 
-		RayTraceResult raytraceresult1 = null;
-		double d1 = 0.0D;
+        RayTraceResult raytraceresult1 = null;
+        double d1 = 0.0D;
 
-		for (RayTraceResult raytraceresult : list) {
-			if (raytraceresult != null) {
-				double d0 = raytraceresult.hitVec.squareDistanceTo(end);
+        for(RayTraceResult raytraceresult : list)
+        {
+            if(raytraceresult != null)
+            {
+                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
 
-				if (d0 > d1) {
-					raytraceresult1 = raytraceresult;
-					d1 = d0;
-				}
-			}
-		}
+                if(d0 > d1)
+                {
+                    raytraceresult1 = raytraceresult;
+                    d1 = d0;
+                }
+            }
+        }
 
-		return raytraceresult1;
-	}
+        return raytraceresult1;
+    }
 }

@@ -1,17 +1,17 @@
 /**
  * MrCrayfish's Furniture Mod
  * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * 
+ * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -25,72 +25,72 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class TileEntityComputer extends TileEntityFurniture
 {
-	private int stockNum = 0;
-	private boolean isTrading = false;
-	
-	public TileEntityComputer() 
-	{
-		super("computer", 1);
-	}
+    private int stockNum = 0;
+    private boolean isTrading = false;
 
-	public void takeEmeraldFromSlot(int price)
-	{
-		this.getStackInSlot(0).shrink(price);
-		this.markDirty();
-	}
+    public TileEntityComputer()
+    {
+        super("computer", 1);
+    }
 
-	public void setBrowsingInfo(int stockNum)
-	{
-		this.stockNum = stockNum;
-	}
+    public void takeEmeraldFromSlot(int price)
+    {
+        this.getStackInSlot(0).shrink(price);
+        this.markDirty();
+    }
 
-	public int getBrowsingInfo()
-	{
-		return stockNum;
-	}
+    public void setBrowsingInfo(int stockNum)
+    {
+        this.stockNum = stockNum;
+    }
 
-	public void setTrading(boolean isUsing)
-	{
-		this.isTrading = isUsing;
-	}
+    public int getBrowsingInfo()
+    {
+        return stockNum;
+    }
 
-	public boolean isTrading()
-	{
-		return isTrading;
-	}
-	
+    public void setTrading(boolean isUsing)
+    {
+        this.isTrading = isUsing;
+    }
 
-	@Override
-	public void readFromNBT(NBTTagCompound tagCompound)
-	{
-		super.readFromNBT(tagCompound);
-		this.stockNum = tagCompound.getInteger("StockNum");
-	}
+    public boolean isTrading()
+    {
+        return isTrading;
+    }
 
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
-	{
-		super.writeToNBT(tagCompound);
-		tagCompound.setInteger("StockNum", stockNum);
-		return tagCompound;
-	}
 
-	@Override
-	public void openInventory(EntityPlayer player)
-	{
-		setTrading(true);
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound tagCompound)
+    {
+        super.readFromNBT(tagCompound);
+        this.stockNum = tagCompound.getInteger("StockNum");
+    }
 
-	@Override
-	public void closeInventory(EntityPlayer player)
-	{
-		setTrading(false);
-	}
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
+    {
+        super.writeToNBT(tagCompound);
+        tagCompound.setInteger("StockNum", stockNum);
+        return tagCompound;
+    }
 
-	@Override
-	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
-	{
-		this.fillWithLoot(playerIn);
-		return new ContainerComputer(playerInventory, this);
-	}
+    @Override
+    public void openInventory(EntityPlayer player)
+    {
+        setTrading(true);
+    }
+
+    @Override
+    public void closeInventory(EntityPlayer player)
+    {
+        setTrading(false);
+    }
+
+    @Override
+    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+    {
+        this.fillWithLoot(playerIn);
+        return new ContainerComputer(playerInventory, this);
+    }
 }

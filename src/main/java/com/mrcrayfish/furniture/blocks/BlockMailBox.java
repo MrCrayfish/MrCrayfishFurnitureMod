@@ -1,17 +1,17 @@
 /**
  * MrCrayfish's Furniture Mod
  * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * 
+ * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -44,104 +44,104 @@ import java.util.List;
 
 public class BlockMailBox extends BlockFurnitureTile
 {
-	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.1875, 0.0F, 0.1875, 0.8125, 1.1625, 0.8125);
-	
-	public BlockMailBox(Material material)
-	{
-		super(material);
-		this.setSoundType(SoundType.WOOD);
-		this.setHardness(1.0F);
-	}
-	
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
+    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.1875, 0.0F, 0.1875, 0.8125, 1.1625, 0.8125);
 
-	@Override
-	public boolean isFullCube(IBlockState state)
-	{
-		return false;
-	}
-	
-	@Override
-	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-	{
-		if (placer instanceof EntityPlayer)
-		{
-			EntityPlayer player = (EntityPlayer) placer;
-			if (!world.isRemote)
-			{
-				player.sendMessage(new TextComponentString("Now right click the mailbox to claim ownership"));
-			}
-		}
-	}
-	
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
-		TileEntity tile_entity = worldIn.getTileEntity(pos);
-		if (!worldIn.isRemote)
-		{
-			if (tile_entity instanceof TileEntityMailBox)
-			{
-				TileEntityMailBox tileEntityMailBox = (TileEntityMailBox) tile_entity;
-				if (!tileEntityMailBox.hasOwner())
-				{
-					tileEntityMailBox.setOwner(playerIn);
-					playerIn.sendMessage(new TextComponentString("Successfully set the owner of the mail box to " + TextFormatting.YELLOW + playerIn.getName()));
-					TileEntityUtil.markBlockForUpdate(worldIn, pos);
-					return true;
-				}
+    public BlockMailBox(Material material)
+    {
+        super(material);
+        this.setSoundType(SoundType.WOOD);
+        this.setHardness(1.0F);
+    }
 
-				tileEntityMailBox.tryAndUpdateName(playerIn);
-				
-				if (tileEntityMailBox.canOpen(playerIn))
-				{
-					playerIn.openGui(MrCrayfishFurnitureMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
-				}
-				else
-				{
-					playerIn.sendMessage(new TextComponentString("This mail box belongs to " + TextFormatting.YELLOW + tileEntityMailBox.getOwner()));
-				}
-			}
-		}
-		return true;
-	}
-	
-	@Override
-	public float getExplosionResistance(Entity entity)
-	{
-		if (entity instanceof EntityCreeper || entity instanceof EntityTNTPrimed)
-		{
-			return 1000;
-		}
-		return super.getExplosionResistance(entity);
-	}
-	
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
-	{
-		return BOUNDING_BOX;
-	}
-	
-	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
-	{
-		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
-	}
-	
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta)
-	{
-		return new TileEntityMailBox();
-	}
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
 
-	@Override
-	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos) 
-	{
-		TileEntityMailBox mailbox = (TileEntityMailBox) world.getTileEntity(pos);
-		return mailbox.getMailCount() > 0 ? 1 : 0;
-	}
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
+        if(placer instanceof EntityPlayer)
+        {
+            EntityPlayer player = (EntityPlayer) placer;
+            if(!world.isRemote)
+            {
+                player.sendMessage(new TextComponentString("Now right click the mailbox to claim ownership"));
+            }
+        }
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        TileEntity tile_entity = worldIn.getTileEntity(pos);
+        if(!worldIn.isRemote)
+        {
+            if(tile_entity instanceof TileEntityMailBox)
+            {
+                TileEntityMailBox tileEntityMailBox = (TileEntityMailBox) tile_entity;
+                if(!tileEntityMailBox.hasOwner())
+                {
+                    tileEntityMailBox.setOwner(playerIn);
+                    playerIn.sendMessage(new TextComponentString("Successfully set the owner of the mail box to " + TextFormatting.YELLOW + playerIn.getName()));
+                    TileEntityUtil.markBlockForUpdate(worldIn, pos);
+                    return true;
+                }
+
+                tileEntityMailBox.tryAndUpdateName(playerIn);
+
+                if(tileEntityMailBox.canOpen(playerIn))
+                {
+                    playerIn.openGui(MrCrayfishFurnitureMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
+                }
+                else
+                {
+                    playerIn.sendMessage(new TextComponentString("This mail box belongs to " + TextFormatting.YELLOW + tileEntityMailBox.getOwner()));
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public float getExplosionResistance(Entity entity)
+    {
+        if(entity instanceof EntityCreeper || entity instanceof EntityTNTPrimed)
+        {
+            return 1000;
+        }
+        return super.getExplosionResistance(entity);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX;
+    }
+
+    @Override
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
+    {
+        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta)
+    {
+        return new TileEntityMailBox();
+    }
+
+    @Override
+    public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
+    {
+        TileEntityMailBox mailbox = (TileEntityMailBox) world.getTileEntity(pos);
+        return mailbox.getMailCount() > 0 ? 1 : 0;
+    }
 }
