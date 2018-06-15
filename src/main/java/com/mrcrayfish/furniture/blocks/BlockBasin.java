@@ -23,6 +23,7 @@ import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -97,101 +98,167 @@ public class BlockBasin extends BlockFurniture
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		ItemStack heldItem = playerIn.getHeldItem(hand);
-		if (!heldItem.isEmpty()) {
-			if (heldItem.getItem() == Items.BUCKET) {
-				if (hasWater(state)) {
-					if (!worldIn.isRemote) {
-						if (!playerIn.isCreative()) {
-							if (heldItem.getCount() > 1) {
-								if (playerIn.inventory.addItemStackToInventory(new ItemStack(Items.WATER_BUCKET))) {
+		if(!heldItem.isEmpty())
+		{
+			if(heldItem.getItem() == Items.BUCKET)
+			{
+				if(hasWater(state))
+				{
+					if(!worldIn.isRemote)
+					{
+						if(!playerIn.isCreative())
+						{
+							if(heldItem.getCount() > 1)
+							{
+								if(playerIn.inventory.addItemStackToInventory(new ItemStack(Items.WATER_BUCKET)))
+								{
 									heldItem.shrink(1);
 								}
-							} else {
+							}
+							else
+							{
 								playerIn.setHeldItem(hand, new ItemStack(Items.WATER_BUCKET));
 							}
 						}
 						worldIn.setBlockState(pos, state.withProperty(FILLED, false));
 						worldIn.updateComparatorOutputLevel(pos, this);
-					} else {
+					}
+					else
+					{
 						playerIn.playSound(SoundEvents.ITEM_BUCKET_FILL, 1.0F, 1.0F);
 					}
 				}
-			} else if (heldItem.getItem() == Items.WATER_BUCKET) {
-				if (!hasWater(state)) {
-					if (!worldIn.isRemote) {
-						if (!playerIn.isCreative()) {
+			}
+			else if(heldItem.getItem() == Items.WATER_BUCKET)
+			{
+				if(!hasWater(state))
+				{
+					if(!worldIn.isRemote)
+					{
+						if(!playerIn.isCreative())
+						{
 							playerIn.setHeldItem(hand, new ItemStack(Items.BUCKET));
 						}
 						worldIn.setBlockState(pos, state.withProperty(FILLED, true), 2);
 						worldIn.updateComparatorOutputLevel(pos, this);
-					} else {
+					}
+					else
+					{
 						playerIn.playSound(SoundEvents.ITEM_BUCKET_EMPTY, 1.0F, 1.0F);
-						worldIn.spawnParticle(EnumParticleTypes.WATER_SPLASH, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 0, 0, 0, new int[0]);
+						createSplashParticle(worldIn, pos);
 					}
 				}
-			} else if (heldItem.getItem() == Items.GLASS_BOTTLE) {
-				if (hasWater(state)) {
-					if (!worldIn.isRemote) {
-						if (!playerIn.isCreative()) {
-							if (heldItem.getCount() > 1) {
-								if (playerIn.inventory.addItemStackToInventory(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER))) {
+			}
+			else if(heldItem.getItem() == Items.GLASS_BOTTLE)
+			{
+				if(hasWater(state))
+				{
+					if(!worldIn.isRemote)
+					{
+						if(!playerIn.isCreative())
+						{
+							if(heldItem.getCount() > 1)
+							{
+								if(playerIn.inventory.addItemStackToInventory(PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER)))
+								{
 									heldItem.shrink(1);
 								}
-							} else {
+							}
+							else
+							{
 								playerIn.setHeldItem(hand, PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.WATER));
 							}
 						}
 						worldIn.setBlockState(pos, state.withProperty(FILLED, false), 2);
 						worldIn.updateComparatorOutputLevel(pos, this);
-					} else {
+					}
+					else
+					{
 						playerIn.playSound(SoundEvents.ITEM_BOTTLE_FILL, 1.0F, 1.0F);
+						createSplashParticle(worldIn, pos);
 					}
 				}
-			} else if (PotionUtils.getPotionFromItem(heldItem) == PotionTypes.WATER) {
-				if (!hasWater(state)) {
-					if (!worldIn.isRemote) {
-						if (!playerIn.isCreative()) {
-							if (heldItem.getItem() == Items.POTIONITEM)
+			}
+			else if(PotionUtils.getPotionFromItem(heldItem) == PotionTypes.WATER)
+			{
+				if(!hasWater(state))
+				{
+					if(!worldIn.isRemote)
+					{
+						if(!playerIn.isCreative())
+						{
+							if(heldItem.getItem() == Items.POTIONITEM)
 								playerIn.setHeldItem(hand, new ItemStack(Items.GLASS_BOTTLE));
-							else
-								playerIn.setHeldItem(hand, ItemStack.EMPTY);
+							else playerIn.setHeldItem(hand, ItemStack.EMPTY);
 						}
 						worldIn.setBlockState(pos, state.withProperty(FILLED, true), 2);
 						worldIn.updateComparatorOutputLevel(pos, this);
-					} else {
+					}
+					else
+					{
 						playerIn.playSound(SoundEvents.ITEM_BOTTLE_EMPTY, 1.0F, 1.0F);
-						worldIn.spawnParticle(EnumParticleTypes.WATER_SPLASH, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, 0, 0, 0, new int[0]);
+						createSplashParticle(worldIn, pos);
 					}
 				}
-			} else {
-				if (!hasWater(state)) {
-					if (!worldIn.isRemote) {
-						if (hasWaterSource(worldIn, pos)) {
+			}
+			else
+			{
+				if(!hasWater(state))
+				{
+					if(hasWaterSource(worldIn, pos))
+					{
+						if(!worldIn.isRemote)
+						{
 							worldIn.setBlockState(pos, state.withProperty(FILLED, true), 2);
 							worldIn.playSound(null, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 1.0F);
 							worldIn.setBlockToAir(pos.add(0, -2, 0));
 							worldIn.updateComparatorOutputLevel(pos, this);
-						} else {
-							playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the basin is on to fill it. Alternatively you can use a water bucket to fill it."));
+						}
+						else
+						{
+							createSplashParticle(worldIn, pos);
 						}
 					}
-				}
-			}
-		} else {
-			if (!hasWater(state)) {
-				if (!worldIn.isRemote) {
-					if (hasWaterSource(worldIn, pos)) {
-						worldIn.setBlockState(pos, state.withProperty(FILLED, true), 2);
-						worldIn.playSound(null, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 1.0F);
-						worldIn.setBlockToAir(pos.add(0, -2, 0));
-						worldIn.updateComparatorOutputLevel(pos, this);
-					} else {
+					else if(!worldIn.isRemote)
+					{
 						playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the basin is on to fill it. Alternatively you can use a water bucket to fill it."));
 					}
 				}
 			}
 		}
+		else
+		{
+			if(!hasWater(state))
+			{
+				if(hasWaterSource(worldIn, pos))
+				{
+					if(!worldIn.isRemote)
+					{
+						worldIn.setBlockState(pos, state.withProperty(FILLED, true), 2);
+						worldIn.playSound(null, pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 1.0F);
+						worldIn.setBlockToAir(pos.add(0, -2, 0));
+						worldIn.updateComparatorOutputLevel(pos, this);
+					}
+					else
+					{
+						createSplashParticle(worldIn, pos);
+					}
+				}
+				else if(!worldIn.isRemote)
+				{
+					playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the basin is on to fill it. Alternatively you can use a water bucket to fill it."));
+				}
+			}
+		}
 		return true;
+	}
+
+	private void createSplashParticle(World world, BlockPos pos)
+	{
+		for(int i = 0; i < 5; i++)
+		{
+			world.spawnParticle(EnumParticleTypes.WATER_SPLASH, pos.getX() + 0.3 + 0.4 * RANDOM.nextDouble(), pos.getY() + 1.05, pos.getZ() + 0.3 + 0.4 * RANDOM.nextDouble(), 0, 0, 0);
+		}
 	}
 
 	@Override
