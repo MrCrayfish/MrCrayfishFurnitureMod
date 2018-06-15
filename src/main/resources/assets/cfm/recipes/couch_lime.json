@@ -1,0 +1,17 @@
+{
+  "result": {
+    "item": "cfm:couch",
+	"data": 5
+  },
+  "pattern": [
+    "***",
+    "***"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "*": {
+      "item": "minecraft:wool",
+      "data": 5
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+    "display": {
+        "icon": {
+            "item": "cfm:electric_fence"
+        },
+        "title": {
+            "translate": "advancements.cfm.careful"
+        },
+        "description": {
+            "translate": "advancements.cfm.careful.desc"
+        }
+    },
+	"parent": "cfm:modern_technology",
+	"criteria": {
+        "player_zapped": {
+            "trigger": "cfm:player_zapped"
+        }
+	}
+}

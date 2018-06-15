@@ -1,0 +1,22 @@
+{
+    "display": {
+        "icon": {
+            "item": "cfm:tv"
+        },
+        "title": {
+            "translate": "advancements.cfm.heyeyey"
+        },
+        "description": {
+            "translate": "advancements.cfm.heyeyey.desc"
+        }
+    },
+	"parent": "cfm:modern_technology",
+	"criteria": {
+		"placed_tv": {
+            "trigger": "minecraft:placed_block",
+            "conditions": {
+                "block": "cfm:tv"
+            }
+		}
+	}
+}

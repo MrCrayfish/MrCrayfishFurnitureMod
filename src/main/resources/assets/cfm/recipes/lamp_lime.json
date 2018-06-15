@@ -1,0 +1,25 @@
+{
+  "result": {
+    "item": "cfm:lamp_off",
+	"data": 5,
+    "count": 2
+  },
+  "pattern": [
+    "***",
+    "*@*",
+    " \u0026 "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "@": {
+      "item": "minecraft:glowstone"
+    },
+    "\u0026": {
+      "item": "minecraft:obsidian"
+    },
+    "*": {
+      "item": "minecraft:wool",
+      "data": 5
+    }
+  }
+}

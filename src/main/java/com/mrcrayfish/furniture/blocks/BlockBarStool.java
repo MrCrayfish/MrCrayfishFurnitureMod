@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.blocks.item.IMetaBlockName;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.util.SittableUtil;
 
@@ -30,18 +31,23 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockBarStool extends Block
+public class BlockBarStool extends Block implements IMetaBlockName
 {
 	public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
 
@@ -76,7 +82,9 @@ public class BlockBarStool extends Block
 			if (heldItem.getItem() instanceof ItemDye) {
 				if (state.getValue(COLOUR) != 15 - heldItem.getItemDamage()) {
 					worldIn.setBlockState(pos, state.withProperty(COLOUR, 15 - heldItem.getItemDamage()));
-					heldItem.shrink(1);
+					if(!playerIn.isCreative()) {
+						heldItem.shrink(1);
+					}
 					return true;
 				}
 			}
@@ -114,5 +122,41 @@ public class BlockBarStool extends Block
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, new IProperty[] { COLOUR });
+	}
+	
+	@Override
+	public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
+	{
+		return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand).withProperty(COLOUR, Math.min(meta, 15));
+	}
+	
+	@Override
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+	{
+		drops.add(new ItemStack(this, 1, Math.min(state.getValue(COLOUR), 15)));
+	}
+
+	@Override
+	public void getSubBlocks(CreativeTabs item, NonNullList<ItemStack> items)
+	{
+		for (int i = 0; i < EnumDyeColor.values().length; i++) {
+			items.add(new ItemStack(this, 1, i));
+		}
+	}
+	
+	@Override
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+	{
+		return new ItemStack(this, 1, state.getValue(COLOUR));
+	}
+
+	@Override
+	public String getSpecialName(ItemStack stack)
+	{
+		int metadata = stack.getMetadata();
+		if (metadata < 0 || metadata >= EnumDyeColor.values().length) {
+			return EnumDyeColor.WHITE.getDyeColorName();
+		}
+		return EnumDyeColor.values()[metadata].getDyeColorName();
 	}
 }

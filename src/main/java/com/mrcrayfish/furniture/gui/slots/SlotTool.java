@@ -19,7 +19,6 @@ package com.mrcrayfish.furniture.gui.slots;
 
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.api.RecipeAPI;
-import com.mrcrayfish.furniture.api.RecipeData;
 
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
@@ -77,7 +76,7 @@ public class SlotTool extends Slot
 			}
 			break;
 		case 5:
-			return !(item instanceof ItemPickaxe || item instanceof ItemSpade|| item instanceof ItemSword || item instanceof ItemAxe || item instanceof ItemHoe) && RecipeAPI.getDishwasherRecipeFromInput(stack) != null;
+			return !(item instanceof ItemPickaxe || item instanceof ItemSpade || item instanceof ItemSword || item instanceof ItemAxe || item instanceof ItemHoe) && RecipeAPI.getDishwasherRecipeFromInput(stack) != null;
 		}
 
 		return false;

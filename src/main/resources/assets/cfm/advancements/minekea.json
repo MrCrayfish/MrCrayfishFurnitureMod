@@ -1,0 +1,19 @@
+{
+    "display": {
+        "icon": {
+            "item": "cfm:chair_oak"
+        },
+        "title": {
+            "translate": "advancements.cfm.minekea"
+        },
+        "description": {
+            "translate": "advancements.cfm.minekea.desc"
+        }
+    },
+	"parent": "cfm:install",
+	"criteria": {
+		"get_chair_or_table": {
+			"trigger": "cfm:get_chair_or_table"
+		}
+	}
+}

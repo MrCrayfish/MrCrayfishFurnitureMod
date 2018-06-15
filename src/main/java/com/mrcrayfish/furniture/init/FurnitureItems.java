@@ -17,9 +17,21 @@
  */
 package com.mrcrayfish.furniture.init;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.Reference;
-import com.mrcrayfish.furniture.items.*;
+import com.mrcrayfish.furniture.items.ItemCup;
+import com.mrcrayfish.furniture.items.ItemEnvelope;
+import com.mrcrayfish.furniture.items.ItemEnvelopeSigned;
+import com.mrcrayfish.furniture.items.ItemGeneric;
+import com.mrcrayfish.furniture.items.ItemKnife;
+import com.mrcrayfish.furniture.items.ItemLog;
+import com.mrcrayfish.furniture.items.ItemPackage;
+import com.mrcrayfish.furniture.items.ItemPackageSigned;
+import com.mrcrayfish.furniture.items.ItemRecipeBook;
+
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
@@ -30,9 +42,8 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
-import java.util.LinkedList;
-import java.util.List;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class FurnitureItems
 {
@@ -127,6 +138,10 @@ public class FurnitureItems
 
 	public static void registerItem(Item item)
 	{
+		if (FurnitureItems.RegistrationHandler.ITEMS.contains(item)) {
+			throw new RuntimeException("Duplicate block " + item.getRegistryName());
+		}
+		
 		RegistrationHandler.ITEMS.add(item);
 	}
 
@@ -160,9 +175,16 @@ public class FurnitureItems
 		registerRender(itemCrowBar);
 	}
 
+	@SideOnly(Side.CLIENT)
 	private static void registerRender(Item item)
 	{
 		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + item.getUnlocalizedName().substring(5), "inventory"));
+	}
+
+	@SideOnly(Side.CLIENT)
+	private static void registerRender(Item item, int metadata, String fileName)
+	{
+		ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(Reference.MOD_ID + ":" + fileName, "inventory"));
 	}
 
 	@Mod.EventBusSubscriber(modid = Reference.MOD_ID)

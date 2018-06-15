@@ -59,6 +59,12 @@ public class TileEntityTV extends TileEntity
 		this.channel = channel;
 	}
 
+	public void reloadChannel()
+	{
+		markDirty();
+		TileEntityUtil.markBlockForUpdate(world, pos);
+	}
+
 	public void nextChannel()
 	{
 		int nextChannel = 0;

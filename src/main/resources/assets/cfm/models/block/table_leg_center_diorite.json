@@ -1,0 +1,7 @@
+{
+"parent": "cfm:block/table_leg_center",
+"textures": {
+    "0": "blocks/stone_diorite",
+    "1": "blocks/stone_diorite_smooth"
+}
+}

@@ -18,13 +18,16 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.tileentity.TileEntityMicrowave;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -40,10 +43,10 @@ import java.util.List;
 
 public class BlockMicrowave extends BlockFurnitureTile
 {
-	private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 2 * 0.0625, 0.0, 0 * 0.0625, 14 * 0.0625, 10 * 0.0625, 16 * 0.0625);
-	private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 2 * 0.0625, 0.0, 0 * 0.0625, 14 * 0.0625, 10 * 0.0625, 16 * 0.0625);
-	private static final AxisAlignedBB BOUNDING_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 2 * 0.0625, 0.0, 0 * 0.0625, 14 * 0.0625, 10 * 0.0625, 16 * 0.0625);
-	private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 2 * 0.0625, 0.0, 0 * 0.0625, 14 * 0.0625, 10 * 0.0625, 16 * 0.0625);
+	private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 2 * 0.0625, 0.0, 0 * 0.0625, 14 * 0.0625, 9 * 0.0625, 16 * 0.0625);
+	private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 2 * 0.0625, 0.0, 0 * 0.0625, 14 * 0.0625, 9 * 0.0625, 16 * 0.0625);
+	private static final AxisAlignedBB BOUNDING_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 2 * 0.0625, 0.0, 0 * 0.0625, 14 * 0.0625, 9 * 0.0625, 16 * 0.0625);
+	private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 2 * 0.0625, 0.0, 0 * 0.0625, 14 * 0.0625, 9 * 0.0625, 16 * 0.0625);
 	private static final AxisAlignedBB[] BOUNDING_BOX = { BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST };
 	
 	public BlockMicrowave(Material material)
@@ -51,6 +54,15 @@ public class BlockMicrowave extends BlockFurnitureTile
 		super(material);
 		this.setHardness(0.5F);
 		this.setSoundType(SoundType.ANVIL);
+	}
+
+	@Override
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+	{
+		if (placer instanceof EntityPlayer) {
+			Triggers.trigger(Triggers.PLACE_APPLIANCE, (EntityPlayer) placer);
+		}
+		super.onBlockPlacedBy(world, pos, state, placer, stack);
 	}
 	
 	@Override

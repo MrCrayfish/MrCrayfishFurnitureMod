@@ -24,8 +24,7 @@ import net.minecraft.item.ItemStack;
 
 public class SlotFridge extends Slot
 {
-	public SlotFridge(IInventory inventory, int slotIndex, int x, int y)
-	{
+	public SlotFridge(IInventory inventory, int slotIndex, int x, int y) {
 		super(inventory, slotIndex, x, y);
 	}
 

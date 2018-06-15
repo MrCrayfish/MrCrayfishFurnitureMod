@@ -1,0 +1,19 @@
+{
+    "display": {
+        "icon": {
+            "item": "cfm:toilet"
+        },
+        "title": {
+            "translate": "advancements.cfm.whatdidyoueat"
+        },
+        "description": {
+            "translate": "advancements.cfm.whatdidyoueat.desc"
+        }
+    },
+	"parent": "cfm:bathroom",
+	"criteria": {
+        "player_fart": {
+            "trigger": "cfm:player_fart"
+        }
+	}
+}

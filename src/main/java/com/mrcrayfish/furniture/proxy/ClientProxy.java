@@ -59,7 +59,7 @@ public class ClientProxy extends CommonProxy
 	public static boolean rendering = false;
 	public static Entity renderEntity = null;
 	public static Entity backupEntity = null;
-
+	
 	@Override
 	public void init()
 	{

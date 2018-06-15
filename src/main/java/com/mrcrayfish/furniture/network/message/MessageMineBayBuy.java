@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture.network.message;
 
+import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.api.RecipeData;
 import com.mrcrayfish.furniture.api.Recipes;
 import com.mrcrayfish.furniture.tileentity.TileEntityComputer;
@@ -96,6 +97,7 @@ public class MessageMineBayBuy implements IMessage, IMessageHandler<MessageMineB
 
 			EntityItem entityItem = new EntityItem(player.world, player.posX, player.posY + 1, player.posZ, data[message.itemNum].getInput().copy());
 			player.world.spawnEntity(entityItem);
+			Triggers.trigger(Triggers.MINEBAY_PURCHASE, player);
 		}
 		return null;
 	}

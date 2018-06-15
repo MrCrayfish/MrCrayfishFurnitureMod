@@ -17,9 +17,16 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 import com.mrcrayfish.furniture.tileentity.TileEntityPresent;
 import com.mrcrayfish.furniture.util.InventoryUtil;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -28,15 +35,19 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -47,25 +58,21 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-
 public class BlockPresent extends Block implements ITileEntityProvider
 {
 	public static final PropertyEnum<EnumDyeColor> COLOUR = PropertyEnum.<EnumDyeColor>create("colour", EnumDyeColor.class);
-	
+
 	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.25, 0.0, 0.25, 0.75, 0.35, 0.75);
-	
-	public BlockPresent(Material material)
-	{
+
+	public BlockPresent(Material material) {
 		super(material);
 		this.setHardness(0.5F);
 		this.setSoundType(SoundType.CLOTH);
 		this.hasTileEntity = true;
 		this.setDefaultState(this.blockState.getBaseState().withProperty(COLOUR, EnumDyeColor.WHITE));
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
-	
+
 	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
@@ -82,38 +89,38 @@ public class BlockPresent extends Block implements ITileEntityProvider
 	public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player)
 	{
 		TileEntityPresent present = (TileEntityPresent) world.getTileEntity(pos);
-		if (present != null)
-		{
+		if (present != null) {
 			world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 0.75F, 1.0F, false);
-			player.sendMessage(new TextComponentString(TextFormatting.GREEN + "Merry Christmas" + TextFormatting.RESET + " from " + TextFormatting.RED + present.ownerName));
+			if (world.isRemote) {
+				player.sendMessage(new TextComponentString(TextFormatting.GREEN + "Merry Christmas" + TextFormatting.RESET + " from " + TextFormatting.RED + present.ownerName));
+			}
+			Triggers.trigger(Triggers.UNWRAP_PRESENT, player);
 		}
 	}
-	
+
 	@Override
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{
 		TileEntity tileEntity = world.getTileEntity(pos);
-		if (tileEntity instanceof IInventory)
-		{
+		if (tileEntity instanceof IInventory) {
 			IInventory inv = (IInventory) tileEntity;
 			InventoryHelper.dropInventoryItems(world, pos, inv);
 		}
-		if (tileEntity instanceof ISimpleInventory)
-		{
+		if (tileEntity instanceof ISimpleInventory) {
 			ISimpleInventory inv = (ISimpleInventory) tileEntity;
 			InventoryUtil.dropInventoryItems(world, pos, inv);
 		}
 		super.breakBlock(world, pos, state);
 	}
-	
+
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
 		return BOUNDING_BOX;
 	}
-	
+
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
 	{
 		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
 	}
@@ -140,13 +147,13 @@ public class BlockPresent extends Block implements ITileEntityProvider
 	{
 		return state.getValue(COLOUR).getMetadata();
 	}
-	
+
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
 		return state.getValue(COLOUR).getMetadata();
 	}
-	
+
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
@@ -163,5 +170,13 @@ public class BlockPresent extends Block implements ITileEntityProvider
 	public BlockRenderLayer getBlockLayer()
 	{
 		return BlockRenderLayer.CUTOUT;
+	}
+
+	@Override
+	public void getSubBlocks(CreativeTabs item, NonNullList<ItemStack> items)
+	{
+		for (int i = 0; i < EnumDyeColor.values().length; ++i) {
+			items.add(new ItemStack(this, 1, i));
+		}
 	}
 }

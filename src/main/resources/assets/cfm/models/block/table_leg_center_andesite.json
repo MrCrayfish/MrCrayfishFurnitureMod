@@ -1,0 +1,7 @@
+{
+"parent": "cfm:block/table_leg_center",
+"textures": {
+    "0": "blocks/stone_andesite",
+    "1": "blocks/stone_andesite_smooth"
+}
+}

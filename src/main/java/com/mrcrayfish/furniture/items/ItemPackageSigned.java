@@ -18,10 +18,13 @@
 package com.mrcrayfish.furniture.items;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.gui.inventory.InventoryPackage;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
 import com.mrcrayfish.furniture.util.NBTHelper;
+
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -50,6 +53,12 @@ public class ItemPackageSigned extends Item implements IMail
 	public ItemPackageSigned()
 	{
 		setMaxStackSize(1);
+	}
+	
+	@Override
+	public String getItemStackDisplayName(ItemStack stack)
+	{
+		return TextFormatting.YELLOW.toString() + TextFormatting.BOLD.toString() + I18n.format("item.mail.name");
 	}
 
 	@Override
@@ -97,6 +106,7 @@ public class ItemPackageSigned extends Item implements IMail
 							tileEntityMailBox.addMail(itemStack);
 							player.sendMessage(new TextComponentString("Thank you! - " + TextFormatting.YELLOW + tileEntityMailBox.getOwner()));
 							heldItem.shrink(1);
+							Triggers.trigger(Triggers.PLAYER_SENT_MAIL, player);
 						}
 						else
 						{

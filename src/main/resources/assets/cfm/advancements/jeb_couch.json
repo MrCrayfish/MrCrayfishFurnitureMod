@@ -1,0 +1,19 @@
+{
+    "display": {
+        "icon": {
+            "item": "cfm:couch_jeb"
+        },
+        "title": {
+            "translate": "advancements.cfm.jebcouch"
+        },
+        "description": {
+            "translate": "advancements.cfm.jebcouch.desc"
+        }
+    },
+	"parent": "cfm:minekea",
+	"criteria": {
+        "create_couch_jeb": {
+            "trigger": "cfm:create_couch_jeb"
+        }
+	}
+}

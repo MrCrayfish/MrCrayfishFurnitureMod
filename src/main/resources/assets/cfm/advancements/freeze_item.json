@@ -1,0 +1,19 @@
+{
+    "display": {
+        "icon": {
+            "item": "minecraft:packed_ice"
+        },
+        "title": {
+            "translate": "advancements.cfm.freezeitem"
+        },
+        "description": {
+            "translate": "advancements.cfm.freezeitem.desc"
+        }
+    },
+	"parent": "cfm:appliance_city",
+	"criteria": {
+        "freezer_freeze": {
+            "trigger": "cfm:freezer_freeze"
+        }
+	}
+}

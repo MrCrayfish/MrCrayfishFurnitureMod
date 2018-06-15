@@ -81,5 +81,6 @@ public class BlockFurniture extends Block
 	public void breakBlock(World world, BlockPos pos, IBlockState state)
 	{
 		InventoryUtil.dropTileEntityInventoryItems(world, pos, world.getTileEntity(pos));
+		super.breakBlock(world, pos, state);
 	}
 }

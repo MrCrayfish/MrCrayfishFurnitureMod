@@ -1,0 +1,18 @@
+{
+	"result": {
+		"item": "cfm:item_log",
+		"count": 8
+	},
+	"group": "cfm:item_log",
+	"type": "cfm:cutting_shapeless",
+	"ingredients": [
+		{
+			"item": "minecraft:wooden_axe",
+			"data": 32767
+		},
+		{
+			"type": "forge:ore_dict",
+			"ore": "logWood"
+		}
+	]
+}

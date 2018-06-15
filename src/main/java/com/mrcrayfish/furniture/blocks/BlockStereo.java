@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture.blocks;
 
+import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.tileentity.TileEntityStereo;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
@@ -26,6 +27,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -61,17 +63,12 @@ public class BlockStereo extends BlockFurnitureTile
 		super(material);
 		this.setHardness(1.0F);
 		this.setSoundType(SoundType.WOOD);
-		records.add((ItemRecord) Items.RECORD_13);
-		records.add((ItemRecord) Items.RECORD_BLOCKS);
-		records.add((ItemRecord) Items.RECORD_CAT);
-		records.add((ItemRecord) Items.RECORD_CHIRP);
-		records.add((ItemRecord) Items.RECORD_FAR);
-		records.add((ItemRecord) Items.RECORD_MALL);
-		records.add((ItemRecord) Items.RECORD_MELLOHI);
-		records.add((ItemRecord) Items.RECORD_STAL);
-		records.add((ItemRecord) Items.RECORD_STRAD);
-		records.add((ItemRecord) Items.RECORD_WAIT);
-		records.add((ItemRecord) Items.RECORD_WARD);
+		
+		for(Item item : Item.REGISTRY) {
+			if(item instanceof ItemRecord) {
+				records.add((ItemRecord) item);
+			}
+		}
 	}
 
 	@Override
@@ -96,6 +93,7 @@ public class BlockStereo extends BlockFurnitureTile
 					tileEntityStereo.count = 0;
 				}
 				worldIn.playRecord(pos, records.get(tileEntityStereo.count).getSound());
+				Triggers.trigger(Triggers.STEREO_ACTIVATED, playerIn);
 			}
 			else
 			{

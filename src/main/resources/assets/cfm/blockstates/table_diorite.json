@@ -1,0 +1,20 @@
+{
+"variants": {
+    "back=false,forward=true,left=false,right=true": {"model": "cfm:table_leg_corner_diorite", "y": 270,"uvlock": true},
+    "back=false,forward=true,left=true,right=false": {"model": "cfm:table_leg_corner_diorite", "y": 180,"uvlock": true},
+    "back=true,forward=false,left=false,right=true": {"model": "cfm:table_leg_corner_diorite","uvlock": true},
+    "back=true,forward=false,left=true,right=false": {"model": "cfm:table_leg_corner_diorite", "y": 90,"uvlock": true},
+    "back=false,forward=true,left=false,right=false": {"model": "cfm:table_leg_end_diorite", "y": 270,"uvlock": true},
+    "back=false,forward=false,left=false,right=true": {"model": "cfm:table_leg_end_diorite","uvlock": true},
+    "back=false,forward=false,left=true,right=false": {"model": "cfm:table_leg_end_diorite", "y": 180,"uvlock": true},
+    "back=true,forward=false,left=false,right=false": {"model": "cfm:table_leg_end_diorite", "y": 90,"uvlock": true},
+    "back=false,forward=false,left=false,right=false": {"model": "cfm:table_leg_center_diorite","uvlock": true},
+    "back=true,forward=true,left=false,right=false": {"model": "cfm:table_leg_none_diorite","uvlock": true},
+    "back=true,forward=true,left=true,right=false": {"model": "cfm:table_leg_none_diorite","uvlock": true},
+    "back=true,forward=true,left=false,right=true": {"model": "cfm:table_leg_none_diorite","uvlock": true},
+    "back=false,forward=false,left=true,right=true": {"model": "cfm:table_leg_none_diorite","uvlock": true},
+    "back=false,forward=true,left=true,right=true": {"model": "cfm:table_leg_none_diorite","uvlock": true},
+    "back=true,forward=false,left=true,right=true": {"model": "cfm:table_leg_none_diorite","uvlock": true},
+    "back=true,forward=true,left=true,right=true": {"model": "cfm:table_leg_none_diorite","uvlock": true}
+    }
+}
