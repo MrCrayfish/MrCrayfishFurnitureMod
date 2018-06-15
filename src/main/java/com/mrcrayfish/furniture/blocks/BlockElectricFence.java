@@ -33,6 +33,7 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
@@ -150,7 +151,7 @@ public class BlockElectricFence extends Block
     @Override
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity)
     {
-        if(!(entity instanceof EntityItem) && !entity.getName().equals("unknown"))
+        if(entity instanceof EntityLivingBase && !entity.isDead)
         {
             if(entity instanceof EntityCreeper)
             {
