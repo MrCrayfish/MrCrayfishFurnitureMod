@@ -211,6 +211,7 @@ tile.divingboard_base.name=Divingboard
 tile.door_mat.name=Door Mat
 tile.esky.name=Cooler
 tile.water_tank.name=Water Tank
+tile.modern_window.name=Modern Window
 
 keys.cfm.category=MrCrayfish's Furniture Mod
 key.fart.desc=Fart

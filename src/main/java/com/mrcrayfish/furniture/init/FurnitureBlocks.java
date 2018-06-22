@@ -77,6 +77,7 @@ public class FurnitureBlocks
 
     /* The Bedroom Update */
     public static final Block BEDSIDE_CABINET_STONE, BEDSIDE_CABINET_GRANITE, BEDSIDE_CABINET_DIORITE, BEDSIDE_CABINET_ANDESITE;
+    public static final Block MODERN_WINDOW;
 
     /* Special */
     public static final Block MIRROR;
@@ -207,6 +208,7 @@ public class FurnitureBlocks
         BEDSIDE_CABINET_GRANITE = new BlockBedsideCabinet(Material.ROCK).setUnlocalizedName("bedside_cabinet_granite").setRegistryName("bedside_cabinet_granite");
         BEDSIDE_CABINET_DIORITE = new BlockBedsideCabinet(Material.ROCK).setUnlocalizedName("bedside_cabinet_diorite").setRegistryName("bedside_cabinet_diorite");
         BEDSIDE_CABINET_ANDESITE = new BlockBedsideCabinet(Material.ROCK).setUnlocalizedName("bedside_cabinet_andesite").setRegistryName("bedside_cabinet_andesite");
+        MODERN_WINDOW = new BlockModernWindow().setUnlocalizedName("modern_window").setRegistryName("modern_window");
     }
 
     public static void register()
@@ -335,6 +337,7 @@ public class FurnitureBlocks
         registerBlock(DIVING_BOARD_PLANK, null);
         registerBlock(DOOR_MAT);
         registerBlock(COOLER);
+        registerBlock(MODERN_WINDOW);
     }
 
     private static void registerBlock(Block block)

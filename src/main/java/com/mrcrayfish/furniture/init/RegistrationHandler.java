@@ -126,8 +126,8 @@ public class RegistrationHandler
 
     public static void init()
     {
-        FurnitureItems.register();
         FurnitureBlocks.register();
+        FurnitureItems.register();
         FurnitureSounds.register();
         FurnitureCrafting.register();
     }

@@ -42,7 +42,6 @@ import java.awt.*;
 public class ItemCup extends Item
 {
     private boolean hasLiquid = false;
-    private Block cupBlock = FurnitureBlocks.CUP;
 
     public ItemCup(boolean hasLiquid)
     {
@@ -125,10 +124,10 @@ public class ItemCup extends Item
 
         ItemStack itemstack = player.getHeldItem(hand);
 
-        if(!itemstack.isEmpty() && player.canPlayerEdit(pos, facing, itemstack) && worldIn.mayPlace(this.cupBlock, pos, false, facing, (Entity) null))
+        if(!itemstack.isEmpty() && player.canPlayerEdit(pos, facing, itemstack) && worldIn.mayPlace(FurnitureBlocks.CUP, pos, false, facing, (Entity) null))
         {
             int i = this.getMetadata(itemstack.getMetadata());
-            IBlockState iblockstate1 = this.cupBlock.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, i, player, hand);
+            IBlockState iblockstate1 = FurnitureBlocks.CUP.getStateForPlacement(worldIn, pos, facing, hitX, hitY, hitZ, i, player, hand);
 
             if(placeBlockAt(itemstack, player, worldIn, pos, facing, hitX, hitY, hitZ, iblockstate1))
             {
@@ -165,10 +164,10 @@ public class ItemCup extends Item
         if(!world.setBlockState(pos, newState, 11)) return false;
 
         IBlockState state = world.getBlockState(pos);
-        if(state.getBlock() == this.cupBlock)
+        if(state.getBlock() == FurnitureBlocks.CUP)
         {
             ItemBlock.setTileEntityNBT(world, player, pos, stack);
-            this.cupBlock.onBlockPlacedBy(world, pos, state, player, stack);
+            FurnitureBlocks.CUP.onBlockPlacedBy(world, pos, state, player, stack);
         }
 
         return true;
