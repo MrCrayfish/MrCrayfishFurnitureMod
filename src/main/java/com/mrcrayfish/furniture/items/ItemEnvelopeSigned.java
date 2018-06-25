@@ -24,6 +24,7 @@ import javax.annotation.Nullable;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.gui.inventory.InventoryEnvelope;
+import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
 import com.mrcrayfish.furniture.util.NBTHelper;
 
@@ -58,9 +59,14 @@ public class ItemEnvelopeSigned extends Item implements IMail
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return TextFormatting.YELLOW.toString() + TextFormatting.BOLD.toString() + I18n.format("item.mail.name");
+        if(this == FurnitureItems.PACKAGE_SIGNED)
+        {
+            return TextFormatting.YELLOW.toString() + TextFormatting.BOLD.toString() + I18n.format("item.item_envelope.name");
+        }
+        return I18n.format("item.item_envelope.name");
     }
 
     @Override

@@ -56,9 +56,14 @@ public class ItemPackageSigned extends Item implements IMail
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public String getItemStackDisplayName(ItemStack stack)
     {
-        return TextFormatting.YELLOW.toString() + TextFormatting.BOLD.toString() + I18n.format("item.mail.name");
+        if(this == FurnitureItems.PACKAGE_SIGNED)
+        {
+            return TextFormatting.YELLOW.toString() + TextFormatting.BOLD.toString() + I18n.format("item.item_package.name");
+        }
+        return I18n.format("item.item_package.name");
     }
 
     @Override
