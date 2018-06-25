@@ -17,29 +17,24 @@
  */
 package com.mrcrayfish.furniture;
 
-import java.lang.reflect.Method;
-
-import com.mrcrayfish.furniture.init.RegistrationHandler;
-import org.apache.logging.log4j.Logger;
-
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.api.IRecipeRegistry;
 import com.mrcrayfish.furniture.api.RecipeRegistry;
 import com.mrcrayfish.furniture.api.RecipeRegistryComm;
 import com.mrcrayfish.furniture.api.Recipes;
 import com.mrcrayfish.furniture.blocks.tv.Channels;
+import com.mrcrayfish.furniture.common.CommonEvents;
 import com.mrcrayfish.furniture.entity.EntityMirror;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.gui.GuiHandler;
 import com.mrcrayfish.furniture.handler.ConfigurationHandler;
 import com.mrcrayfish.furniture.handler.PlayerEvents;
-import com.mrcrayfish.furniture.init.FurnitureCrafting;
 import com.mrcrayfish.furniture.init.FurnitureTab;
 import com.mrcrayfish.furniture.init.FurnitureTileEntities;
+import com.mrcrayfish.furniture.init.RegistrationHandler;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.proxy.CommonProxy;
 import com.mrcrayfish.furniture.render.tileentity.MirrorRenderer;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -56,6 +51,9 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
+import org.apache.logging.log4j.Logger;
+
+import java.lang.reflect.Method;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, acceptedMinecraftVersions = Reference.ACCEPTED_MC_VERSIONS)
 public class MrCrayfishFurnitureMod
@@ -75,18 +73,19 @@ public class MrCrayfishFurnitureMod
     {
         logger = event.getModLog();
 
-        /** Config Changed Event */
+        /* Common Events */
         MinecraftForge.EVENT_BUS.register(new ConfigurationHandler());
+        MinecraftForge.EVENT_BUS.register(new CommonEvents());
 
         RegistrationHandler.init();
 
-        /** Packet Handler Init */
+        /* Packet Handler Init */
         PacketHandler.init();
 
-        /** Configuration Handler Init */
+        /* Configuration Handler Init */
         ConfigurationHandler.init(event.getSuggestedConfigurationFile());
 
-        /** Custom triggers Init */
+        /* Custom triggers Init */
         Triggers.init();
 
         proxy.preInit();
@@ -101,13 +100,13 @@ public class MrCrayfishFurnitureMod
         }
         MinecraftForge.EVENT_BUS.register(new PlayerEvents());
 
-        /** GUI Handler Registering */
+        /* GUI Handler Registering */
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
 
-        /** TileEntity Registering */
+        /* TileEntity Registering */
         FurnitureTileEntities.register();
 
-        /** Entity Registering */
+        /* Entity Registering */
         EntityRegistry.registerModEntity(new ResourceLocation("cfm:mountable_block"), EntitySittableBlock.class, "MountableBlock", 0, this, 80, 1, false);
         if(event.getSide() == Side.CLIENT)
         {
@@ -120,7 +119,7 @@ public class MrCrayfishFurnitureMod
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        /** Initialize API */
+        /* Initialize API */
         RecipeRegistry.registerDefaultRecipes();
         RecipeRegistry.registerConfigRecipes();
         Recipes.addCommRecipesToLocal();
