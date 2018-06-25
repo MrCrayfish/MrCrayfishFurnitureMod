@@ -18,9 +18,6 @@ import java.util.List;
  */
 public class CommonEvents
 {
-    public static final DataParameter<Boolean> PUSHING_CART = EntityDataManager.createKey(EntityPlayer.class, DataSerializers.BOOLEAN);
-    public static final DataParameter<NBTTagCompound> HELD_VEHICLE = EntityDataManager.createKey(EntityPlayer.class, DataSerializers.COMPOUND_TAG);
-
     private static final List<String> IGNORE_ITEMS;
 
     static
