@@ -27,5 +27,6 @@
    "channel_heman":     { "category": "block", "sounds": [{ "name": "cfm:channel_heman", "stream": false }]},
    "channel_switch":    { "category": "block", "sounds": [{ "name": "cfm:channel_switch", "stream": false }]},
    "boing":             { "category": "block", "sounds": [{ "name": "cfm:boing", "stream": false }]},
-   "sizzle":            { "category": "block", "sounds": [{ "name": "cfm:sizzle", "stream": false}]}
+   "sizzle":            { "category": "block", "sounds": [{ "name": "cfm:sizzle", "stream": false}]},
+   "light_switch":      { "category": "block", "sounds": [{ "name": "cfm:light_switch", "stream": false}]}
 }

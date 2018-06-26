@@ -211,6 +211,8 @@ tile.door_mat.name=Door Mat
 tile.esky.name=Cooler
 tile.water_tank.name=Water Tank
 tile.modern_window.name=Modern Window
+tile.light_switch_off.name=Light Switch
+tile.light_switch_on.name=Light Switch
 
 keys.cfm.category=MrCrayfish's Furniture Mod
 key.fart.desc=Fart
@@ -269,3 +271,7 @@ advancements.cfm.whatdidyoueat=Constipated
 advancements.cfm.whatdidyoueat.desc=Maybe I won't eat that again
 advancements.cfm.allclean=No More Skinny Dipping
 advancements.cfm.allclean.desc=Take a shower
+
+cfm.how_to=Hold SHIFT for How To
+cfm.light_switch.desc=Use this switch to control ceiling lights wirelessly
+cfm.light_switch.how_to=To connect the switch to ceiling lights, simply right click the lights with the switch in your hand. If you want to remove lights, crouch and right click to clear all.
