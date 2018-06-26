@@ -10,6 +10,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagLong;
@@ -79,6 +80,26 @@ public class ItemLightSwitch extends ItemBlock
                 return EnumActionResult.SUCCESS;
             }
         }
+
+        if(this.block.canPlaceBlockOnSide(world, pos.offset(side), side))
+        {
+            NBTTagList lights = getLights(heldItem);
+            if(lights != null)
+            {
+                for(int i = 0; i < lights.tagCount(); i++)
+                {
+                    NBTBase nbtBase = lights.get(i);
+                    BlockPos lightPos = BlockPos.fromLong(((NBTTagLong) nbtBase).getLong());
+                    BlockPos placedPos = pos.offset(side);
+                    double distance = Math.sqrt(lightPos.distanceSqToCenter(placedPos.getX() + 0.5, placedPos.getY() + 0.5, placedPos.getZ() + 0.5));
+                    if(distance > 16)
+                    {
+                        return EnumActionResult.SUCCESS;
+                    }
+                }
+            }
+        }
+
         return EnumActionResult.PASS;
     }
 
@@ -114,6 +135,21 @@ public class ItemLightSwitch extends ItemBlock
             }
         }
         return false;
+    }
+
+    @Nullable
+    private NBTTagList getLights(ItemStack stack)
+    {
+        NBTTagCompound tagCompound = createTag(stack);
+        if(tagCompound.hasKey("BlockEntityTag", Constants.NBT.TAG_COMPOUND))
+        {
+            NBTTagCompound entityTagCompound = tagCompound.getCompoundTag("BlockEntityTag");
+            if(entityTagCompound.hasKey("lights", Constants.NBT.TAG_LIST))
+            {
+                return (NBTTagList) entityTagCompound.getTag("lights");
+            }
+        }
+        return null;
     }
 
     private NBTTagCompound createTag(ItemStack stack)
