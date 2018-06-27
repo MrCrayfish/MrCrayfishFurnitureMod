@@ -78,6 +78,7 @@ public class FurnitureBlocks
     /* The Bedroom Update */
     public static final Block BEDSIDE_CABINET_STONE, BEDSIDE_CABINET_GRANITE, BEDSIDE_CABINET_DIORITE, BEDSIDE_CABINET_ANDESITE;
     public static final Block MODERN_WINDOW;
+    public static final Block LIGHT_SWITCH_OFF, LIGHT_SWITCH_ON;
 
     /* Special */
     public static final Block MIRROR;
@@ -209,6 +210,8 @@ public class FurnitureBlocks
         BEDSIDE_CABINET_DIORITE = new BlockBedsideCabinet(Material.ROCK).setUnlocalizedName("bedside_cabinet_diorite").setRegistryName("bedside_cabinet_diorite");
         BEDSIDE_CABINET_ANDESITE = new BlockBedsideCabinet(Material.ROCK).setUnlocalizedName("bedside_cabinet_andesite").setRegistryName("bedside_cabinet_andesite");
         MODERN_WINDOW = new BlockModernWindow().setUnlocalizedName("modern_window").setRegistryName("modern_window");
+        LIGHT_SWITCH_OFF = new BlockLightSwitch().setUnlocalizedName("light_switch_off").setRegistryName("light_switch_off");
+        LIGHT_SWITCH_ON = new BlockLightSwitch().setUnlocalizedName("light_switch_on").setRegistryName("light_switch_on");
     }
 
     public static void register()
@@ -338,6 +341,8 @@ public class FurnitureBlocks
         registerBlock(DOOR_MAT);
         registerBlock(COOLER);
         registerBlock(MODERN_WINDOW);
+        registerBlock(LIGHT_SWITCH_OFF, new ItemLightSwitch(LIGHT_SWITCH_OFF));
+        registerBlock(LIGHT_SWITCH_ON, null);
     }
 
     private static void registerBlock(Block block)

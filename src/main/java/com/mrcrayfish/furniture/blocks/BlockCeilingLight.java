@@ -54,7 +54,7 @@ public class BlockCeilingLight extends Block
         if(on)
         {
             this.setCreativeTab(null);
-            this.setLightLevel(0.8F);
+            this.setLightLevel(1.0F);
         }
         this.setDefaultState(this.blockState.getBaseState().withProperty(MODE, Mode.RIGHT_CLICK));
 

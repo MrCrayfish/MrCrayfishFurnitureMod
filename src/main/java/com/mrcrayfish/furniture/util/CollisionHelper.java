@@ -33,6 +33,12 @@ public class CollisionHelper
         return new AxisAlignedBB(bounds[0], y1, bounds[1], bounds[2], y2, bounds[3]);
     }
 
+    public static AxisAlignedBB getBlockBounds(EnumFacing facing, Bounds bounds)
+    {
+        double[] fixedBounds = fixRotation(facing, bounds.x1, bounds.z1, bounds.x2, bounds.z2);
+        return new AxisAlignedBB(fixedBounds[0], bounds.y1, fixedBounds[1], fixedBounds[2], bounds.y2, fixedBounds[3]);
+    }
+
     private static double[] fixRotation(EnumFacing facing, double var1, double var2, double var3, double var4)
     {
         switch(facing)

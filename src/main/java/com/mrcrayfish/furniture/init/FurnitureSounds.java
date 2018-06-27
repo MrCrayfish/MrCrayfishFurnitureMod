@@ -37,6 +37,7 @@ public class FurnitureSounds
     public static SoundEvent channel_switch;
     public static SoundEvent boing;
     public static SoundEvent sizzle;
+    public static SoundEvent light_switch;
 
     public static void register()
     {
@@ -69,6 +70,7 @@ public class FurnitureSounds
         channel_switch = registerSound("cfm:channel_switch");
         boing = registerSound("cfm:boing");
         sizzle = registerSound("cfm:sizzle");
+        light_switch = registerSound("cfm:light_switch");
     }
 
     public static SoundEvent getRandomFart(Random rand)
