@@ -39,7 +39,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockCeilingLight extends Block
+public class BlockCeilingLight extends Block implements IPowered
 {
     public static final PropertyEnum MODE = PropertyEnum.create("mode", Mode.class);
 
@@ -168,6 +168,19 @@ public class BlockCeilingLight extends Block
     public BlockRenderLayer getBlockLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
+    }
+
+    @Override
+    public void setPowered(World world, BlockPos pos, boolean powered)
+    {
+        if(powered)
+        {
+            world.setBlockState(pos, FurnitureBlocks.CEILING_LIGHT_ON.getDefaultState());
+        }
+        else
+        {
+            world.setBlockState(pos, FurnitureBlocks.CEILING_LIGHT_OFF.getDefaultState());
+        }
     }
 
     public enum Mode implements IStringSerializable

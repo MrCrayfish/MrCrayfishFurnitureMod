@@ -80,6 +80,7 @@ public class FurnitureItems
      */
     public static final Item RECIPE_BOOk;
     public static final Item CRAYFISH;
+    public static final Item CEILING_FAN_FANS;
 
     static
     {
@@ -109,6 +110,7 @@ public class FurnitureItems
         KEBAB = new ItemFood(1, false).setPotionEffect(new PotionEffect(MobEffects.HUNGER, 600, 0), 0.3F).setUnlocalizedName("item_kebab").setRegistryName("item_kebab").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
         KEBAB_COOKED = new ItemFood(4, false).setUnlocalizedName("item_kebab_cooked").setRegistryName("item_kebab_cooked").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
         CROWBAR = new Item().setUnlocalizedName("item_crow_bar").setRegistryName("item_crow_bar").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+        CEILING_FAN_FANS = new Item().setUnlocalizedName("ceiling_fan_fans").setRegistryName("ceiling_fan_fans");
     }
 
     public static void register()
@@ -139,6 +141,7 @@ public class FurnitureItems
         registerItem(KEBAB);
         registerItem(KEBAB_COOKED);
         registerItem(CROWBAR);
+        registerItem(CEILING_FAN_FANS);
     }
 
     private static void registerItem(Item item)
