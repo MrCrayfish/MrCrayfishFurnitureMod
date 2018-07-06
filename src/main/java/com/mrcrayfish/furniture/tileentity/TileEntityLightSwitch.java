@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.tileentity;
 import com.mrcrayfish.furniture.blocks.BlockCeilingLight;
 import com.mrcrayfish.furniture.blocks.BlockFurniture;
 import com.mrcrayfish.furniture.blocks.BlockLightSwitch;
+import com.mrcrayfish.furniture.blocks.IPowered;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
@@ -69,19 +70,14 @@ public class TileEntityLightSwitch extends TileEntity
         lights.removeIf(lightPos ->
         {
             IBlockState state = world.getBlockState(lightPos);
-            return !(state.getBlock() instanceof BlockCeilingLight);
+            return !(state.getBlock() instanceof IPowered);
         });
 
         lights.forEach(lightPos ->
         {
-            if(powered)
-            {
-                world.setBlockState(lightPos, FurnitureBlocks.CEILING_LIGHT_ON.getDefaultState());
-            }
-            else
-            {
-                world.setBlockState(lightPos, FurnitureBlocks.CEILING_LIGHT_OFF.getDefaultState());
-            }
+            IBlockState state = world.getBlockState(lightPos);
+            ((IPowered) state.getBlock()).setPowered(world, lightPos, powered);
+
         });
 
         IBlockState state = world.getBlockState(pos);

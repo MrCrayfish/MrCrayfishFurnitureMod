@@ -74,6 +74,7 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityGrill.class, new GrillRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityEsky.class, new EskyRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDoorMat.class, new DoorMatRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCeilingFan.class, new CeilingFanRenderer());
     }
 
     public void registerColorHandlers()

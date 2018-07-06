@@ -1,6 +1,6 @@
 package com.mrcrayfish.furniture.items;
 
-import com.mrcrayfish.furniture.blocks.BlockCeilingLight;
+import com.mrcrayfish.furniture.blocks.IPowered;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -74,7 +74,7 @@ public class ItemLightSwitch extends ItemBlock
         if(!player.isSneaking())
         {
             IBlockState state = world.getBlockState(pos);
-            if(state.getBlock() instanceof BlockCeilingLight)
+            if(state.getBlock() instanceof IPowered)
             {
                 this.addLight(heldItem, pos);
                 return EnumActionResult.SUCCESS;
