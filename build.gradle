@@ -11,7 +11,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
-version = "5.1.0-1.12.2"
+version = "5.2.0-1.12.2"
 group = "com.mrcrayfish"
 archivesBaseName = "furniture"
 
