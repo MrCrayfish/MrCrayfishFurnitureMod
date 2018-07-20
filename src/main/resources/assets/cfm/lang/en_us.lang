@@ -224,6 +224,16 @@ tile.desk_stone.name=Stone Desk
 tile.desk_granite.name=Granite Desk
 tile.desk_diorite.name=Diorite Desk
 tile.desk_andesite.name=Andesite Desk
+tile.desk_cabinet_oak.name=Oak Desk Cabinet
+tile.desk_cabinet_spruce.name=Spruce Desk Cabinet
+tile.desk_cabinet_birch.name=Birch Desk Cabinet
+tile.desk_cabinet_jungle.name=Jungle Desk Cabinet
+tile.desk_cabinet_acacia.name=Acacia Desk Cabinet
+tile.desk_cabinet_dark_oak.name=Dark Oak Desk Cabinet
+tile.desk_cabinet_stone.name=Stone Desk Cabinet
+tile.desk_cabinet_granite.name=Granite Desk Cabinet
+tile.desk_cabinet_diorite.name=Diorite Desk Cabinet
+tile.desk_cabinet_andesite.name=Andesite Desk Cabinet
 
 keys.cfm.category=MrCrayfish's Furniture Mod
 key.fart.desc=Fart

@@ -5,15 +5,19 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 /**
  * Author: MrCrayfish
  */
-public class BlockDeskCabinet extends BlockFurniture implements IDesk
+public class BlockDeskCabinet extends BlockFurnitureTile implements IDesk
 {
     public static final PropertyEnum<DeskCabinetType> TYPE = PropertyEnum.create("type", DeskCabinetType.class);
 
@@ -48,15 +52,23 @@ public class BlockDeskCabinet extends BlockFurniture implements IDesk
         }
         else if(!left && !right)
         {
-            return state.withProperty(TYPE, DeskCabinetType.BOTH);
+            return state.withProperty(TYPE, DeskCabinetType.NONE);
         }
-        return state.withProperty(TYPE, DeskCabinetType.NONE);
+        return state.withProperty(TYPE, DeskCabinetType.BOTH);
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, FACING, TYPE);
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta)
+    {
+        //TODO create tile entity
+        return null;
     }
 
     public enum DeskCabinetType implements IStringSerializable

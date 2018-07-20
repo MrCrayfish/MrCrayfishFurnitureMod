@@ -378,7 +378,7 @@ public class FurnitureBlocks
         registerBlock(DESK_GRANITE);
         registerBlock(DESK_DIORITE);
         registerBlock(DESK_ANDESITE);
-        /*registerBlock(DESK_CABINET_OAK);
+        registerBlock(DESK_CABINET_OAK);
         registerBlock(DESK_CABINET_SPRUCE);
         registerBlock(DESK_CABINET_BIRCH);
         registerBlock(DESK_CABINET_JUNGLE);
@@ -387,7 +387,7 @@ public class FurnitureBlocks
         registerBlock(DESK_CABINET_STONE);
         registerBlock(DESK_CABINET_GRANITE);
         registerBlock(DESK_CABINET_DIORITE);
-        registerBlock(DESK_CABINET_ANDESITE);*/
+        registerBlock(DESK_CABINET_ANDESITE);
     }
 
     private static void registerBlock(Block block)
