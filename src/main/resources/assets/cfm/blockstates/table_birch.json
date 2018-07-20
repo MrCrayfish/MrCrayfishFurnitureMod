@@ -1,20 +1,70 @@
 {
-"variants": {
-    "back=false,forward=true,left=false,right=true": {"model": "cfm:table_leg_corner_birch", "y": 270,"uvlock": true},
-    "back=false,forward=true,left=true,right=false": {"model": "cfm:table_leg_corner_birch", "y": 180,"uvlock": true},
-    "back=true,forward=false,left=false,right=true": {"model": "cfm:table_leg_corner_birch","uvlock": true},
-    "back=true,forward=false,left=true,right=false": {"model": "cfm:table_leg_corner_birch", "y": 90,"uvlock": true},
-    "back=false,forward=true,left=false,right=false": {"model": "cfm:table_leg_end_birch", "y": 270,"uvlock": true},
-    "back=false,forward=false,left=false,right=true": {"model": "cfm:table_leg_end_birch","uvlock": true},
-    "back=false,forward=false,left=true,right=false": {"model": "cfm:table_leg_end_birch", "y": 180,"uvlock": true},
-    "back=true,forward=false,left=false,right=false": {"model": "cfm:table_leg_end_birch", "y": 90,"uvlock": true},
-    "back=false,forward=false,left=false,right=false": {"model": "cfm:table_leg_center_birch","uvlock": true},
-    "back=true,forward=true,left=false,right=false": {"model": "cfm:table_leg_none_birch","uvlock": true},
-    "back=true,forward=true,left=true,right=false": {"model": "cfm:table_leg_none_birch","uvlock": true},
-    "back=true,forward=true,left=false,right=true": {"model": "cfm:table_leg_none_birch","uvlock": true},
-    "back=false,forward=false,left=true,right=true": {"model": "cfm:table_leg_none_birch","uvlock": true},
-    "back=false,forward=true,left=true,right=true": {"model": "cfm:table_leg_none_birch","uvlock": true},
-    "back=true,forward=false,left=true,right=true": {"model": "cfm:table_leg_none_birch","uvlock": true},
-    "back=true,forward=true,left=true,right=true": {"model": "cfm:table_leg_none_birch","uvlock": true}
-    }
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"0": "blocks/planks_birch",
+			"1": "blocks/log_birch"
+		},
+		"model": "cfm:table_leg_center",
+		"uvlock": true
+	},
+	"variants": {
+		"inventory": [{
+			"model": "cfm:table_leg_center"
+		}],
+		"back=false,forward=true,left=false,right=true": {
+			"model": "cfm:table_leg_corner",
+			"y": 270
+		},
+		"back=false,forward=true,left=true,right=false": {
+			"model": "cfm:table_leg_corner",
+			"y": 180
+		},
+		"back=true,forward=false,left=false,right=true": {
+			"model": "cfm:table_leg_corner"
+		},
+		"back=true,forward=false,left=true,right=false": {
+			"model": "cfm:table_leg_corner",
+			"y": 90
+		},
+		"back=false,forward=true,left=false,right=false": {
+			"model": "cfm:table_leg_end",
+			"y": 270
+		},
+		"back=false,forward=false,left=false,right=true": {
+			"model": "cfm:table_leg_end"
+		},
+		"back=false,forward=false,left=true,right=false": {
+			"model": "cfm:table_leg_end",
+			"y": 180
+		},
+		"back=true,forward=false,left=false,right=false": {
+			"model": "cfm:table_leg_end",
+			"y": 90
+		},
+		"back=false,forward=false,left=false,right=false": {
+			"model": "cfm:table_leg_center"
+		},
+		"back=true,forward=true,left=false,right=false": {
+			"model": "cfm:table_leg_none"
+		},
+		"back=true,forward=true,left=true,right=false": {
+			"model": "cfm:table_leg_none"
+		},
+		"back=true,forward=true,left=false,right=true": {
+			"model": "cfm:table_leg_none"
+		},
+		"back=false,forward=false,left=true,right=true": {
+			"model": "cfm:table_leg_none"
+		},
+		"back=false,forward=true,left=true,right=true": {
+			"model": "cfm:table_leg_none"
+		},
+		"back=true,forward=false,left=true,right=true": {
+			"model": "cfm:table_leg_none"
+		},
+		"back=true,forward=true,left=true,right=true": {
+			"model": "cfm:table_leg_none"
+		}
+	}
 }

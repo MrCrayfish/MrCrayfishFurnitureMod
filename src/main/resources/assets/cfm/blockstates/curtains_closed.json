@@ -1,8 +1,20 @@
 {
-"variants": {
-"facing=north": {"model": "cfm:curtains_closed_pre", "y": 270},
-"facing=south": { "model": "cfm:curtains_closed_pre", "y": 90},
-"facing=east": { "model": "cfm:curtains_closed_pre"},
-"facing=west": { "model": "cfm:curtains_closed_pre", "y": 180}
-}
+	"forge_marker": 1,
+	"defaults": {
+		"model": "cfm:curtains_closed"
+	},
+	"variants": {
+		"facing": {
+			"north": {
+				"y": 270
+			},
+			"east": {},
+			"south": {
+				"y": 90
+			},
+			"west": {
+				"y": 180
+			}
+		}
+	}
 }

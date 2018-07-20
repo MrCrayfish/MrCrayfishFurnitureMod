@@ -1,8 +1,30 @@
 {
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"1": "blocks/stone_diorite_smooth",
+			"2": "blocks/stone_diorite"
+		},
+		"model": "cfm:chair"
+	},
 	"variants": {
-		"facing=north": {"model": "cfm:chair_diorite", "y": 270},
-		"facing=south": { "model": "cfm:chair_diorite", "y": 90},
-		"facing=east": { "model": "cfm:chair_diorite"},
-		"facing=west": { "model": "cfm:chair_diorite", "y": 180}
+		"inventory": [{
+			"model": "cfm:chair"
+		}],
+		"facing=north": {
+			"model": "cfm:chair",
+			"y": 270
+		},
+		"facing=south": {
+			"model": "cfm:chair",
+			"y": 90
+		},
+		"facing=east": {
+			"model": "cfm:chair"
+		},
+		"facing=west": {
+			"model": "cfm:chair",
+			"y": 180
+		}
 	}
 }

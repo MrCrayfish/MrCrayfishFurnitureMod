@@ -1,8 +1,23 @@
 {
-"variants": {
-"facing=north": {"model": "cfm:dishwasher_pre", "y": 270},
-"facing=south": { "model": "cfm:dishwasher_pre", "y": 90},
-"facing=east": { "model": "cfm:dishwasher_pre"},
-"facing=west": { "model": "cfm:dishwasher_pre", "y": 180}
-}
+	"forge_marker": 1,
+	"defaults": {
+		"model": "cfm:dishwasher"
+	},
+	"variants": {
+		"inventory": {
+			"model": "cfm:dishwasher"
+		},
+		"facing": {
+			"north": {
+				"y": 270
+			},
+			"east": {},
+			"south": {
+				"y": 90
+			},
+			"west": {
+				"y": 180
+			}
+		}
+	}
 }

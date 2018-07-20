@@ -1,8 +1,30 @@
 {
-"variants": {
-"facing=north": {"model": "cfm:freezer_pre", "y": 270},
-"facing=south": { "model": "cfm:freezer_pre", "y": 90},
-"facing=east": { "model": "cfm:freezer_pre"},
-"facing=west": { "model": "cfm:freezer_pre", "y": 180}
-}
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"1": "blocks/iron_block",
+			"2": "blocks/wool_colored_black",
+			"3": "blocks/stone"
+		}
+	},
+	"variants": {
+		"inventory": {
+			"model": "cfm:fridge_full"
+		},
+		"facing=north": {
+			"model": "cfm:freezer",
+			"y": 270
+		},
+		"facing=south": {
+			"model": "cfm:freezer",
+			"y": 90
+		},
+		"facing=east": {
+			"model": "cfm:freezer"
+		},
+		"facing=west": {
+			"model": "cfm:freezer",
+			"y": 180
+		}
+	}
 }
