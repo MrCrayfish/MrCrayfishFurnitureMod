@@ -2,9 +2,6 @@ package com.mrcrayfish.furniture.tileentity;
 
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraftforge.common.util.Constants;
@@ -14,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Author: MrCrayfish
  */
-public class TileEntityCeilingFan extends TileEntity implements ITickable
+public class TileEntityCeilingFan extends TileEntitySyncClient implements ITickable
 {
     private boolean powered = false;
     private float maxSpeed = 30F;
@@ -89,24 +86,6 @@ public class TileEntityCeilingFan extends TileEntity implements ITickable
         compound.setFloat("maxSpeed", maxSpeed);
         compound.setFloat("acceleration", acceleration);
         return compound;
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-    {
-        this.readFromNBT(pkt.getNbtCompound());
-    }
-
-    @Override
-    public final NBTTagCompound getUpdateTag()
-    {
-        return this.writeToNBT(new NBTTagCompound());
-    }
-
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
-        return new SPacketUpdateTileEntity(pos, 0, getUpdateTag());
     }
 
     @Override

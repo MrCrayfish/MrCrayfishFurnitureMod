@@ -21,11 +21,8 @@ import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityCup extends TileEntity implements ISimpleInventory
+public class TileEntityCup extends TileEntitySyncClient implements ISimpleInventory
 {
     private ItemStack item = null;
     public int red, green, blue;
@@ -80,24 +77,6 @@ public class TileEntityCup extends TileEntity implements ISimpleInventory
         tagCompound.setInteger("Green", green);
         tagCompound.setInteger("Blue", blue);
         return tagCompound;
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-    {
-        this.readFromNBT(pkt.getNbtCompound());
-    }
-
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
-        return new SPacketUpdateTileEntity(pos, getBlockMetadata(), this.writeToNBT(new NBTTagCompound()));
-    }
-
-    @Override
-    public NBTTagCompound getUpdateTag()
-    {
-        return this.writeToNBT(new NBTTagCompound());
     }
 
     @Override
