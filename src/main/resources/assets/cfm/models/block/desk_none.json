@@ -9,11 +9,10 @@
             "from": [ 0.50, 0.00, 1.00 ], 
             "to": [ 2.00, 14.50, 15.00 ], 
             "faces": {
-                "north": { "texture": "#primary", "uv": [ 10.00, 0.00, 11.00, 14.50 ] },
-                "east": { "texture": "#primary", "uv": [ 0.00, 0.00, 14.00, 14.50 ] },
-                "south": { "texture": "#primary", "uv": [ 10.00, 0.00, 11.00, 14.50 ] },
-                "west": { "texture": "#primary", "uv": [ 0.00, 0.00, 14.00, 14.50 ] },
-                "up": { "texture": "#primary", "uv": [ 0.00, 0.00, 1.50, 14.00 ] },
+                "north": { "texture": "#primary", "uv": [ 10.00, 1.00, 11.00, 15.00 ] },
+                "east": { "texture": "#primary", "uv": [ 1.00, 1.00, 15.00, 15.00 ] },
+                "south": { "texture": "#primary", "uv": [ 10.00, 1.00, 11.00, 15.00 ] },
+                "west": { "texture": "#primary", "uv": [ 1.00, 1.00, 15.00, 15.00 ] },
                 "down": { "texture": "#primary", "uv": [ 0.00, 0.00, 1.50, 14.00 ] }
             }
         },
@@ -22,11 +21,11 @@
             "from": [ 0.00, 14.50, 0.00 ], 
             "to": [ 16.00, 16.00, 16.00 ], 
             "faces": {
-                "north": { "texture": "#top", "uv": [ 0.00, 0.00, 16.00, 1.50 ] },
-                "east": { "texture": "#top", "uv": [ 0.00, 0.00, 16.00, 1.50 ] },
-                "south": { "texture": "#top", "uv": [ 0.00, 0.00, 16.00, 1.50 ] },
-                "west": { "texture": "#top", "uv": [ 0.00, 0.00, 16.00, 1.50 ] },
-                "up": { "texture": "#top", "uv": [ 0.00, 0.00, 16.00, 16.00 ] },
+                "north": { "texture": "#top", "uv": [ 0.00, 0.00, 16.00, 1.50 ], "cullface": "north" },
+                "east": { "texture": "#top", "uv": [ 0.00, 0.00, 16.00, 1.50 ], "cullface": "east" },
+                "south": { "texture": "#top", "uv": [ 0.00, 0.00, 16.00, 1.50 ], "cullface": "south" },
+                "west": { "texture": "#top", "uv": [ 0.00, 0.00, 16.00, 1.50 ], "cullface": "west" },
+                "up": { "texture": "#top", "uv": [ 0.00, 0.00, 16.00, 16.00 ], "cullface": "up" },
                 "down": { "texture": "#top", "uv": [ 0.00, 0.00, 16.00, 16.00 ] }
             }
         },
@@ -35,11 +34,10 @@
             "from": [ 14.00, 0.00, 1.00 ], 
             "to": [ 15.50, 14.50, 15.00 ], 
             "faces": {
-                "north": { "texture": "#primary", "uv": [ 10.00, 0.00, 11.00, 14.50 ] },
-                "east": { "texture": "#primary", "uv": [ 0.00, 0.00, 14.00, 14.50 ] },
-                "south": { "texture": "#primary", "uv": [ 10.00, 0.00, 11.00, 14.50 ] },
-                "west": { "texture": "#primary", "uv": [ 0.00, 0.00, 14.00, 14.50 ] },
-                "up": { "texture": "#primary", "uv": [ 0.00, 0.00, 1.50, 14.00 ] },
+                "north": { "texture": "#primary", "uv": [ 10.00, 1.00, 11.00, 15.00 ] },
+                "east": { "texture": "#primary", "uv": [ 1.00, 1.00, 15.00, 15.00 ] },
+                "south": { "texture": "#primary", "uv": [ 10.00, 1.00, 11.00, 15.00 ] },
+                "west": { "texture": "#primary", "uv": [ 1.00, 1.00, 15.00, 15.00 ] },
                 "down": { "texture": "#primary", "uv": [ 0.00, 0.00, 1.50, 14.00 ] }
             }
         },
@@ -48,11 +46,8 @@
             "from": [ 2.00, 2.00, 1.50 ], 
             "to": [ 14.00, 14.50, 2.50 ], 
             "faces": {
-                "north": { "texture": "#secondary", "uv": [ 0.00, 0.00, 12.00, 12.00 ] },
-                "east": { "texture": "#secondary", "uv": [ 0.00, 0.00, 1.00, 12.50 ] },
-                "south": { "texture": "#secondary", "uv": [ 0.00, 0.00, 12.00, 12.00 ] },
-                "west": { "texture": "#secondary", "uv": [ 0.00, 0.00, 1.00, 12.50 ] },
-                "up": { "texture": "#secondary", "uv": [ 0.00, 0.00, 12.00, 1.00 ] },
+                "north": { "texture": "#secondary", "uv": [ 2.00, 0.00, 14.00, 12.00 ] },
+                "south": { "texture": "#secondary", "uv": [ 2.00, 0.00, 14.00, 12.00 ] },
                 "down": { "texture": "#secondary", "uv": [ 0.00, 0.00, 12.00, 1.00 ] }
             }
         }
