@@ -9,14 +9,15 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -92,31 +93,46 @@ public class BlockLightSwitch extends BlockFurniture
     }
 
     @Override
-    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess blockAccess, BlockPos pos, IBlockState state, int fortune)
     {
-        if(!world.isRemote)
+        super.getDrops(drops, blockAccess, pos, state, fortune);
+        if(blockAccess instanceof World && !((World) blockAccess).isRemote)
         {
-            TileEntity tileEntity = world.getTileEntity(pos);
+            TileEntity tileEntity = blockAccess.getTileEntity(pos);
             if(tileEntity instanceof TileEntityLightSwitch)
             {
                 TileEntityLightSwitch lightSwitch = (TileEntityLightSwitch) tileEntity;
-                NBTTagCompound tileEntityTag = new NBTTagCompound();
-                lightSwitch.writeToNBT(tileEntityTag);
-                tileEntityTag.removeTag("x");
-                tileEntityTag.removeTag("y");
-                tileEntityTag.removeTag("z");
+                for (ItemStack drop : drops)
+                {
+                    if (drop.getItem() instanceof ItemBlock && ((ItemBlock) drop.getItem()).getBlock() == FurnitureBlocks.LIGHT_SWITCH_OFF)
+                    {
+                        NBTTagCompound tileEntityTag = new NBTTagCompound();
+                        lightSwitch.writeToNBT(tileEntityTag);
+                        tileEntityTag.removeTag("x");
+                        tileEntityTag.removeTag("y");
+                        tileEntityTag.removeTag("z");
 
-                NBTTagCompound compound = new NBTTagCompound();
-                compound.setTag("BlockEntityTag", tileEntityTag);
-
-                ItemStack drop = new ItemStack(Item.getItemFromBlock(FurnitureBlocks.LIGHT_SWITCH_OFF));
-                drop.setTagCompound(compound);
-                world.spawnEntity(new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, drop));
-
-                return world.setBlockToAir(pos);
+                        NBTTagCompound compound = drop.hasTagCompound() ? drop.getTagCompound() : new NBTTagCompound();
+                        compound.setTag("BlockEntityTag", tileEntityTag);
+                        drop.setTagCompound(compound);
+                    }
+                }
             }
         }
-        return super.removedByPlayer(state, world, pos, player, willHarvest);
+        
+    }
+
+    @Override
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
+    {
+        return willHarvest ? true : super.removedByPlayer(state, world, pos, player, willHarvest);
+    }
+
+    @Override
+    public void harvestBlock(World world, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
+    {
+        super.harvestBlock(world, player, pos, state, te, stack);
+        world.setBlockToAir(pos);
     }
 
     @Override
