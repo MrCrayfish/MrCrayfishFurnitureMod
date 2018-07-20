@@ -17,6 +17,7 @@
  */
 package com.mrcrayfish.furniture.handler;
 
+import com.mrcrayfish.furniture.FurnitureConfig;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,12 +41,12 @@ public class PlayerEvents
     @SubscribeEvent
     public void onPlayerLogin(PlayerLoggedInEvent e)
     {
-        EntityPlayer player = (EntityPlayer) e.player;
-        if(ConfigurationHandler.canDisplay)
+        EntityPlayer player = e.player;
+        if (!player.world.isRemote)
         {
-            if(!player.world.isRemote)
+            if (FurnitureConfig.SERVER.messages.canDisplay)
             {
-                if(!ConfigurationHandler.hasDisplayedOnce)
+                if (!FurnitureConfig.SERVER.messages.hasDisplayedOnce)
                 {
                     TextComponentString prefix = new TextComponentString(TextFormatting.GOLD + "Thank you for downloading MrCrayfish's Furniture Mod");
                     prefix.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentString("You can disable this login message in the config")));
@@ -84,7 +85,7 @@ public class PlayerEvents
                             player.sendMessage(url);
                             break;
                     }
-                    //ConfigurationHandler.hasDisplayedOnce = true;
+                    //FurnitureConfig.SERVER.hasDisplayedOnce = true;
                 }
             }
         }

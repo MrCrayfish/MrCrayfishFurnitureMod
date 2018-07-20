@@ -17,7 +17,7 @@
  */
 package com.mrcrayfish.furniture.api;
 
-import com.mrcrayfish.furniture.handler.ConfigurationHandler;
+import com.mrcrayfish.furniture.FurnitureConfig;
 
 import java.util.Map;
 
@@ -50,7 +50,7 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printRequired(type, "Missing required variables", modName);
                 }
@@ -64,7 +64,7 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printRequired(type, "Missing required variables", modName);
                 }
@@ -78,7 +78,7 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printRequired(type, "Missing required variables", modName);
                 }
@@ -92,7 +92,7 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printRequired(type, "Missing required variables for " + type, modName);
                 }
@@ -106,7 +106,7 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printRequired(type, "Missing required variables for " + type, modName);
                 }
@@ -120,7 +120,7 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printRequired(type, "Missing required variables for " + type, modName);
                 }
@@ -134,7 +134,7 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printRequired(type, "Missing required variables for " + type, modName);
                 }
@@ -148,7 +148,7 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printRequired(type, "Missing required variables for " + type, modName);
                 }
@@ -162,7 +162,7 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printRequired(type, "Missing required variables for " + type, modName);
                 }
@@ -176,7 +176,7 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printRequired(type, "Missing required variables for " + type, modName);
                 }
@@ -190,7 +190,7 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printRequired(type, "Missing required variables for " + type, modName);
                 }
@@ -198,7 +198,7 @@ public class RecipeRegistryComm extends RecipeAPI implements IRecipeRegistry
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 System.err.println("## RecipeAPI Error Report ##");
                 System.err.println("From Mod: " + modName);

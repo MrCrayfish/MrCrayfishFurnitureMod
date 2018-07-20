@@ -52,7 +52,7 @@ public class GrillRenderer extends TileEntitySpecialRenderer<TileEntityGrill>
             GlStateManager.translate(0.2, 0, -0.45);
             GlStateManager.rotate(90F, 1, 0, 0);
 
-			/* Left */
+            /* Left */
             if(tileEntityGrill.getItem(0) != null)
             {
                 GlStateManager.pushMatrix();
@@ -98,7 +98,7 @@ public class GrillRenderer extends TileEntitySpecialRenderer<TileEntityGrill>
 
             GlStateManager.translate(-0.4, 0, 0);
 
-			/* Right */
+            /* Right */
             if(tileEntityGrill.getItem(1) != null)
             {
                 GlStateManager.pushMatrix();

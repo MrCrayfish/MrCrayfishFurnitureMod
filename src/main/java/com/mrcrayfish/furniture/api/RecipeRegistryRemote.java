@@ -17,7 +17,7 @@
  */
 package com.mrcrayfish.furniture.api;
 
-import com.mrcrayfish.furniture.handler.ConfigurationHandler;
+import com.mrcrayfish.furniture.FurnitureConfig;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.TextFormatting;
@@ -117,7 +117,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                 }
                 catch(NumberFormatException e)
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer.");
                     }
@@ -128,7 +128,7 @@ public class RecipeRegistryRemote extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                 }
@@ -136,7 +136,7 @@ public class RecipeRegistryRemote extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -168,7 +168,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
                             }
@@ -182,7 +182,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-amount", "Could not parse the value '" + output_amount + "' to an integer");
                             }
@@ -196,7 +196,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
                             }
@@ -207,7 +207,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                     }
                     else
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
                         }
@@ -215,7 +215,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                 }
                 else
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                     }
@@ -223,7 +223,7 @@ public class RecipeRegistryRemote extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
                 }
@@ -231,7 +231,7 @@ public class RecipeRegistryRemote extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -263,7 +263,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "input-metdata", "Could not parse the value '" + input_metadata + "' to an integer");
                             }
@@ -277,7 +277,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-amount", "Could not parse the value '" + output_amount + "' to an integer");
                             }
@@ -291,7 +291,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
                             }
@@ -302,7 +302,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                     }
                     else
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
                         }
@@ -310,7 +310,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                 }
                 else
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                     }
@@ -318,7 +318,7 @@ public class RecipeRegistryRemote extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
                 }
@@ -326,7 +326,7 @@ public class RecipeRegistryRemote extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -358,7 +358,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                     }
                     catch(NumberFormatException e)
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
                         }
@@ -372,7 +372,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                     }
                     catch(NumberFormatException e)
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "input-amount", "Could not parse the value '" + input_amount + "' to an integer");
                         }
@@ -386,7 +386,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                     }
                     catch(NumberFormatException e)
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "payment-metadata", "Could not parse the value '" + p_metadata + "' to an integer");
                         }
@@ -400,7 +400,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                     }
                     catch(NumberFormatException e)
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "price", "Could not parse the value '" + p_price + "' to an integer");
                         }
@@ -411,7 +411,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                 }
                 else
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printReport(parser, num, "payment-item", "The payment-item '" + payment_item + "' does not exist");
                     }
@@ -419,7 +419,7 @@ public class RecipeRegistryRemote extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                 }
@@ -427,7 +427,7 @@ public class RecipeRegistryRemote extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -459,7 +459,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
                             }
@@ -473,7 +473,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-amount", "Could not parse the value '" + output_amount + "' to an integer");
                             }
@@ -487,7 +487,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
                             }
@@ -498,7 +498,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                     }
                     else
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
                         }
@@ -506,7 +506,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                 }
                 else
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                     }
@@ -514,7 +514,7 @@ public class RecipeRegistryRemote extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
                 }
@@ -522,7 +522,7 @@ public class RecipeRegistryRemote extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -554,7 +554,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
                             }
@@ -568,7 +568,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-amount", "Could not parse the value '" + output_amount + "' to an integer");
                             }
@@ -582,7 +582,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
                             }
@@ -593,7 +593,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                     }
                     else
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
                         }
@@ -601,7 +601,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                 }
                 else
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                     }
@@ -609,7 +609,7 @@ public class RecipeRegistryRemote extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
                 }
@@ -617,7 +617,7 @@ public class RecipeRegistryRemote extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -646,7 +646,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "heal", "Could not parse the value '" + heal_amount + "' to an integer");
                             }
@@ -672,7 +672,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                     else
                     {
 
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printMissing(parser, num, "colour", "A colour is required");
                         }
@@ -680,7 +680,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                 }
                 else
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printMissing(parser, num, "ingredients", "Ingredients are required");
                     }
@@ -688,7 +688,7 @@ public class RecipeRegistryRemote extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printMissing(parser, num, "heal", "A heal amount is required");
                 }
@@ -696,7 +696,7 @@ public class RecipeRegistryRemote extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "name", "A name is required");
             }
@@ -728,7 +728,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
                             }
@@ -742,7 +742,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-amount", "Could not parse the value '" + output_amount + "' to an integer");
                             }
@@ -756,7 +756,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
                             }
@@ -767,7 +767,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                     }
                     else
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
                         }
@@ -775,7 +775,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                 }
                 else
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                     }
@@ -783,7 +783,7 @@ public class RecipeRegistryRemote extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
                 }
@@ -791,7 +791,7 @@ public class RecipeRegistryRemote extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -833,7 +833,7 @@ public class RecipeRegistryRemote extends RecipeAPI
             }
             catch(NumberFormatException e)
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printReport(parser, num, "ingredients", "Could not parse the value '" + itemAmount + "' to an integer for ingredient number " + i);
                 }
@@ -847,7 +847,7 @@ public class RecipeRegistryRemote extends RecipeAPI
             }
             catch(NumberFormatException e)
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printReport(parser, num, "ingredients", "Could not parse the value '" + itemMetadata + "' to an integer for ingredient number " + i);
                 }
@@ -875,7 +875,7 @@ public class RecipeRegistryRemote extends RecipeAPI
             }
             catch(NumberFormatException e)
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printReport(parser, num, "colour", "Could not parse the value '" + r + "' to an integer");
                 }
@@ -889,7 +889,7 @@ public class RecipeRegistryRemote extends RecipeAPI
             }
             catch(NumberFormatException e)
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printReport(parser, num, "colour", "Could not parse the value '" + g + "' to an integer");
                 }
@@ -903,7 +903,7 @@ public class RecipeRegistryRemote extends RecipeAPI
             }
             catch(NumberFormatException e)
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printReport(parser, num, "colour", "Could not parse the value '" + b + "' to an integer");
                 }
@@ -914,7 +914,7 @@ public class RecipeRegistryRemote extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printReport(parser, num, "colour", "The colour variable doesn't have all three rgb values set, it needs to be colour=r-g-b");
             }
@@ -978,7 +978,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
                             }
@@ -992,7 +992,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
                             }
@@ -1003,7 +1003,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                     }
                     else
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
                         }
@@ -1011,7 +1011,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                 }
                 else
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                     }
@@ -1019,7 +1019,7 @@ public class RecipeRegistryRemote extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
                 }
@@ -1027,7 +1027,7 @@ public class RecipeRegistryRemote extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -1047,7 +1047,7 @@ public class RecipeRegistryRemote extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                 }
@@ -1055,7 +1055,7 @@ public class RecipeRegistryRemote extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -1075,7 +1075,7 @@ public class RecipeRegistryRemote extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                 }
@@ -1083,7 +1083,7 @@ public class RecipeRegistryRemote extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -1153,7 +1153,7 @@ public class RecipeRegistryRemote extends RecipeAPI
                 }
                 else
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printReport(parser, realNum, "type", "The recipe type '" + type + "' does not exist");
                     }

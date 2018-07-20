@@ -1,8 +1,8 @@
 package com.mrcrayfish.furniture.render.tileentity;
 
+import com.mrcrayfish.furniture.FurnitureConfig;
 import com.mrcrayfish.furniture.MirrorRenderGlobal;
 import com.mrcrayfish.furniture.entity.EntityMirror;
-import com.mrcrayfish.furniture.handler.ConfigurationHandler;
 import com.mrcrayfish.furniture.proxy.ClientProxy;
 import com.mrcrayfish.furniture.tileentity.TileEntityMirror;
 import net.minecraft.client.Minecraft;
@@ -30,7 +30,6 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 {
     private static Minecraft mc = Minecraft.getMinecraft();
     public static RenderGlobal mirrorGlobalRenderer = new MirrorRenderGlobal(mc);
-    private int quality = ConfigurationHandler.mirrorQuality;
     private long renderEndNanoTime;
 
     private static Map<EntityMirror, Integer> registerMirrors = new ConcurrentHashMap<EntityMirror, Integer>();
@@ -50,7 +49,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
     @Override
     public void render(TileEntityMirror mirror, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-        if(!ConfigurationHandler.mirrorEnabled) return;
+        if(!FurnitureConfig.CLIENT.mirror.enabled) return;
 
         if(TileEntityRendererDispatcher.instance.entity instanceof EntityMirror) return;
 
@@ -58,6 +57,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
         {
             int newTextureId = GL11.glGenTextures();
             GlStateManager.bindTexture(newTextureId);
+            int quality = FurnitureConfig.CLIENT.mirror.quality;
             GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, quality, quality, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, BufferUtils.createByteBuffer(3 * quality * quality));
             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
@@ -112,7 +112,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
     {
         if(event.phase.equals(TickEvent.Phase.END)) return;
 
-        if(!ConfigurationHandler.mirrorEnabled) return;
+        if(!FurnitureConfig.CLIENT.mirror.enabled) return;
 
         if(!pendingRemoval.isEmpty())
         {
@@ -151,12 +151,12 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 
                     mc.renderGlobal = mirrorGlobalRenderer;
                     mc.setRenderViewEntity(entity);
-                    settings.fovSetting = ConfigurationHandler.mirrorFov;
+                    settings.fovSetting = FurnitureConfig.CLIENT.mirror.fov;
                     settings.thirdPersonView = 0;
                     settings.hideGUI = true;
                     settings.mipmapLevels = 3;
-                    mc.displayWidth = quality;
-                    mc.displayHeight = quality;
+                    int quality = FurnitureConfig.CLIENT.mirror.quality;
+                    mc.displayWidth = mc.displayHeight = quality;
 
                     ClientProxy.rendering = true;
                     ClientProxy.renderEntity = mc.player;

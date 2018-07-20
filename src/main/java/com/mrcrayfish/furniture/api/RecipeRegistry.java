@@ -19,7 +19,7 @@ package com.mrcrayfish.furniture.api;
 
 import java.util.ArrayList;
 
-import com.mrcrayfish.furniture.handler.ConfigurationHandler;
+import com.mrcrayfish.furniture.FurnitureConfig;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 
 import net.minecraft.init.Blocks;
@@ -123,7 +123,7 @@ public class RecipeRegistry extends RecipeAPI
                 }
                 catch(NumberFormatException e)
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer.");
                     }
@@ -134,7 +134,7 @@ public class RecipeRegistry extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                 }
@@ -142,7 +142,7 @@ public class RecipeRegistry extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -174,7 +174,7 @@ public class RecipeRegistry extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
                             }
@@ -188,7 +188,7 @@ public class RecipeRegistry extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-amount", "Could not parse the value '" + output_amount + "' to an integer");
                             }
@@ -202,7 +202,7 @@ public class RecipeRegistry extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
                             }
@@ -213,7 +213,7 @@ public class RecipeRegistry extends RecipeAPI
                     }
                     else
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
                         }
@@ -221,7 +221,7 @@ public class RecipeRegistry extends RecipeAPI
                 }
                 else
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                     }
@@ -229,7 +229,7 @@ public class RecipeRegistry extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
                 }
@@ -237,7 +237,7 @@ public class RecipeRegistry extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -269,7 +269,7 @@ public class RecipeRegistry extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "input-metdata", "Could not parse the value '" + input_metadata + "' to an integer");
                             }
@@ -283,7 +283,7 @@ public class RecipeRegistry extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-amount", "Could not parse the value '" + output_amount + "' to an integer");
                             }
@@ -297,7 +297,7 @@ public class RecipeRegistry extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
                             }
@@ -308,7 +308,7 @@ public class RecipeRegistry extends RecipeAPI
                     }
                     else
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
                         }
@@ -316,7 +316,7 @@ public class RecipeRegistry extends RecipeAPI
                 }
                 else
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                     }
@@ -324,7 +324,7 @@ public class RecipeRegistry extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
                 }
@@ -332,7 +332,7 @@ public class RecipeRegistry extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -364,7 +364,7 @@ public class RecipeRegistry extends RecipeAPI
                     }
                     catch(NumberFormatException e)
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
                         }
@@ -378,7 +378,7 @@ public class RecipeRegistry extends RecipeAPI
                     }
                     catch(NumberFormatException e)
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "input-amount", "Could not parse the value '" + input_amount + "' to an integer");
                         }
@@ -392,7 +392,7 @@ public class RecipeRegistry extends RecipeAPI
                     }
                     catch(NumberFormatException e)
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "payment-metadata", "Could not parse the value '" + p_metadata + "' to an integer");
                         }
@@ -406,7 +406,7 @@ public class RecipeRegistry extends RecipeAPI
                     }
                     catch(NumberFormatException e)
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "price", "Could not parse the value '" + p_price + "' to an integer");
                         }
@@ -417,7 +417,7 @@ public class RecipeRegistry extends RecipeAPI
                 }
                 else
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printReport(parser, num, "payment-item", "The payment-item '" + payment_item + "' does not exist");
                     }
@@ -425,7 +425,7 @@ public class RecipeRegistry extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                 }
@@ -433,7 +433,7 @@ public class RecipeRegistry extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -465,7 +465,7 @@ public class RecipeRegistry extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
                             }
@@ -479,7 +479,7 @@ public class RecipeRegistry extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-amount", "Could not parse the value '" + output_amount + "' to an integer");
                             }
@@ -493,7 +493,7 @@ public class RecipeRegistry extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
                             }
@@ -504,7 +504,7 @@ public class RecipeRegistry extends RecipeAPI
                     }
                     else
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
                         }
@@ -512,7 +512,7 @@ public class RecipeRegistry extends RecipeAPI
                 }
                 else
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                     }
@@ -520,7 +520,7 @@ public class RecipeRegistry extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
                 }
@@ -528,7 +528,7 @@ public class RecipeRegistry extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -560,7 +560,7 @@ public class RecipeRegistry extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
                             }
@@ -574,7 +574,7 @@ public class RecipeRegistry extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-amount", "Could not parse the value '" + output_amount + "' to an integer");
                             }
@@ -588,7 +588,7 @@ public class RecipeRegistry extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
                             }
@@ -599,7 +599,7 @@ public class RecipeRegistry extends RecipeAPI
                     }
                     else
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
                         }
@@ -607,7 +607,7 @@ public class RecipeRegistry extends RecipeAPI
                 }
                 else
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                     }
@@ -615,7 +615,7 @@ public class RecipeRegistry extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
                 }
@@ -623,7 +623,7 @@ public class RecipeRegistry extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -652,7 +652,7 @@ public class RecipeRegistry extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "heal", "Could not parse the value '" + heal_amount + "' to an integer");
                             }
@@ -678,7 +678,7 @@ public class RecipeRegistry extends RecipeAPI
                     else
                     {
 
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printMissing(parser, num, "colour", "A colour is required");
                         }
@@ -686,7 +686,7 @@ public class RecipeRegistry extends RecipeAPI
                 }
                 else
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printMissing(parser, num, "ingredients", "Ingredients are required");
                     }
@@ -694,7 +694,7 @@ public class RecipeRegistry extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printMissing(parser, num, "heal", "A heal amount is required");
                 }
@@ -702,7 +702,7 @@ public class RecipeRegistry extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "name", "A name is required");
             }
@@ -745,7 +745,7 @@ public class RecipeRegistry extends RecipeAPI
             }
             catch(NumberFormatException e)
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printReport(parser, num, "ingredients", "Could not parse the value '" + itemAmount + "' to an integer for ingredient number " + i);
                 }
@@ -759,7 +759,7 @@ public class RecipeRegistry extends RecipeAPI
             }
             catch(NumberFormatException e)
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printReport(parser, num, "ingredients", "Could not parse the value '" + itemMetadata + "' to an integer for ingredient number " + i);
                 }
@@ -787,7 +787,7 @@ public class RecipeRegistry extends RecipeAPI
             }
             catch(NumberFormatException e)
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printReport(parser, num, "colour", "Could not parse the value '" + r + "' to an integer");
                 }
@@ -801,7 +801,7 @@ public class RecipeRegistry extends RecipeAPI
             }
             catch(NumberFormatException e)
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printReport(parser, num, "colour", "Could not parse the value '" + g + "' to an integer");
                 }
@@ -815,7 +815,7 @@ public class RecipeRegistry extends RecipeAPI
             }
             catch(NumberFormatException e)
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printReport(parser, num, "colour", "Could not parse the value '" + b + "' to an integer");
                 }
@@ -826,7 +826,7 @@ public class RecipeRegistry extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printReport(parser, num, "colour", "The colour variable doesn't have all three rgb values set, it needs to be colour=r-g-b");
             }
@@ -890,7 +890,7 @@ public class RecipeRegistry extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
                             }
@@ -904,7 +904,7 @@ public class RecipeRegistry extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
                             }
@@ -915,7 +915,7 @@ public class RecipeRegistry extends RecipeAPI
                     }
                     else
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
                         }
@@ -923,7 +923,7 @@ public class RecipeRegistry extends RecipeAPI
                 }
                 else
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                     }
@@ -931,7 +931,7 @@ public class RecipeRegistry extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
                 }
@@ -939,7 +939,7 @@ public class RecipeRegistry extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -959,7 +959,7 @@ public class RecipeRegistry extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                 }
@@ -967,7 +967,7 @@ public class RecipeRegistry extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -987,7 +987,7 @@ public class RecipeRegistry extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                 }
@@ -995,7 +995,7 @@ public class RecipeRegistry extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -1026,7 +1026,7 @@ public class RecipeRegistry extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "input-metadata", "Could not parse the value '" + input_metadata + "' to an integer");
                             }
@@ -1040,7 +1040,7 @@ public class RecipeRegistry extends RecipeAPI
                         }
                         catch(NumberFormatException e)
                         {
-                            if(ConfigurationHandler.api_debug)
+                            if(FurnitureConfig.COMMON.recipe.apiDebug)
                             {
                                 RecipeUtil.printReport(parser, num, "output-metadata", "Could not parse the value '" + output_metadata + "' to an integer");
                             }
@@ -1051,7 +1051,7 @@ public class RecipeRegistry extends RecipeAPI
                     }
                     else
                     {
-                        if(ConfigurationHandler.api_debug)
+                        if(FurnitureConfig.COMMON.recipe.apiDebug)
                         {
                             RecipeUtil.printReport(parser, num, "output-item", "The output-item '" + output_item + "' does not exist");
                         }
@@ -1059,7 +1059,7 @@ public class RecipeRegistry extends RecipeAPI
                 }
                 else
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printReport(parser, num, "input-item", "The input-item '" + input_item + "' does not exist");
                     }
@@ -1067,7 +1067,7 @@ public class RecipeRegistry extends RecipeAPI
             }
             else
             {
-                if(ConfigurationHandler.api_debug)
+                if(FurnitureConfig.COMMON.recipe.apiDebug)
                 {
                     RecipeUtil.printMissing(parser, num, "output-item", "An output-item is required");
                 }
@@ -1075,7 +1075,7 @@ public class RecipeRegistry extends RecipeAPI
         }
         else
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 RecipeUtil.printMissing(parser, num, "input-item", "An input-item is required");
             }
@@ -1084,14 +1084,14 @@ public class RecipeRegistry extends RecipeAPI
 
     public static void registerConfigRecipes()
     {
-        if(ConfigurationHandler.items.length > 0 && ConfigurationHandler.api_debug)
+        if(FurnitureConfig.COMMON.recipe.items.length > 0 && FurnitureConfig.COMMON.recipe.apiDebug)
         {
-            System.out.println("RecipeAPI (Configuration): Registering " + ConfigurationHandler.items.length + " recipes from the config.");
+            System.out.println("RecipeAPI (Configuration): Registering " + FurnitureConfig.COMMON.recipe.items.length + " recipes from the config.");
         }
         Parser parser = Parser.getInstance();
-        for(int i = 0; i < ConfigurationHandler.items.length; i++)
+        for(int i = 0; i < FurnitureConfig.COMMON.recipe.items.length; i++)
         {
-            parser.parseLine(ConfigurationHandler.items[i], true);
+            parser.parseLine(FurnitureConfig.COMMON.recipe.items[i], true);
             String type = parser.getValue("type", null);
 
             int realNum = i + 1;
@@ -1144,7 +1144,7 @@ public class RecipeRegistry extends RecipeAPI
                 }
                 else
                 {
-                    if(ConfigurationHandler.api_debug)
+                    if(FurnitureConfig.COMMON.recipe.apiDebug)
                     {
                         RecipeUtil.printReport(parser, realNum, "type", "The recipe type '" + type + "' does not exist");
                     }
@@ -1155,52 +1155,52 @@ public class RecipeRegistry extends RecipeAPI
 
     public static void registerDefaultRecipes()
     {
-        if(ConfigurationHandler.printer_1)
+        if (FurnitureConfig.COMMON.recipe.enabled.printer.bookEnchanted)
             RecipeRegistry.getInstance().registerPrinterRecipe(new ItemStack(Items.ENCHANTED_BOOK));
-        if(ConfigurationHandler.printer_2)
+        if (FurnitureConfig.COMMON.recipe.enabled.printer.bookWritten)
             RecipeRegistry.getInstance().registerPrinterRecipe(new ItemStack(Items.WRITTEN_BOOK));
 
-        if(ConfigurationHandler.oven_1)
+        if (FurnitureConfig.COMMON.recipe.enabled.oven.beef)
             RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.BEEF), new ItemStack(Items.COOKED_BEEF));
-        if(ConfigurationHandler.oven_2)
+        if (FurnitureConfig.COMMON.recipe.enabled.oven.porkchop)
             RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.PORKCHOP), new ItemStack(Items.COOKED_PORKCHOP));
-        if(ConfigurationHandler.oven_3)
+        if (FurnitureConfig.COMMON.recipe.enabled.oven.potato)
             RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.POTATO), new ItemStack(Items.BAKED_POTATO));
-        if(ConfigurationHandler.oven_4)
+        if (FurnitureConfig.COMMON.recipe.enabled.oven.chicken)
             RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.CHICKEN), new ItemStack(Items.COOKED_CHICKEN));
-        if(ConfigurationHandler.oven_5)
+        if (FurnitureConfig.COMMON.recipe.enabled.oven.fish)
             RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.FISH, 1, 0), new ItemStack(Items.COOKED_FISH, 1, 0));
-        if(ConfigurationHandler.oven_6)
+        if (FurnitureConfig.COMMON.recipe.enabled.oven.salmon)
             RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(Items.FISH, 1, 1), new ItemStack(Items.COOKED_FISH, 1, 1));
-        if(ConfigurationHandler.oven_7)
+        if (FurnitureConfig.COMMON.recipe.enabled.oven.flesh)
             RecipeRegistry.getInstance().registerOvenRecipe(new ItemStack(FurnitureItems.FLESH), new ItemStack(FurnitureItems.COOKED_FLESH));
 
-        if(ConfigurationHandler.frez_1)
+        if (FurnitureConfig.COMMON.recipe.enabled.freezer.waterToIce)
             RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.WATER_BUCKET), new ItemStack(Blocks.ICE));
-        if(ConfigurationHandler.frez_2)
+        if (FurnitureConfig.COMMON.recipe.enabled.freezer.iceToPacked)
             RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Blocks.ICE), new ItemStack(Blocks.PACKED_ICE));
-        if(ConfigurationHandler.frez_3)
+        if (FurnitureConfig.COMMON.recipe.enabled.freezer.lavaToObsidian)
             RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.LAVA_BUCKET), new ItemStack(Blocks.OBSIDIAN));
-        if(ConfigurationHandler.frez_4)
+        if (FurnitureConfig.COMMON.recipe.enabled.freezer.slimeToSnow)
             RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.SLIME_BALL), new ItemStack(Items.SNOWBALL));
-        if(ConfigurationHandler.frez_5)
+        if (FurnitureConfig.COMMON.recipe.enabled.freezer.poisonousToPotato)
             RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.POISONOUS_POTATO), new ItemStack(Items.POTATO));
-        if(ConfigurationHandler.frez_6)
+        if (FurnitureConfig.COMMON.recipe.enabled.freezer.rottenToFlesh)
             RecipeRegistry.getInstance().registerFreezerRecipe(new ItemStack(Items.ROTTEN_FLESH), new ItemStack(FurnitureItems.FLESH));
 
-        if(ConfigurationHandler.mine_1)
+        if (FurnitureConfig.COMMON.recipe.enabled.minebay.clayForEmerald)
             RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Blocks.HARDENED_CLAY, 16), new ItemStack(Items.EMERALD), 1);
-        if(ConfigurationHandler.mine_2)
+        if (FurnitureConfig.COMMON.recipe.enabled.minebay.skullForEmerald)
             RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.SKULL), new ItemStack(Items.EMERALD), 8);
-        if(ConfigurationHandler.mine_3)
+        if (FurnitureConfig.COMMON.recipe.enabled.minebay.saddleForEmerald)
             RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.SADDLE), new ItemStack(Items.EMERALD), 4);
-        if(ConfigurationHandler.mine_4)
+        if (FurnitureConfig.COMMON.recipe.enabled.minebay.horseForEmerald)
             RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.SPAWN_EGG, 1, 100), new ItemStack(Items.EMERALD), 8);
-        if(ConfigurationHandler.mine_5)
+        if (FurnitureConfig.COMMON.recipe.enabled.minebay.horse_armourForDiamond)
             RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.DIAMOND_HORSE_ARMOR), new ItemStack(Items.DIAMOND), 8);
-        if(ConfigurationHandler.mine_6)
+        if (FurnitureConfig.COMMON.recipe.enabled.minebay.xpForIron)
             RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(Items.IRON_INGOT), 1);
-        if(ConfigurationHandler.mine_7)
+        if (FurnitureConfig.COMMON.recipe.enabled.minebay.fireworkForIron)
         {
             ItemStack stack = new ItemStack(Items.FIREWORKS, 4);
             NBTTagCompound master = new NBTTagCompound();
@@ -1218,7 +1218,7 @@ public class RecipeRegistry extends RecipeAPI
             stack.setStackDisplayName(TextFormatting.RED + "Christmas" + TextFormatting.GREEN + " Firework");
             RecipeRegistry.getInstance().registerMineBayItem(stack, new ItemStack(Items.IRON_INGOT), 1);
         }
-        if(ConfigurationHandler.mine_8)
+        if (FurnitureConfig.COMMON.recipe.enabled.minebay.silkTouchForEmerald)
         {
             ItemStack stack = new ItemStack(Items.ENCHANTED_BOOK);
             NBTTagCompound master = new NBTTagCompound();
@@ -1231,7 +1231,7 @@ public class RecipeRegistry extends RecipeAPI
             stack.setTagCompound(master);
             RecipeRegistry.getInstance().registerMineBayItem(stack, new ItemStack(Items.EMERALD), 8);
         }
-        if(ConfigurationHandler.mine_9)
+        if (FurnitureConfig.COMMON.recipe.enabled.minebay.nightVisionForEmerald)
         {
             ItemStack stack = new ItemStack(Items.POTIONITEM, 2);
             NBTTagCompound data = new NBTTagCompound();
@@ -1239,139 +1239,139 @@ public class RecipeRegistry extends RecipeAPI
             stack.setTagCompound(data);
             RecipeRegistry.getInstance().registerMineBayItem(stack, new ItemStack(Items.EMERALD), 1);
         }
-        if(ConfigurationHandler.mine_10)
+        if (FurnitureConfig.COMMON.recipe.enabled.minebay.recipeBookForEmerald)
             RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(FurnitureItems.RECIPE_BOOk), new ItemStack(Items.EMERALD), 1);
-        if(ConfigurationHandler.blen_1)
+        if (FurnitureConfig.COMMON.recipe.enabled.blender.fruit)
             RecipeRegistry.getInstance().registerBlenderRecipe("Fruit Crush", 4, new ItemStack[]{new ItemStack(Items.APPLE, 2), new ItemStack(Items.MELON, 4)}, new int[]{255, 58, 37});
-        if(ConfigurationHandler.blen_2)
+        if (FurnitureConfig.COMMON.recipe.enabled.blender.veggie)
             RecipeRegistry.getInstance().registerBlenderRecipe("Veggie Juice", 6, new ItemStack[]{new ItemStack(Items.CARROT, 4), new ItemStack(Items.POTATO, 1), new ItemStack(Items.PUMPKIN_PIE, 2)}, new int[]{247, 139, 122});
-        if(ConfigurationHandler.blen_3)
+        if (FurnitureConfig.COMMON.recipe.enabled.blender.fish)
             RecipeRegistry.getInstance().registerBlenderRecipe("Cookies and Cream Milkshake", 4, new ItemStack[]{new ItemStack(Items.COOKIE, 2), new ItemStack(Items.MILK_BUCKET)}, new int[]{255, 214, 164});
-        if(ConfigurationHandler.blen_4)
+        if (FurnitureConfig.COMMON.recipe.enabled.blender.energy)
             RecipeRegistry.getInstance().registerBlenderRecipe("Energy Drink", 8, new ItemStack[]{new ItemStack(Items.REDSTONE, 8), new ItemStack(Items.FIRE_CHARGE, 1), new ItemStack(Items.SUGAR, 16)}, new int[]{92, 23, 8});
 
         RecipeRegistry.getInstance().registerBlenderRecipe("Egg Nog", 5, new ItemStack[]{new ItemStack(Items.EGG, 4), new ItemStack(Items.MILK_BUCKET, 1), new ItemStack(Items.SUGAR, 2)}, new int[]{255, 234, 178});
 
-        if(ConfigurationHandler.chop_1)
+        if (FurnitureConfig.COMMON.recipe.enabled.choppingBoard.bread)
             RecipeRegistry.getInstance().registerChoppingBoardRecipe(new ItemStack(Items.BREAD), new ItemStack(FurnitureItems.BREAD_SLICE, 6));
 
-        if(ConfigurationHandler.dish_1)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.bow)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.BOW));
-        if(ConfigurationHandler.dish_2)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.woodPickaxe)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.WOODEN_PICKAXE));
-        if(ConfigurationHandler.dish_3)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.woodAxe)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.WOODEN_AXE));
-        if(ConfigurationHandler.dish_4)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.woodShovel)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.WOODEN_SHOVEL));
-        if(ConfigurationHandler.dish_5)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.woodHoe)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.WOODEN_HOE));
-        if(ConfigurationHandler.dish_6)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.woodSword)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.WOODEN_SWORD));
-        if(ConfigurationHandler.dish_7)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.stonePickaxe)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.STONE_PICKAXE));
-        if(ConfigurationHandler.dish_8)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.stoneAxe)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.STONE_AXE));
-        if(ConfigurationHandler.dish_9)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.stoneShovel)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.STONE_SHOVEL));
-        if(ConfigurationHandler.dish_10)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.stoneHoe)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.STONE_HOE));
-        if(ConfigurationHandler.dish_11)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.stoneSword)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.STONE_SWORD));
-        if(ConfigurationHandler.dish_12)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.ironPickaxe)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.IRON_PICKAXE));
-        if(ConfigurationHandler.dish_13)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.ironAxe)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.IRON_AXE));
-        if(ConfigurationHandler.dish_14)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.ironShovel)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.IRON_SHOVEL));
-        if(ConfigurationHandler.dish_15)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.ironHoe)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.IRON_HOE));
-        if(ConfigurationHandler.dish_16)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.ironSword)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.IRON_SWORD));
-        if(ConfigurationHandler.dish_17)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.goldPickaxe)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.GOLDEN_PICKAXE));
-        if(ConfigurationHandler.dish_18)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.goldAxe)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.GOLDEN_AXE));
-        if(ConfigurationHandler.dish_19)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.goldShovel)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.GOLDEN_SHOVEL));
-        if(ConfigurationHandler.dish_20)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.goldhoe)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.GOLDEN_HOE));
-        if(ConfigurationHandler.dish_21)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.goldSword)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.GOLDEN_SWORD));
-        if(ConfigurationHandler.dish_22)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.diamondPickaxe)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.DIAMOND_PICKAXE));
-        if(ConfigurationHandler.dish_23)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.diamondAxe)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.DIAMOND_AXE));
-        if(ConfigurationHandler.dish_24)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.diamondShovel)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.DIAMOND_SHOVEL));
-        if(ConfigurationHandler.dish_25)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.diamondHoe)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.DIAMOND_HOE));
-        if(ConfigurationHandler.dish_26)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.diamondSword)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.DIAMOND_SWORD));
-        if(ConfigurationHandler.dish_27)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.fishingRod)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.FISHING_ROD));
-        if(ConfigurationHandler.dish_28)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.flintAndSteel)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.FLINT_AND_STEEL));
-        if(ConfigurationHandler.dish_29)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.shears)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.SHEARS));
-        if(ConfigurationHandler.dish_30)
+        if (FurnitureConfig.COMMON.recipe.enabled.dishwasher.shield)
             RecipeRegistry.getInstance().registerDishwasherRecipe(new ItemStack(Items.SHIELD));
 
-        if(ConfigurationHandler.micr_1)
+        if (FurnitureConfig.COMMON.recipe.enabled.microwave.beef)
             RecipeRegistry.getInstance().registerMicrowaveRecipe(new ItemStack(Items.BEEF), new ItemStack(Items.COOKED_BEEF));
-        if(ConfigurationHandler.micr_2)
+        if (FurnitureConfig.COMMON.recipe.enabled.microwave.potato)
             RecipeRegistry.getInstance().registerMicrowaveRecipe(new ItemStack(Items.POTATO), new ItemStack(Items.BAKED_POTATO));
 
-        if(ConfigurationHandler.toast_1)
+        if (FurnitureConfig.COMMON.recipe.enabled.toaster.toast)
             RecipeRegistry.getInstance().registerToasterRecipe(new ItemStack(FurnitureItems.BREAD_SLICE), new ItemStack(FurnitureItems.TOAST));
 
-        if(ConfigurationHandler.wash_1)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.leatherHelmet)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.LEATHER_HELMET));
-        if(ConfigurationHandler.wash_2)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.leatherChestplate)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.LEATHER_CHESTPLATE));
-        if(ConfigurationHandler.wash_3)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.leatherLeggings)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.LEATHER_LEGGINGS));
-        if(ConfigurationHandler.wash_4)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.leatherBoots)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.LEATHER_BOOTS));
-        if(ConfigurationHandler.wash_5)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.chainmailHelmet)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.CHAINMAIL_HELMET));
-        if(ConfigurationHandler.wash_6)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.chainmailChestplate)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.CHAINMAIL_CHESTPLATE));
-        if(ConfigurationHandler.wash_7)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.chainmailLeggings)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.CHAINMAIL_LEGGINGS));
-        if(ConfigurationHandler.wash_8)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.chainmailBoots)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.CHAINMAIL_BOOTS));
-        if(ConfigurationHandler.wash_9)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.ironHelmet)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.IRON_HELMET));
-        if(ConfigurationHandler.wash_10)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.ironChestplate)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.IRON_CHESTPLATE));
-        if(ConfigurationHandler.wash_11)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.ironLeggings)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.IRON_LEGGINGS));
-        if(ConfigurationHandler.wash_12)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.ironBoots)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.IRON_BOOTS));
-        if(ConfigurationHandler.wash_13)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.goldHelmet)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.GOLDEN_HELMET));
-        if(ConfigurationHandler.wash_14)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.goldChestplate)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.GOLDEN_CHESTPLATE));
-        if(ConfigurationHandler.wash_15)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.goldLeggings)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.GOLDEN_LEGGINGS));
-        if(ConfigurationHandler.wash_16)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.goldBoots)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.GOLDEN_BOOTS));
-        if(ConfigurationHandler.wash_17)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.diamondHelmet)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.DIAMOND_HELMET));
-        if(ConfigurationHandler.wash_18)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.diamondChestplate)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.DIAMOND_CHESTPLATE));
-        if(ConfigurationHandler.wash_19)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.diamondLeggings)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.DIAMOND_LEGGINGS));
-        if(ConfigurationHandler.wash_20)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.diamondBoots)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.DIAMOND_BOOTS));
-        if(ConfigurationHandler.wash_21)
+        if (FurnitureConfig.COMMON.recipe.enabled.washingMachine.elytra)
             RecipeRegistry.getInstance().registerWashingMachineRecipe(new ItemStack(Items.ELYTRA));
 
-        if(ConfigurationHandler.grill_1)
+        if (FurnitureConfig.COMMON.recipe.enabled.grill.beef)
             RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(Items.BEEF), new ItemStack(Items.COOKED_BEEF));
-        if(ConfigurationHandler.grill_2)
+        if (FurnitureConfig.COMMON.recipe.enabled.grill.sausage)
             RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(FurnitureItems.SAUSAGE), new ItemStack(FurnitureItems.SAUSAGE_COOKED));
-        if(ConfigurationHandler.grill_3)
+        if (FurnitureConfig.COMMON.recipe.enabled.grill.kebab)
             RecipeRegistry.getInstance().registerGrillRecipe(new ItemStack(FurnitureItems.KEBAB), new ItemStack(FurnitureItems.KEBAB_COOKED));
     }
 }

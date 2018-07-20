@@ -26,7 +26,6 @@ import com.mrcrayfish.furniture.blocks.tv.Channels;
 import com.mrcrayfish.furniture.entity.EntityMirror;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.gui.GuiHandler;
-import com.mrcrayfish.furniture.handler.ConfigurationHandler;
 import com.mrcrayfish.furniture.handler.PlayerEvents;
 import com.mrcrayfish.furniture.init.FurnitureTab;
 import com.mrcrayfish.furniture.init.FurnitureTileEntities;
@@ -54,7 +53,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Method;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, acceptedMinecraftVersions = Reference.ACCEPTED_MC_VERSIONS)
+@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, acceptedMinecraftVersions = Reference.ACCEPTED_MC_VERSIONS)
 public class MrCrayfishFurnitureMod
 {
     @Instance(Reference.MOD_ID)
@@ -72,16 +71,10 @@ public class MrCrayfishFurnitureMod
     {
         logger = event.getModLog();
 
-        /* Common Events */
-        MinecraftForge.EVENT_BUS.register(new ConfigurationHandler());
-
         RegistrationHandler.init();
 
         /* Packet Handler Init */
         PacketHandler.init();
-
-        /* Configuration Handler Init */
-        ConfigurationHandler.init(event.getSuggestedConfigurationFile());
 
         /* Custom triggers Init */
         Triggers.init();
@@ -131,7 +124,7 @@ public class MrCrayfishFurnitureMod
     {
         if(event.getMessages().size() > 0)
         {
-            if(ConfigurationHandler.api_debug)
+            if(FurnitureConfig.COMMON.recipe.apiDebug)
             {
                 logger.info("RecipeAPI (InterModComm): Registering recipes from " + event.getMessages().size() + " mod(s).");
             }

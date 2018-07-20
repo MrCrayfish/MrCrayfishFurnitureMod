@@ -25,5 +25,4 @@ public class Reference
     public static final String ACCEPTED_MC_VERSIONS = "[1.12.2]";
     public static final String CLIENT_PROXY_CLASS = "com.mrcrayfish.furniture.proxy.ClientProxy";
     public static final String SERVER_PROXY_CLASS = "com.mrcrayfish.furniture.proxy.CommonProxy";
-    public static final String GUI_FACTORY_CLASS = "com.mrcrayfish.furniture.gui.GuiFactory";
 }
