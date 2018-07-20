@@ -1,0 +1,21 @@
+{
+    "result": {
+        "item": "cfm:desk_spruce"
+    },
+    "pattern": [
+        "LLL",
+        "P P",
+        "P P"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "L": {
+            "item": "minecraft:log",
+            "data": 1
+        },
+        "P": {
+            "item": "minecraft:planks",
+            "data": 1
+        }
+    }
+}

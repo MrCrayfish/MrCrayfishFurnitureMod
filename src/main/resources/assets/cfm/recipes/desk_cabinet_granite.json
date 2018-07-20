@@ -1,0 +1,24 @@
+{
+    "result": {
+        "item": "cfm:desk_cabinet_granite"
+    },
+    "pattern": [
+        "LLL",
+        "PCP",
+        "P P"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "L": {
+            "item": "minecraft:stone",
+            "data": 2
+        },
+        "P": {
+            "item": "minecraft:stone",
+            "data": 1
+        },
+        "C": {
+            "item": "minecraft:chest"
+        }
+    }
+}
