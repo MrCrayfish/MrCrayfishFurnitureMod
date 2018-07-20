@@ -58,5 +58,6 @@ public class FurnitureTileEntities
         GameRegistry.registerTileEntity(TileEntityCrate.class, "cfmCrate");
         GameRegistry.registerTileEntity(TileEntityLightSwitch.class, "cfmLightSwitch");
         GameRegistry.registerTileEntity(TileEntityCeilingFan.class, "cfmCeilingFan");
+        GameRegistry.registerTileEntity(TileEntityDeskCabinet.class, "cfmDeskCabinet");
     }
 }

@@ -238,6 +238,8 @@ tile.desk_cabinet_andesite.name=Andesite Desk Cabinet
 tile.desk.info=This desk can connect to other desks to create any shape and length you desire. It can also be used in conjunction with the Desk Cabinet.
 tile.desk_cabinet.info=This desk cabinet can connect to other desk cabinets to create any shape and length you desire. It can also be used in conjunction with the Desk.
 
+container.desk_cabinet=Desk Cabinet
+
 keys.cfm.category=MrCrayfish's Furniture Mod
 key.fart.desc=Fart
 
