@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:item/desk",
+    "textures": {
+        "top": "blocks/concrete_gray",
+        "primary": "blocks/stone",
+        "secondary": "blocks/stone_slab_top"
+    }
+}
