@@ -311,7 +311,7 @@ public abstract class BlockCouch extends BlockFurnitureTile
 
     public abstract boolean isSpecial();
 
-    public static enum CouchType implements IStringSerializable
+    public enum CouchType implements IStringSerializable
     {
         NONE,
         LEFT,

@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:item/desk",
+    "textures": {
+        "top": "blocks/hardened_clay_stained_green",
+        "primary": "blocks/log_jungle",
+        "secondary": "blocks/planks_jungle"
+    }
+}

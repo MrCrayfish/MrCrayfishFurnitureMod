@@ -1,0 +1,21 @@
+{
+    "result": {
+        "item": "cfm:desk_diorite"
+    },
+    "pattern": [
+        "LLL",
+        "P P",
+        "P P"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "L": {
+            "item": "minecraft:stone",
+            "data": 4
+        },
+        "P": {
+            "item": "minecraft:stone",
+            "data": 3
+        }
+    }
+}

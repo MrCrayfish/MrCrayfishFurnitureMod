@@ -80,6 +80,8 @@ public class FurnitureBlocks
     public static final Block MODERN_WINDOW;
     public static final Block LIGHT_SWITCH_OFF, LIGHT_SWITCH_ON;
     public static final Block CEILING_FAN;
+    public static final Block DESK_OAK, DESK_SPRUCE, DESK_BIRCH, DESK_JUNGLE, DESK_ACACIA, DESK_DARK_OAK, DESK_STONE, DESK_GRANITE, DESK_DIORITE, DESK_ANDESITE;
+    public static final Block DESK_CABINET_OAK, DESK_CABINET_SPRUCE, DESK_CABINET_BIRCH, DESK_CABINET_JUNGLE, DESK_CABINET_ACACIA, DESK_CABINET_DARK_OAK, DESK_CABINET_STONE, DESK_CABINET_GRANITE, DESK_CABINET_DIORITE, DESK_CABINET_ANDESITE;
 
     /* Special */
     public static final Block MIRROR;
@@ -214,6 +216,26 @@ public class FurnitureBlocks
         LIGHT_SWITCH_OFF = new BlockLightSwitch().setUnlocalizedName("light_switch_off").setRegistryName("light_switch_off");
         LIGHT_SWITCH_ON = new BlockLightSwitch().setUnlocalizedName("light_switch_on").setRegistryName("light_switch_on");
         CEILING_FAN = new BlockCeilingFan().setUnlocalizedName("ceiling_fan").setRegistryName("ceiling_fan");
+        DESK_OAK = new BlockDesk(Material.WOOD).setUnlocalizedName("desk_oak").setRegistryName("desk_oak");
+        DESK_SPRUCE = new BlockDesk(Material.WOOD).setUnlocalizedName("desk_spruce").setRegistryName("desk_spruce");
+        DESK_BIRCH = new BlockDesk(Material.WOOD).setUnlocalizedName("desk_birch").setRegistryName("desk_birch");
+        DESK_JUNGLE = new BlockDesk(Material.WOOD).setUnlocalizedName("desk_jungle").setRegistryName("desk_jungle");
+        DESK_ACACIA = new BlockDesk(Material.WOOD).setUnlocalizedName("desk_acacia").setRegistryName("desk_acacia");
+        DESK_DARK_OAK = new BlockDesk(Material.WOOD).setUnlocalizedName("desk_dark_oak").setRegistryName("desk_dark_oak");
+        DESK_STONE = new BlockDesk(Material.ROCK).setUnlocalizedName("desk_stone").setRegistryName("desk_stone");
+        DESK_GRANITE = new BlockDesk(Material.ROCK).setUnlocalizedName("desk_granite").setRegistryName("desk_granite");
+        DESK_DIORITE = new BlockDesk(Material.ROCK).setUnlocalizedName("desk_diorite").setRegistryName("desk_diorite");
+        DESK_ANDESITE = new BlockDesk(Material.ROCK).setUnlocalizedName("desk_andesite").setRegistryName("desk_andesite");
+        DESK_CABINET_OAK = new BlockDeskCabinet(Material.WOOD).setUnlocalizedName("desk_cabinet_oak").setRegistryName("desk_cabinet_oak");
+        DESK_CABINET_SPRUCE = new BlockDeskCabinet(Material.WOOD).setUnlocalizedName("desk_cabinet_spruce").setRegistryName("desk_cabinet_spruce");
+        DESK_CABINET_BIRCH = new BlockDeskCabinet(Material.WOOD).setUnlocalizedName("desk_cabinet_birch").setRegistryName("desk_cabinet_birch");
+        DESK_CABINET_JUNGLE = new BlockDeskCabinet(Material.WOOD).setUnlocalizedName("desk_cabinet_jungle").setRegistryName("desk_cabinet_jungle");
+        DESK_CABINET_ACACIA = new BlockDeskCabinet(Material.WOOD).setUnlocalizedName("desk_cabinet_acacia").setRegistryName("desk_cabinet_acacia");
+        DESK_CABINET_DARK_OAK = new BlockDeskCabinet(Material.WOOD).setUnlocalizedName("desk_cabinet_dark_oak").setRegistryName("desk_cabinet_dark_oak");
+        DESK_CABINET_STONE = new BlockDeskCabinet(Material.ROCK).setUnlocalizedName("desk_cabinet_stone").setRegistryName("desk_cabinet_stone");
+        DESK_CABINET_GRANITE = new BlockDeskCabinet(Material.ROCK).setUnlocalizedName("desk_cabinet_granite").setRegistryName("desk_cabinet_granite");
+        DESK_CABINET_DIORITE = new BlockDeskCabinet(Material.ROCK).setUnlocalizedName("desk_cabinet_diorite").setRegistryName("desk_cabinet_diorite");
+        DESK_CABINET_ANDESITE = new BlockDeskCabinet(Material.ROCK).setUnlocalizedName("desk_cabinet_andesite").setRegistryName("desk_cabinet_andesite");
     }
 
     public static void register()
@@ -346,6 +368,26 @@ public class FurnitureBlocks
         registerBlock(LIGHT_SWITCH_OFF, new ItemLightSwitch(LIGHT_SWITCH_OFF));
         registerBlock(LIGHT_SWITCH_ON, null);
         registerBlock(CEILING_FAN);
+        registerBlock(DESK_OAK);
+        registerBlock(DESK_SPRUCE);
+        registerBlock(DESK_BIRCH);
+        registerBlock(DESK_JUNGLE);
+        registerBlock(DESK_ACACIA);
+        registerBlock(DESK_DARK_OAK);
+        registerBlock(DESK_STONE);
+        registerBlock(DESK_GRANITE);
+        registerBlock(DESK_DIORITE);
+        registerBlock(DESK_ANDESITE);
+        registerBlock(DESK_CABINET_OAK);
+        registerBlock(DESK_CABINET_SPRUCE);
+        registerBlock(DESK_CABINET_BIRCH);
+        registerBlock(DESK_CABINET_JUNGLE);
+        registerBlock(DESK_CABINET_ACACIA);
+        registerBlock(DESK_CABINET_DARK_OAK);
+        registerBlock(DESK_CABINET_STONE);
+        registerBlock(DESK_CABINET_GRANITE);
+        registerBlock(DESK_CABINET_DIORITE);
+        registerBlock(DESK_CABINET_ANDESITE);
     }
 
     private static void registerBlock(Block block)
