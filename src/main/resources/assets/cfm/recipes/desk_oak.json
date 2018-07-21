@@ -1,0 +1,21 @@
+{
+    "result": {
+        "item": "cfm:desk_oak"
+    },
+    "pattern": [
+        "LLL",
+        "P P",
+        "P P"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "L": {
+            "item": "minecraft:log",
+            "data": 0
+        },
+        "P": {
+            "item": "minecraft:planks",
+            "data": 0
+        }
+    }
+}

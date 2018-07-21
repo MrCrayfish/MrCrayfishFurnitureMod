@@ -1,0 +1,24 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "top": "blocks/hardened_clay_stained_cyan",
+            "primary": "blocks/stone_andesite_smooth",
+            "secondary": "blocks/concrete_silver"
+        }
+    },
+    "variants": {
+        "facing": {
+            "north": { "y": 0   },
+            "east":  { "y": 90  },
+            "south": { "y": 180 },
+            "west":  { "y": 270 }
+        },
+        "type": {
+            "none":  { "model": "cfm:desk_cabinet_none"  },
+            "left":  { "model": "cfm:desk_cabinet_left"  },
+            "right": { "model": "cfm:desk_cabinet_right" },
+            "both":  { "model": "cfm:desk_cabinet_both"  }
+        }
+    }
+}

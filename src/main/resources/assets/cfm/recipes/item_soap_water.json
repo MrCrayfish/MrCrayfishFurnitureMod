@@ -1,0 +1,14 @@
+{
+  "result": {
+    "item": "cfm:item_soap_water"
+  },
+  "ingredients": [
+    {
+      "item": "cfm:item_soap"
+    },
+    {
+      "item": "minecraft:water_bucket"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless"
+}

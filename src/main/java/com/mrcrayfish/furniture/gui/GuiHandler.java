@@ -22,6 +22,7 @@ import com.mrcrayfish.furniture.blocks.BlockCabinet;
 import com.mrcrayfish.furniture.gui.containers.*;
 import com.mrcrayfish.furniture.items.*;
 import com.mrcrayfish.furniture.tileentity.*;
+import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -34,10 +35,14 @@ public class GuiHandler implements IGuiHandler
     @Override
     public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
     {
-        TileEntity tile_entity = world.getTileEntity(new BlockPos(x, y, z));
-        if(tile_entity instanceof TileEntityFurniture)
+        TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
+        if(tileEntity instanceof TileEntityFurniture)
         {
-            return ((TileEntityFurniture) tile_entity).createContainer(player.inventory, player);
+            return ((TileEntityFurniture) tileEntity).createContainer(player.inventory, player);
+        }
+        else if(tileEntity instanceof TileEntityDeskCabinet)
+        {
+            return ((TileEntityDeskCabinet) tileEntity).createContainer(player.inventory, player);
         }
         else if(id == 5)
         {
@@ -65,77 +70,81 @@ public class GuiHandler implements IGuiHandler
     @Override
     public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
     {
-        TileEntity tile_entity = world.getTileEntity(new BlockPos(x, y, z));
-        if(tile_entity instanceof TileEntityFridge)
+        TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
+        if(tileEntity instanceof TileEntityFridge)
         {
-            return new GuiFridge(player.inventory, (TileEntityFridge) tile_entity);
+            return new GuiFridge(player.inventory, (TileEntityFridge) tileEntity);
         }
-        if(tile_entity instanceof TileEntityFreezer)
+        if(tileEntity instanceof TileEntityFreezer)
         {
-            return new GuiFreezer(player.inventory, (TileEntityFreezer) tile_entity);
+            return new GuiFreezer(player.inventory, (TileEntityFreezer) tileEntity);
         }
-        if(tile_entity instanceof TileEntityCabinet)
+        if(tileEntity instanceof TileEntityCabinet)
         {
-            return new GuiCabinet(player.inventory, (TileEntityCabinet) tile_entity, (BlockCabinet) tile_entity.getBlockType());
+            return new GuiCabinet(player.inventory, (TileEntityCabinet) tileEntity, (BlockCabinet) tileEntity.getBlockType());
         }
-        if(tile_entity instanceof TileEntityBedsideCabinet)
+        if(tileEntity instanceof TileEntityBedsideCabinet)
         {
-            return new GuiBedsideCabinet(player.inventory, (TileEntityBedsideCabinet) tile_entity, (BlockBedsideCabinet) tile_entity.getBlockType());
+            return new GuiBedsideCabinet(player.inventory, (TileEntityBedsideCabinet) tileEntity, (BlockBedsideCabinet) tileEntity.getBlockType());
         }
-        if(tile_entity instanceof TileEntityOven)
+        if(tileEntity instanceof TileEntityOven)
         {
-            return new GuiOven(player.inventory, (TileEntityOven) tile_entity);
+            return new GuiOven(player.inventory, (TileEntityOven) tileEntity);
         }
-        if(tile_entity instanceof TileEntityMailBox && id == 0)
+        if(tileEntity instanceof TileEntityMailBox && id == 0)
         {
-            return new GuiMailBox(player.inventory, (TileEntityMailBox) tile_entity);
+            return new GuiMailBox(player.inventory, (TileEntityMailBox) tileEntity);
         }
-        if(tile_entity instanceof TileEntityComputer)
+        if(tileEntity instanceof TileEntityComputer)
         {
-            return new GuiComputer(player.inventory, (TileEntityComputer) tile_entity);
+            return new GuiComputer(player.inventory, (TileEntityComputer) tileEntity);
         }
-        if(tile_entity instanceof TileEntityPrinter)
+        if(tileEntity instanceof TileEntityPrinter)
         {
-            return new GuiPrinter(player.inventory, (TileEntityPrinter) tile_entity);
+            return new GuiPrinter(player.inventory, (TileEntityPrinter) tileEntity);
         }
-        if(tile_entity instanceof TileEntityBin)
+        if(tileEntity instanceof TileEntityBin)
         {
-            return new GuiBin(player.inventory, (TileEntityBin) tile_entity, x, y, z);
+            return new GuiBin(player.inventory, (TileEntityBin) tileEntity, x, y, z);
         }
-        if(tile_entity instanceof TileEntityWallCabinet)
+        if(tileEntity instanceof TileEntityWallCabinet)
         {
-            return new GuiWallCabinet(player.inventory, (TileEntityWallCabinet) tile_entity);
+            return new GuiWallCabinet(player.inventory, (TileEntityWallCabinet) tileEntity);
         }
-        if(tile_entity instanceof TileEntityMicrowave)
+        if(tileEntity instanceof TileEntityMicrowave)
         {
-            return new GuiMicrowave(player.inventory, (TileEntityMicrowave) tile_entity);
+            return new GuiMicrowave(player.inventory, (TileEntityMicrowave) tileEntity);
         }
-        if(tile_entity instanceof TileEntityWashingMachine)
+        if(tileEntity instanceof TileEntityWashingMachine)
         {
-            return new GuiWashingMachine(player.inventory, (TileEntityWashingMachine) tile_entity);
+            return new GuiWashingMachine(player.inventory, (TileEntityWashingMachine) tileEntity);
         }
-        if(tile_entity instanceof TileEntityDishwasher)
+        if(tileEntity instanceof TileEntityDishwasher)
         {
-            return new GuiDishwasher(player.inventory, (TileEntityDishwasher) tile_entity);
+            return new GuiDishwasher(player.inventory, (TileEntityDishwasher) tileEntity);
         }
-        if(tile_entity instanceof TileEntityCabinetKitchen)
+        if(tileEntity instanceof TileEntityCabinetKitchen)
         {
-            return new GuiKitchenCabinet(player.inventory, (TileEntityCabinetKitchen) tile_entity);
+            return new GuiKitchenCabinet(player.inventory, (TileEntityCabinetKitchen) tileEntity);
         }
-        if(tile_entity instanceof TileEntityEsky)
+        if(tileEntity instanceof TileEntityEsky)
         {
-            return new GuiEski(player.inventory, (TileEntityEsky) tile_entity);
+            return new GuiEski(player.inventory, (TileEntityEsky) tileEntity);
         }
-        if(tile_entity instanceof TileEntityDoorMat)
+        if(tileEntity instanceof TileEntityDoorMat)
         {
             return new GuiDoorMat(x, y, z);
         }
-        if(tile_entity instanceof TileEntityCrate)
+        if(tileEntity instanceof TileEntityCrate)
         {
-            return new GuiCrate(player.inventory, (TileEntityCrate) tile_entity, x, y, z);
+            return new GuiCrate(player.inventory, (TileEntityCrate) tileEntity, x, y, z);
+        }
+        if(tileEntity instanceof TileEntityDeskCabinet)
+        {
+            return new GuiChest(player.inventory, (TileEntityDeskCabinet) tileEntity);
         }
         ItemStack mail = null;
-        if(player.inventory.getCurrentItem() != null)
+        if(!player.inventory.getCurrentItem().isEmpty())
         {
             mail = player.inventory.getCurrentItem();
         }

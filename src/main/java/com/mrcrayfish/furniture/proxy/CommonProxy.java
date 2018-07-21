@@ -87,6 +87,10 @@ public class CommonProxy implements ProxyInterface
         builder.add("curtains_closed");
         builder.add("ceiling_light_on");
         builder.add("blinds_closed");
+        builder.add("cup");
+        builder.add("grand_chair_top");
+        builder.add("fridge");
+        builder.add("divingboard_plank");
         IGNORE_ITEMS = builder.build();
     }
 

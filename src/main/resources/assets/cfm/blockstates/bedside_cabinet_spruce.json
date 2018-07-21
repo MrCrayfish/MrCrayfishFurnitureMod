@@ -1,8 +1,31 @@
 {
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"1": "blocks/log_spruce",
+			"2": "blocks/planks_spruce",
+			"handle": "blocks/planks_spruce"
+		},
+		"model": "cfm:bedside_cabinet"
+	},
 	"variants": {
-		"facing=north": { "model": "cfm:bedside_cabinet_spruce", "y": 270 },
-		"facing=south": { "model": "cfm:bedside_cabinet_spruce", "y": 90  },
-		"facing=east": 	{ "model": "cfm:bedside_cabinet_spruce"           },
-		"facing=west": 	{ "model": "cfm:bedside_cabinet_spruce", "y": 180 }
+		"inventory": [{
+			"model": "cfm:bedside_cabinet"
+		}],
+		"facing=north": {
+			"model": "cfm:bedside_cabinet",
+			"y": 270
+		},
+		"facing=south": {
+			"model": "cfm:bedside_cabinet",
+			"y": 90
+		},
+		"facing=east": {
+			"model": "cfm:bedside_cabinet"
+		},
+		"facing=west": {
+			"model": "cfm:bedside_cabinet",
+			"y": 180
+		}
 	}
 }

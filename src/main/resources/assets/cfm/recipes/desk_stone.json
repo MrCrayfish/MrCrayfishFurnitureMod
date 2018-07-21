@@ -1,0 +1,20 @@
+{
+    "result": {
+        "item": "cfm:desk_stone"
+    },
+    "pattern": [
+        "LLL",
+        "P P",
+        "P P"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "L": {
+            "item": "minecraft:stone",
+            "data": 0
+        },
+        "P": {
+            "item": "minecraft:cobblestone"
+        }
+    }
+}

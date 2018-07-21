@@ -1,0 +1,24 @@
+{
+    "result": {
+        "item": "cfm:desk_cabinet_andesite"
+    },
+    "pattern": [
+        "LLL",
+        "PCP",
+        "P P"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "L": {
+            "item": "minecraft:stone",
+            "data": 6
+        },
+        "P": {
+            "item": "minecraft:stone",
+            "data": 5
+        },
+        "C": {
+            "item": "minecraft:chest"
+        }
+    }
+}

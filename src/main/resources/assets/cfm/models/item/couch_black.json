@@ -1,3 +1,6 @@
 {
-	"parent": "cfm:block/couch_all_black"
+	"parent": "cfm:block/couch",
+	"textures": {
+		"couch": "blocks/wool_colored_black"
+	}
 }

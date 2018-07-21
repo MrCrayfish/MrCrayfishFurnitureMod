@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:item/desk",
+    "textures": {
+        "top": "blocks/concrete_silver",
+        "primary": "blocks/log_birch",
+        "secondary": "blocks/planks_birch"
+    }
+}

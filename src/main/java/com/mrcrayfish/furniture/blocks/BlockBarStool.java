@@ -73,6 +73,7 @@ public class BlockBarStool extends Block
     }
 
     // TODO you should really try to support modded dyes as well as vanilla ones
+    // TODO no because blockstates are not dynamic
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
