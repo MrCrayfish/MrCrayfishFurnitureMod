@@ -20,24 +20,24 @@ import com.mrcrayfish.furniture.api.Recipes;
 @EventBusSubscriber
 public class FurnitureConfig
 {
-    @Name("client")
+    @Name("Client")
     @Comment("Client-only configs.")
     @LangKey(Reference.MOD_ID + ".config.client")
     public static final Client CLIENT = new Client();
 
-    @Name("server")
+    @Name("Server")
     @Comment("Server-only configs.")
     @LangKey(Reference.MOD_ID + ".config.server")
     public static final Server SERVER = new Server();
 
-    @Name("common")
+    @Name("Common")
     @Comment("Configs shared by both client and server.")
     @LangKey(Reference.MOD_ID + ".config.common")
     public static final Common COMMON = new Common();
 
     public static class Client
     {
-        @Name("mirror")
+        @Name("Mirror")
         @Comment("Mirror render settings.")
         @LangKey(Reference.MOD_ID + ".config.client.mirror")
         public Mirror mirror = new Mirror();
@@ -70,7 +70,7 @@ public class FurnitureConfig
 
     public static class Server
     {
-        @Name("messages")
+        @Name("Messages")
         @Comment("Enable or disable messages.")
         @LangKey(Reference.MOD_ID + ".config.server.messages")
         public Messages messages = new Messages();
@@ -88,7 +88,7 @@ public class FurnitureConfig
 
     public static class Common
     {
-        @Name("recipe")
+        @Name("Recipe")
         @Comment("Recipe settings.")
         @LangKey(Reference.MOD_ID + ".config.common.recipe")
         public Recipe recipe = new Recipe();
@@ -106,7 +106,7 @@ public class FurnitureConfig
         @LangKey(Reference.MOD_ID + ".config.common.recipe.custom_recipes")
         public String[] items = {};
 
-        @Name("enabled recipes")
+        @Name("Enabled Recipes")
         @Comment("Enabled or disable the default recipes.")
         @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled")
         public EnabledRecipes enabled = new EnabledRecipes();
