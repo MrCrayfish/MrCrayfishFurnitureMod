@@ -18,11 +18,8 @@
 package com.mrcrayfish.furniture.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 
-public class TileEntityStereo extends TileEntity
+public class TileEntityStereo extends TileEntitySyncClient
 {
     public int count;
 
@@ -39,24 +36,5 @@ public class TileEntityStereo extends TileEntity
         super.writeToNBT(tagCompound);
         tagCompound.setInteger("count", count);
         return tagCompound;
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-    {
-        NBTTagCompound tagCompound = pkt.getNbtCompound();
-        this.readFromNBT(tagCompound);
-    }
-
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
-        return new SPacketUpdateTileEntity(pos, getBlockMetadata(), this.writeToNBT(new NBTTagCompound()));
-    }
-
-    @Override
-    public NBTTagCompound getUpdateTag()
-    {
-        return this.writeToNBT(new NBTTagCompound());
     }
 }
