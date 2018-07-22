@@ -18,6 +18,7 @@
 package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
+import java.util.Locale;
 
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.util.StateHelper;
@@ -111,7 +112,7 @@ public class BlockCounter extends BlockFurniture
         @Override
         public String getName()
         {
-            return this.toString().toLowerCase();
+            return this.toString().toLowerCase(Locale.US);
         }
     }
 

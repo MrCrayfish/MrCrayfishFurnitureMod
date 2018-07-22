@@ -19,6 +19,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Locale;
+
 public class BlockFairyLight extends BlockFurniture
 {
 
@@ -107,7 +109,7 @@ public class BlockFairyLight extends BlockFurniture
         @Override
         public String getName()
         {
-            return this.toString().toLowerCase();
+            return this.toString().toLowerCase(Locale.US);
         }
     }
 

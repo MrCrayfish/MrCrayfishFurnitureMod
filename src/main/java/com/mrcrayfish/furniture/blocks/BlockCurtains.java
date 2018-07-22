@@ -41,6 +41,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 public abstract class BlockCurtains extends BlockFurniture
@@ -224,7 +225,7 @@ public abstract class BlockCurtains extends BlockFurniture
         @Override
         public String getName()
         {
-            return this.toString().toLowerCase();
+            return this.toString().toLowerCase(Locale.US);
         }
     }
 }

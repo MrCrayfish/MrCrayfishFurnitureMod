@@ -24,6 +24,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Author: MrCrayfish
@@ -119,7 +120,7 @@ public class BlockDeskCabinet extends BlockFurnitureTile implements IDesk
         @Override
         public String getName()
         {
-            return this.toString().toLowerCase();
+            return this.toString().toLowerCase(Locale.US);
         }
     }
 }
