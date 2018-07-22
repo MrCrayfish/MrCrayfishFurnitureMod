@@ -17,7 +17,7 @@ import com.mrcrayfish.furniture.api.Recipes;
 
 @Config(modid = Reference.MOD_ID)
 @LangKey(Reference.MOD_ID + ".config.title")
-@EventBusSubscriber
+@EventBusSubscriber(modid = Reference.MOD_ID)
 public class FurnitureConfig
 {
     @Name("Client")
