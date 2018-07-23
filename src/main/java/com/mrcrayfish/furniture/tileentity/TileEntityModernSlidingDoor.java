@@ -33,7 +33,6 @@ public class TileEntityModernSlidingDoor extends TileEntitySyncClient implements
         {
             slideProgress--;
         }
-        maxProgress = 10;
     }
 
     public float getSlideProgress(float partialTicks)
