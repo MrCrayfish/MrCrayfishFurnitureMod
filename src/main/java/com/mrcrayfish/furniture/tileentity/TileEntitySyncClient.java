@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.tileentity;
 
+import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -23,5 +24,10 @@ public class TileEntitySyncClient extends TileEntity
     public NBTTagCompound getUpdateTag()
     {
         return writeToNBT(new NBTTagCompound());
+    }
+
+    public void sync()
+    {
+        TileEntityUtil.syncToClient(this);
     }
 }
