@@ -259,7 +259,7 @@ public class FurnitureConfig
 
         @Name("1 Diamond Horse Armour for 8 Diamonds")
         @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.minebay.horse_armour_for_diamond")
-        public boolean horse_armourForDiamond = true;
+        public boolean horseArmourForDiamond = true;
 
         @Name("1 Experience Bottle for 1 Iron Ingot")
         @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.minebay.xp_for_iron")

@@ -1196,7 +1196,7 @@ public class RecipeRegistry extends RecipeAPI
             RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.SADDLE), new ItemStack(Items.EMERALD), 4);
         if (FurnitureConfig.COMMON.recipe.enabled.minebay.horseForEmerald)
             RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.SPAWN_EGG, 1, 100), new ItemStack(Items.EMERALD), 8);
-        if (FurnitureConfig.COMMON.recipe.enabled.minebay.horse_armourForDiamond)
+        if (FurnitureConfig.COMMON.recipe.enabled.minebay.horseArmourForDiamond)
             RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.DIAMOND_HORSE_ARMOR), new ItemStack(Items.DIAMOND), 8);
         if (FurnitureConfig.COMMON.recipe.enabled.minebay.xpForIron)
             RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(Items.EXPERIENCE_BOTTLE), new ItemStack(Items.IRON_INGOT), 1);
