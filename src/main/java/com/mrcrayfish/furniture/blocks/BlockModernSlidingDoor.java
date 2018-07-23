@@ -213,6 +213,14 @@ public class BlockModernSlidingDoor extends BlockFurniture
                 slidingDoor.setPowered(powered);
                 slidingDoor.sync();
             }
+            
+            EnumFacing slidingFacing = state.getValue(FACING).rotateYCCW();
+            BlockPos otherDoor = pos.offset(slidingFacing.getOpposite());
+            IBlockState state1 = world.getBlockState(otherDoor);
+            if(state1.getBlock() instanceof BlockModernSlidingDoor)
+            {
+                ((BlockModernSlidingDoor) state1.getBlock()).setPowered(world, otherDoor, state1, powered);
+            }
         }
     }
 
