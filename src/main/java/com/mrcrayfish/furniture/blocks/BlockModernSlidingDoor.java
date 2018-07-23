@@ -2,10 +2,14 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityModernSlidingDoor;
+import com.mrcrayfish.furniture.util.Bounds;
+import com.mrcrayfish.furniture.util.CollisionHelper;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -14,12 +18,15 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * Author: MrCrayfish
@@ -28,11 +35,87 @@ public class BlockModernSlidingDoor extends BlockFurniture
 {
     public static final PropertyBool TOP = PropertyBool.create("top");
 
+    private static final AxisAlignedBB[] COLLISION_BOX_BOTTOM = new Bounds(6, 0, 0, 10, 32, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] COLLISION_BOX_BOTTOM_OPENED = new Bounds(6 * 0.0625, 0, 0, 10 * 0.0625, 2F, 2.96 * 0.0625).getRotatedBounds();
+    private static final AxisAlignedBB[] COLLISION_BOX_TOP = new Bounds(6, -16, 0, 10, 16, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] COLLISION_BOX_TOP_OPENED = new Bounds(6 * 0.0625, -1.0, 0, 10 * 0.0625, 1.0, 2.96 * 0.0625).getRotatedBounds();
+
+
     public BlockModernSlidingDoor()
     {
         super(Material.WOOD);
         this.setHardness(1.0F);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(TOP, false));
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        boolean open = false;
+        TileEntity tileEntity = source.getTileEntity(pos);
+        if(tileEntity instanceof TileEntityModernSlidingDoor)
+        {
+            open = ((TileEntityModernSlidingDoor) tileEntity).isPowered();
+        }
+
+        EnumFacing facing = state.getValue(FACING);
+        if(state.getValue(TOP))
+        {
+            if(open)
+            {
+                return COLLISION_BOX_TOP_OPENED[facing.getHorizontalIndex()];
+            }
+            else
+            {
+                return COLLISION_BOX_TOP[facing.getHorizontalIndex()];
+            }
+        }
+        else
+        {
+            if(open)
+            {
+                return COLLISION_BOX_BOTTOM_OPENED[facing.getHorizontalIndex()];
+            }
+            else
+            {
+                return COLLISION_BOX_BOTTOM[facing.getHorizontalIndex()];
+            }
+        }
+    }
+
+    @Override
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
+    {
+        boolean open = false;
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+        if(tileEntity instanceof TileEntityModernSlidingDoor)
+        {
+            open = ((TileEntityModernSlidingDoor) tileEntity).isPowered();
+        }
+
+        EnumFacing facing = state.getValue(FACING);
+        if(state.getValue(TOP))
+        {
+            if(open)
+            {
+                Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_TOP_OPENED[facing.getHorizontalIndex()]);
+            }
+            else
+            {
+                Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_TOP[facing.getHorizontalIndex()]);
+            }
+        }
+        else
+        {
+            if(open)
+            {
+                Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_BOTTOM_OPENED[facing.getHorizontalIndex()]);
+            }
+            else
+            {
+                Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_BOTTOM[facing.getHorizontalIndex()]);
+            }
+        }
     }
 
     @Override
