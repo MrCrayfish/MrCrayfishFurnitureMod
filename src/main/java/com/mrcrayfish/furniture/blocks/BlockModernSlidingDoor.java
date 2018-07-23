@@ -184,6 +184,9 @@ public class BlockModernSlidingDoor extends BlockFurniture
         if(tileEntity instanceof TileEntityModernSlidingDoor)
         {
             TileEntityModernSlidingDoor slidingDoor = (TileEntityModernSlidingDoor) tileEntity;
+            if(slidingDoor.isPowered() == powered)
+                return;
+
             slidingDoor.setPowered(powered);
             slidingDoor.sync();
 
