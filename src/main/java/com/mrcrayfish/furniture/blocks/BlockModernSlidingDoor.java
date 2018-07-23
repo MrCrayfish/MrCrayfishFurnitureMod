@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
+import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.tileentity.TileEntityModernSlidingDoor;
 import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
@@ -14,10 +15,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -189,6 +187,15 @@ public class BlockModernSlidingDoor extends BlockFurniture
 
             slidingDoor.setPowered(powered);
             slidingDoor.sync();
+
+            if(powered)
+            {
+                world.playSound(null, pos, FurnitureSounds.sliding_door_open, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            }
+            else
+            {
+                world.playSound(null, pos, FurnitureSounds.sliding_door_close, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            }
 
             if(state.getValue(TOP))
             {

@@ -77,17 +77,6 @@ public class TileEntityModernSlidingDoor extends TileEntitySyncClient implements
         {
             maxProgress = compound.getInteger("maxProgress");
         }
-
-        /*if(powered)
-        {
-            slideProgress = maxProgress;
-            prevSlideProgress = maxProgress;
-        }
-        else
-        {
-            slideProgress = 0;
-            prevSlideProgress = 0;
-        }*/
     }
 
     @Override
