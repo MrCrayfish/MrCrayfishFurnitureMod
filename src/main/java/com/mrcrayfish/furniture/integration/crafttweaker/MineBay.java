@@ -41,14 +41,17 @@ public class MineBay {
     }
 
     @ZenMethod
-    @ZenDoc("Add a trade. Price range 1 to 64 (default 1). Currency defaults to Emerald.")
-    public static void addTrade(@Nonnull IItemStack item, @Optional Integer price, @Optional IItemStack currency) {
+    @ZenDoc("Add a trade.")
+    public static void addTrade(@Nonnull IItemStack item, @Nonnull IItemStack currency) {
         if (item == null) throw new IllegalArgumentException("item cannot be null");
+        if (currency == null ) throw new IllegalArgumentException("currency cannot be null");
 
         final RecipeData data = new RecipeData();
+        // MineBay RecipeData uses setInput for the purchasable item
         data.setInput(CraftTweakerMC.getItemStack(item));
-        data.setPrice(price == null ? 1 : price);
-        data.setCurrency(currency == null ? new ItemStack(Items.EMERALD) : CraftTweakerMC.getItemStack(currency));
+        // MineBar RecipeData uses setCurrency for the currency item and setPrice for the amount of that item
+        data.setCurrency(CraftTweakerMC.getItemStack(currency.withAmount(1)));
+        data.setPrice(currency.getAmount());
 
         CraftTweakerIntegration.defer("Add trade " + data + " to MineBay", () -> {
             if (data.getPrice() < 1 || data.getPrice() > 64) {
