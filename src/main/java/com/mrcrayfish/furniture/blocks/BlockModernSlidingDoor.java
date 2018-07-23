@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * Author: MrCrayfish
  */
-public class BlockModernSlidingDoor extends BlockFurniture
+public class BlockModernSlidingDoor extends BlockFurniture implements IPowered
 {
     public static final PropertyBool TOP = PropertyBool.create("top");
 
@@ -266,5 +266,11 @@ public class BlockModernSlidingDoor extends BlockFurniture
     public EnumBlockRenderType getRenderType(IBlockState state)
     {
         return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
+    }
+
+    @Override
+    public void setPowered(World world, BlockPos pos, boolean powered)
+    {
+        setPowered(world, pos, world.getBlockState(pos), powered);
     }
 }
