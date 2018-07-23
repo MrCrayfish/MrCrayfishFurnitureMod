@@ -147,14 +147,44 @@ public class BlockModernSlidingDoor extends BlockFurniture
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        TileEntity tileEntity = worldIn.getTileEntity(pos);
+        TileEntity tileEntity = world.getTileEntity(pos);
         if(tileEntity instanceof TileEntityModernSlidingDoor)
         {
             TileEntityModernSlidingDoor slidingDoor = (TileEntityModernSlidingDoor) tileEntity;
             boolean powered = slidingDoor.isPowered();
-            slidingDoor.setPowered(!powered);
+            setPowered(world, pos, state, !powered);
+        }
+        return true;
+    }
+
+    @Override
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
+    {
+        if(!worldIn.isRemote)
+        {
+            System.out.println(worldIn.isBlockPowered(pos));
+            boolean hasPower = worldIn.isBlockPowered(pos);
+            if(state.getValue(TOP))
+            {
+                hasPower |= worldIn.isBlockPowered(pos.down());
+            }
+            else
+            {
+                hasPower |= worldIn.isBlockPowered(pos.up());
+            }
+            setPowered(worldIn, pos, state, hasPower);
+        }
+    }
+
+    private void setPowered(World world, BlockPos pos, IBlockState state, boolean powered)
+    {
+        TileEntity tileEntity = world.getTileEntity(pos);
+        if(tileEntity instanceof TileEntityModernSlidingDoor)
+        {
+            TileEntityModernSlidingDoor slidingDoor = (TileEntityModernSlidingDoor) tileEntity;
+            slidingDoor.setPowered(powered);
             slidingDoor.sync();
 
             if(state.getValue(TOP))
@@ -166,15 +196,14 @@ public class BlockModernSlidingDoor extends BlockFurniture
                 pos = pos.offset(EnumFacing.UP);
             }
 
-            tileEntity = worldIn.getTileEntity(pos);
+            tileEntity = world.getTileEntity(pos);
             if(tileEntity instanceof TileEntityModernSlidingDoor)
             {
                 slidingDoor = (TileEntityModernSlidingDoor) tileEntity;
-                slidingDoor.setPowered(!powered);
+                slidingDoor.setPowered(powered);
                 slidingDoor.sync();
             }
         }
-        return true;
     }
 
     @Override
