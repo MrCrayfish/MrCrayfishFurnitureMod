@@ -107,7 +107,7 @@ public class GuiDishwasher extends GuiContainer
 
         if(isPointInRegion(129, 39, 7, 55, mouseX, mouseY))
         {
-            drawHoveringText(I18n.format("cfm.gui.soap_remaining", tileEntityDishwasher.timeRemaining), mouseX, mouseY);
+            drawHoveringText(I18n.format("cfm.gui.soap_level", tileEntityDishwasher.timeRemaining), mouseX, mouseY);
         }
     }
 

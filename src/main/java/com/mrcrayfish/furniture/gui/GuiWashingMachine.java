@@ -105,7 +105,7 @@ public class GuiWashingMachine extends GuiContainer
 
         if(isPointInRegion(129, 30, 10, 73, mouseX, mouseY))
         {
-            drawHoveringText(I18n.format("cfm.gui.soap_remaining", tileEntityWashingMachine.timeRemaining), mouseX, mouseY);
+            drawHoveringText(I18n.format("cfm.gui.soap_level", tileEntityWashingMachine.timeRemaining), mouseX, mouseY);
         }
     }
 
