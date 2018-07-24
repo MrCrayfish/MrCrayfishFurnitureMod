@@ -1,0 +1,20 @@
+{
+    "result": {
+        "item": "cfm:cabinet_granite"
+    },
+    "pattern": [
+        "***",
+        "*@*",
+        "***"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "@": {
+            "item": "minecraft:chest"
+        },
+        "*": {
+            "item": "minecraft:stone",
+            "data": 1
+        }
+    }
+}

@@ -1,0 +1,31 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"1": "blocks/stone_granite_smooth",
+			"2": "blocks/hardened_clay_stained_white",
+			"handle": "blocks/hardened_clay_stained_white"
+		},
+		"model": "cfm:bedside_cabinet"
+	},
+	"variants": {
+		"inventory": [{
+			"model": "cfm:bedside_cabinet"
+		}],
+		"facing=north": {
+			"model": "cfm:bedside_cabinet",
+			"y": 270
+		},
+		"facing=south": {
+			"model": "cfm:bedside_cabinet",
+			"y": 90
+		},
+		"facing=east": {
+			"model": "cfm:bedside_cabinet"
+		},
+		"facing=west": {
+			"model": "cfm:bedside_cabinet",
+			"y": 180
+		}
+	}
+}

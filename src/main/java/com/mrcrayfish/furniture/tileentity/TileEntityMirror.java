@@ -10,32 +10,32 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityMirror extends TileEntity
 {
-	private EntityMirror bindedMirror = null;
+    private EntityMirror bindedMirror = null;
 
-	@SideOnly(Side.CLIENT)
-	public EntityMirror getMirror()
-	{
-		if (bindedMirror == null)
-		{
-			if (getBlockType() instanceof BlockMirror)
-			{
-				EnumFacing facing = (EnumFacing) world.getBlockState(pos).getValue(BlockMirror.FACING);
-				bindedMirror = new EntityMirror(world, pos.getX(), pos.getY(), pos.getZ(), facing);
-				world.spawnEntity(bindedMirror);
-			}
-		}
-		return bindedMirror;
-	}
+    @SideOnly(Side.CLIENT)
+    public EntityMirror getMirror()
+    {
+        if(bindedMirror == null)
+        {
+            if(getBlockType() instanceof BlockMirror)
+            {
+                EnumFacing facing = (EnumFacing) world.getBlockState(pos).getValue(BlockMirror.FACING);
+                bindedMirror = new EntityMirror(world, pos.getX(), pos.getY(), pos.getZ(), facing);
+                world.spawnEntity(bindedMirror);
+            }
+        }
+        return bindedMirror;
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void onChunkUnload()
-	{
-		if (bindedMirror != null)
-		{
-			MirrorRenderer.removeRegisteredMirror(bindedMirror);
-			bindedMirror.setDead();
-			bindedMirror = null;
-		}
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void onChunkUnload()
+    {
+        if(bindedMirror != null)
+        {
+            MirrorRenderer.removeRegisteredMirror(bindedMirror);
+            bindedMirror.setDead();
+            bindedMirror = null;
+        }
+    }
 }

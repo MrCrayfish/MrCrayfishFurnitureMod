@@ -1,0 +1,21 @@
+{
+    "result": {
+        "item": "cfm:desk_jungle"
+    },
+    "pattern": [
+        "LLL",
+        "P P",
+        "P P"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "L": {
+            "item": "minecraft:log",
+            "data": 3
+        },
+        "P": {
+            "item": "minecraft:planks",
+            "data": 3
+        }
+    }
+}

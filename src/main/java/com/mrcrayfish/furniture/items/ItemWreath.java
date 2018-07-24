@@ -5,8 +5,8 @@ import net.minecraft.item.ItemBlock;
 
 public class ItemWreath extends ItemBlock
 {
-	public ItemWreath(Block block)
-	{
-		super(block);
-	}
+    public ItemWreath(Block block)
+    {
+        super(block);
+    }
 }

@@ -1,0 +1,22 @@
+{
+    "display": {
+        "icon": {
+            "item": "cfm:tree_bottom"
+        },
+        "title": {
+            "translate": "advancements.cfm.placetree"
+        },
+        "description": {
+            "translate": "advancements.cfm.placetree.desc"
+        }
+    },
+	"parent": "cfm:minekea",
+	"criteria": {
+        "place_tree": {
+            "trigger": "minecraft:placed_block",
+            "conditions": {
+                "block": "cfm:tree_bottom"
+            }
+        }
+	}
+}

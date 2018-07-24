@@ -1,0 +1,19 @@
+{
+    "display": {
+        "icon": {
+            "item": "cfm:item_package"
+        },
+        "title": {
+            "translate": "advancements.cfm.firstmail"
+        },
+        "description": {
+            "translate": "advancements.cfm.firstmail.desc"
+        }
+    },
+	"parent": "cfm:mail_box",
+	"criteria": {
+        "player_got_mail": {
+            "trigger": "cfm:player_got_mail"
+        }
+	}
+}

@@ -1,17 +1,17 @@
 /**
  * MrCrayfish's Furniture Mod
  * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * 
+ * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -31,46 +31,46 @@ import net.minecraft.world.World;
 
 public abstract class BlockFurnitureTile extends BlockFurniture implements ITileEntityProvider
 {
-	public BlockFurnitureTile(Material material)
-	{
-		super(material);
-		this.hasTileEntity = true;
-	}
-	
-	@Override
-	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
-	{
-		TileEntity tileEntity = world.getTileEntity(pos);
-		return Container.calcRedstone(tileEntity);
-	}
-	
-	@Override
-	public boolean hasComparatorInputOverride(IBlockState state) 
-	{
-		return true;
-	}
-	
-	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state)
-	{
-		TileEntity tileEntity = world.getTileEntity(pos);
-		if (tileEntity instanceof IInventory)
-		{
-			IInventory inv = (IInventory) tileEntity;
-			InventoryHelper.dropInventoryItems(world, pos, inv);
-		}
-		if (tileEntity instanceof ISimpleInventory)
-		{
-			ISimpleInventory inv = (ISimpleInventory) tileEntity;
-			InventoryUtil.dropInventoryItems(world, pos, inv);
-		}
-		super.breakBlock(world, pos, state);
-	}
+    public BlockFurnitureTile(Material material)
+    {
+        super(material);
+        this.hasTileEntity = true;
+    }
 
-	@Override
-	public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param)
-	{
-		TileEntity tileentity = worldIn.getTileEntity(pos);
-		return tileentity != null && tileentity.receiveClientEvent(id, param);
-	}
+    @Override
+    public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
+    {
+        TileEntity tileEntity = world.getTileEntity(pos);
+        return Container.calcRedstone(tileEntity);
+    }
+
+    @Override
+    public boolean hasComparatorInputOverride(IBlockState state)
+    {
+        return true;
+    }
+
+    @Override
+    public void breakBlock(World world, BlockPos pos, IBlockState state)
+    {
+        TileEntity tileEntity = world.getTileEntity(pos);
+        if(tileEntity instanceof IInventory)
+        {
+            IInventory inv = (IInventory) tileEntity;
+            InventoryHelper.dropInventoryItems(world, pos, inv);
+        }
+        if(tileEntity instanceof ISimpleInventory)
+        {
+            ISimpleInventory inv = (ISimpleInventory) tileEntity;
+            InventoryUtil.dropInventoryItems(world, pos, inv);
+        }
+        super.breakBlock(world, pos, state);
+    }
+
+    @Override
+    public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param)
+    {
+        TileEntity tileentity = worldIn.getTileEntity(pos);
+        return tileentity != null && tileentity.receiveClientEvent(id, param);
+    }
 }

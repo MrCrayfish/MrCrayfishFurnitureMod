@@ -1,17 +1,17 @@
 /**
  * MrCrayfish's Furniture Mod
  * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * 
+ * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -28,58 +28,58 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageWashingMachine implements IMessage, IMessageHandler<MessageWashingMachine, IMessage>
 {
-	private int type;
-	private int x, y, z;
+    private int type;
+    private int x, y, z;
 
-	public MessageWashingMachine()
-	{
-	}
+    public MessageWashingMachine()
+    {
+    }
 
-	public MessageWashingMachine(int type, int x, int y, int z)
-	{
-		this.type = type;
-		this.x = x;
-		this.y = y;
-		this.z = z;
-	}
+    public MessageWashingMachine(int type, int x, int y, int z)
+    {
+        this.type = type;
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
 
-	@Override
-	public void fromBytes(ByteBuf buf)
-	{
-		this.type = buf.readInt();
-		this.x = buf.readInt();
-		this.y = buf.readInt();
-		this.z = buf.readInt();
-	}
+    @Override
+    public void fromBytes(ByteBuf buf)
+    {
+        this.type = buf.readInt();
+        this.x = buf.readInt();
+        this.y = buf.readInt();
+        this.z = buf.readInt();
+    }
 
-	@Override
-	public void toBytes(ByteBuf buf)
-	{
-		buf.writeInt(type);
-		buf.writeInt(x);
-		buf.writeInt(y);
-		buf.writeInt(z);
-	}
+    @Override
+    public void toBytes(ByteBuf buf)
+    {
+        buf.writeInt(type);
+        buf.writeInt(x);
+        buf.writeInt(y);
+        buf.writeInt(z);
+    }
 
-	@Override
-	public IMessage onMessage(MessageWashingMachine message, MessageContext ctx)
-	{
-		World world = ctx.getServerHandler().player.world;
-		TileEntity tileEntity = world.getTileEntity(new BlockPos(message.x, message.y, message.z));
-		if (tileEntity instanceof TileEntityWashingMachine)
-		{
-			TileEntityWashingMachine tileEntityWashineMachine = (TileEntityWashingMachine) tileEntity;
-			if (message.type == 0)
-			{
-				tileEntityWashineMachine.startWashing();
-			}
-			if (message.type == 1)
-			{
-				tileEntityWashineMachine.stopWashing();
-			}
-			BlockPos pos = new BlockPos(message.x, message.y, message.z);
-			world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 3);
-		}
-		return null;
-	}
+    @Override
+    public IMessage onMessage(MessageWashingMachine message, MessageContext ctx)
+    {
+        World world = ctx.getServerHandler().player.world;
+        TileEntity tileEntity = world.getTileEntity(new BlockPos(message.x, message.y, message.z));
+        if(tileEntity instanceof TileEntityWashingMachine)
+        {
+            TileEntityWashingMachine tileEntityWashineMachine = (TileEntityWashingMachine) tileEntity;
+            if(message.type == 0)
+            {
+                tileEntityWashineMachine.startWashing();
+            }
+            if(message.type == 1)
+            {
+                tileEntityWashineMachine.stopWashing();
+            }
+            BlockPos pos = new BlockPos(message.x, message.y, message.z);
+            world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 3);
+        }
+        return null;
+    }
 }

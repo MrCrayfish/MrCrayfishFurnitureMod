@@ -1,8 +1,8 @@
 {
-"parent": "cfm:block/ceiling_light_off",
-"textures": {
-"1": "blocks/obsidian",
-"2": "blocks/stone",
-"3": "blocks/glass_white"
-}
+    "parent": "cfm:block/ceiling_light_off",
+    "textures": {
+        "1": "blocks/concrete_gray",
+        "2": "blocks/concrete_silver",
+        "3": "blocks/glass_white"
+    }
 }

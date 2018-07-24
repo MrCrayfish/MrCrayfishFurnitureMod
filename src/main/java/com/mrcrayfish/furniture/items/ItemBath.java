@@ -10,14 +10,14 @@ import net.minecraft.world.World;
 
 public class ItemBath extends ItemBlock
 {
-	public ItemBath(Block block)
-	{
-		super(block);
-	}
-	
-	@Override
-	public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side, EntityPlayer player, ItemStack stack)
-	{
-		return worldIn.isAirBlock(pos.offset(side)) && worldIn.isAirBlock(pos.offset(side).offset(player.getHorizontalFacing(), 1));
-	}
+    public ItemBath(Block block)
+    {
+        super(block);
+    }
+
+    @Override
+    public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side, EntityPlayer player, ItemStack stack)
+    {
+        return worldIn.isAirBlock(pos.offset(side)) && worldIn.isAirBlock(pos.offset(side).offset(player.getHorizontalFacing(), 1));
+    }
 }

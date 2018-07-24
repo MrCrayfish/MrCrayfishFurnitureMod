@@ -1,17 +1,17 @@
 /**
  * MrCrayfish's Furniture Mod
  * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * 
+ * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -42,76 +42,76 @@ import java.util.List;
 
 public class BlockPlate extends Block implements ITileEntityProvider
 {
-	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(3 * 0.0625, 0.0, 3 * 0.0625, 13 * 0.0625, 0.125, 13 * 0.0625);
-	
-	public BlockPlate(Material material)
-	{
-		super(material);
-		this.setHardness(0.5F);
-		this.setSoundType(SoundType.STONE);
-		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-	}
-	
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
+    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(3 * 0.0625, 0.0, 3 * 0.0625, 13 * 0.0625, 0.125, 13 * 0.0625);
 
-	@Override
-	public boolean isFullCube(IBlockState state)
-	{
-		return false;
-	}
-	
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
-		ItemStack heldItem = playerIn.getHeldItem(hand);
-		TileEntity tileEntity = worldIn.getTileEntity(pos);
-		if (tileEntity instanceof TileEntityPlate)
-		{
-			TileEntityPlate tileEntityPlate = (TileEntityPlate) tileEntity;
-			if (!heldItem.isEmpty() && tileEntityPlate.getFood() == null)
-			{
-				if (heldItem.getItem() instanceof ItemFood)
-				{
-					tileEntityPlate.setFood(new ItemStack(heldItem.getItem(), 1, heldItem.getItemDamage()));
-					tileEntityPlate.setRotation(playerIn.getHorizontalFacing().getHorizontalIndex());
-					TileEntityUtil.markBlockForUpdate(worldIn, pos);
-					heldItem.shrink(1);
-					return true;
-				}
-			}
-			if (tileEntityPlate.getFood() != null)
-			{
-				if (!worldIn.isRemote)
-				{
-					EntityItem entityFood = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.4, pos.getZ() + 0.5, tileEntityPlate.getFood());
-					worldIn.spawnEntity(entityFood);
-				}
-				tileEntityPlate.setFood(null);
-				TileEntityUtil.markBlockForUpdate(worldIn, pos);
-			}
-		}
-		return true;
-	}
-	
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
-	{
-		return BOUNDING_BOX;
-	}
-	
-	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
-	{
-		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
-	}
-	
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta)
-	{
-		return new TileEntityPlate();
-	}
+    public BlockPlate(Material material)
+    {
+        super(material);
+        this.setHardness(0.5F);
+        this.setSoundType(SoundType.STONE);
+        this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        ItemStack heldItem = playerIn.getHeldItem(hand);
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+        if(tileEntity instanceof TileEntityPlate)
+        {
+            TileEntityPlate tileEntityPlate = (TileEntityPlate) tileEntity;
+            if(!heldItem.isEmpty() && tileEntityPlate.getFood() == null)
+            {
+                if(heldItem.getItem() instanceof ItemFood)
+                {
+                    tileEntityPlate.setFood(new ItemStack(heldItem.getItem(), 1, heldItem.getItemDamage()));
+                    tileEntityPlate.setRotation(playerIn.getHorizontalFacing().getHorizontalIndex());
+                    TileEntityUtil.markBlockForUpdate(worldIn, pos);
+                    heldItem.shrink(1);
+                    return true;
+                }
+            }
+            if(tileEntityPlate.getFood() != null)
+            {
+                if(!worldIn.isRemote)
+                {
+                    EntityItem entityFood = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.4, pos.getZ() + 0.5, tileEntityPlate.getFood());
+                    worldIn.spawnEntity(entityFood);
+                }
+                tileEntityPlate.setFood(null);
+                TileEntityUtil.markBlockForUpdate(worldIn, pos);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX;
+    }
+
+    @Override
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
+    {
+        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
+    }
+
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta)
+    {
+        return new TileEntityPlate();
+    }
 }

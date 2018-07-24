@@ -1,0 +1,163 @@
+{
+    "multipart": [
+        {
+            "apply": { "model": "cfm:modern_window" }
+        },
+        {   "when": { "pane_up": false, "pane_down": false },
+            "apply": { "model": "cfm:modern_window_middle_no_glass", "y": 0 }
+        },
+        {   "when": { "pane_up": true, "pane_down": false },
+            "apply": { "model": "cfm:modern_window_middle_up_no_glass", "y": 0 }
+        },
+        {   "when": { "pane_up": false, "pane_down": true },
+            "apply": { "model": "cfm:modern_window_middle_down_no_glass", "y": 0 }
+        },
+        {   "when": { "pane_up": true, "pane_down": true },
+            "apply": { "model": "cfm:modern_window_middle_both_no_glass", "y": 0 }
+        },
+        {   "when": { "pane_up": false, "pane_down": false, "north": false },
+            "apply": { "model": "cfm:modern_window_middle_glass", "y": 90 }
+        },
+        {   "when": { "pane_up": false, "pane_down": false, "east": false },
+            "apply": { "model": "cfm:modern_window_middle_glass", "y": 180 }
+        },
+        {   "when": { "pane_up": false, "pane_down": false, "south": false },
+            "apply": { "model": "cfm:modern_window_middle_glass", "y": 270 }
+        },
+        {   "when": { "pane_up": false, "pane_down": false, "west": false },
+            "apply": { "model": "cfm:modern_window_middle_glass", "y": 0 }
+        },
+        {   "when": { "pane_up": true, "pane_down": false, "north": false },
+            "apply": { "model": "cfm:modern_window_middle_up_glass", "y": 90 }
+        },
+        {   "when": { "pane_up": true, "pane_down": false, "east": false },
+            "apply": { "model": "cfm:modern_window_middle_up_glass", "y": 180 }
+        },
+        {   "when": { "pane_up": true, "pane_down": false, "south": false },
+            "apply": { "model": "cfm:modern_window_middle_up_glass", "y": 270 }
+        },
+        {   "when": { "pane_up": true, "pane_down": false, "west": false },
+            "apply": { "model": "cfm:modern_window_middle_up_glass", "y": 0 }
+        },
+        {   "when": { "pane_up": false, "pane_down": true, "north": false },
+            "apply": { "model": "cfm:modern_window_middle_down_glass", "y": 90 }
+        },
+        {   "when": { "pane_up": false, "pane_down": true, "east": false },
+            "apply": { "model": "cfm:modern_window_middle_down_glass", "y": 180 }
+        },
+        {   "when": { "pane_up": false, "pane_down": true, "south": false },
+            "apply": { "model": "cfm:modern_window_middle_down_glass", "y": 270 }
+        },
+        {   "when": { "pane_up": false, "pane_down": true, "west": false },
+            "apply": { "model": "cfm:modern_window_middle_down_glass", "y": 0 }
+        },
+        {   "when": { "pane_up": true, "pane_down": true, "north": false },
+            "apply": { "model": "cfm:modern_window_middle_both_glass", "y": 90 }
+        },
+        {   "when": { "pane_up": true, "pane_down": true, "east": false },
+            "apply": { "model": "cfm:modern_window_middle_both_glass", "y": 180 }
+        },
+        {   "when": { "pane_up": true, "pane_down": true, "south": false },
+            "apply": { "model": "cfm:modern_window_middle_both_glass", "y": 270 }
+        },
+        {   "when": { "pane_up": true, "pane_down": true, "west": false },
+            "apply": { "model": "cfm:modern_window_middle_both_glass", "y": 0 }
+        },
+        {   "when": { "north": true, "pane_up": false, "pane_down": false, "pane_north": false },
+            "apply": { "model": "cfm:modern_window_side", "y": 90 }
+        },
+        {   "when": { "east": true, "pane_up": false, "pane_down": false, "pane_east": false },
+            "apply": { "model": "cfm:modern_window_side", "y": 180 }
+        },
+        {   "when": { "south": true, "pane_up": false, "pane_down": false, "pane_south": false },
+            "apply": { "model": "cfm:modern_window_side", "y": 270 }
+        },
+        {   "when": { "west": true, "pane_up": false, "pane_down": false, "pane_west": false },
+            "apply": { "model": "cfm:modern_window_side", "y": 0 }
+        },
+        {   "when": { "north": true, "pane_up": true, "pane_down": false, "pane_north": false },
+            "apply": { "model": "cfm:modern_window_side_up", "y": 90 }
+        },
+        {   "when": { "east": true, "pane_up": true, "pane_down": false, "pane_east": false },
+            "apply": { "model": "cfm:modern_window_side_up", "y": 180 }
+        },
+        {   "when": { "south": true, "pane_up": true, "pane_down": false, "pane_south": false },
+            "apply": { "model": "cfm:modern_window_side_up", "y": 270 }
+        },
+        {   "when": { "west": true, "pane_up": true, "pane_down": false, "pane_west": false },
+            "apply": { "model": "cfm:modern_window_side_up", "y": 0 }
+        },
+        {   "when": { "north": true, "pane_up": false, "pane_down": true, "pane_north": false },
+            "apply": { "model": "cfm:modern_window_side_down", "y": 90 }
+        },
+        {   "when": { "east": true, "pane_up": false, "pane_down": true, "pane_east": false },
+            "apply": { "model": "cfm:modern_window_side_down", "y": 180 }
+        },
+        {   "when": { "south": true, "pane_up": false, "pane_down": true, "pane_south": false },
+            "apply": { "model": "cfm:modern_window_side_down", "y": 270 }
+        },
+        {   "when": { "west": true, "pane_up": false, "pane_down": true, "pane_west": false },
+            "apply": { "model": "cfm:modern_window_side_down", "y": 0 }
+        },
+        {   "when": { "north": true, "pane_up": true, "pane_down": true, "pane_north": false },
+            "apply": { "model": "cfm:modern_window_side_both", "y": 90 }
+        },
+        {   "when": { "east": true, "pane_up": true, "pane_down": true, "pane_east": false },
+            "apply": { "model": "cfm:modern_window_side_both", "y": 180 }
+        },
+        {   "when": { "south": true, "pane_up": true, "pane_down": true, "pane_south": false },
+            "apply": { "model": "cfm:modern_window_side_both", "y": 270 }
+        },
+        {   "when": { "west": true, "pane_up": true, "pane_down": true, "pane_west": false },
+            "apply": { "model": "cfm:modern_window_side_both", "y": 0 }
+        },
+        {   "when": { "pane_north": true, "pane_up": false, "pane_down": false },
+            "apply": { "model": "cfm:modern_window_side_glass", "y": 90 }
+        },
+        {   "when": { "pane_east": true, "pane_up": false, "pane_down": false },
+            "apply": { "model": "cfm:modern_window_side_glass", "y": 180 }
+        },
+        {   "when": { "pane_south": true, "pane_up": false, "pane_down": false },
+            "apply": { "model": "cfm:modern_window_side_glass", "y": 270 }
+        },
+        {   "when": { "pane_west": true, "pane_up": false, "pane_down": false },
+            "apply": { "model": "cfm:modern_window_side_glass", "y": 0 }
+        },
+        {   "when": { "pane_north": true, "pane_up": true, "pane_down": false },
+            "apply": { "model": "cfm:modern_window_side_glass_up", "y": 90 }
+        },
+        {   "when": { "pane_east": true, "pane_up": true, "pane_down": false },
+            "apply": { "model": "cfm:modern_window_side_glass_up", "y": 180 }
+        },
+        {   "when": { "pane_south": true, "pane_up": true, "pane_down": false },
+            "apply": { "model": "cfm:modern_window_side_glass_up", "y": 270 }
+        },
+        {   "when": { "pane_west": true, "pane_up": true, "pane_down": false },
+            "apply": { "model": "cfm:modern_window_side_glass_up", "y": 0 }
+        },
+        {   "when": { "pane_north": true, "pane_up": false, "pane_down": true },
+            "apply": { "model": "cfm:modern_window_side_glass_down", "y": 90 }
+        },
+        {   "when": { "pane_east": true, "pane_up": false, "pane_down": true },
+            "apply": { "model": "cfm:modern_window_side_glass_down", "y": 180 }
+        },
+        {   "when": { "pane_south": true, "pane_up": false, "pane_down": true },
+            "apply": { "model": "cfm:modern_window_side_glass_down", "y": 270 }
+        },
+        {   "when": { "pane_west": true, "pane_up": false, "pane_down": true },
+            "apply": { "model": "cfm:modern_window_side_glass_down", "y": 0 }
+        },
+        {   "when": { "pane_north": true, "pane_up": true, "pane_down": true },
+            "apply": { "model": "cfm:modern_window_side_glass_both", "y": 90 }
+        },
+        {   "when": { "pane_east": true, "pane_up": true, "pane_down": true },
+            "apply": { "model": "cfm:modern_window_side_glass_both", "y": 180 }
+        },
+        {   "when": { "pane_south": true, "pane_up": true, "pane_down": true },
+            "apply": { "model": "cfm:modern_window_side_glass_both", "y": 270 }
+        },
+        {   "when": { "pane_west": true, "pane_up": true, "pane_down": true },
+            "apply": { "model": "cfm:modern_window_side_glass_both", "y": 0 }
+        }
+    ]
+}

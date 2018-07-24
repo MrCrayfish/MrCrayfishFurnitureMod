@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:item/desk",
+    "textures": {
+        "top": "blocks/hardened_clay_stained_silver",
+        "primary": "blocks/stone_granite_smooth",
+        "secondary": "blocks/hardened_clay_stained_white"
+    }
+}

@@ -1,8 +1,30 @@
 {
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"1": "blocks/log_birch",
+			"2": "blocks/planks_birch"
+		},
+		"model": "cfm:chair"
+	},
 	"variants": {
-		"facing=north": { "model": "cfm:chair_birch", "y": 270 },
-		"facing=south": { "model": "cfm:chair_birch", "y": 90  },
-		"facing=east":  { "model": "cfm:chair_birch"           },
-		"facing=west":  { "model": "cfm:chair_birch", "y": 180 }
+		"inventory": [{
+			"model": "cfm:chair"
+		}],
+		"facing=north": {
+			"model": "cfm:chair",
+			"y": 270
+		},
+		"facing=south": {
+			"model": "cfm:chair",
+			"y": 90
+		},
+		"facing=east": {
+			"model": "cfm:chair"
+		},
+		"facing=west": {
+			"model": "cfm:chair",
+			"y": 180
+		}
 	}
 }

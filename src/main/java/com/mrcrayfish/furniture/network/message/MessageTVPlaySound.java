@@ -2,10 +2,12 @@ package com.mrcrayfish.furniture.network.message;
 
 import com.mrcrayfish.furniture.blocks.tv.Channel;
 import com.mrcrayfish.furniture.blocks.tv.Channels;
+
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -23,7 +25,9 @@ public class MessageTVPlaySound implements IMessage, IMessageHandler<MessageTVPl
     private BlockPos pos;
     private String name;
 
-    public MessageTVPlaySound() {}
+    public MessageTVPlaySound()
+    {
+    }
 
     public MessageTVPlaySound(BlockPos pos, String name)
     {
@@ -64,7 +68,7 @@ public class MessageTVPlaySound implements IMessage, IMessageHandler<MessageTVPl
                 Channels.SOUND_POSITIONS.remove(message.pos);
             }
 
-            sound = PositionedSoundRecord.getRecordSoundRecord(channel.getSound(), (float) message.pos.getX(), (float) message.pos.getY(), (float) message.pos.getZ());
+            sound = new PositionedSoundRecord(channel.getSound().getSoundName(), SoundCategory.RECORDS, 1.0F, 1.0F, true, 0, ISound.AttenuationType.LINEAR, (float) message.pos.getX(), (float) message.pos.getY(), (float) message.pos.getZ());
             Minecraft.getMinecraft().getSoundHandler().playSound(sound);
             Channels.SOUND_POSITIONS.put(message.pos, sound);
         }

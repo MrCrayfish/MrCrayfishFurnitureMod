@@ -18,7 +18,9 @@ public class MessageTVStopSound implements IMessage, IMessageHandler<MessageTVSt
 {
     private BlockPos pos;
 
-    public MessageTVStopSound() {}
+    public MessageTVStopSound()
+    {
+    }
 
     public MessageTVStopSound(BlockPos pos)
     {

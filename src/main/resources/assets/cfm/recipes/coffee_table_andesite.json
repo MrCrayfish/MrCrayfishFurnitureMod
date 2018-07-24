@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "cfm:coffee_table_andesite"
+  },
+  "pattern": [
+    "***",
+    "* *"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "*": {
+      "item": "minecraft:stone",
+	  "data": 5
+    }
+  }
+}

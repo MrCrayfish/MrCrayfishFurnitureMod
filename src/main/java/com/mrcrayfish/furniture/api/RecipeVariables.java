@@ -1,17 +1,17 @@
 /**
  * MrCrayfish's Furniture Mod
  * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * 
+ * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -93,126 +93,125 @@ import java.util.Map;
  * For a full tutorial, <a
  * href="http://mrcrayfishs-furniture-mod.wikia.com/wiki/Developers">click
  * here</a>.
- * 
- * @author MrCrayfish
  *
+ * @author MrCrayfish
  */
-public class RecipeVariables {
-	
-	private HashMap<String, Object> variables = new HashMap<String, Object>();
-	
-	public Map<String, Object> getMap() {
-		return variables;
-	}
-	
-	/**
-	 * Adds a value to the recipe variables
-	 * 
-	 * @param variable
-	 *            The type of variable
-	 * @param object
-	 *            The object to bind to the variable
-	 * @return RecipeVariables instance
-	 * 
-	 * @see {@link RecipeVariables} for required variables
-	 * */
-	@Deprecated
-	public RecipeVariables addValue(String variable, Object object) {
-		variables.put(variable, object);
-		return this;
-	}
+public class RecipeVariables
+{
 
-	/**
-	 * Sets the input ItemStack for the recipe<br>
-	 * <br>
-	 * Valid for recipe type(s):<br> 
-	 * CHOPPING_BOARD,<br> 
-	 * DISHWASHER,<br>  
-	 * FREEZER,<br>  
-	 * MICROWAVE,<br>  
-	 * MINEBAY,<br>  
-	 * OVEN,<br>  
-	 * PRINTER,<br>
-	 * TOASTER,<br>    
-	 * WASHING_MACHINE
-	 * 
-	 * @param input
-	 *            The input ItemStack for the recipe
-	 * @return Instance of RecipeVariables
-	 */
-	public RecipeVariables setInput(ItemStack input) {
-		variables.put("input", input);
-		return this;
-	}
-	
-	/**
-	 * Sets the output ItemStack for the recipe<br>
-	 * <br>
-	 * Valid for recipe type(s):<br> 
-	 * CHOPPING_BOARD,<br> 
-	 * DISHWASHER,<br>  
-	 * FREEZER,<br>  
-	 * MICROWAVE,<br>  
-	 * MINEBAY,<br>  
-	 * OVEN,<br>  
-	 * PRINTER,<br>
-	 * TOASTER,<br>  
-	 * WASHING_MACHINE
-	 * 
-	 * @param output
-	 *            The output ItemStack for the recipe
-	 * @return Instance of RecipeVariables
-	 */
-	public RecipeVariables setOutput(ItemStack output) {
-		variables.put("output", output);
-		return this;
-	}
+    private HashMap<String, Object> variables = new HashMap<String, Object>();
 
-	/**
-	 * Valid for recipe type(s): BLENDER
-	 * 
-	 * @param name
-	 *            The name of the blended drink
-	 * @return Instance of RecipeVariables
-	 */
-	public RecipeVariables setName(String name) {
-		variables.put("name", name);
-		return this;
-	}
+    public Map<String, Object> getMap()
+    {
+        return variables;
+    }
 
-	/**
-	 * Valid for recipe type(s): BLENDER
-	 * 
-	 * @param heal
-	 *            The amount of hearts to heal
-	 * @return Instance of RecipeVariables
-	 */
-	public RecipeVariables setHeal(int heal) {
-		variables.put("heal", heal);
-		return this;
-	}
+    /**
+     * Adds a value to the recipe variables
+     *
+     * @param variable The type of variable
+     * @param object   The object to bind to the variable
+     * @return RecipeVariables instance
+     * @see {@link RecipeVariables} for required variables
+     */
+    @Deprecated
+    public RecipeVariables addValue(String variable, Object object)
+    {
+        variables.put(variable, object);
+        return this;
+    }
 
-	/**
-	 * Valid for recipe type(s): BLENDER
-	 * 
-	 * @param ingredients
-	 *            The required ingredients for the blender recipe. Must be an ItemStack array.
-	 * @return Instance of RecipeVariables
-	 */
-	public RecipeVariables setIngredients(ItemStack... ingredients) {
-		variables.put("ingredients", ingredients);
-		return this;
-	}
+    /**
+     * Sets the input ItemStack for the recipe<br>
+     * <br>
+     * Valid for recipe type(s):<br>
+     * CHOPPING_BOARD,<br>
+     * DISHWASHER,<br>
+     * FREEZER,<br>
+     * MICROWAVE,<br>
+     * MINEBAY,<br>
+     * OVEN,<br>
+     * PRINTER,<br>
+     * TOASTER,<br>
+     * WASHING_MACHINE
+     *
+     * @param input The input ItemStack for the recipe
+     * @return Instance of RecipeVariables
+     */
+    public RecipeVariables setInput(ItemStack input)
+    {
+        variables.put("input", input);
+        return this;
+    }
 
-	/**
-	 * Valid for recipe type(s): BLENDER
-	 * 
-	 * @param rgb
-	 *            The colour of the drink.
-	 * @return Instance of RecipeVariables
-	 */
-	public RecipeVariables setColour(int[] rgb) {
-		variables.put("colour", rgb);
-		return this;
-	}
+    /**
+     * Sets the output ItemStack for the recipe<br>
+     * <br>
+     * Valid for recipe type(s):<br>
+     * CHOPPING_BOARD,<br>
+     * DISHWASHER,<br>
+     * FREEZER,<br>
+     * MICROWAVE,<br>
+     * MINEBAY,<br>
+     * OVEN,<br>
+     * PRINTER,<br>
+     * TOASTER,<br>
+     * WASHING_MACHINE
+     *
+     * @param output The output ItemStack for the recipe
+     * @return Instance of RecipeVariables
+     */
+    public RecipeVariables setOutput(ItemStack output)
+    {
+        variables.put("output", output);
+        return this;
+    }
+
+    /**
+     * Valid for recipe type(s): BLENDER
+     *
+     * @param name The name of the blended drink
+     * @return Instance of RecipeVariables
+     */
+    public RecipeVariables setName(String name)
+    {
+        variables.put("name", name);
+        return this;
+    }
+
+    /**
+     * Valid for recipe type(s): BLENDER
+     *
+     * @param heal The amount of hearts to heal
+     * @return Instance of RecipeVariables
+     */
+    public RecipeVariables setHeal(int heal)
+    {
+        variables.put("heal", heal);
+        return this;
+    }
+
+    /**
+     * Valid for recipe type(s): BLENDER
+     *
+     * @param ingredients The required ingredients for the blender recipe. Must be an ItemStack array.
+     * @return Instance of RecipeVariables
+     */
+    public RecipeVariables setIngredients(ItemStack... ingredients)
+    {
+        variables.put("ingredients", ingredients);
+        return this;
+    }
+
+    /**
+     * Valid for recipe type(s): BLENDER
+     *
+     * @param rgb The colour of the drink.
+     * @return Instance of RecipeVariables
+     */
+    public RecipeVariables setColour(int[] rgb)
+    {
+        variables.put("colour", rgb);
+        return this;
+    }
 }

@@ -1,0 +1,71 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"1": "blocks/stone_andesite_smooth",
+			"2": "blocks/stone_andesite"
+		},
+		"model": "cfm:coffee_table_all",
+		"uvlock": true
+	},
+	"variants": {
+		"inventory": [{
+			"model": "cfm:coffee_table_all"
+		}],
+		"east=false,north=false,south=false,west=false": {
+			"model": "cfm:coffee_table_all"
+		},
+		"east=false,north=true,south=false,west=false": {
+			"model": "cfm:coffee_table_two_leg"
+		},
+		"east=true,north=false,south=false,west=false": {
+			"model": "cfm:coffee_table_two_leg",
+			"y": 90
+		},
+		"east=false,north=false,south=true,west=false": {
+			"model": "cfm:coffee_table_two_leg",
+			"y": 180
+		},
+		"east=false,north=false,south=false,west=true": {
+			"model": "cfm:coffee_table_two_leg",
+			"y": 270
+		},
+		"east=true,north=true,south=false,west=false": {
+			"model": "cfm:coffee_table_one_leg",
+			"y": 90
+		},
+		"east=false,north=true,south=true,west=false": {
+			"model": "cfm:coffee_table_none"
+		},
+		"east=false,north=true,south=false,west=true": {
+			"model": "cfm:coffee_table_one_leg"
+		},
+		"east=true,north=false,south=false,west=true": {
+			"model": "cfm:coffee_table_one_leg",
+			"y": 90
+		},
+		"east=true,north=false,south=true,west=false": {
+			"model": "cfm:coffee_table_one_leg",
+			"y": 180
+		},
+		"east=false,north=false,south=true,west=true": {
+			"model": "cfm:coffee_table_one_leg",
+			"y": 270
+		},
+		"east=true,north=true,south=true,west=true": {
+			"model": "cfm:coffee_table_none"
+		},
+		"east=true,north=true,south=true,west=false": {
+			"model": "cfm:coffee_table_none"
+		},
+		"east=true,north=true,south=false,west=true": {
+			"model": "cfm:coffee_table_none"
+		},
+		"east=false,north=true,south=true,west=true": {
+			"model": "cfm:coffee_table_none"
+		},
+		"east=true,north=false,south=true,west=true": {
+			"model": "cfm:coffee_table_none"
+		}
+	}
+}

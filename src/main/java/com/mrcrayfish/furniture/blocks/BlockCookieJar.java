@@ -1,25 +1,28 @@
 /**
  * MrCrayfish's Furniture Mod
  * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * 
+ * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
+
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.tileentity.TileEntityCookieJar;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -44,135 +47,137 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
-
 public class BlockCookieJar extends Block implements ITileEntityProvider
 {
-	public static final PropertyInteger COOKIE_COUNT = PropertyInteger.create("cookie_count", 0, 6);
-	
-	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(4 * 0.0625, 0.0, 4 * 0.0625, 12 * 0.0625, 0.65, 12 * 0.0625);
+    public static final PropertyInteger COOKIE_COUNT = PropertyInteger.create("cookie_count", 0, 6);
 
-	public BlockCookieJar(Material material)
-	{
-		super(material);
-		this.setHardness(0.5F);
-		this.setSoundType(SoundType.GLASS);
-		this.setDefaultState(this.blockState.getBaseState().withProperty(COOKIE_COUNT, Integer.valueOf(0)));
-		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-	}
+    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(4 * 0.0625, 0.0, 4 * 0.0625, 12 * 0.0625, 0.65, 12 * 0.0625);
 
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
+    public BlockCookieJar(Material material)
+    {
+        super(material);
+        this.setHardness(0.5F);
+        this.setSoundType(SoundType.GLASS);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(COOKIE_COUNT, Integer.valueOf(0)));
+        this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+    }
 
-	@Override
-	public boolean isFullCube(IBlockState state)
-	{
-		return false;
-	}
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
 
-	@Override
-	public void onBlockDestroyedByPlayer(World world, BlockPos pos, IBlockState state)
-	{
-		if (!world.isRemote)
-		{
-			for (int i = 0; i < getMetaFromState(state); i++)
-			{
-				EntityItem cookie = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.8, pos.getZ() + 0.5, new ItemStack(Items.COOKIE));
-				world.spawnEntity(cookie);
-			}
-		}
-	}
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
 
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
-		ItemStack heldItem = playerIn.getHeldItem(hand);
-		int metadata = getMetaFromState(state);
-		if (!heldItem.isEmpty())
-		{
-			if (heldItem.getItem() == Items.COOKIE && metadata < 6)
-			{
-				worldIn.setBlockState(pos, state.withProperty(COOKIE_COUNT, metadata + 1), 2);
-				heldItem.shrink(1);
-				worldIn.updateComparatorOutputLevel(pos, this);
-				return true;
-			}
-		}
-		if (metadata > 0)
-		{
-			worldIn.setBlockState(pos, state.withProperty(COOKIE_COUNT, metadata - 1), 2);
-			if (!worldIn.isRemote)
-			{
-				EntityItem var14 = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.8, pos.getZ() + 0.5, new ItemStack(Items.COOKIE));
-				worldIn.spawnEntity(var14);
-			}
-			TileEntityUtil.markBlockForUpdate(worldIn, pos);
-			return true;
-		}
-		return false;
-	}
-	
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) 
-	{
-		return BOUNDING_BOX;
-	}
-	
-	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_) 
-	{
-		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
-	}
+    @Override
+    public void onBlockDestroyedByPlayer(World world, BlockPos pos, IBlockState state)
+    {
+        if(!world.isRemote)
+        {
+            for(int i = 0; i < getMetaFromState(state); i++)
+            {
+                EntityItem cookie = new EntityItem(world, pos.getX() + 0.5, pos.getY() + 0.8, pos.getZ() + 0.5, new ItemStack(Items.COOKIE));
+                world.spawnEntity(cookie);
+            }
+        }
+    }
 
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta)
-	{
-		return new TileEntityCookieJar();
-	}
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        ItemStack heldItem = playerIn.getHeldItem(hand);
+        int metadata = getMetaFromState(state);
+        if(!heldItem.isEmpty())
+        {
+            if(heldItem.getItem() == Items.COOKIE && metadata < 6)
+            {
+                worldIn.setBlockState(pos, state.withProperty(COOKIE_COUNT, metadata + 1), 2);
+                heldItem.shrink(1);
+                worldIn.updateComparatorOutputLevel(pos, this);
+                return true;
+            }
+        }
+        if(metadata > 0)
+        {
+            worldIn.setBlockState(pos, state.withProperty(COOKIE_COUNT, metadata - 1), 2);
+            if(!worldIn.isRemote)
+            {
+                EntityItem var14 = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.8, pos.getZ() + 0.5, new ItemStack(Items.COOKIE));
+                worldIn.spawnEntity(var14);
+            }
+            TileEntityUtil.markBlockForUpdate(worldIn, pos);
+            return true;
+        }
+        return false;
+    }
 
-	@Override
-	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
-	{
-		return state.withProperty(COOKIE_COUNT, 0);
-	}
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX;
+    }
 
-	@Override
-	public int getMetaFromState(IBlockState state)
-	{
-		return ((Integer) state.getValue(COOKIE_COUNT)).intValue();
-	}
-	
-	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
-		return getDefaultState().withProperty(COOKIE_COUNT, meta);
-	}
+    @Override
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
+    {
+        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
+    }
 
-	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, new IProperty[] { COOKIE_COUNT });
-	}
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta)
+    {
+        return new TileEntityCookieJar();
+    }
 
-	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer()
-	{
-		return BlockRenderLayer.TRANSLUCENT;
-	}
-	
-	@Override
-	public boolean hasComparatorInputOverride(IBlockState state) 
-	{
-		return true;
-	}
-	
-	@Override
-	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos) 
-	{
-		TileEntityCookieJar jar = (TileEntityCookieJar) world.getTileEntity(pos);
-		return jar.getSize();
-	}
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        if(world.getTileEntity(pos) instanceof TileEntityCookieJar)
+        {
+            return state.withProperty(COOKIE_COUNT, ((TileEntityCookieJar) world.getTileEntity(pos)).getSize());
+        }
+        return state.withProperty(COOKIE_COUNT, 0);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        return ((Integer) state.getValue(COOKIE_COUNT)).intValue();
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        return getDefaultState().withProperty(COOKIE_COUNT, meta);
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState()
+    {
+        return new BlockStateContainer(this, new IProperty[]{COOKIE_COUNT});
+    }
+
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer()
+    {
+        return BlockRenderLayer.TRANSLUCENT;
+    }
+
+    @Override
+    public boolean hasComparatorInputOverride(IBlockState state)
+    {
+        return true;
+    }
+
+    @Override
+    public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
+    {
+        TileEntityCookieJar jar = (TileEntityCookieJar) world.getTileEntity(pos);
+        return jar.getSize();
+    }
 }

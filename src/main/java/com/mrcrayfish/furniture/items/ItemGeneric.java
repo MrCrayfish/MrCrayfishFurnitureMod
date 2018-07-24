@@ -5,8 +5,8 @@ import net.minecraft.item.Item;
 
 public class ItemGeneric extends Item
 {
-	public ItemGeneric()
-	{
-		setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-	}
+    public ItemGeneric()
+    {
+        setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+    }
 }

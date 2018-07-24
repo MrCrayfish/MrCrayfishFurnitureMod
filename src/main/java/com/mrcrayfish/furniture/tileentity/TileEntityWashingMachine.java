@@ -1,17 +1,17 @@
 /**
  * MrCrayfish's Furniture Mod
  * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * 
+ * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -40,289 +40,287 @@ import java.util.Random;
 
 public class TileEntityWashingMachine extends TileEntityFurniture implements ISidedInventory, ITickable
 {
-	private static final int[] slots_top = new int[] { 0, 1, 2, 3 };
-	private static final int[] slots_bottom = new int[] { 0, 1, 2, 3, 4 };
-	private static final int[] slots_sides = new int[] { 4 };
+    private static final int[] slots_top = new int[]{0, 1, 2, 3};
+    private static final int[] slots_bottom = new int[]{0, 1, 2, 3, 4};
+    private static final int[] slots_sides = new int[]{4};
 
-	private boolean washing = false;
-	public boolean superMode = false;
-	public int progress = 0;
-	public int timeRemaining = 0;
-	
-	public TileEntityWashingMachine() 
-	{
-		super("washing_machine", 5);
-	}
+    private boolean washing = false;
+    public boolean superMode = false;
+    public int progress = 0;
+    public int timeRemaining = 0;
 
-	public void startWashing()
-	{
-		if (canWash())
-		{
-			if (timeRemaining == 0)
-			{
-				if (getStackInSlot(4).getItem() == FurnitureItems.itemSuperSoapyWater)
-				{
-					superMode = true;
-				}
-				else
-				{
-					superMode = false;
-				}
-				setInventorySlotContents(4,  new ItemStack(getStackInSlot(4).getItem().getContainerItem()));
-				timeRemaining = 5000;
-			}
-			washing = true;
-			world.updateComparatorOutputLevel(pos, blockType);
-		}
-	}
+    public TileEntityWashingMachine()
+    {
+        super("washing_machine", 5);
+    }
 
-	public void stopWashing()
-	{
-		progress = 0;
-		washing = false;
-		world.updateComparatorOutputLevel(pos, blockType);
-	}
+    public void startWashing()
+    {
+        if(canWash())
+        {
+            if(timeRemaining == 0)
+            {
+                if(getStackInSlot(4).getItem() == FurnitureItems.SUPER_SOAPY_WATER)
+                {
+                    superMode = true;
+                }
+                else
+                {
+                    superMode = false;
+                }
+                setInventorySlotContents(4, new ItemStack(getStackInSlot(4).getItem().getContainerItem()));
+                timeRemaining = 5000;
+            }
+            washing = true;
+            world.updateComparatorOutputLevel(pos, blockType);
+        }
+    }
 
-	public boolean canWash()
-	{
-		if (getStackInSlot(4).isEmpty() && timeRemaining == 0)
-		{
-			return false;
-		}
+    public void stopWashing()
+    {
+        progress = 0;
+        washing = false;
+        world.updateComparatorOutputLevel(pos, blockType);
+    }
 
-		if (!getStackInSlot(4).isEmpty() && timeRemaining == 0)
-		{
-			if (getStackInSlot(4).getItem() != FurnitureItems.itemSoapyWater)
-			{
-				if (getStackInSlot(4).getItem() != FurnitureItems.itemSuperSoapyWater)
-				{
-					return false;
-				}
-			}
-		}
+    public boolean canWash()
+    {
+        if(getStackInSlot(4).isEmpty() && timeRemaining == 0)
+        {
+            return false;
+        }
 
-		for (int i = 0; i < 4; i++)
-		{
-			if (!getStackInSlot(i).isEmpty())
-			{
-				RecipeData data = RecipeAPI.getWashingMachineRecipeFromInput(getStackInSlot(i));
-				if (data != null)
-				{
-					return true;
-				}
-			}
-		}
-		return false;
-	}
+        if(!getStackInSlot(4).isEmpty() && timeRemaining == 0)
+        {
+            if(getStackInSlot(4).getItem() != FurnitureItems.SOAPY_WATER)
+            {
+                if(getStackInSlot(4).getItem() != FurnitureItems.SUPER_SOAPY_WATER)
+                {
+                    return false;
+                }
+            }
+        }
 
-	public boolean isWashing()
-	{
-		return washing;
-	}
-	
-	public static boolean isFuel(ItemStack stack)
-	{
-		if(stack == null)
-			return false;
-		if(stack.getItem() == FurnitureItems.itemSoapyWater)
-			return true;
-		if(stack.getItem() == FurnitureItems.itemSuperSoapyWater)
-			return true;
-		return false;
-	}
+        for(int i = 0; i < 4; i++)
+        {
+            if(!getStackInSlot(i).isEmpty())
+            {
+                RecipeData data = RecipeAPI.getWashingMachineRecipeFromInput(getStackInSlot(i));
+                if(data != null)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
-	private Random rand = new Random();
-	private int timer = 0;
+    public boolean isWashing()
+    {
+        return washing;
+    }
 
-	@Override
-	public void update()
-	{	
-		if (washing)
-		{
-			if(world.isRemote)
-			{
-				progress++;
-				return;
-			}
-			
-			if(!canWash())
-			{
-				washing = false;
-				world.updateComparatorOutputLevel(pos, blockType);
-				this.markDirty();
-				return;
-			}
-			
-			if (canRepair())
-			{
-				for (int i = 0; i < 4; i++)
-				{
-					if (!getStackInSlot(i).isEmpty())
-					{
-						if (getStackInSlot(i).getMaxDamage() - getStackInSlot(i).getItemDamage() != getStackInSlot(i).getMaxDamage())
-						{
-							getStackInSlot(i).setItemDamage(getStackInSlot(i).getItemDamage() - 1);
-						}
-					}
-				}
-				PacketHandler.INSTANCE.sendToAllAround(new MessageUpdateFields(this, pos), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 32));
-				if(progress >= 360)
-				{
-					progress = 0;
-				}
-			}
+    public static boolean isFuel(ItemStack stack)
+    {
+        if(stack == null) return false;
+        if(stack.getItem() == FurnitureItems.SOAPY_WATER) return true;
+        if(stack.getItem() == FurnitureItems.SUPER_SOAPY_WATER) return true;
+        return false;
+    }
 
-			timeRemaining--;
-			if (timeRemaining <= 0)
-			{
-				if (!getStackInSlot(4).isEmpty())
-				{
-					if (getStackInSlot(4).getItem() == FurnitureItems.itemSoapyWater)
-					{
-						this.superMode = false;
-						setInventorySlotContents(4, new ItemStack(FurnitureItems.itemSoapyWater.getContainerItem()));
-						timeRemaining = 5000;
-					}
-					else if (getStackInSlot(4).getItem() == FurnitureItems.itemSuperSoapyWater)
-					{
-						this.superMode = true;
-						setInventorySlotContents(4, new ItemStack(FurnitureItems.itemSuperSoapyWater.getContainerItem()));
-						timeRemaining = 5000;
-					}
-				}
-				else
-				{
-					timeRemaining = 0;
-					progress = 0;
-					washing = false;
-					world.updateComparatorOutputLevel(pos, blockType);
-				}
-				this.markDirty();
-			}
+    private Random rand = new Random();
+    private int timer = 0;
 
-			progress++;
+    @Override
+    public void update()
+    {
+        if(washing)
+        {
+            if(world.isRemote)
+            {
+                progress++;
+                return;
+            }
 
-			if (timer == 20)
-			{
-				timer = 0;
-			}
-			if (timer == 0)
-			{
-				world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FurnitureSounds.washing_machine, SoundCategory.BLOCKS, 0.75F, 1.0F);
-			}
-			timer++;
-		}
-	}
+            if(!canWash())
+            {
+                washing = false;
+                world.updateComparatorOutputLevel(pos, blockType);
+                this.markDirty();
+                return;
+            }
 
-	public boolean canRepair()
-	{
-		return progress % (superMode ? 20 : 50) == 0;
-	}
+            if(canRepair())
+            {
+                for(int i = 0; i < 4; i++)
+                {
+                    if(!getStackInSlot(i).isEmpty())
+                    {
+                        if(getStackInSlot(i).getMaxDamage() - getStackInSlot(i).getItemDamage() != getStackInSlot(i).getMaxDamage())
+                        {
+                            getStackInSlot(i).setItemDamage(getStackInSlot(i).getItemDamage() - 1);
+                        }
+                    }
+                }
+                PacketHandler.INSTANCE.sendToAllAround(new MessageUpdateFields(this, pos), new TargetPoint(world.provider.getDimension(), pos.getX(), pos.getY(), pos.getZ(), 32));
+                if(progress >= 360)
+                {
+                    progress = 0;
+                }
+            }
 
-	@Override
-	public int getInventoryStackLimit()
-	{
-		return 1;
-	}
+            timeRemaining--;
+            if(timeRemaining <= 0)
+            {
+                if(!getStackInSlot(4).isEmpty())
+                {
+                    if(getStackInSlot(4).getItem() == FurnitureItems.SOAPY_WATER)
+                    {
+                        this.superMode = false;
+                        setInventorySlotContents(4, new ItemStack(FurnitureItems.SOAPY_WATER.getContainerItem()));
+                        timeRemaining = 5000;
+                    }
+                    else if(getStackInSlot(4).getItem() == FurnitureItems.SUPER_SOAPY_WATER)
+                    {
+                        this.superMode = true;
+                        setInventorySlotContents(4, new ItemStack(FurnitureItems.SUPER_SOAPY_WATER.getContainerItem()));
+                        timeRemaining = 5000;
+                    }
+                }
+                else
+                {
+                    timeRemaining = 0;
+                    progress = 0;
+                    washing = false;
+                    world.updateComparatorOutputLevel(pos, blockType);
+                }
+                this.markDirty();
+            }
 
-	@Override
-	public void readFromNBT(NBTTagCompound tagCompound)
-	{
-		super.readFromNBT(tagCompound);
-		this.washing = tagCompound.getBoolean("Washing");
-		this.superMode = tagCompound.getBoolean("SuperMode");
-		this.progress = tagCompound.getInteger("Progress");
-		this.timeRemaining = tagCompound.getInteger("Remaining");
-	}
+            progress++;
 
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
-	{
-		super.writeToNBT(tagCompound);
-		tagCompound.setBoolean("Washing", washing);
-		tagCompound.setBoolean("SuperMode", superMode);
-		tagCompound.setInteger("Progress", progress);
-		tagCompound.setInteger("Remaining", timeRemaining);
-		return tagCompound;
-	}
+            if(timer == 20)
+            {
+                timer = 0;
+            }
+            if(timer == 0)
+            {
+                world.playSound(null, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, FurnitureSounds.washing_machine, SoundCategory.BLOCKS, 0.75F, 1.0F);
+            }
+            timer++;
+        }
+    }
 
-	@Override
-	public int getField(int id)
-	{
-		switch(id)
-		{
-		case 0:
-			return this.progress;
-		case 1:
-			return this.timeRemaining;
-		}
-		return 0;
-	}
+    public boolean canRepair()
+    {
+        return progress % (superMode ? 20 : 50) == 0;
+    }
 
-	@Override
-	public void setField(int id, int value)
-	{
-		switch(id)
-		{
-		case 0:
-			this.progress = value;
-		case 1:
-			this.timeRemaining = value;
-		}
-	}
+    @Override
+    public int getInventoryStackLimit()
+    {
+        return 1;
+    }
 
-	@Override
-	public int getFieldCount()
-	{
-		return 2;
-	}
+    @Override
+    public void readFromNBT(NBTTagCompound tagCompound)
+    {
+        super.readFromNBT(tagCompound);
+        this.washing = tagCompound.getBoolean("Washing");
+        this.superMode = tagCompound.getBoolean("SuperMode");
+        this.progress = tagCompound.getInteger("Progress");
+        this.timeRemaining = tagCompound.getInteger("Remaining");
+    }
 
-	@Override
-	public boolean isItemValidForSlot(int slot, ItemStack stack)
-	{
-		if(stack.getItem() instanceof ItemArmor)
-		{
-			ItemArmor armour = (ItemArmor) stack.getItem();
-			return slot == armour.armorType.getIndex();
-		}
-		return true;
-	}
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
+    {
+        super.writeToNBT(tagCompound);
+        tagCompound.setBoolean("Washing", washing);
+        tagCompound.setBoolean("SuperMode", superMode);
+        tagCompound.setInteger("Progress", progress);
+        tagCompound.setInteger("Remaining", timeRemaining);
+        return tagCompound;
+    }
 
-	@Override
-	public int[] getSlotsForFace(EnumFacing side) 
-	{
-		if(side == EnumFacing.UP) return slots_top;
-		if(side == EnumFacing.DOWN) return slots_bottom;
-		return slots_sides;
-	}
+    @Override
+    public int getField(int id)
+    {
+        switch(id)
+        {
+            case 0:
+                return this.progress;
+            case 1:
+                return this.timeRemaining;
+        }
+        return 0;
+    }
 
-	@Override
-	public boolean canInsertItem(int index, ItemStack stack, EnumFacing side) 
-	{
-		if(isLocked())
-		{
-			return false;
-		}
-		if(side == EnumFacing.UP)
-		{
-			return RecipeAPI.getWashingMachineRecipeFromInput(stack) != null;
-		}
-		if(side != EnumFacing.DOWN)
-		{
-			return isFuel(stack);
-		}
-		return false;
-	}
+    @Override
+    public void setField(int id, int value)
+    {
+        switch(id)
+        {
+            case 0:
+                this.progress = value;
+            case 1:
+                this.timeRemaining = value;
+        }
+    }
 
-	@Override
-	public boolean canExtractItem(int index, ItemStack stack, EnumFacing side) 
-	{
-		return side == EnumFacing.DOWN && !isFuel(stack) && stack.getItemDamage() == 0 && !isLocked();
-	}
+    @Override
+    public int getFieldCount()
+    {
+        return 2;
+    }
 
-	@Override
-	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) 
-	{
-		return new ContainerWashingMachine(playerInventory, this);
-	}
+    @Override
+    public boolean isItemValidForSlot(int slot, ItemStack stack)
+    {
+        if(stack.getItem() instanceof ItemArmor)
+        {
+            ItemArmor armour = (ItemArmor) stack.getItem();
+            return slot == armour.armorType.getIndex();
+        }
+        return true;
+    }
+
+    @Override
+    public int[] getSlotsForFace(EnumFacing side)
+    {
+        if(side == EnumFacing.UP) return slots_top;
+        if(side == EnumFacing.DOWN) return slots_bottom;
+        return slots_sides;
+    }
+
+    @Override
+    public boolean canInsertItem(int index, ItemStack stack, EnumFacing side)
+    {
+        if(isLocked())
+        {
+            return false;
+        }
+        if(side == EnumFacing.UP)
+        {
+            return RecipeAPI.getWashingMachineRecipeFromInput(stack) != null;
+        }
+        if(side != EnumFacing.DOWN)
+        {
+            return isFuel(stack);
+        }
+        return false;
+    }
+
+    @Override
+    public boolean canExtractItem(int index, ItemStack stack, EnumFacing side)
+    {
+        return side == EnumFacing.DOWN && !isFuel(stack) && stack.getItemDamage() == 0 && !isLocked();
+    }
+
+    @Override
+    public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn)
+    {
+        this.fillWithLoot(playerIn);
+        return new ContainerWashingMachine(playerInventory, this);
+    }
 }
