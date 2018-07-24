@@ -48,7 +48,7 @@ public class GuiDoorMat extends GuiScreen
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
         this.drawDefaultBackground();
-        this.drawCenteredString(fontRenderer, "Enter Message", this.width / 2, this.height / 2 - 40, 16777215);
+        this.drawCenteredString(fontRenderer, I18n.format("cfm.gui.doormat"), this.width / 2, this.height / 2 - 40, 16777215);
         messageTextField.drawTextBox();
         super.drawScreen(mouseX, mouseY, partialTicks);
     }

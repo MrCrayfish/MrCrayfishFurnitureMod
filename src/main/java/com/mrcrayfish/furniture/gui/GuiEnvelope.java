@@ -25,6 +25,7 @@ import com.mrcrayfish.furniture.network.message.MessageEnvelope;
 import com.mrcrayfish.furniture.util.NBTHelper;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
@@ -64,8 +65,8 @@ public class GuiEnvelope extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        this.fontRenderer.drawString("Envelope", xSize / 2 - 22, 5, 9999999);
-        this.fontRenderer.drawString("Inventory", 8, (ySize - 96) + 2, 4210752);
+        this.fontRenderer.drawString(I18n.format("item.item_envelope.name"), xSize / 2 - 22, 5, 9999999);
+        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, (ySize - 96) + 2, 4210752);
     }
 
     @Override
@@ -91,7 +92,7 @@ public class GuiEnvelope extends GuiContainer
 
         if(mail.getItem() == FurnitureItems.ENVELOPE)
         {
-            buttonOk = new GuiButton(0, posX, posY, 40, 20, "Sign");
+            buttonOk = new GuiButton(0, posX, posY, 40, 20, I18n.format("cfm.button.sign"));
             buttonOk.enabled = true;
             buttonList.add(buttonOk);
         }
@@ -121,7 +122,7 @@ public class GuiEnvelope extends GuiContainer
             }
             else
             {
-                this.player.sendMessage(new TextComponentString("You cannot sign an empty envelope."));
+                this.player.sendMessage(new TextComponentString(I18n.format("cfm.message.empty_envelope")));
             }
         }
     }

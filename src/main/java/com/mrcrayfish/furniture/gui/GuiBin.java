@@ -22,6 +22,7 @@ import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageEmptyBin;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
@@ -56,7 +57,7 @@ public class GuiBin extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        this.fontRenderer.drawString("Inventory", 8, this.ySize - 96 + 2, 4210752);
+        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
 
     @Override
@@ -77,7 +78,7 @@ public class GuiBin extends GuiContainer
         buttonList.clear();
         int posX = width / 2;
         int posY = height / 2;
-        button_empty = new GuiButton(0, posX + 40, posY - 50, 40, 20, "Empty");
+        button_empty = new GuiButton(0, posX + 40, posY - 50, 40, 20, I18n.format("cfm.button.empty"));
         button_empty.enabled = true;
         buttonList.add(button_empty);
     }
