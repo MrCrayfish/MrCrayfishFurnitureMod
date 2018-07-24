@@ -56,8 +56,10 @@ public class GuiBedsideCabinet extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        this.fontRenderer.drawString(I18n.format("container.bedside_cabinet"), (this.xSize / 2) - 28, 6, 4210752);
-        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, this.ySize - 94, 4210752);
+        int color = 14540253;
+        if (this.type == 2) color = 4210752;
+        this.fontRenderer.drawString(I18n.format("container.bedside_cabinet"), (this.xSize / 2) - 28, 6, color);
+        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, this.ySize - 94, color);
     }
 
     @Override
