@@ -242,6 +242,7 @@ cfm.desk_cabinet.info=书桌柜可以连接到其他书桌柜以设计出你想�
 container.cabinet=橱柜
 container.bedside_cabinet=床头柜
 container.desk_cabinet=书桌柜
+container.inventory=物品栏
 
 cfm.recipe_book.page.title1=本手册由MrCrayfish制作
 cfm.recipe_book.page.title2=关于
