@@ -39,6 +39,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Locale;
+
 public class BlockCeilingLight extends Block implements IPowered
 {
     public static final PropertyEnum MODE = PropertyEnum.create("mode", Mode.class);
@@ -191,7 +193,7 @@ public class BlockCeilingLight extends Block implements IPowered
         @Override
         public String getName()
         {
-            return toString().toLowerCase();
+            return toString().toLowerCase(Locale.US);
         }
     }
 }

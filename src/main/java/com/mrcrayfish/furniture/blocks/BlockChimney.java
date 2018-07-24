@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.Locale;
 import java.util.Random;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
@@ -108,7 +109,7 @@ public class BlockChimney extends Block
         @Override
         public String getName()
         {
-            return this.toString().toLowerCase();
+            return this.toString().toLowerCase(Locale.US);
         }
     }
 

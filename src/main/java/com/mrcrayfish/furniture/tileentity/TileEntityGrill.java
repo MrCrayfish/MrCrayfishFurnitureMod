@@ -11,13 +11,10 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 
-public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInventory
+public class TileEntityGrill extends TileEntitySyncClient implements ITickable, ISimpleInventory
 {
     public ItemStack[] inventory = new ItemStack[2];
 
@@ -376,23 +373,5 @@ public class TileEntityGrill extends TileEntity implements ITickable, ISimpleInv
         tagCompound.setBoolean("leftCooked", leftCooked);
         tagCompound.setBoolean("rightCooked", rightCooked);
         return tagCompound;
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-    {
-        this.readFromNBT(pkt.getNbtCompound());
-    }
-
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
-        return new SPacketUpdateTileEntity(pos, getBlockMetadata(), this.writeToNBT(new NBTTagCompound()));
-    }
-
-    @Override
-    public NBTTagCompound getUpdateTag()
-    {
-        return this.writeToNBT(new NBTTagCompound());
     }
 }
