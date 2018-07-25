@@ -16,30 +16,32 @@ import com.mrcrayfish.furniture.api.RecipeRegistry;
 import com.mrcrayfish.furniture.api.Recipes;
 
 @Config(modid = Reference.MOD_ID)
-@LangKey(Reference.MOD_ID + ".config.title")
+@LangKey("config." + Reference.MOD_ID + ".title")
 @EventBusSubscriber(modid = Reference.MOD_ID)
 public class FurnitureConfig
 {
+    private static final String PREFIX = "config." + Reference.MOD_ID + ".";
+
     @Name("Client")
     @Comment("Client-only configs.")
-    @LangKey(Reference.MOD_ID + ".config.client")
+    @LangKey(PREFIX + "client")
     public static final Client CLIENT = new Client();
 
     @Name("Server")
     @Comment("Server-only configs.")
-    @LangKey(Reference.MOD_ID + ".config.server")
+    @LangKey(PREFIX + "server")
     public static final Server SERVER = new Server();
 
     @Name("Common")
     @Comment("Configs shared by both client and server.")
-    @LangKey(Reference.MOD_ID + ".config.common")
+    @LangKey(PREFIX + "common")
     public static final Common COMMON = new Common();
 
     public static class Client
     {
         @Name("Mirror")
         @Comment("Mirror render settings.")
-        @LangKey(Reference.MOD_ID + ".config.client.mirror")
+        @LangKey(PREFIX + "client.mirror")
         public Mirror mirror = new Mirror();
     }
 
@@ -47,23 +49,23 @@ public class FurnitureConfig
     {
         @Name("Enabled")
         @Comment("Determines whether the mirror will be rendered.")
-        @LangKey(Reference.MOD_ID + ".config.client.mirror.enabled")
+        @LangKey(PREFIX + "client.mirror.enabled")
         public boolean enabled = true;
 
         @Name("Clouds")
         @Comment("Set whether the mirror should render clouds.")
-        @LangKey(Reference.MOD_ID + ".config.client.mirror.clouds")
+        @LangKey(PREFIX + "client.mirror.clouds")
         public boolean clouds = false;
 
         @Name("FOV")
         @Comment("Sets the field of view for the mirror.")
-        @LangKey(Reference.MOD_ID + ".config.client.mirror.fov")
+        @LangKey(PREFIX + "client.mirror.fov")
         @RangeDouble(min = 10, max = 100)
         public float fov = 80;
 
         @Name("Quality")
         @Comment("Sets the resolution for the mirror. High number means better quality but worse performace.")
-        @LangKey(Reference.MOD_ID + ".config.client.mirror.quality")
+        @LangKey(PREFIX + "client.mirror.quality")
         @RangeInt(min = 16, max = 512)
         public int quality = 64;
     }
@@ -72,7 +74,7 @@ public class FurnitureConfig
     {
         @Name("Messages")
         @Comment("Enable or disable messages.")
-        @LangKey(Reference.MOD_ID + ".config.server.messages")
+        @LangKey(PREFIX + "server.messages")
         public Messages messages = new Messages();
     }
 
@@ -82,7 +84,7 @@ public class FurnitureConfig
 
         @Name("Welcome Message")
         @Comment("Enable or disable the welcome message")
-        @LangKey(Reference.MOD_ID + ".config.server.messages.welcome_message")
+        @LangKey(PREFIX + "server.messages.welcome_message")
         public boolean canDisplay = true;
     }
 
@@ -90,7 +92,7 @@ public class FurnitureConfig
     {
         @Name("Recipe")
         @Comment("Recipe settings.")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe")
+        @LangKey(PREFIX + "common.recipe")
         public Recipe recipe = new Recipe();
     }
 
@@ -98,17 +100,17 @@ public class FurnitureConfig
     {
         @Name("API Debug")
         @Comment("If true, prints out information about RecipeAPI. Recommended 'true' for people trying to add custom recipes. How to use RecipeAPI: http://mrcrayfishs-furniture-mod.wikia.com/wiki/Configuration")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.api_debug")
+        @LangKey(PREFIX + "common.recipe.api_debug")
         public boolean apiDebug = false;
 
         @Name("Custom Recipes")
         @Comment("Insert custom recipes here. How to use RecipeAPI: http://mrcrayfishs-furniture-mod.wikia.com/wiki/Configuration")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.custom_recipes")
+        @LangKey(PREFIX + "common.recipe.custom_recipes")
         public String[] items = {};
 
         @Name("Enabled Recipes")
         @Comment("Enabled or disable the default recipes.")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled")
+        @LangKey(PREFIX + "common.recipe.enabled")
         public EnabledRecipes enabled = new EnabledRecipes();
     }
 
@@ -116,438 +118,438 @@ public class FurnitureConfig
     {
         @Name("Printer")
         @Comment("Enabled printer recipes.")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.printer")
+        @LangKey(PREFIX + "common.recipe.enabled.printer")
         public Printer printer = new Printer();
 
         @Name("Oven")
         @Comment("Enabled oven recipes.")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.oven")
+        @LangKey(PREFIX + "common.recipe.enabled.oven")
         public Oven oven = new Oven();
 
         @Name("Freezer")
         @Comment("Enabled freezer recipes.")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.freezer")
+        @LangKey(PREFIX + "common.recipe.enabled.freezer")
         public Freezer freezer = new Freezer();
 
         @Name("Minebay")
         @Comment("Enabled minebay recipes.")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.minebay")
+        @LangKey(PREFIX + "common.recipe.enabled.minebay")
         public Minebay minebay = new Minebay();
 
         @Name("Blender")
         @Comment("Enabled blender recipes.")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.blender")
+        @LangKey(PREFIX + "common.recipe.enabled.blender")
         public Blender blender = new Blender();
 
         @Name("Chopping Board")
         @Comment("Enabled chopping board recipes.")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.chopping_board")
+        @LangKey(PREFIX + "common.recipe.enabled.chopping_board")
         public ChoppingBoard choppingBoard = new ChoppingBoard();
 
         @Name("Dishwasher")
         @Comment("Enabled dishwasher recipes.")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher")
         public Dishwasher dishwasher = new Dishwasher();
 
         @Name("Microwave")
         @Comment("Enabled microwave recipes.")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.microwave")
+        @LangKey(PREFIX + "common.recipe.enabled.microwave")
         public Microwave microwave = new Microwave();
 
         @Name("Toaster")
         @Comment("Enabled toaster recipes.")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.toaster")
+        @LangKey(PREFIX + "common.recipe.enabled.toaster")
         public Toaster toaster = new Toaster();
 
         @Name("Washing Machine")
         @Comment("Enabled washing machine recipes.")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine")
         public WashingMachine washingMachine = new WashingMachine();
 
         @Name("Grill")
         @Comment("Enabled grill recipes.")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.grill")
+        @LangKey(PREFIX + "common.recipe.enabled.grill")
         public Grill grill = new Grill();
     }
 
     public static class Printer
     {
         @Name("Enchanted Book")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.printer.book.enchanted")
+        @LangKey(PREFIX + "common.recipe.enabled.printer.book.enchanted")
         public boolean bookEnchanted = true;
 
         @Name("Written Book")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.printer.book.written")
+        @LangKey(PREFIX + "common.recipe.enabled.printer.book.written")
         public boolean bookWritten = true;
     }
 
     public static class Oven
     {
         @Name("Beef -> Cooked Beef")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.oven.beef")
+        @LangKey(PREFIX + "common.recipe.enabled.oven.beef")
         public boolean beef = true;
 
         @Name("Porkchop -> Cooked Porkchop")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.oven.porkchop")
+        @LangKey(PREFIX + "common.recipe.enabled.oven.porkchop")
         public boolean porkchop = true;
 
         @Name("Potato -> Cooked Potato")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.oven.potato")
+        @LangKey(PREFIX + "common.recipe.enabled.oven.potato")
         public boolean potato = true;
 
         @Name("Chicken -> Cooked Chicken")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.oven.chicken")
+        @LangKey(PREFIX + "common.recipe.enabled.oven.chicken")
         public boolean chicken = true;
 
         @Name("Raw Fish -> Cooked Fish")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.oven.fish")
+        @LangKey(PREFIX + "common.recipe.enabled.oven.fish")
         public boolean fish = true;
 
         @Name("Raw Salmon -> Cooked Salmon")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.oven.salmon")
+        @LangKey(PREFIX + "common.recipe.enabled.oven.salmon")
         public boolean salmon = true;
 
         @Name("Flesh -> Cooked Flesh")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.oven.flesh")
+        @LangKey(PREFIX + "common.recipe.enabled.oven.flesh")
         public boolean flesh = true;
     }
 
     public static class Freezer
     {
         @Name("Water Bucket -> Ice")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.freezer.water_to_ice")
+        @LangKey(PREFIX + "common.recipe.enabled.freezer.water_to_ice")
         public boolean waterToIce = true;
 
         @Name("Ice -> Packet Ice")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.freezer.ice_to_packed")
+        @LangKey(PREFIX + "common.recipe.enabled.freezer.ice_to_packed")
         public boolean iceToPacked = true;
 
         @Name("Lava Bucket -> Obsidian")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.freezer.lava_to_obsidian")
+        @LangKey(PREFIX + "common.recipe.enabled.freezer.lava_to_obsidian")
         public boolean lavaToObsidian = true;
 
         @Name("Slime Ball -> Snow Ball")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.freezer.slime_to_snow")
+        @LangKey(PREFIX + "common.recipe.enabled.freezer.slime_to_snow")
         public boolean slimeToSnow = true;
 
         @Name("Poisonous Potato -> Potato")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.freezer.poisonous_to_potato")
+        @LangKey(PREFIX + "common.recipe.enabled.freezer.poisonous_to_potato")
         public boolean poisonousToPotato = true;
 
         @Name("Rotten Flesh -> Flesh")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.freezer.rotten_to_flesh")
+        @LangKey(PREFIX + "common.recipe.enabled.freezer.rotten_to_flesh")
         public boolean rottenToFlesh = true;
     }
 
     public static class Minebay
     {
         @Name("16 Hardened Clay for 1 Emerald")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.minebay.clay_for_emerald")
+        @LangKey(PREFIX + "common.recipe.enabled.minebay.clay_for_emerald")
         public boolean clayForEmerald = true;
 
         @Name("1 Skeleton Skull for 8 Emeralds")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.minebay.skull_for_emerald")
+        @LangKey(PREFIX + "common.recipe.enabled.minebay.skull_for_emerald")
         public boolean skullForEmerald = true;
 
         @Name("1 Saddle for 4 Emeralds")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.minebay.saddle_for_emerald")
+        @LangKey(PREFIX + "common.recipe.enabled.minebay.saddle_for_emerald")
         public boolean saddleForEmerald = true;
 
         @Name("1 Horse Spawn Egg for 8 Emeralds")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.minebay.horse_for_emerald")
+        @LangKey(PREFIX + "common.recipe.enabled.minebay.horse_for_emerald")
         public boolean horseForEmerald = true;
 
         @Name("1 Diamond Horse Armour for 8 Diamonds")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.minebay.horse_armour_for_diamond")
+        @LangKey(PREFIX + "common.recipe.enabled.minebay.horse_armour_for_diamond")
         public boolean horseArmourForDiamond = true;
 
         @Name("1 Experience Bottle for 1 Iron Ingot")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.minebay.xp_for_iron")
+        @LangKey(PREFIX + "common.recipe.enabled.minebay.xp_for_iron")
         public boolean xpForIron = true;
 
         @Name("4 Christmas Firework for 1 Iron Ingot")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.minebay.firework_for_iron")
+        @LangKey(PREFIX + "common.recipe.enabled.minebay.firework_for_iron")
         public boolean fireworkForIron = true;
 
         @Name("1 Silk Touch Book for 8 Emeralds")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.minebay.silk_touch_for_emerald")
+        @LangKey(PREFIX + "common.recipe.enabled.minebay.silk_touch_for_emerald")
         public boolean silkTouchForEmerald = true;
 
         @Name("2 Night Vision Potion for 1 Emerald")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.minebay.night_vision_for_emerald")
+        @LangKey(PREFIX + "common.recipe.enabled.minebay.night_vision_for_emerald")
         public boolean nightVisionForEmerald = true;
 
         @Name("1 Recipe Book for 1 Emerald")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.minebay.recipe_book_for_emerald")
+        @LangKey(PREFIX + "common.recipe.enabled.minebay.recipe_book_for_emerald")
         public boolean recipeBookForEmerald = true;
     }
 
     public static class Blender
     {
         @Name("Fruit Crush")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.blender.fruit")
+        @LangKey(PREFIX + "common.recipe.enabled.blender.fruit")
         public boolean fruit = true;
 
         @Name("Veggie Juice")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.blender.veggie")
+        @LangKey(PREFIX + "common.recipe.enabled.blender.veggie")
         public boolean veggie = true;
 
         @Name("Fishy Blend")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.blender.fish")
+        @LangKey(PREFIX + "common.recipe.enabled.blender.fish")
         public boolean fish = true;
 
         @Name("Energy Drink")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.blender.energy")
+        @LangKey(PREFIX + "common.recipe.enabled.blender.energy")
         public boolean energy = true;
     }
 
     public static class ChoppingBoard
     {
         @Name("Bread -> 6 Bread Slices")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.chopping_board.bread")
+        @LangKey(PREFIX + "common.recipe.enabled.chopping_board.bread")
         public boolean bread = true;
     }
 
     public static class Dishwasher
     {
         @Name("Bow")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.bow")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.bow")
         public boolean bow = true;
 
         @Name("Wooden Pickaxe")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.wood.pickaxe")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.wood.pickaxe")
         public boolean woodPickaxe = true;
 
         @Name("Wooden Axe")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.wood.axe")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.wood.axe")
         public boolean woodAxe = true;
 
         @Name("Wooden Shovel")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.wood.shovel")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.wood.shovel")
         public boolean woodShovel = true;
 
         @Name("Wooden Hoe")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.wood.hoe")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.wood.hoe")
         public boolean woodHoe = true;
 
         @Name("Wooden Sword")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.wood.sword")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.wood.sword")
         public boolean woodSword = true;
 
         @Name("Stone Pickaxe")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.stone.pickaxe")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.stone.pickaxe")
         public boolean stonePickaxe = true;
 
         @Name("Stone Axe")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.stone.axe")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.stone.axe")
         public boolean stoneAxe = true;
 
         @Name("Stone Shovel")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.stone.shovel")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.stone.shovel")
         public boolean stoneShovel = true;
 
         @Name("Stone Hoe")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.stone.hoe")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.stone.hoe")
         public boolean stoneHoe = true;
 
         @Name("Stone Sword")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.stone.sword")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.stone.sword")
         public boolean stoneSword = true;
 
         @Name("Iron Pickaxe")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.iron.pickaxe")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.iron.pickaxe")
         public boolean ironPickaxe = true;
 
         @Name("Iron Axe")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.iron.axe")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.iron.axe")
         public boolean ironAxe = true;
 
         @Name("Iron Shovel")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.iron.shovel")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.iron.shovel")
         public boolean ironShovel = true;
 
         @Name("Iron Hoe")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.iron.hoe")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.iron.hoe")
         public boolean ironHoe = true;
 
         @Name("Iron Sword")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.iron.sword")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.iron.sword")
         public boolean ironSword = true;
 
         @Name("Golden Pickaxe")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.gold.pickaxe")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.gold.pickaxe")
         public boolean goldPickaxe = true;
 
         @Name("Golden Axe")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.gold.axe")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.gold.axe")
         public boolean goldAxe = true;
 
         @Name("Golden Shovel")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.gold.shovel")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.gold.shovel")
         public boolean goldShovel = true;
 
         @Name("Golden Hoe")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.gold.hoe")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.gold.hoe")
         public boolean goldhoe = true;
 
         @Name("Golden Sword")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.gold.sword")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.gold.sword")
         public boolean goldSword = true;
 
         @Name("Diamond Pickaxe")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.diamond.pickaxe")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.diamond.pickaxe")
         public boolean diamondPickaxe = true;
 
         @Name("Diamond Axe")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.diamond.axe")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.diamond.axe")
         public boolean diamondAxe = true;
 
         @Name("Diamond Shovel")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.diamond.shovel")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.diamond.shovel")
         public boolean diamondShovel = true;
 
         @Name("Diamond Hoe")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.diamond.hoe")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.diamond.hoe")
         public boolean diamondHoe = true;
 
         @Name("Diamond Sword")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.diamond.sword")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.diamond.sword")
         public boolean diamondSword = true;
 
         @Name("Fishing Rod")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.fishing_rod")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.fishing_rod")
         public boolean fishingRod = true;
 
         @Name("Flint and Steel")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.flint_and_steel")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.flint_and_steel")
         public boolean flintAndSteel = true;
 
         @Name("Shears")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.shears")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.shears")
         public boolean shears = true;
 
         @Name("Shield")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.dishwasher.shield")
+        @LangKey(PREFIX + "common.recipe.enabled.dishwasher.shield")
         public boolean shield = true;
     }
 
     public static class Microwave
     {
         @Name("Beef -> Cooked Beef")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.microwave.beef")
+        @LangKey(PREFIX + "common.recipe.enabled.microwave.beef")
         public boolean beef = true;
 
         @Name("Potato -> Baked Potato")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.microwave.potato")
+        @LangKey(PREFIX + "common.recipe.enabled.microwave.potato")
         public boolean potato = true;
     }
 
     public static class Toaster
     {
         @Name("Bread Slice -> Toast")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.toaster.toast")
+        @LangKey(PREFIX + "common.recipe.enabled.toaster.toast")
         public boolean toast = true;
     }
 
     public static class WashingMachine
     {
         @Name("Leather Helmet")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.leather.helmet")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.leather.helmet")
         public boolean leatherHelmet = true;
 
         @Name("Leather Chestplate")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.leather.chestplate")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.leather.chestplate")
         public boolean leatherChestplate = true;
 
         @Name("Leather Leggings")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.leather.leggings")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.leather.leggings")
         public boolean leatherLeggings = true;
 
         @Name("Leather Boots")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.leather.boots")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.leather.boots")
         public boolean leatherBoots = true;
 
         @Name("Chainmail Helmet")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.chainmail.helmet")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.chainmail.helmet")
         public boolean chainmailHelmet = true;
 
         @Name("Chainmail Chestplate")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.chainmail.chestplate")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.chainmail.chestplate")
         public boolean chainmailChestplate = true;
 
         @Name("Chainmail Leggings")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.chainmail.leggings")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.chainmail.leggings")
         public boolean chainmailLeggings = true;
 
         @Name("Chainmail Boots")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.chainmail.boots")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.chainmail.boots")
         public boolean chainmailBoots = true;
 
         @Name("Iron Helmet")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.iron.helmet")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.iron.helmet")
         public boolean ironHelmet = true;
 
         @Name("Iron Chestplate")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.iron.chestplate")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.iron.chestplate")
         public boolean ironChestplate = true;
 
         @Name("Iron Leggings")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.iron.leggings")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.iron.leggings")
         public boolean ironLeggings = true;
 
         @Name("Iron Boots")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.iron.boots")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.iron.boots")
         public boolean ironBoots = true;
 
         @Name("Golden Helmet")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.gold.helmet")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.gold.helmet")
         public boolean goldHelmet = true;
 
         @Name("Golden Chestplate")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.gold.chestplate")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.gold.chestplate")
         public boolean goldChestplate = true;
 
         @Name("Golden Leggings")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.gold.leggings")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.gold.leggings")
         public boolean goldLeggings = true;
 
         @Name("Golden Boots")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.gold.boots")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.gold.boots")
         public boolean goldBoots = true;
 
         @Name("Diamond Helmet")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.diamond.helmet")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.diamond.helmet")
         public boolean diamondHelmet = true;
 
         @Name("Diamond Chestplate")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.diamond.chestplate")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.diamond.chestplate")
         public boolean diamondChestplate = true;
 
         @Name("Diamond Leggings")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.diamond.leggings")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.diamond.leggings")
         public boolean diamondLeggings = true;
 
         @Name("Diamond Boots")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.diamond.boots")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.diamond.boots")
         public boolean diamondBoots = true;
 
         @Name("Elytra")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.washing_machine.elytra")
+        @LangKey(PREFIX + "common.recipe.enabled.washing_machine.elytra")
         public boolean elytra = true;
     }
 
     public static class Grill
     {
         @Name("Beef -> Cooked Beef")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.grill.beef")
+        @LangKey(PREFIX + "common.recipe.enabled.grill.beef")
         public boolean beef = true;
 
         @Name("Sausage -> Cooked Sausage")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.grill.sausage")
+        @LangKey(PREFIX + "common.recipe.enabled.grill.sausage")
         public boolean sausage = true;
 
         @Name("Raw Kebab -> Cooked Kebab")
-        @LangKey(Reference.MOD_ID + ".config.common.recipe.enabled.grill.kebab")
+        @LangKey(PREFIX + "common.recipe.enabled.grill.kebab")
         public boolean kebab = true;
     }
 
