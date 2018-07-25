@@ -118,7 +118,7 @@ public class GuiPackage extends GuiContainer
             }
             else
             {
-                this.player.sendMessage(new TextComponentString(I18n.format("cfm.message.empty_package")));
+                this.player.sendMessage(new TextComponentString(I18n.format("cfm.message.package_empty")));
             }
         }
     }

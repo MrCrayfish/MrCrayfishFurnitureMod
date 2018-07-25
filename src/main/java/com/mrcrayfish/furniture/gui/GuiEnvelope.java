@@ -122,7 +122,7 @@ public class GuiEnvelope extends GuiContainer
             }
             else
             {
-                this.player.sendMessage(new TextComponentString(I18n.format("cfm.message.empty_envelope")));
+                this.player.sendMessage(new TextComponentString(I18n.format("cfm.message.envelope_empty")));
             }
         }
     }

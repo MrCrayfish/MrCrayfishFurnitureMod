@@ -120,7 +120,7 @@ public class GuiPresent extends GuiContainer
             }
             else
             {
-                this.player.sendMessage(new TextComponentString(I18n.format("cfm.message.empty_present")));
+                this.player.sendMessage(new TextComponentString(I18n.format("cfm.message.present_empty")));
             }
         }
     }
