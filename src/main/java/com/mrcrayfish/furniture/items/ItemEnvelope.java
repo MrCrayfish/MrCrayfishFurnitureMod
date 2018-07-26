@@ -20,6 +20,8 @@ package com.mrcrayfish.furniture.items;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.gui.inventory.InventoryEnvelope;
 import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
+
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
@@ -57,12 +59,12 @@ public class ItemEnvelope extends Item implements IMail
             {
                 if(player.isSneaking())
                 {
-                    player.sendMessage(new TextComponentString("You must sign the envelope before depositing it."));
+                    player.sendMessage(new TextComponentString(I18n.format("cfm.message.envelope_sign")));
                 }
             }
             else
             {
-                player.sendMessage(new TextComponentString("To open the envelope, make sure you are not highlighting any block."));
+                player.sendMessage(new TextComponentString(I18n.format("cfm.message.envelope_open")));
             }
         }
         return EnumActionResult.SUCCESS;

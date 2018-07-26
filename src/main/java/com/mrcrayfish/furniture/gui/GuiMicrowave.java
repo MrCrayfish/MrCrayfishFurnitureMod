@@ -27,6 +27,7 @@ import com.mrcrayfish.furniture.tileentity.TileEntityMicrowave;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
@@ -55,7 +56,7 @@ public class GuiMicrowave extends GuiContainer
         int posX = width / 2;
         int posY = height / 2;
 
-        button_start = new GuiButton(0, posX + 30, posY - 48, 32, 20, "Start");
+        button_start = new GuiButton(0, posX + 30, posY - 48, 32, 20, I18n.format("cfm.button.start"));
         buttonList.add(button_start);
     }
 
@@ -89,14 +90,14 @@ public class GuiMicrowave extends GuiContainer
 
         if(isPointInRegion(120, 26, 27, 5, mouseX, mouseY))
         {
-            drawHoveringText((tileEntityMicrowave.progress * 27 / 10) + "% Complete", mouseX, mouseY);
+            drawHoveringText(I18n.format("cfm.gui.progress", tileEntityMicrowave.progress * 27 / 10, "100%"), mouseX, mouseY);
         }
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        this.fontRenderer.drawString("Inventory", 8, 80, 4210752);
+        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, 80, 4210752);
     }
 
     @Override
@@ -113,11 +114,11 @@ public class GuiMicrowave extends GuiContainer
 
         if(tileEntityMicrowave.isCooking())
         {
-            button_start.displayString = "Stop";
+            button_start.displayString = I18n.format("cfm.button.stop");
         }
         else
         {
-            button_start.displayString = "Start";
+            button_start.displayString = I18n.format("cfm.button.start");
         }
     }
 

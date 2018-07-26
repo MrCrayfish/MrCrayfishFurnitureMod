@@ -10,8 +10,8 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "D": {
-      "item": "minecraft:planks",
-      "data": 0
+      "item": "minecraft:log2",
+      "data": 1
     },
     "O": {
       "item": "minecraft:planks",

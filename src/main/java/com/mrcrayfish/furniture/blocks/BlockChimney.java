@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.Locale;
 import java.util.Random;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
@@ -9,8 +10,10 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -100,6 +103,12 @@ public class BlockChimney extends Block
         return new BlockStateContainer(this, new IProperty[]{TYPE});
     }
 
+    @Override
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
+    {
+        return BlockFaceShape.UNDEFINED;
+    }
+
     public enum ChimneyType implements IStringSerializable
     {
         TOP,
@@ -108,7 +117,7 @@ public class BlockChimney extends Block
         @Override
         public String getName()
         {
-            return this.toString().toLowerCase();
+            return this.toString().toLowerCase(Locale.US);
         }
     }
 

@@ -38,6 +38,8 @@ public class FurnitureSounds
     public static SoundEvent boing;
     public static SoundEvent sizzle;
     public static SoundEvent light_switch;
+    public static SoundEvent sliding_door_open;
+    public static SoundEvent sliding_door_close;
 
     public static void register()
     {
@@ -71,6 +73,8 @@ public class FurnitureSounds
         boing = registerSound("cfm:boing");
         sizzle = registerSound("cfm:sizzle");
         light_switch = registerSound("cfm:light_switch");
+        sliding_door_open = registerSound("cfm:sliding_door_open");
+        sliding_door_close = registerSound("cfm:sliding_door_close");
     }
 
     public static SoundEvent getRandomFart(Random rand)

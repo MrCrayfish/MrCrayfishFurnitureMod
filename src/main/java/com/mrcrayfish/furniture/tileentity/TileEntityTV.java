@@ -19,15 +19,9 @@ package com.mrcrayfish.furniture.tileentity;
 
 import com.mrcrayfish.furniture.blocks.tv.Channels;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
-public class TileEntityTV extends TileEntity
+public class TileEntityTV extends TileEntitySyncClient
 {
     private int channel = 0;
 
@@ -75,23 +69,5 @@ public class TileEntityTV extends TileEntity
         setChannel(nextChannel);
         markDirty();
         TileEntityUtil.markBlockForUpdate(world, pos);
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-    {
-        this.readFromNBT(pkt.getNbtCompound());
-    }
-
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
-        return new SPacketUpdateTileEntity(pos, getBlockMetadata(), this.writeToNBT(new NBTTagCompound()));
-    }
-
-    @Override
-    public NBTTagCompound getUpdateTag()
-    {
-        return this.writeToNBT(new NBTTagCompound());
     }
 }

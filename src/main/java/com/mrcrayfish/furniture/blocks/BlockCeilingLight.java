@@ -24,8 +24,10 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -38,6 +40,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Locale;
 
 public class BlockCeilingLight extends Block implements IPowered
 {
@@ -89,12 +93,12 @@ public class BlockCeilingLight extends Block implements IPowered
                 if(mode == Mode.RIGHT_CLICK)
                 {
                     worldIn.setBlockState(pos, state.withProperty(MODE, Mode.REDSTONE));
-                    playerIn.sendMessage(new TextComponentString("Ceiling Light now in Redstone mode"));
+                    playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.ceiling_light.mode1")));
                 }
                 else
                 {
                     worldIn.setBlockState(pos, state.withProperty(MODE, Mode.RIGHT_CLICK));
-                    playerIn.sendMessage(new TextComponentString("Ceiling Light now in Right Click mode"));
+                    playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.ceiling_light.mode2")));
                 }
             }
             else if(((Mode) state.getValue(MODE)) == Mode.RIGHT_CLICK)
@@ -183,6 +187,12 @@ public class BlockCeilingLight extends Block implements IPowered
         }
     }
 
+    @Override
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
+    {
+        return BlockFaceShape.UNDEFINED;
+    }
+
     public enum Mode implements IStringSerializable
     {
         RIGHT_CLICK,
@@ -191,7 +201,7 @@ public class BlockCeilingLight extends Block implements IPowered
         @Override
         public String getName()
         {
-            return toString().toLowerCase();
+            return toString().toLowerCase(Locale.US);
         }
     }
 }

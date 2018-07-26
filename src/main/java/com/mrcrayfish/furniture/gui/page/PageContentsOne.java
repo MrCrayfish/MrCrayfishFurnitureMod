@@ -5,6 +5,7 @@ import com.mrcrayfish.furniture.gui.RecipePage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.resources.I18n;
 
 import java.util.List;
 
@@ -32,19 +33,20 @@ public class PageContentsOne extends RecipePage
     @Override
     public void init(List<GuiButton> buttonList)
     {
+        String buttonText = I18n.format("cfm.recipe_book.button.go");
         int leftPageCenter = (book.width) / 2 - (book.bookWidth / 2);
-        this.buttonOven = new GuiButton(0, leftPageCenter + 35, 40, 20, 20, "Go");
-        this.buttonFreezer = new GuiButton(0, leftPageCenter + 35, 64, 20, 20, "Go");
-        this.buttonMineBay = new GuiButton(0, leftPageCenter + 35, 88, 20, 20, "Go");
-        this.buttonPrinter = new GuiButton(0, leftPageCenter + 35, 112, 20, 20, "Go");
-        this.buttonChoppingBoard = new GuiButton(0, leftPageCenter + 35, 136, 20, 20, "Go");
+        this.buttonOven = new GuiButton(0, leftPageCenter + 25, 40, 35, 20, buttonText);
+        this.buttonFreezer = new GuiButton(0, leftPageCenter + 25, 64, 35, 20, buttonText);
+        this.buttonMineBay = new GuiButton(0, leftPageCenter + 25, 88, 35, 20, buttonText);
+        this.buttonPrinter = new GuiButton(0, leftPageCenter + 25, 112, 35, 20, buttonText);
+        this.buttonChoppingBoard = new GuiButton(0, leftPageCenter + 25, 136, 35, 20, buttonText);
 
         int rightPageCenter = (book.width) / 2 + (book.bookWidth / 2);
-        this.buttonToaster = new GuiButton(0, rightPageCenter + 35, 40, 20, 20, "Go");
-        this.buttonBlender = new GuiButton(0, rightPageCenter + 35, 64, 20, 20, "Go");
-        this.buttonMicrowave = new GuiButton(0, rightPageCenter + 35, 88, 20, 20, "Go");
-        this.buttonDishwasher = new GuiButton(0, rightPageCenter + 35, 112, 20, 20, "Go");
-        this.buttonWashingMachine = new GuiButton(0, rightPageCenter + 35, 136, 20, 20, "Go");
+        this.buttonToaster = new GuiButton(0, rightPageCenter + 25, 40, 35, 20, buttonText);
+        this.buttonBlender = new GuiButton(0, rightPageCenter + 25, 64, 35, 20, buttonText);
+        this.buttonMicrowave = new GuiButton(0, rightPageCenter + 25, 88, 35, 20, buttonText);
+        this.buttonDishwasher = new GuiButton(0, rightPageCenter + 25, 112, 35, 20, buttonText);
+        this.buttonWashingMachine = new GuiButton(0, rightPageCenter + 25, 136, 35, 20, buttonText);
 
         onClose();
 
@@ -65,18 +67,18 @@ public class PageContentsOne extends RecipePage
     {
         int leftPageCenter = (book.width) / 2 - (book.bookWidth / 2);
         FontRenderer fontRendererObj = Minecraft.getMinecraft().fontRenderer;
-        fontRendererObj.drawString("Oven", leftPageCenter - 55, 45, 16739840);
-        fontRendererObj.drawString("Freezer", leftPageCenter - 55, 45 + (1 * 24), 16739840);
-        fontRendererObj.drawString("MineBay", leftPageCenter - 55, 45 + (2 * 24), 16739840);
-        fontRendererObj.drawString("Printer", leftPageCenter - 55, 45 + (3 * 24), 16739840);
-        fontRendererObj.drawString("Chopping Board", leftPageCenter - 55, 45 + (4 * 24), 16739840);
+        fontRendererObj.drawString(I18n.format("tile.oven.name"), leftPageCenter - 55, 45, 16739840);
+        fontRendererObj.drawString(I18n.format("cfm.recipe_book.page.freezer"), leftPageCenter - 55, 45 + (1 * 24), 16739840);
+        fontRendererObj.drawString(I18n.format("cfm.recipe_book.page.minebay"), leftPageCenter - 55, 45 + (2 * 24), 16739840);
+        fontRendererObj.drawString(I18n.format("tile.printer.name"), leftPageCenter - 55, 45 + (3 * 24), 16739840);
+        fontRendererObj.drawString(I18n.format("tile.chopping_board.name"), leftPageCenter - 55, 45 + (4 * 24), 16739840);
 
         int rightPageCenter = (book.width) / 2 + (book.bookWidth / 2);
-        fontRendererObj.drawString("Toaster", rightPageCenter - 55, 45, 16739840);
-        fontRendererObj.drawString("Blender", rightPageCenter - 55, 45 + (1 * 24), 16739840);
-        fontRendererObj.drawString("Microwave", rightPageCenter - 55, 45 + (2 * 24), 16739840);
-        fontRendererObj.drawString("Dishwasher", rightPageCenter - 55, 45 + (3 * 24), 16739840);
-        fontRendererObj.drawString("Washing Machine", rightPageCenter - 55, 45 + (4 * 24), 16739840);
+        fontRendererObj.drawString(I18n.format("tile.toaster.name"), rightPageCenter - 55, 45, 16739840);
+        fontRendererObj.drawString(I18n.format("tile.blender.name"), rightPageCenter - 55, 45 + (1 * 24), 16739840);
+        fontRendererObj.drawString(I18n.format("tile.microwave.name"), rightPageCenter - 55, 45 + (2 * 24), 16739840);
+        fontRendererObj.drawString(I18n.format("tile.dishwasher.name"), rightPageCenter - 55, 45 + (3 * 24), 16739840);
+        fontRendererObj.drawString(I18n.format("tile.washing_machine.name"), rightPageCenter - 55, 45 + (4 * 24), 16739840);
     }
 
     @Override
@@ -163,6 +165,6 @@ public class PageContentsOne extends RecipePage
     @Override
     public String getTitle()
     {
-        return "Contents";
+        return I18n.format("cfm.recipe_book.page.contents");
     }
 }

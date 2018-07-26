@@ -4,6 +4,7 @@ import com.mrcrayfish.furniture.api.RecipeData;
 import com.mrcrayfish.furniture.gui.GuiRecipeBook;
 import com.mrcrayfish.furniture.gui.RecipePage;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 
 public class PageToaster extends RecipePage
 {
@@ -45,6 +46,6 @@ public class PageToaster extends RecipePage
     @Override
     public String getTitle()
     {
-        return "Toaster";
+        return I18n.format("tile.toaster.name");
     }
 }

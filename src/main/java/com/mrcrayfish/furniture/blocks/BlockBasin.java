@@ -29,6 +29,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -224,7 +225,7 @@ public class BlockBasin extends BlockFurniture
                     }
                     else if(!worldIn.isRemote)
                     {
-                        playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the basin is on to fill it. Alternatively you can use a water bucket to fill it."));
+                        playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.basin")));
                     }
                 }
             }
@@ -249,7 +250,7 @@ public class BlockBasin extends BlockFurniture
                 }
                 else if(!worldIn.isRemote)
                 {
-                    playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the basin is on to fill it. Alternatively you can use a water bucket to fill it."));
+                    playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.basin")));
                 }
             }
         }

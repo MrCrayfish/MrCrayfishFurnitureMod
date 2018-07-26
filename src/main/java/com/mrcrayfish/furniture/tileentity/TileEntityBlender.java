@@ -29,13 +29,10 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
 
-public class TileEntityBlender extends TileEntity implements ITickable, ISimpleInventory
+public class TileEntityBlender extends TileEntitySyncClient implements ITickable, ISimpleInventory
 {
     public ItemStack[] ingredients = new ItemStack[4];
 
@@ -223,24 +220,6 @@ public class TileEntityBlender extends TileEntity implements ITickable, ISimpleI
         tagCompound.setInteger("CurrentGreen", currentGreen);
         tagCompound.setInteger("CurrentBlue", currentBlue);
         return tagCompound;
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
-    {
-        this.readFromNBT(pkt.getNbtCompound());
-    }
-
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
-        return new SPacketUpdateTileEntity(pos, getBlockMetadata(), this.writeToNBT(new NBTTagCompound()));
-    }
-
-    @Override
-    public NBTTagCompound getUpdateTag()
-    {
-        return this.writeToNBT(new NBTTagCompound());
     }
 
     @Override

@@ -4,6 +4,7 @@ import com.mrcrayfish.furniture.api.RecipeData;
 import com.mrcrayfish.furniture.gui.GuiRecipeBook;
 import com.mrcrayfish.furniture.gui.RecipePage;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 
 public class PageMicrowave extends RecipePage
 {
@@ -45,6 +46,6 @@ public class PageMicrowave extends RecipePage
     @Override
     public String getTitle()
     {
-        return "Microwave";
+        return I18n.format("tile.microwave.name");
     }
 }

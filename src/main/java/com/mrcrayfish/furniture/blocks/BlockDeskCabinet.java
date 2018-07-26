@@ -24,6 +24,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Author: MrCrayfish
@@ -44,19 +45,19 @@ public class BlockDeskCabinet extends BlockFurnitureTile implements IDesk
     {
         if(GuiScreen.isShiftKeyDown())
         {
-            String info = I18n.format("tile.desk_cabinet.info");
+            String info = I18n.format("cfm.desk_cabinet.info");
             tooltip.addAll(Minecraft.getMinecraft().fontRenderer.listFormattedStringToWidth(info, 150));
         }
         else
         {
-            tooltip.add(TextFormatting.YELLOW + "Hold SHIFT for Info");
+            tooltip.add(TextFormatting.YELLOW + I18n.format("cfm.info"));
         }
     }
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if(worldIn.isRemote)
+        if(!worldIn.isRemote)
         {
             TileEntity tileEntity = worldIn.getTileEntity(pos);
             if(tileEntity instanceof TileEntityDeskCabinet)
@@ -119,7 +120,7 @@ public class BlockDeskCabinet extends BlockFurnitureTile implements IDesk
         @Override
         public String getName()
         {
-            return this.toString().toLowerCase();
+            return this.toString().toLowerCase(Locale.US);
         }
     }
 }

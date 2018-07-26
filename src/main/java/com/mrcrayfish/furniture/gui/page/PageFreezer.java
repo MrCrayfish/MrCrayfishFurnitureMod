@@ -4,6 +4,7 @@ import com.mrcrayfish.furniture.api.RecipeData;
 import com.mrcrayfish.furniture.gui.GuiRecipeBook;
 import com.mrcrayfish.furniture.gui.RecipePage;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 
 public class PageFreezer extends RecipePage
 {
@@ -45,6 +46,6 @@ public class PageFreezer extends RecipePage
     @Override
     public String getTitle()
     {
-        return "Freezer";
+        return I18n.format("cfm.recipe_book.page.freezer");
     }
 }

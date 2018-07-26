@@ -113,11 +113,10 @@
 				"model": "cfm:couch_none"
 			},
 			"corner_right": {
-				"model": "cfm:couch_corner"
+				"model": "cfm:couch_corner_right"
 			},
 			"corner_left": {
-				"model": "cfm:couch_corner",
-				"y": 270
+				"model": "cfm:couch_corner_left"
 			}
 		}
 	}

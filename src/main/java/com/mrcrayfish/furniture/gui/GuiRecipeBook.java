@@ -27,6 +27,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -295,8 +296,8 @@ public class GuiRecipeBook extends GuiScreen
         int i = (this.width - 18) / 2;
         this.buttonNextPage = new NextPageButton(1, i + 110, 160, true);
         this.buttonPreviousPage = new NextPageButton(2, i - 110, 160, false);
-        this.buttonTutorial = new GuiButton(3, i + 50, 135, 60, 20, "Click here");
-        this.buttonContents = new GuiButton(14, i - 60, 152, 50, 20, "Contents");
+        this.buttonTutorial = new GuiButton(3, i + 50, 135, 60, 20, I18n.format("cfm.recipe_book.button.tutorial"));
+        this.buttonContents = new GuiButton(14, i - 60, 152, 50, 20, I18n.format("cfm.recipe_book.page.contents"));
 
         this.buttonList.add(buttonNextPage);
         this.buttonList.add(buttonPreviousPage);

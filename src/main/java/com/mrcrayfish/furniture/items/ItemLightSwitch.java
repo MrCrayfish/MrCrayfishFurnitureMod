@@ -44,14 +44,14 @@ public class ItemLightSwitch extends ItemBlock
     {
         if(GuiScreen.isShiftKeyDown())
         {
-            String info = I18n.format("tooltip.cfm.light_switch.how_to");
+            String info = I18n.format("cfm.light_switch.info");
             tooltip.addAll(Minecraft.getMinecraft().fontRenderer.listFormattedStringToWidth(info, 150));
         }
         else
         {
             String info = I18n.format("tooltip.cfm.light_switch.desc");
             tooltip.addAll(Minecraft.getMinecraft().fontRenderer.listFormattedStringToWidth(info, 150));
-            tooltip.add(TextFormatting.YELLOW + I18n.format("tooltip.cfm.how_to"));
+            tooltip.add(TextFormatting.YELLOW + I18n.format("cfm.info"));
         }
     }
 

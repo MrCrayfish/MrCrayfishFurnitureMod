@@ -26,6 +26,7 @@ import com.mrcrayfish.furniture.tileentity.TileEntityComputer;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -77,7 +78,7 @@ public class BlockComputer extends BlockFurnitureTile
             {
                 if(!worldIn.isRemote)
                 {
-                    playerIn.sendMessage(new TextComponentString("Someone is using the computer."));
+                    playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.computer")));
                 }
             }
         }
