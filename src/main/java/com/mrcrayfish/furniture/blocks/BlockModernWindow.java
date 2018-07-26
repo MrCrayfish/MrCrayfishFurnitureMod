@@ -1,14 +1,17 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
 /**
  * Author: MrCrayfish
@@ -46,17 +49,23 @@ public class BlockModernWindow extends BlockPane
         state = state.withProperty(EAST, this.attachesTo(worldIn, worldIn.getBlockState(pos.east()), pos.east(), EnumFacing.WEST));
         state = state.withProperty(SOUTH, this.attachesTo(worldIn, worldIn.getBlockState(pos.south()), pos.south(), EnumFacing.NORTH));
         state = state.withProperty(WEST, this.attachesTo(worldIn, worldIn.getBlockState(pos.west()), pos.west(), EnumFacing.EAST));
-        state = state.withProperty(PANE_NORTH, worldIn.getBlockState(pos.north()).getBlock() instanceof BlockPane);
-        state = state.withProperty(PANE_EAST, worldIn.getBlockState(pos.east()).getBlock() instanceof BlockPane);
-        state = state.withProperty(PANE_SOUTH, worldIn.getBlockState(pos.south()).getBlock() instanceof BlockPane);
-        state = state.withProperty(PANE_WEST, worldIn.getBlockState(pos.west()).getBlock() instanceof BlockPane);
-        state = state.withProperty(PANE_UP, worldIn.getBlockState(pos.up()).getBlock() instanceof BlockPane);
-        state = state.withProperty(PANE_DOWN, worldIn.getBlockState(pos.down()).getBlock() instanceof BlockPane);
+        state = state.withProperty(PANE_NORTH, this.attachesToBlock(worldIn, pos.north()));
+        state = state.withProperty(PANE_EAST, this.attachesToBlock(worldIn, pos.east()));
+        state = state.withProperty(PANE_SOUTH, this.attachesToBlock(worldIn, pos.south()));
+        state = state.withProperty(PANE_WEST, this.attachesToBlock(worldIn, pos.west()));
+        state = state.withProperty(PANE_UP, this.attachesToBlock(worldIn, pos.up()));
+        state = state.withProperty(PANE_DOWN, this.attachesToBlock(worldIn, pos.down()));
         return state;
     }
 
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, NORTH, EAST, WEST, SOUTH, PANE_NORTH, PANE_EAST, PANE_SOUTH, PANE_WEST, PANE_UP, PANE_DOWN);
+    }
+
+    private boolean attachesToBlock(IBlockAccess world, BlockPos pos)
+    {
+        Block block = world.getBlockState(pos).getBlock();
+        return block instanceof BlockPane || block instanceof BlockModernSlidingDoor;
     }
 }
