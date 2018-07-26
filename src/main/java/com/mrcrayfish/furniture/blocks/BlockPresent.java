@@ -35,6 +35,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -95,7 +96,7 @@ public class BlockPresent extends Block implements ITileEntityProvider
             world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 0.75F, 1.0F, false);
             if(world.isRemote)
             {
-                player.sendMessage(new TextComponentString(TextFormatting.GREEN + "Merry Christmas" + TextFormatting.RESET + " from " + TextFormatting.RED + present.ownerName));
+                player.sendMessage(new TextComponentString(I18n.format("cfm.message.present_christmas", TextFormatting.RED + present.ownerName)));
             }
             Triggers.trigger(Triggers.UNWRAP_PRESENT, player);
         }

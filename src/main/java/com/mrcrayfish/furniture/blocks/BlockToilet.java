@@ -26,6 +26,7 @@ import com.mrcrayfish.furniture.util.SittableUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -85,7 +86,7 @@ public class BlockToilet extends BlockFurniture
             if(SittableUtil.sitOnBlockWithRotationOffset(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0.4D, getMetaFromState(state), 0.1D))
             {
                 if(worldIn.isRemote)
-                    playerIn.sendMessage(new TextComponentString(TextFormatting.YELLOW + "Press " + Keyboard.getKeyName(InputHandler.KEY_FART.getKeyCode()) + " for Farts."));
+                    playerIn.sendMessage(new TextComponentString(TextFormatting.YELLOW + I18n.format("cfm.message.toilet", Keyboard.getKeyName(InputHandler.KEY_FART.getKeyCode()))));
                 worldIn.updateComparatorOutputLevel(pos, this);
             }
         }

@@ -21,6 +21,7 @@ import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -64,12 +65,12 @@ public class BlockTap extends BlockFurniture
                 }
                 else
                 {
-                    playerIn.sendMessage(new TextComponentString("Something is blocking the tap."));
+                    playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.tap_blocked")));
                 }
             }
             else
             {
-                playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the tap is on to use it."));
+                playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.tap_nowater")));
             }
         }
         return true;

@@ -19,6 +19,7 @@ package com.mrcrayfish.furniture.network.message;
 
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagString;
@@ -64,7 +65,7 @@ public class MessagePresentContents implements IMessage, IMessageHandler<Message
         ItemStack signedPresent = new ItemStack(FurnitureBlocks.PRESENT, 1, present.getMetadata());
         signedPresent.setTagCompound(present.getTagCompound());
         signedPresent.setTagInfo("Author", new NBTTagString(player.getName()));
-        signedPresent.setStackDisplayName(TextFormatting.GREEN + "Wrapped Present");
+        signedPresent.setStackDisplayName(TextFormatting.GREEN + I18n.format("tile.present_wrapped.name"));
         player.inventory.setInventorySlotContents(player.inventory.currentItem, signedPresent);
 
         return null;

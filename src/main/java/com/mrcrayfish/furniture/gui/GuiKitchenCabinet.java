@@ -19,6 +19,7 @@ package com.mrcrayfish.furniture.gui;
 
 import com.mrcrayfish.furniture.gui.containers.ContainerCabinet;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -45,8 +46,8 @@ public class GuiKitchenCabinet extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        this.fontRenderer.drawString("Kitchen Cabinet", (this.xSize / 2) - 44, 6, 4210752);
-        this.fontRenderer.drawString("Inventory", 8, this.ySize - 94, 4210752);
+        this.fontRenderer.drawString(I18n.format("tile.cabinet_kitchen.name"), (this.xSize / 2) - 44, 6, 4210752);
+        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, this.ySize - 94, 4210752);
     }
 
     @Override

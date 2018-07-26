@@ -31,6 +31,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.vertex.VertexFormat;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
@@ -60,7 +61,7 @@ public class GuiDishwasher extends GuiContainer
         int posX = width / 2;
         int posY = height / 2;
 
-        button_start = new GuiButton(0, posX - 35, posY - 109, 32, 20, "Start");
+        button_start = new GuiButton(0, posX - 35, posY - 109, 32, 20, I18n.format("cfm.button.start"));
         buttonList.add(button_start);
     }
 
@@ -96,24 +97,24 @@ public class GuiDishwasher extends GuiContainer
         {
             if(tileEntityDishwasher.isWashing())
             {
-                drawHoveringText(Arrays.asList(new String[]{"Running"}), mouseX, mouseY);
+                drawHoveringText(I18n.format("cfm.gui.run"), mouseX, mouseY);
             }
             else
             {
-                drawHoveringText(Arrays.asList(new String[]{"Stopped"}), mouseX, mouseY);
+                drawHoveringText(I18n.format("cfm.gui.stop"), mouseX, mouseY);
             }
         }
 
         if(isPointInRegion(129, 39, 7, 55, mouseX, mouseY))
         {
-            drawHoveringText(Arrays.asList(new String[]{"Soap: " + tileEntityDishwasher.timeRemaining + "/5000"}), mouseX, mouseY);
+            drawHoveringText(I18n.format("cfm.gui.soap_level", tileEntityDishwasher.timeRemaining), mouseX, mouseY);
         }
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        this.fontRenderer.drawString("Inventory", 8, 135, 4210752);
+        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, 135, 4210752);
     }
 
     @Override
@@ -140,12 +141,12 @@ public class GuiDishwasher extends GuiContainer
 
         if(tileEntityDishwasher.isWashing())
         {
-            button_start.displayString = "Stop";
+            button_start.displayString = I18n.format("cfm.button.stop");
             drawColour(l + 37, i1 + 9, 11, 11, -16711936);
         }
         else
         {
-            button_start.displayString = "Start";
+            button_start.displayString = I18n.format("cfm.button.start");
             drawColour(l + 37, i1 + 9, 11, 11, -65280);
         }
     }
