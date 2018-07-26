@@ -24,6 +24,7 @@ import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -104,14 +105,14 @@ public class BlockStereo extends BlockFurnitureTile
                     tileEntityStereo.count = 13;
                     if(!worldIn.isRemote)
                     {
-                        playerIn.sendMessage(new TextComponentString("Stereo is now turned off."));
+                        playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.stereo1")));
                     }
                     this.ejectRecord(worldIn, pos);
                 }
                 else
                 {
                     if(!worldIn.isRemote)
-                        playerIn.sendMessage(new TextComponentString("Stereo is already turned off."));
+                        playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.stereo2")));
                 }
             }
             if(!worldIn.isRemote)

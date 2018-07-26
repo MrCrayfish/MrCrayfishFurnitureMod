@@ -34,6 +34,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -283,7 +284,7 @@ public class BlockBath extends BlockFurnitureTile
                             {
                                 if(!worldIn.isRemote)
                                 {
-                                    playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the bath head is on to fill it. Alternatively you can use a water bucket to fill it."));
+                                    playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.bath")));
                                 }
                             }
                         }
@@ -314,7 +315,7 @@ public class BlockBath extends BlockFurnitureTile
                         {
                             if(!worldIn.isRemote)
                             {
-                                playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the bath head is on to fill it. Alternatively you can use a water bucket to fill it."));
+                                playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.bath")));
                             }
                         }
                     }

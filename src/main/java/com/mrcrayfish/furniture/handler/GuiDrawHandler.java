@@ -7,6 +7,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.client.event.GuiScreenEvent.ActionPerformedEvent;
@@ -37,10 +38,10 @@ public class GuiDrawHandler
             this.guiCenterX = event.getGui().width / 2;
             this.guiCenterY = event.getGui().height / 2;
 
-            event.getButtonList().add(buttonWebsite = new GuiLinkImageButton(10, guiCenterX - 120, guiCenterY - 66, ICONS, 48, 0, "https://mrcrayfish.com", TextFormatting.WHITE + ">" + TextFormatting.DARK_GRAY + " Browse MrCrayfish's " + TextFormatting.DARK_GREEN.toString() + TextFormatting.BOLD.toString() + "Website"));
-            event.getButtonList().add(buttonYouTube = new GuiLinkImageButton(10, guiCenterX - 120, guiCenterY - 44, ICONS, 32, 0, "https://www.youtube.com/channel/UCSwwxl2lWJcbGOGQ_d04v2Q", TextFormatting.WHITE + ">" + TextFormatting.DARK_GRAY + " Sub to MrCrayfish on " + TextFormatting.RED.toString() + TextFormatting.BOLD.toString() + "YouTube"));
-            event.getButtonList().add(buttonTwitter = new GuiLinkImageButton(10, guiCenterX - 120, guiCenterY - 22, ICONS, 16, 0, "https://twitter.com/MrCraayfish", TextFormatting.WHITE + ">" + TextFormatting.DARK_GRAY + " Follow MrCrayfish on " + TextFormatting.BLUE.toString() + TextFormatting.BOLD.toString() + "Twitter"));
-            event.getButtonList().add(buttonPatreon = new GuiLinkImageButton(10, guiCenterX - 120, guiCenterY, ICONS, 0, 0, "https://www.patreon.com/mrcrayfish", TextFormatting.WHITE + ">" + TextFormatting.DARK_GRAY + " Support MrCrayfish on " + TextFormatting.GOLD.toString() + TextFormatting.BOLD.toString() + "Patreon"));
+            event.getButtonList().add(buttonWebsite = new GuiLinkImageButton(10, guiCenterX - 120, guiCenterY - 66, ICONS, 48, 0, "https://mrcrayfish.com", TextFormatting.WHITE + "> " + TextFormatting.DARK_GRAY + I18n.format("cfm.button.website")));
+            event.getButtonList().add(buttonYouTube = new GuiLinkImageButton(10, guiCenterX - 120, guiCenterY - 44, ICONS, 32, 0, "https://www.youtube.com/channel/UCSwwxl2lWJcbGOGQ_d04v2Q", TextFormatting.WHITE + "> " + TextFormatting.DARK_GRAY + I18n.format("cfm.button.youtube")));
+            event.getButtonList().add(buttonTwitter = new GuiLinkImageButton(10, guiCenterX - 120, guiCenterY - 22, ICONS, 16, 0, "https://twitter.com/MrCraayfish", TextFormatting.WHITE + "> " + TextFormatting.DARK_GRAY + I18n.format("cfm.button.twitter")));
+            event.getButtonList().add(buttonPatreon = new GuiLinkImageButton(10, guiCenterX - 120, guiCenterY, ICONS, 0, 0, "https://www.patreon.com/mrcrayfish", TextFormatting.WHITE + "> " + TextFormatting.DARK_GRAY + I18n.format("cfm.button.patreon")));
         }
     }
 
