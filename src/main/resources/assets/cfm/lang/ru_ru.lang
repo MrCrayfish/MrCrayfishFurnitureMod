@@ -232,6 +232,7 @@ tile.desk_cabinet_stone.name=Каменный ящик стола
 tile.desk_cabinet_granite.name=Гранитный ящик стола
 tile.desk_cabinet_diorite.name=Диоритовый ящик стола
 tile.desk_cabinet_andesite.name=Андезитовый ящик стола
+tile.modern_sliding_door.name=Современная раздвижная дверь
 
 cfm.info=Нажмите SHIFT для подробностей
 cfm.light_switch.desc=Используйте этот выключатель для дистанционного управления потолочными светильниками и вентиляторами
@@ -276,7 +277,7 @@ cfm.button.wrap=Завернуть
 cfm.button.website=Загляните на §a§lвеб-сайт§r§8 MrCrayfish
 cfm.button.youtube=Подпишитесь на §c§lYouTube§r§8-канал MrCrayfish
 cfm.button.twitter=Подпишитесь на §9§lTwitter§r§8 MrCrayfish 
-cfm.button.patreon=Поддержите MrCrayfish на §6§lPatreon
+cfm.button.patreon=Поддержите MrCrayfish через §6§lPatreon
 
 cfm.gui.soap_level=Мыло: %s/5000
 cfm.gui.run=Работает
