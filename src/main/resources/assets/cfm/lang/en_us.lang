@@ -233,6 +233,7 @@ tile.desk_cabinet_granite.name=Granite Desk Cabinet
 tile.desk_cabinet_diorite.name=Diorite Desk Cabinet
 tile.desk_cabinet_andesite.name=Andesite Desk Cabinet
 tile.modern_sliding_door.name=Modern Sliding Door
+tile.digital_clock.name=Digital Clock
 
 cfm.info=Hold SHIFT for Info
 cfm.light_switch.desc=Use this switch to control ceiling lights and fans wirelessly

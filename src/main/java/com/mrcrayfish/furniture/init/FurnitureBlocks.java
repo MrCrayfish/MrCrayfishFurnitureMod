@@ -82,6 +82,7 @@ public class FurnitureBlocks
     public static final Block CEILING_FAN;
     public static final Block DESK_OAK, DESK_SPRUCE, DESK_BIRCH, DESK_JUNGLE, DESK_ACACIA, DESK_DARK_OAK, DESK_STONE, DESK_GRANITE, DESK_DIORITE, DESK_ANDESITE;
     public static final Block DESK_CABINET_OAK, DESK_CABINET_SPRUCE, DESK_CABINET_BIRCH, DESK_CABINET_JUNGLE, DESK_CABINET_ACACIA, DESK_CABINET_DARK_OAK, DESK_CABINET_STONE, DESK_CABINET_GRANITE, DESK_CABINET_DIORITE, DESK_CABINET_ANDESITE;
+    public static final Block DIGITAL_CLOCK;
 
     /* Special */
     public static final Block MIRROR;
@@ -237,6 +238,7 @@ public class FurnitureBlocks
         DESK_CABINET_GRANITE = new BlockDeskCabinet(Material.ROCK).setUnlocalizedName("desk_cabinet_granite").setRegistryName("desk_cabinet_granite");
         DESK_CABINET_DIORITE = new BlockDeskCabinet(Material.ROCK).setUnlocalizedName("desk_cabinet_diorite").setRegistryName("desk_cabinet_diorite");
         DESK_CABINET_ANDESITE = new BlockDeskCabinet(Material.ROCK).setUnlocalizedName("desk_cabinet_andesite").setRegistryName("desk_cabinet_andesite");
+        DIGITAL_CLOCK = new BlockDigitalClock();
     }
 
     public static void register()
@@ -390,6 +392,7 @@ public class FurnitureBlocks
         registerBlock(DESK_CABINET_GRANITE);
         registerBlock(DESK_CABINET_DIORITE);
         registerBlock(DESK_CABINET_ANDESITE);
+        registerBlock(DIGITAL_CLOCK, new ItemColored(DIGITAL_CLOCK));
     }
 
     private static void registerBlock(Block block)

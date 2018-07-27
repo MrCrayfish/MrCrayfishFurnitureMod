@@ -1,0 +1,27 @@
+{
+    "result": {
+        "item": "clock-mod:digital_clock",
+        "data": 12
+    },
+    "pattern": [
+        "IDI",
+        "ICI",
+        "IRI"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "I": {
+            "item": "minecraft:iron_ingot"
+        },
+        "D": {
+            "item": "minecraft:dye",
+            "data": 3
+        },
+        "C": {
+            "item": "minecraft:clock"
+        },
+        "R": {
+            "item": "minecraft:redstone"
+        }
+    }
+}
