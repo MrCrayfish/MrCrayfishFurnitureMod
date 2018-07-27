@@ -242,6 +242,7 @@ cfm.desk.info=This desk can connect to other desks to create any shape and lengt
 cfm.desk_cabinet.info=This desk cabinet can connect to other desk cabinets to create any shape and length you desire. It can also be used in conjunction with the Desk.
 cfm.mail_signed.info=from %s
 cfm.present_unsigned.info=Unsigned
+cfm.digital_clock.info=Tells you the time of the overworld in 24HR format. The display can be coloured with your dye of choice.
 
 container.cabinet=Cabinet
 container.bedside_cabinet=Bedside Cabinet

@@ -35,6 +35,7 @@ public class ItemColored extends ItemBlock implements SubItems
         String colorName = color.getName().replace("_", " ");
         colorName = WordUtils.capitalize(colorName);
         tooltip.add("Color: " + TextFormatting.BOLD.toString() + getFromColor(color).toString() + colorName);
+        block.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
     @Override
