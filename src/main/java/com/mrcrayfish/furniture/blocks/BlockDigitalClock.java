@@ -34,30 +34,18 @@ import java.util.List;
 /**
  * Author: MrCrayfish
  */
-public class BlockDigitalClock extends BlockHorizontal
+public class BlockDigitalClock extends BlockFurnitureTile
 {
     private static final AxisAlignedBB[] COLLISION_BOXES = new Bounds(6, 0, 4, 9, 4, 12).getRotatedBounds();
     private static final AxisAlignedBB[] SELECTION_BOXES = new Bounds(5, 0, 3, 10, 5, 13).getRotatedBounds();
 
     public BlockDigitalClock()
     {
-        super(Material.ROCK);
+        super(Material.WOOD);
         this.setUnlocalizedName("digital_clock");
         this.setRegistryName("digital_clock");
         this.setLightLevel(0.5F);
-        this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
+        this.setHardness(0.5F);
     }
 
     @Override
@@ -70,25 +58,6 @@ public class BlockDigitalClock extends BlockHorizontal
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
         return SELECTION_BOXES[state.getValue(FACING).getHorizontalIndex()];
-    }
-
-    @Override
-    public boolean canBeConnectedTo(IBlockAccess world, BlockPos pos, EnumFacing facing)
-    {
-        return false;
-    }
-
-    @Override
-    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
-    {
-        return BlockFaceShape.UNDEFINED;
-    }
-
-    @Override
-    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
-    {
-        IBlockState state = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand);
-        return state.withProperty(FACING, placer.getHorizontalFacing());
     }
 
     @Override
@@ -160,32 +129,14 @@ public class BlockDigitalClock extends BlockHorizontal
     }
 
     @Override
-    public int getMetaFromState(IBlockState state)
-    {
-        return state.getValue(FACING).getHorizontalIndex();
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
-    }
-
-    @Override
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, FACING, BlockColored.COLOR);
     }
 
-    @Override
-    public boolean hasTileEntity(IBlockState state)
-    {
-        return true;
-    }
-
     @Nullable
     @Override
-    public TileEntity createTileEntity(World world, IBlockState state)
+    public TileEntity createNewTileEntity(World worldIn, int meta)
     {
         return new TileEntityDigitalClock();
     }
