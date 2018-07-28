@@ -20,7 +20,7 @@ import com.mrcrayfish.furniture.api.Recipes;
 @EventBusSubscriber(modid = Reference.MOD_ID)
 public class FurnitureConfig
 {
-    private static final String PREFIX = "config." + Reference.MOD_ID + ".";
+    private static final String PREFIX = Reference.MOD_ID + ".config.";
 
     @Name("Client")
     @Comment("Client-only configs.")
