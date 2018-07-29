@@ -46,7 +46,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockChair extends BlockHorizontal
+public class BlockChair extends BlockFurniture
 {
     public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.1, 0.0, 0.1, 0.9, 1.2, 0.9);
 
@@ -77,18 +77,6 @@ public class BlockChair extends BlockHorizontal
             Triggers.trigger(Triggers.PLACE_CHAIR_OR_TABLE, player);
         }
         super.onBlockPlacedBy(world, pos, state, placer, stack);
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
     }
 
     @Override
@@ -125,14 +113,6 @@ public class BlockChair extends BlockHorizontal
     }
 
     @Override
-    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
-    {
-        IBlockState state = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
-        state = state.withProperty(FACING, placer.getHorizontalFacing());
-        return state;
-    }
-
-    @Override
     public IBlockState getStateFromMeta(int meta)
     {
         return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
@@ -141,13 +121,13 @@ public class BlockChair extends BlockHorizontal
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((EnumFacing) state.getValue(FACING)).getHorizontalIndex();
+        return state.getValue(FACING).getHorizontalIndex();
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[]{FACING});
+        return new BlockStateContainer(this, FACING);
     }
 
     @Override

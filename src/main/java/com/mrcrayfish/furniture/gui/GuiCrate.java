@@ -6,6 +6,7 @@ import com.mrcrayfish.furniture.network.message.MessageSealCrate;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -38,7 +39,7 @@ public class GuiCrate extends GuiContainer
         super.initGui();
         int posX = width / 2;
         int posY = height / 2;
-        btnSeal = new GuiButton(0, posX + 46, posY - 62, 50, 20, "Seal");
+        btnSeal = new GuiButton(0, posX + 46, posY - 62, 50, 20, I18n.format("cfm.button.seal"));
         this.buttonList.add(btnSeal);
     }
 
@@ -48,6 +49,11 @@ public class GuiCrate extends GuiContainer
         this.drawDefaultBackground();
         super.drawScreen(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
+    }
+    @Override
+    protected void drawGuiContainerForegroundLayer(int par1, int par2)
+    {
+        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, this.ySize - 93, 4210752);
     }
 
     @Override

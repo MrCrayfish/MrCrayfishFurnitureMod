@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.gui;
 import com.mrcrayfish.furniture.gui.containers.ContainerPrinter;
 import com.mrcrayfish.furniture.tileentity.TileEntityPrinter;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -48,19 +49,19 @@ public class GuiPrinter extends GuiContainer
 
         if(isPointInRegion(73, 30, 5, 18, mouseX, mouseY))
         {
-            drawHoveringText(Arrays.asList(new String[]{"Ink Level: " + printer.printerPrintTime + "/" + printer.currentItemPrintTime}), mouseX, mouseY);
+            drawHoveringText(I18n.format("cfm.gui.ink_level", printer.printerPrintTime, printer.currentItemPrintTime), mouseX, mouseY);
         }
 
         if(isPointInRegion(79, 30, 5, 18, mouseX, mouseY))
         {
-            drawHoveringText(Arrays.asList(new String[]{"Progress: " + printer.printingTime + "/" + printer.totalCookTime}), mouseX, mouseY);
+            drawHoveringText(I18n.format("cfm.gui.progress", printer.printingTime, printer.totalCookTime), mouseX, mouseY);
         }
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        this.fontRenderer.drawString("Inventory", 8, (ySize - 116) + 23, 4210752);
+        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, ySize - 93, 4210752);
     }
 
     @Override

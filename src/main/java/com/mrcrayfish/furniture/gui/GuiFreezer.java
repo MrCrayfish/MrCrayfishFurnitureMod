@@ -25,6 +25,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.vertex.VertexFormat;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
@@ -57,7 +58,7 @@ public class GuiFreezer extends GuiContainer
         int posX = width / 2;
         int posY = height / 2;
 
-        button_start = new GuiButton(0, posX - 40, posY - 76, 32, 20, "Start");
+        button_start = new GuiButton(0, posX - 40, posY - 76, 32, 20, I18n.format("cfm.button.start"));
         buttonList.add(button_start);
     }
 
@@ -91,23 +92,23 @@ public class GuiFreezer extends GuiContainer
 
         if(isPointInRegion(110, 6, 16, 16, mouseX, mouseY))
         {
-            drawHoveringText(Arrays.asList(new String[]{"Ice Level: " + freezer.timeRemaining + "/" + freezer.fuelTime}), mouseX, mouseY);
+            drawHoveringText(I18n.format("cfm.gui.ice_level", freezer.timeRemaining, freezer.fuelTime), mouseX, mouseY);
         }
 
         if(isPointInRegion(107, 31, 4, 18, mouseX, mouseY))
         {
-            drawHoveringText(Arrays.asList(new String[]{"Freezing: " + freezer.progress + "/200"}), mouseX, mouseY);
+            drawHoveringText(I18n.format("cfm.gui.progress", freezer.progress, 200), mouseX, mouseY);
         }
 
         if(isPointInRegion(32, 8, 11, 11, mouseX, mouseY))
         {
             if(freezer.isFreezing())
             {
-                drawHoveringText(Arrays.asList(new String[]{"Running"}), mouseX, mouseY);
+                drawHoveringText(I18n.format("cfm.gui.run"), mouseX, mouseY);
             }
             else
             {
-                drawHoveringText(Arrays.asList(new String[]{"Stopped"}), mouseX, mouseY);
+                drawHoveringText(I18n.format("cfm.gui.stop"), mouseX, mouseY);
             }
         }
     }
@@ -115,7 +116,7 @@ public class GuiFreezer extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        this.fontRenderer.drawString("Inventory", 8, (ySize - 95) + 2, 4210752);
+        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, (ySize - 95) + 2, 4210752);
 
         if(freezer.isFreezing())
         {
@@ -142,12 +143,12 @@ public class GuiFreezer extends GuiContainer
 
         if(freezer.isFreezing())
         {
-            button_start.displayString = "Stop";
+            button_start.displayString = I18n.format("cfm.button.stop");
             drawTexturedModalRect(guiLeft + 61, guiTop + 31, 176, 0, freezer.progress % 25 + 1, 15);
         }
         else
         {
-            button_start.displayString = "Start";
+            button_start.displayString = I18n.format("cfm.button.start");
         }
 
         if(freezer.fuelTime > 0)

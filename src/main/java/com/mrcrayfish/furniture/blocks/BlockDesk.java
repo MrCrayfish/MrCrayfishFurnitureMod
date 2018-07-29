@@ -40,12 +40,12 @@ public class BlockDesk extends BlockFurniture implements IDesk
     {
         if(GuiScreen.isShiftKeyDown())
         {
-            String info = I18n.format("tile.desk.info");
+            String info = I18n.format("cfm.desk.info");
             tooltip.addAll(Minecraft.getMinecraft().fontRenderer.listFormattedStringToWidth(info, 150));
         }
         else
         {
-            tooltip.add(TextFormatting.YELLOW + "Hold SHIFT for Info");
+            tooltip.add(TextFormatting.YELLOW + I18n.format("cfm.info"));
         }
     }
 

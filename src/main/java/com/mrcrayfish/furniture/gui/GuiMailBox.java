@@ -20,6 +20,7 @@ package com.mrcrayfish.furniture.gui;
 import com.mrcrayfish.furniture.gui.containers.ContainerMailBox;
 import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -44,8 +45,8 @@ public class GuiMailBox extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        this.fontRenderer.drawString("Mail Box", xSize / 2 - 19, 5, 9999999);
-        this.fontRenderer.drawString("Inventory", 8, (ySize - 96) + 2, 4210752);
+        this.fontRenderer.drawString(I18n.format("tile.mail_box.name"), xSize / 2 - 35, 5, 9999999);
+        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, ySize - 94, 4210752);
     }
 
     @Override

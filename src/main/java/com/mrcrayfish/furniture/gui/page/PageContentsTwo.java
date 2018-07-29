@@ -5,6 +5,7 @@ import com.mrcrayfish.furniture.gui.RecipePage;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.resources.I18n;
 
 import java.util.List;
 
@@ -23,8 +24,9 @@ public class PageContentsTwo extends RecipePage
     @Override
     public void init(List<GuiButton> buttonList)
     {
+    	String buttonText = I18n.format("cfm.recipe_book.button.go");
         int leftPageCenter = (book.width) / 2 - (book.bookWidth / 2);
-        this.buttonGrill = new GuiButton(0, leftPageCenter + 35, 40, 20, 20, "Go");
+        this.buttonGrill = new GuiButton(0, leftPageCenter + 25, 40, 35, 20, buttonText);
 
         onClose();
 
@@ -36,7 +38,7 @@ public class PageContentsTwo extends RecipePage
     {
         int leftPageCenter = (book.width) / 2 - (book.bookWidth / 2);
         FontRenderer fontRendererObj = Minecraft.getMinecraft().fontRenderer;
-        fontRendererObj.drawString("Grill", leftPageCenter - 55, 45, 16739840);
+        fontRendererObj.drawString(I18n.format("tile.grill.name"), leftPageCenter - 55, 45, 16739840);
     }
 
     @Override
@@ -69,6 +71,6 @@ public class PageContentsTwo extends RecipePage
     @Override
     public String getTitle()
     {
-        return "Contents";
+        return I18n.format("cfm.recipe_book.page.contents");
     }
 }
