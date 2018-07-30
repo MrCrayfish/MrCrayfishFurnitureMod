@@ -38,7 +38,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
@@ -112,7 +112,7 @@ public class ItemPresent extends ItemBlock implements IMail, SubItems
                     {
                         if(worldIn.isRemote)
                         {
-                            player.sendMessage(new TextComponentString(I18n.format("cfm.message.present_place")));
+                            player.sendMessage(new TextComponentTranslation("cfm.message.present_place"));
                         }
                     }
                 }
@@ -120,7 +120,7 @@ public class ItemPresent extends ItemBlock implements IMail, SubItems
                 {
                     if(worldIn.isRemote)
                     {
-                        player.sendMessage(new TextComponentString(I18n.format("cfm.message.present_sign")));
+                        player.sendMessage(new TextComponentTranslation("cfm.message.present_sign"));
                     }
                 }
             }
@@ -128,7 +128,7 @@ public class ItemPresent extends ItemBlock implements IMail, SubItems
             {
                 if(worldIn.isRemote)
                 {
-                    player.sendMessage(new TextComponentString(I18n.format("cfm.message.present_sign")));
+                    player.sendMessage(new TextComponentTranslation("cfm.message.present_sign"));
                 }
             }
         }
@@ -152,7 +152,7 @@ public class ItemPresent extends ItemBlock implements IMail, SubItems
                 }
                 else if(nbttagstring.getString().equals(""))
                 {
-                    playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.present_wrap")));
+                    playerIn.sendMessage(new TextComponentTranslation("cfm.message.present_wrap"));
                 }
             }
             else

@@ -32,7 +32,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
@@ -118,7 +119,7 @@ public class GuiPackage extends GuiContainer
             }
             else
             {
-                this.player.sendMessage(new TextComponentString(I18n.format("cfm.message.package_empty")));
+                this.player.sendMessage(new TextComponentTranslation("cfm.message.package_empty"));
             }
         }
     }
