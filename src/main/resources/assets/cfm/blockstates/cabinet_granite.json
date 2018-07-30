@@ -1,0 +1,31 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"textures": {
+			"1": "blocks/stone_granite_smooth",
+			"2": "blocks/iron_block",
+			"3": "blocks/hardened_clay_stained_white"
+		},
+		"model": "cfm:cabinet"
+	},
+	"variants": {
+		"inventory": {
+			"model": "cfm:cabinet"
+		},
+		"facing=north": {
+			"model": "cfm:cabinet",
+			"y": 270
+		},
+		"facing=south": {
+			"model": "cfm:cabinet",
+			"y": 90
+		},
+		"facing=east": {
+			"model": "cfm:cabinet"
+		},
+		"facing=west": {
+			"model": "cfm:cabinet",
+			"y": 180
+		}
+	}
+}

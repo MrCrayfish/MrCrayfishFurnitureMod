@@ -82,6 +82,7 @@ public class FurnitureBlocks
     public static final Block CEILING_FAN;
     public static final Block DESK_OAK, DESK_SPRUCE, DESK_BIRCH, DESK_JUNGLE, DESK_ACACIA, DESK_DARK_OAK, DESK_STONE, DESK_GRANITE, DESK_DIORITE, DESK_ANDESITE;
     public static final Block DESK_CABINET_OAK, DESK_CABINET_SPRUCE, DESK_CABINET_BIRCH, DESK_CABINET_JUNGLE, DESK_CABINET_ACACIA, DESK_CABINET_DARK_OAK, DESK_CABINET_STONE, DESK_CABINET_GRANITE, DESK_CABINET_DIORITE, DESK_CABINET_ANDESITE;
+    public static final Block CABINET_STONE, CABINET_GRANITE, CABINET_DIORITE, CABINET_ANDESITE;
 
     /* Special */
     public static final Block MIRROR;
@@ -237,6 +238,10 @@ public class FurnitureBlocks
         DESK_CABINET_GRANITE = new BlockDeskCabinet(Material.ROCK).setUnlocalizedName("desk_cabinet_granite").setRegistryName("desk_cabinet_granite");
         DESK_CABINET_DIORITE = new BlockDeskCabinet(Material.ROCK).setUnlocalizedName("desk_cabinet_diorite").setRegistryName("desk_cabinet_diorite");
         DESK_CABINET_ANDESITE = new BlockDeskCabinet(Material.ROCK).setUnlocalizedName("desk_cabinet_andesite").setRegistryName("desk_cabinet_andesite");
+        CABINET_STONE = new BlockCabinet(Material.ROCK).setUnlocalizedName("cabinet_stone").setRegistryName("cabinet_stone");
+        CABINET_GRANITE = new BlockCabinet(Material.ROCK).setUnlocalizedName("cabinet_granite").setRegistryName("cabinet_granite");
+        CABINET_DIORITE = new BlockCabinet(Material.ROCK).setUnlocalizedName("cabinet_diorite").setRegistryName("cabinet_diorite");
+        CABINET_ANDESITE = new BlockCabinet(Material.ROCK).setUnlocalizedName("cabinet_andesite").setRegistryName("cabinet_andesite");
     }
 
     public static void register()
@@ -279,6 +284,10 @@ public class FurnitureBlocks
         registerBlock(CABINET_JUNGLE);
         registerBlock(CABINET_ACACIA);
         registerBlock(CABINET_DARK_OAK);
+        registerBlock(CABINET_STONE);
+        registerBlock(CABINET_GRANITE);
+        registerBlock(CABINET_DIORITE);
+        registerBlock(CABINET_ANDESITE);
         registerBlock(COUCH, new ItemBlockColored(COUCH));
         registerBlock(COUCH_JEB);
         registerBlock(LAMP_ON, null);
