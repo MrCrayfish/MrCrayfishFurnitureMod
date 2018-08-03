@@ -32,7 +32,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
@@ -66,7 +67,7 @@ public class GuiEnvelope extends GuiContainer
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
         this.fontRenderer.drawString(I18n.format("item.item_envelope.name"), xSize / 2 - 22, 5, 9999999);
-        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, (ySize - 96) + 2, 4210752);
+        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, ySize - 94, 4210752);
     }
 
     @Override
@@ -122,7 +123,7 @@ public class GuiEnvelope extends GuiContainer
             }
             else
             {
-                this.player.sendMessage(new TextComponentString(I18n.format("cfm.message.envelope_empty")));
+                this.player.sendMessage(new TextComponentTranslation("cfm.message.envelope_empty"));
             }
         }
     }

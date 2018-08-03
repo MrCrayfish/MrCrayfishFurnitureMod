@@ -23,13 +23,11 @@ import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -47,8 +45,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.world.IBlockAccess;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 public class BlockBasin extends BlockFurniture
@@ -225,7 +222,7 @@ public class BlockBasin extends BlockFurniture
                     }
                     else if(!worldIn.isRemote)
                     {
-                        playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.basin")));
+                        playerIn.sendMessage(new TextComponentTranslation("cfm.message.basin"));
                     }
                 }
             }
@@ -250,7 +247,7 @@ public class BlockBasin extends BlockFurniture
                 }
                 else if(!worldIn.isRemote)
                 {
-                    playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.basin")));
+                    playerIn.sendMessage(new TextComponentTranslation("cfm.message.basin"));
                 }
             }
         }

@@ -24,10 +24,8 @@ import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.tileentity.TileEntity;
@@ -36,7 +34,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -105,14 +103,14 @@ public class BlockStereo extends BlockFurnitureTile
                     tileEntityStereo.count = 13;
                     if(!worldIn.isRemote)
                     {
-                        playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.stereo1")));
+                        playerIn.sendMessage(new TextComponentTranslation("cfm.message.stereo1"));
                     }
                     this.ejectRecord(worldIn, pos);
                 }
                 else
                 {
                     if(!worldIn.isRemote)
-                        playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.stereo2")));
+                        playerIn.sendMessage(new TextComponentTranslation("cfm.message.stereo2"));
                 }
             }
             if(!worldIn.isRemote)
