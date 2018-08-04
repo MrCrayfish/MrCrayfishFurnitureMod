@@ -24,6 +24,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -33,7 +34,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -91,12 +92,12 @@ public class BlockCeilingLight extends Block implements IPowered
                 if(mode == Mode.RIGHT_CLICK)
                 {
                     worldIn.setBlockState(pos, state.withProperty(MODE, Mode.REDSTONE));
-                    playerIn.sendMessage(new TextComponentString("Ceiling Light now in Redstone mode"));
+                    playerIn.sendMessage(new TextComponentTranslation("cfm.message.ceiling_light.mode1"));
                 }
                 else
                 {
                     worldIn.setBlockState(pos, state.withProperty(MODE, Mode.RIGHT_CLICK));
-                    playerIn.sendMessage(new TextComponentString("Ceiling Light now in Right Click mode"));
+                    playerIn.sendMessage(new TextComponentTranslation("cfm.message.ceiling_light.mode2"));
                 }
             }
             else if(((Mode) state.getValue(MODE)) == Mode.RIGHT_CLICK)
@@ -183,6 +184,12 @@ public class BlockCeilingLight extends Block implements IPowered
         {
             world.setBlockState(pos, FurnitureBlocks.CEILING_LIGHT_OFF.getDefaultState());
         }
+    }
+
+    @Override
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
+    {
+        return BlockFaceShape.UNDEFINED;
     }
 
     public enum Mode implements IStringSerializable

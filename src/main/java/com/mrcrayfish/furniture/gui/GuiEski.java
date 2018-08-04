@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.gui;
 import com.mrcrayfish.furniture.gui.containers.ContainerEski;
 import com.mrcrayfish.furniture.tileentity.TileEntityEsky;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -29,7 +30,7 @@ public class GuiEski extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        this.fontRenderer.drawString("Inventory", 8, this.ySize - 96 + 2, 4210752);
+        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
 
     @Override

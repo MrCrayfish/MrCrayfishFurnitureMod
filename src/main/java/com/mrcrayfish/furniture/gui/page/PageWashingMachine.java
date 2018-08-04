@@ -4,6 +4,7 @@ import com.mrcrayfish.furniture.api.RecipeData;
 import com.mrcrayfish.furniture.gui.GuiRecipeBook;
 import com.mrcrayfish.furniture.gui.RecipePage;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 
 public class PageWashingMachine extends RecipePage
 {
@@ -15,13 +16,13 @@ public class PageWashingMachine extends RecipePage
     @Override
     public void draw(GuiRecipeBook gui, int x, int y, int mouseX, int mouseY, float partialTicks)
     {
-        gui.getFontRenderer().drawString("All items below can be", x + 150, 40, 16739840);
-        gui.getFontRenderer().drawString("repaired in the wash-", x + 150, 50, 16739840);
-        gui.getFontRenderer().drawString("ing machine.", x + 150, 60, 16739840);
+        gui.getFontRenderer().drawString(I18n.format("cfm.recipe_book.page.dishwasher1"), x + 150, 40, 16739840);
+        gui.getFontRenderer().drawString(I18n.format("cfm.recipe_book.page.washingmachine2"), x + 150, 50, 16739840);
+        gui.getFontRenderer().drawString(I18n.format("cfm.recipe_book.page.washingmachine3"), x + 150, 60, 16739840);
 
-        gui.getFontRenderer().drawString("All items below can be", x + 4, 40, 16739840);
-        gui.getFontRenderer().drawString("repaired in the wash-", x + 4, 50, 16739840);
-        gui.getFontRenderer().drawString("ing machine.", x + 4, 60, 16739840);
+        gui.getFontRenderer().drawString(I18n.format("cfm.recipe_book.page.dishwasher1"), x + 4, 40, 16739840);
+        gui.getFontRenderer().drawString(I18n.format("cfm.recipe_book.page.washingmachine2"), x + 4, 50, 16739840);
+        gui.getFontRenderer().drawString(I18n.format("cfm.recipe_book.page.washingmachine3"), x + 4, 60, 16739840);
 
         for(int i = 0; i < recipes.size(); i++)
         {
@@ -48,6 +49,6 @@ public class PageWashingMachine extends RecipePage
     @Override
     public String getTitle()
     {
-        return "Washing Machine";
+        return I18n.format("tile.washing_machine.name");
     }
 }

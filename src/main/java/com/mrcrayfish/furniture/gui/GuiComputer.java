@@ -28,6 +28,7 @@ import com.mrcrayfish.furniture.tileentity.TileEntityComputer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -68,7 +69,7 @@ public class GuiComputer extends GuiContainer
 
         left = new GuiButton(0, posX - 48, posY - 80, 15, 20, "<");
         right = new GuiButton(1, posX + 34, posY - 80, 15, 20, ">");
-        button_buy = new GuiButton(2, posX - 48, posY - 57, 29, 20, "Buy");
+        button_buy = new GuiButton(2, posX - 48, posY - 57, 29, 20, I18n.format("cfm.button.buy"));
 
         buttonList.add(left);
         buttonList.add(right);
@@ -142,7 +143,7 @@ public class GuiComputer extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        this.fontRenderer.drawString("Inventory", 8, (ySize - 103), 4210752);
+        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, (ySize - 103), 4210752);
 
         GL11.glPushMatrix();
         RenderHelper.enableGUIStandardItemLighting();

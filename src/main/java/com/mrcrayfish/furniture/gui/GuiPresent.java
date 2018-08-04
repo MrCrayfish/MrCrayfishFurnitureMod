@@ -25,6 +25,7 @@ import com.mrcrayfish.furniture.network.message.MessagePresentContents;
 import com.mrcrayfish.furniture.util.NBTHelper;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
@@ -32,7 +33,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
@@ -68,7 +70,7 @@ public class GuiPresent extends GuiContainer
             this.mc.player.closeScreen();
         }
 
-        this.fontRenderer.drawString("Inventory", 8, (ySize - 96) + 2, 4210752);
+        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, ySize - 94, 4210752);
     }
 
     @Override
@@ -89,7 +91,7 @@ public class GuiPresent extends GuiContainer
         buttonList.clear();
         int posX = width / 2 + 40;
         int posY = height / 2 - 50;
-        button_wrap = new GuiButton(0, posX, posY - 10, 40, 20, "Wrap");
+        button_wrap = new GuiButton(0, posX, posY - 10, 40, 20, I18n.format("cfm.button.wrap"));
         button_wrap.enabled = true;
         buttonList.add(button_wrap);
     }
@@ -119,7 +121,7 @@ public class GuiPresent extends GuiContainer
             }
             else
             {
-                this.player.sendMessage(new TextComponentString("You cannot sign an empty envelope."));
+                this.player.sendMessage(new TextComponentTranslation("cfm.message.present_empty"));
             }
         }
     }

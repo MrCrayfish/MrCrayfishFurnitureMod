@@ -26,6 +26,7 @@ import com.mrcrayfish.furniture.tileentity.TileEntityPresent;
 import com.mrcrayfish.furniture.util.NBTHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -37,7 +38,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 
@@ -63,11 +64,11 @@ public class ItemPresent extends ItemBlock implements IMail, SubItems
 
             if(nbttagstring != null)
             {
-                tooltip.add(TextFormatting.GRAY + "from " + nbttagstring.getString());
+                tooltip.add(TextFormatting.GRAY + I18n.format("cfm.mail_signed.info", nbttagstring.getString()));
             }
             else
             {
-                tooltip.add(TextFormatting.GRAY + "Unsigned");
+                tooltip.add(TextFormatting.GRAY + I18n.format("cfm.present_unsigned.info"));
             }
         }
     }
@@ -111,7 +112,7 @@ public class ItemPresent extends ItemBlock implements IMail, SubItems
                     {
                         if(worldIn.isRemote)
                         {
-                            player.sendMessage(new TextComponentString("You some how have no items in the present. You cannot use this present."));
+                            player.sendMessage(new TextComponentTranslation("cfm.message.present_place"));
                         }
                     }
                 }
@@ -119,7 +120,7 @@ public class ItemPresent extends ItemBlock implements IMail, SubItems
                 {
                     if(worldIn.isRemote)
                     {
-                        player.sendMessage(new TextComponentString("You need to sign it before you can place it"));
+                        player.sendMessage(new TextComponentTranslation("cfm.message.present_sign"));
                     }
                 }
             }
@@ -127,7 +128,7 @@ public class ItemPresent extends ItemBlock implements IMail, SubItems
             {
                 if(worldIn.isRemote)
                 {
-                    player.sendMessage(new TextComponentString("You need to sign it before you can place it"));
+                    player.sendMessage(new TextComponentTranslation("cfm.message.present_sign"));
                 }
             }
         }
@@ -151,7 +152,7 @@ public class ItemPresent extends ItemBlock implements IMail, SubItems
                 }
                 else if(nbttagstring.getString().equals(""))
                 {
-                    playerIn.sendMessage(new TextComponentString("You cannot unwrap the present once signed"));
+                    playerIn.sendMessage(new TextComponentTranslation("cfm.message.present_wrap"));
                 }
             }
             else

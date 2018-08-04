@@ -25,13 +25,15 @@ import com.mrcrayfish.furniture.network.message.MessagePackage;
 import com.mrcrayfish.furniture.util.NBTHelper;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
@@ -63,8 +65,8 @@ public class GuiPackage extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        this.fontRenderer.drawString("Package", xSize / 2 - 19, 5, 9999999);
-        this.fontRenderer.drawString("Inventory", 8, (ySize - 96) + 2, 4210752);
+        this.fontRenderer.drawString(I18n.format("item.item_package.name"), xSize / 2 - 19, 5, 9999999);
+        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, ySize - 94, 4210752);
     }
 
     @Override
@@ -87,7 +89,7 @@ public class GuiPackage extends GuiContainer
         int posY = height / 2 - 50;
         if(mail.getItem() == FurnitureItems.PACKAGE)
         {
-            buttonOk = new GuiButton(0, posX, posY, 40, 20, "Sign");
+            buttonOk = new GuiButton(0, posX, posY, 40, 20, I18n.format("cfm.button.sign"));
             buttonOk.enabled = true;
             buttonList.add(buttonOk);
         }
@@ -117,7 +119,7 @@ public class GuiPackage extends GuiContainer
             }
             else
             {
-                this.player.sendMessage(new TextComponentString("You cannot sign an empty package."));
+                this.player.sendMessage(new TextComponentTranslation("cfm.message.package_empty"));
             }
         }
     }

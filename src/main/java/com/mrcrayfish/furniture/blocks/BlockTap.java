@@ -28,7 +28,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -64,12 +64,12 @@ public class BlockTap extends BlockFurniture
                 }
                 else
                 {
-                    playerIn.sendMessage(new TextComponentString("Something is blocking the tap."));
+                    playerIn.sendMessage(new TextComponentTranslation("cfm.message.tap_blocked"));
                 }
             }
             else
             {
-                playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the tap is on to use it."));
+                playerIn.sendMessage(new TextComponentTranslation("cfm.message.tap_nowater"));
             }
         }
         return true;

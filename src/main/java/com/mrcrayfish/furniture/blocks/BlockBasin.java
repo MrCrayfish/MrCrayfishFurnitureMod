@@ -23,7 +23,6 @@ import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -46,8 +45,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.world.IBlockAccess;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 public class BlockBasin extends BlockFurniture
@@ -224,7 +222,7 @@ public class BlockBasin extends BlockFurniture
                     }
                     else if(!worldIn.isRemote)
                     {
-                        playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the basin is on to fill it. Alternatively you can use a water bucket to fill it."));
+                        playerIn.sendMessage(new TextComponentTranslation("cfm.message.basin"));
                     }
                 }
             }
@@ -249,7 +247,7 @@ public class BlockBasin extends BlockFurniture
                 }
                 else if(!worldIn.isRemote)
                 {
-                    playerIn.sendMessage(new TextComponentString("You need to have a water source under the block the basin is on to fill it. Alternatively you can use a water bucket to fill it."));
+                    playerIn.sendMessage(new TextComponentTranslation("cfm.message.basin"));
                 }
             }
         }

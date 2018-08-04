@@ -21,14 +21,13 @@ import com.mrcrayfish.furniture.blocks.BlockBedsideCabinet;
 import com.mrcrayfish.furniture.gui.containers.ContainerBedsideCabinet;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 public class GuiBedsideCabinet extends GuiContainer
 {
-    private IInventory lowerChestInventory;
-
     private static final ResourceLocation GUI_CABINET_OAK = new ResourceLocation("cfm:textures/gui/bedside_cabinet_oak.png");
     private static final ResourceLocation GUI_CABINET_SPRUCE = new ResourceLocation("cfm:textures/gui/bedside_cabinet_spruce.png");
     private static final ResourceLocation GUI_CABINET_BIRCH = new ResourceLocation("cfm:textures/gui/bedside_cabinet_birch.png");
@@ -41,8 +40,6 @@ public class GuiBedsideCabinet extends GuiContainer
     public GuiBedsideCabinet(IInventory playerInventory, IInventory bedsideCabinetInventory, BlockBedsideCabinet block)
     {
         super(new ContainerBedsideCabinet(playerInventory, bedsideCabinetInventory));
-        this.lowerChestInventory = bedsideCabinetInventory;
-        this.allowUserInput = false;
         this.xSize = 176;
         this.ySize = 168;
         this.type = getType(block);
@@ -59,8 +56,10 @@ public class GuiBedsideCabinet extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        this.fontRenderer.drawString(lowerChestInventory.getName(), (this.xSize / 2) - 28, 6, 4210752);
-        this.fontRenderer.drawString("Inventory", 8, this.ySize - 96 + 2, 4210752);
+        int color = 14540253;
+        if (this.type == 2) color = 4210752;
+        this.fontRenderer.drawString(I18n.format("container.bedside_cabinet"), (this.xSize / 2) - 28, 6, color);
+        this.fontRenderer.drawString(I18n.format("container.inventory"), 8, this.ySize - 94, color);
     }
 
     @Override

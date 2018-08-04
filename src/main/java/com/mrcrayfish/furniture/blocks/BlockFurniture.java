@@ -23,11 +23,13 @@ import com.mrcrayfish.furniture.util.InventoryUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockFurniture extends Block
@@ -83,5 +85,11 @@ public class BlockFurniture extends Block
     {
         InventoryUtil.dropTileEntityInventoryItems(world, pos, world.getTileEntity(pos));
         super.breakBlock(world, pos, state);
+    }
+
+    @Override
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
+    {
+        return BlockFaceShape.UNDEFINED;
     }
 }
