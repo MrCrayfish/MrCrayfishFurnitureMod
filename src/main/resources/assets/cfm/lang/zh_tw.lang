@@ -297,8 +297,8 @@ cfm.gui.soap_level=肥皂：%s／5000
 cfm.gui.run=運作中
 cfm.gui.stop=已停止
 cfm.gui.doormat=輸入信息
-cfm.gui.ice_level=Ice level: %s／%s
-cfm.gui.ink_level=Ink level: %s／%s
+cfm.gui.ice_level=冰量：%s／%s
+cfm.gui.ink_level=墨水量：%s／%s
 cfm.gui.progress=進度：%s／%s
 
 cfm.message.envelope_empty=You cannot sign an empty envelope.
