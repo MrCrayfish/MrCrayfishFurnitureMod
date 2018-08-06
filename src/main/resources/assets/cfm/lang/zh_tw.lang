@@ -260,7 +260,7 @@ container.cabinet=櫥櫃
 container.bedside_cabinet=床頭櫃
 container.desk_cabinet=書桌櫃
 
-cfm.recipe_book.page.title1=by MrCrayfish
+cfm.recipe_book.page.title1=由MrCrayfish提供
 cfm.recipe_book.page.title2=關於
 cfm.recipe_book.page.title3=本書包含所有已在
 cfm.recipe_book.page.title4=RecipeAPI註冊的
@@ -272,12 +272,12 @@ cfm.recipe_book.page.title9=方？
 cfm.recipe_book.page.contents=目錄
 cfm.recipe_book.page.freezer=冰箱
 cfm.recipe_book.page.minebay=MineBay
-cfm.recipe_book.page.dishwasher1=All items below can be
-cfm.recipe_book.page.dishwasher2=repaired in the dish-
-cfm.recipe_book.page.dishwasher3=washer.
-cfm.recipe_book.page.washingmachine2=repaired in the wash-
-cfm.recipe_book.page.washingmachine3=ing machine.
-cfm.recipe_book.page.printer2=used in the printer.
+cfm.recipe_book.page.dishwasher1=以下物品可以在
+cfm.recipe_book.page.dishwasher2=洗碗機裡修復
+cfm.recipe_book.page.dishwasher3=
+cfm.recipe_book.page.washingmachine2=洗衣機裡修復
+cfm.recipe_book.page.washingmachine3=
+cfm.recipe_book.page.printer2=印表機使用
 cfm.recipe_book.button.go=去
 cfm.recipe_book.button.tutorial=點擊這裡
 
