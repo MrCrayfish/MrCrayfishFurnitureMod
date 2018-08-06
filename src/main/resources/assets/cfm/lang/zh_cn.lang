@@ -233,6 +233,7 @@ tile.desk_cabinet_granite.name=花岗岩书桌柜
 tile.desk_cabinet_diorite.name=闪长岩书桌柜
 tile.desk_cabinet_andesite.name=安山岩书桌柜
 tile.modern_sliding_door.name=现代推拉门
+tile.digital_clock.name=数字时钟
 
 cfm.info=按SHIFT显示更多信息
 cfm.light_switch.desc=用这个开关遥控吸顶灯或吊扇
