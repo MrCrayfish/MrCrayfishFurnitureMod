@@ -213,7 +213,7 @@ tile.divingboard_base.name=跳水板
 tile.door_mat.name=門墊
 tile.esky.name=可擕式冷藏箱
 tile.water_tank.name=水箱
-tile.modern_window.name=Modern Window
+tile.modern_window.name=現代的窗
 tile.light_switch_off.name=電燈開關按鈕
 tile.light_switch_on.name=電燈開關按鈕
 tile.ceiling_fan.name=吊扇
@@ -237,24 +237,24 @@ tile.desk_cabinet_stone.name=石書桌櫃
 tile.desk_cabinet_granite.name=花崗岩書桌櫃
 tile.desk_cabinet_diorite.name=閃長岩書桌櫃
 tile.desk_cabinet_andesite.name=安山岩書桌櫃
-tile.modern_sliding_door.name=Modern Sliding Door
+tile.modern_sliding_door.name=現代的滑動門
 tile.digital_clock.name=數碼時鐘
 
-tile.desk.info=這張書桌可以連接其他書桌以創建你想要的任何形狀和長度，也可以與書桌櫃連接
-tile.desk_cabinet.info=這張書桌櫃可以連接其他書桌櫃以創建你想要的任何形狀和長度，也可以與書桌連接
-
+# Old
+tile.desk.info=這張書桌可以連接其他書桌以創建你想要的任何形狀和長度，也可以與書桌櫃連接。
+tile.desk_cabinet.info=這張書桌櫃可以連接其他書桌櫃以創建你想要的任何形狀和長度，也可以與書桌連接。
 cfm.how_to=按住Shift以顯示更多
-cfm.light_switch.desc=使用這個開關以無線控制吊燈
 cfm.light_switch.how_to=要將開關與吊燈連接，只需要手持開關並右鍵點擊吊燈。\n要將開關與吊燈解除連接，需要蹲下並右鍵點擊空氣以清除所有連接。
 
-cfm.info=Hold SHIFT for Info
-cfm.light_switch.desc=Use this switch to control ceiling lights and fans wirelessly
-cfm.light_switch.info=To connect the switch to ceiling lights or fans, simply right click the lights on fans with the switch in your hand. If you want to remove lights or fans, crouch and right click to clear all.
-cfm.desk.info=This desk can connect to other desks to create any shape and length you desire. It can also be used in conjunction with the Desk Cabinet.
-cfm.desk_cabinet.info=This desk cabinet can connect to other desk cabinets to create any shape and length you desire. It can also be used in conjunction with the Desk.
-cfm.mail_signed.info=from %s
-cfm.present_unsigned.info=Unsigned
-cfm.digital_clock.info=Tells you the time of the overworld in 24HR format. The display can be coloured with your dye of choice.
+# New
+cfm.info=按住Shift以顯示資訊
+cfm.light_switch.desc=使用這個開關以無線控制吊燈和吊扇。
+cfm.light_switch.info=要將開關與吊燈／吊扇連接，只需要手持開關並右鍵點擊吊燈／吊扇。\n要將開關與吊燈／吊扇解除連接，需要蹲下並右鍵點擊空氣以清除所有連接。
+cfm.desk.info=這張書桌可以連接其他書桌以創建你想要的任何形狀和長度，也可以與書桌櫃連接。
+cfm.desk_cabinet.info=這張書桌櫃可以連接其他書桌櫃以創建你想要的任何形狀和長度，也可以與書桌連接。
+cfm.mail_signed.info=來自%s
+cfm.present_unsigned.info=未署名
+cfm.digital_clock.info=會以24小時格式顯示世界的時間。顯示器可以使用染料變更著色。
 
 container.cabinet=Cabinet
 container.bedside_cabinet=Bedside Cabinet
