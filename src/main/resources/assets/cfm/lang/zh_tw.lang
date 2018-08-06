@@ -288,18 +288,18 @@ cfm.button.start=開始
 cfm.button.stop=停止
 cfm.button.sign=簽署
 cfm.button.wrap=包裹
-cfm.button.website=Browse MrCrayfish's §a§lWebsite
-cfm.button.youtube=Sub to MrCrayfish on §c§lYouTube
-cfm.button.twitter=Follow MrCrayfish on §9§lTwitter
-cfm.button.patreon=Support MrCrayfish on §6§lPatreon
+cfm.button.website=瀏覽MrCrayfish§a§l網站
+cfm.button.youtube=訂閱MrCrayfish在§c§lYouTube
+cfm.button.twitter=追蹤MrCrayfish在§9§lTwitter
+cfm.button.patreon=支持MrCrayfish在§6§lPatreon
 
 cfm.gui.soap_level=肥皂：%s／5000
 cfm.gui.run=運作中
 cfm.gui.stop=已停止
-cfm.gui.doormat=Enter Message
-cfm.gui.ice_level=Ice level: %s/%s
-cfm.gui.ink_level=Ink level: %s/%s
-cfm.gui.progress=Progress: %s/%s
+cfm.gui.doormat=輸入信息
+cfm.gui.ice_level=Ice level: %s／%s
+cfm.gui.ink_level=Ink level: %s／%s
+cfm.gui.progress=進度：%s／%s
 
 cfm.message.envelope_empty=You cannot sign an empty envelope.
 cfm.message.envelope_sign=You must sign the envelope before depositing it.
