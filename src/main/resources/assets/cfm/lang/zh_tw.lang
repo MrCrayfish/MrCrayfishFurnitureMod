@@ -256,8 +256,8 @@ cfm.mail_signed.info=來自%s
 cfm.present_unsigned.info=未署名
 cfm.digital_clock.info=會以24小時格式顯示世界的時間。顯示器可以使用染料變更著色。
 
-container.cabinet=Cabinet
-container.bedside_cabinet=Bedside Cabinet
+container.cabinet=櫥櫃
+container.bedside_cabinet=床頭櫃
 container.desk_cabinet=書桌櫃
 
 cfm.recipe_book.page.title1=by MrCrayfish
