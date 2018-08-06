@@ -242,7 +242,7 @@ cfm.desk.info=书桌可以连接到其他书桌以设计出你想要的任何形
 cfm.desk_cabinet.info=书桌柜可以连接到其他书桌柜以设计出你想要的任何形状和长度，它也可以与书桌连在一起。
 cfm.mail_signed.info=来自%s
 cfm.present_unsigned.info=未签名的
-cfm.digital_clock.info=以24小时显示主世界的当前时间，显示器可以用你选择的染料改变颜色。
+cfm.digital_clock.info=以24小时格式显示主世界的当前时间，显示器可以用你选择的染料来改变颜色。
 
 container.cabinet=橱柜
 container.bedside_cabinet=床头柜
