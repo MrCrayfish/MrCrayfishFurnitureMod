@@ -21,7 +21,6 @@ import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -29,7 +28,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -65,12 +64,12 @@ public class BlockTap extends BlockFurniture
                 }
                 else
                 {
-                    playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.tap_blocked")));
+                    playerIn.sendMessage(new TextComponentTranslation("cfm.message.tap_blocked"));
                 }
             }
             else
             {
-                playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.tap_nowater")));
+                playerIn.sendMessage(new TextComponentTranslation("cfm.message.tap_nowater"));
             }
         }
         return true;

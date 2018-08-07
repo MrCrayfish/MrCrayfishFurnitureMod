@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/digital_clock",
+    "textures": {
+        "1": "blocks/concrete_purple"
+    }
+}

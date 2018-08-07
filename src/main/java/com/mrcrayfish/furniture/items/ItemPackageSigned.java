@@ -39,7 +39,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -98,7 +98,7 @@ public class ItemPackageSigned extends Item implements IMail
             {
                 if(player.capabilities.isCreativeMode && player.isSneaking() && tile_entity instanceof TileEntityMailBox)
                 {
-                    player.sendMessage(new TextComponentString(I18n.format("cfm.message.mail_creative")));
+                    player.sendMessage(new TextComponentTranslation("cfm.message.mail_creative"));
                 }
                 else if(tile_entity instanceof TileEntityMailBox)
                 {
@@ -109,20 +109,20 @@ public class ItemPackageSigned extends Item implements IMail
                         {
                             ItemStack itemStack = heldItem.copy();
                             tileEntityMailBox.addMail(itemStack);
-                            player.sendMessage(new TextComponentString(I18n.format("cfm.message.mail_receive", TextFormatting.YELLOW + tileEntityMailBox.getOwner())));
+                            player.sendMessage(new TextComponentTranslation("cfm.message.mail_receive", TextFormatting.YELLOW + tileEntityMailBox.getOwner()));
                             heldItem.shrink(1);
                             Triggers.trigger(Triggers.PLAYER_SENT_MAIL, player);
                         }
                         else
                         {
-                            player.sendMessage(new TextComponentString(I18n.format("cfm.message.mail_full", tileEntityMailBox.getOwner())));
+                            player.sendMessage(new TextComponentTranslation("cfm.message.mail_full", TextFormatting.YELLOW +tileEntityMailBox.getOwner()));
                         }
                     }
                 }
             }
             else
             {
-                player.sendMessage(new TextComponentString(I18n.format("cfm.message.package_used")));
+                player.sendMessage(new TextComponentTranslation("cfm.message.package_used"));
             }
         }
         return EnumActionResult.SUCCESS;
