@@ -7,6 +7,7 @@ import com.mrcrayfish.furniture.gui.components.ValueComponent;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageUpdateValueContainer;
 import com.mrcrayfish.furniture.tileentity.IValueContainer;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
@@ -56,6 +57,23 @@ public class GuiEditValueContainer extends GuiScreen
     public void initGui()
     {
         Keyboard.enableRepeatEvents(true);
+
+        int startX = (this.width - WIDTH) / 2;
+        int startY = (this.height - this.containerHeight) / 2;
+        this.buttonList.add(new GuiButton(0, startX + WIDTH + 5, startY + 5, 20, 20, "X"));
+    }
+
+    @Override
+    protected void actionPerformed(GuiButton button) throws IOException
+    {
+        if(button.id == 0)
+        {
+            this.mc.displayGuiScreen(null);
+            if(this.mc.currentScreen == null)
+            {
+                this.mc.setIngameFocus();
+            }
+        }
     }
 
     @Override
@@ -80,11 +98,13 @@ public class GuiEditValueContainer extends GuiScreen
         {
             values.get(i).render(startX + PADDING, startY + i * VALUE_HEIGHT + 10, mouseX, mouseY);
         }
+        super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
     @Override
     protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException
     {
+        super.mouseClicked(mouseX, mouseY, mouseButton);
         for(ValueComponent value : values)
         {
             value.mouseClicked(mouseX, mouseY, mouseButton);
