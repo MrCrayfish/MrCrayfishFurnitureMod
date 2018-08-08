@@ -106,11 +106,7 @@ public class BlockFreezer extends BlockFurnitureTile
     public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
     {
         List<RayTraceResult> list = Lists.newArrayList();
-
-        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos), world, pos))
-        {
-            list.add(this.rayTrace(pos, start, end, axisalignedbb));
-        }
+        list.add(this.rayTrace(pos, start, end, COLLISION_BOX));
 
         RayTraceResult raytraceresult1 = null;
         double d1 = 0.0D;
