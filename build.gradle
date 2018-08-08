@@ -24,6 +24,14 @@ minecraft {
     mappings = "snapshot_20171003"
 }
 
+repositories {
+    maven { url "http://maven.blamejared.com/" } // CraftTweaker
+}
+
+dependencies {
+    deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.6.467"
+}
+
 processResources {
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
