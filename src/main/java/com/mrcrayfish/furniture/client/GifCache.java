@@ -138,6 +138,14 @@ public final class GifCache
         return false;
     }
 
+    public boolean isCached(String url)
+    {
+        synchronized(this)
+        {
+            return cacheMap.containsKey(url);
+        }
+    }
+
     public File getCache()
     {
         cache.mkdir();
