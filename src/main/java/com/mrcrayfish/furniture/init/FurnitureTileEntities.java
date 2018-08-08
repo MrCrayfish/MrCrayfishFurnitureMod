@@ -61,5 +61,6 @@ public class FurnitureTileEntities
         GameRegistry.registerTileEntity(TileEntityDeskCabinet.class, "cfmDeskCabinet");
         GameRegistry.registerTileEntity(TileEntityModernSlidingDoor.class, "cfmModernSlidingDoor");
         GameRegistry.registerTileEntity(TileEntityDigitalClock.class, "cfmDigitalClock");
+        GameRegistry.registerTileEntity(TileEntityModernTV.class, "cfmModernTV");
     }
 }

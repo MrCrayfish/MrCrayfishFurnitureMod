@@ -18,6 +18,7 @@
 package com.mrcrayfish.furniture.proxy;
 
 import com.mrcrayfish.furniture.Reference;
+import com.mrcrayfish.furniture.client.GifCache;
 import com.mrcrayfish.furniture.handler.ClientEvents;
 import com.mrcrayfish.furniture.handler.GuiDrawHandler;
 import com.mrcrayfish.furniture.handler.InputHandler;
@@ -77,6 +78,9 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCeilingFan.class, new CeilingFanRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityModernSlidingDoor.class, new ModernSlidingDoorRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDigitalClock.class, new DigitalClockRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityModernTV.class, new ModernTVRenderer());
+
+        MinecraftForge.EVENT_BUS.register(GifCache.INSTANCE);
     }
 
     public void registerColorHandlers()
