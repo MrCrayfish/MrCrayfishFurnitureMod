@@ -3,7 +3,7 @@ package com.mrcrayfish.furniture.render.tileentity;
 import com.mrcrayfish.furniture.blocks.BlockFurnitureTile;
 import com.mrcrayfish.furniture.client.AnimatedTexture;
 import com.mrcrayfish.furniture.client.GifCache;
-import com.mrcrayfish.furniture.tileentity.TileEntityModernTV;
+import com.mrcrayfish.furniture.tileentity.TileEntityTV;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -18,10 +18,10 @@ import org.lwjgl.opengl.GL11;
 /**
  * Author: MrCrayfish
  */
-public class ModernTVRenderer extends TileEntitySpecialRenderer<TileEntityModernTV>
+public class TVRenderer extends TileEntitySpecialRenderer<TileEntityTV>
 {
     @Override
-    public void render(TileEntityModernTV te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
+    public void render(TileEntityTV te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         GlStateManager.pushMatrix();
         {
@@ -69,11 +69,11 @@ public class ModernTVRenderer extends TileEntitySpecialRenderer<TileEntityModern
                     height *= 0.0625;
 
                     //Setups translations
-                    GlStateManager.translate(8 * 0.0625, 4 * 0.0625, 8 * 0.0625);
+                    GlStateManager.translate(8 * 0.0625, te.getScreenYOffset() * 0.0625, 8 * 0.0625);
                     EnumFacing facing = state.getValue(BlockFurnitureTile.FACING);
                     GlStateManager.rotate(facing.getHorizontalIndex() * -90F, 0, 1, 0);
                     GlStateManager.translate(-te.getWidth() / 2 * 0.0625, 0, 0);
-                    GlStateManager.translate(0, 0, -0.35 * 0.0625);
+                    GlStateManager.translate(0, 0, te.getScreenZOffset() * 0.0625);
 
                     //Render a black quad
                     Tessellator tessellator = Tessellator.getInstance();

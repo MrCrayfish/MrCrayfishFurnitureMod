@@ -17,7 +17,6 @@
  */
 package com.mrcrayfish.furniture.proxy;
 
-import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.GifCache;
 import com.mrcrayfish.furniture.handler.ClientEvents;
 import com.mrcrayfish.furniture.handler.GuiDrawHandler;
@@ -38,15 +37,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.biome.BiomeColorHelper;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
 
 import java.awt.*;
 
@@ -78,7 +74,7 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCeilingFan.class, new CeilingFanRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityModernSlidingDoor.class, new ModernSlidingDoorRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDigitalClock.class, new DigitalClockRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityModernTV.class, new ModernTVRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTV.class, new TVRenderer());
 
         MinecraftForge.EVENT_BUS.register(GifCache.INSTANCE);
     }

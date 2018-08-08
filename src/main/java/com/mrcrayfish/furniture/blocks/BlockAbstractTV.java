@@ -2,7 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.gui.GuiEditValueContainer;
 import com.mrcrayfish.furniture.tileentity.IValueContainer;
-import com.mrcrayfish.furniture.tileentity.TileEntityModernTV;
+import com.mrcrayfish.furniture.tileentity.TileEntityTV;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -22,12 +22,16 @@ public abstract class BlockAbstractTV extends BlockFurnitureTile
 {
     private int width;
     private int height;
+    private double screenYOffset;
+    private double screenZOffset;
 
-    public BlockAbstractTV(Material material, int width, int height)
+    public BlockAbstractTV(Material material, int width, int height, double screenYOffset, double screenZOffset)
     {
         super(material);
         this.width = width;
         this.height = height;
+        this.screenYOffset = screenYOffset;
+        this.screenZOffset = screenZOffset;
     }
 
     @Override
@@ -49,6 +53,6 @@ public abstract class BlockAbstractTV extends BlockFurnitureTile
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
-        return new TileEntityModernTV(width, height);
+        return new TileEntityTV(width, height, screenYOffset, screenZOffset);
     }
 }

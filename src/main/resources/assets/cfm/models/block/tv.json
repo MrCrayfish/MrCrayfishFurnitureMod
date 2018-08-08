@@ -1,7 +1,10 @@
 {
-"textures":{
-"particle":"#1"
-},
+    "textures": {
+        "particle": "blocks/log_oak",
+        "1": "blocks/log_oak",
+        "2": "blocks/concrete_black",
+        "3": "blocks/planks_oak"
+    },
 	"display": {
         "gui": {
             "rotation": [ 30, 135, 0 ],

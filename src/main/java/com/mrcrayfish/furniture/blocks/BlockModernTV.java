@@ -9,7 +9,7 @@ public class BlockModernTV extends BlockAbstractTV
 {
     public BlockModernTV()
     {
-        super(Material.ANVIL, 22, 12);
+        super(Material.ANVIL, 22, 12, 4, -0.35);
         this.setUnlocalizedName("modern_tv");
         this.setRegistryName("modern_tv");
     }
