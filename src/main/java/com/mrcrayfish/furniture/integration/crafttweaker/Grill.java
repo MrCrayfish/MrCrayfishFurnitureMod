@@ -14,18 +14,21 @@ import javax.annotation.Nonnull;
 
 @ZenRegister
 @ZenClass(CraftTweakerIntegration.CLASS_PREFIX + "Grill")
-public class Grill {
+public class Grill
+{
     private static final OneToOneRecipes recipes = new OneToOneRecipes("Grill", Recipes.localGrillRecipes);
 
     @ZenMethod
     @ZenDoc("Remove matching grill recipes.")
-    public static void remove(@Optional final IIngredient output, @Optional final IIngredient input) {
+    public static void remove(@Optional final IIngredient output, @Optional final IIngredient input)
+    {
         recipes.remove(output, input);
     }
 
     @ZenMethod
     @ZenDoc("Add a grill recipe.")
-    public static void addRecipe(@Nonnull final IItemStack output, @Nonnull final IItemStack input) {
+    public static void addRecipe(@Nonnull final IItemStack output, @Nonnull final IItemStack input)
+    {
         recipes.addRecipe(output, input);
     }
 }

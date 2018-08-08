@@ -14,18 +14,21 @@ import javax.annotation.Nonnull;
 
 @ZenRegister
 @ZenClass(CraftTweakerIntegration.CLASS_PREFIX + "WashingMachine")
-public class WashingMachine {
+public class WashingMachine
+{
     private static final OneToNoneRecipes recipes = new OneToNoneRecipes("WashingMachine", Recipes.localWashingMachineRecipes);
 
     @ZenMethod
     @ZenDoc("Remove matching washable items.")
-    public static void remove(@Optional final IIngredient item) {
+    public static void remove(@Optional final IIngredient item)
+    {
         recipes.remove(item);
     }
 
     @ZenMethod
     @ZenDoc("Add a washable item.")
-    public static void add(@Nonnull final IItemStack item) {
+    public static void add(@Nonnull final IItemStack item)
+    {
         recipes.add(item);
     }
 }

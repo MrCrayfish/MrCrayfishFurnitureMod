@@ -14,18 +14,21 @@ import javax.annotation.Nonnull;
 
 @ZenRegister
 @ZenClass(CraftTweakerIntegration.CLASS_PREFIX + "Printer")
-public class Printer {
+public class Printer
+{
     private static final OneToNoneRecipes recipes = new OneToNoneRecipes("Printer", Recipes.localPrinterRecipes);
 
     @ZenMethod
     @ZenDoc("Remove matching printable items.")
-    public static void remove(@Optional final IIngredient item) {
+    public static void remove(@Optional final IIngredient item)
+    {
         recipes.remove(item);
     }
 
     @ZenMethod
     @ZenDoc("Add printable item.")
-    public static void add(@Nonnull final IItemStack item) {
+    public static void add(@Nonnull final IItemStack item)
+    {
         recipes.add(item);
     }
 }

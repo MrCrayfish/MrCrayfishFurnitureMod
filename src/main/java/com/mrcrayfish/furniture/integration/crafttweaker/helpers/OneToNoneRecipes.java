@@ -13,39 +13,48 @@ import stanhebben.zenscript.annotations.Optional;
 import javax.annotation.Nonnull;
 import java.util.Collection;
 
-public class OneToNoneRecipes {
+public class OneToNoneRecipes
+{
     protected final String name;
     protected final Collection<RecipeData> recipes;
 
-    public OneToNoneRecipes(String name, Collection<RecipeData> recipes) {
+    public OneToNoneRecipes(String name, Collection<RecipeData> recipes)
+    {
         this.name = name;
         this.recipes = recipes;
     }
 
-    public void remove(@Optional IIngredient item) {
-        if (item == null) item = IngredientAny.INSTANCE;
+    public void remove(@Optional IIngredient item)
+    {
+        if(item == null) item = IngredientAny.INSTANCE;
 
         final IIngredient finalItem = item;
-        CraftTweakerIntegration.defer("Remove item(s) matching " + item + " from " + this.name, () -> {
-            if (!this.recipes.removeIf((data) -> {
-                if (finalItem.matchesExact(new MCItemStack(data.getInput()))) {
+        CraftTweakerIntegration.defer("Remove item(s) matching " + item + " from " + this.name, () ->
+        {
+            if(!this.recipes.removeIf((data) ->
+            {
+                if(finalItem.matchesExact(new MCItemStack(data.getInput())))
+                {
                     CraftTweakerAPI.logInfo(this.name + ": Removed item " + data);
                     return true;
                 }
                 return false;
-            })) {
+            }))
+            {
                 CraftTweakerAPI.logError(name + ": No item matched");
             }
         });
     }
 
-    public void add(@Nonnull final IItemStack item) {
-        if (item == null) throw new IllegalArgumentException("item cannot be null");
+    public void add(@Nonnull final IItemStack item)
+    {
+        if(item == null) throw new IllegalArgumentException("item cannot be null");
 
         final RecipeData data = new RecipeData();
         data.setInput(CraftTweakerMC.getItemStack(item));
 
-        CraftTweakerIntegration.defer("Add item " + data + " to " + this.name, () -> {
+        CraftTweakerIntegration.defer("Add item " + data + " to " + this.name, () ->
+        {
             this.recipes.add(data);
             CraftTweakerAPI.logInfo(this.name + ": Added item " + data);
         });
