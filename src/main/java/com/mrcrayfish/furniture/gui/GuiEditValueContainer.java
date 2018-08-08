@@ -79,6 +79,8 @@ public class GuiEditValueContainer extends GuiScreen
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks)
     {
+        this.drawDefaultBackground();
+        
         int startX = (this.width - WIDTH) / 2;
         int startY = (this.height - this.containerHeight) / 2;
 
