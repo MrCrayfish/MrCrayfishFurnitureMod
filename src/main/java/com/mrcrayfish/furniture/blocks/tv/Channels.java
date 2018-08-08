@@ -3,7 +3,6 @@ package com.mrcrayfish.furniture.blocks.tv;
 import com.google.common.collect.Maps;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 import net.minecraft.client.audio.ISound;
-import net.minecraft.client.audio.Sound;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 

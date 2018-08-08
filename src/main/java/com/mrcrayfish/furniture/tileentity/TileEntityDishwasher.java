@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.tileentity;
 
 import com.mrcrayfish.furniture.api.RecipeAPI;
@@ -59,14 +42,7 @@ public class TileEntityDishwasher extends TileEntityFurniture implements ISidedI
         {
             if(timeRemaining == 0)
             {
-                if(inventory.get(6).getItem() == FurnitureItems.SUPER_SOAPY_WATER)
-                {
-                    superMode = true;
-                }
-                else
-                {
-                    superMode = false;
-                }
+                superMode = inventory.get(6).getItem() == FurnitureItems.SUPER_SOAPY_WATER;
                 inventory.set(6, new ItemStack(inventory.get(6).getItem().getContainerItem()));
                 timeRemaining = 5000;
             }
@@ -116,8 +92,7 @@ public class TileEntityDishwasher extends TileEntityFurniture implements ISidedI
     public static boolean isFuel(ItemStack stack)
     {
         if(stack == null) return false;
-        if(stack.getItem() == FurnitureItems.SOAPY_WATER) return true;
-        return stack.getItem() == FurnitureItems.SUPER_SOAPY_WATER;
+        return stack.getItem() == FurnitureItems.SOAPY_WATER || stack.getItem() == FurnitureItems.SUPER_SOAPY_WATER;
     }
 
     @Override
@@ -223,11 +198,7 @@ public class TileEntityDishwasher extends TileEntityFurniture implements ISidedI
     public boolean isItemValidForSlot(int slot, ItemStack stack)
     {
         int target = ContainerDishwasher.toolToSlot(stack);
-        if(target != -1)
-        {
-            return slot == target;
-        }
-        return true;
+        return target == -1 || slot == target;
     }
 
     @Override
@@ -249,11 +220,7 @@ public class TileEntityDishwasher extends TileEntityFurniture implements ISidedI
         {
             return RecipeAPI.getDishwasherRecipeFromInput(stack) != null;
         }
-        if(side != EnumFacing.DOWN)
-        {
-            return isFuel(stack);
-        }
-        return false;
+        return side != EnumFacing.DOWN && isFuel(stack);
     }
 
     @Override

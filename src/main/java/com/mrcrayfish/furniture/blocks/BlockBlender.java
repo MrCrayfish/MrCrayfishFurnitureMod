@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
@@ -47,7 +30,6 @@ public class BlockBlender extends BlockFurnitureTile
 {
     public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(4 * 0.0625, 0.0, 4 * 0.0625, 12 * 0.0625, 1.0, 12 * 0.0625);
     public static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(4.5 * 0.0625, 0, 4.5 * 0.0625, 11.5 * 0.0625, 15 * 0.0625, 11.5 * 0.0625);
-    ;
 
     public BlockBlender(Material material)
     {
@@ -138,7 +120,7 @@ public class BlockBlender extends BlockFurnitureTile
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
     {
-        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX);
     }
 
     @Override

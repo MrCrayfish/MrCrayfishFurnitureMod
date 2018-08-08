@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.gui;
 
 import com.mrcrayfish.furniture.api.RecipeData;
@@ -29,7 +12,7 @@ import java.util.List;
 
 public abstract class RecipePage
 {
-    protected ArrayList<RecipeData> recipes = new ArrayList<RecipeData>();
+    protected ArrayList<RecipeData> recipes = new ArrayList<>();
     public String type;
 
     protected int spacing = 30;
@@ -58,8 +41,6 @@ public abstract class RecipePage
     public void handleButtonClick(GuiButton button)
     {
     }
-
-    ;
 
     public abstract String getTitle();
 

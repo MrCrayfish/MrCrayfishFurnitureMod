@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.blocks;
 
 import java.util.ArrayList;
@@ -65,7 +48,7 @@ public class BlockRangeHood extends BlockFurniture
 
     protected List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
     {
-        List<AxisAlignedBB> boxes = new ArrayList<AxisAlignedBB>();
+        List<AxisAlignedBB> boxes = new ArrayList<>();
         EnumFacing facing = state.getValue(FACING);
 
         boxes.add(COLLISION_BOTTOM);
@@ -80,14 +63,14 @@ public class BlockRangeHood extends BlockFurniture
         List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, world, pos), world, pos);
         for(AxisAlignedBB box : list)
         {
-            super.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
         }
     }
 
     @Override
     public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
     {
-        List<RayTraceResult> list = Lists.<RayTraceResult>newArrayList();
+        List<RayTraceResult> list = Lists.newArrayList();
 
         for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos), world, pos))
         {

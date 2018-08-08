@@ -65,13 +65,13 @@ public abstract class BlockFirePit extends Block
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
     {
-        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return isBurning() ? 0 : (Integer) state.getValue(STAGE);
+        return isBurning() ? 0 : state.getValue(STAGE);
     }
 
     @Override
@@ -83,7 +83,7 @@ public abstract class BlockFirePit extends Block
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return isBurning() ? super.createBlockState() : new BlockStateContainer(this, new IProperty[]{STAGE});
+        return isBurning() ? super.createBlockState() : new BlockStateContainer(this, STAGE);
     }
 
     @SideOnly(Side.CLIENT)

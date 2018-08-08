@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
@@ -69,7 +52,7 @@ public class BlockWallCabinet extends BlockFurnitureTile
     {
         if(this.canPlaceCheck(worldIn, pos, state))
         {
-            EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+            EnumFacing enumfacing = state.getValue(FACING);
 
             if(!worldIn.getBlockState(pos.offset(enumfacing)).isNormalCube())
             {
@@ -98,11 +81,7 @@ public class BlockWallCabinet extends BlockFurnitureTile
     @Override
     public boolean canPlaceBlockOnSide(World world, BlockPos pos, EnumFacing side)
     {
-        if(side.getHorizontalIndex() == -1)
-        {
-            return false;
-        }
-        return world.isSideSolid(pos.offset(side.getOpposite()), side, true);
+        return side.getHorizontalIndex() != -1 && world.isSideSolid(pos.offset(side.getOpposite()), side, true);
     }
 
     @Override
@@ -141,7 +120,7 @@ public class BlockWallCabinet extends BlockFurnitureTile
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
     {
         EnumFacing facing = state.getValue(FACING);
-        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX[facing.getHorizontalIndex()]);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX[facing.getHorizontalIndex()]);
     }
 
     @Override

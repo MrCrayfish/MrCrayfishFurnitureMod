@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.api;
 
 import java.util.ArrayList;
@@ -116,7 +99,7 @@ public class RecipeRegistry extends RecipeAPI
             Item input = Item.getByNameOrId(input_item);
             if(input != null)
             {
-                int i_metadata = 0;
+                int i_metadata;
                 try
                 {
                     i_metadata = Integer.parseInt(input_metadata);
@@ -167,7 +150,7 @@ public class RecipeRegistry extends RecipeAPI
                 {
                     if(output != null)
                     {
-                        int i_metadata = 0;
+                        int i_metadata;
                         try
                         {
                             i_metadata = Integer.parseInt(input_metadata);
@@ -181,7 +164,7 @@ public class RecipeRegistry extends RecipeAPI
                             return;
                         }
 
-                        int o_amount = 1;
+                        int o_amount;
                         try
                         {
                             o_amount = Integer.parseInt(output_amount);
@@ -195,7 +178,7 @@ public class RecipeRegistry extends RecipeAPI
                             return;
                         }
 
-                        int o_metadata = 0;
+                        int o_metadata;
                         try
                         {
                             o_metadata = Integer.parseInt(output_metadata);
@@ -262,7 +245,7 @@ public class RecipeRegistry extends RecipeAPI
                 {
                     if(output != null)
                     {
-                        int i_metadata = 0;
+                        int i_metadata;
                         try
                         {
                             i_metadata = Integer.parseInt(input_metadata);
@@ -276,7 +259,7 @@ public class RecipeRegistry extends RecipeAPI
                             return;
                         }
 
-                        int o_amount = 1;
+                        int o_amount;
                         try
                         {
                             o_amount = Integer.parseInt(output_amount);
@@ -290,7 +273,7 @@ public class RecipeRegistry extends RecipeAPI
                             return;
                         }
 
-                        int o_metadata = 0;
+                        int o_metadata;
                         try
                         {
                             o_metadata = Integer.parseInt(output_metadata);
@@ -357,7 +340,7 @@ public class RecipeRegistry extends RecipeAPI
                 if(payment != null)
                 {
 
-                    int i_metadata = 0;
+                    int i_metadata;
                     try
                     {
                         i_metadata = Integer.parseInt(input_metadata);
@@ -371,7 +354,7 @@ public class RecipeRegistry extends RecipeAPI
                         return;
                     }
 
-                    int i_amount = 0;
+                    int i_amount;
                     try
                     {
                         i_amount = Integer.parseInt(input_amount);
@@ -458,7 +441,7 @@ public class RecipeRegistry extends RecipeAPI
                 {
                     if(output != null)
                     {
-                        int i_metadata = 0;
+                        int i_metadata;
                         try
                         {
                             i_metadata = Integer.parseInt(input_metadata);
@@ -472,7 +455,7 @@ public class RecipeRegistry extends RecipeAPI
                             return;
                         }
 
-                        int o_amount = 1;
+                        int o_amount;
                         try
                         {
                             o_amount = Integer.parseInt(output_amount);
@@ -486,7 +469,7 @@ public class RecipeRegistry extends RecipeAPI
                             return;
                         }
 
-                        int o_metadata = 0;
+                        int o_metadata;
                         try
                         {
                             o_metadata = Integer.parseInt(output_metadata);
@@ -553,7 +536,7 @@ public class RecipeRegistry extends RecipeAPI
                 {
                     if(output != null)
                     {
-                        int i_metadata = 0;
+                        int i_metadata;
                         try
                         {
                             i_metadata = Integer.parseInt(input_metadata);
@@ -567,7 +550,7 @@ public class RecipeRegistry extends RecipeAPI
                             return;
                         }
 
-                        int o_amount = 1;
+                        int o_amount;
                         try
                         {
                             o_amount = Integer.parseInt(output_amount);
@@ -581,7 +564,7 @@ public class RecipeRegistry extends RecipeAPI
                             return;
                         }
 
-                        int o_metadata = 0;
+                        int o_metadata;
                         try
                         {
                             o_metadata = Integer.parseInt(output_metadata);
@@ -645,7 +628,7 @@ public class RecipeRegistry extends RecipeAPI
                 {
                     if(colour != null)
                     {
-                        int h_amount = 0;
+                        int h_amount;
                         try
                         {
                             h_amount = Integer.parseInt(heal_amount);
@@ -711,7 +694,7 @@ public class RecipeRegistry extends RecipeAPI
 
     public static ItemStack[] parseIngredients(String ingredients, int num, Parser parser)
     {
-        ArrayList<ItemStack> list = new ArrayList<ItemStack>();
+        ArrayList<ItemStack> list = new ArrayList<>();
         String[] ingredientData = ingredients.split("/");
 
         if(ingredientData.length == 0)
@@ -738,7 +721,7 @@ public class RecipeRegistry extends RecipeAPI
 
             Item item = Item.getByNameOrId(itemName);
 
-            int i_amount = 1;
+            int i_amount;
             try
             {
                 i_amount = Integer.parseInt(itemAmount);
@@ -752,7 +735,7 @@ public class RecipeRegistry extends RecipeAPI
                 return null;
             }
 
-            int i_metadata = 0;
+            int i_metadata;
             try
             {
                 i_metadata = Integer.parseInt(itemMetadata);
@@ -780,7 +763,7 @@ public class RecipeRegistry extends RecipeAPI
             String g = rgb[1];
             String b = rgb[2];
 
-            int red = 0;
+            int red;
             try
             {
                 red = Integer.parseInt(r);
@@ -794,7 +777,7 @@ public class RecipeRegistry extends RecipeAPI
                 return null;
             }
 
-            int green = 0;
+            int green;
             try
             {
                 green = Integer.parseInt(g);
@@ -808,7 +791,7 @@ public class RecipeRegistry extends RecipeAPI
                 return null;
             }
 
-            int blue = 0;
+            int blue;
             try
             {
                 blue = Integer.parseInt(b);
@@ -883,7 +866,7 @@ public class RecipeRegistry extends RecipeAPI
                 {
                     if(output != null)
                     {
-                        int i_metadata = 0;
+                        int i_metadata;
                         try
                         {
                             i_metadata = Integer.parseInt(input_metadata);
@@ -897,7 +880,7 @@ public class RecipeRegistry extends RecipeAPI
                             return;
                         }
 
-                        int o_metadata = 0;
+                        int o_metadata;
                         try
                         {
                             o_metadata = Integer.parseInt(output_metadata);
@@ -1019,7 +1002,7 @@ public class RecipeRegistry extends RecipeAPI
                 {
                     if(output != null)
                     {
-                        int i_metadata = 0;
+                        int i_metadata;
                         try
                         {
                             i_metadata = Integer.parseInt(input_metadata);
@@ -1033,7 +1016,7 @@ public class RecipeRegistry extends RecipeAPI
                             return;
                         }
 
-                        int o_metadata = 0;
+                        int o_metadata;
                         try
                         {
                             o_metadata = Integer.parseInt(output_metadata);

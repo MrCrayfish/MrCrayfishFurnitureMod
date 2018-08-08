@@ -43,11 +43,7 @@ public class Channel
             {
                 counterField.setInt(atlas, 0);
             }
-            catch(IllegalArgumentException e)
-            {
-                e.printStackTrace();
-            }
-            catch(IllegalAccessException e)
+            catch(IllegalArgumentException | IllegalAccessException e)
             {
                 e.printStackTrace();
             }

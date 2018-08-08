@@ -1,6 +1,5 @@
 package com.mrcrayfish.furniture.integration.crafttweaker;
 
-import com.google.common.base.Predicates;
 import com.mrcrayfish.furniture.api.RecipeData;
 import com.mrcrayfish.furniture.api.Recipes;
 import crafttweaker.CraftTweakerAPI;
@@ -15,6 +14,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.function.Predicate;
@@ -28,7 +28,7 @@ public class Blender
     public static void remove(@Optional final String name, @Optional final IItemStack[] ingredients, @Optional final Integer food, @Optional final int[] colour)
     {
         final StringBuilder description = new StringBuilder();
-        Predicate<RecipeData> matcher = Predicates.alwaysTrue();
+        Predicate<RecipeData> matcher = recipeData -> true;
 
         boolean first = true;
 
@@ -49,7 +49,7 @@ public class Blender
                 if(data.getIngredients().size() != ingredients.length) return false;
                 LinkedList<IItemStack> toCheck = new LinkedList<>();
 
-                for(IItemStack checker : ingredients) toCheck.add(checker);
+                Collections.addAll(toCheck, ingredients);
 
                 outer:
                 for(ItemStack stack : data.getIngredients())

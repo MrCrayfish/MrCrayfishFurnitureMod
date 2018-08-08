@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.init;
 
 import com.mrcrayfish.furniture.blocks.*;
@@ -135,12 +118,12 @@ public class FurnitureBlocks
         BEDSIDE_CABINET_DARK_OAK = new BlockBedsideCabinet(Material.WOOD).setUnlocalizedName("bedside_cabinet_dark_oak").setRegistryName("bedside_cabinet_dark_oak");
         OVEN = new BlockOven(Material.ROCK).setUnlocalizedName("oven").setRegistryName("oven");
         RANGE_HOOD = new BlockRangeHood(Material.ROCK).setUnlocalizedName("range_hood").setRegistryName("range_hood");
-        HEDGE_OAK = new BlockHedge(Material.LEAVES).setUnlocalizedName("hedge_oak").setRegistryName("hedge_oak");
-        HEDGE_SPRUCE = new BlockHedge(Material.LEAVES).setUnlocalizedName("hedge_spruce").setRegistryName("hedge_spruce");
-        HEDGE_BIRCH = new BlockHedge(Material.LEAVES).setUnlocalizedName("hedge_birch").setRegistryName("hedge_birch");
-        HEDGE_JUNGLE = new BlockHedge(Material.LEAVES).setUnlocalizedName("hedge_jungle").setRegistryName("hedge_jungle");
-        HEDGE_ACACIA = new BlockHedge(Material.LEAVES).setUnlocalizedName("hedge_acacia").setRegistryName("hedge_acacia");
-        HEDGE_DARK_OAK = new BlockHedge(Material.LEAVES).setUnlocalizedName("hedge_dark_oak").setRegistryName("hedge_dark_oak");
+        HEDGE_OAK = new BlockHedge().setUnlocalizedName("hedge_oak").setRegistryName("hedge_oak");
+        HEDGE_SPRUCE = new BlockHedge().setUnlocalizedName("hedge_spruce").setRegistryName("hedge_spruce");
+        HEDGE_BIRCH = new BlockHedge().setUnlocalizedName("hedge_birch").setRegistryName("hedge_birch");
+        HEDGE_JUNGLE = new BlockHedge().setUnlocalizedName("hedge_jungle").setRegistryName("hedge_jungle");
+        HEDGE_ACACIA = new BlockHedge().setUnlocalizedName("hedge_acacia").setRegistryName("hedge_acacia");
+        HEDGE_DARK_OAK = new BlockHedge().setUnlocalizedName("hedge_dark_oak").setRegistryName("hedge_dark_oak");
         BIRD_BATH = new BlockBirdBath(Material.ROCK).setUnlocalizedName("bird_bath").setRegistryName("bird_bath");
         STONE_PATH = new BlockStonePath(Material.ROCK).setUnlocalizedName("stone_path").setRegistryName("stone_path");
         WHITE_FENCE = new BlockWhiteFence(Material.WOOD).setUnlocalizedName("white_fence").setRegistryName("white_fence");

@@ -1,23 +1,5 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.proxy;
 
-import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.handler.ClientEvents;
 import com.mrcrayfish.furniture.handler.GuiDrawHandler;
 import com.mrcrayfish.furniture.handler.InputHandler;
@@ -37,15 +19,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.biome.BiomeColorHelper;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
 
 import java.awt.*;
 
@@ -119,9 +98,7 @@ public class ClientProxy extends CommonProxy
             }
         };
         IBlockColor hedgeBlockColorNew = (state, worldIn, pos, tintIndex) ->
-        {
-            return worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
-        };
+                worldIn != null && pos != null ? BiomeColorHelper.getFoliageColorAtPos(worldIn, pos) : ColorizerFoliage.getFoliageColorBasic();
         registerColorHandlerForBlock(FurnitureBlocks.HEDGE_OAK, hedgeBlockColorOld, hedgeItemColor);
         registerColorHandlerForBlock(FurnitureBlocks.HEDGE_SPRUCE, hedgeBlockColorOld, hedgeItemColor);
         registerColorHandlerForBlock(FurnitureBlocks.HEDGE_BIRCH, hedgeBlockColorOld, hedgeItemColor);
@@ -194,7 +171,7 @@ public class ClientProxy extends CommonProxy
 
         if(event.getEntityPlayer() == renderEntity)
         {
-            this.backupEntity = Minecraft.getMinecraft().getRenderManager().renderViewEntity;
+            backupEntity = Minecraft.getMinecraft().getRenderManager().renderViewEntity;
             Minecraft.getMinecraft().getRenderManager().renderViewEntity = renderEntity;
         }
     }

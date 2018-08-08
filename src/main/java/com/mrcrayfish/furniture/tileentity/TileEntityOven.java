@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.tileentity;
 
 import com.mrcrayfish.furniture.api.RecipeAPI;
@@ -117,7 +100,7 @@ public class TileEntityOven extends TileEntityFurniture implements ISidedInvento
             {
                 double randX = rand.nextDouble();
                 double randZ = rand.nextDouble();
-                world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + randX, pos.getY() + 1.0D, pos.getZ() + randZ, 0.0D, 0.0D, 0.0D, new int[0]);
+                world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + randX, pos.getY() + 1.0D, pos.getZ() + randZ, 0.0D, 0.0D, 0.0D);
             }
         }
         else
@@ -235,7 +218,7 @@ public class TileEntityOven extends TileEntityFurniture implements ISidedInvento
     @Override
     public boolean isItemValidForSlot(int i, ItemStack itemstack)
     {
-        return i > 8 ? false : true;
+        return i <= 8;
     }
 
     @Override

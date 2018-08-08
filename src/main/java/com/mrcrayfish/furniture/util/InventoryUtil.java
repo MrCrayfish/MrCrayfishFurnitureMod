@@ -1,26 +1,6 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.util;
 
-import java.util.Random;
-
 import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
@@ -34,8 +14,6 @@ import net.minecraftforge.items.IItemHandler;
 
 public class InventoryUtil
 {
-    private static final Random RANDOM = new Random();
-
     /**
      * Drops the items that are in a tile entity's inventory. Does nothing if the tile entity is not an instance of an {@link ISimpleInventory} or {@link IInventory}.
      *
@@ -148,7 +126,7 @@ public class InventoryUtil
         {
             for(int i = 0; i < nbt.tagCount(); ++i)
             {
-                NBTTagCompound itemTag = (NBTTagCompound) nbt.getCompoundTagAt(i);
+                NBTTagCompound itemTag = nbt.getCompoundTagAt(i);
                 byte slot = itemTag.getByte("Slot");
 
                 if(slot >= 0 && slot < items.length)
