@@ -46,14 +46,22 @@ public class ModernTVRenderer extends TileEntitySpecialRenderer<TileEntityModern
                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
-                    //Calculates the positioning and scale so the GIF keeps its ratio and renders within the screen
-                    double scaleWidth = (double) te.getWidth() / (double) texture.getWidth();
-                    double scaleHeight = (double) te.getHeight() / (double) texture.getHeight();
-                    double scale = Math.min(scaleWidth, scaleHeight);
-                    double width = texture.getWidth() * scale;
-                    double height = texture.getHeight() * scale;
-                    double startX = (te.getWidth() - width) / 2.0;
-                    double startY = (te.getHeight() - height) / 2.0;
+                    double startX = 0.0;
+                    double startY = 0.0;
+                    double width = te.getWidth();
+                    double height = te.getHeight();
+
+                    if(!te.isStretched())
+                    {
+                        //Calculates the positioning and scale so the GIF keeps its ratio and renders within the screen
+                        double scaleWidth = (double) te.getWidth() / (double) texture.getWidth();
+                        double scaleHeight = (double) te.getHeight() / (double) texture.getHeight();
+                        double scale = Math.min(scaleWidth, scaleHeight);
+                        width = texture.getWidth() * scale;
+                        height = texture.getHeight() * scale;
+                        startX = (te.getWidth() - width) / 2.0;
+                        startY = (te.getHeight() - height) / 2.0;
+                    }
 
                     startX *= 0.0625;
                     startY *= 0.0625;

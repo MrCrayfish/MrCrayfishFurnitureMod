@@ -19,6 +19,7 @@ public abstract class TileEntityAbstractTV extends TileEntitySyncClient implemen
 {
     private int width;
     private int height;
+    private boolean stretch;
 
     private String url;
     private boolean loading;
@@ -40,6 +41,7 @@ public abstract class TileEntityAbstractTV extends TileEntitySyncClient implemen
         {
             compound.setString("URL", this.url);
         }
+        compound.setBoolean("Stretch", this.stretch);
         return compound;
     }
 
@@ -54,6 +56,10 @@ public abstract class TileEntityAbstractTV extends TileEntitySyncClient implemen
             {
                 this.loadUrl(url);
             }
+        }
+        if(compound.hasKey("Stretch", Constants.NBT.TAG_BYTE))
+        {
+            this.stretch = compound.getBoolean("Stretch");
         }
     }
 
@@ -111,6 +117,7 @@ public abstract class TileEntityAbstractTV extends TileEntitySyncClient implemen
     {
         List<Entry> entries = Lists.newArrayList();
         entries.add(new Entry("url", "URL", Entry.Type.TEXT_FIELD, this.url));
+        entries.add(new Entry("stretch", "Stretch to Screen", Entry.Type.TOGGLE, this.stretch));
         return entries;
     }
 
@@ -118,11 +125,17 @@ public abstract class TileEntityAbstractTV extends TileEntitySyncClient implemen
     public void updateEntries(Map<String, String> entries)
     {
         this.url = entries.get("url");
+        this.stretch = Boolean.valueOf(entries.get("stretch"));
     }
 
     @Override
     public boolean requiresTool()
     {
         return false;
+    }
+
+    public boolean isStretched()
+    {
+        return stretch;
     }
 }
