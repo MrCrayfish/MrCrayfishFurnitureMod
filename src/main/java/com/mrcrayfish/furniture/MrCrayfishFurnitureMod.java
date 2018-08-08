@@ -5,7 +5,6 @@ import com.mrcrayfish.furniture.api.IRecipeRegistry;
 import com.mrcrayfish.furniture.api.RecipeRegistry;
 import com.mrcrayfish.furniture.api.RecipeRegistryComm;
 import com.mrcrayfish.furniture.api.Recipes;
-import com.mrcrayfish.furniture.blocks.tv.Channels;
 import com.mrcrayfish.furniture.entity.EntityMirror;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.gui.GuiHandler;
@@ -111,8 +110,6 @@ public class MrCrayfishFurnitureMod
             CraftTweakerIntegration.apply();
         }
         Recipes.updateDataList();
-
-        Channels.registerChannels();
     }
 
     @EventHandler

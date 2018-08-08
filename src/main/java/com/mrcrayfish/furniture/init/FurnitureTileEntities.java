@@ -15,7 +15,6 @@ public class FurnitureTileEntities
         GameRegistry.registerTileEntity(TileEntityMailBox.class, "cfmMailBox");
         GameRegistry.registerTileEntity(TileEntityComputer.class, "cfmComputer");
         GameRegistry.registerTileEntity(TileEntityPrinter.class, "cfmPrinter");
-        GameRegistry.registerTileEntity(TileEntityTV.class, "cfmTV");
         GameRegistry.registerTileEntity(TileEntityStereo.class, "cfmStereo");
         GameRegistry.registerTileEntity(TileEntityPresent.class, "cfmPresent");
         GameRegistry.registerTileEntity(TileEntityBin.class, "cfmBin");
@@ -44,5 +43,6 @@ public class FurnitureTileEntities
         GameRegistry.registerTileEntity(TileEntityDeskCabinet.class, "cfmDeskCabinet");
         GameRegistry.registerTileEntity(TileEntityModernSlidingDoor.class, "cfmModernSlidingDoor");
         GameRegistry.registerTileEntity(TileEntityDigitalClock.class, "cfmDigitalClock");
+        GameRegistry.registerTileEntity(TileEntityTV.class, "cfmTV");
     }
 }

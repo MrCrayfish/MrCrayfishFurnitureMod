@@ -1,11 +1,11 @@
 {
   "result": {
-    "item": "cfm:tv"
+    "item": "cfm:modern_tv"
   },
   "pattern": [
-    "LLL",
-    "LGL",
-    "LRL"
+    "III",
+    "GGG",
+    "IRI"
   ],
   "type": "minecraft:crafting_shaped",
   "key": {
@@ -15,9 +15,8 @@
     "R": {
       "item": "minecraft:redstone"
     },
-    "L": {
-      "item": "minecraft:log",
-      "data": 0
+    "I": {
+      "item": "minecraft:iron_ingot"
     }
   }
 }

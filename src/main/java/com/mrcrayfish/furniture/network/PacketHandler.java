@@ -32,7 +32,6 @@ public class PacketHandler
         INSTANCE.registerMessage(MessageUpdateFields.class, MessageUpdateFields.class, 17, Side.CLIENT);
         INSTANCE.registerMessage(MessageDoorMat.class, MessageDoorMat.class, 18, Side.SERVER);
         INSTANCE.registerMessage(MessageSealCrate.class, MessageSealCrate.class, 19, Side.SERVER);
-        INSTANCE.registerMessage(MessageTVPlaySound.class, MessageTVPlaySound.class, 20, Side.CLIENT);
-        INSTANCE.registerMessage(MessageTVStopSound.class, MessageTVStopSound.class, 21, Side.CLIENT);
+        INSTANCE.registerMessage(MessageUpdateValueContainer.class, MessageUpdateValueContainer.class, 20, Side.SERVER);
     }
 }
