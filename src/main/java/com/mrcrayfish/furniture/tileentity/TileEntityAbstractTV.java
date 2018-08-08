@@ -1,18 +1,21 @@
 package com.mrcrayfish.furniture.tileentity;
 
 import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.client.GifCache;
 import com.mrcrayfish.furniture.client.ImageDownloadThread;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * Author: MrCrayfish
  */
-public abstract class TileEntityAbstractTV extends TileEntitySyncClient
+public abstract class TileEntityAbstractTV extends TileEntitySyncClient implements IValueContainer
 {
     private int width;
     private int height;
@@ -101,5 +104,25 @@ public abstract class TileEntityAbstractTV extends TileEntitySyncClient
     public int getHeight()
     {
         return height;
+    }
+
+    @Override
+    public List<Entry> getEntries()
+    {
+        List<Entry> entries = Lists.newArrayList();
+        entries.add(new Entry("url", "URL", Entry.Type.TEXT_FIELD, this.url));
+        return entries;
+    }
+
+    @Override
+    public void updateEntries(Map<String, String> entries)
+    {
+        this.url = entries.get("url");
+    }
+
+    @Override
+    public boolean requiresTool()
+    {
+        return false;
     }
 }

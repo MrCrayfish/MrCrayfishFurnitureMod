@@ -1,7 +1,6 @@
 package com.mrcrayfish.furniture.render.tileentity;
 
 import com.mrcrayfish.furniture.blocks.BlockFurnitureTile;
-import com.mrcrayfish.furniture.blocks.BlockModernSlidingDoor;
 import com.mrcrayfish.furniture.client.AnimatedTexture;
 import com.mrcrayfish.furniture.client.GifCache;
 import com.mrcrayfish.furniture.tileentity.TileEntityModernTV;

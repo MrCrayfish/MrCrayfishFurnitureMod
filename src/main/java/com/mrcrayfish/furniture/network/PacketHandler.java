@@ -51,5 +51,6 @@ public class PacketHandler
         INSTANCE.registerMessage(MessageSealCrate.class, MessageSealCrate.class, 19, Side.SERVER);
         INSTANCE.registerMessage(MessageTVPlaySound.class, MessageTVPlaySound.class, 20, Side.CLIENT);
         INSTANCE.registerMessage(MessageTVStopSound.class, MessageTVStopSound.class, 21, Side.CLIENT);
+        INSTANCE.registerMessage(MessageUpdateValueContainer.class, MessageUpdateValueContainer.class, 22, Side.SERVER);
     }
 }
