@@ -60,6 +60,9 @@ tile.cabinet_jungle.name=丛林木橱柜
 tile.cabinet_acacia.name=金合欢木橱柜
 tile.cabinet_dark_oak.name=深色橡木橱柜
 tile.cabinet_stone.name=石质橱柜
+tile.cabinet_granite.name=花岗岩橱柜
+tile.cabinet_diorite.name=闪长岩橱柜
+tile.cabinet_andesite.name=安山岩橱柜
 tile.bedside_cabinet_oak.name=橡木床头柜
 tile.bedside_cabinet_spruce.name=云杉木床头柜
 tile.bedside_cabinet_birch.name=白桦木床头柜
@@ -234,6 +237,7 @@ tile.desk_cabinet_diorite.name=闪长岩书桌柜
 tile.desk_cabinet_andesite.name=安山岩书桌柜
 tile.modern_sliding_door.name=现代推拉门
 tile.digital_clock.name=数字时钟
+tile.modern_tv.name=现代电视
 
 cfm.info=按SHIFT显示更多信息
 cfm.light_switch.desc=用这个开关遥控吸顶灯或吊扇
