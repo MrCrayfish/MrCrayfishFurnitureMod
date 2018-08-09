@@ -237,6 +237,7 @@ tile.desk_cabinet_diorite.name=Диоритовый ящик стола
 tile.desk_cabinet_andesite.name=Андезитовый ящик стола
 tile.modern_sliding_door.name=Современная раздвижная дверь
 tile.digital_clock.name=Цифровые часы
+tile.modern_tv.name=Современный телевизор
 
 cfm.info=Нажмите SHIFT для подробностей
 cfm.light_switch.desc=Используйте этот выключатель для дистанционного управления потолочными светильниками и вентиляторами
