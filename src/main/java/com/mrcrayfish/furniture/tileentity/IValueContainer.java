@@ -20,7 +20,7 @@ public interface IValueContainer
         return true;
     }
 
-    BlockPos getPos();
+    BlockPos getContainerPos();
 
     class Entry
     {

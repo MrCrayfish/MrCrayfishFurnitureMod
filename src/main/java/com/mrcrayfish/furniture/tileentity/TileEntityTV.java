@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.client.GifCache;
 import com.mrcrayfish.furniture.client.ImageDownloadThread;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -151,5 +152,11 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     public boolean isStretched()
     {
         return stretch;
+    }
+
+    @Override
+    public BlockPos getContainerPos()
+    {
+        return this.pos;
     }
 }

@@ -29,7 +29,7 @@ public class MessageUpdateValueContainer implements IMessage, IMessageHandler<Me
 
     public MessageUpdateValueContainer(List<ValueComponent> valueEntries, IValueContainer valueContainer)
     {
-        this.pos = valueContainer.getPos();
+        this.pos = valueContainer.getContainerPos();
         this.entryMap = valueEntries.stream().collect(Collectors.toMap(ValueComponent::getId, ValueComponent::getValue));
     }
 
