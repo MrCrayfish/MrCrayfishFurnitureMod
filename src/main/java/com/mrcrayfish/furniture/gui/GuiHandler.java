@@ -5,6 +5,7 @@ import com.mrcrayfish.furniture.blocks.BlockCabinet;
 import com.mrcrayfish.furniture.gui.containers.*;
 import com.mrcrayfish.furniture.items.*;
 import com.mrcrayfish.furniture.tileentity.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -54,6 +55,10 @@ public class GuiHandler implements IGuiHandler
     public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
     {
         TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
+        if(tileEntity instanceof IValueContainer && id == 1)
+        {
+            return new GuiEditValueContainer((IValueContainer) tileEntity);
+        }
         if(tileEntity instanceof TileEntityFridge)
         {
             return new GuiFridge(player.inventory, (TileEntityFridge) tileEntity);

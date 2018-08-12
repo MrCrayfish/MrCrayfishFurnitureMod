@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.blocks;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.gui.GuiEditValueContainer;
 import com.mrcrayfish.furniture.tileentity.IValueContainer;
 import com.mrcrayfish.furniture.tileentity.TileEntityTV;
@@ -42,8 +43,7 @@ public abstract class BlockAbstractTV extends BlockFurnitureTile
             TileEntity tileEntity = worldIn.getTileEntity(pos);
             if(tileEntity instanceof IValueContainer)
             {
-                Minecraft mc = Minecraft.getMinecraft();
-                mc.displayGuiScreen(new GuiEditValueContainer((IValueContainer) tileEntity));
+                playerIn.openGui(MrCrayfishFurnitureMod.instance, 1, worldIn, pos.getX(), pos.getY(), pos.getZ());
             }
         }
         return true;
