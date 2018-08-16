@@ -46,6 +46,8 @@ public class TVRenderer extends TileEntitySpecialRenderer<TileEntityTV>
                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
+                    GlStateManager.enableRescaleNormal();
+
                     double startX = 0.0;
                     double startY = 0.0;
                     double width = te.getWidth();
@@ -93,6 +95,10 @@ public class TVRenderer extends TileEntitySpecialRenderer<TileEntityTV>
                     buffer.pos(startX + width, startY + height, 0).tex(1, 1).endVertex();
                     buffer.pos(startX + width, startY, 0).tex(1, 0).endVertex();
                     tessellator.draw();
+
+                    GlStateManager.disableRescaleNormal();
+                    GlStateManager.disableBlend();
+                    GlStateManager.enableLighting();
                 }
             }
         }
