@@ -175,12 +175,15 @@ public abstract class BlockCouch extends BlockFurnitureTile
                 {
                     if(heldItem.getItem() instanceof ItemDye)
                     {
-                        tileEntityCouch.setColour(heldItem.getItemDamage());
-                        if(!playerIn.isCreative())
+                        if(tileEntityCouch.getColour() != (15 - heldItem.getItemDamage()))
                         {
-                            heldItem.shrink(1);
+                            tileEntityCouch.setColour(heldItem.getItemDamage());
+                            if(!playerIn.isCreative())
+                            {
+                                heldItem.shrink(1);
+                            }
+                            TileEntityUtil.markBlockForUpdate(worldIn, pos);
                         }
-                        TileEntityUtil.markBlockForUpdate(worldIn, pos);
                         return true;
                     }
                 }
