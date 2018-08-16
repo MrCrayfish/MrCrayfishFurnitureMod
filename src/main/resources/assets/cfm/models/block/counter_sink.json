@@ -1,6 +1,10 @@
 {
     "textures": {
-        "particle": "#0"
+        "particle": "blocks/quartz_block_bottom",
+        "0": "blocks/quartz_block_bottom",
+        "1": "blocks/hardened_clay_stained_cyan",
+        "2": "blocks/stone",
+        "3": "blocks/hardened_clay_stained_cyan"
     },
     "elements": [
         {
@@ -309,27 +313,27 @@
             "faces": {
                 "up": {
                     "uv": [ 0.0, 0.0, 2.0, 16.0 ],
-                    "texture": "#3"
+                    "texture": "#top"
                 },
                 "down": {
                     "uv": [ 0.0, 0.0, 2.0, 16.0 ],
-                    "texture": "#3"
+                    "texture": "#top"
                 },
                 "north": {
                     "uv": [ 0.0, 14.0, 2.0, 16.0 ],
-                    "texture": "#3"
+                    "texture": "#top"
                 },
                 "south": {
                     "uv": [ 0.0, 14.0, 2.0, 16.0 ],
-                    "texture": "#3"
+                    "texture": "#top"
                 },
                 "west": {
                     "uv": [ 0.0, 14.0, 16.0, 16.0 ],
-                    "texture": "#3"
+                    "texture": "#top"
                 },
                 "east": {
                     "uv": [ 0.0, 14.0, 16.0, 16.0 ],
-                    "texture": "#3"
+                    "texture": "#top"
                 }
             }
         }

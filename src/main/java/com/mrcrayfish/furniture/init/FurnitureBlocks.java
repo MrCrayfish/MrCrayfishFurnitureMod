@@ -336,7 +336,7 @@ public class FurnitureBlocks
         registerBlock(CUP, null);
         registerBlock(PLATE);
         registerBlock(COUNTER, new ItemBlockColored(COUNTER));
-        registerBlock(COUNTER_SINK);
+        registerBlock(COUNTER_SINK, new ItemBlockColored(COUNTER_SINK));
         registerBlock(DISHWASHER);
         registerBlock(KITCHEN_CABINET);
         registerBlock(CHOPPING_BOARD);
