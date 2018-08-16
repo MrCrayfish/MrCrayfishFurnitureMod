@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture;
 
 import com.mrcrayfish.furniture.advancement.Triggers;
@@ -30,6 +13,7 @@ import com.mrcrayfish.furniture.handler.PlayerEvents;
 import com.mrcrayfish.furniture.init.FurnitureTab;
 import com.mrcrayfish.furniture.init.FurnitureTileEntities;
 import com.mrcrayfish.furniture.init.RegistrationHandler;
+import com.mrcrayfish.furniture.integration.crafttweaker.CraftTweakerIntegration;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.proxy.CommonProxy;
 import com.mrcrayfish.furniture.render.tileentity.MirrorRenderer;
@@ -53,7 +37,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Method;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, acceptedMinecraftVersions = Reference.ACCEPTED_MC_VERSIONS)
+@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, dependencies = Reference.DEPENDENCIES, guiFactory = Reference.GUI_FACTORY_CLASS, acceptedMinecraftVersions = Reference.ACCEPTED_MC_VERSIONS)
 public class MrCrayfishFurnitureMod
 {
     @Instance(Reference.MOD_ID)
@@ -120,6 +104,11 @@ public class MrCrayfishFurnitureMod
         RecipeRegistry.registerDefaultRecipes();
         RecipeRegistry.registerConfigRecipes();
         Recipes.addCommRecipesToLocal();
+        /* Craft Tweaker Integration */
+        if (Loader.isModLoaded("crafttweaker"))
+        {
+            CraftTweakerIntegration.apply();
+        }
         Recipes.updateDataList();
     }
 

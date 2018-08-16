@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.api;
 
 public interface IRecipeRegistry
@@ -28,7 +11,7 @@ public interface IRecipeRegistry
      * @param params The variables for the recipe.
      */
     @Deprecated
-    public void registerRecipe(String type, RecipeVariables params);
+    void registerRecipe(String type, RecipeVariables params);
 
     /**
      * Registers a recipe<br>
@@ -37,7 +20,7 @@ public interface IRecipeRegistry
      * required variables for the specific {@link RecipeType}.
      *
      * @param type   The recipe type. See {@link RecipeType}
-     * @param params The variables for the recipe.
+     * @param variables The variables for the recipe.
      */
-    public void registerRecipe(RecipeType type, RecipeVariables variables);
+    void registerRecipe(RecipeType type, RecipeVariables variables);
 }

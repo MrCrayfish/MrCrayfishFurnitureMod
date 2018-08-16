@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
@@ -59,7 +42,7 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
         super(material);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.GLASS);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(COOKIE_COUNT, Integer.valueOf(0)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(COOKIE_COUNT, 0));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
     }
 
@@ -126,7 +109,7 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
     {
-        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
     }
 
     @Override
@@ -148,7 +131,7 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((Integer) state.getValue(COOKIE_COUNT)).intValue();
+        return state.getValue(COOKIE_COUNT);
     }
 
     @Override
@@ -160,7 +143,7 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[]{COOKIE_COUNT});
+        return new BlockStateContainer(this, COOKIE_COUNT);
     }
 
     @SideOnly(Side.CLIENT)

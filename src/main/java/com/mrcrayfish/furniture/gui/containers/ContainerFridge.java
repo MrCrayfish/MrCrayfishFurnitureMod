@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.gui.containers;
 
 import com.mrcrayfish.furniture.gui.slots.SlotFridge;
@@ -28,13 +11,11 @@ import net.minecraft.item.ItemStack;
 public class ContainerFridge extends Container
 {
     private IInventory lowerChestInventory;
-    private int numRows;
 
     public ContainerFridge(IInventory playerInventory, IInventory fridgeInventory)
     {
         this.lowerChestInventory = playerInventory;
         fridgeInventory.openInventory(null);
-        int var4, var5;
 
         int count = 0;
         for(int i = 0; i < 3; i++)
@@ -68,7 +49,7 @@ public class ContainerFridge extends Container
     public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int par2)
     {
         ItemStack var3 = ItemStack.EMPTY;
-        Slot var4 = (Slot) this.inventorySlots.get(par2);
+        Slot var4 = this.inventorySlots.get(par2);
 
         if(var4 != null && var4.getHasStack())
         {
@@ -109,10 +90,5 @@ public class ContainerFridge extends Container
     {
         super.onContainerClosed(par1EntityPlayer);
         this.lowerChestInventory.closeInventory(par1EntityPlayer);
-    }
-
-    public IInventory func_85151_d()
-    {
-        return this.lowerChestInventory;
     }
 }

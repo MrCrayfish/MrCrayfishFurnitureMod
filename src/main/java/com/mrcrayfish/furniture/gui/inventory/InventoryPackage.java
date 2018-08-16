@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.gui.inventory;
 
 import com.mrcrayfish.furniture.init.FurnitureItems;
@@ -26,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class InventoryPackage extends InventoryBasic
@@ -34,14 +18,13 @@ public class InventoryPackage extends InventoryBasic
     protected static ItemStack packag3;
     protected boolean reading = false;
     protected String uniqueID = "";
-    ;
 
     public InventoryPackage(EntityPlayer player, ItemStack packag3)
     {
         super("Package", false, getInventorySize());
 
         this.playerEntity = player;
-        this.packag3 = packag3;
+        InventoryPackage.packag3 = packag3;
 
         if(!hasInventory())
         {
@@ -107,7 +90,7 @@ public class InventoryPackage extends InventoryBasic
                 NBTTagCompound nbt = itemStack.getTagCompound();
                 if(nbt != null)
                 {
-                    if(nbt.getCompoundTag("Package").getString("UniqueID") == uniqueID)
+                    if(Objects.equals(nbt.getCompoundTag("Package").getString("UniqueID"), uniqueID))
                     {
                         itemStack.setTagCompound(packag3.getTagCompound());
                         break;
@@ -148,7 +131,7 @@ public class InventoryPackage extends InventoryBasic
         NBTTagList itemList = (NBTTagList) NBTHelper.getCompoundTag(packag3, "Package").getTag("Items");
         for(int i = 0; i < itemList.tagCount(); i++)
         {
-            NBTTagCompound slotEntry = (NBTTagCompound) itemList.getCompoundTagAt(i);
+            NBTTagCompound slotEntry = itemList.getCompoundTagAt(i);
             int j = slotEntry.getByte("Slot") & 0xff;
 
             if(j >= 0 && j < getSizeInventory())
