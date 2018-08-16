@@ -366,7 +366,7 @@ public class FurnitureBlocks
         registerBlock(GRILL);
         registerBlock(DIVING_BOARD_BASE, new ItemBath(DIVING_BOARD_BASE));
         registerBlock(DIVING_BOARD_PLANK, null);
-        registerBlock(DOOR_MAT);
+        registerBlock(DOOR_MAT, new ItemBlockColored(DOOR_MAT));
         registerBlock(COOLER);
         registerBlock(MODERN_WINDOW);
         registerBlock(MODERN_SLIDING_DOOR, new ItemModernSlidingDoor(MODERN_SLIDING_DOOR));
