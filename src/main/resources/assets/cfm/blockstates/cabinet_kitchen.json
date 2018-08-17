@@ -3,8 +3,8 @@
 	"defaults": {
 		"textures": {
 			"1": "blocks/hardened_clay_stained_cyan",
-			"2": "blocks/wool_colored_black",
-			"3": "blocks/quartz_block_bottom"
+			"2": "blocks/concrete_black",
+			"3": "blocks/concrete_white"
 		},
 		"model": "cfm:cabinet"
 	},

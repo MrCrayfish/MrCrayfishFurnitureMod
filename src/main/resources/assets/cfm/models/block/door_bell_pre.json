@@ -2,7 +2,7 @@
 	"parent": "cfm:block/door_bell",
 	"textures": {
 		"1": "blocks/log_oak",
-		"2": "blocks/iron_block"
+		"2": "blocks/concrete_white"
 	},
 	"display": {
         "gui": {
