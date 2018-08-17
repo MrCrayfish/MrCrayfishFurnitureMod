@@ -28,6 +28,10 @@ public class GuiHandler implements IGuiHandler
         {
             return ((TileEntityDeskCabinet) tileEntity).createContainer(player.inventory, player);
         }
+        else if(tileEntity instanceof TileEntityKitchenCounterDrawer)
+        {
+            return ((TileEntityKitchenCounterDrawer) tileEntity).createContainer(player.inventory, player);
+        }
         else if(id == 5)
         {
             return new ContainerEnvelope(player.inventory, ItemEnvelope.getInv(player));
@@ -130,6 +134,10 @@ public class GuiHandler implements IGuiHandler
         if(tileEntity instanceof TileEntityDeskCabinet)
         {
             return new GuiChest(player.inventory, (TileEntityDeskCabinet) tileEntity);
+        }
+        if(tileEntity instanceof TileEntityKitchenCounterDrawer)
+        {
+            return new GuiChest(player.inventory, (TileEntityKitchenCounterDrawer) tileEntity);
         }
         ItemStack mail = null;
         if(!player.inventory.getCurrentItem().isEmpty())

@@ -67,6 +67,7 @@ public class FurnitureBlocks
     public static final Block DESK_CABINET_OAK, DESK_CABINET_SPRUCE, DESK_CABINET_BIRCH, DESK_CABINET_JUNGLE, DESK_CABINET_ACACIA, DESK_CABINET_DARK_OAK, DESK_CABINET_STONE, DESK_CABINET_GRANITE, DESK_CABINET_DIORITE, DESK_CABINET_ANDESITE;
     public static final Block CABINET_STONE, CABINET_GRANITE, CABINET_DIORITE, CABINET_ANDESITE;
     public static final Block DIGITAL_CLOCK;
+    public static final Block COUNTER_DRAWER;
 
     /* Special */
     public static final Block MIRROR;
@@ -161,6 +162,7 @@ public class FurnitureBlocks
         PLATE = new BlockPlate(Material.GLASS).setUnlocalizedName("plate").setRegistryName("plate");
         COUNTER = new BlockCounter(Material.WOOD).setUnlocalizedName("counter").setRegistryName("counter");
         COUNTER_SINK = new BlockCounterSink(Material.WOOD).setUnlocalizedName("counter_sink").setRegistryName("counter_sink");
+        COUNTER_DRAWER = new BlockCounterDrawer(Material.WOOD).setUnlocalizedName("counter_drawer").setRegistryName("counter_drawer");
         DISHWASHER = new BlockDishwasher(Material.ROCK).setUnlocalizedName("dishwasher").setRegistryName("dishwasher");
         KITCHEN_CABINET = new BlockCabinetKitchen(Material.WOOD).setUnlocalizedName("cabinet_kitchen").setRegistryName("cabinet_kitchen");
         CHOPPING_BOARD = new BlockChoppingBoard(Material.WOOD).setUnlocalizedName("chopping_board").setRegistryName("chopping_board");
@@ -337,6 +339,7 @@ public class FurnitureBlocks
         registerBlock(PLATE);
         registerBlock(COUNTER, new ItemBlockColored(COUNTER));
         registerBlock(COUNTER_SINK, new ItemBlockColored(COUNTER_SINK));
+        registerBlock(COUNTER_DRAWER, new ItemBlockColored(COUNTER_DRAWER));
         registerBlock(DISHWASHER);
         registerBlock(KITCHEN_CABINET);
         registerBlock(CHOPPING_BOARD);
