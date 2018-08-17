@@ -157,7 +157,6 @@ public final class GifDecoder {
 		private int wh; // width * height
 		private boolean hasLocColTbl; // Has local color table? 1 Bit
 		private boolean interlaceFlag; // Is an interlace image? 1 Bit
-		@SuppressWarnings("unused")
 		private boolean sortFlag; // True if local colors are sorted, 1 Bit
 		private int sizeOfLocColTbl; // Size of the local color table, 3 Bits
 		private int[] localColTbl; // Local color table (optional)
