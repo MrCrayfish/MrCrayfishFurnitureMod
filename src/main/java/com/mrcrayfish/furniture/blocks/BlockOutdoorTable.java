@@ -15,7 +15,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import scala.actors.threadpool.Arrays;
 
 public class BlockOutdoorTable extends BlockTable
 {
@@ -34,7 +33,7 @@ public class BlockOutdoorTable extends BlockTable
     @Override
     protected List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
     {
-        List<AxisAlignedBB> boxes = new ArrayList<AxisAlignedBB>();
+        List<AxisAlignedBB> boxes = new ArrayList<>();
         boolean north = state.getValue(FORWARD);
         boolean south = state.getValue(BACK);
         boolean east = state.getValue(LEFT);

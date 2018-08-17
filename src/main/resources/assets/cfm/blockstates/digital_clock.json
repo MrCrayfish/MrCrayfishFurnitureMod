@@ -1,0 +1,96 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "cfm:digital_clock"
+	},
+	"variants": {
+		"facing": {
+			"north": { "y": 0   },
+			"east":  { "y": 90  },
+			"south": { "y": 180 },
+			"west":  { "y": 270 }
+		},
+		"color": {
+			"white": {
+				"textures": {
+					"1": "blocks/concrete_white"
+				}
+			},
+			"orange": {
+				"textures": {
+					"1": "blocks/concrete_orange"
+				}
+			},
+			"magenta": {
+				"textures": {
+					"1": "blocks/concrete_magenta"
+				}
+			},
+			"light_blue": {
+				"textures": {
+					"1": "blocks/concrete_light_blue"
+				}
+			},
+			"yellow": {
+				"textures": {
+					"1": "blocks/concrete_yellow"
+				}
+			},
+			"lime": {
+				"textures": {
+					"1": "blocks/concrete_lime"
+				}
+			},
+			"pink": {
+				"textures": {
+					"1": "blocks/concrete_pink"
+				}
+			},
+			"gray": {
+				"textures": {
+					"1": "blocks/concrete_gray"
+				}
+			},
+			"silver": {
+				"textures": {
+					"1": "blocks/concrete_silver"
+				}
+			},
+			"cyan": {
+				"textures": {
+					"1": "blocks/concrete_cyan"
+				}
+			},
+			"purple": {
+				"textures": {
+					"1": "blocks/concrete_purple"
+				}
+			},
+			"blue": {
+				"textures": {
+					"1": "blocks/concrete_blue"
+				}
+			},
+			"brown": {
+				"textures": {
+					"1": "blocks/concrete_brown"
+				}
+			},
+			"green": {
+				"textures": {
+					"1": "blocks/concrete_green"
+				}
+			},
+			"red": {
+				"textures": {
+					"1": "blocks/concrete_red"
+				}
+			},
+			"black": {
+				"textures": {
+					"1": "blocks/concrete_black"
+				}
+			}
+		}
+	}
+}

@@ -46,7 +46,7 @@ public class PageBlender extends RecipePage
             int posY = y + (i % 2 * 50) + 10;
 
             RecipeData data = recipes.get(i);
-            if(gui.isMouseWithin(posX + ((0 % 2) * 18), posY + ((0 / 2) * 18) + 10, 16, 16, mouseX, mouseY))
+            if(gui.isMouseWithin(posX, posY + 10, 16, 16, mouseX, mouseY))
             {
                 if(data.getIngredients().size() > 0)
                 {
@@ -56,7 +56,7 @@ public class PageBlender extends RecipePage
                     }
                 }
             }
-            if(gui.isMouseWithin(posX + ((1 % 2) * 18), posY + ((1 / 2) * 18) + 10, 16, 16, mouseX, mouseY))
+            if(gui.isMouseWithin(posX + (18), posY + 10, 16, 16, mouseX, mouseY))
             {
                 if(data.getIngredients().size() > 1)
                 {
@@ -66,7 +66,7 @@ public class PageBlender extends RecipePage
                     }
                 }
             }
-            if(gui.isMouseWithin(posX + ((2 % 2) * 18), posY + ((2 / 2) * 18) + 10, 16, 16, mouseX, mouseY))
+            if(gui.isMouseWithin(posX, posY + (18) + 10, 16, 16, mouseX, mouseY))
             {
                 if(data.getIngredients().size() > 2)
                 {
@@ -76,7 +76,7 @@ public class PageBlender extends RecipePage
                     }
                 }
             }
-            if(gui.isMouseWithin(posX + ((3 % 2) * 18), posY + ((3 / 2) * 18) + 10, 16, 16, mouseX, mouseY))
+            if(gui.isMouseWithin(posX + (18), posY + (18) + 10, 16, 16, mouseX, mouseY))
             {
                 if(data.getIngredients().size() > 3)
                 {

@@ -327,7 +327,7 @@ public class TileEntityGrill extends TileEntitySyncClient implements ITickable, 
 
             for(int i = 0; i < tagList.tagCount(); ++i)
             {
-                NBTTagCompound nbt = (NBTTagCompound) tagList.getCompoundTagAt(i);
+                NBTTagCompound nbt = tagList.getCompoundTagAt(i);
                 byte slot = nbt.getByte("Slot");
 
                 if(slot >= 0 && slot < this.inventory.length)

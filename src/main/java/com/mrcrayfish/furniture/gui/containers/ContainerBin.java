@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.gui.containers;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -58,7 +41,7 @@ public class ContainerBin extends Container
     public ItemStack transferStackInSlot(EntityPlayer entityPlayer, int slot)
     {
         ItemStack var3 = ItemStack.EMPTY;
-        Slot var4 = (Slot) this.inventorySlots.get(slot);
+        Slot var4 = this.inventorySlots.get(slot);
 
         if(var4 != null && var4.getHasStack())
         {

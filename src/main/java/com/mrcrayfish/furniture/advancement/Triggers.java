@@ -17,7 +17,7 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 public class Triggers
 {
-    private static final List<BasicTrigger> TRIGGERS = Lists.<BasicTrigger>newArrayList();
+    private static final List<BasicTrigger> TRIGGERS = Lists.newArrayList();
 
     public static final BasicTrigger PLACE_CHAIR = register("get_chair");
     public static final BasicTrigger PLACE_TABLE = register("get_table");
@@ -70,9 +70,9 @@ public class Triggers
         {
             method = ReflectionHelper.findMethod(CriteriaTriggers.class, "register", "func_192118_a", ICriterionTrigger.class);
             method.setAccessible(true);
-            for(int i = 0; i < TRIGGERS.size(); i++)
+            for(BasicTrigger TRIGGER : TRIGGERS)
             {
-                method.invoke(null, TRIGGERS.get(i));
+                method.invoke(null, TRIGGER);
             }
         }
         catch(SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e)

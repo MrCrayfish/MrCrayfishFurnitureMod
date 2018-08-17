@@ -5,9 +5,7 @@ import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.NonNullList;
 
 public class TileEntityCrate extends TileEntityFurniture
 {

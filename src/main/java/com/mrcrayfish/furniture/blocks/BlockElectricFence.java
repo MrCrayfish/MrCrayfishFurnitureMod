@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
@@ -36,7 +19,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
@@ -71,7 +53,7 @@ public class BlockElectricFence extends Block
         this.setHardness(1.0F);
         this.setSoundType(SoundType.ANVIL);
         this.setLightLevel(0.2F);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.FALSE).withProperty(EAST, Boolean.FALSE).withProperty(SOUTH, Boolean.FALSE).withProperty(WEST, Boolean.FALSE));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
     }
 
@@ -98,22 +80,22 @@ public class BlockElectricFence extends Block
     {
         int i = 0;
 
-        if(((Boolean) state.getValue(NORTH)).booleanValue())
+        if(state.getValue(NORTH))
         {
             i |= 1 << EnumFacing.NORTH.getHorizontalIndex();
         }
 
-        if(((Boolean) state.getValue(EAST)).booleanValue())
+        if(state.getValue(EAST))
         {
             i |= 1 << EnumFacing.EAST.getHorizontalIndex();
         }
 
-        if(((Boolean) state.getValue(SOUTH)).booleanValue())
+        if(state.getValue(SOUTH))
         {
             i |= 1 << EnumFacing.SOUTH.getHorizontalIndex();
         }
 
-        if(((Boolean) state.getValue(WEST)).booleanValue())
+        if(state.getValue(WEST))
         {
             i |= 1 << EnumFacing.WEST.getHorizontalIndex();
         }
@@ -128,25 +110,25 @@ public class BlockElectricFence extends Block
 
         if(state.getValue(NORTH))
         {
-            super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_NORTH);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_NORTH);
         }
 
         if(state.getValue(EAST))
         {
-            super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_EAST);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_EAST);
         }
 
         if(state.getValue(SOUTH))
         {
-            super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_SOUTH);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_SOUTH);
         }
 
         if(state.getValue(WEST))
         {
-            super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_WEST);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_WEST);
         }
 
-        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_CENTER);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_CENTER);
     }
 
     @Override
@@ -187,56 +169,16 @@ public class BlockElectricFence extends Block
 
     private void sparkle(World worldIn, BlockPos pos)
     {
-        IBlockState state = worldIn.getBlockState(pos);
-        double d0 = 0.0625D;
-
-        for(int l = 0; l < 6; ++l)
-        {
-            double d1 = (pos.getX() + RANDOM.nextFloat());
-            double d2 = (pos.getY() + RANDOM.nextFloat());
-            double d3 = (pos.getZ() + RANDOM.nextFloat());
-
-            if(l == 0 && !worldIn.getBlockState(pos.up()).getBlock().isOpaqueCube(state))
-            {
-                d2 = (pos.getY() + 1) + d0;
-            }
-
-            if(l == 1 && !worldIn.getBlockState(pos.down()).getBlock().isOpaqueCube(state))
-            {
-                d2 = (pos.getY() + 0) - d0;
-            }
-
-            if(l == 2 && !worldIn.getBlockState(pos.south()).getBlock().isOpaqueCube(state))
-            {
-                d3 = (pos.getZ() + 1) + d0;
-            }
-
-            if(l == 3 && !worldIn.getBlockState(pos.north()).getBlock().isOpaqueCube(state))
-            {
-                d3 = (pos.getZ() + 0) - d0;
-            }
-
-            if(l == 4 && !worldIn.getBlockState(pos.east()).getBlock().isOpaqueCube(state))
-            {
-                d1 = (pos.getX() + 1) + d0;
-            }
-
-            if(l == 5 && !worldIn.getBlockState(pos.west()).getBlock().isOpaqueCube(state))
-            {
-                d1 = (pos.getX() + 0) - d0;
-            }
-
-            if(d1 < pos.getX() || d1 > (pos.getX() + 1) || d2 < 0.0D || d2 > (pos.getY() + 1) || d3 < pos.getZ() || d3 > (pos.getZ() + 1))
-            {
-                worldIn.spawnParticle(EnumParticleTypes.REDSTONE, d1, d2, d3, 0.0D, 0.0D, 0.0D);
-            }
-        }
+        double posX = (pos.getX() + RANDOM.nextFloat());
+        double posY = (pos.getY() + RANDOM.nextFloat());
+        double posZ = (pos.getZ() + RANDOM.nextFloat());
+        worldIn.spawnParticle(EnumParticleTypes.REDSTONE, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
     }
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return state.withProperty(NORTH, Boolean.valueOf(isFence(world, pos.north()))).withProperty(EAST, Boolean.valueOf(isFence(world, pos.east()))).withProperty(SOUTH, Boolean.valueOf(isFence(world, pos.south()))).withProperty(WEST, Boolean.valueOf(isFence(world, pos.west())));
+        return state.withProperty(NORTH, isFence(world, pos.north())).withProperty(EAST, isFence(world, pos.east())).withProperty(SOUTH, isFence(world, pos.south())).withProperty(WEST, isFence(world, pos.west()));
     }
 
     @Override
@@ -248,7 +190,7 @@ public class BlockElectricFence extends Block
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[]{NORTH, EAST, SOUTH, WEST});
+        return new BlockStateContainer(this, NORTH, EAST, SOUTH, WEST);
     }
 
     public boolean isFence(IBlockAccess world, BlockPos pos)

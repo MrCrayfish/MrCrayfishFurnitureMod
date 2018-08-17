@@ -18,9 +18,8 @@ public class StateHelper
     public static Direction getRotation(IBlockAccess world, BlockPos pos, EnumFacing facing, Direction dir)
     {
         BlockPos target = getBlockPosRelativeTo(world, pos, facing, dir);
-        EnumFacing other = (EnumFacing) world.getBlockState(target).getValue(BlockFurniture.FACING);
-        Direction dir_2 = getDirectionRelativeTo(facing, other);
-        return dir_2;
+        EnumFacing other = world.getBlockState(target).getValue(BlockFurniture.FACING);
+        return getDirectionRelativeTo(facing, other);
     }
 
     public static boolean isAirBlock(IBlockAccess world, BlockPos pos, EnumFacing facing, Direction dir)
@@ -69,12 +68,12 @@ public class StateHelper
         return Direction.NONE;
     }
 
-    public static enum Direction
+    public enum Direction
     {
         UP,
         DOWN,
         LEFT,
         RIGHT,
-        NONE;
+        NONE
     }
 }

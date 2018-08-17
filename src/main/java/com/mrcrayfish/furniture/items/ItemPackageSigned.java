@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.items;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
@@ -39,7 +22,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -98,7 +81,7 @@ public class ItemPackageSigned extends Item implements IMail
             {
                 if(player.capabilities.isCreativeMode && player.isSneaking() && tile_entity instanceof TileEntityMailBox)
                 {
-                    player.sendMessage(new TextComponentString(I18n.format("cfm.message.mail_creative")));
+                    player.sendMessage(new TextComponentTranslation("cfm.message.mail_creative"));
                 }
                 else if(tile_entity instanceof TileEntityMailBox)
                 {
@@ -109,20 +92,20 @@ public class ItemPackageSigned extends Item implements IMail
                         {
                             ItemStack itemStack = heldItem.copy();
                             tileEntityMailBox.addMail(itemStack);
-                            player.sendMessage(new TextComponentString(I18n.format("cfm.message.mail_receive", TextFormatting.YELLOW + tileEntityMailBox.getOwner())));
+                            player.sendMessage(new TextComponentTranslation("cfm.message.mail_receive", TextFormatting.YELLOW + tileEntityMailBox.getOwner()));
                             heldItem.shrink(1);
                             Triggers.trigger(Triggers.PLAYER_SENT_MAIL, player);
                         }
                         else
                         {
-                            player.sendMessage(new TextComponentString(I18n.format("cfm.message.mail_full", tileEntityMailBox.getOwner())));
+                            player.sendMessage(new TextComponentTranslation("cfm.message.mail_full", TextFormatting.YELLOW +tileEntityMailBox.getOwner()));
                         }
                     }
                 }
             }
             else
             {
-                player.sendMessage(new TextComponentString(I18n.format("cfm.message.package_used")));
+                player.sendMessage(new TextComponentTranslation("cfm.message.package_used"));
             }
         }
         return EnumActionResult.SUCCESS;
@@ -139,7 +122,7 @@ public class ItemPackageSigned extends Item implements IMail
                 playerIn.openGui(MrCrayfishFurnitureMod.instance, 8, worldIn, 0, 0, 0);
             }
         }
-        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+        return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }
 
     public static IInventory getInv(EntityPlayer player)

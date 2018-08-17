@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.gui;
 
 import com.mrcrayfish.furniture.blocks.BlockBedsideCabinet;
@@ -22,6 +5,7 @@ import com.mrcrayfish.furniture.blocks.BlockCabinet;
 import com.mrcrayfish.furniture.gui.containers.*;
 import com.mrcrayfish.furniture.items.*;
 import com.mrcrayfish.furniture.tileentity.*;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -71,6 +55,10 @@ public class GuiHandler implements IGuiHandler
     public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
     {
         TileEntity tileEntity = world.getTileEntity(new BlockPos(x, y, z));
+        if(tileEntity instanceof IValueContainer && id == 1)
+        {
+            return new GuiEditValueContainer((IValueContainer) tileEntity);
+        }
         if(tileEntity instanceof TileEntityFridge)
         {
             return new GuiFridge(player.inventory, (TileEntityFridge) tileEntity);

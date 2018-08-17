@@ -53,9 +53,9 @@ public class MessageUpdateFields implements IMessage, IMessageHandler<MessageUpd
     public void toBytes(ByteBuf buf)
     {
         buf.writeInt(fields.length);
-        for(int i = 0; i < fields.length; i++)
+        for(int field : fields)
         {
-            buf.writeInt(fields[i]);
+            buf.writeInt(field);
         }
         buf.writeInt(x);
         buf.writeInt(y);

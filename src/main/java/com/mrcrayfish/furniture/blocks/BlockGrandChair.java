@@ -96,7 +96,6 @@ public class BlockGrandChair extends BlockFurniture
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        ItemStack heldItem = playerIn.getHeldItem(hand);
         if(this == FurnitureBlocks.GRAND_CHAIR_BOTTOM && !playerIn.isSneaking())
         {
             if(SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 6 * 0.0625))
@@ -134,12 +133,12 @@ public class BlockGrandChair extends BlockFurniture
         {
             if(this == FurnitureBlocks.GRAND_CHAIR_BOTTOM)
             {
-                super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_BOTTOM);
+                addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_BOTTOM);
             }
             else
             {
                 EnumFacing facing = state.getValue(FACING);
-                super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_TOP[facing.getHorizontalIndex()]);
+                addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_TOP[facing.getHorizontalIndex()]);
             }
         }
     }

@@ -11,95 +11,31 @@
 		"inventory": {
 			"model": "cfm:couch"
 		},
-		"facing=north,type=both": {
-			"model": "cfm:couch",
-			"y": 270
+		"facing": {
+			"north": { "y": 270 },
+			"east":  { "y": 0   },
+			"south": { "y": 90  },
+			"west":  { "y": 180 }
 		},
-		"facing=north,type=left": {
-			"model": "cfm:couch_left",
-			"y": 270
-		},
-		"facing=north,type=right": {
-			"model": "cfm:couch_right",
-			"y": 270
-		},
-		"facing=north,type=none": {
-			"model": "cfm:couch_none",
-			"y": 270
-		},
-		"facing=north,type=corner_right": {
-			"model": "cfm:couch_corner"
-		},
-		"facing=north,type=corner_left": {
-			"model": "cfm:couch_corner",
-			"y": 270
-		},
-		"facing=east,type=both": {
-			"model": "cfm:couch"
-		},
-		"facing=east,type=left": {
-			"model": "cfm:couch_left"
-		},
-		"facing=east,type=right": {
-			"model": "cfm:couch_right"
-		},
-		"facing=east,type=none": {
-			"model": "cfm:couch_none"
-		},
-		"facing=east,type=corner_right": {
-			"model": "cfm:couch_corner",
-			"y": 90
-		},
-		"facing=east,type=corner_left": {
-			"model": "cfm:couch_corner"
-		},
-		"facing=south,type=both": {
-			"model": "cfm:couch",
-			"y": 90
-		},
-		"facing=south,type=left": {
-			"model": "cfm:couch_left",
-			"y": 90
-		},
-		"facing=south,type=right": {
-			"model": "cfm:couch_right",
-			"y": 90
-		},
-		"facing=south,type=none": {
-			"model": "cfm:couch_none",
-			"y": 90
-		},
-		"facing=south,type=corner_right": {
-			"model": "cfm:couch_corner",
-			"y": 180
-		},
-		"facing=south,type=corner_left": {
-			"model": "cfm:couch_corner",
-			"y": 90
-		},
-		"facing=west,type=both": {
-			"model": "cfm:couch",
-			"y": 180
-		},
-		"facing=west,type=left": {
-			"model": "cfm:couch_left",
-			"y": 180
-		},
-		"facing=west,type=right": {
-			"model": "cfm:couch_right",
-			"y": 180
-		},
-		"facing=west,type=none": {
-			"model": "cfm:couch_none",
-			"y": 180
-		},
-		"facing=west,type=corner_right": {
-			"model": "cfm:couch_corner",
-			"y": 270
-		},
-		"facing=west,type=corner_left": {
-			"model": "cfm:couch_corner",
-			"y": 180
+		"type": {
+			"both": {
+				"model": "cfm:couch"
+			},
+			"left": {
+				"model": "cfm:couch_left"
+			},
+			"right": {
+				"model": "cfm:couch_right"
+			},
+			"none": {
+				"model": "cfm:couch_none"
+			},
+			"corner_right": {
+				"model": "cfm:couch_corner_right"
+			},
+			"corner_left": {
+				"model": "cfm:couch_corner_left"
+			}
 		}
 	}
 }

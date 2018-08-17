@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.api;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
@@ -25,52 +8,52 @@ import java.util.ArrayList;
 public class Recipes
 {
     // Used for sending to clients
-    public static ArrayList<String> recipeData = new ArrayList<String>();
+    public static ArrayList<String> recipeData = new ArrayList<>();
 
     /**
      * Recipes registered from the Config
      */
-    public static ArrayList<RecipeData> localMineBayRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> localOvenRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> localFreezerRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> localPrinterRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> localToasterRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> localChoppingBoardRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> localBlenderRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> localDishwasherRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> localWashingMachineRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> localMicrowaveRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> localGrillRecipes = new ArrayList<RecipeData>();
+    public static ArrayList<RecipeData> localMineBayRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> localOvenRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> localFreezerRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> localPrinterRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> localToasterRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> localChoppingBoardRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> localBlenderRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> localDishwasherRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> localWashingMachineRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> localMicrowaveRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> localGrillRecipes = new ArrayList<>();
 
     /**
      * Recipes registered through FMLInterModComms
      */
-    public static ArrayList<RecipeData> commMineBayRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> commOvenRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> commFreezerRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> commPrinterRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> commToasterRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> commChoppingBoardRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> commBlenderRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> commDishwasherRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> commWashingMachineRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> commMicrowaveRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> commGrillRecipes = new ArrayList<RecipeData>();
+    public static ArrayList<RecipeData> commMineBayRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> commOvenRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> commFreezerRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> commPrinterRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> commToasterRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> commChoppingBoardRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> commBlenderRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> commDishwasherRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> commWashingMachineRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> commMicrowaveRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> commGrillRecipes = new ArrayList<>();
 
     /**
      * Recipes registered from a server
      */
-    public static ArrayList<RecipeData> remoteMineBayRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> remoteOvenRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> remoteFreezerRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> remotePrinterRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> remoteToasterRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> remoteChoppingBoardRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> remoteBlenderRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> remoteDishwasherRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> remoteWashingMachineRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> remoteMicrowaveRecipes = new ArrayList<RecipeData>();
-    public static ArrayList<RecipeData> remoteGrillRecipes = new ArrayList<RecipeData>();
+    public static ArrayList<RecipeData> remoteMineBayRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> remoteOvenRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> remoteFreezerRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> remotePrinterRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> remoteToasterRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> remoteChoppingBoardRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> remoteBlenderRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> remoteDishwasherRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> remoteWashingMachineRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> remoteMicrowaveRecipes = new ArrayList<>();
+    public static ArrayList<RecipeData> remoteGrillRecipes = new ArrayList<>();
 
     public static RecipeData[] getMineBayItems()
     {
@@ -80,14 +63,14 @@ public class Recipes
     public static RecipeData getOvenRecipeFromInput(ItemStack itemStack)
     {
         ArrayList<RecipeData> recipes = getRecipes("oven");
-        for(int i = 0; i < recipes.size(); i++)
+        for(RecipeData recipe : recipes)
         {
-            ItemStack validItemStack = recipes.get(i).getInput();
+            ItemStack validItemStack = recipe.getInput();
             if(validItemStack.getItem() == itemStack.getItem())
             {
                 if(validItemStack.getItemDamage() == itemStack.getItemDamage())
                 {
-                    return recipes.get(i);
+                    return recipe;
                 }
             }
         }
@@ -97,14 +80,14 @@ public class Recipes
     public static RecipeData getFreezerRecipeFromInput(ItemStack itemStack)
     {
         ArrayList<RecipeData> recipes = getRecipes("freezer");
-        for(int i = 0; i < recipes.size(); i++)
+        for(RecipeData recipe : recipes)
         {
-            ItemStack validItemStack = recipes.get(i).getInput();
+            ItemStack validItemStack = recipe.getInput();
             if(validItemStack.getItem() == itemStack.getItem())
             {
                 if(validItemStack.getItemDamage() == itemStack.getItemDamage())
                 {
-                    return recipes.get(i);
+                    return recipe;
                 }
             }
         }
@@ -114,16 +97,16 @@ public class Recipes
     public static RecipeData getPrinterRecipeFromInput(ItemStack itemStack)
     {
         ArrayList<RecipeData> recipes = getRecipes("printer");
-        for(int i = 0; i < recipes.size(); i++)
+        for(RecipeData recipe : recipes)
         {
-            ItemStack validItemStack = recipes.get(i).getInput();
+            ItemStack validItemStack = recipe.getInput();
             if(validItemStack.getItem() == itemStack.getItem())
             {
                 if(validItemStack.getItemDamage() == itemStack.getItemDamage())
                 {
                     if(itemStack.getCount() == 1)
                     {
-                        return recipes.get(i);
+                        return recipe;
                     }
                 }
             }
@@ -134,14 +117,14 @@ public class Recipes
     public static RecipeData getToasterRecipeFormInput(ItemStack itemStack)
     {
         ArrayList<RecipeData> recipes = getRecipes("toaster");
-        for(int i = 0; i < recipes.size(); i++)
+        for(RecipeData recipe : recipes)
         {
-            ItemStack validItemStack = recipes.get(i).getInput();
+            ItemStack validItemStack = recipe.getInput();
             if(validItemStack.getItem() == itemStack.getItem())
             {
                 if(validItemStack.getItemDamage() == itemStack.getItemDamage())
                 {
-                    return recipes.get(i);
+                    return recipe;
                 }
             }
         }
@@ -151,14 +134,14 @@ public class Recipes
     public static RecipeData getChoppingBoardRecipeFromInput(ItemStack itemStack)
     {
         ArrayList<RecipeData> recipes = getRecipes("choppingboard");
-        for(int i = 0; i < recipes.size(); i++)
+        for(RecipeData recipe : recipes)
         {
-            ItemStack validItemStack = recipes.get(i).getInput();
+            ItemStack validItemStack = recipe.getInput();
             if(validItemStack.getItem() == itemStack.getItem())
             {
                 if(validItemStack.getItemDamage() == itemStack.getItemDamage())
                 {
-                    return recipes.get(i);
+                    return recipe;
                 }
             }
         }
@@ -168,10 +151,10 @@ public class Recipes
     public static RecipeData getBlenderRecipeFromIngredients(ItemStack[] itemStack)
     {
         ArrayList<RecipeData> recipes = getRecipes("blender");
-        for(int i = 0; i < recipes.size(); i++)
+        for(RecipeData recipe : recipes)
         {
             int count = 0;
-            ArrayList<ItemStack> ingredients = recipes.get(i).getIngredients();
+            ArrayList<ItemStack> ingredients = recipe.getIngredients();
             for(ItemStack item : itemStack)
             {
                 if(item != null)
@@ -190,7 +173,7 @@ public class Recipes
                         }
                         if(count == ingredients.size())
                         {
-                            return recipes.get(i);
+                            return recipe;
                         }
                     }
                 }
@@ -202,14 +185,14 @@ public class Recipes
     public static RecipeData getMicrowaveRecipeFromInput(ItemStack itemStack)
     {
         ArrayList<RecipeData> recipes = getRecipes("microwave");
-        for(int i = 0; i < recipes.size(); i++)
+        for(RecipeData recipe : recipes)
         {
-            ItemStack validItemStack = recipes.get(i).getInput();
+            ItemStack validItemStack = recipe.getInput();
             if(validItemStack.getItem() == itemStack.getItem())
             {
                 if(validItemStack.getItemDamage() == itemStack.getItemDamage())
                 {
-                    return recipes.get(i);
+                    return recipe;
                 }
             }
         }
@@ -219,12 +202,12 @@ public class Recipes
     public static RecipeData getWashingMachineRecipeFromInput(ItemStack itemStack)
     {
         ArrayList<RecipeData> recipes = getRecipes("washingmachine");
-        for(int i = 0; i < recipes.size(); i++)
+        for(RecipeData recipe : recipes)
         {
-            ItemStack validItemStack = recipes.get(i).getInput();
+            ItemStack validItemStack = recipe.getInput();
             if(validItemStack.getItem() == itemStack.getItem())
             {
-                return recipes.get(i);
+                return recipe;
             }
         }
         return null;
@@ -233,12 +216,12 @@ public class Recipes
     public static RecipeData getDishwasherRecipeFromInput(ItemStack itemStack)
     {
         ArrayList<RecipeData> recipes = getRecipes("dishwasher");
-        for(int i = 0; i < recipes.size(); i++)
+        for(RecipeData recipe : recipes)
         {
-            ItemStack validItemStack = recipes.get(i).getInput();
+            ItemStack validItemStack = recipe.getInput();
             if(validItemStack.getItem() == itemStack.getItem())
             {
-                return recipes.get(i);
+                return recipe;
             }
         }
         return null;
@@ -247,14 +230,14 @@ public class Recipes
     public static RecipeData getGrillRecipeFromInput(ItemStack itemStack)
     {
         ArrayList<RecipeData> recipes = getRecipes("grill");
-        for(int i = 0; i < recipes.size(); i++)
+        for(RecipeData recipe : recipes)
         {
-            ItemStack validItemStack = recipes.get(i).getInput();
+            ItemStack validItemStack = recipe.getInput();
             if(validItemStack.getItem() == itemStack.getItem())
             {
                 if(validItemStack.getItemDamage() == itemStack.getItemDamage())
                 {
-                    return recipes.get(i);
+                    return recipe;
                 }
             }
         }
@@ -411,50 +394,17 @@ public class Recipes
 
     public static void addCommRecipesToLocal()
     {
-        for(RecipeData data : commMineBayRecipes)
-        {
-            localMineBayRecipes.add(data);
-        }
-        for(RecipeData data : commOvenRecipes)
-        {
-            localOvenRecipes.add(data);
-        }
-        for(RecipeData data : commFreezerRecipes)
-        {
-            localFreezerRecipes.add(data);
-        }
-        for(RecipeData data : commPrinterRecipes)
-        {
-            localPrinterRecipes.add(data);
-        }
-        for(RecipeData data : commToasterRecipes)
-        {
-            localToasterRecipes.add(data);
-        }
-        for(RecipeData data : commChoppingBoardRecipes)
-        {
-            localChoppingBoardRecipes.add(data);
-        }
-        for(RecipeData data : commBlenderRecipes)
-        {
-            localBlenderRecipes.add(data);
-        }
-        for(RecipeData data : commMicrowaveRecipes)
-        {
-            localMicrowaveRecipes.add(data);
-        }
-        for(RecipeData data : commWashingMachineRecipes)
-        {
-            localWashingMachineRecipes.add(data);
-        }
-        for(RecipeData data : commDishwasherRecipes)
-        {
-            localDishwasherRecipes.add(data);
-        }
-        for(RecipeData data : commGrillRecipes)
-        {
-            localGrillRecipes.add(data);
-        }
+        localMineBayRecipes.addAll(commMineBayRecipes);
+        localOvenRecipes.addAll(commOvenRecipes);
+        localFreezerRecipes.addAll(commFreezerRecipes);
+        localPrinterRecipes.addAll(commPrinterRecipes);
+        localToasterRecipes.addAll(commToasterRecipes);
+        localChoppingBoardRecipes.addAll(commChoppingBoardRecipes);
+        localBlenderRecipes.addAll(commBlenderRecipes);
+        localMicrowaveRecipes.addAll(commMicrowaveRecipes);
+        localWashingMachineRecipes.addAll(commWashingMachineRecipes);
+        localDishwasherRecipes.addAll(commDishwasherRecipes);
+        localGrillRecipes.addAll(commGrillRecipes);
     }
 
     public static void clearLocalRecipes()

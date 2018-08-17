@@ -2,11 +2,18 @@ package com.mrcrayfish.furniture.items;
 
 import com.mrcrayfish.furniture.Reference;
 import net.minecraft.block.Block;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.world.World;
+import org.apache.commons.lang3.text.WordUtils;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemBlockColored extends ItemBlock implements SubItems
 {

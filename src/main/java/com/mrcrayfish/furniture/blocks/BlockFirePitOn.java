@@ -36,8 +36,8 @@ public class BlockFirePitOn extends BlockFirePit
         worldIn.setBlockState(pos, FurnitureBlocks.FIRE_PIT_OFF.getDefaultState().withProperty(STAGE, 3));
     }
 
-    @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    @Override
+    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
     {
         if(rand.nextInt(24) == 0)
         {
@@ -49,7 +49,7 @@ public class BlockFirePitOn extends BlockFirePit
             double posX = (double) pos.getX() + rand.nextDouble() * 0.8 + 0.2;
             double posY = (double) pos.getY() + rand.nextDouble() * 0.5D + 0.5D;
             double posZ = (double) pos.getZ() + rand.nextDouble() * 0.8 + 0.2;
-            worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, posX, posY, posZ, 0.0D, 0.0D, 0.0D, new int[0]);
+            worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, posX, posY, posZ, 0.0D, 0.0D, 0.0D);
         }
     }
 }

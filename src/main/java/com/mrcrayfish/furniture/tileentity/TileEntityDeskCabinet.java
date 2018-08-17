@@ -17,7 +17,7 @@ import net.minecraft.util.SoundCategory;
  */
 public class TileEntityDeskCabinet extends TileEntityLockableLoot
 {
-    private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>withSize(9, ItemStack.EMPTY);
+    private NonNullList<ItemStack> inventory = NonNullList.withSize(9, ItemStack.EMPTY);
 
     public void readFromNBT(NBTTagCompound compound)
     {

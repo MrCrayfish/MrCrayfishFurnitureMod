@@ -31,8 +31,8 @@ public class GuiDoorMat extends GuiScreen
         messageTextField = new GuiDoorMatTextField(2, fontRenderer, this.width / 2 - 150, this.height / 2 - 20, 300, 20, 50, 4);
         messageTextField.setFocused(true);
         messageTextField.setMaxStringLength(100);
-        doneBtn = new GuiButton(0, this.width / 2 - 4 - 150, this.height / 4 + 120 + 12, 150, 20, I18n.format("gui.done", new Object[0]));
-        cancelBtn = new GuiButton(1, this.width / 2 + 4, this.height / 4 + 120 + 12, 150, 20, I18n.format("gui.cancel", new Object[0]));
+        doneBtn = new GuiButton(0, this.width / 2 - 4 - 150, this.height / 4 + 120 + 12, 150, 20, I18n.format("gui.done"));
+        cancelBtn = new GuiButton(1, this.width / 2 + 4, this.height / 4 + 120 + 12, 150, 20, I18n.format("gui.cancel"));
         buttonList.add(doneBtn);
         buttonList.add(cancelBtn);
         doneBtn.enabled = false;
@@ -64,14 +64,7 @@ public class GuiDoorMat extends GuiScreen
     protected void keyTyped(char typedChar, int keyCode) throws IOException
     {
         messageTextField.textboxKeyTyped(typedChar, keyCode);
-        if(messageTextField.getText().length() > 0)
-        {
-            doneBtn.enabled = true;
-        }
-        else
-        {
-            doneBtn.enabled = false;
-        }
+        doneBtn.enabled = messageTextField.getText().length() > 0;
         super.keyTyped(typedChar, keyCode);
     }
 
@@ -96,7 +89,7 @@ public class GuiDoorMat extends GuiScreen
 
     private void closeGui()
     {
-        this.mc.displayGuiScreen((GuiScreen) null);
+        this.mc.displayGuiScreen(null);
 
         if(this.mc.currentScreen == null)
         {

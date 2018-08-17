@@ -59,15 +59,15 @@ public class GrillRenderer extends TileEntitySpecialRenderer<TileEntityGrill>
                 {
                     if(tileEntityGrill.flippedLeft)
                     {
-                        float percent = (tileEntityGrill.leftFlipCount + partialTicks) / (float) tileEntityGrill.FLIP_DURATION;
+                        float percent = (tileEntityGrill.leftFlipCount + partialTicks) / (float) TileEntityGrill.FLIP_DURATION;
 
-                        if(tileEntityGrill.leftFlipCount < tileEntityGrill.FLIP_DURATION / 2)
+                        if(tileEntityGrill.leftFlipCount < TileEntityGrill.FLIP_DURATION / 2)
                         {
-                            tileEntityGrill.leftCurrentHeight = (FLIP_HEIGHT / (tileEntityGrill.FLIP_DURATION / 2)) * (tileEntityGrill.leftFlipCount + partialTicks);
+                            tileEntityGrill.leftCurrentHeight = (FLIP_HEIGHT / (TileEntityGrill.FLIP_DURATION / 2)) * (tileEntityGrill.leftFlipCount + partialTicks);
                         }
                         else if(tileEntityGrill.leftCurrentHeight > 0F)
                         {
-                            tileEntityGrill.leftCurrentHeight = (FLIP_HEIGHT * 2) - (FLIP_HEIGHT / (tileEntityGrill.FLIP_DURATION / 2)) * (tileEntityGrill.leftFlipCount + partialTicks);
+                            tileEntityGrill.leftCurrentHeight = (FLIP_HEIGHT * 2) - (FLIP_HEIGHT / (TileEntityGrill.FLIP_DURATION / 2)) * (tileEntityGrill.leftFlipCount + partialTicks);
                         }
 
                         if(tileEntityGrill.leftCurrentHeight >= 0F)
@@ -75,7 +75,7 @@ public class GrillRenderer extends TileEntitySpecialRenderer<TileEntityGrill>
                             GlStateManager.translate(0, 0, -Math.sqrt(tileEntityGrill.leftCurrentHeight));
                         }
 
-                        if(tileEntityGrill.leftFlipCount < tileEntityGrill.FLIP_DURATION)
+                        if(tileEntityGrill.leftFlipCount < TileEntityGrill.FLIP_DURATION)
                         {
                             GlStateManager.rotate(180F * percent, 0, 1, 0);
                         }
@@ -105,15 +105,15 @@ public class GrillRenderer extends TileEntitySpecialRenderer<TileEntityGrill>
                 {
                     if(tileEntityGrill.flippedRight)
                     {
-                        float percent = (tileEntityGrill.rightFlipCount + partialTicks) / (float) tileEntityGrill.FLIP_DURATION;
+                        float percent = (tileEntityGrill.rightFlipCount + partialTicks) / (float) TileEntityGrill.FLIP_DURATION;
 
-                        if(tileEntityGrill.rightFlipCount < tileEntityGrill.FLIP_DURATION / 2)
+                        if(tileEntityGrill.rightFlipCount < TileEntityGrill.FLIP_DURATION / 2)
                         {
-                            tileEntityGrill.rightCurrentHeight = (FLIP_HEIGHT / (tileEntityGrill.FLIP_DURATION / 2)) * (tileEntityGrill.rightFlipCount + partialTicks);
+                            tileEntityGrill.rightCurrentHeight = (FLIP_HEIGHT / (TileEntityGrill.FLIP_DURATION / 2)) * (tileEntityGrill.rightFlipCount + partialTicks);
                         }
                         else if(tileEntityGrill.rightCurrentHeight > 0F)
                         {
-                            tileEntityGrill.rightCurrentHeight = (FLIP_HEIGHT * 2) - (FLIP_HEIGHT / (tileEntityGrill.FLIP_DURATION / 2)) * (tileEntityGrill.rightFlipCount + partialTicks);
+                            tileEntityGrill.rightCurrentHeight = (FLIP_HEIGHT * 2) - (FLIP_HEIGHT / (TileEntityGrill.FLIP_DURATION / 2)) * (tileEntityGrill.rightFlipCount + partialTicks);
                         }
 
                         if(tileEntityGrill.rightCurrentHeight >= 0F)
@@ -121,7 +121,7 @@ public class GrillRenderer extends TileEntitySpecialRenderer<TileEntityGrill>
                             GlStateManager.translate(0, 0, -Math.sqrt(tileEntityGrill.rightCurrentHeight));
                         }
 
-                        if(tileEntityGrill.rightFlipCount < tileEntityGrill.FLIP_DURATION)
+                        if(tileEntityGrill.rightFlipCount < TileEntityGrill.FLIP_DURATION)
                         {
                             GlStateManager.rotate(180F * percent, 0, 1, 0);
                         }
