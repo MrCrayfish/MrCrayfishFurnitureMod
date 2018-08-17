@@ -22,7 +22,7 @@ public class FurnitureBlocks
 
     /* Garden Update */
     public static final Block HEDGE_OAK, HEDGE_SPRUCE, HEDGE_BIRCH, HEDGE_JUNGLE, HEDGE_ACACIA, HEDGE_DARK_OAK;
-    public static final Block BIRD_BATH, STONE_PATH, WHITE_FENCE, TAP, MAIL_BOX;
+    public static final Block BIRD_BATH, STONE_PATH, WHITE_FENCE, TAP, MAIL_BOX_OAK;
 
     /* Electronic Update */
     public static final Block TV, COMPUTER, PRINTER, ELECTRIC_FENCE, DOOR_BELL, STEREO;
@@ -68,6 +68,7 @@ public class FurnitureBlocks
     public static final Block CABINET_STONE, CABINET_GRANITE, CABINET_DIORITE, CABINET_ANDESITE;
     public static final Block DIGITAL_CLOCK;
     public static final Block COUNTER_DRAWER;
+    public static final Block MAIL_BOX_SPRUCE, MAIL_BOX_BIRCH, MAIL_BOX_JUNGLE, MAIL_BOX_ACACIA, MAIL_BOX_DARK_OAK;
 
     /* Special */
     public static final Block MIRROR;
@@ -129,7 +130,12 @@ public class FurnitureBlocks
         STONE_PATH = new BlockStonePath(Material.ROCK).setUnlocalizedName("stone_path").setRegistryName("stone_path");
         WHITE_FENCE = new BlockWhiteFence(Material.WOOD).setUnlocalizedName("white_fence").setRegistryName("white_fence");
         TAP = new BlockTap(Material.ROCK).setUnlocalizedName("tap").setRegistryName("tap");
-        MAIL_BOX = new BlockMailBox(Material.WOOD).setUnlocalizedName("mail_box").setRegistryName("mail_box");
+        MAIL_BOX_OAK = new BlockMailBox(Material.WOOD).setUnlocalizedName("mail_box").setRegistryName("mail_box");
+        MAIL_BOX_SPRUCE = new BlockMailBox(Material.WOOD).setUnlocalizedName("mail_box_spruce").setRegistryName("mail_box_spruce");
+        MAIL_BOX_BIRCH = new BlockMailBox(Material.WOOD).setUnlocalizedName("mail_box_birch").setRegistryName("mail_box_birch");
+        MAIL_BOX_JUNGLE = new BlockMailBox(Material.WOOD).setUnlocalizedName("mail_box_jungle").setRegistryName("mail_box_jungle");
+        MAIL_BOX_ACACIA = new BlockMailBox(Material.WOOD).setUnlocalizedName("mail_box_acacia").setRegistryName("mail_box_acacia");
+        MAIL_BOX_DARK_OAK = new BlockMailBox(Material.WOOD).setUnlocalizedName("mail_box_dark_oak").setRegistryName("mail_box_dark_oak");
         TV = new BlockTV(Material.WOOD).setUnlocalizedName("tv").setRegistryName("tv");
         COMPUTER = new BlockComputer(Material.IRON).setUnlocalizedName("computer").setRegistryName("computer");
         PRINTER = new BlockPrinter(Material.IRON).setUnlocalizedName("printer").setRegistryName("printer");
@@ -306,7 +312,12 @@ public class FurnitureBlocks
         registerBlock(STONE_PATH);
         registerBlock(WHITE_FENCE);
         registerBlock(TAP);
-        registerBlock(MAIL_BOX);
+        registerBlock(MAIL_BOX_OAK);
+        registerBlock(MAIL_BOX_SPRUCE);
+        registerBlock(MAIL_BOX_BIRCH);
+        registerBlock(MAIL_BOX_JUNGLE);
+        registerBlock(MAIL_BOX_ACACIA);
+        registerBlock(MAIL_BOX_DARK_OAK);
         registerBlock(TV);
         registerBlock(COMPUTER);
         registerBlock(PRINTER);

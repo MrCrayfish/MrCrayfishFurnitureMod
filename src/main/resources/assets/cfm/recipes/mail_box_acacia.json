@@ -1,6 +1,6 @@
 {
     "result": {
-        "item": "cfm:mail_box"
+        "item": "cfm:mail_box_acacia"
     },
     "pattern": [
         "LBL",
@@ -14,10 +14,10 @@
         },
         "P": {
             "item": "minecraft:planks",
-            "data": 0
+            "data": 4
         },
         "L": {
-            "item": "minecraft:log",
+            "item": "minecraft:log2",
             "data": 0
         }
     }

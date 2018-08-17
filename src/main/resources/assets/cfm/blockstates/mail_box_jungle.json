@@ -3,8 +3,8 @@
     "defaults": {
         "model": "cfm:mail_box",
         "textures": {
-            "primary": "blocks/planks_oak",
-            "secondary": "blocks/log_oak"
+            "primary": "blocks/planks_jungle",
+            "secondary": "blocks/log_jungle"
         }
     },
     "variants": {

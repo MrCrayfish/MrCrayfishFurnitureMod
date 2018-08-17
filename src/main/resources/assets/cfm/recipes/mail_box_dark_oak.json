@@ -1,6 +1,6 @@
 {
     "result": {
-        "item": "cfm:mail_box"
+        "item": "cfm:mail_box_dark_oak"
     },
     "pattern": [
         "LBL",
@@ -14,11 +14,11 @@
         },
         "P": {
             "item": "minecraft:planks",
-            "data": 0
+            "data": 5
         },
         "L": {
-            "item": "minecraft:log",
-            "data": 0
+            "item": "minecraft:log2",
+            "data": 1
         }
     }
 }
