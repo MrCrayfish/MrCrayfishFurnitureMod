@@ -1,6 +1,13 @@
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
+import java.util.Locale;
+
+import javax.annotation.Nullable;
+
 import com.mrcrayfish.furniture.util.StateHelper;
+
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -17,98 +24,86 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Locale;
-
 /**
  * Author: MrCrayfish
  */
 public class BlockDesk extends BlockFurniture implements IDesk
 {
-    public static final PropertyEnum<DeskType> TYPE = PropertyEnum.create("type", DeskType.class);
+	public static final PropertyEnum<DeskType> TYPE = PropertyEnum.create("type", DeskType.class);
 
-    public BlockDesk(Material material)
-    {
-        super(material);
-        this.setHardness(1.0F);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(TYPE, DeskType.NONE));
-    }
+	public BlockDesk(Material material, SoundType sound)
+	{
+		super(material);
+		this.setHardness(1.0F);
+		this.setSoundType(sound);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(TYPE, DeskType.NONE));
+	}
 
-    @Override
-    public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced)
-    {
-        if(GuiScreen.isShiftKeyDown())
-        {
-            String info = I18n.format("cfm.desk.info");
-            tooltip.addAll(Minecraft.getMinecraft().fontRenderer.listFormattedStringToWidth(info, 150));
-        }
-        else
-        {
-            tooltip.add(TextFormatting.YELLOW + I18n.format("cfm.info"));
-        }
-    }
+	@Override
+	public void addInformation(ItemStack stack, @Nullable World player, List<String> tooltip, ITooltipFlag advanced)
+	{
+		if (GuiScreen.isShiftKeyDown())
+		{
+			String info = I18n.format("cfm.desk.info");
+			tooltip.addAll(Minecraft.getMinecraft().fontRenderer.listFormattedStringToWidth(info, 150));
+		} else
+		{
+			tooltip.add(TextFormatting.YELLOW + I18n.format("cfm.info"));
+		}
+	}
 
-    @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
-    {
-        if(StateHelper.getBlock(world, pos, state.getValue(FACING), StateHelper.Direction.DOWN) instanceof IDesk)
-        {
-            if(StateHelper.getRotation(world, pos, state.getValue(FACING), StateHelper.Direction.DOWN) == StateHelper.Direction.RIGHT)
-            {
-                return state.withProperty(TYPE, DeskType.CORNER_RIGHT);
-            }
-            else if(StateHelper.getRotation(world, pos, state.getValue(FACING), StateHelper.Direction.DOWN) == StateHelper.Direction.LEFT)
-            {
-                return state.withProperty(TYPE, DeskType.CORNER_LEFT);
-            }
-        }
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
+	{
+		if (StateHelper.getBlock(world, pos, state.getValue(FACING), StateHelper.Direction.DOWN) instanceof IDesk)
+		{
+			if (StateHelper.getRotation(world, pos, state.getValue(FACING), StateHelper.Direction.DOWN) == StateHelper.Direction.RIGHT)
+			{
+				return state.withProperty(TYPE, DeskType.CORNER_RIGHT);
+			} else if (StateHelper.getRotation(world, pos, state.getValue(FACING), StateHelper.Direction.DOWN) == StateHelper.Direction.LEFT)
+			{
+				return state.withProperty(TYPE, DeskType.CORNER_LEFT);
+			}
+		}
 
-        boolean left = false;
-        boolean right = false;
+		boolean left = false;
+		boolean right = false;
 
-        if(StateHelper.getBlock(world, pos, state.getValue(FACING), StateHelper.Direction.LEFT) instanceof IDesk)
-        {
-            left = true;
-        }
-        if(StateHelper.getBlock(world, pos, state.getValue(FACING), StateHelper.Direction.RIGHT) instanceof IDesk)
-        {
-            right = true;
-        }
-        if(left && !right)
-        {
-            return state.withProperty(TYPE, DeskType.LEFT);
-        }
-        else if(!left && right)
-        {
-            return state.withProperty(TYPE, DeskType.RIGHT);
-        }
-        else if(!left && !right)
-        {
-            return state.withProperty(TYPE, DeskType.NONE);
-        }
-        return state.withProperty(TYPE, DeskType.BOTH);
-    }
+		if (StateHelper.getBlock(world, pos, state.getValue(FACING), StateHelper.Direction.LEFT) instanceof IDesk)
+		{
+			left = true;
+		}
+		if (StateHelper.getBlock(world, pos, state.getValue(FACING), StateHelper.Direction.RIGHT) instanceof IDesk)
+		{
+			right = true;
+		}
+		if (left && !right)
+		{
+			return state.withProperty(TYPE, DeskType.LEFT);
+		} else if (!left && right)
+		{
+			return state.withProperty(TYPE, DeskType.RIGHT);
+		} else if (!left && !right)
+		{
+			return state.withProperty(TYPE, DeskType.NONE);
+		}
+		return state.withProperty(TYPE, DeskType.BOTH);
+	}
 
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, FACING, TYPE);
-    }
+	@Override
+	protected BlockStateContainer createBlockState()
+	{
+		return new BlockStateContainer(this, FACING, TYPE);
+	}
 
-    public enum DeskType implements IStringSerializable
-    {
-        NONE,
-        LEFT,
-        RIGHT,
-        BOTH,
-        CORNER_LEFT,
-        CORNER_RIGHT;
+	public enum DeskType implements IStringSerializable
+	{
+		NONE, LEFT, RIGHT, BOTH, CORNER_LEFT, CORNER_RIGHT;
 
-        @Override
-        public String getName()
-        {
-            return this.toString().toLowerCase(Locale.US);
-        }
-    }
+		@Override
+		public String getName()
+		{
+			return this.toString().toLowerCase(Locale.US);
+		}
+	}
 }

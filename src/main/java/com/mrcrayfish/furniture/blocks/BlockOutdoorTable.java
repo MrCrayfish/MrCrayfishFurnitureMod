@@ -24,10 +24,9 @@ public class BlockOutdoorTable extends BlockTable
     public static final AxisAlignedBB NORTH_WEST_LEG = new AxisAlignedBB(13.75 * 0.0625, 0, 0.25 * 0.0625, 15.75 * 0.0625, 14 * 0.0625, 2.25 * 0.0625);
     public static final AxisAlignedBB TOP = new AxisAlignedBB(0, 14 * 0.0625, 0, 1, 1, 1);
 
-    public BlockOutdoorTable(Material material, SoundType sound)
+    public BlockOutdoorTable(Material material, SoundType sound, String name)
     {
-        super(material, sound);
-        this.setHardness(1.0F);
+        super(material, sound, name);
     }
 
     @Override

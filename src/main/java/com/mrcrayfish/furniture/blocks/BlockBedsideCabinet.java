@@ -19,11 +19,11 @@ import net.minecraft.world.World;
 
 public class BlockBedsideCabinet extends BlockFurnitureTile
 {
-    public BlockBedsideCabinet(Material material)
+    public BlockBedsideCabinet(Material material, SoundType sound)
     {
         super(material);
         this.setHardness(1.0F);
-        this.setSoundType(SoundType.WOOD);
+        this.setSoundType(sound);
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
     }
 

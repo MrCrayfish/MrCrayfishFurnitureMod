@@ -36,15 +36,14 @@ public class BlockCoffeeTable extends Block
     public static final AxisAlignedBB SOUTH_EAST_LEG = new AxisAlignedBB(14.4 * 0.0625, 0, 14.4 * 0.0625, 1, 6.5 * 0.0625, 1);
     public static final AxisAlignedBB NORTH_EAST_LEG = new AxisAlignedBB(14.4 * 0.0625, 0, 0, 1, 6.5 * 0.0625, 1.6 * 0.0625);
 
-    public BlockCoffeeTable(Material material, SoundType sound, String unlocalizedName)
+    public BlockCoffeeTable(Material material, SoundType sound, String name)
     {
         super(material);
-        this.setHardness(1.0F);
         this.setSoundType(sound);
         this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.FALSE).withProperty(EAST, Boolean.FALSE).withProperty(SOUTH, Boolean.FALSE).withProperty(WEST, Boolean.FALSE));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-        this.setUnlocalizedName(unlocalizedName);
-        this.setRegistryName(unlocalizedName);
+        this.setRegistryName(name);
+        this.setUnlocalizedName(name);
     }
 
     @Override

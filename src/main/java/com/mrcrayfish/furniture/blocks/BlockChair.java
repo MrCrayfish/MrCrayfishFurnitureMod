@@ -38,13 +38,14 @@ public class BlockChair extends BlockFurniture
     public static final AxisAlignedBB CHAIR_BACKREST_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.825, 0.6, 0.1, 0.9, 1.2, 0.9);
     public static final AxisAlignedBB[] LEGS = {new AxisAlignedBB(1.6 * 0.0625, 0, 12.8 * 0.0625, 3.2 * 0.0625, 8 * 0.0625, 14.4 * 0.0625), new AxisAlignedBB(12.8 * 0.0625, 0, 12.8 * 0.0625, 14.4 * 0.0625, 8 * 0.0625, 14.4 * 0.0625), new AxisAlignedBB(12.8 * 0.0625, 0, 1.6 * 0.0625, 14.4 * 0.0625, 8 * 0.0625, 3.2 * 0.0625), new AxisAlignedBB(1.6 * 0.0625, 0, 1.6 * 0.0625, 3.2 * 0.0625, 8 * 0.0625, 3.2 * 0.0625)};
 
-    public BlockChair(Material material, SoundType sound)
+    public BlockChair(Material material, SoundType sound, String name)
     {
         super(material);
-        this.setHardness(1.0F);
         this.setSoundType(sound);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+        this.setRegistryName(name);
+        this.setUnlocalizedName(name);
     }
 
     @Override

@@ -45,13 +45,14 @@ public class BlockTable extends Block
     public static final AxisAlignedBB TWO_AXIS_NORTH_WEST = new AxisAlignedBB(9 * 0.0625, 0 * 0.0625, 9 * 0.0625, 13 * 0.0625, 14.5 * 0.0625, 13 * 0.0625);
     public static final AxisAlignedBB TWO_AXIS_SOUTH_WEST = new AxisAlignedBB(9 * 0.0625, 0 * 0.0625, 3 * 0.0625, 13 * 0.0625, 14.5 * 0.0625, 7 * 0.0625);
 
-    public BlockTable(Material material, SoundType sound)
+    public BlockTable(Material material, SoundType sound, String name)
     {
         super(material);
-        this.setHardness(1.0F);
         this.setSoundType(sound);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BACK, false).withProperty(FORWARD, false).withProperty(LEFT, false).withProperty(RIGHT, false));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+        this.setRegistryName(name);
+        this.setUnlocalizedName(name);
     }
 
     @Override

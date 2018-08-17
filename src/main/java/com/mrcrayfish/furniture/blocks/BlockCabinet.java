@@ -24,11 +24,11 @@ public class BlockCabinet extends BlockFurnitureTile
 {
     public static final AxisAlignedBB[] COLLISION_BOXES = {new AxisAlignedBB(0, 0, 2 * 0.0625, 1, 1, 1), new AxisAlignedBB(0, 0, 0, 14 * 0.0625, 1, 1), new AxisAlignedBB(0, 0, 0, 1, 1, 14 * 0.0625), new AxisAlignedBB(2 * 0.0625, 0, 0, 1, 1, 1)};
 
-    public BlockCabinet(Material material)
+    public BlockCabinet(Material material, SoundType sound)
     {
         super(material);
         this.setHardness(1.0F);
-        this.setSoundType(SoundType.WOOD);
+        this.setSoundType(sound);
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
     }
 
