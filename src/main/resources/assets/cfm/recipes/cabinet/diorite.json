@@ -1,0 +1,21 @@
+{
+    "result": {
+        "item": "cfm:cabinet_diorite"
+    },
+    "pattern": [
+        "***",
+        "*@*",
+        "***"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "@": {
+            "item": "minecraft:chest"
+        },
+        "*": {
+            "item": "minecraft:stone",
+            "data": 3
+        }
+    },
+	"group": "cfm:cabinet"
+}

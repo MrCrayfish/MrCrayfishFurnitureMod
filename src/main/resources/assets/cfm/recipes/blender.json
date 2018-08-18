@@ -1,23 +1,24 @@
 {
-  "result": {
-    "item": "cfm:blender"
-  },
-  "pattern": [
-    "GBG",
-    "GIG",
-    "BBB"
-  ],
-  "type": "minecraft:crafting_shaped",
-  "key": {
-    "B": {
-      "item": "minecraft:wool",
-      "data": 15
+    "result": {
+        "item": "cfm:blender"
     },
-    "G": {
-      "item": "minecraft:glass_pane"
-    },
-    "I": {
-      "item": "minecraft:iron_ingot"
+    "pattern": [
+        "GBG",
+        "GIG",
+        "BBB"
+    ],
+    "type": "forge:ore_shaped",
+    "key": {
+        "B": {
+            "item": "minecraft:wool",
+            "data": 15
+        },
+        "G": {
+			"type": "forge:ore_dict",
+			"ore": "paneGlass"
+		},
+        "I": {
+            "item": "minecraft:iron_ingot"
+        }
     }
-  }
 }

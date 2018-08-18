@@ -19,8 +19,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 
 public class CollisionHelper
 {
-	private static final Map<IBakedModel, List<AxisAlignedBB>> MODEL_BOXES = Maps.<IBakedModel, List<AxisAlignedBB>>newHashMap();
-
 	public static AxisAlignedBB getBlockBounds(EnumFacing facing, double x1, double y1, double z1, double x2, double y2, double z2)
 	{
 		double[] bounds = fixRotation(facing, x1, z1, x2, z2);
@@ -65,25 +63,5 @@ public class CollisionHelper
 			break;
 		}
 		return new double[] { var1, var2, var3, var4 };
-	}
-
-	public static class Listener implements IResourceManagerReloadListener
-	{
-		private static final Listener INSTANCE = new Listener();
-
-		private Listener()
-		{
-		}
-
-		public static void init()
-		{
-			((IReloadableResourceManager) Minecraft.getMinecraft().getResourceManager()).registerReloadListener(INSTANCE);
-		}
-
-		@Override
-		public void onResourceManagerReload(IResourceManager resourceManager)
-		{
-			MODEL_BOXES.clear();
-		}
 	}
 }

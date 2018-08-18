@@ -150,6 +150,6 @@ public class BlockBarStool extends ModBlock implements IRayTrace
 	@Override
 	public void addBoxes(IBlockState state, World world, BlockPos pos, List<AxisAlignedBB> boxes)
 	{
-		
+		boxes.add(this.getBoundingBox(state, world, pos));
 	}
 }

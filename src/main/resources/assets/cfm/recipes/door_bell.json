@@ -1,14 +1,24 @@
 {
-  "result": {
-    "item": "cfm:door_bell"
-  },
-  "ingredients": [
-    {
-      "item": "minecraft:noteblock"
+    "type": "crafting_shaped",
+    "pattern": [
+        "PPP",
+        "PBP",
+        "PNP"
+    ],
+    "key": {
+        "P": {
+            "item": "minecraft:planks",
+            "data": 0
+        },
+        "B": {
+            "item": "minecraft:wooden_button"
+        },
+        "N": {
+            "item": "minecraft:note_block"
+        }
     },
-    {
-      "item": "minecraft:stone_button"
+    "result": {
+        "item": "cfm:door_bell",
+        "count": 1
     }
-  ],
-  "type": "minecraft:crafting_shapeless"
 }

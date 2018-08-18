@@ -1,0 +1,20 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "B",
+        "C"
+    ],
+    "key": {
+        "B": {
+            "item": "cdm:basin"
+        },
+        "C": {
+            "item": "cfm:counter",
+			"data": 15
+        }
+    },
+    "result": {
+        "item": "cfm:counter_sink"
+    },
+    "group": "cfm:counter_sink"
+}

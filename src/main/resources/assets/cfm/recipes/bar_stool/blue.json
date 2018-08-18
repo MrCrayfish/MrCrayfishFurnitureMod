@@ -1,0 +1,27 @@
+{
+  "result": {
+    "item": "cfm:bar_stool",
+	"data": 11
+  },
+  "pattern": [
+    "WWW",
+    "CCC",
+    "Q Q"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "Q": {
+      "item": "minecraft:concrete",
+      "data": 0
+    },
+    "C": {
+      "item": "minecraft:stained_hardened_clay",
+      "data": 9
+    },
+    "W": {
+      "item": "minecraft:wool",
+      "data": 11
+    }
+  },
+  "group": "cfm:bar_stool"
+}

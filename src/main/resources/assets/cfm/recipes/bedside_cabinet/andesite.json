@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "cfm:bedside_cabinet_andesite"
+  },
+  "pattern": [
+    "***",
+    "*@*",
+    "*@*"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "@": {
+      "item": "minecraft:chest"
+    },
+    "*": {
+      "item": "minecraft:stone",
+      "data": 6
+    }
+  },
+  "cfm:bedside_cabinet"
+}

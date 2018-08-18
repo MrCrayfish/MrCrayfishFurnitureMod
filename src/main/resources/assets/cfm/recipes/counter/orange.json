@@ -1,0 +1,24 @@
+{
+	"result": {
+		"item": "cfm:counter",
+		"data": 1,
+		"count": 4
+	},
+	"pattern": [
+		"CCC",
+		"QQQ",
+		"QQQ"
+	],
+	"type": "minecraft:crafting_shaped",
+	"key": {
+		"Q": {
+			"item": "minecraft:concrete",
+			"data": 0
+		},
+		"C": {
+			"item": "minecraft:stained_hardened_clay",
+			"data": 1
+		}
+	},
+	"group": "cfm:counter"
+}
