@@ -89,20 +89,14 @@ public class BlockCandle extends ModBlock implements IRayTrace
 	@Override
 	public void addBoxes(IBlockState state, World world, BlockPos pos, List<AxisAlignedBB> boxes)
 	{
-		boxes.addAll(CollisionHelper.getBoxes(state));
-	}
-	
-	@Override
-	public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entity, boolean isActualState)
-	{
-		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOTTOM_LIP);
-		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOTTOM);
-		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, CENTER_PILLAR);
-		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, CROSS_1);
-		super.addCollisionBoxToList(pos, entityBox, collidingBoxes, CROSS_2);
+		boxes.add(BOTTOM_LIP);
+		boxes.add(BOTTOM);
+		boxes.add(CENTER_PILLAR);
+		boxes.add(CROSS_1);
+		boxes.add(CROSS_2);
 		for (AxisAlignedBB box : CANDLES)
 		{
-			super.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
+			boxes.add(box);
 		}
 	}
 

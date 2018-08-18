@@ -103,7 +103,7 @@ public class BlockDeskCabinet extends BlockFurnitureTile implements IDesk, IRayT
 	@Override
 	public void addBoxes(IBlockState state, World world, BlockPos pos, List<AxisAlignedBB> boxes)
 	{
-		boxes.add(this.getBoundingBox(this.getActualState(state, world, pos), world, pos));
+		boxes.add(this.getBoundingBox(state, world, pos));
 	}
 
 	@Override

@@ -33,55 +33,6 @@ public class CollisionHelper
 		return new AxisAlignedBB(fixedBounds[0], bounds.y1, fixedBounds[1], fixedBounds[2], bounds.y2, fixedBounds[3]);
 	}
 
-	public static List<AxisAlignedBB> getBoxes(IBlockState state)
-	{
-		return getBoxes(Minecraft.getMinecraft().getBlockRendererDispatcher().getModelForState(state));
-	}
-
-	public static List<AxisAlignedBB> getBoxes(IBakedModel model)
-	{
-		MODEL_BOXES.clear();
-		List<AxisAlignedBB> boxes = MODEL_BOXES.get(model);
-		if (boxes == null)
-		{
-			boxes = new ArrayList<AxisAlignedBB>();
-
-			List<BakedQuad> quads = model.getQuads(null, null, 0);
-
-			List<float[]> triangles = Lists.newArrayList();
-
-			for (int i = 0; i < quads.size(); i++)
-			{
-				BakedQuad quad = quads.get(i);
-				int size = quad.getFormat().getIntegerSize();
-				int[] data = quad.getVertexData();
-
-				float[] triangle = new float[6];
-
-				triangle[0] = Float.intBitsToFloat(data[0]);
-				triangle[1] = Float.intBitsToFloat(data[1]);
-				triangle[2] = Float.intBitsToFloat(data[2]);
-
-				triangle[3] = Float.intBitsToFloat(data[size * 3]);
-				triangle[4] = Float.intBitsToFloat(data[size * 3 + 1]);
-				triangle[5] = Float.intBitsToFloat(data[size * 3 + 2]);
-
-				triangles.add(triangle);
-				
-				if (triangles.size() % 6 == 0)
-				{
-					float[] bottom = triangles.get(0);
-					float[] top = triangles.get(1);
-					boxes.add(new AxisAlignedBB(top[0], top[1], top[2], bottom[3], bottom[4], bottom[5]));
-					triangles.clear();
-				}
-			}
-
-			MODEL_BOXES.put(model, boxes);
-		}
-		return boxes;
-	}
-
 	private static double[] fixRotation(EnumFacing facing, double var1, double var2, double var3, double var4)
 	{
 		switch (facing)

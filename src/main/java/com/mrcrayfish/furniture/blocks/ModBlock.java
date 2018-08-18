@@ -114,7 +114,7 @@ public class ModBlock extends Block implements IWireFrame
 			((IRayTrace) this).addBoxes(state, world, pos, boxes);
 		} else
 		{
-			boxes.add(this.getBoundingBox(this.getActualState(state, world, pos), world, pos));
+			boxes.add(this.getBoundingBox(state, world, pos));
 		}
 	}
 

@@ -191,6 +191,12 @@ public abstract class BlockCouch extends BlockFurnitureTile implements IRayTrace
 	}
 	
 	@Override
+	public void addWireframeBoxes(IBlockState state, World world, BlockPos pos, List<AxisAlignedBB> boxes)
+	{
+		boxes.add(this.getBoundingBox(state, world, pos));
+	}
+	
+	@Override
 	public void addBoxes(IBlockState state, World world, BlockPos pos, List<AxisAlignedBB> boxes)
 	{
 		EnumFacing facing = state.getValue(FACING);
