@@ -65,21 +65,28 @@ public class MessageMineBayBuy implements IMessage, IMessageHandler<MessageMineB
             ItemStack buySlot = tileEntityComputer.getStackInSlot(0);
             RecipeData[] data = Recipes.getMineBayItems();
             int price = data[message.itemNum].getPrice();
-
-            if(buySlot == null) return null;
-
-            if(message.shouldClear)
+			
+			if(buySlot.isEmpty()) return null;
+			
+			if(!(data[message.itemNum].getCurrency().getItem() == buySlot.getItem())) return null;
+           
+            if (buySlot.getCount() >= price)
             {
-                tileEntityComputer.clear();
-            }
-            else
-            {
-                tileEntityComputer.takeEmeraldFromSlot(price);
+				 if(message.shouldClear)
+				{
+					tileEntityComputer.clear();
+				} 
+				else
+				{
+					tileEntityComputer.takeEmeraldFromSlot(price);
+				}
+				
+				EntityItem entityItem = new EntityItem(player.world, player.posX, player.posY + 1, player.posZ, data[message.itemNum].getInput().copy());
+				player.world.spawnEntity(entityItem);
+				Triggers.trigger(Triggers.MINEBAY_PURCHASE, player);
             }
 
-            EntityItem entityItem = new EntityItem(player.world, player.posX, player.posY + 1, player.posZ, data[message.itemNum].getInput().copy());
-            player.world.spawnEntity(entityItem);
-            Triggers.trigger(Triggers.MINEBAY_PURCHASE, player);
+            
         }
         return null;
     }

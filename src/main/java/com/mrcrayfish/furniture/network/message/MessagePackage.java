@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagString;
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -44,7 +45,7 @@ public class MessagePackage implements IMessage, IMessageHandler<MessagePackage,
     public IMessage onMessage(MessagePackage message, MessageContext ctx)
     {
         EntityPlayerMP player = ctx.getServerHandler().player;
-        ItemStack mail = message.package_;
+        ItemStack mail = player.getHeldItem(EnumHand.MAIN_HAND);
         ItemStack signedMail = new ItemStack(FurnitureItems.PACKAGE_SIGNED);
         signedMail.setTagCompound(mail.getTagCompound());
         signedMail.setTagInfo("Author", new NBTTagString(player.getName()));

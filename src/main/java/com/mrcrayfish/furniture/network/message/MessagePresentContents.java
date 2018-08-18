@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagString;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -43,7 +44,7 @@ public class MessagePresentContents implements IMessage, IMessageHandler<Message
     public IMessage onMessage(MessagePresentContents message, MessageContext ctx)
     {
         EntityPlayerMP player = ctx.getServerHandler().player;
-        ItemStack present = message.envelope;
+        ItemStack present = player.getHeldItem(EnumHand.MAIN_HAND);
 
         ItemStack signedPresent = new ItemStack(FurnitureBlocks.PRESENT, 1, present.getMetadata());
         signedPresent.setTagCompound(present.getTagCompound());
