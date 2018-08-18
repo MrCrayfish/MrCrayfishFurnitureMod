@@ -7,12 +7,12 @@
 	"type": "cfm:cutting_shapeless",
 	"ingredients": [
 		{
-			"item": "minecraft:wooden_axe",
+			"item": "minecraft:iron_axe",
 			"data": 32767
 		},
 		{
-			"type": "forge:ore_dict",
-			"ore": "logWood"
+			"item": "minecraft:log",
+			"data": 0
 		}
 	]
 }

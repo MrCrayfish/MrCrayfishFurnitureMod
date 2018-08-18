@@ -1,0 +1,18 @@
+{
+	"result": {
+		"item": "cfm:item_log_acacia",
+		"count": 8
+	},
+	"group": "cfm:item_log_acacia",
+	"type": "cfm:cutting_shapeless",
+	"ingredients": [
+		{
+			"item": "minecraft:wooden_axe",
+			"data": 32767
+		},
+		{
+			"item": "minecraft:log2",
+			"data": 0
+		}
+	]
+}

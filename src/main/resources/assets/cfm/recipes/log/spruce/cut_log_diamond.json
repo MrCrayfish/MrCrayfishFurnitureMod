@@ -1,0 +1,18 @@
+{
+	"result": {
+		"item": "cfm:item_log_spruce",
+		"count": 8
+	},
+	"group": "cfm:item_log_spruce",
+	"type": "cfm:cutting_shapeless",
+	"ingredients": [
+		{
+			"item": "minecraft:diamond_axe",
+			"data": 32767
+		},
+		{
+			"item": "minecraft:log",
+			"data": 1
+		}
+	]
+}

@@ -1,9 +1,9 @@
 {
 	"result": {
-		"item": "cfm:item_log",
+		"item": "cfm:item_log_dark_oak",
 		"count": 8
 	},
-	"group": "cfm:item_log",
+	"group": "cfm:item_log_dark_oak",
 	"type": "cfm:cutting_shapeless",
 	"ingredients": [
 		{
@@ -11,8 +11,8 @@
 			"data": 32767
 		},
 		{
-			"type": "forge:ore_dict",
-			"ore": "logWood"
+			"item": "minecraft:log2",
+			"data": 1
 		}
 	]
 }
