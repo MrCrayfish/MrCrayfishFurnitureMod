@@ -1,7 +1,7 @@
 {
 	"parent": "cfm:block/fire_pit_0",
 	"textures": {
-		"log": "blocks/log_oak"
+		"log": "blocks/log_jungle"
 	},
 	"display": {
         "gui": {

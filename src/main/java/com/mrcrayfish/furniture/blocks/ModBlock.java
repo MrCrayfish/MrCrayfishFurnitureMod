@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.util.InventoryUtil;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
@@ -47,6 +48,13 @@ public class ModBlock extends Block implements IWireFrame
 		super(material, color);
 		this.setRegistryName(registryName);
 		this.setUnlocalizedName(unlocalizedName);
+	}
+
+	@Override
+	public void breakBlock(World world, BlockPos pos, IBlockState state)
+	{
+		InventoryUtil.dropTileEntityInventoryItems(world, pos, world.getTileEntity(pos));
+		super.breakBlock(world, pos, state);
 	}
 
 	@Override

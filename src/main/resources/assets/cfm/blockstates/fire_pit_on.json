@@ -1,5 +1,12 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "log": "blocks/log_oak"
+        }
+    },
     "variants": {
-        "normal": {"model": "cfm:fire_pit"}
+        "inventory": { "model": "cfm:fire_pit" },
+        "normal": { "model": "cfm:fire_pit" }
     }
 }

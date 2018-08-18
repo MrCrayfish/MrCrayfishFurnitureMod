@@ -5,10 +5,11 @@ import java.util.Random;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -19,9 +20,9 @@ import net.minecraft.world.World;
  */
 public class BlockFirePitOn extends BlockFirePit
 {
-	public BlockFirePitOn()
+	public BlockFirePitOn(String name)
 	{
-		super(Material.WOOD, "fire_pit_on");
+		super(name);
 		this.setLightLevel(1.0F);
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 	}
@@ -33,9 +34,10 @@ public class BlockFirePitOn extends BlockFirePit
 	}
 
 	@Override
-	public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
+	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
-		worldIn.setBlockState(pos, FurnitureBlocks.FIRE_PIT_OFF.getDefaultState().withProperty(STAGE, 3));
+		world.setBlockState(pos, FurnitureBlocks.FIRE_PIT_OFF.getDefaultState().withProperty(STAGE, 3));
+		return true;
 	}
 
 	@Override

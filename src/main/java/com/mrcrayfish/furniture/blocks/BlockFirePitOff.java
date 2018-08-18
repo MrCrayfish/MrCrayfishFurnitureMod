@@ -24,9 +24,9 @@ import net.minecraft.world.World;
  */
 public class BlockFirePitOff extends BlockFirePit
 {
-	public BlockFirePitOff()
+	public BlockFirePitOff(String name)
 	{
-		super(Material.WOOD, "fire_pit_off");
+		super(name);
 		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(STAGE, 0));
 	}

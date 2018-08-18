@@ -82,13 +82,6 @@ public class BlockFurniture extends ModBlock
 	}
 
 	@Override
-	public void breakBlock(World world, BlockPos pos, IBlockState state)
-	{
-		InventoryUtil.dropTileEntityInventoryItems(world, pos, world.getTileEntity(pos));
-		super.breakBlock(world, pos, state);
-	}
-
-	@Override
 	public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
 	{
 		return BlockFaceShape.UNDEFINED;

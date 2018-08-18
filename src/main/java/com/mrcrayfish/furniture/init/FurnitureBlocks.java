@@ -56,6 +56,7 @@ import com.mrcrayfish.furniture.blocks.BlockMirror;
 import com.mrcrayfish.furniture.blocks.BlockModernSlidingDoor;
 import com.mrcrayfish.furniture.blocks.BlockModernTV;
 import com.mrcrayfish.furniture.blocks.BlockModernWindow;
+import com.mrcrayfish.furniture.blocks.BlockNewFirepit;
 import com.mrcrayfish.furniture.blocks.BlockOutdoorTable;
 import com.mrcrayfish.furniture.blocks.BlockOven;
 import com.mrcrayfish.furniture.blocks.BlockPlate;
@@ -92,6 +93,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 
 public class FurnitureBlocks
 {
@@ -155,6 +157,7 @@ public class FurnitureBlocks
 	public static final Block DIGITAL_CLOCK;
 	public static final Block COUNTER_DRAWER;
 	public static final Block MAIL_BOX_SPRUCE, MAIL_BOX_BIRCH, MAIL_BOX_JUNGLE, MAIL_BOX_ACACIA, MAIL_BOX_DARK_OAK;
+	public static final Block FIRE_PIT_SPRUCE, FIRE_PIT_BIRCH, FIRE_PIT_JUNGLE, FIRE_PIT_ACACIA, FIRE_PIT_DARK_OAK;
 
 	/* Special */
 	public static final Block MIRROR;
@@ -302,8 +305,14 @@ public class FurnitureBlocks
 		TREE_BOTTOM = new BlockTree("tree_bottom", false);
 		PRESENT = new BlockPresent();
 
-		FIRE_PIT_OFF = new BlockFirePitOff();
-		FIRE_PIT_ON = new BlockFirePitOn();
+		FIRE_PIT_OFF = new BlockFirePitOff("fire_pit_off");
+		FIRE_PIT_ON = new BlockFirePitOn("fire_pit_on");
+		FIRE_PIT_SPRUCE = new BlockNewFirepit("fire_pit_spruce");
+		FIRE_PIT_BIRCH = new BlockNewFirepit("fire_pit_birch");
+		FIRE_PIT_JUNGLE = new BlockNewFirepit("fire_pit_jungle");
+		FIRE_PIT_ACACIA = new BlockNewFirepit("fire_pit_acacia");
+		FIRE_PIT_DARK_OAK = new BlockNewFirepit("fire_pit_dark_oak");
+
 		TRAMPOLINE = new BlockTrampoline();
 		CRATE = new BlockCrate();
 		BENCH = new BlockBench();
@@ -344,7 +353,6 @@ public class FurnitureBlocks
 
 		DIGITAL_CLOCK = new BlockDigitalClock();
 		MODERN_TV = new BlockModernTV();
-
 	}
 
 	public static void register()
@@ -427,6 +435,11 @@ public class FurnitureBlocks
 		registerBlock(MAIL_BOX_JUNGLE);
 		registerBlock(MAIL_BOX_ACACIA);
 		registerBlock(MAIL_BOX_DARK_OAK);
+		registerBlock(FIRE_PIT_SPRUCE);
+		registerBlock(FIRE_PIT_BIRCH);
+		registerBlock(FIRE_PIT_JUNGLE);
+		registerBlock(FIRE_PIT_ACACIA);
+		registerBlock(FIRE_PIT_DARK_OAK);
 		registerBlock(TV);
 		registerBlock(COMPUTER);
 		registerBlock(PRINTER);

@@ -2,10 +2,11 @@
     "forge_marker": 1,
     "defaults": {
         "textures": {
-            "log": "blocks/log_oak"
+            "log": "blocks/log_birch"
         }
     },
     "variants": {
+        "inventory": { "model": "cfm:fire_pit" },
         "stage": {
             "0": {
                 "model": "cfm:fire_pit_0"
@@ -18,6 +19,13 @@
             },
             "3": {
                 "model": "cfm:fire_pit_3"
+            }
+        },
+        "burning": {
+            "true": {
+                "model": "cfm:fire_pit"
+            },
+            "false": {
             }
         }
     }
