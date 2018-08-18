@@ -1,7 +1,7 @@
 {
     "textures": {
-        "particle": "blocks/quartz_block_bottom",
-        "bottom": "blocks/quartz_block_bottom",
+        "particle": "blocks/concrete_white",
+        "bottom": "blocks/concrete_white",
         "top": "blocks/concrete_gray"
     },
     "elements": [

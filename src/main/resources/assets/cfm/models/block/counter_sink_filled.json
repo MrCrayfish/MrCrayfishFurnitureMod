@@ -1,10 +1,10 @@
 {
     "textures": {
-        "particle": "blocks/quartz_block_bottom",
-        "0": "blocks/quartz_block_bottom",
-        "1": "blocks/hardened_clay_stained_cyan",
-        "2": "blocks/stone",
-        "3": "blocks/hardened_clay_stained_cyan",
+        "particle": "blocks/concrete_white",
+        "0": "blocks/concrete_white",
+        "1": "blocks/concrete_gray",
+        "2": "blocks/concrete_silver",
+        "3": "blocks/concrete_gray",
         "4": "blocks/water_still"
     },
     "display": {

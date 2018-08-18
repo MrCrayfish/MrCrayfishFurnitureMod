@@ -1,8 +1,8 @@
 {
     "textures": {
-        "particle": "blocks/quartz_block_bottom",
-        "bottom": "blocks/quartz_block_bottom",
-        "top": "blocks/concrete_gray"
+        "particle": "blocks/concrete_white",
+        "bottom": "blocks/concrete_white",
+        "top": "blocks/hardened_clay_stained_cyan"
     },
     "display": {
         "gui": {
