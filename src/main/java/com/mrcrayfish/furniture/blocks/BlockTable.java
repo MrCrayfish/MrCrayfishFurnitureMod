@@ -54,8 +54,6 @@ public class BlockTable extends ModBlock implements IRayTrace
         this.setSoundType(sound);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BACK, false).withProperty(FORWARD, false).withProperty(LEFT, false).withProperty(RIGHT, false));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-        this.setRegistryName(name);
-        this.setUnlocalizedName(name);
     }
 
     @Override

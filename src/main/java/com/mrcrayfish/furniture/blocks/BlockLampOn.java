@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.blocks;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -20,6 +21,7 @@ public class BlockLampOn extends BlockLamp
     {
         super(Material.GLASS, "lamp_on", true);
         this.setLightLevel(1.0F);
+        this.setCreativeTab(null);
     }
 
     @Override

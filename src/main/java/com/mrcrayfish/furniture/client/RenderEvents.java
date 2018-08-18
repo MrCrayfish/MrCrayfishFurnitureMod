@@ -82,7 +82,7 @@ public class RenderEvents
 					
 					IWireFrame wireframe = (IWireFrame) state.getBlock();
 					List<AxisAlignedBB> boxes = Lists.newArrayList();
-					wireframe.addWireframeBoxes(state, world, pos, boxes);
+					wireframe.addWireframeBoxes(state.getBlock().getActualState(state, world, pos), world, pos, boxes);
 					
 					for(AxisAlignedBB box : boxes) {
 						double d3 = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double) partialTicks;

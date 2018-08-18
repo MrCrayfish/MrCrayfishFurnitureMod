@@ -20,7 +20,7 @@ public class BlockLampOff extends BlockLamp
 {
     public BlockLampOff()
     {
-        super(Material.GLASS, "lamp_on", false);
+        super(Material.GLASS, "lamp_off", false);
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
     }
 

@@ -33,7 +33,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public class BlockCounterSink extends BlockFurnitureTile
+public class BlockCounterSink extends BlockFurnitureTile implements IRayTrace
 {
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
 
@@ -92,55 +92,6 @@ public class BlockCounterSink extends BlockFurnitureTile
     }
 
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
-    {
-        List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
-        for(AxisAlignedBB box : list)
-        {
-            Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-        }
-    }
-
-    private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
-    {
-        List<AxisAlignedBB> list = Lists.newArrayList();
-        EnumFacing facing = state.getValue(FACING);
-        list.add(BlockCounter.COUNTER_TOP);
-        list.add(BlockCounter.FORWARD_BOXES[facing.getHorizontalIndex()]);
-        return list;
-    }
-
-    @Override
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
-    {
-        List<RayTraceResult> list = Lists.newArrayList();
-
-        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos)))
-        {
-            list.add(this.rayTrace(pos, start, end, axisalignedbb));
-        }
-
-        RayTraceResult result = null;
-        double d1 = 0.0D;
-
-        for(RayTraceResult raytraceresult : list)
-        {
-            if(raytraceresult != null)
-            {
-                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-                if(d0 > d1)
-                {
-                    result = raytraceresult;
-                    d1 = d0;
-                }
-            }
-        }
-
-        return result;
-    }
-
-    @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
         TileEntity tileEntity = worldIn.getTileEntity(pos);
@@ -194,6 +145,14 @@ public class BlockCounterSink extends BlockFurnitureTile
         {
             items.add(new ItemStack(this, 1, i));
         }
+    }
+    
+    @Override
+    public void addBoxes(IBlockState state, World world, BlockPos pos, List<AxisAlignedBB> boxes)
+    {
+        EnumFacing facing = state.getValue(FACING);
+        boxes.add(BlockCounter.COUNTER_TOP);
+        boxes.add(BlockCounter.FORWARD_BOXES[facing.getHorizontalIndex()]);
     }
 
     @Nullable

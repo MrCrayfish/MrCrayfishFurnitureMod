@@ -22,6 +22,7 @@ import com.mrcrayfish.furniture.integration.crafttweaker.CraftTweakerIntegration
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.proxy.CommonProxy;
 import com.mrcrayfish.furniture.render.tileentity.MirrorRenderer;
+import com.mrcrayfish.furniture.util.CollisionHelper;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.ResourceLocation;
@@ -72,7 +73,10 @@ public class MrCrayfishFurnitureMod
 
 		/* Custom triggers Init */
 		Triggers.init();
-
+		
+		/*Collision Helper listener*/
+		CollisionHelper.Listener.init();
+		
 		proxy.preInit();
 	}
 
