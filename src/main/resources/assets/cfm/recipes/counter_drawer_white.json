@@ -5,7 +5,7 @@
     },
     "pattern": [
         "CCC",
-        "QQQ",
+        "QSQ",
         "QQQ"
     ],
     "type": "minecraft:crafting_shaped",
