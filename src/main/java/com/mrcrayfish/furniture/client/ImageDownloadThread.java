@@ -17,7 +17,7 @@ public class ImageDownloadThread extends Thread
     private static final Set<String> LOADING_URLS = new HashSet<>();
 
     //Prevents GIFs larger than 2MB from loading
-    private static final long MAX_FILE_SIZE = 2097152;
+    private static final long MAX_FILE_SIZE = Byte.SIZE * 2000000;
 
     private String url;
     private ResponseProcessor processor;
@@ -78,6 +78,7 @@ public class ImageDownloadThread extends Thread
             }
 
             long length = Long.parseLong(connection.getHeaderField("Content-Length"));
+            System.out.println(length);
             if(length > MAX_FILE_SIZE)
             {
                 processor.process(ImageDownloadResult.TOO_LARGE, "The GIF is greater than " + MAX_FILE_SIZE / 1024.0 + "MB");
