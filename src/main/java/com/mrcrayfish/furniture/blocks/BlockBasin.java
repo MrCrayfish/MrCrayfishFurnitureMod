@@ -47,12 +47,6 @@ public class BlockBasin extends BlockFurniture implements IRayTrace
 	}
 
 	@Override
-	public BlockRenderLayer getBlockLayer()
-	{
-		return BlockRenderLayer.TRANSLUCENT;
-	}
-
-	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
 	{
 		if (placer instanceof EntityPlayer)
