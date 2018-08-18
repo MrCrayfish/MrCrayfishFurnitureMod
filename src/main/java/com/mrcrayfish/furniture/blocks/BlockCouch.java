@@ -3,7 +3,6 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Locale;
 
-import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
@@ -32,6 +31,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -137,7 +137,7 @@ public abstract class BlockCouch extends BlockFurnitureTile implements IRayTrace
 		IBlockState state = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
 		if (!isSpecial())
 		{
-			state = state.withProperty(COLOUR, 0);
+			state = state.withProperty(COLOUR, 15 - MathHelper.clamp(placer.getHeldItem(hand).getMetadata(), 0, 15));
 		}
 		return state;
 	}
@@ -189,13 +189,13 @@ public abstract class BlockCouch extends BlockFurnitureTile implements IRayTrace
 		}
 		return SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0.45);
 	}
-	
+
 	@Override
 	public void addWireframeBoxes(IBlockState state, World world, BlockPos pos, List<AxisAlignedBB> boxes)
 	{
 		boxes.add(this.getBoundingBox(state, world, pos));
 	}
-	
+
 	@Override
 	public void addBoxes(IBlockState state, World world, BlockPos pos, List<AxisAlignedBB> boxes)
 	{

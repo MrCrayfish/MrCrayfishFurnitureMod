@@ -25,7 +25,6 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-//TODO add desk ray tracing
 /**
  * Author: MrCrayfish
  */
@@ -94,6 +93,41 @@ public class BlockDesk extends BlockFurniture implements IDesk, IRayTrace
 	@Override
 	public void addBoxes(IBlockState state, World world, BlockPos pos, List<AxisAlignedBB> boxes)
 	{
+		// TODO add the desk boxes
+		// EnumFacing facing = state.getValue(FACING);
+		//
+		// DeskType type = state.getValue(TYPE);
+		//
+		// AxisAlignedBB top = new AxisAlignedBB(0, 14.5 * 0.0625, 0, 1, 1, 1);
+		// AxisAlignedBB[] backs = new AxisAlignedBB[] {
+		// CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 14 * 0.0625, 2 * 0.0625, 2 *
+		// 0.0625, 14.5 * 0.0625, 14.5 * 0.0625, 14 * 0.0625),
+		// CollisionHelper.getBlockBounds(EnumFacing.WEST, 14 * 0.0625, 2 * 0.0625, 2 *
+		// 0.0625, 14.5 * 0.0625, 14.5 * 0.0625, 14 * 0.0625),
+		// CollisionHelper.getBlockBounds(EnumFacing.NORTH, 14 * 0.0625, 2 * 0.0625, 2 *
+		// 0.0625, 14.5 * 0.0625, 14.5 * 0.0625, 14 * 0.0625),
+		// CollisionHelper.getBlockBounds(EnumFacing.EAST, 14 * 0.0625, 2 * 0.0625, 2 *
+		// 0.0625, 14.5 * 0.0625, 14.5 * 0.0625, 14 * 0.0625) };
+		// AxisAlignedBB[] lsides = new AxisAlignedBB[] {
+		// CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 1 * 0.0625, 0, 0.5 * 0.0625,
+		// 15 * 0.0625, 14.5 * 0.0625, 2 * 0.0625),
+		// CollisionHelper.getBlockBounds(EnumFacing.WEST, 1 * 0.0625, 0, 0.5 * 0.0625,
+		// 15 * 0.0625, 14.5 * 0.0625, 2 * 0.0625),
+		// CollisionHelper.getBlockBounds(EnumFacing.NORTH, 1 * 0.0625, 0, 0.5 * 0.0625,
+		// 15 * 0.0625, 14.5 * 0.0625, 2 * 0.0625),
+		// CollisionHelper.getBlockBounds(EnumFacing.EAST, 1 * 0.0625, 0, 0.5 * 0.0625,
+		// 15 * 0.0625, 14.5 * 0.0625, 2 * 0.0625) };
+		// AxisAlignedBB[] rsides = new AxisAlignedBB[] { lsides[0].offset(-13.5 *
+		// 0.0625, 0, 0), lsides[1].offset(0, 0, -13.5 * 0.0625), lsides[2].offset(13.5
+		// * 0.0625, 0, 0), lsides[3].offset(0, 0, 13.5 * 0.0625) };
+		//
+		// boxes.add(top);
+		// if (type == DeskType.NONE)
+		// {
+		// boxes.add(backs[facing.getHorizontalIndex()]);
+		// boxes.add(lsides[facing.getHorizontalIndex()]);
+		// boxes.add(rsides[facing.getHorizontalIndex()]);
+		// }
 		boxes.add(this.getBoundingBox(state, world, pos));
 	}
 
