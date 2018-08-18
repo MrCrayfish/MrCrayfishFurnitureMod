@@ -28,6 +28,9 @@ import org.lwjgl.input.Keyboard;
 
 import java.util.List;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockToilet extends BlockFurniture
 {
     private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.1, 0.0, 0.15, 1.0, 1.0, 0.85);
@@ -44,10 +47,11 @@ public class BlockToilet extends BlockFurniture
 
     private static final AxisAlignedBB COLLISION_BOX_SEAT = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.5, 1.0);
 
-    public BlockToilet(Material material)
+    public BlockToilet()
     {
-        super(material);
-        this.setHardness(1.0F);
+        super(Material.ROCK, "toilet");
+        this.setHardness(1.5F);
+        this.setResistance(10.0F);
         this.setSoundType(SoundType.STONE);
     }
 

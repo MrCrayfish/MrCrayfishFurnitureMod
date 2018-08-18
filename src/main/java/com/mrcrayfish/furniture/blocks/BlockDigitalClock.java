@@ -43,9 +43,7 @@ public class BlockDigitalClock extends BlockFurnitureTile
 
     public BlockDigitalClock()
     {
-        super(Material.WOOD);
-        this.setUnlocalizedName("digital_clock");
-        this.setRegistryName("digital_clock");
+        super(Material.WOOD, "digital_clock");
         this.setLightLevel(0.5F);
         this.setHardness(0.5F);
     }

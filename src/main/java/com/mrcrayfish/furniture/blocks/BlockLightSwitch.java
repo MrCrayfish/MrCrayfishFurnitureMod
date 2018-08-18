@@ -36,9 +36,9 @@ public class BlockLightSwitch extends BlockFurniture
     private static final AxisAlignedBB[] BOUNDING_BOXES = new Bounds(14, 3, 4, 16, 13, 12).getRotatedBounds();
     private static final AxisAlignedBB[] COLLISION_BOXES = new Bounds(15, 4, 5, 16, 12, 11).getRotatedBounds();
 
-    public BlockLightSwitch()
+    public BlockLightSwitch(String name)
     {
-        super(Material.WOOD);
+        super(Material.WOOD, name);
     }
 
     @Override

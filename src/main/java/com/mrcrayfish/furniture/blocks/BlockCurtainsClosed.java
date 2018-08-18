@@ -2,11 +2,14 @@ package com.mrcrayfish.furniture.blocks;
 
 import net.minecraft.block.material.Material;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockCurtainsClosed extends BlockCurtains
 {
-    public BlockCurtainsClosed(Material material)
+    public BlockCurtainsClosed()
     {
-        super(material);
+        super(Material.CLOTH, "curtains_closed");
         this.setCreativeTab(null);
     }
 

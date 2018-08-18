@@ -13,26 +13,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
-public class BlockLampOff extends BlockFurniture
+/**
+ * Author: MrCrayfish
+ */
+public class BlockLampOff extends BlockLamp
 {
-    public BlockLampOff(Material material)
+    public BlockLampOff()
     {
-        super(material);
-        this.setHardness(0.75F);
-        this.setSoundType(SoundType.CLOTH);
+        super(Material.GLASS, "lamp_on", false);
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
 
-import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 
@@ -11,7 +10,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -21,33 +19,33 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
-public class BlockBasin extends BlockFurniture
+/**
+ * Author: MrCrayfish
+ */
+public class BlockBasin extends BlockFurniture implements IRayTrace
 {
 	public static final AxisAlignedBB[] PILLAR = new AxisAlignedBB[] { new AxisAlignedBB(3 * 0.0625, 0, 8 * 0.0625, 13 * 0.0625, 11 * 0.0625, 1), new AxisAlignedBB(0, 0, 3 * 0.0625, 8 * 0.0625, 11 * 0.0625, 13 * 0.0625), new AxisAlignedBB(3 * 0.0625, 0, 0, 13 * 0.0625, 11 * 0.0625, 8 * 0.0625), new AxisAlignedBB(8 * 0.0625, 0, 3 * 0.0625, 1, 11 * 0.0625, 13 * 0.0625) };
 	public static final AxisAlignedBB TOP = new AxisAlignedBB(0, 11 * 0.0625, 0, 1, 1, 1);
 
 	public static final PropertyBool FILLED = PropertyBool.create("filled");
 
-	public BlockBasin(Material material)
+	public BlockBasin()
 	{
-		super(material);
+		super(Material.ROCK, "basin");
 		this.setHardness(1.0F);
 		this.setSoundType(SoundType.STONE);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(FILLED, Boolean.FALSE));
 	}
-	
+
 	@Override
 	public BlockRenderLayer getBlockLayer()
 	{
@@ -62,16 +60,6 @@ public class BlockBasin extends BlockFurniture
 			Triggers.trigger(Triggers.PLACE_BATHTROOM_FURNITURE, (EntityPlayer) placer);
 		}
 		super.onBlockPlacedBy(world, pos, state, placer, stack);
-	}
-
-	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
-	{
-		List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
-		for (AxisAlignedBB box : list)
-		{
-			addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-		}
 	}
 
 	@Override
@@ -279,42 +267,17 @@ public class BlockBasin extends BlockFurniture
 		return world.getBlockState(pos).getValue(FILLED) ? 1 : 0;
 	}
 
-	private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
+	@Override
+	public void addBoxes(IBlockState state, World world, BlockPos pos, List<AxisAlignedBB> boxes)
 	{
-		List<AxisAlignedBB> list = Lists.newArrayList();
 		EnumFacing facing = state.getValue(FACING);
-		list.add(PILLAR[facing.getHorizontalIndex()]);
-		list.add(TOP);
-		return list;
+		boxes.add(PILLAR[facing.getHorizontalIndex()]);
+		boxes.add(TOP);
 	}
 
 	@Override
-	public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
+	public boolean applyCollisions(IBlockState state, World world, BlockPos pos)
 	{
-		List<RayTraceResult> list = Lists.newArrayList();
-
-		for (AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos)))
-		{
-			list.add(this.rayTrace(pos, start, end, axisalignedbb));
-		}
-
-		RayTraceResult raytraceresult1 = null;
-		double d1 = 0.0D;
-
-		for (RayTraceResult raytraceresult : list)
-		{
-			if (raytraceresult != null)
-			{
-				double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-				if (d0 > d1)
-				{
-					raytraceresult1 = raytraceresult;
-					d1 = d0;
-				}
-			}
-		}
-
-		return raytraceresult1;
+		return true;
 	}
 }

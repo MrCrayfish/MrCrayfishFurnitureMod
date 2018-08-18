@@ -27,7 +27,10 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockChair extends BlockFurniture
+/**
+ * Author: MrCrayfish
+ */
+public class BlockChair extends BlockFurniture implements IRayTrace
 {
     public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.1, 0.0, 0.1, 0.9, 1.2, 0.9);
 
@@ -40,12 +43,10 @@ public class BlockChair extends BlockFurniture
 
     public BlockChair(Material material, SoundType sound, String name)
     {
-        super(material);
+        super(material, name);
         this.setSoundType(sound);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-        this.setRegistryName(name);
-        this.setUnlocalizedName(name);
     }
 
     @Override
@@ -81,19 +82,6 @@ public class BlockChair extends BlockFurniture
     }
 
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        if(!(entityIn instanceof EntitySittableBlock))
-        {
-            List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
-            for(AxisAlignedBB box : list)
-            {
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-            }
-        }
-    }
-
-    @Override
     public IBlockState getStateFromMeta(int meta)
     {
         return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta));
@@ -123,57 +111,26 @@ public class BlockChair extends BlockFurniture
         return SittableUtil.isSomeoneSitting(worldIn, pos.getX(), pos.getY(), pos.getZ()) ? 1 : 0;
     }
 
-    private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
-    {
-        List<AxisAlignedBB> list = Lists.newArrayList();
+	@Override
+	public void addBoxes(IBlockState state, World world, BlockPos pos, List<AxisAlignedBB> boxes)
+	{
         EnumFacing facing = state.getValue(FACING);
         switch(facing)
         {
             case NORTH:
-                list.add(CHAIR_BACKREST_NORTH);
+                boxes.add(CHAIR_BACKREST_NORTH);
                 break;
             case SOUTH:
-                list.add(CHAIR_BACKREST_SOUTH);
+                boxes.add(CHAIR_BACKREST_SOUTH);
                 break;
             case WEST:
-                list.add(CHAIR_BACKREST_WEST);
+                boxes.add(CHAIR_BACKREST_WEST);
                 break;
             default:
-                list.add(CHAIR_BACKREST_EAST);
+                boxes.add(CHAIR_BACKREST_EAST);
                 break;
         }
-        list.add(CHAIR_SEAT);
-        Collections.addAll(list, LEGS);
-        return list;
-    }
-
-    @Override
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
-    {
-        List<RayTraceResult> list = Lists.newArrayList();
-
-        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos)))
-        {
-            list.add(this.rayTrace(pos, start, end, axisalignedbb));
-        }
-
-        RayTraceResult raytraceresult1 = null;
-        double d1 = 0.0D;
-
-        for(RayTraceResult raytraceresult : list)
-        {
-            if(raytraceresult != null)
-            {
-                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-                if(d0 > d1)
-                {
-                    raytraceresult1 = raytraceresult;
-                    d1 = d0;
-                }
-            }
-        }
-
-        return raytraceresult1;
-    }
+        boxes.add(CHAIR_SEAT);
+        Collections.addAll(boxes, LEGS);
+	}
 }

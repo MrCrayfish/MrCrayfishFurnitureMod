@@ -2,11 +2,14 @@ package com.mrcrayfish.furniture.blocks;
 
 import net.minecraft.block.material.Material;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockCurtainsOpen extends BlockCurtains
 {
-    public BlockCurtainsOpen(Material material)
+    public BlockCurtainsOpen()
     {
-        super(material);
+        super(Material.CLOTH, "curtains_open");
     }
 
     @Override

@@ -13,6 +13,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockWreath extends BlockFurniture
 {
     private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.8125, 0, 0, 1, 1, 1);
@@ -21,9 +24,9 @@ public class BlockWreath extends BlockFurniture
     private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.8125, 0, 0, 1, 1, 1);
     private static final AxisAlignedBB[] BOUNDING_BOX = {BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST};
 
-    public BlockWreath(Material materialIn)
+    public BlockWreath()
     {
-        super(materialIn);
+        super(Material.LEAVES, "wreath");
         this.setHardness(0.5F);
         this.setSoundType(SoundType.PLANT);
     }

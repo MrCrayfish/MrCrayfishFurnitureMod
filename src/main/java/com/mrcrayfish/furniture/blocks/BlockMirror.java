@@ -14,6 +14,9 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockMirror extends BlockFurnitureTile
 {
     private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.9375, 0.0, 0.0, 1.0, 1.0, 1.0);
@@ -22,9 +25,9 @@ public class BlockMirror extends BlockFurnitureTile
     private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.9375, 0.0, 0.0, 1.0, 1.0, 1.0);
     private static final AxisAlignedBB[] BOUNDING_BOX = {BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST};
 
-    public BlockMirror(Material material)
+    public BlockMirror()
     {
-        super(material);
+        super(Material.GLASS, "mirror");
     }
 
     @Override

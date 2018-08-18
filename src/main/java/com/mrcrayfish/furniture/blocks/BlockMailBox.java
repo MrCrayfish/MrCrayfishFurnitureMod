@@ -24,15 +24,17 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockMailBox extends BlockFurnitureTile
 {
     private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.1875, 0.0F, 0.1875, 0.8125, 1.1625, 0.8125);
 
-    public BlockMailBox(Material material)
+    public BlockMailBox(Material material, SoundType sound, String name)
     {
-        super(material);
-        this.setSoundType(SoundType.WOOD);
-        this.setHardness(1.0F);
+        super(material, name);
+        this.setSoundType(sound);
     }
 
     @Override

@@ -21,6 +21,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockBench extends BlockFurniture
 {
     public static final PropertyBool LEFT = PropertyBool.create("left");
@@ -32,10 +35,11 @@ public class BlockBench extends BlockFurniture
     private static final AxisAlignedBB COLLISION_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 2 * 0.0625F, 0.0F, 1 * 0.0625F, 14 * 0.0625F, 9 * 0.0625F, 15 * 0.0625F);
     private static final AxisAlignedBB COLLISION_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 2 * 0.0625F, 0.0F, 1 * 0.0625F, 14 * 0.0625F, 9 * 0.0625F, 15 * 0.0625F);
 
-    public BlockBench(Material material)
+    public BlockBench()
     {
-        super(material);
-        this.setHardness(1.0F);
+        super(Material.WOOD, "bench");
+        this.setHardness(2.0F);
+        this.setResistance(5.0F);
         this.setSoundType(SoundType.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(LEFT, false).withProperty(RIGHT, false));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
@@ -44,22 +48,22 @@ public class BlockBench extends BlockFurniture
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        if(getMetaFromState(state) % 2 == 1)
+        if(state.getValue(FACING).getHorizontalIndex() % 2 == 1)
         {
-            return BOUNDING_BOX_NORTH;
+            return BOUNDING_BOX_EAST;
         }
-        return BOUNDING_BOX_EAST;
+        return BOUNDING_BOX_NORTH;
     }
 
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
     {
-        if(getMetaFromState(state) % 2 == 1)
+        if(state.getValue(FACING).getHorizontalIndex() % 2 == 1)
         {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_NORTH);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_EAST);
             return;
         }
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_EAST);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_NORTH);
     }
 
     @Override

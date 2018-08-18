@@ -16,13 +16,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockStonePath extends Block
+/**
+ * Author: MrCrayfish
+ */
+public class BlockStonePath extends ModBlock
 {
     private static final AxisAlignedBB BOUNDING = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.0625, 1.0);
 
-    public BlockStonePath(Material material)
+    public BlockStonePath(String name)
     {
-        super(material);
+        super(Material.ROCK, name);
         this.setHardness(0.75F);
         this.setSoundType(SoundType.STONE);
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);

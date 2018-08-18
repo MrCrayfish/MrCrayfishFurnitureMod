@@ -32,7 +32,10 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockLamp extends Block
+/**
+ * Author: MrCrayfish
+ */
+public class BlockLamp extends ModBlock implements IRayTrace
 {
 	public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
 	public static final PropertyBool UP = PropertyBool.create("up");
@@ -49,9 +52,9 @@ public class BlockLamp extends Block
 	public static final AxisAlignedBB LAMP_SHADE_BOX = new AxisAlignedBB(1.5 * 0.0625, 8 * 0.0625, 14.5 * 0.0625, 14.5 * 0.0625, 15 * 0.0625, 1.5 * 0.0625);
 	public static final AxisAlignedBB TOP_CENTER_BOX = new AxisAlignedBB(7.125 * 0.0625, 0, 7.125 * 0.0625, 8.875 * 0.0625, 9 * 0.0625, 8.875 * 0.0625);
 
-	public BlockLamp(Material material, boolean on)
+	public BlockLamp(Material material, String name, boolean on)
 	{
-		super(material);
+		super(material, name);
 		this.setHardness(0.75F);
 		this.setSoundType(SoundType.CLOTH);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(COLOUR, 0));
@@ -170,75 +173,29 @@ public class BlockLamp extends Block
 		return new ItemStack(FurnitureBlocks.LAMP_OFF, 1, state.getValue(COLOUR));
 	}
 
-	private List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
+	@Override
+	public void addBoxes(IBlockState state, World world, BlockPos pos, List<AxisAlignedBB> boxes)
 	{
-		List<AxisAlignedBB> list = Lists.newArrayList();
-
 		boolean up = state.getValue(UP);
 		boolean down = state.getValue(DOWN);
 
 		if (up && down)
 		{
-			list.add(CENTER_POLE_BOX);
+			boxes.add(CENTER_POLE_BOX);
 		} else if (up)
 		{
-			list.add(BOTTOM_BASE_BOX);
-			list.add(CENTER_POLE_BOX);
+			boxes.add(BOTTOM_BASE_BOX);
+			boxes.add(CENTER_POLE_BOX);
 		} else if (down)
 		{
-			list.add(TOP_CENTER_BOX);
-			list.add(LAMP_SHADE_BOX);
+			boxes.add(TOP_CENTER_BOX);
+			boxes.add(LAMP_SHADE_BOX);
 		} else
 		{
-			list.add(SMALL_BASE_BOX);
-			list.add(TOP_CENTER_BOX);
-			list.add(LAMP_SHADE_BOX);
+			boxes.add(SMALL_BASE_BOX);
+			boxes.add(TOP_CENTER_BOX);
+			boxes.add(LAMP_SHADE_BOX);
 		}
-
-		return list;
-	}
-
-	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entity, boolean p_185477_7_)
-	{
-		if (!(entity instanceof EntitySittableBlock))
-		{
-			List<AxisAlignedBB> boxes = this.getCollisionBoxList(this.getActualState(state, worldIn, pos), worldIn, pos);
-			for (AxisAlignedBB box : boxes)
-			{
-				addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-			}
-		}
-	}
-
-	@Override
-	public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
-	{
-		List<RayTraceResult> list = Lists.newArrayList();
-
-		for (AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos), world, pos))
-		{
-			list.add(this.rayTrace(pos, start, end, axisalignedbb));
-		}
-
-		RayTraceResult raytraceresult1 = null;
-		double d1 = 0.0D;
-
-		for (RayTraceResult raytraceresult : list)
-		{
-			if (raytraceresult != null)
-			{
-				double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-				if (d0 > d1)
-				{
-					raytraceresult1 = raytraceresult;
-					d1 = d0;
-				}
-			}
-		}
-
-		return raytraceresult1;
 	}
 
 	@Override

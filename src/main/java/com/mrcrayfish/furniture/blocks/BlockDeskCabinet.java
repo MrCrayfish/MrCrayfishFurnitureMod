@@ -24,21 +24,23 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+//TODO add desk ray tracing
 /**
  * Author: MrCrayfish
  */
-public class BlockDeskCabinet extends BlockFurnitureTile implements IDesk
+public class BlockDeskCabinet extends BlockFurnitureTile implements IDesk, IRayTrace
 {
 	public static final PropertyEnum<DeskCabinetType> TYPE = PropertyEnum.create("type", DeskCabinetType.class);
 
-	public BlockDeskCabinet(Material material, SoundType sound)
+	public BlockDeskCabinet(Material material, SoundType sound, String name)
 	{
-		super(material);
+		super(material, name);
 		this.setHardness(1.0F);
 		this.setSoundType(sound);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(TYPE, DeskCabinetType.NONE));
@@ -96,6 +98,12 @@ public class BlockDeskCabinet extends BlockFurnitureTile implements IDesk
 			return state.withProperty(TYPE, DeskCabinetType.NONE);
 		}
 		return state.withProperty(TYPE, DeskCabinetType.BOTH);
+	}
+
+	@Override
+	public void addBoxes(IBlockState state, World world, BlockPos pos, List<AxisAlignedBB> boxes)
+	{
+		boxes.add(this.getBoundingBox(this.getActualState(state, world, pos), world, pos));
 	}
 
 	@Override

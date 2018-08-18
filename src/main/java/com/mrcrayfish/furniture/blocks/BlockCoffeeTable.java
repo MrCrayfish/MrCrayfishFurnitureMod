@@ -22,7 +22,10 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockCoffeeTable extends Block
+/**
+ * Author: MrCrayfish
+ */
+public class BlockCoffeeTable extends ModBlock implements IRayTrace
 {
     public static final PropertyBool NORTH = PropertyBool.create("north");
     public static final PropertyBool EAST = PropertyBool.create("east");
@@ -38,12 +41,10 @@ public class BlockCoffeeTable extends Block
 
     public BlockCoffeeTable(Material material, SoundType sound, String name)
     {
-        super(material);
+        super(material, name);
         this.setSoundType(sound);
         this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.FALSE).withProperty(EAST, Boolean.FALSE).withProperty(SOUTH, Boolean.FALSE).withProperty(WEST, Boolean.FALSE));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-        this.setRegistryName(name);
-        this.setUnlocalizedName(name);
     }
 
     @Override
@@ -62,16 +63,6 @@ public class BlockCoffeeTable extends Block
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
         return BOUNDING_BOX;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
-        for(AxisAlignedBB box : list)
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-        }
     }
 
     @Override
@@ -97,60 +88,29 @@ public class BlockCoffeeTable extends Block
         return world.getBlockState(pos).getBlock() == this;
     }
 
-    private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
-    {
-        List<AxisAlignedBB> list = Lists.newArrayList();
+	@Override
+	public void addBoxes(IBlockState state, World world, BlockPos pos, List<AxisAlignedBB> boxes)
+	{
         boolean north = state.getValue(NORTH);
         boolean south = state.getValue(SOUTH);
         boolean east = state.getValue(EAST);
         boolean west = state.getValue(WEST);
-        list.add(TABLE_TOP);
+        boxes.add(TABLE_TOP);
         if(!north)
         {
-            if(!west) list.add(NORTH_WEST_LEG);
-            if(!east) list.add(NORTH_EAST_LEG);
+            if(!west) boxes.add(NORTH_WEST_LEG);
+            if(!east) boxes.add(NORTH_EAST_LEG);
         }
         if(!south)
         {
-            if(!west) list.add(SOUTH_WEST_LEG);
-            if(!east) list.add(SOUTH_EAST_LEG);
+            if(!west) boxes.add(SOUTH_WEST_LEG);
+            if(!east) boxes.add(SOUTH_EAST_LEG);
         }
-        return list;
-    }
-
-    @Override
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
-    {
-        List<RayTraceResult> list = Lists.newArrayList();
-
-        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos)))
-        {
-            list.add(this.rayTrace(pos, start, end, axisalignedbb));
-        }
-
-        RayTraceResult raytraceresult1 = null;
-        double d1 = 0.0D;
-
-        for(RayTraceResult raytraceresult : list)
-        {
-            if(raytraceresult != null)
-            {
-                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-                if(d0 > d1)
-                {
-                    raytraceresult1 = raytraceresult;
-                    d1 = d0;
-                }
-            }
-        }
-
-        return raytraceresult1;
-    }
+	}
+	
     @Override
     public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
     {
         return BlockFaceShape.UNDEFINED;
     }
-
 }

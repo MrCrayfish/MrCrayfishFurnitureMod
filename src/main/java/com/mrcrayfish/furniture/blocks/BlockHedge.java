@@ -27,7 +27,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockHedge extends Block
+/**
+ * Author: MrCrayfish
+ */
+public class BlockHedge extends ModBlock
 {
     public static final PropertyBool NORTH = PropertyBool.create("north");
     public static final PropertyBool EAST = PropertyBool.create("east");
@@ -42,9 +45,9 @@ public class BlockHedge extends Block
     private static final AxisAlignedBB COLLISION_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.8125, 0.0, 0.1875, 1.0, 1.5, 0.8125);
     private static final AxisAlignedBB COLLISION_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.8125, 0.0, 0.1875, 1.0, 1.5, 0.8125);
 
-    public BlockHedge()
+    public BlockHedge(String name)
     {
-        super(Material.LEAVES);
+        super(Material.LEAVES, name);
         this.setHardness(1.0F);
         this.setLightOpacity(1);
         this.setSoundType(SoundType.PLANT);

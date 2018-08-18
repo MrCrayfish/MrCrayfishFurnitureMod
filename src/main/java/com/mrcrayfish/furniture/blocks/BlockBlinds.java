@@ -25,6 +25,9 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockBlinds extends BlockFurniture
 {
     public static final PropertyBool LEFT = PropertyBool.create("left");
@@ -37,12 +40,12 @@ public class BlockBlinds extends BlockFurniture
 
     private boolean open = false;
 
-    public BlockBlinds(Material material, boolean open)
+    public BlockBlinds(Material material, String name, boolean open)
     {
-        super(material);
-        this.setHardness(0.5F);
+        super(material, name);
+        this.setHardness(2.0F);
+        this.setResistance(5.0F);
         this.setSoundType(SoundType.WOOD);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(LEFT, false));
         this.open = open;
         if(!open)
         {

@@ -23,7 +23,10 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockWhiteFence extends Block
+/**
+ * Author: MrCrayfish
+ */
+public class BlockWhiteFence extends ModBlock
 {
     public static final PropertyBool NORTH = PropertyBool.create("north");
     public static final PropertyBool EAST = PropertyBool.create("east");
@@ -38,9 +41,9 @@ public class BlockWhiteFence extends Block
     private static final AxisAlignedBB COLLISION_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.5625, 0.0, 0.4375, 1.0, 1.5, 0.5625);
     private static final AxisAlignedBB COLLISION_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.5625, 0.0, 0.4375, 1.0, 1.5, 0.5625);
 
-    public BlockWhiteFence(Material material)
+    public BlockWhiteFence()
     {
-        super(material);
+        super(Material.WOOD, "white_fence");
         this.setHardness(1.0F);
         this.setSoundType(SoundType.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.FALSE).withProperty(EAST, Boolean.FALSE).withProperty(SOUTH, Boolean.FALSE).withProperty(WEST, Boolean.FALSE));

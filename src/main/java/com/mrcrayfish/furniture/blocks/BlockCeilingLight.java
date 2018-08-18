@@ -25,15 +25,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Locale;
 
-public class BlockCeilingLight extends Block implements IPowered
+/**
+ * Author: MrCrayfish
+ */
+public class BlockCeilingLight extends ModBlock implements IPowered
 {
     public static final PropertyEnum MODE = PropertyEnum.create("mode", Mode.class);
 
     private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(5 * 0.0625, 0.4, 5 * 0.0625, 11 * 0.0625, 1.0, 11F * 0.0625);
 
-    public BlockCeilingLight(Material material, boolean on)
+    public BlockCeilingLight(Material material, String name, boolean on)
     {
-        super(material);
+        super(material, name);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.GLASS);
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);

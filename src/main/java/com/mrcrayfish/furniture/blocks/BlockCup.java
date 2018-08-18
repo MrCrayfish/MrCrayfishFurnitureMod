@@ -31,13 +31,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockCup extends Block implements ITileEntityProvider
+/**
+ * Author: MrCrayfish
+ */
+public class BlockCup extends ModBlock implements ITileEntityProvider
 {
     private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(5 * 0.0625, 0.0, 5 * 0.0625, 11 * 0.0625, 7.5 * 0.0625, 11 * 0.0625);
 
-    public BlockCup(Material material)
+    public BlockCup()
     {
-        super(material);
+        super(Material.GLASS, "cup");
         this.setSoundType(SoundType.GLASS);
         this.setHardness(0.1F);
         this.setDefaultState(this.blockState.getBaseState());

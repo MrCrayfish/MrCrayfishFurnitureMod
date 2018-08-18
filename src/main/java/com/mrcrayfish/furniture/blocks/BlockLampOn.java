@@ -11,11 +11,14 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockLampOn extends BlockLamp
 {
-    public BlockLampOn(Material material)
+    public BlockLampOn()
     {
-        super(material, true);
+        super(Material.GLASS, "lamp_on", true);
         this.setLightLevel(1.0F);
     }
 

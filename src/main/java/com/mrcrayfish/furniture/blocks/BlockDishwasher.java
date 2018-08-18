@@ -22,13 +22,16 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockDishwasher extends BlockFurnitureTile
 {
     public static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(1 * 0.0625, 0, 1 * 0.0625, 15 * 0.0625, 1, 15 * 0.0625);
 
-    public BlockDishwasher(Material material)
+    public BlockDishwasher()
     {
-        super(material);
+        super(Material.ANVIL, "dishwasher");
         this.setHardness(0.5F);
         this.setSoundType(SoundType.ANVIL);
     }

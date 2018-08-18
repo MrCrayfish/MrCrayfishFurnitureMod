@@ -42,15 +42,18 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockPresent extends Block implements ITileEntityProvider
+/**
+ * Author: MrCrayfish
+ */
+public class BlockPresent extends ModBlock implements ITileEntityProvider
 {
     public static final PropertyEnum<EnumDyeColor> COLOUR = PropertyEnum.create("colour", EnumDyeColor.class);
 
     private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.25, 0.0, 0.25, 0.75, 0.35, 0.75);
 
-    public BlockPresent(Material material)
+    public BlockPresent()
     {
-        super(material);
+        super(Material.CLOTH, "present");
         this.setHardness(0.5F);
         this.setSoundType(SoundType.CLOTH);
         this.hasTileEntity = true;

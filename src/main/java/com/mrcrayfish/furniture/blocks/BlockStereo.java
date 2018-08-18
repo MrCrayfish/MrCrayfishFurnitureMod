@@ -24,6 +24,9 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockStereo extends BlockFurnitureTile
 {
     private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.3, 0.0, 0.0, 0.7, 0.5, 1.0);
@@ -40,10 +43,11 @@ public class BlockStereo extends BlockFurnitureTile
 
     public static ArrayList<ItemRecord> records = new ArrayList<>();
 
-    public BlockStereo(Material material)
+    public BlockStereo()
     {
-        super(material);
-        this.setHardness(1.0F);
+        super(Material.WOOD, "stereo");
+        this.setHardness(2.0F);
+        this.setResistance(5.0F);
         this.setSoundType(SoundType.WOOD);
 
         for(Item item : Item.REGISTRY)

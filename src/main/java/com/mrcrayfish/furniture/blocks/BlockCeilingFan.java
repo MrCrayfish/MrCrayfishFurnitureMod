@@ -24,14 +24,14 @@ import java.util.List;
 /**
  * Author: MrCrayfish
  */
-public class BlockCeilingFan extends Block implements IPowered
+public class BlockCeilingFan extends ModBlock implements IPowered
 {
     private static final AxisAlignedBB SELECTION_BOX = new Bounds(4, 5, 4, 12, 16, 12).toAABB();
     private static final AxisAlignedBB COLLISION_BOX = new Bounds(5, 6, 5, 11, 16, 11).toAABB();
 
     public BlockCeilingFan()
     {
-        super(Material.WOOD);
+        super(Material.WOOD, "ceiling_fan");
         this.setHardness(0.5F);
         this.setSoundType(SoundType.WOOD);
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);

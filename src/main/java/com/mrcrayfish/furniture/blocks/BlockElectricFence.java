@@ -30,6 +30,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockElectricFence extends Block
 {
     public static final PropertyBool NORTH = PropertyBool.create("north");

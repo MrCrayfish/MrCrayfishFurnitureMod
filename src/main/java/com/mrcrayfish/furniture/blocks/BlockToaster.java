@@ -25,6 +25,9 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockToaster extends BlockFurnitureTile
 {
     private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 5 * 0.0625, 0.0, 3 * 0.0625, 11 * 0.0625, 0.45, 13 * 0.0625);
@@ -39,9 +42,9 @@ public class BlockToaster extends BlockFurnitureTile
     private static final AxisAlignedBB COLLISION_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 5 * 0.0625, 0.0, 3 * 0.0625, 11 * 0.0625, 0.4, 13 * 0.0625);
     private static final AxisAlignedBB[] COLLISION_BOX = {COLLISION_BOX_SOUTH, COLLISION_BOX_WEST, COLLISION_BOX_NORTH, COLLISION_BOX_EAST};
 
-    public BlockToaster(Material material)
+    public BlockToaster()
     {
-        super(material);
+        super(Material.ANVIL, "toaster");
         this.setHardness(0.5F);
         this.setSoundType(SoundType.ANVIL);
     }

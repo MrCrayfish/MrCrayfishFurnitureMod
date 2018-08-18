@@ -26,14 +26,17 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockBlender extends BlockFurnitureTile
 {
     public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(4 * 0.0625, 0.0, 4 * 0.0625, 12 * 0.0625, 1.0, 12 * 0.0625);
     public static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(4.5 * 0.0625, 0, 4.5 * 0.0625, 11.5 * 0.0625, 15 * 0.0625, 11.5 * 0.0625);
 
-    public BlockBlender(Material material)
+    public BlockBlender()
     {
-        super(material);
+        super(Material.GLASS, "blender");
         this.setHardness(0.5F);
         this.setSoundType(SoundType.GLASS);
     }

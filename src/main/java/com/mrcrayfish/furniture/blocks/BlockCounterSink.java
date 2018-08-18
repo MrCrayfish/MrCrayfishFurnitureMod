@@ -37,9 +37,9 @@ public class BlockCounterSink extends BlockFurnitureTile
 {
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
 
-    public BlockCounterSink(Material material)
+    public BlockCounterSink()
     {
-        super(material);
+        super(Material.ROCK, "counter_sink");
         this.setHardness(0.5F);
         this.setSoundType(SoundType.STONE);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(BlockBasin.FILLED, Boolean.FALSE));

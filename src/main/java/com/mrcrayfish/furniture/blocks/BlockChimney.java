@@ -23,15 +23,18 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockChimney extends Block
+/**
+ * Author: MrCrayfish
+ */
+public class BlockChimney extends ModBlock
 {
     public static final PropertyEnum TYPE = PropertyEnum.create("type", ChimneyType.class);
 
     private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.125, 0.0, 0.125, 0.875, 1.0, 0.875);
 
-    public BlockChimney(Material material)
+    public BlockChimney()
     {
-        super(material);
+        super(Material.ROCK, "chimney");
         this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, ChimneyType.TOP));
         this.setTickRandomly(true);
         this.setHardness(1.0F);

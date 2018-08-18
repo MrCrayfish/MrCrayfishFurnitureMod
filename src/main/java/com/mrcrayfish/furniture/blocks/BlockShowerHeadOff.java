@@ -22,6 +22,9 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockShowerHeadOff extends BlockFurniture
 {
     private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.35, 0.15, 0.35, 1.0, 0.45, 0.65);
@@ -30,9 +33,9 @@ public class BlockShowerHeadOff extends BlockFurniture
     private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.35, 0.15, 0.35, 1.0, 0.45, 0.65);
     private static final AxisAlignedBB[] BOUNDING_BOX = {BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST};
 
-    public BlockShowerHeadOff(Material material)
+    public BlockShowerHeadOff()
     {
-        super(material);
+        super(Material.IRON, "shower_head_off");
         this.setHardness(1.0F);
         this.setSoundType(SoundType.STONE);
     }

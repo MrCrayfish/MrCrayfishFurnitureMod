@@ -40,11 +40,14 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockBath extends BlockFurnitureTile
 {
     public static final PropertyInteger WATER_LEVEL = PropertyInteger.create("level", 0, 16);
 
-    /* Collision Bounds */
+    /** Collision Bounds */
     public static final AxisAlignedBB BOTTOM = new AxisAlignedBB(0, 0, 0, 1, 2 * 0.0625, 1);
     public static final AxisAlignedBB SIDE_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.0, 0.125, 0.0, 1.0, 0.875, 0.125);
     public static final AxisAlignedBB SIDE_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.0, 0.125, 0.0, 1.0, 0.875, 0.125);
@@ -54,9 +57,9 @@ public class BlockBath extends BlockFurnitureTile
     public static final AxisAlignedBB[] TOP_BOXES = {new AxisAlignedBB(0, 0, -1, 1, 15 * 0.0625, 1), new AxisAlignedBB(0, 0, 0, 2, 15 * 0.0625, 1), new AxisAlignedBB(0, 0, 0, 1, 15 * 0.0625, 2), new AxisAlignedBB(-1, 0, 0, 1, 15 * 0.0625, 1)};
     public static final AxisAlignedBB[] BOTTOM_BOXES = {new AxisAlignedBB(0, 0, 0, 1, 15 * 0.0625, 2), new AxisAlignedBB(-1, 0, 0, 1, 15 * 0.0625, 1), new AxisAlignedBB(0, 0, -1, 1, 15 * 0.0625, 1), new AxisAlignedBB(0, 0, 0, 2, 15 * 0.0625, 1)};
 
-    public BlockBath(Material material, boolean top)
+    public BlockBath(Material material, String name, boolean top)
     {
-        super(material);
+        super(material, name);
         this.setHardness(1.0F);
         this.setSoundType(SoundType.STONE);
         if(top) this.setCreativeTab(null);

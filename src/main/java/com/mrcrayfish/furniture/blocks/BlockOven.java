@@ -16,13 +16,16 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockOven extends BlockFurnitureTile
 {
-    public BlockOven(Material material)
+    public BlockOven()
     {
-        super(material);
-        this.setHardness(1.0F);
-        this.setSoundType(SoundType.METAL);
+        super(Material.ANVIL, "oven");
+		this.setSoundType(SoundType.ANVIL);
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
     }
 
     @Override

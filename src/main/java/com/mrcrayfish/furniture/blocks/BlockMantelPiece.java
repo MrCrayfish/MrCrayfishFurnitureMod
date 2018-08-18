@@ -12,6 +12,9 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockMantelPiece extends BlockFurniture
 {
     private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.625, 0.0, -0.5, 1.0, 1.4, 1.5);
@@ -20,9 +23,9 @@ public class BlockMantelPiece extends BlockFurniture
     private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.625, 0.0, -0.5, 1.0, 1.4, 1.5);
     private static final AxisAlignedBB[] BOUNDING_BOX = {BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST};
 
-    public BlockMantelPiece(Material materialIn)
+    public BlockMantelPiece()
     {
-        super(materialIn);
+        super(Material.ROCK, "mantel_piece");
         this.setHardness(1.0F);
     }
 
@@ -39,5 +42,4 @@ public class BlockMantelPiece extends BlockFurniture
         EnumFacing facing = state.getValue(FACING);
         addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX[facing.getHorizontalIndex()]);
     }
-
 }

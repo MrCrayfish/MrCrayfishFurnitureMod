@@ -1,8 +1,11 @@
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
+
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.tileentity.TileEntityPrinter;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -18,79 +21,79 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.List;
-
+/**
+ * Author: MrCrayfish
+ */
 public class BlockPrinter extends BlockFurnitureTile
 {
-    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.1, 0.0, 0.1, 0.9, 0.5, 0.9);
+	private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.1, 0.0, 0.1, 0.9, 0.5, 0.9);
 
+	public BlockPrinter()
+	{
+		super(Material.ANVIL, "printer");
+		this.setHardness(1.0F);
+		this.setSoundType(SoundType.ANVIL);
+	}
 
-    public BlockPrinter(Material material)
-    {
-        super(material);
-        this.setHardness(1.0F);
-        this.setSoundType(SoundType.ANVIL);
-    }
+	@Override
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+	{
+		if (placer instanceof EntityPlayer)
+		{
+			Triggers.trigger(Triggers.PLACE_APPLIANCE, (EntityPlayer) placer);
+		}
+		super.onBlockPlacedBy(world, pos, state, placer, stack);
+	}
 
-    @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-    {
-        if(placer instanceof EntityPlayer)
-        {
-            Triggers.trigger(Triggers.PLACE_APPLIANCE, (EntityPlayer) placer);
-        }
-        super.onBlockPlacedBy(world, pos, state, placer, stack);
-    }
+	@Override
+	public boolean isOpaqueCube(IBlockState state)
+	{
+		return false;
+	}
 
-    @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
+	@Override
+	public boolean isFullCube(IBlockState state)
+	{
+		return false;
+	}
 
-    @Override
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
+		if (!worldIn.isRemote)
+		{
+			TileEntity tile_entity = worldIn.getTileEntity(pos);
 
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-        if(!worldIn.isRemote)
-        {
-            TileEntity tile_entity = worldIn.getTileEntity(pos);
+			if (tile_entity instanceof TileEntityPrinter)
+			{
+				playerIn.openGui(MrCrayfishFurnitureMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
+			}
+		}
+		return true;
+	}
 
-            if(tile_entity instanceof TileEntityPrinter)
-            {
-                playerIn.openGui(MrCrayfishFurnitureMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
-            }
-        }
-        return true;
-    }
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+	{
+		return BOUNDING_BOX;
+	}
 
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return BOUNDING_BOX;
-    }
+	@Override
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
+	{
+		addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
+	}
 
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
-    }
+	@Override
+	public TileEntity createNewTileEntity(World worldIn, int meta)
+	{
+		return new TileEntityPrinter();
+	}
 
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta)
-    {
-        return new TileEntityPrinter();
-    }
-
-    @Override
-    public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
-    {
-        TileEntityPrinter printer = (TileEntityPrinter) world.getTileEntity(pos);
-        return printer.isPrinting() ? 1 : 0;
-    }
+	@Override
+	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
+	{
+		TileEntityPrinter printer = (TileEntityPrinter) world.getTileEntity(pos);
+		return printer.isPrinting() ? 1 : 0;
+	}
 }

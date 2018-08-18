@@ -27,6 +27,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
+/**
+ * Author: MrCrayfish
+ */
 public abstract class BlockCurtains extends BlockFurniture
 {
     public static final PropertyEnum TYPE = PropertyEnum.create("type", Type.class);
@@ -37,9 +40,9 @@ public abstract class BlockCurtains extends BlockFurniture
     private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.875, 0.0, 0.0, 1.0, 1.0, 1.0);
     private static final AxisAlignedBB[] BOUNDING_BOX = {BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST};
 
-    public BlockCurtains(Material material)
+    public BlockCurtains(Material material, String name)
     {
-        super(material);
+        super(material, name);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.CLOTH);
         if(!isOpen())

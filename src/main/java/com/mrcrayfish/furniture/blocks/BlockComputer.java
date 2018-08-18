@@ -22,14 +22,17 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockComputer extends BlockFurnitureTile
 {
     private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.1, 0.0, 0.1, 0.9, 1.0, 0.9);
 
-    public BlockComputer(Material material)
+    public BlockComputer()
     {
-        super(material);
-        this.setHardness(1.0F);
+        super(Material.ANVIL, "computer");
+        this.setHardness(2.0F);
         this.setSoundType(SoundType.ANVIL);
     }
 

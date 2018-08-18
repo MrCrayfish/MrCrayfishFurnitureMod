@@ -16,15 +16,17 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockCouchNormal extends BlockCouch
 {
-    @Override
-    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
-    {
-        return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand).withProperty(COLOUR, 15 - Math.max(0, meta));
-    }
+    public BlockCouchNormal()
+	{
+		super("couch");
+	}
 
-    @Override
+	@Override
     public TileEntity createTileEntity(World world, IBlockState state)
     {
         TileEntity te = super.createTileEntity(world, state);

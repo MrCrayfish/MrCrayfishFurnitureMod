@@ -23,9 +23,12 @@ import net.minecraft.world.WorldServer;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockDivingboard extends BlockFurniture
 {
-    public final int MAX_JUMP_HEIGHT = 4;
+    public static final int MAX_JUMP_HEIGHT = 4;
 
     private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 13 * 0.0625, 1.0);
 
@@ -45,9 +48,9 @@ public class BlockDivingboard extends BlockFurniture
     private static final AxisAlignedBB BOARD_TWO = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.0, 4 * 0.0625, 2 * 0.0625, 1.0, 6 * 0.0625, 14 * 0.0625);
     private static final AxisAlignedBB BOARD[] = {BOARD_ONE, BOARD_TWO};
 
-    public BlockDivingboard(Material material, boolean plank)
+    public BlockDivingboard(Material material, String name, boolean plank)
     {
-        super(material);
+        super(material, name);
         this.setHardness(1.0F);
         if(plank)
         {

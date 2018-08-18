@@ -24,15 +24,18 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockFireAlarm extends BlockFurniture
 {
     private boolean on = false;
 
     private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(5 * 0.0625, 0.875, 5 * 0.0625, 11 * 0.0625, 1.0, 11 * 0.0625);
 
-    public BlockFireAlarm(Material material, boolean on)
+    public BlockFireAlarm(Material material, String name, boolean on)
     {
-        super(material);
+        super(material, name);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.STONE);
         this.on = on;

@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPane;
 import net.minecraft.block.material.Material;
@@ -38,6 +39,8 @@ public class BlockModernWindow extends BlockPane
                 .withProperty(PANE_WEST, Boolean.FALSE)
                 .withProperty(PANE_UP, Boolean.FALSE)
                 .withProperty(PANE_DOWN, Boolean.FALSE));
+        this.setUnlocalizedName("modern_window");
+        this.setRegistryName("modern_window");
     }
 
     @Override

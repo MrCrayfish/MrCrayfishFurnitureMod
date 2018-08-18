@@ -23,6 +23,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockChoppingBoard extends BlockFurnitureTile
 {
     private static final AxisAlignedBB BOUNDING_BOX_ONE = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.0, 0.0, 3 * 0.0625, 1.0, 1.5 * 0.0625, 13 * 0.0625);
@@ -31,11 +34,10 @@ public class BlockChoppingBoard extends BlockFurnitureTile
     private static final AxisAlignedBB COLLISION_BOX_ONE = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.0, 0.0, 3 * 0.0625, 1.0, 0.0625, 13 * 0.0625);
     private static final AxisAlignedBB COLLISION_BOX_TWO = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.0, 0.0, 3 * 0.0625, 1.0, 0.0625, 13 * 0.0625);
 
-    public BlockChoppingBoard(Material material)
+    public BlockChoppingBoard(Material material, SoundType sound, String name)
     {
-        super(material);
-        this.setHardness(0.5F);
-        this.setSoundType(SoundType.WOOD);
+        super(material, name);
+        this.setSoundType(sound);
     }
 
     @Override

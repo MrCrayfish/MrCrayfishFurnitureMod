@@ -22,16 +22,20 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockBin extends BlockFurnitureTile
 {
     private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(2 * 0.0625, 0.0, 2 * 0.0625, 14 * 0.0625, 13 * 0.0625, 14 * 0.0625);
     private static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(2 * 0.0625, 0.0, 2 * 0.0625, 14 * 0.0625, 13 * 0.0625, 14 * 0.0625);
 
-    public BlockBin(Material material)
+    public BlockBin()
     {
-        super(material);
+        super(Material.IRON, "bin");
         this.setSoundType(SoundType.ANVIL);
         this.setHardness(0.5F);
+        this.setResistance(5.0F);
     }
 
     @Override

@@ -19,22 +19,23 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+//TODO add desk ray tracing
 /**
  * Author: MrCrayfish
  */
-public class BlockDesk extends BlockFurniture implements IDesk
+public class BlockDesk extends BlockFurniture implements IDesk, IRayTrace
 {
 	public static final PropertyEnum<DeskType> TYPE = PropertyEnum.create("type", DeskType.class);
 
-	public BlockDesk(Material material, SoundType sound)
+	public BlockDesk(Material material, SoundType sound, String name)
 	{
-		super(material);
-		this.setHardness(1.0F);
+		super(material, name);
 		this.setSoundType(sound);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(TYPE, DeskType.NONE));
 	}
@@ -88,6 +89,12 @@ public class BlockDesk extends BlockFurniture implements IDesk
 			return state.withProperty(TYPE, DeskType.NONE);
 		}
 		return state.withProperty(TYPE, DeskType.BOTH);
+	}
+
+	@Override
+	public void addBoxes(IBlockState state, World world, BlockPos pos, List<AxisAlignedBB> boxes)
+	{
+		boxes.add(this.getBoundingBox(this.getActualState(state, world, pos), world, pos));
 	}
 
 	@Override

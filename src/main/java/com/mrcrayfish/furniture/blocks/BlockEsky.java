@@ -23,6 +23,9 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockEsky extends BlockFurnitureTile
 {
     public static final PropertyBool OPENED = PropertyBool.create("open");
@@ -39,9 +42,9 @@ public class BlockEsky extends BlockFurnitureTile
     private static final AxisAlignedBB COLLISION_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 2.5 * 0.0625, 0.0, 1 * 0.0625, 13.5 * 0.0625, 0.75, 15 * 0.0625);
     private static final AxisAlignedBB[] COLLISION_BOX = {COLLISION_BOX_SOUTH, COLLISION_BOX_WEST, COLLISION_BOX_NORTH, COLLISION_BOX_EAST};
 
-    public BlockEsky(Material material)
+    public BlockEsky()
     {
-        super(material);
+        super(Material.CLAY, "esky");
         this.setHardness(0.75F);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(OPENED, Boolean.FALSE));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);

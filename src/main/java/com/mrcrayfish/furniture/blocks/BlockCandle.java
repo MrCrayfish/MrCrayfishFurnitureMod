@@ -20,7 +20,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockCandle extends Block
+/**
+ * Author: MrCrayfish
+ */
+public class BlockCandle extends ModBlock implements IRayTrace
 {
     public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.0625, 0.0, 0.0625, 0.9375, 1.2625, 0.9375);
 
@@ -31,9 +34,9 @@ public class BlockCandle extends Block
     public static final AxisAlignedBB CROSS_2 = new AxisAlignedBB(7 * 0.0625, 7 * 0.0625, 2 * 0.0625, 9 * 0.0625, 9 * 0.0625, 14 * 0.0625);
     public static final AxisAlignedBB[] CANDLES = {new AxisAlignedBB(1 * 0.0625, 9 * 0.0625, 6 * 0.0625, 5 * 0.0625, 17 * 0.0625, 10 * 0.0625), new AxisAlignedBB(6 * 0.0625, 9 * 0.0625, 1 * 0.0625, 10 * 0.0625, 17 * 0.0625, 5 * 0.0625), new AxisAlignedBB(11 * 0.0625, 9 * 0.0625, 6 * 0.0625, 15 * 0.0625, 17 * 0.0625, 10 * 0.0625), new AxisAlignedBB(6 * 0.0625, 9 * 0.0625, 11 * 0.0625, 10 * 0.0625, 17 * 0.0625, 15 * 0.0625), new AxisAlignedBB(6 * 0.0625, 9 * 0.0625, 6 * 0.0625, 10 * 0.0625, 20 * 0.0625, 10 * 0.0625)};
 
-    public BlockCandle(Material materialIn)
+    public BlockCandle()
     {
-        super(materialIn);
+        super(Material.ROCK, "candle");
         this.setTickRandomly(true);
         this.setLightLevel(0.8F);
         this.setHardness(1.0F);
@@ -79,18 +82,18 @@ public class BlockCandle extends Block
     {
         return BOUNDING_BOX;
     }
-
+    
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
+    public void addBoxes(IBlockState state, World world, BlockPos pos, List<AxisAlignedBB> boxes)
     {
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOTTOM_LIP);
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOTTOM);
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, CENTER_PILLAR);
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, CROSS_1);
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, CROSS_2);
-        for(AxisAlignedBB CANDLE : CANDLES)
+    	boxes.add(BOTTOM_LIP);
+    	boxes.add(BOTTOM);
+    	boxes.add(CENTER_PILLAR);
+    	boxes.add(CROSS_1);
+    	boxes.add(CROSS_2);
+        for(AxisAlignedBB box : CANDLES)
         {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, CANDLE);
+        	boxes.add(box);
         }
     }
 

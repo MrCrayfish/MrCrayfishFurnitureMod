@@ -17,77 +17,79 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockBedsideCabinet extends BlockFurnitureTile
 {
-    public BlockBedsideCabinet(Material material, SoundType sound)
-    {
-        super(material);
-        this.setHardness(1.0F);
-        this.setSoundType(sound);
-        this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-    }
+	public BlockBedsideCabinet(Material material, SoundType sound, String name)
+	{
+		super(material, name);
+		this.setSoundType(sound);
+		this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+	}
 
-    @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
+	@Override
+	public boolean isOpaqueCube(IBlockState state)
+	{
+		return false;
+	}
 
-    @Override
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
+	@Override
+	public boolean isFullCube(IBlockState state)
+	{
+		return false;
+	}
 
-    @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-    {
-        if(!worldIn.isRemote)
-        {
-            TileEntity tile_entity = worldIn.getTileEntity(pos);
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
+		if (!worldIn.isRemote)
+		{
+			TileEntity tile_entity = worldIn.getTileEntity(pos);
 
-            if(tile_entity instanceof TileEntityBedsideCabinet)
-            {
-                playerIn.openGui(MrCrayfishFurnitureMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
-            }
-        }
-        return true;
-    }
+			if (tile_entity instanceof TileEntityBedsideCabinet)
+			{
+				playerIn.openGui(MrCrayfishFurnitureMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
+			}
+		}
+		return true;
+	}
 
-    @Override
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
-    {
-        if(blockIn instanceof BlockLamp)
-        {
-            worldIn.notifyNeighborsOfStateChange(pos.down(), this, true);
-        }
-    }
+	@Override
+	public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
+	{
+		if (blockIn instanceof BlockLamp)
+		{
+			worldIn.notifyNeighborsOfStateChange(pos.down(), this, true);
+		}
+	}
 
-    @Override
-    public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
-    {
-        if(blockAccess.getBlockState(pos.up()).getBlock() == FurnitureBlocks.LAMP_ON)
-        {
-            return 15;
-        }
-        return 0;
-    }
+	@Override
+	public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+	{
+		if (blockAccess.getBlockState(pos.up()).getBlock() == FurnitureBlocks.LAMP_ON)
+		{
+			return 15;
+		}
+		return 0;
+	}
 
-    @Override
-    public boolean hasComparatorInputOverride(IBlockState state)
-    {
-        return true;
-    }
+	@Override
+	public boolean hasComparatorInputOverride(IBlockState state)
+	{
+		return true;
+	}
 
-    @Override
-    public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
-    {
-        return Container.calcRedstone(world.getTileEntity(pos));
-    }
+	@Override
+	public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
+	{
+		return Container.calcRedstone(world.getTileEntity(pos));
+	}
 
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta)
-    {
-        return new TileEntityBedsideCabinet();
-    }
+	@Override
+	public TileEntity createNewTileEntity(World worldIn, int meta)
+	{
+		return new TileEntityBedsideCabinet();
+	}
 }

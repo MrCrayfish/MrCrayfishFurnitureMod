@@ -45,7 +45,7 @@ public class BlockModernSlidingDoor extends BlockFurniture implements IPowered
 
 	public BlockModernSlidingDoor()
 	{
-		super(Material.WOOD);
+		super(Material.WOOD, "modern_sliding_door");
 		this.setHardness(1.0F);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(TOP, false));
 	}

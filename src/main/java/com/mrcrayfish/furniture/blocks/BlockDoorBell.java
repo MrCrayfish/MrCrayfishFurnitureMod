@@ -26,6 +26,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockDoorBell extends BlockFurniture
 {
     public static final PropertyBool POWERED = PropertyBool.create("powered");
@@ -36,10 +39,10 @@ public class BlockDoorBell extends BlockFurniture
     private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.85, 0.3, 0.4, 1.0, 0.7, 0.6);
     private static final AxisAlignedBB[] BOUNDING_BOX = {BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST};
 
-    public BlockDoorBell(Material material)
+    public BlockDoorBell(Material material, SoundType sound, String name)
     {
-        super(material);
-        this.setSoundType(SoundType.WOOD);
+        super(material, name);
+        this.setSoundType(sound);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(POWERED, Boolean.TRUE));
         this.setTickRandomly(true);
     }

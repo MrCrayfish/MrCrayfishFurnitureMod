@@ -31,15 +31,18 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockCookieJar extends Block implements ITileEntityProvider
+/**
+ * Author: MrCrayfish
+ */
+public class BlockCookieJar extends ModBlock implements ITileEntityProvider
 {
     public static final PropertyInteger COOKIE_COUNT = PropertyInteger.create("cookie_count", 0, 6);
 
     private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(4 * 0.0625, 0.0, 4 * 0.0625, 12 * 0.0625, 0.65, 12 * 0.0625);
 
-    public BlockCookieJar(Material material)
+    public BlockCookieJar()
     {
-        super(material);
+        super(Material.GLASS, "cookie_jar");
         this.setHardness(0.5F);
         this.setSoundType(SoundType.GLASS);
         this.setDefaultState(this.blockState.getBaseState().withProperty(COOKIE_COUNT, 0));

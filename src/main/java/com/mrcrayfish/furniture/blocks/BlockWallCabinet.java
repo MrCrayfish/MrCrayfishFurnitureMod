@@ -22,6 +22,9 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+/**
+ * Author: MrCrayfish
+ */
 public class BlockWallCabinet extends BlockFurnitureTile
 {
     private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.75, 0.1, 0.125, 1.0, 0.9, 0.875);
@@ -30,9 +33,9 @@ public class BlockWallCabinet extends BlockFurnitureTile
     private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.75, 0.1, 0.125, 1.0, 0.9, 0.875);
     private static final AxisAlignedBB[] BOUNDING_BOX = {BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST};
 
-    public BlockWallCabinet(Material material)
+    public BlockWallCabinet()
     {
-        super(material);
+        super(Material.ROCK, "wall_cabinet");
         this.setHardness(1.0F);
         this.setSoundType(SoundType.STONE);
     }
