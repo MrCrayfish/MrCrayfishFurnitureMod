@@ -3,10 +3,8 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.util.SittableUtil;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
@@ -14,7 +12,6 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
@@ -35,8 +32,13 @@ import net.minecraft.world.World;
 public class BlockBarStool extends ModBlock implements IRayTrace
 {
 	public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
+	public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(3 * 0.0625, 0, 3 * 0.0625, 13 * 0.0625, 13 * 0.0625, 13 * 0.0625);
 
-	private static final AxisAlignedBB BOUNDS = new AxisAlignedBB(2 * 0.0625, 0, 2 * 0.0625, 14 * 0.0625, 13 * 0.0625, 14 * 0.0625);
+	public static final AxisAlignedBB TOP_RIM = new AxisAlignedBB(3 * 0.0625, 9 * 0.0625, 3 * 0.0625, 13 * 0.0625, 12 * 0.0625, 13 * 0.0625);
+	public static final AxisAlignedBB TOP_SEAT = new AxisAlignedBB(3.5 * 0.0625, 12 * 0.0625, 3.5 * 0.0625, 12.5 * 0.0625, 12.5 * 0.0625, 12.5 * 0.0625);
+
+	public static final AxisAlignedBB[] LEGS = new AxisAlignedBB[] { new AxisAlignedBB(10 * 0.0625, 0, 10 * 0.0625, 12 * 0.0625, 9 * 0.0625, 12 * 0.0625), new AxisAlignedBB(4 * 0.0625, 0, 10 * 0.0625, 6 * 0.0625, 9 * 0.0625, 12 * 0.0625), new AxisAlignedBB(4 * 0.0625, 0, 4 * 0.0625, 6 * 0.0625, 9 * 0.0625, 6 * 0.0625), new AxisAlignedBB(12 * 0.0625, 0, 4 * 0.0625, 10 * 0.0625, 9 * 0.0625, 6 * 0.0625) };
+	public static final AxisAlignedBB[] CONNECTORS = new AxisAlignedBB[] { new AxisAlignedBB(6 * 0.0625, 4 * 0.0625, 10.5 * 0.0625, 10 * 0.0625, 5 * 0.0625, 11.5 * 0.0625), new AxisAlignedBB(5.5 * 0.0625, 4 * 0.0625, 6 * 0.0625, 4.5 * 0.0625, 5 * 0.0625, 10 * 0.0625), new AxisAlignedBB(6 * 0.0625, 4 * 0.0625, 4.5 * 0.0625, 10 * 0.0625, 5 * 0.0625, 5.5 * 0.0625), new AxisAlignedBB(10.5 * 0.0625, 4 * 0.0625, 6 * 0.0625, 11.5 * 0.0625, 5 * 0.0625, 10 * 0.0625) };
 
 	public BlockBarStool()
 	{
@@ -84,16 +86,7 @@ public class BlockBarStool extends ModBlock implements IRayTrace
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
-		return BOUNDS;
-	}
-
-	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-	{
-		if (!(entityIn instanceof EntitySittableBlock))
-		{
-			addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDS);
-		}
+		return BOUNDING_BOX;
 	}
 
 	@Override
@@ -150,6 +143,17 @@ public class BlockBarStool extends ModBlock implements IRayTrace
 	@Override
 	public void addBoxes(IBlockState state, World world, BlockPos pos, List<AxisAlignedBB> boxes)
 	{
-		boxes.add(this.getBoundingBox(state, world, pos));
+		boxes.add(TOP_RIM);
+		boxes.add(TOP_SEAT);
+
+		for (int i = 0; i < LEGS.length; i++)
+		{
+			boxes.add(LEGS[i]);
+		}
+
+		for (int i = 0; i < CONNECTORS.length; i++)
+		{
+			boxes.add(CONNECTORS[i]);
+		}
 	}
 }

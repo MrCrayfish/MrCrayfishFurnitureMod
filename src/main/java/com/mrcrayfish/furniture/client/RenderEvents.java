@@ -23,12 +23,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 
 public class RenderEvents
 {
-
-	@SubscribeEvent
-	public void onTickEvent(RenderTickEvent event)
-	{
-	}
-
 	@SubscribeEvent
 	public void onRenderOverlayEvent(DrawBlockHighlightEvent event)
 	{

@@ -50,7 +50,7 @@ public class BlockLamp extends ModBlock implements IRayTrace
 
 	public static final AxisAlignedBB CENTER_POLE_BOX = new AxisAlignedBB(6.125 * 0.0625, 0, 6.125 * 0.0625, 9.875 * 0.0625, 1, 9.875 * 0.0625);
 	public static final AxisAlignedBB LAMP_SHADE_BOX = new AxisAlignedBB(1.5 * 0.0625, 8 * 0.0625, 14.5 * 0.0625, 14.5 * 0.0625, 15 * 0.0625, 1.5 * 0.0625);
-	public static final AxisAlignedBB TOP_CENTER_BOX = new AxisAlignedBB(7.125 * 0.0625, 0, 7.125 * 0.0625, 8.875 * 0.0625, 9 * 0.0625, 8.875 * 0.0625);
+	public static final AxisAlignedBB TOP_CENTER_BOX = new AxisAlignedBB(6.125 * 0.0625, 0, 6.125 * 0.0625, 9.875 * 0.0625, 9 * 0.0625, 9.875 * 0.0625);
 
 	public BlockLamp(Material material, String name, boolean on)
 	{
@@ -171,6 +171,12 @@ public class BlockLamp extends ModBlock implements IRayTrace
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
 	{
 		return new ItemStack(FurnitureBlocks.LAMP_OFF, 1, state.getValue(COLOUR));
+	}
+	
+	@Override
+	public void addWireframeBoxes(IBlockState state, World world, BlockPos pos, List<AxisAlignedBB> boxes)
+	{
+boxes.add(this.getBoundingBox(state, world, pos));
 	}
 
 	@Override
