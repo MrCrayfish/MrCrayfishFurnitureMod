@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.network.message;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.EnumHand;
@@ -45,7 +46,9 @@ public class MessagePresentContents implements IMessage, IMessageHandler<Message
     {
         EntityPlayerMP player = ctx.getServerHandler().player;
         ItemStack present = player.getHeldItem(EnumHand.MAIN_HAND);
-
+		
+		if (present.getItem() != Item.getItemFromBlock(FurnitureBlocks.PRESENT)) return null;
+		
         ItemStack signedPresent = new ItemStack(FurnitureBlocks.PRESENT, 1, present.getMetadata());
         signedPresent.setTagCompound(present.getTagCompound());
         signedPresent.setTagInfo("Author", new NBTTagString(player.getName()));

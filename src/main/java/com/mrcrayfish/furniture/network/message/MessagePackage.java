@@ -46,6 +46,9 @@ public class MessagePackage implements IMessage, IMessageHandler<MessagePackage,
     {
         EntityPlayerMP player = ctx.getServerHandler().player;
         ItemStack mail = player.getHeldItem(EnumHand.MAIN_HAND);
+		
+		if (mail.getItem() != FurnitureItems.PACKAGE) return null;
+		
         ItemStack signedMail = new ItemStack(FurnitureItems.PACKAGE_SIGNED);
         signedMail.setTagCompound(mail.getTagCompound());
         signedMail.setTagInfo("Author", new NBTTagString(player.getName()));

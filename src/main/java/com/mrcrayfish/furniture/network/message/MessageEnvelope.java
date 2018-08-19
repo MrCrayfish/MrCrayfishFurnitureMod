@@ -44,6 +44,9 @@ public class MessageEnvelope implements IMessage, IMessageHandler<MessageEnvelop
     {
         EntityPlayerMP player = ctx.getServerHandler().player;
         ItemStack mail = player.getHeldItem(EnumHand.MAIN_HAND);
+		
+		if (mail.getItem() != FurnitureItems.ENVELOPE) return null;
+
         ItemStack signedMail = new ItemStack(FurnitureItems.ENVELOPE_SIGNED);
         signedMail.setTagCompound(mail.getTagCompound().copy());
         signedMail.setTagInfo("Author", new NBTTagString(player.getName()));
