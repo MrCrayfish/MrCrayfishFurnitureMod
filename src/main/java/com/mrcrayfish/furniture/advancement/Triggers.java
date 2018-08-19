@@ -70,12 +70,12 @@ public class Triggers
         {
             method = ReflectionHelper.findMethod(CriteriaTriggers.class, "register", "func_192118_a", ICriterionTrigger.class);
             method.setAccessible(true);
-            for(BasicTrigger TRIGGER : TRIGGERS)
+            for(BasicTrigger trigger : TRIGGERS)
             {
-                method.invoke(null, TRIGGER);
+                method.invoke(null, trigger);
             }
         }
-        catch(SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e)
+        catch(Exception e)
         {
             MrCrayfishFurnitureMod.logger().catching(e);
         }
