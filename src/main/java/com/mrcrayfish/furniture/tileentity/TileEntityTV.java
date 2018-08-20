@@ -10,6 +10,7 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
 
@@ -25,8 +26,13 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     private boolean stretch;
 
     private String url;
+
+    @SideOnly(Side.CLIENT)
     private boolean loading;
+    @SideOnly(Side.CLIENT)
     private boolean loaded;
+    @SideOnly(Side.CLIENT)
+    private ImageDownloadThread.ImageDownloadResult result;
 
     public TileEntityTV() {}
 
@@ -77,12 +83,14 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     public void loadUrl(String url)
     {
         this.loaded = false;
+        this.result = null;
         if(!GifCache.INSTANCE.loadCached(url))
         {
             this.loading = true;
             new ImageDownloadThread(url, (result, message) ->
             {
                 this.loading = false;
+                this.result = result;
                 if(result == ImageDownloadThread.ImageDownloadResult.SUCCESS)
                 {
                     this.loaded = true;
@@ -105,6 +113,13 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     public boolean isLoaded()
     {
         return url != null && loaded && !loading;
+    }
+
+    @Nullable
+    @SideOnly(Side.CLIENT)
+    public ImageDownloadThread.ImageDownloadResult getResult()
+    {
+        return result;
     }
 
     public int getWidth()
