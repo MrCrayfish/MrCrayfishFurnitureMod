@@ -108,7 +108,22 @@ public class ImageDownloadThread extends Thread
 
     public enum ImageDownloadResult
     {
-        SUCCESS, FAILED, UNKNOWN_FILE, TOO_LARGE;
+        SUCCESS("cfm.tv.success"),
+        FAILED("cfm.tv.failed"),
+        UNKNOWN_FILE("cfm.tv.unknown_file"),
+        TOO_LARGE("cfm.tv.too_large");
+
+        private String key;
+
+        ImageDownloadResult(String key)
+        {
+            this.key = key;
+        }
+
+        public String getKey()
+        {
+            return key;
+        }
     }
 
     public static void setLoading(String url, boolean loading)

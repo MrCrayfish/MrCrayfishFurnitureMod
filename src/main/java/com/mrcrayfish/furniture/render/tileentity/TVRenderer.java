@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -53,22 +54,8 @@ public class TVRenderer extends TileEntitySpecialRenderer<TileEntityTV>
                 GlStateManager.scale(0.01F, 0.01F, 0.01F);
                 GlStateManager.rotate(180F, 0, 1, 0);
 
+                String message = I18n.format(result.getKey());
                 FontRenderer renderer = this.getFontRenderer();
-
-                String message = "";
-                switch(te.getResult())
-                {
-                    case FAILED:
-                        message = "Failed to download";
-                        break;
-                    case UNKNOWN_FILE:
-                        message = "URL is not a GIF";
-                        break;
-                    case TOO_LARGE:
-                        message = "Cannot load GIFs larger than 2MB";
-                        break;
-                }
-
                 List<String> lines = renderer.listFormattedStringToWidth(message, (int) ((te.getWidth() - 2.0) * 6.3));
                 for(int i = 0; i < lines.size(); i++)
                 {
