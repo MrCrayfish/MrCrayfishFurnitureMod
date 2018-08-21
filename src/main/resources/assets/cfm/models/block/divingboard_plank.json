@@ -1,8 +1,8 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "0": "blocks/quartz_block_bottom",
-		"particle": "blocks/quartz_block_bottom"
+        "0": "blocks/concrete_white",
+		"particle": "blocks/concrete_white"
     },
     "display": {
         "gui": {

@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.gui;
 
 import com.mrcrayfish.furniture.api.RecipeData;
@@ -51,14 +34,12 @@ public class GuiRecipeBook extends GuiScreen
     public int bookWidth = 146;
     public int bookHeight = 180;
 
-    private int xSize = bookWidth * 2;
-
     private NextPageButton buttonNextPage;
     private NextPageButton buttonPreviousPage;
     private GuiButton buttonTutorial;
     private GuiButton buttonContents;
 
-    private HashMap<Integer, RecipePage> pages = new HashMap<Integer, RecipePage>();
+    private HashMap<Integer, RecipePage> pages = new HashMap<>();
     private int pageCount = 0;
     private int pageNum = 0;
     private int progress = 0;
@@ -323,23 +304,9 @@ public class GuiRecipeBook extends GuiScreen
         else
         {
             this.buttonPreviousPage.visible = true;
-            if(pageNum == pages.size() - 1)
-            {
-                this.buttonNextPage.visible = false;
-            }
-            else
-            {
-                this.buttonNextPage.visible = true;
-            }
+            this.buttonNextPage.visible = pageNum != pages.size() - 1;
             this.buttonTutorial.visible = false;
-            if(pageNum >= 3)
-            {
-                this.buttonContents.visible = true;
-            }
-            else
-            {
-                this.buttonContents.visible = false;
-            }
+            this.buttonContents.visible = pageNum >= 3;
         }
     }
 

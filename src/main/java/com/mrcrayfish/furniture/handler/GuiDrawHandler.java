@@ -139,20 +139,6 @@ public class GuiDrawHandler
                 this.drawTexturedModalRect(this.x, this.y, 0, 46 + i * 20, this.width / 2, this.height);
                 this.drawTexturedModalRect(this.x + this.width / 2, this.y, 200 - this.width / 2, 46 + i * 20, this.width / 2, this.height);
                 this.mouseDragged(mc, mouseX, mouseY);
-                int j = 14737632;
-
-                if(packedFGColour != 0)
-                {
-                    j = packedFGColour;
-                }
-                else if(!this.enabled)
-                {
-                    j = 10526880;
-                }
-                else if(this.hovered)
-                {
-                    j = 16777120;
-                }
 
                 if(this.hovered)
                 {

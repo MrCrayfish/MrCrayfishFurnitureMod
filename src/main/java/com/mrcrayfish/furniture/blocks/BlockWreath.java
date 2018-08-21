@@ -33,7 +33,7 @@ public class BlockWreath extends BlockFurniture
     {
         if(this.canPlaceCheck(worldIn, pos, state))
         {
-            EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+            EnumFacing enumfacing = state.getValue(FACING);
 
             if(!worldIn.getBlockState(pos.offset(enumfacing)).isNormalCube())
             {
@@ -47,17 +47,13 @@ public class BlockWreath extends BlockFurniture
     @Override
     public boolean canPlaceBlockOnSide(World world, BlockPos pos, EnumFacing side)
     {
-        if(side.getHorizontalIndex() == -1)
-        {
-            return false;
-        }
-        return true;
+        return side.getHorizontalIndex() != -1;
     }
 
 
     private boolean canPlaceCheck(World world, BlockPos pos, IBlockState state)
     {
-        EnumFacing enumfacing = (EnumFacing) state.getValue(FACING);
+        EnumFacing enumfacing = state.getValue(FACING);
         if(!this.canPlaceBlockOnSide(world, pos, enumfacing))
         {
             this.dropBlockAsItem(world, pos, state, 0);

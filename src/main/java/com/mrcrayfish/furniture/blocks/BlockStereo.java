@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.advancement.Triggers;
@@ -55,7 +38,7 @@ public class BlockStereo extends BlockFurnitureTile
     private static final AxisAlignedBB COLLISION_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.0, 0.15, 0.3, 1.0, 0.45, 0.7);
     private static final AxisAlignedBB[] COLLISION_BOX = {COLLISION_BOX_SOUTH, COLLISION_BOX_WEST, COLLISION_BOX_NORTH, COLLISION_BOX_EAST};
 
-    public static ArrayList<ItemRecord> records = new ArrayList<ItemRecord>();
+    public static ArrayList<ItemRecord> records = new ArrayList<>();
 
     public BlockStereo(Material material)
     {
@@ -140,7 +123,7 @@ public class BlockStereo extends BlockFurnitureTile
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
     {
         EnumFacing facing = state.getValue(FACING);
-        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX[facing.getHorizontalIndex()]);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX[facing.getHorizontalIndex()]);
     }
 
     @Override
@@ -152,7 +135,7 @@ public class BlockStereo extends BlockFurnitureTile
     public void ejectRecord(World worldIn, BlockPos pos)
     {
         worldIn.playEvent(1010, pos, 0);
-        worldIn.playRecord(pos, (SoundEvent) null);
+        worldIn.playRecord(pos, null);
     }
 
     @Override

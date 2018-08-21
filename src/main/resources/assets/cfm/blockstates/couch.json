@@ -88,16 +88,10 @@
 			}
 		},
 		"facing": {
-			"north": {
-				"y": 270
-			},
-			"east": {},
-			"south": {
-				"y": 90
-			},
-			"west": {
-				"y": 180
-			}
+			"north": { "y": 270 },
+			"east":  { "y": 0   },
+			"south": { "y": 90  },
+			"west":  { "y": 180 }
 		},
 		"type": {
 			"both": {

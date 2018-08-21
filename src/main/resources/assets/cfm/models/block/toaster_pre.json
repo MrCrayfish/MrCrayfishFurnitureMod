@@ -1,8 +1,8 @@
 {
-"parent": "cfm:block/toaster",
-"textures": {
-"1": "blocks/iron_block",
-"2": "blocks/wool_colored_black",
-"3": "blocks/stone"
-}
+    "parent": "cfm:block/toaster",
+    "textures": {
+        "1": "blocks/concrete_white",
+        "2": "blocks/concrete_gray",
+        "3": "blocks/concrete_silver"
+    }
 }

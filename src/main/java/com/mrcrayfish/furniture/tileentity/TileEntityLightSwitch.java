@@ -1,8 +1,6 @@
 package com.mrcrayfish.furniture.tileentity;
 
-import com.mrcrayfish.furniture.blocks.BlockCeilingLight;
 import com.mrcrayfish.furniture.blocks.BlockFurniture;
-import com.mrcrayfish.furniture.blocks.BlockLightSwitch;
 import com.mrcrayfish.furniture.blocks.IPowered;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import net.minecraft.block.state.IBlockState;

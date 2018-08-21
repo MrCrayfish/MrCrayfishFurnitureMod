@@ -1,24 +1,14 @@
 {
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cfm:tv"
+    },
     "variants": {
-        "channel=0,facing=north": {"model": "cfm:tv_channel_1", "y": 270},
-        "channel=0,facing=south": { "model": "cfm:tv_channel_1", "y": 90},
-        "channel=0,facing=east": { "model": "cfm:tv_channel_1"},
-        "channel=0,facing=west": { "model": "cfm:tv_channel_1", "y": 180},
-        "channel=1,facing=north": {"model": "cfm:tv_channel_2", "y": 270},
-        "channel=1,facing=south": { "model": "cfm:tv_channel_2", "y": 90},
-        "channel=1,facing=east": { "model": "cfm:tv_channel_2"},
-        "channel=1,facing=west": { "model": "cfm:tv_channel_2", "y": 180},
-        "channel=2,facing=north": {"model": "cfm:tv_channel_3", "y": 270},
-        "channel=2,facing=south": { "model": "cfm:tv_channel_3", "y": 90},
-        "channel=2,facing=east": { "model": "cfm:tv_channel_3"},
-        "channel=2,facing=west": { "model": "cfm:tv_channel_3", "y": 180},
-        "channel=3,facing=north": {"model": "cfm:tv_channel_4", "y": 270},
-        "channel=3,facing=south": { "model": "cfm:tv_channel_4", "y": 90},
-        "channel=3,facing=east": { "model": "cfm:tv_channel_4"},
-        "channel=3,facing=west": { "model": "cfm:tv_channel_4", "y": 180},
-        "channel=4,facing=north": {"model": "cfm:tv_channel_5", "y": 270},
-        "channel=4,facing=south": { "model": "cfm:tv_channel_5", "y": 90},
-        "channel=4,facing=east": { "model": "cfm:tv_channel_5"},
-        "channel=4,facing=west": { "model": "cfm:tv_channel_5", "y": 180}
+        "facing": {
+            "north": { "y": 270 },
+            "east":  { "y": 0   },
+            "south": { "y": 90  },
+            "west":  { "y": 180 }
+        }
     }
 }

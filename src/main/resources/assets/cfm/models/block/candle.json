@@ -1,11 +1,11 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "0": "blocks/cobblestone",
-        "1": "blocks/stone",
-        "2": "blocks/stone_andesite_smooth",
-        "3": "blocks/hardened_clay_stained_white",
-		"particle": "blocks/stone"
+        "0": "blocks/concrete_gray",
+        "1": "blocks/concrete_silver",
+        "2": "blocks/hardened_clay_stained_cyan",
+        "3": "blocks/concrete_white",
+		"particle": "blocks/concrete_silver"
     },
 	"display": {
         "gui": {

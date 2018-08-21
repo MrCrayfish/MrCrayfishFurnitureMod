@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.gui.containers;
 
 import com.mrcrayfish.furniture.api.RecipeAPI;
@@ -73,7 +56,7 @@ public class ContainerWashingMachine extends Container
     public ItemStack transferStackInSlot(EntityPlayer player, int slotNum)
     {
         ItemStack itemCopy = ItemStack.EMPTY;
-        Slot slot = (Slot) this.inventorySlots.get(slotNum);
+        Slot slot = this.inventorySlots.get(slotNum);
 
         if(slot != null && slot.getHasStack())
         {
@@ -92,7 +75,6 @@ public class ContainerWashingMachine extends Container
                 RecipeData data = RecipeAPI.getWashingMachineRecipeFromInput(item);
                 if(data != null && (itemCopy.getItem() == Item.getItemFromBlock(Blocks.PUMPKIN) || itemCopy.getItem() == Items.SKULL || itemCopy.getItem().getEquipmentSlot(itemCopy) != null || (itemCopy.getItem() instanceof ItemArmor && ((ItemArmor) itemCopy.getItem()).armorType != null) || EntityLiving.getSlotForItemStack(itemCopy) != EntityEquipmentSlot.HEAD))
                 {
-                    ItemStack input = data.getInput();
                     if(!this.mergeItemStack(item, 0, 4, true))
                     {
                         return ItemStack.EMPTY;

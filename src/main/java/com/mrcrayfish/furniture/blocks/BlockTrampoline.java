@@ -63,7 +63,7 @@ public class BlockTrampoline extends Block
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
     {
-        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
     }
 
     @Override
@@ -87,8 +87,6 @@ public class BlockTrampoline extends Block
                 {
                     for(int i = 0; i < 5; i++)
                     {
-                        double offsetX = -0.1 + 0.2 * RANDOM.nextDouble();
-                        double offsetZ = -0.1 + 0.2 * RANDOM.nextDouble();
                         worldIn.spawnParticle(EnumParticleTypes.SPELL_MOB, entityIn.posX, entityIn.posY, entityIn.posZ, 1, 1, 1, 0);
                     }
                 }
@@ -133,7 +131,7 @@ public class BlockTrampoline extends Block
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[]{BACK, FORWARD, LEFT, RIGHT});
+        return new BlockStateContainer(this, BACK, FORWARD, LEFT, RIGHT);
     }
 
     @SideOnly(Side.CLIENT)

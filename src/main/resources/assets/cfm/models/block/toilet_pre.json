@@ -2,8 +2,8 @@
 	"parent": "cfm:block/toilet",
 	"textures": {
 		"0": "blocks/water_still",
-		"1": "blocks/quartz_block_bottom",
-		"2": "blocks/hardened_clay_stained_cyan"
+		"1": "blocks/concrete_white",
+		"2": "blocks/concrete_gray"
 	},
 	"display": {
         "gui": {

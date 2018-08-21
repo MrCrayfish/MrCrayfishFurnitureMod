@@ -1,73 +1,177 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.tileentity;
 
-import com.mrcrayfish.furniture.blocks.tv.Channels;
-import com.mrcrayfish.furniture.util.TileEntityUtil;
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import com.mrcrayfish.furniture.client.GifCache;
+import com.mrcrayfish.furniture.client.ImageDownloadThread;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileEntityTV extends TileEntitySyncClient
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Author: MrCrayfish
+ */
+public class TileEntityTV extends TileEntitySyncClient implements IValueContainer
 {
-    private int channel = 0;
+    private int width;
+    private int height;
+    private double screenYOffset;
+    private double screenZOffset;
+    private boolean stretch;
 
-    @Override
-    public void readFromNBT(NBTTagCompound tagCompound)
+    private String url;
+
+    @SideOnly(Side.CLIENT)
+    private boolean loading;
+    @SideOnly(Side.CLIENT)
+    private boolean loaded;
+    @SideOnly(Side.CLIENT)
+    private ImageDownloadThread.ImageDownloadResult result;
+
+    public TileEntityTV() {}
+
+    public TileEntityTV(int width, int height, double screenYOffset, double screenZOffset)
     {
-        super.readFromNBT(tagCompound);
-        if(tagCompound.hasKey("Channel", 3))
-        {
-            this.channel = tagCompound.getInteger("Channel");
-        }
+        this.width = width;
+        this.height = height;
+        this.screenYOffset = screenYOffset;
+        this.screenZOffset = screenZOffset;
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
+    public NBTTagCompound writeToNBT(NBTTagCompound compound)
     {
-        super.writeToNBT(tagCompound);
-        tagCompound.setInteger("Channel", this.getChannel());
-        return tagCompound;
-    }
-
-    public int getChannel()
-    {
-        return this.channel;
-    }
-
-    public void setChannel(int channel)
-    {
-        this.channel = channel;
-    }
-
-    public void reloadChannel()
-    {
-        markDirty();
-        TileEntityUtil.markBlockForUpdate(world, pos);
-    }
-
-    public void nextChannel()
-    {
-        int nextChannel = 0;
-        if(channel < Channels.getChannelCount() - 1)
+        super.writeToNBT(compound);
+        if(!Strings.isNullOrEmpty(this.url))
         {
-            nextChannel = channel + 1;
+            compound.setString("URL", this.url);
         }
-        setChannel(nextChannel);
-        markDirty();
-        TileEntityUtil.markBlockForUpdate(world, pos);
+        compound.setBoolean("Stretch", this.stretch);
+        return compound;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound)
+    {
+        super.readFromNBT(compound);
+        if(compound.hasKey("URL", Constants.NBT.TAG_STRING))
+        {
+            this.url = compound.getString("URL");
+            if(world != null && world.isRemote)
+            {
+                this.loadUrl(url);
+            }
+        }
+        if(compound.hasKey("Stretch", Constants.NBT.TAG_BYTE))
+        {
+            this.stretch = compound.getBoolean("Stretch");
+        }
+    }
+
+    public String getUrl()
+    {
+        return url;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void loadUrl(String url)
+    {
+        this.loaded = false;
+        this.result = null;
+        if(!GifCache.INSTANCE.loadCached(url))
+        {
+            this.loading = true;
+            new ImageDownloadThread(url, (result, message) ->
+            {
+                this.loading = false;
+                this.result = result;
+                if(result == ImageDownloadThread.ImageDownloadResult.SUCCESS)
+                {
+                    this.loaded = true;
+                }
+            }).start();
+        }
+        else
+        {
+            this.loaded = true;
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public boolean isLoading()
+    {
+        return url != null && loading;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public boolean isLoaded()
+    {
+        return url != null && loaded && !loading;
+    }
+
+    @Nullable
+    @SideOnly(Side.CLIENT)
+    public ImageDownloadThread.ImageDownloadResult getResult()
+    {
+        return result;
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public int getHeight()
+    {
+        return height;
+    }
+
+    public double getScreenYOffset()
+    {
+        return screenYOffset;
+    }
+
+    public double getScreenZOffset()
+    {
+        return screenZOffset;
+    }
+
+    @Override
+    public List<Entry> getEntries()
+    {
+        List<Entry> entries = Lists.newArrayList();
+        entries.add(new Entry("url", "URL", Entry.Type.TEXT_FIELD, this.url));
+        entries.add(new Entry("stretch", "Stretch to Screen", Entry.Type.TOGGLE, this.stretch));
+        return entries;
+    }
+
+    @Override
+    public void updateEntries(Map<String, String> entries)
+    {
+        this.url = entries.get("url");
+        this.stretch = Boolean.valueOf(entries.get("stretch"));
+    }
+
+    @Override
+    public boolean requiresTool()
+    {
+        return false;
+    }
+
+    public boolean isStretched()
+    {
+        return stretch;
+    }
+
+    @Override
+    public BlockPos getContainerPos()
+    {
+        return this.pos;
     }
 }

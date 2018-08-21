@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
@@ -83,7 +66,7 @@ public class BlockBath extends BlockFurnitureTile
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
         IBlockState state = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
-        return state.withProperty(WATER_LEVEL, Integer.valueOf(0));
+        return state.withProperty(WATER_LEVEL, 0);
     }
 
     @Override
@@ -107,28 +90,28 @@ public class BlockBath extends BlockFurnitureTile
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
     {
         EnumFacing facing = state.getValue(FACING);
-        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOTTOM);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOTTOM);
         if(this == FurnitureBlocks.BATH_1)
         {
             if(facing != EnumFacing.WEST)
-                super.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_NORTH);
+                addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_NORTH);
             if(facing != EnumFacing.EAST)
-                super.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_SOUTH);
+                addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_SOUTH);
             if(facing != EnumFacing.NORTH)
-                super.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_EAST);
+                addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_EAST);
             if(facing != EnumFacing.SOUTH)
-                super.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_WEST);
+                addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_WEST);
         }
         else
         {
             if(facing != EnumFacing.EAST)
-                super.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_NORTH);
+                addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_NORTH);
             if(facing != EnumFacing.WEST)
-                super.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_SOUTH);
+                addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_SOUTH);
             if(facing != EnumFacing.SOUTH)
-                super.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_EAST);
+                addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_EAST);
             if(facing != EnumFacing.NORTH)
-                super.addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_WEST);
+                addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_WEST);
         }
     }
 
@@ -136,14 +119,14 @@ public class BlockBath extends BlockFurnitureTile
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         ItemStack heldItem = playerIn.getHeldItem(hand);
-        BlockPos otherBathPos = null;
+        BlockPos otherBathPos;
         if(this == FurnitureBlocks.BATH_1)
         {
-            otherBathPos = pos.offset((EnumFacing) state.getValue(FACING));
+            otherBathPos = pos.offset(state.getValue(FACING));
         }
         else
         {
-            otherBathPos = pos.offset(((EnumFacing) state.getValue(FACING)).getOpposite());
+            otherBathPos = pos.offset(state.getValue(FACING).getOpposite());
         }
 
         TileEntity tile_entity_1 = worldIn.getTileEntity(pos);
@@ -202,7 +185,7 @@ public class BlockBath extends BlockFurnitureTile
                         else
                         {
                             playerIn.playSound(SoundEvents.ITEM_BUCKET_EMPTY, 1.0F, 1.0F);
-                            worldIn.spawnParticle(EnumParticleTypes.WATER_SPLASH, pos.getX() + 0.5, pos.getY() + 0.75 + tileEntityBath.getWaterLevel() * 0.0265, pos.getZ() + 0.5, 0, 0.1, 0, new int[0]);
+                            worldIn.spawnParticle(EnumParticleTypes.WATER_SPLASH, pos.getX() + 0.5, pos.getY() + 0.75 + tileEntityBath.getWaterLevel() * 0.0265, pos.getZ() + 0.5, 0, 0.1, 0);
                         }
                     }
                 }
@@ -255,7 +238,7 @@ public class BlockBath extends BlockFurnitureTile
                         else
                         {
                             playerIn.playSound(SoundEvents.ITEM_BOTTLE_EMPTY, 1.0F, 1.0F);
-                            worldIn.spawnParticle(EnumParticleTypes.WATER_SPLASH, pos.getX() + 0.5, pos.getY() + 0.75 + tileEntityBath.getWaterLevel() * 0.0265, pos.getZ() + 0.5, 0, 0.1, 0, new int[0]);
+                            worldIn.spawnParticle(EnumParticleTypes.WATER_SPLASH, pos.getX() + 0.5, pos.getY() + 0.75 + tileEntityBath.getWaterLevel() * 0.0265, pos.getZ() + 0.5, 0, 0.1, 0);
                         }
                     }
                 }
@@ -327,11 +310,11 @@ public class BlockBath extends BlockFurnitureTile
     {
         if(this == FurnitureBlocks.BATH_1)
         {
-            worldIn.destroyBlock(pos.offset((EnumFacing) state.getValue(FACING)), false);
+            worldIn.destroyBlock(pos.offset(state.getValue(FACING)), false);
         }
         else
         {
-            worldIn.destroyBlock(pos.offset(((EnumFacing) state.getValue(FACING)).getOpposite()), false);
+            worldIn.destroyBlock(pos.offset(state.getValue(FACING).getOpposite()), false);
         }
     }
 
@@ -359,7 +342,7 @@ public class BlockBath extends BlockFurnitureTile
         if(world.getTileEntity(pos) instanceof TileEntityBath)
         {
             TileEntityBath bath = (TileEntityBath) world.getTileEntity(pos);
-            return state.withProperty(WATER_LEVEL, Integer.valueOf(bath.getWaterLevel()));
+            return state.withProperty(WATER_LEVEL, bath.getWaterLevel());
         }
         return state.withProperty(WATER_LEVEL, 0);
     }
@@ -367,7 +350,7 @@ public class BlockBath extends BlockFurnitureTile
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[]{FACING, WATER_LEVEL});
+        return new BlockStateContainer(this, FACING, WATER_LEVEL);
     }
 
     public static boolean canPlaceBath(World world, BlockPos pos, EnumFacing facing)

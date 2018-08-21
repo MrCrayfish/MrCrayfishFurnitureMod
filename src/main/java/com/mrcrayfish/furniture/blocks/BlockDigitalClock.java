@@ -1,14 +1,11 @@
 package com.mrcrayfish.furniture.blocks;
 
-import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.tileentity.IColored;
 import com.mrcrayfish.furniture.tileentity.TileEntityDigitalClock;
 import com.mrcrayfish.furniture.util.Bounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockColored;
-import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

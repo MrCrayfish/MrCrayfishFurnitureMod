@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
@@ -57,7 +40,7 @@ public class BlockDoorBell extends BlockFurniture
     {
         super(material);
         this.setSoundType(SoundType.WOOD);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(POWERED, Boolean.valueOf(true)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(POWERED, Boolean.TRUE));
         this.setTickRandomly(true);
     }
 
@@ -94,13 +77,13 @@ public class BlockDoorBell extends BlockFurniture
     @Override
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        return this.getDefaultState().withProperty(FACING, facing.getOpposite()).withProperty(POWERED, Boolean.valueOf(false));
+        return this.getDefaultState().withProperty(FACING, facing.getOpposite()).withProperty(POWERED, Boolean.FALSE);
     }
 
     @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
-        EnumFacing facing = (EnumFacing) state.getValue(FACING);
+        EnumFacing facing = state.getValue(FACING);
         if(!this.canPlaceBlockOnSide(worldIn, pos, facing.getOpposite()))
         {
             this.dropBlockAsItem(worldIn, pos, state, 0);
@@ -209,13 +192,13 @@ public class BlockDoorBell extends BlockFurniture
     @Override
     public int getWeakPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
     {
-        return ((Boolean) blockState.getValue(POWERED)).booleanValue() ? 15 : 0;
+        return blockState.getValue(POWERED) ? 15 : 0;
     }
 
     @Override
     public int getStrongPower(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
     {
-        if(!((Boolean) blockState.getValue(POWERED)).booleanValue())
+        if(!blockState.getValue(POWERED))
         {
             return 0;
         }

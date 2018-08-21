@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.init;
 
 import com.mrcrayfish.furniture.blocks.*;
@@ -39,7 +22,7 @@ public class FurnitureBlocks
 
     /* Garden Update */
     public static final Block HEDGE_OAK, HEDGE_SPRUCE, HEDGE_BIRCH, HEDGE_JUNGLE, HEDGE_ACACIA, HEDGE_DARK_OAK;
-    public static final Block BIRD_BATH, STONE_PATH, WHITE_FENCE, TAP, MAIL_BOX;
+    public static final Block BIRD_BATH, STONE_PATH, WHITE_FENCE, TAP, MAIL_BOX_OAK;
 
     /* Electronic Update */
     public static final Block TV, COMPUTER, PRINTER, ELECTRIC_FENCE, DOOR_BELL, STEREO;
@@ -77,12 +60,15 @@ public class FurnitureBlocks
 
     /* The Modern Update */
     public static final Block BEDSIDE_CABINET_STONE, BEDSIDE_CABINET_GRANITE, BEDSIDE_CABINET_DIORITE, BEDSIDE_CABINET_ANDESITE;
-    public static final Block MODERN_WINDOW, MODERN_SLIDING_DOOR;
+    public static final Block MODERN_WINDOW, MODERN_SLIDING_DOOR, MODERN_TV;
     public static final Block LIGHT_SWITCH_OFF, LIGHT_SWITCH_ON;
     public static final Block CEILING_FAN;
     public static final Block DESK_OAK, DESK_SPRUCE, DESK_BIRCH, DESK_JUNGLE, DESK_ACACIA, DESK_DARK_OAK, DESK_STONE, DESK_GRANITE, DESK_DIORITE, DESK_ANDESITE;
     public static final Block DESK_CABINET_OAK, DESK_CABINET_SPRUCE, DESK_CABINET_BIRCH, DESK_CABINET_JUNGLE, DESK_CABINET_ACACIA, DESK_CABINET_DARK_OAK, DESK_CABINET_STONE, DESK_CABINET_GRANITE, DESK_CABINET_DIORITE, DESK_CABINET_ANDESITE;
+    public static final Block CABINET_STONE, CABINET_GRANITE, CABINET_DIORITE, CABINET_ANDESITE;
     public static final Block DIGITAL_CLOCK;
+    public static final Block COUNTER_DRAWER;
+    public static final Block MAIL_BOX_SPRUCE, MAIL_BOX_BIRCH, MAIL_BOX_JUNGLE, MAIL_BOX_ACACIA, MAIL_BOX_DARK_OAK;
 
     /* Special */
     public static final Block MIRROR;
@@ -134,17 +120,22 @@ public class FurnitureBlocks
         BEDSIDE_CABINET_DARK_OAK = new BlockBedsideCabinet(Material.WOOD).setUnlocalizedName("bedside_cabinet_dark_oak").setRegistryName("bedside_cabinet_dark_oak");
         OVEN = new BlockOven(Material.ROCK).setUnlocalizedName("oven").setRegistryName("oven");
         RANGE_HOOD = new BlockRangeHood(Material.ROCK).setUnlocalizedName("range_hood").setRegistryName("range_hood");
-        HEDGE_OAK = new BlockHedge(Material.LEAVES).setUnlocalizedName("hedge_oak").setRegistryName("hedge_oak");
-        HEDGE_SPRUCE = new BlockHedge(Material.LEAVES).setUnlocalizedName("hedge_spruce").setRegistryName("hedge_spruce");
-        HEDGE_BIRCH = new BlockHedge(Material.LEAVES).setUnlocalizedName("hedge_birch").setRegistryName("hedge_birch");
-        HEDGE_JUNGLE = new BlockHedge(Material.LEAVES).setUnlocalizedName("hedge_jungle").setRegistryName("hedge_jungle");
-        HEDGE_ACACIA = new BlockHedge(Material.LEAVES).setUnlocalizedName("hedge_acacia").setRegistryName("hedge_acacia");
-        HEDGE_DARK_OAK = new BlockHedge(Material.LEAVES).setUnlocalizedName("hedge_dark_oak").setRegistryName("hedge_dark_oak");
+        HEDGE_OAK = new BlockHedge().setUnlocalizedName("hedge_oak").setRegistryName("hedge_oak");
+        HEDGE_SPRUCE = new BlockHedge().setUnlocalizedName("hedge_spruce").setRegistryName("hedge_spruce");
+        HEDGE_BIRCH = new BlockHedge().setUnlocalizedName("hedge_birch").setRegistryName("hedge_birch");
+        HEDGE_JUNGLE = new BlockHedge().setUnlocalizedName("hedge_jungle").setRegistryName("hedge_jungle");
+        HEDGE_ACACIA = new BlockHedge().setUnlocalizedName("hedge_acacia").setRegistryName("hedge_acacia");
+        HEDGE_DARK_OAK = new BlockHedge().setUnlocalizedName("hedge_dark_oak").setRegistryName("hedge_dark_oak");
         BIRD_BATH = new BlockBirdBath(Material.ROCK).setUnlocalizedName("bird_bath").setRegistryName("bird_bath");
         STONE_PATH = new BlockStonePath(Material.ROCK).setUnlocalizedName("stone_path").setRegistryName("stone_path");
         WHITE_FENCE = new BlockWhiteFence(Material.WOOD).setUnlocalizedName("white_fence").setRegistryName("white_fence");
         TAP = new BlockTap(Material.ROCK).setUnlocalizedName("tap").setRegistryName("tap");
-        MAIL_BOX = new BlockMailBox(Material.WOOD).setUnlocalizedName("mail_box").setRegistryName("mail_box");
+        MAIL_BOX_OAK = new BlockMailBox(Material.WOOD).setUnlocalizedName("mail_box").setRegistryName("mail_box");
+        MAIL_BOX_SPRUCE = new BlockMailBox(Material.WOOD).setUnlocalizedName("mail_box_spruce").setRegistryName("mail_box_spruce");
+        MAIL_BOX_BIRCH = new BlockMailBox(Material.WOOD).setUnlocalizedName("mail_box_birch").setRegistryName("mail_box_birch");
+        MAIL_BOX_JUNGLE = new BlockMailBox(Material.WOOD).setUnlocalizedName("mail_box_jungle").setRegistryName("mail_box_jungle");
+        MAIL_BOX_ACACIA = new BlockMailBox(Material.WOOD).setUnlocalizedName("mail_box_acacia").setRegistryName("mail_box_acacia");
+        MAIL_BOX_DARK_OAK = new BlockMailBox(Material.WOOD).setUnlocalizedName("mail_box_dark_oak").setRegistryName("mail_box_dark_oak");
         TV = new BlockTV(Material.WOOD).setUnlocalizedName("tv").setRegistryName("tv");
         COMPUTER = new BlockComputer(Material.IRON).setUnlocalizedName("computer").setRegistryName("computer");
         PRINTER = new BlockPrinter(Material.IRON).setUnlocalizedName("printer").setRegistryName("printer");
@@ -177,6 +168,7 @@ public class FurnitureBlocks
         PLATE = new BlockPlate(Material.GLASS).setUnlocalizedName("plate").setRegistryName("plate");
         COUNTER = new BlockCounter(Material.WOOD).setUnlocalizedName("counter").setRegistryName("counter");
         COUNTER_SINK = new BlockCounterSink(Material.WOOD).setUnlocalizedName("counter_sink").setRegistryName("counter_sink");
+        COUNTER_DRAWER = new BlockCounterDrawer(Material.WOOD).setUnlocalizedName("counter_drawer").setRegistryName("counter_drawer");
         DISHWASHER = new BlockDishwasher(Material.ROCK).setUnlocalizedName("dishwasher").setRegistryName("dishwasher");
         KITCHEN_CABINET = new BlockCabinetKitchen(Material.WOOD).setUnlocalizedName("cabinet_kitchen").setRegistryName("cabinet_kitchen");
         CHOPPING_BOARD = new BlockChoppingBoard(Material.WOOD).setUnlocalizedName("chopping_board").setRegistryName("chopping_board");
@@ -238,7 +230,12 @@ public class FurnitureBlocks
         DESK_CABINET_GRANITE = new BlockDeskCabinet(Material.ROCK).setUnlocalizedName("desk_cabinet_granite").setRegistryName("desk_cabinet_granite");
         DESK_CABINET_DIORITE = new BlockDeskCabinet(Material.ROCK).setUnlocalizedName("desk_cabinet_diorite").setRegistryName("desk_cabinet_diorite");
         DESK_CABINET_ANDESITE = new BlockDeskCabinet(Material.ROCK).setUnlocalizedName("desk_cabinet_andesite").setRegistryName("desk_cabinet_andesite");
+        CABINET_STONE = new BlockCabinet(Material.ROCK).setUnlocalizedName("cabinet_stone").setRegistryName("cabinet_stone");
+        CABINET_GRANITE = new BlockCabinet(Material.ROCK).setUnlocalizedName("cabinet_granite").setRegistryName("cabinet_granite");
+        CABINET_DIORITE = new BlockCabinet(Material.ROCK).setUnlocalizedName("cabinet_diorite").setRegistryName("cabinet_diorite");
+        CABINET_ANDESITE = new BlockCabinet(Material.ROCK).setUnlocalizedName("cabinet_andesite").setRegistryName("cabinet_andesite");
         DIGITAL_CLOCK = new BlockDigitalClock();
+        MODERN_TV = new BlockModernTV();
     }
 
     public static void register()
@@ -281,6 +278,10 @@ public class FurnitureBlocks
         registerBlock(CABINET_JUNGLE);
         registerBlock(CABINET_ACACIA);
         registerBlock(CABINET_DARK_OAK);
+        registerBlock(CABINET_STONE);
+        registerBlock(CABINET_GRANITE);
+        registerBlock(CABINET_DIORITE);
+        registerBlock(CABINET_ANDESITE);
         registerBlock(COUCH, new ItemBlockColored(COUCH));
         registerBlock(COUCH_JEB);
         registerBlock(LAMP_ON, null);
@@ -311,7 +312,12 @@ public class FurnitureBlocks
         registerBlock(STONE_PATH);
         registerBlock(WHITE_FENCE);
         registerBlock(TAP);
-        registerBlock(MAIL_BOX);
+        registerBlock(MAIL_BOX_OAK);
+        registerBlock(MAIL_BOX_SPRUCE);
+        registerBlock(MAIL_BOX_BIRCH);
+        registerBlock(MAIL_BOX_JUNGLE);
+        registerBlock(MAIL_BOX_ACACIA);
+        registerBlock(MAIL_BOX_DARK_OAK);
         registerBlock(TV);
         registerBlock(COMPUTER);
         registerBlock(PRINTER);
@@ -342,8 +348,9 @@ public class FurnitureBlocks
         registerBlock(BLENDER);
         registerBlock(CUP, null);
         registerBlock(PLATE);
-        registerBlock(COUNTER);
-        registerBlock(COUNTER_SINK);
+        registerBlock(COUNTER, new ItemBlockColored(COUNTER));
+        registerBlock(COUNTER_SINK, new ItemBlockColored(COUNTER_SINK));
+        registerBlock(COUNTER_DRAWER, new ItemBlockColored(COUNTER_DRAWER));
         registerBlock(DISHWASHER);
         registerBlock(KITCHEN_CABINET);
         registerBlock(CHOPPING_BOARD);
@@ -365,7 +372,7 @@ public class FurnitureBlocks
         registerBlock(GRILL);
         registerBlock(DIVING_BOARD_BASE, new ItemBath(DIVING_BOARD_BASE));
         registerBlock(DIVING_BOARD_PLANK, null);
-        registerBlock(DOOR_MAT);
+        registerBlock(DOOR_MAT, new ItemBlockColored(DOOR_MAT));
         registerBlock(COOLER);
         registerBlock(MODERN_WINDOW);
         registerBlock(MODERN_SLIDING_DOOR, new ItemModernSlidingDoor(MODERN_SLIDING_DOOR));
@@ -393,6 +400,7 @@ public class FurnitureBlocks
         registerBlock(DESK_CABINET_DIORITE);
         registerBlock(DESK_CABINET_ANDESITE);
         registerBlock(DIGITAL_CLOCK, new ItemColored(DIGITAL_CLOCK));
+        registerBlock(MODERN_TV);
     }
 
     private static void registerBlock(Block block)
