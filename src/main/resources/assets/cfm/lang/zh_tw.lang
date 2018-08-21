@@ -322,9 +322,6 @@ tile.desk.info=這張書桌可以連接其他書桌以創建你想要的任何�
 tile.desk_cabinet.info=這張書桌櫃可以連接其他書桌櫃以創建你想要的任何形狀和長度，也可以與書桌連接。
 cfm.how_to=按住Shift以顯示更多
 cfm.light_switch.how_to=要將開關與吊燈連接，只需要手持開關並右鍵點擊吊燈。\n要將開關與吊燈解除連接，需要蹲下並右鍵點擊空氣以清除所有連接。
-							
-								  
-																															   
 
 # Info New
 cfm.info=按住Shift以顯示資訊
@@ -336,10 +333,15 @@ cfm.mail_signed.info=來自%s
 cfm.present_unsigned.info=未署名
 cfm.digital_clock.info=會以24小時格式顯示世界的時間。顯示器可以使用染料變更著色。
 
+cfm.tv.success=Successfully downloaded the GIF
+cfm.tv.failed=Failed to download file
+cfm.tv.unknown_file=URL is not a GIF
+cfm.tv.too_large=Cannot load GIFs larger than 2MB
+
 container.cabinet=櫥櫃
 container.bedside_cabinet=床頭櫃
 container.desk_cabinet=書桌櫃
-													   
+container.kitchen_counter_drawer=Kitchen Counter Drawer
 
 cfm.recipe_book.page.title1=由MrCrayfish製作
 cfm.recipe_book.page.title2=關於
