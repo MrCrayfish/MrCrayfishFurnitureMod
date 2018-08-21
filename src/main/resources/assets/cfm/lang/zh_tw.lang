@@ -271,22 +271,23 @@ tile.crate.name=板條箱
 tile.grill.name=燒烤架
 tile.divingboard_base.name=跳水板
 tile.door_mat.name=門墊
+tile.door_mat_white.name=White Door Mat
+tile.door_mat_orange.name=Orange Door Mat
+tile.door_mat_magenta.name=Magenta Door Mat
+tile.door_mat_light_blue.name=Light Blue Door Mat
+tile.door_mat_yellow.name=Yellow Door Mat
+tile.door_mat_lime.name=Lime Door Mat
+tile.door_mat_pink.name=Pink Door Mat
+tile.door_mat_gray.name=Gray Door Mat
+tile.door_mat_silver.name=Silver Door Mat
+tile.door_mat_cyan.name=Cyan Door Mat
+tile.door_mat_purple.name=Purple Door Mat
+tile.door_mat_blue.name=Blue Door Mat
+tile.door_mat_brown.name=Brown Door Mat
+tile.door_mat_green.name=Green Door Mat
+tile.door_mat_red.name=Red Door Mat
+tile.door_mat_black.name=Black Door Mat
 tile.esky.name=可擕式冷藏箱
-										   
-												 
-										 
-									 
-									 
-									 
-										 
-									 
-										 
-									 
-									   
-									   
-								   
-									   
-					 
 tile.water_tank.name=水箱
 tile.modern_window.name=現代式的窗
 tile.light_switch_off.name=電燈開關按鈕
@@ -312,9 +313,9 @@ tile.desk_cabinet_stone.name=石書桌櫃
 tile.desk_cabinet_granite.name=花崗岩書桌櫃
 tile.desk_cabinet_diorite.name=閃長岩書桌櫃
 tile.desk_cabinet_andesite.name=安山岩書桌櫃
-tile.modern_sliding_door.name=現代式的滑動門
+tile.modern_sliding_door.name=現代化滑動門
 tile.digital_clock.name=數碼時鐘
-							 
+tile.modern_tv.name=Modern TV
 
 # Info Old
 tile.desk.info=這張書桌可以連接其他書桌以創建你想要的任何形狀和長度，也可以與書桌櫃連接。
