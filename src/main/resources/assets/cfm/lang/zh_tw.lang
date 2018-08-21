@@ -63,6 +63,9 @@ tile.cabinet_jungle.name=叢林木櫥櫃
 tile.cabinet_acacia.name=相思木櫥櫃
 tile.cabinet_dark_oak.name=黑橡木櫥櫃
 tile.cabinet_stone.name=石櫥櫃
+tile.cabinet_granite.name=花崗岩櫥櫃
+tile.cabinet_diorite.name=閃長岩櫥櫃
+tile.cabinet_andesite.name=安山岩櫥櫃
 tile.bedside_cabinet_oak.name=橡木床頭櫃
 tile.bedside_cabinet_spruce.name=杉木床頭櫃
 tile.bedside_cabinet_birch.name=樺木床頭櫃
@@ -129,6 +132,12 @@ tile.stone_path.name=石板路
 tile.white_fence.name=白色柵欄
 tile.tap.name=水龍頭
 tile.mail_box.name=郵箱
+tile.mail_box.name=橡木郵箱
+tile.mail_box_spruce.name=杉木郵箱
+tile.mail_box_birch.name=樺木郵箱
+tile.mail_box_jungle.name=叢林木郵箱
+tile.mail_box_acacia.name=相思木郵箱
+tile.mail_box_dark_oak.name=黑橡木郵箱
 tile.tv.name=電視機
 tile.computer.name=電腦
 tile.printer.name=印表機
@@ -157,7 +166,55 @@ tile.cookie_jar.name=餅乾罐
 tile.blender.name=攪拌機
 tile.plate.name=盤子
 tile.counter_sink.name=廚房櫃檯（水槽）
+tile.counter_sink_white.name=White Kitchen Counter (Sink)
+tile.counter_sink_orange.name=Orange Kitchen Counter (Sink)
+tile.counter_sink_magenta.name=Magenta Kitchen Counter (Sink)
+tile.counter_sink_light_blue.name=Light Blue Kitchen Counter (Sink)
+tile.counter_sink_yellow.name=Yellow Kitchen Counter (Sink)
+tile.counter_sink_lime.name=Lime Kitchen Counter (Sink)
+tile.counter_sink_pink.name=Pink Kitchen Counter (Sink)
+tile.counter_sink_gray.name=Gray Kitchen Counter (Sink)
+tile.counter_sink_silver.name=Silver Kitchen Counter (Sink)
+tile.counter_sink_cyan.name=Cyan Kitchen Counter (Sink)
+tile.counter_sink_purple.name=Purple Kitchen Counter (Sink)
+tile.counter_sink_blue.name=Blue Kitchen Counter (Sink)
+tile.counter_sink_brown.name=Brown Kitchen Counter (Sink)
+tile.counter_sink_green.name=Green Kitchen Counter (Sink)
+tile.counter_sink_red.name=Red Kitchen Counter (Sink)
+tile.counter_sink_black.name=Black Kitchen Counter (Sink)
 tile.counter.name=廚房櫃檯
+tile.counter_white.name=White Kitchen Counter
+tile.counter_orange.name=Orange Kitchen Counter
+tile.counter_magenta.name=Magenta Kitchen Counter
+tile.counter_light_blue.name=Light Blue Kitchen Counter
+tile.counter_yellow.name=Yellow Kitchen Counter
+tile.counter_lime.name=Lime Kitchen Counter
+tile.counter_pink.name=Pink Kitchen Counter
+tile.counter_gray.name=Gray Kitchen Counter
+tile.counter_silver.name=Silver Kitchen Counter
+tile.counter_cyan.name=Cyan Kitchen Counter
+tile.counter_purple.name=Purple Kitchen Counter
+tile.counter_blue.name=Blue Kitchen Counter
+tile.counter_brown.name=Brown Kitchen Counter
+tile.counter_green.name=Green Kitchen Counter
+tile.counter_red.name=Red Kitchen Counter
+tile.counter_black.name=Black Kitchen Counter
+tile.counter_drawer_white.name=White Kitchen Counter Drawer
+tile.counter_drawer_orange.name=Orange Kitchen Counter Drawer
+tile.counter_drawer_magenta.name=Magenta Kitchen Counter Drawer
+tile.counter_drawer_light_blue.name=Light Blue Kitchen Counter Drawer
+tile.counter_drawer_yellow.name=Yellow Kitchen Counter Drawer
+tile.counter_drawer_lime.name=Lime Kitchen Counter Drawer
+tile.counter_drawer_pink.name=Pink Kitchen Counter Drawer
+tile.counter_drawer_gray.name=Gray Kitchen Counter Drawer
+tile.counter_drawer_silver.name=Silver Kitchen Counter Drawer
+tile.counter_drawer_cyan.name=Cyan Kitchen Counter Drawer
+tile.counter_drawer_purple.name=Purple Kitchen Counter Drawer
+tile.counter_drawer_blue.name=Blue Kitchen Counter Drawer
+tile.counter_drawer_brown.name=Brown Kitchen Counter Drawer
+tile.counter_drawer_green.name=Green Kitchen Counter Drawer
+tile.counter_drawer_red.name=Red Kitchen Counter Drawer
+tile.counter_drawer_black.name=Black Kitchen Counter Drawer
 tile.dishwasher.name=洗碗機
 tile.cabinet_kitchen.name=櫥櫃
 tile.bar_stool.name=酒吧椅
@@ -215,6 +272,21 @@ tile.grill.name=燒烤架
 tile.divingboard_base.name=跳水板
 tile.door_mat.name=門墊
 tile.esky.name=可擕式冷藏箱
+										   
+												 
+										 
+									 
+									 
+									 
+										 
+									 
+										 
+									 
+									   
+									   
+								   
+									   
+					 
 tile.water_tank.name=水箱
 tile.modern_window.name=現代式的窗
 tile.light_switch_off.name=電燈開關按鈕
@@ -242,12 +314,16 @@ tile.desk_cabinet_diorite.name=閃長岩書桌櫃
 tile.desk_cabinet_andesite.name=安山岩書桌櫃
 tile.modern_sliding_door.name=現代式的滑動門
 tile.digital_clock.name=數碼時鐘
+							 
 
 # Info Old
 tile.desk.info=這張書桌可以連接其他書桌以創建你想要的任何形狀和長度，也可以與書桌櫃連接。
 tile.desk_cabinet.info=這張書桌櫃可以連接其他書桌櫃以創建你想要的任何形狀和長度，也可以與書桌連接。
 cfm.how_to=按住Shift以顯示更多
 cfm.light_switch.how_to=要將開關與吊燈連接，只需要手持開關並右鍵點擊吊燈。\n要將開關與吊燈解除連接，需要蹲下並右鍵點擊空氣以清除所有連接。
+							
+								  
+																															   
 
 # Info New
 cfm.info=按住Shift以顯示資訊
@@ -262,6 +338,7 @@ cfm.digital_clock.info=會以24小時格式顯示世界的時間。顯示器可�
 container.cabinet=櫥櫃
 container.bedside_cabinet=床頭櫃
 container.desk_cabinet=書桌櫃
+													   
 
 cfm.recipe_book.page.title1=由MrCrayfish製作
 cfm.recipe_book.page.title2=關於
