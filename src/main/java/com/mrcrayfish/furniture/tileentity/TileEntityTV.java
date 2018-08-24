@@ -29,6 +29,7 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     private double screenZOffset;
     private boolean stretch;
     private boolean powered;
+    private boolean disabled;
 
     private List<String> channels = new ArrayList<>();
     private int currentChannel;
@@ -60,6 +61,7 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
         compound.setInteger("CurrentChannel", this.currentChannel);
         compound.setBoolean("Stretch", this.stretch);
         compound.setBoolean("Powered", this.powered);
+        compound.setBoolean("DisableInteraction", this.disabled);
         return compound;
     }
 
@@ -95,6 +97,10 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
         if(compound.hasKey("Powered", Constants.NBT.TAG_BYTE))
         {
             this.powered = compound.getBoolean("Powered");
+        }
+        if(compound.hasKey("DisableInteraction", Constants.NBT.TAG_BYTE))
+        {
+            this.disabled = compound.getBoolean("DisableInteraction");
         }
         if(world != null && world.isRemote && powered && channels.size() > 0 && currentChannel >= 0 && currentChannel < channels.size())
         {
@@ -231,8 +237,11 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
 
     public void setPowered(boolean powered)
     {
-        this.powered = powered;
-        TileEntityUtil.syncToClient(this);
+        if(!disabled)
+        {
+            this.powered = powered;
+            TileEntityUtil.syncToClient(this);
+        }
     }
 
     public boolean isPowered()
@@ -242,7 +251,7 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
 
     public boolean nextChannel()
     {
-        if(powered && channels.size() > 1)
+        if(!disabled && powered && channels.size() > 1)
         {
             this.currentChannel++;
             if(this.currentChannel >= channels.size())
@@ -253,5 +262,10 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
             return true;
         }
         return false;
+    }
+
+    public boolean isDisabled()
+    {
+        return disabled;
     }
 }

@@ -41,9 +41,12 @@ public abstract class BlockAbstractTV extends BlockFurnitureTile
         if(worldIn.isRemote)
         {
             TileEntity tileEntity = worldIn.getTileEntity(pos);
-            if(tileEntity instanceof IValueContainer)
+            if(tileEntity instanceof IValueContainer && tileEntity instanceof TileEntityTV)
             {
-                playerIn.openGui(MrCrayfishFurnitureMod.instance, 1, worldIn, pos.getX(), pos.getY(), pos.getZ());
+                if(!((TileEntityTV) tileEntity).isDisabled())
+                {
+                    playerIn.openGui(MrCrayfishFurnitureMod.instance, 1, worldIn, pos.getX(), pos.getY(), pos.getZ());
+                }
             }
         }
         return true;
