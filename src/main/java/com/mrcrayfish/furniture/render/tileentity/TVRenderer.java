@@ -23,6 +23,9 @@ public class TVRenderer extends TileEntitySpecialRenderer<TileEntityTV>
     @Override
     public void render(TileEntityTV te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
+        if(!te.isPowered())
+            return;
+
         GlStateManager.pushMatrix();
         {
             BlockPos pos = te.getPos();

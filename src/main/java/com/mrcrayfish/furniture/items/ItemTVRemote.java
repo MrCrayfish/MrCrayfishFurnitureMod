@@ -1,14 +1,13 @@
 package com.mrcrayfish.furniture.items;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.tileentity.TileEntityTV;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
@@ -27,7 +26,18 @@ public class ItemTVRemote extends Item
     }
 
     @Override
+    public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand)
+    {
+        return activateTelevision(world, player);
+    }
+
+    @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
+    {
+        return new ActionResult<>(activateTelevision(worldIn, playerIn), playerIn.getHeldItem(handIn));
+    }
+
+    public EnumActionResult activateTelevision(World worldIn, EntityPlayer playerIn)
     {
         Vec3d startVec = playerIn.getPositionEyes(0F);
         Vec3d endVec = startVec.add(playerIn.getLookVec().normalize().scale(16));
@@ -38,10 +48,19 @@ public class ItemTVRemote extends Item
             TileEntity tileEntity = worldIn.getTileEntity(pos);
             if(tileEntity instanceof TileEntityTV)
             {
-                //TODO handle tv action
-                return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
+                TileEntityTV tileEntityTV = (TileEntityTV) tileEntity;
+                if(playerIn.isSneaking())
+                {
+                    tileEntityTV.setPowered(!tileEntityTV.isPowered());
+                }
+                else
+                {
+                    worldIn.playSound(null, pos, FurnitureSounds.white_noise, SoundCategory.BLOCKS, 0.5F, 1.0F);
+                    //TODO handle change channel
+                }
+                return EnumActionResult.SUCCESS;
             }
         }
-        return new ActionResult<>(EnumActionResult.PASS, playerIn.getHeldItem(handIn));
+        return EnumActionResult.PASS;
     }
 }

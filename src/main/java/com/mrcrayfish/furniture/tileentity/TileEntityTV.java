@@ -4,6 +4,7 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.client.GifCache;
 import com.mrcrayfish.furniture.client.ImageDownloadThread;
+import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants;
@@ -23,6 +24,7 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     private double screenYOffset;
     private double screenZOffset;
     private boolean stretch;
+    private boolean powered;
 
     private String url;
     private boolean loading;
@@ -47,6 +49,7 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
             compound.setString("URL", this.url);
         }
         compound.setBoolean("Stretch", this.stretch);
+        compound.setBoolean("Powered", this.powered);
         return compound;
     }
 
@@ -57,14 +60,18 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
         if(compound.hasKey("URL", Constants.NBT.TAG_STRING))
         {
             this.url = compound.getString("URL");
-            if(world != null && world.isRemote)
-            {
-                this.loadUrl(url);
-            }
         }
         if(compound.hasKey("Stretch", Constants.NBT.TAG_BYTE))
         {
             this.stretch = compound.getBoolean("Stretch");
+        }
+        if(compound.hasKey("Powered", Constants.NBT.TAG_BYTE))
+        {
+            this.powered = compound.getBoolean("Powered");
+        }
+        if(world != null && world.isRemote && powered && url != null)
+        {
+            this.loadUrl(url);
         }
     }
 
@@ -76,6 +83,9 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     @SideOnly(Side.CLIENT)
     public void loadUrl(String url)
     {
+        if(loading)
+            return;
+
         this.loaded = false;
         if(!GifCache.INSTANCE.loadCached(url))
         {
@@ -158,5 +168,16 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     public BlockPos getContainerPos()
     {
         return this.pos;
+    }
+
+    public void setPowered(boolean powered)
+    {
+        this.powered = powered;
+        TileEntityUtil.syncToClient(this);
+    }
+
+    public boolean isPowered()
+    {
+        return powered;
     }
 }
