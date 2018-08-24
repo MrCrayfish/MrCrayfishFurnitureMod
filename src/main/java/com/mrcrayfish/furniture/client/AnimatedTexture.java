@@ -70,11 +70,11 @@ public class AnimatedTexture
     {
         if(framesTextureData.size() > 0)
         {
-            if(++frameCounter >= framesTextureData.size())
+            if(++frameCounter >= framesTextureData.size() * 2)
             {
                 frameCounter = 0;
             }
-            ByteBuffer buffer = framesTextureData.get(frameCounter);
+            ByteBuffer buffer = framesTextureData.get(frameCounter / 2);
             GL11.glBindTexture(GL11.GL_TEXTURE_2D, getTextureId());
             GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, width, height, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, buffer);
         }
