@@ -89,12 +89,17 @@ public class BlockDigitalClock extends BlockFurnitureTile
     }
 
     @Override
-    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity tileEntity, ItemStack stack)
     {
-        TileEntity tileEntity = world.getTileEntity(pos);
-        if(tileEntity instanceof IColored)
+        if(tileEntity instanceof TileEntityDigitalClock)
         {
-            drops.add(new ItemStack(Item.getItemFromBlock(this), 1, ((IColored) tileEntity).getColor().getMetadata()));
+            TileEntityDigitalClock clock = (TileEntityDigitalClock) tileEntity;
+            ItemStack itemstack = new ItemStack(this, 1, clock.getColor().getMetadata());
+            spawnAsEntity(worldIn, pos, itemstack);
+        }
+        else
+        {
+            super.harvestBlock(worldIn, player, pos, state, tileEntity, stack);
         }
     }
 
