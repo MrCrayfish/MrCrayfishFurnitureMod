@@ -22,7 +22,7 @@ import java.util.concurrent.ThreadFactory;
  */
 public class AnimatedTexture
 {
-    public static final ExecutorService THREAD_SERVICE = Executors.newCachedThreadPool(r -> {
+    private static final ExecutorService THREAD_SERVICE = Executors.newCachedThreadPool(r -> {
         Thread thread = new Thread(r);
         thread.setName("TV File I/O");
         return thread;
