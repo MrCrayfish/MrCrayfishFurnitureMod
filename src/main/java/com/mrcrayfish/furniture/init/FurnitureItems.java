@@ -1,15 +1,7 @@
 package com.mrcrayfish.furniture.init;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.items.ItemCup;
-import com.mrcrayfish.furniture.items.ItemEnvelope;
-import com.mrcrayfish.furniture.items.ItemEnvelopeSigned;
-import com.mrcrayfish.furniture.items.ItemGeneric;
-import com.mrcrayfish.furniture.items.ItemKnife;
-import com.mrcrayfish.furniture.items.ItemLog;
-import com.mrcrayfish.furniture.items.ItemPackage;
-import com.mrcrayfish.furniture.items.ItemPackageSigned;
-import com.mrcrayfish.furniture.items.ItemRecipeBook;
+import com.mrcrayfish.furniture.items.*;
 
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
@@ -52,6 +44,11 @@ public class FurnitureItems
     public static final Item SPATULA, SAUSAGE, SAUSAGE_COOKED, KEBAB, KEBAB_COOKED, CROWBAR;
 
     /**
+     * Modern Update
+     */
+    public static final Item TV_REMOTE;
+
+    /**
      * Food
      */
     public static final Item BREAD_SLICE, TOAST;
@@ -92,6 +89,7 @@ public class FurnitureItems
         KEBAB_COOKED = new ItemFood(4, false).setUnlocalizedName("item_kebab_cooked").setRegistryName("item_kebab_cooked").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
         CROWBAR = new Item().setUnlocalizedName("item_crow_bar").setRegistryName("item_crow_bar").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
         CEILING_FAN_FANS = new Item().setUnlocalizedName("ceiling_fan_fans").setRegistryName("ceiling_fan_fans");
+        TV_REMOTE = new ItemTVRemote();
     }
 
     public static void register()
@@ -123,6 +121,7 @@ public class FurnitureItems
         registerItem(KEBAB_COOKED);
         registerItem(CROWBAR);
         registerItem(CEILING_FAN_FANS);
+        registerItem(TV_REMOTE);
     }
 
     private static void registerItem(Item item)
