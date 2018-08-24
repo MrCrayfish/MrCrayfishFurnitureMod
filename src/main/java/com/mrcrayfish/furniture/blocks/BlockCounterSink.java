@@ -6,6 +6,7 @@ import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 
 import com.mrcrayfish.furniture.tileentity.TileEntityKitchenCounter;
+import com.mrcrayfish.furniture.tileentity.TileEntityLightSwitch;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -153,26 +154,37 @@ public class BlockCounterSink extends BlockFurnitureTile
     }
 
     @Override
-    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand).withProperty(COLOUR, 15 - Math.max(0, meta));
-    }
-
-    @Override
-    public TileEntity createTileEntity(World world, IBlockState state)
-    {
-        TileEntity tileEntity = super.createTileEntity(world, state);
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
         if(tileEntity instanceof TileEntityKitchenCounter)
         {
-            ((TileEntityKitchenCounter) tileEntity).setColour(state.getValue(COLOUR));
+            ((TileEntityKitchenCounter) tileEntity).setColour(15 - stack.getMetadata());
         }
-        return tileEntity;
     }
 
     @Override
-    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity tileEntity, ItemStack stack)
     {
-        drops.add(new ItemStack(this, 1, 15 - Math.max(0, state.getValue(COLOUR))));
+        if (tileEntity instanceof TileEntityKitchenCounter)
+        {
+            TileEntityKitchenCounter counter = (TileEntityKitchenCounter) tileEntity;
+            ItemStack itemstack = new ItemStack(this, 1, counter.getColour());
+            spawnAsEntity(worldIn, pos, itemstack);
+        }
+        else
+        {
+            super.harvestBlock(worldIn, player, pos, state, tileEntity, stack);
+        }
+    }
+
+    @Override
+    public void getSubBlocks(CreativeTabs item, NonNullList<ItemStack> items)
+    {
+        for(int i = 0; i < EnumDyeColor.values().length; i++)
+        {
+            items.add(new ItemStack(this, 1, i));
+        }
     }
 
     @Override
@@ -185,15 +197,6 @@ public class BlockCounterSink extends BlockFurnitureTile
             metadata = ((TileEntityKitchenCounter) tileEntity).getColour();
         }
         return new ItemStack(this, 1, metadata);
-    }
-
-    @Override
-    public void getSubBlocks(CreativeTabs item, NonNullList<ItemStack> items)
-    {
-        for(int i = 0; i < EnumDyeColor.values().length; i++)
-        {
-            items.add(new ItemStack(this, 1, i));
-        }
     }
 
     @Nullable
