@@ -22,6 +22,7 @@ item.item_kebab.name=Raw Kebab
 item.item_kebab_cooked.name=Cooked Kebab
 item.item_crow_bar.name=Crow Bar
 item.item_log.name=Chopped Log
+item.tv_remote.name=TV Remote
 
 tile.table_oak.name=Oak Table
 tile.table_spruce.name=Spruce Table
