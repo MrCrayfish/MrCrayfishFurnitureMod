@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.tileentity;
 
 import com.mrcrayfish.furniture.init.FurnitureSounds;
+import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -8,9 +9,12 @@ import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntityLockableLoot;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
+import net.minecraftforge.common.util.Constants;
 
 /**
  * Author: MrCrayfish
@@ -35,7 +39,10 @@ public class TileEntityKitchenCounterDrawer extends TileEntityLockableLoot
             this.customName = compound.getString("CustomName");
         }
 
-        this.colour = compound.getInteger("colour");
+        if(compound.hasKey("colour", Constants.NBT.TAG_INT))
+        {
+            this.colour = compound.getInteger("colour");
+        }
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound compound)
@@ -126,5 +133,30 @@ public class TileEntityKitchenCounterDrawer extends TileEntityLockableLoot
     public int getColour()
     {
         return colour;
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt)
+    {
+        readFromNBT(pkt.getNbtCompound());
+    }
+
+    @Override
+    public SPacketUpdateTileEntity getUpdatePacket()
+    {
+        return new SPacketUpdateTileEntity(pos, getBlockMetadata(), getUpdateTag());
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag()
+    {
+        NBTTagCompound tagCompound = super.writeToNBT(new NBTTagCompound());
+        tagCompound.setInteger("colour", colour);
+        return tagCompound;
+    }
+
+    public void sync()
+    {
+        TileEntityUtil.syncToClient(this);
     }
 }
