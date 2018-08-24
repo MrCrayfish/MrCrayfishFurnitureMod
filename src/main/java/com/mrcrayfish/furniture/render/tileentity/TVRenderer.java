@@ -117,7 +117,7 @@ public class TVRenderer extends TileEntitySpecialRenderer<TileEntityTV>
                 }
                 else if(te.isLoaded())
                 {
-                    AnimatedTexture texture = GifCache.INSTANCE.get(te.getUrl());
+                    AnimatedTexture texture = GifCache.INSTANCE.get(te.getCurrentChannel());
                     if(texture != null)
                     {
                         texture.bind();

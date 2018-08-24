@@ -6,12 +6,15 @@ import com.mrcrayfish.furniture.client.GifCache;
 import com.mrcrayfish.furniture.client.ImageDownloadThread;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +30,8 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     private boolean stretch;
     private boolean powered;
 
-    private String url;
+    private List<String> channels = new ArrayList<>();
+    private int currentChannel;
 
     @SideOnly(Side.CLIENT)
     private boolean loading;
@@ -50,10 +54,10 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     public NBTTagCompound writeToNBT(NBTTagCompound compound)
     {
         super.writeToNBT(compound);
-        if(!Strings.isNullOrEmpty(this.url))
-        {
-            compound.setString("URL", this.url);
-        }
+        NBTTagList channelList = new NBTTagList();
+        channels.forEach(url -> channelList.appendTag(new NBTTagString(url)));
+        compound.setTag("Channels", channelList);
+        compound.setInteger("CurrentChannel", this.currentChannel);
         compound.setBoolean("Stretch", this.stretch);
         compound.setBoolean("Powered", this.powered);
         return compound;
@@ -63,9 +67,26 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     public void readFromNBT(NBTTagCompound compound)
     {
         super.readFromNBT(compound);
-        if(compound.hasKey("URL", Constants.NBT.TAG_STRING))
+        this.channels.clear();
+        if(compound.hasKey("Channels", Constants.NBT.TAG_LIST))
         {
-            this.url = compound.getString("URL");
+            NBTTagList channelList = compound.getTagList("Channels", Constants.NBT.TAG_STRING);
+            channelList.forEach(nbtBase ->
+            {
+                if(nbtBase instanceof NBTTagString)
+                {
+                    NBTTagString url = (NBTTagString) nbtBase;
+                    channels.add(url.getString());
+                }
+            });
+        }
+        else if(compound.hasKey("URL", Constants.NBT.TAG_STRING))
+        {
+            this.channels.add(compound.getString("URL"));
+        }
+        if(compound.hasKey("CurrentChannel", Constants.NBT.TAG_INT))
+        {
+            this.currentChannel = compound.getInteger("CurrentChannel");
         }
         if(compound.hasKey("Stretch", Constants.NBT.TAG_BYTE))
         {
@@ -75,15 +96,20 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
         {
             this.powered = compound.getBoolean("Powered");
         }
-        if(world != null && world.isRemote && powered && url != null)
+        if(world != null && world.isRemote && powered && channels.size() > 0 && currentChannel >= 0 && currentChannel < channels.size())
         {
-            this.loadUrl(url);
+            this.loadUrl(channels.get(currentChannel));
         }
     }
 
-    public String getUrl()
+    @Nullable
+    public String getCurrentChannel()
     {
-        return url;
+        if(channels.size() > 0 && currentChannel >= 0 && currentChannel < channels.size())
+        {
+            return channels.get(currentChannel);
+        }
+        return null;
     }
 
     @SideOnly(Side.CLIENT)
@@ -116,13 +142,13 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     @SideOnly(Side.CLIENT)
     public boolean isLoading()
     {
-        return url != null && loading;
+        return loading;
     }
 
     @SideOnly(Side.CLIENT)
     public boolean isLoaded()
     {
-        return url != null && loaded && !loading;
+        return loaded && !loading;
     }
 
     @Nullable
@@ -156,16 +182,34 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     public List<Entry> getEntries()
     {
         List<Entry> entries = Lists.newArrayList();
-        entries.add(new Entry("url", "URL", Entry.Type.TEXT_FIELD, this.url));
+        for(int i = 0; i < 3; i++)
+        {
+            String url = "";
+            if(channels.size() > 0 && i >= 0 && i < channels.size())
+            {
+                url = channels.get(i);
+            }
+            entries.add(new Entry("channel_" + i, "Channel #" + (i + 1), Entry.Type.TEXT_FIELD, url));
+        }
         entries.add(new Entry("stretch", "Stretch to Screen", Entry.Type.TOGGLE, this.stretch));
+        entries.add(new Entry("powered", "Powered", Entry.Type.TOGGLE, this.powered));
         return entries;
     }
 
     @Override
     public void updateEntries(Map<String, String> entries)
     {
-        this.url = entries.get("url");
+        channels.clear();
+        for(int i = 0; i < 3; i++)
+        {
+            String url = entries.get("channel_" + i);
+            if(!Strings.isNullOrEmpty(url))
+            {
+                channels.add(url);
+            }
+        }
         this.stretch = Boolean.valueOf(entries.get("stretch"));
+        this.powered = Boolean.valueOf(entries.get("powered"));
     }
 
     @Override
@@ -194,5 +238,20 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     public boolean isPowered()
     {
         return powered;
+    }
+
+    public boolean nextChannel()
+    {
+        if(powered && channels.size() > 1)
+        {
+            this.currentChannel++;
+            if(this.currentChannel >= channels.size())
+            {
+                this.currentChannel = 0;
+            }
+            TileEntityUtil.syncToClient(this);
+            return true;
+        }
+        return false;
     }
 }

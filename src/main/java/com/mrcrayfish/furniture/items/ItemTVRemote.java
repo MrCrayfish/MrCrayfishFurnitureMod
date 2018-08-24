@@ -55,8 +55,10 @@ public class ItemTVRemote extends Item
                 }
                 else
                 {
-                    worldIn.playSound(null, pos, FurnitureSounds.white_noise, SoundCategory.BLOCKS, 0.5F, 1.0F);
-                    //TODO handle change channel
+                    if(tileEntityTV.nextChannel())
+                    {
+                        worldIn.playSound(null, pos, FurnitureSounds.white_noise, SoundCategory.BLOCKS, 0.5F, 1.0F);
+                    }
                 }
                 return EnumActionResult.SUCCESS;
             }
