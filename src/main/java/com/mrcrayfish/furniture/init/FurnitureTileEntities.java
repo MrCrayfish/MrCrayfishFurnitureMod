@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.init;
 
 import com.mrcrayfish.furniture.tileentity.*;
@@ -32,7 +15,6 @@ public class FurnitureTileEntities
         GameRegistry.registerTileEntity(TileEntityMailBox.class, "cfmMailBox");
         GameRegistry.registerTileEntity(TileEntityComputer.class, "cfmComputer");
         GameRegistry.registerTileEntity(TileEntityPrinter.class, "cfmPrinter");
-        GameRegistry.registerTileEntity(TileEntityTV.class, "cfmTV");
         GameRegistry.registerTileEntity(TileEntityStereo.class, "cfmStereo");
         GameRegistry.registerTileEntity(TileEntityPresent.class, "cfmPresent");
         GameRegistry.registerTileEntity(TileEntityBin.class, "cfmBin");
@@ -60,5 +42,9 @@ public class FurnitureTileEntities
         GameRegistry.registerTileEntity(TileEntityCeilingFan.class, "cfmCeilingFan");
         GameRegistry.registerTileEntity(TileEntityDeskCabinet.class, "cfmDeskCabinet");
         GameRegistry.registerTileEntity(TileEntityModernSlidingDoor.class, "cfmModernSlidingDoor");
+        GameRegistry.registerTileEntity(TileEntityDigitalClock.class, "cfmDigitalClock");
+        GameRegistry.registerTileEntity(TileEntityTV.class, "cfmTV");
+        GameRegistry.registerTileEntity(TileEntityKitchenCounter.class, "cfmKitchenCounter");
+        GameRegistry.registerTileEntity(TileEntityKitchenCounterDrawer.class, "cfmKitchenCounterDrawer");
     }
 }

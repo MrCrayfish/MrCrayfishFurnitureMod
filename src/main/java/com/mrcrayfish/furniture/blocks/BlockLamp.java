@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
@@ -56,7 +39,7 @@ public class BlockLamp extends Block
     public static final PropertyBool UP = PropertyBool.create("up");
     public static final PropertyBool DOWN = PropertyBool.create("down");
 
-    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.0625, 0.0, 0.0625, 0.9375, 14 * 0.0625, 0.9375);
+    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.0625, 0.0, 0.0625, 0.9375, 1.0, 0.9375);
 
     public BlockLamp(Material material, boolean on)
     {
@@ -104,12 +87,12 @@ public class BlockLamp extends Block
 
         if(!(worldIn.getBlockState(pos.up()).getBlock() instanceof BlockLamp))
         {
-            worldIn.setBlockState(pos, FurnitureBlocks.LAMP_ON.getDefaultState().withProperty(BlockLampOn.COLOUR, (Integer) state.getValue(COLOUR)), 3);
+            worldIn.setBlockState(pos, FurnitureBlocks.LAMP_ON.getDefaultState().withProperty(BlockLampOn.COLOUR, state.getValue(COLOUR)), 3);
         }
         else
         {
             int yOffset = 1;
-            while(worldIn.getBlockState(pos.up(++yOffset)).getBlock() instanceof BlockLamp) ;
+            while(worldIn.getBlockState(pos.up(yOffset)).getBlock() instanceof BlockLamp) yOffset++;
 
             int colour = worldIn.getBlockState(pos.up(yOffset).down()).getValue(COLOUR);
 
@@ -142,13 +125,13 @@ public class BlockLamp extends Block
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((Integer) state.getValue(COLOUR)).intValue();
+        return state.getValue(COLOUR);
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[]{COLOUR, UP, DOWN});
+        return new BlockStateContainer(this, COLOUR, UP, DOWN);
     }
 
     @Override
@@ -180,12 +163,8 @@ public class BlockLamp extends Block
 
     private List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
     {
-        List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
-        boolean up = state.getValue(UP);
-        boolean down = state.getValue(DOWN);
-
+        List<AxisAlignedBB> list = Lists.newArrayList();
         list.add(FULL_BLOCK_AABB);
-
         return list;
     }
 
@@ -197,7 +176,7 @@ public class BlockLamp extends Block
             List<AxisAlignedBB> boxes = this.getCollisionBoxList(this.getActualState(state, worldIn, pos), worldIn, pos);
             for(AxisAlignedBB box : boxes)
             {
-                super.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
+                addCollisionBoxToList(pos, entityBox, collidingBoxes, FULL_BLOCK_AABB);
             }
         }
     }
@@ -205,7 +184,7 @@ public class BlockLamp extends Block
     @Override
     public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
     {
-        List<RayTraceResult> list = Lists.<RayTraceResult>newArrayList();
+        List<RayTraceResult> list = Lists.newArrayList();
 
         for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos), world, pos))
         {

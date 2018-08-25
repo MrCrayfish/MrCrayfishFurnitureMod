@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
@@ -58,7 +41,7 @@ import net.minecraft.world.World;
 public abstract class BlockCouch extends BlockFurnitureTile
 {
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
-    public static final PropertyEnum<CouchType> TYPE = PropertyEnum.<CouchType>create("type", CouchType.class);
+    public static final PropertyEnum<CouchType> TYPE = PropertyEnum.create("type", CouchType.class);
 
     private static final AxisAlignedBB COUCH_BASE = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.6, 1.0);
 
@@ -67,8 +50,6 @@ public abstract class BlockCouch extends BlockFurnitureTile
     private static final AxisAlignedBB COUCH_BACKREST_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.80, 0.6, 0.0, 1.0, 1.21, 1.0);
     private static final AxisAlignedBB COUCH_BACKREST_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.80, 0.6, 0.0, 1.0, 1.21, 1.0);
     private static final AxisAlignedBB[] COUCH_BACKREST = {COUCH_BACKREST_SOUTH, COUCH_BACKREST_WEST, COUCH_BACKREST_NORTH, COUCH_BACKREST_EAST};
-    private static final AxisAlignedBB[] COUCH_BACKREST_LEFT = {COUCH_BACKREST_WEST, COUCH_BACKREST_NORTH, COUCH_BACKREST_EAST, COUCH_BACKREST_SOUTH};
-    private static final AxisAlignedBB[] COUCH_BACKREST_RIGHT = {COUCH_BACKREST_EAST, COUCH_BACKREST_SOUTH, COUCH_BACKREST_WEST, COUCH_BACKREST_NORTH};
 
     private static final AxisAlignedBB COUCH_ARMREST_LEFT_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.0, 0.5, 0.9, 1.0, 0.9, 1.0);
     private static final AxisAlignedBB COUCH_ARMREST_LEFT_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.0, 0.5, 0.9, 1.0, 0.9, 1.0);
@@ -95,7 +76,7 @@ public abstract class BlockCouch extends BlockFurnitureTile
         }
         else
         {
-            this.setDefaultState(baseState.withProperty(FACING, EnumFacing.NORTH).withProperty(TYPE, CouchType.BOTH).withProperty(COLOUR, Integer.valueOf(0)));
+            this.setDefaultState(baseState.withProperty(FACING, EnumFacing.NORTH).withProperty(TYPE, CouchType.BOTH).withProperty(COLOUR, 0));
         }
     }
 
@@ -111,16 +92,16 @@ public abstract class BlockCouch extends BlockFurnitureTile
         if(!isSpecial())
         {
             int colour = ((TileEntityCouch) world.getTileEntity(pos)).getColour();
-            state = state.withProperty(COLOUR, Integer.valueOf(colour));
+            state = state.withProperty(COLOUR, colour);
         }
 
-        if(StateHelper.getBlock(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.DOWN) instanceof BlockCouch)
+        if(StateHelper.getBlock(world, pos, state.getValue(FACING), StateHelper.Direction.DOWN) instanceof BlockCouch)
         {
-            if(StateHelper.getRotation(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.DOWN) == StateHelper.Direction.RIGHT)
+            if(StateHelper.getRotation(world, pos, state.getValue(FACING), StateHelper.Direction.DOWN) == StateHelper.Direction.RIGHT)
             {
                 return state.withProperty(TYPE, CouchType.CORNER_RIGHT);
             }
-            else if(StateHelper.getRotation(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.DOWN) == StateHelper.Direction.LEFT)
+            else if(StateHelper.getRotation(world, pos, state.getValue(FACING), StateHelper.Direction.DOWN) == StateHelper.Direction.LEFT)
             {
                 return state.withProperty(TYPE, CouchType.CORNER_LEFT);
             }
@@ -129,11 +110,11 @@ public abstract class BlockCouch extends BlockFurnitureTile
         boolean left = false;
         boolean right = false;
 
-        if(!StateHelper.isAirBlock(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.LEFT))
+        if(!StateHelper.isAirBlock(world, pos, state.getValue(FACING), StateHelper.Direction.LEFT))
         {
             left = true;
         }
-        if(!StateHelper.isAirBlock(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.RIGHT))
+        if(!StateHelper.isAirBlock(world, pos, state.getValue(FACING), StateHelper.Direction.RIGHT))
         {
             right = true;
         }
@@ -158,7 +139,7 @@ public abstract class BlockCouch extends BlockFurnitureTile
         IBlockState state = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
         if(!isSpecial())
         {
-            state = state.withProperty(COLOUR, Integer.valueOf(0));
+            state = state.withProperty(COLOUR, 0);
         }
         return state;
     }
@@ -194,12 +175,15 @@ public abstract class BlockCouch extends BlockFurnitureTile
                 {
                     if(heldItem.getItem() instanceof ItemDye)
                     {
-                        tileEntityCouch.setColour(heldItem.getItemDamage());
-                        if(!playerIn.isCreative())
+                        if(tileEntityCouch.getColour() != (15 - heldItem.getItemDamage()))
                         {
-                            heldItem.shrink(1);
+                            tileEntityCouch.setColour(heldItem.getItemDamage());
+                            if(!playerIn.isCreative())
+                            {
+                                heldItem.shrink(1);
+                            }
+                            TileEntityUtil.markBlockForUpdate(worldIn, pos);
                         }
-                        TileEntityUtil.markBlockForUpdate(worldIn, pos);
                         return true;
                     }
                 }
@@ -210,7 +194,7 @@ public abstract class BlockCouch extends BlockFurnitureTile
 
     private List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
     {
-        List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
+        List<AxisAlignedBB> list = Lists.newArrayList();
         EnumFacing facing = state.getValue(FACING);
 
         IBlockState actualState = this.getActualState(state, world, pos);
@@ -242,11 +226,11 @@ public abstract class BlockCouch extends BlockFurnitureTile
         }
         else
         {
-            if(StateHelper.isAirBlock(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.LEFT))
+            if(StateHelper.isAirBlock(world, pos, state.getValue(FACING), StateHelper.Direction.LEFT))
             {
                 list.add(COUCH_ARMREST_LEFT[facing.getHorizontalIndex()]);
             }
-            if(StateHelper.isAirBlock(world, pos, (EnumFacing) state.getValue(FACING), StateHelper.Direction.RIGHT))
+            if(StateHelper.isAirBlock(world, pos, state.getValue(FACING), StateHelper.Direction.RIGHT))
             {
                 list.add(COUCH_ARMREST_RIGHT[facing.getHorizontalIndex()]);
             }
@@ -263,7 +247,7 @@ public abstract class BlockCouch extends BlockFurnitureTile
             List<AxisAlignedBB> boxes = this.getCollisionBoxList(this.getActualState(state, worldIn, pos), worldIn, pos);
             for(AxisAlignedBB box : boxes)
             {
-                super.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
+                addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
             }
         }
     }
@@ -271,7 +255,7 @@ public abstract class BlockCouch extends BlockFurnitureTile
     @Override
     public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
     {
-        List<RayTraceResult> list = Lists.<RayTraceResult>newArrayList();
+        List<RayTraceResult> list = Lists.newArrayList();
 
         for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos), world, pos))
         {
@@ -307,7 +291,7 @@ public abstract class BlockCouch extends BlockFurnitureTile
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return isSpecial() ? new BlockStateContainer(this, new IProperty[]{FACING, TYPE}) : new BlockStateContainer(this, new IProperty[]{FACING, COLOUR, TYPE});
+        return isSpecial() ? new BlockStateContainer(this, FACING, TYPE) : new BlockStateContainer(this, FACING, COLOUR, TYPE);
     }
 
     public abstract boolean isSpecial();

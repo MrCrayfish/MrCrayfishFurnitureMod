@@ -1,20 +1,24 @@
 {
-  "result": {
-    "item": "cfm:mail_box"
-  },
-  "pattern": [
-    "*@*",
-    "***",
-    " * "
-  ],
-  "type": "minecraft:crafting_shaped",
-  "key": {
-    "@": {
-      "item": "minecraft:book"
+    "result": {
+        "item": "cfm:mail_box"
     },
-    "*": {
-      "item": "minecraft:planks",
-      "data": 0
+    "pattern": [
+        "LBL",
+        "PPP",
+        " P "
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "B": {
+            "item": "minecraft:book"
+        },
+        "P": {
+            "item": "minecraft:planks",
+            "data": 0
+        },
+        "L": {
+            "item": "minecraft:log",
+            "data": 0
+        }
     }
-  }
 }

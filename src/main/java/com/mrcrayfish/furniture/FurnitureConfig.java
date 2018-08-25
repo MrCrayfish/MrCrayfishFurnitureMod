@@ -9,11 +9,13 @@ import net.minecraftforge.common.config.Config.RangeInt;
 import net.minecraftforge.common.config.Config.Type;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent.OnConfigChangedEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import com.mrcrayfish.furniture.api.RecipeRegistry;
 import com.mrcrayfish.furniture.api.Recipes;
+import com.mrcrayfish.furniture.integration.crafttweaker.CraftTweakerIntegration;
 
 @Config(modid = Reference.MOD_ID)
 @LangKey("config." + Reference.MOD_ID + ".title")
@@ -564,6 +566,10 @@ public class FurnitureConfig
             RecipeRegistry.registerDefaultRecipes();
             RecipeRegistry.registerConfigRecipes();
             Recipes.addCommRecipesToLocal();
+            if (Loader.isModLoaded("crafttweaker"))
+            {
+                CraftTweakerIntegration.apply();
+            }
             Recipes.updateDataList();
         }
     }

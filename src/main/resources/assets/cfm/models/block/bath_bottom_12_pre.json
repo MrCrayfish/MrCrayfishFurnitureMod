@@ -1,7 +1,7 @@
 {
-"parent": "cfm:block/bath_bottom_12",
-"textures": {
-"1": "blocks/water_still",
-"2": "blocks/quartz_block_bottom"
-}
+    "parent": "cfm:block/bath_bottom_12",
+    "textures": {
+        "1": "blocks/water_still",
+        "2": "blocks/concrete_white"
+    }
 }

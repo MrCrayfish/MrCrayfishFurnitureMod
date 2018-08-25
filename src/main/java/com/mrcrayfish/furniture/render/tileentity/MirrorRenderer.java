@@ -32,7 +32,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
     public static RenderGlobal mirrorGlobalRenderer = new MirrorRenderGlobal(mc);
     private long renderEndNanoTime;
 
-    private static Map<EntityMirror, Integer> registerMirrors = new ConcurrentHashMap<EntityMirror, Integer>();
+    private static Map<EntityMirror, Integer> registerMirrors = new ConcurrentHashMap<>();
     private static List<Integer> pendingRemoval = Collections.synchronizedList(new ArrayList<Integer>());
 
     public static void removeRegisteredMirror(Entity entity)
@@ -75,7 +75,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 
             GlStateManager.disableLighting();
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            GlStateManager.bindTexture(registerMirrors.get(mirror.getMirror()).intValue());
+            GlStateManager.bindTexture(registerMirrors.get(mirror.getMirror()));
 
             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
@@ -118,7 +118,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
         {
             for(Integer integer : pendingRemoval)
             {
-                GlStateManager.deleteTexture(integer.intValue());
+                GlStateManager.deleteTexture(integer);
             }
             pendingRemoval.clear();
         }
@@ -165,7 +165,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
                     EntityRenderer entityRenderer = mc.entityRenderer;
                     entityRenderer.renderWorld(event.renderTickTime, renderEndNanoTime + (1000000000 / fps));
 
-                    GlStateManager.bindTexture(registerMirrors.get(entity).intValue());
+                    GlStateManager.bindTexture(registerMirrors.get(entity));
                     GL11.glCopyTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, 0, 0, quality, quality, 0);
 
                     renderEndNanoTime = System.nanoTime();

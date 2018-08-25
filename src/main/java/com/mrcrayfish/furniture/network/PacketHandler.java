@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.network;
 
 import com.mrcrayfish.furniture.Reference;
@@ -49,7 +32,6 @@ public class PacketHandler
         INSTANCE.registerMessage(MessageUpdateFields.class, MessageUpdateFields.class, 17, Side.CLIENT);
         INSTANCE.registerMessage(MessageDoorMat.class, MessageDoorMat.class, 18, Side.SERVER);
         INSTANCE.registerMessage(MessageSealCrate.class, MessageSealCrate.class, 19, Side.SERVER);
-        INSTANCE.registerMessage(MessageTVPlaySound.class, MessageTVPlaySound.class, 20, Side.CLIENT);
-        INSTANCE.registerMessage(MessageTVStopSound.class, MessageTVStopSound.class, 21, Side.CLIENT);
+        INSTANCE.registerMessage(MessageUpdateValueContainer.class, MessageUpdateValueContainer.class, 20, Side.SERVER);
     }
 }

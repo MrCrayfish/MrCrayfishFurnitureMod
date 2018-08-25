@@ -1,13 +1,13 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-        "particle": "blocks/quartz_block_bottom",
-        "0": "blocks/quartz_block_bottom",
-        "1": "blocks/wool_colored_black",
-        "2": "blocks/wool_colored_red",
-        "3": "blocks/stone",
+        "particle": "blocks/concrete_white",
+        "0": "blocks/concrete_white",
+        "1": "blocks/concrete_gray",
+        "2": "blocks/concrete_red",
+        "3": "blocks/concrete_silver",
         "4": "blocks/glass_white",
-        "5": "blocks/iron_bars",
+        "5": "cfm:blocks/mesh",
         "6": "blocks/anvil_base"
     },
 	"display": {
@@ -329,7 +329,7 @@
                 "east": { "texture": "#1", "uv": [ 0.0, 0.0, 4.0, 1.0 ] },
                 "south": { "texture": "#1", "uv": [ 0.0, 0.0, 1.0, 1.0 ] },
                 "west": { "texture": "#1", "uv": [ 0.0, 0.0, 4.0, 1.0 ] },
-                "up": { "texture": "#1", "uv": [ 0.0, 0.0, 0.0, 6.0 ] },
+                "up": { "texture": "#1", "uv": [ 0.0, 0.0, 1.0, 6.0 ] },
                 "down": { "texture": "#1", "uv": [ 0.0, 0.0, 1.0, 4.0 ] }
             }
         }

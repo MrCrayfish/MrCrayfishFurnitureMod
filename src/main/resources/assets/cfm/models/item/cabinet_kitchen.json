@@ -1,0 +1,7 @@
+{
+	"parent": "cfm:block/cabinet",
+	"textures": {
+		"2": "blocks/concrete_gray",
+		"3": "blocks/concrete_white"
+	}
+}

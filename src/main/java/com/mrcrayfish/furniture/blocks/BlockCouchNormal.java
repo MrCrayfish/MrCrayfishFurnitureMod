@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.tileentity.TileEntityCouch;
+import com.mrcrayfish.furniture.tileentity.TileEntityKitchenCounter;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,29 +17,33 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+
 public class BlockCouchNormal extends BlockCouch
 {
     @Override
-    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand).withProperty(COLOUR, 15 - Math.max(0, meta));
-    }
-
-    @Override
-    public TileEntity createTileEntity(World world, IBlockState state)
-    {
-        TileEntity te = super.createTileEntity(world, state);
-        if(te instanceof TileEntityCouch)
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+        if(tileEntity instanceof TileEntityCouch)
         {
-            ((TileEntityCouch) te).setColour(state.getValue(COLOUR));
+            ((TileEntityCouch) tileEntity).setColour(15 - stack.getMetadata());
         }
-        return te;
     }
 
     @Override
-    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity tileEntity, ItemStack stack)
     {
-        drops.add(new ItemStack(this, 1, 15 - Math.max(0, state.getValue(COLOUR))));
+        if (tileEntity instanceof TileEntityCouch)
+        {
+            TileEntityCouch couch = (TileEntityCouch) tileEntity;
+            ItemStack itemstack = new ItemStack(this, 1, couch.getColour());
+            spawnAsEntity(worldIn, pos, itemstack);
+        }
+        else
+        {
+            super.harvestBlock(worldIn, player, pos, state, tileEntity, stack);
+        }
     }
 
     @Override
@@ -54,9 +59,10 @@ public class BlockCouchNormal extends BlockCouch
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         int metadata = 0;
-        if(world.getTileEntity(pos) instanceof TileEntityCouch)
+        TileEntity tileEntity = world.getTileEntity(pos);
+        if(tileEntity instanceof TileEntityCouch)
         {
-            metadata = ((TileEntityCouch) world.getTileEntity(pos)).getColour();
+            metadata = ((TileEntityCouch) tileEntity).getColour();
         }
         return new ItemStack(this, 1, metadata);
     }

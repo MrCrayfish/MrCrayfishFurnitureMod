@@ -1,11 +1,14 @@
 {
-"textures":{
-"particle":"#1"
-},
+    "textures": {
+        "particle": "blocks/log_oak",
+        "1": "blocks/log_oak",
+        "2": "blocks/concrete_black",
+        "3": "blocks/planks_oak"
+    },
 	"display": {
         "gui": {
             "rotation": [ 30, 135, 0 ],
-            "translation": [ 0, 0, 0],
+            "translation": [ 0, 1, 0],
             "scale":[ 0.625, 0.625, 0.625 ]
         },
         "ground": {

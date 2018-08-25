@@ -2,9 +2,10 @@
 	"forge_marker": 1,
 	"defaults": {
 		"textures": {
-			"1": "blocks/iron_block",
-			"2": "blocks/wool_colored_black",
-			"3": "blocks/stone"
+			"particle": "blocks/concrete_white",
+			"gray": "blocks/concrete_gray",
+			"silver": "blocks/concrete_silver",
+			"white": "blocks/concrete_white"
 		}
 	},
 	"variants": {

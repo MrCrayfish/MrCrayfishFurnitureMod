@@ -1,6 +1,6 @@
 {
-"parent": "cfm:block/fence_none",
-"textures": {
-"1": "blocks/quartz_block_bottom"
-}
+    "parent": "cfm:block/fence_none",
+    "textures": {
+        "1": "blocks/concrete_white"
+    }
 }

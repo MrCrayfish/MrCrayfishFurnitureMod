@@ -11,9 +11,7 @@ import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3i;
-import net.minecraftforge.client.model.animation.Animation;
 import net.minecraftforge.client.model.animation.FastTESR;
-import org.lwjgl.opengl.GL11;
 
 /**
  * Author: MrCrayfish
@@ -29,12 +27,15 @@ public class ModernSlidingDoorRenderer extends FastTESR<TileEntityModernSlidingD
             GlStateManager.enableCull();
             BlockPos pos = te.getPos();
             IBlockState state = te.getWorld().getBlockState(pos);
-            BlockRendererDispatcher rendererDispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
-            IBakedModel model = rendererDispatcher.getBlockModelShapes().getModelForState(state);
-            double slideProgress = te.getSlideProgress(partialTicks);
-            Vec3i vec = state.getValue(BlockModernSlidingDoor.FACING).rotateYCCW().getDirectionVec();
-            buffer.setTranslation(x - pos.getX() + slideProgress * vec.getX(), y - pos.getY(), z - pos.getZ() + slideProgress * vec.getZ());
-            rendererDispatcher.getBlockModelRenderer().renderModel(te.getWorld(), model, state, pos, buffer, true);
+            if(state.getPropertyKeys().contains(BlockModernSlidingDoor.FACING))
+            {
+                BlockRendererDispatcher rendererDispatcher = Minecraft.getMinecraft().getBlockRendererDispatcher();
+                IBakedModel model = rendererDispatcher.getBlockModelShapes().getModelForState(state);
+                double slideProgress = te.getSlideProgress(partialTicks);
+                Vec3i vec = state.getValue(BlockModernSlidingDoor.FACING).rotateYCCW().getDirectionVec();
+                buffer.setTranslation(x - pos.getX() + slideProgress * vec.getX(), y - pos.getY(), z - pos.getZ() + slideProgress * vec.getZ());
+                rendererDispatcher.getBlockModelRenderer().renderModel(te.getWorld(), model, state, pos, buffer, true);
+            }
         }
         GlStateManager.popMatrix();
     }

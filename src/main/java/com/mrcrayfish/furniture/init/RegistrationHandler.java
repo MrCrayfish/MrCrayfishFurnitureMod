@@ -120,7 +120,7 @@ public class RegistrationHandler
         @SubscribeEvent
         public static void registerItems(final RegistryEvent.Register<SoundEvent> event)
         {
-            SOUNDS.stream().forEach(sound -> event.getRegistry().register(sound));
+            SOUNDS.forEach(sound -> event.getRegistry().register(sound));
         }
     }
 

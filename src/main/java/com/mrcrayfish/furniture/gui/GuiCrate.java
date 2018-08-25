@@ -75,7 +75,7 @@ public class GuiCrate extends GuiContainer
         {
             PacketHandler.INSTANCE.sendToServer(new MessageSealCrate(x, y, z));
 
-            this.mc.displayGuiScreen((GuiScreen) null);
+            this.mc.displayGuiScreen(null);
 
             if(this.mc.currentScreen == null)
             {

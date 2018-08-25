@@ -1,10 +1,10 @@
 {
-"parent": "cfm:block/microwave",
-"textures": {
-"1": "blocks/iron_block",
-"2": "blocks/wool_colored_black",
-"3": "blocks/stone",
-"4": "blocks/glass_white",
-"5": "blocks/stone"
-}
+    "parent": "cfm:block/microwave",
+    "textures": {
+        "1": "blocks/concrete_white",
+        "2": "blocks/concrete_gray",
+        "3": "blocks/concrete_silver",
+        "4": "blocks/glass_white",
+        "5": "blocks/concrete_silver"
+    }
 }

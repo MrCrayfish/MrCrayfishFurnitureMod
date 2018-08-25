@@ -1,0 +1,25 @@
+{
+    "result": {
+        "item": "cfm:tv_remote"
+    },
+    "pattern": [
+        "ISI",
+        "IBI",
+        "IRI"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "I": {
+            "item": "minecraft:iron_ingot"
+        },
+        "S": {
+            "item": "minecraft:daylight_detector"
+        },
+        "B": {
+            "item": "minecraft:stone_button"
+        },
+        "R": {
+            "item": "minecraft:redstone_block"
+        }
+    }
+}

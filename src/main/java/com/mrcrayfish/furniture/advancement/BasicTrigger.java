@@ -19,7 +19,7 @@ import net.minecraft.util.ResourceLocation;
 public class BasicTrigger implements ICriterionTrigger, IModTrigger
 {
     private final ResourceLocation id;
-    private final Map<PlayerAdvancements, BasicTrigger.Listeners> listeners = Maps.<PlayerAdvancements, BasicTrigger.Listeners>newHashMap();
+    private final Map<PlayerAdvancements, BasicTrigger.Listeners> listeners = Maps.newHashMap();
 
     public BasicTrigger(String id)
     {
@@ -42,14 +42,7 @@ public class BasicTrigger implements ICriterionTrigger, IModTrigger
     @Override
     public void addListener(PlayerAdvancements playerAdvancementsIn, ICriterionTrigger.Listener listener)
     {
-        BasicTrigger.Listeners tameanimaltrigger$listeners = this.listeners.get(playerAdvancementsIn);
-
-        if(tameanimaltrigger$listeners == null)
-        {
-            tameanimaltrigger$listeners = new BasicTrigger.Listeners(playerAdvancementsIn);
-            this.listeners.put(playerAdvancementsIn, tameanimaltrigger$listeners);
-        }
-
+        BasicTrigger.Listeners tameanimaltrigger$listeners = this.listeners.computeIfAbsent(playerAdvancementsIn, Listeners::new);
         tameanimaltrigger$listeners.add(listener);
     }
 
@@ -91,7 +84,7 @@ public class BasicTrigger implements ICriterionTrigger, IModTrigger
     /**
      * Trigger.
      *
-     * @param parPlayer the player
+     * @param player the player
      */
     public void trigger(EntityPlayerMP player)
     {
@@ -128,7 +121,7 @@ public class BasicTrigger implements ICriterionTrigger, IModTrigger
     static class Listeners
     {
         private final PlayerAdvancements playerAdvancements;
-        private final Set<ICriterionTrigger.Listener> listeners = Sets.<ICriterionTrigger.Listener>newHashSet();
+        private final Set<ICriterionTrigger.Listener> listeners = Sets.newHashSet();
 
         /**
          * Instantiates a new listeners.

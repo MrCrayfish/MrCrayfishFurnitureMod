@@ -1,30 +1,11 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityTNTPrimed;
@@ -36,7 +17,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -74,7 +55,7 @@ public class BlockMailBox extends BlockFurnitureTile
             EntityPlayer player = (EntityPlayer) placer;
             if(!world.isRemote)
             {
-                player.sendMessage(new TextComponentString(I18n.format("cfm.message.mailbox_ownerrequest")));
+                player.sendMessage(new TextComponentTranslation("cfm.message.mailbox_ownerrequest"));
             }
         }
     }
@@ -91,7 +72,7 @@ public class BlockMailBox extends BlockFurnitureTile
                 if(!tileEntityMailBox.hasOwner())
                 {
                     tileEntityMailBox.setOwner(playerIn);
-                    playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.mailbox_ownerget", TextFormatting.YELLOW + playerIn.getName())));
+                    playerIn.sendMessage(new TextComponentTranslation("cfm.message.mailbox_ownerget", TextFormatting.YELLOW + playerIn.getName()));
                     TileEntityUtil.markBlockForUpdate(worldIn, pos);
                     return true;
                 }
@@ -104,7 +85,7 @@ public class BlockMailBox extends BlockFurnitureTile
                 }
                 else
                 {
-                    playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.mailbox_belong", TextFormatting.YELLOW + tileEntityMailBox.getOwner())));
+                    playerIn.sendMessage(new TextComponentTranslation("cfm.message.mailbox_belong", TextFormatting.YELLOW + tileEntityMailBox.getOwner()));
                 }
             }
         }
@@ -130,7 +111,7 @@ public class BlockMailBox extends BlockFurnitureTile
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
     {
-        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
     }
 
     @Override
