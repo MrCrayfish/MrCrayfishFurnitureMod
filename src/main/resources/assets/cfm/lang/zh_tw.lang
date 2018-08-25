@@ -24,6 +24,7 @@ item.item_kebab.name=生肉串
 item.item_kebab_cooked.name=烤肉串
 item.item_crow_bar.name=撬棍
 item.item_log.name=原木條
+item.tv_remote.name=電視機遙控器
 
 # Tile
 tile.table_oak.name=橡木桌
@@ -217,6 +218,22 @@ tile.counter_drawer_red.name=紅色廚房櫃檯抽屜
 tile.counter_drawer_black.name=黑色廚房櫃檯抽屜
 tile.dishwasher.name=洗碗機
 tile.cabinet_kitchen.name=櫥櫃
+tile.cabinet_kitchen_white.name=白色櫥櫃
+tile.cabinet_kitchen_orange.name=橙色櫥櫃
+tile.cabinet_kitchen_magenta.name=洋紅色櫥櫃
+tile.cabinet_kitchen_light_blue.name=淺藍色櫥櫃
+tile.cabinet_kitchen_yellow.name=黃色櫥櫃
+tile.cabinet_kitchen_lime.name=淺綠色櫥櫃
+tile.cabinet_kitchen_pink.name=粉紅色櫥櫃
+tile.cabinet_kitchen_gray.name=灰色櫥櫃
+tile.cabinet_kitchen_silver.name=淺灰色櫥櫃
+tile.cabinet_kitchen_cyan.name=青色櫥櫃
+tile.cabinet_kitchen_purple.name=紫色櫥櫃
+tile.cabinet_kitchen_blue.name=藍色櫥櫃
+tile.cabinet_kitchen_brown.name=棕色櫥櫃
+tile.cabinet_kitchen_green.name=綠色櫥櫃
+tile.cabinet_kitchen_red.name=紅色櫥櫃
+tile.cabinet_kitchen_black.name=黑色櫥櫃
 tile.bar_stool.name=酒吧椅
 tile.bar_stool_white.name=白色酒吧椅
 tile.bar_stool_orange.name=橙色酒吧椅
@@ -325,13 +342,15 @@ cfm.light_switch.how_to=要將開關與吊燈連接，只需要手持開關並�
 
 # Info New
 cfm.info=按住Shift以顯示資訊
-cfm.light_switch.desc=使用這個開關以無線控制吊燈和吊扇。
+cfm.light_switch.desc=使用這個開關以無線的方式控制吊燈和吊扇。
 cfm.light_switch.info=要將開關與吊燈／吊扇連接，只需要手持開關並右鍵點擊吊燈／吊扇。\n要將開關與吊燈／吊扇解除連接，需要蹲下並右鍵點擊空氣以清除所有連接。
 cfm.desk.info=這張書桌可以連接其他書桌以創建你想要的任何形狀和長度，也可以與書桌櫃連接。
 cfm.desk_cabinet.info=這張書桌櫃可以連接其他書桌櫃以創建你想要的任何形狀和長度，也可以與書桌連接。
 cfm.mail_signed.info=來自%s
 cfm.present_unsigned.info=未署名
 cfm.digital_clock.info=會以24小時格式顯示世界的時間。顯示器可以使用染料變更著色。
+cfm.tv_remote.info=允許你以無線的方式控制電視機。\n要變更電視機的頻道，只需要指向電視機並且右鍵點擊。\n要開關電視機，需要指向電視機、蹲下並且右鍵點擊。
+
 cfm.tv.success=成功下載GIF檔案
 cfm.tv.failed=無法下載檔案
 cfm.tv.unknown_file=連結不是一個GIF檔案
