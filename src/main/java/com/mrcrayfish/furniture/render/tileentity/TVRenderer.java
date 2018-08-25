@@ -34,6 +34,9 @@ public class TVRenderer extends TileEntitySpecialRenderer<TileEntityTV>
     @Override
     public void render(TileEntityTV te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
+        if(!te.isPowered())
+            return;
+
         GlStateManager.pushMatrix();
         {
             BlockPos pos = te.getPos();
@@ -114,7 +117,7 @@ public class TVRenderer extends TileEntitySpecialRenderer<TileEntityTV>
                 }
                 else if(te.isLoaded())
                 {
-                    AnimatedTexture texture = GifCache.INSTANCE.get(te.getUrl());
+                    AnimatedTexture texture = GifCache.INSTANCE.get(te.getCurrentChannel());
                     if(texture != null)
                     {
                         texture.bind();

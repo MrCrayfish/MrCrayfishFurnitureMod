@@ -1,0 +1,25 @@
+{
+    "result": {
+        "item": "cfm:counter_sink",
+        "data": 14
+    },
+    "pattern": [
+        "TST",
+        "CCC",
+        "CCC"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "C": {
+            "item": "minecraft:concrete",
+            "data": 0
+        },
+        "T": {
+            "item": "minecraft:stained_hardened_clay",
+            "data": 14
+        },
+        "S": {
+            "item": "cfm:basin"
+        }
+    }
+}

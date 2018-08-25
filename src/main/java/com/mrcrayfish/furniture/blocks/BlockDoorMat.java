@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.blocks;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.tileentity.TileEntityCouch;
 import com.mrcrayfish.furniture.tileentity.TileEntityDoorMat;
+import com.mrcrayfish.furniture.tileentity.TileEntityKitchenCounter;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
@@ -25,6 +26,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public class BlockDoorMat extends BlockFurniture implements ITileEntityProvider
 {
@@ -53,6 +56,11 @@ public class BlockDoorMat extends BlockFurniture implements ITileEntityProvider
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+        if(tileEntity instanceof TileEntityDoorMat)
+        {
+            ((TileEntityDoorMat) tileEntity).setColour(15 - stack.getMetadata());
+        }
         if(placer instanceof EntityPlayer)
         {
             ((EntityPlayer) placer).openGui(MrCrayfishFurnitureMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
@@ -90,26 +98,18 @@ public class BlockDoorMat extends BlockFurniture implements ITileEntityProvider
     }
 
     @Override
-    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
+    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity tileEntity, ItemStack stack)
     {
-        return super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer, hand).withProperty(COLOUR, 15 - Math.max(0, meta));
-    }
-
-    @Override
-    public TileEntity createTileEntity(World world, IBlockState state)
-    {
-        TileEntity te = super.createTileEntity(world, state);
-        if(te instanceof TileEntityDoorMat)
+        if (tileEntity instanceof TileEntityDoorMat)
         {
-            ((TileEntityDoorMat) te).setColour(state.getValue(COLOUR));
+            TileEntityDoorMat doorMat = (TileEntityDoorMat) tileEntity;
+            ItemStack itemstack = new ItemStack(this, 1, doorMat.getColour());
+            spawnAsEntity(worldIn, pos, itemstack);
         }
-        return te;
-    }
-
-    @Override
-    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
-    {
-        drops.add(new ItemStack(this, 1, 15 - Math.max(0, state.getValue(COLOUR))));
+        else
+        {
+            super.harvestBlock(worldIn, player, pos, state, tileEntity, stack);
+        }
     }
 
     @Override

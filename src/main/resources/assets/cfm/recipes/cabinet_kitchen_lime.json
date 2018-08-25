@@ -1,0 +1,25 @@
+{
+    "result": {
+        "item": "cfm:cabinet_kitchen",
+        "data": 5
+    },
+    "pattern": [
+        "QQQ",
+        "HCH",
+        "QQQ"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "Q": {
+            "item": "minecraft:concrete",
+            "data": 0
+        },
+        "C": {
+            "item": "minecraft:chest"
+        },
+        "H": {
+            "item": "minecraft:stained_hardened_clay",
+            "data": 5
+        }
+    }
+}

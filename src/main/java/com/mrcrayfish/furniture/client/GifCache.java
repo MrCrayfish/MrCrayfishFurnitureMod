@@ -49,6 +49,9 @@ public final class GifCache
     @Nullable
     public AnimatedTexture get(String url)
     {
+        if(url == null)
+            return null;
+
         synchronized(this)
         {
             AnimatedTexture texture = cacheMap.get(url);

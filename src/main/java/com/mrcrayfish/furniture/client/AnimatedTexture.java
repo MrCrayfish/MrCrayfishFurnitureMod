@@ -13,12 +13,21 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 
 /**
  * Author: MrCrayfish
  */
 public class AnimatedTexture
 {
+    private static final ExecutorService THREAD_SERVICE = Executors.newCachedThreadPool(r -> {
+        Thread thread = new Thread(r);
+        thread.setName("TV File I/O");
+        return thread;
+    });
+
     private List<ByteBuffer> framesTextureData = Lists.newArrayList();
     private int frameCounter;
     private int textureId = -1;
@@ -32,37 +41,40 @@ public class AnimatedTexture
     public void load(File file)
     {
         framesTextureData.clear();
-        try
+        THREAD_SERVICE.submit(() ->
         {
-            FileInputStream inputStream = new FileInputStream(file);
-            GifDecoder.GifImage decoder = GifDecoder.read(inputStream);
-            this.width = decoder.getWidth();
-            this.height = decoder.getHeight();
-
-            int frameCount = decoder.getFrameCount();
-            for(int i = 0; i < frameCount; i++)
+            try
             {
-                BufferedImage image = parseFrame(decoder.getFrame(i));
-                int[] imageData = new int[this.width * this.height];
-                image.getRGB(0, 0, this.width, this.height, imageData, 0, this.width);
-                framesTextureData.add(createBuffer(imageData));
+                FileInputStream inputStream = new FileInputStream(file);
+                GifDecoder.GifImage decoder = GifDecoder.read(inputStream);
+                this.width = decoder.getWidth();
+                this.height = decoder.getHeight();
+
+                int frameCount = decoder.getFrameCount();
+                for(int i = 0; i < frameCount; i++)
+                {
+                    BufferedImage image = parseFrame(decoder.getFrame(i));
+                    int[] imageData = new int[this.width * this.height];
+                    image.getRGB(0, 0, this.width, this.height, imageData, 0, this.width);
+                    framesTextureData.add(createBuffer(imageData));
+                }
             }
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void update()
     {
         if(framesTextureData.size() > 0)
         {
-            if(++frameCounter >= framesTextureData.size())
+            if(++frameCounter >= framesTextureData.size() * 2)
             {
                 frameCounter = 0;
             }
-            ByteBuffer buffer = framesTextureData.get(frameCounter);
+            ByteBuffer buffer = framesTextureData.get(frameCounter / 2);
             GL11.glBindTexture(GL11.GL_TEXTURE_2D, getTextureId());
             GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, width, height, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, buffer);
         }
@@ -143,10 +155,5 @@ public class AnimatedTexture
     public int getHeight()
     {
         return height;
-    }
-
-    public static void main(String[] args)
-    {
-        AnimatedTexture animatedTexture = new AnimatedTexture(new File("C:\\Users\\Casey\\Desktop\\alien.gif"));
     }
 }
