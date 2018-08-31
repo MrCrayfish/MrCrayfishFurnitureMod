@@ -58,6 +58,7 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityModernSlidingDoor.class, new ModernSlidingDoorRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDigitalClock.class, new DigitalClockRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTV.class, new TVRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCoffeeTable.class, new CoffeeTableRenderer());
 
         MinecraftForge.EVENT_BUS.register(GifCache.INSTANCE);
     }
