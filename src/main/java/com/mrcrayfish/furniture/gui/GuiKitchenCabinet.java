@@ -29,7 +29,7 @@ public class GuiKitchenCabinet extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        this.fontRenderer.drawString(I18n.format("tile.cabinet_kitchen.name"), (this.xSize / 2) - 44, 6, 4210752);
+        this.fontRenderer.drawString(I18n.format("container.cabinet_kitchen"), (this.xSize / 2) - 44, 6, 4210752);
         this.fontRenderer.drawString(I18n.format("container.inventory"), 8, this.ySize - 94, 4210752);
     }
 

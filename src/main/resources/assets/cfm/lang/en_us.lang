@@ -342,6 +342,7 @@ cfm.tv.unknown_file=URL is not a GIF
 cfm.tv.too_large=Cannot load GIFs larger than 2MB
 
 container.cabinet=Cabinet
+container.cabinet_kitchen=Kitchen Cabinet
 container.bedside_cabinet=Bedside Cabinet
 container.desk_cabinet=Desk Cabinet
 container.kitchen_counter_drawer=Kitchen Counter Drawer
