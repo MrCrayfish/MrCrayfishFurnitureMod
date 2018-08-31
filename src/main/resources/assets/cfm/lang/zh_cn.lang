@@ -23,6 +23,9 @@ item.item_kebab_cooked.name=烤肉串
 item.item_crow_bar.name=撬棍
 item.item_log.name=原木条
 item.tv_remote.name=电视遥控器
+item.item_drink.name=未命名饮料
+item.item_crayfish.name=MrCrayfish 图标
+item.ceiling_fan_fans.name=吊扇扇叶
 
 tile.table_oak.name=橡木桌
 tile.table_spruce.name=云杉木桌
