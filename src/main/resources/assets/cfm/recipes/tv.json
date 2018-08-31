@@ -1,23 +1,22 @@
 {
-  "result": {
-    "item": "cfm:tv"
-  },
-  "pattern": [
-    "LLL",
-    "LGL",
-    "LRL"
-  ],
-  "type": "minecraft:crafting_shaped",
-  "key": {
-    "G": {
-      "item": "minecraft:glass_pane"
+    "result": {
+        "item": "cfm:tv"
     },
-    "R": {
-      "item": "minecraft:redstone"
-    },
-    "L": {
-      "item": "minecraft:log",
-      "data": 0
+    "pattern": [
+        "LLL",
+        "LGL",
+        "LRL"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "G": {
+            "item": "minecraft:glass_pane"
+        },
+        "R": {
+            "item": "minecraft:redstone"
+        },
+        "L": {
+            "item": "minecraft:iron_ingot"
+        }
     }
-  }
 }
