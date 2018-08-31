@@ -1,6 +1,6 @@
 {
     "result": {
-        "item": "cfm:door_bell"
+        "item": "cfm:door_bell_acacia"
     },
     "ingredients": [
         {
@@ -10,7 +10,7 @@
             "item": "minecraft:stone_button"
         },
         {
-            "item": "minecraft:log",
+            "item": "minecraft:log2",
             "data": 0
         }
     ],

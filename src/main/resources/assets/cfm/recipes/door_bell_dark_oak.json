@@ -1,6 +1,6 @@
 {
     "result": {
-        "item": "cfm:door_bell"
+        "item": "cfm:door_bell_dark_oak"
     },
     "ingredients": [
         {
@@ -10,8 +10,8 @@
             "item": "minecraft:stone_button"
         },
         {
-            "item": "minecraft:log",
-            "data": 0
+            "item": "minecraft:log2",
+            "data": 1
         }
     ],
     "type": "minecraft:crafting_shapeless"
