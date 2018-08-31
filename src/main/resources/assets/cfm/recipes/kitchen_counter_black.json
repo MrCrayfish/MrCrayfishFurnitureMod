@@ -1,0 +1,22 @@
+{
+  "result": {
+    "item": "cfm:counter",
+    "data": 15
+  },
+  "pattern": [
+    "TTT",
+    "CCC",
+    "CCC"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "minecraft:concrete",
+      "data": 0
+    },
+    "T": {
+      "item": "minecraft:stained_hardened_clay",
+      "data": 15
+    }
+  }
+}
