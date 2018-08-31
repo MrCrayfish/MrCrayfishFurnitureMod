@@ -1,0 +1,6 @@
+{
+	"parent": "cfm:block/esky_closed",
+	"textures": {
+		"0": "blocks/hardened_clay_stained_red"
+	}
+}
