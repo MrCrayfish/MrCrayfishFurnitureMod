@@ -1,0 +1,25 @@
+{
+    "result": {
+        "item": "cfm:counter_drawer",
+        "data": 0
+    },
+    "pattern": [
+        "CCC",
+        "QSQ",
+        "QQQ"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "Q": {
+            "item": "minecraft:concrete",
+            "data": 0
+        },
+        "C": {
+            "item": "minecraft:stained_hardened_clay",
+            "data": 0
+        },
+        "S": {
+            "item": "minecraft:chest"
+        }
+    }
+}

@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
@@ -27,7 +10,6 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -35,7 +17,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -93,15 +75,15 @@ public class BlockCeilingLight extends Block implements IPowered
                 if(mode == Mode.RIGHT_CLICK)
                 {
                     worldIn.setBlockState(pos, state.withProperty(MODE, Mode.REDSTONE));
-                    playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.ceiling_light.mode1")));
+                    playerIn.sendMessage(new TextComponentTranslation("cfm.message.ceiling_light.mode1"));
                 }
                 else
                 {
                     worldIn.setBlockState(pos, state.withProperty(MODE, Mode.RIGHT_CLICK));
-                    playerIn.sendMessage(new TextComponentString(I18n.format("cfm.message.ceiling_light.mode2")));
+                    playerIn.sendMessage(new TextComponentTranslation("cfm.message.ceiling_light.mode2"));
                 }
             }
-            else if(((Mode) state.getValue(MODE)) == Mode.RIGHT_CLICK)
+            else if(state.getValue(MODE) == Mode.RIGHT_CLICK)
             {
                 if(this == FurnitureBlocks.CEILING_LIGHT_ON)
                 {
@@ -126,7 +108,7 @@ public class BlockCeilingLight extends Block implements IPowered
             return;
         }
 
-        if(((Mode) state.getValue(MODE)) == Mode.REDSTONE)
+        if(state.getValue(MODE) == Mode.REDSTONE)
         {
             if(worldIn.isBlockPowered(pos))
             {
@@ -153,7 +135,7 @@ public class BlockCeilingLight extends Block implements IPowered
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return (Mode) state.getValue(MODE) == Mode.REDSTONE ? 1 : 0;
+        return state.getValue(MODE) == Mode.REDSTONE ? 1 : 0;
     }
 
     @Override
@@ -165,7 +147,7 @@ public class BlockCeilingLight extends Block implements IPowered
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[]{MODE});
+        return new BlockStateContainer(this, MODE);
     }
 
     @SideOnly(Side.CLIENT)

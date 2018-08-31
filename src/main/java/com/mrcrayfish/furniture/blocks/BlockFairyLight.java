@@ -54,7 +54,6 @@ public class BlockFairyLight extends BlockFurniture
         {
             this.dropBlockAsItem(world, pos, state, 0);
             world.setBlockToAir(pos);
-            return;
         }
     }
 
@@ -92,7 +91,7 @@ public class BlockFairyLight extends BlockFurniture
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[]{FACING, TYPE});
+        return new BlockStateContainer(this, FACING, TYPE);
     }
 
     @SideOnly(Side.CLIENT)

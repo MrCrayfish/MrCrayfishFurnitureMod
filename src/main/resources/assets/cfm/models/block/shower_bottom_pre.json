@@ -1,7 +1,7 @@
 {
-"parent": "cfm:block/shower_bottom",
-"textures": {
-"1": "blocks/quartz_block_side",
-"2": "blocks/glass"
-}
+    "parent": "cfm:block/shower_bottom",
+    "textures": {
+        "1": "blocks/concrete_white",
+        "2": "blocks/glass"
+    }
 }

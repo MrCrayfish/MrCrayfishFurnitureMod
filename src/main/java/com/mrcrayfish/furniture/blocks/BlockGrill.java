@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -59,7 +60,7 @@ public class BlockGrill extends BlockFurnitureTile
         List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
         for(AxisAlignedBB box : list)
         {
-            super.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
         }
     }
 
@@ -76,19 +77,19 @@ public class BlockGrill extends BlockFurnitureTile
                 {
                     double posX = 0.2D + 0.6D * RANDOM.nextDouble();
                     double posZ = 0.2D + 0.6D * RANDOM.nextDouble();
-                    worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + posX, pos.getY() + 1.0D, pos.getZ() + posZ, 0.0D, 0.0D, 0.0D, new int[0]);
+                    worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + posX, pos.getY() + 1.0D, pos.getZ() + posZ, 0.0D, 0.0D, 0.0D);
                 }
                 if(tileEntityGrill.leftCooked && tileEntityGrill.getItem(0) != null && RecipeAPI.getGrillRecipeFromInput(tileEntityGrill.getItem(0)) != null)
                 {
                     int meta = getMetaFromState(state);
                     float[] leftFixed = ParticleHelper.fixRotation(meta, 0.5F, 0.25F);
-                    worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + leftFixed[0], pos.getY() + 1.0D, pos.getZ() + leftFixed[1], 0.0D, 0.0D, 0.0D, new int[0]);
+                    worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + leftFixed[0], pos.getY() + 1.0D, pos.getZ() + leftFixed[1], 0.0D, 0.0D, 0.0D);
                 }
                 if(tileEntityGrill.rightCooked && tileEntityGrill.getItem(1) != null && RecipeAPI.getGrillRecipeFromInput(tileEntityGrill.getItem(1)) != null)
                 {
                     int meta = getMetaFromState(state);
                     float[] rightFixed = ParticleHelper.fixRotation(meta, 0.5F, 0.75F);
-                    worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + rightFixed[0], pos.getY() + 1.0D, pos.getZ() + rightFixed[1], 0.0D, 0.0D, 0.0D, new int[0]);
+                    worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + rightFixed[0], pos.getY() + 1.0D, pos.getZ() + rightFixed[1], 0.0D, 0.0D, 0.0D);
                 }
             }
         }
@@ -195,15 +196,12 @@ public class BlockGrill extends BlockFurnitureTile
 
     private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
     {
-        List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
+        List<AxisAlignedBB> list = Lists.newArrayList();
         EnumFacing facing = state.getValue(FACING);
 
         list.add(TOP[facing.getHorizontalIndex()]);
         list.add(GRILL[facing.getHorizontalIndex()]);
-        for(int i = 0; i < 4; i++)
-        {
-            list.add(LEGS[facing.getHorizontalIndex() * 4 + i]);
-        }
+        list.addAll(Arrays.asList(LEGS).subList(facing.getHorizontalIndex() * 4, 4 + facing.getHorizontalIndex() * 4));
 
         return list;
     }
@@ -211,7 +209,7 @@ public class BlockGrill extends BlockFurnitureTile
     @Override
     public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
     {
-        List<RayTraceResult> list = Lists.<RayTraceResult>newArrayList();
+        List<RayTraceResult> list = Lists.newArrayList();
 
         for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos)))
         {

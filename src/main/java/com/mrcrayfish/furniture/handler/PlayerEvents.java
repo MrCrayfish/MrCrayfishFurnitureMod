@@ -1,30 +1,13 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.handler;
 
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
 
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.event.ClickEvent;
 import net.minecraft.util.text.event.HoverEvent;
@@ -37,52 +20,52 @@ import java.util.Random;
 
 public class PlayerEvents
 {
-    private final String PREFIX = "-> ";
+    private final String PREFIX = TextFormatting.GOLD + "-> ";
 
     @SubscribeEvent
     public void onPlayerLogin(PlayerLoggedInEvent e)
     {
-        EntityPlayer player = (EntityPlayer) e.player;
+        EntityPlayer player = e.player;
         if(ConfigurationHandler.canDisplay)
         {
             if(!player.world.isRemote)
             {
                 if(!ConfigurationHandler.hasDisplayedOnce)
                 {
-                    TextComponentString prefix = new TextComponentString(TextFormatting.GOLD + I18n.format("cfm.message.login1"));
-                    prefix.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentString(I18n.format("cfm.message.login1.info"))));
+                    TextComponentTranslation prefix = new TextComponentTranslation("cfm.message.login1");
+                    prefix.getStyle().setColor(TextFormatting.GOLD);
+                    prefix.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentTranslation("cfm.message.login1.info")));
                     player.sendMessage(prefix);
 
                     TextComponentString url;
                     Random rand = new Random();
-                    switch(rand.nextInt(4))
+                    int r = rand.nextInt(4);
+                    String login = new TextComponentTranslation("cfm.message.login" + (r + 2)).getUnformattedComponentText();
+                    player.sendMessage(new TextComponentString(PREFIX + TextFormatting.GREEN + login));
+                    switch(r)
                     {
                         case 0:
-                            player.sendMessage(new TextComponentString(TextFormatting.GOLD + PREFIX + TextFormatting.GREEN + I18n.format("cfm.message.login2")));
-                            url = new TextComponentString(TextFormatting.GOLD + PREFIX + TextFormatting.RESET + "mrcrayfish.com");
+                            url = new TextComponentString(PREFIX + TextFormatting.RESET + "mrcrayfish.com");
                             url.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://mrcrayfish.com/mods"));
-                            url.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentString(I18n.format("cfm.message.login2.info"))));
+                            url.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentTranslation("cfm.message.login2.info")));
                             player.sendMessage(url);
                             break;
                         case 1:
-                            player.sendMessage(new TextComponentString(TextFormatting.GOLD + PREFIX + TextFormatting.GREEN + I18n.format("cfm.message.login3")));
-                            url = new TextComponentString(TextFormatting.GOLD + PREFIX + TextFormatting.RESET + "mrcrayfishs-furniture-mod.wikia.com");
+                            url = new TextComponentString(PREFIX + TextFormatting.RESET + "mrcrayfishs-furniture-mod.wikia.com");
                             url.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "http://mrcrayfishs-furniture-mod.wikia.com/"));
-                            url.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentString(I18n.format("cfm.message.login2.info"))));
+                            url.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentTranslation("cfm.message.login2.info")));
                             player.sendMessage(url);
                             break;
                         case 2:
-                            player.sendMessage(new TextComponentString(TextFormatting.GOLD + PREFIX + TextFormatting.GREEN + I18n.format("cfm.message.login4")));
-                            url = new TextComponentString(TextFormatting.GOLD + PREFIX + TextFormatting.RESET + "youtube.com/user/MrCrayfishMinecraft");
+                            url = new TextComponentString(PREFIX + TextFormatting.RESET + "youtube.com/user/MrCrayfishMinecraft");
                             url.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.youtube.com/user/MrCrayfishMinecraft"));
-                            url.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentString(I18n.format("cfm.message.login2.info"))));
+                            url.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentTranslation("cfm.message.login2.info")));
                             player.sendMessage(url);
                             break;
                         case 3:
-                            player.sendMessage(new TextComponentString(TextFormatting.GOLD + PREFIX + TextFormatting.GREEN + I18n.format("cfm.message.login5")));
-                            url = new TextComponentString(TextFormatting.GOLD + PREFIX + TextFormatting.RESET + "mrcrayfish.com/furniture-comm-edition");
+                            url = new TextComponentString(PREFIX + TextFormatting.RESET + "mrcrayfish.com/furniture-comm-edition");
                             url.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://mrcrayfish.com/furniture-comm-edition"));
-                            url.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentString(I18n.format("cfm.message.login2.info"))));
+                            url.getStyle().setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponentTranslation("cfm.message.login2.info")));
                             player.sendMessage(url);
                             break;
                     }
@@ -106,7 +89,8 @@ public class PlayerEvents
             {
                 if(!player.world.isRemote)
                 {
-                    player.sendMessage(new TextComponentString(TextFormatting.RED + I18n.format("cfm.message.mailbox_break")));
+                    String nobreak = new TextComponentTranslation("cfm.message.mailbox_break").getUnformattedComponentText();
+                    player.sendMessage(new TextComponentString(TextFormatting.RED + nobreak));
                     event.setCanceled(true);
                 }
             }

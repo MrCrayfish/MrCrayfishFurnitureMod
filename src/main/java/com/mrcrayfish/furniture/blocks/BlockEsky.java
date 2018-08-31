@@ -43,7 +43,7 @@ public class BlockEsky extends BlockFurnitureTile
     {
         super(material);
         this.setHardness(0.75F);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(OPENED, Boolean.valueOf(false)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(OPENED, Boolean.FALSE));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
     }
 
@@ -58,7 +58,7 @@ public class BlockEsky extends BlockFurnitureTile
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
     {
         EnumFacing facing = state.getValue(FACING);
-        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX[facing.getHorizontalIndex()]);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX[facing.getHorizontalIndex()]);
     }
 
     @Override
@@ -96,25 +96,25 @@ public class BlockEsky extends BlockFurnitureTile
     public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
         IBlockState state = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
-        return state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(OPENED, Boolean.valueOf(false));
+        return state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(OPENED, Boolean.FALSE);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        return ((EnumFacing) state.getValue(FACING)).getHorizontalIndex() + (state.getValue(OPENED) ? 4 : 0);
+        return state.getValue(FACING).getHorizontalIndex() + (state.getValue(OPENED) ? 4 : 0);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta % 4)).withProperty(OPENED, Boolean.valueOf(meta / 4 > 0));
+        return this.getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta % 4)).withProperty(OPENED, meta / 4 > 0);
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[]{FACING, OPENED});
+        return new BlockStateContainer(this, FACING, OPENED);
     }
 
     @Override

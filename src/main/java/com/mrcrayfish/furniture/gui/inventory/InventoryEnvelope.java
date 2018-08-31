@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.gui.inventory;
 
 import com.mrcrayfish.furniture.init.FurnitureItems;
@@ -26,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class InventoryEnvelope extends InventoryBasic
@@ -34,14 +18,13 @@ public class InventoryEnvelope extends InventoryBasic
     protected static ItemStack envelope;
     protected boolean reading = false;
     protected String uniqueID = "";
-    ;
 
     public InventoryEnvelope(EntityPlayer player, ItemStack envelope)
     {
         super("Envelope", false, getInventorySize());
 
         this.playerEntity = player;
-        this.envelope = envelope;
+        InventoryEnvelope.envelope = envelope;
 
         if(!hasInventory())
         {
@@ -107,7 +90,7 @@ public class InventoryEnvelope extends InventoryBasic
                 NBTTagCompound nbt = itemStack.getTagCompound();
                 if(nbt != null)
                 {
-                    if(nbt.getCompoundTag("Envelope").getString("UniqueID") == uniqueID)
+                    if(Objects.equals(nbt.getCompoundTag("Envelope").getString("UniqueID"), uniqueID))
                     {
                         itemStack.setTagCompound(envelope.getTagCompound());
                         break;
@@ -148,7 +131,7 @@ public class InventoryEnvelope extends InventoryBasic
         NBTTagList itemList = (NBTTagList) NBTHelper.getCompoundTag(envelope, "Envelope").getTag("Items");
         for(int i = 0; i < itemList.tagCount(); i++)
         {
-            NBTTagCompound slotEntry = (NBTTagCompound) itemList.getCompoundTagAt(i);
+            NBTTagCompound slotEntry = itemList.getCompoundTagAt(i);
             int j = slotEntry.getByte("Slot") & 0xff;
 
             if(j >= 0 && j < getSizeInventory())

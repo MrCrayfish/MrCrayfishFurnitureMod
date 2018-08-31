@@ -1,0 +1,69 @@
+{
+    "textures": {
+        "particle": "blocks/concrete_white",
+        "bottom": "blocks/concrete_white",
+        "top": "blocks/concrete_gray"
+    },
+    "elements": [
+        {
+            "from": [ 2.0, 0.0, 2.0 ],
+            "to": [ 16.0, 14.0, 16.0 ],
+            "faces": {
+                "up": {
+                    "uv": [ 2.0, 2.0, 16.0, 16.0 ],
+                    "texture": "#bottom"
+                },
+                "down": {
+                    "uv": [ 2.0, 2.0, 16.0, 16.0 ],
+                    "texture": "#bottom"
+                },
+                "north": {
+                    "uv": [ 2.0, 0.0, 16.0, 14.0 ],
+                    "texture": "#bottom"
+                },
+                "south": {
+                    "uv": [ 2.0, 0.0, 16.0, 14.0 ],
+                    "texture": "#bottom"
+                },
+                "west": {
+                    "uv": [ 2.0, 0.0, 16.0, 14.0 ],
+                    "texture": "#bottom"
+                },
+                "east": {
+                    "uv": [ 2.0, 0.0, 16.0, 14.0 ],
+                    "texture": "#bottom"
+                }
+            }
+        },
+        {
+            "from": [ 0.0, 14.0, 0.0 ],
+            "to": [ 16.0, 16.0, 16.0 ],
+            "faces": {
+                "up": {
+                    "uv": [ 0.0, 0.0, 16.0, 16.0 ],
+                    "texture": "#top"
+                },
+                "down": {
+                    "uv": [ 0.0, 0.0, 16.0, 16.0 ],
+                    "texture": "#top"
+                },
+                "north": {
+                    "uv": [ 0.0, 14.0, 16.0, 16.0 ],
+                    "texture": "#top"
+                },
+                "south": {
+                    "uv": [ 0.0, 14.0, 16.0, 16.0 ],
+                    "texture": "#top"
+                },
+                "west": {
+                    "uv": [ 0.0, 14.0, 16.0, 16.0 ],
+                    "texture": "#top"
+                },
+                "east": {
+                    "uv": [ 0.0, 14.0, 16.0, 16.0 ],
+                    "texture": "#top"
+                }
+            }
+        }
+    ]
+}

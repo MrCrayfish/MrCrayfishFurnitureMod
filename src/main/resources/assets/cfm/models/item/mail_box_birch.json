@@ -1,0 +1,7 @@
+{
+	"parent": "cfm:block/mail_box",
+	"textures": {
+		"primary": "blocks/planks_birch",
+		"secondary": "blocks/log_birch"
+	}
+}

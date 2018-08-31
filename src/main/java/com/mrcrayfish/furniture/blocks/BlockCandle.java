@@ -3,7 +3,6 @@ package com.mrcrayfish.furniture.blocks;
 import java.util.List;
 import java.util.Random;
 
-import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 
 import net.minecraft.block.Block;
@@ -16,8 +15,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -59,21 +56,21 @@ public class BlockCandle extends Block
     @SideOnly(Side.CLIENT)
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
     {
-        worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + (7.95 * 0.0625), pos.getY() + 1.45, pos.getZ() + (7.95 * 0.0625), 0.0D, 0.0D, 0.0D, new int[0]);
-        worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + (7.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (12.95 * 0.0625), 0.0D, 0.0D, 0.0D, new int[0]);
-        worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + (7.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (2.95 * 0.0625), 0.0D, 0.0D, 0.0D, new int[0]);
-        worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + (12.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (7.95 * 0.0625), 0.0D, 0.0D, 0.0D, new int[0]);
-        worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + (2.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (7.95 * 0.0625), 0.0D, 0.0D, 0.0D, new int[0]);
+        worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + (7.95 * 0.0625), pos.getY() + 1.45, pos.getZ() + (7.95 * 0.0625), 0.0D, 0.0D, 0.0D);
+        worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + (7.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (12.95 * 0.0625), 0.0D, 0.0D, 0.0D);
+        worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + (7.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (2.95 * 0.0625), 0.0D, 0.0D, 0.0D);
+        worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + (12.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (7.95 * 0.0625), 0.0D, 0.0D, 0.0D);
+        worldIn.spawnParticle(EnumParticleTypes.FLAME, pos.getX() + (2.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (7.95 * 0.0625), 0.0D, 0.0D, 0.0D);
 
         if(rand.nextBoolean())
         {
             double xRand = 0.001D * (rand.nextInt(4) - 2);
             double zRand = 0.001D * (rand.nextInt(4) - 2);
-            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + (7.95 * 0.0625), pos.getY() + 1.45, pos.getZ() + (7.95 * 0.0625), xRand + (rand.nextInt(3) - 1) * 0.01, 0.01D, zRand + (rand.nextInt(3) - 1) * 0.01, new int[0]);
-            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + (7.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (12.95 * 0.0625), xRand + (rand.nextInt(3) - 1) * 0.01, 0.01D, zRand + (rand.nextInt(3) - 1) * 0.01, new int[0]);
-            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + (7.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (2.95 * 0.0625), xRand + (rand.nextInt(3) - 1) * 0.01, 0.01D, zRand + (rand.nextInt(3) - 1) * 0.01, new int[0]);
-            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + (12.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (7.95 * 0.0625), xRand + (rand.nextInt(3) - 1) * 0.01, 0.01D, zRand + (rand.nextInt(3) - 1) * 0.01, new int[0]);
-            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + (2.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (7.95 * 0.0625), xRand + (rand.nextInt(3) - 1) * 0.01, 0.01D, zRand + (rand.nextInt(3) - 1) * 0.01, new int[0]);
+            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + (7.95 * 0.0625), pos.getY() + 1.45, pos.getZ() + (7.95 * 0.0625), xRand + (rand.nextInt(3) - 1) * 0.01, 0.01D, zRand + (rand.nextInt(3) - 1) * 0.01);
+            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + (7.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (12.95 * 0.0625), xRand + (rand.nextInt(3) - 1) * 0.01, 0.01D, zRand + (rand.nextInt(3) - 1) * 0.01);
+            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + (7.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (2.95 * 0.0625), xRand + (rand.nextInt(3) - 1) * 0.01, 0.01D, zRand + (rand.nextInt(3) - 1) * 0.01);
+            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + (12.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (7.95 * 0.0625), xRand + (rand.nextInt(3) - 1) * 0.01, 0.01D, zRand + (rand.nextInt(3) - 1) * 0.01);
+            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + (2.95 * 0.0625), pos.getY() + 1.2, pos.getZ() + (7.95 * 0.0625), xRand + (rand.nextInt(3) - 1) * 0.01, 0.01D, zRand + (rand.nextInt(3) - 1) * 0.01);
         }
     }
 
@@ -86,14 +83,14 @@ public class BlockCandle extends Block
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
     {
-        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOTTOM_LIP);
-        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOTTOM);
-        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, CENTER_PILLAR);
-        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, CROSS_1);
-        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, CROSS_2);
-        for(int i = 0; i < CANDLES.length; i++)
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOTTOM_LIP);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOTTOM);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, CENTER_PILLAR);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, CROSS_1);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, CROSS_2);
+        for(AxisAlignedBB CANDLE : CANDLES)
         {
-            super.addCollisionBoxToList(pos, entityBox, collidingBoxes, CANDLES[i]);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, CANDLE);
         }
     }
 

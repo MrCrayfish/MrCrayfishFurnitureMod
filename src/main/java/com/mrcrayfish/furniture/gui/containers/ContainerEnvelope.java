@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.gui.containers;
 
 import com.mrcrayfish.furniture.gui.slots.SlotEnvelope;
@@ -50,8 +33,8 @@ public class ContainerEnvelope extends Container
             }
         }
 
-        this.addSlotToContainer(new SlotEnvelope(envelopInventory, 0, 8 + 0 * 18 + 63, 18));
-        this.addSlotToContainer(new SlotEnvelope(envelopInventory, 1, 8 + 0 * 18 + 81, 18));
+        this.addSlotToContainer(new SlotEnvelope(envelopInventory, 0, 8 + 63, 18));
+        this.addSlotToContainer(new SlotEnvelope(envelopInventory, 1, 8 + 81, 18));
     }
 
     @Override
@@ -66,7 +49,7 @@ public class ContainerEnvelope extends Container
         if(slotNum == index) return ItemStack.EMPTY;
 
         ItemStack itemCopy = ItemStack.EMPTY;
-        Slot slot = (Slot) this.inventorySlots.get(slotNum);
+        Slot slot = this.inventorySlots.get(slotNum);
 
         if(slot != null && slot.getHasStack() && slot instanceof SlotEnvelope)
         {

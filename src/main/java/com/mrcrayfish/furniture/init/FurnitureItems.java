@@ -1,32 +1,7 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.init;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.items.ItemCup;
-import com.mrcrayfish.furniture.items.ItemEnvelope;
-import com.mrcrayfish.furniture.items.ItemEnvelopeSigned;
-import com.mrcrayfish.furniture.items.ItemGeneric;
-import com.mrcrayfish.furniture.items.ItemKnife;
-import com.mrcrayfish.furniture.items.ItemLog;
-import com.mrcrayfish.furniture.items.ItemPackage;
-import com.mrcrayfish.furniture.items.ItemPackageSigned;
-import com.mrcrayfish.furniture.items.ItemRecipeBook;
+import com.mrcrayfish.furniture.items.*;
 
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
@@ -53,8 +28,6 @@ public class FurnitureItems
      */
     public static final Item INK_CARTRIDGE;
 
-    /** Bathroom Update */
-
     /**
      * Kitchen Update
      */
@@ -69,6 +42,11 @@ public class FurnitureItems
      * Outdoor Update
      */
     public static final Item SPATULA, SAUSAGE, SAUSAGE_COOKED, KEBAB, KEBAB_COOKED, CROWBAR;
+
+    /**
+     * Modern Update
+     */
+    public static final Item TV_REMOTE;
 
     /**
      * Food
@@ -111,6 +89,7 @@ public class FurnitureItems
         KEBAB_COOKED = new ItemFood(4, false).setUnlocalizedName("item_kebab_cooked").setRegistryName("item_kebab_cooked").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
         CROWBAR = new Item().setUnlocalizedName("item_crow_bar").setRegistryName("item_crow_bar").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
         CEILING_FAN_FANS = new Item().setUnlocalizedName("ceiling_fan_fans").setRegistryName("ceiling_fan_fans");
+        TV_REMOTE = new ItemTVRemote();
     }
 
     public static void register()
@@ -142,6 +121,7 @@ public class FurnitureItems
         registerItem(KEBAB_COOKED);
         registerItem(CROWBAR);
         registerItem(CEILING_FAN_FANS);
+        registerItem(TV_REMOTE);
     }
 
     private static void registerItem(Item item)

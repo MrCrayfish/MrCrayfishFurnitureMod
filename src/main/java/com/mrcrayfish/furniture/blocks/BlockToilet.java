@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.advancement.Triggers;
@@ -26,7 +9,6 @@ import com.mrcrayfish.furniture.util.SittableUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -38,6 +20,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -86,13 +69,16 @@ public class BlockToilet extends BlockFurniture
             if(SittableUtil.sitOnBlockWithRotationOffset(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0.4D, getMetaFromState(state), 0.1D))
             {
                 if(worldIn.isRemote)
-                    playerIn.sendMessage(new TextComponentString(TextFormatting.YELLOW + I18n.format("cfm.message.toilet", Keyboard.getKeyName(InputHandler.KEY_FART.getKeyCode()))));
+                {
+                    String key = new TextComponentTranslation("cfm.message.toilet", Keyboard.getKeyName(InputHandler.KEY_FART.getKeyCode())).getUnformattedComponentText();
+                    playerIn.sendMessage(new TextComponentString(TextFormatting.YELLOW + key));
+                }
                 worldIn.updateComparatorOutputLevel(pos, this);
             }
         }
         else
         {
-            List<EntityItem> items = worldIn.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1.0D, pos.getY() + 1.0D, pos.getZ() + 1.0D).expand(1D, 1D, 1D));
+            List<EntityItem> items = worldIn.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1.0D, pos.getY() + 1.0D, pos.getZ() + 1.0D).grow(1D));
             for(EntityItem item : items)
             {
                 item.setDead();
@@ -115,8 +101,8 @@ public class BlockToilet extends BlockFurniture
         if(!(entityIn instanceof EntitySittableBlock))
         {
             EnumFacing facing = state.getValue(FACING);
-            super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_TANK[facing.getHorizontalIndex()]);
-            super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_SEAT);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_TANK[facing.getHorizontalIndex()]);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_SEAT);
         }
     }
 

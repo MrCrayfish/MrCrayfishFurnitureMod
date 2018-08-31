@@ -80,8 +80,8 @@ public class BlockChimney extends Block
         {
             double posX = 0.25 + (0.5 * rand.nextDouble());
             double posZ = 0.25 + (0.5 * rand.nextDouble());
-            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + posX, pos.getY() + 0.9, pos.getZ() + posZ, 0.0D, 0.0D, 0.0D, new int[0]);
-            worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + posX, pos.getY() + 0.9, pos.getZ() + posZ, 0.0D, 0.0D, 0.0D, new int[0]);
+            worldIn.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, pos.getX() + posX, pos.getY() + 0.9, pos.getZ() + posZ, 0.0D, 0.0D, 0.0D);
+            worldIn.spawnParticle(EnumParticleTypes.SMOKE_LARGE, pos.getX() + posX, pos.getY() + 0.9, pos.getZ() + posZ, 0.0D, 0.0D, 0.0D);
         }
     }
 
@@ -100,7 +100,7 @@ public class BlockChimney extends Block
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[]{TYPE});
+        return new BlockStateContainer(this, TYPE);
     }
 
     @Override

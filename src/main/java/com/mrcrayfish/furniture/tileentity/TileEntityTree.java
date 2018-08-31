@@ -68,7 +68,7 @@ public class TileEntityTree extends TileEntitySyncClient implements ITickable, I
 
             for(int i = 0; i < tagList.tagCount(); ++i)
             {
-                NBTTagCompound itemTag = (NBTTagCompound) tagList.getCompoundTagAt(i);
+                NBTTagCompound itemTag = tagList.getCompoundTagAt(i);
                 int slot = itemTag.getByte("Slot") & 255;
 
                 if(slot >= 0 && slot < this.ornaments.length)

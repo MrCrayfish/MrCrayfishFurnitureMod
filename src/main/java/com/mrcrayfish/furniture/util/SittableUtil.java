@@ -34,7 +34,7 @@ public class SittableUtil
 
     public static boolean checkForExistingEntity(World par1World, double x, double y, double z, EntityPlayer par5EntityPlayer)
     {
-        List<EntitySittableBlock> listEMB = par1World.getEntitiesWithinAABB(EntitySittableBlock.class, new AxisAlignedBB(x, y, z, x + 1.0D, y + 1.0D, z + 1.0D).expand(1D, 1D, 1D));
+        List<EntitySittableBlock> listEMB = par1World.getEntitiesWithinAABB(EntitySittableBlock.class, new AxisAlignedBB(x, y, z, x + 1.0D, y + 1.0D, z + 1.0D).grow(1D));
         for(EntitySittableBlock mount : listEMB)
         {
             if(mount.blockPosX == x && mount.blockPosY == y && mount.blockPosZ == z)
@@ -51,7 +51,7 @@ public class SittableUtil
 
     public static boolean isSomeoneSitting(World world, double x, double y, double z)
     {
-        List<EntitySittableBlock> listEMB = world.getEntitiesWithinAABB(EntitySittableBlock.class, new AxisAlignedBB(x, y, z, x + 1.0D, y + 1.0D, z + 1.0D).expand(1D, 1D, 1D));
+        List<EntitySittableBlock> listEMB = world.getEntitiesWithinAABB(EntitySittableBlock.class, new AxisAlignedBB(x, y, z, x + 1.0D, y + 1.0D, z + 1.0D).grow(1D));
         for(EntitySittableBlock mount : listEMB)
         {
             if(mount.blockPosX == x && mount.blockPosY == y && mount.blockPosZ == z)

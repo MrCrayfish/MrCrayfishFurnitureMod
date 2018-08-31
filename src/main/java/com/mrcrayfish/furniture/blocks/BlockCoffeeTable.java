@@ -1,20 +1,3 @@
-/**
- * MrCrayfish's Furniture Mod
- * Copyright (C) 2016  MrCrayfish (http://www.mrcrayfish.com/)
- * <p>
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- * <p>
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * <p>
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
@@ -58,7 +41,7 @@ public class BlockCoffeeTable extends Block
         super(material);
         this.setHardness(1.0F);
         this.setSoundType(sound);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.FALSE).withProperty(EAST, Boolean.FALSE).withProperty(SOUTH, Boolean.FALSE).withProperty(WEST, Boolean.FALSE));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
         this.setUnlocalizedName(unlocalizedName);
         this.setRegistryName(unlocalizedName);
@@ -88,14 +71,14 @@ public class BlockCoffeeTable extends Block
         List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
         for(AxisAlignedBB box : list)
         {
-            super.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
         }
     }
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        return state.withProperty(NORTH, Boolean.valueOf(isCoffeeTable(world, pos.north()))).withProperty(EAST, Boolean.valueOf(isCoffeeTable(world, pos.east()))).withProperty(SOUTH, Boolean.valueOf(isCoffeeTable(world, pos.south()))).withProperty(WEST, Boolean.valueOf(isCoffeeTable(world, pos.west())));
+        return state.withProperty(NORTH, isCoffeeTable(world, pos.north())).withProperty(EAST, isCoffeeTable(world, pos.east())).withProperty(SOUTH, isCoffeeTable(world, pos.south())).withProperty(WEST, isCoffeeTable(world, pos.west()));
     }
 
     @Override
@@ -107,7 +90,7 @@ public class BlockCoffeeTable extends Block
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[]{NORTH, EAST, SOUTH, WEST});
+        return new BlockStateContainer(this, NORTH, EAST, SOUTH, WEST);
     }
 
     public boolean isCoffeeTable(IBlockAccess world, BlockPos pos)
@@ -117,7 +100,7 @@ public class BlockCoffeeTable extends Block
 
     private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
     {
-        List<AxisAlignedBB> list = Lists.<AxisAlignedBB>newArrayList();
+        List<AxisAlignedBB> list = Lists.newArrayList();
         boolean north = state.getValue(NORTH);
         boolean south = state.getValue(SOUTH);
         boolean east = state.getValue(EAST);
@@ -139,7 +122,7 @@ public class BlockCoffeeTable extends Block
     @Override
     public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
     {
-        List<RayTraceResult> list = Lists.<RayTraceResult>newArrayList();
+        List<RayTraceResult> list = Lists.newArrayList();
 
         for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos)))
         {

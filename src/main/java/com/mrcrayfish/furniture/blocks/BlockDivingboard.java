@@ -74,11 +74,11 @@ public class BlockDivingboard extends BlockFurniture
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
     {
         EnumFacing facing = state.getValue(FACING);
-        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOARD[facing.getHorizontalIndex() % 2]);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOARD[facing.getHorizontalIndex() % 2]);
         if(this == FurnitureBlocks.DIVING_BOARD_BASE)
         {
-            super.addCollisionBoxToList(pos, entityBox, collidingBoxes, HANDLE_LEFT[facing.getHorizontalIndex()]);
-            super.addCollisionBoxToList(pos, entityBox, collidingBoxes, HANDLE_RIGHT[facing.getHorizontalIndex()]);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, HANDLE_LEFT[facing.getHorizontalIndex()]);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, HANDLE_RIGHT[facing.getHorizontalIndex()]);
         }
     }
 
@@ -104,8 +104,6 @@ public class BlockDivingboard extends BlockFurniture
                 {
                     for(int i = 0; i < 3; i++)
                     {
-                        double offsetX = -0.1 + 0.2 * RANDOM.nextDouble();
-                        double offsetZ = -0.1 + 0.2 * RANDOM.nextDouble();
                         worldIn.spawnParticle(EnumParticleTypes.SPELL_MOB, entityIn.posX, entityIn.posY, entityIn.posZ, 1, 1, 1, 0);
                     }
                 }
@@ -130,11 +128,11 @@ public class BlockDivingboard extends BlockFurniture
     {
         if(this == FurnitureBlocks.DIVING_BOARD_BASE)
         {
-            worldIn.destroyBlock(pos.offset((EnumFacing) state.getValue(FACING)), false);
+            worldIn.destroyBlock(pos.offset(state.getValue(FACING)), false);
         }
         else
         {
-            worldIn.destroyBlock(pos.offset(((EnumFacing) state.getValue(FACING)).getOpposite()), false);
+            worldIn.destroyBlock(pos.offset(state.getValue(FACING).getOpposite()), false);
         }
     }
 

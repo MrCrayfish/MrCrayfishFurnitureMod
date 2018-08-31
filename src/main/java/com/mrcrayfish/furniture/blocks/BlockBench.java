@@ -56,10 +56,10 @@ public class BlockBench extends BlockFurniture
     {
         if(getMetaFromState(state) % 2 == 1)
         {
-            super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_NORTH);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_NORTH);
             return;
         }
-        super.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_EAST);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_EAST);
     }
 
     @Override
@@ -112,6 +112,6 @@ public class BlockBench extends BlockFurniture
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[]{FACING, LEFT, RIGHT});
+        return new BlockStateContainer(this, FACING, LEFT, RIGHT);
     }
 }

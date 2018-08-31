@@ -68,14 +68,14 @@ public class PageContentsOne extends RecipePage
         int leftPageCenter = (book.width) / 2 - (book.bookWidth / 2);
         FontRenderer fontRendererObj = Minecraft.getMinecraft().fontRenderer;
         fontRendererObj.drawString(I18n.format("tile.oven.name"), leftPageCenter - 55, 45, 16739840);
-        fontRendererObj.drawString(I18n.format("cfm.recipe_book.page.freezer"), leftPageCenter - 55, 45 + (1 * 24), 16739840);
+        fontRendererObj.drawString(I18n.format("cfm.recipe_book.page.freezer"), leftPageCenter - 55, 45 + (24), 16739840);
         fontRendererObj.drawString(I18n.format("cfm.recipe_book.page.minebay"), leftPageCenter - 55, 45 + (2 * 24), 16739840);
         fontRendererObj.drawString(I18n.format("tile.printer.name"), leftPageCenter - 55, 45 + (3 * 24), 16739840);
         fontRendererObj.drawString(I18n.format("tile.chopping_board.name"), leftPageCenter - 55, 45 + (4 * 24), 16739840);
 
         int rightPageCenter = (book.width) / 2 + (book.bookWidth / 2);
         fontRendererObj.drawString(I18n.format("tile.toaster.name"), rightPageCenter - 55, 45, 16739840);
-        fontRendererObj.drawString(I18n.format("tile.blender.name"), rightPageCenter - 55, 45 + (1 * 24), 16739840);
+        fontRendererObj.drawString(I18n.format("tile.blender.name"), rightPageCenter - 55, 45 + (24), 16739840);
         fontRendererObj.drawString(I18n.format("tile.microwave.name"), rightPageCenter - 55, 45 + (2 * 24), 16739840);
         fontRendererObj.drawString(I18n.format("tile.dishwasher.name"), rightPageCenter - 55, 45 + (3 * 24), 16739840);
         fontRendererObj.drawString(I18n.format("tile.washing_machine.name"), rightPageCenter - 55, 45 + (4 * 24), 16739840);

@@ -1,7 +1,6 @@
 package com.mrcrayfish.furniture.tileentity;
 
 import com.mrcrayfish.furniture.Reference;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
@@ -25,7 +24,7 @@ public abstract class TileEntityFurniture extends TileEntityLockableLoot impleme
     public TileEntityFurniture(String id, int inventorySize)
     {
         this.ID = id;
-        this.inventory = NonNullList.<ItemStack>withSize(inventorySize, ItemStack.EMPTY);
+        this.inventory = NonNullList.withSize(inventorySize, ItemStack.EMPTY);
     }
 
     @Override
@@ -130,7 +129,7 @@ public abstract class TileEntityFurniture extends TileEntityLockableLoot impleme
     public void readFromNBT(NBTTagCompound compound)
     {
         super.readFromNBT(compound);
-        this.inventory = NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
 
         if(!this.checkLootAndRead(compound))
         {

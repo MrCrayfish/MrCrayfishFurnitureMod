@@ -1,7 +1,6 @@
 package com.mrcrayfish.furniture.gui.containers;
 
 import com.mrcrayfish.furniture.gui.slots.SlotMail;
-import com.mrcrayfish.furniture.tileentity.TileEntityCrate;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -49,7 +48,7 @@ public class ContainerCrate extends Container
     public ItemStack transferStackInSlot(EntityPlayer player, int slotNum)
     {
         ItemStack itemCopy = ItemStack.EMPTY;
-        Slot slot = (Slot) this.inventorySlots.get(slotNum);
+        Slot slot = this.inventorySlots.get(slotNum);
 
         if(slot != null && slot.getHasStack())
         {

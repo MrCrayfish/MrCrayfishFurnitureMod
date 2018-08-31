@@ -1,9 +1,9 @@
 {
 	"parent": "cfm:block/basin_filled",
 	"textures": {
-		"1": "blocks/quartz_block_bottom",
-		"2": "blocks/hardened_clay_stained_cyan",
-		"3": "blocks/stone",
+		"1": "blocks/concrete_white",
+		"2": "blocks/concrete_gray",
+		"3": "blocks/concrete_silver",
 		"4": "blocks/water_still"
 	},
 	"display": {

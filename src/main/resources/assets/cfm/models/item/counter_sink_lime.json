@@ -1,0 +1,6 @@
+{
+	"parent": "cfm:block/counter_sink_filled",
+	"textures": {
+		"top": "blocks/hardened_clay_stained_lime"
+	}
+}

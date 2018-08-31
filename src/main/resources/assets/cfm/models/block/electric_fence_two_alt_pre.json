@@ -1,7 +1,7 @@
 {
 	"parent": "cfm:block/fence_two_alt",
 	"textures": {
-		"1": "blocks/anvil_base"
+		"1": "blocks/concrete_gray"
 	},
 	"display": {
         "gui": {
