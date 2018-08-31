@@ -22,6 +22,9 @@ item.item_kebab.name=Raw Kebab
 item.item_kebab_cooked.name=Cooked Kebab
 item.item_crow_bar.name=Crow Bar
 item.item_log.name=Chopped Log
+item.item_drink.name=Unnamed Drink
+item.item_crayfish.name=MrCrayfish Icon
+item.ceiling_fan_fans.name=Ceiling Fan Fans
 
 tile.table_oak.name=Oak Table
 tile.table_spruce.name=Spruce Table
