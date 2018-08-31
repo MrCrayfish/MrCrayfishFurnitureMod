@@ -52,6 +52,11 @@ public abstract class BlockAbstractTV extends BlockFurnitureTile
         return true;
     }
 
+    public double getScreenZOffset(IBlockState state)
+    {
+        return screenZOffset;
+    }
+
     @Nullable
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta)
