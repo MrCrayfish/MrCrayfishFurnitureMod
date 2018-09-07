@@ -74,7 +74,7 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
             {
                 GlStateManager.translate(x, y, z);
                 GlStateManager.enableBlend();
-                GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+                GlStateManager.color(0.65F, 0.65F, 0.65F, 1.0F);
                 OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, GL11.GL_ONE, GL11.GL_ZERO);
                 GlStateManager.disableLighting();
 

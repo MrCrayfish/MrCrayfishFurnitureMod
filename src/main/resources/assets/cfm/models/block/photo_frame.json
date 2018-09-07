@@ -1,9 +1,10 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
     "textures": {
-        "particle": "blocks/concrete_white",
-        "color": "blocks/concrete_white",
-        "glass": "blocks/glass"
+        "particle": "#color",
+        "glass": "blocks/glass",
+        "back": "blocks/planks_oak",
+        "item_frame": "blocks/itemframe_background"
     },
     "display": {
         "gui": {
@@ -22,22 +23,12 @@
             "scale": [ 0.5, 0.5, 0.5 ]
         },
         "thirdperson_righthand": {
-            "rotation": [ 75, 45, 0 ],
-            "translation": [ 0, 2.5, 0 ],
-            "scale": [ 0.375, 0.375, 0.375 ]
-        },
-        "thirdperson_lefthand": {
-            "rotation": [ 75, 255, 0 ],
-            "translation": [ 0, 2.5, 0 ],
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 2.5, 3 ],
             "scale": [ 0.375, 0.375, 0.375 ]
         },
         "firstperson_righthand": {
-            "rotation": [ 0, 45, 0 ],
-            "translation": [ 0, 2.5, 0 ],
-            "scale": [ 0.4, 0.4, 0.4 ]
-        },
-        "firstperson_lefthand": {
-            "rotation": [ 0, 225, 0 ],
+            "rotation": [ 0, -45, 0 ],
             "translation": [ 0, 2.5, 0 ],
             "scale": [ 0.4, 0.4, 0.4 ]
         }
@@ -45,8 +36,8 @@
     "elements": [
         {
             "name": "frame_bottom",
-            "from": [ 0.00, 0.00, 0.00 ], 
-            "to": [ 16.00, 1.00, 1.00 ], 
+            "from": [ 0.00, 0.00, 0.00 ],
+            "to": [ 16.00, 1.00, 1.00 ],
             "faces": {
                 "north": { "texture": "#color", "uv": [ 0.00, 0.00, 16.00, 1.00 ], "cullface": "north" },
                 "east": { "texture": "#color", "uv": [ 0.00, 0.00, 1.00, 1.00 ] },
@@ -58,8 +49,8 @@
         },
         {
             "name": "frame_top",
-            "from": [ 0.00, 15.00, 0.00 ], 
-            "to": [ 16.00, 16.00, 1.00 ], 
+            "from": [ 0.00, 15.00, 0.00 ],
+            "to": [ 16.00, 16.00, 1.00 ],
             "faces": {
                 "north": { "texture": "#color", "uv": [ 0.00, 0.00, 16.00, 1.00 ], "cullface": "north" },
                 "east": { "texture": "#color", "uv": [ 0.00, 0.00, 1.00, 1.00 ] },
@@ -71,8 +62,8 @@
         },
         {
             "name": "frame_left",
-            "from": [ 0.00, 1.00, 0.00 ], 
-            "to": [ 1.00, 15.00, 1.00 ], 
+            "from": [ 0.00, 1.00, 0.00 ],
+            "to": [ 1.00, 15.00, 1.00 ],
             "faces": {
                 "north": { "texture": "#color", "uv": [ 0.00, 0.00, 1.00, 14.00 ], "cullface": "north" },
                 "east": { "texture": "#color", "uv": [ 0.00, 0.00, 1.00, 14.00 ] },
@@ -82,8 +73,8 @@
         },
         {
             "name": "frame_right",
-            "from": [ 15.00, 1.00, 0.00 ], 
-            "to": [ 16.00, 15.00, 1.00 ], 
+            "from": [ 15.00, 1.00, 0.00 ],
+            "to": [ 16.00, 15.00, 1.00 ],
             "faces": {
                 "north": { "texture": "#color", "uv": [ 0.00, 0.00, 1.00, 14.00 ], "cullface": "north" },
                 "east": { "texture": "#color", "uv": [ 0.00, 0.00, 1.00, 14.00 ], "cullface": "east" },
@@ -93,41 +84,41 @@
         },
         {
             "name": "frame_back",
-            "from": [ 1.00, 1.00, 0.00 ], 
-            "to": [ 15.00, 15.00, 0.50 ], 
+            "from": [ 1.00, 1.00, 0.00 ],
+            "to": [ 15.00, 15.00, 0.50 ],
             "faces": {
-                "north": { "texture": "#color", "uv": [ 0.00, 0.00, 14.00, 14.00 ], "cullface": "north" },
-                "south": { "texture": "#color", "uv": [ 0.00, 0.00, 14.00, 14.00 ] }
-            }
-        },
-        {
-            "name": "glass_1",
-            "from": [ 2.00, 1.00, 0.00 ], 
-            "to": [ 7.00, 8.00, 1.00 ], 
-            "faces": {
-                "south": { "texture": "#glass", "uv": [ 6.00, 1.00, 15.00, 15.00 ] }
-            }
-        },
-        {
-            "name": "glass_2",
-            "from": [ 3.00, 8.00, 0.00 ], 
-            "to": [ 8.00, 15.00, 1.00 ], 
-            "faces": {
-                "south": { "texture": "#glass", "uv": [ 6.00, 1.00, 15.00, 15.00 ] }
+                "north": { "texture": "#back", "uv": [ 0.00, 0.00, 14.00, 14.00 ], "cullface": "north" },
+                "south": { "texture": "#item_frame", "uv": [ 1.00, 1.00, 15.00, 15.00 ] }
             }
         },
         {
             "name": "glass_3",
-            "from": [ 10.00, 8.00, 0.00 ], 
-            "to": [ 15.00, 15.00, 1.00 ], 
+            "from": [ 11.00, 9.50, 0.00 ],
+            "to": [ 14.00, 14.50, 0.60 ],
             "faces": {
                 "south": { "texture": "#glass", "uv": [ 6.00, 1.00, 15.00, 15.00 ] }
             }
         },
         {
             "name": "glass_4",
-            "from": [ 8.00, 1.00, 0.00 ], 
-            "to": [ 13.00, 8.00, 1.00 ], 
+            "from": [ 9.00, 2.50, 0.00 ],
+            "to": [ 12.00, 7.50, 0.60 ],
+            "faces": {
+                "south": { "texture": "#glass", "uv": [ 6.00, 1.00, 15.00, 15.00 ] }
+            }
+        },
+        {
+            "name": "glass_1",
+            "from": [ 4.00, 8.50, 0.00 ],
+            "to": [ 7.00, 13.50, 0.60 ],
+            "faces": {
+                "south": { "texture": "#glass", "uv": [ 6.00, 1.00, 15.00, 15.00 ] }
+            }
+        },
+        {
+            "name": "glass_2",
+            "from": [ 2.00, 1.50, 0.00 ],
+            "to": [ 5.00, 6.50, 0.60 ],
             "faces": {
                 "south": { "texture": "#glass", "uv": [ 6.00, 1.00, 15.00, 15.00 ] }
             }

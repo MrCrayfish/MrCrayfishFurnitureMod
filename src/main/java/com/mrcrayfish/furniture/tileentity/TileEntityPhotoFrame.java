@@ -4,7 +4,6 @@ import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.client.ImageCache;
 import com.mrcrayfish.furniture.client.ImageDownloadThread;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
@@ -19,6 +18,7 @@ import java.util.Map;
  */
 public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValueContainer
 {
+    private int colour = 0;
     private String url;
     private boolean stretch;
     private boolean disabled;
@@ -40,6 +40,7 @@ public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValue
         }
         compound.setBoolean("Stretch", this.stretch);
         compound.setBoolean("DisableInteraction", this.disabled);
+        compound.setInteger("Color", colour);
         return compound;
     }
 
@@ -58,6 +59,10 @@ public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValue
         if(compound.hasKey("DisableInteraction", Constants.NBT.TAG_BYTE))
         {
             this.disabled = compound.getBoolean("DisableInteraction");
+        }
+        if(compound.hasKey("Color", Constants.NBT.TAG_INT))
+        {
+            this.colour = compound.getInteger("Color");
         }
         if(world != null && world.isRemote && url != null)
         {
@@ -153,5 +158,15 @@ public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValue
     public boolean isDisabled()
     {
         return disabled;
+    }
+
+    public void setColour(int colour)
+    {
+        this.colour = 15 - colour;
+    }
+
+    public int getColour()
+    {
+        return colour;
     }
 }
