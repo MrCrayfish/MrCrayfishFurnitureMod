@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.client;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashSet;
@@ -102,10 +103,7 @@ public class ImageDownloadThread extends Thread
                 return;
             }
         }
-        catch(IOException e)
-        {
-            e.printStackTrace();
-        }
+        catch(IOException ignored) {}
         processor.process(ImageDownloadResult.FAILED, "Unable to process image");
         setLoading(url, false);
     }
