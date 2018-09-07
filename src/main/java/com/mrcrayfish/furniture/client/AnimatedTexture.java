@@ -20,29 +20,20 @@ import java.util.concurrent.ThreadFactory;
 /**
  * Author: MrCrayfish
  */
-public class AnimatedTexture
+public class AnimatedTexture extends Texture
 {
-    private static final ExecutorService THREAD_SERVICE = Executors.newCachedThreadPool(r -> {
-        Thread thread = new Thread(r);
-        thread.setName("TV File I/O");
-        return thread;
-    });
-
-    private List<ByteBuffer> framesTextureData = Lists.newArrayList();
+    private List<ByteBuffer> framesTextureData;
     private int frameCounter;
-    private int textureId = -1;
-    private int width, height;
-    private int counter;
-    private boolean delete;
 
     public AnimatedTexture(File file)
     {
-        this.load(file);
+        super(file);
     }
 
+    @Override
     public void load(File file)
     {
-        framesTextureData.clear();
+        framesTextureData = Lists.newArrayList();
         THREAD_SERVICE.submit(() ->
         {
             try
@@ -68,6 +59,7 @@ public class AnimatedTexture
         });
     }
 
+    @Override
     public void update()
     {
         if(framesTextureData.size() > 0)
@@ -84,23 +76,6 @@ public class AnimatedTexture
         {
             delete = true;
         }
-    }
-
-    private ByteBuffer createBuffer(int[] data)
-    {
-        ByteBuffer buffer = BufferUtils.createByteBuffer(width * height * 3);
-        for (int y = height - 1; y >= 0; y--)
-        {
-            for (int x = width - 1; x >= 0; x--)
-            {
-                int color = data[x + y * width];
-                buffer.put((byte) ((color >> 16) & 0xff));
-                buffer.put((byte) ((color >> 8) & 0xff));
-                buffer.put((byte) (color & 0xff));
-            }
-        }
-        buffer.flip();
-        return buffer;
     }
 
     /**
@@ -134,38 +109,5 @@ public class AnimatedTexture
         graphics.dispose();
 
         return resultBufferedImage;
-    }
-
-    public void bind()
-    {
-        if(textureId != -1)
-        {
-            counter = 0;
-            GlStateManager.bindTexture(textureId);
-        }
-    }
-
-    public int getTextureId()
-    {
-        if(textureId == -1 || !GL11.glIsTexture(textureId))
-        {
-            textureId = GlStateManager.generateTexture();
-        }
-        return textureId;
-    }
-
-    public int getWidth()
-    {
-        return width;
-    }
-
-    public int getHeight()
-    {
-        return height;
-    }
-
-    public boolean isPendingDeletion()
-    {
-        return delete;
     }
 }
