@@ -70,6 +70,7 @@ public class FurnitureBlocks
     public static final Block COUNTER_DRAWER;
     public static final Block MAIL_BOX_SPRUCE, MAIL_BOX_BIRCH, MAIL_BOX_JUNGLE, MAIL_BOX_ACACIA, MAIL_BOX_DARK_OAK;
     public static final Block DOOR_BELL_SPRUCE, DOOR_BELL_BIRCH, DOOR_BELL_JUNGLE, DOOR_BELL_ACACIA, DOOR_BELL_DARK_OAK;
+    public static final Block PHOTO_FRAME;
 
     /* Special */
     public static final Block MIRROR;
@@ -242,6 +243,7 @@ public class FurnitureBlocks
         CABINET_ANDESITE = new BlockCabinet(Material.ROCK).setUnlocalizedName("cabinet_andesite").setRegistryName("cabinet_andesite");
         DIGITAL_CLOCK = new BlockDigitalClock();
         MODERN_TV = new BlockModernTV();
+        PHOTO_FRAME = new BlockPhotoFrame();
     }
 
     public static void register()
@@ -412,6 +414,7 @@ public class FurnitureBlocks
         registerBlock(DESK_CABINET_ANDESITE);
         registerBlock(DIGITAL_CLOCK, new ItemColored(DIGITAL_CLOCK));
         registerBlock(MODERN_TV);
+        registerBlock(PHOTO_FRAME);
     }
 
     private static void registerBlock(Block block)

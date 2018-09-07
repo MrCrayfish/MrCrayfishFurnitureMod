@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.client;
 
 import at.dhyan.open_imaging.GifDecoder;
 import com.google.common.collect.Lists;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
@@ -55,6 +56,12 @@ public class Texture
                 int[] imageData = new int[this.width * this.height];
                 image.getRGB(0, 0, this.width, this.height, imageData, 0, this.width);
                 buffer = createBuffer(imageData);
+
+                Minecraft.getMinecraft().addScheduledTask(() ->
+                {
+                    GL11.glBindTexture(GL11.GL_TEXTURE_2D, getTextureId());
+                    GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, width, height, 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, buffer);
+                });
             }
             catch(IOException e)
             {
@@ -65,20 +72,16 @@ public class Texture
 
     public void update()
     {
-        if(buffer != null)
-        {
-            GL11.glBindTexture(GL11.GL_TEXTURE_2D, getTextureId());
-            GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, width, height, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, buffer);
-        }
         if(counter++ >= 600)
         {
             delete = true;
+            GlStateManager.deleteTexture(getTextureId());
         }
     }
 
     protected ByteBuffer createBuffer(int[] data)
     {
-        ByteBuffer buffer = BufferUtils.createByteBuffer(width * height * 3);
+        ByteBuffer buffer = BufferUtils.createByteBuffer(width * height * 4);
         for (int y = height - 1; y >= 0; y--)
         {
             for (int x = width - 1; x >= 0; x--)
@@ -87,6 +90,7 @@ public class Texture
                 buffer.put((byte) ((color >> 16) & 0xff));
                 buffer.put((byte) ((color >> 8) & 0xff));
                 buffer.put((byte) (color & 0xff));
+                buffer.put((byte) ((color >> 24) & 0xff));
             }
         }
         buffer.flip();
@@ -95,11 +99,8 @@ public class Texture
 
     public void bind()
     {
-        if(textureId != -1)
-        {
-            counter = 0;
-            GlStateManager.bindTexture(textureId);
-        }
+        counter = 0;
+        GlStateManager.bindTexture(getTextureId());
     }
 
     public int getTextureId()

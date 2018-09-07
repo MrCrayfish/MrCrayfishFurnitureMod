@@ -18,6 +18,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.client.event.RenderPlayerEvent;
@@ -59,6 +60,7 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityDigitalClock.class, new DigitalClockRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTV.class, new TVRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCoffeeTable.class, new CoffeeTableRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPhotoFrame.class, new PhotoFrameRenderer());
 
         MinecraftForge.EVENT_BUS.register(GifCache.INSTANCE);
     }

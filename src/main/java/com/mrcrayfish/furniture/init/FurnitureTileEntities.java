@@ -47,5 +47,6 @@ public class FurnitureTileEntities
         GameRegistry.registerTileEntity(TileEntityKitchenCounter.class, "cfmKitchenCounter");
         GameRegistry.registerTileEntity(TileEntityKitchenCounterDrawer.class, "cfmKitchenCounterDrawer");
         GameRegistry.registerTileEntity(TileEntityCoffeeTable.class, "cfm:coffee_table");
+        GameRegistry.registerTileEntity(TileEntityPhotoFrame.class, "cfm:photo_frame");
     }
 }
