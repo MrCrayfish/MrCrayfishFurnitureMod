@@ -32,6 +32,8 @@ public class AnimatedTexture
     private int frameCounter;
     private int textureId = -1;
     private int width, height;
+    private int counter;
+    private boolean delete;
 
     public AnimatedTexture(File file)
     {
@@ -70,13 +72,17 @@ public class AnimatedTexture
     {
         if(framesTextureData.size() > 0)
         {
-            if(++frameCounter >= framesTextureData.size() * 2)
+            if(++frameCounter >= framesTextureData.size())
             {
                 frameCounter = 0;
             }
-            ByteBuffer buffer = framesTextureData.get(frameCounter / 2);
+            ByteBuffer buffer = framesTextureData.get(frameCounter);
             GL11.glBindTexture(GL11.GL_TEXTURE_2D, getTextureId());
             GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, width, height, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, buffer);
+        }
+        if(counter++ >= 600)
+        {
+            delete = true;
         }
     }
 
@@ -134,6 +140,7 @@ public class AnimatedTexture
     {
         if(textureId != -1)
         {
+            counter = 0;
             GlStateManager.bindTexture(textureId);
         }
     }
@@ -155,5 +162,10 @@ public class AnimatedTexture
     public int getHeight()
     {
         return height;
+    }
+
+    public boolean isPendingDeletion()
+    {
+        return delete;
     }
 }
