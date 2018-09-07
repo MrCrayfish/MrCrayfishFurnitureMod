@@ -4,10 +4,11 @@ import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraftforge.common.util.Constants;
 
 public class TileEntityPlate extends TileEntitySyncClient implements ISimpleInventory
 {
-    private ItemStack food = null;
+    private ItemStack food = ItemStack.EMPTY;
     private int rotation = 0;
 
     public void setFood(ItemStack food)
@@ -34,15 +35,20 @@ public class TileEntityPlate extends TileEntitySyncClient implements ISimpleInve
     public void readFromNBT(NBTTagCompound tagCompound)
     {
         super.readFromNBT(tagCompound);
-        if(tagCompound.hasKey("Items", 9))
+        this.setFood(ItemStack.EMPTY);
+        if(tagCompound.hasKey("Items", Constants.NBT.TAG_LIST))
         {
-            NBTTagList tagList = (NBTTagList) tagCompound.getTag("Items");
+            NBTTagList tagList = tagCompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
             for(int i = 0; i < tagList.tagCount(); ++i)
             {
                 NBTTagCompound itemTag = tagList.getCompoundTagAt(i);
                 ItemStack stack = new ItemStack(itemTag);
                 this.setFood(stack);
             }
+        }
+        else if(tagCompound.hasKey("Item", Constants.NBT.TAG_COMPOUND))
+        {
+            this.setFood(new ItemStack(tagCompound.getCompoundTag("Item")));
         }
         this.rotation = tagCompound.getInteger("Rotation");
     }
@@ -51,16 +57,11 @@ public class TileEntityPlate extends TileEntitySyncClient implements ISimpleInve
     public NBTTagCompound writeToNBT(NBTTagCompound tagCompound)
     {
         super.writeToNBT(tagCompound);
-        NBTTagList tagList = new NBTTagList();
-        ItemStack itemStack = food;
-        if(itemStack != null)
+        if(this.food != null)
         {
-            NBTTagCompound itemTag = new NBTTagCompound();
-            itemStack.writeToNBT(itemTag);
-            tagList.appendTag(itemTag);
+            tagCompound.setTag("Item", this.food.writeToNBT(new NBTTagCompound()));
         }
-        tagCompound.setTag("Items", tagList);
-        tagCompound.setInteger("Rotation", rotation);
+        tagCompound.setInteger("Rotation", this.rotation);
         return tagCompound;
     }
 

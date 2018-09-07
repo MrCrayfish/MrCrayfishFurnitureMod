@@ -1,8 +1,8 @@
 {
 	"textures": {
 		"1": "blocks/water_still",
-		"2": "blocks/concrete_silver",
-		"particle": "blocks/concrete_silver"
+		"2": "blocks/stone",
+		"particle": "blocks/stone"
 	},
 	"display": {
 		"gui": {

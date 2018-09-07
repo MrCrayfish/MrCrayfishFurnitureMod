@@ -44,7 +44,7 @@ public class BlockStereo extends BlockFurnitureTile
     {
         super(material);
         this.setHardness(1.0F);
-        this.setSoundType(SoundType.WOOD);
+        this.setSoundType(SoundType.METAL);
 
         for(Item item : Item.REGISTRY)
         {

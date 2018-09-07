@@ -1,0 +1,22 @@
+{
+    "result": {
+        "item": "cfm:esky",
+        "data": 6
+    },
+    "pattern": [
+        "BBB",
+        "Q Q",
+        "BBB"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "Q": {
+            "item": "minecraft:quartz_block",
+            "data": 0
+        },
+        "B": {
+            "item": "minecraft:stained_hardened_clay",
+            "data": 6
+        }
+    }
+}

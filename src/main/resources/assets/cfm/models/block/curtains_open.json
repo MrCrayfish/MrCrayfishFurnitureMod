@@ -1,6 +1,6 @@
 {
 	"textures": {
-		"1": "blocks/planks_oak",
+		"1": "blocks/log_oak",
 		"2": "blocks/wool_colored_red",
 		"3": "blocks/gold_block",
 		"particle": "blocks/wool_colored_red"

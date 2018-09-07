@@ -69,6 +69,7 @@ public class FurnitureBlocks
     public static final Block DIGITAL_CLOCK;
     public static final Block COUNTER_DRAWER;
     public static final Block MAIL_BOX_SPRUCE, MAIL_BOX_BIRCH, MAIL_BOX_JUNGLE, MAIL_BOX_ACACIA, MAIL_BOX_DARK_OAK;
+    public static final Block DOOR_BELL_SPRUCE, DOOR_BELL_BIRCH, DOOR_BELL_JUNGLE, DOOR_BELL_ACACIA, DOOR_BELL_DARK_OAK;
 
     /* Special */
     public static final Block MIRROR;
@@ -141,6 +142,11 @@ public class FurnitureBlocks
         PRINTER = new BlockPrinter(Material.IRON).setUnlocalizedName("printer").setRegistryName("printer");
         ELECTRIC_FENCE = new BlockElectricFence(Material.ROCK).setUnlocalizedName("electric_fence").setRegistryName("electric_fence");
         DOOR_BELL = new BlockDoorBell(Material.WOOD).setUnlocalizedName("door_bell").setRegistryName("door_bell");
+        DOOR_BELL_SPRUCE = new BlockDoorBell(Material.WOOD).setUnlocalizedName("door_bell_spruce").setRegistryName("door_bell_spruce");
+        DOOR_BELL_BIRCH = new BlockDoorBell(Material.WOOD).setUnlocalizedName("door_bell_birch").setRegistryName("door_bell_birch");
+        DOOR_BELL_JUNGLE = new BlockDoorBell(Material.WOOD).setUnlocalizedName("door_bell_jungle").setRegistryName("door_bell_jungle");
+        DOOR_BELL_ACACIA = new BlockDoorBell(Material.WOOD).setUnlocalizedName("door_bell_acacia").setRegistryName("door_bell_acacia");
+        DOOR_BELL_DARK_OAK = new BlockDoorBell(Material.WOOD).setUnlocalizedName("door_bell_dark_oak").setRegistryName("door_bell_dark_oak");
         FIRE_ALARM_ON = new BlockFireAlarm(Material.ROCK, true).setUnlocalizedName("fire_alarm_on").setRegistryName("fire_alarm_on");
         FIRE_ALARM_OFF = new BlockFireAlarm(Material.ROCK, false).setUnlocalizedName("fire_alarm_off").setRegistryName("fire_alarm_off");
         CEILING_LIGHT_ON = new BlockCeilingLight(Material.GLASS, true).setUnlocalizedName("ceiling_light_on").setRegistryName("ceiling_light_on");
@@ -323,6 +329,11 @@ public class FurnitureBlocks
         registerBlock(PRINTER);
         registerBlock(ELECTRIC_FENCE);
         registerBlock(DOOR_BELL);
+        registerBlock(DOOR_BELL_SPRUCE);
+        registerBlock(DOOR_BELL_BIRCH);
+        registerBlock(DOOR_BELL_JUNGLE);
+        registerBlock(DOOR_BELL_ACACIA);
+        registerBlock(DOOR_BELL_DARK_OAK);
         registerBlock(FIRE_ALARM_OFF);
         registerBlock(FIRE_ALARM_ON);
         registerBlock(CEILING_LIGHT_OFF);
@@ -373,7 +384,7 @@ public class FurnitureBlocks
         registerBlock(DIVING_BOARD_BASE, new ItemBath(DIVING_BOARD_BASE));
         registerBlock(DIVING_BOARD_PLANK, null);
         registerBlock(DOOR_MAT, new ItemBlockColored(DOOR_MAT));
-        registerBlock(COOLER);
+        registerBlock(COOLER, new ItemBlockColored(COOLER));
         registerBlock(MODERN_WINDOW);
         registerBlock(MODERN_SLIDING_DOOR, new ItemModernSlidingDoor(MODERN_SLIDING_DOOR));
         registerBlock(LIGHT_SWITCH_OFF, new ItemLightSwitch(LIGHT_SWITCH_OFF));

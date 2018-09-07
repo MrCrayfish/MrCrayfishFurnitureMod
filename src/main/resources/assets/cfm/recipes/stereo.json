@@ -1,21 +1,22 @@
 {
-  "result": {
-    "item": "cfm:stereo"
-  },
-  "pattern": [
-    " * ",
-    "NJN"
-  ],
-  "type": "minecraft:crafting_shaped",
-  "key": {
-    "*": {
-      "item": "minecraft:iron_ingot"
+    "result": {
+        "item": "cfm:stereo"
     },
-    "J": {
-      "item": "minecraft:jukebox"
-    },
-    "N": {
-      "item": "minecraft:noteblock"
+    "pattern": [
+        " I ",
+        "NJN",
+        "III"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "I": {
+            "item": "minecraft:iron_ingot"
+        },
+        "J": {
+            "item": "minecraft:jukebox"
+        },
+        "N": {
+            "item": "minecraft:noteblock"
+        }
     }
-  }
 }

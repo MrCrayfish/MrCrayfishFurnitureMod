@@ -1,0 +1,18 @@
+{
+    "result": {
+        "item": "cfm:door_bell_dark_oak"
+    },
+    "ingredients": [
+        {
+            "item": "minecraft:noteblock"
+        },
+        {
+            "item": "minecraft:stone_button"
+        },
+        {
+            "item": "minecraft:log2",
+            "data": 1
+        }
+    ],
+    "type": "minecraft:crafting_shapeless"
+}

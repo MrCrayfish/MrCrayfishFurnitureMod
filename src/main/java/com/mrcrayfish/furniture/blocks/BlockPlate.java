@@ -56,7 +56,7 @@ public class BlockPlate extends Block implements ITileEntityProvider
         if(tileEntity instanceof TileEntityPlate)
         {
             TileEntityPlate tileEntityPlate = (TileEntityPlate) tileEntity;
-            if(!heldItem.isEmpty() && tileEntityPlate.getFood() == null)
+            if(!heldItem.isEmpty() && tileEntityPlate.getFood().isEmpty())
             {
                 if(heldItem.getItem() instanceof ItemFood)
                 {
@@ -67,14 +67,14 @@ public class BlockPlate extends Block implements ITileEntityProvider
                     return true;
                 }
             }
-            if(tileEntityPlate.getFood() != null)
+            if(!tileEntityPlate.getFood().isEmpty())
             {
                 if(!worldIn.isRemote)
                 {
                     EntityItem entityFood = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.4, pos.getZ() + 0.5, tileEntityPlate.getFood());
                     worldIn.spawnEntity(entityFood);
                 }
-                tileEntityPlate.setFood(null);
+                tileEntityPlate.setFood(ItemStack.EMPTY);
                 TileEntityUtil.markBlockForUpdate(worldIn, pos);
             }
         }

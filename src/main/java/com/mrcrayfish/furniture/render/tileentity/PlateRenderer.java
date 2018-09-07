@@ -14,7 +14,7 @@ public class PlateRenderer extends TileEntitySpecialRenderer<TileEntityPlate>
     @Override
     public void render(TileEntityPlate plate, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-        if(plate.getFood() != null)
+        if(!plate.getFood().isEmpty())
         {
             entityFood.setItem(plate.getFood());
 

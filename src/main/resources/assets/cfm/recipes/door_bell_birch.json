@@ -1,0 +1,18 @@
+{
+    "result": {
+        "item": "cfm:door_bell_birch"
+    },
+    "ingredients": [
+        {
+            "item": "minecraft:noteblock"
+        },
+        {
+            "item": "minecraft:stone_button"
+        },
+        {
+            "item": "minecraft:log",
+            "data": 2
+        }
+    ],
+    "type": "minecraft:crafting_shapeless"
+}

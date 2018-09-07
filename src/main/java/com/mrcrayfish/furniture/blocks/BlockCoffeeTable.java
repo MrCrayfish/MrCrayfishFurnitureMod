@@ -5,6 +5,9 @@ import java.util.List;
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 
+import com.mrcrayfish.furniture.tileentity.TileEntityCoffeeTable;
+import com.mrcrayfish.furniture.tileentity.TileEntityPlate;
+import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -14,13 +17,21 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 public class BlockCoffeeTable extends Block
 {
@@ -154,4 +165,46 @@ public class BlockCoffeeTable extends Block
         return BlockFaceShape.UNDEFINED;
     }
 
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        ItemStack heldItem = playerIn.getHeldItem(hand);
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+        if(tileEntity instanceof TileEntityCoffeeTable)
+        {
+            TileEntityCoffeeTable tileEntityCoffeeTable = (TileEntityCoffeeTable) tileEntity;
+            if(!heldItem.isEmpty() && tileEntityCoffeeTable.getFood().isEmpty())
+            {
+                tileEntityCoffeeTable.setFood(new ItemStack(heldItem.getItem(), 1, heldItem.getItemDamage()));
+                tileEntityCoffeeTable.setRotation(playerIn.getHorizontalFacing().getHorizontalIndex());
+                tileEntityCoffeeTable.sync();
+                heldItem.shrink(1);
+                return true;
+            }
+            if(!tileEntityCoffeeTable.getFood().isEmpty())
+            {
+                if(!worldIn.isRemote)
+                {
+                    EntityItem entityFood = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.4, pos.getZ() + 0.5, tileEntityCoffeeTable.getFood());
+                    worldIn.spawnEntity(entityFood);
+                }
+                tileEntityCoffeeTable.setFood(ItemStack.EMPTY);
+                tileEntityCoffeeTable.sync();
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean hasTileEntity(IBlockState state)
+    {
+        return true;
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createTileEntity(World world, IBlockState state)
+    {
+        return new TileEntityCoffeeTable();
+    }
 }

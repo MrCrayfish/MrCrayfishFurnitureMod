@@ -43,7 +43,7 @@ public class BlockCounterSink extends BlockFurnitureTile
         super(material);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.STONE);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(BlockBasin.FILLED, Boolean.FALSE));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(BlockBasin.FILLED, false));
     }
 
     @Override
@@ -71,7 +71,20 @@ public class BlockCounterSink extends BlockFurnitureTile
                 }
             }
         }
-        return FurnitureBlocks.BASIN.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+        boolean result = FurnitureBlocks.BASIN.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+        if (tileEntity != null)
+        {
+            tileEntity.validate();
+            worldIn.setTileEntity(pos, tileEntity);
+        }
+        return result;
+    }
+
+    @Override
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    {
+        IBlockState state = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
+        return state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(BlockBasin.FILLED, false);
     }
 
     @Override

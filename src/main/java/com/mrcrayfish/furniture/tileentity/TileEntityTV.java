@@ -2,9 +2,11 @@ package com.mrcrayfish.furniture.tileentity;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+import com.mrcrayfish.furniture.blocks.BlockAbstractTV;
 import com.mrcrayfish.furniture.client.GifCache;
 import com.mrcrayfish.furniture.client.ImageDownloadThread;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
@@ -181,6 +183,11 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
 
     public double getScreenZOffset()
     {
+        IBlockState state = world.getBlockState(pos);
+        if(state.getBlock() instanceof BlockAbstractTV)
+        {
+            return ((BlockAbstractTV) state.getBlock()).getScreenZOffset(state);
+        }
         return screenZOffset;
     }
 
