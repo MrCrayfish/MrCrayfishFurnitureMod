@@ -127,7 +127,7 @@ public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValue
     {
         List<IValueContainer.Entry> entries = Lists.newArrayList();
         entries.add(new IValueContainer.Entry("photo", "Photo URL", Entry.Type.TEXT_FIELD, this.url));
-        entries.add(new IValueContainer.Entry("stretch", "Stretch to Screen", Entry.Type.TOGGLE, this.stretch));
+        entries.add(new IValueContainer.Entry("stretch", "Stretch to Border", Entry.Type.TOGGLE, this.stretch));
         return entries;
     }
 
