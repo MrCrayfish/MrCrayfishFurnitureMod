@@ -20,27 +20,20 @@ import java.util.concurrent.ThreadFactory;
 /**
  * Author: MrCrayfish
  */
-public class AnimatedTexture
+public class AnimatedTexture extends Texture
 {
-    private static final ExecutorService THREAD_SERVICE = Executors.newCachedThreadPool(r -> {
-        Thread thread = new Thread(r);
-        thread.setName("TV File I/O");
-        return thread;
-    });
-
-    private List<ByteBuffer> framesTextureData = Lists.newArrayList();
+    private List<ByteBuffer> framesTextureData;
     private int frameCounter;
-    private int textureId = -1;
-    private int width, height;
 
     public AnimatedTexture(File file)
     {
-        this.load(file);
+        super(file);
     }
 
+    @Override
     public void load(File file)
     {
-        framesTextureData.clear();
+        framesTextureData = Lists.newArrayList();
         THREAD_SERVICE.submit(() ->
         {
             try
@@ -66,35 +59,23 @@ public class AnimatedTexture
         });
     }
 
+    @Override
     public void update()
     {
         if(framesTextureData.size() > 0)
         {
-            if(++frameCounter >= framesTextureData.size() * 2)
+            if(++frameCounter >= framesTextureData.size())
             {
                 frameCounter = 0;
             }
-            ByteBuffer buffer = framesTextureData.get(frameCounter / 2);
+            ByteBuffer buffer = framesTextureData.get(frameCounter);
             GL11.glBindTexture(GL11.GL_TEXTURE_2D, getTextureId());
             GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGB, width, height, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, buffer);
         }
-    }
-
-    private ByteBuffer createBuffer(int[] data)
-    {
-        ByteBuffer buffer = BufferUtils.createByteBuffer(width * height * 3);
-        for (int y = height - 1; y >= 0; y--)
+        if(counter++ >= 600)
         {
-            for (int x = width - 1; x >= 0; x--)
-            {
-                int color = data[x + y * width];
-                buffer.put((byte) ((color >> 16) & 0xff));
-                buffer.put((byte) ((color >> 8) & 0xff));
-                buffer.put((byte) (color & 0xff));
-            }
+            delete = true;
         }
-        buffer.flip();
-        return buffer;
     }
 
     /**
@@ -128,32 +109,5 @@ public class AnimatedTexture
         graphics.dispose();
 
         return resultBufferedImage;
-    }
-
-    public void bind()
-    {
-        if(textureId != -1)
-        {
-            GlStateManager.bindTexture(textureId);
-        }
-    }
-
-    public int getTextureId()
-    {
-        if(textureId == -1 || !GL11.glIsTexture(textureId))
-        {
-            textureId = GlStateManager.generateTexture();
-        }
-        return textureId;
-    }
-
-    public int getWidth()
-    {
-        return width;
-    }
-
-    public int getHeight()
-    {
-        return height;
     }
 }

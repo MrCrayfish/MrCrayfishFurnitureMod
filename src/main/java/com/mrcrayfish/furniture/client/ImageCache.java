@@ -18,16 +18,16 @@ import java.util.Map;
  * Author: MrCrayfish
  */
 @SideOnly(Side.CLIENT)
-public final class GifCache
+public final class ImageCache
 {
-    public static final GifCache INSTANCE = new GifCache();
+    public static final ImageCache INSTANCE = new ImageCache();
 
     private final File cache;
-    private Map<String, AnimatedTexture> cacheMap = new HashMap<>();
+    private Map<String, Texture> cacheMap = new HashMap<>();
 
-    private GifCache()
+    private ImageCache()
     {
-        cache = new File(Minecraft.getMinecraft().mcDataDir, "tv-cache");
+        cache = new File(Minecraft.getMinecraft().mcDataDir, "photo-frame-cache");
         cache.mkdir();
         this.init();
     }
@@ -45,14 +45,14 @@ public final class GifCache
     }
 
     @Nullable
-    public AnimatedTexture get(String url)
+    public Texture get(String url)
     {
         if(url == null)
             return null;
 
         synchronized(this)
         {
-            AnimatedTexture texture = cacheMap.get(url);
+            Texture texture = cacheMap.get(url);
             if(texture != null)
             {
                 return texture;
@@ -67,7 +67,7 @@ public final class GifCache
         {
             if(!cacheMap.containsKey(url))
             {
-                AnimatedTexture texture = new AnimatedTexture(file);
+                Texture texture = new Texture(file);
                 cacheMap.put(url, texture);
             }
         }
@@ -81,11 +81,12 @@ public final class GifCache
             {
                 if(!cacheMap.containsKey(url))
                 {
-                    String id = DigestUtils.sha1Hex(url.getBytes()) + ".gif";
-                    File gif = new File(getCache(), id);
-                    FileUtils.writeByteArrayToFile(gif, data);
-                    AnimatedTexture texture = new AnimatedTexture(gif);
+                    String id = DigestUtils.sha1Hex(url.getBytes());
+                    File image = new File(getCache(), id);
+                    FileUtils.writeByteArrayToFile(image, data);
+                    Texture texture = new Texture(image);
                     cacheMap.put(url, texture);
+                    Minecraft.getMinecraft().addScheduledTask(texture::update);
                 }
                 return true;
             }
@@ -97,22 +98,16 @@ public final class GifCache
         }
     }
 
-    public void load(String url, GifDownloadThread.ResponseProcessor processor)
-    {
-        new GifDownloadThread(url, processor);
-    }
-
     private void tick()
     {
         synchronized(this)
         {
-            cacheMap.values().forEach(AnimatedTexture::update);
-            cacheMap.keySet().removeIf(key -> cacheMap.get(key).isPendingDeletion());
+            cacheMap.values().forEach(Texture::update);
         }
     }
 
     @SubscribeEvent
-    public void onRenderTick(TickEvent.ClientTickEvent event)
+    public void onRenderTick(TickEvent.RenderTickEvent event)
     {
         if(event.phase == TickEvent.Phase.START)
         {
@@ -130,7 +125,7 @@ public final class GifCache
             }
         }
 
-        String id = DigestUtils.sha1Hex(url.getBytes()) + ".gif";
+        String id = DigestUtils.sha1Hex(url.getBytes());
         File file = new File(getCache(), id);
         if(file.exists())
         {

@@ -1,0 +1,28 @@
+{
+    "result": {
+        "item": "cfm:photo_frame",
+        "data": 9
+    },
+    "pattern": [
+        "CGC",
+        "CFC",
+        "CWC"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "G": {
+            "item": "minecraft:glass_pane"
+        },
+        "C": {
+            "item": "minecraft:concrete",
+            "data": 9
+        },
+        "F": {
+            "item": "minecraft:item_frame"
+        },
+        "W": {
+            "item": "minecraft:planks",
+            "data": 0
+        }
+    }
+}

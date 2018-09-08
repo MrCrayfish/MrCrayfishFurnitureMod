@@ -1,9 +1,9 @@
 package com.mrcrayfish.furniture.client;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashSet;
@@ -12,9 +12,8 @@ import java.util.Set;
 /**
  * Author: MrCrayfish
  */
-public class ImageDownloadThread extends Thread
+public class GifDownloadThread extends Thread
 {
-    private static final String[] SUPPORTED_FORMATS = { "image/png", "image/jpeg", "image/gif", "image/bmp" };
     private static final Set<String> LOADING_URLS = new HashSet<>();
 
     //Prevents GIFs larger than 2MB from loading
@@ -24,7 +23,7 @@ public class ImageDownloadThread extends Thread
     private ResponseProcessor processor;
     private int tryCount;
 
-    public ImageDownloadThread(String url, ResponseProcessor processor)
+    public GifDownloadThread(String url, ResponseProcessor processor)
     {
         super("Image Download Thread");
         this.url = url;
@@ -34,9 +33,9 @@ public class ImageDownloadThread extends Thread
     @Override
     public void run()
     {
-        if(ImageCache.INSTANCE.loadCached(url))
+        if(GifCache.INSTANCE.loadCached(url))
         {
-            processor.process(ImageDownloadResult.SUCCESS, "Successfully processed image");
+            processor.process(ImageDownloadResult.SUCCESS, "Successfully processed GIF");
             return;
         }
 
@@ -53,15 +52,15 @@ public class ImageDownloadThread extends Thread
                     e.printStackTrace();
                 }
 
-                if(ImageCache.INSTANCE.isCached(url))
+                if(GifCache.INSTANCE.isCached(url))
                 {
-                    processor.process(ImageDownloadResult.SUCCESS, "Successfully processed image");
+                    processor.process(ImageDownloadResult.SUCCESS, "Successfully processed GIF");
                     return;
                 }
 
                 if(tryCount++ == 10)
                 {
-                    processor.process(ImageDownloadResult.FAILED, "Unable to process image");
+                    processor.process(ImageDownloadResult.FAILED, "Unable to process GIF");
                     return;
                 }
             }
@@ -72,39 +71,33 @@ public class ImageDownloadThread extends Thread
             URLConnection connection = new URL(url).openConnection();
             connection.addRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
 
-            boolean failed = true;
-            for(String format : SUPPORTED_FORMATS)
+            if(!"image/gif".equals(connection.getContentType()))
             {
-                if(format.equals(connection.getContentType()))
-                {
-                    failed = false;
-                    break;
-                }
-            }
-            if(failed)
-            {
-                processor.process(ImageDownloadResult.UNKNOWN_FILE, "The file is not a image");
+                processor.process(ImageDownloadResult.UNKNOWN_FILE, "The file is not a GIF");
                 return;
             }
 
             long length = Long.parseLong(connection.getHeaderField("Content-Length"));
             if(length > MAX_FILE_SIZE)
             {
-                processor.process(ImageDownloadResult.TOO_LARGE, "The image is greater than " + MAX_FILE_SIZE / 1024.0 + "MB");
+                processor.process(ImageDownloadResult.TOO_LARGE, "The GIF is greater than " + MAX_FILE_SIZE / 1024.0 + "MB");
                 return;
             }
 
             setLoading(url, true);
             byte[] data = IOUtils.toByteArray(connection);
-            if(ImageCache.INSTANCE.add(url, data))
+            if(GifCache.INSTANCE.add(url, data))
             {
                 setLoading(url, false);
-                processor.process(ImageDownloadResult.SUCCESS, "Successfully processed image");
+                processor.process(ImageDownloadResult.SUCCESS, "Successfully processed GIF");
                 return;
             }
         }
-        catch(IOException ignored) {}
-        processor.process(ImageDownloadResult.FAILED, "Unable to process image");
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+        processor.process(ImageDownloadResult.FAILED, "Unable to process GIF");
         setLoading(url, false);
     }
 
@@ -115,10 +108,10 @@ public class ImageDownloadThread extends Thread
 
     public enum ImageDownloadResult
     {
-        SUCCESS("cfm.photo_frame.success"),
-        FAILED("cfm.photo_frame.failed"),
-        UNKNOWN_FILE("cfm.photo_frame.unknown_file"),
-        TOO_LARGE("cfm.photo_frame.too_large");
+        SUCCESS("cfm.tv.success"),
+        FAILED("cfm.tv.failed"),
+        UNKNOWN_FILE("cfm.tv.unknown_file"),
+        TOO_LARGE("cfm.tv.too_large");
 
         private String key;
 
