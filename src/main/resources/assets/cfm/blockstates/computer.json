@@ -1,8 +1,19 @@
 {
-"variants": {
-"facing=north": {"model": "cfm:computer_pre", "y": 270},
-"facing=south": { "model": "cfm:computer_pre", "y": 90},
-"facing=east": { "model": "cfm:computer_pre"},
-"facing=west": { "model": "cfm:computer_pre", "y": 180}
-}
+    "variants": {
+        "facing=north": {
+            "model": "cfm:computer",
+            "y": 270
+        },
+        "facing=south": {
+            "model": "cfm:computer",
+            "y": 90
+        },
+        "facing=east": {
+            "model": "cfm:computer"
+        },
+        "facing=west": {
+            "model": "cfm:computer",
+            "y": 180
+        }
+    }
 }
