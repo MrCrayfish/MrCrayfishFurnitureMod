@@ -81,7 +81,7 @@
 			"11": {
 				"textures": {
 					"mat": "blocks/wool_colored_blue",
-					"border": "blocks/concrete_white"
+					"border": "blocks/concrete_blue"
 				}
 			},
 			"12": {
