@@ -416,7 +416,7 @@ public class FurnitureBlocks
         registerBlock(DIGITAL_CLOCK, new ItemColored(DIGITAL_CLOCK));
         registerBlock(MODERN_TV);
         registerBlock(PHOTO_FRAME, new ItemColoredFurniture(PHOTO_FRAME));
-        registerBlock(MODERN_COUCH);
+        registerBlock(MODERN_COUCH, new ItemColoredFurniture(MODERN_COUCH));
     }
 
     private static void registerBlock(Block block)
