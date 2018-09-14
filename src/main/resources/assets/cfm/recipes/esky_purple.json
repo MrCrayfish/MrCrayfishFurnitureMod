@@ -1,6 +1,7 @@
 {
     "result": {
-        "item": "cfm:esky"
+        "item": "cfm:esky",
+        "data": 10
     },
     "pattern": [
         "BBB",
