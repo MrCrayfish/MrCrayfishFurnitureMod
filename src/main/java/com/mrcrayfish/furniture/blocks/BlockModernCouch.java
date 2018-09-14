@@ -5,10 +5,7 @@ import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityCouch;
-import com.mrcrayfish.furniture.util.CollisionHelper;
-import com.mrcrayfish.furniture.util.SittableUtil;
-import com.mrcrayfish.furniture.util.StateHelper;
-import com.mrcrayfish.furniture.util.TileEntityUtil;
+import com.mrcrayfish.furniture.util.*;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -44,25 +41,10 @@ public class BlockModernCouch extends BlockFurnitureTile
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
     public static final PropertyEnum<CouchType> TYPE = PropertyEnum.create("type", CouchType.class);
 
-    private static final AxisAlignedBB COUCH_BASE = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.6, 1.0);
-
-    private static final AxisAlignedBB COUCH_BACKREST_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.80, 0.6, 0.0, 1.0, 1.21, 1.0);
-    private static final AxisAlignedBB COUCH_BACKREST_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.80, 0.6, 0.0, 1.0, 1.21, 1.0);
-    private static final AxisAlignedBB COUCH_BACKREST_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.80, 0.6, 0.0, 1.0, 1.21, 1.0);
-    private static final AxisAlignedBB COUCH_BACKREST_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.80, 0.6, 0.0, 1.0, 1.21, 1.0);
-    private static final AxisAlignedBB[] COUCH_BACKREST = {COUCH_BACKREST_SOUTH, COUCH_BACKREST_WEST, COUCH_BACKREST_NORTH, COUCH_BACKREST_EAST};
-
-    private static final AxisAlignedBB COUCH_ARMREST_LEFT_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.0, 0.5, 0.9, 1.0, 0.9, 1.0);
-    private static final AxisAlignedBB COUCH_ARMREST_LEFT_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.0, 0.5, 0.9, 1.0, 0.9, 1.0);
-    private static final AxisAlignedBB COUCH_ARMREST_LEFT_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.0, 0.5, 0.9, 1.0, 0.9, 1.0);
-    private static final AxisAlignedBB COUCH_ARMREST_LEFT_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.0, 0.5, 0.9, 1.0, 0.9, 1.0);
-    private static final AxisAlignedBB[] COUCH_ARMREST_LEFT = {COUCH_ARMREST_LEFT_SOUTH, COUCH_ARMREST_LEFT_WEST, COUCH_ARMREST_LEFT_NORTH, COUCH_ARMREST_LEFT_EAST};
-
-    private static final AxisAlignedBB COUCH_ARMREST_RIGHT_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.0, 0.5, 0.0, 1.0, 0.9, 0.1);
-    private static final AxisAlignedBB COUCH_ARMREST_RIGHT_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.0, 0.5, 0.0, 1.0, 0.9, 0.1);
-    private static final AxisAlignedBB COUCH_ARMREST_RIGHT_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.0, 0.5, 0.0, 1.0, 0.9, 0.1);
-    private static final AxisAlignedBB COUCH_ARMREST_RIGHT_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.0, 0.5, 0.0, 1.0, 0.9, 0.1);
-    private static final AxisAlignedBB[] COUCH_ARMREST_RIGHT = {COUCH_ARMREST_RIGHT_SOUTH, COUCH_ARMREST_RIGHT_WEST, COUCH_ARMREST_RIGHT_NORTH, COUCH_ARMREST_RIGHT_EAST};
+    private static final AxisAlignedBB[] COUCH_BASE = new Bounds(1, 3, 0, 15, 9, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] COUCH_ARMREST_LEFT = new Bounds(1, 0, 0, 15, 13, 2).getRotatedBounds();
+    private static final AxisAlignedBB[] COUCH_ARMREST_RIGHT = new Bounds(1, 0, 14, 15, 13, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] COUCH_BACKREST = new Bounds(11, 9, 0, 15, 19, 16).getRotatedBounds();
 
     public BlockModernCouch()
     {
@@ -174,17 +156,16 @@ public class BlockModernCouch extends BlockFurnitureTile
         EnumFacing facing = state.getValue(FACING);
 
         list.add(COUCH_BACKREST[facing.getHorizontalIndex()]);
-        list.add(COUCH_BASE);
+        list.add(COUCH_BASE[facing.getHorizontalIndex()]);
 
-        if(StateHelper.isAirBlock(world, pos, state.getValue(FACING), StateHelper.Direction.LEFT))
+        if(state.getValue(TYPE) == CouchType.LEFT || state.getValue(TYPE) == CouchType.BOTH)
         {
             list.add(COUCH_ARMREST_LEFT[facing.getHorizontalIndex()]);
         }
-        if(StateHelper.isAirBlock(world, pos, state.getValue(FACING), StateHelper.Direction.RIGHT))
+        if(state.getValue(TYPE) == CouchType.RIGHT || state.getValue(TYPE) == CouchType.BOTH)
         {
             list.add(COUCH_ARMREST_RIGHT[facing.getHorizontalIndex()]);
         }
-
         return list;
     }
 
