@@ -165,7 +165,7 @@ public class BlockModernCouch extends BlockFurnitureTile
                 }
             }
         }
-        return SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0.45);
+        return SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 5 * 0.0625F);
     }
 
     private List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
