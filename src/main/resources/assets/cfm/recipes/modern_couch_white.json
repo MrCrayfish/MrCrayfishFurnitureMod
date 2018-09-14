@@ -1,0 +1,25 @@
+{
+    "result": {
+        "item": "cfm:modern_couch",
+        "data": 0
+    },
+    "pattern": [
+        "OCO",
+        " S "
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "O": {
+            "item": "minecraft:planks",
+            "data": 0
+        },
+        "C": {
+            "item": "cfm:couch",
+            "data": 0
+        },
+        "S": {
+            "item": "minecraft:planks",
+            "data": 1
+        }
+    }
+}
