@@ -11,6 +11,7 @@ import com.mrcrayfish.furniture.network.message.MessageFillBath;
 import com.mrcrayfish.furniture.tileentity.TileEntityBath;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 
+import com.mrcrayfish.furniture.util.SittableUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -272,29 +273,37 @@ public class BlockBath extends BlockFurnitureTile
             }
             else
             {
-                if(!tileEntityBath.isFull())
+                if(playerIn.isSneaking())
                 {
-                    if(hasWaterSource(worldIn, pos))
+                    if(!tileEntityBath.isFull())
                     {
-                        if(this == FurnitureBlocks.BATH_2)
+                        if(hasWaterSource(worldIn, pos))
                         {
-                            if(!worldIn.isRemote)
+                            if(this == FurnitureBlocks.BATH_2)
                             {
-                                tileEntityBath.addWaterLevel();
-                                tileEntityBath2.addWaterLevel();
-                                worldIn.setBlockToAir(pos.add(0, -2, 0));
-                                worldIn.updateComparatorOutputLevel(pos, this);
-                            }
-                            else
-                            {
-                                worldIn.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 0.8F, true);
+                                if(!worldIn.isRemote)
+                                {
+                                    tileEntityBath.addWaterLevel();
+                                    tileEntityBath2.addWaterLevel();
+                                    worldIn.setBlockToAir(pos.add(0, -2, 0));
+                                    worldIn.updateComparatorOutputLevel(pos, this);
+                                }
+                                else
+                                {
+                                    worldIn.playSound(pos.getX() + 0.5, pos.getY() + 1, pos.getZ() + 0.5, FurnitureSounds.tap, SoundCategory.BLOCKS, 0.75F, 0.8F, true);
+                                }
                             }
                         }
+                        else if(!worldIn.isRemote)
+                        {
+                            playerIn.sendMessage(new TextComponentTranslation("cfm.message.bath"));
+                        }
                     }
-                    else if(!worldIn.isRemote)
-                    {
-                        playerIn.sendMessage(new TextComponentTranslation("cfm.message.bath"));
-                    }
+                    return true;
+                }
+                else
+                {
+                    return SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0);
                 }
             }
             PacketHandler.INSTANCE.sendToAllAround(new MessageFillBath(tileEntityBath.getWaterLevel(), pos.getX(), pos.getY(), pos.getZ(), otherBathPos.getX(), otherBathPos.getY(), otherBathPos.getZ()), new TargetPoint(playerIn.dimension, pos.getX(), pos.getY(), pos.getZ(), 128D));
