@@ -60,7 +60,7 @@ public class FurnitureBlocks
 
     /* The Modern Update */
     public static final Block BEDSIDE_CABINET_STONE, BEDSIDE_CABINET_GRANITE, BEDSIDE_CABINET_DIORITE, BEDSIDE_CABINET_ANDESITE;
-    public static final Block MODERN_WINDOW, MODERN_SLIDING_DOOR, MODERN_TV, MODERN_COUCH, MODERN_TABLE;
+    public static final Block MODERN_WINDOW, MODERN_SLIDING_DOOR, MODERN_TV, MODERN_COUCH, MODERN_TABLE, MODERN_CHAIR;
     public static final Block LIGHT_SWITCH_OFF, LIGHT_SWITCH_ON;
     public static final Block CEILING_FAN;
     public static final Block DESK_OAK, DESK_SPRUCE, DESK_BIRCH, DESK_JUNGLE, DESK_ACACIA, DESK_DARK_OAK, DESK_STONE, DESK_GRANITE, DESK_DIORITE, DESK_ANDESITE;
@@ -246,6 +246,7 @@ public class FurnitureBlocks
         PHOTO_FRAME = new BlockPhotoFrame();
         MODERN_COUCH = new BlockModernCouch();
         MODERN_TABLE = new BlockModernTable();
+        MODERN_CHAIR = new BlockChair(Material.WOOD, SoundType.WOOD).setUnlocalizedName("modern_chair").setRegistryName("modern_chair");
     }
 
     public static void register()
@@ -419,6 +420,7 @@ public class FurnitureBlocks
         registerBlock(PHOTO_FRAME, new ItemColoredFurniture(PHOTO_FRAME));
         registerBlock(MODERN_COUCH, new ItemColoredFurniture(MODERN_COUCH));
         registerBlock(MODERN_TABLE);
+        registerBlock(MODERN_CHAIR);
     }
 
     private static void registerBlock(Block block)

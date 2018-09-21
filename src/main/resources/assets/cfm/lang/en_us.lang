@@ -373,6 +373,7 @@ tile.modern_couch_green.name=Green Modern Couch
 tile.modern_couch_red.name=Red Modern Couch
 tile.modern_couch_black.name=Black Modern Couch
 tile.modern_table.name=Modern Table
+tile.modern_chair.name=Modern Chair
 
 cfm.info=Hold SHIFT for Info
 cfm.light_switch.desc=Use this switch to control ceiling lights and fans wirelessly
