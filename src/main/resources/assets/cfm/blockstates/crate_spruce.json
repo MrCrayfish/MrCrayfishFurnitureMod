@@ -3,8 +3,8 @@
 	"defaults": {
 		"model": "cfm:crate",
 		"textures": {
-			"primary": "blocks/log_oak",
-			"secondary": "blocks/planks_oak"
+			"primary": "blocks/log_spruce",
+			"secondary": "blocks/planks_spruce"
 		}
 	},
 	"variants": {
