@@ -1,6 +1,6 @@
 {
     "result": {
-        "item": "cfm:crate"
+        "item": "cfm:crate_spruce"
     },
     "pattern": [
         "DOD",
@@ -11,11 +11,11 @@
     "key": {
         "D": {
             "item": "minecraft:log",
-            "data": 0
+            "data": 1
         },
         "O": {
             "item": "minecraft:planks",
-            "data": 0
+            "data": 1
         }
     }
 }

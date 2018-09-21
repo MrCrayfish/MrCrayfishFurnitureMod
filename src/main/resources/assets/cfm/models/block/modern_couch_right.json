@@ -2,8 +2,8 @@
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
     "textures": {
         "particle": "#couch",
-        "0": "blocks/planks_oak",
-        "2": "blocks/planks_spruce"
+        "0": "blocks/concrete_silver",
+        "2": "blocks/concrete_white"
     },
     "display": {
         "gui": {

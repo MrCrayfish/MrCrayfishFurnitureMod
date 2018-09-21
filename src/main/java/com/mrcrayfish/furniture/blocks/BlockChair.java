@@ -64,7 +64,7 @@ public class BlockChair extends BlockFurniture
     {
         if(!playerIn.isSneaking())
         {
-            if(SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 7 * 0.0625))
+            if(SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 6 * 0.0625))
             {
                 worldIn.updateComparatorOutputLevel(pos, this);
                 return true;

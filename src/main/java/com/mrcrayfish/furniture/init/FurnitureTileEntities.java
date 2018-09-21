@@ -22,7 +22,7 @@ public class FurnitureTileEntities
         GameRegistry.registerTileEntity(TileEntityBath.class, "cfmBath");
         GameRegistry.registerTileEntity(TileEntityShowerHead.class, "cfmShowerHead");
         GameRegistry.registerTileEntity(TileEntityPlate.class, "cfmPlate");
-        GameRegistry.registerTileEntity(TileEntityCouch.class, "cfmCouch");
+        GameRegistry.registerTileEntity(TileEntityColoured.class, "cfmCouch");
         GameRegistry.registerTileEntity(TileEntityToaster.class, "cfmToaster");
         GameRegistry.registerTileEntity(TileEntityChoppingBoard.class, "cfmChoppingBoard");
         GameRegistry.registerTileEntity(TileEntityBlender.class, "cfmBlender");

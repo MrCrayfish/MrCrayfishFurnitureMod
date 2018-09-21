@@ -1,6 +1,6 @@
 {
     "result": {
-        "item": "cfm:crate"
+        "item": "cfm:crate_acacia"
     },
     "pattern": [
         "DOD",
@@ -10,12 +10,12 @@
     "type": "minecraft:crafting_shaped",
     "key": {
         "D": {
-            "item": "minecraft:log",
+            "item": "minecraft:log2",
             "data": 0
         },
         "O": {
             "item": "minecraft:planks",
-            "data": 0
+            "data": 4
         }
     }
 }

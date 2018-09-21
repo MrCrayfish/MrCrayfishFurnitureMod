@@ -60,7 +60,7 @@ public class FurnitureBlocks
 
     /* The Modern Update */
     public static final Block BEDSIDE_CABINET_STONE, BEDSIDE_CABINET_GRANITE, BEDSIDE_CABINET_DIORITE, BEDSIDE_CABINET_ANDESITE;
-    public static final Block MODERN_WINDOW, MODERN_SLIDING_DOOR, MODERN_TV, MODERN_COUCH;
+    public static final Block MODERN_WINDOW, MODERN_SLIDING_DOOR, MODERN_TV, MODERN_COUCH, MODERN_TABLE, MODERN_CHAIR;
     public static final Block LIGHT_SWITCH_OFF, LIGHT_SWITCH_ON;
     public static final Block CEILING_FAN;
     public static final Block DESK_OAK, DESK_SPRUCE, DESK_BIRCH, DESK_JUNGLE, DESK_ACACIA, DESK_DARK_OAK, DESK_STONE, DESK_GRANITE, DESK_DIORITE, DESK_ANDESITE;
@@ -71,6 +71,7 @@ public class FurnitureBlocks
     public static final Block MAIL_BOX_SPRUCE, MAIL_BOX_BIRCH, MAIL_BOX_JUNGLE, MAIL_BOX_ACACIA, MAIL_BOX_DARK_OAK;
     public static final Block DOOR_BELL_SPRUCE, DOOR_BELL_BIRCH, DOOR_BELL_JUNGLE, DOOR_BELL_ACACIA, DOOR_BELL_DARK_OAK;
     public static final Block PHOTO_FRAME;
+    public static final Block CRATE_SPRUCE, CRATE_BIRCH, CRATE_JUNGLE, CRATE_ACACIA, CRATE_DARK_OAK;
 
     /* Special */
     public static final Block MIRROR;
@@ -245,6 +246,13 @@ public class FurnitureBlocks
         MODERN_TV = new BlockModernTV();
         PHOTO_FRAME = new BlockPhotoFrame();
         MODERN_COUCH = new BlockModernCouch();
+        MODERN_TABLE = new BlockModernTable();
+        MODERN_CHAIR = new BlockChair(Material.WOOD, SoundType.WOOD).setUnlocalizedName("modern_chair").setRegistryName("modern_chair");
+        CRATE_SPRUCE = new BlockCrate(Material.WOOD).setUnlocalizedName("crate_spruce").setRegistryName("crate_spruce");
+        CRATE_BIRCH = new BlockCrate(Material.WOOD).setUnlocalizedName("crate_birch").setRegistryName("crate_birch");
+        CRATE_JUNGLE = new BlockCrate(Material.WOOD).setUnlocalizedName("crate_jungle").setRegistryName("crate_jungle");
+        CRATE_ACACIA = new BlockCrate(Material.WOOD).setUnlocalizedName("crate_acacia").setRegistryName("crate_acacia");
+        CRATE_DARK_OAK = new BlockCrate(Material.WOOD).setUnlocalizedName("crate_dark_oak").setRegistryName("crate_dark_oak");
     }
 
     public static void register()
@@ -381,6 +389,11 @@ public class FurnitureBlocks
         registerBlock(FIRE_PIT_ON);
         registerBlock(TRAMPOLINE);
         registerBlock(CRATE, new ItemCrate(CRATE));
+        registerBlock(CRATE_SPRUCE, new ItemCrate(CRATE_SPRUCE));
+        registerBlock(CRATE_BIRCH, new ItemCrate(CRATE_BIRCH));
+        registerBlock(CRATE_JUNGLE, new ItemCrate(CRATE_JUNGLE));
+        registerBlock(CRATE_ACACIA, new ItemCrate(CRATE_ACACIA));
+        registerBlock(CRATE_DARK_OAK, new ItemCrate(CRATE_DARK_OAK));
         registerBlock(BENCH);
         registerBlock(TABLE_OUTDOOR);
         registerBlock(GRILL);
@@ -417,6 +430,8 @@ public class FurnitureBlocks
         registerBlock(MODERN_TV);
         registerBlock(PHOTO_FRAME, new ItemColoredFurniture(PHOTO_FRAME));
         registerBlock(MODERN_COUCH, new ItemColoredFurniture(MODERN_COUCH));
+        registerBlock(MODERN_TABLE);
+        registerBlock(MODERN_CHAIR);
     }
 
     private static void registerBlock(Block block)

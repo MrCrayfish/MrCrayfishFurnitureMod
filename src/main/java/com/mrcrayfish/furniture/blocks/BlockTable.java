@@ -218,4 +218,10 @@ public class BlockTable extends Block
     {
         return BlockFaceShape.UNDEFINED;
     }
+
+    @Override
+    public boolean isTopSolid(IBlockState state)
+    {
+        return true;
+    }
 }

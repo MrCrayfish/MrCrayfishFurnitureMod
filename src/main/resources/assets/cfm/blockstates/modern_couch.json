@@ -7,82 +7,82 @@
 		"colour": {
 			"0": {
 				"textures": {
-					"couch": "blocks/wool_colored_white"
+					"couch": "blocks/hardened_clay_stained_white"
 				}
 			},
 			"1": {
 				"textures": {
-					"couch": "blocks/wool_colored_orange"
+					"couch": "blocks/hardened_clay_stained_orange"
 				}
 			},
 			"2": {
 				"textures": {
-					"couch": "blocks/wool_colored_magenta"
+					"couch": "blocks/hardened_clay_stained_magenta"
 				}
 			},
 			"3": {
 				"textures": {
-					"couch": "blocks/wool_colored_light_blue"
+					"couch": "blocks/hardened_clay_stained_light_blue"
 				}
 			},
 			"4": {
 				"textures": {
-					"couch": "blocks/wool_colored_yellow"
+					"couch": "blocks/hardened_clay_stained_yellow"
 				}
 			},
 			"5": {
 				"textures": {
-					"couch": "blocks/wool_colored_lime"
+					"couch": "blocks/hardened_clay_stained_lime"
 				}
 			},
 			"6": {
 				"textures": {
-					"couch": "blocks/wool_colored_pink"
+					"couch": "blocks/hardened_clay_stained_pink"
 				}
 			},
 			"7": {
 				"textures": {
-					"couch": "blocks/wool_colored_gray"
+					"couch": "blocks/hardened_clay_stained_gray"
 				}
 			},
 			"8": {
 				"textures": {
-					"couch": "blocks/wool_colored_silver"
+					"couch": "blocks/hardened_clay_stained_silver"
 				}
 			},
 			"9": {
 				"textures": {
-					"couch": "blocks/wool_colored_cyan"
+					"couch": "blocks/hardened_clay_stained_cyan"
 				}
 			},
 			"10": {
 				"textures": {
-					"couch": "blocks/wool_colored_purple"
+					"couch": "blocks/hardened_clay_stained_purple"
 				}
 			},
 			"11": {
 				"textures": {
-					"couch": "blocks/wool_colored_blue"
+					"couch": "blocks/hardened_clay_stained_blue"
 				}
 			},
 			"12": {
 				"textures": {
-					"couch": "blocks/wool_colored_brown"
+					"couch": "blocks/hardened_clay_stained_brown"
 				}
 			},
 			"13": {
 				"textures": {
-					"couch": "blocks/wool_colored_green"
+					"couch": "blocks/hardened_clay_stained_green"
 				}
 			},
 			"14": {
 				"textures": {
-					"couch": "blocks/wool_colored_red"
+					"couch": "blocks/hardened_clay_stained_red"
 				}
 			},
 			"15": {
 				"textures": {
-					"couch": "blocks/wool_colored_black"
+					"couch": "blocks/hardened_clay_stained_black"
 				}
 			}
 		},
