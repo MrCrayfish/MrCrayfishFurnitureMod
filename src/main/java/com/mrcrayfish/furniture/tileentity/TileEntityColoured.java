@@ -2,7 +2,7 @@ package com.mrcrayfish.furniture.tileentity;
 
 import net.minecraft.nbt.NBTTagCompound;
 
-public class TileEntityCouch extends TileEntitySyncClient
+public class TileEntityColoured extends TileEntitySyncClient
 {
     private int colour = 0;
 

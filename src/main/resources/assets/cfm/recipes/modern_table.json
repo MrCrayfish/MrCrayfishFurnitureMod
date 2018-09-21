@@ -1,0 +1,21 @@
+{
+    "result": {
+        "item": "cfm:modern_table"
+    },
+    "pattern": [
+        "CCC",
+        "G G",
+        "G G"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "C": {
+            "item": "minecraft:concrete",
+            "data": 0
+        },
+        "G": {
+            "item": "minecraft:concrete",
+            "data": 8
+        }
+    }
+}

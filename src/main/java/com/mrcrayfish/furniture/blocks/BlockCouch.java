@@ -7,7 +7,7 @@ import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
-import com.mrcrayfish.furniture.tileentity.TileEntityCouch;
+import com.mrcrayfish.furniture.tileentity.TileEntityColoured;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import com.mrcrayfish.furniture.util.SittableUtil;
 import com.mrcrayfish.furniture.util.StateHelper;
@@ -15,7 +15,6 @@ import com.mrcrayfish.furniture.util.TileEntityUtil;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
@@ -91,7 +90,7 @@ public abstract class BlockCouch extends BlockFurnitureTile
     {
         if(!isSpecial())
         {
-            int colour = ((TileEntityCouch) world.getTileEntity(pos)).getColour();
+            int colour = ((TileEntityColoured) world.getTileEntity(pos)).getColour();
             state = state.withProperty(COLOUR, colour);
         }
 
@@ -168,16 +167,16 @@ public abstract class BlockCouch extends BlockFurnitureTile
             }
 
             TileEntity tileEntity = worldIn.getTileEntity(pos);
-            if(tileEntity instanceof TileEntityCouch)
+            if(tileEntity instanceof TileEntityColoured)
             {
-                TileEntityCouch tileEntityCouch = (TileEntityCouch) tileEntity;
+                TileEntityColoured tileEntityColoured = (TileEntityColoured) tileEntity;
                 if(!heldItem.isEmpty())
                 {
                     if(heldItem.getItem() instanceof ItemDye)
                     {
-                        if(tileEntityCouch.getColour() != (15 - heldItem.getItemDamage()))
+                        if(tileEntityColoured.getColour() != (15 - heldItem.getItemDamage()))
                         {
-                            tileEntityCouch.setColour(heldItem.getItemDamage());
+                            tileEntityColoured.setColour(heldItem.getItemDamage());
                             if(!playerIn.isCreative())
                             {
                                 heldItem.shrink(1);
@@ -285,7 +284,7 @@ public abstract class BlockCouch extends BlockFurnitureTile
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
-        return new TileEntityCouch();
+        return new TileEntityColoured();
     }
 
     @Override
