@@ -1,17 +1,16 @@
 package com.mrcrayfish.furniture.handler;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.init.FurnitureTab;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.inventory.GuiContainerCreative;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderItem;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
@@ -21,6 +20,8 @@ import net.minecraftforge.client.event.GuiScreenEvent.ActionPerformedEvent;
 import net.minecraftforge.client.event.GuiScreenEvent.DrawScreenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent.InitGuiEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.InputEvent;
+import org.lwjgl.input.Mouse;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -34,7 +35,12 @@ public class GuiDrawHandler
     private GuiLinkImageButton buttonTwitter;
     private GuiLinkImageButton buttonPatreon;
 
-    private GuiCategoryButton test;
+    private GuiCategoryButton categoryGeneral;
+    private GuiCategoryButton categoryKitchen;
+    private GuiCategoryButton categoryBathroom;
+    private GuiCategoryButton categoryOutdoor;
+    private GuiCategoryButton categoryElectronics;
+    private GuiCategoryButton categoryEvent;
 
     private int guiCenterX = 0;
     private int guiCenterY = 0;
@@ -44,15 +50,20 @@ public class GuiDrawHandler
     {
         if(event.getGui() instanceof GuiContainerCreative)
         {
-            this.guiCenterX = event.getGui().width / 2;
-            this.guiCenterY = event.getGui().height / 2;
+            this.guiCenterX = ((GuiContainerCreative) event.getGui()).getGuiLeft();
+            this.guiCenterY = ((GuiContainerCreative) event.getGui()).getGuiTop();
 
-            test = new GuiCategoryButton(0, 0, new ItemStack(FurnitureItems.BREAD_SLICE));
+            event.getButtonList().add(buttonWebsite = new GuiLinkImageButton(10, guiCenterX - 50, guiCenterY, ICONS, 48, 0, "https://mrcrayfish.com", TextFormatting.WHITE + "> " + TextFormatting.DARK_GRAY + I18n.format("cfm.button.website")));
+            event.getButtonList().add(buttonYouTube = new GuiLinkImageButton(10, guiCenterX - 50, guiCenterY + 22, ICONS, 32, 0, "https://www.youtube.com/channel/UCSwwxl2lWJcbGOGQ_d04v2Q", TextFormatting.WHITE + "> " + TextFormatting.DARK_GRAY + I18n.format("cfm.button.youtube")));
+            event.getButtonList().add(buttonTwitter = new GuiLinkImageButton(10, guiCenterX - 50, guiCenterY + 44, ICONS, 16, 0, "https://twitter.com/MrCraayfish", TextFormatting.WHITE + "> " + TextFormatting.DARK_GRAY + I18n.format("cfm.button.twitter")));
+            event.getButtonList().add(buttonPatreon = new GuiLinkImageButton(10, guiCenterX - 50, guiCenterY, ICONS, 0, 0, "https://www.patreon.com/mrcrayfish", TextFormatting.WHITE + "> " + TextFormatting.DARK_GRAY + I18n.format("cfm.button.patreon")));
 
-            event.getButtonList().add(buttonWebsite = new GuiLinkImageButton(10, guiCenterX - 120, guiCenterY - 66, ICONS, 48, 0, "https://mrcrayfish.com", TextFormatting.WHITE + "> " + TextFormatting.DARK_GRAY + I18n.format("cfm.button.website")));
-            event.getButtonList().add(buttonYouTube = new GuiLinkImageButton(10, guiCenterX - 120, guiCenterY - 44, ICONS, 32, 0, "https://www.youtube.com/channel/UCSwwxl2lWJcbGOGQ_d04v2Q", TextFormatting.WHITE + "> " + TextFormatting.DARK_GRAY + I18n.format("cfm.button.youtube")));
-            event.getButtonList().add(buttonTwitter = new GuiLinkImageButton(10, guiCenterX - 120, guiCenterY - 22, ICONS, 16, 0, "https://twitter.com/MrCraayfish", TextFormatting.WHITE + "> " + TextFormatting.DARK_GRAY + I18n.format("cfm.button.twitter")));
-            event.getButtonList().add(buttonPatreon = new GuiLinkImageButton(10, guiCenterX - 120, guiCenterY, ICONS, 0, 0, "https://www.patreon.com/mrcrayfish", TextFormatting.WHITE + "> " + TextFormatting.DARK_GRAY + I18n.format("cfm.button.patreon")));
+            event.getButtonList().add(categoryGeneral = new GuiCategoryButton(guiCenterX - 28, guiCenterY, new ItemStack(FurnitureBlocks.CHAIR_OAK)));
+            event.getButtonList().add(categoryKitchen = new GuiCategoryButton(guiCenterX - 28, guiCenterY + 29, new ItemStack(FurnitureBlocks.FREEZER)));
+            event.getButtonList().add(categoryBathroom = new GuiCategoryButton(guiCenterX - 28, guiCenterY + 58, new ItemStack(FurnitureBlocks.TOILET)));
+            event.getButtonList().add(categoryOutdoor = new GuiCategoryButton(guiCenterX - 28, guiCenterY + 87, new ItemStack(FurnitureBlocks.FIRE_PIT_ON)));
+            event.getButtonList().add(categoryElectronics = new GuiCategoryButton(guiCenterX - 28, guiCenterY + 116, new ItemStack(FurnitureBlocks.COMPUTER)));
+            event.getButtonList().add(categoryEvent = new GuiCategoryButton(guiCenterX - 28, guiCenterY + 145, new ItemStack(FurnitureBlocks.TREE_BOTTOM)));
         }
     }
 
@@ -65,7 +76,6 @@ public class GuiDrawHandler
 
             this.guiCenterX = event.getGui().width / 2;
             this.guiCenterY = event.getGui().height / 2;
-            test.draw(creative.getGuiLeft(), creative.getGuiTop() + 12, Minecraft.getMinecraft(), Minecraft.getMinecraft().getRenderItem());
 
             if(creative.getSelectedTabIndex() == MrCrayfishFurnitureMod.tabFurniture.getTabIndex())
             {
@@ -98,6 +108,10 @@ public class GuiDrawHandler
             {
                 e.printStackTrace();
             }
+        }
+        else if(event.getButton() instanceof GuiCategoryButton)
+        {
+            ((GuiCategoryButton) event.getButton()).onClick();
         }
     }
 
@@ -168,46 +182,70 @@ public class GuiDrawHandler
         }
     }
 
-    private static class GuiCategoryButton extends Gui
+    private static class GuiCategoryButton extends GuiButton
     {
         private static final ResourceLocation TABS = new ResourceLocation("textures/gui/container/creative_inventory/tabs.png");
 
         private int x, y;
-        private boolean visible;
         private boolean toggled;
         private ItemStack stack;
 
         public GuiCategoryButton(int x, int y, ItemStack stack)
         {
+            super(0, x, y, 32, 28, "");
             this.x = x;
             this.y = y;
             this.stack = stack;
         }
 
-        public void draw(int guiX, int guiY, Minecraft mc, RenderItem renderItem)
+        public void onClick()
         {
+            if(!this.visible || !this.enabled)
+                return;
+
+            toggled = !toggled;
+        }
+
+        @Override
+        public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks)
+        {
+            if(!this.visible || !this.enabled)
+                return;
+
+            this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
+
             mc.getTextureManager().bindTexture(TABS);
             GlStateManager.disableLighting();
             GlStateManager.color(1F, 1F, 1F);
             GlStateManager.enableBlend();
 
-            toggled = true;
-
             int width = toggled ? 32 : 28;
-            guiX -= width;
             int textureX = 28;
-            int textureY = toggled ? 96 : 64;
-            this.drawRotatedTexture(guiX + x, guiY + y, textureX, textureY, width, 28, 28, width);
+            int textureY = toggled ? 32 : 0;
+            this.drawRotatedTexture(x, y, textureX, textureY, width, 28, 28, width);
 
             this.zLevel = 100.0F;
+            RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
             renderItem.zLevel = 100.0F;
-            GlStateManager.enableLighting();
+            RenderHelper.enableGUIStandardItemLighting();
+            GlStateManager.enableDepth();
             GlStateManager.enableRescaleNormal();
-            renderItem.renderItemAndEffectIntoGUI(stack, guiX + x + 8, guiY + y + 6);
-            renderItem.renderItemOverlays(mc.fontRenderer, stack, guiX + x, guiY + y);
-            GlStateManager.disableLighting();
+            renderItem.renderItemAndEffectIntoGUI(stack, x + 8, y + 6);
+            renderItem.renderItemOverlays(mc.fontRenderer, stack, x + 8, y + 6);
+            GlStateManager.disableDepth();
             renderItem.zLevel = 0.0F;
             this.zLevel = 0.0F;
+        }
+
+        public void drawHoveringText(GuiScreen screen, int mouseX, int mouseY)
+        {
+            if(!this.visible || !this.enabled)
+                return;
+
+            if(this.hovered)
+            {
+                screen.drawHoveringText("Category", mouseX, mouseY);
+            }
         }
 
         private void drawRotatedTexture(int x, int y, int textureX, int textureY, int width, int height, int textureWidth, int textureHeight)
@@ -217,10 +255,10 @@ public class GuiDrawHandler
             Tessellator tessellator = Tessellator.getInstance();
             BufferBuilder bufferbuilder = tessellator.getBuffer();
             bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-            bufferbuilder.pos((double)(x + 0), (double)(y + height), (double)this.zLevel).tex((double)((float)(textureX + textureWidth) * 0.00390625F), (double)((float)(textureY + textureHeight) * 0.00390625F)).endVertex();
-            bufferbuilder.pos((double)(x + width), (double)(y + height), (double)this.zLevel).tex((double)((float)(textureX + textureWidth) * 0.00390625F), (double)((float)(textureY + 0) * 0.00390625F)).endVertex();
-            bufferbuilder.pos((double)(x + width), (double)(y + 0), (double)this.zLevel).tex((double)((float)(textureX + 0) * 0.00390625F), (double)((float)(textureY + 0) * 0.00390625F)).endVertex();
-            bufferbuilder.pos((double)(x + 0), (double)(y + 0), (double)this.zLevel).tex((double)((float)(textureX + 0) * 0.00390625F), (double)((float)(textureY + textureHeight) * 0.00390625F)).endVertex();
+            bufferbuilder.pos((double)(x + 0), (double)(y + height), (double)this.zLevel).tex((double)((float)(textureX + textureWidth) * 0.00390625F), (double)((float)(textureY + 0) * 0.00390625F)).endVertex();
+            bufferbuilder.pos((double)(x + width), (double)(y + height), (double)this.zLevel).tex((double)((float)(textureX + textureWidth) * 0.00390625F), (double)((float)(textureY + textureHeight) * 0.00390625F)).endVertex();
+            bufferbuilder.pos((double)(x + width), (double)(y + 0), (double)this.zLevel).tex((double)((float)(textureX + 0) * 0.00390625F), (double)((float)(textureY + textureHeight) * 0.00390625F)).endVertex();
+            bufferbuilder.pos((double)(x + 0), (double)(y + 0), (double)this.zLevel).tex((double)((float)(textureX + 0) * 0.00390625F), (double)((float)(textureY + 0) * 0.00390625F)).endVertex();
             tessellator.draw();
         }
     }
