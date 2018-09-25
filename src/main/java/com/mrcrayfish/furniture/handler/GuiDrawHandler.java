@@ -55,7 +55,7 @@ public class GuiDrawHandler
         {
             this.guiCenterX = ((GuiContainerCreative) event.getGui()).getGuiLeft();
             this.guiCenterY = ((GuiContainerCreative) event.getGui()).getGuiTop();
-            this.categories = new AbstractCategory[] { Categories.GENERAL, Categories.KITCHEN, Categories.BATHROOM, Categories.OUTDOOR, Categories.ELECTRONICS, Categories.EVENT };
+            this.categories = new AbstractCategory[] { Categories.GENERAL, Categories.KITCHEN, Categories.BATHROOM, Categories.OUTDOOR, Categories.ELECTRONICS, Categories.EVENT, Categories.STORAGE, Categories.LIGHTING };
             this.categoryButtons = Lists.newArrayList();
             this.buttonList = event.getButtonList();
 
@@ -167,7 +167,7 @@ public class GuiDrawHandler
             }
             else if(event.getButton() == categoryDown)
             {
-                if(startIndex < categories.length - 4 - 1)
+                if(startIndex <= categories.length - 4 - 1)
                 {
                     startIndex++;
                 }
@@ -179,7 +179,7 @@ public class GuiDrawHandler
     private void updateCategoryButtons()
     {
         categoryUp.enabled = startIndex > 0;
-        categoryDown.enabled = startIndex < categories.length - 4 - 1;
+        categoryDown.enabled = startIndex <= categories.length - 4 - 1;
     }
 
     private void openWebLink(URI url)

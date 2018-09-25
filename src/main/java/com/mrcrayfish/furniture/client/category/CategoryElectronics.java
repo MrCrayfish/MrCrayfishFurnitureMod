@@ -28,6 +28,16 @@ public class CategoryElectronics extends AbstractCategory
         add(FurnitureBlocks.PRINTER);
         add(FurnitureBlocks.STEREO);
         add(FurnitureBlocks.DIGITAL_CLOCK);
-
+        add(FurnitureBlocks.DOOR_BELL);
+        add(FurnitureBlocks.DOOR_BELL_SPRUCE);
+        add(FurnitureBlocks.DOOR_BELL_BIRCH);
+        add(FurnitureBlocks.DOOR_BELL_JUNGLE);
+        add(FurnitureBlocks.DOOR_BELL_ACACIA);
+        add(FurnitureBlocks.DOOR_BELL_DARK_OAK);
+        add(FurnitureBlocks.TOASTER);
+        add(FurnitureBlocks.MICROWAVE);
+        add(FurnitureBlocks.DISHWASHER);
+        add(FurnitureBlocks.WASHING_MACHINE);
+        add(FurnitureBlocks.BLENDER);
     }
 }
