@@ -25,6 +25,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -39,7 +40,7 @@ public class GuiDrawHandler
     private GuiLinkImageButton buttonPatreon;
 
     private AbstractCategory[] categories;
-    private List<GuiButton> categoryButtons;
+    private List<GuiCategoryButton> categoryButtons;
     private GuiButton categoryUp;
     private GuiButton categoryDown;
     private static int startIndex;
@@ -79,7 +80,7 @@ public class GuiDrawHandler
         }
         for(int i = startIndex; i < startIndex + 4 && i < categories.length; i++)
         {
-            GuiButton button = new GuiCategoryButton(guiCenterX - 28, guiCenterY + 29 * (i - startIndex) + 10, categories[i]);
+            GuiCategoryButton button = new GuiCategoryButton(guiCenterX - 28, guiCenterY + 29 * (i - startIndex) + 10, categories[i]);
             categoryButtons.add(button);
             buttonList.add(button);
         }
@@ -102,8 +103,13 @@ public class GuiDrawHandler
                 buttonYouTube.visible = true;
                 buttonTwitter.visible = true;
                 buttonPatreon.visible = true;
-                categoryButtons.forEach(guiButton -> {
-                    guiButton.visible = true;
+                categoryButtons.forEach(guiButton -> guiButton.visible = true);
+                categoryButtons.forEach(guiButton ->
+                {
+                    if(guiButton.isMouseOver())
+                    {
+                        guiButton.drawHoveringText(event.getGui(), event.getMouseX(), event.getMouseY());
+                    }
                 });
             }
             else
@@ -112,9 +118,7 @@ public class GuiDrawHandler
                 buttonYouTube.visible = false;
                 buttonTwitter.visible = false;
                 buttonPatreon.visible = false;
-                categoryButtons.forEach(guiButton -> {
-                    guiButton.visible = false;
-                });
+                categoryButtons.forEach(guiButton -> guiButton.visible = false);
             }
         }
     }
@@ -294,17 +298,16 @@ public class GuiDrawHandler
             int width = toggled ? 32 : 28;
             int textureX = 28;
             int textureY = toggled ? 32 : 0;
-            this.drawRotatedTexture(x, y, textureX, textureY, width, 28, 28, width);
 
             this.zLevel = 100.0F;
+            GlStateManager.enableDepth();
+            this.drawRotatedTexture(x, y, textureX, textureY, width, 28, 28, width);
             RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
             renderItem.zLevel = 100.0F;
             RenderHelper.enableGUIStandardItemLighting();
-            GlStateManager.enableDepth();
             GlStateManager.enableRescaleNormal();
             renderItem.renderItemAndEffectIntoGUI(stack, x + 8, y + 6);
             renderItem.renderItemOverlays(mc.fontRenderer, stack, x + 8, y + 6);
-            GlStateManager.disableDepth();
             renderItem.zLevel = 0.0F;
             this.zLevel = 0.0F;
         }
@@ -316,7 +319,7 @@ public class GuiDrawHandler
 
             if(this.hovered)
             {
-                screen.drawHoveringText(category.getTitle(), mouseX, mouseY);
+                screen.drawHoveringText(Arrays.asList(TextFormatting.BOLD + category.getTitle(), category.isEnabled() ? TextFormatting.BLUE + "Enabled" : TextFormatting.DARK_GRAY + "Disabled"), mouseX, mouseY);
             }
         }
 
