@@ -1,0 +1,14 @@
+package com.mrcrayfish.furniture.client.category;
+
+/**
+ * Author: MrCrayfish
+ */
+public class Categories
+{
+    public static final AbstractCategory GENERAL = new CategoryGeneral();
+    public static final AbstractCategory KITCHEN = new CategoryKitchen();
+    public static final AbstractCategory BATHROOM = new CategoryBathroom();
+    public static final AbstractCategory OUTDOOR = new CategoryOutdoor();
+    public static final AbstractCategory ELECTRONICS = new CategoryElectronics();
+    public static final AbstractCategory EVENT = new CategoryEvent();
+}
