@@ -1,7 +1,6 @@
 package com.mrcrayfish.furniture.blocks;
 
-import com.mrcrayfish.furniture.tileentity.TileEntityCouch;
-import com.mrcrayfish.furniture.tileentity.TileEntityKitchenCounter;
+import com.mrcrayfish.furniture.tileentity.TileEntityColoured;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,12 +8,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -25,18 +21,18 @@ public class BlockCouchNormal extends BlockCouch
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         TileEntity tileEntity = worldIn.getTileEntity(pos);
-        if(tileEntity instanceof TileEntityCouch)
+        if(tileEntity instanceof TileEntityColoured)
         {
-            ((TileEntityCouch) tileEntity).setColour(15 - stack.getMetadata());
+            ((TileEntityColoured) tileEntity).setColour(15 - stack.getMetadata());
         }
     }
 
     @Override
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity tileEntity, ItemStack stack)
     {
-        if (tileEntity instanceof TileEntityCouch)
+        if (tileEntity instanceof TileEntityColoured)
         {
-            TileEntityCouch couch = (TileEntityCouch) tileEntity;
+            TileEntityColoured couch = (TileEntityColoured) tileEntity;
             ItemStack itemstack = new ItemStack(this, 1, couch.getColour());
             spawnAsEntity(worldIn, pos, itemstack);
         }
@@ -60,9 +56,9 @@ public class BlockCouchNormal extends BlockCouch
     {
         int metadata = 0;
         TileEntity tileEntity = world.getTileEntity(pos);
-        if(tileEntity instanceof TileEntityCouch)
+        if(tileEntity instanceof TileEntityColoured)
         {
-            metadata = ((TileEntityCouch) tileEntity).getColour();
+            metadata = ((TileEntityColoured) tileEntity).getColour();
         }
         return new ItemStack(this, 1, metadata);
     }

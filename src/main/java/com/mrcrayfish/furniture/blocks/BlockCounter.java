@@ -4,11 +4,7 @@ import java.util.List;
 import java.util.Locale;
 
 import com.google.common.collect.Lists;
-import com.mrcrayfish.furniture.advancement.Triggers;
-import com.mrcrayfish.furniture.init.FurnitureBlocks;
-import com.mrcrayfish.furniture.tileentity.TileEntityCouch;
 import com.mrcrayfish.furniture.tileentity.TileEntityKitchenCounter;
-import com.mrcrayfish.furniture.util.SittableUtil;
 import com.mrcrayfish.furniture.util.StateHelper;
 
 import com.mrcrayfish.furniture.util.TileEntityUtil;
@@ -23,13 +19,10 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityBanner;
-import net.minecraft.tileentity.TileEntityBed;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;

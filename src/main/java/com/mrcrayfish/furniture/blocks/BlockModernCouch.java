@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
-import com.mrcrayfish.furniture.tileentity.TileEntityCouch;
+import com.mrcrayfish.furniture.tileentity.TileEntityColoured;
 import com.mrcrayfish.furniture.util.*;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -66,9 +66,9 @@ public class BlockModernCouch extends BlockFurnitureTile
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         TileEntity tileEntity = world.getTileEntity(pos);
-        if(tileEntity instanceof TileEntityCouch)
+        if(tileEntity instanceof TileEntityColoured)
         {
-            int colour = ((TileEntityCouch) tileEntity).getColour();
+            int colour = ((TileEntityColoured) tileEntity).getColour();
             state = state.withProperty(COLOUR, colour);
         }
 
@@ -127,16 +127,16 @@ public class BlockModernCouch extends BlockFurnitureTile
         }
 
         TileEntity tileEntity = worldIn.getTileEntity(pos);
-        if(tileEntity instanceof TileEntityCouch)
+        if(tileEntity instanceof TileEntityColoured)
         {
-            TileEntityCouch tileEntityCouch = (TileEntityCouch) tileEntity;
+            TileEntityColoured tileEntityColoured = (TileEntityColoured) tileEntity;
             if(!heldItem.isEmpty())
             {
                 if(heldItem.getItem() instanceof ItemDye)
                 {
-                    if(tileEntityCouch.getColour() != (15 - heldItem.getItemDamage()))
+                    if(tileEntityColoured.getColour() != (15 - heldItem.getItemDamage()))
                     {
-                        tileEntityCouch.setColour(heldItem.getItemDamage());
+                        tileEntityColoured.setColour(heldItem.getItemDamage());
                         if(!playerIn.isCreative())
                         {
                             heldItem.shrink(1);
@@ -215,7 +215,7 @@ public class BlockModernCouch extends BlockFurnitureTile
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
-        return new TileEntityCouch();
+        return new TileEntityColoured();
     }
 
     @Override
@@ -228,18 +228,18 @@ public class BlockModernCouch extends BlockFurnitureTile
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         TileEntity tileEntity = worldIn.getTileEntity(pos);
-        if(tileEntity instanceof TileEntityCouch)
+        if(tileEntity instanceof TileEntityColoured)
         {
-            ((TileEntityCouch) tileEntity).setColour(15 - stack.getMetadata());
+            ((TileEntityColoured) tileEntity).setColour(15 - stack.getMetadata());
         }
     }
 
     @Override
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity tileEntity, ItemStack stack)
     {
-        if (tileEntity instanceof TileEntityCouch)
+        if (tileEntity instanceof TileEntityColoured)
         {
-            TileEntityCouch couch = (TileEntityCouch) tileEntity;
+            TileEntityColoured couch = (TileEntityColoured) tileEntity;
             ItemStack itemstack = new ItemStack(this, 1, couch.getColour());
             spawnAsEntity(worldIn, pos, itemstack);
         }
@@ -263,9 +263,9 @@ public class BlockModernCouch extends BlockFurnitureTile
     {
         int metadata = 0;
         TileEntity tileEntity = world.getTileEntity(pos);
-        if(tileEntity instanceof TileEntityCouch)
+        if(tileEntity instanceof TileEntityColoured)
         {
-            metadata = ((TileEntityCouch) tileEntity).getColour();
+            metadata = ((TileEntityColoured) tileEntity).getColour();
         }
         return new ItemStack(this, 1, metadata);
     }

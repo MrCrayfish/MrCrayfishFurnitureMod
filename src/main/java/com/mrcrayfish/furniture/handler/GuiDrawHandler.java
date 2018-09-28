@@ -65,8 +65,8 @@ public class GuiDrawHandler
             event.getButtonList().add(buttonTwitter = new GuiLinkImageButton(10, guiCenterX - 50, guiCenterY + 44, ICONS, 16, 0, "https://twitter.com/MrCraayfish", TextFormatting.WHITE + "> " + TextFormatting.DARK_GRAY + I18n.format("cfm.button.twitter")));
             event.getButtonList().add(buttonPatreon = new GuiLinkImageButton(10, guiCenterX - 50, guiCenterY, ICONS, 0, 0, "https://www.patreon.com/mrcrayfish", TextFormatting.WHITE + "> " + TextFormatting.DARK_GRAY + I18n.format("cfm.button.patreon")));
 
-            event.getButtonList().add(categoryUp = new GuiButton(11, guiCenterX - 22, guiCenterY - 12, 20, 20, "▲"));
-            event.getButtonList().add(categoryDown = new GuiButton(11, guiCenterX - 22, guiCenterY + 127, 20, 20, "▼"));
+            event.getButtonList().add(categoryUp = new GuiDepthButton(11, guiCenterX - 22, guiCenterY - 12, 20, 20, "▲"));
+            event.getButtonList().add(categoryDown = new GuiDepthButton(11, guiCenterX - 22, guiCenterY + 127, 20, 20, "▼"));
             updateCategories();
         }
     }
@@ -229,6 +229,8 @@ public class GuiDrawHandler
                     ((FurnitureTab) MrCrayfishFurnitureMod.tabFurniture).setHoveringButton(false);
                 }
 
+                this.zLevel = 100.0F;
+                GlStateManager.enableDepth();
                 FontRenderer fontrenderer = mc.fontRenderer;
                 mc.getTextureManager().bindTexture(BUTTON_TEXTURES);
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -249,6 +251,7 @@ public class GuiDrawHandler
 
                 mc.getTextureManager().bindTexture(GuiDrawHandler.ICONS);
                 this.drawTexturedModalRect(this.x + 2, this.y + 2, u, v, 16, 16);
+                this.zLevel = 0.0F;
             }
         }
     }
@@ -341,6 +344,23 @@ public class GuiDrawHandler
         public boolean equals(Object obj)
         {
             return obj instanceof GuiCategoryButton && ((GuiCategoryButton) obj).category == category;
+        }
+    }
+
+    private static class GuiDepthButton extends GuiButton
+    {
+        public GuiDepthButton(int buttonId, int x, int y, int widthIn, int heightIn, String buttonText)
+        {
+            super(buttonId, x, y, widthIn, heightIn, buttonText);
+        }
+
+        @Override
+        public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks)
+        {
+            GlStateManager.disableDepth();
+            GlStateManager.translate(0, 0, 1);
+            super.drawButton(mc, mouseX, mouseY, partialTicks);
+            GlStateManager.disableDepth();
         }
     }
 }
