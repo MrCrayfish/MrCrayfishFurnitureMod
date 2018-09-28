@@ -50,6 +50,7 @@ public class CategoryOutdoor extends AbstractCategory
         add(FurnitureBlocks.DIVING_BOARD_BASE);
         add(FurnitureBlocks.DOOR_MAT);
         add(FurnitureBlocks.COOLER);
+        add(FurnitureBlocks.MODERN_SLIDING_DOOR);
         add(FurnitureItems.SPATULA);
         add(FurnitureItems.SAUSAGE);
         add(FurnitureItems.SAUSAGE_COOKED);

@@ -47,5 +47,6 @@ public class CategoryKitchen extends AbstractCategory
         add(FurnitureItems.SOAP);
         add(FurnitureItems.SOAPY_WATER);
         add(FurnitureItems.SUPER_SOAPY_WATER);
+        add(FurnitureBlocks.MODERN_WINDOW);
     }
 }

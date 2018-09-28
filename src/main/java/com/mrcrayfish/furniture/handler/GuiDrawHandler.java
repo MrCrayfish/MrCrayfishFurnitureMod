@@ -56,7 +56,7 @@ public class GuiDrawHandler
         {
             this.guiCenterX = ((GuiContainerCreative) event.getGui()).getGuiLeft();
             this.guiCenterY = ((GuiContainerCreative) event.getGui()).getGuiTop();
-            this.categories = new AbstractCategory[] { Categories.GENERAL, Categories.KITCHEN, Categories.BATHROOM, Categories.OUTDOOR, Categories.ELECTRONICS, Categories.EVENT, Categories.STORAGE, Categories.LIGHTING };
+            this.categories = new AbstractCategory[] { Categories.GENERAL, Categories.BEDROOM, Categories.KITCHEN, Categories.BATHROOM, Categories.OUTDOOR, Categories.ELECTRONICS, Categories.EVENT, Categories.STORAGE, Categories.LIGHTING };
             this.categoryButtons = Lists.newArrayList();
             this.buttonList = event.getButtonList();
 

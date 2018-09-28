@@ -13,4 +13,5 @@ public class Categories
     public static final AbstractCategory EVENT = new CategoryEvent();
     public static final AbstractCategory STORAGE = new CategoryStorage();
     public static final AbstractCategory LIGHTING = new CategoryLighting();
+    public static final AbstractCategory BEDROOM = new CategoryBedroom();
 }
