@@ -1,9 +1,9 @@
 package com.mrcrayfish.furniture.blocks;
 
+import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityColoured;
-import net.minecraft.block.BlockBed;
-import net.minecraft.block.BlockHorizontal;
+import com.mrcrayfish.furniture.util.Bounds;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyEnum;
@@ -22,13 +22,17 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 /**
@@ -40,12 +44,78 @@ public class BlockModernBed extends BlockFurnitureTile
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
     public static final PropertyBool OCCUPIED = PropertyBool.create("occupied");
 
+    public static final AxisAlignedBB BOUNDING_BOX = new Bounds(0, 0, 0, 16, 9, 16).toAABB();
+    public static final AxisAlignedBB BASE = new Bounds(0, 4, 0, 16, 8, 16).toAABB();
+    public static final AxisAlignedBB[] TOP = new Bounds(14, 0, 0, 16, 16, 16).getRotatedBounds();
+    public static final AxisAlignedBB[] BOTTOM = new Bounds(0, 0, 0, 2, 8, 16).getRotatedBounds();
+
     public BlockModernBed(String id)
     {
         super(Material.WOOD);
         this.setUnlocalizedName(id);
         this.setRegistryName(id);
         this.setHardness(0.5F);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX;
+    }
+
+    @Override
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
+    {
+        List<AxisAlignedBB> list = getCollisionBoxList(state, worldIn, pos);
+        for(AxisAlignedBB box : list)
+        {
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
+        }
+    }
+
+    protected List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
+    {
+        List<AxisAlignedBB> boxes = new ArrayList<>();
+        boxes.add(BASE);
+        if(this == FurnitureBlocks.MODERN_BED_TOP)
+        {
+            boxes.add(TOP[state.getValue(FACING).getHorizontalIndex()]);
+        }
+        else
+        {
+            boxes.add(BOTTOM[state.getValue(FACING).getHorizontalIndex()]);
+        }
+        return boxes;
+    }
+
+    @Override
+    public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
+    {
+        List<RayTraceResult> list = Lists.newArrayList();
+
+        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos), world, pos))
+        {
+            list.add(this.rayTrace(pos, start, end, axisalignedbb));
+        }
+
+        RayTraceResult raytraceresult1 = null;
+        double d1 = 0.0D;
+
+        for(RayTraceResult raytraceresult : list)
+        {
+            if(raytraceresult != null)
+            {
+                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
+
+                if(d0 > d1)
+                {
+                    raytraceresult1 = raytraceresult;
+                    d1 = d0;
+                }
+            }
+        }
+
+        return raytraceresult1;
     }
 
     @Override
