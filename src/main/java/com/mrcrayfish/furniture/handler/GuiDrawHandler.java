@@ -65,9 +65,15 @@ public class GuiDrawHandler
             event.getButtonList().add(buttonTwitter = new GuiLinkImageButton(10, guiCenterX - 50, guiCenterY + 44, ICONS, 16, 0, "https://twitter.com/MrCraayfish", TextFormatting.WHITE + "> " + TextFormatting.DARK_GRAY + I18n.format("cfm.button.twitter")));
             event.getButtonList().add(buttonPatreon = new GuiLinkImageButton(10, guiCenterX - 50, guiCenterY, ICONS, 0, 0, "https://www.patreon.com/mrcrayfish", TextFormatting.WHITE + "> " + TextFormatting.DARK_GRAY + I18n.format("cfm.button.patreon")));
 
-            event.getButtonList().add(categoryUp = new GuiDepthButton(11, guiCenterX - 22, guiCenterY - 12, 20, 20, "▲"));
-            event.getButtonList().add(categoryDown = new GuiDepthButton(11, guiCenterX - 22, guiCenterY + 127, 20, 20, "▼"));
+            event.getButtonList().add(categoryUp = new GuiArrowButton(11, guiCenterX - 22, guiCenterY - 12, 20, 20, true));
+            event.getButtonList().add(categoryDown = new GuiArrowButton(11, guiCenterX - 22, guiCenterY + 127, 20, 20, false));
             updateCategories();
+
+            GuiContainerCreative creative = (GuiContainerCreative) event.getGui();
+            if(creative.getSelectedTabIndex() == MrCrayfishFurnitureMod.tabFurniture.getTabIndex())
+            {
+                categoryButtons.forEach(guiCategoryButton -> guiCategoryButton.visible = true);
+            }
         }
     }
 
@@ -103,6 +109,8 @@ public class GuiDrawHandler
                 buttonYouTube.visible = true;
                 buttonTwitter.visible = true;
                 buttonPatreon.visible = true;
+                categoryUp.visible = true;
+                categoryDown.visible = true;
                 categoryButtons.forEach(guiButton -> guiButton.visible = true);
                 categoryButtons.forEach(guiButton ->
                 {
@@ -118,6 +126,8 @@ public class GuiDrawHandler
                 buttonYouTube.visible = false;
                 buttonTwitter.visible = false;
                 buttonPatreon.visible = false;
+                categoryUp.visible = false;
+                categoryDown.visible = false;
                 categoryButtons.forEach(guiButton -> guiButton.visible = false);
             }
         }
@@ -176,6 +186,11 @@ public class GuiDrawHandler
                     startIndex++;
                 }
                 updateCategories();
+            }
+            GuiContainerCreative creative = (GuiContainerCreative) event.getGui();
+            if(creative.getSelectedTabIndex() == MrCrayfishFurnitureMod.tabFurniture.getTabIndex())
+            {
+                categoryButtons.forEach(guiCategoryButton -> guiCategoryButton.visible = true);
             }
         }
     }
@@ -273,7 +288,7 @@ public class GuiDrawHandler
             this.stack = category.getIcon();
             this.toggled = category.isEnabled();
             this.category = category;
-            this.visible = true;
+            this.visible = false;
         }
 
         public void onClick()
@@ -347,20 +362,37 @@ public class GuiDrawHandler
         }
     }
 
-    private static class GuiDepthButton extends GuiButton
+    private static class GuiArrowButton extends GuiButton
     {
-        public GuiDepthButton(int buttonId, int x, int y, int widthIn, int heightIn, String buttonText)
+        private static final ResourceLocation ARROWS = new ResourceLocation("textures/gui/resource_packs.png");
+
+        private boolean up = false;
+
+        public GuiArrowButton(int buttonId, int x, int y, int widthIn, int heightIn, boolean up)
         {
-            super(buttonId, x, y, widthIn, heightIn, buttonText);
+            super(buttonId, x, y, widthIn, heightIn, "");
+            this.up = up;
+            this.visible = false;
         }
 
         @Override
         public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks)
         {
-            GlStateManager.disableDepth();
-            GlStateManager.translate(0, 0, 1);
+            if(!visible)
+                return;
+
+            this.zLevel = 100.0F;
             super.drawButton(mc, mouseX, mouseY, partialTicks);
-            GlStateManager.disableDepth();
+            mc.getTextureManager().bindTexture(ARROWS);
+            if(up)
+            {
+                this.drawTexturedModalRect(x + 4, y + 7, 114, 37, 11, 7);
+            }
+            else
+            {
+                this.drawTexturedModalRect(x + 4, y + 7, 82, 52, 11, 7);
+            }
+            this.zLevel = 0.0F;
         }
     }
 }
