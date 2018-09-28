@@ -44,10 +44,10 @@ public class BlockModernBed extends BlockFurnitureTile
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
     public static final PropertyBool OCCUPIED = PropertyBool.create("occupied");
 
-    public static final AxisAlignedBB BOUNDING_BOX = new Bounds(0, 0, 0, 16, 9, 16).toAABB();
-    public static final AxisAlignedBB BASE = new Bounds(0, 4, 0, 16, 8, 16).toAABB();
-    public static final AxisAlignedBB[] TOP = new Bounds(14, 0, 0, 16, 16, 16).getRotatedBounds();
-    public static final AxisAlignedBB[] BOTTOM = new Bounds(0, 0, 0, 2, 8, 16).getRotatedBounds();
+    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(0, 0, 0, 16, 9, 16).toAABB();
+    private static final AxisAlignedBB BASE = new Bounds(0, 4, 0, 16, 8, 16).toAABB();
+    private static final AxisAlignedBB[] TOP = new Bounds(14, 0, 0, 16, 16, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] BOTTOM = new Bounds(0, 0, 0, 2, 8, 16).getRotatedBounds();
 
     public BlockModernBed(String id)
     {
@@ -61,6 +61,30 @@ public class BlockModernBed extends BlockFurnitureTile
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
         return BOUNDING_BOX;
+    }
+
+    @Override
+    public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
+    {
+        super.onFallenUpon(worldIn, pos, entityIn, fallDistance * 0.25F);
+    }
+
+    @Override
+    public void onLanded(World worldIn, Entity entityIn)
+    {
+        if(entityIn.isSneaking())
+        {
+            super.onLanded(worldIn, entityIn);
+        }
+        else if(entityIn.motionY < 0.0D)
+        {
+            entityIn.motionY = -entityIn.motionY * 0.8D;
+
+            if(!(entityIn instanceof EntityLivingBase))
+            {
+                entityIn.motionY *= 0.8D;
+            }
+        }
     }
 
     @Override
@@ -121,29 +145,29 @@ public class BlockModernBed extends BlockFurnitureTile
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if (worldIn.isRemote)
+        if(worldIn.isRemote)
         {
             return true;
         }
         else
         {
-            if (this == FurnitureBlocks.MODERN_BED_BOTTOM)
+            if(this == FurnitureBlocks.MODERN_BED_BOTTOM)
             {
                 pos = pos.offset(state.getValue(FACING));
                 state = worldIn.getBlockState(pos);
-                if (state.getBlock() != FurnitureBlocks.MODERN_BED_TOP)
+                if(state.getBlock() != FurnitureBlocks.MODERN_BED_TOP)
                 {
                     return true;
                 }
             }
 
-            if (worldIn.provider.canRespawnHere() && worldIn.getBiome(pos) != Biomes.HELL)
+            if(worldIn.provider.canRespawnHere() && worldIn.getBiome(pos) != Biomes.HELL)
             {
-                if (state.getValue(OCCUPIED))
+                if(state.getValue(OCCUPIED))
                 {
                     EntityPlayer entityplayer = this.getPlayerInBed(worldIn, pos);
 
-                    if (entityplayer != null)
+                    if(entityplayer != null)
                     {
                         playerIn.sendStatusMessage(new TextComponentTranslation("tile.bed.occupied"), true);
                         return true;
@@ -160,7 +184,7 @@ public class BlockModernBed extends BlockFurnitureTile
                 }
 
                 EntityPlayer.SleepResult sleepResult = playerIn.trySleep(pos);
-                if (sleepResult == EntityPlayer.SleepResult.OK)
+                if(sleepResult == EntityPlayer.SleepResult.OK)
                 {
                     TileEntity tileEntity = worldIn.getTileEntity(pos);
                     state = state.withProperty(OCCUPIED, Boolean.TRUE);
@@ -174,15 +198,15 @@ public class BlockModernBed extends BlockFurnitureTile
                 }
                 else
                 {
-                    if (sleepResult == EntityPlayer.SleepResult.NOT_POSSIBLE_NOW)
+                    if(sleepResult == EntityPlayer.SleepResult.NOT_POSSIBLE_NOW)
                     {
                         playerIn.sendStatusMessage(new TextComponentTranslation("tile.bed.noSleep", new Object[0]), true);
                     }
-                    else if (sleepResult == EntityPlayer.SleepResult.NOT_SAFE)
+                    else if(sleepResult == EntityPlayer.SleepResult.NOT_SAFE)
                     {
                         playerIn.sendStatusMessage(new TextComponentTranslation("tile.bed.notSafe", new Object[0]), true);
                     }
-                    else if (sleepResult == EntityPlayer.SleepResult.TOO_FAR_AWAY)
+                    else if(sleepResult == EntityPlayer.SleepResult.TOO_FAR_AWAY)
                     {
                         playerIn.sendStatusMessage(new TextComponentTranslation("tile.bed.tooFarAway", new Object[0]), true);
                     }
@@ -194,11 +218,11 @@ public class BlockModernBed extends BlockFurnitureTile
                 worldIn.setBlockToAir(pos);
                 EnumFacing facing1 = state.getValue(FACING);
                 pos = pos.offset(this == FurnitureBlocks.MODERN_BED_TOP ? facing1.getOpposite() : facing1);
-                if (worldIn.getBlockState(pos).getBlock() == (this == FurnitureBlocks.MODERN_BED_TOP ? FurnitureBlocks.MODERN_BED_BOTTOM : FurnitureBlocks.MODERN_BED_TOP))
+                if(worldIn.getBlockState(pos).getBlock() == (this == FurnitureBlocks.MODERN_BED_TOP ? FurnitureBlocks.MODERN_BED_BOTTOM : FurnitureBlocks.MODERN_BED_TOP))
                 {
                     worldIn.setBlockToAir(pos);
                 }
-                worldIn.newExplosion(null, (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, 5.0F, true, true);
+                worldIn.newExplosion(null, (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, 5.0F, true, true);
                 return true;
             }
         }
@@ -207,9 +231,9 @@ public class BlockModernBed extends BlockFurnitureTile
     @Nullable
     private EntityPlayer getPlayerInBed(World worldIn, BlockPos pos)
     {
-        for (EntityPlayer entityplayer : worldIn.playerEntities)
+        for(EntityPlayer entityplayer : worldIn.playerEntities)
         {
-            if (entityplayer.isPlayerSleeping() && entityplayer.bedLocation.equals(pos))
+            if(entityplayer.isPlayerSleeping() && entityplayer.bedLocation.equals(pos))
             {
                 return entityplayer;
             }
@@ -334,7 +358,7 @@ public class BlockModernBed extends BlockFurnitureTile
     @Override
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity tileEntity, ItemStack stack)
     {
-        if (tileEntity instanceof TileEntityColoured)
+        if(tileEntity instanceof TileEntityColoured)
         {
             TileEntityColoured couch = (TileEntityColoured) tileEntity;
             ItemStack itemstack = new ItemStack(FurnitureBlocks.MODERN_BED_BOTTOM, 1, couch.getColour());
@@ -376,7 +400,7 @@ public class BlockModernBed extends BlockFurnitureTile
     @Override
     public void setBedOccupied(IBlockAccess blockAccess, BlockPos pos, EntityPlayer player, boolean occupied)
     {
-        if (blockAccess instanceof World)
+        if(blockAccess instanceof World)
         {
             World world = (World) blockAccess;
             TileEntity tileEntity = world.getTileEntity(pos);
@@ -406,7 +430,10 @@ public class BlockModernBed extends BlockFurnitureTile
 
     public enum Type implements IStringSerializable
     {
-        LEFT, RIGHT, BOTH, NONE;
+        LEFT,
+        RIGHT,
+        BOTH,
+        NONE;
 
         @Override
         public String getName()
