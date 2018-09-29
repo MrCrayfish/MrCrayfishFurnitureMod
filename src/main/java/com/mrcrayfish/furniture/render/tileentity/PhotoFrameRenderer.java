@@ -184,7 +184,7 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
                 GlStateManager.disableBlend();
                 GlStateManager.enableLighting();
             }
-            GlStateManager.popMatrix();
         }
+        GlStateManager.popMatrix();
     }
 }

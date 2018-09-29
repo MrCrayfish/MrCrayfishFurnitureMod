@@ -181,7 +181,7 @@ public class TVRenderer extends TileEntitySpecialRenderer<TileEntityTV>
                 GlStateManager.disableBlend();
                 GlStateManager.enableLighting();
             }
-            GlStateManager.popMatrix();
         }
+        GlStateManager.popMatrix();
     }
 }

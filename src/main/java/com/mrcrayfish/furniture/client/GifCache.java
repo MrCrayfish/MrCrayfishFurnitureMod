@@ -104,11 +104,8 @@ public final class GifCache
 
     private void tick()
     {
-        synchronized(this)
-        {
-            cacheMap.values().forEach(AnimatedTexture::update);
-            cacheMap.keySet().removeIf(key -> cacheMap.get(key).isPendingDeletion());
-        }
+        cacheMap.values().forEach(AnimatedTexture::update);
+        cacheMap.keySet().removeIf(key -> cacheMap.get(key).isPendingDeletion());
     }
 
     @SubscribeEvent

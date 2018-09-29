@@ -56,12 +56,6 @@ public class Texture
                 int[] imageData = new int[this.width * this.height];
                 image.getRGB(0, 0, this.width, this.height, imageData, 0, this.width);
                 buffer = createBuffer(imageData);
-
-                Minecraft.getMinecraft().addScheduledTask(() ->
-                {
-                    GL11.glBindTexture(GL11.GL_TEXTURE_2D, getTextureId());
-                    GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, width, height, 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, buffer);
-                });
             }
             catch(IOException e)
             {
@@ -72,10 +66,19 @@ public class Texture
 
     public void update()
     {
+        int textureId = getTextureId();
+        if(buffer != null)
+        {
+            GlStateManager.bindTexture(textureId);
+            GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, width, height, 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, buffer);
+        }
         if(counter++ >= 600)
         {
             delete = true;
-            GlStateManager.deleteTexture(getTextureId());
+            if(GL11.glIsTexture(textureId))
+            {
+                GlStateManager.deleteTexture(textureId);
+            }
         }
     }
 
@@ -105,7 +108,7 @@ public class Texture
 
     public int getTextureId()
     {
-        if(textureId == -1 || !GL11.glIsTexture(textureId))
+        if(textureId == -1 || (textureId >= 0 && !GL11.glIsTexture(textureId)))
         {
             textureId = GlStateManager.generateTexture();
         }
