@@ -72,5 +72,7 @@ public class CategoryGeneral extends AbstractCategory
         add(FurnitureBlocks.DESK_CABINET_DIORITE);
         add(FurnitureBlocks.DESK_CABINET_ANDESITE);
         add(FurnitureBlocks.MODERN_COUCH);
+        add(FurnitureBlocks.MODERN_TABLE);
+        add(FurnitureBlocks.MODERN_CHAIR);
     }
 }

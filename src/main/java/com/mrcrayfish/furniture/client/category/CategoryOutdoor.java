@@ -44,6 +44,11 @@ public class CategoryOutdoor extends AbstractCategory
         add(FurnitureBlocks.FIRE_PIT_OFF);
         add(FurnitureBlocks.TRAMPOLINE);
         add(FurnitureBlocks.CRATE);
+        add(FurnitureBlocks.CRATE_SPRUCE);
+        add(FurnitureBlocks.CRATE_BIRCH);
+        add(FurnitureBlocks.CRATE_JUNGLE);
+        add(FurnitureBlocks.CRATE_ACACIA);
+        add(FurnitureBlocks.CRATE_DARK_OAK);
         add(FurnitureBlocks.TABLE_OUTDOOR);
         add(FurnitureBlocks.BENCH);
         add(FurnitureBlocks.GRILL);

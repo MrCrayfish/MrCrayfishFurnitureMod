@@ -40,6 +40,11 @@ public class CategoryStorage extends AbstractCategory
         add(FurnitureBlocks.COUNTER_DRAWER);
         add(FurnitureBlocks.KITCHEN_CABINET);
         add(FurnitureBlocks.CRATE);
+        add(FurnitureBlocks.CRATE_SPRUCE);
+        add(FurnitureBlocks.CRATE_BIRCH);
+        add(FurnitureBlocks.CRATE_JUNGLE);
+        add(FurnitureBlocks.CRATE_ACACIA);
+        add(FurnitureBlocks.CRATE_DARK_OAK);
         add(FurnitureBlocks.COOLER);
         add(FurnitureBlocks.DESK_CABINET_OAK);
         add(FurnitureBlocks.DESK_CABINET_SPRUCE);
