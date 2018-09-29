@@ -223,6 +223,7 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
         }
         this.stretch = Boolean.valueOf(entries.get("stretch"));
         this.powered = Boolean.valueOf(entries.get("powered"));
+        this.markDirty();
     }
 
     @Override
