@@ -25,14 +25,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class GuiDrawHandler
 {
     private static final ResourceLocation ICONS = new ResourceLocation("cfm:textures/gui/icons.png");
+    private static final ResourceLocation BEACON = new ResourceLocation("textures/gui/container/beacon.png");
 
     private GuiLinkImageButton buttonWebsite;
     private GuiLinkImageButton buttonYouTube;
@@ -43,8 +41,12 @@ public class GuiDrawHandler
     private List<GuiCategoryButton> categoryButtons;
     private GuiButton categoryUp;
     private GuiButton categoryDown;
+    private GuiButton categoryEnableAll;
+    private GuiButton categoryDisableAll;
     private static int startIndex;
     private List<GuiButton> buttonList;
+
+    private boolean viewingFurnitureTab;
 
     private int guiCenterX = 0;
     private int guiCenterY = 0;
@@ -52,6 +54,7 @@ public class GuiDrawHandler
     @SubscribeEvent
     public void onDrawGui(InitGuiEvent.Post event)
     {
+        viewingFurnitureTab = false;
         if(event.getGui() instanceof GuiContainerCreative)
         {
             this.guiCenterX = ((GuiContainerCreative) event.getGui()).getGuiLeft();
@@ -67,12 +70,16 @@ public class GuiDrawHandler
 
             event.getButtonList().add(categoryUp = new GuiArrowButton(11, guiCenterX - 22, guiCenterY - 12, 20, 20, true));
             event.getButtonList().add(categoryDown = new GuiArrowButton(11, guiCenterX - 22, guiCenterY + 127, 20, 20, false));
+            event.getButtonList().add(categoryEnableAll = new GuiImageButton(guiCenterX - 50, guiCenterY + 88, 91, 223, 14, 14, BEACON));
+            event.getButtonList().add(categoryDisableAll = new GuiImageButton(guiCenterX - 50, guiCenterY + 110, 114, 223, 14, 14, BEACON));
             updateCategories();
 
             GuiContainerCreative creative = (GuiContainerCreative) event.getGui();
             if(creative.getSelectedTabIndex() == MrCrayfishFurnitureMod.tabFurniture.getTabIndex())
             {
+                viewingFurnitureTab = true;
                 categoryButtons.forEach(guiCategoryButton -> guiCategoryButton.visible = true);
+                updateItems(creative);
             }
         }
     }
@@ -94,15 +101,34 @@ public class GuiDrawHandler
     }
 
     @SubscribeEvent
+    public void onDrawGui(DrawScreenEvent.Pre event)
+    {
+        if(event.getGui() instanceof GuiContainerCreative)
+        {
+            GuiContainerCreative creative = (GuiContainerCreative) event.getGui();
+            if(creative.getSelectedTabIndex() == MrCrayfishFurnitureMod.tabFurniture.getTabIndex())
+            {
+                if(!viewingFurnitureTab)
+                {
+                    updateItems(creative);
+                    viewingFurnitureTab = true;
+                }
+            }
+            else
+            {
+                viewingFurnitureTab = false;
+            }
+        }
+    }
+
+    @SubscribeEvent
     public void onDrawGui(DrawScreenEvent.Post event)
     {
         if(event.getGui() instanceof GuiContainerCreative)
         {
             GuiContainerCreative creative = (GuiContainerCreative) event.getGui();
-
             this.guiCenterX = creative.getGuiLeft();
             this.guiCenterY = creative.getGuiTop();
-
             if(creative.getSelectedTabIndex() == MrCrayfishFurnitureMod.tabFurniture.getTabIndex())
             {
                 buttonWebsite.visible = true;
@@ -111,6 +137,8 @@ public class GuiDrawHandler
                 buttonPatreon.visible = true;
                 categoryUp.visible = true;
                 categoryDown.visible = true;
+                categoryEnableAll.visible = true;
+                categoryDisableAll.visible = true;
                 categoryButtons.forEach(guiButton -> guiButton.visible = true);
                 categoryButtons.forEach(guiButton ->
                 {
@@ -119,6 +147,14 @@ public class GuiDrawHandler
                         guiButton.drawHoveringText(event.getGui(), event.getMouseX(), event.getMouseY());
                     }
                 });
+                if(categoryEnableAll.isMouseOver())
+                {
+                    event.getGui().drawHoveringText("Enable All Filters", event.getMouseX(), event.getMouseY());
+                }
+                else if(categoryDisableAll.isMouseOver())
+                {
+                    event.getGui().drawHoveringText("Disable All Filters", event.getMouseX(), event.getMouseY());
+                }
             }
             else
             {
@@ -128,6 +164,8 @@ public class GuiDrawHandler
                 buttonPatreon.visible = false;
                 categoryUp.visible = false;
                 categoryDown.visible = false;
+                categoryEnableAll.visible = false;
+                categoryDisableAll.visible = false;
                 categoryButtons.forEach(guiButton -> guiButton.visible = false);
             }
         }
@@ -151,25 +189,13 @@ public class GuiDrawHandler
         else if(event.getButton() instanceof GuiCategoryButton)
         {
             ((GuiCategoryButton) event.getButton()).onClick();
-
             if(event.getGui() instanceof GuiContainerCreative)
             {
                 GuiContainerCreative creative = (GuiContainerCreative) event.getGui();
-                GuiContainerCreative.ContainerCreative container = (GuiContainerCreative.ContainerCreative) creative.inventorySlots;
-                Set<Item> categorisedItems = new LinkedHashSet<>();
-                for(AbstractCategory category : categories)
-                {
-                    if(category.isEnabled())
-                    {
-                        categorisedItems.addAll(category.getItems());
-                    }
-                }
-                container.itemList.clear();
-                categorisedItems.forEach(item -> item.getSubItems(CreativeTabs.SEARCH, container.itemList));
-                container.scrollTo(0);
+                updateItems(creative);
             }
         }
-        else if(categories != null)
+        else if(categories != null && event.getGui() instanceof GuiContainerCreative)
         {
             if(event.getButton() == categoryUp)
             {
@@ -177,7 +203,6 @@ public class GuiDrawHandler
                 {
                     startIndex--;
                 }
-                updateCategories();
             }
             else if(event.getButton() == categoryDown)
             {
@@ -185,14 +210,47 @@ public class GuiDrawHandler
                 {
                     startIndex++;
                 }
-                updateCategories();
             }
+            else if(event.getButton() == categoryEnableAll)
+            {
+                for(AbstractCategory category : categories)
+                {
+                    category.setEnabled(true);
+                }
+                updateItems((GuiContainerCreative) event.getGui());
+            }
+            else if(event.getButton() == categoryDisableAll)
+            {
+                for(AbstractCategory category : categories)
+                {
+                    category.setEnabled(false);
+                }
+                updateItems((GuiContainerCreative) event.getGui());
+            }
+            updateCategories();
             GuiContainerCreative creative = (GuiContainerCreative) event.getGui();
             if(creative.getSelectedTabIndex() == MrCrayfishFurnitureMod.tabFurniture.getTabIndex())
             {
                 categoryButtons.forEach(guiCategoryButton -> guiCategoryButton.visible = true);
             }
         }
+    }
+
+    private void updateItems(GuiContainerCreative creative)
+    {
+        GuiContainerCreative.ContainerCreative container = (GuiContainerCreative.ContainerCreative) creative.inventorySlots;
+        Set<Item> categorisedItems = new LinkedHashSet<>();
+        for(AbstractCategory category : categories)
+        {
+            if(category.isEnabled())
+            {
+                categorisedItems.addAll(category.getItems());
+            }
+        }
+        container.itemList.clear();
+        categorisedItems.forEach(item -> item.getSubItems(CreativeTabs.SEARCH, container.itemList));
+        container.itemList.sort(Comparator.comparingInt(o -> Item.getIdFromItem(o.getItem())));
+        container.scrollTo(0);
     }
 
     private void updateCategoryButtons()
@@ -392,6 +450,37 @@ public class GuiDrawHandler
             {
                 this.drawTexturedModalRect(x + 4, y + 7, 82, 52, 11, 7);
             }
+            this.zLevel = 0.0F;
+        }
+    }
+
+    private static class GuiImageButton extends GuiButton
+    {
+        private ResourceLocation resource;
+        private int textureU, textureV;
+        private int textureWidth, textureHeight;
+
+        public GuiImageButton(int x, int y, int textureU, int textureV, int textureWidth, int textureHeight, ResourceLocation resource)
+        {
+            super(-1, x, y, textureWidth + 6, textureHeight + 6, "");
+            this.resource = resource;
+            this.textureU = textureU;
+            this.textureV = textureV;
+            this.textureWidth = textureWidth;
+            this.textureHeight = textureHeight;
+            this.visible = false;
+        }
+
+        @Override
+        public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks)
+        {
+            if(!this.visible)
+                return;
+            this.zLevel = 100.0F;
+            super.drawButton(mc, mouseX, mouseY, partialTicks);
+            mc.getTextureManager().bindTexture(resource);
+            GlStateManager.color(1.0F, 1.0F, 1.0F);
+            this.drawTexturedModalRect(x + 3, y + 3, textureU, textureV, textureWidth, textureHeight);
             this.zLevel = 0.0F;
         }
     }
