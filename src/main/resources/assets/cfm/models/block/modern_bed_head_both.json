@@ -1,0 +1,54 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "0": "blocks/concrete_gray",
+        "1": "blocks/concrete_silver",
+        "3": "blocks/concrete_white"
+    },
+    "elements": [
+        {
+            "name": "bed_back",
+            "from": [ 0.00, 0.00, 0.00 ], 
+            "to": [ 16.00, 16.00, 2.00 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.00, 0.00, 16.00, 16.00 ], "cullface": "north" },
+                "south": { "texture": "#0", "uv": [ 0.00, 0.00, 16.00, 16.00 ] },
+                "up": { "texture": "#0", "uv": [ 0.00, 0.00, 16.00, 2.00 ] },
+                "down": { "texture": "#0", "uv": [ 0.00, 0.00, 16.00, 2.00 ], "cullface": "down" }
+            }
+        },
+        {
+            "name": "bed_bottom",
+            "from": [ 0.00, 4.50, 2.00 ], 
+            "to": [ 16.00, 5.50, 16.00 ], 
+            "faces": {
+                "down": { "texture": "#1", "uv": [ 0.00, 0.00, 16.00, 14.00 ] }
+            }
+        },
+        {
+            "name": "bed_blanket_1",
+            "from": [ 1.00, 5.00, 8.00 ], 
+            "to": [ 16.00, 9.00, 16.00 ], 
+            "faces": {
+                "up": { "texture": "#color", "uv": [ 0.00, 0.00, 15.00, 8.00 ] }
+            }
+        },
+        {
+            "name": "pillow",
+            "from": [ 0.00, 5.00, 2.00 ], 
+            "to": [ 16.00, 9.50, 8.00 ], 
+            "faces": {
+                "south": { "texture": "#3", "uv": [ 0.00, 0.00, 16.00, 4.50 ] },
+                "up": { "texture": "#3", "uv": [ 0.00, 0.00, 16.00, 6.00 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 0.00, 5.00, 8.00 ], 
+            "to": [ 1.00, 9.00, 16.00 ], 
+            "faces": {
+                "up": { "texture": "#color", "uv": [ 15.00, 0.00, 16.00, 8.00 ] }
+            }
+        }
+    ]
+}

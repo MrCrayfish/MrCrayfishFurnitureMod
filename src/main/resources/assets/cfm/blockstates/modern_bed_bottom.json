@@ -1,0 +1,117 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "cfm:modern_bed_base",
+		"textures": {
+			"particle": "blocks/concrete_gray"
+		}
+	},
+	"variants": {
+		"occupied": {
+			"true": {},
+			"false": {}
+		},
+		"colour": {
+			"0": {
+				"textures": {
+					"color": "blocks/wool_colored_white"
+				}
+			},
+			"1": {
+				"textures": {
+					"color": "blocks/wool_colored_orange"
+				}
+			},
+			"2": {
+				"textures": {
+					"color": "blocks/wool_colored_magenta"
+				}
+			},
+			"3": {
+				"textures": {
+					"color": "blocks/wool_colored_light_blue"
+				}
+			},
+			"4": {
+				"textures": {
+					"color": "blocks/wool_colored_yellow"
+				}
+			},
+			"5": {
+				"textures": {
+					"color": "blocks/wool_colored_lime"
+				}
+			},
+			"6": {
+				"textures": {
+					"color": "blocks/wool_colored_pink"
+				}
+			},
+			"7": {
+				"textures": {
+					"color": "blocks/wool_colored_gray"
+				}
+			},
+			"8": {
+				"textures": {
+					"color": "blocks/wool_colored_silver"
+				}
+			},
+			"9": {
+				"textures": {
+					"color": "blocks/wool_colored_cyan"
+				}
+			},
+			"10": {
+				"textures": {
+					"color": "blocks/wool_colored_purple"
+				}
+			},
+			"11": {
+				"textures": {
+					"color": "blocks/wool_colored_blue"
+				}
+			},
+			"12": {
+				"textures": {
+					"color": "blocks/wool_colored_brown"
+				}
+			},
+			"13": {
+				"textures": {
+					"color": "blocks/wool_colored_green"
+				}
+			},
+			"14": {
+				"textures": {
+					"color": "blocks/wool_colored_red"
+				}
+			},
+			"15": {
+				"textures": {
+					"color": "blocks/wool_colored_black"
+				}
+			}
+		},
+		"facing": {
+			"north": { "y": 0   },
+			"east":  { "y": 90  },
+			"south": { "y": 180 },
+			"west":  { "y": 270 }
+		},
+		"type": {
+			"both": {
+				"model": "cfm:modern_bed_base_both"
+			},
+			"left": {
+				"model": "cfm:modern_bed_base_left"
+			},
+			"right": {
+				"model": "cfm:modern_bed_base_right"
+			},
+			"none": {
+				"model": "cfm:modern_bed_base"
+			}
+		}
+	}
+}
