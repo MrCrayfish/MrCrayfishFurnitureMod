@@ -11,7 +11,7 @@ public class CategoryElectronics extends AbstractCategory
 {
     public CategoryElectronics()
     {
-        super("Electronics", new ItemStack(FurnitureBlocks.COMPUTER));
+        super("cfm.filter.electronics", new ItemStack(FurnitureBlocks.COMPUTER));
     }
 
     @Override

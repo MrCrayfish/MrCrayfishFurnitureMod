@@ -11,7 +11,7 @@ public class CategoryKitchen extends AbstractCategory
 {
     public CategoryKitchen()
     {
-        super("Kitchen", new ItemStack(FurnitureBlocks.FREEZER));
+        super("cfm.filter.kitchen", new ItemStack(FurnitureBlocks.FREEZER));
     }
 
     @Override

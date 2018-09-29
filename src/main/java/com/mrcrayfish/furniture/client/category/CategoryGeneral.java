@@ -10,7 +10,7 @@ public class CategoryGeneral extends AbstractCategory
 {
     public CategoryGeneral()
     {
-        super("Table & Chairs", new ItemStack(FurnitureBlocks.TABLE_OAK));
+        super("cfm.filter.general", new ItemStack(FurnitureBlocks.TABLE_OAK));
     }
 
     @Override

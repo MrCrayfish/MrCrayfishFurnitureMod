@@ -395,7 +395,8 @@ public class GuiDrawHandler
 
             if(this.hovered)
             {
-                screen.drawHoveringText(Arrays.asList(TextFormatting.BOLD + category.getTitle(), category.isEnabled() ? TextFormatting.BLUE + "Enabled" : TextFormatting.DARK_GRAY + "Disabled"), mouseX, mouseY);
+                String title = I18n.format(category.getTitleKey());
+                screen.drawHoveringText(Arrays.asList(TextFormatting.BOLD + title, category.isEnabled() ? TextFormatting.BLUE + "Enabled" : TextFormatting.DARK_GRAY + "Disabled"), mouseX, mouseY);
             }
         }
 

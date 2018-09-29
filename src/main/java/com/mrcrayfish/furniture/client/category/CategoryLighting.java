@@ -10,7 +10,7 @@ public class CategoryLighting extends AbstractCategory
 {
     public CategoryLighting()
     {
-        super("Lighting", new ItemStack(FurnitureBlocks.LAMP_OFF, 1, 14));
+        super("cfm.filter.lighting", new ItemStack(FurnitureBlocks.LAMP_OFF, 1, 14));
     }
 
     @Override

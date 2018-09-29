@@ -11,7 +11,7 @@ public class CategoryEvent extends AbstractCategory
 {
     public CategoryEvent()
     {
-        super("Event", new ItemStack(FurnitureBlocks.TREE_BOTTOM));
+        super("cfm.filter.event", new ItemStack(FurnitureBlocks.TREE_BOTTOM));
     }
 
     @Override

@@ -10,7 +10,7 @@ public class CategoryBathroom extends AbstractCategory
 {
     public CategoryBathroom()
     {
-        super("Bathroom", new ItemStack(FurnitureBlocks.TOILET));
+        super("cfm.filter.bathroom", new ItemStack(FurnitureBlocks.TOILET));
     }
 
     @Override

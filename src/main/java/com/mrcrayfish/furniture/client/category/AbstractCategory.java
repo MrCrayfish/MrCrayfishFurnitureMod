@@ -2,10 +2,8 @@ package com.mrcrayfish.furniture.client.category;
 
 import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 
 import java.util.List;
 
@@ -14,23 +12,23 @@ import java.util.List;
  */
 public abstract class AbstractCategory
 {
-    private String title;
+    private String titleKey;
     private ItemStack icon;
     private boolean enabled = true;
     private List<Item> items = Lists.newArrayList();
 
-    public AbstractCategory(String title, ItemStack icon)
+    public AbstractCategory(String titleKey, ItemStack icon)
     {
-        this.title = title;
+        this.titleKey = titleKey;
         this.icon = icon;
         this.init();
     }
 
     public abstract void init();
 
-    public String getTitle()
+    public String getTitleKey()
     {
-        return title;
+        return titleKey;
     }
 
     public ItemStack getIcon()

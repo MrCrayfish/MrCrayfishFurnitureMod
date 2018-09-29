@@ -11,7 +11,7 @@ public class CategoryOutdoor extends AbstractCategory
 {
     public CategoryOutdoor()
     {
-        super("Outdoor", new ItemStack(FurnitureBlocks.FIRE_PIT_ON));
+        super("cfm.filter.outdoor", new ItemStack(FurnitureBlocks.FIRE_PIT_ON));
     }
 
     @Override

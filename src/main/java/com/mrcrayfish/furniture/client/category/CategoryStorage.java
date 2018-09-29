@@ -10,7 +10,7 @@ public class CategoryStorage extends AbstractCategory
 {
     public CategoryStorage()
     {
-        super("Storage", new ItemStack(FurnitureBlocks.CABINET_OAK));
+        super("cfm.filter.storage", new ItemStack(FurnitureBlocks.CABINET_OAK));
     }
 
     @Override

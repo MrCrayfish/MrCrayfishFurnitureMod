@@ -11,7 +11,7 @@ public class CategoryBedroom extends AbstractCategory
 {
     public CategoryBedroom()
     {
-        super("Bedroom", new ItemStack(FurnitureBlocks.MODERN_BED_BOTTOM, 1, 14));
+        super("cfm.filter.bedroom", new ItemStack(FurnitureBlocks.MODERN_BED_BOTTOM, 1, 14));
     }
 
     @Override
