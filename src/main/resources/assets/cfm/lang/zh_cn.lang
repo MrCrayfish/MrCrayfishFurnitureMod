@@ -1,4 +1,13 @@
 itemGroup.tabFurniture=MrCrayfish 的家具
+cfm.filter.general=MrCrayfish 的家具：桌椅
+cfm.filter.bathroom=MrCrayfish 的家具：卫生间
+cfm.filter.bedroom=MrCrayfish 的家具：卧室
+cfm.filter.electronics=MrCrayfish 的家具：电器
+cfm.filter.event=MrCrayfish 的家具：事件
+cfm.filter.kitchen=MrCrayfish 的家具：厨房
+cfm.filter.lighting=MrCrayfish 的家具：照明
+cfm.filter.outdoor=MrCrayfish 的家具：户外
+cfm.filter.storage=MrCrayfish 的家具：存储
 
 item.item_hammer.name=锤子
 item.item_envelope.name=信封
@@ -379,6 +388,22 @@ tile.modern_couch_red.name=红色现代沙发
 tile.modern_couch_black.name=黑色现代沙发
 tile.modern_table.name=现代桌子
 tile.modern_chair.name=现代椅子
+tile.modern_bed_bottom_white.name=白色现代床
+tile.modern_bed_bottom_orange.name=橙色现代床
+tile.modern_bed_bottom_magenta.name=品红色现代床
+tile.modern_bed_bottom_light_blue.name=淡蓝色现代床
+tile.modern_bed_bottom_yellow.name=黄色现代床
+tile.modern_bed_bottom_lime.name=黄绿色现代床
+tile.modern_bed_bottom_pink.name=粉色现代床
+tile.modern_bed_bottom_gray.name=灰色现代床
+tile.modern_bed_bottom_silver.name=淡灰色现代床
+tile.modern_bed_bottom_cyan.name=青色现代床
+tile.modern_bed_bottom_purple.name=紫色现代床
+tile.modern_bed_bottom_blue.name=蓝色现代床
+tile.modern_bed_bottom_brown.name=棕色现代床
+tile.modern_bed_bottom_green.name=绿色现代床
+tile.modern_bed_bottom_red.name=红色现代床
+tile.modern_bed_bottom_black.name=黑色现代床
 
 cfm.info=按 SHIFT 显示更多信息
 cfm.light_switch.desc=用这个开关遥控吸顶灯或吊扇
