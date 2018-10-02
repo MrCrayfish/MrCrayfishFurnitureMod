@@ -1,14 +1,14 @@
 # Title
 itemGroup.tabFurniture=MrCrayfish傢俱模組
-cfm.filter.general=Tables & Chairs
-cfm.filter.bathroom=Bathroom
-cfm.filter.bedroom=Bedroom
-cfm.filter.electronics=Electronics
-cfm.filter.event=Event
-cfm.filter.kitchen=Kitchen
-cfm.filter.lighting=Lighting
-cfm.filter.outdoor=Outdoor
-cfm.filter.storage=Storage
+cfm.filter.general=桌子和椅子
+cfm.filter.bathroom=浴室
+cfm.filter.bedroom=臥室／睡房
+cfm.filter.electronics=電子產品
+cfm.filter.event=活動／節日
+cfm.filter.kitchen=廚房
+cfm.filter.lighting=燈光
+cfm.filter.outdoor=戶外
+cfm.filter.storage=存儲
 
 # Item
 item.item_hammer.name=錘子
@@ -153,13 +153,13 @@ tile.computer.name=電腦
 tile.printer.name=印表機
 tile.electric_fence.name=電柵欄
 tile.door_bell.name=門鈴
-tile.door_bell.name=Oak Door Bell
-tile.door_bell_spruce.name=Spruce Door Bell
-tile.door_bell_birch.name=Birch Door Bell
-tile.door_bell_jungle.name=Jungle Door Bell
-tile.door_bell_acacia.name=Acacia Door Bell
-tile.door_bell_dark_oak.name=Dark Oak Door Belltile.fire_alarm_off.name=火災警報器（關）
-								   
+tile.door_bell.name=橡木門鈴
+tile.door_bell_spruce.name=杉木門鈴
+tile.door_bell_birch.name=樺木門鈴
+tile.door_bell_jungle.name=叢林木門鈴
+tile.door_bell_acacia.name=相思木門鈴
+tile.door_bell_dark_oak.name=黑橡木門鈴
+tile.fire_alarm_off.name=火災警報器（關）
 tile.fire_alarm_on.name=火災警報器（開）
 tile.ceiling_light_off.name=吊燈（關）
 tile.ceiling_light_on.name=吊燈（開）
@@ -300,11 +300,12 @@ tile.trampoline.name=蹦床
 tile.table_outdoor.name=戶外桌子
 tile.bench.name=戶外長椅
 tile.crate.name=板條箱
-tile.crate_spruce.name=Spruce Crate
-tile.crate_birch.name=Birch Crate
-tile.crate_jungle.name=Jungle Crate
-tile.crate_acacia.name=Acacia Crate
-tile.crate_dark_oak.name=Dark Oak Crate
+tile.crate_oak.name=橡木板條箱
+tile.crate_spruce.name=杉木板條箱
+tile.crate_birch.name=樺木板條箱
+tile.crate_jungle.name=叢林木板條箱
+tile.crate_acacia.name=相思木板條箱
+tile.crate_dark_oak.name=黑橡木板條箱
 tile.grill.name=燒烤架
 tile.divingboard_base.name=跳水板
 tile.door_mat.name=門墊
