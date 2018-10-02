@@ -1,5 +1,14 @@
 # Title
 itemGroup.tabFurniture=MrCrayfish傢俱模組
+cfm.filter.general=Tables & Chairs
+cfm.filter.bathroom=Bathroom
+cfm.filter.bedroom=Bedroom
+cfm.filter.electronics=Electronics
+cfm.filter.event=Event
+cfm.filter.kitchen=Kitchen
+cfm.filter.lighting=Lighting
+cfm.filter.outdoor=Outdoor
+cfm.filter.storage=Storage
 
 # Item
 item.item_hammer.name=錘子
@@ -144,7 +153,13 @@ tile.computer.name=電腦
 tile.printer.name=印表機
 tile.electric_fence.name=電柵欄
 tile.door_bell.name=門鈴
-tile.fire_alarm_off.name=火災警報器（關）
+tile.door_bell.name=Oak Door Bell
+tile.door_bell_spruce.name=Spruce Door Bell
+tile.door_bell_birch.name=Birch Door Bell
+tile.door_bell_jungle.name=Jungle Door Bell
+tile.door_bell_acacia.name=Acacia Door Bell
+tile.door_bell_dark_oak.name=Dark Oak Door Belltile.fire_alarm_off.name=火災警報器（關）
+								   
 tile.fire_alarm_on.name=火災警報器（開）
 tile.ceiling_light_off.name=吊燈（關）
 tile.ceiling_light_on.name=吊燈（開）
@@ -285,6 +300,11 @@ tile.trampoline.name=蹦床
 tile.table_outdoor.name=戶外桌子
 tile.bench.name=戶外長椅
 tile.crate.name=板條箱
+tile.crate_spruce.name=Spruce Crate
+tile.crate_birch.name=Birch Crate
+tile.crate_jungle.name=Jungle Crate
+tile.crate_acacia.name=Acacia Crate
+tile.crate_dark_oak.name=Dark Oak Crate
 tile.grill.name=燒烤架
 tile.divingboard_base.name=跳水板
 tile.door_mat.name=門墊
@@ -305,6 +325,22 @@ tile.door_mat_green.name=綠色門墊
 tile.door_mat_red.name=紅色門墊
 tile.door_mat_black.name=黑色門墊
 tile.esky.name=可擕式冷藏箱
+tile.esky_white.name=White Cooler
+tile.esky_orange.name=Orange Cooler
+tile.esky_magenta.name=Magenta Cooler
+tile.esky_light_blue.name=Light Blue Cooler
+tile.esky_yellow.name=Yellow Cooler
+tile.esky_lime.name=Lime Cooler
+tile.esky_pink.name=Pink Cooler
+tile.esky_gray.name=Gray Cooler
+tile.esky_silver.name=Light Gray Cooler
+tile.esky_cyan.name=Cyan Cooler
+tile.esky_purple.name=Purple Cooler
+tile.esky_blue.name=Blue Cooler
+tile.esky_brown.name=Brown Cooler
+tile.esky_green.name=Green Cooler
+tile.esky_red.name=Red Cooler
+tile.esky_black.name=Black Cooler
 tile.water_tank.name=水箱
 tile.modern_window.name=現代化窗戶
 tile.light_switch_off.name=電燈開關按鈕
@@ -333,12 +369,66 @@ tile.desk_cabinet_andesite.name=安山岩書桌櫃
 tile.modern_sliding_door.name=現代化滑動門
 tile.digital_clock.name=數碼時鐘
 tile.modern_tv.name=現代化電視機
+tile.photo_frame_white.name=White Photo Frame
+tile.photo_frame_orange.name=Orange Photo Frame
+tile.photo_frame_magenta.name=Magenta Photo Frame
+tile.photo_frame_light_blue.name=Light Blue Photo Frame
+tile.photo_frame_yellow.name=Yellow Photo Frame
+tile.photo_frame_lime.name=Lime Photo Frame
+tile.photo_frame_pink.name=Pink Photo Frame
+tile.photo_frame_gray.name=Gray Photo Frame
+tile.photo_frame_silver.name=Light Gray Photo Frame
+tile.photo_frame_cyan.name=Cyan Photo Frame
+tile.photo_frame_purple.name=Purple Photo Frame
+tile.photo_frame_blue.name=Blue Photo Frame
+tile.photo_frame_brown.name=Brown Photo Frame
+tile.photo_frame_green.name=Green Photo Frame
+tile.photo_frame_red.name=Red Photo Frame
+tile.photo_frame_black.name=Black Photo Frame
+tile.modern_couch_white.name=White Modern Couch
+tile.modern_couch_orange.name=Orange Modern Couch
+tile.modern_couch_magenta.name=Magenta Modern Couch
+tile.modern_couch_light_blue.name=Light Blue Modern Couch
+tile.modern_couch_yellow.name=Yellow Modern Couch
+tile.modern_couch_lime.name=Lime Modern Couch
+tile.modern_couch_pink.name=Pink Modern Couch
+tile.modern_couch_gray.name=Gray Modern Couch
+tile.modern_couch_silver.name=Light Gray Modern Couch
+tile.modern_couch_cyan.name=Cyan Modern Couch
+tile.modern_couch_purple.name=Purple Modern Couch
+tile.modern_couch_blue.name=Blue Modern Couch
+tile.modern_couch_brown.name=Brown Modern Couch
+tile.modern_couch_green.name=Green Modern Couch
+tile.modern_couch_red.name=Red Modern Couch
+tile.modern_couch_black.name=Black Modern Couch
+tile.modern_table.name=Modern Table
+tile.modern_chair.name=Modern Chair
+tile.modern_bed_bottom_white.name=White Modern Bed
+tile.modern_bed_bottom_orange.name=Orange Modern Bed
+tile.modern_bed_bottom_magenta.name=Magenta Modern Bed
+tile.modern_bed_bottom_light_blue.name=Light Blue Modern Bed
+tile.modern_bed_bottom_yellow.name=Yellow Modern Bed
+tile.modern_bed_bottom_lime.name=Lime Modern Bed
+tile.modern_bed_bottom_pink.name=Pink Modern Bed
+tile.modern_bed_bottom_gray.name=Gray Modern Bed
+tile.modern_bed_bottom_silver.name=Light Gray Modern Bed
+tile.modern_bed_bottom_cyan.name=Cyan Modern Bed
+tile.modern_bed_bottom_purple.name=Purple Modern Bed
+tile.modern_bed_bottom_blue.name=Blue Modern Bed
+tile.modern_bed_bottom_brown.name=Brown Modern Bed
+tile.modern_bed_bottom_green.name=Green Modern Bed
+tile.modern_bed_bottom_red.name=Red Modern Bed
+tile.modern_bed_bottom_black.name=Black Modern Bed
 
 # Info Old
 tile.desk.info=這張書桌可以連接其他書桌以創建你想要的任何形狀和長度，也可以與書桌櫃連接。
 tile.desk_cabinet.info=這張書桌櫃可以連接其他書桌櫃以創建你想要的任何形狀和長度，也可以與書桌連接。
 cfm.how_to=按住Shift以顯示更多
 cfm.light_switch.how_to=要將開關與吊燈連接，只需要手持開關並右鍵點擊吊燈。\n要將開關與吊燈解除連接，需要蹲下並右鍵點擊空氣以清除所有連接。
+							
+								  
+																															   
+																																											   
 
 # Info New
 cfm.info=按住Shift以顯示資訊
@@ -356,7 +446,13 @@ cfm.tv.failed=無法下載檔案
 cfm.tv.unknown_file=連結不是一個GIF檔案
 cfm.tv.too_large=無法載入大於2 MB的GIF檔案
 
+cfm.photo_frame.success=Successfully downloaded the image
+cfm.photo_frame.failed=Failed to download file
+cfm.photo_frame.unknown_file=URL is not an image
+cfm.photo_frame.too_large=Cannot load images larger than 2MB
+
 container.cabinet=櫥櫃
+container.cabinet_kitchen=Kitchen Cabinet
 container.bedside_cabinet=床頭櫃
 container.desk_cabinet=書桌櫃
 container.kitchen_counter_drawer=廚房櫃檯抽屜
