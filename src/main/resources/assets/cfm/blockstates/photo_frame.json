@@ -1,0 +1,96 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cfm:photo_frame"
+    },
+    "variants": {
+        "facing": {
+            "north": { "y": 0   },
+            "east":  { "y": 90  },
+            "south": { "y": 180 },
+            "west":  { "y": 270 }
+        },
+        "colour": {
+            "0": {
+                "textures": {
+                    "color": "blocks/concrete_white"
+                }
+            },
+            "1": {
+                "textures": {
+                    "color": "blocks/concrete_orange"
+                }
+            },
+            "2": {
+                "textures": {
+                    "color": "blocks/concrete_magenta"
+                }
+            },
+            "3": {
+                "textures": {
+                    "color": "blocks/concrete_light_blue"
+                }
+            },
+            "4": {
+                "textures": {
+                    "color": "blocks/concrete_yellow"
+                }
+            },
+            "5": {
+                "textures": {
+                    "color": "blocks/concrete_lime"
+                }
+            },
+            "6": {
+                "textures": {
+                    "color": "blocks/concrete_pink"
+                }
+            },
+            "7": {
+                "textures": {
+                    "color": "blocks/concrete_gray"
+                }
+            },
+            "8": {
+                "textures": {
+                    "color": "blocks/concrete_silver"
+                }
+            },
+            "9": {
+                "textures": {
+                    "color": "blocks/concrete_cyan"
+                }
+            },
+            "10": {
+                "textures": {
+                    "color": "blocks/concrete_purple"
+                }
+            },
+            "11": {
+                "textures": {
+                    "color": "blocks/concrete_blue"
+                }
+            },
+            "12": {
+                "textures": {
+                    "color": "blocks/concrete_brown"
+                }
+            },
+            "13": {
+                "textures": {
+                    "color": "blocks/concrete_green"
+                }
+            },
+            "14": {
+                "textures": {
+                    "color": "blocks/concrete_red"
+                }
+            },
+            "15": {
+                "textures": {
+                    "color": "blocks/concrete_black"
+                }
+            }
+        }
+    }
+}

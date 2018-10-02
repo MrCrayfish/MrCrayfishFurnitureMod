@@ -2,9 +2,6 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.tileentity.TileEntityCouch;
-import com.mrcrayfish.furniture.tileentity.TileEntityDeskCabinet;
-import com.mrcrayfish.furniture.tileentity.TileEntityKitchenCounter;
 import com.mrcrayfish.furniture.tileentity.TileEntityKitchenCounterDrawer;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.Block;

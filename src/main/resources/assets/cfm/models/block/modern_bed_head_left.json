@@ -1,0 +1,81 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "0": "blocks/concrete_gray",
+        "1": "blocks/concrete_silver",
+        "3": "blocks/concrete_white"
+    },
+    "elements": [
+        {
+            "name": "bed_back",
+            "from": [ 0.00, 0.00, 0.00 ], 
+            "to": [ 16.00, 15.00, 2.00 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.00, 0.00, 16.00, 15.00 ], "cullface": "north" },
+                "south": { "texture": "#0", "uv": [ 0.00, 0.00, 16.00, 15.00 ] },
+                "west": { "texture": "#0", "uv": [ 0.00, 0.00, 2.00, 15.00 ], "cullface": "west" },
+                "up": { "texture": "#0", "uv": [ 0.00, 0.00, 16.00, 2.00 ] },
+                "down": { "texture": "#0", "uv": [ 0.00, 0.00, 16.00, 2.00 ], "cullface": "down" }
+            }
+        },
+        {
+            "name": "bed_side_1",
+            "from": [ 0.00, 4.00, 2.00 ], 
+            "to": [ 1.00, 8.00, 16.00 ], 
+            "faces": {
+                "east": { "texture": "#0", "uv": [ 0.00, 0.00, 14.00, 4.00 ] },
+                "west": { "texture": "#0", "uv": [ 0.00, 0.00, 14.00, 4.00 ], "cullface": "west" },
+                "up": { "texture": "#0", "uv": [ 0.00, 0.00, 1.00, 14.00 ] },
+                "down": { "texture": "#0", "uv": [ 0.00, 0.00, 1.00, 14.00 ] }
+            }
+        },
+        {
+            "name": "bed_bottom",
+            "from": [ 1.00, 4.50, 2.00 ], 
+            "to": [ 16.00, 5.50, 16.00 ], 
+            "faces": {
+                "down": { "texture": "#1", "uv": [ 0.00, 0.00, 15.00, 14.00 ] }
+            }
+        },
+        {
+            "name": "bed_blanket_1",
+            "from": [ 1.00, 5.00, 8.00 ], 
+            "to": [ 16.00, 9.00, 16.00 ], 
+            "faces": {
+                "west": { "texture": "#color", "uv": [ 0.00, 0.00, 8.00, 4.00 ] },
+                "up": { "texture": "#color", "uv": [ 0.00, 0.00, 15.00, 8.00 ] }
+            }
+        },
+        {
+            "name": "pillow",
+            "from": [ 1.00, 5.00, 2.00 ], 
+            "to": [ 16.00, 9.50, 8.00 ], 
+            "faces": {
+                "south": { "texture": "#3", "uv": [ 0.00, 0.00, 15.00, 4.50 ] },
+                "west": { "texture": "#3", "uv": [ 0.00, 0.00, 6.00, 4.50 ] },
+                "up": { "texture": "#3", "uv": [ 0.00, 0.00, 15.00, 6.00 ] }
+            }
+        },
+        {
+            "name": "bed_back_2",
+            "from": [ 1.00, 15.00, 0.00 ], 
+            "to": [ 16.00, 16.00, 2.00 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.00, 0.00, 15.00, 1.00 ], "cullface": "north" },
+                "south": { "texture": "#0", "uv": [ 0.00, 0.00, 15.00, 1.00 ] },
+                "up": { "texture": "#0", "uv": [ 0.00, 0.00, 15.00, 2.00 ], "cullface": "up" }
+            }
+        },
+        {
+            "name": "bed_back_3",
+            "from": [ -0.40, 15.00, 0.00 ], 
+            "to": [ 1.00, 16.00, 2.00 ], 
+            "rotation": { "origin": [ 1.0, 16.0, 2.0 ], "axis": "z", "angle": 45.0 },
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.00, 0.00, 1.40, 1.00 ], "cullface": "north" },
+                "south": { "texture": "#0", "uv": [ 0.00, 0.00, 1.40, 1.00 ] },
+                "up": { "texture": "#0", "uv": [ 0.00, 0.00, 1.40, 2.00 ] }
+            }
+        }
+    ]
+}

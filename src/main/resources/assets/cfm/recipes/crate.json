@@ -1,21 +1,21 @@
 {
-  "result": {
-    "item": "cfm:crate"
-  },
-  "pattern": [
-    "DOD",
-    "O O",
-    "DOD"
-  ],
-  "type": "minecraft:crafting_shaped",
-  "key": {
-    "D": {
-      "item": "minecraft:log2",
-      "data": 1
+    "result": {
+        "item": "cfm:crate"
     },
-    "O": {
-      "item": "minecraft:planks",
-      "data": 5
+    "pattern": [
+        "DOD",
+        "O O",
+        "DOD"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "D": {
+            "item": "minecraft:log",
+            "data": 0
+        },
+        "O": {
+            "item": "minecraft:planks",
+            "data": 0
+        }
     }
-  }
 }

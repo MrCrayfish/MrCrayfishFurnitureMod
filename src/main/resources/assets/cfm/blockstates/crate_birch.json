@@ -1,0 +1,18 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "cfm:crate",
+		"textures": {
+			"primary": "blocks/log_birch",
+			"secondary": "blocks/planks_birch"
+		}
+	},
+	"variants": {
+		"inventory": {
+			"model": "cfm:crate"
+		},
+		"normal": {
+			"model": "cfm:crate"
+		}
+	}
+}

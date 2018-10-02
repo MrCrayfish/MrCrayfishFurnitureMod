@@ -59,10 +59,4 @@ public class BlockOutdoorTable extends BlockTable
     {
         return BlockRenderLayer.TRANSLUCENT;
     }
-
-    @Override
-    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
-    {
-        return BlockFaceShape.UNDEFINED;
-    }
 }

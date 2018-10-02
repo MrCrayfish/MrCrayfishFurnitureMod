@@ -4,7 +4,7 @@ import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.blocks.BlockAbstractTV;
 import com.mrcrayfish.furniture.client.GifCache;
-import com.mrcrayfish.furniture.client.ImageDownloadThread;
+import com.mrcrayfish.furniture.client.GifDownloadThread;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
@@ -41,7 +41,7 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     @SideOnly(Side.CLIENT)
     private boolean loaded;
     @SideOnly(Side.CLIENT)
-    private ImageDownloadThread.ImageDownloadResult result;
+    private GifDownloadThread.ImageDownloadResult result;
 
     public TileEntityTV() {}
 
@@ -131,11 +131,11 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
         if(!GifCache.INSTANCE.loadCached(url))
         {
             this.loading = true;
-            new ImageDownloadThread(url, (result, message) ->
+            new GifDownloadThread(url, (result, message) ->
             {
                 this.loading = false;
                 this.result = result;
-                if(result == ImageDownloadThread.ImageDownloadResult.SUCCESS)
+                if(result == GifDownloadThread.ImageDownloadResult.SUCCESS)
                 {
                     this.loaded = true;
                 }
@@ -161,7 +161,7 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
 
     @Nullable
     @SideOnly(Side.CLIENT)
-    public ImageDownloadThread.ImageDownloadResult getResult()
+    public GifDownloadThread.ImageDownloadResult getResult()
     {
         return result;
     }
@@ -223,6 +223,7 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
         }
         this.stretch = Boolean.valueOf(entries.get("stretch"));
         this.powered = Boolean.valueOf(entries.get("powered"));
+        this.markDirty();
     }
 
     @Override

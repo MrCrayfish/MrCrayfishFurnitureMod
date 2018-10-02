@@ -1,0 +1,110 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "modern_couch_none"
+	},
+	"variants": {
+		"colour": {
+			"0": {
+				"textures": {
+					"couch": "blocks/hardened_clay_stained_white"
+				}
+			},
+			"1": {
+				"textures": {
+					"couch": "blocks/hardened_clay_stained_orange"
+				}
+			},
+			"2": {
+				"textures": {
+					"couch": "blocks/hardened_clay_stained_magenta"
+				}
+			},
+			"3": {
+				"textures": {
+					"couch": "blocks/hardened_clay_stained_light_blue"
+				}
+			},
+			"4": {
+				"textures": {
+					"couch": "blocks/hardened_clay_stained_yellow"
+				}
+			},
+			"5": {
+				"textures": {
+					"couch": "blocks/hardened_clay_stained_lime"
+				}
+			},
+			"6": {
+				"textures": {
+					"couch": "blocks/hardened_clay_stained_pink"
+				}
+			},
+			"7": {
+				"textures": {
+					"couch": "blocks/hardened_clay_stained_gray"
+				}
+			},
+			"8": {
+				"textures": {
+					"couch": "blocks/hardened_clay_stained_silver"
+				}
+			},
+			"9": {
+				"textures": {
+					"couch": "blocks/hardened_clay_stained_cyan"
+				}
+			},
+			"10": {
+				"textures": {
+					"couch": "blocks/hardened_clay_stained_purple"
+				}
+			},
+			"11": {
+				"textures": {
+					"couch": "blocks/hardened_clay_stained_blue"
+				}
+			},
+			"12": {
+				"textures": {
+					"couch": "blocks/hardened_clay_stained_brown"
+				}
+			},
+			"13": {
+				"textures": {
+					"couch": "blocks/hardened_clay_stained_green"
+				}
+			},
+			"14": {
+				"textures": {
+					"couch": "blocks/hardened_clay_stained_red"
+				}
+			},
+			"15": {
+				"textures": {
+					"couch": "blocks/hardened_clay_stained_black"
+				}
+			}
+		},
+		"facing": {
+			"north": { "y": 0   },
+			"east":  { "y": 90  },
+			"south": { "y": 180 },
+			"west":  { "y": 270 }
+		},
+		"type": {
+			"both": {
+				"model": "cfm:modern_couch_none"
+			},
+			"left": {
+				"model": "cfm:modern_couch_left"
+			},
+			"right": {
+				"model": "cfm:modern_couch_right"
+			},
+			"none": {
+				"model": "cfm:modern_couch_both"
+			}
+		}
+	}
+}

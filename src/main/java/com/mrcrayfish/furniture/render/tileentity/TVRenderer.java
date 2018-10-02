@@ -3,7 +3,7 @@ package com.mrcrayfish.furniture.render.tileentity;
 import com.mrcrayfish.furniture.blocks.BlockFurnitureTile;
 import com.mrcrayfish.furniture.client.AnimatedTexture;
 import com.mrcrayfish.furniture.client.GifCache;
-import com.mrcrayfish.furniture.client.ImageDownloadThread;
+import com.mrcrayfish.furniture.client.GifDownloadThread;
 import com.mrcrayfish.furniture.tileentity.TileEntityTV;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -37,14 +37,15 @@ public class TVRenderer extends TileEntitySpecialRenderer<TileEntityTV>
         if(!te.isPowered())
             return;
 
+        BlockPos pos = te.getPos();
+        IBlockState state = te.getWorld().getBlockState(pos);
+        if(!state.getPropertyKeys().contains(BlockFurnitureTile.FACING))
+            return;
+
         GlStateManager.pushMatrix();
         {
-            BlockPos pos = te.getPos();
-            IBlockState state = te.getWorld().getBlockState(pos);
-            if(!state.getPropertyKeys().contains(BlockFurnitureTile.FACING)) return;
-
-            ImageDownloadThread.ImageDownloadResult result = te.getResult();
-            if(result != null && result != ImageDownloadThread.ImageDownloadResult.SUCCESS)
+            GifDownloadThread.ImageDownloadResult result = te.getResult();
+            if(result != null && result != GifDownloadThread.ImageDownloadResult.SUCCESS)
             {
                 GlStateManager.translate(x, y, z);
                 GlStateManager.translate(8 * 0.0625, te.getScreenYOffset() * 0.0625, 8 * 0.0625);
@@ -168,11 +169,19 @@ public class TVRenderer extends TileEntitySpecialRenderer<TileEntityTV>
                         buffer.pos(startX + width, startY, 0).tex(1, 0).endVertex();
                         tessellator.draw();
                     }
+                    else
+                    {
+                        String currentChannel = te.getCurrentChannel();
+                        if(currentChannel != null)
+                        {
+                            te.loadUrl(currentChannel);
+                        }
+                    }
                 }
                 GlStateManager.disableBlend();
                 GlStateManager.enableLighting();
             }
-            GlStateManager.popMatrix();
         }
+        GlStateManager.popMatrix();
     }
 }

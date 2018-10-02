@@ -1,10 +1,10 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
     "textures": {
-		"particle": "blocks/log_big_oak",
-        "0": "blocks/planks_big_oak",
-        "1": "blocks/log_big_oak",
-        "2": "blocks/planks_spruce"
+		"particle": "#primary",
+        "0": "#secondary",
+        "1": "#primary",
+        "2": "#secondary"
     },
 	"display": {
         "gui": {

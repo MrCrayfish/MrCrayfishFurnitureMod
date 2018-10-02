@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/modern_couch_none",
+    "textures": {
+        "couch": "blocks/hardened_clay_stained_silver"
+    }
+}

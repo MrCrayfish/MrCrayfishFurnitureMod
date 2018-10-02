@@ -1,0 +1,21 @@
+{
+    "result": {
+        "item": "cfm:crate_birch"
+    },
+    "pattern": [
+        "DOD",
+        "O O",
+        "DOD"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "D": {
+            "item": "minecraft:log",
+            "data": 2
+        },
+        "O": {
+            "item": "minecraft:planks",
+            "data": 2
+        }
+    }
+}

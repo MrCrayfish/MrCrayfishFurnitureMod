@@ -1,7 +1,9 @@
 package com.mrcrayfish.furniture.init;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 
 public class FurnitureTab extends CreativeTabs
 {
@@ -35,4 +37,10 @@ public class FurnitureTab extends CreativeTabs
         this.hoveringButton = hoveringButton;
     }
 
+    //TODO create toggle buttons for categories of furniture
+    /*@Override
+    public void displayAllRelevantItems(NonNullList<ItemStack> p_78018_1_)
+    {
+        //p_78018_1_.clear();
+    }*/
 }

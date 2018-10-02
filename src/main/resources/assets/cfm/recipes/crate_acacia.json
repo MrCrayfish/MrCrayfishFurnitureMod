@@ -1,0 +1,21 @@
+{
+    "result": {
+        "item": "cfm:crate_acacia"
+    },
+    "pattern": [
+        "DOD",
+        "O O",
+        "DOD"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "D": {
+            "item": "minecraft:log2",
+            "data": 0
+        },
+        "O": {
+            "item": "minecraft:planks",
+            "data": 4
+        }
+    }
+}

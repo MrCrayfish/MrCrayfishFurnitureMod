@@ -9,9 +9,7 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.FileUtils;
 
 import javax.annotation.Nullable;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -99,21 +97,19 @@ public final class GifCache
         }
     }
 
-    public void load(String url, ImageDownloadThread.ResponseProcessor processor)
+    public void load(String url, GifDownloadThread.ResponseProcessor processor)
     {
-        new ImageDownloadThread(url, processor);
+        new GifDownloadThread(url, processor);
     }
 
     private void tick()
     {
-        synchronized(this)
-        {
-            cacheMap.values().forEach(AnimatedTexture::update);
-        }
+        cacheMap.values().forEach(AnimatedTexture::update);
+        cacheMap.keySet().removeIf(key -> cacheMap.get(key).isPendingDeletion());
     }
 
     @SubscribeEvent
-    public void onRenderTick(TickEvent.RenderTickEvent event)
+    public void onRenderTick(TickEvent.ClientTickEvent event)
     {
         if(event.phase == TickEvent.Phase.START)
         {

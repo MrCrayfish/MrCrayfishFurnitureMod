@@ -1,0 +1,21 @@
+{
+    "result": {
+        "item": "cfm:crate_spruce"
+    },
+    "pattern": [
+        "DOD",
+        "O O",
+        "DOD"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "D": {
+            "item": "minecraft:log",
+            "data": 1
+        },
+        "O": {
+            "item": "minecraft:planks",
+            "data": 1
+        }
+    }
+}
