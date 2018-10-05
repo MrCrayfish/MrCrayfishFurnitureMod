@@ -72,6 +72,7 @@ public class FurnitureBlocks
     public static final Block DOOR_BELL_SPRUCE, DOOR_BELL_BIRCH, DOOR_BELL_JUNGLE, DOOR_BELL_ACACIA, DOOR_BELL_DARK_OAK;
     public static final Block PHOTO_FRAME;
     public static final Block CRATE_SPRUCE, CRATE_BIRCH, CRATE_JUNGLE, CRATE_ACACIA, CRATE_DARK_OAK;
+    public static final Block TV_STAND;
 
     /* Special */
     public static final Block MIRROR;
@@ -255,6 +256,7 @@ public class FurnitureBlocks
         CRATE_DARK_OAK = new BlockCrate(Material.WOOD).setUnlocalizedName("crate_dark_oak").setRegistryName("crate_dark_oak");
         MODERN_BED_TOP = new BlockModernBed("modern_bed_top");
         MODERN_BED_BOTTOM = new BlockModernBed("modern_bed_bottom");
+        TV_STAND = new BlockTVStand();
     }
 
     public static void register()
@@ -436,6 +438,7 @@ public class FurnitureBlocks
         registerBlock(MODERN_CHAIR);
         registerBlock(MODERN_BED_TOP, null);
         registerBlock(MODERN_BED_BOTTOM, new ItemModernBed());
+        registerBlock(TV_STAND);
     }
 
     private static void registerBlock(Block block)

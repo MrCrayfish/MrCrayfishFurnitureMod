@@ -404,6 +404,7 @@ tile.modern_bed_bottom_brown.name=Brown Modern Bed
 tile.modern_bed_bottom_green.name=Green Modern Bed
 tile.modern_bed_bottom_red.name=Red Modern Bed
 tile.modern_bed_bottom_black.name=Black Modern Bed
+tile.tv_stand.name=Modern TV Stand
 
 cfm.info=Hold SHIFT for Info
 cfm.light_switch.desc=Use this switch to control ceiling lights and fans wirelessly
