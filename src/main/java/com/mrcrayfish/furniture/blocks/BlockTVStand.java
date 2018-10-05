@@ -1,21 +1,29 @@
 package com.mrcrayfish.furniture.blocks;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.tileentity.TileEntityDeskCabinet;
+import com.mrcrayfish.furniture.tileentity.TileEntityTVStand;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.Locale;
 
 /**
  * Author: MrCrayfish
  */
-public class BlockTVStand extends BlockFurniture
+public class BlockTVStand extends BlockFurnitureTile
 {
     public static final PropertyEnum<Type> TYPE = PropertyEnum.create("type", Type.class);
 
@@ -25,6 +33,21 @@ public class BlockTVStand extends BlockFurniture
         this.setUnlocalizedName("tv_stand");
         this.setRegistryName("tv_stand");
         this.setHardness(0.5F);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(TYPE, Type.NONE));
+    }
+
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        if(!worldIn.isRemote)
+        {
+            TileEntity tileEntity = worldIn.getTileEntity(pos);
+            if(tileEntity instanceof TileEntityTVStand)
+            {
+                playerIn.openGui(MrCrayfishFurnitureMod.instance, 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
+            }
+        }
+        return true;
     }
 
     @Override
@@ -74,6 +97,13 @@ public class BlockTVStand extends BlockFurniture
     public BlockRenderLayer getBlockLayer()
     {
         return BlockRenderLayer.CUTOUT;
+    }
+
+    @Nullable
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta)
+    {
+        return new TileEntityTVStand();
     }
 
     public enum Type implements IStringSerializable

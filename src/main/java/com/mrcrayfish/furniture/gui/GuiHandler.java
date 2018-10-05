@@ -28,6 +28,10 @@ public class GuiHandler implements IGuiHandler
         {
             return ((TileEntityDeskCabinet) tileEntity).createContainer(player.inventory, player);
         }
+        else if(tileEntity instanceof TileEntityTVStand)
+        {
+            return ((TileEntityTVStand) tileEntity).createContainer(player.inventory, player);
+        }
         else if(tileEntity instanceof TileEntityKitchenCounterDrawer)
         {
             return ((TileEntityKitchenCounterDrawer) tileEntity).createContainer(player.inventory, player);
@@ -134,6 +138,10 @@ public class GuiHandler implements IGuiHandler
         if(tileEntity instanceof TileEntityDeskCabinet)
         {
             return new GuiChest(player.inventory, (TileEntityDeskCabinet) tileEntity);
+        }
+        if(tileEntity instanceof TileEntityTVStand)
+        {
+            return new GuiChest(player.inventory, (TileEntityTVStand) tileEntity);
         }
         if(tileEntity instanceof TileEntityKitchenCounterDrawer)
         {
