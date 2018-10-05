@@ -62,7 +62,6 @@ public class AnimatedTexture extends Texture
     @Override
     public void update()
     {
-        int textureId = getTextureId();
         if(framesTextureData.size() > 0)
         {
             if(++frameCounter >= framesTextureData.size())
@@ -70,13 +69,13 @@ public class AnimatedTexture extends Texture
                 frameCounter = 0;
             }
             ByteBuffer buffer = framesTextureData.get(frameCounter);
-            GlStateManager.bindTexture(textureId);
+            GlStateManager.bindTexture(getTextureId());
             GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, width, height, 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, buffer);
         }
         if(counter++ >= 600)
         {
             delete = true;
-            GlStateManager.deleteTexture(textureId);
+            GlStateManager.deleteTexture(getTextureId());
         }
     }
 
