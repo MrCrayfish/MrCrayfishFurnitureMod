@@ -72,5 +72,6 @@ public class CategoryBedroom extends AbstractCategory
         add(FurnitureBlocks.CHAIR_GRANITE);
         add(FurnitureBlocks.CHAIR_DIORITE);
         add(FurnitureBlocks.CHAIR_ANDESITE);
+        add(FurnitureBlocks.TV_STAND);
     }
 }
