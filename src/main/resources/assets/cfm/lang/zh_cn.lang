@@ -404,6 +404,7 @@ tile.modern_bed_bottom_brown.name=棕色现代床
 tile.modern_bed_bottom_green.name=绿色现代床
 tile.modern_bed_bottom_red.name=红色现代床
 tile.modern_bed_bottom_black.name=黑色现代床
+tile.tv_stand.name=现代电视架
 
 cfm.info=按 SHIFT 显示更多信息
 cfm.light_switch.desc=用这个开关遥控吸顶灯或吊扇
@@ -430,6 +431,7 @@ container.cabinet_kitchen=厨房橱柜
 container.bedside_cabinet=床头柜
 container.desk_cabinet=书桌柜
 container.kitchen_counter_drawer=厨台抽屉
+container.tv_stand=电视架
 
 cfm.recipe_book.page.title1=本手册由 MrCrayfish 制作
 cfm.recipe_book.page.title2=关于
