@@ -74,5 +74,6 @@ public class CategoryGeneral extends AbstractCategory
         add(FurnitureBlocks.MODERN_COUCH);
         add(FurnitureBlocks.MODERN_TABLE);
         add(FurnitureBlocks.MODERN_CHAIR);
+        add(FurnitureBlocks.MODERN_COFFEE_TABLE);
     }
 }
