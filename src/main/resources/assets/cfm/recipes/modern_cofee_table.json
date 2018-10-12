@@ -1,0 +1,20 @@
+{
+    "result": {
+        "item": "cfm:modern_coffee_table"
+    },
+    "pattern": [
+        "TTT",
+        "L L"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "T": {
+            "item": "minecraft:concrete",
+            "data": 0
+        },
+        "L": {
+            "item": "minecraft:concrete",
+            "data": 8
+        }
+    }
+}
