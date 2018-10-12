@@ -36,7 +36,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
     private static Map<EntityMirror, Integer> registerMirrors = new ConcurrentHashMap<>();
     private static List<Integer> pendingRemoval = Collections.synchronizedList(new ArrayList<Integer>());
 
-    public static void removeRegisteredMirror(Entity entity)
+    public static void removeRegisteredMirror(EntityMirror entity)
     {
         pendingRemoval.add(registerMirrors.get(entity));
         registerMirrors.remove(entity);
@@ -50,11 +50,17 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
     @Override
     public void render(TileEntityMirror mirror, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-        if(!ConfigurationHandler.mirrorEnabled) return;
+        if(!ConfigurationHandler.mirrorEnabled)
+            return;
 
-        if(TileEntityRendererDispatcher.instance.entity instanceof EntityMirror) return;
+        if(TileEntityRendererDispatcher.instance.entity instanceof EntityMirror)
+            return;
 
-        if(!registerMirrors.containsKey(mirror.getMirror()))
+        EntityMirror entityMirror = mirror.getMirror();
+        if(entityMirror == null)
+            return;
+
+        if(!registerMirrors.containsKey(entityMirror))
         {
             int newTextureId = GL11.glGenTextures();
             GlStateManager.bindTexture(newTextureId);
@@ -65,7 +71,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
             return;
         }
 
-        mirror.getMirror().rendering = true;
+        entityMirror.rendering = true;
 
         EnumFacing facing = EnumFacing.getHorizontal(mirror.getBlockMetadata());
         GlStateManager.pushMatrix();
@@ -75,7 +81,7 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
 
             GlStateManager.disableLighting();
             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-            GlStateManager.bindTexture(registerMirrors.get(mirror.getMirror()));
+            GlStateManager.bindTexture(registerMirrors.get(entityMirror));
 
             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
@@ -110,9 +116,11 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
     @SubscribeEvent
     public void onTick(TickEvent.RenderTickEvent event)
     {
-        if(event.phase.equals(TickEvent.Phase.END)) return;
+        if(event.phase.equals(TickEvent.Phase.END))
+            return;
 
-        if(!ConfigurationHandler.mirrorEnabled) return;
+        if(!ConfigurationHandler.mirrorEnabled)
+            return;
 
         if(!pendingRemoval.isEmpty())
         {
@@ -133,9 +141,11 @@ public class MirrorRenderer extends TileEntitySpecialRenderer<TileEntityMirror>
                     continue;
                 }
 
-                if(!entity.rendering) continue;
+                if(!entity.rendering)
+                    continue;
 
-                if(!mc.player.canEntityBeSeen(entity)) continue;
+                if(!mc.player.canEntityBeSeen(entity))
+                    continue;
 
                 if(entity.getDistance(mc.player) < 5)
                 {
