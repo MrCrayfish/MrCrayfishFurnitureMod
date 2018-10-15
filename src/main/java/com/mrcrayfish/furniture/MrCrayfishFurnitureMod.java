@@ -16,7 +16,6 @@ import com.mrcrayfish.furniture.init.RegistrationHandler;
 import com.mrcrayfish.furniture.integration.crafttweaker.CraftTweakerIntegration;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.proxy.CommonProxy;
-import com.mrcrayfish.furniture.render.tileentity.MirrorRenderer;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -75,10 +74,6 @@ public class MrCrayfishFurnitureMod
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        if(event.getSide() == Side.CLIENT)
-        {
-            MinecraftForge.EVENT_BUS.register(new MirrorRenderer());
-        }
         MinecraftForge.EVENT_BUS.register(new PlayerEvents());
 
         /* GUI Handler Registering */

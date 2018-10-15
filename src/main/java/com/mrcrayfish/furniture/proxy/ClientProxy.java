@@ -27,6 +27,7 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
 
 import java.awt.*;
 
@@ -63,6 +64,7 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPhotoFrame.class, new PhotoFrameRenderer());
 
         MinecraftForge.EVENT_BUS.register(GifCache.INSTANCE);
+        MinecraftForge.EVENT_BUS.register(new MirrorRenderer());
     }
 
     public void registerColorHandlers()
