@@ -16,7 +16,7 @@ public class FurnitureBlocks
     public static final Block FREEZER, FRIDGE;
     public static final Block CABINET_OAK, BEDSIDE_CABINET_OAK;
     public static final Block COUCH, COUCH_JEB;
-    public static final Block BLINDS, BLINDS_CLOSED;
+    public static final BlockBlinds BLINDS_OAK, BLINDS_OAK_CLOSED;
     public static final Block CURTAINS, CURTAINS_CLOSED;
     public static final Block OVEN, RANGE_HOOD, RANGE_HOOD_POWERED;
 
@@ -73,6 +73,11 @@ public class FurnitureBlocks
     public static final Block PHOTO_FRAME;
     public static final Block CRATE_SPRUCE, CRATE_BIRCH, CRATE_JUNGLE, CRATE_ACACIA, CRATE_DARK_OAK;
     public static final Block TV_STAND;
+    public static final BlockBlinds BLINDS_SPRUCE, BLINDS_SPRUCE_CLOSED;
+    public static final BlockBlinds BLINDS_BIRCH, BLINDS_BIRCH_CLOSED;
+    public static final BlockBlinds BLINDS_JUNGLE, BLINDS_JUNGLE_CLOSED;
+    public static final BlockBlinds BLINDS_ACACIA, BLINDS_ACACIA_CLOSED;
+    public static final BlockBlinds BLINDS_DARK_OAK, BLINDS_DARK_OAK_CLOSED;
 
     /* Special */
     public static final Block MIRROR;
@@ -112,8 +117,30 @@ public class FurnitureBlocks
         COUCH_JEB = new BlockCouchJeb().setUnlocalizedName("couch_jeb").setRegistryName("couch_jeb");
         LAMP_ON = new BlockLampOn(Material.GLASS).setUnlocalizedName("lamp_on").setRegistryName("lamp_on");
         LAMP_OFF = new BlockLamp(Material.GLASS, false).setUnlocalizedName("lamp_off").setRegistryName("lamp_off");
-        BLINDS = new BlockBlinds(Material.WOOD, true).setUnlocalizedName("blinds_open").setRegistryName("blinds_open");
-        BLINDS_CLOSED = new BlockBlinds(Material.WOOD, false).setUnlocalizedName("blinds_closed").setRegistryName("blinds_closed");
+        BLINDS_OAK = (BlockBlinds) new BlockBlinds(Material.WOOD, true).setUnlocalizedName("blinds_open").setRegistryName("blinds_open");
+        BLINDS_OAK_CLOSED = (BlockBlinds) new BlockBlinds(Material.WOOD, false).setUnlocalizedName("blinds_closed").setRegistryName("blinds_closed");
+        BLINDS_SPRUCE = (BlockBlinds) new BlockBlinds(Material.WOOD, true).setUnlocalizedName("blinds_spruce_open").setRegistryName("blinds_spruce_open");
+        BLINDS_SPRUCE_CLOSED = (BlockBlinds) new BlockBlinds(Material.WOOD, false).setUnlocalizedName("blinds_spruce_closed").setRegistryName("blinds_spruce_closed");
+        BLINDS_BIRCH = (BlockBlinds) new BlockBlinds(Material.WOOD, true).setUnlocalizedName("blinds_birch_open").setRegistryName("blinds_birch_open");
+        BLINDS_BIRCH_CLOSED = (BlockBlinds) new BlockBlinds(Material.WOOD, false).setUnlocalizedName("blinds_birch_closed").setRegistryName("blinds_birch_closed");
+        BLINDS_JUNGLE = (BlockBlinds) new BlockBlinds(Material.WOOD, true).setUnlocalizedName("blinds_jungle_open").setRegistryName("blinds_jungle_open");
+        BLINDS_JUNGLE_CLOSED = (BlockBlinds) new BlockBlinds(Material.WOOD, false).setUnlocalizedName("blinds_jungle_closed").setRegistryName("blinds_jungle_closed");
+        BLINDS_ACACIA = (BlockBlinds) new BlockBlinds(Material.WOOD, true).setUnlocalizedName("blinds_acacia_open").setRegistryName("blinds_acacia_open");
+        BLINDS_ACACIA_CLOSED = (BlockBlinds) new BlockBlinds(Material.WOOD, false).setUnlocalizedName("blinds_acacia_closed").setRegistryName("blinds_acacia_closed");
+        BLINDS_DARK_OAK = (BlockBlinds) new BlockBlinds(Material.WOOD, true).setUnlocalizedName("blinds_dark_oak_open").setRegistryName("blinds_dark_oak_open");
+        BLINDS_DARK_OAK_CLOSED = (BlockBlinds) new BlockBlinds(Material.WOOD, false).setUnlocalizedName("blinds_dark_oak_closed").setRegistryName("blinds_dark_oak_closed");
+        BLINDS_OAK.setReplacementBlock(BLINDS_OAK_CLOSED);
+        BLINDS_OAK_CLOSED.setReplacementBlock(BLINDS_OAK);
+        BLINDS_SPRUCE.setReplacementBlock(BLINDS_SPRUCE_CLOSED);
+        BLINDS_SPRUCE_CLOSED.setReplacementBlock(BLINDS_SPRUCE);
+        BLINDS_BIRCH.setReplacementBlock(BLINDS_BIRCH_CLOSED);
+        BLINDS_BIRCH_CLOSED.setReplacementBlock(BLINDS_BIRCH);
+        BLINDS_JUNGLE.setReplacementBlock(BLINDS_JUNGLE_CLOSED);
+        BLINDS_JUNGLE_CLOSED.setReplacementBlock(BLINDS_JUNGLE);
+        BLINDS_ACACIA.setReplacementBlock(BLINDS_ACACIA_CLOSED);
+        BLINDS_ACACIA_CLOSED.setReplacementBlock(BLINDS_ACACIA);
+        BLINDS_DARK_OAK.setReplacementBlock(BLINDS_DARK_OAK_CLOSED);
+        BLINDS_DARK_OAK_CLOSED.setReplacementBlock(BLINDS_DARK_OAK);
         CURTAINS = new BlockCurtainsOpen(Material.CLOTH).setUnlocalizedName("curtains_open").setRegistryName("curtains_open");
         CURTAINS_CLOSED = new BlockCurtainsClosed(Material.CLOTH).setUnlocalizedName("curtains_closed").setRegistryName("curtains_closed");
         BEDSIDE_CABINET_OAK = new BlockBedsideCabinet(Material.WOOD).setUnlocalizedName("bedside_cabinet_oak").setRegistryName("bedside_cabinet_oak");
@@ -310,8 +337,18 @@ public class FurnitureBlocks
         registerBlock(COUCH_JEB);
         registerBlock(LAMP_ON, null);
         registerBlock(LAMP_OFF, new ItemBlockColored(LAMP_OFF));
-        registerBlock(BLINDS);
-        registerBlock(BLINDS_CLOSED, null);
+        registerBlock(BLINDS_OAK);
+        registerBlock(BLINDS_OAK_CLOSED, null);
+        registerBlock(BLINDS_SPRUCE);
+        registerBlock(BLINDS_SPRUCE_CLOSED, null);
+        registerBlock(BLINDS_BIRCH);
+        registerBlock(BLINDS_BIRCH_CLOSED, null);
+        registerBlock(BLINDS_JUNGLE);
+        registerBlock(BLINDS_JUNGLE_CLOSED, null);
+        registerBlock(BLINDS_ACACIA);
+        registerBlock(BLINDS_ACACIA_CLOSED, null);
+        registerBlock(BLINDS_DARK_OAK);
+        registerBlock(BLINDS_DARK_OAK_CLOSED, null);
         registerBlock(CURTAINS);
         registerBlock(CURTAINS_CLOSED, null);
         registerBlock(BEDSIDE_CABINET_OAK);
