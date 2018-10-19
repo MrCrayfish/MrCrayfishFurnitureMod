@@ -2,33 +2,41 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
+import com.mrcrayfish.furniture.tileentity.TileEntityColoured;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
 public abstract class BlockCurtains extends BlockFurniture
 {
+    public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
     public static final PropertyEnum TYPE = PropertyEnum.create("type", Type.class);
 
     private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.875, 0.0, 0.0, 1.0, 1.0, 1.0);
@@ -59,6 +67,11 @@ public abstract class BlockCurtains extends BlockFurniture
         {
             Triggers.trigger(Triggers.PLACE_BLINDS_OR_CURTAINS, (EntityPlayer) placer);
         }
+        TileEntity tileEntity = world.getTileEntity(pos);
+        if(tileEntity instanceof TileEntityColoured)
+        {
+            ((TileEntityColoured) tileEntity).setColour(15 - stack.getMetadata());
+        }
         super.onBlockPlacedBy(world, pos, state, placer, stack);
     }
 
@@ -85,36 +98,50 @@ public abstract class BlockCurtains extends BlockFurniture
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
         if(isOpen())
         {
-            return worldIn.setBlockState(pos, FurnitureBlocks.CURTAINS_CLOSED.getDefaultState().withProperty(FACING, state.getValue(FACING)));
+            worldIn.setBlockState(pos, FurnitureBlocks.CURTAINS_CLOSED.getDefaultState().withProperty(FACING, state.getValue(FACING)).withProperty(COLOUR, state.getValue(COLOUR)), 3);
         }
         else
         {
-            return worldIn.setBlockState(pos, FurnitureBlocks.CURTAINS.getDefaultState().withProperty(FACING, state.getValue(FACING)));
+            worldIn.setBlockState(pos, FurnitureBlocks.CURTAINS.getDefaultState().withProperty(FACING, state.getValue(FACING)).withProperty(COLOUR, state.getValue(COLOUR)), 3);
         }
+        if(tileEntity != null)
+        {
+            tileEntity.validate();
+            worldIn.setTileEntity(pos, tileEntity);
+        }
+        return true;
     }
 
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+        if(tileEntity instanceof TileEntityColoured)
+        {
+            int colour = ((TileEntityColoured) tileEntity).getColour();
+            state = state.withProperty(COLOUR, colour);
+        }
+
         if(isOpen())
         {
             EnumFacing facing = state.getValue(FACING);
-            IBlockState left_block = worldIn.getBlockState(pos.offset(facing.rotateYCCW()));
-            IBlockState right_block = worldIn.getBlockState(pos.offset(facing.rotateY()));
-            boolean left_open = left_block.getBlock() instanceof BlockCurtainsOpen && left_block.getValue(FACING).equals(facing);
-            boolean right_open = right_block.getBlock() instanceof BlockCurtainsOpen && right_block.getValue(FACING).equals(facing);
-            boolean left_closed = left_block.getBlock() instanceof BlockCurtainsClosed && left_block.getValue(FACING).equals(facing);
-            boolean right_closed = right_block.getBlock() instanceof BlockCurtainsClosed && right_block.getValue(FACING).equals(facing);
+            IBlockState leftState = worldIn.getBlockState(pos.offset(facing.rotateYCCW()));
+            IBlockState rightState = worldIn.getBlockState(pos.offset(facing.rotateY()));
+            boolean isLeftOpen = leftState.getBlock() instanceof BlockCurtainsOpen && leftState.getValue(FACING).equals(facing);
+            boolean isRightOpen = rightState.getBlock() instanceof BlockCurtainsOpen && rightState.getValue(FACING).equals(facing);
+            boolean isLeftClosed = leftState.getBlock() instanceof BlockCurtainsClosed && leftState.getValue(FACING).equals(facing);
+            boolean isRightClosed = rightState.getBlock() instanceof BlockCurtainsClosed && rightState.getValue(FACING).equals(facing);
 
-            if(right_open)
+            if(isRightOpen)
             {
-                if(left_open)
+                if(isLeftOpen)
                 {
                     return state.withProperty(TYPE, Type.NONE);
                 }
-                else if(left_closed)
+                else if(isLeftClosed)
                 {
                     return state.withProperty(TYPE, Type.LEFT_CLOSED);
                 }
@@ -123,13 +150,13 @@ public abstract class BlockCurtains extends BlockFurniture
                     return state.withProperty(TYPE, Type.RIGHT_OPEN);
                 }
             }
-            else if(left_open)
+            else if(isLeftOpen)
             {
-                if(right_open)
+                if(isRightOpen)
                 {
                     return state.withProperty(TYPE, Type.NONE);
                 }
-                else if(right_closed)
+                else if(isRightClosed)
                 {
                     return state.withProperty(TYPE, Type.RIGHT_CLOSED);
                 }
@@ -138,13 +165,13 @@ public abstract class BlockCurtains extends BlockFurniture
                     return state.withProperty(TYPE, Type.LEFT_OPEN);
                 }
             }
-            else if(right_closed)
+            else if(isRightClosed)
             {
-                if(left_closed)
+                if(isLeftClosed)
                 {
                     return state.withProperty(TYPE, Type.BOTH);
                 }
-                else if(left_open)
+                else if(isLeftOpen)
                 {
                     return state.withProperty(TYPE, Type.LEFT);
                 }
@@ -153,13 +180,13 @@ public abstract class BlockCurtains extends BlockFurniture
                     return state.withProperty(TYPE, Type.RIGHT);
                 }
             }
-            else if(left_closed)
+            else if(isLeftClosed)
             {
-                if(right_closed)
+                if(isRightClosed)
                 {
                     return state.withProperty(TYPE, Type.BOTH);
                 }
-                else if(right_open)
+                else if(isRightOpen)
                 {
                     return state.withProperty(TYPE, Type.LEFT_CLOSED);
                 }
@@ -174,21 +201,52 @@ public abstract class BlockCurtains extends BlockFurniture
     }
 
     @Override
-    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity tileEntity, ItemStack stack)
     {
-        return new ItemStack(FurnitureBlocks.CURTAINS_CLOSED).getItem();
-    }
-
-    @Override
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
-    {
-        return new ItemStack(FurnitureBlocks.CURTAINS_CLOSED);
+        if (tileEntity instanceof TileEntityColoured)
+        {
+            TileEntityColoured couch = (TileEntityColoured) tileEntity;
+            ItemStack itemstack = new ItemStack(FurnitureBlocks.CURTAINS_CLOSED, 1, couch.getColour());
+            spawnAsEntity(worldIn, pos, itemstack);
+        }
+        else
+        {
+            super.harvestBlock(worldIn, player, pos, state, tileEntity, stack);
+        }
     }
 
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return isOpen() ? new BlockStateContainer(this, FACING, TYPE) : super.createBlockState();
+        return isOpen() ? new BlockStateContainer(this, FACING, TYPE, COLOUR) : new BlockStateContainer(this, FACING, COLOUR);
+    }
+
+    @Override
+    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer, EnumHand hand)
+    {
+        IBlockState state = super.getStateForPlacement(world, pos, facing, hitX, hitY, hitZ, meta, placer);
+        return state.withProperty(COLOUR, meta);
+    }
+
+    @Override
+    public void getSubBlocks(CreativeTabs item, NonNullList<ItemStack> items)
+    {
+        for(int i = 0; i < EnumDyeColor.values().length; i++)
+        {
+            items.add(new ItemStack(FurnitureBlocks.CURTAINS_CLOSED, 1, i));
+        }
+    }
+
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+    {
+        int metadata = 0;
+        TileEntity tileEntity = world.getTileEntity(pos);
+        if(tileEntity instanceof TileEntityColoured)
+        {
+            metadata = ((TileEntityColoured) tileEntity).getColour();
+        }
+        return new ItemStack(FurnitureBlocks.CURTAINS_CLOSED, 1, metadata);
     }
 
     public abstract boolean isOpen();

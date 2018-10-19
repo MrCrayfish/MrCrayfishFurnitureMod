@@ -349,7 +349,7 @@ public class FurnitureBlocks
         registerBlock(BLINDS_ACACIA_CLOSED, null);
         registerBlock(BLINDS_DARK_OAK);
         registerBlock(BLINDS_DARK_OAK_CLOSED, null);
-        registerBlock(CURTAINS);
+        registerBlock(CURTAINS, new ItemColoredFurniture(CURTAINS));
         registerBlock(CURTAINS_CLOSED, null);
         registerBlock(BEDSIDE_CABINET_OAK);
         registerBlock(BEDSIDE_CABINET_SPRUCE);
