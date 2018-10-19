@@ -18,7 +18,7 @@ public class FurnitureBlocks
     public static final Block COUCH, COUCH_JEB;
     public static final Block BLINDS, BLINDS_CLOSED;
     public static final Block CURTAINS, CURTAINS_CLOSED;
-    public static final Block OVEN, RANGE_HOOD;
+    public static final Block OVEN, RANGE_HOOD, RANGE_HOOD_POWERED;
 
     /* Garden Update */
     public static final Block HEDGE_OAK, HEDGE_SPRUCE, HEDGE_BIRCH, HEDGE_JUNGLE, HEDGE_ACACIA, HEDGE_DARK_OAK;
@@ -123,7 +123,8 @@ public class FurnitureBlocks
         BEDSIDE_CABINET_ACACIA = new BlockBedsideCabinet(Material.WOOD).setUnlocalizedName("bedside_cabinet_acacia").setRegistryName("bedside_cabinet_acacia");
         BEDSIDE_CABINET_DARK_OAK = new BlockBedsideCabinet(Material.WOOD).setUnlocalizedName("bedside_cabinet_dark_oak").setRegistryName("bedside_cabinet_dark_oak");
         OVEN = new BlockOven(Material.ROCK).setUnlocalizedName("oven").setRegistryName("oven");
-        RANGE_HOOD = new BlockRangeHood(Material.ROCK).setUnlocalizedName("range_hood").setRegistryName("range_hood");
+        RANGE_HOOD = new BlockRangeHood(Material.ROCK, false).setUnlocalizedName("range_hood").setRegistryName("range_hood");
+        RANGE_HOOD_POWERED = new BlockRangeHood(Material.ROCK, true).setUnlocalizedName("range_hood_powered").setRegistryName("range_hood_powered");
         HEDGE_OAK = new BlockHedge().setUnlocalizedName("hedge_oak").setRegistryName("hedge_oak");
         HEDGE_SPRUCE = new BlockHedge().setUnlocalizedName("hedge_spruce").setRegistryName("hedge_spruce");
         HEDGE_BIRCH = new BlockHedge().setUnlocalizedName("hedge_birch").setRegistryName("hedge_birch");
@@ -325,6 +326,7 @@ public class FurnitureBlocks
         registerBlock(BEDSIDE_CABINET_ANDESITE);
         registerBlock(OVEN);
         registerBlock(RANGE_HOOD);
+        registerBlock(RANGE_HOOD_POWERED, null);
         registerBlock(HEDGE_OAK, new ItemHedge(HEDGE_OAK));
         registerBlock(HEDGE_SPRUCE, new ItemHedge(HEDGE_SPRUCE));
         registerBlock(HEDGE_BIRCH, new ItemHedge(HEDGE_BIRCH));
