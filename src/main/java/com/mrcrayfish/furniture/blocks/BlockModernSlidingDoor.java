@@ -161,7 +161,7 @@ public class BlockModernSlidingDoor extends BlockFurniture implements IPowered
     {
         if(!worldIn.isRemote)
         {
-            System.out.println(worldIn.isBlockPowered(pos));
+            //System.out.println(worldIn.isBlockPowered(pos));
             boolean hasPower = worldIn.isBlockPowered(pos);
             if(state.getValue(TOP))
             {
