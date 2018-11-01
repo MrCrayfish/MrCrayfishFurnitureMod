@@ -1,7 +1,7 @@
 {
   "result": {
     "item": "cfm:curtains_open",
-    "data": 0,
+    "data": 4,
     "count": 2
   },
   "pattern": [
@@ -13,7 +13,7 @@
   "key": {
     "@": {
       "item": "minecraft:wool",
-      "data": 14
+      "data": 4
     },
     "*": {
       "item": "minecraft:gold_ingot"
