@@ -94,9 +94,14 @@ public class BlockStonePath extends Block
 
     @Deprecated
     @Override
-    @SideOnly(Side.CLIENT)
     public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
     {
         return BlockFaceShape.UNDEFINED;
+    }
+
+    @Override
+    public boolean canBeConnectedTo(IBlockAccess world, BlockPos pos, EnumFacing facing)
+    {
+        return false;
     }
 }
