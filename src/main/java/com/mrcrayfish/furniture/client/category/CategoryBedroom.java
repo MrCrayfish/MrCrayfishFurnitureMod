@@ -36,7 +36,12 @@ public class CategoryBedroom extends AbstractCategory
         add(FurnitureBlocks.LIGHT_SWITCH_OFF);
         add(FurnitureBlocks.MIRROR);
         add(FurnitureBlocks.CURTAINS);
-        add(FurnitureBlocks.BLINDS);
+        add(FurnitureBlocks.BLINDS_OAK);
+        add(FurnitureBlocks.BLINDS_SPRUCE);
+        add(FurnitureBlocks.BLINDS_BIRCH);
+        add(FurnitureBlocks.BLINDS_JUNGLE);
+        add(FurnitureBlocks.BLINDS_ACACIA);
+        add(FurnitureBlocks.BLINDS_DARK_OAK);
         add(FurnitureBlocks.MODERN_TV);
         add(FurnitureBlocks.TV);
         add(FurnitureItems.TV_REMOTE);

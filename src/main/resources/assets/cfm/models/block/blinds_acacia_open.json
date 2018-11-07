@@ -1,0 +1,9 @@
+{
+    "parent": "cfm:block/blinds_open",
+    "textures": {
+        "particle": "blocks/log_acacia",
+        "1": "blocks/log_acacia",
+        "2": "blocks/planks_acacia",
+        "3": "blocks/concrete_white"
+    }
+}

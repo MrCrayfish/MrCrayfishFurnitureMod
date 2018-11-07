@@ -1,19 +1,19 @@
 {
-  "result": {
-    "item": "cfm:range_hood"
-  },
-  "pattern": [
-    " * ",
-    " * ",
-    "*@*"
-  ],
-  "type": "minecraft:crafting_shaped",
-  "key": {
-    "@": {
-      "item": "minecraft:glowstone"
+    "result": {
+        "item": "cfm:range_hood"
     },
-    "*": {
-      "item": "minecraft:iron_ingot"
+    "pattern": [
+        " I ",
+        " I ",
+        "ISI"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "S": {
+            "item": "minecraft:sea_lantern"
+        },
+        "I": {
+            "item": "minecraft:iron_ingot"
+        }
     }
-  }
 }

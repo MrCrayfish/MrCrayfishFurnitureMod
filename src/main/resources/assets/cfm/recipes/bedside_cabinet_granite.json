@@ -14,7 +14,7 @@
     },
     "*": {
       "item": "minecraft:stone",
-      "data": 2
+      "data": 1
     }
   }
 }

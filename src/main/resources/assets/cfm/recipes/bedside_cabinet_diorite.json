@@ -1,6 +1,6 @@
 {
   "result": {
-    "item": "cfm:bedside_cabinet_spruce"
+    "item": "cfm:bedside_cabinet_diorite"
   },
   "pattern": [
     "***",
@@ -14,7 +14,7 @@
     },
     "*": {
       "item": "minecraft:stone",
-      "data": 4
+      "data": 3
     }
   }
 }

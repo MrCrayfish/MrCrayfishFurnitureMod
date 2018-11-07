@@ -1,0 +1,20 @@
+{
+    "result": {
+        "item": "cfm:blinds_open",
+        "count": 2
+    },
+    "pattern": [
+        "LLL",
+        "SSS",
+        "SSS"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "L": {
+            "item": "minecraft:log"
+        },
+        "S": {
+            "item": "minecraft:stick"
+        }
+    }
+}

@@ -3,7 +3,7 @@
 	"textures": {
 		"1": "blocks/concrete_white",
 		"2": "blocks/concrete_silver",
-		"3": "blocks/glowstone"
+		"3": "blocks/sea_lantern"
 	},
 	"display": {
         "gui": {
