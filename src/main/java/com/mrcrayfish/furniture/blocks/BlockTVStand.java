@@ -106,6 +106,18 @@ public class BlockTVStand extends BlockFurnitureTile
         return new TileEntityTVStand();
     }
 
+    @Override
+    public boolean isTopSolid(IBlockState state)
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isSideSolid(IBlockState base_state, IBlockAccess world, BlockPos pos, EnumFacing side)
+    {
+        return side == EnumFacing.UP;
+    }
+
     public enum Type implements IStringSerializable
     {
         NONE,
