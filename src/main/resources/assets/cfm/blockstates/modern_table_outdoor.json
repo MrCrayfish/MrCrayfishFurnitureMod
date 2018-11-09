@@ -1,0 +1,71 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "cfm:modern_outdoor_table_single",
+		"uvlock": true
+	},
+	"variants": {
+		"inventory": [{
+			"model": "cfm:modern_outdoor_table_single"
+		}],
+		"back=false,forward=true,left=false,right=true": {
+			"model": "cfm:modern_outdoor_table_two_alt",
+			"y": 90
+		},
+		"back=false,forward=true,left=true,right=false": {
+			"model": "cfm:modern_outdoor_table_two_alt",
+			"y": 0
+		},
+		"back=true,forward=false,left=false,right=true": {
+			"model": "cfm:modern_outdoor_table_two_alt",
+			"y": 180
+		},
+		"back=true,forward=false,left=true,right=false": {
+			"model": "cfm:modern_outdoor_table_two_alt",
+			"y": 270
+		},
+		"back=false,forward=true,left=false,right=false": {
+			"model": "cfm:modern_outdoor_table_one"
+		},
+		"back=false,forward=false,left=false,right=true": {
+			"model": "cfm:modern_outdoor_table_one",
+			"y": 90
+		},
+		"back=false,forward=false,left=true,right=false": {
+			"model": "cfm:modern_outdoor_table_one",
+			"y": 270
+		},
+		"back=true,forward=false,left=false,right=false": {
+			"model": "cfm:modern_outdoor_table_one",
+			"y": 180
+		},
+		"back=false,forward=false,left=false,right=false": {
+			"model": "cfm:modern_outdoor_table_single"
+		},
+		"back=true,forward=true,left=false,right=false": {
+			"model": "cfm:modern_outdoor_table_two",
+			"y": 90
+		},
+		"back=true,forward=true,left=true,right=false": {
+			"model": "cfm:modern_outdoor_table_three",
+			"y": 270
+		},
+		"back=true,forward=true,left=false,right=true": {
+			"model": "cfm:modern_outdoor_table_three",
+			"y": 90
+		},
+		"back=false,forward=false,left=true,right=true": {
+			"model": "cfm:modern_outdoor_table_two"
+		},
+		"back=false,forward=true,left=true,right=true": {
+			"model": "cfm:modern_outdoor_table_three"
+		},
+		"back=true,forward=false,left=true,right=true": {
+			"model": "cfm:modern_outdoor_table_three",
+			"y": 180
+		},
+		"back=true,forward=true,left=true,right=true": {
+			"model": "cfm:modern_outdoor_table_four"
+		}
+	}
+}

@@ -60,7 +60,7 @@ public class FurnitureBlocks
 
     /* The Modern Update */
     public static final Block BEDSIDE_CABINET_STONE, BEDSIDE_CABINET_GRANITE, BEDSIDE_CABINET_DIORITE, BEDSIDE_CABINET_ANDESITE;
-    public static final Block MODERN_WINDOW, MODERN_SLIDING_DOOR, MODERN_TV, MODERN_COUCH, MODERN_TABLE, MODERN_CHAIR, MODERN_BED_TOP, MODERN_BED_BOTTOM, MODERN_COFFEE_TABLE, MODERN_STAIRS;
+    public static final Block MODERN_WINDOW, MODERN_SLIDING_DOOR, MODERN_TV, MODERN_COUCH, MODERN_TABLE, MODERN_CHAIR, MODERN_BED_TOP, MODERN_BED_BOTTOM, MODERN_COFFEE_TABLE, MODERN_STAIRS, MODERN_TABLE_OUTDOOR;
     public static final Block LIGHT_SWITCH_OFF, LIGHT_SWITCH_ON;
     public static final Block CEILING_FAN;
     public static final Block DESK_OAK, DESK_SPRUCE, DESK_BIRCH, DESK_JUNGLE, DESK_ACACIA, DESK_DARK_OAK, DESK_STONE, DESK_GRANITE, DESK_DIORITE, DESK_ANDESITE;
@@ -275,7 +275,7 @@ public class FurnitureBlocks
         MODERN_TV = new BlockModernTV();
         PHOTO_FRAME = new BlockPhotoFrame();
         MODERN_COUCH = new BlockModernCouch();
-        MODERN_TABLE = new BlockModernTable();
+        MODERN_TABLE = new BlockModernTable("modern_table");
         MODERN_CHAIR = new BlockChair(Material.WOOD, SoundType.WOOD).setUnlocalizedName("modern_chair").setRegistryName("modern_chair");
         CRATE_SPRUCE = new BlockCrate(Material.WOOD).setUnlocalizedName("crate_spruce").setRegistryName("crate_spruce");
         CRATE_BIRCH = new BlockCrate(Material.WOOD).setUnlocalizedName("crate_birch").setRegistryName("crate_birch");
@@ -287,6 +287,7 @@ public class FurnitureBlocks
         TV_STAND = new BlockTVStand();
         MODERN_COFFEE_TABLE = new BlockCoffeeTable(Material.WOOD, SoundType.WOOD, "modern_coffee_table");
         MODERN_STAIRS = new BlockModernStair();
+        MODERN_TABLE_OUTDOOR = new BlockModernTable("modern_table_outdoor");
     }
 
     public static void register()
@@ -478,6 +479,7 @@ public class FurnitureBlocks
         registerBlock(MODERN_TABLE);
         registerBlock(MODERN_CHAIR);
         registerBlock(MODERN_COFFEE_TABLE);
+        registerBlock(MODERN_TABLE_OUTDOOR);
         registerBlock(MODERN_STAIRS);
         registerBlock(MODERN_BED_TOP, null);
         registerBlock(MODERN_BED_BOTTOM, new ItemModernBed());
