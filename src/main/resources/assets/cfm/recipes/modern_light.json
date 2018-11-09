@@ -1,25 +1,23 @@
 {
     "result": {
-        "item": "cfm:ceiling_light_off",
+        "item": "cfm:modern_light",
         "count": 4
     },
     "pattern": [
-        "O",
-        "S",
-        "G"
+        "CGC",
+        "PPP"
     ],
     "type": "minecraft:crafting_shaped",
     "key": {
-        "S": {
+        "C": {
             "item": "minecraft:concrete",
-            "data": 8
+            "data": 7
         },
         "G": {
             "item": "minecraft:glowstone"
         },
-        "O": {
-            "item": "minecraft:concrete",
-            "data": 7
+        "P": {
+            "item": "minecraft:glass_pane"
         }
     }
 }

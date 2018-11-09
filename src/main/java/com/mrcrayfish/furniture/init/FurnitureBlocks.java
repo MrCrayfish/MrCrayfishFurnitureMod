@@ -61,7 +61,7 @@ public class FurnitureBlocks
     /* The Modern Update */
     public static final Block BEDSIDE_CABINET_STONE, BEDSIDE_CABINET_GRANITE, BEDSIDE_CABINET_DIORITE, BEDSIDE_CABINET_ANDESITE;
     public static final Block MODERN_WINDOW, MODERN_SLIDING_DOOR, MODERN_TV, MODERN_COUCH, MODERN_TABLE, MODERN_CHAIR, MODERN_BED_TOP, MODERN_BED_BOTTOM, MODERN_COFFEE_TABLE, MODERN_STAIRS, MODERN_TABLE_OUTDOOR;
-    public static final Block LIGHT_SWITCH_OFF, LIGHT_SWITCH_ON;
+    public static final Block LIGHT_SWITCH_OFF, LIGHT_SWITCH_ON, MODERN_LIGHT_OFF, MODERN_LIGHT_ON;
     public static final Block CEILING_FAN;
     public static final Block DESK_OAK, DESK_SPRUCE, DESK_BIRCH, DESK_JUNGLE, DESK_ACACIA, DESK_DARK_OAK, DESK_STONE, DESK_GRANITE, DESK_DIORITE, DESK_ANDESITE;
     public static final Block DESK_CABINET_OAK, DESK_CABINET_SPRUCE, DESK_CABINET_BIRCH, DESK_CABINET_JUNGLE, DESK_CABINET_ACACIA, DESK_CABINET_DARK_OAK, DESK_CABINET_STONE, DESK_CABINET_GRANITE, DESK_CABINET_DIORITE, DESK_CABINET_ANDESITE;
@@ -288,6 +288,8 @@ public class FurnitureBlocks
         MODERN_COFFEE_TABLE = new BlockCoffeeTable(Material.WOOD, SoundType.WOOD, "modern_coffee_table");
         MODERN_STAIRS = new BlockModernStair();
         MODERN_TABLE_OUTDOOR = new BlockModernTable("modern_table_outdoor");
+        MODERN_LIGHT_OFF = new BlockModernLight("modern_light_off", false);
+        MODERN_LIGHT_ON = new BlockModernLight("modern_light_on", true);
     }
 
     public static void register()
@@ -484,6 +486,8 @@ public class FurnitureBlocks
         registerBlock(MODERN_BED_TOP, null);
         registerBlock(MODERN_BED_BOTTOM, new ItemModernBed());
         registerBlock(TV_STAND);
+        registerBlock(MODERN_LIGHT_OFF);
+        registerBlock(MODERN_LIGHT_ON, null);
     }
 
     private static void registerBlock(Block block)
