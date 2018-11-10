@@ -1,0 +1,22 @@
+{
+    "result": {
+        "item": "cfm:curtains_open",
+        "data": 0,
+        "count": 2
+    },
+    "pattern": [
+        "@@@",
+        "* *",
+        "@ @"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "@": {
+            "item": "minecraft:wool",
+            "data": 0
+        },
+        "*": {
+            "item": "minecraft:gold_ingot"
+        }
+    }
+}

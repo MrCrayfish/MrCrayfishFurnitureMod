@@ -19,6 +19,7 @@ public class CategoryElectronics extends AbstractCategory
     {
         add(FurnitureBlocks.FIRE_ALARM_OFF);
         add(FurnitureBlocks.CEILING_LIGHT_OFF);
+        add(FurnitureBlocks.MODERN_LIGHT_OFF);
         add(FurnitureBlocks.CEILING_FAN);
         add(FurnitureBlocks.LIGHT_SWITCH_OFF);
         add(FurnitureBlocks.TV);

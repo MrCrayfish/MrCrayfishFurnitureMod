@@ -32,6 +32,7 @@ public class CategoryBedroom extends AbstractCategory
         add(FurnitureBlocks.PHOTO_FRAME);
         add(FurnitureBlocks.DIGITAL_CLOCK);
         add(FurnitureBlocks.CEILING_LIGHT_OFF);
+        add(FurnitureBlocks.MODERN_LIGHT_OFF);
         add(FurnitureBlocks.CEILING_FAN);
         add(FurnitureBlocks.LIGHT_SWITCH_OFF);
         add(FurnitureBlocks.MIRROR);

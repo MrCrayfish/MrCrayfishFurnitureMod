@@ -11,7 +11,8 @@
     "type": "minecraft:crafting_shaped",
     "key": {
         "L": {
-            "item": "minecraft:log"
+            "item": "minecraft:log",
+            "data": 0
         },
         "S": {
             "item": "minecraft:stick"

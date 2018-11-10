@@ -18,6 +18,7 @@ public class CategoryLighting extends AbstractCategory
     {
         add(FurnitureBlocks.LAMP_OFF);
         add(FurnitureBlocks.CEILING_LIGHT_OFF);
+        add(FurnitureBlocks.MODERN_LIGHT_OFF);
         add(FurnitureBlocks.LIGHT_SWITCH_OFF);
         add(FurnitureBlocks.TREE_BOTTOM);
         add(FurnitureBlocks.FAIRY_LIGHT);
