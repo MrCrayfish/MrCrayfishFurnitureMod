@@ -159,7 +159,7 @@ public class BlockModernSlidingDoor extends BlockFurniture implements IPowered
     @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
-        if(!worldIn.isRemote)
+        if(!worldIn.isRemote && blockIn instanceof BlockModernSlidingDoor)
         {
             System.out.println(worldIn.isBlockPowered(pos));
             boolean hasPower = worldIn.isBlockPowered(pos);
