@@ -56,7 +56,7 @@ public class FurnitureItems
     /**
      * Misc
      */
-    public static final Item RECIPE_BOOk;
+    public static final Item RECIPE_BOOK;
     public static final Item CRAYFISH;
     public static final Item CEILING_FAN_FANS;
 
@@ -79,7 +79,7 @@ public class FurnitureItems
         SOAP = new ItemGeneric().setUnlocalizedName("item_soap").setRegistryName("item_soap");
         SOAPY_WATER = new ItemGeneric().setUnlocalizedName("item_soap_water").setRegistryName("item_soap_water").setContainerItem(Items.BUCKET).setMaxStackSize(1);
         SUPER_SOAPY_WATER = new ItemGeneric().setUnlocalizedName("item_super_soap_water").setRegistryName("item_super_soap_water").setContainerItem(Items.BUCKET).setMaxStackSize(1);
-        RECIPE_BOOk = new ItemRecipeBook().setUnlocalizedName("item_recipe_book").setRegistryName("item_recipe_book");
+        RECIPE_BOOK = new ItemRecipeBook().setUnlocalizedName("item_recipe_book").setRegistryName("item_recipe_book");
         CRAYFISH = new Item().setUnlocalizedName("item_crayfish").setRegistryName("item_crayfish").setMaxStackSize(1);
         LOG = new ItemLog(FurnitureBlocks.FIRE_PIT_OFF).setUnlocalizedName("item_log").setRegistryName("item_log").setMaxStackSize(16);
         SPATULA = new Item().setUnlocalizedName("item_spatula").setRegistryName("item_spatula").setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
@@ -111,7 +111,7 @@ public class FurnitureItems
         registerItem(SOAP);
         registerItem(SOAPY_WATER);
         registerItem(SUPER_SOAPY_WATER);
-        registerItem(RECIPE_BOOk);
+        registerItem(RECIPE_BOOK);
         registerItem(CRAYFISH);
         registerItem(LOG);
         registerItem(SPATULA);

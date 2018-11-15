@@ -1223,7 +1223,7 @@ public class RecipeRegistry extends RecipeAPI
             RecipeRegistry.getInstance().registerMineBayItem(stack, new ItemStack(Items.EMERALD), 1);
         }
         if(ConfigurationHandler.mine_10)
-            RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(FurnitureItems.RECIPE_BOOk), new ItemStack(Items.EMERALD), 1);
+            RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(FurnitureItems.RECIPE_BOOK), new ItemStack(Items.EMERALD), 1);
         if(ConfigurationHandler.blen_1)
             RecipeRegistry.getInstance().registerBlenderRecipe("Fruit Crush", 4, new ItemStack[]{new ItemStack(Items.APPLE, 2), new ItemStack(Items.MELON, 4)}, new int[]{255, 58, 37});
         if(ConfigurationHandler.blen_2)
