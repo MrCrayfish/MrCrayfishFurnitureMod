@@ -1,7 +1,7 @@
 {
     "result": {
         "item": "cfm:modern_bed_bottom",
-        "data": 15
+        "data": 12
     },
     "pattern": [
         " O ",
@@ -16,7 +16,7 @@
         },
         "C": {
             "item": "minecraft:bed",
-            "data": 15
+            "data": 12
         }
     }
 }
