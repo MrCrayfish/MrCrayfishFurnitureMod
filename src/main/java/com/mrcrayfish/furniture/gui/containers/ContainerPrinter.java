@@ -5,7 +5,6 @@ import com.mrcrayfish.furniture.api.RecipeData;
 import com.mrcrayfish.furniture.gui.slots.SlotPrinter;
 import com.mrcrayfish.furniture.gui.slots.SlotPrinterInput;
 import com.mrcrayfish.furniture.tileentity.TileEntityPrinter;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;

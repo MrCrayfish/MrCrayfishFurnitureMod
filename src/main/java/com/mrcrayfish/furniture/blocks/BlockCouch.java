@@ -1,8 +1,5 @@
 package com.mrcrayfish.furniture.blocks;
 
-import java.util.List;
-import java.util.Locale;
-
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
@@ -12,7 +9,6 @@ import com.mrcrayfish.furniture.util.CollisionHelper;
 import com.mrcrayfish.furniture.util.SittableUtil;
 import com.mrcrayfish.furniture.util.StateHelper;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
-
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -36,6 +32,9 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import java.util.List;
+import java.util.Locale;
 
 public abstract class BlockCouch extends BlockFurnitureTile
 {

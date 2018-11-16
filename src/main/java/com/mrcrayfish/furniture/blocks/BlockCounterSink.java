@@ -1,12 +1,8 @@
 package com.mrcrayfish.furniture.blocks;
 
-import java.util.List;
-
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
-
 import com.mrcrayfish.furniture.tileentity.TileEntityKitchenCounter;
-import com.mrcrayfish.furniture.tileentity.TileEntityLightSwitch;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -33,6 +29,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class BlockCounterSink extends BlockFurnitureTile
 {

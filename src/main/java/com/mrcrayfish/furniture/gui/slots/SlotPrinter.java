@@ -1,7 +1,6 @@
 package com.mrcrayfish.furniture.gui.slots;
 
 import com.mrcrayfish.furniture.advancement.Triggers;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;

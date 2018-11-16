@@ -1,9 +1,7 @@
 package com.mrcrayfish.furniture.init;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 
 public class FurnitureTab extends CreativeTabs
 {

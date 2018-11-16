@@ -1,6 +1,5 @@
 package com.mrcrayfish.furniture.client;
 
-import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
