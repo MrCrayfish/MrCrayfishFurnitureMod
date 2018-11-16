@@ -77,11 +77,17 @@ public class BlockModernCouch extends BlockFurnitureTile
 
         if(StateHelper.getBlock(world, pos, state.getValue(FACING), StateHelper.Direction.LEFT) == this)
         {
-            left = true;
+            if(StateHelper.getRotation(world, pos, state.getValue(FACING), StateHelper.Direction.LEFT) == StateHelper.Direction.DOWN)
+            {
+                left = true;
+            }
         }
         if(StateHelper.getBlock(world, pos, state.getValue(FACING), StateHelper.Direction.RIGHT) == this)
         {
-            right = true;
+            if(StateHelper.getRotation(world, pos, state.getValue(FACING), StateHelper.Direction.RIGHT) == StateHelper.Direction.DOWN)
+            {
+                right = true;
+            }
         }
         if(left && !right)
         {
