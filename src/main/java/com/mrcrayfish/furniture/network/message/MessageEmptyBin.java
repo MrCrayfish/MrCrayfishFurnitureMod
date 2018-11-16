@@ -12,12 +12,9 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 //Server Packet
 public class MessageEmptyBin implements IMessage, IMessageHandler<MessageEmptyBin, IMessage>
 {
-
     private int x, y, z;
 
-    public MessageEmptyBin()
-    {
-    }
+    public MessageEmptyBin() {}
 
     public MessageEmptyBin(int x, int y, int z)
     {

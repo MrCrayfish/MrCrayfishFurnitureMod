@@ -15,9 +15,7 @@ public class MessageDishwasher implements IMessage, IMessageHandler<MessageDishw
     private int type;
     private int x, y, z;
 
-    public MessageDishwasher()
-    {
-    }
+    public MessageDishwasher() {}
 
     public MessageDishwasher(int type, int x, int y, int z)
     {

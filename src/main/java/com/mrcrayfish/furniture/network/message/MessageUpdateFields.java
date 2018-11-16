@@ -14,9 +14,7 @@ public class MessageUpdateFields implements IMessage, IMessageHandler<MessageUpd
     private int[] fields;
     private int x, y, z;
 
-    public MessageUpdateFields()
-    {
-    }
+    public MessageUpdateFields() {}
 
     public MessageUpdateFields(IInventory inventory, BlockPos pos)
     {

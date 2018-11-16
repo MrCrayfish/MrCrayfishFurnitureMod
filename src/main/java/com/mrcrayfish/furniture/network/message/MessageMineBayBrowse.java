@@ -10,15 +10,11 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-//Server Side
 public class MessageMineBayBrowse implements IMessage, IMessageHandler<MessageMineBayBrowse, IMessage>
 {
-
     private int itemNum, x, y, z;
 
-    public MessageMineBayBrowse()
-    {
-    }
+    public MessageMineBayBrowse() {}
 
     public MessageMineBayBrowse(int itemNum, int x, int y, int z)
     {

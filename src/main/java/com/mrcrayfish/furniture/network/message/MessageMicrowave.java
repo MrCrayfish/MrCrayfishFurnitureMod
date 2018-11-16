@@ -15,9 +15,7 @@ public class MessageMicrowave implements IMessage, IMessageHandler<MessageMicrow
     private int type;
     private int x, y, z;
 
-    public MessageMicrowave()
-    {
-    }
+    public MessageMicrowave() {}
 
     public MessageMicrowave(int type, int x, int y, int z)
     {

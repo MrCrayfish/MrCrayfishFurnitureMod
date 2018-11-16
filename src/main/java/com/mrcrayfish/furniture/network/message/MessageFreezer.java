@@ -15,9 +15,7 @@ public class MessageFreezer implements IMessage, IMessageHandler<MessageFreezer,
     private int type;
     private int x, y, z;
 
-    public MessageFreezer()
-    {
-    }
+    public MessageFreezer() {}
 
     public MessageFreezer(int type, int x, int y, int z)
     {

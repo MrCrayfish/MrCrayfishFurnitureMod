@@ -89,26 +89,14 @@ public class GuiComputer extends GuiContainer
         if(guibutton.id == 2)
         {
             this.buySlot = this.tileEntityComputer.getStackInSlot(0);
-            if(buySlot != null)
+            if(!buySlot.isEmpty())
             {
                 ItemStack money = itemdata[itemNum].getCurrency();
                 if(buySlot.getItem() == money.getItem())
                 {
                     if(buySlot.getItemDamage() == money.getItemDamage())
                     {
-                        int price = itemdata[itemNum].getPrice();
-                        if(buySlot.getCount() == price)
-                        {
-                            PacketHandler.INSTANCE.sendToServer(new MessageMineBayBuy(this.itemNum, this.tileEntityComputer.getPos().getX(), this.tileEntityComputer.getPos().getY(), this.tileEntityComputer.getPos().getZ(), true));
-                        }
-                        else if(buySlot.getCount() > price && buySlot.getCount() > 1)
-                        {
-                            PacketHandler.INSTANCE.sendToServer(new MessageMineBayBuy(this.itemNum, this.tileEntityComputer.getPos().getX(), this.tileEntityComputer.getPos().getY(), this.tileEntityComputer.getPos().getZ(), false));
-                        }
-                        if(buySlot.getCount() == 0 && price == 1)
-                        {
-                            PacketHandler.INSTANCE.sendToServer(new MessageMineBayBuy(this.itemNum, this.tileEntityComputer.getPos().getX(), this.tileEntityComputer.getPos().getY(), this.tileEntityComputer.getPos().getZ(), true));
-                        }
+                        PacketHandler.INSTANCE.sendToServer(new MessageMineBayBuy(this.itemNum, this.tileEntityComputer.getPos().getX(), this.tileEntityComputer.getPos().getY(), this.tileEntityComputer.getPos().getZ()));
                     }
                 }
             }

@@ -16,21 +16,11 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 //Server Packet
 public class MessageFart implements IMessage, IMessageHandler<MessageFart, IMessage>
 {
-    public MessageFart()
-    {
-    }
+    @Override
+    public void fromBytes(ByteBuf buf) {}
 
     @Override
-    public void fromBytes(ByteBuf buf)
-    {
-
-    }
-
-    @Override
-    public void toBytes(ByteBuf buf)
-    {
-
-    }
+    public void toBytes(ByteBuf buf) {}
 
     @Override
     public IMessage onMessage(MessageFart message, MessageContext ctx)

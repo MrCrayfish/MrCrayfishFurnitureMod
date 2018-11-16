@@ -62,12 +62,15 @@ public class MessageUpdateValueContainer implements IMessage, IMessageHandler<Me
     @Override
     public IMessage onMessage(MessageUpdateValueContainer message, MessageContext ctx)
     {
-        World world = ctx.getServerHandler().player.getServerWorld();
-        TileEntity tileEntity = world.getTileEntity(message.pos);
-        if(tileEntity instanceof IValueContainer)
+        if(ctx.getServerHandler().player.isCreative())
         {
-            ((IValueContainer) tileEntity).updateEntries(message.entryMap);
-            TileEntityUtil.syncToClient(tileEntity);
+            World world = ctx.getServerHandler().player.getServerWorld();
+            TileEntity tileEntity = world.getTileEntity(message.pos);
+            if(tileEntity instanceof IValueContainer)
+            {
+                ((IValueContainer) tileEntity).updateEntries(message.entryMap);
+                TileEntityUtil.syncToClient(tileEntity);
+            }
         }
         return null;
     }

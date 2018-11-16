@@ -11,17 +11,13 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-//Client Side
 public class MessageFillBath implements IMessage, IMessageHandler<MessageFillBath, IMessage>
 {
-
     private int waterLevel;
     private int bathOneX, bathOneY, bathOneZ;
     private int bathTwoX, bathTwoY, bathTwoZ;
 
-    public MessageFillBath()
-    {
-    }
+    public MessageFillBath() {}
 
     public MessageFillBath(int waterLevel, int x1, int y1, int z1, int x2, int y2, int z2)
     {

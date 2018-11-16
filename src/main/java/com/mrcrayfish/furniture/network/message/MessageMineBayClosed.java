@@ -12,15 +12,11 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-//Server Side
 public class MessageMineBayClosed implements IMessage, IMessageHandler<MessageMineBayClosed, IMessage>
 {
-
     private int x, y, z;
 
-    public MessageMineBayClosed()
-    {
-    }
+    public MessageMineBayClosed() {}
 
     public MessageMineBayClosed(int x, int y, int z)
     {
