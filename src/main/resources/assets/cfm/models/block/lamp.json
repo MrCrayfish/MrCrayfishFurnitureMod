@@ -186,9 +186,9 @@
             "rotation": { "origin": [ 8.0, 8.0, 8.0 ], "axis": "y", "angle": -45.0 },
             "faces": {
                 "north": { "texture": "#support", "uv": [ 0.00, 0.00, 1.00, 1.00 ] },
-                "east": { "texture": "#support", "uv": [ 0.00, 0.00, 15.00, -12.00 ] },
-                "south": { "texture": "#support", "uv": [ 0.00, 0.00, -1.00, -14.00 ] },
-                "west": { "texture": "#support", "uv": [ 0.00, 0.00, 2.00, -8.00 ] },
+                "east": { "texture": "#support", "uv": [ 0.00, 0.00, 12.00, 1.00 ] },
+                "south": { "texture": "#support", "uv": [ 0.00, 0.00, 1.00, 1.00 ] },
+                "west": { "texture": "#support", "uv": [ 0.00, 0.00, 12.00, 1.00 ] },
                 "up": { "texture": "#support", "uv": [ 0.00, 0.00, 1.00, 12.00 ] },
                 "down": { "texture": "#support", "uv": [ 0.00, 0.00, 1.00, 12.00 ] }
             }
