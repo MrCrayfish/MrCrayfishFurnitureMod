@@ -19,7 +19,6 @@ public class PacketHandler
         registerMessage(MessageConfig.class, MessageConfig.class, Side.CLIENT);
         registerMessage(MessageEmptyBin.class, MessageEmptyBin.class, Side.SERVER);
         registerMessage(MessageFart.class, MessageFart.class, Side.SERVER);
-        registerMessage(MessageFillBasin.class, MessageFillBasin.class, Side.CLIENT);
         registerMessage(MessageFillBath.class, MessageFillBath.class, Side.CLIENT);
         registerMessage(MessageMineBayBrowse.class, MessageMineBayBrowse.class, Side.SERVER);
         registerMessage(MessageMineBayBuy.class, MessageMineBayBuy.class, Side.SERVER);
