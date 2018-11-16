@@ -5,7 +5,6 @@ import com.mrcrayfish.furniture.api.RecipeData;
 import com.mrcrayfish.furniture.gui.slots.SlotArmour;
 import com.mrcrayfish.furniture.gui.slots.SlotSoapyWater;
 import com.mrcrayfish.furniture.init.FurnitureItems;
-
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;

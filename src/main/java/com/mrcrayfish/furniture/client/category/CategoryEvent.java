@@ -1,7 +1,6 @@
 package com.mrcrayfish.furniture.client.category;
 
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
-import com.mrcrayfish.furniture.init.FurnitureItems;
 import net.minecraft.item.ItemStack;
 
 /**

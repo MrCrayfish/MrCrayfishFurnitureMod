@@ -1,9 +1,10 @@
 package com.mrcrayfish.furniture.render.tileentity;
 
 import com.mrcrayfish.furniture.blocks.BlockFurnitureTile;
-import com.mrcrayfish.furniture.client.*;
+import com.mrcrayfish.furniture.client.ImageCache;
+import com.mrcrayfish.furniture.client.ImageDownloadThread;
+import com.mrcrayfish.furniture.client.Texture;
 import com.mrcrayfish.furniture.tileentity.TileEntityPhotoFrame;
-import com.mrcrayfish.furniture.tileentity.TileEntityTV;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
