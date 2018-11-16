@@ -1082,7 +1082,6 @@ public class RecipeRegistryRemote extends RecipeAPI
         Parser parser = Parser.getInstance();
         for(int i = 0; i < data.size(); i++)
         {
-            System.out.println(data.get(i));
             parser.parseLine(data.get(i), false);
             String type = parser.getValue("type", null);
 

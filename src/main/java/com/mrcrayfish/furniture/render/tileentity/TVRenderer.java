@@ -98,8 +98,6 @@ public class TVRenderer extends TileEntitySpecialRenderer<TileEntityTV>
                     double u = ((int)((256 - scaledWidth) * RAND.nextDouble()) * pixelScale);
                     double v = ((int)((256 - scaledHeight) * RAND.nextDouble()) * pixelScale);
 
-                    //System.out.println(u + " " + v);
-
                     startX *= 0.0625;
                     startY *= 0.0625;
                     width *= 0.0625;
