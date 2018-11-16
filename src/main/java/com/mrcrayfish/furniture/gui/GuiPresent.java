@@ -1,40 +1,33 @@
 package com.mrcrayfish.furniture.gui;
 
 import com.mrcrayfish.furniture.gui.containers.ContainerPresent;
-import com.mrcrayfish.furniture.gui.inventory.InventoryPresent;
-import com.mrcrayfish.furniture.items.ItemPresent;
+import com.mrcrayfish.furniture.gui.inventory.ItemInventory;
 import com.mrcrayfish.furniture.network.PacketHandler;
-import com.mrcrayfish.furniture.network.message.MessagePresentContents;
+import com.mrcrayfish.furniture.network.message.MessageSignItem;
 import com.mrcrayfish.furniture.util.NBTHelper;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
-
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 public class GuiPresent extends GuiContainer
 {
-    private static final ResourceLocation gui = new ResourceLocation("cfm:textures/gui/present.png");
-    private GuiButton button_wrap;
+    private static final ResourceLocation GUI_TEXTURE = new ResourceLocation("cfm:textures/gui/present.png");
+    private GuiButton btnWrap;
     private EntityPlayer player;
-    private InventoryPresent inventory;
-    private ItemStack present;
+    private ItemStack heldItem;
 
-    public GuiPresent(InventoryPlayer inventoryplayer, IInventory inventoryMail, EntityPlayer player, ItemStack present)
+    public GuiPresent(InventoryPlayer playerInventory, ItemInventory itemInventory, EntityPlayer player)
     {
-        super(new ContainerPresent(inventoryplayer, inventoryMail));
+        super(new ContainerPresent(playerInventory, itemInventory));
         this.player = player;
-        this.inventory = (InventoryPresent) inventoryMail;
-        this.present = present;
     }
 
     @Override
@@ -48,11 +41,14 @@ public class GuiPresent extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
-        if(player.inventory.getCurrentItem() == null | (player.inventory.getCurrentItem() != null && !(player.inventory.getCurrentItem().getItem() instanceof ItemPresent)))
+        if(heldItem == null)
+        {
+            heldItem = player.getHeldItemMainhand();
+        }
+        if(heldItem != player.getHeldItemMainhand())
         {
             this.mc.player.closeScreen();
         }
-
         this.fontRenderer.drawString(I18n.format("container.inventory"), 8, ySize - 94, 4210752);
     }
 
@@ -60,7 +56,7 @@ public class GuiPresent extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.getTextureManager().bindTexture(gui);
+        this.mc.getTextureManager().bindTexture(GUI_TEXTURE);
         int l = (width - xSize) / 2;
         int i1 = (height - ySize) / 2;
         this.drawTexturedModalRect(l, i1, 0, 0, xSize, ySize);
@@ -74,38 +70,20 @@ public class GuiPresent extends GuiContainer
         buttonList.clear();
         int posX = width / 2 + 40;
         int posY = height / 2 - 50;
-        button_wrap = new GuiButton(0, posX, posY - 10, 40, 20, I18n.format("cfm.button.wrap"));
-        button_wrap.enabled = true;
-        buttonList.add(button_wrap);
-    }
-
-    @Override
-    public void onGuiClosed()
-    {
-        super.onGuiClosed();
-        this.inventory.saveInventory();
+        btnWrap = new GuiButton(0, posX, posY - 10, 40, 20, I18n.format("cfm.button.wrap"));
+        btnWrap.visible = true;
+        buttonList.add(btnWrap);
     }
 
     @Override
     protected void actionPerformed(GuiButton guibutton)
     {
         if(!guibutton.enabled)
-        {
             return;
-        }
-        if(guibutton.id == 0)
+
+        if(guibutton == btnWrap)
         {
-            NBTTagList var2 = (NBTTagList) NBTHelper.getCompoundTag(present, "Present").getTag("Items");
-            if(var2.tagCount() > 0)
-            {
-                this.present.setTagInfo("Author", new NBTTagString(this.player.getName()));
-                this.mc.displayGuiScreen(null);
-                PacketHandler.INSTANCE.sendToServer(new MessagePresentContents(this.present));
-            }
-            else
-            {
-                this.player.sendMessage(new TextComponentTranslation("cfm.message.present_empty"));
-            }
+            PacketHandler.INSTANCE.sendToServer(new MessageSignItem());
         }
     }
 }

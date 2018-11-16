@@ -31,7 +31,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemPackageSigned extends Item implements IMail
+public class ItemPackageSigned extends Item implements IItemInventory
 {
     public ItemPackageSigned()
     {
@@ -73,19 +73,19 @@ public class ItemPackageSigned extends Item implements IMail
     public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand)
     {
         ItemStack heldItem = player.getHeldItem(hand);
-        TileEntity tile_entity = world.getTileEntity(pos);
+        TileEntity tileEntity = world.getTileEntity(pos);
         if(!world.isRemote)
         {
             NBTTagList var2 = (NBTTagList) NBTHelper.getCompoundTag(heldItem, "Package").getTag("Items");
             if(var2.tagCount() > 0)
             {
-                if(player.capabilities.isCreativeMode && player.isSneaking() && tile_entity instanceof TileEntityMailBox)
+                if(player.capabilities.isCreativeMode && player.isSneaking() && tileEntity instanceof TileEntityMailBox)
                 {
                     player.sendMessage(new TextComponentTranslation("cfm.message.mail_creative"));
                 }
-                else if(tile_entity instanceof TileEntityMailBox)
+                else if(tileEntity instanceof TileEntityMailBox)
                 {
-                    TileEntityMailBox tileEntityMailBox = (TileEntityMailBox) tile_entity;
+                    TileEntityMailBox tileEntityMailBox = (TileEntityMailBox) tileEntity;
                     if(player.isSneaking())
                     {
                         if(!tileEntityMailBox.isMailBoxFull())
@@ -123,17 +123,6 @@ public class ItemPackageSigned extends Item implements IMail
             }
         }
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
-    }
-
-    public static IInventory getInv(EntityPlayer player)
-    {
-        ItemStack mail = player.inventory.getCurrentItem();
-        InventoryPackage invMail = null;
-        if(mail != null && mail.getItem() instanceof ItemPackageSigned)
-        {
-            invMail = new InventoryPackage(player, mail);
-        }
-        return invMail;
     }
 
     @SideOnly(Side.CLIENT)
