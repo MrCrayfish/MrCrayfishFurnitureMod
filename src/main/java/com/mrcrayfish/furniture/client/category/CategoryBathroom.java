@@ -19,7 +19,7 @@ public class CategoryBathroom extends AbstractCategory
         add(FurnitureBlocks.TOILET);
         add(FurnitureBlocks.BASIN);
         add(FurnitureBlocks.WALL_CABINET);
-        add(FurnitureBlocks.BATH_2);
+        add(FurnitureBlocks.BATH_1);
         add(FurnitureBlocks.SHOWER_BOTTOM);
         add(FurnitureBlocks.SHOWER_HEAD_OFF);
         add(FurnitureBlocks.BIN);
