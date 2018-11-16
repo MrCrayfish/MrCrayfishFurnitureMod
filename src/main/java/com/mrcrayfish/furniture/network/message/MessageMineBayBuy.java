@@ -59,8 +59,12 @@ public class MessageMineBayBuy implements IMessage, IMessageHandler<MessageMineB
                 return null;
 
             RecipeData[] data = Recipes.getMineBayItems();
-            int price = data[message.itemNum].getPrice();
-            if(buySlot.getCount() >= price)
+            if(message.itemNum < 0 || message.itemNum >= data.length)
+                return null;
+
+            RecipeData recipe = data[message.itemNum];
+            int price = recipe.getPrice();
+            if(recipe.getCurrency().getItem() == buySlot.getItem() && buySlot.getCount() >= price)
             {
                 tileEntityComputer.takeEmeraldFromSlot(price);
                 EntityItem entityItem = new EntityItem(player.world, player.posX, player.posY + 1, player.posZ, data[message.itemNum].getInput().copy());
