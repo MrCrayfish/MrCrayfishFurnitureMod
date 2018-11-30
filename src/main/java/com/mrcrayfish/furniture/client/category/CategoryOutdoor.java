@@ -62,5 +62,6 @@ public class CategoryOutdoor extends AbstractCategory
         add(FurnitureItems.SAUSAGE_COOKED);
         add(FurnitureItems.KEBAB);
         add(FurnitureItems.KEBAB_COOKED);
+        add(FurnitureBlocks.OAK_FENCE_UPGRADED);
     }
 }

@@ -79,6 +79,9 @@ public class FurnitureBlocks
     public static final BlockBlinds BLINDS_ACACIA, BLINDS_ACACIA_CLOSED;
     public static final BlockBlinds BLINDS_DARK_OAK, BLINDS_DARK_OAK_CLOSED;
 
+    /* The Outdoor Update V2 */
+    public static final Block OAK_FENCE_UPGRADED;
+
     /* Special */
     public static final Block MIRROR;
 
@@ -290,6 +293,7 @@ public class FurnitureBlocks
         MODERN_TABLE_OUTDOOR = new BlockModernTable("modern_table_outdoor");
         MODERN_LIGHT_OFF = new BlockModernLight("modern_light_off", false);
         MODERN_LIGHT_ON = new BlockModernLight("modern_light_on", true);
+        OAK_FENCE_UPGRADED = new BlockUpgradedFence("upgraded_fence_oak");
     }
 
     public static void register()
@@ -488,6 +492,7 @@ public class FurnitureBlocks
         registerBlock(TV_STAND);
         registerBlock(MODERN_LIGHT_OFF);
         registerBlock(MODERN_LIGHT_ON, null);
+        registerBlock(OAK_FENCE_UPGRADED);
     }
 
     private static void registerBlock(Block block)
