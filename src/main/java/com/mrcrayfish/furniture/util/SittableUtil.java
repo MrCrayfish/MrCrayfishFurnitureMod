@@ -17,8 +17,9 @@ public class SittableUtil
             EntitySittableBlock nemb = new EntitySittableBlock(par1World, x, y, z, par6);
             par1World.spawnEntity(nemb);
             par5EntityPlayer.startRiding(nemb);
+            return true;
         }
-        return true;
+        return false;
     }
 
     public static boolean sitOnBlockWithRotationOffset(World par1World, double x, double y, double z, EntityPlayer par5EntityPlayer, double par6, int metadata, double offset)

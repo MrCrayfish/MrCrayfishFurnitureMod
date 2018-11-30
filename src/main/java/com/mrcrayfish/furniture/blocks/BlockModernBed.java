@@ -200,15 +200,15 @@ public class BlockModernBed extends BlockFurnitureTile
                 {
                     if(sleepResult == EntityPlayer.SleepResult.NOT_POSSIBLE_NOW)
                     {
-                        playerIn.sendStatusMessage(new TextComponentTranslation("tile.bed.noSleep", new Object[0]), true);
+                        playerIn.sendStatusMessage(new TextComponentTranslation("tile.bed.noSleep"), true);
                     }
                     else if(sleepResult == EntityPlayer.SleepResult.NOT_SAFE)
                     {
-                        playerIn.sendStatusMessage(new TextComponentTranslation("tile.bed.notSafe", new Object[0]), true);
+                        playerIn.sendStatusMessage(new TextComponentTranslation("tile.bed.notSafe"), true);
                     }
                     else if(sleepResult == EntityPlayer.SleepResult.TOO_FAR_AWAY)
                     {
-                        playerIn.sendStatusMessage(new TextComponentTranslation("tile.bed.tooFarAway", new Object[0]), true);
+                        playerIn.sendStatusMessage(new TextComponentTranslation("tile.bed.tooFarAway"), true);
                     }
                     return true;
                 }

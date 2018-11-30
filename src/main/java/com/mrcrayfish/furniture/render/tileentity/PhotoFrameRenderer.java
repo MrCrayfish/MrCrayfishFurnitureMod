@@ -133,8 +133,8 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
                         if(!te.isStretched())
                         {
                             //Calculates the positioning and scale so the GIF keeps its ratio and renders within the screen
-                            double scaleWidth = (double) frameWidth / (double) texture.getWidth();
-                            double scaleHeight = (double) frameWidth / (double) texture.getHeight();
+                            double scaleWidth = frameWidth / (double) texture.getWidth();
+                            double scaleHeight = frameWidth / (double) texture.getHeight();
                             double scale = Math.min(scaleWidth, scaleHeight);
                             imageWidth = texture.getWidth() * scale;
                             imageHeight = texture.getHeight() * scale;

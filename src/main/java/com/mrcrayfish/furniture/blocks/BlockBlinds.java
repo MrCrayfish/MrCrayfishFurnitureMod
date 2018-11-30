@@ -28,7 +28,6 @@ public class BlockBlinds extends BlockFurniture
 {
     public static final PropertyBool LEFT = PropertyBool.create("left");
     private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(0.875, 0.0, 0.0, 1.0, 1.0, 1.0).getRotatedBounds();
-    private boolean open = false;
 
     private Block replacementBlock;
 
@@ -38,7 +37,6 @@ public class BlockBlinds extends BlockFurniture
         this.setHardness(0.5F);
         this.setSoundType(SoundType.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(LEFT, false));
-        this.open = open;
         if(!open)
         {
             this.setLightOpacity(255);

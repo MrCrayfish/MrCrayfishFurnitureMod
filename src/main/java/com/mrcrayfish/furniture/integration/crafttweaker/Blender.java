@@ -39,7 +39,7 @@ public class Blender
             matcher = matcher.and((data) -> data.getDrinkName().equals(name));
             if(first) first = false;
             else description.append(',');
-            description.append("name=" + name);
+            description.append("name=").append(name);
         }
 
         if(ingredients != null)
@@ -69,7 +69,7 @@ public class Blender
             });
             if(first) first = false;
             else description.append(',');
-            description.append("ingredients=" + Arrays.toString(ingredients));
+            description.append("ingredients=").append(Arrays.toString(ingredients));
         }
 
         if(food != null)
@@ -77,7 +77,7 @@ public class Blender
             matcher = matcher.and((data) -> data.getHealAmount() == food);
             if(first) first = false;
             else description.append(',');
-            description.append("food=" + food);
+            description.append("food=").append(food);
         }
 
         if(colour != null)
@@ -90,7 +90,7 @@ public class Blender
             matcher = matcher.and((data) -> data.getRed() == colour[0] && data.getGreen() == colour[1] && data.getBlue() == colour[2]);
             if(first) first = false;
             else description.append(',');
-            description.append("colour=" + Arrays.toString(colour));
+            description.append("colour=").append(Arrays.toString(colour));
         }
 
         description.append("' from Blender");

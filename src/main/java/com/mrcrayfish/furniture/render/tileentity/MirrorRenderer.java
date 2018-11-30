@@ -1,6 +1,6 @@
 package com.mrcrayfish.furniture.render.tileentity;
 
-import com.mrcrayfish.furniture.MirrorRenderGlobal;
+import com.mrcrayfish.furniture.client.MirrorRenderGlobal;
 import com.mrcrayfish.furniture.entity.EntityMirror;
 import com.mrcrayfish.furniture.handler.ConfigurationHandler;
 import com.mrcrayfish.furniture.proxy.ClientProxy;

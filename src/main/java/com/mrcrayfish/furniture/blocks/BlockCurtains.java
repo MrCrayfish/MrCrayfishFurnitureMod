@@ -34,7 +34,7 @@ import java.util.Locale;
 public abstract class BlockCurtains extends BlockFurniture
 {
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
-    public static final PropertyEnum TYPE = PropertyEnum.create("type", Type.class);
+    public static final PropertyEnum<Type> TYPE = PropertyEnum.create("type", Type.class);
 
     private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.875, 0.0, 0.0, 1.0, 1.0, 1.0);
     private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.875, 0.0, 0.0, 1.0, 1.0, 1.0);

@@ -42,9 +42,4 @@ public class InputHandler
             }
         }
     }
-
-    public KeyBinding getFartKey()
-    {
-        return KEY_FART;
-    }
 }
