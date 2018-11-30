@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.blocks;
 
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;
@@ -27,7 +28,7 @@ public class BlockUpgradedFence extends BlockFence
         super(Material.WOOD, MapColor.WOOD);
         this.setUnlocalizedName(id);
         this.setRegistryName(id);
-        this.setCreativeTab(null);
+        this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
         this.setDefaultState(this.blockState.getBaseState().withProperty(POST, false).withProperty(POST_TOP, false).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false));
     }
 

@@ -57,11 +57,16 @@ public class CategoryOutdoor extends AbstractCategory
         add(FurnitureBlocks.COOLER);
         add(FurnitureBlocks.MODERN_SLIDING_DOOR);
         add(FurnitureBlocks.MODERN_TABLE_OUTDOOR);
+        add(FurnitureBlocks.OAK_FENCE_UPGRADED);
+        add(FurnitureBlocks.SPRUCE_FENCE_UPGRADED);
+        add(FurnitureBlocks.BIRCH_FENCE_UPGRADED);
+        add(FurnitureBlocks.JUNGLE_FENCE_UPGRADED);
+        add(FurnitureBlocks.ACACIA_FENCE_UPGRADED);
+        add(FurnitureBlocks.DARK_OAK_FENCE_UPGRADED);
         add(FurnitureItems.SPATULA);
         add(FurnitureItems.SAUSAGE);
         add(FurnitureItems.SAUSAGE_COOKED);
         add(FurnitureItems.KEBAB);
         add(FurnitureItems.KEBAB_COOKED);
-        add(FurnitureBlocks.OAK_FENCE_UPGRADED);
     }
 }
