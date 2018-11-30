@@ -9,6 +9,7 @@ import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -33,36 +34,20 @@ public class BlockUpgradedFence extends BlockFence
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
-        boolean north = canWallConnectTo(worldIn, pos, EnumFacing.NORTH);
-        boolean east = canWallConnectTo(worldIn, pos, EnumFacing.EAST);
-        boolean south = canWallConnectTo(worldIn, pos, EnumFacing.SOUTH);
-        boolean west = canWallConnectTo(worldIn, pos, EnumFacing.WEST);
+        boolean north = canFenceConnectTo(worldIn, pos, EnumFacing.NORTH);
+        boolean east = canFenceConnectTo(worldIn, pos, EnumFacing.EAST);
+        boolean south = canFenceConnectTo(worldIn, pos, EnumFacing.SOUTH);
+        boolean west = canFenceConnectTo(worldIn, pos, EnumFacing.WEST);
         boolean post = north && !east && south && !west || !north && east && !south && west;
         boolean postTop = !post && worldIn.isAirBlock(pos.up());
         return state.withProperty(POST, !post).withProperty(POST_TOP, postTop).withProperty(NORTH, north).withProperty(EAST, east).withProperty(SOUTH, south).withProperty(WEST, west);
     }
 
-    private boolean isWallAboveAndConnectedTo(IBlockAccess world, BlockPos pos, EnumFacing face)
+    private boolean canFenceConnectTo(IBlockAccess world, BlockPos pos, EnumFacing facing)
     {
-        IBlockState state = world.getBlockState(pos.up());
-        return state.getBlock() == this && canWallConnectTo(world, pos.up(), face);
-    }
-
-    private boolean canWallConnectTo(IBlockAccess world, BlockPos pos, EnumFacing face)
-    {
-        BlockPos other = pos.offset(face);
+        BlockPos other = pos.offset(facing);
         Block block = world.getBlockState(other).getBlock();
-        return block.canBeConnectedTo(world, other, face.getOpposite()) || canConnectTo(world, other, face.getOpposite());
-    }
-
-    @Override
-    public boolean canConnectTo(IBlockAccess worldIn, BlockPos pos, EnumFacing face)
-    {
-        IBlockState iblockstate = worldIn.getBlockState(pos);
-        Block block = iblockstate.getBlock();
-        BlockFaceShape blockfaceshape = iblockstate.getBlockFaceShape(worldIn, pos, face);
-        boolean flag = blockfaceshape == BlockFaceShape.MIDDLE_POLE_THICK || blockfaceshape == BlockFaceShape.MIDDLE_POLE && block instanceof BlockFenceGate;
-        return !isExcepBlockForAttachWithPiston(block) && blockfaceshape == BlockFaceShape.SOLID || flag;
+        return block.canBeConnectedTo(world, other, facing.getOpposite()) || canConnectTo(world, other, facing.getOpposite());
     }
 
     @Override
@@ -70,4 +55,6 @@ public class BlockUpgradedFence extends BlockFence
     {
         return new BlockStateContainer(this, POST, POST_TOP, NORTH, EAST, WEST, SOUTH);
     }
+
+
 }
