@@ -1,0 +1,21 @@
+{
+    "result": {
+        "item": "cfm:upgraded_fence_oak",
+        "count": 8
+    },
+    "pattern": [
+        "FFF",
+        "FLF",
+        "FFF"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "F": {
+            "item": "minecraft:fence"
+        },
+        "L": {
+            "item": "minecraft:log",
+            "data": 0
+        }
+    }
+}
