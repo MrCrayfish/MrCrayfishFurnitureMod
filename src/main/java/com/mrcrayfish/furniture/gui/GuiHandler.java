@@ -2,12 +2,18 @@ package com.mrcrayfish.furniture.gui;
 
 import com.mrcrayfish.furniture.blocks.BlockBedsideCabinet;
 import com.mrcrayfish.furniture.blocks.BlockCabinet;
-import com.mrcrayfish.furniture.gui.containers.*;
-import com.mrcrayfish.furniture.items.*;
+import com.mrcrayfish.furniture.gui.containers.ContainerEnvelope;
+import com.mrcrayfish.furniture.gui.containers.ContainerPackage;
+import com.mrcrayfish.furniture.gui.containers.ContainerPresent;
+import com.mrcrayfish.furniture.gui.inventory.InventoryEnvelope;
+import com.mrcrayfish.furniture.gui.inventory.InventoryPackage;
+import com.mrcrayfish.furniture.gui.inventory.InventoryPresent;
+import com.mrcrayfish.furniture.init.FurnitureBlocks;
+import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.*;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiChest;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -28,29 +34,35 @@ public class GuiHandler implements IGuiHandler
         {
             return ((TileEntityDeskCabinet) tileEntity).createContainer(player.inventory, player);
         }
+        else if(tileEntity instanceof TileEntityTVStand)
+        {
+            return ((TileEntityTVStand) tileEntity).createContainer(player.inventory, player);
+        }
         else if(tileEntity instanceof TileEntityKitchenCounterDrawer)
         {
             return ((TileEntityKitchenCounterDrawer) tileEntity).createContainer(player.inventory, player);
         }
-        else if(id == 5)
+
+        ItemStack heldItem = player.getHeldItemMainhand();
+        if(id == 5 && heldItem.getItem() == FurnitureItems.ENVELOPE)
         {
-            return new ContainerEnvelope(player.inventory, ItemEnvelope.getInv(player));
+            return new ContainerEnvelope(player.inventory, new InventoryEnvelope(heldItem));
         }
-        else if(id == 6)
+        else if(id == 6 && heldItem.getItem() == FurnitureItems.ENVELOPE_SIGNED)
         {
-            return new ContainerEnvelope(player.inventory, ItemEnvelopeSigned.getInv(player));
+            return new ContainerEnvelope(player.inventory, new InventoryEnvelope(heldItem).setCanInsertItems(false));
         }
-        else if(id == 7)
+        else if(id == 7 && heldItem.getItem() == FurnitureItems.PACKAGE)
         {
-            return new ContainerPackage(player.inventory, ItemPackage.getInv(player));
+            return new ContainerPackage(player.inventory, new InventoryPackage(heldItem));
         }
-        else if(id == 8)
+        else if(id == 8 && heldItem.getItem() == FurnitureItems.PACKAGE_SIGNED)
         {
-            return new ContainerPackage(player.inventory, ItemPackageSigned.getInv(player));
+            return new ContainerPackage(player.inventory, new InventoryPackage(heldItem).setCanInsertItems(false));
         }
-        else if(id == 9)
+        else if(id == 9 && heldItem.getItem() == Item.getItemFromBlock(FurnitureBlocks.PRESENT))
         {
-            return new ContainerPresent(player.inventory, ItemPresent.getInv(player, player.getActiveHand()));
+            return new ContainerPresent(player.inventory, new InventoryPresent(heldItem));
         }
         return null;
     }
@@ -135,34 +147,34 @@ public class GuiHandler implements IGuiHandler
         {
             return new GuiChest(player.inventory, (TileEntityDeskCabinet) tileEntity);
         }
+        if(tileEntity instanceof TileEntityTVStand)
+        {
+            return new GuiChest(player.inventory, (TileEntityTVStand) tileEntity);
+        }
         if(tileEntity instanceof TileEntityKitchenCounterDrawer)
         {
             return new GuiChest(player.inventory, (TileEntityKitchenCounterDrawer) tileEntity);
         }
-        ItemStack mail = null;
-        if(!player.inventory.getCurrentItem().isEmpty())
+        ItemStack heldItem = player.getHeldItemMainhand();
+        if(id == 5 && heldItem.getItem() == FurnitureItems.ENVELOPE)
         {
-            mail = player.inventory.getCurrentItem();
+            return new GuiEnvelope(player.inventory, new InventoryEnvelope(heldItem), player);
         }
-        if(id == 5)
+        if(id == 6 && heldItem.getItem() == FurnitureItems.ENVELOPE_SIGNED)
         {
-            return new GuiEnvelope(player.inventory, ItemEnvelope.getInv(player), player, mail);
+            return new GuiEnvelope(player.inventory, new InventoryEnvelope(heldItem).setCanInsertItems(false), player);
         }
-        if(id == 6)
+        if(id == 7 && heldItem.getItem() == FurnitureItems.PACKAGE)
         {
-            return new GuiEnvelope(player.inventory, ItemEnvelopeSigned.getInv(player), player, mail);
+            return new GuiPackage(player.inventory, new InventoryPackage(heldItem), player);
         }
-        if(id == 7)
+        if(id == 8 && heldItem.getItem() == FurnitureItems.PACKAGE_SIGNED)
         {
-            return new GuiPackage(player.inventory, ItemPackage.getInv(player), player, mail);
+            return new GuiPackage(player.inventory, new InventoryPackage(heldItem).setCanInsertItems(false), player);
         }
-        if(id == 8)
+        if(id == 9 && heldItem.getItem() == Item.getItemFromBlock(FurnitureBlocks.PRESENT))
         {
-            return new GuiPackage(player.inventory, ItemPackageSigned.getInv(player), player, mail);
-        }
-        if(id == 9)
-        {
-            return new GuiPresent(player.inventory, ItemPresent.getInv(player, player.getActiveHand()), player, mail);
+            return new GuiPresent(player.inventory, new InventoryPresent(heldItem), player);
         }
         if(id == 10)
         {

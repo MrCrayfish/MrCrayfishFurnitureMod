@@ -14,9 +14,7 @@ public class MessageWashingMachine implements IMessage, IMessageHandler<MessageW
     private int type;
     private int x, y, z;
 
-    public MessageWashingMachine()
-    {
-    }
+    public MessageWashingMachine() {}
 
     public MessageWashingMachine(int type, int x, int y, int z)
     {

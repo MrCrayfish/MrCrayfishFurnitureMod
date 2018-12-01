@@ -3,7 +3,6 @@ package com.mrcrayfish.furniture.client;
 import at.dhyan.open_imaging.GifDecoder;
 import com.google.common.collect.Lists;
 import net.minecraft.client.renderer.GlStateManager;
-import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 
 import java.awt.*;
@@ -13,9 +12,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
 
 /**
  * Author: MrCrayfish
@@ -69,12 +65,13 @@ public class AnimatedTexture extends Texture
                 frameCounter = 0;
             }
             ByteBuffer buffer = framesTextureData.get(frameCounter);
-            GL11.glBindTexture(GL11.GL_TEXTURE_2D, getTextureId());
+            GlStateManager.bindTexture(getTextureId());
             GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, width, height, 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, buffer);
         }
         if(counter++ >= 600)
         {
             delete = true;
+            GlStateManager.deleteTexture(getTextureId());
         }
     }
 

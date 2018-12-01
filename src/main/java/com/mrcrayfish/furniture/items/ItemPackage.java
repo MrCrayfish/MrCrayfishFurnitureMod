@@ -1,11 +1,9 @@
 package com.mrcrayfish.furniture.items;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.gui.inventory.InventoryPackage;
+import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
-
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -17,12 +15,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
-public class ItemPackage extends Item implements IMail
+public class ItemPackage extends Item implements IItemInventory, IAuthored
 {
     public ItemPackage()
     {
         setMaxStackSize(1);
         setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+    }
+
+    @Override
+    public Item getSignedItem()
+    {
+        return FurnitureItems.PACKAGE_SIGNED;
     }
 
     @Override
@@ -58,16 +62,5 @@ public class ItemPackage extends Item implements IMail
             playerIn.openGui(MrCrayfishFurnitureMod.instance, 7, worldIn, 0, 0, 0);
         }
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
-    }
-
-    public static IInventory getInv(EntityPlayer par1EntityPlayer)
-    {
-        ItemStack mail = par1EntityPlayer.inventory.getCurrentItem();
-        InventoryPackage invMail = null;
-        if(mail != null && mail.getItem() instanceof ItemPackage)
-        {
-            invMail = new InventoryPackage(par1EntityPlayer, mail);
-        }
-        return invMail;
     }
 }

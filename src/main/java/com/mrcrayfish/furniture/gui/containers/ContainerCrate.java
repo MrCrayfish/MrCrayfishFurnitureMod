@@ -1,7 +1,6 @@
 package com.mrcrayfish.furniture.gui.containers;
 
 import com.mrcrayfish.furniture.gui.slots.SlotMail;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;

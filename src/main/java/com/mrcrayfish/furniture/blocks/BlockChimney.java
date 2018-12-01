@@ -1,14 +1,9 @@
 package com.mrcrayfish.furniture.blocks;
 
-import java.util.Locale;
-import java.util.Random;
-
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
@@ -23,9 +18,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.Locale;
+import java.util.Random;
+
 public class BlockChimney extends Block
 {
-    public static final PropertyEnum TYPE = PropertyEnum.create("type", ChimneyType.class);
+    public static final PropertyEnum<ChimneyType> TYPE = PropertyEnum.create("type", ChimneyType.class);
 
     private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.125, 0.0, 0.125, 0.875, 1.0, 0.875);
 

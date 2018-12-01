@@ -6,7 +6,7 @@ import com.mrcrayfish.furniture.api.Recipes;
 import com.mrcrayfish.furniture.tileentity.TileEntityComputer;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -16,21 +16,16 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageMineBayBuy implements IMessage, IMessageHandler<MessageMineBayBuy, IMessage>
 {
-
     private int itemNum, x, y, z;
-    private boolean shouldClear;
 
-    public MessageMineBayBuy()
-    {
-    }
+    public MessageMineBayBuy() {}
 
-    public MessageMineBayBuy(int itemNum, int x, int y, int z, boolean shouldClear)
+    public MessageMineBayBuy(int itemNum, int x, int y, int z)
     {
         this.itemNum = itemNum;
         this.x = x;
         this.y = y;
         this.z = z;
-        this.shouldClear = shouldClear;
     }
 
     @Override
@@ -40,7 +35,6 @@ public class MessageMineBayBuy implements IMessage, IMessageHandler<MessageMineB
         this.x = buf.readInt();
         this.y = buf.readInt();
         this.z = buf.readInt();
-        this.shouldClear = buf.readBoolean();
     }
 
     @Override
@@ -50,36 +44,33 @@ public class MessageMineBayBuy implements IMessage, IMessageHandler<MessageMineB
         buf.writeInt(x);
         buf.writeInt(y);
         buf.writeInt(z);
-        buf.writeBoolean(shouldClear);
     }
 
     @Override
     public IMessage onMessage(MessageMineBayBuy message, MessageContext ctx)
     {
-        EntityPlayerMP player = ctx.getServerHandler().player;
-
-        TileEntity tile_entity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
-        if(tile_entity instanceof TileEntityComputer)
+        EntityPlayer player = ctx.getServerHandler().player;
+        TileEntity tileEntity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
+        if(tileEntity instanceof TileEntityComputer)
         {
-            TileEntityComputer tileEntityComputer = (TileEntityComputer) tile_entity;
+            TileEntityComputer tileEntityComputer = (TileEntityComputer) tileEntity;
             ItemStack buySlot = tileEntityComputer.getStackInSlot(0);
+            if(buySlot.isEmpty())
+                return null;
+
             RecipeData[] data = Recipes.getMineBayItems();
-            int price = data[message.itemNum].getPrice();
+            if(message.itemNum < 0 || message.itemNum >= data.length)
+                return null;
 
-            if(buySlot == null) return null;
-
-            if(message.shouldClear)
-            {
-                tileEntityComputer.clear();
-            }
-            else
+            RecipeData recipe = data[message.itemNum];
+            int price = recipe.getPrice();
+            if(recipe.getCurrency().getItem() == buySlot.getItem() && buySlot.getCount() >= price)
             {
                 tileEntityComputer.takeEmeraldFromSlot(price);
+                EntityItem entityItem = new EntityItem(player.world, player.posX, player.posY + 1, player.posZ, data[message.itemNum].getInput().copy());
+                player.world.spawnEntity(entityItem);
+                Triggers.trigger(Triggers.MINEBAY_PURCHASE, player);
             }
-
-            EntityItem entityItem = new EntityItem(player.world, player.posX, player.posY + 1, player.posZ, data[message.itemNum].getInput().copy());
-            player.world.spawnEntity(entityItem);
-            Triggers.trigger(Triggers.MINEBAY_PURCHASE, player);
         }
         return null;
     }

@@ -1,13 +1,8 @@
 package com.mrcrayfish.furniture.blocks;
 
-import java.util.List;
-
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.tileentity.TileEntityCabinetKitchen;
-
-import com.mrcrayfish.furniture.tileentity.TileEntityKitchenCounter;
-import com.mrcrayfish.furniture.tileentity.TileEntityKitchenCounterDrawer;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -33,6 +28,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class BlockCabinetKitchen extends BlockFurnitureTile
 {

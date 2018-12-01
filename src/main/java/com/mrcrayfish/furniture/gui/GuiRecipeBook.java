@@ -497,17 +497,17 @@ public class GuiRecipeBook extends GuiScreen
     @Override
     public void renderToolTip(ItemStack itemStack, int mouseX, int mouseY)
     {
-        List list = itemStack.getTooltip(this.mc.player, this.mc.gameSettings.advancedItemTooltips ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL);
+        List<String> list = itemStack.getTooltip(this.mc.player, this.mc.gameSettings.advancedItemTooltips ? ITooltipFlag.TooltipFlags.ADVANCED : ITooltipFlag.TooltipFlags.NORMAL);
 
         for(int k = 0; k < list.size(); ++k)
         {
             if(k == 0)
             {
-                list.set(k, itemStack.getRarity().rarityColor + (String) list.get(k));
+                list.set(k, itemStack.getRarity().rarityColor + list.get(k));
             }
             else
             {
-                list.set(k, TextFormatting.GRAY + (String) list.get(k));
+                list.set(k, TextFormatting.GRAY + list.get(k));
             }
         }
 

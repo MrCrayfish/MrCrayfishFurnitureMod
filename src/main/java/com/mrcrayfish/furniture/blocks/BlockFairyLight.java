@@ -1,11 +1,9 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.util.CollisionHelper;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -24,7 +22,7 @@ import java.util.Locale;
 public class BlockFairyLight extends BlockFurniture
 {
 
-    public static final PropertyEnum TYPE = PropertyEnum.create("type", FairyLightType.class);
+    public static final PropertyEnum<FairyLightType> TYPE = PropertyEnum.create("type", FairyLightType.class);
 
     private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.375, 0.6875, 0.0, 0.6875, 1.0, 1.0);
     private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.375, 0.6875, 0.0, 0.6875, 1.0, 1.0);

@@ -3,7 +3,6 @@ package com.mrcrayfish.furniture.items;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.blocks.BlockPresent;
-import com.mrcrayfish.furniture.gui.inventory.InventoryPresent;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityPresent;
 import com.mrcrayfish.furniture.util.NBTHelper;
@@ -12,8 +11,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -28,13 +27,19 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemPresent extends ItemBlock implements IMail, SubItems
+public class ItemPresent extends ItemBlock implements IItemInventory, SubItems, IAuthored
 {
     public ItemPresent(Block block)
     {
         super(block);
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
+    }
+
+    @Override
+    public Item getSignedItem()
+    {
+        return Item.getItemFromBlock(FurnitureBlocks.PRESENT);
     }
 
     @Override
@@ -122,18 +127,17 @@ public class ItemPresent extends ItemBlock implements IMail, SubItems
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
         ItemStack stack = playerIn.getHeldItem(hand);
-        if(!worldIn.isRemote)
+        if(!worldIn.isRemote && hand == EnumHand.MAIN_HAND)
         {
-            if(stack.hasTagCompound())
+            NBTTagCompound tagCompound = stack.getTagCompound();
+            if(tagCompound != null)
             {
-                NBTTagCompound nbttagcompound = stack.getTagCompound();
-                NBTTagString nbttagstring = (NBTTagString) nbttagcompound.getTag("Author");
-
-                if(nbttagstring == null)
+                String author = tagCompound.getString("Author");
+                if(author.isEmpty())
                 {
                     playerIn.openGui(MrCrayfishFurnitureMod.instance, 9, worldIn, 0, 0, 0);
                 }
-                else if(nbttagstring.getString().equals(""))
+                else
                 {
                     playerIn.sendMessage(new TextComponentTranslation("cfm.message.present_wrap"));
                 }
@@ -142,19 +146,9 @@ public class ItemPresent extends ItemBlock implements IMail, SubItems
             {
                 playerIn.openGui(MrCrayfishFurnitureMod.instance, 9, worldIn, 0, 0, 0);
             }
+            return new ActionResult<>(EnumActionResult.SUCCESS, stack);
         }
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
-    }
-
-    public static IInventory getInv(EntityPlayer player, EnumHand activeHand)
-    {
-        ItemStack present = player.getHeldItemMainhand();
-        InventoryPresent invPresent = null;
-        if(present != null && present.getItem() instanceof ItemPresent)
-        {
-            invPresent = new InventoryPresent(player, present);
-        }
-        return invPresent;
     }
 
     @Override

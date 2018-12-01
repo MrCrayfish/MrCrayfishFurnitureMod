@@ -5,7 +5,10 @@ import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityColoured;
-import com.mrcrayfish.furniture.util.*;
+import com.mrcrayfish.furniture.util.Bounds;
+import com.mrcrayfish.furniture.util.SittableUtil;
+import com.mrcrayfish.furniture.util.StateHelper;
+import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -77,11 +80,17 @@ public class BlockModernCouch extends BlockFurnitureTile
 
         if(StateHelper.getBlock(world, pos, state.getValue(FACING), StateHelper.Direction.LEFT) == this)
         {
-            left = true;
+            if(StateHelper.getRotation(world, pos, state.getValue(FACING), StateHelper.Direction.LEFT) == StateHelper.Direction.DOWN)
+            {
+                left = true;
+            }
         }
         if(StateHelper.getBlock(world, pos, state.getValue(FACING), StateHelper.Direction.RIGHT) == this)
         {
-            right = true;
+            if(StateHelper.getRotation(world, pos, state.getValue(FACING), StateHelper.Direction.RIGHT) == StateHelper.Direction.DOWN)
+            {
+                right = true;
+            }
         }
         if(left && !right)
         {

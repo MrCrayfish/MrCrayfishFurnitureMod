@@ -1,9 +1,7 @@
 {
 	"textures": {
-		"1": "blocks/log_oak",
-		"2": "blocks/wool_colored_red",
-		"3": "blocks/gold_block",
-		"particle": "blocks/wool_colored_red"
+		"bar": "blocks/log_oak",
+		"particle": "#colour"
 	},
 	"elements": [{
 			"from": [14.0, 14.0, 0.0],
@@ -11,27 +9,27 @@
 			"faces": {
 				"up": {
 					"uv": [14.0, 0.0, 16.0, 16.0],
-					"texture": "#1"
+					"texture": "#bar"
 				},
 				"down": {
 					"uv": [14.0, 0.0, 16.0, 16.0],
-					"texture": "#1"
+					"texture": "#bar"
 				},
 				"north": {
 					"uv": [14.0, 14.0, 16.0, 16.0],
-					"texture": "#1"
+					"texture": "#bar"
 				},
 				"south": {
 					"uv": [14.0, 14.0, 16.0, 16.0],
-					"texture": "#1"
+					"texture": "#bar"
 				},
 				"west": {
 					"uv": [0.0, 14.0, 16.0, 16.0],
-					"texture": "#1"
+					"texture": "#bar"
 				},
 				"east": {
 					"uv": [0.0, 14.0, 16.0, 16.0],
-					"texture": "#1"
+					"texture": "#bar"
 				}
 			}
 		},
@@ -41,27 +39,27 @@
 			"faces": {
 				"up": {
 					"uv": [15.0, -0.0015999999999998238, 16.0, 16.0],
-					"texture": "#2"
+					"texture": "#colour"
 				},
 				"down": {
 					"uv": [15.0, -0.0015999999999998238, 16.0, 16.0],
-					"texture": "#2"
+					"texture": "#colour"
 				},
 				"north": {
 					"uv": [15.0, 1.0, 16.0, 14.0],
-					"texture": "#2"
+					"texture": "#colour"
 				},
 				"south": {
 					"uv": [15.0, 1.0, 16.0, 14.0],
-					"texture": "#2"
+					"texture": "#colour"
 				},
 				"west": {
 					"uv": [-0.0015999999999998238, 1.0, 16.0, 14.0],
-					"texture": "#2"
+					"texture": "#colour"
 				},
 				"east": {
 					"uv": [-0.0015999999999998238, 1.0, 16.0, 14.0],
-					"texture": "#2"
+					"texture": "#colour"
 				}
 			}
 		}

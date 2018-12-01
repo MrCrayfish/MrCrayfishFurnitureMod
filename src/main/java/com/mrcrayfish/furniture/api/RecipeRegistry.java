@@ -1,10 +1,7 @@
 package com.mrcrayfish.furniture.api;
 
-import java.util.ArrayList;
-
 import com.mrcrayfish.furniture.handler.ConfigurationHandler;
 import com.mrcrayfish.furniture.init.FurnitureItems;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -12,6 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.text.TextFormatting;
+
+import java.util.ArrayList;
 
 public class RecipeRegistry extends RecipeAPI
 {
@@ -1223,7 +1222,7 @@ public class RecipeRegistry extends RecipeAPI
             RecipeRegistry.getInstance().registerMineBayItem(stack, new ItemStack(Items.EMERALD), 1);
         }
         if(ConfigurationHandler.mine_10)
-            RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(FurnitureItems.RECIPE_BOOk), new ItemStack(Items.EMERALD), 1);
+            RecipeRegistry.getInstance().registerMineBayItem(new ItemStack(FurnitureItems.RECIPE_BOOK), new ItemStack(Items.EMERALD), 1);
         if(ConfigurationHandler.blen_1)
             RecipeRegistry.getInstance().registerBlenderRecipe("Fruit Crush", 4, new ItemStack[]{new ItemStack(Items.APPLE, 2), new ItemStack(Items.MELON, 4)}, new int[]{255, 58, 37});
         if(ConfigurationHandler.blen_2)

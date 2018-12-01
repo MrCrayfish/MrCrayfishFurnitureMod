@@ -1,6 +1,5 @@
 package com.mrcrayfish.furniture.entity;
 
-import net.minecraft.block.material.Material;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;

@@ -1,0 +1,9 @@
+{
+    "parent": "cfm:block/blinds_closed_stringless",
+    "textures": {
+        "particle": "blocks/log_oak",
+        "1": "blocks/log_oak",
+        "2": "blocks/planks_oak",
+        "3": "blocks/concrete_white"
+    }
+}

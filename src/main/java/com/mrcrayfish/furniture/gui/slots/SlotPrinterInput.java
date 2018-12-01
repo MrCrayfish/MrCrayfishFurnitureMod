@@ -1,7 +1,6 @@
 package com.mrcrayfish.furniture.gui.slots;
 
 import com.mrcrayfish.furniture.api.RecipeAPI;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;

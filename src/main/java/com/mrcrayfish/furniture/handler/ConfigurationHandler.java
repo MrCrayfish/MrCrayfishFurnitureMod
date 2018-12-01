@@ -1,15 +1,14 @@
 package com.mrcrayfish.furniture.handler;
 
-import java.io.File;
-
 import com.mrcrayfish.furniture.api.RecipeRegistry;
 import com.mrcrayfish.furniture.api.Recipes;
-
 import com.mrcrayfish.furniture.integration.crafttweaker.CraftTweakerIntegration;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+import java.io.File;
 
 public class ConfigurationHandler
 {

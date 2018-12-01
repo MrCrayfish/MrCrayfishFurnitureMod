@@ -1,0 +1,21 @@
+{
+    "result": {
+        "item": "cfm:blinds_jungle_open",
+        "count": 2
+    },
+    "pattern": [
+        "LLL",
+        "SSS",
+        "SSS"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "L": {
+            "item": "minecraft:log",
+            "data": 3
+        },
+        "S": {
+            "item": "minecraft:stick"
+        }
+    }
+}

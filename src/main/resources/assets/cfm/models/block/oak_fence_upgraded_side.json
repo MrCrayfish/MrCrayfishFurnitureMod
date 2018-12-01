@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/fence_upgraded_side",
+    "textures": {
+        "plank": "blocks/planks_oak",
+        "log": "blocks/log_oak"
+    }
+}

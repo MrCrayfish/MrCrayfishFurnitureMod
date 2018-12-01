@@ -1,0 +1,22 @@
+{
+    "result": {
+        "item": "cfm:modern_bed_bottom",
+        "data": 13
+    },
+    "pattern": [
+        " O ",
+        "OCO",
+        " O "
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "O": {
+            "item": "minecraft:concrete",
+            "data": 7
+        },
+        "C": {
+            "item": "minecraft:bed",
+            "data": 13
+        }
+    }
+}

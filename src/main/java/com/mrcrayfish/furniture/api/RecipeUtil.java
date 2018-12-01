@@ -1,8 +1,8 @@
 package com.mrcrayfish.furniture.api;
 
-import java.util.ArrayList;
-
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+
+import java.util.ArrayList;
 
 public class RecipeUtil
 {

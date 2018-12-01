@@ -1,9 +1,10 @@
 package com.mrcrayfish.furniture.render.tileentity;
 
 import com.mrcrayfish.furniture.blocks.BlockFurnitureTile;
-import com.mrcrayfish.furniture.client.*;
+import com.mrcrayfish.furniture.client.ImageCache;
+import com.mrcrayfish.furniture.client.ImageDownloadThread;
+import com.mrcrayfish.furniture.client.Texture;
 import com.mrcrayfish.furniture.tileentity.TileEntityPhotoFrame;
-import com.mrcrayfish.furniture.tileentity.TileEntityTV;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -132,8 +133,8 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
                         if(!te.isStretched())
                         {
                             //Calculates the positioning and scale so the GIF keeps its ratio and renders within the screen
-                            double scaleWidth = (double) frameWidth / (double) texture.getWidth();
-                            double scaleHeight = (double) frameWidth / (double) texture.getHeight();
+                            double scaleWidth = frameWidth / (double) texture.getWidth();
+                            double scaleHeight = frameWidth / (double) texture.getHeight();
                             double scale = Math.min(scaleWidth, scaleHeight);
                             imageWidth = texture.getWidth() * scale;
                             imageHeight = texture.getHeight() * scale;
@@ -184,7 +185,7 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
                 GlStateManager.disableBlend();
                 GlStateManager.enableLighting();
             }
-            GlStateManager.popMatrix();
         }
+        GlStateManager.popMatrix();
     }
 }

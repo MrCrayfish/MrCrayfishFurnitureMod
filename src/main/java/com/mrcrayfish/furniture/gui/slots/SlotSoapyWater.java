@@ -2,7 +2,6 @@ package com.mrcrayfish.furniture.gui.slots;
 
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.init.FurnitureItems;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.Item;

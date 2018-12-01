@@ -12,11 +12,13 @@ import org.lwjgl.opengl.GL11;
 public class CookieRenderer extends TileEntitySpecialRenderer<TileEntityCookieJar>
 {
     private ItemStack cookie = new ItemStack(Items.COOKIE);
-    private EntityItem entityItem = new EntityItem(Minecraft.getMinecraft().world, 0D, 0D, 0D, cookie);
+    private EntityItem entityItem = new EntityItem(null, 0D, 0D, 0D);
 
     @Override
     public void render(TileEntityCookieJar cookieJar, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
+        entityItem.setItem(cookie);
+
         GL11.glPushMatrix();
 
         GL11.glDisable(GL11.GL_LIGHTING);

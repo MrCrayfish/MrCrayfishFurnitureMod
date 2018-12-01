@@ -136,6 +136,7 @@ public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValue
     {
         this.url = entries.get("photo");
         this.stretch = Boolean.valueOf(entries.get("stretch"));
+        this.markDirty();
     }
 
     @Override

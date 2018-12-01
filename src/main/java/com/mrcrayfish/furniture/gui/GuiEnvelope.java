@@ -1,39 +1,30 @@
 package com.mrcrayfish.furniture.gui;
 
 import com.mrcrayfish.furniture.gui.containers.ContainerEnvelope;
-import com.mrcrayfish.furniture.gui.inventory.InventoryEnvelope;
+import com.mrcrayfish.furniture.gui.inventory.ItemInventory;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.network.PacketHandler;
-import com.mrcrayfish.furniture.network.message.MessageEnvelope;
-import com.mrcrayfish.furniture.util.NBTHelper;
+import com.mrcrayfish.furniture.network.message.MessageSignItem;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.TextComponentTranslation;
-
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 public class GuiEnvelope extends GuiContainer
 {
-    private static final ResourceLocation gui = new ResourceLocation("cfm:textures/gui/envelope.png");
-    private GuiButton buttonOk;
+    private static final ResourceLocation GUI_TEXTURE = new ResourceLocation("cfm:textures/gui/envelope.png");
+    private GuiButton btnSign;
     private EntityPlayer player;
-    private InventoryEnvelope inventory;
-    private ItemStack mail;
+    private ItemStack heldItem;
 
-    public GuiEnvelope(InventoryPlayer inventoryplayer, IInventory inventoryMail, EntityPlayer player, ItemStack mail)
+    public GuiEnvelope(InventoryPlayer playerInventory, ItemInventory itemInventory, EntityPlayer player)
     {
-        super(new ContainerEnvelope(inventoryplayer, inventoryMail));
+        super(new ContainerEnvelope(playerInventory, itemInventory));
         this.player = player;
-        this.inventory = (InventoryEnvelope) inventoryMail;
-        this.mail = mail;
     }
 
     @Override
@@ -47,6 +38,18 @@ public class GuiEnvelope extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int par1, int par2)
     {
+        if(heldItem == null)
+        {
+            heldItem = player.getHeldItemMainhand();
+            if(heldItem.getItem() == FurnitureItems.ENVELOPE)
+            {
+                btnSign.visible = true;
+            }
+        }
+        if(heldItem != player.getHeldItemMainhand())
+        {
+            this.mc.player.closeScreen();
+        }
         this.fontRenderer.drawString(I18n.format("item.item_envelope.name"), xSize / 2 - 22, 5, 9999999);
         this.fontRenderer.drawString(I18n.format("container.inventory"), 8, ySize - 94, 4210752);
     }
@@ -55,7 +58,7 @@ public class GuiEnvelope extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float f, int i, int j)
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.mc.getTextureManager().bindTexture(gui);
+        this.mc.getTextureManager().bindTexture(GUI_TEXTURE);
         int l = (width - xSize) / 2;
         int i1 = (height - ySize) / 2;
         this.drawTexturedModalRect(l, i1, 0, 0, xSize, ySize);
@@ -65,47 +68,22 @@ public class GuiEnvelope extends GuiContainer
     public void initGui()
     {
         super.initGui();
-        Keyboard.enableRepeatEvents(false);
-
-        buttonList.clear();
-
         int posX = width / 2 + 40;
         int posY = height / 2 - 50;
-
-        if(mail.getItem() == FurnitureItems.ENVELOPE)
-        {
-            buttonOk = new GuiButton(0, posX, posY, 40, 20, I18n.format("cfm.button.sign"));
-            buttonOk.enabled = true;
-            buttonList.add(buttonOk);
-        }
+        btnSign = new GuiButton(0, posX, posY, 40, 20, I18n.format("cfm.button.sign"));
+        btnSign.visible = false;
+        buttonList.add(btnSign);
     }
 
     @Override
-    public void onGuiClosed()
+    protected void actionPerformed(GuiButton button)
     {
-        super.onGuiClosed();
-        this.inventory.saveInventory();
-    }
-
-    @Override
-    protected void actionPerformed(GuiButton guibutton)
-    {
-        if(!guibutton.enabled)
-        {
+        if(!button.enabled)
             return;
-        }
-        if(guibutton.id == 0)
+
+        if(button == btnSign)
         {
-            NBTTagList list = (NBTTagList) NBTHelper.getCompoundTag(mail, "Envelope").getTag("Items");
-            if(list.tagCount() > 0)
-            {
-                PacketHandler.INSTANCE.sendToServer(new MessageEnvelope(this.mail));
-                this.mc.displayGuiScreen(null);
-            }
-            else
-            {
-                this.player.sendMessage(new TextComponentTranslation("cfm.message.envelope_empty"));
-            }
+            PacketHandler.INSTANCE.sendToServer(new MessageSignItem());
         }
     }
 

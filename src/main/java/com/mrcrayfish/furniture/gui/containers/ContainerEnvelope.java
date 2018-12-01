@@ -1,28 +1,33 @@
 package com.mrcrayfish.furniture.gui.containers;
 
-import com.mrcrayfish.furniture.gui.slots.SlotEnvelope;
+import com.mrcrayfish.furniture.gui.inventory.ItemInventory;
+import com.mrcrayfish.furniture.gui.slots.SlotDisabled;
+import com.mrcrayfish.furniture.gui.slots.SlotNonInventory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ClickType;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
-public class ContainerEnvelope extends Container
+public class ContainerEnvelope extends ContainerItemInventory
 {
-    private int index;
-    private IInventory envelopInventory;
+    private ItemInventory itemInventory;
 
-    public ContainerEnvelope(IInventory playerInventory, IInventory envelopInventory)
+    public ContainerEnvelope(IInventory playerInventory, ItemInventory itemInventory)
     {
-        this.index = ((InventoryPlayer) playerInventory).currentItem;
-        this.envelopInventory = envelopInventory;
-        envelopInventory.openInventory(null);
+        this.itemInventory = itemInventory;
 
+        int currentItemIndex = ((InventoryPlayer) playerInventory).currentItem;
         for(int i = 0; i < 9; i++)
         {
-            this.addSlotToContainer(new Slot(playerInventory, i, i * 18 + 8, 142));
+            if(i == currentItemIndex)
+            {
+                this.addSlotToContainer(new SlotDisabled(playerInventory, i, i * 18 + 8, 142));
+            }
+            else
+            {
+                this.addSlotToContainer(new Slot(playerInventory, i, i * 18 + 8, 142));
+            }
         }
 
         for(int i = 0; i < 3; i++)
@@ -33,25 +38,29 @@ public class ContainerEnvelope extends Container
             }
         }
 
-        this.addSlotToContainer(new SlotEnvelope(envelopInventory, 0, 8 + 63, 18));
-        this.addSlotToContainer(new SlotEnvelope(envelopInventory, 1, 8 + 81, 18));
+        this.addSlotToContainer(new SlotNonInventory(itemInventory, 0, 8 + 63, 18));
+        this.addSlotToContainer(new SlotNonInventory(itemInventory, 1, 8 + 81, 18));
+    }
+
+    @Override
+    public ItemInventory getItemInventory()
+    {
+        return itemInventory;
     }
 
     @Override
     public boolean canInteractWith(EntityPlayer player)
     {
-        return this.envelopInventory.isUsableByPlayer(player);
+        return this.itemInventory.isUsableByPlayer(player);
     }
 
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int slotNum)
     {
-        if(slotNum == index) return ItemStack.EMPTY;
-
         ItemStack itemCopy = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(slotNum);
 
-        if(slot != null && slot.getHasStack() && slot instanceof SlotEnvelope)
+        if(slot != null && slot.getHasStack() && slot instanceof SlotNonInventory)
         {
             ItemStack item = slot.getStack();
             itemCopy = item.copy();
@@ -79,12 +88,5 @@ public class ContainerEnvelope extends Container
         }
 
         return itemCopy;
-    }
-
-    @Override
-    public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player)
-    {
-        if(slotId == index) return ItemStack.EMPTY;
-        return super.slotClick(slotId, dragType, clickTypeIn, player);
     }
 }

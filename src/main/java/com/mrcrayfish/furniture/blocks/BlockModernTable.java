@@ -1,28 +1,13 @@
 package com.mrcrayfish.furniture.blocks;
 
-import com.mrcrayfish.furniture.tileentity.TileEntityColoured;
-import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.ItemDye;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,12 +19,12 @@ public class BlockModernTable extends BlockTable
     public static final AxisAlignedBB NORTH_WEST_LEG = new AxisAlignedBB(13.75 * 0.0625, 0, 0.25 * 0.0625, 15.75 * 0.0625, 14 * 0.0625, 2.25 * 0.0625);
     public static final AxisAlignedBB TOP = new AxisAlignedBB(0, 14 * 0.0625, 0, 1, 1, 1);
 
-    public BlockModernTable()
+    public BlockModernTable(String id)
     {
         super(Material.WOOD, SoundType.WOOD);
         this.setHardness(1.0F);
-        this.setUnlocalizedName("modern_table");
-        this.setRegistryName("modern_table");
+        this.setUnlocalizedName(id);
+        this.setRegistryName(id);
     }
 
     @Override
@@ -64,5 +49,11 @@ public class BlockModernTable extends BlockTable
         boxes.add(TOP);
 
         return boxes;
+    }
+
+    @Override
+    public BlockRenderLayer getBlockLayer()
+    {
+        return BlockRenderLayer.CUTOUT;
     }
 }

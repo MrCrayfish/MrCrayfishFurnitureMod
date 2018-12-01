@@ -16,9 +16,7 @@ public class MessageDoorMat implements IMessage, IMessageHandler<MessageDoorMat,
     public int x, y, z;
     private String message;
 
-    public MessageDoorMat()
-    {
-    }
+    public MessageDoorMat() {}
 
     public MessageDoorMat(int x, int y, int z, String message)
     {

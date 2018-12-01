@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:item/upgraded_fence",
+    "textures": {
+        "log": "blocks/log_jungle",
+        "plank": "blocks/planks_jungle"
+    }
+}

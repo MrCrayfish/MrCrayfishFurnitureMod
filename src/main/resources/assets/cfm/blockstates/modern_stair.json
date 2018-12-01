@@ -1,0 +1,20 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "inventory": {
+            "model": "cfm:modern_stair_none"
+        },
+        "facing": {
+            "north": { "y": 0   },
+            "east":  { "y": 90  },
+            "south": { "y": 180 },
+            "west":  { "y": 270 }
+        },
+        "type": {
+            "up":   { "model": "cfm:modern_stair_up"   },
+            "down": { "model": "cfm:modern_stair_down" },
+            "both": { "model": "cfm:modern_stair_both" },
+            "none": { "model": "cfm:modern_stair_none" }
+        }
+    }
+}

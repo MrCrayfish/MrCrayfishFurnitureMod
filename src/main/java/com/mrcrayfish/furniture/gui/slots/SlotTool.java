@@ -2,16 +2,9 @@ package com.mrcrayfish.furniture.gui.slots;
 
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.api.RecipeAPI;
-
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemAxe;
-import net.minecraft.item.ItemHoe;
-import net.minecraft.item.ItemPickaxe;
-import net.minecraft.item.ItemSpade;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
+import net.minecraft.item.*;
 
 public class SlotTool extends Slot
 {

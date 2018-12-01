@@ -16,11 +16,6 @@ import java.util.List;
 
 public class CommonProxy implements ProxyInterface
 {
-    public World getClientWorld()
-    {
-        return null;
-    }
-
     public EntityPlayer getClientPlayer()
     {
         return null;

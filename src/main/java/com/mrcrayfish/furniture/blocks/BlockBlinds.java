@@ -1,14 +1,11 @@
 package com.mrcrayfish.furniture.blocks;
 
-import java.util.Random;
-
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
-import com.mrcrayfish.furniture.util.CollisionHelper;
-
+import com.mrcrayfish.furniture.util.Bounds;
+import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -25,17 +22,14 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class BlockBlinds extends BlockFurniture
 {
     public static final PropertyBool LEFT = PropertyBool.create("left");
+    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(0.875, 0.0, 0.0, 1.0, 1.0, 1.0).getRotatedBounds();
 
-    private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.875, 0.0, 0.0, 1.0, 1.0, 1.0);
-    private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.875, 0.0, 0.0, 1.0, 1.0, 1.0);
-    private static final AxisAlignedBB BOUNDING_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.875, 0.0, 0.0, 1.0, 1.0, 1.0);
-    private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.875, 0.0, 0.0, 1.0, 1.0, 1.0);
-    private static final AxisAlignedBB[] BOUNDING_BOX = {BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST};
-
-    private boolean open = false;
+    private Block replacementBlock;
 
     public BlockBlinds(Material material, boolean open)
     {
@@ -43,7 +37,6 @@ public class BlockBlinds extends BlockFurniture
         this.setHardness(0.5F);
         this.setSoundType(SoundType.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(LEFT, false));
-        this.open = open;
         if(!open)
         {
             this.setLightOpacity(255);
@@ -53,6 +46,11 @@ public class BlockBlinds extends BlockFurniture
         {
             this.setLightOpacity(0);
         }
+    }
+
+    public void setReplacementBlock(Block replacementBlock)
+    {
+        this.replacementBlock = replacementBlock;
     }
 
     @Override
@@ -82,19 +80,19 @@ public class BlockBlinds extends BlockFurniture
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         playerIn.playSound(SoundEvents.BLOCK_WOOD_PLACE, 1.0F, 1.0F);
-        return open ? worldIn.setBlockState(pos, FurnitureBlocks.BLINDS_CLOSED.getDefaultState().withProperty(FACING, state.getValue(FACING))) : worldIn.setBlockState(pos, FurnitureBlocks.BLINDS.getDefaultState().withProperty(FACING, state.getValue(FACING)));
+        return worldIn.setBlockState(pos, replacementBlock.getDefaultState().withProperty(FACING, state.getValue(FACING)));
     }
 
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return new ItemStack(FurnitureBlocks.BLINDS).getItem();
+        return new ItemStack(FurnitureBlocks.BLINDS_OAK).getItem();
     }
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
-        return new ItemStack(FurnitureBlocks.BLINDS);
+        return new ItemStack(FurnitureBlocks.BLINDS_OAK);
     }
 
     @Override

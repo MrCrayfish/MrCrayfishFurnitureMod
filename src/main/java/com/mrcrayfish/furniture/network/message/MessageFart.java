@@ -3,7 +3,6 @@ package com.mrcrayfish.furniture.network.message;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
@@ -16,21 +15,11 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 //Server Packet
 public class MessageFart implements IMessage, IMessageHandler<MessageFart, IMessage>
 {
-    public MessageFart()
-    {
-    }
+    @Override
+    public void fromBytes(ByteBuf buf) {}
 
     @Override
-    public void fromBytes(ByteBuf buf)
-    {
-
-    }
-
-    @Override
-    public void toBytes(ByteBuf buf)
-    {
-
-    }
+    public void toBytes(ByteBuf buf) {}
 
     @Override
     public IMessage onMessage(MessageFart message, MessageContext ctx)

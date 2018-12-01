@@ -5,7 +5,6 @@ import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
@@ -27,7 +26,7 @@ import java.util.Locale;
 
 public class BlockCeilingLight extends Block implements IPowered
 {
-    public static final PropertyEnum MODE = PropertyEnum.create("mode", Mode.class);
+    public static final PropertyEnum<Mode> MODE = PropertyEnum.create("mode", Mode.class);
 
     private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(5 * 0.0625, 0.4, 5 * 0.0625, 11 * 0.0625, 1.0, 11F * 0.0625);
 

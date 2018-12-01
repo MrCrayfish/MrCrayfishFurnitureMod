@@ -13,9 +13,7 @@ public class MessageSealCrate implements IMessage, IMessageHandler<MessageSealCr
 {
     private int x, y, z;
 
-    public MessageSealCrate()
-    {
-    }
+    public MessageSealCrate() {}
 
     public MessageSealCrate(int x, int y, int z)
     {

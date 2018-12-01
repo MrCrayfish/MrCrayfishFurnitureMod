@@ -11,8 +11,6 @@ import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.PlayerTickEvent;
 import org.lwjgl.input.Keyboard;
 
-import java.util.Random;
-
 public class InputHandler
 {
     public static final KeyBinding KEY_FART = new KeyBinding("key.fart.desc", Keyboard.KEY_G, "keys.cfm.category");
@@ -43,10 +41,5 @@ public class InputHandler
                 PacketHandler.INSTANCE.sendToServer(new MessageFart());
             }
         }
-    }
-
-    public KeyBinding getFartKey()
-    {
-        return KEY_FART;
     }
 }
