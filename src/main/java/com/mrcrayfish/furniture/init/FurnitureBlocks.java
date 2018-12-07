@@ -81,6 +81,7 @@ public class FurnitureBlocks
 
     /* The Outdoor Update V2 */
     public static final Block OAK_FENCE_UPGRADED, SPRUCE_FENCE_UPGRADED, BIRCH_FENCE_UPGRADED, JUNGLE_FENCE_UPGRADED, ACACIA_FENCE_UPGRADED, DARK_OAK_FENCE_UPGRADED, NETHER_BRICK_FENCE_UPGRADED;
+    public static final Block OAK_GATE_UPGRADED;
 
     /* Special */
     public static final Block MIRROR;
@@ -300,6 +301,7 @@ public class FurnitureBlocks
         ACACIA_FENCE_UPGRADED = new BlockUpgradedFence("upgraded_fence_acacia");
         DARK_OAK_FENCE_UPGRADED = new BlockUpgradedFence("upgraded_fence_dark_oak");
         NETHER_BRICK_FENCE_UPGRADED = new BlockUpgradedFence("upgraded_fence_nether_brick");
+        OAK_GATE_UPGRADED = new BlockUpgradedGate("upgraded_gate_oak");
     }
 
     public static void register()
@@ -505,6 +507,7 @@ public class FurnitureBlocks
         registerBlock(ACACIA_FENCE_UPGRADED);
         registerBlock(DARK_OAK_FENCE_UPGRADED);
         registerBlock(NETHER_BRICK_FENCE_UPGRADED);
+        registerBlock(OAK_GATE_UPGRADED, new ItemUpgradedGate(OAK_GATE_UPGRADED));
     }
 
     private static void registerBlock(Block block)
