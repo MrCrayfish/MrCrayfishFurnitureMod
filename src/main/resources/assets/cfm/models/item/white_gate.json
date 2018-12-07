@@ -1,5 +1,5 @@
 {
-	"parent": "cfm:item/thin_fence",
+	"parent": "cfm:item/thin_gate",
 	"textures": {
 		"texture": "blocks/concrete_white"
 	},
