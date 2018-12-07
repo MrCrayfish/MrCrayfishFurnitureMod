@@ -63,6 +63,7 @@ public class CategoryOutdoor extends AbstractCategory
         add(FurnitureBlocks.JUNGLE_FENCE_UPGRADED);
         add(FurnitureBlocks.ACACIA_FENCE_UPGRADED);
         add(FurnitureBlocks.DARK_OAK_FENCE_UPGRADED);
+        add(FurnitureBlocks.NETHER_BRICK_FENCE_UPGRADED);
         add(FurnitureItems.SPATULA);
         add(FurnitureItems.SAUSAGE);
         add(FurnitureItems.SAUSAGE_COOKED);
