@@ -464,6 +464,7 @@ tile.upgraded_gate_jungle.name=Jungle Upgraded Gate
 tile.upgraded_gate_acacia.name=Acacia Upgraded Gate
 tile.upgraded_gate_dark_oak.name=Dark Oak Upgraded Gate
 tile.upgraded_gate_nether_brick.name=Nether Brick Upgraded Gate
+tile.white_gate.name=White Gate
 
 cfm.info=Hold SHIFT for Info
 cfm.light_switch.desc=Use this switch to control ceiling lights and fans wirelessly
