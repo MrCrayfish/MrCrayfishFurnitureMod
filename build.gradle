@@ -9,7 +9,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "5.17.0-1.12.2"
+version = "6.0.0-1.12.2"
 group = "com.mrcrayfish"
 archivesBaseName = "furniture"
 
