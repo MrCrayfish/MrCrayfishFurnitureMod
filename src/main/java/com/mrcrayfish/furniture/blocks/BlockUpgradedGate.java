@@ -63,6 +63,7 @@ public class BlockUpgradedGate extends BlockFurniture
     {
         boolean open = !state.getValue(OPENED);
         worldIn.setBlockState(pos, state.withProperty(OPENED, open));
+
         EnumFacing rot = state.getValue(FACING);
         EnumFacing offset = state.getValue(HINGE) == BlockDoor.EnumHingePosition.LEFT ? rot.rotateY() : rot.rotateYCCW();
         IBlockState adjacentBlock = worldIn.getBlockState(pos.offset(offset));
@@ -70,8 +71,33 @@ public class BlockUpgradedGate extends BlockFurniture
         {
             worldIn.setBlockState(pos.offset(offset), adjacentBlock.withProperty(OPENED, open));
         }
+
+        this.openGate(worldIn, pos, EnumFacing.UP, rot, state.getValue(HINGE), open, 4);
+        this.openGate(worldIn, pos, EnumFacing.DOWN, rot, state.getValue(HINGE), open, 4);
+
         worldIn.playEvent(playerIn, state.getValue(OPENED) ? 1008 : 1014, pos, 0);
         return true;
+    }
+
+    private void openGate(World world, BlockPos pos, EnumFacing direction, EnumFacing facing, BlockDoor.EnumHingePosition hingePosition, boolean open, int limit)
+    {
+        if(limit <= 0) return;
+        BlockPos offsetPos = pos.offset(direction);
+        IBlockState state = world.getBlockState(offsetPos);
+        if(state.getBlock() == this && state.getValue(FACING) == facing && state.getValue(HINGE) == hingePosition)
+        {
+            world.setBlockState(offsetPos, state.withProperty(OPENED, open));
+
+            EnumFacing offset = state.getValue(HINGE) == BlockDoor.EnumHingePosition.LEFT ? facing.rotateY() : facing.rotateYCCW();
+            BlockPos adjacentPos = offsetPos.offset(offset);
+            IBlockState adjacentBlock = world.getBlockState(adjacentPos);
+            if(adjacentBlock.getBlock() == this && adjacentBlock.getValue(FACING) == facing && adjacentBlock.getValue(HINGE) != state.getValue(HINGE))
+            {
+                world.setBlockState(adjacentPos, adjacentBlock.withProperty(OPENED, open));
+            }
+
+            this.openGate(world, offsetPos, direction, facing, hingePosition, open, limit - 1);
+        }
     }
 
     @Override
