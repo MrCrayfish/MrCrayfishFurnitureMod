@@ -1,0 +1,16 @@
+{
+    "result": {
+        "item": "cfm:upgraded_gate_dark_oak",
+        "count": 2
+    },
+    "ingredients": [
+        {
+            "item": "minecraft:dark_oak_fence_gate"
+        },
+        {
+            "item": "minecraft:log2",
+            "data": 1
+        }
+    ],
+    "type": "minecraft:crafting_shapeless"
+}
