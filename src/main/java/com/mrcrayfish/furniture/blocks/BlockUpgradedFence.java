@@ -56,6 +56,4 @@ public class BlockUpgradedFence extends BlockFence
     {
         return new BlockStateContainer(this, POST, POST_TOP, NORTH, EAST, WEST, SOUTH);
     }
-
-
 }
