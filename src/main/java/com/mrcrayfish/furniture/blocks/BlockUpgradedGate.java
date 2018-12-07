@@ -28,7 +28,7 @@ public class BlockUpgradedGate extends BlockFurniture
     public static final PropertyBool OPENED = PropertyBool.create("opened");
     public static final PropertyBool POLE = PropertyBool.create("pole");
 
-    private static final AxisAlignedBB[] BOUNDING_BOXES = new Bounds(6, 0, -1, 10, 17, 17).getRotatedBounds();
+    private static final AxisAlignedBB[] BOUNDING_BOXES = new Bounds(6, 0, -1, 10, 16, 17).getRotatedBounds();
     private static final AxisAlignedBB[] COLLISION_BOXES = new Bounds(6, 0, -1, 10, 24, 17).getRotatedBounds();
 
     public BlockUpgradedGate(String id)
