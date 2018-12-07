@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/thin_gate_left_closed_alt",
+    "textures": {
+        "texture": "blocks/concrete_white"
+    }
+}
