@@ -5,7 +5,6 @@ import org.apache.commons.io.IOUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.nio.ByteBuffer;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -69,7 +68,7 @@ public class GifDownloadThread extends Thread
         try
         {
             URLConnection connection = new URL(url).openConnection();
-            connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
+            connection.addRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
 
             if(!"image/gif".equals(connection.getContentType()))
             {
@@ -84,19 +83,13 @@ public class GifDownloadThread extends Thread
                 return;
             }
 
-            if(length > 0)
+            setLoading(url, true);
+            byte[] data = IOUtils.toByteArray(connection);
+            if(GifCache.INSTANCE.add(url, data))
             {
-                connection.setRequestProperty("Range: bytes", "0-" + length);
-
-                setLoading(url, true);
-                byte[] buffer = new byte[(int) length];
-                IOUtils.read(connection.getInputStream(), buffer);
-                if(GifCache.INSTANCE.add(url, buffer))
-                {
-                    setLoading(url, false);
-                    processor.process(ImageDownloadResult.SUCCESS, "Successfully processed GIF");
-                    return;
-                }
+                setLoading(url, false);
+                processor.process(ImageDownloadResult.SUCCESS, "Successfully processed GIF");
+                return;
             }
         }
         catch(IOException e)
