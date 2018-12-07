@@ -67,7 +67,7 @@ public class BlockUpgradedGate extends BlockFurniture
         EnumFacing rot = state.getValue(FACING);
         EnumFacing offset = state.getValue(HINGE) == BlockDoor.EnumHingePosition.LEFT ? rot.rotateY() : rot.rotateYCCW();
         IBlockState adjacentBlock = worldIn.getBlockState(pos.offset(offset));
-        if(adjacentBlock.getBlock() == this && adjacentBlock.getValue(FACING) == rot && adjacentBlock.getValue(HINGE) != state.getValue(HINGE))
+        if(adjacentBlock.getBlock() instanceof BlockUpgradedGate && adjacentBlock.getValue(FACING) == rot && adjacentBlock.getValue(HINGE) != state.getValue(HINGE))
         {
             worldIn.setBlockState(pos.offset(offset), adjacentBlock.withProperty(OPENED, open));
         }
@@ -91,7 +91,7 @@ public class BlockUpgradedGate extends BlockFurniture
             EnumFacing offset = state.getValue(HINGE) == BlockDoor.EnumHingePosition.LEFT ? facing.rotateY() : facing.rotateYCCW();
             BlockPos adjacentPos = offsetPos.offset(offset);
             IBlockState adjacentBlock = world.getBlockState(adjacentPos);
-            if(adjacentBlock.getBlock() == this && adjacentBlock.getValue(FACING) == facing && adjacentBlock.getValue(HINGE) != state.getValue(HINGE))
+            if(adjacentBlock.getBlock() instanceof BlockUpgradedGate && adjacentBlock.getValue(FACING) == facing && adjacentBlock.getValue(HINGE) != state.getValue(HINGE))
             {
                 world.setBlockState(adjacentPos, adjacentBlock.withProperty(OPENED, open));
             }
@@ -106,7 +106,7 @@ public class BlockUpgradedGate extends BlockFurniture
         EnumFacing facing = state.getValue(FACING);
         EnumFacing offset = state.getValue(HINGE) == BlockDoor.EnumHingePosition.LEFT ? facing.rotateY() : facing.rotateYCCW();
         IBlockState adjacentBlock = worldIn.getBlockState(pos.offset(offset));
-        return state.withProperty(POLE, !(adjacentBlock.getBlock() == this));
+        return state.withProperty(POLE, !(adjacentBlock.getBlock() instanceof BlockUpgradedGate));
     }
 
     @Override
