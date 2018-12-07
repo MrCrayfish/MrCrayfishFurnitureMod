@@ -135,7 +135,6 @@ public class BlockWhiteFence extends BlockFence
         boolean south = canFenceConnectTo(worldIn, pos, EnumFacing.SOUTH);
         boolean west = canFenceConnectTo(worldIn, pos, EnumFacing.WEST);
         boolean post = north && !east && south && !west || !north && east && !south && west;
-        boolean postTop = !post && worldIn.isAirBlock(pos.up());
         return state.withProperty(POST, !post).withProperty(NORTH, north).withProperty(EAST, east).withProperty(SOUTH, south).withProperty(WEST, west);
     }
 
