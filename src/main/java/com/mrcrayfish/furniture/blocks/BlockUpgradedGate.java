@@ -18,7 +18,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
-import java.util.List;
 
 /**
  * Author: MrCrayfish
@@ -27,6 +26,7 @@ public class BlockUpgradedGate extends BlockFurniture
 {
     public static final PropertyEnum<BlockDoor.EnumHingePosition> HINGE = PropertyEnum.create("hinge", BlockDoor.EnumHingePosition.class);
     public static final PropertyBool OPENED = PropertyBool.create("opened");
+    public static final PropertyBool POLE = PropertyBool.create("pole");
 
     private static final AxisAlignedBB[] BOUNDING_BOXES = new Bounds(6, 0, -1, 10, 17, 17).getRotatedBounds();
     private static final AxisAlignedBB[] COLLISION_BOXES = new Bounds(6, 0, -1, 10, 24, 17).getRotatedBounds();
@@ -61,9 +61,26 @@ public class BlockUpgradedGate extends BlockFurniture
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        worldIn.setBlockState(pos, state.withProperty(OPENED, !state.getValue(OPENED)));
+        boolean open = !state.getValue(OPENED);
+        worldIn.setBlockState(pos, state.withProperty(OPENED, open));
+        EnumFacing rot = state.getValue(FACING);
+        EnumFacing offset = state.getValue(HINGE) == BlockDoor.EnumHingePosition.LEFT ? rot.rotateY() : rot.rotateYCCW();
+        IBlockState adjacentBlock = worldIn.getBlockState(pos.offset(offset));
+        if(adjacentBlock.getBlock() == this && adjacentBlock.getValue(FACING) == rot && adjacentBlock.getValue(HINGE) != state.getValue(HINGE))
+        {
+            worldIn.setBlockState(pos.offset(offset), adjacentBlock.withProperty(OPENED, open));
+        }
         worldIn.playEvent(playerIn, state.getValue(OPENED) ? 1008 : 1014, pos, 0);
         return true;
+    }
+
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+    {
+        EnumFacing facing = state.getValue(FACING);
+        EnumFacing offset = state.getValue(HINGE) == BlockDoor.EnumHingePosition.LEFT ? facing.rotateY() : facing.rotateYCCW();
+        IBlockState adjacentBlock = worldIn.getBlockState(pos.offset(offset));
+        return state.withProperty(POLE, !(adjacentBlock.getBlock() == this));
     }
 
     @Override
@@ -94,7 +111,7 @@ public class BlockUpgradedGate extends BlockFurniture
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, FACING, HINGE, OPENED);
+        return new BlockStateContainer(this, FACING, HINGE, OPENED, POLE);
     }
 
     @Override
