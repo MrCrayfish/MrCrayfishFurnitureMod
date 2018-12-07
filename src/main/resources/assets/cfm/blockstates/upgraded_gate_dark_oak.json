@@ -6,7 +6,7 @@
                 { "hinge": "left" },
                 { "opened": "false" }
             ]},
-            "apply": { "model": "cfm:oak_upgraded_gate_left_closed", "y": 0 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_left_closed", "y": 0 }
         },
         {
             "when": { "AND": [
@@ -14,7 +14,7 @@
                 { "hinge": "left" },
                 { "opened": "false" }
             ]},
-            "apply": { "model": "cfm:oak_upgraded_gate_left_closed", "y": 90 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_left_closed", "y": 90 }
         },
         {
             "when": { "AND": [
@@ -22,7 +22,7 @@
                 { "hinge": "left" },
                 { "opened": "false" }
             ]},
-            "apply": { "model": "cfm:oak_upgraded_gate_left_closed", "y": 180 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_left_closed", "y": 180 }
         },
         {
             "when": { "AND": [
@@ -30,7 +30,7 @@
                 { "hinge": "left" },
                 { "opened": "false" }
             ]},
-            "apply": { "model": "cfm:oak_upgraded_gate_left_closed", "y": 270 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_left_closed", "y": 270 }
         },
         {
             "when": { "AND": [
@@ -38,7 +38,7 @@
                 { "hinge": "right" },
                 { "opened": "false" }
             ]},
-            "apply": { "model": "cfm:oak_upgraded_gate_right_closed", "y": 0 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_right_closed", "y": 0 }
         },
         {
             "when": { "AND": [
@@ -46,7 +46,7 @@
                 { "hinge": "right" },
                 { "opened": "false" }
             ]},
-            "apply": { "model": "cfm:oak_upgraded_gate_right_closed", "y": 90 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_right_closed", "y": 90 }
         },
         {
             "when": { "AND": [
@@ -54,7 +54,7 @@
                 { "hinge": "right" },
                 { "opened": "false" }
             ]},
-            "apply": { "model": "cfm:oak_upgraded_gate_right_closed", "y": 180 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_right_closed", "y": 180 }
         },
         {
             "when": { "AND": [
@@ -62,7 +62,7 @@
                 { "hinge": "right" },
                 { "opened": "false" }
             ]},
-            "apply": { "model": "cfm:oak_upgraded_gate_right_closed", "y": 270 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_right_closed", "y": 270 }
         },
         {
             "when": { "AND": [
@@ -70,7 +70,7 @@
                 { "hinge": "left" },
                 { "opened": "true" }
             ]},
-            "apply": { "model": "cfm:oak_upgraded_gate_left_opened", "y": 0 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_left_opened", "y": 0 }
         },
         {
             "when": { "AND": [
@@ -78,7 +78,7 @@
                 { "hinge": "left" },
                 { "opened": "true" }
             ]},
-            "apply": { "model": "cfm:oak_upgraded_gate_left_opened", "y": 90 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_left_opened", "y": 90 }
         },
         {
             "when": { "AND": [
@@ -86,7 +86,7 @@
                 { "hinge": "left" },
                 { "opened": "true" }
             ]},
-            "apply": { "model": "cfm:oak_upgraded_gate_left_opened", "y": 180 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_left_opened", "y": 180 }
         },
         {
             "when": { "AND": [
@@ -94,7 +94,7 @@
                 { "hinge": "left" },
                 { "opened": "true" }
             ]},
-            "apply": { "model": "cfm:oak_upgraded_gate_left_opened", "y": 270 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_left_opened", "y": 270 }
         },
         {
             "when": { "AND": [
@@ -102,7 +102,7 @@
                 { "hinge": "right" },
                 { "opened": "true" }
             ]},
-            "apply": { "model": "cfm:oak_upgraded_gate_right_opened", "y": 0 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_right_opened", "y": 0 }
         },
         {
             "when": { "AND": [
@@ -110,7 +110,7 @@
                 { "hinge": "right" },
                 { "opened": "true" }
             ]},
-            "apply": { "model": "cfm:oak_upgraded_gate_right_opened", "y": 90 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_right_opened", "y": 90 }
         },
         {
             "when": { "AND": [
@@ -118,7 +118,7 @@
                 { "hinge": "right" },
                 { "opened": "true" }
             ]},
-            "apply": { "model": "cfm:oak_upgraded_gate_right_opened", "y": 180 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_right_opened", "y": 180 }
         },
         {
             "when": { "AND": [
@@ -126,7 +126,7 @@
                 { "hinge": "right" },
                 { "opened": "true" }
             ]},
-            "apply": { "model": "cfm:oak_upgraded_gate_right_opened", "y": 270 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_right_opened", "y": 270 }
         },
         {
             "when": { "AND": [
@@ -134,7 +134,7 @@
                 { "hinge": "left" },
                 { "pole": "true" }
             ]},
-            "apply": { "model": "cfm:oak_gate_upgraded_pole", "y": 0 }
+            "apply": { "model": "cfm:dark_oak_gate_upgraded_pole", "y": 0 }
         },
         {
             "when": { "AND": [
@@ -142,7 +142,7 @@
                 { "hinge": "left" },
                 { "pole": "true" }
             ]},
-            "apply": { "model": "cfm:oak_gate_upgraded_pole", "y": 90 }
+            "apply": { "model": "cfm:dark_oak_gate_upgraded_pole", "y": 90 }
         },
         {
             "when": { "AND": [
@@ -150,7 +150,7 @@
                 { "hinge": "left" },
                 { "pole": "true" }
             ]},
-            "apply": { "model": "cfm:oak_gate_upgraded_pole", "y": 180 }
+            "apply": { "model": "cfm:dark_oak_gate_upgraded_pole", "y": 180 }
         },
         {
             "when": { "AND": [
@@ -158,7 +158,7 @@
                 { "hinge": "left" },
                 { "pole": "true" }
             ]},
-            "apply": { "model": "cfm:oak_gate_upgraded_pole", "y": 270 }
+            "apply": { "model": "cfm:dark_oak_gate_upgraded_pole", "y": 270 }
         },
         {
             "when": { "AND": [
@@ -166,7 +166,7 @@
                 { "hinge": "right" },
                 { "pole": "true" }
             ]},
-            "apply": { "model": "cfm:oak_gate_upgraded_pole", "y": 180 }
+            "apply": { "model": "cfm:dark_oak_gate_upgraded_pole", "y": 180 }
         },
         {
             "when": { "AND": [
@@ -174,7 +174,7 @@
                 { "hinge": "right" },
                 { "pole": "true" }
             ]},
-            "apply": { "model": "cfm:oak_gate_upgraded_pole", "y": 270 }
+            "apply": { "model": "cfm:dark_oak_gate_upgraded_pole", "y": 270 }
         },
         {
             "when": { "AND": [
@@ -182,7 +182,7 @@
                 { "hinge": "right" },
                 { "pole": "true" }
             ]},
-            "apply": { "model": "cfm:oak_gate_upgraded_pole", "y": 0 }
+            "apply": { "model": "cfm:dark_oak_gate_upgraded_pole", "y": 0 }
         },
         {
             "when": { "AND": [
@@ -190,7 +190,7 @@
                 { "hinge": "right" },
                 { "pole": "true" }
             ]},
-            "apply": { "model": "cfm:oak_gate_upgraded_pole", "y": 90 }
+            "apply": { "model": "cfm:dark_oak_gate_upgraded_pole", "y": 90 }
         }
     ]
 }

@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/upgraded_gate_right_closed",
+    "textures": {
+        "log": "blocks/log_birch",
+        "plank": "blocks/planks_birch"
+    }
+}
