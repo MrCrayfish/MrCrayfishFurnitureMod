@@ -468,9 +468,18 @@ tile.modern_light_on.name=摩登燈
 tile.upgraded_fence_oak.name=橡木升級版柵欄
 tile.upgraded_fence_spruce.name=杉木升級版柵欄
 tile.upgraded_fence_birch.name=樺木升級版柵欄
-tile.upgraded_fence_jungle.name=叢林升級版木柵欄
-tile.upgraded_fence_acacia.name=相思升級版木柵欄
+tile.upgraded_fence_jungle.name=叢林木升級版柵欄
+tile.upgraded_fence_acacia.name=相思木升級版柵欄
 tile.upgraded_fence_dark_oak.name=黑橡木升級版柵欄
+tile.upgraded_fence_nether_brick.name=地獄磚升級版柵欄
+tile.upgraded_gate_oak.name=橡木升級版閘門
+tile.upgraded_gate_spruce.name=杉木升級版閘門
+tile.upgraded_gate_birch.name=樺木升級版閘門
+tile.upgraded_gate_jungle.name=叢林木升級版閘門
+tile.upgraded_gate_acacia.name=相思木升級版閘門
+tile.upgraded_gate_dark_oak.name=黑橡木升級版閘門
+tile.upgraded_gate_nether_brick.name=地獄磚升級版閘門
+tile.white_gate.name=白色閘門
 
 # Info
 cfm.info=按住Shift以顯示資訊
