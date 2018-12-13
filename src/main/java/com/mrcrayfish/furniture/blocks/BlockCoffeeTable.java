@@ -169,7 +169,9 @@ public class BlockCoffeeTable extends Block
             TileEntityCoffeeTable tileEntityCoffeeTable = (TileEntityCoffeeTable) tileEntity;
             if(!heldItem.isEmpty() && tileEntityCoffeeTable.getFood().isEmpty())
             {
-                tileEntityCoffeeTable.setFood(new ItemStack(heldItem.getItem(), 1, heldItem.getItemDamage()));
+                ItemStack copy = heldItem.copy();
+                copy.setCount(1);
+                tileEntityCoffeeTable.setFood(copy);
                 tileEntityCoffeeTable.setRotation(playerIn.getHorizontalFacing().getHorizontalIndex());
                 tileEntityCoffeeTable.sync();
                 heldItem.shrink(1);
