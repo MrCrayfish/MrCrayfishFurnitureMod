@@ -26,6 +26,7 @@ public class CategoryOutdoor extends AbstractCategory
         add(FurnitureBlocks.BIRD_BATH);
         add(FurnitureBlocks.STONE_PATH);
         add(FurnitureBlocks.WHITE_FENCE);
+        add(FurnitureBlocks.WHITE_GATE);
         add(FurnitureBlocks.ELECTRIC_FENCE);
         add(FurnitureBlocks.TAP);
         add(FurnitureBlocks.MAIL_BOX_OAK);
