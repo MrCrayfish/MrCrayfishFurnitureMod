@@ -53,18 +53,19 @@ public class BlockStonePath extends Block
     }
 
     @Override
+    public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
+    {
+        return worldIn.getBlockState(pos.down()).isSideSolid(worldIn, pos, EnumFacing.UP);
+    }
+
+    @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
-        if(!this.canBlockStay(worldIn, pos))
+        if(!this.canPlaceBlockAt(worldIn, pos))
         {
             this.dropBlockAsItem(worldIn, pos, state, 0);
             worldIn.setBlockToAir(pos);
         }
-    }
-
-    public boolean canBlockStay(World world, BlockPos pos)
-    {
-        return world.getBlockState(pos.down()).isSideSolid(world, pos, EnumFacing.UP);
     }
 
     @Override
