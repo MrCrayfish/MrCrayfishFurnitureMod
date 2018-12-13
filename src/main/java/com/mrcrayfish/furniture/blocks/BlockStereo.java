@@ -75,7 +75,7 @@ public class BlockStereo extends BlockFurnitureTile
                 {
                     tileEntityStereo.count = 0;
                 }
-                worldIn.playRecord(pos, records.get(tileEntityStereo.count).getSound());
+                worldIn.playEvent(1010, pos, Item.getIdFromItem(records.get(tileEntityStereo.count)));
                 Triggers.trigger(Triggers.STEREO_ACTIVATED, playerIn);
             }
             else
