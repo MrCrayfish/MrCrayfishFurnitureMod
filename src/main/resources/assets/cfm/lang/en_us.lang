@@ -8,6 +8,7 @@ cfm.filter.kitchen=Kitchen
 cfm.filter.lighting=Lighting
 cfm.filter.outdoor=Outdoor
 cfm.filter.storage=Storage
+cfm.filter.items=Items
 
 item.item_hammer.name=Hammer
 item.item_envelope.name=Envelope
