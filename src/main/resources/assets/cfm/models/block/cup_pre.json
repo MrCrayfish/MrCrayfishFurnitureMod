@@ -1,6 +1,6 @@
 {
-"parent": "cfm:block/cup",
-"textures": {
-"1": "blocks/glass_white"
-}
+	"parent": "cfm:block/cup",
+	"textures": {
+		"1": "blocks/glass_white"
+	}
 }

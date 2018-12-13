@@ -17,5 +17,4 @@ public class SlotWallCabinet extends Slot
     {
         return par1ItemStack != null && par1ItemStack.getItem() instanceof ItemPotion;
     }
-
 }

@@ -1,6 +1,6 @@
 {
-"parent": "cfm:block/hedge_all",
-"textures": {
-"1": "blocks/leaves_acacia"
-}
+	"parent": "cfm:block/hedge_all",
+	"textures": {
+		"1": "blocks/leaves_acacia"
+	}
 }

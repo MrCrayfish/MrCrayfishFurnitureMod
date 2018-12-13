@@ -19,5 +19,4 @@ public class SlotEski extends Slot
     {
         return stack != null && stack.getItem() instanceof ItemPotion || stack.getItem() == FurnitureItems.DRINK || stack.getItem() == Items.MILK_BUCKET || stack.getItem() == Items.WATER_BUCKET;
     }
-
 }

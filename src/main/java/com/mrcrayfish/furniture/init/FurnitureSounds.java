@@ -98,5 +98,4 @@ public class FurnitureSounds
         RegistrationHandler.Sounds.add(sound);
         return sound;
     }
-
 }

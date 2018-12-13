@@ -40,5 +40,4 @@ public class CookieRenderer extends TileEntitySpecialRenderer<TileEntityCookieJa
 
         GL11.glPopMatrix();
     }
-
 }

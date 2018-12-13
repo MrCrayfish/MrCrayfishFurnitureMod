@@ -6,6 +6,6 @@
         "cookie_count=3": {"model": "cfm:cookie_jar_pre"},
         "cookie_count=4": {"model": "cfm:cookie_jar_pre"},
         "cookie_count=5": {"model": "cfm:cookie_jar_pre"},
-	"cookie_count=6": {"model": "cfm:cookie_jar_pre"}
+		"cookie_count=6": {"model": "cfm:cookie_jar_pre"}
     }
 }

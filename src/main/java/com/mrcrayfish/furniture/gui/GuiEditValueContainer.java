@@ -129,5 +129,4 @@ public class GuiEditValueContainer extends GuiScreen
         Keyboard.enableRepeatEvents(false);
         PacketHandler.INSTANCE.sendToServer(new MessageUpdateValueContainer(values, valueContainer));
     }
-
 }

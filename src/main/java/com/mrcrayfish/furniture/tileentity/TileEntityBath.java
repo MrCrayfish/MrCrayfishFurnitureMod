@@ -50,5 +50,4 @@ public class TileEntityBath extends TileEntitySyncClient
         tagCompound.setInteger("waterLevel", waterLevel);
         return tagCompound;
     }
-
 }

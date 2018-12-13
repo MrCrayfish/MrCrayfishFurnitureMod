@@ -86,5 +86,4 @@ public class GuiEnvelope extends GuiContainer
             PacketHandler.INSTANCE.sendToServer(new MessageSignItem());
         }
     }
-
 }

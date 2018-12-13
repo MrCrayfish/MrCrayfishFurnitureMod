@@ -74,5 +74,4 @@ public class MessageMineBayBuy implements IMessage, IMessageHandler<MessageMineB
         }
         return null;
     }
-
 }

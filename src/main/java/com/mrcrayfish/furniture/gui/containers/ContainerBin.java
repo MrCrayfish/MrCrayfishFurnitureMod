@@ -85,5 +85,4 @@ public class ContainerBin extends Container
         super.onContainerClosed(entityPlayer);
         binInventory.closeInventory(entityPlayer);
     }
-
 }

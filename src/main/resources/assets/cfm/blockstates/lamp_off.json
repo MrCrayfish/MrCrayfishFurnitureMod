@@ -16,7 +16,7 @@
         "colour=13,down=false,up=false": {"model": "cfm:lamp_green"},
         "colour=14,down=false,up=false": {"model": "cfm:lamp_red"},
         "colour=15,down=false,up=false": {"model": "cfm:lamp_black"},
-        
+
         "colour=0,down=false,up=true":  {"model": "cfm:lamp_bottom"},
         "colour=1,down=false,up=true":  {"model": "cfm:lamp_bottom"},
         "colour=2,down=false,up=true":  {"model": "cfm:lamp_bottom"},
@@ -33,7 +33,7 @@
         "colour=13,down=false,up=true": {"model": "cfm:lamp_bottom"},
         "colour=14,down=false,up=true": {"model": "cfm:lamp_bottom"},
         "colour=15,down=false,up=true": {"model": "cfm:lamp_bottom"},
-        
+
         "colour=0,down=true,up=false":  {"model": "cfm:lamp_top_white"},
         "colour=1,down=true,up=false":  {"model": "cfm:lamp_top_orange"},
         "colour=2,down=true,up=false":  {"model": "cfm:lamp_top_magenta"},
@@ -50,7 +50,7 @@
         "colour=13,down=true,up=false": {"model": "cfm:lamp_top_green"},
         "colour=14,down=true,up=false": {"model": "cfm:lamp_top_red"},
         "colour=15,down=true,up=false": {"model": "cfm:lamp_top_black"},
-        
+
         "colour=0,down=true,up=true":  {"model": "cfm:lamp_middle"},
         "colour=1,down=true,up=true":  {"model": "cfm:lamp_middle"},
         "colour=2,down=true,up=true":  {"model": "cfm:lamp_middle"},

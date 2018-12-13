@@ -133,5 +133,4 @@ public class GuiDishwasher extends GuiContainer
         drawRect(x, y, x + width, y + height, par4);
         GlStateManager.color(1, 1, 1, 1);
     }
-
 }

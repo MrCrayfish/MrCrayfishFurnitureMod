@@ -62,5 +62,4 @@ public class MessageMineBayClosed implements IMessage, IMessageHandler<MessageMi
         TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().player.world, pos);
         return null;
     }
-
 }
