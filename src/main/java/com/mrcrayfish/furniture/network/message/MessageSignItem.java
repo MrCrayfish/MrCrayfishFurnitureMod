@@ -27,7 +27,7 @@ public class MessageSignItem implements IMessage, IMessageHandler<MessageSignIte
         ItemStack stack = player.inventory.getCurrentItem();
         if(stack.getItem() instanceof IAuthored)
         {
-            ItemStack signedItem = new ItemStack(((IAuthored) stack.getItem()).getSignedItem());
+            ItemStack signedItem = new ItemStack(((IAuthored) stack.getItem()).getSignedItem(), 1, stack.getMetadata());
             if(stack.getTagCompound() != null)
             {
                 signedItem.setTagCompound(stack.getTagCompound().copy());
