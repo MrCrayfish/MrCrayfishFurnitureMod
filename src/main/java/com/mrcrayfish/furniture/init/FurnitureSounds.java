@@ -30,11 +30,6 @@ public class FurnitureSounds
     public static SoundEvent toaster_down;
     public static SoundEvent toaster_up;
     public static SoundEvent washing_machine;
-    public static SoundEvent channel_news;
-    public static SoundEvent channel_cooking;
-    public static SoundEvent channel_sam_tabor;
-    public static SoundEvent channel_heman;
-    public static SoundEvent channel_switch;
     public static SoundEvent boing;
     public static SoundEvent sizzle;
     public static SoundEvent light_switch;
@@ -65,11 +60,6 @@ public class FurnitureSounds
         toaster_down = registerSound("cfm:toaster_down");
         toaster_up = registerSound("cfm:toaster_up");
         washing_machine = registerSound("cfm:washing_machine");
-        channel_news = registerSound("cfm:channel_news");
-        channel_cooking = registerSound("cfm:channel_cooking");
-        channel_sam_tabor = registerSound("cfm:channel_sam_tabor");
-        channel_heman = registerSound("cfm:channel_heman");
-        channel_switch = registerSound("cfm:channel_switch");
         boing = registerSound("cfm:boing");
         sizzle = registerSound("cfm:sizzle");
         light_switch = registerSound("cfm:light_switch");
