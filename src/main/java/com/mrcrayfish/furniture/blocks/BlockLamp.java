@@ -2,7 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.entity.EntitySittableBlock;
+import com.mrcrayfish.furniture.entity.EntitySeat;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -169,7 +169,7 @@ public class BlockLamp extends Block
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entity, boolean p_185477_7_)
     {
-        if(!(entity instanceof EntitySittableBlock))
+        if(!(entity instanceof EntitySeat))
         {
             List<AxisAlignedBB> boxes = this.getCollisionBoxList(this.getActualState(state, worldIn, pos), worldIn, pos);
             for(AxisAlignedBB box : boxes)

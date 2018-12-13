@@ -7,7 +7,7 @@ import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageFillBath;
 import com.mrcrayfish.furniture.tileentity.TileEntityBath;
 import com.mrcrayfish.furniture.util.CollisionHelper;
-import com.mrcrayfish.furniture.util.SittableUtil;
+import com.mrcrayfish.furniture.util.SeatUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
@@ -301,7 +301,7 @@ public class BlockBath extends BlockFurnitureTile
                 }
                 else
                 {
-                    return SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0);
+                    return SeatUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 0);
                 }
             }
             PacketHandler.INSTANCE.sendToAllAround(new MessageFillBath(tileEntityBath.getWaterLevel(), pos.getX(), pos.getY(), pos.getZ(), otherBathPos.getX(), otherBathPos.getY(), otherBathPos.getZ()), new TargetPoint(playerIn.dimension, pos.getX(), pos.getY(), pos.getZ(), 128D));

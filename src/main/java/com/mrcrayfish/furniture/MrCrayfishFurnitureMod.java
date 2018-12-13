@@ -6,7 +6,7 @@ import com.mrcrayfish.furniture.api.RecipeRegistry;
 import com.mrcrayfish.furniture.api.RecipeRegistryComm;
 import com.mrcrayfish.furniture.api.Recipes;
 import com.mrcrayfish.furniture.entity.EntityMirror;
-import com.mrcrayfish.furniture.entity.EntitySittableBlock;
+import com.mrcrayfish.furniture.entity.EntitySeat;
 import com.mrcrayfish.furniture.gui.GuiHandler;
 import com.mrcrayfish.furniture.handler.ConfigurationHandler;
 import com.mrcrayfish.furniture.handler.PlayerEvents;
@@ -83,7 +83,7 @@ public class MrCrayfishFurnitureMod
         FurnitureTileEntities.register();
 
         /* Entity Registering */
-        EntityRegistry.registerModEntity(new ResourceLocation("cfm:mountable_block"), EntitySittableBlock.class, "MountableBlock", 0, this, 80, 1, false);
+        EntityRegistry.registerModEntity(new ResourceLocation("cfm:mountable_block"), EntitySeat.class, "MountableBlock", 0, this, 80, 1, false);
         if(event.getSide() == Side.CLIENT)
         {
             EntityRegistry.registerModEntity(new ResourceLocation("cfm:mirror"), EntityMirror.class, "Mirror", 1, this, 80, 1, false);

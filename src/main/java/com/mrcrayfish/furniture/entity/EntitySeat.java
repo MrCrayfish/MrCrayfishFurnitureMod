@@ -5,13 +5,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class EntitySittableBlock extends Entity
+public class EntitySeat extends Entity
 {
     public int blockPosX;
     public int blockPosY;
     public int blockPosZ;
 
-    public EntitySittableBlock(World world)
+    public EntitySeat(World world)
     {
         super(world);
         this.noClip = true;
@@ -19,7 +19,7 @@ public class EntitySittableBlock extends Entity
         this.width = 0.01F;
     }
 
-    public EntitySittableBlock(World world, double x, double y, double z, double y0ffset)
+    public EntitySeat(World world, double x, double y, double z, double y0ffset)
     {
         this(world);
         this.blockPosX = (int) x;
@@ -28,7 +28,7 @@ public class EntitySittableBlock extends Entity
         setPosition(x + 0.5D, y + y0ffset, z + 0.5D);
     }
 
-    public EntitySittableBlock(World world, double x, double y, double z, double y0ffset, int rotation, double rotationOffset)
+    public EntitySeat(World world, double x, double y, double z, double y0ffset, int rotation, double rotationOffset)
     {
         this(world);
         this.blockPosX = (int) x;

@@ -3,9 +3,9 @@ package com.mrcrayfish.furniture.blocks;
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.advancement.Triggers;
-import com.mrcrayfish.furniture.entity.EntitySittableBlock;
+import com.mrcrayfish.furniture.entity.EntitySeat;
 import com.mrcrayfish.furniture.util.CollisionHelper;
-import com.mrcrayfish.furniture.util.SittableUtil;
+import com.mrcrayfish.furniture.util.SeatUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -63,7 +63,7 @@ public class BlockChair extends BlockFurniture
     {
         if(!playerIn.isSneaking())
         {
-            if(SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 6 * 0.0625))
+            if(SeatUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 6 * 0.0625))
             {
                 worldIn.updateComparatorOutputLevel(pos, this);
                 return true;
@@ -81,7 +81,7 @@ public class BlockChair extends BlockFurniture
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
     {
-        if(!(entityIn instanceof EntitySittableBlock))
+        if(!(entityIn instanceof EntitySeat))
         {
             List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
             for(AxisAlignedBB box : list)
@@ -118,7 +118,7 @@ public class BlockChair extends BlockFurniture
     @Override
     public int getComparatorInputOverride(IBlockState blockState, World worldIn, BlockPos pos)
     {
-        return SittableUtil.isSomeoneSitting(worldIn, pos.getX(), pos.getY(), pos.getZ()) ? 1 : 0;
+        return SeatUtil.isSomeoneSitting(worldIn, pos.getX(), pos.getY(), pos.getZ()) ? 1 : 0;
     }
 
     private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)

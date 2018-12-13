@@ -1,8 +1,8 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
-import com.mrcrayfish.furniture.entity.EntitySittableBlock;
-import com.mrcrayfish.furniture.util.SittableUtil;
+import com.mrcrayfish.furniture.entity.EntitySeat;
+import com.mrcrayfish.furniture.util.SeatUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -76,7 +76,7 @@ public class BlockBarStool extends Block
                 }
             }
         }
-        return !playerIn.isSneaking() && SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 9 * 0.0625);
+        return !playerIn.isSneaking() && SeatUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 9 * 0.0625);
     }
 
     @Override
@@ -88,7 +88,7 @@ public class BlockBarStool extends Block
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
     {
-        if(!(entityIn instanceof EntitySittableBlock))
+        if(!(entityIn instanceof EntitySeat))
         {
             addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDS);
         }
