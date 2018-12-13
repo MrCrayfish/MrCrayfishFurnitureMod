@@ -34,6 +34,7 @@ public class ItemPresent extends ItemBlock implements IItemInventory, SubItems, 
         super(block);
         this.setMaxDamage(0);
         this.setHasSubtypes(true);
+        this.setMaxStackSize(1);
     }
 
     @Override

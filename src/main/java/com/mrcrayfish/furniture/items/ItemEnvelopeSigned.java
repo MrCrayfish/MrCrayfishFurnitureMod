@@ -32,7 +32,7 @@ public class ItemEnvelopeSigned extends Item implements IItemInventory
 {
     public ItemEnvelopeSigned()
     {
-        setMaxStackSize(1);
+        this.setMaxStackSize(1);
     }
 
     @Override
