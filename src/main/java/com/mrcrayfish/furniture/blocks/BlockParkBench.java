@@ -1,9 +1,7 @@
 package com.mrcrayfish.furniture.blocks;
 
-import com.mrcrayfish.furniture.entity.EntitySittableBlock;
 import com.mrcrayfish.furniture.util.Bounds;
-import com.mrcrayfish.furniture.util.CollisionHelper;
-import com.mrcrayfish.furniture.util.SittableUtil;
+import com.mrcrayfish.furniture.util.SeatUtil;
 import com.mrcrayfish.furniture.util.StateHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -91,7 +89,7 @@ public class BlockParkBench extends BlockFurniture
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        return SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 6 * 0.0625F);
+        return SeatUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 6 * 0.0625F);
     }
 
     @Override
