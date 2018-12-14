@@ -1,78 +1,20 @@
 {
-    "variants": {
-        "east=false,north=false,south=false,west=false": {
-            "model": "cfm:electric_fence_none_pre",
-            "uvlock": true
+    "multipart": [
+        {
+            "when": { "post": "true" },
+            "apply": { "model": "cfm:electric_fence_post" }
         },
-        "east=false,north=true,south=false,west=false": {
-            "model": "cfm:electric_fence_one_pre",
-            "uvlock": true
+        {   "when": { "north": "true" },
+            "apply": { "model": "cfm:electric_fence_side", "y": 90 }
         },
-        "east=true,north=false,south=false,west=false": {
-            "model": "cfm:electric_fence_one_pre",
-            "y": 90,
-            "uvlock": true
+        {   "when": { "east": "true" },
+            "apply": { "model": "cfm:electric_fence_side", "y": 180 }
         },
-        "east=false,north=false,south=true,west=false": {
-            "model": "cfm:electric_fence_one_pre",
-            "y": 180,
-            "uvlock": true
+        {   "when": { "south": "true" },
+            "apply": { "model": "cfm:electric_fence_side", "y": 270 }
         },
-        "east=false,north=false,south=false,west=true": {
-            "model": "cfm:electric_fence_one_pre",
-            "y": 270,
-            "uvlock": true
-        },
-        "east=true,north=true,south=false,west=false": {
-            "model": "cfm:electric_fence_two_pre",
-            "uvlock": true
-        },
-        "east=false,north=true,south=true,west=false": {
-            "model": "cfm:electric_fence_two_alt_pre",
-            "uvlock": true
-        },
-        "east=false,north=true,south=false,west=true": {
-            "model": "cfm:electric_fence_two_pre",
-            "y": 270,
-            "uvlock": true
-        },
-        "east=true,north=false,south=false,west=true": {
-            "model": "cfm:electric_fence_two_alt_pre",
-            "y": 90,
-            "uvlock": true
-        },
-        "east=true,north=false,south=true,west=false": {
-            "model": "cfm:electric_fence_two_pre",
-            "y": 90,
-            "uvlock": true
-        },
-        "east=false,north=false,south=true,west=true": {
-            "model": "cfm:electric_fence_two_pre",
-            "y": 180,
-            "uvlock": true
-        },
-        "east=true,north=true,south=true,west=true": {
-            "model": "cfm:electric_fence_four_pre",
-            "uvlock": true
-        },
-        "east=true,north=true,south=true,west=false": {
-            "model": "cfm:electric_fence_three_pre",
-            "uvlock": true
-        },
-        "east=true,north=true,south=false,west=true": {
-            "model": "cfm:electric_fence_three_pre",
-            "y": 270,
-            "uvlock": true
-        },
-        "east=false,north=true,south=true,west=true": {
-            "model": "cfm:electric_fence_three_pre",
-            "y": 180,
-            "uvlock": true
-        },
-        "east=true,north=false,south=true,west=true": {
-            "model": "cfm:electric_fence_three_pre",
-            "y": 90,
-            "uvlock": true
+        {   "when": { "west": "true" },
+            "apply": { "model": "cfm:electric_fence_side", "y": 0 }
         }
-    }
+    ]
 }
