@@ -4,7 +4,8 @@
             "when": { "AND": [
                 { "facing": "north" },
                 { "hinge": "left" },
-                { "opened": "false" }
+                { "opened": "false" },
+                { "pole": "true" }
             ]},
             "apply": { "model": "cfm:dark_oak_upgraded_gate_left_closed", "y": 0 }
         },
@@ -12,7 +13,8 @@
             "when": { "AND": [
                 { "facing": "east" },
                 { "hinge": "left" },
-                { "opened": "false" }
+                { "opened": "false" },
+                { "pole": "true" }
             ]},
             "apply": { "model": "cfm:dark_oak_upgraded_gate_left_closed", "y": 90 }
         },
@@ -20,7 +22,8 @@
             "when": { "AND": [
                 { "facing": "south" },
                 { "hinge": "left" },
-                { "opened": "false" }
+                { "opened": "false" },
+                { "pole": "true" }
             ]},
             "apply": { "model": "cfm:dark_oak_upgraded_gate_left_closed", "y": 180 }
         },
@@ -28,15 +31,53 @@
             "when": { "AND": [
                 { "facing": "west" },
                 { "hinge": "left" },
-                { "opened": "false" }
+                { "opened": "false" },
+                { "pole": "true" }
             ]},
             "apply": { "model": "cfm:dark_oak_upgraded_gate_left_closed", "y": 270 }
         },
         {
             "when": { "AND": [
                 { "facing": "north" },
+                { "hinge": "left" },
+                { "opened": "false" },
+                { "pole": "false" }
+            ]},
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_left_closed_alt", "y": 0 }
+        },
+        {
+            "when": { "AND": [
+                { "facing": "east" },
+                { "hinge": "left" },
+                { "opened": "false" },
+                { "pole": "false" }
+            ]},
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_left_closed_alt", "y": 90 }
+        },
+        {
+            "when": { "AND": [
+                { "facing": "south" },
+                { "hinge": "left" },
+                { "opened": "false" },
+                { "pole": "false" }
+            ]},
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_left_closed_alt", "y": 180 }
+        },
+        {
+            "when": { "AND": [
+                { "facing": "west" },
+                { "hinge": "left" },
+                { "opened": "false" },
+                { "pole": "false" }
+            ]},
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_left_closed_alt", "y": 270 }
+        },
+        {
+            "when": { "AND": [
+                { "facing": "north" },
                 { "hinge": "right" },
-                { "opened": "false" }
+                { "opened": "false" },
+                { "pole": "true" }
             ]},
             "apply": { "model": "cfm:dark_oak_upgraded_gate_right_closed", "y": 0 }
         },
@@ -44,7 +85,8 @@
             "when": { "AND": [
                 { "facing": "east" },
                 { "hinge": "right" },
-                { "opened": "false" }
+                { "opened": "false" },
+                { "pole": "true" }
             ]},
             "apply": { "model": "cfm:dark_oak_upgraded_gate_right_closed", "y": 90 }
         },
@@ -52,7 +94,8 @@
             "when": { "AND": [
                 { "facing": "south" },
                 { "hinge": "right" },
-                { "opened": "false" }
+                { "opened": "false" },
+                { "pole": "true" }
             ]},
             "apply": { "model": "cfm:dark_oak_upgraded_gate_right_closed", "y": 180 }
         },
@@ -60,9 +103,46 @@
             "when": { "AND": [
                 { "facing": "west" },
                 { "hinge": "right" },
-                { "opened": "false" }
+                { "opened": "false" },
+                { "pole": "true" }
             ]},
             "apply": { "model": "cfm:dark_oak_upgraded_gate_right_closed", "y": 270 }
+        },
+        {
+            "when": { "AND": [
+                { "facing": "north" },
+                { "hinge": "right" },
+                { "opened": "false" },
+                { "pole": "false" }
+            ]},
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_right_closed_alt", "y": 0 }
+        },
+        {
+            "when": { "AND": [
+                { "facing": "east" },
+                { "hinge": "right" },
+                { "opened": "false" },
+                { "pole": "false" }
+            ]},
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_right_closed_alt", "y": 90 }
+        },
+        {
+            "when": { "AND": [
+                { "facing": "south" },
+                { "hinge": "right" },
+                { "opened": "false" },
+                { "pole": "false" }
+            ]},
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_right_closed_alt", "y": 180 }
+        },
+        {
+            "when": { "AND": [
+                { "facing": "west" },
+                { "hinge": "right" },
+                { "opened": "false" },
+                { "pole": "false" }
+            ]},
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_right_closed_alt", "y": 270 }
         },
         {
             "when": { "AND": [
@@ -134,7 +214,7 @@
                 { "hinge": "left" },
                 { "pole": "true" }
             ]},
-            "apply": { "model": "cfm:dark_oak_gate_upgraded_pole", "y": 0 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_pole", "y": 0 }
         },
         {
             "when": { "AND": [
@@ -142,7 +222,7 @@
                 { "hinge": "left" },
                 { "pole": "true" }
             ]},
-            "apply": { "model": "cfm:dark_oak_gate_upgraded_pole", "y": 90 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_pole", "y": 90 }
         },
         {
             "when": { "AND": [
@@ -150,7 +230,7 @@
                 { "hinge": "left" },
                 { "pole": "true" }
             ]},
-            "apply": { "model": "cfm:dark_oak_gate_upgraded_pole", "y": 180 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_pole", "y": 180 }
         },
         {
             "when": { "AND": [
@@ -158,7 +238,7 @@
                 { "hinge": "left" },
                 { "pole": "true" }
             ]},
-            "apply": { "model": "cfm:dark_oak_gate_upgraded_pole", "y": 270 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_pole", "y": 270 }
         },
         {
             "when": { "AND": [
@@ -166,7 +246,7 @@
                 { "hinge": "right" },
                 { "pole": "true" }
             ]},
-            "apply": { "model": "cfm:dark_oak_gate_upgraded_pole", "y": 180 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_pole", "y": 180 }
         },
         {
             "when": { "AND": [
@@ -174,7 +254,7 @@
                 { "hinge": "right" },
                 { "pole": "true" }
             ]},
-            "apply": { "model": "cfm:dark_oak_gate_upgraded_pole", "y": 270 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_pole", "y": 270 }
         },
         {
             "when": { "AND": [
@@ -182,7 +262,7 @@
                 { "hinge": "right" },
                 { "pole": "true" }
             ]},
-            "apply": { "model": "cfm:dark_oak_gate_upgraded_pole", "y": 0 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_pole", "y": 0 }
         },
         {
             "when": { "AND": [
@@ -190,7 +270,7 @@
                 { "hinge": "right" },
                 { "pole": "true" }
             ]},
-            "apply": { "model": "cfm:dark_oak_gate_upgraded_pole", "y": 90 }
+            "apply": { "model": "cfm:dark_oak_upgraded_gate_pole", "y": 90 }
         }
     ]
 }
