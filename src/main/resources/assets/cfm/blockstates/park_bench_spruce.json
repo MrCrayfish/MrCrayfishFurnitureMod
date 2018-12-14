@@ -1,0 +1,28 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "cfm:spruce_park_bench_single"
+	},
+	"variants": {
+		"facing": {
+			"north": { "y": 0   },
+			"east":  { "y": 90  },
+			"south": { "y": 180 },
+			"west":  { "y": 270 }
+		},
+		"type": {
+			"both": {
+				"model": "cfm:spruce_park_bench_single"
+			},
+			"left": {
+				"model": "cfm:spruce_park_bench_left"
+			},
+			"right": {
+				"model": "cfm:spruce_park_bench_right"
+			},
+			"none": {
+				"model": "cfm:spruce_park_bench_middle"
+			}
+		}
+	}
+}

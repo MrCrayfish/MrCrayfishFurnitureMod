@@ -83,6 +83,7 @@ public class FurnitureBlocks
     public static final Block OAK_FENCE_UPGRADED, SPRUCE_FENCE_UPGRADED, BIRCH_FENCE_UPGRADED, JUNGLE_FENCE_UPGRADED, ACACIA_FENCE_UPGRADED, DARK_OAK_FENCE_UPGRADED, NETHER_BRICK_FENCE_UPGRADED;
     public static final Block OAK_GATE_UPGRADED, SPRUCE_GATE_UPGRADED, BIRCH_GATE_UPGRADED, JUNGLE_GATE_UPGRADED, ACACIA_GATE_UPGRADED, DARK_OAK_GATE_UPGRADED;
     public static final Block WHITE_GATE;
+    public static final Block OAK_PARK_BENCH, SPRUCE_PARK_BENCH, BIRCH_PARK_BENCH, JUNGLE_PARK_BENCH, ACACIA_PARK_BENCH, DARK_OAK_PARK_BENCH;
 
     /* Special */
     public static final Block MIRROR;
@@ -309,6 +310,12 @@ public class FurnitureBlocks
         ACACIA_GATE_UPGRADED = new BlockUpgradedGate("upgraded_gate_acacia");
         DARK_OAK_GATE_UPGRADED = new BlockUpgradedGate("upgraded_gate_dark_oak");
         WHITE_GATE = new BlockWhiteGate("white_gate");
+        OAK_PARK_BENCH = new BlockParkBench("park_bench_oak");
+        SPRUCE_PARK_BENCH = new BlockParkBench("park_bench_spruce");
+        BIRCH_PARK_BENCH = new BlockParkBench("park_bench_birch");
+        JUNGLE_PARK_BENCH = new BlockParkBench("park_bench_jungle");
+        ACACIA_PARK_BENCH = new BlockParkBench("park_bench_acacia");
+        DARK_OAK_PARK_BENCH = new BlockParkBench("park_bench_dark_oak");
     }
 
     public static void register()
@@ -521,6 +528,12 @@ public class FurnitureBlocks
         registerBlock(JUNGLE_GATE_UPGRADED, new ItemUpgradedGate(JUNGLE_GATE_UPGRADED));
         registerBlock(ACACIA_GATE_UPGRADED, new ItemUpgradedGate(ACACIA_GATE_UPGRADED));
         registerBlock(DARK_OAK_GATE_UPGRADED, new ItemUpgradedGate(DARK_OAK_GATE_UPGRADED));
+        registerBlock(OAK_PARK_BENCH);
+        registerBlock(SPRUCE_PARK_BENCH);
+        registerBlock(BIRCH_PARK_BENCH);
+        registerBlock(JUNGLE_PARK_BENCH);
+        registerBlock(ACACIA_PARK_BENCH);
+        registerBlock(DARK_OAK_PARK_BENCH);
     }
 
     private static void registerBlock(Block block)

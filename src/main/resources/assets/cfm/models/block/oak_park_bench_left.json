@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/park_bench_left",
+    "textures": {
+        "log": "blocks/log_oak",
+        "plank": "blocks/planks_oak"
+    }
+}
