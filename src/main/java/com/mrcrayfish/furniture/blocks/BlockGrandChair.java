@@ -1,10 +1,10 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.advancement.Triggers;
-import com.mrcrayfish.furniture.entity.EntitySittableBlock;
+import com.mrcrayfish.furniture.entity.EntitySeat;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.util.CollisionHelper;
-import com.mrcrayfish.furniture.util.SittableUtil;
+import com.mrcrayfish.furniture.util.SeatUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -98,7 +98,7 @@ public class BlockGrandChair extends BlockFurniture
     {
         if(this == FurnitureBlocks.GRAND_CHAIR_BOTTOM && !playerIn.isSneaking())
         {
-            if(SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 6 * 0.0625))
+            if(SeatUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 6 * 0.0625))
             {
                 worldIn.updateComparatorOutputLevel(pos, this);
                 return true;
@@ -129,7 +129,7 @@ public class BlockGrandChair extends BlockFurniture
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
     {
-        if(!(entityIn instanceof EntitySittableBlock))
+        if(!(entityIn instanceof EntitySeat))
         {
             if(this == FurnitureBlocks.GRAND_CHAIR_BOTTOM)
             {
@@ -152,7 +152,7 @@ public class BlockGrandChair extends BlockFurniture
     @Override
     public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
     {
-        return SittableUtil.isSomeoneSitting(world, pos.getX(), pos.getY(), pos.getZ()) ? 1 : 0;
+        return SeatUtil.isSomeoneSitting(world, pos.getX(), pos.getY(), pos.getZ()) ? 1 : 0;
     }
 
     @Override

@@ -2,7 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.advancement.Triggers;
-import com.mrcrayfish.furniture.entity.EntitySittableBlock;
+import com.mrcrayfish.furniture.entity.EntitySeat;
 import com.mrcrayfish.furniture.tileentity.TileEntityBin;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -79,7 +79,7 @@ public class BlockBin extends BlockFurnitureTile
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
     {
-        if(!(entityIn instanceof EntitySittableBlock))
+        if(!(entityIn instanceof EntitySeat))
         {
             addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX);
         }

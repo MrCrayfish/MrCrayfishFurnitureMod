@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:item/upgraded_fence",
+    "textures": {
+        "log": "blocks/nether_brick",
+        "plank": "blocks/nether_brick"
+    }
+}

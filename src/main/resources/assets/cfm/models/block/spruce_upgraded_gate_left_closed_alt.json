@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/upgraded_gate_left_closed_alt",
+    "textures": {
+        "log": "blocks/log_spruce",
+        "plank": "blocks/planks_spruce"
+    }
+}

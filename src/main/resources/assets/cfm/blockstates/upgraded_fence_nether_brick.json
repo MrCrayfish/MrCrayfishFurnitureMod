@@ -1,0 +1,24 @@
+{
+    "multipart": [
+        {
+            "when": { "post": "true" },
+            "apply": { "model": "cfm:nether_brick_fence_upgraded_post" }
+        },
+        {
+            "when": { "post_top": "true" },
+            "apply": { "model": "cfm:nether_brick_fence_upgraded_post_top" }
+        },
+        {   "when": { "north": "true" },
+            "apply": { "model": "cfm:nether_brick_fence_upgraded_side", "y": 90 }
+        },
+        {   "when": { "east": "true" },
+            "apply": { "model": "cfm:nether_brick_fence_upgraded_side", "y": 180 }
+        },
+        {   "when": { "south": "true" },
+            "apply": { "model": "cfm:nether_brick_fence_upgraded_side", "y": 270 }
+        },
+        {   "when": { "west": "true" },
+            "apply": { "model": "cfm:nether_brick_fence_upgraded_side", "y": 0 }
+        }
+    ]
+}

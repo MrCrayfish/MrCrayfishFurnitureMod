@@ -1,0 +1,64 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "particle": "#texture"
+    },
+    "elements": [
+        {
+            "from": [ 1.00, 3.00, 7.50 ],
+            "to": [ 7.00, 5.00, 8.50 ],
+            "faces": {
+                "north": { "texture": "#texture", "uv": [ 0.00, 0.00, 6.00, 2.00 ] },
+                "south": { "texture": "#texture", "uv": [ 0.00, 0.00, 6.00, 2.00 ] },
+                "west": { "texture": "#texture", "uv": [ 0.00, 0.00, 1.00, 2.00 ] },
+                "up": { "texture": "#texture", "uv": [ 0.00, 0.00, 6.00, 1.00 ] },
+                "down": { "texture": "#texture", "uv": [ 0.00, 0.00, 6.00, 1.00 ] }
+            }
+        },
+        {
+            "from": [ 1.00, 11.00, 7.50 ],
+            "to": [ 7.00, 13.00, 8.50 ],
+            "faces": {
+                "north": { "texture": "#texture", "uv": [ 0.00, 0.00, 6.00, 2.00 ] },
+                "south": { "texture": "#texture", "uv": [ 0.00, 0.00, 6.00, 2.00 ] },
+                "west": { "texture": "#texture", "uv": [ 0.00, 0.00, 1.00, 2.00 ] },
+                "up": { "texture": "#texture", "uv": [ 0.00, 0.00, 6.00, 1.00 ] },
+                "down": { "texture": "#texture", "uv": [ 0.00, 0.00, 6.00, 1.00 ] }
+            }
+        },
+        {
+            "from": [ 3.00, -1.00, 7.30 ],
+            "to": [ 5.00, 15.00, 8.70 ],
+            "faces": {
+                "north": { "texture": "#texture", "uv": [ 0.00, 0.00, 2.00, 16.00 ] },
+                "east": { "texture": "#texture", "uv": [ 0.00, 0.00, 1.40, 16.00 ] },
+                "south": { "texture": "#texture", "uv": [ 0.00, 0.00, 2.00, 16.00 ] },
+                "west": { "texture": "#texture", "uv": [ 0.00, 0.00, 1.40, 16.00 ] },
+                "up": { "texture": "#texture", "uv": [ 0.00, 0.00, 2.00, 1.40 ] },
+                "down": { "texture": "#texture", "uv": [ 0.00, 0.00, 2.00, 1.40 ] }
+            }
+        },
+        {
+            "from": [ 0.00, 0.00, 7.30 ],
+            "to": [ 1.00, 16.00, 8.70 ],
+            "faces": {
+                "north": { "texture": "#texture", "uv": [ 0.00, 0.00, 1.00, 16.00 ] },
+                "east": { "texture": "#texture", "uv": [ 0.00, 0.00, 1.40, 16.00 ] },
+                "south": { "texture": "#texture", "uv": [ 0.00, 0.00, 1.00, 16.00 ] },
+                "up": { "texture": "#texture", "uv": [ 0.00, 0.00, 1.00, 1.40 ] },
+                "down": { "texture": "#texture", "uv": [ 0.00, 0.00, 1.00, 1.40 ] }
+            }
+        },
+        {
+            "from": [ 7.00, 0.00, 7.30 ], 
+            "to": [ 8.00, 16.00, 8.70 ], 
+            "faces": {
+                "north": { "texture": "#texture", "uv": [ 0.00, 0.00, 1.00, 16.00 ] },
+                "south": { "texture": "#texture", "uv": [ 0.00, 0.00, 1.00, 16.00 ] },
+                "west": { "texture": "#texture", "uv": [ 0.00, 0.00, 1.40, 16.00 ] },
+                "up": { "texture": "#texture", "uv": [ 0.00, 0.00, 1.00, 1.40 ] },
+                "down": { "texture": "#texture", "uv": [ 0.00, 0.00, 1.00, 1.40 ] }
+            }
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "particle": "#texture"
+    },
+    "elements": [
+        {
+            "from": [ 6.50, 0.00, 6.50 ], 
+            "to": [ 9.50, 16.00, 9.50 ], 
+            "faces": {
+                "north": { "texture": "#texture", "uv": [ 0.00, 0.00, 3.00, 16.00 ] },
+                "east": { "texture": "#texture", "uv": [ 0.00, 0.00, 3.00, 16.00 ] },
+                "south": { "texture": "#texture", "uv": [ 0.00, 0.00, 3.00, 16.00 ] },
+                "west": { "texture": "#texture", "uv": [ 0.00, 0.00, 3.00, 16.00 ] },
+                "up": { "texture": "#texture", "uv": [ 0.00, 0.00, 3.00, 3.00 ] },
+                "down": { "texture": "#texture", "uv": [ 0.00, 0.00, 3.00, 3.00 ] }
+            }
+        }
+    ]
+}

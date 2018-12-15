@@ -19,8 +19,8 @@ public class ItemPackage extends Item implements IItemInventory, IAuthored
 {
     public ItemPackage()
     {
-        setMaxStackSize(1);
-        setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+        this.setMaxStackSize(1);
+        this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
     }
 
     @Override

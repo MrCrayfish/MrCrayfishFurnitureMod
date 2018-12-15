@@ -2,11 +2,11 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.advancement.Triggers;
-import com.mrcrayfish.furniture.entity.EntitySittableBlock;
+import com.mrcrayfish.furniture.entity.EntitySeat;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityColoured;
 import com.mrcrayfish.furniture.util.Bounds;
-import com.mrcrayfish.furniture.util.SittableUtil;
+import com.mrcrayfish.furniture.util.SeatUtil;
 import com.mrcrayfish.furniture.util.StateHelper;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.SoundType;
@@ -156,7 +156,7 @@ public class BlockModernCouch extends BlockFurnitureTile
                 }
             }
         }
-        return SittableUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 5 * 0.0625F);
+        return SeatUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 5 * 0.0625F);
     }
 
     private List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
@@ -181,7 +181,7 @@ public class BlockModernCouch extends BlockFurnitureTile
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entity, boolean p_185477_7_)
     {
-        if(!(entity instanceof EntitySittableBlock))
+        if(!(entity instanceof EntitySeat))
         {
             List<AxisAlignedBB> boxes = this.getCollisionBoxList(this.getActualState(state, worldIn, pos), worldIn, pos);
             for(AxisAlignedBB box : boxes)

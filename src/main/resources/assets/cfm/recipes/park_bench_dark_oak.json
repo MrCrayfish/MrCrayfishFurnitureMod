@@ -1,0 +1,22 @@
+{
+    "result": {
+        "item": "cfm:park_bench_dark_oak",
+        "count": 2
+    },
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "PPP",
+        "PPP",
+        "L L"
+    ],
+    "key": {
+        "P": {
+            "item": "minecraft:planks",
+            "data": 5
+        },
+        "L": {
+            "item": "minecraft:log2",
+            "data": 1
+        }
+    }
+}

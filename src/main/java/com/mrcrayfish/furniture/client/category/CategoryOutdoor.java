@@ -26,6 +26,7 @@ public class CategoryOutdoor extends AbstractCategory
         add(FurnitureBlocks.BIRD_BATH);
         add(FurnitureBlocks.STONE_PATH);
         add(FurnitureBlocks.WHITE_FENCE);
+        add(FurnitureBlocks.WHITE_GATE);
         add(FurnitureBlocks.ELECTRIC_FENCE);
         add(FurnitureBlocks.TAP);
         add(FurnitureBlocks.MAIL_BOX_OAK);
@@ -63,6 +64,19 @@ public class CategoryOutdoor extends AbstractCategory
         add(FurnitureBlocks.JUNGLE_FENCE_UPGRADED);
         add(FurnitureBlocks.ACACIA_FENCE_UPGRADED);
         add(FurnitureBlocks.DARK_OAK_FENCE_UPGRADED);
+        add(FurnitureBlocks.NETHER_BRICK_FENCE_UPGRADED);
+        add(FurnitureBlocks.OAK_GATE_UPGRADED);
+        add(FurnitureBlocks.SPRUCE_GATE_UPGRADED);
+        add(FurnitureBlocks.BIRCH_GATE_UPGRADED);
+        add(FurnitureBlocks.JUNGLE_GATE_UPGRADED);
+        add(FurnitureBlocks.ACACIA_GATE_UPGRADED);
+        add(FurnitureBlocks.DARK_OAK_GATE_UPGRADED);
+        add(FurnitureBlocks.OAK_PARK_BENCH);
+        add(FurnitureBlocks.SPRUCE_PARK_BENCH);
+        add(FurnitureBlocks.BIRCH_PARK_BENCH);
+        add(FurnitureBlocks.JUNGLE_PARK_BENCH);
+        add(FurnitureBlocks.ACACIA_PARK_BENCH);
+        add(FurnitureBlocks.DARK_OAK_PARK_BENCH);
         add(FurnitureItems.SPATULA);
         add(FurnitureItems.SAUSAGE);
         add(FurnitureItems.SAUSAGE_COOKED);
