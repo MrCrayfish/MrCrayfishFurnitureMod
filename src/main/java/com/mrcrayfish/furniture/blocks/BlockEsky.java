@@ -4,6 +4,7 @@ import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.tileentity.TileEntityEsky;
 import com.mrcrayfish.furniture.tileentity.TileEntityKitchenCounter;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -36,17 +37,8 @@ public class BlockEsky extends BlockFurnitureTile
     public static final PropertyBool OPENED = PropertyBool.create("open");
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
 
-    private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 1.5 * 0.0625, 0.0, 0.0, 14.5 * 0.0625, 0.8, 1.0);
-    private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 1.5 * 0.0625, 0.0, 0.0, 14.5 * 0.0625, 0.8, 1.0);
-    private static final AxisAlignedBB BOUNDING_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 1.5 * 0.0625, 0.0, 0.0, 14.5 * 0.0625, 0.8, 1.0);
-    private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 1.5 * 0.0625, 0.0, 0.0, 14.5 * 0.0625, 0.8, 1.0);
-    private static final AxisAlignedBB[] BOUNDING_BOX = {BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST};
-
-    private static final AxisAlignedBB COLLISION_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 2.5 * 0.0625, 0.0, 1 * 0.0625, 13.5 * 0.0625, 0.75, 15 * 0.0625);
-    private static final AxisAlignedBB COLLISION_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 2.5 * 0.0625, 0.0, 1 * 0.0625, 13.5 * 0.0625, 0.75, 15 * 0.0625);
-    private static final AxisAlignedBB COLLISION_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 2.5 * 0.0625, 0.0, 1 * 0.0625, 13.5 * 0.0625, 0.75, 15 * 0.0625);
-    private static final AxisAlignedBB COLLISION_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 2.5 * 0.0625, 0.0, 1 * 0.0625, 13.5 * 0.0625, 0.75, 15 * 0.0625);
-    private static final AxisAlignedBB[] COLLISION_BOX = {COLLISION_BOX_SOUTH, COLLISION_BOX_WEST, COLLISION_BOX_NORTH, COLLISION_BOX_EAST};
+    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(1.5, 0, 0, 14.5, 12.8, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] COLLISION_BOX = new Bounds(2.5, 0, 1, 13.5, 12, 15).getRotatedBounds();
 
     public BlockEsky(Material material)
     {

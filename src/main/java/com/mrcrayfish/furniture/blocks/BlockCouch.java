@@ -5,6 +5,7 @@ import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.entity.EntitySeat;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityColoured;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import com.mrcrayfish.furniture.util.SeatUtil;
 import com.mrcrayfish.furniture.util.StateHelper;
@@ -41,25 +42,11 @@ public abstract class BlockCouch extends BlockFurnitureTile
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
     public static final PropertyEnum<CouchType> TYPE = PropertyEnum.create("type", CouchType.class);
 
-    private static final AxisAlignedBB COUCH_BASE = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.6, 1.0);
+    private static final AxisAlignedBB COUCH_BASE = new Bounds(0, 0, 0, 16, 9.6, 16).toAABB();
 
-    private static final AxisAlignedBB COUCH_BACKREST_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.80, 0.6, 0.0, 1.0, 1.21, 1.0);
-    private static final AxisAlignedBB COUCH_BACKREST_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.80, 0.6, 0.0, 1.0, 1.21, 1.0);
-    private static final AxisAlignedBB COUCH_BACKREST_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.80, 0.6, 0.0, 1.0, 1.21, 1.0);
-    private static final AxisAlignedBB COUCH_BACKREST_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.80, 0.6, 0.0, 1.0, 1.21, 1.0);
-    private static final AxisAlignedBB[] COUCH_BACKREST = {COUCH_BACKREST_SOUTH, COUCH_BACKREST_WEST, COUCH_BACKREST_NORTH, COUCH_BACKREST_EAST};
-
-    private static final AxisAlignedBB COUCH_ARMREST_LEFT_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.0, 0.5, 0.9, 1.0, 0.9, 1.0);
-    private static final AxisAlignedBB COUCH_ARMREST_LEFT_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.0, 0.5, 0.9, 1.0, 0.9, 1.0);
-    private static final AxisAlignedBB COUCH_ARMREST_LEFT_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.0, 0.5, 0.9, 1.0, 0.9, 1.0);
-    private static final AxisAlignedBB COUCH_ARMREST_LEFT_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.0, 0.5, 0.9, 1.0, 0.9, 1.0);
-    private static final AxisAlignedBB[] COUCH_ARMREST_LEFT = {COUCH_ARMREST_LEFT_SOUTH, COUCH_ARMREST_LEFT_WEST, COUCH_ARMREST_LEFT_NORTH, COUCH_ARMREST_LEFT_EAST};
-
-    private static final AxisAlignedBB COUCH_ARMREST_RIGHT_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.0, 0.5, 0.0, 1.0, 0.9, 0.1);
-    private static final AxisAlignedBB COUCH_ARMREST_RIGHT_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.0, 0.5, 0.0, 1.0, 0.9, 0.1);
-    private static final AxisAlignedBB COUCH_ARMREST_RIGHT_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.0, 0.5, 0.0, 1.0, 0.9, 0.1);
-    private static final AxisAlignedBB COUCH_ARMREST_RIGHT_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.0, 0.5, 0.0, 1.0, 0.9, 0.1);
-    private static final AxisAlignedBB[] COUCH_ARMREST_RIGHT = {COUCH_ARMREST_RIGHT_SOUTH, COUCH_ARMREST_RIGHT_WEST, COUCH_ARMREST_RIGHT_NORTH, COUCH_ARMREST_RIGHT_EAST};
+    private static final AxisAlignedBB[] COUCH_BACKREST = new Bounds(12.8, 9.6, 0, 16, 19.36, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] COUCH_ARMREST_LEFT = new Bounds(0, 8, 14.4, 16, 14.4, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] COUCH_ARMREST_RIGHT = new Bounds(0, 8, 0, 16, 14.4, 1.6).getRotatedBounds();
 
     public BlockCouch()
     {

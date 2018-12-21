@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.advancement.Triggers;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -35,11 +36,8 @@ public class BlockHedge extends Block
 
     protected static final AxisAlignedBB[] BOUNDING_BOX = new AxisAlignedBB[]{new AxisAlignedBB(0.1875, 0.0, 0.1875, 0.8125, 1.0, 0.8125), new AxisAlignedBB(0.1875, 0.0, 0.1875, 0.8125, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.1875, 0.8125, 1.0, 0.8125), new AxisAlignedBB(0.0, 0.0, 0.1875, 0.8125, 1.0, 1.0), new AxisAlignedBB(0.1875, 0.0, 0.0, 0.8125, 1.0, 0.8125), new AxisAlignedBB(0.1875, 0.0, 0.0, 0.8125, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.0, 0.8125, 1.0, 0.8125), new AxisAlignedBB(0.0, 0.0, 0.0, 0.8125, 1.0, 1.0), new AxisAlignedBB(0.1875, 0.0, 0.1875, 1.0, 1.0, 0.8125), new AxisAlignedBB(0.1875, 0.0, 0.1875, 1.0, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.1875, 1.0, 1.0, 0.8125), new AxisAlignedBB(0.0, 0.0, 0.1875, 1.0, 1.0, 1.0), new AxisAlignedBB(0.1875, 0.0, 0.0, 1.0, 1.0, 0.8125), new AxisAlignedBB(0.1875, 0.0, 0.0, 1.0, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 0.8125), new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 1.0)};
 
-    private static final AxisAlignedBB COLLISION_BOX_CENTER = new AxisAlignedBB(0.1875, 0.0, 0.1875, 0.8125, 1.5, 0.8125);
-    private static final AxisAlignedBB COLLISION_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.8125, 0.0, 0.1875, 1.0, 1.5, 0.8125);
-    private static final AxisAlignedBB COLLISION_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.8125, 0.0, 0.1875, 1.0, 1.5, 0.8125);
-    private static final AxisAlignedBB COLLISION_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.8125, 0.0, 0.1875, 1.0, 1.5, 0.8125);
-    private static final AxisAlignedBB COLLISION_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.8125, 0.0, 0.1875, 1.0, 1.5, 0.8125);
+    private static final AxisAlignedBB COLLISION_BOX_CENTER = new Bounds(3, 0, 3, 13, 24, 13).toAABB();
+    private static final AxisAlignedBB COLLISION_BOXES[] = new Bounds(0, 0, 3, 3, 24, 13).getRotatedBounds();
 
     public BlockHedge()
     {
@@ -123,22 +121,22 @@ public class BlockHedge extends Block
     {
         if(state.getValue(NORTH))
         {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_NORTH);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[0]);
         }
 
         if(state.getValue(EAST))
         {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_EAST);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[1]);
         }
 
         if(state.getValue(SOUTH))
         {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_SOUTH);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[2]);
         }
 
         if(state.getValue(WEST))
         {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_WEST);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[3]);
         }
 
         addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_CENTER);

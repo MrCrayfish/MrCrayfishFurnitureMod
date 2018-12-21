@@ -3,6 +3,8 @@ package com.mrcrayfish.furniture.blocks;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.tileentity.TileEntityComputer;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -23,7 +25,7 @@ import java.util.List;
 
 public class BlockComputer extends BlockFurnitureTile
 {
-    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.1, 0.0, 0.1, 0.9, 1.0, 0.9);
+    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(1.6, 0, 1.6, 14.4, 16, 14.4).toAABB();
 
     public BlockComputer(Material material)
     {

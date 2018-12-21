@@ -1,5 +1,7 @@
 package com.mrcrayfish.furniture.blocks;
 
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -9,7 +11,7 @@ import net.minecraft.world.IBlockAccess;
 
 public class BlockTV extends BlockAbstractTV
 {
-    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.0625, 0.0, 0.0625, 0.9375, 0.875, 0.9375);
+    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(1, 0, 1, 15, 14, 15).toAABB();
 
     public BlockTV(Material material)
     {

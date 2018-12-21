@@ -3,6 +3,8 @@ package com.mrcrayfish.furniture.blocks;
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.tileentity.TileEntityCoffeeTable;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -34,12 +36,9 @@ public class BlockCoffeeTable extends Block
     public static final PropertyBool SOUTH = PropertyBool.create("south");
     public static final PropertyBool WEST = PropertyBool.create("west");
 
-    public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.5, 1.0);
-    public static final AxisAlignedBB TABLE_TOP = new AxisAlignedBB(0, 6.5 * 0.0625, 0, 1, 8 * 0.0625, 1);
-    public static final AxisAlignedBB SOUTH_WEST_LEG = new AxisAlignedBB(0, 0, 14.4 * 0.0625, 1.6 * 0.0625, 6.5 * 0.0625, 1);
-    public static final AxisAlignedBB NORTH_WEST_LEG = new AxisAlignedBB(0, 0, 0, 1.6 * 0.0625, 6.5 * 0.0625, 1.6 * 0.0625);
-    public static final AxisAlignedBB SOUTH_EAST_LEG = new AxisAlignedBB(14.4 * 0.0625, 0, 14.4 * 0.0625, 1, 6.5 * 0.0625, 1);
-    public static final AxisAlignedBB NORTH_EAST_LEG = new AxisAlignedBB(14.4 * 0.0625, 0, 0, 1, 6.5 * 0.0625, 1.6 * 0.0625);
+    public static final AxisAlignedBB BOUNDING_BOX = new Bounds(0, 0, 0, 16, 8, 16).toAABB();
+    public static final AxisAlignedBB TABLE_TOP = new Bounds(0, 6.5, 0, 16, 8, 16).toAABB();
+    public static final AxisAlignedBB[] LEGS = new Bounds(0, 0, 14.4, 1.6, 6.5, 16).getRotatedBounds();
 
     public BlockCoffeeTable(Material material, SoundType sound, String unlocalizedName)
     {
@@ -113,13 +112,13 @@ public class BlockCoffeeTable extends Block
         list.add(TABLE_TOP);
         if(!north)
         {
-            if(!west) list.add(NORTH_WEST_LEG);
-            if(!east) list.add(NORTH_EAST_LEG);
+            if(!west) list.add(LEGS[0]);
+            if(!east) list.add(LEGS[1]);
         }
         if(!south)
         {
-            if(!west) list.add(SOUTH_WEST_LEG);
-            if(!east) list.add(SOUTH_EAST_LEG);
+            if(!west) list.add(LEGS[3]);
+            if(!east) list.add(LEGS[2]);
         }
         return list;
     }

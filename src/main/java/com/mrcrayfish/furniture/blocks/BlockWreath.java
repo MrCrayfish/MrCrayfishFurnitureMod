@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.blocks;
 
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -15,11 +16,7 @@ import net.minecraft.world.World;
 
 public class BlockWreath extends BlockFurniture
 {
-    private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.8125, 0, 0, 1, 1, 1);
-    private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.8125, 0, 0, 1, 1, 1);
-    private static final AxisAlignedBB BOUNDING_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.8125, 0, 0, 1, 1, 1);
-    private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.8125, 0, 0, 1, 1, 1);
-    private static final AxisAlignedBB[] BOUNDING_BOX = {BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST};
+    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(13, 0, 0, 16, 16, 16).getRotatedBounds();
 
     public BlockWreath(Material materialIn)
     {

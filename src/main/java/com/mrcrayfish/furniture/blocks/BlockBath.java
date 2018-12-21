@@ -6,6 +6,7 @@ import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageFillBath;
 import com.mrcrayfish.furniture.tileentity.TileEntityBath;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import com.mrcrayfish.furniture.util.SeatUtil;
 import net.minecraft.block.SoundType;
@@ -44,14 +45,14 @@ public class BlockBath extends BlockFurnitureTile
     public static final PropertyInteger WATER_LEVEL = PropertyInteger.create("level", 0, 16);
 
     /* Collision Bounds */
-    public static final AxisAlignedBB BOTTOM = new AxisAlignedBB(0, 0, 0, 1, 2 * 0.0625, 1);
-    public static final AxisAlignedBB SIDE_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.0, 0.125, 0.0, 1.0, 0.875, 0.125);
-    public static final AxisAlignedBB SIDE_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.0, 0.125, 0.0, 1.0, 0.875, 0.125);
-    public static final AxisAlignedBB SIDE_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.0, 0.125, 0.0, 1.0, 0.875, 0.125);
-    public static final AxisAlignedBB SIDE_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.0, 0.125, 0.0, 1.0, 0.875, 0.125);
-
-    public static final AxisAlignedBB[] TOP_BOXES = {new AxisAlignedBB(0, 0, -1, 1, 15 * 0.0625, 1), new AxisAlignedBB(0, 0, 0, 2, 15 * 0.0625, 1), new AxisAlignedBB(0, 0, 0, 1, 15 * 0.0625, 2), new AxisAlignedBB(-1, 0, 0, 1, 15 * 0.0625, 1)};
-    public static final AxisAlignedBB[] BOTTOM_BOXES = {new AxisAlignedBB(0, 0, 0, 1, 15 * 0.0625, 2), new AxisAlignedBB(-1, 0, 0, 1, 15 * 0.0625, 1), new AxisAlignedBB(0, 0, -1, 1, 15 * 0.0625, 1), new AxisAlignedBB(0, 0, 0, 2, 15 * 0.0625, 1)};
+    public static final AxisAlignedBB BOTTOM = new Bounds(0, 0, 0, 16, 2, 16).toAABB();
+    private static final Bounds SIDE = new Bounds(0, 2, 0, 16, 14, 2);
+    public static final AxisAlignedBB SIDE_NORTH = SIDE.getRotation(EnumFacing.NORTH);
+    public static final AxisAlignedBB SIDE_EAST = SIDE.getRotation(EnumFacing.EAST);
+    public static final AxisAlignedBB SIDE_SOUTH = SIDE.getRotation(EnumFacing.SOUTH);
+    public static final AxisAlignedBB SIDE_WEST = SIDE.getRotation(EnumFacing.WEST);
+    public static final AxisAlignedBB[] TOP_BOXES = new Bounds(-16, 0, 0, 16, 15, 16).getRotatedBounds();
+    public static final AxisAlignedBB[] BOTTOM_BOXES = new Bounds(0, 0, 0, 32, 15, 16).getRotatedBounds();
 
     public BlockBath(Material material, boolean top)
     {

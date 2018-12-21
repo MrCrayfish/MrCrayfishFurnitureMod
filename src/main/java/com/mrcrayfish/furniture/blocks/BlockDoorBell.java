@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -29,11 +30,7 @@ public class BlockDoorBell extends BlockFurniture
 {
     public static final PropertyBool POWERED = PropertyBool.create("powered");
 
-    private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.85, 0.3, 0.4, 1.0, 0.7, 0.6);
-    private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.85, 0.3, 0.4, 1.0, 0.7, 0.6);
-    private static final AxisAlignedBB BOUNDING_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.85, 0.3, 0.4, 1.0, 0.7, 0.6);
-    private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.85, 0.3, 0.4, 1.0, 0.7, 0.6);
-    private static final AxisAlignedBB[] BOUNDING_BOX = {BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST};
+    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(13.6, 4.8, 6.4, 16, 11.2, 9.6).getRotatedBounds();
 
     public BlockDoorBell(Material material)
     {

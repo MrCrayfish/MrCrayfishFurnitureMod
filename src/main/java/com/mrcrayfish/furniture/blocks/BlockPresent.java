@@ -4,6 +4,7 @@ import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 import com.mrcrayfish.furniture.tileentity.TileEntityPresent;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.InventoryUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -43,7 +44,7 @@ public class BlockPresent extends Block implements ITileEntityProvider
 {
     public static final PropertyEnum<EnumDyeColor> COLOUR = PropertyEnum.create("colour", EnumDyeColor.class);
 
-    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.25, 0.0, 0.25, 0.75, 0.35, 0.75);
+    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(4, 0, 4, 12, 5.6, 12).toAABB();
 
     public BlockPresent(Material material)
     {

@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.blocks;
 
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -24,11 +25,7 @@ public class BlockFairyLight extends BlockFurniture
 
     public static final PropertyEnum<FairyLightType> TYPE = PropertyEnum.create("type", FairyLightType.class);
 
-    private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.375, 0.6875, 0.0, 0.6875, 1.0, 1.0);
-    private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.375, 0.6875, 0.0, 0.6875, 1.0, 1.0);
-    private static final AxisAlignedBB BOUNDING_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.375, 0.6875, 0.0, 0.6875, 1.0, 1.0);
-    private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.375, 0.6875, 0.0, 0.6875, 1.0, 1.0);
-    private static final AxisAlignedBB[] BOUNDING_BOX = {BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST};
+    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(6, 11, 0, 11, 16, 16).getRotatedBounds();
 
     public BlockFairyLight(Material materialIn)
     {

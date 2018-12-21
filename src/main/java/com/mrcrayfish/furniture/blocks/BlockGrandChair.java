@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.blocks;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.entity.EntitySeat;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import com.mrcrayfish.furniture.util.SeatUtil;
 import net.minecraft.block.SoundType;
@@ -28,15 +29,11 @@ import java.util.Random;
 
 public class BlockGrandChair extends BlockFurniture
 {
-    private static final AxisAlignedBB BOUNDING_BOX_BOTTOM = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.8, 1.0);
-    private static final AxisAlignedBB BOUNDING_BOX_TOP = new AxisAlignedBB(0.0, -1.0, 0.0, 1.0, 0.8, 1.0);
+    private static final AxisAlignedBB BOUNDING_BOX_BOTTOM = new Bounds(0, 0, 0, 16, 1.8, 16).toAABB();
+    private static final AxisAlignedBB BOUNDING_BOX_TOP = new Bounds(0, -16, 0, 16, 12.8, 16).toAABB();
 
-    private static final AxisAlignedBB COLLISION_BOX_BOTTOM = new AxisAlignedBB(0, 0, 0, 1, 0.5, 1);
-    private static final AxisAlignedBB COLLISION_BOX_TOP_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 13 * 0.0625, 0.0, 0.0, 1.0, 0.8, 1.0);
-    private static final AxisAlignedBB COLLISION_BOX_TOP_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 13 * 0.0625, 0.0, 0.0, 1.0, 0.8, 1.0);
-    private static final AxisAlignedBB COLLISION_BOX_TOP_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 13 * 0.0625, 0.0, 0.0, 1.0, 0.8, 1.0);
-    private static final AxisAlignedBB COLLISION_BOX_TOP_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 13 * 0.0625, 0.0, 0.0, 1.0, 0.8, 1.0);
-    private static final AxisAlignedBB[] COLLISION_BOX_TOP = {COLLISION_BOX_TOP_SOUTH, COLLISION_BOX_TOP_WEST, COLLISION_BOX_TOP_NORTH, COLLISION_BOX_TOP_EAST};
+    private static final AxisAlignedBB COLLISION_BOX_BOTTOM = new Bounds(0, 0, 0, 16, 8, 16).toAABB();
+    private static final AxisAlignedBB[] COLLISION_BOX_TOP = new Bounds(13, 0, 0, 16, 12.8, 16).getRotatedBounds();
 
     public BlockGrandChair(Material materialIn, boolean top)
     {

@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.tileentity.TileEntityCookieJar;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -33,7 +34,7 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
 {
     public static final PropertyInteger COOKIE_COUNT = PropertyInteger.create("cookie_count", 0, 6);
 
-    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(4 * 0.0625, 0.0, 4 * 0.0625, 12 * 0.0625, 0.65, 12 * 0.0625);
+    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(4, 0, 4, 12, 10.4, 12).toAABB();
 
     public BlockCookieJar(Material material)
     {

@@ -3,6 +3,8 @@ package com.mrcrayfish.furniture.blocks;
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -32,8 +34,8 @@ import java.util.List;
 
 public class BlockBasin extends BlockFurniture
 {
-    public static final AxisAlignedBB[] PILLAR = new AxisAlignedBB[]{new AxisAlignedBB(3 * 0.0625, 0, 8 * 0.0625, 13 * 0.0625, 11 * 0.0625, 1), new AxisAlignedBB(0, 0, 3 * 0.0625, 8 * 0.0625, 11 * 0.0625, 13 * 0.0625), new AxisAlignedBB(3 * 0.0625, 0, 0, 13 * 0.0625, 11 * 0.0625, 8 * 0.0625), new AxisAlignedBB(8 * 0.0625, 0, 3 * 0.0625, 1, 11 * 0.0625, 13 * 0.0625)};
-    public static final AxisAlignedBB TOP = new AxisAlignedBB(0, 11 * 0.0625, 0, 1, 1, 1);
+    public static final AxisAlignedBB[] PILLAR = new Bounds(8, 0, 3, 16, 11, 13).getRotatedBounds();
+    public static final AxisAlignedBB TOP = new Bounds(0, 11, 0, 16, 16, 16).toAABB();
 
     public static final PropertyBool FILLED = PropertyBool.create("filled");
 

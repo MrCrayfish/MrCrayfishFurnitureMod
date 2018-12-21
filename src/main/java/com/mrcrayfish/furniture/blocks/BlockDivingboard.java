@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -27,23 +28,11 @@ public class BlockDivingboard extends BlockFurniture
 {
     public final int MAX_JUMP_HEIGHT = 4;
 
-    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 13 * 0.0625, 1.0);
+    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(0, 0, 0, 16, 13, 16).toAABB();
 
-    private static final AxisAlignedBB HANDLE_LEFT_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.0, 0.0, 0.0, 0.875, 1.0, 1.5 * 0.0625);
-    private static final AxisAlignedBB HANDLE_LEFT_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.0, 0.0, 0.0, 0.875, 1.0, 1.5 * 0.0625);
-    private static final AxisAlignedBB HANDLE_LEFT_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.0, 0.0, 0.0, 0.875, 1.0, 1.5 * 0.0625);
-    private static final AxisAlignedBB HANDLE_LEFT_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.0, 0.0, 0.0, 0.875, 1.0, 1.5 * 0.0625);
-    private static final AxisAlignedBB[] HANDLE_LEFT = {HANDLE_LEFT_SOUTH, HANDLE_LEFT_WEST, HANDLE_LEFT_NORTH, HANDLE_LEFT_EAST};
-
-    private static final AxisAlignedBB HANDLE_RIGHT_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.0, 0.0, 14.5 * 0.0625, 0.875, 1.0, 16 * 0.0625);
-    private static final AxisAlignedBB HANDLE_RIGHT_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.0, 0.0, 14.5 * 0.0625, 0.875, 1.0, 16 * 0.0625);
-    private static final AxisAlignedBB HANDLE_RIGHT_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.0, 0.0, 14.5 * 0.0625, 0.875, 1.0, 16 * 0.0625);
-    private static final AxisAlignedBB HANDLE_RIGHT_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.0, 0.0, 14.5 * 0.0625, 0.875, 1.0, 16 * 0.0625);
-    private static final AxisAlignedBB[] HANDLE_RIGHT = {HANDLE_RIGHT_SOUTH, HANDLE_RIGHT_WEST, HANDLE_RIGHT_NORTH, HANDLE_RIGHT_EAST};
-
-    private static final AxisAlignedBB BOARD_ONE = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.0, 4 * 0.0625, 2 * 0.0625, 1.0, 6 * 0.0625, 14 * 0.0625);
-    private static final AxisAlignedBB BOARD_TWO = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.0, 4 * 0.0625, 2 * 0.0625, 1.0, 6 * 0.0625, 14 * 0.0625);
-    private static final AxisAlignedBB BOARD[] = {BOARD_ONE, BOARD_TWO};
+    private static final AxisAlignedBB[] HANDLE_LEFT = new Bounds(0, 0, 0, 14, 16, 1.5).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_RIGHT = new Bounds(0, 0, 14.5, 14, 16, 16).getRotatedBounds();
+    private static final AxisAlignedBB BOARD[] = new Bounds(0, 4, 2, 16, 6, 14).getRotatedBounds();
 
     public BlockDivingboard(Material material, boolean plank)
     {

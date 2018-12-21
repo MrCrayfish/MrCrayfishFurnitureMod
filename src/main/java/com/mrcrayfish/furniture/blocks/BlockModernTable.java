@@ -11,13 +11,12 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mrcrayfish.furniture.util.Bounds;
+
 public class BlockModernTable extends BlockTable
 {
-    public static final AxisAlignedBB SOUTH_EAST_LEG = new AxisAlignedBB(0.25 * 0.0625, 0, 13.75 * 0.0625, 2.25 * 0.0625, 14 * 0.0625, 15.75 * 0.0625);
-    public static final AxisAlignedBB SOUTH_WEST_LEG = new AxisAlignedBB(13.75 * 0.0625, 0, 13.75 * 0.0625, 15.75 * 0.0625, 14 * 0.0625, 15.75 * 0.0625);
-    public static final AxisAlignedBB NORTH_EAST_LEG = new AxisAlignedBB(0.25 * 0.0625, 0, 0.25 * 0.0625, 2.25 * 0.0625, 14 * 0.0625, 2.25 * 0.0625);
-    public static final AxisAlignedBB NORTH_WEST_LEG = new AxisAlignedBB(13.75 * 0.0625, 0, 0.25 * 0.0625, 15.75 * 0.0625, 14 * 0.0625, 2.25 * 0.0625);
-    public static final AxisAlignedBB TOP = new AxisAlignedBB(0, 14 * 0.0625, 0, 1, 1, 1);
+    public static final AxisAlignedBB[] LEGS = new Bounds(0.25, 0, 13.75, 2.25, 14, 15.75).getRotatedBounds();
+    public static final AxisAlignedBB TOP = new Bounds(0, 14, 0, 16, 16, 16).toAABB();
 
     public BlockModernTable(String id)
     {
@@ -38,13 +37,13 @@ public class BlockModernTable extends BlockTable
 
         if(!north)
         {
-            if(!west) boxes.add(NORTH_WEST_LEG);
-            if(!east) boxes.add(NORTH_EAST_LEG);
+            if(!west) boxes.add(LEGS[1]);
+            if(!east) boxes.add(LEGS[0]);
         }
         if(!south)
         {
-            if(!west) boxes.add(SOUTH_WEST_LEG);
-            if(!east) boxes.add(SOUTH_EAST_LEG);
+            if(!west) boxes.add(LEGS[2]);
+            if(!east) boxes.add(LEGS[3]);
         }
         boxes.add(TOP);
 

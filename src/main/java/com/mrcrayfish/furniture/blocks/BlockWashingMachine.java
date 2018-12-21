@@ -4,6 +4,8 @@ import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -27,8 +29,8 @@ import java.util.List;
 
 public class BlockWashingMachine extends BlockFurnitureTile
 {
-    public static final AxisAlignedBB CENTER_BOX_AND_PANEL = new AxisAlignedBB(1 * 0.0625, 0, 1 * 0.0625, 15 * 0.0625, 1, 15 * 0.0625);
-    public static final AxisAlignedBB[] CENTER_BOXES = new AxisAlignedBB[]{new AxisAlignedBB(1 * 0.0625, 0, 2 * 0.0625, 15 * 0.0625, 1, 15 * 0.0625), new AxisAlignedBB(1 * 0.0625, 0, 1 * 0.0625, 14 * 0.0625, 1, 15 * 0.0625), new AxisAlignedBB(1 * 0.0625, 0, 1 * 0.0625, 15 * 0.0625, 1, 14 * 0.0625), new AxisAlignedBB(2 * 0.0625, 0, 1 * 0.0625, 15 * 0.0625, 1, 15 * 0.0625)};
+    public static final AxisAlignedBB CENTER_BOX_AND_PANEL = new Bounds(1, 0, 1, 15, 16, 15).toAABB();
+    public static final AxisAlignedBB[] CENTER_BOXES = new Bounds(2, 0, 1, 15, 16, 15).getRotatedBounds();
 
     public BlockWashingMachine(Material material)
     {

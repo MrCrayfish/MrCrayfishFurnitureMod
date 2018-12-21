@@ -33,9 +33,9 @@ public class BlockModernSlidingDoor extends BlockFurniture implements IPowered
     public static final PropertyBool TOP = PropertyBool.create("top");
 
     private static final AxisAlignedBB[] COLLISION_BOX_BOTTOM = new Bounds(6, 0, 0, 10, 32, 16).getRotatedBounds();
-    private static final AxisAlignedBB[] COLLISION_BOX_BOTTOM_OPENED = new Bounds(6 * 0.0625, 0, 0, 10 * 0.0625, 2F, 2.96 * 0.0625).getRotatedBounds();
+    private static final AxisAlignedBB[] COLLISION_BOX_BOTTOM_OPENED = new Bounds(6, 0, 0, 10, 32, 2.96).getRotatedBounds();
     private static final AxisAlignedBB[] COLLISION_BOX_TOP = new Bounds(6, -16, 0, 10, 16, 16).getRotatedBounds();
-    private static final AxisAlignedBB[] COLLISION_BOX_TOP_OPENED = new Bounds(6 * 0.0625, -1.0, 0, 10 * 0.0625, 1.0, 2.96 * 0.0625).getRotatedBounds();
+    private static final AxisAlignedBB[] COLLISION_BOX_TOP_OPENED = new Bounds(6, -16, 0, 10, 16, 2.96).getRotatedBounds();
 
 
     public BlockModernSlidingDoor()

@@ -2,6 +2,8 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -28,7 +30,7 @@ public class BlockCeilingLight extends Block implements IPowered
 {
     public static final PropertyEnum<Mode> MODE = PropertyEnum.create("mode", Mode.class);
 
-    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(5 * 0.0625, 0.4, 5 * 0.0625, 11 * 0.0625, 1.0, 11F * 0.0625);
+    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(5, 6.4, 5, 11, 16, 11).toAABB();
 
     public BlockCeilingLight(Material material, boolean on)
     {

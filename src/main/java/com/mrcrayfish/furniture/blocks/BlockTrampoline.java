@@ -2,6 +2,8 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
@@ -31,7 +33,7 @@ public class BlockTrampoline extends Block
     public static final PropertyBool LEFT = PropertyBool.create("left");
     public static final PropertyBool RIGHT = PropertyBool.create("right");
 
-    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 13 * 0.0625, 1.0);
+    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(0, 0, 0, 16, 13, 16).toAABB();
 
     public BlockTrampoline(Material materialIn)
     {

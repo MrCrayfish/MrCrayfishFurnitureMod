@@ -1,6 +1,8 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -25,7 +27,7 @@ public class BlockChimney extends Block
 {
     public static final PropertyEnum<ChimneyType> TYPE = PropertyEnum.create("type", ChimneyType.class);
 
-    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.125, 0.0, 0.125, 0.875, 1.0, 0.875);
+    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(2, 0, 2, 14, 16, 14).toAABB();
 
     public BlockChimney(Material material)
     {

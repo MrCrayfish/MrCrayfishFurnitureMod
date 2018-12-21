@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.tileentity.TileEntityPlate;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -26,7 +27,7 @@ import java.util.List;
 
 public class BlockPlate extends Block implements ITileEntityProvider
 {
-    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(3 * 0.0625, 0.0, 3 * 0.0625, 13 * 0.0625, 0.125, 13 * 0.0625);
+    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(3, 0, 3, 13, 2, 13).toAABB();
 
     public BlockPlate(Material material)
     {

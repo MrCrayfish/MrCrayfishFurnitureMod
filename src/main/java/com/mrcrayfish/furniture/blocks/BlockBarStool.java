@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.entity.EntitySeat;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.SeatUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -32,7 +33,7 @@ public class BlockBarStool extends Block
 {
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
 
-    private static final AxisAlignedBB BOUNDS = new AxisAlignedBB(2 * 0.0625, 0, 2 * 0.0625, 14 * 0.0625, 13 * 0.0625, 14 * 0.0625);
+    private static final AxisAlignedBB BOUNDS = new Bounds(2, 0, 2, 14, 13, 14).toAABB();
 
     public BlockBarStool(Material material)
     {

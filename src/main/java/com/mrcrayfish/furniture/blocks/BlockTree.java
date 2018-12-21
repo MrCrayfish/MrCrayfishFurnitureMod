@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityTree;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -27,9 +28,9 @@ import java.util.Random;
 
 public class BlockTree extends BlockFurnitureTile
 {
-    private static final AxisAlignedBB BOUNDING_BOX_BOTTOM = new AxisAlignedBB(0.0625, 0.0, 0.0625, 0.9375, 2.0, 0.9375);
-    private static final AxisAlignedBB BOUNDING_BOX_BOTTOM_ALT = new AxisAlignedBB(0.0625, 0.0, 0.0625, 0.9375, 1.0, 0.9375);
-    private static final AxisAlignedBB BOUNDING_BOX_TOP = new AxisAlignedBB(0.0625, -1.0, 0.0625, 0.9375, 1.0, 0.9375);
+    private static final AxisAlignedBB BOUNDING_BOX_BOTTOM = new Bounds(1, 0, 1, 15, 32, 15).toAABB();
+    private static final AxisAlignedBB BOUNDING_BOX_BOTTOM_ALT = new Bounds(1, 0, 1, 15, 16, 15).toAABB();
+    private static final AxisAlignedBB BOUNDING_BOX_TOP = new Bounds(1, -16, 1, 15, 16, 15).toAABB();
 
     public BlockTree(Material material, boolean top)
     {

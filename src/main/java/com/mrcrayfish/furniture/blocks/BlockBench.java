@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import com.mrcrayfish.furniture.util.SeatUtil;
 import net.minecraft.block.SoundType;
@@ -24,11 +25,8 @@ public class BlockBench extends BlockFurniture
     public static final PropertyBool LEFT = PropertyBool.create("left");
     public static final PropertyBool RIGHT = PropertyBool.create("right");
 
-    private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 1 * 0.0625, 0.0, 0.0, 15 * 0.0625, 10 * 0.0625, 1.0);
-    private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 1 * 0.0625, 0.0, 0.0, 15 * 0.0625, 10 * 0.0625, 1.0);
-
-    private static final AxisAlignedBB COLLISION_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 2 * 0.0625F, 0.0F, 1 * 0.0625F, 14 * 0.0625F, 9 * 0.0625F, 15 * 0.0625F);
-    private static final AxisAlignedBB COLLISION_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 2 * 0.0625F, 0.0F, 1 * 0.0625F, 14 * 0.0625F, 9 * 0.0625F, 15 * 0.0625F);
+    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(1, 0, 0, 15, 10, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] COLLISION_BOX = new Bounds(2, 0, 1, 14, 9, 15).getRotatedBounds();
 
     public BlockBench(Material material)
     {
@@ -42,22 +40,13 @@ public class BlockBench extends BlockFurniture
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        if(getMetaFromState(state) % 2 == 1)
-        {
-            return BOUNDING_BOX_NORTH;
-        }
-        return BOUNDING_BOX_EAST;
+        return BOUNDING_BOX[getMetaFromState(state)];
     }
 
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
     {
-        if(getMetaFromState(state) % 2 == 1)
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_NORTH);
-            return;
-        }
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_EAST);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX[getMetaFromState(state)]);
     }
 
     @Override

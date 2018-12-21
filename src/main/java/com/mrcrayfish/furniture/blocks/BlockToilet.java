@@ -4,6 +4,7 @@ import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.entity.EntitySeat;
 import com.mrcrayfish.furniture.handler.InputHandler;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import com.mrcrayfish.furniture.util.SeatUtil;
 import net.minecraft.block.SoundType;
@@ -30,19 +31,9 @@ import java.util.List;
 
 public class BlockToilet extends BlockFurniture
 {
-    private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.1, 0.0, 0.15, 1.0, 1.0, 0.85);
-    private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.1, 0.0, 0.15, 1.0, 1.0, 0.85);
-    private static final AxisAlignedBB BOUNDING_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.1, 0.0, 0.15, 1.0, 1.0, 0.85);
-    private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.1, 0.0, 0.15, 1.0, 1.0, 0.85);
-    private static final AxisAlignedBB[] BOUNDING_BOX = {BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST};
-
-    private static final AxisAlignedBB COLLISION_BOX_TANK_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.65, 0.5, 0.0, 1.0, 1.1, 1.0);
-    private static final AxisAlignedBB COLLISION_BOX_TANK_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.65, 0.5, 0.0, 1.0, 1.1, 1.0);
-    private static final AxisAlignedBB COLLISION_BOX_TANK_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.65, 0.5, 0.0, 1.0, 1.1, 1.0);
-    private static final AxisAlignedBB COLLISION_BOX_TANK_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.65, 0.5, 0.0, 1.0, 1.1, 1.0);
-    private static final AxisAlignedBB[] COLLISION_BOX_TANK = {COLLISION_BOX_TANK_SOUTH, COLLISION_BOX_TANK_WEST, COLLISION_BOX_TANK_NORTH, COLLISION_BOX_TANK_EAST};
-
-    private static final AxisAlignedBB COLLISION_BOX_SEAT = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.5, 1.0);
+    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(1.6, 0, 2.4, 16, 16, 13.6).getRotatedBounds();
+    private static final AxisAlignedBB[] COLLISION_BOX_TANK = new Bounds(10.4, 8, 0, 16, 17.6, 16).getRotatedBounds();
+    private static final AxisAlignedBB COLLISION_BOX_SEAT = new Bounds(0, 0, 0, 16, 8, 16).toAABB();
 
     public BlockToilet(Material material)
     {

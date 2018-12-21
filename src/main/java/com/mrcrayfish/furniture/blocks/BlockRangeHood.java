@@ -26,8 +26,8 @@ public class BlockRangeHood extends BlockFurniture
 {
     public static final PropertyBool DOWN = PropertyBool.create("down");
 
-    public static final AxisAlignedBB[] COLLISION_VENTILATION = new Bounds(0.5, 0.0, 0.2, 1.0, 1.0, 0.8).getRotatedBounds();
-    public static final AxisAlignedBB COLLISION_BASE = new AxisAlignedBB(0, 0, 0, 1, 4 * 0.0625, 1);
+    public static final AxisAlignedBB[] COLLISION_VENTILATION = new Bounds(8, 0, 3.2, 16, 16, 12.8).getRotatedBounds();
+    public static final AxisAlignedBB COLLISION_BASE = new Bounds(0, 0, 0, 16, 4, 16).toAABB();
 
     public BlockRangeHood(Material material, boolean powered)
     {

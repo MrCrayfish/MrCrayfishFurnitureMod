@@ -3,6 +3,8 @@ package com.mrcrayfish.furniture.blocks;
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.advancement.Triggers;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -24,10 +26,10 @@ import java.util.List;
 
 public class BlockBirdBath extends Block
 {
-    public static final AxisAlignedBB CENTER = new AxisAlignedBB(5 * 0.0625, 1.75 * 0.0625, 5 * 0.0625, 11 * 0.0625, 12 * 0.0625, 11 * 0.0625);
-    public static final AxisAlignedBB BOTTOM_LIP = new AxisAlignedBB(4 * 0.0625, 0, 4 * 0.0625, 12 * 0.0625, 1.5 * 0.0625, 12 * 0.0625);
-    public static final AxisAlignedBB TOP = new AxisAlignedBB(1 * 0.0625, 11.25 * 0.0625, 1 * 0.0625, 15 * 0.0625, 12.75 * 0.0625, 15 * 0.0625);
-    public static final AxisAlignedBB BOWL = new AxisAlignedBB(0, 12.75 * 0.0625, 0, 1, 14.5 * 0.0625, 1);
+    public static final AxisAlignedBB CENTER = new Bounds(5, 1.75, 5, 11, 12, 11).toAABB();
+    public static final AxisAlignedBB BOTTOM_LIP = new Bounds(4, 0, 4, 12, 1.5, 12).toAABB();
+    public static final AxisAlignedBB TOP = new Bounds(1, 11.25, 1, 15, 12.75, 15).toAABB();
+    public static final AxisAlignedBB BOWL = new Bounds(0, 12.75, 0, 16, 14.5, 16).toAABB();
 
     public BlockBirdBath(Material material)
     {

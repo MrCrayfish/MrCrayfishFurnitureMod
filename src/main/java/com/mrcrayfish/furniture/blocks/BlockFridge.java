@@ -4,6 +4,8 @@ import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityFridge;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -26,9 +28,8 @@ import java.util.Random;
 
 public class BlockFridge extends BlockFurnitureTile
 {
-    public static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(0.0625, 0, 0.0625, 0.0625 * 15, 1, 0.0625 * 15);
-
-    public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0, -1, 0, 1, 1, 1);
+    public static final AxisAlignedBB COLLISION_BOX = new Bounds(1, 0, 1, 15, 16, 15).toAABB();
+    public static final AxisAlignedBB BOUNDING_BOX = new Bounds(0, -16, 0, 16, 16, 16).toAABB();
 
     public BlockFridge(Material material)
     {

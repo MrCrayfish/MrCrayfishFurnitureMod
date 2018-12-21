@@ -5,6 +5,8 @@ import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityFreezer;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -25,9 +27,8 @@ import java.util.List;
 
 public class BlockFreezer extends BlockFurnitureTile
 {
-    public static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(0.0625, 0, 0.0625, 0.0625 * 15, 1, 0.0625 * 15);
-
-    public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0, 0, 0, 1, 2, 1);
+    public static final AxisAlignedBB COLLISION_BOX = new Bounds(1, 0, 1, 15, 16, 15).toAABB();
+    public static final AxisAlignedBB BOUNDING_BOX = new Bounds(0, 0, 0, 16, 32, 16).toAABB();
 
     public BlockFreezer(Material material)
     {

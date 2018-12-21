@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.tileentity.TileEntityKitchenCounter;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.StateHelper;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.Block;
@@ -38,10 +39,10 @@ public class BlockCounter extends BlockFurnitureTile
 {
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
 
-    public static final AxisAlignedBB COUNTER_TOP = new AxisAlignedBB(0, 14 * 0.0625, 0, 1, 1, 1);
-    public static final AxisAlignedBB[] FORWARD_BOXES = {new AxisAlignedBB(0, 0, 2 * 0.0625, 1, 14 * 0.0625, 1), new AxisAlignedBB(0, 0, 0, 14 * 0.0625, 14 * 0.0625, 1), new AxisAlignedBB(0, 0, 0, 1, 14 * 0.0625, 14 * 0.0625), new AxisAlignedBB(2 * 0.0625, 0, 0, 1, 14 * 0.0625, 1)};
-    public static final AxisAlignedBB[] LEFT_CORNER_BOXES = {new AxisAlignedBB(0, 0, 2 * 0.0625, 14 * 0.0625, 14 * 0.0625, 1), new AxisAlignedBB(0, 0, 0, 14 * 0.0625, 14 * 0.0625, 14 * 0.0625), new AxisAlignedBB(2 * 0.0625, 0, 0, 1, 14 * 0.0625, 14 * 0.0625), new AxisAlignedBB(2 * 0.0625, 0, 2 * 0.062, 1, 14 * 0.0625, 1)};
-    public static final AxisAlignedBB[] RIGHT_CORNER_BOXES = {new AxisAlignedBB(2 * 0.0625, 0, 2 * 0.0625, 1, 14 * 0.0625, 1), new AxisAlignedBB(0, 0, 2 * 0.0625, 14 * 0.0625, 14 * 0.0625, 1), new AxisAlignedBB(0, 0, 0, 14 * 0.0625, 14 * 0.0625, 14 * 0.0625), new AxisAlignedBB(2 * 0.0625, 0, 0, 1, 14 * 0.0625, 14 * 0.0625)};
+    public static final AxisAlignedBB COUNTER_TOP = new Bounds(0, 14, 0, 16, 16, 16).toAABB();
+    public static final AxisAlignedBB[] FORWARD_BOXES = new Bounds(2, 0, 0, 16, 14, 16).getRotatedBounds();
+    public static final AxisAlignedBB[] LEFT_CORNER_BOXES = new Bounds(2, 0, 2 * 0.062, 16, 14, 16).getRotatedBounds();
+    public static final AxisAlignedBB[] RIGHT_CORNER_BOXES = new Bounds(2, 0, 0, 16, 14, 14).getRotatedBounds();
 
     public static final PropertyEnum<CounterType> TYPE = PropertyEnum.create("type", CounterType.class);
 

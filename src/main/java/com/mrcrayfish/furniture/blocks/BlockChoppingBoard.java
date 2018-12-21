@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.blocks;
 import com.mrcrayfish.furniture.api.Recipes;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityChoppingBoard;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.SoundType;
@@ -24,11 +25,8 @@ import java.util.List;
 
 public class BlockChoppingBoard extends BlockFurnitureTile
 {
-    private static final AxisAlignedBB BOUNDING_BOX_ONE = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.0, 0.0, 3 * 0.0625, 1.0, 1.5 * 0.0625, 13 * 0.0625);
-    private static final AxisAlignedBB BOUNDING_BOX_TWO = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.0, 0.0, 3 * 0.0625, 1.0, 1.5 * 0.0625, 13 * 0.0625);
-
-    private static final AxisAlignedBB COLLISION_BOX_ONE = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.0, 0.0, 3 * 0.0625, 1.0, 0.0625, 13 * 0.0625);
-    private static final AxisAlignedBB COLLISION_BOX_TWO = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.0, 0.0, 3 * 0.0625, 1.0, 0.0625, 13 * 0.0625);
+    private static final AxisAlignedBB BOUNDING_BOX[] = new Bounds(3, 0, 0.5, 13, 1.5, 15.5).getRotatedBounds();
+    private static final AxisAlignedBB COLLISION_BOX[] = new Bounds(3, 0, 0.5, 13, 1, 15.5).getRotatedBounds();
 
     public BlockChoppingBoard(Material material)
     {
@@ -97,22 +95,13 @@ public class BlockChoppingBoard extends BlockFurnitureTile
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        if(getMetaFromState(state) % 2 == 1)
-        {
-            return BOUNDING_BOX_ONE;
-        }
-        return BOUNDING_BOX_TWO;
+        return BOUNDING_BOX[getMetaFromState(state)];
     }
 
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
     {
-        if(getMetaFromState(state) % 2 == 1)
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_ONE);
-            return;
-        }
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_TWO);
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX[getMetaFromState(state)]);
     }
 
     @Override

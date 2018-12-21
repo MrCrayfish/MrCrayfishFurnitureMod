@@ -5,6 +5,7 @@ import com.mrcrayfish.furniture.api.RecipeAPI;
 import com.mrcrayfish.furniture.api.RecipeData;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.tileentity.TileEntityToaster;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.SoundType;
@@ -27,17 +28,8 @@ import java.util.List;
 
 public class BlockToaster extends BlockFurnitureTile
 {
-    private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 5 * 0.0625, 0.0, 3 * 0.0625, 11 * 0.0625, 0.45, 13 * 0.0625);
-    private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 5 * 0.0625, 0.0, 3 * 0.0625, 11 * 0.0625, 0.45, 13 * 0.0625);
-    private static final AxisAlignedBB BOUNDING_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 5 * 0.0625, 0.0, 3 * 0.0625, 11 * 0.0625, 0.45, 13 * 0.0625);
-    private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 5 * 0.0625, 0.0, 3 * 0.0625, 11 * 0.0625, 0.45, 13 * 0.0625);
-    private static final AxisAlignedBB[] BOUNDING_BOX = {BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST};
-
-    private static final AxisAlignedBB COLLISION_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 5 * 0.0625, 0.0, 3 * 0.0625, 11 * 0.0625, 0.4, 13 * 0.0625);
-    private static final AxisAlignedBB COLLISION_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 5 * 0.0625, 0.0, 3 * 0.0625, 11 * 0.0625, 0.4, 13 * 0.0625);
-    private static final AxisAlignedBB COLLISION_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 5 * 0.0625, 0.0, 3 * 0.0625, 11 * 0.0625, 0.4, 13 * 0.0625);
-    private static final AxisAlignedBB COLLISION_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 5 * 0.0625, 0.0, 3 * 0.0625, 11 * 0.0625, 0.4, 13 * 0.0625);
-    private static final AxisAlignedBB[] COLLISION_BOX = {COLLISION_BOX_SOUTH, COLLISION_BOX_WEST, COLLISION_BOX_NORTH, COLLISION_BOX_EAST};
+    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(5, 0, 3, 11, 7.2, 13).getRotatedBounds();
+    private static final AxisAlignedBB[] COLLISION_BOX = new Bounds(5, 0, 3, 11, 6.4, 13).getRotatedBounds();
 
     public BlockToaster(Material material)
     {

@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.tileentity.TileEntityStereo;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.SoundType;
@@ -25,17 +26,8 @@ import java.util.List;
 
 public class BlockStereo extends BlockFurnitureTile
 {
-    private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.3, 0.0, 0.0, 0.7, 0.5, 1.0);
-    private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.3, 0.0, 0.0, 0.7, 0.5, 1.0);
-    private static final AxisAlignedBB BOUNDING_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.3, 0.0, 0.0, 0.7, 0.5, 1.0);
-    private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.3, 0.0, 0.0, 0.7, 0.5, 1.0);
-    private static final AxisAlignedBB[] BOUNDING_BOX = {BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST};
-
-    private static final AxisAlignedBB COLLISION_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.0, 0.0, 0.3, 1.0, 0.45, 0.7);
-    private static final AxisAlignedBB COLLISION_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.0, 0.0, 0.3, 1.0, 0.45, 0.7);
-    private static final AxisAlignedBB COLLISION_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.0, 0.0, 0.3, 1.0, 0.45, 0.7);
-    private static final AxisAlignedBB COLLISION_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.0, 0.15, 0.3, 1.0, 0.45, 0.7);
-    private static final AxisAlignedBB[] COLLISION_BOX = {COLLISION_BOX_SOUTH, COLLISION_BOX_WEST, COLLISION_BOX_NORTH, COLLISION_BOX_EAST};
+    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(4.8, 0, 0, 11.2, 8, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] COLLISION_BOX = new Bounds(4.8, 0, 0, 11.2, 7.2, 16).getRotatedBounds();
 
     public static ArrayList<ItemRecord> records = new ArrayList<>();
 

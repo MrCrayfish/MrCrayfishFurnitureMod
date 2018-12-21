@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.entity.EntitySeat;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import com.mrcrayfish.furniture.util.SeatUtil;
 import net.minecraft.block.SoundType;
@@ -28,14 +29,11 @@ import java.util.List;
 
 public class BlockChair extends BlockFurniture
 {
-    public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.1, 0.0, 0.1, 0.9, 1.2, 0.9);
+    public static final AxisAlignedBB BOUNDING_BOX = new Bounds(1.6, 0, 1.6, 14.4, 19.2, 14.4).toAABB();
 
-    public static final AxisAlignedBB CHAIR_SEAT = new AxisAlignedBB(1.6 * 0.0625, 8 * 0.0625, 1.6 * 0.0625, 14.4 * 0.0625, 9.6 * 0.0625, 14.4 * 0.0625);
-    public static final AxisAlignedBB CHAIR_BACKREST_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.825, 0.6, 0.1, 0.9, 1.2, 0.9);
-    public static final AxisAlignedBB CHAIR_BACKREST_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.825, 0.6, 0.1, 0.9, 1.2, 0.9);
-    public static final AxisAlignedBB CHAIR_BACKREST_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.825, 0.6, 0.1, 0.9, 1.2, 0.9);
-    public static final AxisAlignedBB CHAIR_BACKREST_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.825, 0.6, 0.1, 0.9, 1.2, 0.9);
-    public static final AxisAlignedBB[] LEGS = {new AxisAlignedBB(1.6 * 0.0625, 0, 12.8 * 0.0625, 3.2 * 0.0625, 8 * 0.0625, 14.4 * 0.0625), new AxisAlignedBB(12.8 * 0.0625, 0, 12.8 * 0.0625, 14.4 * 0.0625, 8 * 0.0625, 14.4 * 0.0625), new AxisAlignedBB(12.8 * 0.0625, 0, 1.6 * 0.0625, 14.4 * 0.0625, 8 * 0.0625, 3.2 * 0.0625), new AxisAlignedBB(1.6 * 0.0625, 0, 1.6 * 0.0625, 3.2 * 0.0625, 8 * 0.0625, 3.2 * 0.0625)};
+    public static final AxisAlignedBB CHAIR_SEAT = new Bounds(1.6, 8, 1.6, 14.4, 9.6, 14.4).toAABB();
+    public static final AxisAlignedBB CHAIR_BACKREST[] = new Bounds(13.2, 9.6, 1.6, 14.4, 19.2, 14.4).getRotatedBounds();
+    public static final AxisAlignedBB[] LEGS = new Bounds(1.6, 0, 1.6, 3.2, 8, 3.2).getRotatedBounds();
 
     public BlockChair(Material material, SoundType sound)
     {
@@ -124,22 +122,7 @@ public class BlockChair extends BlockFurniture
     private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
     {
         List<AxisAlignedBB> list = Lists.newArrayList();
-        EnumFacing facing = state.getValue(FACING);
-        switch(facing)
-        {
-            case NORTH:
-                list.add(CHAIR_BACKREST_NORTH);
-                break;
-            case SOUTH:
-                list.add(CHAIR_BACKREST_SOUTH);
-                break;
-            case WEST:
-                list.add(CHAIR_BACKREST_WEST);
-                break;
-            default:
-                list.add(CHAIR_BACKREST_EAST);
-                break;
-        }
+        list.add(CHAIR_BACKREST[state.getValue(FACING).getHorizontalIndex()]);
         list.add(CHAIR_SEAT);
         Collections.addAll(list, LEGS);
         return list;

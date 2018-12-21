@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.blocks;
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.tileentity.TileEntityCabinetKitchen;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -34,7 +35,7 @@ public class BlockCabinetKitchen extends BlockFurnitureTile
 {
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
 
-    public static final AxisAlignedBB[] COLLISION_BOXES = {new AxisAlignedBB(0, 0, 2 * 0.0625, 1, 1, 1), new AxisAlignedBB(0, 0, 0, 14 * 0.0625, 1, 1), new AxisAlignedBB(0, 0, 0, 1, 1, 14 * 0.0625), new AxisAlignedBB(2 * 0.0625, 0, 0, 1, 1, 1)};
+    public static final AxisAlignedBB[] COLLISION_BOXES = new Bounds(2, 0, 0, 16, 16, 16).getRotatedBounds();
 
     public BlockCabinetKitchen(Material material)
     {

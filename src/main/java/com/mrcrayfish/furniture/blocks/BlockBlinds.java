@@ -27,7 +27,7 @@ import java.util.Random;
 public class BlockBlinds extends BlockFurniture
 {
     public static final PropertyBool LEFT = PropertyBool.create("left");
-    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(0.875, 0.0, 0.0, 1.0, 1.0, 1.0).getRotatedBounds();
+    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(14, 0, 0, 16, 16, 16).getRotatedBounds();
 
     private Block replacementBlock;
 

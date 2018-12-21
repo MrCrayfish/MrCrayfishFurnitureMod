@@ -3,6 +3,8 @@ package com.mrcrayfish.furniture.blocks;
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.advancement.Triggers;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -34,14 +36,11 @@ public class BlockTable extends Block
     public static final PropertyBool RIGHT = PropertyBool.create("right");
 
     public static final AxisAlignedBB EMPTY_AABB = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
-    public static final AxisAlignedBB TOP = new AxisAlignedBB(0 * 0.0625, 14.5 * 0.0625, 0 * 0.0625, 16 * 0.0625, 16 * 0.0625, 16 * 0.0625);
+    public static final AxisAlignedBB TOP = new Bounds(0, 14.5, 0, 16, 16, 16).toAABB();
 
-    public static final AxisAlignedBB SINGLE_LEG = new AxisAlignedBB(6 * 0.0625, 0 * 0.0625, 6 * 0.0625, 10 * 0.0625, 14.5 * 0.0625, 10 * 0.0625);
-    public static final AxisAlignedBB[] ONE_AXIS_LEG = new AxisAlignedBB[]{new AxisAlignedBB(6 * 0.0625, 0 * 0.0625, 9 * 0.0625, 10 * 0.0625, 14.5 * 0.0625, 13 * 0.0625), new AxisAlignedBB(9 * 0.0625, 0 * 0.0625, 6 * 0.0625, 13 * 0.0625, 14.5 * 0.0625, 10 * 0.0625), new AxisAlignedBB(6 * 0.0625, 0 * 0.0625, 3 * 0.0625, 10 * 0.0625, 14.5 * 0.0625, 7 * 0.0625), new AxisAlignedBB(3 * 0.0625, 0 * 0.0625, 6 * 0.0625, 7 * 0.0625, 14.5 * 0.0625, 10 * 0.0625)};
-    public static final AxisAlignedBB TWO_AXIS_NORTH_EAST = new AxisAlignedBB(3 * 0.0625, 0 * 0.0625, 9 * 0.0625, 7 * 0.0625, 14.5 * 0.0625, 13 * 0.0625);
-    public static final AxisAlignedBB TWO_AXIS_SOUTH_EAST = new AxisAlignedBB(3 * 0.0625, 0 * 0.0625, 3 * 0.0625, 7 * 0.0625, 14.5 * 0.0625, 7 * 0.0625);
-    public static final AxisAlignedBB TWO_AXIS_NORTH_WEST = new AxisAlignedBB(9 * 0.0625, 0 * 0.0625, 9 * 0.0625, 13 * 0.0625, 14.5 * 0.0625, 13 * 0.0625);
-    public static final AxisAlignedBB TWO_AXIS_SOUTH_WEST = new AxisAlignedBB(9 * 0.0625, 0 * 0.0625, 3 * 0.0625, 13 * 0.0625, 14.5 * 0.0625, 7 * 0.0625);
+    public static final AxisAlignedBB SINGLE_LEG = new Bounds(6, 0, 6, 10, 14.5, 10).toAABB();
+    public static final AxisAlignedBB[] ONE_AXIS_LEG = new Bounds(3, 0, 6, 7, 14.5, 10).getRotatedBounds();
+    public static final AxisAlignedBB[] TWO_AXIS_LEGS = new Bounds(3, 0, 9, 7, 14.5, 13).getRotatedBounds();
 
     public BlockTable(Material material, SoundType sound)
     {
@@ -142,23 +141,23 @@ public class BlockTable extends Block
             {
                 if(north && east)
                 {
-                    boxes.add(TWO_AXIS_NORTH_EAST);
+                    boxes.add(TWO_AXIS_LEGS[3]);
                 }
                 if(south && east)
                 {
-                    boxes.add(TWO_AXIS_SOUTH_EAST);
+                    boxes.add(TWO_AXIS_LEGS[0]);
                 }
                 if(north && west)
                 {
-                    boxes.add(TWO_AXIS_NORTH_WEST);
+                    boxes.add(TWO_AXIS_LEGS[2]);
                 }
                 if(south && west)
                 {
-                    boxes.add(TWO_AXIS_SOUTH_WEST);
+                    boxes.add(TWO_AXIS_LEGS[1]);
                 }
                 if(connectedSides == 1)
                 {
-                    int connectedIndex = north ? 0 : east ? 3 : south ? 2 : west ? 1 : -1;
+                    int connectedIndex = north ? 2 : east ? 3 : south ? 0 : west ? 1 : -1;
                     if(connectedIndex >= 0)
                     {
                         boxes.add(ONE_AXIS_LEG[connectedIndex]);

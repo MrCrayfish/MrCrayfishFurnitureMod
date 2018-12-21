@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.tileentity.TileEntityMailBox;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -26,7 +27,7 @@ import java.util.List;
 
 public class BlockMailBox extends BlockFurnitureTile
 {
-    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.1875, 0.0F, 0.1875, 0.8125, 1.1625, 0.8125);
+    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(3, 0, 3, 13, 18.6, 13).toAABB();
 
     public BlockMailBox(Material material)
     {

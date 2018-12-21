@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.blocks;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityBlender;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -27,8 +28,8 @@ import java.util.List;
 
 public class BlockBlender extends BlockFurnitureTile
 {
-    public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(4 * 0.0625, 0.0, 4 * 0.0625, 12 * 0.0625, 1.0, 12 * 0.0625);
-    public static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(4.5 * 0.0625, 0, 4.5 * 0.0625, 11.5 * 0.0625, 15 * 0.0625, 11.5 * 0.0625);
+    public static final AxisAlignedBB BOUNDING_BOX = new Bounds(4, 0.0, 4, 12, 16, 12).toAABB();
+    public static final AxisAlignedBB COLLISION_BOX = new Bounds(4.5, 0, 4.5, 11.5, 15, 11.5).toAABB();
 
     public BlockBlender(Material material)
     {

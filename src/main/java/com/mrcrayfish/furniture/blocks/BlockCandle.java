@@ -1,6 +1,8 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -18,17 +20,19 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Stream;
 
 public class BlockCandle extends Block
 {
-    public static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.0625, 0.0, 0.0625, 0.9375, 1.2625, 0.9375);
+    public static final AxisAlignedBB BOUNDING_BOX = new Bounds(1, 0, 1, 15, 20.2, 15).toAABB();
 
-    public static final AxisAlignedBB BOTTOM_LIP = new AxisAlignedBB(4 * 0.0625, 0, 4 * 0.0625, 12 * 0.0625, 1 * 0.0625, 12 * 0.0625);
-    public static final AxisAlignedBB BOTTOM = new AxisAlignedBB(5 * 0.0625, 1 * 0.0625, 5 * 0.0625, 11 * 0.0625, 2 * 0.0625, 11 * 0.0625);
-    public static final AxisAlignedBB CENTER_PILLAR = new AxisAlignedBB(7 * 0.0625, 2 * 0.0625, 7 * 0.0625, 9 * 0.0625, 7 * 0.0625, 9 * 0.0625);
-    public static final AxisAlignedBB CROSS_1 = new AxisAlignedBB(2 * 0.0625, 7 * 0.0625, 7 * 0.0625, 14 * 0.0625, 9 * 0.0625, 9 * 0.0625);
-    public static final AxisAlignedBB CROSS_2 = new AxisAlignedBB(7 * 0.0625, 7 * 0.0625, 2 * 0.0625, 9 * 0.0625, 9 * 0.0625, 14 * 0.0625);
-    public static final AxisAlignedBB[] CANDLES = {new AxisAlignedBB(1 * 0.0625, 9 * 0.0625, 6 * 0.0625, 5 * 0.0625, 17 * 0.0625, 10 * 0.0625), new AxisAlignedBB(6 * 0.0625, 9 * 0.0625, 1 * 0.0625, 10 * 0.0625, 17 * 0.0625, 5 * 0.0625), new AxisAlignedBB(11 * 0.0625, 9 * 0.0625, 6 * 0.0625, 15 * 0.0625, 17 * 0.0625, 10 * 0.0625), new AxisAlignedBB(6 * 0.0625, 9 * 0.0625, 11 * 0.0625, 10 * 0.0625, 17 * 0.0625, 15 * 0.0625), new AxisAlignedBB(6 * 0.0625, 9 * 0.0625, 6 * 0.0625, 10 * 0.0625, 20 * 0.0625, 10 * 0.0625)};
+    public static final AxisAlignedBB BOTTOM_LIP = new Bounds(4, 0, 4, 12, 1, 12).toAABB();
+    public static final AxisAlignedBB BOTTOM = new Bounds(5, 1, 5, 11, 2, 11).toAABB();
+    public static final AxisAlignedBB CENTER_PILLAR = new Bounds(7, 2, 7, 9, 7, 9).toAABB();
+    public static final AxisAlignedBB CROSS_1 = new Bounds(2, 7, 7, 14, 9, 9).toAABB();
+    public static final AxisAlignedBB CROSS_2 = new Bounds(7, 7, 2, 9, 9, 14).toAABB();
+    public static final AxisAlignedBB[] CANDLES = Stream.of(new Bounds(1, 9, 6, 5, 17, 10).getRotatedBounds(),
+    		new AxisAlignedBB[] {new Bounds(6, 9, 6, 10, 20, 10).toAABB()}).flatMap(Stream::of).toArray(AxisAlignedBB[]::new);
 
     public BlockCandle(Material materialIn)
     {

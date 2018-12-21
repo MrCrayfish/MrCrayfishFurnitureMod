@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.advancement.Triggers;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
@@ -28,11 +29,8 @@ public class BlockWhiteFence extends BlockFence
     public static final PropertyBool POST = PropertyBool.create("post");
     protected static final AxisAlignedBB[] BOUNDING_BOX = new AxisAlignedBB[]{new AxisAlignedBB(0.4375, 0.0, 0.4375, 0.5625, 1.0, 0.5625), new AxisAlignedBB(0.4375, 0.0, 0.4375, 0.5625, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.4375, 0.5625, 1.0, 0.5625), new AxisAlignedBB(0.0, 0.0, 0.4375, 0.5625, 1.0, 1.0), new AxisAlignedBB(0.4375, 0.0, 0.0, 0.5625, 1.0, 0.5625), new AxisAlignedBB(0.4375, 0.0, 0.0, 0.5625, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.0, 0.5625, 1.0, 0.5625), new AxisAlignedBB(0.0, 0.0, 0.0, 0.5625, 1.0, 1.0), new AxisAlignedBB(0.4375, 0.0, 0.4375, 1.0, 1.0, 0.5625), new AxisAlignedBB(0.4375, 0.0, 0.4375, 1.0, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.4375, 1.0, 1.0, 0.5625), new AxisAlignedBB(0.0, 0.0, 0.4375, 1.0, 1.0, 1.0), new AxisAlignedBB(0.4375, 0.0, 0.0, 1.0, 1.0, 0.5625), new AxisAlignedBB(0.4375, 0.0, 0.0, 1.0, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 0.5625), new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 1.0)};
 
-    private static final AxisAlignedBB COLLISION_BOX_CENTER = new AxisAlignedBB(0.4375, 0.0, 0.4375, 0.5625, 1.5, 0.5625);
-    private static final AxisAlignedBB COLLISION_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.5625, 0.0, 0.4375, 1.0, 1.5, 0.5625);
-    private static final AxisAlignedBB COLLISION_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.5625, 0.0, 0.4375, 1.0, 1.5, 0.5625);
-    private static final AxisAlignedBB COLLISION_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.5625, 0.0, 0.4375, 1.0, 1.5, 0.5625);
-    private static final AxisAlignedBB COLLISION_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.5625, 0.0, 0.4375, 1.0, 1.5, 0.5625);
+    private static final AxisAlignedBB COLLISION_BOX_CENTER = new Bounds(7, 0, 7, 9, 24, 9).toAABB();
+    private static final AxisAlignedBB[] COLLISION_BOXES = new Bounds(9, 0, 7, 16, 24, 9).getRotatedBounds();
 
     public BlockWhiteFence(Material material)
     {
@@ -106,22 +104,22 @@ public class BlockWhiteFence extends BlockFence
 
         if(state.getValue(NORTH))
         {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_NORTH);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[2]);
         }
 
         if(state.getValue(EAST))
         {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_EAST);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[3]);
         }
 
         if(state.getValue(SOUTH))
         {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_SOUTH);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[0]);
         }
 
         if(state.getValue(WEST))
         {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_WEST);
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[1]);
         }
 
         addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_CENTER);

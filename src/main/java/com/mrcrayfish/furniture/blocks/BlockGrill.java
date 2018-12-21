@@ -5,6 +5,7 @@ import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.api.RecipeAPI;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityGrill;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.ParticleHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -32,12 +33,12 @@ import java.util.Random;
 
 public class BlockGrill extends BlockFurnitureTile
 {
-    public static final AxisAlignedBB NORTH_SOUTH_BOUDING_BOX = new AxisAlignedBB(0, 0, 0.0625, 1, 1, 15 * 0.0625);
-    public static final AxisAlignedBB EAST_WEST_BOUDING_BOX = new AxisAlignedBB(0.0625, 0, 0, 15 * 0.0625, 1, 1);
+    public static final AxisAlignedBB NORTH_SOUTH_BOUDING_BOX = new Bounds(0, 0, 1, 16, 16, 15).toAABB();
+    public static final AxisAlignedBB EAST_WEST_BOUDING_BOX = new Bounds(1, 0, 0, 15, 16, 16).toAABB();
 
-    public static final AxisAlignedBB[] TOP = {new AxisAlignedBB(1 * 0.0625, 12 * 0.0625, 2 * 0.0625, 15 * 0.0625, 1, 14 * 0.0625), new AxisAlignedBB(2 * 0.0625, 12 * 0.0625, 1 * 0.0625, 14 * 0.0625, 1, 15 * 0.0625), new AxisAlignedBB(1 * 0.0625, 12 * 0.0625, 2 * 0.0625, 15 * 0.0625, 1, 14 * 0.0625), new AxisAlignedBB(2 * 0.0625, 12 * 0.0625, 1 * 0.0625, 14 * 0.0625, 1, 15 * 0.0625)};
-    public static final AxisAlignedBB[] GRILL = {new AxisAlignedBB(2 * 0.0625, 5 * 0.0625, 3 * 0.0625, 14 * 0.0625, 5 * 0.0625, 13 * 0.0625), new AxisAlignedBB(3 * 0.0625, 5 * 0.0625, 2 * 0.0625, 13 * 0.0625, 5 * 0.0625, 14 * 0.0625), new AxisAlignedBB(2 * 0.0625, 5 * 0.0625, 3 * 0.0625, 14 * 0.0625, 5 * 0.0625, 13 * 0.0625), new AxisAlignedBB(3 * 0.0625, 5 * 0.0625, 2 * 0.0625, 13 * 0.0625, 5 * 0.0625, 14 * 0.0625)};
-    public static final AxisAlignedBB[] LEGS = {new AxisAlignedBB(13 * 0.0625, 0, 2.5 * 0.0625, 14.5 * 0.0625, 12 * 0.0625, 4 * 0.0625), new AxisAlignedBB(1.5 * 0.0625, 0, 2.5 * 0.0625, 3 * 0.0625, 12 * 0.0625, 4 * 0.0625), new AxisAlignedBB(14.5 * 0.0625, 0, 12 * 0.0625, 13 * 0.0625, 12 * 0.0625, 13.5 * 0.0625), new AxisAlignedBB(1.5 * 0.0625, 0, 12 * 0.0625, 3 * 0.0625, 12 * 0.0625, 13.5 * 0.0625), new AxisAlignedBB(12 * 0.0625, 0, 1.5 * 0.0625, 13.5 * 0.0625, 12 * 0.0625, 3 * 0.0625), new AxisAlignedBB(2.5 * 0.0625, 0, 1.5 * 0.0625, 4 * 0.0625, 12 * 0.0625, 3 * 0.0625), new AxisAlignedBB(12 * 0.0625, 0, 13 * 0.0625, 13.5 * 0.0625, 12 * 0.0625, 14.5 * 0.0625), new AxisAlignedBB(2.5 * 0.0625, 0, 13 * 0.0625, 4 * 0.0625, 12 * 0.0625, 14.5 * 0.0625), new AxisAlignedBB(13 * 0.0625, 0, 2.5 * 0.0625, 14.5 * 0.0625, 12 * 0.0625, 4 * 0.0625), new AxisAlignedBB(1.5 * 0.0625, 0, 2.5 * 0.0625, 3 * 0.0625, 12 * 0.0625, 4 * 0.0625), new AxisAlignedBB(14.5 * 0.0625, 0, 12 * 0.0625, 13 * 0.0625, 12 * 0.0625, 13.5 * 0.0625), new AxisAlignedBB(1.5 * 0.0625, 0, 12 * 0.0625, 3 * 0.0625, 12 * 0.0625, 13.5 * 0.0625), new AxisAlignedBB(12 * 0.0625, 0, 1.5 * 0.0625, 13.5 * 0.0625, 12 * 0.0625, 3 * 0.0625), new AxisAlignedBB(2.5 * 0.0625, 0, 1.5 * 0.0625, 4 * 0.0625, 12 * 0.0625, 3 * 0.0625), new AxisAlignedBB(12 * 0.0625, 0, 13 * 0.0625, 13.5 * 0.0625, 12 * 0.0625, 14.5 * 0.0625), new AxisAlignedBB(2.5 * 0.0625, 0, 13 * 0.0625, 4 * 0.0625, 12 * 0.0625, 14.5 * 0.0625)};
+    public static final AxisAlignedBB[] TOP = new Bounds(2, 12, 1, 14, 16, 15).getRotatedBounds();
+    public static final AxisAlignedBB[] GRILL = new Bounds(3, 5, 2, 13, 5, 14).getRotatedBounds();
+    public static final AxisAlignedBB[] LEGS = {new AxisAlignedBB(13 * 0.0625, 0, 2.5 * 0.0625, 14.5 * 0.0625, 12 * 0.0625, 4 * 0.0625), new AxisAlignedBB(1.5 * 0.0625, 0, 2.5 * 0.0625, 3 * 0.0625, 12 * 0.0625, 4 * 0.0625), new AxisAlignedBB(14.5 * 0.0625, 0, 12 * 0.0625, 13 * 0.0625, 12 * 0.0625, 13.5 * 0.0625), new AxisAlignedBB(1.5 * 0.0625, 0, 12 * 0.0625, 3 * 0.0625, 12 * 0.0625, 13.5 * 0.0625),new AxisAlignedBB(12 * 0.0625, 0, 1.5 * 0.0625, 13.5 * 0.0625, 12 * 0.0625, 3 * 0.0625), new AxisAlignedBB(2.5 * 0.0625, 0, 1.5 * 0.0625, 4 * 0.0625, 12 * 0.0625, 3 * 0.0625),new AxisAlignedBB(12 * 0.0625, 0, 13 * 0.0625, 13.5 * 0.0625, 12 * 0.0625, 14.5 * 0.0625), new AxisAlignedBB(2.5 * 0.0625, 0, 13 * 0.0625, 4 * 0.0625, 12 * 0.0625, 14.5 * 0.0625), new AxisAlignedBB(13 * 0.0625, 0, 2.5 * 0.0625, 14.5 * 0.0625, 12 * 0.0625, 4 * 0.0625), new AxisAlignedBB(1.5 * 0.0625, 0, 2.5 * 0.0625, 3 * 0.0625, 12 * 0.0625, 4 * 0.0625), new AxisAlignedBB(14.5 * 0.0625, 0, 12 * 0.0625, 13 * 0.0625, 12 * 0.0625, 13.5 * 0.0625), new AxisAlignedBB(1.5 * 0.0625, 0, 12 * 0.0625, 3 * 0.0625, 12 * 0.0625, 13.5 * 0.0625), new AxisAlignedBB(12 * 0.0625, 0, 1.5 * 0.0625, 13.5 * 0.0625, 12 * 0.0625, 3 * 0.0625), new AxisAlignedBB(2.5 * 0.0625, 0, 1.5 * 0.0625, 4 * 0.0625, 12 * 0.0625, 3 * 0.0625), new AxisAlignedBB(12 * 0.0625, 0, 13 * 0.0625, 13.5 * 0.0625, 12 * 0.0625, 14.5 * 0.0625), new AxisAlignedBB(2.5 * 0.0625, 0, 13 * 0.0625, 4 * 0.0625, 12 * 0.0625, 14.5 * 0.0625)};
 
     public BlockGrill(Material material)
     {

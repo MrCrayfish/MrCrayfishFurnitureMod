@@ -4,6 +4,8 @@ import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.tileentity.TileEntityDishwasher;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -24,7 +26,7 @@ import java.util.List;
 
 public class BlockDishwasher extends BlockFurnitureTile
 {
-    public static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(1 * 0.0625, 0, 1 * 0.0625, 15 * 0.0625, 1, 15 * 0.0625);
+    public static final AxisAlignedBB COLLISION_BOX = new Bounds(1, 0, 1, 15, 16, 15).toAABB();
 
     public BlockDishwasher(Material material)
     {

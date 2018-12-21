@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.blocks;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.tileentity.TileEntityWallCabinet;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -24,11 +25,7 @@ import java.util.List;
 
 public class BlockWallCabinet extends BlockFurnitureTile
 {
-    private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.75, 0.1, 0.125, 1.0, 0.9, 0.875);
-    private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.75, 0.1, 0.125, 1.0, 0.9, 0.875);
-    private static final AxisAlignedBB BOUNDING_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.75, 0.1, 0.125, 1.0, 0.9, 0.875);
-    private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.75, 0.1, 0.125, 1.0, 0.9, 0.875);
-    private static final AxisAlignedBB[] BOUNDING_BOX = {BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST};
+    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(12, 1.6, 2, 16, 14.4, 14).getRotatedBounds();
 
     public BlockWallCabinet(Material material)
     {

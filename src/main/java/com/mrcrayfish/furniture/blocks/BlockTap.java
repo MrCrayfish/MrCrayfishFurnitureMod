@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.blocks;
 
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.SoundType;
@@ -20,11 +21,7 @@ import java.util.List;
 
 public class BlockTap extends BlockFurniture
 {
-    private static final AxisAlignedBB BOUNDING_BOX_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.125, 0.0, 0.4, 0.5625, 1.0, 0.6);
-    private static final AxisAlignedBB BOUNDING_BOX_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.125, 0.0, 0.4, 0.5625, 1.0, 0.6);
-    private static final AxisAlignedBB BOUNDING_BOX_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.125, 0.0, 0.4, 0.5625, 1.0, 0.6);
-    private static final AxisAlignedBB BOUNDING_BOX_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.125, 0.0, 0.4, 0.5625, 1.0, 0.6);
-    private static final AxisAlignedBB[] BOUNDING_BOX = {BOUNDING_BOX_SOUTH, BOUNDING_BOX_WEST, BOUNDING_BOX_NORTH, BOUNDING_BOX_EAST};
+    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(2, 0, 6.4, 9, 16, 9.6).getRotatedBounds();
 
     public BlockTap(Material material)
     {

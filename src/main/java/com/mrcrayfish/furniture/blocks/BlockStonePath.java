@@ -2,6 +2,8 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.advancement.Triggers;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -23,7 +25,7 @@ import javax.annotation.Nullable;
 
 public class BlockStonePath extends Block
 {
-    private static final AxisAlignedBB BOUNDING = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.0625, 1.0);
+    private static final AxisAlignedBB BOUNDING = new Bounds(0, 0, 0, 16, 1, 16).toAABB();
 
     public BlockStonePath(Material material)
     {

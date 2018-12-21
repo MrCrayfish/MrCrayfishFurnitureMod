@@ -2,6 +2,8 @@ package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityCup;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -32,7 +34,7 @@ import java.util.List;
 
 public class BlockCup extends Block implements ITileEntityProvider
 {
-    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(5 * 0.0625, 0.0, 5 * 0.0625, 11 * 0.0625, 7.5 * 0.0625, 11 * 0.0625);
+    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(5, 0, 5, 11, 7.5, 11).toAABB();
 
     public BlockCup(Material material)
     {

@@ -3,6 +3,8 @@ package com.mrcrayfish.furniture.blocks;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -27,7 +29,7 @@ public class BlockFireAlarm extends BlockFurniture
 {
     private boolean on = false;
 
-    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(5 * 0.0625, 0.875, 5 * 0.0625, 11 * 0.0625, 1.0, 11 * 0.0625);
+    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(5, 14, 5, 11, 16, 11).toAABB();
 
     public BlockFireAlarm(Material material, boolean on)
     {

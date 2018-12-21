@@ -1,6 +1,8 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.init.FurnitureItems;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -28,7 +30,7 @@ public abstract class BlockFirePit extends Block
 
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 3);
 
-    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 0.1875, 1.0);
+    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(0, 0, 0, 16, 3, 16).toAABB();
 
     public BlockFirePit(Material materialIn)
     {

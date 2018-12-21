@@ -4,6 +4,8 @@ import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.entity.EntitySeat;
 import com.mrcrayfish.furniture.tileentity.TileEntityBin;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -23,8 +25,8 @@ import java.util.List;
 
 public class BlockBin extends BlockFurnitureTile
 {
-    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(2 * 0.0625, 0.0, 2 * 0.0625, 14 * 0.0625, 13 * 0.0625, 14 * 0.0625);
-    private static final AxisAlignedBB COLLISION_BOX = new AxisAlignedBB(2 * 0.0625, 0.0, 2 * 0.0625, 14 * 0.0625, 13 * 0.0625, 14 * 0.0625);
+    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(2, 0, 2, 14, 13, 14).toAABB();
+    private static final AxisAlignedBB COLLISION_BOX = new Bounds(2, 0, 2, 14, 13, 14).toAABB();
 
     public BlockBin(Material material)
     {

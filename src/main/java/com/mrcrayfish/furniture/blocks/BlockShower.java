@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.blocks;
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.CollisionHelper;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -31,14 +32,11 @@ public class BlockShower extends BlockFurniture
 {
     private static final AxisAlignedBB NOTHING = new AxisAlignedBB(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
 
-    private static final AxisAlignedBB SIDE_NORTH = CollisionHelper.getBlockBounds(EnumFacing.NORTH, 0.9375, 0.0, 0.0, 1.0, 1.0, 1.0);
-    private static final AxisAlignedBB SIDE_EAST = CollisionHelper.getBlockBounds(EnumFacing.EAST, 0.9375, 0.0, 0.0, 1.0, 1.0, 1.0);
-    private static final AxisAlignedBB SIDE_SOUTH = CollisionHelper.getBlockBounds(EnumFacing.SOUTH, 0.9375, 0.0, 0.0, 1.0, 1.0, 1.0);
-    private static final AxisAlignedBB SIDE_WEST = CollisionHelper.getBlockBounds(EnumFacing.WEST, 0.9375, 0.0, 0.0, 1.0, 1.0, 1.0);
-    private static final AxisAlignedBB BOTTOM = new AxisAlignedBB(0, 0, 0, 1, 0.0625, 1);
+    private static final AxisAlignedBB[] SIDES = new Bounds(0, 0, 0, 1, 16, 16).getRotatedBounds();
+    private static final AxisAlignedBB BOTTOM = new Bounds(0, 0, 0, 16, 1, 16).toAABB();
 
-    public static final AxisAlignedBB TOP_BOUNDING_BOX = new AxisAlignedBB(0, -1, 0, 1, 1, 1);
-    public static final AxisAlignedBB BOTTOM_BOUNDING_BOX = new AxisAlignedBB(0, 0, 0, 1, 2, 1);
+    public static final AxisAlignedBB TOP_BOUNDING_BOX = new Bounds(0, -16, 0, 16, 16, 16).toAABB();
+    public static final AxisAlignedBB BOTTOM_BOUNDING_BOX = new Bounds(0, 0, 0, 16, 32, 16).toAABB();
 
     public BlockShower(Material material, boolean top)
     {
@@ -164,19 +162,19 @@ public class BlockShower extends BlockFurniture
         }
         if(facing != EnumFacing.NORTH)
         {
-            list.add(SIDE_SOUTH);
+            list.add(SIDES[2]);
         }
         if(facing != EnumFacing.SOUTH)
         {
-            list.add(SIDE_NORTH);
+            list.add(SIDES[0]);
         }
         if(facing != EnumFacing.EAST)
         {
-            list.add(SIDE_WEST);
+            list.add(SIDES[3]);
         }
         if(facing != EnumFacing.WEST)
         {
-            list.add(SIDE_EAST);
+            list.add(SIDES[1]);
         }
 
         return list;
