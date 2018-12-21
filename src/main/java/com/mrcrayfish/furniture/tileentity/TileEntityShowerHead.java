@@ -2,6 +2,8 @@ package com.mrcrayfish.furniture.tileentity;
 
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.util.ParticleSpawner;
+
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemArmor;
@@ -33,7 +35,7 @@ public class TileEntityShowerHead extends TileEntity implements ITickable
         {
             if(timer % 5 == 0)
             {
-                List<EntityPlayer> listPlayers = world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(pos.getX(), pos.getY() - 1, pos.getZ(), pos.getX() + 1.0D, pos.getY() - 1 + 1.0D, pos.getZ() + 1.0D));
+                List<EntityPlayer> listPlayers = world.getEntitiesWithinAABB(EntityPlayer.class, Block.FULL_BLOCK_AABB.offset(pos.down()));
                 for(EntityPlayer player : listPlayers)
                 {
                     player.curePotionEffects(new ItemStack(Items.MILK_BUCKET));

@@ -1,6 +1,8 @@
 package com.mrcrayfish.furniture.util;
 
 import com.mrcrayfish.furniture.entity.EntitySeat;
+
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
@@ -35,7 +37,7 @@ public class SeatUtil
     {
         if(!world.isRemote)
         {
-            List<EntitySeat> seats = world.getEntitiesWithinAABB(EntitySeat.class, new AxisAlignedBB(x, y, z, x + 1.0D, y + 1.0D, z + 1.0D).grow(1D));
+            List<EntitySeat> seats = world.getEntitiesWithinAABB(EntitySeat.class, Block.FULL_BLOCK_AABB.offset(x, y, z).grow(1).grow(1D));
             for(EntitySeat seat : seats)
             {
                 if(seat.blockPosX == x && seat.blockPosY == y && seat.blockPosZ == z)
@@ -55,7 +57,7 @@ public class SeatUtil
     {
         if(!world.isRemote)
         {
-            List<EntitySeat> seats = world.getEntitiesWithinAABB(EntitySeat.class, new AxisAlignedBB(x, y, z, x + 1.0D, y + 1.0D, z + 1.0D).grow(1D));
+            List<EntitySeat> seats = world.getEntitiesWithinAABB(EntitySeat.class, Block.FULL_BLOCK_AABB.offset(x, y, z).grow(1).grow(1D));
             for(EntitySeat seat : seats)
             {
                 if(seat.blockPosX == x && seat.blockPosY == y && seat.blockPosZ == z)

@@ -30,8 +30,6 @@ import java.util.Random;
 
 public class BlockShower extends BlockFurniture
 {
-    private static final AxisAlignedBB NOTHING = new AxisAlignedBB(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
-
     private static final AxisAlignedBB[] SIDES = new Bounds(0, 0, 0, 1, 16, 16).getRotatedBounds();
     private static final AxisAlignedBB BOTTOM = new Bounds(0, 0, 0, 16, 1, 16).toAABB();
 

@@ -35,7 +35,6 @@ public class BlockTable extends Block
     public static final PropertyBool LEFT = PropertyBool.create("left");
     public static final PropertyBool RIGHT = PropertyBool.create("right");
 
-    public static final AxisAlignedBB EMPTY_AABB = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
     public static final AxisAlignedBB TOP = new Bounds(0, 14.5, 0, 16, 16, 16).toAABB();
 
     public static final AxisAlignedBB SINGLE_LEG = new Bounds(6, 0, 6, 10, 14.5, 10).toAABB();
@@ -135,7 +134,7 @@ public class BlockTable extends Block
         {
             if(connectedSides >= 3 || (north && south) || (east && west))
             {
-                boxes.add(EMPTY_AABB);
+                boxes.add(BlockFurniture.EMPTY_AABB);
             }
             else
             {
