@@ -9,6 +9,7 @@ cfm.filter.kitchen=廚房
 cfm.filter.lighting=燈光
 cfm.filter.outdoor=戶外
 cfm.filter.storage=存儲
+cfm.filter.items=物品
 
 # Item
 item.item_hammer.name=錘子
@@ -480,6 +481,12 @@ tile.upgraded_gate_acacia.name=相思木升級版閘門
 tile.upgraded_gate_dark_oak.name=黑橡木升級版閘門
 tile.upgraded_gate_nether_brick.name=地獄磚升級版閘門
 tile.white_gate.name=白色閘門
+tile.park_bench_oak.name=橡木公園長椅
+tile.park_bench_spruce.name=杉木公園長椅
+tile.park_bench_birch.name=樺木公園長椅
+tile.park_bench_jungle.name=叢林木公園長椅
+tile.park_bench_acacia.name=相思木公園長椅
+tile.park_bench_dark_oak.name=黑橡木公園長椅
 
 # Info
 cfm.info=按住Shift以顯示資訊
