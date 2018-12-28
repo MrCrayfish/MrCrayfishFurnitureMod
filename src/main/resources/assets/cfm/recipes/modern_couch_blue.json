@@ -1,7 +1,7 @@
 {
     "result": {
         "item": "cfm:modern_couch",
-        "data": 12
+        "data": 11
     },
     "pattern": [
         "OCO",
@@ -15,7 +15,7 @@
         },
         "C": {
             "item": "cfm:couch",
-            "data": 12
+            "data": 11
         },
         "S": {
             "item": "minecraft:planks",
