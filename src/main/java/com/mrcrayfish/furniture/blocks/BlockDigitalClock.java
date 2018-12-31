@@ -37,8 +37,19 @@ import java.util.List;
  */
 public class BlockDigitalClock extends BlockFurnitureTile
 {
-    private static final AxisAlignedBB[] COLLISION_BOXES = new Bounds(6, 0, 4, 9, 4, 12).getRotatedBounds();
-    private static final AxisAlignedBB[] SELECTION_BOXES = new Bounds(5, 0, 3, 10, 5, 13).getRotatedBounds();
+    private static final AxisAlignedBB[] FRAME_BOTTOM = new Bounds(4.5, 0, 9, 11.5, 0.5, 9.5).getRotatedBounds();
+    private static final AxisAlignedBB[] FRAME_TOP = new Bounds(4.5, 4, 9, 11.5, 4.5, 9.5).getRotatedBounds();
+    private static final AxisAlignedBB[] FRAME_BACK = new Bounds(4.5, 0, 7, 11.5, 4.3, 9).getRotatedBounds();
+    private static final AxisAlignedBB[] FRAME_LEFT = new Bounds(4, 0.5, 9, 4.5, 4, 9.5).getRotatedBounds();
+    private static final AxisAlignedBB[] FRAME_RIGHT = new Bounds(11.5, 0.5, 9, 12, 4, 9.5).getRotatedBounds();
+    private static final AxisAlignedBB[] FRAME_BACK_2 = new Bounds(4.2, 0.3, 7, 4.5, 4, 9).getRotatedBounds();
+    private static final AxisAlignedBB[] FRAME_BACK_3 = new Bounds(11.5, 0.3, 7, 11.8, 4, 9).getRotatedBounds();
+    private static final AxisAlignedBB[] BUTTON_1 = new Bounds(5, 4.3, 8, 5.4, 4.5, 8.4).getRotatedBounds();
+    private static final AxisAlignedBB[] BUTTON_2 = new Bounds(6, 4.3, 8, 6.4, 4.5, 8.4).getRotatedBounds();
+    private static final AxisAlignedBB[] BUTTON_3 = new Bounds(7, 4.3, 8, 7.4, 4.5, 8.4).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.getRotatedBoundLists(FRAME_BOTTOM, FRAME_TOP, FRAME_BACK, FRAME_LEFT, FRAME_RIGHT, FRAME_BACK_2, FRAME_BACK_3, BUTTON_1, BUTTON_2, BUTTON_3);
+    private static final AxisAlignedBB[] BOUNDING_BOX = Bounds.getBoundingBoxes(COLLISION_BOXES);
 
     public BlockDigitalClock()
     {
@@ -47,6 +58,18 @@ public class BlockDigitalClock extends BlockFurnitureTile
         this.setRegistryName("digital_clock");
         this.setLightLevel(0.5F);
         this.setHardness(0.5F);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX[state.getValue(FACING).getHorizontalIndex()];
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override
@@ -61,18 +84,6 @@ public class BlockDigitalClock extends BlockFurnitureTile
         {
             tooltip.add(TextFormatting.YELLOW + I18n.format("cfm.info"));
         }
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
-    {
-        Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()]);
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return SELECTION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override

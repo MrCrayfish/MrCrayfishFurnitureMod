@@ -24,6 +24,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -39,10 +40,18 @@ public class BlockCounter extends BlockFurnitureTile
 {
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
 
-    public static final AxisAlignedBB COUNTER_TOP = new Bounds(0, 14, 0, 16, 16, 16).toAABB();
-    public static final AxisAlignedBB[] FORWARD_BOXES = new Bounds(2, 0, 0, 16, 14, 16).getRotatedBounds();
-    public static final AxisAlignedBB[] LEFT_CORNER_BOXES = new Bounds(2, 0, 2 * 0.062, 16, 14, 16).getRotatedBounds();
-    public static final AxisAlignedBB[] RIGHT_CORNER_BOXES = new Bounds(2, 0, 0, 16, 14, 14).getRotatedBounds();
+    public static final AxisAlignedBB[] COUNTER_TOP = new Bounds(0, 14, 0, 16, 16, 16).getRotatedBounds();
+    public static final AxisAlignedBB[] LEFT_CORNER_BOXES = new Bounds(2, 0, 2, 16, 14, 16).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
+    public static final AxisAlignedBB[] RIGHT_CORNER_BOXES = new Bounds(2, 0, 0, 16, 14, 14).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
+
+    public static final Bounds BOUNDS_NORMAL = new Bounds(2, 0, 0, 16, 14, 16);
+    public static final AxisAlignedBB[] NORMAL_BOXES = BOUNDS_NORMAL.getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_NORMAL = Bounds.getRotatedBoundLists(COUNTER_TOP, NORMAL_BOXES);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_INVERT_LEFT = Bounds.getRotatedBoundLists(COUNTER_TOP, LEFT_CORNER_BOXES);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_INVERT_RIGHT = Bounds.getRotatedBoundLists(COUNTER_TOP, RIGHT_CORNER_BOXES);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_CORNER_LEFT = Bounds.combineBoxLists(COLLISION_BOXES_NORMAL, Bounds.getRotatedBoundLists(BOUNDS_NORMAL.getRotatedBounds(Rotation.CLOCKWISE_180)));
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_CORNER_RIGHT = Bounds.combineBoxLists(COLLISION_BOXES_NORMAL, Bounds.getRotatedBoundLists(BOUNDS_NORMAL.getRotatedBounds()));
 
     public static final PropertyEnum<CounterType> TYPE = PropertyEnum.create("type", CounterType.class);
 
@@ -55,12 +64,19 @@ public class BlockCounter extends BlockFurnitureTile
     }
 
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
     {
-        List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
-        for(AxisAlignedBB box : list)
+        if (!isActualState)
+            state = getActualState(state, world, pos);
+
+        int i = state.getValue(FACING).getHorizontalIndex();
+        switch (state.getValue(TYPE))
         {
-            Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
+            case INVERT_LEFT: return COLLISION_BOXES_INVERT_LEFT[i];
+            case INVERT_RIGHT: return COLLISION_BOXES_INVERT_RIGHT[i];
+            case CORNER_LEFT: return COLLISION_BOXES_CORNER_LEFT[i];
+            case CORNER_RIGHT: return COLLISION_BOXES_CORNER_RIGHT[i];
+            default: return COLLISION_BOXES_NORMAL[i];
         }
     }
 
@@ -153,62 +169,6 @@ public class BlockCounter extends BlockFurnitureTile
         {
             return this.toString().toLowerCase(Locale.US);
         }
-    }
-
-    private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
-    {
-        List<AxisAlignedBB> list = Lists.newArrayList();
-        EnumFacing facing = state.getValue(FACING);
-        list.add(COUNTER_TOP);
-
-        if(state.getValue(TYPE) == CounterType.INVERT_LEFT)
-        {
-            list.add(LEFT_CORNER_BOXES[facing.getHorizontalIndex()]);
-        }
-        else if(state.getValue(TYPE) == CounterType.INVERT_RIGHT)
-        {
-            list.add(RIGHT_CORNER_BOXES[facing.getHorizontalIndex()]);
-        }
-        else if(state.getValue(TYPE) == CounterType.NORMAL)
-        {
-            list.add(FORWARD_BOXES[facing.getHorizontalIndex()]);
-        }
-        else
-        {
-            list.add(FULL_BLOCK_AABB);
-        }
-
-        return list;
-    }
-
-    @Override
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
-    {
-        List<RayTraceResult> list = Lists.newArrayList();
-
-        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos)))
-        {
-            list.add(this.rayTrace(pos, start, end, axisalignedbb));
-        }
-
-        RayTraceResult raytraceresult1 = null;
-        double d1 = 0.0D;
-
-        for(RayTraceResult raytraceresult : list)
-        {
-            if(raytraceresult != null)
-            {
-                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-                if(d0 > d1)
-                {
-                    raytraceresult1 = raytraceresult;
-                    d1 = d0;
-                }
-            }
-        }
-
-        return raytraceresult1;
     }
 
     @Override

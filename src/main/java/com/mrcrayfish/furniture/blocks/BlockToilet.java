@@ -19,6 +19,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -31,17 +32,41 @@ import org.lwjgl.input.Keyboard;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 public class BlockToilet extends BlockFurniture
 {
-    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(1.6, 0, 2.4, 16, 16, 13.6).getRotatedBounds();
-    private static final AxisAlignedBB[] COLLISION_BOX_TANK = new Bounds(10.4, 8, 0, 16, 17.6, 16).getRotatedBounds();
-    private static final AxisAlignedBB COLLISION_BOX_SEAT = new Bounds(0, 0, 0, 16, 8, 16).toAABB();
+    private static final AxisAlignedBB[] BASE = new Bounds(3.2, 0, 4, 14.4, 6.4, 12).getRotatedBounds();
+    private static final AxisAlignedBB[] TANK = new Bounds(10.4, 4.8, 2.4, 16, 16, 13.6).getRotatedBounds();
+    private static final AxisAlignedBB[] TANK_LID = new Bounds(9.6, 16, 1.6, 16, 17.6, 14.4).getRotatedBounds();
+    private static final AxisAlignedBB[] BOWL_LEFT = new Bounds(1.6, 4.8, 2.4, 10.4, 9.6, 4).getRotatedBounds();
+    private static final AxisAlignedBB[] BOWL_FRONT = new Bounds(1.6, 4.8, 4, 3.2, 9.6, 12).getRotatedBounds();
+    private static final AxisAlignedBB[] BOWL_RIGHT = new Bounds(1.6, 4.8, 12, 10.4, 9.6, 13.6).getRotatedBounds();
+    private static final AxisAlignedBB[] FLUSH_1 = new Bounds(11.2, 6.4, 6.24, 12.8, 18.4, 7.84).getRotatedBounds();
+    private static final AxisAlignedBB[] FLUSH_2 = new Bounds(11.2, 6.4, 8.16, 12.8, 18.4, 9.76).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_BODY = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, BASE, TANK, TANK_LID, BOWL_LEFT, BOWL_FRONT, BOWL_RIGHT);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_PROTRUSIONS = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, FLUSH_1, FLUSH_2);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.combineBoxLists(COLLISION_BOXES_BODY, COLLISION_BOXES_PROTRUSIONS);
+    private static final AxisAlignedBB[] BOUNDING_BOX = Bounds.getBoundingBoxes(COLLISION_BOXES_BODY);
 
     public BlockToilet(Material material)
     {
         super(material);
         this.setHardness(1.0F);
         this.setSoundType(SoundType.STONE);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX[state.getValue(FACING).getHorizontalIndex()];
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return entity instanceof EntitySeat ? EMPTY : COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override
@@ -71,7 +96,7 @@ public class BlockToilet extends BlockFurniture
         }
         else
         {
-            List<EntityItem> items = worldIn.getEntitiesWithinAABB(EntityItem.class, Block.FULL_BLOCK_AABB.offset(pos).grow(1));
+            List<EntityItem> items = worldIn.getEntitiesWithinAABB(EntityItem.class, FULL_BLOCK_AABB.offset(pos).grow(1));
             for(EntityItem item : items)
             {
                 item.setDead();
@@ -79,24 +104,6 @@ public class BlockToilet extends BlockFurniture
             worldIn.playSound(pos.getX() + 0.5D, pos.getY() + 0.5D, pos.getZ() + 0.5D, FurnitureSounds.flush, SoundCategory.BLOCKS, 0.75F, 1.0F, false);
         }
         return true;
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        EnumFacing facing = state.getValue(FACING);
-        return BOUNDING_BOX[facing.getHorizontalIndex()];
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        if(!(entityIn instanceof EntitySeat))
-        {
-            EnumFacing facing = state.getValue(FACING);
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_TANK[facing.getHorizontalIndex()]);
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_SEAT);
-        }
     }
 
     @Override

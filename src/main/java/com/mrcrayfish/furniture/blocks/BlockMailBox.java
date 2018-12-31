@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -25,15 +26,38 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 public class BlockMailBox extends BlockFurnitureTile
 {
-    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(3, 0, 3, 13, 18.6, 13).toAABB();
+    private static final AxisAlignedBB[] POLE = new Bounds(7, 0, 7, 9, 12.8, 9).getRotatedBounds();
+    private static final AxisAlignedBB[] ELEMENTLEFT = new Bounds(4, 13.8, 4, 12, 18.56, 5).getRotatedBounds();
+    private static final AxisAlignedBB[] RIGHT = new Bounds(4, 13.8, 11, 12, 18.56, 12).getRotatedBounds();
+    private static final AxisAlignedBB[] BACK = new Bounds(11, 13.8, 5, 12, 18.56, 11).getRotatedBounds();
+    private static final AxisAlignedBB[] FRONT = new Bounds(4, 13.8, 5, 5, 16, 11).getRotatedBounds();
+    private static final AxisAlignedBB[] BASE = new Bounds(4, 12.8, 4, 12, 13.8, 12).getRotatedBounds();
+    private static final AxisAlignedBB[] TOP = new Bounds(3, 17.6, 3, 13, 18.6, 13).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, POLE, ELEMENTLEFT, RIGHT, BACK, FRONT, BASE, TOP);
+    private static final AxisAlignedBB[] BOUNDING_BOX = Bounds.getBoundingBoxes(COLLISION_BOXES);
 
     public BlockMailBox(Material material)
     {
         super(material);
         this.setSoundType(SoundType.WOOD);
         this.setHardness(1.0F);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX[state.getValue(FACING).getHorizontalIndex()];
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override
@@ -101,18 +125,6 @@ public class BlockMailBox extends BlockFurnitureTile
             return 1000;
         }
         return super.getExplosionResistance(entity);
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return BOUNDING_BOX;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
     }
 
     @Override

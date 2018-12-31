@@ -12,6 +12,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -22,12 +23,29 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 public class BlockRangeHood extends BlockFurniture
 {
     public static final PropertyBool DOWN = PropertyBool.create("down");
 
-    public static final AxisAlignedBB[] COLLISION_VENTILATION = new Bounds(8, 0, 3.2, 16, 16, 12.8).getRotatedBounds();
-    public static final AxisAlignedBB COLLISION_BASE = new Bounds(0, 0, 0, 16, 4, 16).toAABB();
+    private static final AxisAlignedBB[] SHROUD = new Bounds(0, 0.4, 0, 16, 4, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] VENT = new Bounds(8, 4, 3.2, 16, 16, 12.8).getRotatedBounds();
+    private static final AxisAlignedBB[] INTAKE_1 = new Bounds(1.6, 0, 2, 7, 0.8, 3).getRotatedBounds();
+    private static final AxisAlignedBB[] INTAKE_2 = new Bounds(1.6, 0, 4, 7, 0.8, 5).getRotatedBounds();
+    private static final AxisAlignedBB[] INTAKE_3 = new Bounds(1.6, 0, 6, 7, 0.8, 7).getRotatedBounds();
+    private static final AxisAlignedBB[] INTAKE_4 = new Bounds(1.6, 0, 9, 7, 0.8, 10).getRotatedBounds();
+    private static final AxisAlignedBB[] INTAKE_5 = new Bounds(1.6, 0, 11, 7, 0.8, 12).getRotatedBounds();
+    private static final AxisAlignedBB[] INTAKE_6 = new Bounds(1.6, 0, 13, 7, 0.8, 14).getRotatedBounds();
+    private static final AxisAlignedBB[] LIGHT = new Bounds(9, 0, 1.6, 14.4, 0.8, 14.4).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, SHROUD, VENT, INTAKE_1, INTAKE_2, INTAKE_3, INTAKE_4, INTAKE_5, INTAKE_6, LIGHT);
+    private static final AxisAlignedBB[] BOUNDING_BOX = Bounds.getBoundingBoxes(COLLISION_BOXES);
+
+    private static final AxisAlignedBB[] VENT_TOP = new Bounds(8, 0, 3.2, 16, 16, 12.8).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_VENT = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, VENT_TOP);
+    private static final AxisAlignedBB[] BOUNDING_BOX_VENT = Bounds.getBoundingBoxes(COLLISION_BOXES_VENT);
 
     public BlockRangeHood(Material material, boolean powered)
     {
@@ -36,6 +54,24 @@ public class BlockRangeHood extends BlockFurniture
         this.setSoundType(SoundType.METAL);
         if(powered) this.setLightLevel(0.5F);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(DOWN, false));
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        state = state.getActualState(source, pos);
+        int i = state.getValue(FACING).getHorizontalIndex();
+        return state.getValue(DOWN) ? BOUNDING_BOX_VENT[i] : BOUNDING_BOX[i];
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        if (!isActualState)
+            state = state.getActualState(world, pos);
+
+        int i = state.getValue(FACING).getHorizontalIndex();
+        return state.getValue(DOWN) ? COLLISION_BOXES_VENT[i] : COLLISION_BOXES[i];
     }
 
     @Override
@@ -48,58 +84,6 @@ public class BlockRangeHood extends BlockFurniture
     public boolean isFullCube(IBlockState state)
     {
         return false;
-    }
-
-    protected List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
-    {
-        EnumFacing facing = state.getValue(FACING);
-        List<AxisAlignedBB> boxes = new ArrayList<>();
-        boxes.add(COLLISION_VENTILATION[facing.getHorizontalIndex()]);
-        if(!state.getValue(DOWN))
-        {
-            boxes.add(COLLISION_BASE);
-        }
-        return boxes;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, world, pos), world, pos);
-        for(AxisAlignedBB box : list)
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-        }
-    }
-
-    @Override
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
-    {
-        List<RayTraceResult> list = Lists.newArrayList();
-
-        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos), world, pos))
-        {
-            list.add(this.rayTrace(pos, start, end, axisalignedbb));
-        }
-
-        RayTraceResult raytraceresult1 = null;
-        double d1 = 0.0D;
-
-        for(RayTraceResult raytraceresult : list)
-        {
-            if(raytraceresult != null)
-            {
-                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-                if(d0 > d1)
-                {
-                    raytraceresult1 = raytraceresult;
-                    d1 = d0;
-                }
-            }
-        }
-
-        return raytraceresult1;
     }
 
     @Override

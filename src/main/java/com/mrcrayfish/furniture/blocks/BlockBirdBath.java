@@ -24,12 +24,20 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockBirdBath extends Block
+import javax.annotation.Nullable;
+
+public class BlockBirdBath extends BlockCollisionRaytrace
 {
-    public static final AxisAlignedBB CENTER = new Bounds(5, 1.75, 5, 11, 12, 11).toAABB();
-    public static final AxisAlignedBB BOTTOM_LIP = new Bounds(4, 0, 4, 12, 1.5, 12).toAABB();
-    public static final AxisAlignedBB TOP = new Bounds(1, 11.25, 1, 15, 12.75, 15).toAABB();
-    public static final AxisAlignedBB BOWL = new Bounds(0, 12.75, 0, 16, 14.5, 16).toAABB();
+    private static final AxisAlignedBB BASE = new Bounds(4, 0, 4, 12, 1.6, 12).toAABB();
+    private static final AxisAlignedBB COLUMN = new Bounds(5, 1.6, 5, 11, 11.2, 11).toAABB();
+    private static final AxisAlignedBB BOWL_BASE = new Bounds(1, 11.2, 1, 15, 12.8, 15).toAABB();
+    private static final AxisAlignedBB BOWL_LEFT = new Bounds(0, 12.8, 0, 1.6, 14.4, 16).toAABB();
+    private static final AxisAlignedBB BOWL_BACK = new Bounds(1.6, 12.8, 0, 14.4, 14.4, 1.6).toAABB();
+    private static final AxisAlignedBB BOWL_FRONT = new Bounds(1.6, 12.8, 14.4, 14.4, 14.4, 16).toAABB();
+    private static final AxisAlignedBB BOWL_RIGHT = new Bounds(14.4, 12.8, 0, 16, 14.4, 16).toAABB();
+
+    private static final List<AxisAlignedBB> COLLISION_BOXES = Lists.newArrayList(BASE, COLUMN, BOWL_BASE, BOWL_LEFT, BOWL_BACK, BOWL_FRONT, BOWL_RIGHT);
+    private static final AxisAlignedBB BOUNDING_BOX = Bounds.getBoundingBox(COLLISION_BOXES);
 
     public BlockBirdBath(Material material)
     {
@@ -37,6 +45,18 @@ public class BlockBirdBath extends Block
         this.setHardness(1.0F);
         this.setSoundType(SoundType.STONE);
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX;
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES;
     }
 
     @Override
@@ -59,56 +79,6 @@ public class BlockBirdBath extends Block
     public boolean isFullCube(IBlockState state)
     {
         return false;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
-    {
-        List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
-        for(AxisAlignedBB box : list)
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-        }
-    }
-
-    private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
-    {
-        List<AxisAlignedBB> list = Lists.newArrayList();
-        list.add(CENTER);
-        list.add(BOTTOM_LIP);
-        list.add(TOP);
-        list.add(BOWL);
-        return list;
-    }
-
-    @Override
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
-    {
-        List<RayTraceResult> list = Lists.newArrayList();
-
-        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos)))
-        {
-            list.add(this.rayTrace(pos, start, end, axisalignedbb));
-        }
-
-        RayTraceResult raytraceresult1 = null;
-        double d1 = 0.0D;
-
-        for(RayTraceResult raytraceresult : list)
-        {
-            if(raytraceresult != null)
-            {
-                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-                if(d0 > d1)
-                {
-                    raytraceresult1 = raytraceresult;
-                    d1 = d0;
-                }
-            }
-        }
-
-        return raytraceresult1;
     }
 
     @Override

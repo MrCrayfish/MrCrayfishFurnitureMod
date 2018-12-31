@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.blocks;
 
+import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
@@ -40,11 +41,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
 
-public class BlockPresent extends Block implements ITileEntityProvider
+import javax.annotation.Nullable;
+
+public class BlockPresent extends BlockCollisionRaytrace implements ITileEntityProvider
 {
     public static final PropertyEnum<EnumDyeColor> COLOUR = PropertyEnum.create("colour", EnumDyeColor.class);
 
-    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(4, 0, 4, 12, 5.6, 12).toAABB();
+    private static final AxisAlignedBB BASE = new Bounds(4, 0, 4, 12, 6, 12).toAABB();
+    private static final AxisAlignedBB RIBBON_1 = new Bounds(3.9, -0.1, 7, 12.1, 6.1, 9).toAABB();
+    private static final AxisAlignedBB RIBBON_2 = new Bounds(7, -0.1, 3.9, 9, 6.1, 12.1).toAABB();
+
+    private static final List<AxisAlignedBB> COLLISION_BOXES = Lists.newArrayList(BASE, RIBBON_1, RIBBON_2);
+    private static final AxisAlignedBB BOUNDING_BOX = Bounds.getBoundingBox(BASE);
 
     public BlockPresent(Material material)
     {
@@ -54,6 +62,18 @@ public class BlockPresent extends Block implements ITileEntityProvider
         this.hasTileEntity = true;
         this.setDefaultState(this.blockState.getBaseState().withProperty(COLOUR, EnumDyeColor.WHITE));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX;
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES;
     }
 
     @Override
@@ -98,18 +118,6 @@ public class BlockPresent extends Block implements ITileEntityProvider
             InventoryUtil.dropInventoryItems(world, pos, inv);
         }
         super.breakBlock(world, pos, state);
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return BOUNDING_BOX;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
     }
 
     @Override

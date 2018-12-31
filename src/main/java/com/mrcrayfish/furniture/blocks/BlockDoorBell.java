@@ -17,6 +17,7 @@ import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -30,7 +31,11 @@ public class BlockDoorBell extends BlockFurniture
 {
     public static final PropertyBool POWERED = PropertyBool.create("powered");
 
-    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(13.6, 4.8, 6.4, 16, 11.2, 9.6).getRotatedBounds();
+    private static final AxisAlignedBB[] BODY = new Bounds(14.4, 4.8, 6.4, 16, 11.2, 9.6).getRotatedBounds();
+    private static final AxisAlignedBB[] BUTTON = new Bounds(13.6, 7.2, 7.2, 14.4, 8.8, 8.8).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] RAYTRACE_BOXES = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, BODY, BUTTON);
+    private static final AxisAlignedBB[] BOUNDING_BOX = Bounds.getBoundingBoxes(Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, BODY));
 
     public BlockDoorBell(Material material)
     {
@@ -38,6 +43,24 @@ public class BlockDoorBell extends BlockFurniture
         this.setSoundType(SoundType.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(POWERED, Boolean.TRUE));
         this.setTickRandomly(true);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX[state.getValue(FACING).getHorizontalIndex()];
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getRaytraceBoxes(IBlockState state, World world, BlockPos pos)
+    {
+        return RAYTRACE_BOXES[state.getValue(FACING).getHorizontalIndex()];
+    }
+
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+    {
+        return NULL_AABB;
     }
 
     @Override
@@ -50,12 +73,6 @@ public class BlockDoorBell extends BlockFurniture
     public boolean isFullCube(IBlockState state)
     {
         return false;
-    }
-
-    @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
-    {
-        return NULL_AABB;
     }
 
     @Override
@@ -85,13 +102,6 @@ public class BlockDoorBell extends BlockFurniture
             this.dropBlockAsItem(worldIn, pos, state, 0);
             worldIn.setBlockToAir(pos);
         }
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        EnumFacing facing = state.getValue(FACING);
-        return BOUNDING_BOX[facing.getHorizontalIndex()];
     }
 
     @Override

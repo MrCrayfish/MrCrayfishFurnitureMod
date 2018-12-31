@@ -22,6 +22,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -44,10 +45,13 @@ public class BlockModernBed extends BlockFurnitureTile
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
     public static final PropertyBool OCCUPIED = PropertyBool.create("occupied");
 
-    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(0, 0, 0, 16, 9, 16).toAABB();
-    private static final AxisAlignedBB BASE = new Bounds(0, 4, 0, 16, 8, 16).toAABB();
+    private static final AxisAlignedBB[] BASE = new Bounds(0, 4, 0, 16, 8, 16).getRotatedBounds();
     private static final AxisAlignedBB[] TOP = new Bounds(14, 0, 0, 16, 16, 16).getRotatedBounds();
     private static final AxisAlignedBB[] BOTTOM = new Bounds(0, 0, 0, 2, 8, 16).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_TOP = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, BASE, TOP);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_BOTTOM = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, BASE, BOTTOM);
+    private static final AxisAlignedBB BOUNDING_BOX = Bounds.getBoundingBox(COLLISION_BOXES_BOTTOM);
 
     public BlockModernBed(String id)
     {
@@ -61,6 +65,13 @@ public class BlockModernBed extends BlockFurnitureTile
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
         return BOUNDING_BOX;
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        int i = state.getValue(FACING).getHorizontalIndex();
+        return this == FurnitureBlocks.MODERN_BED_TOP ? COLLISION_BOXES_TOP[i] : COLLISION_BOXES_BOTTOM[i];
     }
 
     @Override
@@ -85,61 +96,6 @@ public class BlockModernBed extends BlockFurnitureTile
                 entityIn.motionY *= 0.8D;
             }
         }
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
-    {
-        List<AxisAlignedBB> list = getCollisionBoxList(state, worldIn, pos);
-        for(AxisAlignedBB box : list)
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-        }
-    }
-
-    protected List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
-    {
-        List<AxisAlignedBB> boxes = new ArrayList<>();
-        boxes.add(BASE);
-        if(this == FurnitureBlocks.MODERN_BED_TOP)
-        {
-            boxes.add(TOP[state.getValue(FACING).getHorizontalIndex()]);
-        }
-        else
-        {
-            boxes.add(BOTTOM[state.getValue(FACING).getHorizontalIndex()]);
-        }
-        return boxes;
-    }
-
-    @Override
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
-    {
-        List<RayTraceResult> list = Lists.newArrayList();
-
-        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos), world, pos))
-        {
-            list.add(this.rayTrace(pos, start, end, axisalignedbb));
-        }
-
-        RayTraceResult raytraceresult1 = null;
-        double d1 = 0.0D;
-
-        for(RayTraceResult raytraceresult : list)
-        {
-            if(raytraceresult != null)
-            {
-                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-                if(d0 > d1)
-                {
-                    raytraceresult1 = raytraceresult;
-                    d1 = d0;
-                }
-            }
-        }
-
-        return raytraceresult1;
     }
 
     @Override

@@ -11,6 +11,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -25,7 +26,7 @@ public class BlockFairyLight extends BlockFurniture
 
     public static final PropertyEnum<FairyLightType> TYPE = PropertyEnum.create("type", FairyLightType.class);
 
-    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(6, 11, 0, 11, 16, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(6, 11, 0, 11, 16, 16).getRotatedBounds(Rotation.CLOCKWISE_90);
 
     public BlockFairyLight(Material materialIn)
     {
@@ -34,6 +35,19 @@ public class BlockFairyLight extends BlockFurniture
         this.setLightLevel(0.5F);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.GLASS);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        EnumFacing facing = state.getValue(FACING);
+        return BOUNDING_BOX[facing.getHorizontalIndex()];
+    }
+
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+    {
+        return NULL_AABB;
     }
 
     @Override
@@ -64,23 +78,7 @@ public class BlockFairyLight extends BlockFurniture
         {
             return state.withProperty(TYPE, FairyLightType.EVEN);
         }
-        else
-        {
-            return state.withProperty(TYPE, FairyLightType.ODD);
-        }
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        EnumFacing facing = state.getValue(FACING);
-        return BOUNDING_BOX[facing.getHorizontalIndex()];
-    }
-
-    @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
-    {
-        return NULL_AABB;
+        return state.withProperty(TYPE, FairyLightType.ODD);
     }
 
     @Override

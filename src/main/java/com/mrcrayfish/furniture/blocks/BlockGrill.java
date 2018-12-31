@@ -31,14 +31,30 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 public class BlockGrill extends BlockFurnitureTile
 {
-    public static final AxisAlignedBB NORTH_SOUTH_BOUDING_BOX = new Bounds(0, 0, 1, 16, 16, 15).toAABB();
-    public static final AxisAlignedBB EAST_WEST_BOUDING_BOX = new Bounds(1, 0, 0, 15, 16, 16).toAABB();
+    private static final AxisAlignedBB[] BASE = new Bounds(1, 12, 2, 15, 13, 14).getRotatedBounds();
+    private static final AxisAlignedBB[] LEFT = new Bounds(1, 13, 2, 2, 16, 14).getRotatedBounds();
+    private static final AxisAlignedBB[] RIGHT = new Bounds(14, 13, 2, 15, 16, 14).getRotatedBounds();
+    private static final AxisAlignedBB[] BACK = new Bounds(2, 13, 2, 14, 16, 3).getRotatedBounds();
+    private static final AxisAlignedBB[] FRONT = new Bounds(2, 13, 13, 14, 16, 14).getRotatedBounds();
+    private static final AxisAlignedBB[] BARS = new Bounds(2, 14.5, 3, 14, 15.5, 13).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_LEFT_CONN = new Bounds(0.5, 14, 5, 1, 15, 6).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_LEFT_CONN_2 = new Bounds(0.5, 14, 10, 1, 15, 11).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_LEFT = new Bounds(0, 14, 5, 0.5, 15, 11).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_RIGHT_CONN = new Bounds(15, 14, 5, 15.5, 15, 6).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_RIGHT_CONN_2 = new Bounds(15, 14, 10, 15.5, 15, 11).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_RIGHT = new Bounds(15.5, 14, 5, 16, 15, 11).getRotatedBounds();
+    private static final AxisAlignedBB[] LEG_BACK_LEFT = new Bounds(1.5, 0, 2.5, 3, 12, 4).getRotatedBounds();
+    private static final AxisAlignedBB[] LEG_BACK_RIGHT = new Bounds(13, 0, 2.5, 14.5, 12, 4).getRotatedBounds();
+    private static final AxisAlignedBB[] LEG_FRONT_RIGHT = new Bounds(13, 0, 12, 14.5, 12, 13.5).getRotatedBounds();
+    private static final AxisAlignedBB[] LEG_FRONT_LEFT = new Bounds(1.5, 0, 12, 3, 12, 13.5).getRotatedBounds();
+    private static final AxisAlignedBB[] MESH_HOLDER = new Bounds(2, 5, 3, 14, 5, 13).getRotatedBounds();
 
-    public static final AxisAlignedBB[] TOP = new Bounds(2, 12, 1, 14, 16, 15).getRotatedBounds();
-    public static final AxisAlignedBB[] GRILL = new Bounds(3, 5, 2, 13, 5, 14).getRotatedBounds();
-    public static final AxisAlignedBB[] LEGS = {new AxisAlignedBB(13 * 0.0625, 0, 2.5 * 0.0625, 14.5 * 0.0625, 12 * 0.0625, 4 * 0.0625), new AxisAlignedBB(1.5 * 0.0625, 0, 2.5 * 0.0625, 3 * 0.0625, 12 * 0.0625, 4 * 0.0625), new AxisAlignedBB(14.5 * 0.0625, 0, 12 * 0.0625, 13 * 0.0625, 12 * 0.0625, 13.5 * 0.0625), new AxisAlignedBB(1.5 * 0.0625, 0, 12 * 0.0625, 3 * 0.0625, 12 * 0.0625, 13.5 * 0.0625),new AxisAlignedBB(12 * 0.0625, 0, 1.5 * 0.0625, 13.5 * 0.0625, 12 * 0.0625, 3 * 0.0625), new AxisAlignedBB(2.5 * 0.0625, 0, 1.5 * 0.0625, 4 * 0.0625, 12 * 0.0625, 3 * 0.0625),new AxisAlignedBB(12 * 0.0625, 0, 13 * 0.0625, 13.5 * 0.0625, 12 * 0.0625, 14.5 * 0.0625), new AxisAlignedBB(2.5 * 0.0625, 0, 13 * 0.0625, 4 * 0.0625, 12 * 0.0625, 14.5 * 0.0625), new AxisAlignedBB(13 * 0.0625, 0, 2.5 * 0.0625, 14.5 * 0.0625, 12 * 0.0625, 4 * 0.0625), new AxisAlignedBB(1.5 * 0.0625, 0, 2.5 * 0.0625, 3 * 0.0625, 12 * 0.0625, 4 * 0.0625), new AxisAlignedBB(14.5 * 0.0625, 0, 12 * 0.0625, 13 * 0.0625, 12 * 0.0625, 13.5 * 0.0625), new AxisAlignedBB(1.5 * 0.0625, 0, 12 * 0.0625, 3 * 0.0625, 12 * 0.0625, 13.5 * 0.0625), new AxisAlignedBB(12 * 0.0625, 0, 1.5 * 0.0625, 13.5 * 0.0625, 12 * 0.0625, 3 * 0.0625), new AxisAlignedBB(2.5 * 0.0625, 0, 1.5 * 0.0625, 4 * 0.0625, 12 * 0.0625, 3 * 0.0625), new AxisAlignedBB(12 * 0.0625, 0, 13 * 0.0625, 13.5 * 0.0625, 12 * 0.0625, 14.5 * 0.0625), new AxisAlignedBB(2.5 * 0.0625, 0, 13 * 0.0625, 4 * 0.0625, 12 * 0.0625, 14.5 * 0.0625)};
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.getRotatedBoundLists(BASE, LEFT, RIGHT, BACK, FRONT, BARS, HANDLE_LEFT_CONN, HANDLE_LEFT_CONN_2, HANDLE_LEFT, HANDLE_RIGHT_CONN, HANDLE_RIGHT_CONN_2, HANDLE_RIGHT, LEG_BACK_LEFT, LEG_BACK_RIGHT, LEG_FRONT_RIGHT, LEG_FRONT_LEFT, MESH_HOLDER);
+    private static final AxisAlignedBB[] BOUNDING_BOX = Bounds.getBoundingBoxes(Bounds.getRotatedBoundLists(LEG_FRONT_LEFT, LEFT, RIGHT));
 
     public BlockGrill(Material material)
     {
@@ -50,18 +66,13 @@ public class BlockGrill extends BlockFurnitureTile
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        EnumFacing facing = state.getValue(FACING);
-        return facing.getHorizontalIndex() % 2 == 0 ? NORTH_SOUTH_BOUDING_BOX : EAST_WEST_BOUDING_BOX;
+        return BOUNDING_BOX[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
     {
-        List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
-        for(AxisAlignedBB box : list)
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-        }
+        return COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override
@@ -192,47 +203,5 @@ public class BlockGrill extends BlockFurnitureTile
         {
             this.id = id;
         }
-    }
-
-    private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
-    {
-        List<AxisAlignedBB> list = Lists.newArrayList();
-        EnumFacing facing = state.getValue(FACING);
-
-        list.add(TOP[facing.getHorizontalIndex()]);
-        list.add(GRILL[facing.getHorizontalIndex()]);
-        list.addAll(Arrays.asList(LEGS).subList(facing.getHorizontalIndex() * 4, 4 + facing.getHorizontalIndex() * 4));
-
-        return list;
-    }
-
-    @Override
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
-    {
-        List<RayTraceResult> list = Lists.newArrayList();
-
-        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos)))
-        {
-            list.add(this.rayTrace(pos, start, end, axisalignedbb));
-        }
-
-        RayTraceResult raytraceresult1 = null;
-        double d1 = 0.0D;
-
-        for(RayTraceResult raytraceresult : list)
-        {
-            if(raytraceresult != null)
-            {
-                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-                if(d0 > d1)
-                {
-                    raytraceresult1 = raytraceresult;
-                    d1 = d0;
-                }
-            }
-        }
-
-        return raytraceresult1;
     }
 }

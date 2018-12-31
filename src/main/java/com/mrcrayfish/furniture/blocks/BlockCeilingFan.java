@@ -1,9 +1,14 @@
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.tileentity.TileEntityCeilingFan;
 import com.mrcrayfish.furniture.util.Bounds;
-import net.minecraft.block.Block;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
@@ -18,16 +23,18 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
 /**
  * Author: MrCrayfish
  */
-public class BlockCeilingFan extends Block implements IPowered
+public class BlockCeilingFan extends BlockCollisionRaytrace implements IPowered
 {
-    private static final AxisAlignedBB SELECTION_BOX = new Bounds(4, 5, 4, 12, 16, 12).toAABB();
-    private static final AxisAlignedBB COLLISION_BOX = new Bounds(5, 6, 5, 11, 16, 11).toAABB();
+    private static final AxisAlignedBB BASE = new Bounds(6, 14, 6, 10, 16, 10).toAABB();
+    private static final AxisAlignedBB CONNECTION = new Bounds(7.2, 9, 7.2, 8.8, 14, 8.8).toAABB();
+    private static final AxisAlignedBB HEAD = new Bounds(6, 6, 6, 10, 9, 10).toAABB();
+    private static final AxisAlignedBB BLADE_BASE = new Bounds(4.3, 6.5, 4.3, 11.7, 8.5, 11.7).toAABB();
+
+    private static final List<AxisAlignedBB> COLLISION_BOXES = Lists.newArrayList(BASE, CONNECTION, HEAD, BLADE_BASE);
+    private static final AxisAlignedBB BOUNDING_BOX = Bounds.getBoundingBox(COLLISION_BOXES);
 
     public BlockCeilingFan()
     {
@@ -35,6 +42,18 @@ public class BlockCeilingFan extends Block implements IPowered
         this.setHardness(0.5F);
         this.setSoundType(SoundType.WOOD);
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX;
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES;
     }
 
     @Override
@@ -47,18 +66,6 @@ public class BlockCeilingFan extends Block implements IPowered
     public boolean isFullCube(IBlockState state)
     {
         return false;
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return SELECTION_BOX;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState)
-    {
-        Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX);
     }
 
     @Override

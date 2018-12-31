@@ -29,9 +29,15 @@ public class BlockModernStair extends BlockFurniture
 {
     public static final PropertyEnum<Type> TYPE = PropertyEnum.create("type", Type.class);
 
-    private static final AxisAlignedBB[] BOTTOM_COLLISION_BOXES = new Bounds(0, 0, 0, 16, 8, 16).getRotatedBounds();
-    private static final AxisAlignedBB[] TOP_COLLISION_BOXES = new Bounds(8, 0, 0, 16, 16, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] STAIR_BOTTOM = new Bounds(0, 6, 8, 16, 8, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] STAIR_TOP = new Bounds(0, 14, 0, 16, 16, 8).getRotatedBounds();
+    private static final AxisAlignedBB[] SUPPORT_BOTTOM = new Bounds(6.5, 0, 2.5, 9.5, 8, 13.5).getRotatedBounds();
+    private static final AxisAlignedBB[] SUPPORT_TOP = new Bounds(6.5, 8, 2.5, 9.5, 14, 5.5).getRotatedBounds();
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.getRotatedBoundLists(STAIR_BOTTOM, STAIR_TOP, SUPPORT_BOTTOM, SUPPORT_TOP);
 
+    private static final AxisAlignedBB[] SUPPORT_TOP_CONNECTED = new Bounds(6.5, 8, -5.5, 9.5, 16, 5.5).getRotatedBounds();
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_CONNECTED = Bounds.getRotatedBoundLists(STAIR_BOTTOM, STAIR_TOP, SUPPORT_BOTTOM, SUPPORT_TOP_CONNECTED);
+   
     public BlockModernStair()
     {
         super(Material.WOOD);
@@ -42,11 +48,14 @@ public class BlockModernStair extends BlockFurniture
     }
 
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState)
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
     {
-        EnumFacing facing = state.getValue(FACING);
-        Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, BOTTOM_COLLISION_BOXES[facing.getHorizontalIndex()]);
-        Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, TOP_COLLISION_BOXES[facing.getHorizontalIndex()]);
+        if (!isActualState)
+            state = state.getActualState(world, pos);
+
+        int i = state.getValue(FACING).getHorizontalIndex();
+        Type type = state.getValue(TYPE);
+        return type == Type.DOWN || type == Type.BOTH ? COLLISION_BOXES_CONNECTED[i] : COLLISION_BOXES[i];
     }
 
     @Override
@@ -90,44 +99,6 @@ public class BlockModernStair extends BlockFurniture
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, FACING, TYPE);
-    }
-
-    protected List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
-    {
-        List<AxisAlignedBB> boxes = new ArrayList<>();
-        EnumFacing facing = state.getValue(FACING);
-        boxes.add(BOTTOM_COLLISION_BOXES[facing.getHorizontalIndex()]);
-        boxes.add(TOP_COLLISION_BOXES[facing.getHorizontalIndex()]);
-        return boxes;
-    }
-
-    @Override
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
-    {
-        List<RayTraceResult> list = Lists.newArrayList();
-
-        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(blockState, world, pos))
-        {
-            list.add(this.rayTrace(pos, start, end, axisalignedbb));
-        }
-
-        RayTraceResult result = null;
-        double d1 = 0.0D;
-
-        for(RayTraceResult raytraceresult : list)
-        {
-            if(raytraceresult != null)
-            {
-                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-                if(d0 > d1)
-                {
-                    result = raytraceresult;
-                    d1 = d0;
-                }
-            }
-        }
-
-        return result;
     }
 
     public enum Type implements IStringSerializable

@@ -18,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -26,16 +27,41 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 public class BlockToaster extends BlockFurnitureTile
 {
-    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(5, 0, 3, 11, 7.2, 13).getRotatedBounds();
-    private static final AxisAlignedBB[] COLLISION_BOX = new Bounds(5, 0, 3, 11, 6.4, 13).getRotatedBounds();
+    private static final AxisAlignedBB[] FRONT = new Bounds(5.5, 0, 3.5, 6.5, 6.4, 12.5).getRotatedBounds();
+    private static final AxisAlignedBB[] BACK = new Bounds(9.5, 0, 3.5, 10.5, 6.4, 12.5).getRotatedBounds();
+    private static final AxisAlignedBB[] ELEMENT = new Bounds(7.5, 0, 4.5, 8.5, 6.4, 11.5).getRotatedBounds();
+    private static final AxisAlignedBB[] LEFT = new Bounds(6.5, 0, 3.5, 9.5, 6.4, 4.5).getRotatedBounds();
+    private static final AxisAlignedBB[] RIGHT = new Bounds(6.5, 0, 11.5, 9.5, 6.4, 12.5).getRotatedBounds();
+    private static final AxisAlignedBB[] BASE = new Bounds(5, 0, 3, 11, 1, 13).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE = new Bounds(7, 4, 2.5, 9, 4.8, 3.5).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_BODY = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, FRONT, BACK, ELEMENT, LEFT, RIGHT);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_PROTRUSIONS = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, BASE, HANDLE);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.combineBoxLists(COLLISION_BOXES_BODY, COLLISION_BOXES_PROTRUSIONS);
+    
+    private static final AxisAlignedBB[] BOUNDING_BOX = Bounds.getBoundingBoxes(COLLISION_BOXES_BODY);
 
     public BlockToaster(Material material)
     {
         super(material);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.ANVIL);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX[state.getValue(FACING).getHorizontalIndex()];
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override
@@ -93,20 +119,6 @@ public class BlockToaster extends BlockFurnitureTile
             }
         }
         return true;
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        EnumFacing facing = state.getValue(FACING);
-        return BOUNDING_BOX[facing.getHorizontalIndex()];
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        EnumFacing facing = state.getValue(FACING);
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX[facing.getHorizontalIndex()]);
     }
 
     @Override

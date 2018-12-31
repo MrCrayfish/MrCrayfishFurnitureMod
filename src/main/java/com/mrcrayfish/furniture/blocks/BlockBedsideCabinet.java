@@ -1,29 +1,52 @@
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
+
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityBedsideCabinet;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Rotation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockBedsideCabinet extends BlockFurnitureTile
 {
+    private static final AxisAlignedBB[] DRAWER_BOTTOM = new Bounds(0, 2, 2, 1, 7, 14).getRotatedBounds();
+    private static final AxisAlignedBB[] DRAWER_TOP = new Bounds(0, 9, 2, 1, 14, 14).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_BOTTOM = new Bounds(-0.48, 4, 6, 0, 5, 10).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_TOP = new Bounds(-0.48, 11, 6, 0, 12, 10).getRotatedBounds();
+    private static final AxisAlignedBB[] BODY = new Bounds(1, 1.6, 1, 15, 14.4, 15).getRotatedBounds();
+    private static final AxisAlignedBB[] BASE = new Bounds(0, 0, 0, 16, 1.6, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] TOP = new Bounds(0, 14.4, 0, 16, 16, 16).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, DRAWER_BOTTOM, DRAWER_TOP, HANDLE_BOTTOM, HANDLE_TOP, BODY, BASE, TOP);
+
     public BlockBedsideCabinet(Material material)
     {
         super(material);
         this.setHardness(1.0F);
         this.setSoundType(SoundType.WOOD);
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override

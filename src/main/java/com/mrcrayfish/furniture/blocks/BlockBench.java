@@ -12,6 +12,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumFacing.AxisDirection;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -20,13 +21,39 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 public class BlockBench extends BlockFurniture
 {
     public static final PropertyBool LEFT = PropertyBool.create("left");
     public static final PropertyBool RIGHT = PropertyBool.create("right");
 
-    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(1, 0, 0, 15, 10, 16).getRotatedBounds();
-    private static final AxisAlignedBB[] COLLISION_BOX = new Bounds(2, 0, 1, 14, 9, 15).getRotatedBounds();
+    private static final AxisAlignedBB[] BACK_LEFT_LEG = new Bounds(1.2, 0, 2.2, 2.7, 8, 3.7).getRotatedBounds();
+    private static final AxisAlignedBB[] BACK_RIGHT_LEG = new Bounds(13.3, 0, 2.2, 14.8, 8, 3.7).getRotatedBounds();
+    private static final AxisAlignedBB[] FRONT_RIGHT_LEG = new Bounds(13.3, 0, 12.3, 14.8, 8, 13.8).getRotatedBounds();
+    private static final AxisAlignedBB[] FRONT_LEFT_LEG = new Bounds(1.2, 0, 12.3, 2.7, 8, 13.8).getRotatedBounds();
+    private static final AxisAlignedBB[] TOP_LEFT_BEAM = new Bounds(1, 8, 2, 3, 9, 14).getRotatedBounds();
+    private static final AxisAlignedBB[] TOP_RIGHT_BEAM = new Bounds(13, 8, 2, 15, 9, 14).getRotatedBounds();
+    private static final AxisAlignedBB[] TOP_BACK_BEAM = new Bounds(3, 8, 2, 13, 9, 4).getRotatedBounds();
+    private static final AxisAlignedBB[] TOP_FRONT_BEAM = new Bounds(3, 8, 12, 13, 9, 14).getRotatedBounds();
+    private static final AxisAlignedBB[] TOP = new Bounds(3, 8.3, 4, 13, 8.7, 12).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.getRotatedBoundLists(BACK_LEFT_LEG, BACK_RIGHT_LEG, FRONT_RIGHT_LEG, FRONT_LEFT_LEG, TOP_LEFT_BEAM, TOP_RIGHT_BEAM, TOP_BACK_BEAM, TOP_FRONT_BEAM, TOP);
+    private static final AxisAlignedBB[] BOUNDING_BOX = Bounds.getBoundingBoxes(COLLISION_BOXES);
+
+    private static final AxisAlignedBB[] TOP_BACK_BEAM_END = new Bounds(3, 8, 2, 16, 9, 4).getRotatedBounds();
+    private static final AxisAlignedBB[] TOP_FRONT_BEAM_END = new Bounds(3, 8, 12, 16, 9, 14).getRotatedBounds();
+    private static final AxisAlignedBB[] TOP_END = new Bounds(3, 8.3, 4, 16, 8.7, 12).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_END = Bounds.getRotatedBoundLists(BACK_LEFT_LEG, FRONT_LEFT_LEG, TOP_LEFT_BEAM, TOP_BACK_BEAM_END, TOP_FRONT_BEAM_END, TOP_END);
+    private static final AxisAlignedBB[] BOUNDING_BOX_END = Bounds.getBoundingBoxes(COLLISION_BOXES_END);
+
+    private static final AxisAlignedBB[] TOP_FRONT_BEAM_CENTER = new Bounds(0, 8, 12, 16, 9, 14).getRotatedBounds();
+    private static final AxisAlignedBB[] TOP_BACK_BEAM_CENTER = new Bounds(0, 8, 2, 16, 9, 4).getRotatedBounds();
+    private static final AxisAlignedBB[] TOP_CENTER = new Bounds(0, 8.3, 4, 16, 8.7, 12).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_CENTER = Bounds.getRotatedBoundLists(TOP_FRONT_BEAM_CENTER, TOP_BACK_BEAM_CENTER, TOP_CENTER);
+    private static final AxisAlignedBB[] BOUNDING_BOX_CENTER = Bounds.getBoundingBoxes(COLLISION_BOXES_CENTER);
 
     public BlockBench(Material material)
     {
@@ -40,13 +67,31 @@ public class BlockBench extends BlockFurniture
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return BOUNDING_BOX[getMetaFromState(state)];
+        return getBoxes(BOUNDING_BOX, BOUNDING_BOX_CENTER, BOUNDING_BOX_END, state, source, pos, false);
     }
 
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
     {
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX[getMetaFromState(state)]);
+        return getBoxes(COLLISION_BOXES, COLLISION_BOXES_CENTER, COLLISION_BOXES_END, state, world, pos, isActualState);
+    }
+
+    protected <T> T getBoxes(T[] solitary, T[] center, T[] end, IBlockState state, IBlockAccess source, BlockPos pos, boolean isActualState)
+    {
+        if (!isActualState)
+            state = state.getActualState(source, pos);
+
+        EnumFacing facing = state.getValue(FACING);
+        int i = facing.getHorizontalIndex();
+        boolean left = state.getValue(LEFT);
+        boolean right = state.getValue(RIGHT);
+        if (left == right)
+            return left && right ? center[i] : solitary[i];
+
+        if (facing.getAxisDirection() == AxisDirection.POSITIVE ? right : left)
+            i = facing.getOpposite().getHorizontalIndex();
+
+        return end[i];
     }
 
     @Override

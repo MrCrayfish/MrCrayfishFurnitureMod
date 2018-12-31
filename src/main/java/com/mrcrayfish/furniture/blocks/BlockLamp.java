@@ -33,13 +33,29 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockLamp extends Block
+import javax.annotation.Nullable;
+
+public class BlockLamp extends BlockCollisionRaytrace
 {
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
     public static final PropertyBool UP = PropertyBool.create("up");
     public static final PropertyBool DOWN = PropertyBool.create("down");
 
-    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(1, 0, 1, 15, 16, 15).toAABB();
+    private static final AxisAlignedBB SHADE = new Bounds(1.5, 8, 1.5, 14.5, 15, 14.5).toAABB();
+    private static final AxisAlignedBB SUPPORT = new Bounds(7.2, 0, 7.2, 8.8, 16, 8.8).toAABB();
+    private static final AxisAlignedBB SUPPORT_TOP = new Bounds(7.2, 0, 7.2, 8.8, 15, 8.8).toAABB();
+    private static final AxisAlignedBB BASE = new Bounds(4, 0, 4, 12, 5, 12).toAABB();
+
+    private static final List<AxisAlignedBB> COLLISION_BOXES_TOP = Lists.newArrayList(SHADE, SUPPORT_TOP);
+    private static final List<AxisAlignedBB> COLLISION_BOXES = Lists.newArrayList(SHADE, SUPPORT_TOP, BASE);
+    private static final AxisAlignedBB BOUNDING_BOX = Bounds.getBoundingBox(COLLISION_BOXES);
+
+    private static final AxisAlignedBB BASE_BOTTOM = new Bounds(4, 0, 4, 12, 2, 12).toAABB();
+    private static final List<AxisAlignedBB> COLLISION_BOXES_BOTTOM = Lists.newArrayList(SUPPORT, BASE_BOTTOM);
+    private static final AxisAlignedBB BOUNDING_BOX_BOTTOM = Bounds.getBoundingBox(COLLISION_BOXES_BOTTOM);
+
+    private static final List<AxisAlignedBB> COLLISION_BOXES_CENTER = Lists.newArrayList(SUPPORT);
+    private static final AxisAlignedBB BOUNDING_BOX_CENTER = Bounds.getBoundingBox(COLLISION_BOXES_CENTER);
 
     public BlockLamp(Material material, boolean on)
     {
@@ -54,6 +70,26 @@ public class BlockLamp extends Block
     }
 
     @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        state = state.getActualState(source, pos);
+        return !state.getValue(UP) ? BOUNDING_BOX : (state.getValue(DOWN) ? BOUNDING_BOX_CENTER : BOUNDING_BOX_BOTTOM);
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        if (entity instanceof EntitySeat)
+            return EMPTY;
+
+        if (!isActualState)
+            state = state.getActualState(world, pos);
+
+        boolean up = state.getValue(UP);
+        return up == state.getValue(DOWN) ? (up ? COLLISION_BOXES_CENTER : COLLISION_BOXES) : (up ? COLLISION_BOXES_BOTTOM : COLLISION_BOXES_TOP);
+    }
+
+    @Override
     public boolean isOpaqueCube(IBlockState state)
     {
         return false;
@@ -63,12 +99,6 @@ public class BlockLamp extends Block
     public boolean isFullCube(IBlockState state)
     {
         return false;
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return BOUNDING_BOX;
     }
 
     @Override
@@ -159,56 +189,6 @@ public class BlockLamp extends Block
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         return new ItemStack(FurnitureBlocks.LAMP_OFF, 1, state.getValue(COLOUR));
-    }
-
-    private List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
-    {
-        List<AxisAlignedBB> list = Lists.newArrayList();
-        list.add(FULL_BLOCK_AABB);
-        return list;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entity, boolean p_185477_7_)
-    {
-        if(!(entity instanceof EntitySeat))
-        {
-            List<AxisAlignedBB> boxes = this.getCollisionBoxList(this.getActualState(state, worldIn, pos), worldIn, pos);
-            for(AxisAlignedBB box : boxes)
-            {
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, FULL_BLOCK_AABB);
-            }
-        }
-    }
-
-    @Override
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
-    {
-        List<RayTraceResult> list = Lists.newArrayList();
-
-        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos), world, pos))
-        {
-            list.add(this.rayTrace(pos, start, end, axisalignedbb));
-        }
-
-        RayTraceResult raytraceresult1 = null;
-        double d1 = 0.0D;
-
-        for(RayTraceResult raytraceresult : list)
-        {
-            if(raytraceresult != null)
-            {
-                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-                if(d0 > d1)
-                {
-                    raytraceresult1 = raytraceresult;
-                    d1 = d0;
-                }
-            }
-        }
-
-        return raytraceresult1;
     }
 
     @Override

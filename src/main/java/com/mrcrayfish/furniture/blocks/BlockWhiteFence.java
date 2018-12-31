@@ -17,6 +17,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -24,13 +25,14 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 public class BlockWhiteFence extends BlockFence
 {
     public static final PropertyBool POST = PropertyBool.create("post");
-    protected static final AxisAlignedBB[] BOUNDING_BOX = new AxisAlignedBB[]{new AxisAlignedBB(0.4375, 0.0, 0.4375, 0.5625, 1.0, 0.5625), new AxisAlignedBB(0.4375, 0.0, 0.4375, 0.5625, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.4375, 0.5625, 1.0, 0.5625), new AxisAlignedBB(0.0, 0.0, 0.4375, 0.5625, 1.0, 1.0), new AxisAlignedBB(0.4375, 0.0, 0.0, 0.5625, 1.0, 0.5625), new AxisAlignedBB(0.4375, 0.0, 0.0, 0.5625, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.0, 0.5625, 1.0, 0.5625), new AxisAlignedBB(0.0, 0.0, 0.0, 0.5625, 1.0, 1.0), new AxisAlignedBB(0.4375, 0.0, 0.4375, 1.0, 1.0, 0.5625), new AxisAlignedBB(0.4375, 0.0, 0.4375, 1.0, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.4375, 1.0, 1.0, 0.5625), new AxisAlignedBB(0.0, 0.0, 0.4375, 1.0, 1.0, 1.0), new AxisAlignedBB(0.4375, 0.0, 0.0, 1.0, 1.0, 0.5625), new AxisAlignedBB(0.4375, 0.0, 0.0, 1.0, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 0.5625), new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 1.0)};
 
     private static final AxisAlignedBB COLLISION_BOX_CENTER = new Bounds(7, 0, 7, 9, 24, 9).toAABB();
-    private static final AxisAlignedBB[] COLLISION_BOXES = new Bounds(9, 0, 7, 16, 24, 9).getRotatedBounds();
+    private static final AxisAlignedBB[] COLLISION_BOXES = new Bounds(9, 0, 7, 16, 24, 9).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
 
     public BlockWhiteFence(Material material)
     {
@@ -39,6 +41,43 @@ public class BlockWhiteFence extends BlockFence
         this.setSoundType(SoundType.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.FALSE).withProperty(EAST, Boolean.FALSE).withProperty(SOUTH, Boolean.FALSE).withProperty(WEST, Boolean.FALSE));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        state = getActualState(state, source, pos);
+        boolean south = state.getValue(SOUTH);
+        AxisAlignedBB box = new Bounds(state.getValue(WEST) ? 0 : 6.5, 0, state.getValue(NORTH) ? 0 : 6.5, state.getValue(EAST) ? 16 : 9.5, 16, south ? 16 : 9.5).toAABB();
+        if (!state.getValue(POST))
+        {
+            if (south)
+                box = box.grow(-0.05, 0, 0);
+            else
+                box = box.grow(0, 0, -0.05);
+        }
+        return box;
+    }
+
+    @Override
+    public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity, boolean isActualState)
+    {
+        if (!isActualState)
+            state = getActualState(state, world, pos);
+
+        if (state.getValue(SOUTH))
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[0]);
+
+        if (state.getValue(WEST))
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[1]);
+
+        if (state.getValue(NORTH))
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[2]);
+
+        if (state.getValue(EAST))
+            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[3]);
+
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_CENTER);
     }
 
     @Override
@@ -61,68 +100,6 @@ public class BlockWhiteFence extends BlockFence
     public boolean isFullCube(IBlockState state)
     {
         return false;
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        state = state.getActualState(source, pos);
-        return BOUNDING_BOX[getBoundingBoxId(state)];
-    }
-
-    private static int getBoundingBoxId(IBlockState state)
-    {
-        int i = 0;
-
-        if(state.getValue(NORTH))
-        {
-            i |= 1 << EnumFacing.NORTH.getHorizontalIndex();
-        }
-
-        if(state.getValue(EAST))
-        {
-            i |= 1 << EnumFacing.EAST.getHorizontalIndex();
-        }
-
-        if(state.getValue(SOUTH))
-        {
-            i |= 1 << EnumFacing.SOUTH.getHorizontalIndex();
-        }
-
-        if(state.getValue(WEST))
-        {
-            i |= 1 << EnumFacing.WEST.getHorizontalIndex();
-        }
-
-        return i;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        state = state.getActualState(worldIn, pos);
-
-        if(state.getValue(NORTH))
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[2]);
-        }
-
-        if(state.getValue(EAST))
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[3]);
-        }
-
-        if(state.getValue(SOUTH))
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[0]);
-        }
-
-        if(state.getValue(WEST))
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[1]);
-        }
-
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_CENTER);
     }
 
     @Override

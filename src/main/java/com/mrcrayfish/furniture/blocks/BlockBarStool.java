@@ -1,10 +1,18 @@
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.entity.EntitySeat;
 import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.SeatUtil;
-import net.minecraft.block.Block;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
@@ -27,13 +35,25 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.List;
-
-public class BlockBarStool extends Block
+public class BlockBarStool extends BlockCollisionRaytrace
 {
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
 
-    private static final AxisAlignedBB BOUNDS = new Bounds(2, 0, 2, 14, 13, 14).toAABB();
+    private static final AxisAlignedBB CUSHION = new Bounds(3.5, 12, 3.5, 12.5, 12.5, 12.5).toAABB();
+    private static final AxisAlignedBB TOP = new Bounds(3, 9, 3, 13, 12, 13).toAABB();
+    private static final AxisAlignedBB LEG_1 = new Bounds(4, 0, 4, 6, 9, 6).toAABB();
+    private static final AxisAlignedBB LEG_2 = new Bounds(10, 0, 4, 12, 9, 6).toAABB();
+    private static final AxisAlignedBB LEG_3 = new Bounds(4, 0, 10, 6, 9, 12).toAABB();
+    private static final AxisAlignedBB LEG_4 = new Bounds(10, 0, 10, 12, 9, 12).toAABB();
+    private static final AxisAlignedBB BRACE_4 = new Bounds(4.5, 4, 6, 5.5, 5, 10).toAABB();
+    private static final AxisAlignedBB BRACE_2 = new Bounds(10.5, 4, 6, 11.5, 5, 10).toAABB();
+    private static final AxisAlignedBB BRACE_3 = new Bounds(6, 4, 10.5, 10, 5, 11.5).toAABB();
+    private static final AxisAlignedBB BRACE_1 = new Bounds(6, 4, 4.5, 10, 5, 5.5).toAABB();
+
+    private static final List<AxisAlignedBB> COLLISION_BOXES_BODY = Lists.newArrayList(TOP, LEG_1, LEG_2, LEG_3, LEG_4, BRACE_4, BRACE_2, BRACE_3, BRACE_1);
+    private static final List<AxisAlignedBB> COLLISION_BOXES_CUSHION = Lists.newArrayList(CUSHION);
+    private static final List<AxisAlignedBB> COLLISION_BOXES = Stream.of(COLLISION_BOXES_BODY, COLLISION_BOXES_CUSHION).flatMap(Collection::stream).collect(Collectors.toList());
+    private static final AxisAlignedBB BOUNDING_BOX = Bounds.getBoundingBox(COLLISION_BOXES_BODY);
 
     public BlockBarStool(Material material)
     {
@@ -42,6 +62,17 @@ public class BlockBarStool extends Block
         this.setSoundType(SoundType.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(COLOUR, 0));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX;
+    }
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return entity instanceof EntitySeat ? EMPTY : COLLISION_BOXES;
     }
 
     @Override
@@ -78,21 +109,6 @@ public class BlockBarStool extends Block
             }
         }
         return !playerIn.isSneaking() && SeatUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 9 * 0.0625);
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return BOUNDS;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        if(!(entityIn instanceof EntitySeat))
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDS);
-        }
     }
 
     @Override

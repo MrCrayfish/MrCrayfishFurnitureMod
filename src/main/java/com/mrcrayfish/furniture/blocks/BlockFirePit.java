@@ -25,9 +25,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 public abstract class BlockFirePit extends Block
 {
-
     public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 3);
 
     private static final AxisAlignedBB BOUNDING_BOX = new Bounds(0, 0, 0, 16, 3, 16).toAABB();
@@ -37,6 +38,18 @@ public abstract class BlockFirePit extends Block
         super(materialIn);
         this.setSoundType(SoundType.WOOD);
         this.setHardness(1.0F);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX;
+    }
+
+    @Override
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
+    {
+        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
     }
 
     @Override
@@ -55,18 +68,6 @@ public abstract class BlockFirePit extends Block
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
     {
         return worldIn.isSideSolid(pos.down(), EnumFacing.UP);
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return BOUNDING_BOX;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
     }
 
     @Override

@@ -18,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -26,6 +27,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
+
+import javax.annotation.Nullable;
 
 public class BlockHedge extends Block
 {
@@ -37,7 +40,7 @@ public class BlockHedge extends Block
     protected static final AxisAlignedBB[] BOUNDING_BOX = new AxisAlignedBB[]{new AxisAlignedBB(0.1875, 0.0, 0.1875, 0.8125, 1.0, 0.8125), new AxisAlignedBB(0.1875, 0.0, 0.1875, 0.8125, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.1875, 0.8125, 1.0, 0.8125), new AxisAlignedBB(0.0, 0.0, 0.1875, 0.8125, 1.0, 1.0), new AxisAlignedBB(0.1875, 0.0, 0.0, 0.8125, 1.0, 0.8125), new AxisAlignedBB(0.1875, 0.0, 0.0, 0.8125, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.0, 0.8125, 1.0, 0.8125), new AxisAlignedBB(0.0, 0.0, 0.0, 0.8125, 1.0, 1.0), new AxisAlignedBB(0.1875, 0.0, 0.1875, 1.0, 1.0, 0.8125), new AxisAlignedBB(0.1875, 0.0, 0.1875, 1.0, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.1875, 1.0, 1.0, 0.8125), new AxisAlignedBB(0.0, 0.0, 0.1875, 1.0, 1.0, 1.0), new AxisAlignedBB(0.1875, 0.0, 0.0, 1.0, 1.0, 0.8125), new AxisAlignedBB(0.1875, 0.0, 0.0, 1.0, 1.0, 1.0), new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 0.8125), new AxisAlignedBB(0.0, 0.0, 0.0, 1.0, 1.0, 1.0)};
 
     private static final AxisAlignedBB COLLISION_BOX_CENTER = new Bounds(3, 0, 3, 13, 24, 13).toAABB();
-    private static final AxisAlignedBB COLLISION_BOXES[] = new Bounds(0, 0, 3, 3, 24, 13).getRotatedBounds();
+    private static final AxisAlignedBB COLLISION_BOXES[] = new Bounds(0, 0, 3, 3, 24, 13).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
 
     public BlockHedge()
     {
@@ -47,40 +50,6 @@ public class BlockHedge extends Block
         this.setSoundType(SoundType.PLANT);
         this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
-    }
-
-    @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-    {
-        if(placer instanceof EntityPlayer)
-        {
-            Triggers.trigger(Triggers.PLACE_OUTDOOR_FURNITURE, (EntityPlayer) placer);
-        }
-        super.onBlockPlacedBy(world, pos, state, placer, stack);
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isNormalCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
-    {
-        return Minecraft.getMinecraft().gameSettings.fancyGraphics ? BlockRenderLayer.CUTOUT : BlockRenderLayer.SOLID;
     }
 
     @Override
@@ -117,7 +86,7 @@ public class BlockHedge extends Block
     }
 
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
+    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
     {
         if(state.getValue(NORTH))
         {
@@ -140,6 +109,40 @@ public class BlockHedge extends Block
         }
 
         addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_CENTER);
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
+        if(placer instanceof EntityPlayer)
+        {
+            Triggers.trigger(Triggers.PLACE_OUTDOOR_FURNITURE, (EntityPlayer) placer);
+        }
+        super.onBlockPlacedBy(world, pos, state, placer, stack);
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isNormalCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer()
+    {
+        return Minecraft.getMinecraft().gameSettings.fancyGraphics ? BlockRenderLayer.CUTOUT : BlockRenderLayer.SOLID;
     }
 
     @Override

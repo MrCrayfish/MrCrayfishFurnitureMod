@@ -16,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -23,16 +24,32 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 public class BlockChoppingBoard extends BlockFurnitureTile
 {
-    private static final AxisAlignedBB BOUNDING_BOX[] = new Bounds(3, 0, 0.5, 13, 1.5, 15.5).getRotatedBounds();
-    private static final AxisAlignedBB COLLISION_BOX[] = new Bounds(3, 0, 0.5, 13, 1, 15.5).getRotatedBounds();
+    private static final AxisAlignedBB[] BODY = new Bounds(3, 0, 0.5, 13, 1, 15.5).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.getRotatedBoundLists(BODY);
+    private static final AxisAlignedBB[] BOUNDING_BOX = Bounds.getBoundingBoxes(COLLISION_BOXES);
 
     public BlockChoppingBoard(Material material)
     {
         super(material);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.WOOD);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX[state.getValue(FACING).getHorizontalIndex()];
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override
@@ -90,18 +107,6 @@ public class BlockChoppingBoard extends BlockFurnitureTile
             }
         }
         return true;
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return BOUNDING_BOX[getMetaFromState(state)];
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX[getMetaFromState(state)]);
     }
 
     @Override

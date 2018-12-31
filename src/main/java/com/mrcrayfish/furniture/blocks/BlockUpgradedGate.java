@@ -12,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -28,8 +29,8 @@ public class BlockUpgradedGate extends BlockFurniture
     public static final PropertyBool OPENED = PropertyBool.create("opened");
     public static final PropertyBool POLE = PropertyBool.create("pole");
 
-    private static final AxisAlignedBB[] BOUNDING_BOXES = new Bounds(6, 0, -1, 10, 16, 17).getRotatedBounds();
-    private static final AxisAlignedBB[] COLLISION_BOXES = new Bounds(6, 0, -1, 10, 24, 17).getRotatedBounds();
+    private static final AxisAlignedBB[] COLLISION_BOXES = new Bounds(6, 0, -1, 10, 24, 17).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
+    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(6, 0, -1, 10, 16, 17).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
 
     public BlockUpgradedGate(String id)
     {
@@ -42,20 +43,14 @@ public class BlockUpgradedGate extends BlockFurniture
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return BOUNDING_BOXES[state.getValue(FACING).getHorizontalIndex()];
+        return BOUNDING_BOX[state.getValue(FACING).getHorizontalIndex()];
     }
 
+    @Override
     @Nullable
     public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
-        if (state.getValue(OPENED))
-        {
-            return NULL_AABB;
-        }
-        else
-        {
-            return COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
-        }
+        return state.getValue(OPENED) ? NULL_AABB : COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override

@@ -23,6 +23,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,11 +34,40 @@ public class BlockModernSlidingDoor extends BlockFurniture implements IPowered
 {
     public static final PropertyBool TOP = PropertyBool.create("top");
 
-    private static final AxisAlignedBB[] COLLISION_BOX_BOTTOM = new Bounds(6, 0, 0, 10, 32, 16).getRotatedBounds();
-    private static final AxisAlignedBB[] COLLISION_BOX_BOTTOM_OPENED = new Bounds(6, 0, 0, 10, 32, 2.96).getRotatedBounds();
-    private static final AxisAlignedBB[] COLLISION_BOX_TOP = new Bounds(6, -16, 0, 10, 16, 16).getRotatedBounds();
-    private static final AxisAlignedBB[] COLLISION_BOX_TOP_OPENED = new Bounds(6, -16, 0, 10, 16, 2.96).getRotatedBounds();
+    private static final Bounds FRAME_TOP_CLOSED = new Bounds(0, 14, 6, 16, 16, 10);
+    private static final Bounds FRAME_LEFT_CLOSED = new Bounds(0, 0, 6, 2, 14, 10);
+    private static final Bounds FRAME_RIGHT_CLOSED = new Bounds(14, 0, 6, 16, 14, 10);
+    private static final Bounds GLASS_CLOSED = new Bounds(2, 0, 6.5, 14, 15, 9.5);
+    private static final Bounds HANDLE_1_CLOSED = new Bounds(14, 0, 5, 15, 2, 11);
+    private static final Bounds HANDLE_2_CLOSED = new Bounds(13, 0, 6, 14, 3, 10);
+    private static final Bounds[] BOUNDS_CLOSED = new Bounds[] {FRAME_TOP_CLOSED, FRAME_LEFT_CLOSED, FRAME_RIGHT_CLOSED, GLASS_CLOSED, HANDLE_1_CLOSED, HANDLE_2_CLOSED};
 
+    private static final AxisAlignedBB[][] BOXES_CLOSED_TOP = Arrays.stream(BOUNDS_CLOSED).map(bounds -> bounds.getRotatedBounds()).toArray(AxisAlignedBB[][]::new);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_CLOSED_TOP = Bounds.getRotatedBoundLists(BOXES_CLOSED_TOP);
+
+    private static final AxisAlignedBB[][] BOXES_CLOSED_BOTTOM = Arrays.stream(BOUNDS_CLOSED).map(bounds -> bounds.rotateX(Rotation.CLOCKWISE_180).getRotatedBounds()).toArray(AxisAlignedBB[][]::new);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_CLOSED_BOTTOM = Bounds.getRotatedBoundLists(BOXES_CLOSED_BOTTOM);
+
+    private static final List<AxisAlignedBB>[] BOUNDING_BOX_CLOSED_FRAME = Bounds.getRotatedBoundLists(FRAME_TOP_CLOSED.getRotatedBounds(), FRAME_RIGHT_CLOSED.getRotatedBounds());
+    private static final List<AxisAlignedBB>[] BOUNDING_BOX_CLOSED_FRAME_TRANSLATED = Bounds.transformBoxListsVertical(1, BOUNDING_BOX_CLOSED_FRAME);
+    private static final AxisAlignedBB[] BOUNDING_BOX_CLOSED = Bounds.getBoundingBoxes(BOUNDING_BOX_CLOSED_FRAME, BOUNDING_BOX_CLOSED_FRAME_TRANSLATED);
+
+    private static final Bounds FRAME_TOP_OPEN = new Bounds(0, 14, 6, 3, 16, 10);
+    private static final Bounds FRAME_RIGHT_OPEN = new Bounds(1, 0, 6, 3, 14, 10);
+    private static final Bounds GLASS_OPEN = new Bounds(0, 0, 6.5, 1, 14, 9.5);
+    private static final Bounds HANDLE_1_OPEN = new Bounds(1, 0, 5, 2, 2, 11);
+    private static final Bounds HANDLE_2_OPEN = new Bounds(0, 0, 6, 1, 3, 10);
+    private static final Bounds[] BOUNDS_OPEN = new Bounds[] {FRAME_TOP_OPEN, FRAME_RIGHT_OPEN, GLASS_OPEN, HANDLE_1_OPEN, HANDLE_2_OPEN};
+
+    private static final AxisAlignedBB[][] BOXES_OPEN_TOP = Arrays.stream(BOUNDS_OPEN).map(bounds -> bounds.getRotatedBounds()).toArray(AxisAlignedBB[][]::new);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_OPEN_TOP = Bounds.getRotatedBoundLists(BOXES_OPEN_TOP);
+
+    private static final AxisAlignedBB[][] BOXES_OPEN_BOTTOM = Arrays.stream(BOUNDS_OPEN).map(bounds -> bounds.rotateX(Rotation.CLOCKWISE_180).getRotatedBounds()).toArray(AxisAlignedBB[][]::new);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_OPEN_BOTTOM = Bounds.getRotatedBoundLists(BOXES_OPEN_BOTTOM);
+
+    private static final List<AxisAlignedBB>[] BOUNDING_BOX_OPEN_FRAME = Bounds.getRotatedBoundLists(FRAME_TOP_OPEN.getRotatedBounds(), FRAME_RIGHT_OPEN.getRotatedBounds());
+    private static final List<AxisAlignedBB>[] BOUNDING_BOX_OPEN_FRAME_TRANSLATED = Bounds.transformBoxListsVertical(1, BOUNDING_BOX_OPEN_FRAME);
+    private static final AxisAlignedBB[] BOUNDING_BOX_OPEN = Bounds.getBoundingBoxes(BOUNDING_BOX_OPEN_FRAME, BOUNDING_BOX_OPEN_FRAME_TRANSLATED);
 
     public BlockModernSlidingDoor()
     {
@@ -48,71 +79,24 @@ public class BlockModernSlidingDoor extends BlockFurniture implements IPowered
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        boolean open = false;
-        TileEntity tileEntity = source.getTileEntity(pos);
-        if(tileEntity instanceof TileEntityModernSlidingDoor)
-        {
-            open = ((TileEntityModernSlidingDoor) tileEntity).isPowered();
-        }
-
-        EnumFacing facing = state.getValue(FACING);
-        if(state.getValue(TOP))
-        {
-            if(open)
-            {
-                return COLLISION_BOX_TOP_OPENED[facing.getHorizontalIndex()];
-            }
-            else
-            {
-                return COLLISION_BOX_TOP[facing.getHorizontalIndex()];
-            }
-        }
-        else
-        {
-            if(open)
-            {
-                return COLLISION_BOX_BOTTOM_OPENED[facing.getHorizontalIndex()];
-            }
-            else
-            {
-                return COLLISION_BOX_BOTTOM[facing.getHorizontalIndex()];
-            }
-        }
+        int i = state.getValue(FACING).getHorizontalIndex();
+        AxisAlignedBB box = isOpen(source, pos) ? BOUNDING_BOX_OPEN[i] : BOUNDING_BOX_CLOSED[i];
+        return state.getValue(TOP) ? box.offset(0, -1, 0) : box;
     }
 
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
     {
-        boolean open = false;
-        TileEntity tileEntity = worldIn.getTileEntity(pos);
-        if(tileEntity instanceof TileEntityModernSlidingDoor)
-        {
-            open = ((TileEntityModernSlidingDoor) tileEntity).isPowered();
-        }
+        boolean open = isOpen(world, pos);
+        int i = state.getValue(FACING).getHorizontalIndex();
+        return state.getValue(TOP) ? (open ? COLLISION_BOXES_OPEN_TOP[i] : COLLISION_BOXES_CLOSED_TOP[i])
+                : (open ? COLLISION_BOXES_OPEN_BOTTOM[i] : COLLISION_BOXES_CLOSED_BOTTOM[i]);
+    }
 
-        EnumFacing facing = state.getValue(FACING);
-        if(state.getValue(TOP))
-        {
-            if(open)
-            {
-                Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_TOP_OPENED[facing.getHorizontalIndex()]);
-            }
-            else
-            {
-                Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_TOP[facing.getHorizontalIndex()]);
-            }
-        }
-        else
-        {
-            if(open)
-            {
-                Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_BOTTOM_OPENED[facing.getHorizontalIndex()]);
-            }
-            else
-            {
-                Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_BOTTOM[facing.getHorizontalIndex()]);
-            }
-        }
+    private boolean isOpen(IBlockAccess source, BlockPos pos)
+    {
+        TileEntity tileEntity = source.getTileEntity(pos);
+        return tileEntity instanceof TileEntityModernSlidingDoor ? ((TileEntityModernSlidingDoor) tileEntity).isPowered() : false;
     }
 
     @Override

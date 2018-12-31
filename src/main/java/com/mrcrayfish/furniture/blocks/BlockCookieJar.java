@@ -1,10 +1,15 @@
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.tileentity.TileEntityCookieJar;
 import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
-import net.minecraft.block.Block;
+
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -28,13 +33,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
-
-public class BlockCookieJar extends Block implements ITileEntityProvider
+public class BlockCookieJar extends BlockCollisionRaytrace implements ITileEntityProvider
 {
     public static final PropertyInteger COOKIE_COUNT = PropertyInteger.create("cookie_count", 0, 6);
 
-    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(4, 0, 4, 12, 10.4, 12).toAABB();
+    private static final AxisAlignedBB LID = new Bounds(5.5, 9, 5.5, 10.5, 10, 10.5).toAABB();
+    private static final AxisAlignedBB BODY = new Bounds(4.5, 0.01, 4.5, 11.5, 9, 11.5).toAABB();
+
+    private static final List<AxisAlignedBB> COLLISION_BOXES = Lists.newArrayList(LID, BODY);
+    private static final AxisAlignedBB BOUNDING_BOX = Bounds.getBoundingBox(COLLISION_BOXES);
 
     public BlockCookieJar(Material material)
     {
@@ -43,6 +50,18 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
         this.setSoundType(SoundType.GLASS);
         this.setDefaultState(this.blockState.getBaseState().withProperty(COOKIE_COUNT, 0));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX;
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES;
     }
 
     @Override
@@ -97,18 +116,6 @@ public class BlockCookieJar extends Block implements ITileEntityProvider
             return true;
         }
         return false;
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return BOUNDING_BOX;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
     }
 
     @Override

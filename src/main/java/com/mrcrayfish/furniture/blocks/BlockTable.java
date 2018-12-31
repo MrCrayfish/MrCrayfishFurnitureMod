@@ -18,6 +18,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -28,18 +29,20 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockTable extends Block
+import javax.annotation.Nullable;
+
+public class BlockTable extends BlockCollisionRaytrace
 {
     public static final PropertyBool BACK = PropertyBool.create("back");
     public static final PropertyBool FORWARD = PropertyBool.create("forward");
     public static final PropertyBool LEFT = PropertyBool.create("left");
     public static final PropertyBool RIGHT = PropertyBool.create("right");
 
-    public static final AxisAlignedBB TOP = new Bounds(0, 14.5, 0, 16, 16, 16).toAABB();
+    protected AxisAlignedBB top;
 
     public static final AxisAlignedBB SINGLE_LEG = new Bounds(6, 0, 6, 10, 14.5, 10).toAABB();
-    public static final AxisAlignedBB[] ONE_AXIS_LEG = new Bounds(3, 0, 6, 7, 14.5, 10).getRotatedBounds();
-    public static final AxisAlignedBB[] TWO_AXIS_LEGS = new Bounds(3, 0, 9, 7, 14.5, 13).getRotatedBounds();
+    public static final AxisAlignedBB[] ONE_AXIS_LEG = new Bounds(3, 0, 6, 7, 14.5, 10).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
+    public static final AxisAlignedBB[] TWO_AXIS_LEGS = new Bounds(3, 0, 9, 7, 14.5, 13).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
 
     public BlockTable(Material material, SoundType sound)
     {
@@ -48,6 +51,70 @@ public class BlockTable extends Block
         this.setSoundType(sound);
         this.setDefaultState(this.blockState.getBaseState().withProperty(BACK, false).withProperty(FORWARD, false).withProperty(LEFT, false).withProperty(RIGHT, false));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+        top = new Bounds(0, 14.4, 0, 16, 16, 16).toAABB();
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        state = state.getActualState(source, pos);
+        return (state.getValue(FORWARD) && state.getValue(BACK)) || (state.getValue(LEFT) && state.getValue(RIGHT)) ? top : FULL_BLOCK_AABB;
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        List<AxisAlignedBB> boxes = new ArrayList<>();
+
+        IBlockState actualState = this.getActualState(state, world, pos);
+        boolean north = actualState.getValue(FORWARD);
+        boolean south = actualState.getValue(BACK);
+        boolean east = actualState.getValue(RIGHT);
+        boolean west = actualState.getValue(LEFT);
+
+        int connectedSides = (north ? 1 : 0) + (south ? 1 : 0) + (east ? 1 : 0) + (west ? 1 : 0);
+
+        if(connectedSides == 0)
+        {
+            boxes.add(SINGLE_LEG);
+        }
+        else
+        {
+            if(connectedSides >= 3 || (north && south) || (east && west))
+            {
+                boxes.add(BlockFurniture.EMPTY_AABB);
+            }
+            else
+            {
+                if(north && east)
+                {
+                    boxes.add(TWO_AXIS_LEGS[3]);
+                }
+                if(south && east)
+                {
+                    boxes.add(TWO_AXIS_LEGS[0]);
+                }
+                if(north && west)
+                {
+                    boxes.add(TWO_AXIS_LEGS[2]);
+                }
+                if(south && west)
+                {
+                    boxes.add(TWO_AXIS_LEGS[1]);
+                }
+                if(connectedSides == 1)
+                {
+                    int connectedIndex = north ? 2 : east ? 3 : south ? 0 : west ? 1 : -1;
+                    if(connectedIndex >= 0)
+                    {
+                        boxes.add(ONE_AXIS_LEG[connectedIndex]);
+                    }
+                }
+            }
+        }
+        boxes.add(top);
+
+        return boxes;
     }
 
     @Override
@@ -112,101 +179,6 @@ public class BlockTable extends Block
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, BACK, FORWARD, LEFT, RIGHT);
-    }
-
-    protected List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
-    {
-        List<AxisAlignedBB> boxes = new ArrayList<>();
-
-        IBlockState actualState = this.getActualState(state, world, pos);
-        boolean north = actualState.getValue(FORWARD);
-        boolean south = actualState.getValue(BACK);
-        boolean east = actualState.getValue(RIGHT);
-        boolean west = actualState.getValue(LEFT);
-
-        int connectedSides = (north ? 1 : 0) + (south ? 1 : 0) + (east ? 1 : 0) + (west ? 1 : 0);
-
-        if(connectedSides == 0)
-        {
-            boxes.add(SINGLE_LEG);
-        }
-        else
-        {
-            if(connectedSides >= 3 || (north && south) || (east && west))
-            {
-                boxes.add(BlockFurniture.EMPTY_AABB);
-            }
-            else
-            {
-                if(north && east)
-                {
-                    boxes.add(TWO_AXIS_LEGS[3]);
-                }
-                if(south && east)
-                {
-                    boxes.add(TWO_AXIS_LEGS[0]);
-                }
-                if(north && west)
-                {
-                    boxes.add(TWO_AXIS_LEGS[2]);
-                }
-                if(south && west)
-                {
-                    boxes.add(TWO_AXIS_LEGS[1]);
-                }
-                if(connectedSides == 1)
-                {
-                    int connectedIndex = north ? 2 : east ? 3 : south ? 0 : west ? 1 : -1;
-                    if(connectedIndex >= 0)
-                    {
-                        boxes.add(ONE_AXIS_LEG[connectedIndex]);
-                    }
-                }
-            }
-        }
-        boxes.add(TOP);
-
-        return boxes;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, world, pos), world, pos);
-        for(AxisAlignedBB box : list)
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-        }
-    }
-
-    @Override
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
-    {
-        List<RayTraceResult> list = Lists.newArrayList();
-
-        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos), world, pos))
-        {
-            list.add(this.rayTrace(pos, start, end, axisalignedbb));
-        }
-
-        RayTraceResult raytraceresult1 = null;
-        double d1 = 0.0D;
-
-        for(RayTraceResult raytraceresult : list)
-        {
-            if(raytraceresult != null)
-            {
-                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-                if(d0 > d1)
-                {
-                    raytraceresult1 = raytraceresult;
-                    d1 = d0;
-                }
-            }
-        }
-
-        return raytraceresult1;
     }
 
     @Override

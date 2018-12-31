@@ -37,8 +37,23 @@ public class BlockEsky extends BlockFurnitureTile
     public static final PropertyBool OPENED = PropertyBool.create("open");
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
 
-    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(1.5, 0, 0, 14.5, 12.8, 16).getRotatedBounds();
-    private static final AxisAlignedBB[] COLLISION_BOX = new Bounds(2.5, 0, 1, 13.5, 12, 15).getRotatedBounds();
+    private static final AxisAlignedBB[] BASE = new Bounds(1, 0, 2.5, 15, 1, 13.5).getRotatedBounds();
+    private static final AxisAlignedBB[] BACK = new Bounds(1, 1, 2.5, 15, 10, 3.5).getRotatedBounds();
+    private static final AxisAlignedBB[] FRONT = new Bounds(1, 1, 12.5, 15, 10, 13.5).getRotatedBounds();
+    private static final AxisAlignedBB[] LEFT = new Bounds(1, 1, 3.5, 2, 10, 12.5).getRotatedBounds();
+    private static final AxisAlignedBB[] RIGHT = new Bounds(14, 1, 3.5, 15, 10, 12.5).getRotatedBounds();
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_BODY = Bounds.getRotatedBoundLists(BASE, BACK, FRONT, LEFT, RIGHT);
+
+    private static final AxisAlignedBB[] HANDLE_LEFT = new Bounds(0, 7, 7, 1, 15, 9).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_RIGHT = new Bounds(15, 7, 7, 16, 15, 9).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_CENTER = new Bounds(1, 14, 7, 15, 15, 9).getRotatedBounds();
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_HANDLE = Bounds.getRotatedBoundLists(HANDLE_LEFT, HANDLE_RIGHT, HANDLE_CENTER);
+
+    private static final AxisAlignedBB[] LID = new Bounds(1, 10, 2.5, 15, 11.5, 13.5).getRotatedBounds();
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_CLOSED = Bounds.combineBoxLists(COLLISION_BOXES_BODY, COLLISION_BOXES_HANDLE, Bounds.getRotatedBoundLists(LID));
+    private static final AxisAlignedBB[] BOUNDING_BOX_CLOSED = Bounds.getBoundingBoxes(Bounds.combineBoxLists(COLLISION_BOXES_BODY, Bounds.getRotatedBoundLists(LID)));
+
+    private static final AxisAlignedBB[] BOUNDING_BOX_OPENED = Bounds.getBoundingBoxes(COLLISION_BOXES_BODY);
 
     public BlockEsky(Material material)
     {
@@ -51,15 +66,15 @@ public class BlockEsky extends BlockFurnitureTile
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        EnumFacing facing = state.getValue(FACING);
-        return BOUNDING_BOX[facing.getHorizontalIndex()];
+        int i = state.getValue(FACING).getHorizontalIndex();
+        return state.getValue(OPENED) ? BOUNDING_BOX_OPENED[i] : BOUNDING_BOX_CLOSED[i];
     }
 
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
     {
-        EnumFacing facing = state.getValue(FACING);
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX[facing.getHorizontalIndex()]);
+        int i = state.getValue(FACING).getHorizontalIndex();
+        return state.getValue(OPENED) ? COLLISION_BOXES_BODY[i] : COLLISION_BOXES_CLOSED[i];
     }
 
     @Override

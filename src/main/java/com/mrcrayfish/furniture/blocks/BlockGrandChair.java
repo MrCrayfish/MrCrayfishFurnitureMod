@@ -1,11 +1,16 @@
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
+import java.util.Random;
+
+import javax.annotation.Nullable;
+
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.entity.EntitySeat;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.util.Bounds;
-import com.mrcrayfish.furniture.util.CollisionHelper;
 import com.mrcrayfish.furniture.util.SeatUtil;
+
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -19,21 +24,40 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.List;
-import java.util.Random;
 
 public class BlockGrandChair extends BlockFurniture
 {
-    private static final AxisAlignedBB BOUNDING_BOX_BOTTOM = new Bounds(0, 0, 0, 16, 1.8, 16).toAABB();
-    private static final AxisAlignedBB BOUNDING_BOX_TOP = new Bounds(0, -16, 0, 16, 12.8, 16).toAABB();
+	// Top
+	private static final AxisAlignedBB[] SIDE_BOTTOM_LEFT_TOP = new Bounds(0, 0, 1, 2, 4, 5).getRotatedBounds();
+	private static final AxisAlignedBB[] SIDE_TOP_LEFT = new Bounds(0, 4, 1, 2, 12, 6).getRotatedBounds();
+	private static final AxisAlignedBB[] SIDE_TOP_RIGHT = new Bounds(14, 4, 1, 16, 12, 6).getRotatedBounds();
+	private static final AxisAlignedBB[] SIDE_BOTTOM_RIGHT_TOP = new Bounds(14, 0, 1, 16, 4, 5).getRotatedBounds();
+	private static final AxisAlignedBB[] BACK_REST_2 = new Bounds(2, 0, 1, 14, 12, 2).getRotatedBounds();
+	private static final AxisAlignedBB[] BACK_REST_BACK_2 = new Bounds(2, 0, 0, 14, 12, 1).getRotatedBounds();
+	private static final List<AxisAlignedBB>[] COLLISION_BOXES_TOP = Bounds.getRotatedBoundLists(SIDE_BOTTOM_LEFT_TOP, SIDE_TOP_LEFT, SIDE_TOP_RIGHT, SIDE_BOTTOM_RIGHT_TOP, BACK_REST_2, BACK_REST_BACK_2);
 
-    private static final AxisAlignedBB COLLISION_BOX_BOTTOM = new Bounds(0, 0, 0, 16, 8, 16).toAABB();
-    private static final AxisAlignedBB[] COLLISION_BOX_TOP = new Bounds(13, 0, 0, 16, 12.8, 16).getRotatedBounds();
+    //Bottom
+	private static final AxisAlignedBB[] LEG_LEFT_BACK = new Bounds(2, 0, 2, 4, 5, 4).getRotatedBounds();
+	private static final AxisAlignedBB[] LEG_RIGHT_BACK = new Bounds(12, 0, 2, 14, 5, 4).getRotatedBounds();
+	private static final AxisAlignedBB[] LEG_RIGHT_FRONT = new Bounds(12, 0, 12, 14, 5, 14).getRotatedBounds();
+	private static final AxisAlignedBB[] LEG_LEFT_FRONT = new Bounds(2, 0, 12, 4, 5, 14).getRotatedBounds();
+	private static final AxisAlignedBB[] BUM_REST = new Bounds(2, 7, 1, 14, 8, 15).getRotatedBounds();
+	private static final AxisAlignedBB[] BACK_REST = new Bounds(2, 7, 1, 14, 16, 2).getRotatedBounds();
+	private static final AxisAlignedBB[] ARM_REST_LEFT = new Bounds(0, 6, 1, 2, 12, 15).getRotatedBounds();
+	private static final AxisAlignedBB[] ARM_REST_RIGHT = new Bounds(14, 6, 1, 16, 12, 15).getRotatedBounds();
+	private static final AxisAlignedBB[] SIDE_BOTTOM_LEFT_BOTTOM = new Bounds(0, 12, 1, 2, 16, 5).getRotatedBounds();
+	private static final AxisAlignedBB[] SIDE_BOTTOM_RIGHT_BOTTOM = new Bounds(14, 12, 1, 16, 16, 5).getRotatedBounds();
+	private static final AxisAlignedBB[] BUM_REST_SUPPORT = new Bounds(1, 5, 1, 15, 7, 15).getRotatedBounds();
+	private static final AxisAlignedBB[] BACK_REST_BACK = new Bounds(2, 7, 0, 14, 16, 1).getRotatedBounds();
+	private static final AxisAlignedBB[] FRONT_WOOL = new Bounds(2, 6, 14.5, 14, 7.5, 15.5).getRotatedBounds();
+
+	private static final List<AxisAlignedBB>[] COLLISION_BOXES_BOTTOM_BODY = Bounds.getRotatedBoundLists(LEG_LEFT_BACK, LEG_RIGHT_BACK, LEG_RIGHT_FRONT, LEG_LEFT_FRONT, BUM_REST, BACK_REST, ARM_REST_LEFT, ARM_REST_RIGHT, SIDE_BOTTOM_LEFT_BOTTOM, SIDE_BOTTOM_RIGHT_BOTTOM, BUM_REST_SUPPORT, BACK_REST_BACK);
+	private static final List<AxisAlignedBB>[] COLLISION_BOXES_BOTTOM = Bounds.combineBoxLists(Bounds.getRotatedBoundLists(FRONT_WOOL), COLLISION_BOXES_BOTTOM_BODY);
+	private static final List<AxisAlignedBB>[] COLLISION_BOXES_TOP_TRANSLATED = Bounds.transformBoxListsVertical(1, COLLISION_BOXES_TOP);
+	private static final AxisAlignedBB[] BOUNDING_BOX = Bounds.getBoundingBoxes(COLLISION_BOXES_BOTTOM_BODY, COLLISION_BOXES_TOP_TRANSLATED);
 
     public BlockGrandChair(Material materialIn, boolean top)
     {
@@ -41,6 +65,22 @@ public class BlockGrandChair extends BlockFurniture
         this.setHardness(1.0F);
         this.setSoundType(SoundType.WOOD);
         if(top) this.setCreativeTab(null);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX[state.getValue(FACING).getHorizontalIndex()].offset(0, this == FurnitureBlocks.GRAND_CHAIR_TOP ? -1 : 0, 0);
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        if (entity instanceof EntitySeat)
+            return EMPTY;
+
+        int i = state.getValue(FACING).getHorizontalIndex();
+        return this == FurnitureBlocks.GRAND_CHAIR_BOTTOM ? COLLISION_BOXES_BOTTOM[i] : COLLISION_BOXES_TOP[i];
     }
 
     @Override
@@ -106,38 +146,6 @@ public class BlockGrandChair extends BlockFurniture
             worldIn.getBlockState(pos.down()).getBlock().onBlockActivated(worldIn, pos.down(), state, playerIn, hand, facing, hitX, hitY, hitZ);
         }
         return false;
-    }
-
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        if(this == FurnitureBlocks.GRAND_CHAIR_BOTTOM)
-        {
-            return BOUNDING_BOX_BOTTOM;
-        }
-        else
-        {
-            return BOUNDING_BOX_TOP;
-        }
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        if(!(entityIn instanceof EntitySeat))
-        {
-            if(this == FurnitureBlocks.GRAND_CHAIR_BOTTOM)
-            {
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_BOTTOM);
-            }
-            else
-            {
-                EnumFacing facing = state.getValue(FACING);
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX_TOP[facing.getHorizontalIndex()]);
-            }
-        }
     }
 
     @Override

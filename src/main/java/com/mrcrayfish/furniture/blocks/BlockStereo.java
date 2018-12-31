@@ -15,6 +15,7 @@ import net.minecraft.item.ItemRecord;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -24,10 +25,21 @@ import net.minecraft.world.World;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 public class BlockStereo extends BlockFurnitureTile
 {
-    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(4.8, 0, 0, 11.2, 8, 16).getRotatedBounds();
-    private static final AxisAlignedBB[] COLLISION_BOX = new Bounds(4.8, 0, 0, 11.2, 7.2, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] BODY = new Bounds(5.5, 0, 0.5, 10.5, 7, 15.5).getRotatedBounds();
+    private static final AxisAlignedBB[] SCREEN = new Bounds(5.4, 3, 5.6, 5.5, 6, 10.6).getRotatedBounds();
+    private static final AxisAlignedBB[] ANTENNA_BASE = new Bounds(7, 7, 6.2, 9, 7.5, 9.8).getRotatedBounds();
+    private static final AxisAlignedBB[] BUTTON_1 = new Bounds(5.1, 1, 6, 5.5, 2, 7).getRotatedBounds();
+    private static final AxisAlignedBB[] BUTTON_2 = new Bounds(5.1, 1, 7.5, 5.5, 2, 8.5).getRotatedBounds();
+    private static final AxisAlignedBB[] BUTTON_3 = new Bounds(5.1, 1, 9, 5.5, 2, 10).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_BODY = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, BODY);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_PROTRUSIONS = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, SCREEN, ANTENNA_BASE, BUTTON_1, BUTTON_2, BUTTON_3);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.combineBoxLists(COLLISION_BOXES_BODY, COLLISION_BOXES_PROTRUSIONS);
+    private static final AxisAlignedBB[] BOUNDING_BOX = Bounds.getBoundingBoxes(COLLISION_BOXES_BODY);
 
     public static ArrayList<ItemRecord> records = new ArrayList<>();
 
@@ -44,6 +56,18 @@ public class BlockStereo extends BlockFurnitureTile
                 records.add((ItemRecord) item);
             }
         }
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX[state.getValue(FACING).getHorizontalIndex()];
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override
@@ -101,20 +125,6 @@ public class BlockStereo extends BlockFurnitureTile
     {
         this.ejectRecord(worldIn, pos);
         super.breakBlock(worldIn, pos, state);
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        EnumFacing facing = state.getValue(FACING);
-        return BOUNDING_BOX[facing.getHorizontalIndex()];
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        EnumFacing facing = state.getValue(FACING);
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX[facing.getHorizontalIndex()]);
     }
 
     @Override

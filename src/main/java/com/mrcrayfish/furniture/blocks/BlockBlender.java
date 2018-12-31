@@ -17,6 +17,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -26,16 +27,36 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 public class BlockBlender extends BlockFurnitureTile
 {
-    public static final AxisAlignedBB BOUNDING_BOX = new Bounds(4, 0.0, 4, 12, 16, 12).toAABB();
-    public static final AxisAlignedBB COLLISION_BOX = new Bounds(4.5, 0, 4.5, 11.5, 15, 11.5).toAABB();
+    private static final AxisAlignedBB[] BASE = new Bounds(5, 0, 5, 11, 5, 11).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_BOTTOM = new Bounds(7.5, 6, 2.5, 8.5, 7, 4.5).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
+    private static final AxisAlignedBB[] HANDLE_TOP = new Bounds(7.5, 12, 2.5, 8.5, 13, 4.5).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
+    private static final AxisAlignedBB[] HANDLE_FRONT = new Bounds(7.5, 7, 2.5, 8.5, 12, 3.5).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
+    private static final AxisAlignedBB[] BODY = new Bounds(4.5, 5, 4.5, 11.5, 15, 11.5).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.getRotatedBoundLists(BASE, HANDLE_BOTTOM, HANDLE_TOP, HANDLE_FRONT, BODY);
+    private static final AxisAlignedBB BOUNDING_BOX = Bounds.getBoundingBox(BASE[0], BODY[0]);
 
     public BlockBlender(Material material)
     {
         super(material);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.GLASS);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX;
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override
@@ -109,18 +130,6 @@ public class BlockBlender extends BlockFurnitureTile
             }
         }
         return true;
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return BOUNDING_BOX;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOX);
     }
 
     @Override

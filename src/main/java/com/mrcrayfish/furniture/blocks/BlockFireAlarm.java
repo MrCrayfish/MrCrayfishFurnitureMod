@@ -1,5 +1,10 @@
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
+import java.util.Random;
+
+import javax.annotation.Nullable;
+
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
@@ -9,6 +14,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -16,6 +22,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -23,13 +30,16 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.Random;
-
 public class BlockFireAlarm extends BlockFurniture
 {
     private boolean on = false;
 
-    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(5, 14, 5, 11, 16, 11).toAABB();
+    private static final AxisAlignedBB[] LIGHT = new Bounds(6.4, 14, 6.4, 7.4, 14.4, 7.4).getRotatedBounds();
+    private static final AxisAlignedBB[] BASE = new Bounds(5.6, 15, 5.6, 10.4, 16, 10.4).getRotatedBounds();
+    private static final AxisAlignedBB[] FASE = new Bounds(6.08, 14.4, 6.08, 9.92, 15, 9.92).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, LIGHT, BASE, FASE);
+    private static final AxisAlignedBB[] BOUNDING_BOX = Bounds.getBoundingBoxes(Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, BASE, FASE));
 
     public BlockFireAlarm(Material material, boolean on)
     {
@@ -49,6 +59,18 @@ public class BlockFireAlarm extends BlockFurniture
     }
 
     @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX[state.getValue(FACING).getHorizontalIndex()];
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
+    }
+
+    @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         if(placer instanceof EntityPlayer)
@@ -56,12 +78,6 @@ public class BlockFireAlarm extends BlockFurniture
             Triggers.trigger(Triggers.PLACE_APPLIANCE, (EntityPlayer) placer);
         }
         super.onBlockPlacedBy(world, pos, state, placer, stack);
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return BOUNDING_BOX;
     }
 
     @Override

@@ -13,6 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -24,15 +25,26 @@ import net.minecraft.world.WorldServer;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 public class BlockDivingboard extends BlockFurniture
 {
     public final int MAX_JUMP_HEIGHT = 4;
 
-    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(0, 0, 0, 16, 13, 16).toAABB();
+    private static final AxisAlignedBB[] BOARD = new Bounds(2, 4, 0, 14, 6, 16).getRotatedBounds();
 
-    private static final AxisAlignedBB[] HANDLE_LEFT = new Bounds(0, 0, 0, 14, 16, 1.5).getRotatedBounds();
-    private static final AxisAlignedBB[] HANDLE_RIGHT = new Bounds(0, 0, 14.5, 14, 16, 16).getRotatedBounds();
-    private static final AxisAlignedBB BOARD[] = new Bounds(0, 4, 2, 16, 6, 14).getRotatedBounds();
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_BOARD = Bounds.getRotatedBoundLists(BOARD);
+    private static final AxisAlignedBB[] BOUNDING_BOX_BOARD = Bounds.getBoundingBoxes(COLLISION_BOXES_BOARD);
+
+    private static final AxisAlignedBB[] HANDLE_1 = new Bounds(0, 0, 1, 2, 16, 3).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_2 = new Bounds(0, 0, 13, 2, 9, 15).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_3 = new Bounds(0, 14, 3, 2, 16, 8).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_4 = new Bounds(0, 13, 8, 2, 16, 11).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_5 = new Bounds(0, 11, 10, 2, 14, 13).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_6 = new Bounds(0, 9, 12, 2, 12, 15).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_HANDLE_LEFT = Bounds.getRotatedBoundLists(HANDLE_1, HANDLE_2, HANDLE_3, HANDLE_4, HANDLE_5, HANDLE_6);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_BASE = Bounds.combineBoxLists(COLLISION_BOXES_HANDLE_LEFT, COLLISION_BOXES_BOARD, Bounds.transformBoxListsHorizontal(EnumFacing.Axis.Z, 14, COLLISION_BOXES_HANDLE_LEFT));
 
     public BlockDivingboard(Material material, boolean plank)
     {
@@ -45,29 +57,24 @@ public class BlockDivingboard extends BlockFurniture
     }
 
     @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return this == FurnitureBlocks.DIVING_BOARD_BASE ? FULL_BLOCK_AABB : BOUNDING_BOX_BOARD[state.getValue(FACING).getHorizontalIndex()];
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        int i = state.getValue(FACING).getHorizontalIndex();
+        return this == FurnitureBlocks.DIVING_BOARD_BASE ? COLLISION_BOXES_BASE[i] : COLLISION_BOXES_BOARD[i];
+    }
+
+    @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         if(this == FurnitureBlocks.DIVING_BOARD_BASE)
         {
             world.setBlockState(pos.offset(placer.getHorizontalFacing()), FurnitureBlocks.DIVING_BOARD_PLANK.getDefaultState().withProperty(FACING, state.getValue(FACING)));
-        }
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return BOUNDING_BOX;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        EnumFacing facing = state.getValue(FACING);
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOARD[facing.getHorizontalIndex() % 2]);
-        if(this == FurnitureBlocks.DIVING_BOARD_BASE)
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, HANDLE_LEFT[facing.getHorizontalIndex()]);
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, HANDLE_RIGHT[facing.getHorizontalIndex()]);
         }
     }
 

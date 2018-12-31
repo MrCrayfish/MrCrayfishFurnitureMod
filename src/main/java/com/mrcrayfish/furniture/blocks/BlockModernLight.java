@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.blocks;
 
+import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.util.Bounds;
@@ -12,6 +13,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -19,20 +21,26 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 /**
  * Author: MrCrayfish
  */
-public class BlockModernLight extends Block implements IPowered
+public class BlockModernLight extends BlockCollisionRaytrace implements IPowered
 {
-    private static final AxisAlignedBB[] COLLISION_BOUNDS = new Bounds(14, 4, 4, 16, 12, 12).getRotatedBounds();
-    private static final AxisAlignedBB[] SELECTION_BOUNDS = new Bounds(13, 3, 3, 16, 13, 13).getRotatedBounds();
-
-    private static final AxisAlignedBB SELECTION_BOUND_DOWN = new Bounds(3, 0, 3, 13, 3, 13).toAABB();
-    private static final AxisAlignedBB SELECTION_BOUND_UP = new Bounds(3, 13, 3, 13, 16, 13).toAABB();
-    private static final AxisAlignedBB COLLISION_BOUND_DOWN = new Bounds(4, 0, 4, 14, 2, 14).toAABB();
-    private static final AxisAlignedBB COLLISION_BOUND_UP = new Bounds(4, 14, 4, 14, 16, 14).toAABB();
-
     public static final PropertyEnum<EnumFacing> FACING = PropertyEnum.create("facing", EnumFacing.class);
+
+    private static final Bounds BASE_BOUNDS = new Bounds(4, 0, 4, 12, 1, 12);
+    private static final Bounds GLASS_BOUNDS = new Bounds(5, 1, 5, 11, 1.5, 11);
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_SIDES = Bounds.getRotatedBoundLists(BASE_BOUNDS.rotateX(Rotation.COUNTERCLOCKWISE_90).getRotatedBounds(), GLASS_BOUNDS.rotateX(Rotation.COUNTERCLOCKWISE_90).getRotatedBounds());
+    private static final AxisAlignedBB[] BOUNDING_BOX_SIDES = Bounds.getBoundingBoxes(COLLISION_BOXES_SIDES);
+
+    private static final List<AxisAlignedBB> COLLISION_BOXES_BOTTOM = Lists.newArrayList(BASE_BOUNDS.toAABB(), GLASS_BOUNDS.toAABB());
+    private static final AxisAlignedBB BOUNDING_BOX_BOTTOM = Bounds.getBoundingBox(COLLISION_BOXES_BOTTOM);
+
+    private static final List<AxisAlignedBB> COLLISION_BOXES_TOP = Lists.newArrayList(BASE_BOUNDS.rotateX(Rotation.CLOCKWISE_180).toAABB(), GLASS_BOUNDS.rotateX(Rotation.CLOCKWISE_180).toAABB());
+    private static final AxisAlignedBB BOUNDING_BOX_TOP = Bounds.getBoundingBox(COLLISION_BOXES_TOP);
 
     public BlockModernLight(String id, boolean powered)
     {
@@ -52,6 +60,20 @@ public class BlockModernLight extends Block implements IPowered
     }
 
     @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        EnumFacing facing = state.getValue(FACING);
+        return facing == EnumFacing.UP ? BOUNDING_BOX_BOTTOM : (facing == EnumFacing.DOWN ? BOUNDING_BOX_TOP : BOUNDING_BOX_SIDES[facing.getHorizontalIndex()]);
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        EnumFacing facing = state.getValue(FACING);
+        return facing == EnumFacing.UP ? COLLISION_BOXES_BOTTOM : (facing == EnumFacing.DOWN ? COLLISION_BOXES_TOP : COLLISION_BOXES_SIDES[facing.getHorizontalIndex()]);
+    }
+
+    @Override
     public boolean isOpaqueCube(IBlockState state)
     {
         return false;
@@ -61,43 +83,6 @@ public class BlockModernLight extends Block implements IPowered
     public boolean isFullCube(IBlockState state)
     {
         return false;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        EnumFacing facing = state.getValue(FACING);
-        if(facing.getHorizontalIndex() != -1)
-        {
-            Block.addCollisionBoxToList(pos, entityBox, collidingBoxes,SELECTION_BOUNDS[facing.getOpposite().getHorizontalIndex()] );
-        }
-        else if(facing == EnumFacing.UP)
-        {
-            Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOUND_DOWN);
-        }
-        else if(facing == EnumFacing.DOWN)
-        {
-            Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOUND_UP);
-        }
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        EnumFacing facing = state.getValue(FACING);
-        if(facing.getHorizontalIndex() != -1)
-        {
-            return SELECTION_BOUNDS[facing.getOpposite().getHorizontalIndex()];
-        }
-        else if(facing == EnumFacing.UP)
-        {
-            return SELECTION_BOUND_DOWN;
-        }
-        else if(facing == EnumFacing.DOWN)
-        {
-            return SELECTION_BOUND_UP;
-        }
-        return FULL_BLOCK_AABB;
     }
 
     @Override

@@ -15,6 +15,7 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -23,15 +24,34 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 public class BlockShowerHeadOff extends BlockFurniture
 {
-    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(5.6, 2.4, 5.6, 16, 7.2, 10.4).getRotatedBounds();
+    private static final AxisAlignedBB[] PIPE = new Bounds(7.2, 5.6, 7.2, 16, 7.2, 8.8).getRotatedBounds();
+    private static final AxisAlignedBB[] PIPE_CONNECTION = new Bounds(7.2, 4, 7.2, 8.8, 5.6, 8.8).getRotatedBounds();
+    private static final AxisAlignedBB[] HEAD = new Bounds(5.6, 2.4, 5.6, 10.4, 4, 10.4).getRotatedBounds();
+
+    public static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, PIPE, PIPE_CONNECTION, HEAD);
+    public static final AxisAlignedBB[] BOUNDING_BOX = Bounds.getBoundingBoxes(COLLISION_BOXES);
 
     public BlockShowerHeadOff(Material material)
     {
         super(material);
         this.setHardness(1.0F);
         this.setSoundType(SoundType.STONE);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX[state.getValue(FACING).getHorizontalIndex()];
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override
@@ -74,19 +94,5 @@ public class BlockShowerHeadOff extends BlockFurniture
             this.dropBlockAsItem(worldIn, pos, state, 0);
             worldIn.setBlockToAir(pos);
         }
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        EnumFacing facing = state.getValue(FACING);
-        return BOUNDING_BOX[facing.getHorizontalIndex()];
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        EnumFacing facing = state.getValue(FACING);
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX[facing.getHorizontalIndex()]);
     }
 }

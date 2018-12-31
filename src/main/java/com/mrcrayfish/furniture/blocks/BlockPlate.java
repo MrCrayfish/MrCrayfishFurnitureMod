@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.blocks;
 
+import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.tileentity.TileEntityPlate;
 import com.mrcrayfish.furniture.util.Bounds;
@@ -25,9 +26,20 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BlockPlate extends Block implements ITileEntityProvider
+import javax.annotation.Nullable;
+
+public class BlockPlate extends BlockCollisionRaytrace implements ITileEntityProvider
 {
-    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(3, 0, 3, 13, 2, 13).toAABB();
+    private static final AxisAlignedBB BASE = new Bounds(5.5, 0, 5.5, 10.5, 1, 10.5).toAABB();
+    private static final AxisAlignedBB INNER_LEFT = new Bounds(4.5, 0.5, 3.5, 5.5, 1.5, 12.5).toAABB();
+    private static final AxisAlignedBB INNER_RIGHT = new Bounds(10.5, 0.5, 3.5, 11.5, 1.5, 12.5).toAABB();
+    private static final AxisAlignedBB OUTER_RIGHT = new Bounds(11.5, 0.5, 4.5, 12.5, 1.5, 11.5).toAABB();
+    private static final AxisAlignedBB OUTER_LEFT = new Bounds(3.5, 0.5, 4.5, 4.5, 1.5, 11.5).toAABB();
+    private static final AxisAlignedBB BACK = new Bounds(5.5, 0.5, 3.5, 10.5, 1.5, 5.5).toAABB();
+    private static final AxisAlignedBB FRONT = new Bounds(5.5, 0.5, 10.5, 10.5, 1.5, 12.5).toAABB();
+
+    private static final List<AxisAlignedBB> COLLISION_BOXES = Lists.newArrayList(BASE, INNER_LEFT, INNER_RIGHT, OUTER_RIGHT, OUTER_LEFT, BACK, FRONT);
+    private static final AxisAlignedBB BOUNDING_BOX = Bounds.getBoundingBox(COLLISION_BOXES);
 
     public BlockPlate(Material material)
     {
@@ -35,6 +47,18 @@ public class BlockPlate extends Block implements ITileEntityProvider
         this.setHardness(0.5F);
         this.setSoundType(SoundType.STONE);
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX;
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES;
     }
 
     @Override
@@ -80,18 +104,6 @@ public class BlockPlate extends Block implements ITileEntityProvider
             }
         }
         return true;
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return BOUNDING_BOX;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
     }
 
     @Override

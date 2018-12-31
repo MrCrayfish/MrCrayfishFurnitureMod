@@ -27,16 +27,28 @@ import net.minecraft.world.World;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 public class BlockShowerHeadOn extends BlockFurnitureTile
 {
-    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(5.6, 2.4, 5.6, 16, 7.2, 10.4).getRotatedBounds();
-
     public BlockShowerHeadOn(Material material)
     {
         super(material);
         this.setHardness(1.0F);
         this.setSoundType(SoundType.STONE);
         this.setCreativeTab(null);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BlockShowerHeadOff.BOUNDING_BOX[state.getValue(FACING).getHorizontalIndex()];
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return BlockShowerHeadOff.COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override
@@ -93,20 +105,6 @@ public class BlockShowerHeadOn extends BlockFurnitureTile
         }
 
         return false;
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        EnumFacing facing = state.getValue(FACING);
-        return BOUNDING_BOX[facing.getHorizontalIndex()];
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        EnumFacing facing = state.getValue(FACING);
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX[facing.getHorizontalIndex()]);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.blocks;
 
+import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityCup;
 import com.mrcrayfish.furniture.util.Bounds;
@@ -32,9 +33,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-public class BlockCup extends Block implements ITileEntityProvider
+import javax.annotation.Nullable;
+
+public class BlockCup extends BlockCollisionRaytrace implements ITileEntityProvider
 {
-    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(5, 0, 5, 11, 7.5, 11).toAABB();
+    private static final AxisAlignedBB LEFT = new Bounds(5.5, 0.01, 5.5, 6, 7, 10.5).toAABB();
+    private static final AxisAlignedBB RIGHT = new Bounds(10, 0.01, 5.5, 10.5, 7, 10.5).toAABB();
+    private static final AxisAlignedBB BACK = new Bounds(6, 0.01, 5.5, 10, 7, 6).toAABB();
+    private static final AxisAlignedBB FRONT = new Bounds(6, 0.01, 10, 10, 7, 10.5).toAABB();
+    private static final AxisAlignedBB BASE = new Bounds(6, 0.01, 6, 10, 0.5, 10).toAABB();
+
+    private static final List<AxisAlignedBB> COLLISION_BOXES = Lists.newArrayList(LEFT, RIGHT, BACK, FRONT, BASE);
+    private static final AxisAlignedBB BOUNDING_BOX = Bounds.getBoundingBox(COLLISION_BOXES);
 
     public BlockCup(Material material)
     {
@@ -42,6 +52,18 @@ public class BlockCup extends Block implements ITileEntityProvider
         this.setSoundType(SoundType.GLASS);
         this.setHardness(0.1F);
         this.setDefaultState(this.blockState.getBaseState());
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX;
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES;
     }
 
     @Override
@@ -99,18 +121,6 @@ public class BlockCup extends Block implements ITileEntityProvider
                 tileEntityCup.setItem(stack);
             }
         }
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return BOUNDING_BOX;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOUNDING_BOX);
     }
 
     @Override

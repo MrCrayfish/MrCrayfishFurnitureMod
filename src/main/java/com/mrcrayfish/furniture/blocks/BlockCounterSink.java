@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.blocks;
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityKitchenCounter;
+import com.mrcrayfish.furniture.util.Bounds;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -21,6 +22,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -35,12 +37,28 @@ public class BlockCounterSink extends BlockFurnitureTile
 {
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
 
+    private static final AxisAlignedBB[] BASE = new Bounds(2, 0, 0, 16, 10, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] BACK = new Bounds(12, 10, 0, 16, 16, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] LEFT = new Bounds(2, 10, 0, 12, 16, 1).getRotatedBounds();
+    private static final AxisAlignedBB[] RIGHT = new Bounds(2, 10, 15, 12, 16, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] FRONT = new Bounds(2, 10, 1, 3, 16, 15).getRotatedBounds();
+    private static final AxisAlignedBB[] LIP = new Bounds(0, 14, 0, 2, 16, 16).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_BODY = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, BASE, BACK, LEFT, RIGHT, FRONT, LIP);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.combineBoxLists(COLLISION_BOXES_BODY, BlockBasin.COLLISION_BOXES_FAUCET);
+
     public BlockCounterSink(Material material)
     {
         super(material);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.STONE);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(BlockBasin.FILLED, false));
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override
@@ -100,55 +118,6 @@ public class BlockCounterSink extends BlockFurnitureTile
     protected BlockStateContainer createBlockState()
     {
         return new BlockStateContainer(this, FACING, BlockBasin.FILLED, COLOUR);
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
-    {
-        List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
-        for(AxisAlignedBB box : list)
-        {
-            Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-        }
-    }
-
-    private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
-    {
-        List<AxisAlignedBB> list = Lists.newArrayList();
-        EnumFacing facing = state.getValue(FACING);
-        list.add(BlockCounter.COUNTER_TOP);
-        list.add(BlockCounter.FORWARD_BOXES[facing.getHorizontalIndex()]);
-        return list;
-    }
-
-    @Override
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
-    {
-        List<RayTraceResult> list = Lists.newArrayList();
-
-        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos)))
-        {
-            list.add(this.rayTrace(pos, start, end, axisalignedbb));
-        }
-
-        RayTraceResult result = null;
-        double d1 = 0.0D;
-
-        for(RayTraceResult raytraceresult : list)
-        {
-            if(raytraceresult != null)
-            {
-                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-                if(d0 > d1)
-                {
-                    result = raytraceresult;
-                    d1 = d0;
-                }
-            }
-        }
-
-        return result;
     }
 
     @Override

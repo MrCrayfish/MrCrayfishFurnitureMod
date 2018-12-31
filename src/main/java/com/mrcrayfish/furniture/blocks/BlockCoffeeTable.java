@@ -19,6 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -27,18 +28,21 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
+
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-public class BlockCoffeeTable extends Block
+public class BlockCoffeeTable extends BlockCollisionRaytrace
 {
     public static final PropertyBool NORTH = PropertyBool.create("north");
     public static final PropertyBool EAST = PropertyBool.create("east");
     public static final PropertyBool SOUTH = PropertyBool.create("south");
     public static final PropertyBool WEST = PropertyBool.create("west");
 
-    public static final AxisAlignedBB BOUNDING_BOX = new Bounds(0, 0, 0, 16, 8, 16).toAABB();
     public static final AxisAlignedBB TABLE_TOP = new Bounds(0, 6.5, 0, 16, 8, 16).toAABB();
-    public static final AxisAlignedBB[] LEGS = new Bounds(0, 0, 14.4, 1.6, 6.5, 16).getRotatedBounds();
+    public static final AxisAlignedBB[] LEGS = new Bounds(0, 0, 14.4, 1.6, 6.5, 16).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
+    public static final AxisAlignedBB BOUNDING_BOX = Bounds.getBoundingBox(Collections.singletonList(TABLE_TOP), Arrays.asList(LEGS));
 
     public BlockCoffeeTable(Material material, SoundType sound, String unlocalizedName)
     {
@@ -52,6 +56,38 @@ public class BlockCoffeeTable extends Block
     }
 
     @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        state = state.getActualState(source, pos);
+        return (state.getValue(NORTH) && state.getValue(SOUTH)) || (state.getValue(EAST) && state.getValue(WEST)) ? TABLE_TOP : BOUNDING_BOX;
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        if (!isActualState)
+            state = state.getActualState(world, pos);
+
+        List<AxisAlignedBB> list = Lists.newArrayList();
+        boolean north = state.getValue(NORTH);
+        boolean south = state.getValue(SOUTH);
+        boolean east = state.getValue(EAST);
+        boolean west = state.getValue(WEST);
+        list.add(TABLE_TOP);
+        if(!north)
+        {
+            if(!west) list.add(new Bounds(0, 0, 14.4, 1.6, 6.5, 16).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90)[0]);
+            if(!east) list.add(new Bounds(0, 0, 14.4, 1.6, 6.5, 16).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90)[1]);
+        }
+        if(!south)
+        {
+            if(!west) list.add(new Bounds(0, 0, 14.4, 1.6, 6.5, 16).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90)[3]);
+            if(!east) list.add(new Bounds(0, 0, 14.4, 1.6, 6.5, 16).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90)[2]);
+        }
+        return list;
+    }
+
+    @Override
     public boolean isOpaqueCube(IBlockState state)
     {
         return false;
@@ -61,22 +97,6 @@ public class BlockCoffeeTable extends Block
     public boolean isFullCube(IBlockState state)
     {
         return false;
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return BOUNDING_BOX;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
-        for(AxisAlignedBB box : list)
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-        }
     }
 
     @Override
@@ -102,56 +122,6 @@ public class BlockCoffeeTable extends Block
         return world.getBlockState(pos).getBlock() == this;
     }
 
-    private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
-    {
-        List<AxisAlignedBB> list = Lists.newArrayList();
-        boolean north = state.getValue(NORTH);
-        boolean south = state.getValue(SOUTH);
-        boolean east = state.getValue(EAST);
-        boolean west = state.getValue(WEST);
-        list.add(TABLE_TOP);
-        if(!north)
-        {
-            if(!west) list.add(LEGS[0]);
-            if(!east) list.add(LEGS[1]);
-        }
-        if(!south)
-        {
-            if(!west) list.add(LEGS[3]);
-            if(!east) list.add(LEGS[2]);
-        }
-        return list;
-    }
-
-    @Override
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
-    {
-        List<RayTraceResult> list = Lists.newArrayList();
-
-        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos)))
-        {
-            list.add(this.rayTrace(pos, start, end, axisalignedbb));
-        }
-
-        RayTraceResult raytraceresult1 = null;
-        double d1 = 0.0D;
-
-        for(RayTraceResult raytraceresult : list)
-        {
-            if(raytraceresult != null)
-            {
-                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-                if(d0 > d1)
-                {
-                    raytraceresult1 = raytraceresult;
-                    d1 = d0;
-                }
-            }
-        }
-
-        return raytraceresult1;
-    }
     @Override
     public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
     {

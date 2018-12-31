@@ -1,5 +1,11 @@
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
+import java.util.Locale;
+
+import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.util.Bounds;
@@ -11,6 +17,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
@@ -24,13 +31,17 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Locale;
-
-public class BlockCeilingLight extends Block implements IPowered
+public class BlockCeilingLight extends BlockCollisionRaytrace implements IPowered
 {
     public static final PropertyEnum<Mode> MODE = PropertyEnum.create("mode", Mode.class);
 
-    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(5, 6.4, 5, 11, 16, 11).toAABB();
+    private static final AxisAlignedBB BASE = new Bounds(6.4, 15, 6.4, 9.6, 16, 9.6).toAABB();
+    private static final AxisAlignedBB CONNECTION = new Bounds(7.2, 12, 7.2, 8.8, 15, 8.8).toAABB();
+    private static final AxisAlignedBB GLOW = new Bounds(5.6, 7.2, 5.6, 10.4, 12.8, 10.4).toAABB();
+    private static final AxisAlignedBB BODY = new Bounds(6.4, 8, 6.4, 9.6, 13, 9.6).toAABB();
+
+    private static final List<AxisAlignedBB> COLLISION_BOXES = Lists.newArrayList(BASE, CONNECTION, GLOW, BODY);
+    private static final AxisAlignedBB BOUNDING_BOX = Bounds.getBoundingBox(Lists.newArrayList(BASE, CONNECTION, BODY));
 
     public BlockCeilingLight(Material material, boolean on)
     {
@@ -48,6 +59,18 @@ public class BlockCeilingLight extends Block implements IPowered
     }
 
     @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX;
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES;
+    }
+
+    @Override
     public boolean isOpaqueCube(IBlockState state)
     {
         return false;
@@ -57,12 +80,6 @@ public class BlockCeilingLight extends Block implements IPowered
     public boolean isFullCube(IBlockState state)
     {
         return false;
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return BOUNDING_BOX;
     }
 
     @Override

@@ -3,7 +3,9 @@ package com.mrcrayfish.furniture.blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -13,22 +15,28 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import com.mrcrayfish.furniture.util.Bounds;
 
 public class BlockOutdoorTable extends BlockTable
 {
-    public static final AxisAlignedBB LEGS[] = new Bounds(0.25, 0, 13.75, 2.25, 14, 15.75).getRotatedBounds();
-    public static final AxisAlignedBB TOP = new Bounds(0, 14, 0, 16, 16, 16).toAABB();
+    protected AxisAlignedBB[] legs;
 
     public BlockOutdoorTable(Material material, SoundType sound)
     {
         super(material, sound);
         this.setHardness(1.0F);
+        legs = new Bounds(0.25, 0, 13.75, 2.25, 14, 15.75).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
+        top = new Bounds(0, 14, 0, 16, 16, 16).toAABB();
     }
 
     @Override
-    protected List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
     {
+        if (!isActualState)
+            state = state.getActualState(world, pos);
+
         List<AxisAlignedBB> boxes = new ArrayList<>();
         boolean north = state.getValue(FORWARD);
         boolean south = state.getValue(BACK);
@@ -37,15 +45,15 @@ public class BlockOutdoorTable extends BlockTable
 
         if(!north)
         {
-            if(!west) boxes.add(LEGS[1]);
-            if(!east) boxes.add(LEGS[0]);
+            if(!west) boxes.add(legs[1]);
+            if(!east) boxes.add(legs[0]);
         }
         if(!south)
         {
-            if(!west) boxes.add(LEGS[2]);
-            if(!east) boxes.add(LEGS[3]);
+            if(!west) boxes.add(legs[2]);
+            if(!east) boxes.add(legs[3]);
         }
-        boxes.add(TOP);
+        boxes.add(top);
 
         return boxes;
     }

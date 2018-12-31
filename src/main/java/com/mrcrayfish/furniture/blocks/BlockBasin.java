@@ -22,6 +22,7 @@ import net.minecraft.potion.PotionUtils;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -32,10 +33,25 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 public class BlockBasin extends BlockFurniture
 {
-    public static final AxisAlignedBB[] PILLAR = new Bounds(8, 0, 3, 16, 11, 13).getRotatedBounds();
-    public static final AxisAlignedBB TOP = new Bounds(0, 11, 0, 16, 16, 16).toAABB();
+    private static final AxisAlignedBB[] BASE = new Bounds(8, 0, 3.2, 16, 11, 12.8).getRotatedBounds();
+    private static final AxisAlignedBB[] BOWL_BASE = new Bounds(0, 11, 0, 16, 12, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] BOWL_BACK = new Bounds(12, 12, 0, 16, 16, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] BOWL_LEFT = new Bounds(0, 12, 0, 12, 16, 2).getRotatedBounds();
+    private static final AxisAlignedBB[] BOWL_RIGHT = new Bounds(0, 12, 14, 12, 16, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] BOWL_FRONT = new Bounds(0, 12, 2, 2, 16, 14).getRotatedBounds();
+    private static final AxisAlignedBB[] FAUCET_BASE = new Bounds(13, 16, 7, 15, 20, 9).getRotatedBounds();
+    private static final AxisAlignedBB[] FAUCET_TOP = new Bounds(9, 20, 7, 15, 22, 9).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_LEFT = new Bounds(13, 16, 2, 15, 18, 4).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_RIGHT = new Bounds(13, 16, 12, 15, 18, 14).getRotatedBounds();
+    private static final AxisAlignedBB[] FAUCET_NOZZLE = new Bounds(9, 19.68, 7, 11, 20, 9).getRotatedBounds();
+
+    public static final List<AxisAlignedBB>[] COLLISION_BOXES_FAUCET = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, FAUCET_BASE, FAUCET_TOP, HANDLE_LEFT, HANDLE_RIGHT, FAUCET_NOZZLE);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_BODY = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, BASE, BOWL_BASE, BOWL_BACK, BOWL_LEFT, BOWL_RIGHT, BOWL_FRONT);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.combineBoxLists(COLLISION_BOXES_BODY, COLLISION_BOXES_FAUCET);
 
     public static final PropertyBool FILLED = PropertyBool.create("filled");
 
@@ -48,6 +64,12 @@ public class BlockBasin extends BlockFurniture
     }
 
     @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
+    }
+
+    @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         if(placer instanceof EntityPlayer)
@@ -55,16 +77,6 @@ public class BlockBasin extends BlockFurniture
             Triggers.trigger(Triggers.PLACE_BATHTROOM_FURNITURE, (EntityPlayer) placer);
         }
         super.onBlockPlacedBy(world, pos, state, placer, stack);
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
-    {
-        List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
-        for(AxisAlignedBB box : list)
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-        }
     }
 
     @Override
@@ -284,44 +296,5 @@ public class BlockBasin extends BlockFurniture
     public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
     {
         return world.getBlockState(pos).getValue(FILLED) ? 1 : 0;
-    }
-
-    private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
-    {
-        List<AxisAlignedBB> list = Lists.newArrayList();
-        EnumFacing facing = state.getValue(FACING);
-        list.add(PILLAR[facing.getHorizontalIndex()]);
-        list.add(TOP);
-        return list;
-    }
-
-    @Override
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
-    {
-        List<RayTraceResult> list = Lists.newArrayList();
-
-        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos)))
-        {
-            list.add(this.rayTrace(pos, start, end, axisalignedbb));
-        }
-
-        RayTraceResult raytraceresult1 = null;
-        double d1 = 0.0D;
-
-        for(RayTraceResult raytraceresult : list)
-        {
-            if(raytraceresult != null)
-            {
-                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-                if(d0 > d1)
-                {
-                    raytraceresult1 = raytraceresult;
-                    d1 = d0;
-                }
-            }
-        }
-
-        return raytraceresult1;
     }
 }

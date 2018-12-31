@@ -33,8 +33,11 @@ import java.util.Random;
  */
 public class BlockLightSwitch extends BlockFurniture
 {
-    private static final AxisAlignedBB[] BOUNDING_BOXES = new Bounds(14, 3, 4, 16, 13, 12).getRotatedBounds();
-    private static final AxisAlignedBB[] COLLISION_BOXES = new Bounds(15, 4, 5, 16, 12, 11).getRotatedBounds();
+    private static final AxisAlignedBB[] SWITCH = new Bounds(6.7, 5.7, 0, 9.3, 10.3, 1.8).getRotatedBounds();
+    private static final AxisAlignedBB[] BACK = new Bounds(5, 4, 0, 11, 12, 0.9).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.getRotatedBoundLists(SWITCH, BACK);
+    private static final AxisAlignedBB[] BOUNDING_BOX = Bounds.getBoundingBoxes(Bounds.getRotatedBoundLists(BACK));
 
     public BlockLightSwitch()
     {
@@ -44,13 +47,13 @@ public class BlockLightSwitch extends BlockFurniture
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return BOUNDING_BOXES[state.getValue(FACING).getHorizontalIndex()];
+        return BOUNDING_BOX[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState)
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
     {
-        Block.addCollisionBoxToList(pos, entityBox, collidingBoxes, COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()]);
+        return COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override

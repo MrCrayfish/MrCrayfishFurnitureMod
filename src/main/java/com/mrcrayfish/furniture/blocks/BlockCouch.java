@@ -27,6 +27,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumFacing.Axis;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -36,17 +37,26 @@ import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Stream;
+
+import javax.annotation.Nullable;
 
 public abstract class BlockCouch extends BlockFurnitureTile
 {
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
     public static final PropertyEnum<CouchType> TYPE = PropertyEnum.create("type", CouchType.class);
 
-    private static final AxisAlignedBB COUCH_BASE = new Bounds(0, 0, 0, 16, 9.6, 16).toAABB();
+    private static final AxisAlignedBB[] ARMREST_LEFT = new Bounds(-0.016, 8, -3.2, 16.016, 14.4, 0.8).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
+    private static final AxisAlignedBB[] ARMREST_RIGHT = new Bounds(-0.016, 8, 15.2, 16.016, 14.4, 19.2).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
+    private static final AxisAlignedBB[] BACKREST = new Bounds(12, 9.6, 0, 16, 19.2, 16).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
+    private static final AxisAlignedBB[] BASE = new Bounds(0, 0, 0, 16, 9.6, 16).getRotatedBounds(Rotation.COUNTERCLOCKWISE_90);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_BODY = Bounds.getRotatedBoundLists(BASE, BACKREST);
 
-    private static final AxisAlignedBB[] COUCH_BACKREST = new Bounds(12.8, 9.6, 0, 16, 19.36, 16).getRotatedBounds();
-    private static final AxisAlignedBB[] COUCH_ARMREST_LEFT = new Bounds(0, 8, 14.4, 16, 14.4, 16).getRotatedBounds();
-    private static final AxisAlignedBB[] COUCH_ARMREST_RIGHT = new Bounds(0, 8, 0, 16, 14.4, 1.6).getRotatedBounds();
+    private static final AxisAlignedBB BOUNDING_BOX_NONE = new Bounds(0, 0, 0, 16, 14.4, 16).toAABB();
+    private static final AxisAlignedBB[] BOUNDING_BOX_RIGHT = Bounds.getBoundingBoxes(Bounds.getRotatedBoundLists(BASE, ARMREST_RIGHT));
+    private static final AxisAlignedBB[] BOUNDING_BOX_LEFT = Bounds.getBoundingBoxes(Bounds.getRotatedBoundLists(BASE, ARMREST_LEFT));
+    private static final AxisAlignedBB[] BOUNDING_BOX_BOTH = Bounds.getBoundingBoxes(Bounds.getRotatedBoundLists(BASE, ARMREST_RIGHT, ARMREST_LEFT));
+
 
     public BlockCouch()
     {
@@ -68,7 +78,48 @@ public abstract class BlockCouch extends BlockFurnitureTile
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return FULL_BLOCK_AABB;
+        state = getActualState(state, source, pos);
+        CouchType type = state.getValue(TYPE);
+        if (type == CouchType.NONE || type == CouchType.CORNER_LEFT || type == CouchType.CORNER_RIGHT)
+            return BOUNDING_BOX_NONE;
+
+        int i = state.getValue(FACING).getHorizontalIndex();
+        return type == CouchType.BOTH ? BOUNDING_BOX_BOTH[i] : (type == CouchType.LEFT ? BOUNDING_BOX_LEFT[i] : BOUNDING_BOX_RIGHT[i]);
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        if (entity instanceof EntitySeat)
+            return EMPTY;
+
+        if (!isActualState)
+            state = getActualState(state, world, pos);
+
+        List<AxisAlignedBB> list = Lists.newArrayList();
+        int i = state.getValue(FACING).getHorizontalIndex();
+        list.addAll(COLLISION_BOXES_BODY[i]);
+        CouchType type = state.getValue(TYPE);
+        if(type == CouchType.CORNER_LEFT)
+        {
+            list.add(BACKREST[(i - 1) < 0 ? 3 : i - 1]);
+        }
+        else if(type == CouchType.CORNER_RIGHT)
+        {
+            list.add(BACKREST[(i + 1) % 4]);
+        }
+        else
+        {
+            if(type != CouchType.RIGHT)
+            {
+                list.add(ARMREST_LEFT[i]);
+            }
+            if(type != CouchType.LEFT)
+            {
+                list.add(ARMREST_RIGHT[i]);
+            }
+        }
+        return list;
     }
 
     @Override
@@ -76,8 +127,12 @@ public abstract class BlockCouch extends BlockFurnitureTile
     {
         if(!isSpecial())
         {
-            int colour = ((TileEntityColoured) world.getTileEntity(pos)).getColour();
-            state = state.withProperty(COLOUR, colour);
+            TileEntity tileEntity = world.getTileEntity(pos);
+            if (tileEntity instanceof TileEntityColoured)
+            {
+                int colour = ((TileEntityColoured) tileEntity).getColour();
+                state = state.withProperty(COLOUR, colour);
+            }
         }
 
         if(StateHelper.getBlock(world, pos, state.getValue(FACING), StateHelper.Direction.DOWN) instanceof BlockCouch)
@@ -175,96 +230,6 @@ public abstract class BlockCouch extends BlockFurnitureTile
             }
         }
         return SeatUtil.sitOnBlock(worldIn, pos.getX(), pos.getY(), pos.getZ(), playerIn, 6 * 0.0625F);
-    }
-
-    private List<AxisAlignedBB> getCollisionBoxList(IBlockState state, World world, BlockPos pos)
-    {
-        List<AxisAlignedBB> list = Lists.newArrayList();
-        EnumFacing facing = state.getValue(FACING);
-
-        IBlockState actualState = this.getActualState(state, world, pos);
-
-        list.add(COUCH_BACKREST[facing.getHorizontalIndex()]);
-        list.add(COUCH_BASE);
-
-        if(actualState.getValue(TYPE) == CouchType.CORNER_LEFT)
-        {
-            if(facing.getAxis() == Axis.X)
-            {
-                list.add(COUCH_BACKREST[(facing.getHorizontalIndex() - 1) < 0 ? 3 : facing.getHorizontalIndex() - 1]);
-            }
-            else
-            {
-                list.add(COUCH_BACKREST[(facing.getHorizontalIndex() + 1) % 4]);
-            }
-        }
-        else if(actualState.getValue(TYPE) == CouchType.CORNER_RIGHT)
-        {
-            if(facing.getAxis() == Axis.X)
-            {
-                list.add(COUCH_BACKREST[(facing.getHorizontalIndex() + 1) % 4]);
-            }
-            else
-            {
-                list.add(COUCH_BACKREST[(facing.getHorizontalIndex() - 1) < 0 ? 3 : facing.getHorizontalIndex() - 1]);
-            }
-        }
-        else
-        {
-            if(StateHelper.isAirBlock(world, pos, state.getValue(FACING), StateHelper.Direction.LEFT))
-            {
-                list.add(COUCH_ARMREST_LEFT[facing.getHorizontalIndex()]);
-            }
-            if(StateHelper.isAirBlock(world, pos, state.getValue(FACING), StateHelper.Direction.RIGHT))
-            {
-                list.add(COUCH_ARMREST_RIGHT[facing.getHorizontalIndex()]);
-            }
-        }
-
-        return list;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entity, boolean p_185477_7_)
-    {
-        if(!(entity instanceof EntitySeat))
-        {
-            List<AxisAlignedBB> boxes = this.getCollisionBoxList(this.getActualState(state, worldIn, pos), worldIn, pos);
-            for(AxisAlignedBB box : boxes)
-            {
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-            }
-        }
-    }
-
-    @Override
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World world, BlockPos pos, Vec3d start, Vec3d end)
-    {
-        List<RayTraceResult> list = Lists.newArrayList();
-
-        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, world, pos), world, pos))
-        {
-            list.add(this.rayTrace(pos, start, end, axisalignedbb));
-        }
-
-        RayTraceResult raytraceresult1 = null;
-        double d1 = 0.0D;
-
-        for(RayTraceResult raytraceresult : list)
-        {
-            if(raytraceresult != null)
-            {
-                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-                if(d0 > d1)
-                {
-                    raytraceresult1 = raytraceresult;
-                    d1 = d0;
-                }
-            }
-        }
-
-        return raytraceresult1;
     }
 
     @Override

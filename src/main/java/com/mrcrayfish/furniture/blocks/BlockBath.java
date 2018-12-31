@@ -28,6 +28,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -40,19 +41,29 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 public class BlockBath extends BlockFurnitureTile
 {
     public static final PropertyInteger WATER_LEVEL = PropertyInteger.create("level", 0, 16);
 
-    /* Collision Bounds */
-    public static final AxisAlignedBB BOTTOM = new Bounds(0, 0, 0, 16, 2, 16).toAABB();
-    private static final Bounds SIDE = new Bounds(0, 2, 0, 16, 14, 2);
-    public static final AxisAlignedBB SIDE_NORTH = SIDE.getRotation(EnumFacing.NORTH);
-    public static final AxisAlignedBB SIDE_EAST = SIDE.getRotation(EnumFacing.EAST);
-    public static final AxisAlignedBB SIDE_SOUTH = SIDE.getRotation(EnumFacing.SOUTH);
-    public static final AxisAlignedBB SIDE_WEST = SIDE.getRotation(EnumFacing.WEST);
-    public static final AxisAlignedBB[] TOP_BOXES = new Bounds(-16, 0, 0, 16, 15, 16).getRotatedBounds();
-    public static final AxisAlignedBB[] BOTTOM_BOXES = new Bounds(0, 0, 0, 32, 15, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] BOWL_BASE = new Bounds(0, 0, 0, 16, 2, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] BOWL_BACK = new Bounds(12, 2, 2, 16, 14, 14).getRotatedBounds();
+    private static final AxisAlignedBB[] BOWL_LEFT = new Bounds(0, 2, 0, 16, 14, 2).getRotatedBounds();
+    private static final AxisAlignedBB[] BOWL_RIGHT = new Bounds(0, 2, 14, 16, 14, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] FAUCET_BASE = new Bounds(13, 14, 7, 15, 18, 9).getRotatedBounds();
+    private static final AxisAlignedBB[] FAUCET_TOP = new Bounds(9, 18, 7, 15, 20, 9).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_LEFT = new Bounds(13, 14, 2, 15, 16, 4).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_RIGHT = new Bounds(13, 14, 12, 15, 16, 14).getRotatedBounds();
+    private static final AxisAlignedBB[] FAUCET_NOZZLE = new Bounds(9, 17.68, 7, 11, 18, 9).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_BACK = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, BOWL_BASE, BOWL_BACK, BOWL_LEFT, BOWL_RIGHT, FAUCET_BASE, FAUCET_TOP, HANDLE_LEFT, HANDLE_RIGHT, FAUCET_NOZZLE);
+    
+    private static final AxisAlignedBB[] BOWL_FRONT = new Bounds(0, 2, 2, 2, 14, 14).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_FRONT = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, BOWL_FRONT, BOWL_BASE, BOWL_LEFT, BOWL_RIGHT);
+
+    private static final AxisAlignedBB[] BOUNDING_BOX = new Bounds(0, 0, -16, 16, 14, 16).getRotatedBounds();
 
     public BlockBath(Material material, boolean top)
     {
@@ -60,6 +71,21 @@ public class BlockBath extends BlockFurnitureTile
         this.setHardness(1.0F);
         this.setSoundType(SoundType.STONE);
         if(top) this.setCreativeTab(null);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        EnumFacing facing = state.getValue(FACING);
+        AxisAlignedBB bounds = BOUNDING_BOX[facing.getHorizontalIndex()];
+        return this == FurnitureBlocks.BATH_1 ? bounds : bounds.offset(-facing.getFrontOffsetX(), 0, -facing.getFrontOffsetZ());
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        int i = state.getValue(FACING).getHorizontalIndex();
+        return this == FurnitureBlocks.BATH_1 ? COLLISION_BOXES_FRONT[i] : COLLISION_BOXES_BACK[i];
     }
 
     @Override
@@ -76,42 +102,6 @@ public class BlockBath extends BlockFurnitureTile
         if(placer instanceof EntityPlayer)
         {
             Triggers.trigger(Triggers.PLACE_BATHTROOM_FURNITURE, (EntityPlayer) placer);
-        }
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        EnumFacing facing = state.getValue(FACING);
-        return state.getBlock() == FurnitureBlocks.BATH_1 ? BOTTOM_BOXES[facing.getHorizontalIndex()] : TOP_BOXES[facing.getHorizontalIndex()];
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean p_185477_7_)
-    {
-        EnumFacing facing = state.getValue(FACING);
-        addCollisionBoxToList(pos, entityBox, collidingBoxes, BOTTOM);
-        if(this == FurnitureBlocks.BATH_1)
-        {
-            if(facing != EnumFacing.WEST)
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_NORTH);
-            if(facing != EnumFacing.EAST)
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_SOUTH);
-            if(facing != EnumFacing.NORTH)
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_EAST);
-            if(facing != EnumFacing.SOUTH)
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_WEST);
-        }
-        else
-        {
-            if(facing != EnumFacing.EAST)
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_NORTH);
-            if(facing != EnumFacing.WEST)
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_SOUTH);
-            if(facing != EnumFacing.SOUTH)
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_EAST);
-            if(facing != EnumFacing.NORTH)
-                addCollisionBoxToList(pos, entityBox, collidingBoxes, SIDE_WEST);
         }
     }
 

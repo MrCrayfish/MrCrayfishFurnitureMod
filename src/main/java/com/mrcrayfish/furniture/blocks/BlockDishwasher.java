@@ -16,23 +16,50 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 public class BlockDishwasher extends BlockFurnitureTile
 {
-    public static final AxisAlignedBB COLLISION_BOX = new Bounds(1, 0, 1, 15, 16, 15).toAABB();
+    private static final AxisAlignedBB[] BODY = new Bounds(2, 0, 1, 15, 16, 15).getRotatedBounds();
+    private static final AxisAlignedBB[] DOOR = new Bounds(1, 1, 1, 2, 13, 15).getRotatedBounds();
+    private static final AxisAlignedBB[] KNOB_3 = new Bounds(1, 14, 13, 2, 15, 14).getRotatedBounds();
+    private static final AxisAlignedBB[] KNOB_2 = new Bounds(1, 14, 11, 2, 15, 12).getRotatedBounds();
+    private static final AxisAlignedBB[] KNOB_1 = new Bounds(1, 14, 2, 2, 15, 3).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE = new Bounds(0, 11, 6, 1, 12, 10).getRotatedBounds();
+
+    public static final List<AxisAlignedBB>[] COLLISION_BOXES_BODY = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, BODY, KNOB_3, KNOB_2, KNOB_1);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_DOOR = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, DOOR);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES_HANDLE = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, HANDLE);
+    private static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.combineBoxLists(COLLISION_BOXES_BODY, COLLISION_BOXES_DOOR, COLLISION_BOXES_HANDLE);
+    public static final AxisAlignedBB[] BOUNDING_BOX = Bounds.getBoundingBoxes(Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, BODY));
 
     public BlockDishwasher(Material material)
     {
         super(material);
         this.setHardness(0.5F);
         this.setSoundType(SoundType.ANVIL);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return BOUNDING_BOX[state.getValue(FACING).getHorizontalIndex()];
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override
@@ -71,52 +98,5 @@ public class BlockDishwasher extends BlockFurnitureTile
     {
         TileEntityDishwasher dishwasher = (TileEntityDishwasher) world.getTileEntity(pos);
         return dishwasher.isWashing() ? 1 : 0;
-    }
-
-    @Override
-    public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entity, boolean isActualState)
-    {
-        List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, world, pos));
-        for(AxisAlignedBB box : list)
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-        }
-    }
-
-    private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
-    {
-        List<AxisAlignedBB> list = Lists.newArrayList();
-        list.add(COLLISION_BOX);
-        return list;
-    }
-
-    @Override
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
-    {
-        List<RayTraceResult> list = Lists.newArrayList();
-
-        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos)))
-        {
-            list.add(this.rayTrace(pos, start, end, axisalignedbb));
-        }
-
-        RayTraceResult raytraceresult1 = null;
-        double d1 = 0.0D;
-
-        for(RayTraceResult raytraceresult : list)
-        {
-            if(raytraceresult != null)
-            {
-                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-                if(d0 > d1)
-                {
-                    raytraceresult1 = raytraceresult;
-                    d1 = d0;
-                }
-            }
-        }
-
-        return raytraceresult1;
     }
 }

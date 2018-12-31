@@ -13,17 +13,26 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.List;
 
 public class BlockCabinet extends BlockFurnitureTile
 {
-    public static final AxisAlignedBB[] COLLISION_BOXES = new Bounds(2, 0, 0, 16, 16, 16).getRotatedBounds();
+    private static final AxisAlignedBB[] DOOR = new Bounds(2, 1, 1, 3, 15, 15).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_FRONT = new Bounds(0, 4.5, 3, 1, 11.5, 4).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_TOP = new Bounds(1, 10.5, 3, 2, 11.5, 4).getRotatedBounds();
+    private static final AxisAlignedBB[] HANDLE_BOTTOM = new Bounds(1, 4.5, 3, 2, 5.5, 4).getRotatedBounds();
+    private static final AxisAlignedBB[] BODY = new Bounds(3, 0, 0, 16, 16, 16).getRotatedBounds();
+
+    public static final List<AxisAlignedBB>[] COLLISION_BOXES = Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, DOOR, HANDLE_FRONT, HANDLE_TOP, HANDLE_BOTTOM, BODY);
+    public static final AxisAlignedBB[] BOUNDING_BOX = Bounds.getBoundingBoxes(Bounds.getRotatedBoundLists(Rotation.COUNTERCLOCKWISE_90, BODY));
 
     public BlockCabinet(Material material)
     {
@@ -34,13 +43,15 @@ public class BlockCabinet extends BlockFurnitureTile
     }
 
     @Override
-    public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn, boolean isActualState)
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        List<AxisAlignedBB> list = getCollisionBoxList(this.getActualState(state, worldIn, pos));
-        for(AxisAlignedBB box : list)
-        {
-            addCollisionBoxToList(pos, entityBox, collidingBoxes, box);
-        }
+        return BOUNDING_BOX[state.getValue(FACING).getHorizontalIndex()];
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override
@@ -62,43 +73,5 @@ public class BlockCabinet extends BlockFurnitureTile
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
         return new TileEntityCabinet();
-    }
-
-    private List<AxisAlignedBB> getCollisionBoxList(IBlockState state)
-    {
-        List<AxisAlignedBB> list = Lists.newArrayList();
-        EnumFacing facing = state.getValue(FACING);
-        list.add(COLLISION_BOXES[facing.getHorizontalIndex()]);
-        return list;
-    }
-
-    @Override
-    public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end)
-    {
-        List<RayTraceResult> list = Lists.newArrayList();
-
-        for(AxisAlignedBB axisalignedbb : getCollisionBoxList(this.getActualState(blockState, worldIn, pos)))
-        {
-            list.add(this.rayTrace(pos, start, end, axisalignedbb));
-        }
-
-        RayTraceResult raytraceresult1 = null;
-        double d1 = 0.0D;
-
-        for(RayTraceResult raytraceresult : list)
-        {
-            if(raytraceresult != null)
-            {
-                double d0 = raytraceresult.hitVec.squareDistanceTo(end);
-
-                if(d0 > d1)
-                {
-                    raytraceresult1 = raytraceresult;
-                    d1 = d0;
-                }
-            }
-        }
-
-        return raytraceresult1;
     }
 }

@@ -25,12 +25,18 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.List;
+
 import javax.annotation.Nullable;
 
 public class BlockDoorMat extends BlockFurniture implements ITileEntityProvider
 {
     public static final PropertyInteger COLOUR = PropertyInteger.create("colour", 0, 15);
-    private static final AxisAlignedBB BOUNDING_BOX = new Bounds(0, 0, 0, 16, 1, 16).toAABB();
+
+    private static final AxisAlignedBB[] BODY = new Bounds(0, 0, 2, 16, 1, 14).getRotatedBounds();
+
+    private static final List<AxisAlignedBB>[] RAYTRACE_BOXES = Bounds.getRotatedBoundLists(BODY);
+    private static final AxisAlignedBB[] BOUNDING_BOX = Bounds.getBoundingBoxes(RAYTRACE_BOXES);
 
     public BlockDoorMat(Material material)
     {
@@ -42,7 +48,13 @@ public class BlockDoorMat extends BlockFurniture implements ITileEntityProvider
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return BOUNDING_BOX;
+        return BOUNDING_BOX[state.getValue(FACING).getHorizontalIndex()];
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getRaytraceBoxes(IBlockState state, World world, BlockPos pos)
+    {
+        return RAYTRACE_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }
 
     @Override

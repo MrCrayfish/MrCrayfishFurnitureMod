@@ -1,14 +1,22 @@
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
+import java.util.Random;
+
+import javax.annotation.Nullable;
+
+import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityCrate;
-import net.minecraft.block.Block;
+import com.mrcrayfish.furniture.util.Bounds;
+
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,20 +29,41 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.Random;
-
-public class BlockCrate extends Block implements ITileEntityProvider
+public class BlockCrate extends BlockCollisionRaytrace implements ITileEntityProvider
 {
+    private static final AxisAlignedBB INSIDE = new Bounds(1, 1, 1, 15, 15, 15).toAABB();
+    private static final AxisAlignedBB BACK_LEFT_SEAL = new Bounds(0, 0, 0, 2, 16, 2).toAABB();
+    private static final AxisAlignedBB BACK_RIGHT_SEAL = new Bounds(14, 0, 0, 16, 16, 2).toAABB();
+    private static final AxisAlignedBB FRONT_RIGHT_SEAL = new Bounds(14, 0, 14, 16, 16, 16).toAABB();
+    private static final AxisAlignedBB FRONT_LEFT_SEAL = new Bounds(0, 0, 14, 2, 16, 16).toAABB();
+    private static final AxisAlignedBB BACK_BOTTOM_SEAL = new Bounds(2, 0, 0, 14, 2, 2).toAABB();
+    private static final AxisAlignedBB BACK_TOP_SEAL = new Bounds(2, 14, 0, 14, 16, 2).toAABB();
+    private static final AxisAlignedBB FRONT_TOP_SEAL = new Bounds(2, 14, 14, 14, 16, 16).toAABB();
+    private static final AxisAlignedBB FRONT_BOTTOM_SEAL = new Bounds(2, 0, 14, 14, 2, 16).toAABB();
+    private static final AxisAlignedBB LEFT_BOTTOM_SEAL = new Bounds(0, 0, 2, 2, 2, 14).toAABB();
+    private static final AxisAlignedBB LEFT_TOP_SEAL = new Bounds(0, 14, 2, 2, 16, 14).toAABB();
+    private static final AxisAlignedBB RIGHT_TOP_SEAL = new Bounds(14, 14, 2, 16, 16, 14).toAABB();
+    private static final AxisAlignedBB RIGHT_BOTTOM_SEAL = new Bounds(14, 0, 2, 16, 2, 14).toAABB();
+
+    private static final List<AxisAlignedBB> COLLISION_BOXES = Lists.newArrayList(INSIDE, BACK_LEFT_SEAL, BACK_RIGHT_SEAL, FRONT_RIGHT_SEAL, FRONT_LEFT_SEAL, BACK_BOTTOM_SEAL, BACK_TOP_SEAL, FRONT_TOP_SEAL, FRONT_BOTTOM_SEAL, LEFT_BOTTOM_SEAL, LEFT_TOP_SEAL, RIGHT_TOP_SEAL, RIGHT_BOTTOM_SEAL);
+
     public BlockCrate(Material materialIn)
     {
         super(materialIn);
         this.setHardness(1.0F);
         this.setSoundType(SoundType.WOOD);
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
+    }
+
+    @Override
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return COLLISION_BOXES;
     }
 
     @Override
