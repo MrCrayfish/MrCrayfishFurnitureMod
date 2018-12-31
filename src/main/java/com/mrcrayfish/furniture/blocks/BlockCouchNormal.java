@@ -1,6 +1,9 @@
 package com.mrcrayfish.furniture.blocks;
 
+import javax.annotation.Nullable;
+
 import com.mrcrayfish.furniture.tileentity.TileEntityColoured;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -12,8 +15,6 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
 
 public class BlockCouchNormal extends BlockCouch
 {

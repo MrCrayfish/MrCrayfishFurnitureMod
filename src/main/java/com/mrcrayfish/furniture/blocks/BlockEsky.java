@@ -1,11 +1,15 @@
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureSounds;
 import com.mrcrayfish.furniture.tileentity.TileEntityEsky;
 import com.mrcrayfish.furniture.tileentity.TileEntityKitchenCounter;
 import com.mrcrayfish.furniture.util.Bounds;
-import com.mrcrayfish.furniture.util.CollisionHelper;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyInteger;
@@ -28,9 +32,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 public class BlockEsky extends BlockFurnitureTile
 {

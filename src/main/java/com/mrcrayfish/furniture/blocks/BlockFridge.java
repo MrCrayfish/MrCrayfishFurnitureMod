@@ -1,6 +1,10 @@
 package com.mrcrayfish.furniture.blocks;
 
-import com.google.common.collect.Lists;
+import java.util.List;
+import java.util.Random;
+
+import javax.annotation.Nullable;
+
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityFridge;
@@ -20,14 +24,8 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import java.util.List;
-import java.util.Random;
-
-import javax.annotation.Nullable;
 
 public class BlockFridge extends BlockFurnitureTile
 {

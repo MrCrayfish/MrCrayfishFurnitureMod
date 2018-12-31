@@ -1,9 +1,13 @@
 package com.mrcrayfish.furniture.blocks;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import com.mrcrayfish.furniture.tileentity.IColored;
 import com.mrcrayfish.furniture.tileentity.TileEntityDigitalClock;
 import com.mrcrayfish.furniture.util.Bounds;
-import net.minecraft.block.Block;
+
 import net.minecraft.block.BlockColored;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -28,9 +32,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import javax.annotation.Nullable;
-import java.util.List;
 
 /**
  * Author: MrCrayfish

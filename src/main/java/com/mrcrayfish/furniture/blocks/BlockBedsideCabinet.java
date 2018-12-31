@@ -2,6 +2,8 @@ package com.mrcrayfish.furniture.blocks;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.init.FurnitureBlocks;
 import com.mrcrayfish.furniture.tileentity.TileEntityBedsideCabinet;
@@ -44,7 +46,7 @@ public class BlockBedsideCabinet extends BlockFurnitureTile
     }
 
     @Override
-    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, Entity entity, boolean isActualState)
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
     {
         return COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }

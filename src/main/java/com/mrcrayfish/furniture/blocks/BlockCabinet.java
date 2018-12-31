@@ -1,6 +1,9 @@
 package com.mrcrayfish.furniture.blocks;
 
-import com.google.common.collect.Lists;
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.tileentity.TileEntityCabinet;
 import com.mrcrayfish.furniture.util.Bounds;
@@ -16,12 +19,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-
-import java.util.List;
 
 public class BlockCabinet extends BlockFurnitureTile
 {
@@ -49,7 +48,7 @@ public class BlockCabinet extends BlockFurnitureTile
     }
 
     @Override
-    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, Entity entity, boolean isActualState)
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
     {
         return COLLISION_BOXES[state.getValue(FACING).getHorizontalIndex()];
     }

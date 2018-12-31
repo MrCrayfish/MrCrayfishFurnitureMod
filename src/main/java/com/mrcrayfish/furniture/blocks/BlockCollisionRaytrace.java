@@ -42,6 +42,7 @@ public class BlockCollisionRaytrace extends Block
         return getCollisionBoxes(state, world, pos, null, false);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity, boolean isActualState)
     {
@@ -59,6 +60,7 @@ public class BlockCollisionRaytrace extends Block
         }
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     @Nullable
     public RayTraceResult collisionRayTrace(IBlockState state, World world, BlockPos pos, Vec3d start, Vec3d end)
