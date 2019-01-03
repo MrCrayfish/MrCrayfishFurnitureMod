@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 
 public class BlockFurniture extends BlockCollisionRaytrace
 {
-	public static final AxisAlignedBB EMPTY_AABB = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
+    public static final AxisAlignedBB EMPTY_AABB = new AxisAlignedBB(0, 0, 0, 0, 0, 0);
     public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
     public BlockFurniture(Material material)

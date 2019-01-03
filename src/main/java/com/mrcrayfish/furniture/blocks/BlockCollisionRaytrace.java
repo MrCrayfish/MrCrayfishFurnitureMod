@@ -20,23 +20,23 @@ public class BlockCollisionRaytrace extends Block
 {
     protected static final List<AxisAlignedBB> EMPTY = new ArrayList<>();
 
-	public BlockCollisionRaytrace(Material material)
-	{
-		super(material);
-	}
-
-	public BlockCollisionRaytrace(Material material, MapColor blockMapColor)
-	{
-		super(material, blockMapColor);
-	}
-
-	@Nullable
-    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    public BlockCollisionRaytrace(Material material)
     {
-    	return null;
+        super(material);
     }
 
-	@Nullable
+    public BlockCollisionRaytrace(Material material, MapColor blockMapColor)
+    {
+        super(material, blockMapColor);
+    }
+
+    @Nullable
+    protected List<AxisAlignedBB> getCollisionBoxes(IBlockState state, World world, BlockPos pos, @Nullable Entity entity, boolean isActualState)
+    {
+        return null;
+    }
+
+    @Nullable
     protected List<AxisAlignedBB> getRaytraceBoxes(IBlockState state, World world, BlockPos pos)
     {
         return getCollisionBoxes(state, world, pos, null, false);
@@ -46,12 +46,12 @@ public class BlockCollisionRaytrace extends Block
     @Override
     public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entity, boolean isActualState)
     {
-    	List<AxisAlignedBB> boxes = getCollisionBoxes(state, world, pos, null, isActualState);
-    	if (boxes == null)
-    	{
-    		super.addCollisionBoxToList(state, world, pos, entityBox, collidingBoxes, entity, isActualState);
-    		return;
-    	}
+        List<AxisAlignedBB> boxes = getCollisionBoxes(state, world, pos, null, isActualState);
+        if (boxes == null)
+        {
+            super.addCollisionBoxToList(state, world, pos, entityBox, collidingBoxes, entity, isActualState);
+            return;
+        }
         entityBox = entityBox.offset(-pos.getX(), -pos.getY(), -pos.getZ());
         for (AxisAlignedBB box : boxes)
         {
@@ -65,9 +65,9 @@ public class BlockCollisionRaytrace extends Block
     @Nullable
     public RayTraceResult collisionRayTrace(IBlockState state, World world, BlockPos pos, Vec3d start, Vec3d end)
     {
-    	List<AxisAlignedBB> boxes = getRaytraceBoxes(state, world, pos);
-    	if (boxes == null)
-    		return super.collisionRayTrace(state, world, pos, start, end);
+        List<AxisAlignedBB> boxes = getRaytraceBoxes(state, world, pos);
+        if (boxes == null)
+            return super.collisionRayTrace(state, world, pos, start, end);
 
         double distanceSq;
         double distanceSqShortest = Double.POSITIVE_INFINITY;

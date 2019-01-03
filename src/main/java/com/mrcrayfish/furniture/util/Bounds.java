@@ -115,8 +115,8 @@ public class Bounds
 
     public static List<AxisAlignedBB>[] getRotatedBoundLists(Rotation rotation, AxisAlignedBB[]... bounds)
     {
-    	ArrayList<AxisAlignedBB[]> boundLists = Lists.newArrayList(bounds);
-    	return IntStream.range(0, 4)
+        ArrayList<AxisAlignedBB[]> boundLists = Lists.newArrayList(bounds);
+        return IntStream.range(0, 4)
                 .mapToObj(i -> boundLists.stream().map(boxesFacing -> boxesFacing[(i + rotation.ordinal()) % 4]).collect(Collectors.toList()))
                 .toArray(ArrayList[]::new);
     }
