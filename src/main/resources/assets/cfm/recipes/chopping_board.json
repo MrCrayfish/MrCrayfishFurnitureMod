@@ -10,12 +10,12 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "S": {
-      "item": "minecraft:wooden_slab",
-      "data": 0
+      "type": "forge:ore_dict",
+      "ore":  "slabWood"
     },
     "L": {
-      "item": "minecraft:log",
-      "data": 0
+      "type": "forge:ore_dict",
+      "ore":  "logWood"
     }
   }
 }

@@ -13,8 +13,8 @@
       "item": "minecraft:flower_pot"
     },
     "L": {
-      "item": "minecraft:leaves",
-      "data": 0
+      "type": "forge:ore_dict",
+      "ore":  "treeLeaves"
     }
   }
 }
