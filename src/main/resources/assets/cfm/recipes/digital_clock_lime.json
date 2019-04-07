@@ -14,8 +14,8 @@
             "item": "minecraft:iron_ingot"
         },
         "D": {
-            "item": "minecraft:dye",
-            "data": 10
+            "type": "forge:ore_dict",
+            "ore": "dyeLime"
         },
         "C": {
             "item": "minecraft:clock"

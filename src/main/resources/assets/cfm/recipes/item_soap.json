@@ -7,12 +7,12 @@
       "item": "minecraft:clay_ball"
     },
     {
-      "item": "minecraft:dye",
-      "data": 15
+      "type": "forge:ore_dict",
+      "ore": "dyeWhite"
     },
     {
-      "item": "minecraft:dye",
-      "data": 12
+      "type": "forge:ore_dict",
+      "ore": "dyeCyan"
     }
   ],
   "type": "minecraft:crafting_shapeless"

@@ -15,8 +15,8 @@
       "data": 0
     },
     "I": {
-      "item": "minecraft:dye",
-      "data": 0
+      "type": "forge:ore_dict",
+      "ore": "dyeBlack"
     }
   }
 }
