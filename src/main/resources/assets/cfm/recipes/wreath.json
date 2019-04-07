@@ -3,14 +3,22 @@
     "item": "cfm:wreath"
   },
   "pattern": [
-    "LLL",
-    "L L",
-    "LLL"
+    "LRL",
+    "Y Y",
+    "LRL"
   ],
   "type": "minecraft:crafting_shaped",
   "key": {
     "L": {
-      "item": "minecraft:leaves",
+      "type": "forge:ore_dict",
+      "ore": "treeLeaves"
+    },
+    "R": {
+      "item": "minecraft:red_flower",
+      "data": 0
+    },
+    "Y": {
+      "item": "minecraft:yellow_flower",
       "data": 0
     }
   }
