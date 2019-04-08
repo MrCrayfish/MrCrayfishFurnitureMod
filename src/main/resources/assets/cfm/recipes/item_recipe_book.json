@@ -1,0 +1,19 @@
+{
+	"result": {
+		"item": "cfm:item_recipe_book"
+	},
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "minecraft:book"
+		},
+		{
+			"type": "forge:ore_dict",
+			"ore": "workbench"
+		},
+		{
+			"type": "forge:ore_dict",
+			"ore": "gemEmerald"	
+		}
+	]
+}
