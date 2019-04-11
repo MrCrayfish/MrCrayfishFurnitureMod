@@ -12,7 +12,7 @@
     },
     {
       "type": "forge:ore_dict",
-      "ore": "dyeCyan"
+      "ore": "dyeLightBlue"
     }
   ],
   "type": "minecraft:crafting_shapeless"
