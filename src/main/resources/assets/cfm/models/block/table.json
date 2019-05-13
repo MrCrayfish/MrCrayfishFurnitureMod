@@ -1,0 +1,32 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "particle": "#top"
+    },
+    "uvlock": true,
+    "elements": [
+        {
+            "from": [ 6, 0, 6 ], 
+            "to": [ 10, 14.4, 10 ], 
+            "faces": {
+                "north": { "texture": "#legs", "uv": [ 6, 0, 10, 14.4 ] },
+                "east": { "texture": "#legs", "uv": [ 6, 0, 10, 14.4 ] },
+                "south": { "texture": "#legs", "uv": [ 6, 0, 10, 14.4 ] },
+                "west": { "texture": "#legs", "uv": [ 6, 0, 10, 14.4 ] },
+                "down": { "texture": "#legs", "uv": [ 6, 6, 10, 10 ], "cullface": "down" }
+            }
+        },
+        {
+            "from": [ 0, 14.4, 0 ], 
+            "to": [ 16, 16, 16 ], 
+            "faces": {
+                "north": { "texture": "#top", "uv": [ 0, 14.4, 16, 16 ], "cullface": "north" },
+                "east": { "texture": "#top", "uv": [ 0, 14.4, 16, 16 ], "cullface": "east" },
+                "south": { "texture": "#top", "uv": [ 0, 14.4, 16, 16 ], "cullface": "south" },
+                "west": { "texture": "#top", "uv": [ 0, 14.4, 16, 16 ], "cullface": "west" },
+                "up": { "texture": "#top", "uv": [ 0, 0, 16, 16 ], "cullface": "up" },
+                "down": { "texture": "#top", "uv": [ 0, 0, 16, 16 ] }
+            }
+        }
+    ]
+}
