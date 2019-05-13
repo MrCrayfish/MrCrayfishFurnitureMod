@@ -1,9 +1,0 @@
-{
-    "parent": "cfm:block/blinds_open_stringless",
-    "textures": {
-        "particle": "blocks/log_jungle",
-        "1": "blocks/log_jungle",
-        "2": "blocks/planks_jungle",
-        "3": "blocks/concrete_white"
-    }
-}

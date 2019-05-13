@@ -1,6 +1,0 @@
-{
-	"parent": "cfm:block/counter_drawer",
-	"textures": {
-		"variant": "blocks/hardened_clay_stained_magenta"
-	}
-}

@@ -1,8 +1,0 @@
-{
-    "parent": "cfm:item/desk",
-    "textures": {
-        "top": "blocks/concrete_white",
-        "primary": "blocks/stone_diorite_smooth",
-        "secondary": "blocks/concrete_white"
-    }
-}

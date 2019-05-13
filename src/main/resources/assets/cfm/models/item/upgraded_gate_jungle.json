@@ -1,7 +1,0 @@
-{
-    "parent": "cfm:item/upgraded_gate",
-    "textures": {
-        "log": "blocks/log_jungle",
-        "plank": "blocks/planks_jungle"
-    }
-}

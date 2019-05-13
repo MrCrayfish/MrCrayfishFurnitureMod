@@ -1,9 +1,0 @@
-{
-    "parent": "cfm:block/bar_stool",
-    "textures": {
-        "1": "blocks/hardened_clay_stained_silver",
-        "2": "blocks/concrete_silver",
-        "3": "blocks/concrete_white",
-        "4": "blocks/concrete_silver"
-    }
-}

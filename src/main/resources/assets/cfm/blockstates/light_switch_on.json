@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "cfm:light_switch_on", "y": 0   },
-        "facing=south": { "model": "cfm:light_switch_on", "y": 180 },
-        "facing=east":  { "model": "cfm:light_switch_on", "y": 90  },
-        "facing=west":  { "model": "cfm:light_switch_on", "y": 270 }
-    }
-}

@@ -1,100 +1,93 @@
 package com.mrcrayfish.furniture.entity;
 
+import com.mrcrayfish.furniture.core.ModEntities;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import java.util.List;
+
+/**
+ * Author: MrCrayfish
+ */
 public class EntitySeat extends Entity
 {
-    public int blockPosX;
-    public int blockPosY;
-    public int blockPosZ;
+    private BlockPos source;
 
     public EntitySeat(World world)
     {
-        super(world);
+        super(ModEntities.SEAT, world);
         this.noClip = true;
         this.height = 0.01F;
         this.width = 0.01F;
     }
 
-    public EntitySeat(World world, double x, double y, double z, double y0ffset)
+    public EntitySeat(World world, BlockPos source, double yOffset)
     {
         this(world);
-        this.blockPosX = (int) x;
-        this.blockPosY = (int) y;
-        this.blockPosZ = (int) z;
-        setPosition(x + 0.5D, y + y0ffset, z + 0.5D);
+        this.source = source;
+        this.setPosition(source.getX() + 0.5, source.getY() + yOffset, source.getZ() + 0.5);
     }
 
-    public EntitySeat(World world, double x, double y, double z, double y0ffset, int rotation, double rotationOffset)
-    {
-        this(world);
-        this.blockPosX = (int) x;
-        this.blockPosY = (int) y;
-        this.blockPosZ = (int) z;
-        setPostionConsideringRotation(x + 0.5D, y + y0ffset, z + 0.5D, rotation, rotationOffset);
-    }
+    @Override
+    protected void registerData() {}
 
-    public void setPostionConsideringRotation(double x, double y, double z, int rotation, double rotationOffset)
+    @Override
+    public void baseTick()
     {
-        switch(rotation)
+        super.baseTick();
+        if(source == null)
         {
-            case 2:
-                z += rotationOffset;
-                break;
-            case 0:
-                z -= rotationOffset;
-                break;
-            case 3:
-                x -= rotationOffset;
-                break;
-            case 1:
-                x += rotationOffset;
-                break;
+            source = this.getPosition();
         }
-        setPosition(x, y, z);
-    }
-
-    @Override
-    public double getMountedYOffset()
-    {
-        return this.height * 0.0D;
-    }
-
-    @Override
-    protected boolean shouldSetPosAfterLoading()
-    {
-        return false;
-    }
-
-    @Override
-    public void onEntityUpdate()
-    {
         if(!this.world.isRemote)
         {
-            if(!this.isBeingRidden() || this.world.isAirBlock(new BlockPos(blockPosX, blockPosY, blockPosZ)))
+            if(this.getPassengers().isEmpty() || this.world.isAirBlock(source))
             {
-                this.setDead();
+                world.removeEntity(this);
                 world.updateComparatorOutputLevel(getPosition(), world.getBlockState(getPosition()).getBlock());
             }
         }
     }
 
     @Override
-    protected void entityInit()
+    protected void readAdditional(NBTTagCompound compound) {}
+
+    @Override
+    protected void writeAdditional(NBTTagCompound compound) {}
+
+    @Override
+    public double getMountedYOffset()
     {
+        return 0.0;
+    }
+
+    public BlockPos getSource()
+    {
+        return source;
     }
 
     @Override
-    public void readEntityFromNBT(NBTTagCompound nbttagcompound)
+    protected boolean canBeRidden(Entity entity)
     {
+        return true;
     }
 
-    @Override
-    public void writeEntityToNBT(NBTTagCompound nbttagcompound)
+    public static boolean create(World world, BlockPos pos, double yOffset, EntityPlayer player)
     {
+        if(!world.isRemote)
+        {
+            List<EntitySeat> seats = world.getEntitiesWithinAABB(EntitySeat.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1.0, pos.getY() + 1.0, pos.getZ() + 1.0));
+            if(seats.isEmpty())
+            {
+                EntitySeat seat = new EntitySeat(world, pos, yOffset);
+                world.spawnEntity(seat);
+                player.startRiding(seat, true);
+            }
+        }
+        return true;
     }
-
 }

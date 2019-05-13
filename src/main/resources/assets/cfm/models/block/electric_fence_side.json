@@ -1,6 +1,0 @@
-{
-    "parent": "cfm:block/thin_fence_side",
-    "textures": {
-        "texture": "blocks/anvil_base"
-    }
-}

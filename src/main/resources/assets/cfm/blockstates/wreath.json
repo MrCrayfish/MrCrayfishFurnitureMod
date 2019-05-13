@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": {"model": "cfm:wreath"},
-        "facing=south": { "model": "cfm:wreath", "y": 180},
-        "facing=east": { "model": "cfm:wreath", "y": 90},
-        "facing=west": { "model": "cfm:wreath", "y": 270}
-    }
-}

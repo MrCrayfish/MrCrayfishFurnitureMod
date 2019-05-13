@@ -1,7 +1,0 @@
-{
-	"parent": "cfm:block/door_mat",
-	"textures": {
-		"mat": "blocks/wool_colored_red",
-		"border": "blocks/concrete_red"
-	}
-}

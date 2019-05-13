@@ -1,6 +1,0 @@
-{
-    "parent": "cfm:item/modern_bed",
-    "textures": {
-        "color": "blocks/wool_colored_black"
-    }
-}

@@ -1,6 +1,0 @@
-{
-    "parent": "cfm:block/photo_frame",
-    "textures": {
-        "color": "blocks/concrete_yellow"
-    }
-}

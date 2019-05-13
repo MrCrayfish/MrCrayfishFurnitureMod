@@ -1,6 +1,0 @@
-{
-	"parent": "cfm:item/cabinet_kitchen",
-	"textures": {
-		"1": "blocks/hardened_clay_stained_lime"
-	}
-}

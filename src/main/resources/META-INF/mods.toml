@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[25,)"
+
+[[mods]]
+modId="cfm"
+version="6.2.1"
+displayName="MrCrayfish's Furniture Mod"
+updateJSONURL="https://raw.githubusercontent.com/MrCrayfish/MrCrayfishFurnitureMod/master/update.json"
+displayURL="https://mrcrayfish.com/mods?id=cfm"
+logoFile="furniture.png"
+credits=""
+authors="MrCrayfish"
+description="Adds over 80 unique pieces of furniture to the game"
+
+[[dependencies.cfm]]
+    modId="forge"
+    mandatory=true
+    versionRange="[25,)"
+    ordering="NONE"
+    side="BOTH"
+[[dependencies.cfm]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.13.2]"
+    ordering="NONE"
+    side="BOTH"

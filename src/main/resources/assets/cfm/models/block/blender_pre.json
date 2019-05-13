@@ -1,8 +1,0 @@
-{
-    "parent": "cfm:block/blender",
-    "textures": {
-        "1": "blocks/concrete_gray",
-        "2": "blocks/concrete_silver",
-        "3": "blocks/glass_white"
-    }
-}
