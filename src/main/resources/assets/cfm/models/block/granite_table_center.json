@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/table_center",
+    "textures": {
+        "top": "block/polished_granite",
+        "legs": "block/granite"
+    }
+}

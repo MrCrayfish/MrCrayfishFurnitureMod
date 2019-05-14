@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/table_center",
+    "textures": {
+        "top": "block/birch_log",
+        "legs": "block/birch_planks"
+    }
+}

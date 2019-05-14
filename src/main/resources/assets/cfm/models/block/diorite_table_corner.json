@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/table_corner",
+    "textures": {
+        "top": "block/polished_diorite",
+        "legs": "block/diorite"
+    }
+}

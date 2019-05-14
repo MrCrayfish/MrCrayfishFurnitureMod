@@ -8,15 +8,15 @@ import com.mrcrayfish.furniture.Reference;
 public class BlockNames
 {
     public static final String TABLE_OAK = Reference.MOD_ID + ":oak_table";
-    public static final String TABLE_SPRUCE = Reference.MOD_ID + ":table_spruce";
-    public static final String TABLE_BIRCH = Reference.MOD_ID + ":table_birch";
-    public static final String TABLE_JUNGLE = Reference.MOD_ID + ":table_jungle";
-    public static final String TABLE_ACACIA = Reference.MOD_ID + ":table_acacia";
-    public static final String TABLE_DARK_OAK = Reference.MOD_ID + ":table_dark_oak";
-    public static final String TABLE_STONE = Reference.MOD_ID + ":table_stone";
-    public static final String TABLE_GRANITE = Reference.MOD_ID + ":table_granite";
-    public static final String TABLE_DIORITE = Reference.MOD_ID + ":table_diorite";
-    public static final String TABLE_ANDESITE = Reference.MOD_ID + ":table_andesite";
+    public static final String TABLE_SPRUCE = Reference.MOD_ID + ":spruce_table";
+    public static final String TABLE_BIRCH = Reference.MOD_ID + ":birch_table";
+    public static final String TABLE_JUNGLE = Reference.MOD_ID + ":jungle_table";
+    public static final String TABLE_ACACIA = Reference.MOD_ID + ":acacia_table";
+    public static final String TABLE_DARK_OAK = Reference.MOD_ID + ":dark_oak_table";
+    public static final String TABLE_STONE = Reference.MOD_ID + ":stone_table";
+    public static final String TABLE_GRANITE = Reference.MOD_ID + ":granite_table";
+    public static final String TABLE_DIORITE = Reference.MOD_ID + ":diorite_table";
+    public static final String TABLE_ANDESITE = Reference.MOD_ID + ":andesite_table";
     public static final String CHAIR_OAK = Reference.MOD_ID + ":chair_oak";
     public static final String CHAIR_STONE = Reference.MOD_ID + ":chair_stone";
     public static final String CHAIR_SPRUCE = Reference.MOD_ID + ":chair_spruce";

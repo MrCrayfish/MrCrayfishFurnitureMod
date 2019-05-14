@@ -29,9 +29,45 @@ public class ModBlocks
     @ObjectHolder(value = BlockNames.TABLE_OAK)
     public static final Block TABLE_OAK = null;
 
+    @ObjectHolder(value = BlockNames.TABLE_SPRUCE)
+    public static final Block TABLE_SPRUCE = null;
+
+    @ObjectHolder(value = BlockNames.TABLE_BIRCH)
+    public static final Block TABLE_BIRCH = null;
+
+    @ObjectHolder(value = BlockNames.TABLE_JUNGLE)
+    public static final Block TABLE_JUNGLE = null;
+
+    @ObjectHolder(value = BlockNames.TABLE_ACACIA)
+    public static final Block TABLE_ACACIA = null;
+
+    @ObjectHolder(value = BlockNames.TABLE_DARK_OAK)
+    public static final Block TABLE_DARK_OAK = null;
+
+    @ObjectHolder(value = BlockNames.TABLE_STONE)
+    public static final Block TABLE_STONE = null;
+
+    @ObjectHolder(value = BlockNames.TABLE_GRANITE)
+    public static final Block TABLE_GRANITE = null;
+
+    @ObjectHolder(value = BlockNames.TABLE_DIORITE)
+    public static final Block TABLE_DIORITE = null;
+
+    @ObjectHolder(value = BlockNames.TABLE_ANDESITE)
+    public static final Block TABLE_ANDESITE = null;
+
     static
     {
         register(BlockNames.TABLE_OAK, new BlockTable(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD)));
+        register(BlockNames.TABLE_SPRUCE, new BlockTable(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD)));
+        register(BlockNames.TABLE_BIRCH, new BlockTable(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD)));
+        register(BlockNames.TABLE_JUNGLE, new BlockTable(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD)));
+        register(BlockNames.TABLE_ACACIA, new BlockTable(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD)));
+        register(BlockNames.TABLE_DARK_OAK, new BlockTable(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD)));
+        register(BlockNames.TABLE_STONE, new BlockTable(Block.Properties.create(Material.ROCK).sound(SoundType.STONE)));
+        register(BlockNames.TABLE_GRANITE, new BlockTable(Block.Properties.create(Material.ROCK).sound(SoundType.STONE)));
+        register(BlockNames.TABLE_DIORITE, new BlockTable(Block.Properties.create(Material.ROCK).sound(SoundType.STONE)));
+        register(BlockNames.TABLE_ANDESITE, new BlockTable(Block.Properties.create(Material.ROCK).sound(SoundType.STONE)));
     }
 
     private static void register(String name, Block block)
