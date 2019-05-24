@@ -1,5 +1,8 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "particle": "#all"
+    },
     "elements": [
         {
             "from": [ 0, 0, 0 ], 
