@@ -33,6 +33,7 @@ public class BlockModernTV extends BlockAbstractTV
         super(Material.ANVIL, 22, 12, 4, -0.35);
         this.setUnlocalizedName("modern_tv");
         this.setRegistryName("modern_tv");
+        this.setHardness(1.0F);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(MOUNTED, false));
     }
 
