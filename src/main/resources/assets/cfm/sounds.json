@@ -30,5 +30,6 @@
    "sizzle":             { "category": "block",  "sounds": [{ "name": "cfm:sizzle" }]},
    "light_switch":       { "category": "block",  "sounds": [{ "name": "cfm:light_switch" }]},
    "sliding_door_open":  { "category": "block",  "sounds": [{ "name": "cfm:sliding_door_open" }]},
-   "sliding_door_close": { "category": "block",  "sounds": [{ "name": "cfm:sliding_door_close" }]}
+   "sliding_door_close": { "category": "block",  "sounds": [{ "name": "cfm:sliding_door_close" }]},
+   "bounce":             { "category": "block",  "sounds": [{ "name": "cfm:bounce" }]}
 }

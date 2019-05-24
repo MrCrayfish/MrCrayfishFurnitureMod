@@ -29,6 +29,12 @@ public class ItemColored extends ItemBlock implements SubItems
     }
 
     @Override
+    public int getMetadata(int damage)
+    {
+        return damage;
+    }
+
+    @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
         EnumDyeColor color = EnumDyeColor.byMetadata(stack.getMetadata());

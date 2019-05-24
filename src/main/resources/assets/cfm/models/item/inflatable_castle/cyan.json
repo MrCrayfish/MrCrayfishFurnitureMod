@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/inflatable_castle",
+    "textures": {
+        "all": "blocks/shulker_top_cyan"
+    }
+}
