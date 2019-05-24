@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.util;
 import com.mrcrayfish.furniture.blocks.BlockFurniture;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockAir;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -18,8 +19,13 @@ public class StateHelper
     public static Direction getRotation(IBlockAccess world, BlockPos pos, EnumFacing facing, Direction dir)
     {
         BlockPos target = getBlockPosRelativeTo(world, pos, facing, dir);
-        EnumFacing other = world.getBlockState(target).getValue(BlockFurniture.FACING);
-        return getDirectionRelativeTo(facing, other);
+        IBlockState state = world.getBlockState(target);
+        if(state.getPropertyKeys().contains(BlockFurniture.FACING))
+        {
+            EnumFacing other = state.getValue(BlockFurniture.FACING);
+            return getDirectionRelativeTo(facing, other);
+        }
+        return Direction.NONE;
     }
 
     public static boolean isAirBlock(IBlockAccess world, BlockPos pos, EnumFacing facing, Direction dir)
