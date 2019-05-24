@@ -1,0 +1,17 @@
+{
+    "result": {
+        "item": "cfm:inflatable_castle",
+        "data": 3,
+        "count": 16
+    },
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:wool",
+            "data": 3
+        },
+        {
+            "item": "minecraft:rabbit_foot"
+        }
+    ]
+}
