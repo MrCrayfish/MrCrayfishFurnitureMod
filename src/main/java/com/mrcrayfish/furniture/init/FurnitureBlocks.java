@@ -84,7 +84,7 @@ public class FurnitureBlocks
     public static final Block OAK_GATE_UPGRADED, SPRUCE_GATE_UPGRADED, BIRCH_GATE_UPGRADED, JUNGLE_GATE_UPGRADED, ACACIA_GATE_UPGRADED, DARK_OAK_GATE_UPGRADED;
     public static final Block WHITE_GATE;
     public static final Block OAK_PARK_BENCH, SPRUCE_PARK_BENCH, BIRCH_PARK_BENCH, JUNGLE_PARK_BENCH, ACACIA_PARK_BENCH, DARK_OAK_PARK_BENCH;
-    public static final Block INFLATABLE_CASTLE;
+    public static final Block INFLATABLE_CASTLE, CASTLE_NETTING;
 
     /* Special */
     public static final Block MIRROR;
@@ -318,6 +318,7 @@ public class FurnitureBlocks
         ACACIA_PARK_BENCH = new BlockParkBench("park_bench_acacia");
         DARK_OAK_PARK_BENCH = new BlockParkBench("park_bench_dark_oak");
         INFLATABLE_CASTLE = new BlockInflatableCastle();
+        CASTLE_NETTING = new BlockCastleNetting();
     }
 
     public static void register()
@@ -537,6 +538,7 @@ public class FurnitureBlocks
         registerBlock(ACACIA_PARK_BENCH);
         registerBlock(DARK_OAK_PARK_BENCH);
         registerBlock(INFLATABLE_CASTLE, new ItemColored(INFLATABLE_CASTLE));
+        registerBlock(CASTLE_NETTING);
     }
 
     private static void registerBlock(Block block)
