@@ -62,7 +62,7 @@ public class MessageUpdateValueContainer implements IMessage, IMessageHandler<Me
     @Override
     public IMessage onMessage(MessageUpdateValueContainer message, MessageContext ctx)
     {
-        if(ctx.getServerHandler().player.isCreative())
+        //if(ctx.getServerHandler().player.isCreative()) //TODO make TV not use value container implementation
         {
             World world = ctx.getServerHandler().player.getServerWorld();
             TileEntity tileEntity = world.getTileEntity(message.pos);
