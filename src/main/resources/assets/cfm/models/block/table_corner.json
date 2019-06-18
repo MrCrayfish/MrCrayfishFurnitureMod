@@ -1,23 +1,26 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "particle": "#top"
+    },
     "elements": [
         {
             "from": [ 3, 0, 3 ], 
-            "to": [ 7, 14.4, 7 ], 
+            "to": [ 7, 14, 7 ], 
             "faces": {
-                "north": { "texture": "#legs", "uv": [ 3, 0, 7, 14.4 ] },
-                "east": { "texture": "#legs", "uv": [ 3, 0, 7, 14.4 ] },
-                "south": { "texture": "#legs", "uv": [ 3, 0, 7, 14.4 ] },
-                "west": { "texture": "#legs", "uv": [ 3, 0, 7, 14.4 ] },
-                "down": { "texture": "#legs", "uv": [ 3, 3, 7, 7 ], "cullface": "down" }
+                "north": { "texture": "#legs", "uv": [ 12, 0, 16, 14 ] },
+                "east": { "texture": "#legs", "uv": [ 12, 0, 16, 14 ] },
+                "south": { "texture": "#legs", "uv": [ 12, 0, 16, 14 ] },
+                "west": { "texture": "#legs", "uv": [ 12, 0, 16, 14 ] },
+                "down": { "texture": "#legs", "uv": [ -0, 0, 4, 4 ], "cullface": "down" }
             }
         },
         {
-            "from": [ 0, 14.4, 0 ], 
+            "from": [ 0, 14, 0 ], 
             "to": [ 16, 16, 16 ], 
             "faces": {
-                "north": { "texture": "#top", "uv": [ 0, 14.4, 16, 16 ], "cullface": "north" },
-                "west": { "texture": "#top", "uv": [ 0, 14.4, 16, 16 ], "cullface": "west" },
+                "north": { "texture": "#top", "uv": [ 0, 14, 16, 16 ], "cullface": "north" },
+                "west": { "texture": "#top", "uv": [ 0, 14, 16, 16 ], "cullface": "west" },
                 "up": { "texture": "#top", "uv": [ 0, 0, 16, 16 ], "cullface": "up" },
                 "down": { "texture": "#top", "uv": [ 0, 0, 16, 16 ] }
             }
