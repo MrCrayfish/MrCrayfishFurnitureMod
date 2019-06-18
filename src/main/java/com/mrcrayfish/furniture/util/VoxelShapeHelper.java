@@ -21,14 +21,14 @@ public class VoxelShapeHelper
 
     public static VoxelShape[] getRotatedVoxelShapes(VoxelShape source)
     {
-        VoxelShape shapeNorth = rotateShape(source, Direction.NORTH);
-        VoxelShape shapeEast = rotateShape(source, Direction.EAST);
-        VoxelShape shapeSouth = rotateShape(source, Direction.SOUTH);
-        VoxelShape shapeWest = rotateShape(source, Direction.WEST);
+        VoxelShape shapeNorth = rotate(source, Direction.NORTH);
+        VoxelShape shapeEast = rotate(source, Direction.EAST);
+        VoxelShape shapeSouth = rotate(source, Direction.SOUTH);
+        VoxelShape shapeWest = rotate(source, Direction.WEST);
         return new VoxelShape[] { shapeSouth, shapeWest, shapeNorth, shapeEast };
     }
 
-    private static VoxelShape rotateShape(VoxelShape source, Direction direction)
+    public static VoxelShape rotate(VoxelShape source, Direction direction)
     {
         double[] adjustedValues = adjustValues(direction, source.getStart(Direction.Axis.X), source.getStart(Direction.Axis.Z), source.getEnd(Direction.Axis.X), source.getEnd(Direction.Axis.Z));
         return VoxelShapes.create(adjustedValues[0], source.getStart(Direction.Axis.Y), adjustedValues[1], adjustedValues[2], source.getEnd(Direction.Axis.Y), adjustedValues[3]);
