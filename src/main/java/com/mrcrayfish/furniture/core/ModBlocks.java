@@ -2,13 +2,13 @@ package com.mrcrayfish.furniture.core;
 
 import com.mrcrayfish.furniture.FurnitureMod;
 import com.mrcrayfish.furniture.Reference;
-import com.mrcrayfish.furniture.block.BlockTable;
+import com.mrcrayfish.furniture.block.TableBlock;
 import com.mrcrayfish.furniture.util.BlockNames;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -58,16 +58,16 @@ public class ModBlocks
 
     static
     {
-        register(BlockNames.TABLE_OAK, new BlockTable(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD)));
-        register(BlockNames.TABLE_SPRUCE, new BlockTable(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD)));
-        register(BlockNames.TABLE_BIRCH, new BlockTable(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD)));
-        register(BlockNames.TABLE_JUNGLE, new BlockTable(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD)));
-        register(BlockNames.TABLE_ACACIA, new BlockTable(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD)));
-        register(BlockNames.TABLE_DARK_OAK, new BlockTable(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD)));
-        register(BlockNames.TABLE_STONE, new BlockTable(Block.Properties.create(Material.ROCK).sound(SoundType.STONE)));
-        register(BlockNames.TABLE_GRANITE, new BlockTable(Block.Properties.create(Material.ROCK).sound(SoundType.STONE)));
-        register(BlockNames.TABLE_DIORITE, new BlockTable(Block.Properties.create(Material.ROCK).sound(SoundType.STONE)));
-        register(BlockNames.TABLE_ANDESITE, new BlockTable(Block.Properties.create(Material.ROCK).sound(SoundType.STONE)));
+        register(BlockNames.TABLE_OAK, new TableBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD)));
+        register(BlockNames.TABLE_SPRUCE, new TableBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD)));
+        register(BlockNames.TABLE_BIRCH, new TableBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD)));
+        register(BlockNames.TABLE_JUNGLE, new TableBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD)));
+        register(BlockNames.TABLE_ACACIA, new TableBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD)));
+        register(BlockNames.TABLE_DARK_OAK, new TableBlock(Block.Properties.create(Material.WOOD).sound(SoundType.WOOD)));
+        register(BlockNames.TABLE_STONE, new TableBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE)));
+        register(BlockNames.TABLE_GRANITE, new TableBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE)));
+        register(BlockNames.TABLE_DIORITE, new TableBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE)));
+        register(BlockNames.TABLE_ANDESITE, new TableBlock(Block.Properties.create(Material.ROCK).sound(SoundType.STONE)));
     }
 
     private static void register(String name, Block block)
@@ -77,10 +77,10 @@ public class ModBlocks
 
     private static void register(String name, Block block, Item.Properties properties)
     {
-        register(name, block, new ItemBlock(block, properties.group(FurnitureMod.GROUP)));
+        register(name, block, new BlockItem(block, properties.group(FurnitureMod.GROUP)));
     }
 
-    private static void register(String name, Block block, ItemBlock item)
+    private static void register(String name, Block block, BlockItem item)
     {
         block.setRegistryName(name);
         BLOCKS.add(block);

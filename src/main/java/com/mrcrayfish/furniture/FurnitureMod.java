@@ -3,13 +3,18 @@ package com.mrcrayfish.furniture;
 import com.mrcrayfish.furniture.common.GuiFactory;
 import com.mrcrayfish.furniture.proxy.ClientProxy;
 import com.mrcrayfish.furniture.proxy.CommonProxy;
+import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.item.ItemGroup;
+import net.minecraftforge.common.data.ForgeBlockTagsProvider;
+import net.minecraftforge.common.data.ForgeItemTagsProvider;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.LifecycleEventProvider;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,7 +29,7 @@ public class FurnitureMod
     public FurnitureMod()
     {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onCommonSetup);
-        ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiFactory::openGui);
+        //ScreenManager.registerFactory();
     }
 
     private void onCommonSetup(FMLCommonSetupEvent event)
@@ -32,13 +37,8 @@ public class FurnitureMod
         PROXY.setup();
     }
 
-    /*@EventHandler
-    public void postInit(FMLPostInitializationEvent event)
+    public void gatherData(GatherDataEvent event)
     {
-        *//* Initialize API *//*
-        RecipeRegistry.registerDefaultRecipes();
-        RecipeRegistry.registerConfigRecipes();
-        Recipes.addCommRecipesToLocal();
-        Recipes.updateDataList();
-    }*/
+        System.out.println("HELLO MY FRIENDS");
+    }
 }

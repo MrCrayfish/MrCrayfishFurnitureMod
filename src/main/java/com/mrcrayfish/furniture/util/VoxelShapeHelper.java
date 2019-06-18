@@ -1,6 +1,6 @@
 package com.mrcrayfish.furniture.util;
 
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Direction;
 import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
@@ -21,22 +21,22 @@ public class VoxelShapeHelper
 
     public static VoxelShape[] getRotatedVoxelShapes(VoxelShape source)
     {
-        VoxelShape shapeNorth = rotateShape(source, EnumFacing.NORTH);
-        VoxelShape shapeEast = rotateShape(source, EnumFacing.EAST);
-        VoxelShape shapeSouth = rotateShape(source, EnumFacing.SOUTH);
-        VoxelShape shapeWest = rotateShape(source, EnumFacing.WEST);
+        VoxelShape shapeNorth = rotateShape(source, Direction.NORTH);
+        VoxelShape shapeEast = rotateShape(source, Direction.EAST);
+        VoxelShape shapeSouth = rotateShape(source, Direction.SOUTH);
+        VoxelShape shapeWest = rotateShape(source, Direction.WEST);
         return new VoxelShape[] { shapeSouth, shapeWest, shapeNorth, shapeEast };
     }
 
-    private static VoxelShape rotateShape(VoxelShape source, EnumFacing facing)
+    private static VoxelShape rotateShape(VoxelShape source, Direction direction)
     {
-        double[] adjustedValues = adjustValues(facing, source.getStart(EnumFacing.Axis.X), source.getStart(EnumFacing.Axis.Z), source.getEnd(EnumFacing.Axis.X), source.getEnd(EnumFacing.Axis.Z));
-        return VoxelShapes.create(adjustedValues[0], source.getStart(EnumFacing.Axis.Y), adjustedValues[1], adjustedValues[2], source.getEnd(EnumFacing.Axis.Y), adjustedValues[3]);
+        double[] adjustedValues = adjustValues(direction, source.getStart(Direction.Axis.X), source.getStart(Direction.Axis.Z), source.getEnd(Direction.Axis.X), source.getEnd(Direction.Axis.Z));
+        return VoxelShapes.create(adjustedValues[0], source.getStart(Direction.Axis.Y), adjustedValues[1], adjustedValues[2], source.getEnd(Direction.Axis.Y), adjustedValues[3]);
     }
 
-    private static double[] adjustValues(EnumFacing facing, double var1, double var2, double var3, double var4)
+    private static double[] adjustValues(Direction direction, double var1, double var2, double var3, double var4)
     {
-        switch(facing)
+        switch(direction)
         {
             case WEST:
                 double var_temp_1 = var1;

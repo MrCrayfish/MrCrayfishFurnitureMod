@@ -1,30 +1,25 @@
 package com.mrcrayfish.furniture.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.state.BlockFaceShape;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.inventory.Container;
+import net.minecraft.block.BlockState;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.StateContainer;
+import net.minecraft.inventory.container.Container;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
-public abstract class BlockFurniture extends Block
+public abstract class FurnitureBlock extends Block
 {
-    public BlockFurniture(Properties properties)
+    public FurnitureBlock(Properties properties)
     {
         super(properties);
     }
 
     @Override
-    public boolean isFullCube(IBlockState state)
+    public boolean isNormalCube(BlockState p_220081_1_, IBlockReader p_220081_2_, BlockPos p_220081_3_)
     {
         return false;
     }
@@ -36,19 +31,13 @@ public abstract class BlockFurniture extends Block
     }
 
     @Override
-    public BlockFaceShape getBlockFaceShape(IBlockReader worldIn, IBlockState state, BlockPos pos, EnumFacing face)
+    public int getOpacity(BlockState state, IBlockReader reader, BlockPos pos)
     {
-        return BlockFaceShape.UNDEFINED;
+        return 255;
     }
 
     @Override
-    public int getOpacity(IBlockState state, IBlockReader reader, BlockPos pos)
-    {
-        return 0;
-    }
-
-    @Override
-    public int getComparatorInputOverride(IBlockState state, World world, BlockPos pos)
+    public int getComparatorInputOverride(BlockState state, World world, BlockPos pos)
     {
         if(this.hasTileEntity(state))
         {
@@ -59,13 +48,13 @@ public abstract class BlockFurniture extends Block
     }
 
     @Override
-    public boolean hasComparatorInputOverride(IBlockState state)
+    public boolean hasComparatorInputOverride(BlockState state)
     {
         return this.hasTileEntity(state);
     }
 
     @Override
-    public void onReplaced(IBlockState state, World world, BlockPos pos, IBlockState newState, boolean isMoving)
+    public void onReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean isMoving)
     {
         if(this.hasTileEntity(state))
         {
@@ -74,20 +63,16 @@ public abstract class BlockFurniture extends Block
             {
                 InventoryHelper.dropInventoryItems(world, pos, (IInventory) tileEntity);
             }
-            /*if(tileEntity instanceof ISimpleInventory) //TODO look into removing
-            {
-                InventoryUtil.dropInventoryItems(world, pos, (ISimpleInventory) tileEntity);
-            }*/
         }
         super.onReplaced(state, world, pos, newState, isMoving);
     }
 
     @Override
-    public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int type)
+    public boolean eventReceived(BlockState state, World world, BlockPos pos, int id, int type)
     {
         if(this.hasTileEntity(state))
         {
-            TileEntity tileEntity = worldIn.getTileEntity(pos);
+            TileEntity tileEntity = world.getTileEntity(pos);
             return tileEntity != null && tileEntity.receiveClientEvent(id, type);
         }
         return false;
