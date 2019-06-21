@@ -19,21 +19,9 @@ public abstract class FurnitureBlock extends Block
     }
 
     @Override
-    public boolean isNormalCube(BlockState p_220081_1_, IBlockReader p_220081_2_, BlockPos p_220081_3_)
-    {
-        return false;
-    }
-
-    @Override
     public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
-    }
-
-    @Override
-    public int getOpacity(BlockState state, IBlockReader reader, BlockPos pos)
-    {
-        return 255;
     }
 
     @Override
