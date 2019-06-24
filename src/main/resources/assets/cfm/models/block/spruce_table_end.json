@@ -2,6 +2,6 @@
     "parent": "cfm:block/table_end",
     "textures": {
         "top": "block/spruce_log",
-        "legs": "block/spruce_planks"
+        "legs": "block/stripped_spruce_log"
     }
 }

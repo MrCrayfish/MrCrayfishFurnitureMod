@@ -9,6 +9,7 @@ import net.minecraft.network.IPacket;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import java.util.List;
 
@@ -19,15 +20,15 @@ public class SeatEntity extends Entity
 {
     private BlockPos source;
 
-    public SeatEntity(EntityType<SeatEntity> type, World world)
+    public SeatEntity(World world)
     {
-        super(type, world);
+        super(ModEntities.SEAT, world);
         this.noClip = true;
     }
 
     private SeatEntity(World world, BlockPos source, double yOffset)
     {
-        this(ModEntities.SEAT, world);
+        this(world);
         this.source = source;
         this.setPosition(source.getX() + 0.5, source.getY() + yOffset, source.getZ() + 0.5);
     }
@@ -36,9 +37,9 @@ public class SeatEntity extends Entity
     protected void registerData() {}
 
     @Override
-    public void baseTick()
+    public void tick()
     {
-        super.baseTick();
+        super.tick();
         if(source == null)
         {
             source = this.getPosition();
@@ -85,7 +86,7 @@ public class SeatEntity extends Entity
     @Override
     public IPacket<?> createSpawnPacket()
     {
-        return null;
+        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     public static boolean create(World world, BlockPos pos, double yOffset, PlayerEntity player)
@@ -97,7 +98,7 @@ public class SeatEntity extends Entity
             {
                 SeatEntity seat = new SeatEntity(world, pos, yOffset);
                 world.addEntity(seat);
-                player.startRiding(seat, true);
+                player.startRiding(seat, false);
             }
         }
         return true;

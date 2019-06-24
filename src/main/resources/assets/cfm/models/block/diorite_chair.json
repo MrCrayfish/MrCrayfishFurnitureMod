@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/chair",
+    "textures": {
+        "seat": "minecraft:block/polished_diorite",
+        "legs": "minecraft:block/diorite"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/chair",
+    "textures": {
+        "seat": "minecraft:block/dark_oak_log",
+        "legs": "minecraft:block/stripped_dark_oak_log"
+    }
+}

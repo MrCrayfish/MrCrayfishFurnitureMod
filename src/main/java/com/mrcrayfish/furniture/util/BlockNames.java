@@ -17,16 +17,17 @@ public class BlockNames
     public static final String TABLE_GRANITE = Reference.MOD_ID + ":granite_table";
     public static final String TABLE_DIORITE = Reference.MOD_ID + ":diorite_table";
     public static final String TABLE_ANDESITE = Reference.MOD_ID + ":andesite_table";
-    public static final String CHAIR_OAK = Reference.MOD_ID + ":chair_oak";
-    public static final String CHAIR_STONE = Reference.MOD_ID + ":chair_stone";
-    public static final String CHAIR_SPRUCE = Reference.MOD_ID + ":chair_spruce";
-    public static final String CHAIR_BIRCH = Reference.MOD_ID + ":chair_birch";
-    public static final String CHAIR_JUNGLE = Reference.MOD_ID + ":chair_jungle";
-    public static final String CHAIR_ACACIA = Reference.MOD_ID + ":chair_acacia";
-    public static final String CHAIR_DARK_OAK = Reference.MOD_ID + ":chair_dark_oak";
-    public static final String CHAIR_GRANITE = Reference.MOD_ID + ":chair_granite";
-    public static final String CHAIR_DIORITE = Reference.MOD_ID + ":chair_diorite";
-    public static final String CHAIR_ANDESITE = Reference.MOD_ID + ":chair_andesite";
+    public static final String CHAIR_OAK = Reference.MOD_ID + ":oak_chair";
+    public static final String CHAIR_SPRUCE = Reference.MOD_ID + ":spruce_chair";
+    public static final String CHAIR_BIRCH = Reference.MOD_ID + ":birch_chair";
+    public static final String CHAIR_JUNGLE = Reference.MOD_ID + ":jungle_chair";
+    public static final String CHAIR_ACACIA = Reference.MOD_ID + ":acacia_chair";
+    public static final String CHAIR_DARK_OAK = Reference.MOD_ID + ":dark_oak_chair";
+    public static final String CHAIR_STONE = Reference.MOD_ID + ":stone_chair";
+    public static final String CHAIR_GRANITE = Reference.MOD_ID + ":granite_chair";
+    public static final String CHAIR_DIORITE = Reference.MOD_ID + ":diorite_chair";
+    public static final String CHAIR_ANDESITE = Reference.MOD_ID + ":andesite_chair";
+
     public static final String COFFEE_TABLE_OAK = Reference.MOD_ID + ":coffee_table_oak";
     public static final String COFFEE_TABLE_STONE = Reference.MOD_ID + ":coffee_table_stone";
     public static final String COFFEE_TABLE_SPRUCE = Reference.MOD_ID + ":coffee_table_spruce";

@@ -5,19 +5,14 @@ import com.mrcrayfish.furniture.entity.SeatEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.item.ArmorStandEntity;
-import net.minecraft.entity.projectile.ArrowEntity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-import java.util.function.Function;
-
 public class ModEntities
 {
-    public static final EntityType<SeatEntity> SEAT = buildType(new ResourceLocation(Reference.MOD_ID, "seat"), EntityType.Builder.create(SeatEntity::new, EntityClassification.MISC).size(1.0F, 1.0F));
+    public static final EntityType<SeatEntity> SEAT = buildType(new ResourceLocation(Reference.MOD_ID, "seat"), EntityType.Builder.<SeatEntity>create((type, world) -> new SeatEntity(world), EntityClassification.MISC).size(0.0F, 0.0F).setCustomClientFactory((spawnEntity, world) -> new SeatEntity(world)));
 
     private static <T extends Entity> EntityType<T> buildType(ResourceLocation id, EntityType.Builder<T> builder)
     {

@@ -1,11 +1,15 @@
 {
     "forge_marker": 1,
     "defaults": {
-        "uvlock": true
+        "uvlock": true,
+        "textures": {
+            "top": "block/acacia_log",
+            "legs": "block/acacia_planks"
+        }
     },
     "variants": {
         "east=true,north=true,south=false,west=false": {
-            "model": "cfm:acacia_table_corner",
+            "model": "cfm:table_corner",
             "y": 270
         },
         "east=false,north=true,south=false,west=true": {

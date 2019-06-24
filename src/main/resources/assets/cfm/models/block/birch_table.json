@@ -2,6 +2,6 @@
     "parent": "cfm:block/table",
     "textures": {
         "top": "block/birch_log",
-        "legs": "block/birch_planks"
+        "legs": "block/stripped_birch_log"
     }
 }

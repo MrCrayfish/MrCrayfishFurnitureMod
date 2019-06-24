@@ -20,7 +20,8 @@ import java.util.List;
 /**
  * Author: MrCrayfish
  */
-public class TableBlock extends FurnitureBlockWaterlogged
+//TODO update forge blockstate once
+public class TableBlock extends FurnitureWaterloggedBlock
 {
     public static final BooleanProperty NORTH = BooleanProperty.create("north");
     public static final BooleanProperty EAST = BooleanProperty.create("east");

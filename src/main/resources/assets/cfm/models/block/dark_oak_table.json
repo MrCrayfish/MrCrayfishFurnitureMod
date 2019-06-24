@@ -2,6 +2,6 @@
     "parent": "cfm:block/table",
     "textures": {
         "top": "block/dark_oak_log",
-        "legs": "block/dark_oak_planks"
+        "legs": "block/stripped_dark_oak_log"
     }
 }

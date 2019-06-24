@@ -13,11 +13,11 @@ import net.minecraft.state.properties.BlockStateProperties;
 /**
  * Author: MrCrayfish
  */
-public abstract class FurnitureBlockWaterlogged extends FurnitureBlock implements IWaterLoggable
+public abstract class FurnitureWaterloggedBlock extends FurnitureBlock implements IWaterLoggable
 {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public FurnitureBlockWaterlogged(Properties properties)
+    public FurnitureWaterloggedBlock(Properties properties)
     {
         super(properties);
     }

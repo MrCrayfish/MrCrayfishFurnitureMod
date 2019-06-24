@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.core;
 
 import com.mrcrayfish.furniture.FurnitureMod;
 import com.mrcrayfish.furniture.Reference;
+import com.mrcrayfish.furniture.block.ChairBlock;
 import com.mrcrayfish.furniture.block.TableBlock;
 import com.mrcrayfish.furniture.util.BlockNames;
 import net.minecraft.block.Block;
@@ -61,6 +62,36 @@ public class ModBlocks
     @ObjectHolder(value = BlockNames.TABLE_ANDESITE)
     public static final Block TABLE_ANDESITE = null;
 
+    @ObjectHolder(value = BlockNames.CHAIR_OAK)
+    public static final Block CHAIR_OAK = null;
+
+    @ObjectHolder(value = BlockNames.CHAIR_SPRUCE)
+    public static final Block CHAIR_SPRUCE = null;
+
+    @ObjectHolder(value = BlockNames.CHAIR_BIRCH)
+    public static final Block CHAIR_BIRCH = null;
+
+    @ObjectHolder(value = BlockNames.CHAIR_JUNGLE)
+    public static final Block CHAIR_JUNGLE = null;
+
+    @ObjectHolder(value = BlockNames.CHAIR_ACACIA)
+    public static final Block CHAIR_ACACIA = null;
+
+    @ObjectHolder(value = BlockNames.CHAIR_DARK_OAK)
+    public static final Block CHAIR_DARK_OAK = null;
+
+    @ObjectHolder(value = BlockNames.CHAIR_STONE)
+    public static final Block CHAIR_STONE = null;
+
+    @ObjectHolder(value = BlockNames.CHAIR_GRANITE)
+    public static final Block CHAIR_GRANITE = null;
+
+    @ObjectHolder(value = BlockNames.CHAIR_DIORITE)
+    public static final Block CHAIR_DIORITE = null;
+
+    @ObjectHolder(value = BlockNames.CHAIR_ANDESITE)
+    public static final Block CHAIR_ANDESITE = null;
+
     static
     {
         register(BlockNames.TABLE_OAK, new TableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
@@ -73,6 +104,16 @@ public class ModBlocks
         register(BlockNames.TABLE_GRANITE, new TableBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
         register(BlockNames.TABLE_DIORITE, new TableBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
         register(BlockNames.TABLE_ANDESITE, new TableBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.CHAIR_OAK, new ChairBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.CHAIR_SPRUCE, new ChairBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.CHAIR_BIRCH, new ChairBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.CHAIR_JUNGLE, new ChairBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.CHAIR_ACACIA, new ChairBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.CHAIR_DARK_OAK, new ChairBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.CHAIR_STONE, new ChairBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.CHAIR_GRANITE, new ChairBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.CHAIR_DIORITE, new ChairBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.CHAIR_ANDESITE, new ChairBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
     }
 
     private static void register(String name, Block block)
@@ -100,11 +141,13 @@ public class ModBlocks
     public static void registerBlocks(final RegistryEvent.Register<Block> event)
     {
         BLOCKS.forEach(block -> event.getRegistry().register(block));
+        BLOCKS.clear();
     }
 
     @SubscribeEvent
     public static void registerItems(final RegistryEvent.Register<Item> event)
     {
         ITEMS.forEach(item -> event.getRegistry().register(item));
+        ITEMS.clear();
     }
 }

@@ -2,6 +2,6 @@
     "parent": "cfm:block/table_corner",
     "textures": {
         "top": "block/acacia_log",
-        "legs": "block/acacia_planks"
+        "legs": "block/stripped_acacia_log"
     }
 }

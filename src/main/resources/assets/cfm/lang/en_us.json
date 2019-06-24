@@ -8,5 +8,15 @@
     "block.cfm.stone_table": "Stone Table",
     "block.cfm.granite_table": "Granite Table",
     "block.cfm.diorite_table": "Diorite Table",
-    "block.cfm.andesite_table": "Andesite Table"
+    "block.cfm.andesite_table": "Andesite Table",
+    "block.cfm.oak_chair": "Oak Chair",
+    "block.cfm.spruce_chair": "Spruce Chair",
+    "block.cfm.birch_chair": "Birch Chair",
+    "block.cfm.jungle_chair": "Jungle Chair",
+    "block.cfm.acacia_chair": "Acacia Chair",
+    "block.cfm.dark_oak_chair": "Dark Oak Chair",
+    "block.cfm.stone_chair": "Stone Chair",
+    "block.cfm.granite_chair": "Granite Chair",
+    "block.cfm.diorite_chair": "Diorite Chair",
+    "block.cfm.andesite_chair": "Andesite Chair"
 }

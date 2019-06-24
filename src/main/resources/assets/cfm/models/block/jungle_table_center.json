@@ -2,6 +2,6 @@
     "parent": "cfm:block/table_center",
     "textures": {
         "top": "block/jungle_log",
-        "legs": "block/jungle_planks"
+        "legs": "block/stripped_jungle_log"
     }
 }
