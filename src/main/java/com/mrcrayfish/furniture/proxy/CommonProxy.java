@@ -5,5 +5,7 @@ package com.mrcrayfish.furniture.proxy;
  */
 public class CommonProxy
 {
-    public void setup() {}
+    public void onSetupCommon() {}
+
+    public void onSetupClient() {}
 }

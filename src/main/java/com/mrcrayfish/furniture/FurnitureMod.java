@@ -2,11 +2,12 @@ package com.mrcrayfish.furniture;
 
 import com.mrcrayfish.furniture.proxy.ClientProxy;
 import com.mrcrayfish.furniture.proxy.CommonProxy;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -21,16 +22,17 @@ public class FurnitureMod
     public FurnitureMod()
     {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onCommonSetup);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
         //ScreenManager.registerFactory();
     }
 
     private void onCommonSetup(FMLCommonSetupEvent event)
     {
-        PROXY.setup();
+        PROXY.onSetupCommon();
     }
 
-    public void gatherData(GatherDataEvent event)
+    private void onClientSetup(FMLClientSetupEvent event)
     {
-        System.out.println("HELLO MY FRIENDS");
+        PROXY.onSetupClient();
     }
 }

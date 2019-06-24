@@ -10,8 +10,9 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 public class ClientProxy extends CommonProxy
 {
     @Override
-    public void setup()
+    public void onSetupClient()
     {
+        super.onSetupClient();
         RenderingRegistry.registerEntityRenderingHandler(SeatEntity.class, SeatRenderer::new);
     }
 }
