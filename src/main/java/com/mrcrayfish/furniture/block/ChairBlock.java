@@ -35,12 +35,12 @@ public class ChairBlock extends FurnitureHorizontalWaterloggedBlock
 
     private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
     {
-        final VoxelShape[] FRONT_LEFT_LEG = VoxelShapeHelper.getRotatedVoxelShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(2, 0, 12, 4, 8, 14), Direction.SOUTH));
-        final VoxelShape[] BACKREST = VoxelShapeHelper.getRotatedVoxelShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1.5, 10, 1.5, 14.5, 20, 3.5), Direction.SOUTH));
-        final VoxelShape[] BASE = VoxelShapeHelper.getRotatedVoxelShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1.5, 8, 1.5, 14.5, 10, 14.5), Direction.SOUTH));
-        final VoxelShape[] FRONT_RIGHT_LEG = VoxelShapeHelper.getRotatedVoxelShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(12, 0, 12, 14, 8, 14), Direction.SOUTH));
-        final VoxelShape[] BACK_RIGHT_LEG = VoxelShapeHelper.getRotatedVoxelShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(12, 0, 2, 14, 8, 4), Direction.SOUTH));
-        final VoxelShape[] BACK_LEFT_LEG = VoxelShapeHelper.getRotatedVoxelShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(2, 0, 2, 4, 8, 4), Direction.SOUTH));
+        final VoxelShape[] FRONT_LEFT_LEG = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(2, 0, 12, 4, 8, 14), Direction.SOUTH));
+        final VoxelShape[] BACKREST = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1.5, 10, 1.5, 14.5, 20, 3.5), Direction.SOUTH));
+        final VoxelShape[] BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1.5, 8, 1.5, 14.5, 10, 14.5), Direction.SOUTH));
+        final VoxelShape[] FRONT_RIGHT_LEG = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(12, 0, 12, 14, 8, 14), Direction.SOUTH));
+        final VoxelShape[] BACK_RIGHT_LEG = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(12, 0, 2, 14, 8, 4), Direction.SOUTH));
+        final VoxelShape[] BACK_LEFT_LEG = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(2, 0, 2, 4, 8, 4), Direction.SOUTH));
 
         ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
         for(BlockState state : states)

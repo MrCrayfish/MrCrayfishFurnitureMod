@@ -19,7 +19,7 @@ public class VoxelShapeHelper
         return result.simplify();
     }
 
-    public static VoxelShape[] getRotatedVoxelShapes(VoxelShape source)
+    public static VoxelShape[] getRotatedShapes(VoxelShape source)
     {
         VoxelShape shapeNorth = rotate(source, Direction.NORTH);
         VoxelShape shapeEast = rotate(source, Direction.EAST);
