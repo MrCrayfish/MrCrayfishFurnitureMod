@@ -28,16 +28,17 @@ public class BlockNames
     public static final String CHAIR_DIORITE = Reference.MOD_ID + ":diorite_chair";
     public static final String CHAIR_ANDESITE = Reference.MOD_ID + ":andesite_chair";
 
-    public static final String COFFEE_TABLE_OAK = Reference.MOD_ID + ":coffee_table_oak";
-    public static final String COFFEE_TABLE_STONE = Reference.MOD_ID + ":coffee_table_stone";
-    public static final String COFFEE_TABLE_SPRUCE = Reference.MOD_ID + ":coffee_table_spruce";
-    public static final String COFFEE_TABLE_BIRCH = Reference.MOD_ID + ":coffee_table_birch";
-    public static final String COFFEE_TABLE_JUNGLE = Reference.MOD_ID + ":coffee_table_jungle";
-    public static final String COFFEE_TABLE_ACACIA = Reference.MOD_ID + ":coffee_table_acacia";
-    public static final String COFFEE_TABLE_DARK_OAK = Reference.MOD_ID + ":coffee_table_dark_oak";
-    public static final String COFFEE_TABLE_GRANITE = Reference.MOD_ID + ":coffee_table_granite";
-    public static final String COFFEE_TABLE_DIORITE = Reference.MOD_ID + ":coffee_table_diorite";
-    public static final String COFFEE_TABLE_ANDESITE = Reference.MOD_ID + ":coffee_table_andesite";
+    public static final String COFFEE_TABLE_OAK = Reference.MOD_ID + ":oak_coffee_table";
+    public static final String COFFEE_TABLE_SPRUCE = Reference.MOD_ID + ":spruce_coffee_table";
+    public static final String COFFEE_TABLE_BIRCH = Reference.MOD_ID + ":birch_coffee_table";
+    public static final String COFFEE_TABLE_JUNGLE = Reference.MOD_ID + ":jungle_coffee_table";
+    public static final String COFFEE_TABLE_ACACIA = Reference.MOD_ID + ":acacia_coffee_table";
+    public static final String COFFEE_TABLE_DARK_OAK = Reference.MOD_ID + ":dark_oak_coffee_table";
+    public static final String COFFEE_TABLE_STONE = Reference.MOD_ID + ":stone_coffee_table";
+    public static final String COFFEE_TABLE_GRANITE = Reference.MOD_ID + ":granite_coffee_table";
+    public static final String COFFEE_TABLE_DIORITE = Reference.MOD_ID + ":diorite_coffee_table";
+    public static final String COFFEE_TABLE_ANDESITE = Reference.MOD_ID + ":andesite_coffee_table";
+
     public static final String FREEZER = Reference.MOD_ID + ":freezer";
     public static final String FRIDGE = Reference.MOD_ID + ":fridge";
     public static final String CABINET_OAK = Reference.MOD_ID + ":cabinet_oak";

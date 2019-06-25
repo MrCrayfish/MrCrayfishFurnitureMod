@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.core;
 import com.mrcrayfish.furniture.FurnitureMod;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.block.ChairBlock;
+import com.mrcrayfish.furniture.block.CoffeeTableBlock;
 import com.mrcrayfish.furniture.block.TableBlock;
 import com.mrcrayfish.furniture.util.BlockNames;
 import net.minecraft.block.Block;
@@ -92,6 +93,36 @@ public class ModBlocks
     @ObjectHolder(value = BlockNames.CHAIR_ANDESITE)
     public static final Block CHAIR_ANDESITE = null;
 
+    @ObjectHolder(value = BlockNames.COFFEE_TABLE_OAK)
+    public static final Block COFFEE_TABLE_OAK = null;
+
+    @ObjectHolder(value = BlockNames.COFFEE_TABLE_SPRUCE)
+    public static final Block COFFEE_TABLE_SPRUCE = null;
+
+    @ObjectHolder(value = BlockNames.COFFEE_TABLE_BIRCH)
+    public static final Block COFFEE_TABLE_BIRCH = null;
+
+    @ObjectHolder(value = BlockNames.COFFEE_TABLE_JUNGLE)
+    public static final Block COFFEE_TABLE_JUNGLE = null;
+
+    @ObjectHolder(value = BlockNames.COFFEE_TABLE_ACACIA)
+    public static final Block COFFEE_TABLE_ACACIA = null;
+
+    @ObjectHolder(value = BlockNames.COFFEE_TABLE_DARK_OAK)
+    public static final Block COFFEE_TABLE_DARK_OAK = null;
+
+    @ObjectHolder(value = BlockNames.COFFEE_TABLE_STONE)
+    public static final Block COFFEE_TABLE_STONE = null;
+
+    @ObjectHolder(value = BlockNames.COFFEE_TABLE_GRANITE)
+    public static final Block COFFEE_TABLE_GRANITE = null;
+
+    @ObjectHolder(value = BlockNames.COFFEE_TABLE_DIORITE)
+    public static final Block COFFEE_TABLE_DIORITE = null;
+
+    @ObjectHolder(value = BlockNames.COFFEE_TABLE_ANDESITE)
+    public static final Block COFFEE_TABLE_ANDESITE = null;
+
     static
     {
         register(BlockNames.TABLE_OAK, new TableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
@@ -114,6 +145,16 @@ public class ModBlocks
         register(BlockNames.CHAIR_GRANITE, new ChairBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
         register(BlockNames.CHAIR_DIORITE, new ChairBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
         register(BlockNames.CHAIR_ANDESITE, new ChairBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.COFFEE_TABLE_OAK, new CoffeeTableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.COFFEE_TABLE_SPRUCE, new CoffeeTableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.COFFEE_TABLE_BIRCH, new CoffeeTableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.COFFEE_TABLE_JUNGLE, new CoffeeTableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.COFFEE_TABLE_ACACIA, new CoffeeTableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.COFFEE_TABLE_DARK_OAK, new CoffeeTableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.COFFEE_TABLE_STONE, new CoffeeTableBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.COFFEE_TABLE_GRANITE, new CoffeeTableBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.COFFEE_TABLE_DIORITE, new CoffeeTableBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.COFFEE_TABLE_ANDESITE, new CoffeeTableBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
     }
 
     private static void register(String name, Block block)

@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/coffee_table_tall_two",
+    "textures": {
+        "top": "block/stone",
+        "legs": "block/cobblestone"
+    }
+}

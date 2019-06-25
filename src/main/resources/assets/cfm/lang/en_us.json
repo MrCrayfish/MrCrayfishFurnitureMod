@@ -19,5 +19,15 @@
     "block.cfm.stone_chair": "Stone Chair",
     "block.cfm.granite_chair": "Granite Chair",
     "block.cfm.diorite_chair": "Diorite Chair",
-    "block.cfm.andesite_chair": "Andesite Chair"
+    "block.cfm.andesite_chair": "Andesite Chair",
+    "block.cfm.oak_coffee_table": "Oak Coffee Table",
+    "block.cfm.spruce_coffee_table": "Spruce Coffee Table",
+    "block.cfm.birch_coffee_table": "Birch Coffee Table",
+    "block.cfm.jungle_coffee_table": "Jungle Coffee Table",
+    "block.cfm.acacia_coffee_table": "Acacia Coffee Table",
+    "block.cfm.dark_oak_coffee_table": "Dark Oak Coffee Table",
+    "block.cfm.stone_coffee_table": "Stone Coffee Table",
+    "block.cfm.granite_coffee_table": "Granite Coffee Table",
+    "block.cfm.diorite_coffee_table": "Diorite Coffee Table",
+    "block.cfm.andesite_coffee_table": "Andesite Coffee Table"
 }
