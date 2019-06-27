@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/table",
+    "textures": {
+        "top": "block/stripped_acacia_log",
+        "legs": "block/acacia_log"
+    }
+}

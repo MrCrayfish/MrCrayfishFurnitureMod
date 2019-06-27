@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/chair",
+    "textures": {
+        "seat": "block/stripped_acacia_log",
+        "legs": "block/acacia_log"
+    }
+}

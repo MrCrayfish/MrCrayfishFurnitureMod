@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/table_center",
+    "textures": {
+        "top": "block/stripped_oak_log",
+        "legs": "block/oak_log"
+    }
+}

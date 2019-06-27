@@ -1,0 +1,35 @@
+{
+    "type": "minecraft:block",
+    "pools": [
+        {
+            "name": "stripped_oak_coffee_table",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "functions": [
+                        {
+                            "function": "minecraft:set_count",
+                            "conditions": [
+                                {
+                                    "condition": "minecraft:block_state_property",
+                                    "block": "cfm:stripped_oak_coffee_table",
+                                    "properties": {
+                                        "tall": "true"
+                                    }
+                                }
+                            ],
+                            "count": 2
+                        }
+                    ],
+                    "name": "cfm:stripped_oak_coffee_table"
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ]
+        }
+    ]
+}

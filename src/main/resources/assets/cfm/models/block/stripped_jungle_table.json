@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/table",
+    "textures": {
+        "top": "block/stripped_jungle_log",
+        "legs": "block/jungle_log"
+    }
+}

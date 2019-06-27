@@ -17,6 +17,12 @@ public class BlockNames
     public static final String TABLE_GRANITE = Reference.MOD_ID + ":granite_table";
     public static final String TABLE_DIORITE = Reference.MOD_ID + ":diorite_table";
     public static final String TABLE_ANDESITE = Reference.MOD_ID + ":andesite_table";
+    public static final String TABLE_STRIPPED_OAK = Reference.MOD_ID + ":stripped_oak_table";
+    public static final String TABLE_STRIPPED_SPRUCE = Reference.MOD_ID + ":stripped_spruce_table";
+    public static final String TABLE_STRIPPED_BIRCH = Reference.MOD_ID + ":stripped_birch_table";
+    public static final String TABLE_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_table";
+    public static final String TABLE_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_table";
+    public static final String TABLE_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_table";
     public static final String CHAIR_OAK = Reference.MOD_ID + ":oak_chair";
     public static final String CHAIR_SPRUCE = Reference.MOD_ID + ":spruce_chair";
     public static final String CHAIR_BIRCH = Reference.MOD_ID + ":birch_chair";
@@ -27,7 +33,12 @@ public class BlockNames
     public static final String CHAIR_GRANITE = Reference.MOD_ID + ":granite_chair";
     public static final String CHAIR_DIORITE = Reference.MOD_ID + ":diorite_chair";
     public static final String CHAIR_ANDESITE = Reference.MOD_ID + ":andesite_chair";
-
+    public static final String CHAIR_STRIPPED_OAK = Reference.MOD_ID + ":stripped_oak_chair";
+    public static final String CHAIR_STRIPPED_SPRUCE = Reference.MOD_ID + ":stripped_spruce_chair";
+    public static final String CHAIR_STRIPPED_BIRCH = Reference.MOD_ID + ":stripped_birch_chair";
+    public static final String CHAIR_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_chair";
+    public static final String CHAIR_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_chair";
+    public static final String CHAIR_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_chair";
     public static final String COFFEE_TABLE_OAK = Reference.MOD_ID + ":oak_coffee_table";
     public static final String COFFEE_TABLE_SPRUCE = Reference.MOD_ID + ":spruce_coffee_table";
     public static final String COFFEE_TABLE_BIRCH = Reference.MOD_ID + ":birch_coffee_table";
@@ -38,7 +49,13 @@ public class BlockNames
     public static final String COFFEE_TABLE_GRANITE = Reference.MOD_ID + ":granite_coffee_table";
     public static final String COFFEE_TABLE_DIORITE = Reference.MOD_ID + ":diorite_coffee_table";
     public static final String COFFEE_TABLE_ANDESITE = Reference.MOD_ID + ":andesite_coffee_table";
-
+    public static final String COFFEE_TABLE_STRIPPED_OAK = Reference.MOD_ID + ":stripped_oak_coffee_table";
+    public static final String COFFEE_TABLE_STRIPPED_SPRUCE = Reference.MOD_ID + ":stripped_spruce_coffee_table";
+    public static final String COFFEE_TABLE_STRIPPED_BIRCH = Reference.MOD_ID + ":stripped_birch_coffee_table";
+    public static final String COFFEE_TABLE_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_coffee_table";
+    public static final String COFFEE_TABLE_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_coffee_table";
+    public static final String COFFEE_TABLE_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_coffee_table";
+    
     public static final String FREEZER = Reference.MOD_ID + ":freezer";
     public static final String FRIDGE = Reference.MOD_ID + ":fridge";
     public static final String CABINET_OAK = Reference.MOD_ID + ":cabinet_oak";

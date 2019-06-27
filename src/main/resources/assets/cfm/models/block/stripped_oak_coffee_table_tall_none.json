@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/coffee_table_tall_none",
+    "textures": {
+        "top": "block/stripped_oak_log",
+        "legs": "block/oak_log"
+    }
+}

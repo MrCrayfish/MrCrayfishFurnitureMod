@@ -63,6 +63,24 @@ public class ModBlocks
     @ObjectHolder(value = BlockNames.TABLE_ANDESITE)
     public static final Block TABLE_ANDESITE = null;
 
+    @ObjectHolder(value = BlockNames.TABLE_STRIPPED_OAK)
+    public static final Block TABLE_STRIPPED_OAK = null;
+
+    @ObjectHolder(value = BlockNames.TABLE_STRIPPED_SPRUCE)
+    public static final Block TABLE_STRIPPED_SPRUCE = null;
+
+    @ObjectHolder(value = BlockNames.TABLE_STRIPPED_BIRCH)
+    public static final Block TABLE_STRIPPED_BIRCH = null;
+
+    @ObjectHolder(value = BlockNames.TABLE_STRIPPED_JUNGLE)
+    public static final Block TABLE_STRIPPED_JUNGLE = null;
+
+    @ObjectHolder(value = BlockNames.TABLE_STRIPPED_ACACIA)
+    public static final Block TABLE_STRIPPED_ACACIA = null;
+
+    @ObjectHolder(value = BlockNames.TABLE_STRIPPED_DARK_OAK)
+    public static final Block TABLE_STRIPPED_DARK_OAK = null;
+
     @ObjectHolder(value = BlockNames.CHAIR_OAK)
     public static final Block CHAIR_OAK = null;
 
@@ -92,6 +110,24 @@ public class ModBlocks
 
     @ObjectHolder(value = BlockNames.CHAIR_ANDESITE)
     public static final Block CHAIR_ANDESITE = null;
+
+    @ObjectHolder(value = BlockNames.CHAIR_STRIPPED_OAK)
+    public static final Block CHAIR_STRIPPED_OAK = null;
+
+    @ObjectHolder(value = BlockNames.CHAIR_STRIPPED_SPRUCE)
+    public static final Block CHAIR_STRIPPED_SPRUCE = null;
+
+    @ObjectHolder(value = BlockNames.CHAIR_STRIPPED_BIRCH)
+    public static final Block CHAIR_STRIPPED_BIRCH = null;
+
+    @ObjectHolder(value = BlockNames.CHAIR_STRIPPED_JUNGLE)
+    public static final Block CHAIR_STRIPPED_JUNGLE = null;
+
+    @ObjectHolder(value = BlockNames.CHAIR_STRIPPED_ACACIA)
+    public static final Block CHAIR_STRIPPED_ACACIA = null;
+
+    @ObjectHolder(value = BlockNames.CHAIR_STRIPPED_DARK_OAK)
+    public static final Block CHAIR_STRIPPED_DARK_OAK = null;
 
     @ObjectHolder(value = BlockNames.COFFEE_TABLE_OAK)
     public static final Block COFFEE_TABLE_OAK = null;
@@ -123,6 +159,24 @@ public class ModBlocks
     @ObjectHolder(value = BlockNames.COFFEE_TABLE_ANDESITE)
     public static final Block COFFEE_TABLE_ANDESITE = null;
 
+    @ObjectHolder(value = BlockNames.COFFEE_TABLE_STRIPPED_OAK)
+    public static final Block COFFEE_TABLE_STRIPPED_OAK = null;
+
+    @ObjectHolder(value = BlockNames.COFFEE_TABLE_STRIPPED_SPRUCE)
+    public static final Block COFFEE_TABLE_STRIPPED_SPRUCE = null;
+
+    @ObjectHolder(value = BlockNames.COFFEE_TABLE_STRIPPED_BIRCH)
+    public static final Block COFFEE_TABLE_STRIPPED_BIRCH = null;
+
+    @ObjectHolder(value = BlockNames.COFFEE_TABLE_STRIPPED_JUNGLE)
+    public static final Block COFFEE_TABLE_STRIPPED_JUNGLE = null;
+
+    @ObjectHolder(value = BlockNames.COFFEE_TABLE_STRIPPED_ACACIA)
+    public static final Block COFFEE_TABLE_STRIPPED_ACACIA = null;
+
+    @ObjectHolder(value = BlockNames.COFFEE_TABLE_STRIPPED_DARK_OAK)
+    public static final Block COFFEE_TABLE_STRIPPED_DARK_OAK = null;
+
     static
     {
         register(BlockNames.TABLE_OAK, new TableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
@@ -135,6 +189,12 @@ public class ModBlocks
         register(BlockNames.TABLE_GRANITE, new TableBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
         register(BlockNames.TABLE_DIORITE, new TableBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
         register(BlockNames.TABLE_ANDESITE, new TableBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.TABLE_STRIPPED_OAK, new TableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.TABLE_STRIPPED_SPRUCE, new TableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.TABLE_STRIPPED_BIRCH, new TableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.TABLE_STRIPPED_JUNGLE, new TableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.TABLE_STRIPPED_ACACIA, new TableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.TABLE_STRIPPED_DARK_OAK, new TableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
         register(BlockNames.CHAIR_OAK, new ChairBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
         register(BlockNames.CHAIR_SPRUCE, new ChairBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
         register(BlockNames.CHAIR_BIRCH, new ChairBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
@@ -145,6 +205,12 @@ public class ModBlocks
         register(BlockNames.CHAIR_GRANITE, new ChairBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
         register(BlockNames.CHAIR_DIORITE, new ChairBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
         register(BlockNames.CHAIR_ANDESITE, new ChairBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.CHAIR_STRIPPED_OAK, new ChairBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.CHAIR_STRIPPED_SPRUCE, new ChairBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.CHAIR_STRIPPED_BIRCH, new ChairBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.CHAIR_STRIPPED_JUNGLE, new ChairBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.CHAIR_STRIPPED_ACACIA, new ChairBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.CHAIR_STRIPPED_DARK_OAK, new ChairBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
         register(BlockNames.COFFEE_TABLE_OAK, new CoffeeTableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
         register(BlockNames.COFFEE_TABLE_SPRUCE, new CoffeeTableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
         register(BlockNames.COFFEE_TABLE_BIRCH, new CoffeeTableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
@@ -155,6 +221,12 @@ public class ModBlocks
         register(BlockNames.COFFEE_TABLE_GRANITE, new CoffeeTableBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
         register(BlockNames.COFFEE_TABLE_DIORITE, new CoffeeTableBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
         register(BlockNames.COFFEE_TABLE_ANDESITE, new CoffeeTableBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.COFFEE_TABLE_STRIPPED_OAK, new CoffeeTableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.COFFEE_TABLE_STRIPPED_SPRUCE, new CoffeeTableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.COFFEE_TABLE_STRIPPED_BIRCH, new CoffeeTableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.COFFEE_TABLE_STRIPPED_JUNGLE, new CoffeeTableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.COFFEE_TABLE_STRIPPED_ACACIA, new CoffeeTableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.COFFEE_TABLE_STRIPPED_DARK_OAK, new CoffeeTableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     }
 
     private static void register(String name, Block block)
