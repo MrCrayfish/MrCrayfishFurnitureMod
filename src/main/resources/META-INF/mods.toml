@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[26,)"
+loaderVersion="[27,)"
 
 [[mods]]
 modId="cfm"
@@ -15,12 +15,12 @@ description="Adds over 80 unique pieces of furniture to the game"
 [[dependencies.cfm]]
     modId="forge"
     mandatory=true
-    versionRange="[26,)"
+    versionRange="[27,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.cfm]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.14.2]"
+    versionRange="[1.14.3]"
     ordering="NONE"
     side="BOTH"
