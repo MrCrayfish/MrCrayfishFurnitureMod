@@ -12,7 +12,7 @@ apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 
-version = "6.2.1-1.12.2"
+version = "7.0.0-pre1-1.14.3"
 group = "com.mrcrayfish"
 archivesBaseName = "furniture"
 
