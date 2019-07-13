@@ -55,19 +55,24 @@ public class BlockNames
     public static final String COFFEE_TABLE_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_coffee_table";
     public static final String COFFEE_TABLE_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_coffee_table";
     public static final String COFFEE_TABLE_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_coffee_table";
+
+    public static final String CABINET_OAK = Reference.MOD_ID + ":oak_cabinet";
+    public static final String CABINET_SPRUCE = Reference.MOD_ID + ":spruce_cabinet";
+    public static final String CABINET_BIRCH = Reference.MOD_ID + ":birch_cabinet";
+    public static final String CABINET_JUNGLE = Reference.MOD_ID + ":jungle_cabinet";
+    public static final String CABINET_ACACIA = Reference.MOD_ID + ":acacia_cabinet";
+    public static final String CABINET_DARK_OAK = Reference.MOD_ID + ":dark_oak_cabinet";
+    public static final String CABINET_STONE = Reference.MOD_ID + ":stone_cabinet";
+    public static final String CABINET_GRANITE = Reference.MOD_ID + ":granite_cabinet";
+    public static final String CABINET_DIORITE = Reference.MOD_ID + ":diorite_cabinet";
+    public static final String CABINET_ANDESITE = Reference.MOD_ID + ":andesite_cabinet";
+    public static final String CABINET_STRIPPED_OAK = Reference.MOD_ID + ":stripped_oak_cabinet";
+    public static final String CABINET_STRIPPED_SPRUCE = Reference.MOD_ID + ":stripped_spruce_cabinet";
+    public static final String CABINET_STRIPPED_BIRCH = Reference.MOD_ID + ":stripped_birch_cabinet";
+    public static final String CABINET_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_cabinet";
+    public static final String CABINET_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_cabinet";
+    public static final String CABINET_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_cabinet";
     
-    public static final String FREEZER = Reference.MOD_ID + ":freezer";
-    public static final String FRIDGE = Reference.MOD_ID + ":fridge";
-    public static final String CABINET_OAK = Reference.MOD_ID + ":cabinet_oak";
-    public static final String CABINET_SPRUCE = Reference.MOD_ID + ":cabinet_spruce";
-    public static final String CABINET_BIRCH = Reference.MOD_ID + ":cabinet_birch";
-    public static final String CABINET_JUNGLE = Reference.MOD_ID + ":cabinet_jungle";
-    public static final String CABINET_ACACIA = Reference.MOD_ID + ":cabinet_acacia";
-    public static final String CABINET_DARK_OAK = Reference.MOD_ID + ":cabinet_dark_oak";
-    public static final String CABINET_STONE = Reference.MOD_ID + ":cabinet_stone";
-    public static final String CABINET_GRANITE = Reference.MOD_ID + ":cabinet_granite";
-    public static final String CABINET_DIORITE = Reference.MOD_ID + ":cabinet_diorite";
-    public static final String CABINET_ANDESITE = Reference.MOD_ID + ":cabinet_andesite";
     public static final String BEDSIDE_CABINET_OAK = Reference.MOD_ID + ":bedside_cabinet_oak";
     public static final String BEDSIDE_CABINET_SPRUCE = Reference.MOD_ID + ":bedside_cabinet_spruce";
     public static final String BEDSIDE_CABINET_BIRCH = Reference.MOD_ID + ":bedside_cabinet_birch";
@@ -163,6 +168,8 @@ public class BlockNames
     public static final String BIN = Reference.MOD_ID + ":bin";
 
     /* Kitchen */
+    public static final String FREEZER = Reference.MOD_ID + ":freezer";
+    public static final String FRIDGE = Reference.MOD_ID + ":fridge";
     public static final String OVEN = Reference.MOD_ID + ":oven";
     public static final String RANGE_HOOD = Reference.MOD_ID + ":range_hood";
     public static final String RANGE_HOOD_POWERED = Reference.MOD_ID + ":range_hood_powered";

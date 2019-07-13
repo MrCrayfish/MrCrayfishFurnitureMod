@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/cabinet_closed",
+    "textures": {
+        "door": "block/jungle_log",
+        "base": "block/stripped_jungle_log"
+    }
+}

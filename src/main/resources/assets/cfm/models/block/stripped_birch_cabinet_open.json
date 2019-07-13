@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/cabinet_open",
+    "textures": {
+        "door": "block/birch_log",
+        "base": "block/stripped_birch_log"
+    }
+}

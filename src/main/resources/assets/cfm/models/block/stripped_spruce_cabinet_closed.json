@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/cabinet_closed",
+    "textures": {
+        "door": "block/spruce_log",
+        "base": "block/stripped_spruce_log"
+    }
+}

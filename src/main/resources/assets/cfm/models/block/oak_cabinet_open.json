@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/cabinet_open",
+    "textures": {
+        "door": "block/oak_log",
+        "base": "block/oak_planks"
+    }
+}
