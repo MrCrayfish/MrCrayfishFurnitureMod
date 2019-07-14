@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.tileentity;
 
 import com.mrcrayfish.furniture.block.CabinetBlock;
 import com.mrcrayfish.furniture.core.ModBlocks;
+import com.mrcrayfish.furniture.core.ModSounds;
 import com.mrcrayfish.furniture.core.ModTileEntities;
 import net.minecraft.block.BarrelBlock;
 import net.minecraft.block.BlockState;
@@ -65,7 +66,7 @@ public class CabinetTileEntity extends BasicLootTileEntity
             boolean open = blockState.get(CabinetBlock.OPEN);
             if(!open)
             {
-                this.playDoorSound(blockState, SoundEvents.BLOCK_BARREL_OPEN);
+                this.playDoorSound(blockState, ModSounds.BLOCK_CABINET_OPEN);
                 this.setDoorState(blockState, true);
             }
 
@@ -113,7 +114,7 @@ public class CabinetTileEntity extends BasicLootTileEntity
                 boolean open = blockState.get(BarrelBlock.PROPERTY_OPEN);
                 if(open)
                 {
-                    this.playDoorSound(blockState, SoundEvents.BLOCK_BARREL_CLOSE);
+                    this.playDoorSound(blockState, ModSounds.BLOCK_CABINET_CLOSE);
                     this.setDoorState(blockState, false);
                 }
             }
@@ -123,9 +124,9 @@ public class CabinetTileEntity extends BasicLootTileEntity
     private void playDoorSound(BlockState blockState, SoundEvent soundEvent)
     {
         Vec3i directionVec = blockState.get(CabinetBlock.DIRECTION).getDirectionVec();
-        double x = (double) this.pos.getX() + 0.5D + (double) directionVec.getX() / 2.0D;
-        double y = (double) this.pos.getY() + 0.5D + (double) directionVec.getY() / 2.0D;
-        double z = (double) this.pos.getZ() + 0.5D + (double) directionVec.getZ() / 2.0D;
+        double x = this.pos.getX() + 0.5D + directionVec.getX() / 2.0D;
+        double y = this.pos.getY() + 0.5D + directionVec.getY() / 2.0D;
+        double z = this.pos.getZ() + 0.5D + directionVec.getZ() / 2.0D;
         World world = this.getWorld();
         if(world != null)
         {

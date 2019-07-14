@@ -1,0 +1,10 @@
+{
+    "block.cabinet.open": {
+        "subtitle": "subtitle.cfm.open_cabinet",
+        "sounds": [ "cfm:block/cabinet/open" ]
+    },
+    "block.cabinet.close": {
+        "subtitle": "subtitle.cfm.close_cabinet",
+        "sounds": [ "cfm:block/cabinet/close" ]
+    }
+}

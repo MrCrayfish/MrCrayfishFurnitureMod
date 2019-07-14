@@ -64,5 +64,7 @@
     "block.cfm.stripped_jungle_cabinet": "Stripped Jungle Cabinet",
     "block.cfm.stripped_acacia_cabinet": "Stripped Acacia Cabinet",
     "block.cfm.stripped_dark_oak_cabinet": "Stripped Dark Oak Cabinet",
-    "container.cfm.cabinet": "Cabinet"
+    "container.cfm.cabinet": "Cabinet",
+    "subtitle.cfm.open_cabinet": "Open Cabinet",
+    "subtitle.cfm.close_cabinet": "Close Cabinet"
 }
