@@ -9,10 +9,10 @@
         },
         "open": {
             "true": {
-                "model": "cfm:stripped_birch_cabinet_open"
+                "model": "cfm:block/stripped_birch_cabinet_open"
             },
             "false": {
-                "model": "cfm:stripped_birch_cabinet_closed"
+                "model": "cfm:block/stripped_birch_cabinet_closed"
             }
         }
     }

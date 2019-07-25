@@ -9,10 +9,10 @@
         },
         "open": {
             "true": {
-                "model": "cfm:diorite_cabinet_open"
+                "model": "cfm:block/diorite_cabinet_open"
             },
             "false": {
-                "model": "cfm:diorite_cabinet_closed"
+                "model": "cfm:block/diorite_cabinet_closed"
             }
         }
     }

@@ -1,7 +1,7 @@
 {
     "forge_marker": 1,
     "defaults": {
-        "model": "cfm:diorite_chair"
+        "model": "cfm:block/diorite_chair"
     },
     "variants": {
         "facing": {

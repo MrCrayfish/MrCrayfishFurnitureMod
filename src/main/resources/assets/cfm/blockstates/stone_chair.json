@@ -1,7 +1,7 @@
 {
     "forge_marker": 1,
     "defaults": {
-        "model": "cfm:stone_chair"
+        "model": "cfm:block/stone_chair"
     },
     "variants": {
         "facing": {

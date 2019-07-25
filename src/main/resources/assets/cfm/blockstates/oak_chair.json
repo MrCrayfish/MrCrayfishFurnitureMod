@@ -1,7 +1,7 @@
 {
     "forge_marker": 1,
     "defaults": {
-        "model": "cfm:oak_chair"
+        "model": "cfm:block/oak_chair"
     },
     "variants": {
         "facing": {

@@ -9,10 +9,10 @@
         },
         "open": {
             "true": {
-                "model": "cfm:dark_oak_cabinet_open"
+                "model": "cfm:block/dark_oak_cabinet_open"
             },
             "false": {
-                "model": "cfm:dark_oak_cabinet_closed"
+                "model": "cfm:block/dark_oak_cabinet_closed"
             }
         }
     }

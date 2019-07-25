@@ -9,10 +9,10 @@
         },
         "open": {
             "true": {
-                "model": "cfm:granite_cabinet_open"
+                "model": "cfm:block/granite_cabinet_open"
             },
             "false": {
-                "model": "cfm:granite_cabinet_closed"
+                "model": "cfm:block/granite_cabinet_closed"
             }
         }
     }

@@ -1,7 +1,7 @@
 {
     "forge_marker": 1,
     "defaults": {
-        "model": "cfm:birch_chair"
+        "model": "cfm:block/birch_chair"
     },
     "variants": {
         "facing": {
