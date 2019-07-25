@@ -83,8 +83,8 @@ public class DeskBlock extends FurnitureHorizontalWaterloggedBlock
     public BlockState updatePostPlacement(BlockState state, Direction direction, BlockState newState, IWorld world, BlockPos pos, BlockPos newPos)
     {
         Direction dir = state.get(DIRECTION);
-        boolean left = isDesk(world, pos, dir.rotateYCCW());
-        boolean right = isDesk(world, pos, dir.rotateY());
+        boolean left = isDesk(world, pos, dir.rotateYCCW(), dir);
+        boolean right = isDesk(world, pos, dir.rotateY(), dir);
         if(left && right)
         {
             return state.with(TYPE, Type.MIDDLE);
@@ -100,10 +100,10 @@ public class DeskBlock extends FurnitureHorizontalWaterloggedBlock
         return state.with(TYPE, Type.SINGLE);
     }
 
-    private boolean isDesk(IWorld world, BlockPos source, Direction direction)
+    private boolean isDesk(IWorld world, BlockPos source, Direction checkDirection, Direction tableDirection)
     {
-        BlockState state = world.getBlockState(source.offset(direction));
-        return state.getBlock() instanceof DeskBlock;
+        BlockState state = world.getBlockState(source.offset(checkDirection));
+        return state.getBlock() instanceof DeskBlock && state.get(DIRECTION) == tableDirection;
     }
 
     @Override
