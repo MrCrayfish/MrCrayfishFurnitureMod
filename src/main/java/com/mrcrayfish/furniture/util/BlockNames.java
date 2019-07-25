@@ -71,7 +71,6 @@ public class BlockNames
     public static final String CABINET_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_cabinet";
     public static final String CABINET_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_cabinet";
     public static final String CABINET_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_cabinet";
-    
     public static final String BEDSIDE_CABINET_OAK = Reference.MOD_ID + ":oak_bedside_cabinet";
     public static final String BEDSIDE_CABINET_SPRUCE = Reference.MOD_ID + ":spruce_bedside_cabinet";
     public static final String BEDSIDE_CABINET_BIRCH = Reference.MOD_ID + ":birch_bedside_cabinet";
@@ -88,6 +87,39 @@ public class BlockNames
     public static final String BEDSIDE_CABINET_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_bedside_cabinet";
     public static final String BEDSIDE_CABINET_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_bedside_cabinet";
     public static final String BEDSIDE_CABINET_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_bedside_cabinet";
+
+    public static final String DESK_OAK = Reference.MOD_ID + ":oak_desk";
+    public static final String DESK_SPRUCE = Reference.MOD_ID + ":spruce_desk";
+    public static final String DESK_BIRCH = Reference.MOD_ID + ":birch_desk";
+    public static final String DESK_JUNGLE = Reference.MOD_ID + ":jungle_desk";
+    public static final String DESK_ACACIA = Reference.MOD_ID + ":acacia_desk";
+    public static final String DESK_DARK_OAK = Reference.MOD_ID + ":dark_oak_desk";
+    public static final String DESK_STONE = Reference.MOD_ID + ":stone_desk";
+    public static final String DESK_GRANITE = Reference.MOD_ID + ":granite_desk";
+    public static final String DESK_DIORITE = Reference.MOD_ID + ":diorite_desk";
+    public static final String DESK_ANDESITE = Reference.MOD_ID + ":andesite_desk";
+    public static final String DESK_STRIPPED_OAK = Reference.MOD_ID + ":stripped_oak_desk";
+    public static final String DESK_STRIPPED_SPRUCE = Reference.MOD_ID + ":stripped_spruce_desk";
+    public static final String DESK_STRIPPED_BIRCH = Reference.MOD_ID + ":stripped_birch_desk";
+    public static final String DESK_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_desk";
+    public static final String DESK_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_desk";
+    public static final String DESK_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_desk";
+    public static final String DESK_CABINET_OAK = Reference.MOD_ID + ":oak_desk_cabinet";
+    public static final String DESK_CABINET_SPRUCE = Reference.MOD_ID + ":spruce_desk_cabinet";
+    public static final String DESK_CABINET_BIRCH = Reference.MOD_ID + ":birch_desk_cabinet";
+    public static final String DESK_CABINET_JUNGLE = Reference.MOD_ID + ":jungle_desk_cabinet";
+    public static final String DESK_CABINET_ACACIA = Reference.MOD_ID + ":acacia_desk_cabinet";
+    public static final String DESK_CABINET_DARK_OAK = Reference.MOD_ID + ":dark_oak_desk_cabinet";
+    public static final String DESK_CABINET_STONE = Reference.MOD_ID + ":stone_desk_cabinet";
+    public static final String DESK_CABINET_GRANITE = Reference.MOD_ID + ":granite_desk_cabinet";
+    public static final String DESK_CABINET_DIORITE = Reference.MOD_ID + ":diorite_desk_cabinet";
+    public static final String DESK_CABINET_ANDESITE = Reference.MOD_ID + ":andesite_desk_cabinet";
+    public static final String DESK_CABINET_STRIPPED_OAK = Reference.MOD_ID + ":stripped_oak_desk_cabinet";
+    public static final String DESK_CABINET_STRIPPED_SPRUCE = Reference.MOD_ID + ":stripped_spruce_desk_cabinet";
+    public static final String DESK_CABINET_STRIPPED_BIRCH = Reference.MOD_ID + ":stripped_birch_desk_cabinet";
+    public static final String DESK_CABINET_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_desk_cabinet";
+    public static final String DESK_CABINET_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_desk_cabinet";
+    public static final String DESK_CABINET_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_desk_cabinet";
 
     public static final String BLINDS_OAK = Reference.MOD_ID + ":blinds_oak";
     public static final String BLINDS_SPRUCE = Reference.MOD_ID + ":blinds_spruce";
@@ -220,26 +252,7 @@ public class BlockNames
     public static final String MODERN_LIGHT_OFF = Reference.MOD_ID + ":modern_light_off";
     public static final String MODERN_LIGHT_ON = Reference.MOD_ID + ":modern_light_on";
     public static final String CEILING_FAN = Reference.MOD_ID + ":ceiling_fan";
-    public static final String DESK_OAK = Reference.MOD_ID + ":desk_oak";
-    public static final String DESK_SPRUCE = Reference.MOD_ID + ":desk_spruce";
-    public static final String DESK_BIRCH = Reference.MOD_ID + ":desk_birch";
-    public static final String DESK_JUNGLE = Reference.MOD_ID + ":desk_jungle";
-    public static final String DESK_ACACIA = Reference.MOD_ID + ":desk_acacia";
-    public static final String DESK_DARK_OAK = Reference.MOD_ID + ":desk_dark_oak";
-    public static final String DESK_STONE = Reference.MOD_ID + ":desk_stone";
-    public static final String DESK_GRANITE = Reference.MOD_ID + ":desk_granite";
-    public static final String DESK_DIORITE = Reference.MOD_ID + ":desk_diorite";
-    public static final String DESK_ANDESITE = Reference.MOD_ID + ":desk_andesite";
-    public static final String DESK_CABINET_OAK = Reference.MOD_ID + ":desk_cabinet_oak";
-    public static final String DESK_CABINET_SPRUCE = Reference.MOD_ID + ":desk_cabinet_spruce";
-    public static final String DESK_CABINET_BIRCH = Reference.MOD_ID + ":desk_cabinet_birch";
-    public static final String DESK_CABINET_JUNGLE = Reference.MOD_ID + ":desk_cabinet_jungle";
-    public static final String DESK_CABINET_ACACIA = Reference.MOD_ID + ":desk_cabinet_acacia";
-    public static final String DESK_CABINET_DARK_OAK = Reference.MOD_ID + ":desk_cabinet_dark_oak";
-    public static final String DESK_CABINET_STONE = Reference.MOD_ID + ":desk_cabinet_stone";
-    public static final String DESK_CABINET_GRANITE = Reference.MOD_ID + ":desk_cabinet_granite";
-    public static final String DESK_CABINET_DIORITE = Reference.MOD_ID + ":desk_cabinet_diorite";
-    public static final String DESK_CABINET_ANDESITE = Reference.MOD_ID + ":desk_cabinet_andesite";
+
     public static final String DIGITAL_CLOCK = Reference.MOD_ID + ":digital_clock"; //TODO flatten
     public static final String COUNTER_DRAWER = Reference.MOD_ID + ":counter_drawer";
     public static final String DOOR_BELL_SPRUCE = Reference.MOD_ID + ":door_bell_spruce";

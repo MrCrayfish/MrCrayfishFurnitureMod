@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/desk_single",
+    "textures": {
+        "base": "minecraft:block/stripped_birch_log",
+        "top": "minecraft:block/birch_log"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/desk_right",
+    "textures": {
+        "base": "minecraft:block/cobblestone",
+        "top": "minecraft:block/stone"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/desk_middle",
+    "textures": {
+        "base": "minecraft:block/stripped_spruce_log",
+        "top": "minecraft:block/spruce_log"
+    }
+}

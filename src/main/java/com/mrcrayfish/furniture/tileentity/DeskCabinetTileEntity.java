@@ -1,6 +1,6 @@
 package com.mrcrayfish.furniture.tileentity;
 
-import com.mrcrayfish.furniture.block.BedsideCabinetBlock;
+import com.mrcrayfish.furniture.block.DeskCabinetBlock;
 import com.mrcrayfish.furniture.core.ModSounds;
 import com.mrcrayfish.furniture.core.ModTileEntities;
 import net.minecraft.block.BlockState;
@@ -20,13 +20,13 @@ import net.minecraft.world.World;
 /**
  * Author: MrCrayfish
  */
-public class BedsideCabinetTileEntity extends BasicLootTileEntity
+public class DeskCabinetTileEntity extends BasicLootTileEntity
 {
     private int playerCount;
 
-    public BedsideCabinetTileEntity()
+    public DeskCabinetTileEntity()
     {
-        super(ModTileEntities.BEDSIDE_CABINET);
+        super(ModTileEntities.DESK_CABINET);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class BedsideCabinetTileEntity extends BasicLootTileEntity
     @Override
     protected ITextComponent getDefaultName()
     {
-        return new TranslationTextComponent("container.cfm.bedside_cabinet");
+        return new TranslationTextComponent("container.cfm.desk_cabinet");
     }
 
     @Override
@@ -59,10 +59,10 @@ public class BedsideCabinetTileEntity extends BasicLootTileEntity
             this.playerCount++;
 
             BlockState blockState = this.getBlockState();
-            boolean open = blockState.get(BedsideCabinetBlock.OPEN);
+            boolean open = blockState.get(DeskCabinetBlock.OPEN);
             if(!open)
             {
-                this.playDoorSound(blockState, ModSounds.BLOCK_BEDSIDE_CABINET_OPEN);
+                this.playDoorSound(blockState, ModSounds.BLOCK_BEDSIDE_CABINET_OPEN); //TODO change
                 this.setDoorState(blockState, true);
             }
 
@@ -101,16 +101,16 @@ public class BedsideCabinetTileEntity extends BasicLootTileEntity
             else
             {
                 BlockState blockState = this.getBlockState();
-                if(!(blockState.getBlock() instanceof BedsideCabinetBlock))
+                if(!(blockState.getBlock() instanceof DeskCabinetBlock))
                 {
                     this.remove();
                     return;
                 }
 
-                boolean open = blockState.get(BedsideCabinetBlock.OPEN);
+                boolean open = blockState.get(DeskCabinetBlock.OPEN);
                 if(open)
                 {
-                    this.playDoorSound(blockState, ModSounds.BLOCK_BEDSIDE_CABINET_CLOSE); //TODO change
+                    this.playDoorSound(blockState, ModSounds.BLOCK_BEDSIDE_CABINET_CLOSE);
                     this.setDoorState(blockState, false);
                 }
             }
@@ -119,7 +119,7 @@ public class BedsideCabinetTileEntity extends BasicLootTileEntity
 
     private void playDoorSound(BlockState blockState, SoundEvent soundEvent)
     {
-        Vec3i directionVec = blockState.get(BedsideCabinetBlock.DIRECTION).getDirectionVec();
+        Vec3i directionVec = blockState.get(DeskCabinetBlock.DIRECTION).getDirectionVec();
         double x = this.pos.getX() + 0.5D + directionVec.getX() / 2.0D;
         double y = this.pos.getY() + 0.5D + directionVec.getY() / 2.0D;
         double z = this.pos.getZ() + 0.5D + directionVec.getZ() / 2.0D;
@@ -135,7 +135,7 @@ public class BedsideCabinetTileEntity extends BasicLootTileEntity
         World world = this.getWorld();
         if(world != null)
         {
-            world.setBlockState(this.getPos(), blockState.with(BedsideCabinetBlock.OPEN, open), 3);
+            world.setBlockState(this.getPos(), blockState.with(DeskCabinetBlock.OPEN, open), 3);
         }
     }
 }

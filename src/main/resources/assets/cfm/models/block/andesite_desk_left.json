@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/desk_left",
+    "textures": {
+        "base": "minecraft:block/andesite",
+        "top": "minecraft:block/polished_andesite"
+    }
+}

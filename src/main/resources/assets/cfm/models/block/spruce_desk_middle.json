@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/desk_middle",
+    "textures": {
+        "base": "minecraft:block/spruce_planks",
+        "top": "minecraft:block/spruce_log"
+    }
+}

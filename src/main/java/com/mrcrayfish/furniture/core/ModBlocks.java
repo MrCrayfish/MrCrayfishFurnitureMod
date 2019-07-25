@@ -270,6 +270,102 @@ public class ModBlocks
 
     @ObjectHolder(value = BlockNames.BEDSIDE_CABINET_STRIPPED_DARK_OAK)
     public static final Block BEDSIDE_CABINET_STRIPPED_DARK_OAK = null;
+    
+    @ObjectHolder(value = BlockNames.DESK_OAK)
+    public static final Block DESK_OAK = null;
+
+    @ObjectHolder(value = BlockNames.DESK_SPRUCE)
+    public static final Block DESK_SPRUCE = null;
+
+    @ObjectHolder(value = BlockNames.DESK_BIRCH)
+    public static final Block DESK_BIRCH = null;
+
+    @ObjectHolder(value = BlockNames.DESK_JUNGLE)
+    public static final Block DESK_JUNGLE = null;
+
+    @ObjectHolder(value = BlockNames.DESK_ACACIA)
+    public static final Block DESK_ACACIA = null;
+
+    @ObjectHolder(value = BlockNames.DESK_DARK_OAK)
+    public static final Block DESK_DARK_OAK = null;
+
+    @ObjectHolder(value = BlockNames.DESK_STONE)
+    public static final Block DESK_STONE = null;
+
+    @ObjectHolder(value = BlockNames.DESK_GRANITE)
+    public static final Block DESK_GRANITE = null;
+
+    @ObjectHolder(value = BlockNames.DESK_DIORITE)
+    public static final Block DESK_DIORITE = null;
+
+    @ObjectHolder(value = BlockNames.DESK_ANDESITE)
+    public static final Block DESK_ANDESITE = null;
+
+    @ObjectHolder(value = BlockNames.DESK_STRIPPED_OAK)
+    public static final Block DESK_STRIPPED_OAK = null;
+
+    @ObjectHolder(value = BlockNames.DESK_STRIPPED_SPRUCE)
+    public static final Block DESK_STRIPPED_SPRUCE = null;
+
+    @ObjectHolder(value = BlockNames.DESK_STRIPPED_BIRCH)
+    public static final Block DESK_STRIPPED_BIRCH = null;
+
+    @ObjectHolder(value = BlockNames.DESK_STRIPPED_JUNGLE)
+    public static final Block DESK_STRIPPED_JUNGLE = null;
+
+    @ObjectHolder(value = BlockNames.DESK_STRIPPED_ACACIA)
+    public static final Block DESK_STRIPPED_ACACIA = null;
+
+    @ObjectHolder(value = BlockNames.DESK_STRIPPED_DARK_OAK)
+    public static final Block DESK_STRIPPED_DARK_OAK = null;
+
+    @ObjectHolder(value = BlockNames.DESK_CABINET_OAK)
+    public static final Block DESK_CABINET_OAK = null;
+
+    @ObjectHolder(value = BlockNames.DESK_CABINET_SPRUCE)
+    public static final Block DESK_CABINET_SPRUCE = null;
+
+    @ObjectHolder(value = BlockNames.DESK_CABINET_BIRCH)
+    public static final Block DESK_CABINET_BIRCH = null;
+
+    @ObjectHolder(value = BlockNames.DESK_CABINET_JUNGLE)
+    public static final Block DESK_CABINET_JUNGLE = null;
+
+    @ObjectHolder(value = BlockNames.DESK_CABINET_ACACIA)
+    public static final Block DESK_CABINET_ACACIA = null;
+
+    @ObjectHolder(value = BlockNames.DESK_CABINET_DARK_OAK)
+    public static final Block DESK_CABINET_DARK_OAK = null;
+
+    @ObjectHolder(value = BlockNames.DESK_CABINET_STONE)
+    public static final Block DESK_CABINET_STONE = null;
+
+    @ObjectHolder(value = BlockNames.DESK_CABINET_GRANITE)
+    public static final Block DESK_CABINET_GRANITE = null;
+
+    @ObjectHolder(value = BlockNames.DESK_CABINET_DIORITE)
+    public static final Block DESK_CABINET_DIORITE = null;
+
+    @ObjectHolder(value = BlockNames.DESK_CABINET_ANDESITE)
+    public static final Block DESK_CABINET_ANDESITE = null;
+
+    @ObjectHolder(value = BlockNames.DESK_CABINET_STRIPPED_OAK)
+    public static final Block DESK_CABINET_STRIPPED_OAK = null;
+
+    @ObjectHolder(value = BlockNames.DESK_CABINET_STRIPPED_SPRUCE)
+    public static final Block DESK_CABINET_STRIPPED_SPRUCE = null;
+
+    @ObjectHolder(value = BlockNames.DESK_CABINET_STRIPPED_BIRCH)
+    public static final Block DESK_CABINET_STRIPPED_BIRCH = null;
+
+    @ObjectHolder(value = BlockNames.DESK_CABINET_STRIPPED_JUNGLE)
+    public static final Block DESK_CABINET_STRIPPED_JUNGLE = null;
+
+    @ObjectHolder(value = BlockNames.DESK_CABINET_STRIPPED_ACACIA)
+    public static final Block DESK_CABINET_STRIPPED_ACACIA = null;
+
+    @ObjectHolder(value = BlockNames.DESK_CABINET_STRIPPED_DARK_OAK)
+    public static final Block DESK_CABINET_STRIPPED_DARK_OAK = null;
 
     static
     {
@@ -353,6 +449,39 @@ public class ModBlocks
         register(BlockNames.BEDSIDE_CABINET_STRIPPED_JUNGLE, new BedsideCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
         register(BlockNames.BEDSIDE_CABINET_STRIPPED_ACACIA, new BedsideCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
         register(BlockNames.BEDSIDE_CABINET_STRIPPED_DARK_OAK, new BedsideCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+
+        register(BlockNames.DESK_OAK, new DeskBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_SPRUCE, new DeskBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_BIRCH, new DeskBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_JUNGLE, new DeskBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_ACACIA, new DeskBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_DARK_OAK, new DeskBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_STONE, new DeskBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.DESK_GRANITE, new DeskBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.DESK_DIORITE, new DeskBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.DESK_ANDESITE, new DeskBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.DESK_STRIPPED_OAK, new DeskBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_STRIPPED_SPRUCE, new DeskBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_STRIPPED_BIRCH, new DeskBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_STRIPPED_JUNGLE, new DeskBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_STRIPPED_ACACIA, new DeskBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_STRIPPED_DARK_OAK, new DeskBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_CABINET_OAK, new DeskCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_CABINET_SPRUCE, new DeskCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_CABINET_BIRCH, new DeskCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_CABINET_JUNGLE, new DeskCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_CABINET_ACACIA, new DeskCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_CABINET_DARK_OAK, new DeskCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_CABINET_STONE, new DeskCabinetBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.DESK_CABINET_GRANITE, new DeskCabinetBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.DESK_CABINET_DIORITE, new DeskCabinetBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.DESK_CABINET_ANDESITE, new DeskCabinetBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.DESK_CABINET_STRIPPED_OAK, new DeskCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_CABINET_STRIPPED_SPRUCE, new DeskCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_CABINET_STRIPPED_BIRCH, new DeskCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_CABINET_STRIPPED_JUNGLE, new DeskCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_CABINET_STRIPPED_ACACIA, new DeskCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.DESK_CABINET_STRIPPED_DARK_OAK, new DeskCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
     }
 
     private static void register(String name, Block block)
