@@ -5,13 +5,10 @@ import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.SlabType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -48,6 +45,14 @@ public class CoffeeTableBlock extends FurnitureWaterloggedBlock
     {
         final VoxelShape TABLE_TOP_SHORT = Block.makeCuboidShape(0.0, 6.0, 0.0, 16.0, 8.0, 16.0);
         final VoxelShape TABLE_TOP_TALL = Block.makeCuboidShape(0.0, 14.0, 0.0, 16.0, 16.0, 16.0);
+        final VoxelShape LEG_SOUTH_EAST_TALL = Block.makeCuboidShape(13.5, 0, 13.5, 15.5, 14, 15.5);
+        final VoxelShape LEG_SOUTH_WEST_TALL = Block.makeCuboidShape(0.5, 0, 13.5, 2.5, 14, 15.5);
+        final VoxelShape LEG_NORTH_WEST_TALL = Block.makeCuboidShape(0.5, 0, 0.5, 2.5, 14, 2.5);
+        final VoxelShape LEG_NORTH_EAST_TALL = Block.makeCuboidShape(13.5, 0, 0.5, 15.5, 14, 2.5);
+        final VoxelShape LEG_SOUTH_EAST_SHORT = Block.makeCuboidShape(13.5, 0, 13.5, 15.5, 6, 15.5);
+        final VoxelShape LEG_SOUTH_WEST_SHORT = Block.makeCuboidShape(0.5, 0, 13.5, 2.5, 6, 15.5);
+        final VoxelShape LEG_NORTH_WEST_SHORT = Block.makeCuboidShape(0.5, 0, 0.5, 2.5, 6, 2.5);
+        final VoxelShape LEG_NORTH_EAST_SHORT = Block.makeCuboidShape(13.5, 0, 0.5, 15.5, 6, 2.5);
 
         ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
         for(BlockState state : states)
@@ -60,44 +65,22 @@ public class CoffeeTableBlock extends FurnitureWaterloggedBlock
 
             List<VoxelShape> shapes = new ArrayList<>();
             shapes.add(tall ? TABLE_TOP_TALL : TABLE_TOP_SHORT);
-
-            /*if(!north & !east && !south && !west)
+            if(!north && !west)
             {
-                shapes.add(MIDDLE_POST);
+                shapes.add(tall ? LEG_NORTH_WEST_TALL : LEG_NORTH_WEST_SHORT);
             }
-            else if(north & !east && !south && !west)
+            if(!north && !east)
             {
-                shapes.add(VoxelShapeHelper.rotate(END_POST, Direction.NORTH));
+                shapes.add(tall ? LEG_NORTH_EAST_TALL : LEG_NORTH_EAST_SHORT);
             }
-            else if(!north & east && !south && !west)
+            if(!south && !west)
             {
-                shapes.add(VoxelShapeHelper.rotate(END_POST, Direction.EAST));
+                shapes.add(tall ? LEG_SOUTH_WEST_TALL : LEG_SOUTH_WEST_SHORT);
             }
-            else if(!north & !east && south && !west)
+            if(!south && !east)
             {
-                shapes.add(VoxelShapeHelper.rotate(END_POST, Direction.SOUTH));
+                shapes.add(tall ? LEG_SOUTH_EAST_TALL : LEG_SOUTH_EAST_SHORT);
             }
-            else if(!north & !east && !south && west)
-            {
-                shapes.add(VoxelShapeHelper.rotate(END_POST, Direction.WEST));
-            }
-            else if(north && east && !south && !west)
-            {
-                shapes.add(VoxelShapeHelper.rotate(CORNER_POST, Direction.EAST));
-            }
-            else if(!north && east && south && !west)
-            {
-                shapes.add(VoxelShapeHelper.rotate(CORNER_POST, Direction.SOUTH));
-            }
-            else if(!north && !east && south && west)
-            {
-                shapes.add(VoxelShapeHelper.rotate(CORNER_POST, Direction.WEST));
-            }
-            else if(north && !east && !south && west)
-            {
-                shapes.add(VoxelShapeHelper.rotate(CORNER_POST, Direction.NORTH));
-            }*/
-
             builder.put(state, VoxelShapeHelper.combineAll(shapes));
         }
         return builder.build();
