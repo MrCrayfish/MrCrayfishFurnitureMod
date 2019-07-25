@@ -12,14 +12,14 @@ apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 apply plugin: 'eclipse'
 
-version = "7.0.0-pre2-1.14.3"
+version = "7.0.0-pre2-1.14.4"
 group = "com.mrcrayfish"
 archivesBaseName = "furniture"
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
-    mappings channel: 'snapshot', version: '20190627-1.14.3'
+    mappings channel: 'snapshot', version: '20190724-1.14.3'
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     // accessTransformer = file('build/resources/main/META-INF/accesstransformer.cfg')
 
@@ -61,7 +61,7 @@ minecraft {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.14.3-27.0.15'
+    minecraft 'net.minecraftforge:forge:1.14.4-28.0.14'
 }
 
 jar {
