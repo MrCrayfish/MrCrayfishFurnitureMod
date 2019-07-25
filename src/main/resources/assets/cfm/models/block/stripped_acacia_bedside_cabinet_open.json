@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:block/bedside_cabinet_open",
+    "textures": {
+        "base": "minecraft:block/stripped_acacia_log",
+        "top": "minecraft:block/acacia_log",
+        "draw": "minecraft:block/stripped_acacia_log"
+    }
+}

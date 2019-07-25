@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/bedside_cabinet_closed",
+    "textures": {
+        "base": "minecraft:block/andesite",
+        "top": "minecraft:block/polished_andesite"
+    }
+}

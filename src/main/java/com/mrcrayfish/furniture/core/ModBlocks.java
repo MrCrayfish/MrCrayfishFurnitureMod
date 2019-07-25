@@ -2,10 +2,7 @@ package com.mrcrayfish.furniture.core;
 
 import com.mrcrayfish.furniture.FurnitureMod;
 import com.mrcrayfish.furniture.Reference;
-import com.mrcrayfish.furniture.block.CabinetBlock;
-import com.mrcrayfish.furniture.block.ChairBlock;
-import com.mrcrayfish.furniture.block.CoffeeTableBlock;
-import com.mrcrayfish.furniture.block.TableBlock;
+import com.mrcrayfish.furniture.block.*;
 import com.mrcrayfish.furniture.util.BlockNames;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -225,6 +222,54 @@ public class ModBlocks
 
     @ObjectHolder(value = BlockNames.CABINET_STRIPPED_DARK_OAK)
     public static final Block CABINET_STRIPPED_DARK_OAK = null;
+    
+    @ObjectHolder(value = BlockNames.BEDSIDE_CABINET_OAK)
+    public static final Block BEDSIDE_CABINET_OAK = null;
+
+    @ObjectHolder(value = BlockNames.BEDSIDE_CABINET_SPRUCE)
+    public static final Block BEDSIDE_CABINET_SPRUCE = null;
+
+    @ObjectHolder(value = BlockNames.BEDSIDE_CABINET_BIRCH)
+    public static final Block BEDSIDE_CABINET_BIRCH = null;
+
+    @ObjectHolder(value = BlockNames.BEDSIDE_CABINET_JUNGLE)
+    public static final Block BEDSIDE_CABINET_JUNGLE = null;
+
+    @ObjectHolder(value = BlockNames.BEDSIDE_CABINET_ACACIA)
+    public static final Block BEDSIDE_CABINET_ACACIA = null;
+
+    @ObjectHolder(value = BlockNames.BEDSIDE_CABINET_DARK_OAK)
+    public static final Block BEDSIDE_CABINET_DARK_OAK = null;
+
+    @ObjectHolder(value = BlockNames.BEDSIDE_CABINET_STONE)
+    public static final Block BEDSIDE_CABINET_STONE = null;
+
+    @ObjectHolder(value = BlockNames.BEDSIDE_CABINET_GRANITE)
+    public static final Block BEDSIDE_CABINET_GRANITE = null;
+
+    @ObjectHolder(value = BlockNames.BEDSIDE_CABINET_DIORITE)
+    public static final Block BEDSIDE_CABINET_DIORITE = null;
+
+    @ObjectHolder(value = BlockNames.BEDSIDE_CABINET_ANDESITE)
+    public static final Block BEDSIDE_CABINET_ANDESITE = null;
+
+    @ObjectHolder(value = BlockNames.BEDSIDE_CABINET_STRIPPED_OAK)
+    public static final Block BEDSIDE_CABINET_STRIPPED_OAK = null;
+
+    @ObjectHolder(value = BlockNames.BEDSIDE_CABINET_STRIPPED_SPRUCE)
+    public static final Block BEDSIDE_CABINET_STRIPPED_SPRUCE = null;
+
+    @ObjectHolder(value = BlockNames.BEDSIDE_CABINET_STRIPPED_BIRCH)
+    public static final Block BEDSIDE_CABINET_STRIPPED_BIRCH = null;
+
+    @ObjectHolder(value = BlockNames.BEDSIDE_CABINET_STRIPPED_JUNGLE)
+    public static final Block BEDSIDE_CABINET_STRIPPED_JUNGLE = null;
+
+    @ObjectHolder(value = BlockNames.BEDSIDE_CABINET_STRIPPED_ACACIA)
+    public static final Block BEDSIDE_CABINET_STRIPPED_ACACIA = null;
+
+    @ObjectHolder(value = BlockNames.BEDSIDE_CABINET_STRIPPED_DARK_OAK)
+    public static final Block BEDSIDE_CABINET_STRIPPED_DARK_OAK = null;
 
     static
     {
@@ -292,6 +337,22 @@ public class ModBlocks
         register(BlockNames.CABINET_STRIPPED_JUNGLE, new CabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
         register(BlockNames.CABINET_STRIPPED_ACACIA, new CabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
         register(BlockNames.CABINET_STRIPPED_DARK_OAK, new CabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.BEDSIDE_CABINET_OAK, new BedsideCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.BEDSIDE_CABINET_SPRUCE, new BedsideCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.BEDSIDE_CABINET_BIRCH, new BedsideCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.BEDSIDE_CABINET_JUNGLE, new BedsideCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.BEDSIDE_CABINET_ACACIA, new BedsideCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.BEDSIDE_CABINET_DARK_OAK, new BedsideCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.BEDSIDE_CABINET_STONE, new BedsideCabinetBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.BEDSIDE_CABINET_GRANITE, new BedsideCabinetBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.BEDSIDE_CABINET_DIORITE, new BedsideCabinetBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.BEDSIDE_CABINET_ANDESITE, new BedsideCabinetBlock(Block.Properties.create(STONE).hardnessAndResistance(1.0F).sound(SoundType.STONE)));
+        register(BlockNames.BEDSIDE_CABINET_STRIPPED_OAK, new BedsideCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.BEDSIDE_CABINET_STRIPPED_SPRUCE, new BedsideCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.BEDSIDE_CABINET_STRIPPED_BIRCH, new BedsideCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.BEDSIDE_CABINET_STRIPPED_JUNGLE, new BedsideCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.BEDSIDE_CABINET_STRIPPED_ACACIA, new BedsideCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.BEDSIDE_CABINET_STRIPPED_DARK_OAK, new BedsideCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
     }
 
     private static void register(String name, Block block)

@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/bedside_cabinet_closed",
+    "textures": {
+        "base": "minecraft:block/acacia_planks",
+        "top": "minecraft:block/acacia_log"
+    }
+}

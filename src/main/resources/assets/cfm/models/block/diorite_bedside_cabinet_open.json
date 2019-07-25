@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:block/bedside_cabinet_open",
+    "textures": {
+        "base": "minecraft:block/diorite",
+        "top": "minecraft:block/polished_diorite",
+        "draw": "minecraft:block/diorite"
+    }
+}

@@ -55,7 +55,6 @@ public class BlockNames
     public static final String COFFEE_TABLE_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_coffee_table";
     public static final String COFFEE_TABLE_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_coffee_table";
     public static final String COFFEE_TABLE_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_coffee_table";
-
     public static final String CABINET_OAK = Reference.MOD_ID + ":oak_cabinet";
     public static final String CABINET_SPRUCE = Reference.MOD_ID + ":spruce_cabinet";
     public static final String CABINET_BIRCH = Reference.MOD_ID + ":birch_cabinet";
@@ -73,16 +72,23 @@ public class BlockNames
     public static final String CABINET_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_cabinet";
     public static final String CABINET_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_cabinet";
     
-    public static final String BEDSIDE_CABINET_OAK = Reference.MOD_ID + ":bedside_cabinet_oak";
-    public static final String BEDSIDE_CABINET_SPRUCE = Reference.MOD_ID + ":bedside_cabinet_spruce";
-    public static final String BEDSIDE_CABINET_BIRCH = Reference.MOD_ID + ":bedside_cabinet_birch";
-    public static final String BEDSIDE_CABINET_JUNGLE = Reference.MOD_ID + ":bedside_cabinet_jungle";
-    public static final String BEDSIDE_CABINET_ACACIA = Reference.MOD_ID + ":bedside_cabinet_acacia";
-    public static final String BEDSIDE_CABINET_DARK_OAK = Reference.MOD_ID + ":bedside_cabinet_dark_oak";
-    public static final String BEDSIDE_CABINET_STONE = Reference.MOD_ID + ":bedside_cabinet_stone";
-    public static final String BEDSIDE_CABINET_GRANITE = Reference.MOD_ID + ":bedside_cabinet_granite";
-    public static final String BEDSIDE_CABINET_DIORITE = Reference.MOD_ID + ":bedside_cabinet_diorite";
-    public static final String BEDSIDE_CABINET_ANDESITE = Reference.MOD_ID + ":bedside_cabinet_andesite";
+    public static final String BEDSIDE_CABINET_OAK = Reference.MOD_ID + ":oak_bedside_cabinet";
+    public static final String BEDSIDE_CABINET_SPRUCE = Reference.MOD_ID + ":spruce_bedside_cabinet";
+    public static final String BEDSIDE_CABINET_BIRCH = Reference.MOD_ID + ":birch_bedside_cabinet";
+    public static final String BEDSIDE_CABINET_JUNGLE = Reference.MOD_ID + ":jungle_bedside_cabinet";
+    public static final String BEDSIDE_CABINET_ACACIA = Reference.MOD_ID + ":acacia_bedside_cabinet";
+    public static final String BEDSIDE_CABINET_DARK_OAK = Reference.MOD_ID + ":dark_oak_bedside_cabinet";
+    public static final String BEDSIDE_CABINET_STONE = Reference.MOD_ID + ":stone_bedside_cabinet";
+    public static final String BEDSIDE_CABINET_GRANITE = Reference.MOD_ID + ":granite_bedside_cabinet";
+    public static final String BEDSIDE_CABINET_DIORITE = Reference.MOD_ID + ":diorite_bedside_cabinet";
+    public static final String BEDSIDE_CABINET_ANDESITE = Reference.MOD_ID + ":andesite_bedside_cabinet";
+    public static final String BEDSIDE_CABINET_STRIPPED_OAK = Reference.MOD_ID + ":stripped_oak_bedside_cabinet";
+    public static final String BEDSIDE_CABINET_STRIPPED_SPRUCE = Reference.MOD_ID + ":stripped_spruce_bedside_cabinet";
+    public static final String BEDSIDE_CABINET_STRIPPED_BIRCH = Reference.MOD_ID + ":stripped_birch_bedside_cabinet";
+    public static final String BEDSIDE_CABINET_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_bedside_cabinet";
+    public static final String BEDSIDE_CABINET_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_bedside_cabinet";
+    public static final String BEDSIDE_CABINET_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_bedside_cabinet";
+
     public static final String BLINDS_OAK = Reference.MOD_ID + ":blinds_oak";
     public static final String BLINDS_SPRUCE = Reference.MOD_ID + ":blinds_spruce";
     public static final String BLINDS_BIRCH = Reference.MOD_ID + ":blinds_birch";

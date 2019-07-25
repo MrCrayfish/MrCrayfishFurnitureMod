@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/bedside_cabinet_closed",
+    "textures": {
+        "base": "minecraft:block/stripped_oak_log",
+        "top": "minecraft:block/oak_log"
+    }
+}

@@ -1,12 +1,9 @@
 package com.mrcrayfish.furniture.tileentity;
 
-import com.mrcrayfish.furniture.block.CabinetBlock;
-import com.mrcrayfish.furniture.core.ModBlocks;
+import com.mrcrayfish.furniture.block.BedsideCabinetBlock;
 import com.mrcrayfish.furniture.core.ModSounds;
 import com.mrcrayfish.furniture.core.ModTileEntities;
-import net.minecraft.block.BarrelBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.ChestContainer;
@@ -15,7 +12,6 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -24,31 +20,31 @@ import net.minecraft.world.World;
 /**
  * Author: MrCrayfish
  */
-public class CabinetTileEntity extends BasicLootTileEntity
+public class BedsideCabinetTileEntity extends BasicLootTileEntity
 {
     private int playerCount;
 
-    public CabinetTileEntity()
+    public BedsideCabinetTileEntity()
     {
-        super(ModTileEntities.CABINET);
+        super(ModTileEntities.BEDSIDE_CABINET);
     }
 
     @Override
     public int getSizeInventory()
     {
-        return 18;
+        return 9;
     }
 
     @Override
     protected ITextComponent getDefaultName()
     {
-        return new TranslationTextComponent("container.cfm.cabinet");
+        return new TranslationTextComponent("container.cfm.bedside_cabinet");
     }
 
     @Override
     protected Container createMenu(int windowId, PlayerInventory playerInventory)
     {
-        return new ChestContainer(ContainerType.GENERIC_9X2, windowId, playerInventory, this, 2);
+        return new ChestContainer(ContainerType.GENERIC_9X1, windowId, playerInventory, this, 1);
     }
 
     @Override
@@ -63,10 +59,10 @@ public class CabinetTileEntity extends BasicLootTileEntity
             this.playerCount++;
 
             BlockState blockState = this.getBlockState();
-            boolean open = blockState.get(CabinetBlock.OPEN);
+            boolean open = blockState.get(BedsideCabinetBlock.OPEN);
             if(!open)
             {
-                this.playDoorSound(blockState, ModSounds.BLOCK_CABINET_OPEN);
+                this.playDoorSound(blockState, ModSounds.BLOCK_CABINET_OPEN); //TODO change
                 this.setDoorState(blockState, true);
             }
 
@@ -105,16 +101,16 @@ public class CabinetTileEntity extends BasicLootTileEntity
             else
             {
                 BlockState blockState = this.getBlockState();
-                if(!(blockState.getBlock() instanceof CabinetBlock))
+                if(!(blockState.getBlock() instanceof BedsideCabinetBlock))
                 {
                     this.remove();
                     return;
                 }
 
-                boolean open = blockState.get(CabinetBlock.OPEN);
+                boolean open = blockState.get(BedsideCabinetBlock.OPEN);
                 if(open)
                 {
-                    this.playDoorSound(blockState, ModSounds.BLOCK_CABINET_CLOSE);
+                    this.playDoorSound(blockState, ModSounds.BLOCK_CABINET_CLOSE); //TODO change
                     this.setDoorState(blockState, false);
                 }
             }
@@ -123,7 +119,7 @@ public class CabinetTileEntity extends BasicLootTileEntity
 
     private void playDoorSound(BlockState blockState, SoundEvent soundEvent)
     {
-        Vec3i directionVec = blockState.get(CabinetBlock.DIRECTION).getDirectionVec();
+        Vec3i directionVec = blockState.get(BedsideCabinetBlock.DIRECTION).getDirectionVec();
         double x = this.pos.getX() + 0.5D + directionVec.getX() / 2.0D;
         double y = this.pos.getY() + 0.5D + directionVec.getY() / 2.0D;
         double z = this.pos.getZ() + 0.5D + directionVec.getZ() / 2.0D;
@@ -139,7 +135,7 @@ public class CabinetTileEntity extends BasicLootTileEntity
         World world = this.getWorld();
         if(world != null)
         {
-            world.setBlockState(this.getPos(), blockState.with(CabinetBlock.OPEN, open), 3);
+            world.setBlockState(this.getPos(), blockState.with(BedsideCabinetBlock.OPEN, open), 3);
         }
     }
 }
