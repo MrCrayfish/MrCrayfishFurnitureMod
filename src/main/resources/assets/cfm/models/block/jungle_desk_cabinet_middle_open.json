@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:block/desk_cabinet_middle_open",
+    "textures": {
+        "top": "block/jungle_log",
+        "base": "block/jungle_planks",
+        "draw": "block/stripped_jungle_log"
+    }
+}

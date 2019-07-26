@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/desk_cabinet_single_closed",
+    "textures": {
+        "top": "block/spruce_log",
+        "base": "block/spruce_planks"
+    }
+}

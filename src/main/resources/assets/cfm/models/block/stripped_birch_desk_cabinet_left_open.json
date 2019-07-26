@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:block/desk_cabinet_left_open",
+    "textures": {
+        "top": "block/birch_log",
+        "base": "block/stripped_birch_log",
+        "draw": "block/stripped_birch_log"
+    }
+}

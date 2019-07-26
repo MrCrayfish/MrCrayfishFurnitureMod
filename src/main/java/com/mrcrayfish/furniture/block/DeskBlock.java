@@ -25,11 +25,13 @@ public class DeskBlock extends FurnitureHorizontalWaterloggedBlock
 {
     public static final EnumProperty<Type> TYPE = EnumProperty.create("type", Type.class);
 
+    private MaterialType materialType;
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
 
-    public DeskBlock(Properties properties)
+    public DeskBlock(Properties properties, MaterialType materialType)
     {
         super(properties);
+        this.materialType = materialType;
         this.setDefaultState(this.getStateContainer().getBaseState().with(DIRECTION, Direction.NORTH).with(TYPE, Type.SINGLE));
         SHAPES = this.generateShapes(this.getStateContainer().getValidStates());
     }
@@ -103,7 +105,7 @@ public class DeskBlock extends FurnitureHorizontalWaterloggedBlock
     private boolean isDesk(IWorld world, BlockPos source, Direction checkDirection, Direction tableDirection)
     {
         BlockState state = world.getBlockState(source.offset(checkDirection));
-        return state.getBlock() instanceof DeskBlock && state.get(DIRECTION) == tableDirection;
+        return state.getBlock() instanceof DeskBlock && ((DeskBlock) state.getBlock()).materialType == materialType && state.get(DIRECTION) == tableDirection;
     }
 
     @Override
@@ -138,5 +140,25 @@ public class DeskBlock extends FurnitureHorizontalWaterloggedBlock
         {
             return id;
         }
+    }
+
+    public enum MaterialType
+    {
+        OAK,
+        BIRCH,
+        SPRUCE,
+        JUNGLE,
+        ACACIA,
+        DARK_OAK,
+        STONE,
+        GRANITE,
+        DIORITE,
+        ANDESITE,
+        STRIPPED_OAK,
+        STRIPPED_BIRCH,
+        STRIPPED_SPRUCE,
+        STRIPPED_JUNGLE,
+        STRIPPED_ACACIA,
+        STRIPPED_DARK_OAK
     }
 }

@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/desk_cabinet_middle_closed",
+    "textures": {
+        "top": "block/jungle_log",
+        "base": "block/stripped_jungle_log"
+    }
+}

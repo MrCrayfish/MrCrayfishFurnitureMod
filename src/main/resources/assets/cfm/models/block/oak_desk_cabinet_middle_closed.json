@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/desk_cabinet_middle_closed",
+    "textures": {
+        "top": "block/oak_log",
+        "base": "block/oak_planks"
+    }
+}

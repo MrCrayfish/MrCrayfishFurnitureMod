@@ -1,5 +1,7 @@
 package com.mrcrayfish.furniture.block;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.tileentity.CabinetTileEntity;
 import com.mrcrayfish.furniture.tileentity.DeskCabinetTileEntity;
 import net.minecraft.block.Block;
@@ -9,9 +11,11 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 
@@ -25,9 +29,16 @@ public class DeskCabinetBlock extends DeskBlock
 {
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
 
-    public DeskCabinetBlock(Properties properties)
+    public DeskCabinetBlock(Properties properties, MaterialType materialType)
     {
-        super(properties);
+        super(properties, materialType);
+        this.setDefaultState(this.getStateContainer().getBaseState().with(DIRECTION, Direction.NORTH).with(TYPE, Type.SINGLE).with(OPEN, false));
+    }
+
+    @Override
+    protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
+    {
+        return super.generateShapes(states);
     }
 
     @Override
