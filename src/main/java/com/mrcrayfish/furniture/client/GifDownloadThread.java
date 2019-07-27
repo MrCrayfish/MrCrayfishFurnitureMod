@@ -26,7 +26,7 @@ public class GifDownloadThread extends Thread
             "https://i.giphy.com/media/%s/giphy.gif"),
         new AbstractMap.SimpleEntry<>(
             Pattern.compile("https:\\/\\/i\\.giphy\\.com\\/media\\/(.*)\\/giphy\\.gif"),
-            "https://i.giphy.com/media/%s/giphy.gif"),
+            "https://i.giphy.com/media/%s/giphy.gif")
     ).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
     //Prevents GIFs larger than 2MB from loading
@@ -126,7 +126,7 @@ public class GifDownloadThread extends Thread
             Matcher matcher = host.getKey().matcher(url);
             if (matcher.find())
             {
-               return String.format(host.getValue(), matcher.group(1))
+               return String.format(host.getValue(), matcher.group(1));
             }
         }
 
