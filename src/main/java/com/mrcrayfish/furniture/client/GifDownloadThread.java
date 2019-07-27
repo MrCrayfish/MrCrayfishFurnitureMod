@@ -6,7 +6,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashSet;
+import java.util.AbstractMap;
+import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Author: MrCrayfish
@@ -14,6 +20,14 @@ import java.util.Set;
 public class GifDownloadThread extends Thread
 {
     private static final Set<String> LOADING_URLS = new HashSet<>();
+    private static final Map<Pattern, String> MAP_OF_GIF_HOSTS = Stream.of(
+        new AbstractMap.SimpleEntry<>(
+            Pattern.compile("https:\\/\\/giphy\\.com\\/gifs\\/(?:.*)-(.*)"),
+            "https://i.giphy.com/media/%s/giphy.gif"),
+        new AbstractMap.SimpleEntry<>(
+            Pattern.compile("https:\\/\\/i\\.giphy\\.com\\/media\\/(.*)\\/giphy\\.gif"),
+            "https://i.giphy.com/media/%s/giphy.gif"),
+    ).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
     //Prevents GIFs larger than 2MB from loading
     private static final long MAX_FILE_SIZE = 2097152;
@@ -67,7 +81,8 @@ public class GifDownloadThread extends Thread
 
         try
         {
-            URLConnection connection = new URL(url).openConnection();
+            String asset_url = sanatizeUrl(url);
+            URLConnection connection = new URL(asset_url).openConnection();
             connection.addRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
 
             if(!"image/gif".equals(connection.getContentType()))
@@ -98,6 +113,24 @@ public class GifDownloadThread extends Thread
         }
         processor.process(ImageDownloadResult.FAILED, "Unable to process GIF");
         setLoading(url, false);
+    }
+
+    /**
+     * Takes a URL and sees if it matches one of the known GIF hosts and if it
+     * can turn it into a direct link to the GIF.
+     */
+    private String sanatizeUrl(String url)
+    {
+        for(Map.Entry<Pattern, String> host : MAP_OF_GIF_HOSTS.entrySet())
+        {
+          Matcher matcher = host.getKey().matcher(url);
+          if (matcher.find())
+          {
+             return String.format(host.getValue(), matcher.group(1))
+          }
+        }
+
+        return url;
     }
 
     public interface ResponseProcessor
