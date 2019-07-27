@@ -123,11 +123,11 @@ public class GifDownloadThread extends Thread
     {
         for(Map.Entry<Pattern, String> host : MAP_OF_GIF_HOSTS.entrySet())
         {
-          Matcher matcher = host.getKey().matcher(url);
-          if (matcher.find())
-          {
-             return String.format(host.getValue(), matcher.group(1))
-          }
+            Matcher matcher = host.getKey().matcher(url);
+            if (matcher.find())
+            {
+               return String.format(host.getValue(), matcher.group(1))
+            }
         }
 
         return url;
