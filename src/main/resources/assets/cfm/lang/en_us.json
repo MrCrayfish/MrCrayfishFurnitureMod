@@ -116,7 +116,5 @@
     "container.cfm.bedside_cabinet": "Bedside Cabinet",
     "container.cfm.desk_cabinet": "Desk Cabinet",
     "subtitle.cfm.open_cabinet": "Open Cabinet",
-    "subtitle.cfm.close_cabinet": "Close Cabinet",
-    "subtitle.cfm.open_bedside_cabinet": "Open Bedside Cabinet",
-    "subtitle.cfm.close_bedside_cabinet": "Close Bedside Cabinet"
+    "subtitle.cfm.close_cabinet": "Close Cabinet"
 }
