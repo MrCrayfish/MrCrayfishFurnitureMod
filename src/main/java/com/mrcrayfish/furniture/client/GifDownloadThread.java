@@ -25,7 +25,7 @@ public class GifDownloadThread extends Thread
             Pattern.compile("https:\\/\\/giphy\\.com\\/gifs\\/(?:.*)-(.*)"),
             "https://i.giphy.com/media/%s/giphy.gif"),
         new AbstractMap.SimpleEntry<>(
-            Pattern.compile("https:\\/\\/i\\.giphy\\.com\\/media\\/(.*)\\/giphy\\.gif"),
+            Pattern.compile("https:\\/\\/(?:i|media)\\.giphy\\.com\\/media\\/(.*)\\/giphy\\.gif"),
             "https://i.giphy.com/media/%s/giphy.gif")
     ).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 
@@ -123,11 +123,17 @@ public class GifDownloadThread extends Thread
     {
         for(Map.Entry<Pattern, String> host : MAP_OF_GIF_HOSTS.entrySet())
         {
-            Matcher matcher = host.getKey().matcher(url);
-            if (matcher.find())
-            {
-               return String.format(host.getValue(), matcher.group(1));
-            }
+        	try
+    		{
+	            Matcher matcher = host.getKey().matcher(url);
+	            if (matcher.find())
+	            {
+	            	System.err.println("sperske:" + host.getValue());
+	            	System.err.println("sperske:" + matcher.group(1));
+	            	return String.format(host.getValue(), matcher.group(1));
+	            }
+        	}
+        	catch(Exception e) {}
         }
 
         return url;
