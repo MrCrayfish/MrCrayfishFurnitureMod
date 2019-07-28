@@ -128,8 +128,6 @@ public class GifDownloadThread extends Thread
 	            Matcher matcher = host.getKey().matcher(url);
 	            if (matcher.find())
 	            {
-	            	System.err.println("sperske:" + host.getValue());
-	            	System.err.println("sperske:" + matcher.group(1));
 	            	return String.format(host.getValue(), matcher.group(1));
 	            }
         	}
