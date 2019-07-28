@@ -21,14 +21,10 @@
    "toaster_down":       { "category": "block",  "sounds": [{ "name": "cfm:toaster_down" }]},
    "toaster_up":         { "category": "block",  "sounds": [{ "name": "cfm:toaster_up" }]},
    "washing_machine":    { "category": "block",  "sounds": [{ "name": "cfm:washing_machine" }]},
-   "channel_news":       { "category": "block",  "sounds": [{ "name": "cfm:channel_news" }]},
-   "channel_cooking":    { "category": "block",  "sounds": [{ "name": "cfm:channel_cooking" }]},
-   "channel_sam_tabor":  { "category": "block",  "sounds": [{ "name": "cfm:channel_sam_tabor" }]},
-   "channel_heman":      { "category": "block",  "sounds": [{ "name": "cfm:channel_heman" }]},
-   "channel_switch":     { "category": "block",  "sounds": [{ "name": "cfm:channel_switch" }]},
    "boing":              { "category": "block",  "sounds": [{ "name": "cfm:boing" }]},
    "sizzle":             { "category": "block",  "sounds": [{ "name": "cfm:sizzle" }]},
    "light_switch":       { "category": "block",  "sounds": [{ "name": "cfm:light_switch" }]},
    "sliding_door_open":  { "category": "block",  "sounds": [{ "name": "cfm:sliding_door_open" }]},
-   "sliding_door_close": { "category": "block",  "sounds": [{ "name": "cfm:sliding_door_close" }]}
+   "sliding_door_close": { "category": "block",  "sounds": [{ "name": "cfm:sliding_door_close" }]},
+   "bounce":             { "category": "block",  "sounds": [{ "name": "cfm:bounce" }]}
 }

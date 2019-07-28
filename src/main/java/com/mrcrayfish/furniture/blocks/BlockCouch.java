@@ -87,9 +87,10 @@ public abstract class BlockCouch extends BlockFurnitureTile
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        if(!isSpecial())
+        TileEntity tileEntity = world.getTileEntity(pos);
+        if(!isSpecial() && tileEntity instanceof TileEntityColoured)
         {
-            int colour = ((TileEntityColoured) world.getTileEntity(pos)).getColour();
+            int colour = ((TileEntityColoured) tileEntity).getColour();
             state = state.withProperty(COLOUR, colour);
         }
 

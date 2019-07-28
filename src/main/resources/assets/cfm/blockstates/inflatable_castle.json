@@ -1,0 +1,154 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cfm:inflatable_castle"
+    },
+    "variants": {
+        "color": {
+            "white": {
+                "textures": {
+                    "all": "blocks/shulker_top_white"
+                }
+            },
+            "orange": {
+                "textures": {
+                    "all": "blocks/shulker_top_orange"
+                }
+            },
+            "magenta": {
+                "textures": {
+                    "all": "blocks/shulker_top_magenta"
+                }
+            },
+            "light_blue": {
+                "textures": {
+                    "all": "blocks/shulker_top_light_blue"
+                }
+            },
+            "yellow": {
+                "textures": {
+                    "all": "blocks/shulker_top_yellow"
+                }
+            },
+            "lime": {
+                "textures": {
+                    "all": "blocks/shulker_top_lime"
+                }
+            },
+            "pink": {
+                "textures": {
+                    "all": "blocks/shulker_top_pink"
+                }
+            },
+            "gray": {
+                "textures": {
+                    "all": "blocks/shulker_top_gray"
+                }
+            },
+            "silver": {
+                "textures": {
+                    "all": "blocks/shulker_top_silver"
+                }
+            },
+            "cyan": {
+                "textures": {
+                    "all": "blocks/shulker_top_cyan"
+                }
+            },
+            "purple": {
+                "textures": {
+                    "all": "blocks/shulker_top_purple"
+                }
+            },
+            "blue": {
+                "textures": {
+                    "all": "blocks/shulker_top_blue"
+                }
+            },
+            "brown": {
+                "textures": {
+                    "all": "blocks/shulker_top_brown"
+                }
+            },
+            "green": {
+                "textures": {
+                    "all": "blocks/shulker_top_green"
+                }
+            },
+            "red": {
+                "textures": {
+                    "all": "blocks/shulker_top_red"
+                }
+            },
+            "black": {
+                "textures": {
+                    "all": "blocks/shulker_top_black"
+                }
+            }
+        },
+        "type": {
+            "none": {
+                "model": "cfm:inflatable_castle"
+            },
+            "north": {
+                "model": "cfm:inflatable_castle_end",
+                "y": 180
+            },
+            "east": {
+                "model": "cfm:inflatable_castle_end",
+                "y": 270
+            },
+            "south": {
+                "model": "cfm:inflatable_castle_end",
+                "y": 0
+            },
+            "west": {
+                "model": "cfm:inflatable_castle_end",
+                "y": 90
+            },
+            "horizontal_east_west": {
+                "model": "cfm:inflatable_castle_middle",
+                "y": 0
+            },
+            "horizontal_north_south": {
+                "model": "cfm:inflatable_castle_middle",
+                "y": 90
+            },
+            "corner_east_south": {
+                "model": "cfm:inflatable_castle_corner",
+                "y": 0
+            },
+            "corner_west_south": {
+                "model": "cfm:inflatable_castle_corner",
+                "y": 90
+            },
+            "corner_north_east": {
+                "model": "cfm:inflatable_castle_corner",
+                "y": 270
+            },
+            "corner_north_west": {
+                "model": "cfm:inflatable_castle_corner",
+                "y": 180
+            },
+            "three_north": {
+                "model": "cfm:inflatable_castle_three",
+                "y": 0
+            },
+            "three_east": {
+                "model": "cfm:inflatable_castle_three",
+                "y": 90
+            },
+            "three_south": {
+                "model": "cfm:inflatable_castle_three",
+                "y": 180
+            },
+            "three_west": {
+                "model": "cfm:inflatable_castle_three",
+                "y": 270
+            },
+            "center": {
+                "model": "cfm:inflatable_castle_all"
+            }
+        }
+    }
+}

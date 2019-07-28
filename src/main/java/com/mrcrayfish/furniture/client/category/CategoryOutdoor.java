@@ -77,6 +77,8 @@ public class CategoryOutdoor extends AbstractCategory
         add(FurnitureBlocks.JUNGLE_PARK_BENCH);
         add(FurnitureBlocks.ACACIA_PARK_BENCH);
         add(FurnitureBlocks.DARK_OAK_PARK_BENCH);
+        add(FurnitureBlocks.INFLATABLE_CASTLE);
+        add(FurnitureBlocks.CASTLE_NETTING);
         add(FurnitureItems.SPATULA);
         add(FurnitureItems.SAUSAGE);
         add(FurnitureItems.SAUSAGE_COOKED);

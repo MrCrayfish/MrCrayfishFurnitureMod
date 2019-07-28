@@ -1,0 +1,21 @@
+{
+    "result": {
+        "item": "cfm:castle_netting",
+        "count": 16
+    },
+    "pattern": [
+        "SSS",
+        "SDS",
+        "SSS"
+    ],
+    "type": "minecraft:crafting_shaped",
+    "key": {
+        "S": {
+            "item": "minecraft:string"
+        },
+        "D": {
+            "item": "minecraft:dye",
+            "data": 0
+        }
+    }
+}

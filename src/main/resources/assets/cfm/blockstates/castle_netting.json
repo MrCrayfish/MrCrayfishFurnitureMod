@@ -1,0 +1,64 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "pane": "cfm:blocks/netting",
+            "edge": "cfm:blocks/netting"
+        },
+        "model": "glass_pane_post"
+    },
+    "variants": {
+        "north": {
+            "true": {
+                "submodel": "glass_pane_side"
+            },
+            "false": {
+                "submodel": "glass_pane_noside"
+            }
+        },
+        "east": {
+            "true": {
+                "submodel": {
+                    "east_side": {
+                        "model": "glass_pane_side",
+                        "y": 90
+                    }
+                }
+            },
+            "false": {
+                "submodel": "glass_pane_noside_alt"
+            }
+        },
+        "south": {
+            "true": {
+                "submodel": "glass_pane_side_alt"
+            },
+            "false": {
+                "submodel": {
+                    "no_south_side": {
+                        "model": "glass_pane_noside_alt",
+                        "y": 90
+                    }
+                }
+            }
+        },
+        "west": {
+            "true": {
+                "submodel": {
+                    "west_side": {
+                        "model": "glass_pane_side_alt",
+                        "y": 90
+                    }
+                }
+            },
+            "false": {
+                "submodel": {
+                    "no_west_side": {
+                        "model": "glass_pane_noside",
+                        "y": 270
+                    }
+                }
+            }
+        }
+    }
+}
