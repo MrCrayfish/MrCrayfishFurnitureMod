@@ -472,6 +472,8 @@ tile.park_bench_birch.name=白桦木公园长椅
 tile.park_bench_jungle.name=丛林木公园长椅
 tile.park_bench_acacia.name=金合欢木公园长椅
 tile.park_bench_dark_oak.name=深色橡木公园长椅
+tile.inflatable_castle.name=充气城堡
+tile.castle_netting.name=城堡网
 
 cfm.info=按 SHIFT 显示更多信息
 cfm.light_switch.desc=用这个开关遥控吸顶灯或吊扇
