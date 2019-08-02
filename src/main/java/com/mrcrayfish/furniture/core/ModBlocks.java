@@ -27,7 +27,7 @@ public class ModBlocks
 {
     public static final Material WOOD = new Material(MaterialColor.WOOD, false, false, false, false, true, true, false, PushReaction.NORMAL);
     public static final Material STONE = new Material(MaterialColor.STONE, false, false, false, false, false, true, false, PushReaction.NORMAL);
-    public static final Material WOOL = new Material(MaterialColor.STONE, false, false, false, false, false, true, false, PushReaction.NORMAL);
+    public static final Material WOOL = new Material(MaterialColor.WOOL, false, false, false, false, false, true, false, PushReaction.NORMAL);
 
     private static final List<Block> BLOCKS = new ArrayList<>();
     private static final List<Item> ITEMS = new ArrayList<>();
