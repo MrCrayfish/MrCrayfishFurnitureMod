@@ -2,7 +2,6 @@ package com.mrcrayfish.furniture;
 
 import com.mrcrayfish.furniture.proxy.ClientProxy;
 import com.mrcrayfish.furniture.proxy.CommonProxy;
-import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;

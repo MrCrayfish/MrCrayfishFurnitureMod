@@ -1,12 +1,9 @@
 package com.mrcrayfish.furniture.tileentity;
 
 import com.mrcrayfish.furniture.block.CabinetBlock;
-import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModSounds;
 import com.mrcrayfish.furniture.core.ModTileEntities;
-import net.minecraft.block.BarrelBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.ChestContainer;
@@ -15,7 +12,6 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;

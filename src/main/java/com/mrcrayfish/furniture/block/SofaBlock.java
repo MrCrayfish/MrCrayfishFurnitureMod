@@ -20,7 +20,6 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
@@ -119,7 +118,7 @@ public class SofaBlock extends FurnitureHorizontalWaterloggedBlock
             if(stack.getDisplayName().getString().equals("jeb_"))
             {
                 BlockState rainbowSofaState = ModBlocks.SOFA_RAINBOW.getDefaultState().with(DIRECTION, state.get(DIRECTION)).with(TYPE, state.get(TYPE)).with(WATERLOGGED, state.get(WATERLOGGED));
-                world.setBlockState(pos,rainbowSofaState, 3);
+                world.setBlockState(pos, rainbowSofaState, 3);
                 return true;
             }
         }

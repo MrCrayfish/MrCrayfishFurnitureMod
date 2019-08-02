@@ -2,7 +2,6 @@ package com.mrcrayfish.furniture.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.mrcrayfish.furniture.tileentity.CabinetTileEntity;
 import com.mrcrayfish.furniture.tileentity.DeskCabinetTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
