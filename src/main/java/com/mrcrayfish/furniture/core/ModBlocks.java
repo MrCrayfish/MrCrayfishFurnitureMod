@@ -533,23 +533,23 @@ public class ModBlocks
         register(BlockNames.DESK_CABINET_STRIPPED_JUNGLE, new DeskCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD), DeskBlock.MaterialType.STRIPPED_JUNGLE));
         register(BlockNames.DESK_CABINET_STRIPPED_ACACIA, new DeskCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD), DeskBlock.MaterialType.STRIPPED_ACACIA));
         register(BlockNames.DESK_CABINET_STRIPPED_DARK_OAK, new DeskCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD), DeskBlock.MaterialType.STRIPPED_DARK_OAK));
-        register(BlockNames.SOFA_WHITE, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.SNOW).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
-        register(BlockNames.SOFA_ORANGE, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.ADOBE).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
-        register(BlockNames.SOFA_MAGENTA, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.MAGENTA).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
-        register(BlockNames.SOFA_LIGHT_BLUE, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.LIGHT_BLUE).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
-        register(BlockNames.SOFA_YELLOW, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.YELLOW).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
-        register(BlockNames.SOFA_LIME, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.LIME).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
-        register(BlockNames.SOFA_PINK, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.PINK).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
-        register(BlockNames.SOFA_GRAY, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.GRAY).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
-        register(BlockNames.SOFA_LIGHT_GRAY, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.LIGHT_GRAY).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
-        register(BlockNames.SOFA_CYAN, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.CYAN).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
-        register(BlockNames.SOFA_PURPLE, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.PURPLE).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
-        register(BlockNames.SOFA_BLUE, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.BLUE).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
-        register(BlockNames.SOFA_BROWN, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.BROWN).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
-        register(BlockNames.SOFA_GREEN, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.GREEN).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
-        register(BlockNames.SOFA_RED, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.RED).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
-        register(BlockNames.SOFA_BLACK, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.BLACK).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
-        register(BlockNames.SOFA_RAINBOW, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.SNOW).hardnessAndResistance(1.0F).sound(SoundType.WOOD)), new Item.Properties());
+        register(BlockNames.SOFA_WHITE, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.SNOW).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_ORANGE, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.ADOBE).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_MAGENTA, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.MAGENTA).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_LIGHT_BLUE, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.LIGHT_BLUE).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_YELLOW, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.YELLOW).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_LIME, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.LIME).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_PINK, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.PINK).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_GRAY, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.GRAY).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_LIGHT_GRAY, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.LIGHT_GRAY).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_CYAN, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.CYAN).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_PURPLE, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.PURPLE).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_BLUE, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.BLUE).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_BROWN, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.BROWN).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_GREEN, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.GREEN).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_RED, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.RED).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_BLACK, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.BLACK).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_RAINBOW, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.SNOW).hardnessAndResistance(0.5F).sound(SoundType.WOOD)), new Item.Properties());
     }
 
     private static void register(String name, Block block)
