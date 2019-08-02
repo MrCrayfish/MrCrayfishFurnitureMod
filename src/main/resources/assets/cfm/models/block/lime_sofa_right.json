@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/sofa_right",
+    "textures": {
+        "wool": "minecraft:block/lime_wool",
+        "support": "minecraft:block/oak_log"
+    }
+}

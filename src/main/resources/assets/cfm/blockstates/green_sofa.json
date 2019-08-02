@@ -1,0 +1,34 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "uvlock": true
+    },
+    "variants": {
+        "facing": {
+            "north": { "y": 0   },
+            "east":  { "y": 90  },
+            "south": { "y": 180 },
+            "west":  { "y": 270 }
+        },
+        "type": {
+            "single": {
+                "model": "cfm:block/green_sofa_single"
+            },
+            "left": {
+                "model": "cfm:block/green_sofa_left"
+            },
+            "right": {
+                "model": "cfm:block/green_sofa_right"
+            },
+            "middle": {
+                "model": "cfm:block/green_sofa_middle"
+            },
+            "corner_left": {
+                "model": "cfm:block/green_sofa_corner_left"
+            },
+            "corner_right": {
+                "model": "cfm:block/green_sofa_corner_right"
+            }
+        }
+    }
+}

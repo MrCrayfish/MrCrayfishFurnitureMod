@@ -27,6 +27,7 @@ public class ModBlocks
 {
     public static final Material WOOD = new Material(MaterialColor.WOOD, false, false, false, false, true, true, false, PushReaction.NORMAL);
     public static final Material STONE = new Material(MaterialColor.STONE, false, false, false, false, false, true, false, PushReaction.NORMAL);
+    public static final Material WOOL = new Material(MaterialColor.STONE, false, false, false, false, false, true, false, PushReaction.NORMAL);
 
     private static final List<Block> BLOCKS = new ArrayList<>();
     private static final List<Item> ITEMS = new ArrayList<>();
@@ -367,6 +368,54 @@ public class ModBlocks
     @ObjectHolder(value = BlockNames.DESK_CABINET_STRIPPED_DARK_OAK)
     public static final Block DESK_CABINET_STRIPPED_DARK_OAK = null;
 
+    @ObjectHolder(value = BlockNames.SOFA_WHITE)
+    public static final Block SOFA_WHITE = null;
+
+    @ObjectHolder(value = BlockNames.SOFA_ORANGE)
+    public static final Block SOFA_ORANGE = null;
+
+    @ObjectHolder(value = BlockNames.SOFA_MAGENTA)
+    public static final Block SOFA_MAGENTA = null;
+
+    @ObjectHolder(value = BlockNames.SOFA_LIGHT_BLUE)
+    public static final Block SOFA_LIGHT_BLUE = null;
+
+    @ObjectHolder(value = BlockNames.SOFA_YELLOW)
+    public static final Block SOFA_YELLOW = null;
+
+    @ObjectHolder(value = BlockNames.SOFA_LIME)
+    public static final Block SOFA_LIME = null;
+
+    @ObjectHolder(value = BlockNames.SOFA_PINK)
+    public static final Block SOFA_PINK = null;
+
+    @ObjectHolder(value = BlockNames.SOFA_GRAY)
+    public static final Block SOFA_GRAY = null;
+
+    @ObjectHolder(value = BlockNames.SOFA_LIGHT_GRAY)
+    public static final Block SOFA_LIGHT_GRAY = null;
+
+    @ObjectHolder(value = BlockNames.SOFA_CYAN)
+    public static final Block SOFA_CYAN = null;
+
+    @ObjectHolder(value = BlockNames.SOFA_PURPLE)
+    public static final Block SOFA_PURPLE = null;
+
+    @ObjectHolder(value = BlockNames.SOFA_BLUE)
+    public static final Block SOFA_BLUE = null;
+
+    @ObjectHolder(value = BlockNames.SOFA_BROWN)
+    public static final Block SOFA_BROWN = null;
+
+    @ObjectHolder(value = BlockNames.SOFA_GREEN)
+    public static final Block SOFA_GREEN = null;
+
+    @ObjectHolder(value = BlockNames.SOFA_RED)
+    public static final Block SOFA_RED = null;
+
+    @ObjectHolder(value = BlockNames.SOFA_BLACK)
+    public static final Block SOFA_BLACK = null;
+
     static
     {
         register(BlockNames.TABLE_OAK, new TableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
@@ -449,7 +498,6 @@ public class ModBlocks
         register(BlockNames.BEDSIDE_CABINET_STRIPPED_JUNGLE, new BedsideCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
         register(BlockNames.BEDSIDE_CABINET_STRIPPED_ACACIA, new BedsideCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
         register(BlockNames.BEDSIDE_CABINET_STRIPPED_DARK_OAK, new BedsideCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
-
         register(BlockNames.DESK_OAK, new DeskBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD), DeskBlock.MaterialType.OAK));
         register(BlockNames.DESK_SPRUCE, new DeskBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD), DeskBlock.MaterialType.BIRCH));
         register(BlockNames.DESK_BIRCH, new DeskBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD), DeskBlock.MaterialType.SPRUCE));
@@ -482,6 +530,22 @@ public class ModBlocks
         register(BlockNames.DESK_CABINET_STRIPPED_JUNGLE, new DeskCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD), DeskBlock.MaterialType.STRIPPED_JUNGLE));
         register(BlockNames.DESK_CABINET_STRIPPED_ACACIA, new DeskCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD), DeskBlock.MaterialType.STRIPPED_ACACIA));
         register(BlockNames.DESK_CABINET_STRIPPED_DARK_OAK, new DeskCabinetBlock(Block.Properties.create(WOOD).hardnessAndResistance(1.0F).sound(SoundType.WOOD), DeskBlock.MaterialType.STRIPPED_DARK_OAK));
+        register(BlockNames.SOFA_WHITE, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.SNOW).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_ORANGE, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.ADOBE).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_MAGENTA, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.MAGENTA).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_LIGHT_BLUE, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.LIGHT_BLUE).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_YELLOW, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.YELLOW).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_LIME, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.LIME).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_PINK, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.PINK).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_GRAY, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.GRAY).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_LIGHT_GRAY, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.LIGHT_GRAY).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_CYAN, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.CYAN).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_PURPLE, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.PURPLE).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_BLUE, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.BLUE).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_BROWN, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.BROWN).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_GREEN, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.GREEN).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_RED, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.RED).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_BLACK, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.BLACK).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
     }
 
     private static void register(String name, Block block)

@@ -1,0 +1,35 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "particle": "#wool"
+    },
+    "elements": [
+        {
+            "from": [ 0, 3, 0 ], 
+            "to": [ 16, 6, 16 ], 
+            "faces": {
+                "north": { "texture": "#support", "uv": [ 0, 0, 3, 16 ], "rotation": 90, "cullface": "north" },
+                "south": { "texture": "#support", "uv": [ 0, 0, 3, 16 ], "rotation": 90, "cullface": "south" },
+                "down": { "texture": "#support", "uv": [ 0, 0, 16, 16 ] }
+            }
+        },
+        {
+            "from": [ 0, 6, 0 ], 
+            "to": [ 16, 10, 16 ], 
+            "faces": {
+                "north": { "texture": "#wool", "uv": [ 0, 12, 16, 16 ], "cullface": "north" },
+                "south": { "texture": "#wool", "uv": [ 0, 12, 16, 16 ], "cullface": "south" },
+                "up": { "texture": "#wool", "uv": [ 0, 0, 16, 16 ] }
+            }
+        },
+        {
+            "from": [ 0, 10, 0 ], 
+            "to": [ 16, 20, 4 ], 
+            "faces": {
+                "north": { "texture": "#wool", "uv": [ 0, 2, 16, 12 ] },
+                "south": { "texture": "#wool", "uv": [ 0, 2, 16, 10 ] },
+                "up": { "texture": "#wool", "uv": [ 0, 0, 16, 4 ] }
+            }
+        }
+    ]
+}

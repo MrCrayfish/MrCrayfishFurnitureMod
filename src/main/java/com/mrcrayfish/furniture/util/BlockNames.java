@@ -87,7 +87,6 @@ public class BlockNames
     public static final String BEDSIDE_CABINET_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_bedside_cabinet";
     public static final String BEDSIDE_CABINET_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_bedside_cabinet";
     public static final String BEDSIDE_CABINET_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_bedside_cabinet";
-
     public static final String DESK_OAK = Reference.MOD_ID + ":oak_desk";
     public static final String DESK_SPRUCE = Reference.MOD_ID + ":spruce_desk";
     public static final String DESK_BIRCH = Reference.MOD_ID + ":birch_desk";
@@ -121,29 +120,30 @@ public class BlockNames
     public static final String DESK_CABINET_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_desk_cabinet";
     public static final String DESK_CABINET_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_desk_cabinet";
 
+    public static final String SOFA_WHITE = Reference.MOD_ID + ":white_sofa";
+    public static final String SOFA_ORANGE = Reference.MOD_ID + ":orange_sofa";
+    public static final String SOFA_MAGENTA = Reference.MOD_ID + ":magenta_sofa";
+    public static final String SOFA_LIGHT_BLUE = Reference.MOD_ID + ":light_blue_sofa";
+    public static final String SOFA_YELLOW = Reference.MOD_ID + ":yellow_sofa";
+    public static final String SOFA_LIME = Reference.MOD_ID + ":lime_sofa";
+    public static final String SOFA_PINK = Reference.MOD_ID + ":pink_sofa";
+    public static final String SOFA_GRAY = Reference.MOD_ID + ":gray_sofa";
+    public static final String SOFA_LIGHT_GRAY = Reference.MOD_ID + ":light_gray_sofa";
+    public static final String SOFA_CYAN = Reference.MOD_ID + ":cyan_sofa";
+    public static final String SOFA_PURPLE = Reference.MOD_ID + ":purple_sofa";
+    public static final String SOFA_BLUE = Reference.MOD_ID + ":blue_sofa";
+    public static final String SOFA_BROWN = Reference.MOD_ID + ":brown_sofa";
+    public static final String SOFA_GREEN = Reference.MOD_ID + ":green_sofa";
+    public static final String SOFA_RED = Reference.MOD_ID + ":red_sofa";
+    public static final String SOFA_BLACK = Reference.MOD_ID + ":black_sofa";
+    public static final String SOFA_RAINBOW = Reference.MOD_ID + ":rainbow_sofa";
+
     public static final String BLINDS_OAK = Reference.MOD_ID + ":blinds_oak";
     public static final String BLINDS_SPRUCE = Reference.MOD_ID + ":blinds_spruce";
     public static final String BLINDS_BIRCH = Reference.MOD_ID + ":blinds_birch";
     public static final String BLINDS_JUNGLE = Reference.MOD_ID + ":blinds_jungle";
     public static final String BLINDS_ACACIA = Reference.MOD_ID + ":blinds_acacia";
     public static final String BLINDS_DARK_OAK = Reference.MOD_ID + ":blinds_dark_oak";
-    public static final String SOFA_WHITE = Reference.MOD_ID + ":sofa_white";
-    public static final String SOFA_ORANGE = Reference.MOD_ID + ":sofa_orange";
-    public static final String SOFA_MAGENTA = Reference.MOD_ID + ":sofa_magenta";
-    public static final String SOFA_LIGHT_BLUE = Reference.MOD_ID + ":sofa_light_blue";
-    public static final String SOFA_YELLOW = Reference.MOD_ID + ":sofa_yellow";
-    public static final String SOFA_LIME = Reference.MOD_ID + ":sofa_lime";
-    public static final String SOFA_PINK = Reference.MOD_ID + ":sofa_pink";
-    public static final String SOFA_GRAY = Reference.MOD_ID + ":sofa_gray";
-    public static final String SOFA_LIGHT_GRAY = Reference.MOD_ID + ":sofa_light_gray";
-    public static final String SOFA_CYAN = Reference.MOD_ID + ":sofa_cyan";
-    public static final String SOFA_PURPLE = Reference.MOD_ID + ":sofa_purple";
-    public static final String SOFA_BLUE = Reference.MOD_ID + ":sofa_blue";
-    public static final String SOFA_BROWN = Reference.MOD_ID + ":sofa_brown";
-    public static final String SOFA_GREEN = Reference.MOD_ID + ":sofa_green";
-    public static final String SOFA_RED = Reference.MOD_ID + ":sofa_red";
-    public static final String SOFA_BLACK = Reference.MOD_ID + ":sofa_black";
-    public static final String SOFA_JEB = Reference.MOD_ID + ":sofa_jeb";
     public static final String CURTAIN_WHITE = Reference.MOD_ID + ":curtain_white";
     public static final String CURTAIN_ORANGE = Reference.MOD_ID + ":curtain_orange";
     public static final String CURTAIN_MAGENTA = Reference.MOD_ID + ":curtain_magenta";

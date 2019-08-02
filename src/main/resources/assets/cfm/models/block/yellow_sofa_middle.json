@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/sofa_middle",
+    "textures": {
+        "wool": "minecraft:block/yellow_wool",
+        "support": "minecraft:block/oak_log"
+    }
+}
