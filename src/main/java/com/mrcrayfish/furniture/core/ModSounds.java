@@ -33,6 +33,7 @@ public class ModSounds
     }
 
     @SubscribeEvent
+    @SuppressWarnings("unused")
     public static void registerSounds(final RegistryEvent.Register<SoundEvent> event)
     {
         SOUNDS.forEach(soundEvent -> event.getRegistry().register(soundEvent));

@@ -574,6 +574,7 @@ public class ModBlocks
     }
 
     @SubscribeEvent
+    @SuppressWarnings("unused")
     public static void registerBlocks(final RegistryEvent.Register<Block> event)
     {
         BLOCKS.forEach(block -> event.getRegistry().register(block));
@@ -581,6 +582,7 @@ public class ModBlocks
     }
 
     @SubscribeEvent
+    @SuppressWarnings("unused")
     public static void registerItems(final RegistryEvent.Register<Item> event)
     {
         ITEMS.forEach(item -> event.getRegistry().register(item));
