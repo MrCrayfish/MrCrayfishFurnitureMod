@@ -2,11 +2,14 @@ package com.mrcrayfish.furniture.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.entity.SeatEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
@@ -109,6 +112,16 @@ public class SofaBlock extends FurnitureHorizontalWaterloggedBlock
     @Override
     public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult)
     {
+        ItemStack stack = player.getHeldItem(hand);
+        if(stack.getItem() == Items.NAME_TAG)
+        {
+            if(stack.getDisplayName().getString().equals("jeb_"))
+            {
+                BlockState rainbowSofaState = ModBlocks.SOFA_RAINBOW.getDefaultState().with(DIRECTION, state.get(DIRECTION)).with(TYPE, state.get(TYPE)).with(WATERLOGGED, state.get(WATERLOGGED));
+                world.setBlockState(pos,rainbowSofaState, 3);
+                return true;
+            }
+        }
         return SeatEntity.create(world, pos, 0.4, player);
     }
 

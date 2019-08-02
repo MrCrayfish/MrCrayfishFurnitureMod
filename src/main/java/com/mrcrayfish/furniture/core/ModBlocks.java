@@ -416,6 +416,9 @@ public class ModBlocks
     @ObjectHolder(value = BlockNames.SOFA_BLACK)
     public static final Block SOFA_BLACK = null;
 
+    @ObjectHolder(value = BlockNames.SOFA_RAINBOW)
+    public static final Block SOFA_RAINBOW = null;
+
     static
     {
         register(BlockNames.TABLE_OAK, new TableBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
@@ -546,16 +549,17 @@ public class ModBlocks
         register(BlockNames.SOFA_GREEN, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.GREEN).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
         register(BlockNames.SOFA_RED, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.RED).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
         register(BlockNames.SOFA_BLACK, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.BLACK).hardnessAndResistance(1.0F).sound(SoundType.WOOD)));
+        register(BlockNames.SOFA_RAINBOW, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.SNOW).hardnessAndResistance(1.0F).sound(SoundType.WOOD)), new Item.Properties());
     }
 
     private static void register(String name, Block block)
     {
-        register(name, block, new Item.Properties());
+        register(name, block, new Item.Properties().group(FurnitureMod.GROUP));
     }
 
     private static void register(String name, Block block, Item.Properties properties)
     {
-        register(name, block, new BlockItem(block, properties.group(FurnitureMod.GROUP)));
+        register(name, block, new BlockItem(block, properties));
     }
 
     private static void register(String name, Block block, BlockItem item)
