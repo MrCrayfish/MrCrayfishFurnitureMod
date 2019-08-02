@@ -1,5 +1,8 @@
 package com.mrcrayfish.furniture.block;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.EnumProperty;
@@ -7,7 +10,13 @@ import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Author: MrCrayfish
@@ -16,10 +25,80 @@ public class SofaBlock extends FurnitureHorizontalWaterloggedBlock
 {
     public static final EnumProperty<Type> TYPE = EnumProperty.create("type", Type.class);
 
+    public final ImmutableMap<BlockState, VoxelShape> SHAPES;
+
     public SofaBlock(Properties properties)
     {
         super(properties);
         this.setDefaultState(this.getStateContainer().getBaseState().with(DIRECTION, Direction.NORTH).with(TYPE, Type.SINGLE));
+        SHAPES = this.generateShapes(this.getStateContainer().getValidStates());
+    }
+
+    private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
+    {
+        final VoxelShape BASE = Block.makeCuboidShape(0, 3, 0, 16, 10, 16);
+        final VoxelShape[] LEG_BACK_LEFT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 0, 0, 3, 3, 3), Direction.SOUTH));
+        final VoxelShape[] LEG_FRONT_LEFT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 0, 13, 3, 3, 16), Direction.SOUTH));
+        final VoxelShape[] LEG_FRONT_RIGHT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(13, 0, 13, 16, 3, 16), Direction.SOUTH));
+        final VoxelShape[] LEG_BACK_RIGHT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(13, 0, 0, 16, 3, 3), Direction.SOUTH));
+        final VoxelShape[] BACK_REST = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 10, 0, 16, 20, 4), Direction.SOUTH));
+        final VoxelShape[] BACK_REST_LEFT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 10, 4, 4, 20, 16), Direction.SOUTH));
+        final VoxelShape[] BACK_REST_RIGHT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(12, 10, 4, 16, 20, 16), Direction.SOUTH));
+        final VoxelShape[] LEFT_ARM_REST = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(-2, 9, 1, 2, 14, 16), Direction.SOUTH));
+        final VoxelShape[] RIGHT_ARM_REST = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(14, 9, 1, 18, 14, 16), Direction.SOUTH));
+
+        ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
+        for(BlockState state : states)
+        {
+            Direction direction = state.get(DIRECTION);
+            Type type = state.get(TYPE);
+            List<VoxelShape> shapes = new ArrayList<>();
+            shapes.add(BASE);
+            shapes.add(BACK_REST[direction.getHorizontalIndex()]);
+            switch(type)
+            {
+                case SINGLE:
+                    shapes.add(LEG_BACK_LEFT[direction.getHorizontalIndex()]);
+                    shapes.add(LEG_FRONT_LEFT[direction.getHorizontalIndex()]);
+                    shapes.add(LEG_FRONT_RIGHT[direction.getHorizontalIndex()]);
+                    shapes.add(LEG_BACK_RIGHT[direction.getHorizontalIndex()]);
+                    shapes.add(LEFT_ARM_REST[direction.getHorizontalIndex()]);
+                    shapes.add(RIGHT_ARM_REST[direction.getHorizontalIndex()]);
+                    break;
+                case LEFT:
+                    shapes.add(LEG_BACK_LEFT[direction.getHorizontalIndex()]);
+                    shapes.add(LEG_FRONT_LEFT[direction.getHorizontalIndex()]);
+                    shapes.add(LEFT_ARM_REST[direction.getHorizontalIndex()]);
+                    break;
+                case RIGHT:
+                    shapes.add(LEG_FRONT_RIGHT[direction.getHorizontalIndex()]);
+                    shapes.add(LEG_BACK_RIGHT[direction.getHorizontalIndex()]);
+                    shapes.add(RIGHT_ARM_REST[direction.getHorizontalIndex()]);
+                    break;
+                case CORNER_LEFT:
+                    shapes.add(LEG_BACK_LEFT[direction.getHorizontalIndex()]);
+                    shapes.add(BACK_REST_LEFT[direction.getHorizontalIndex()]);
+                    break;
+                case CORNER_RIGHT:
+                    shapes.add(LEG_BACK_RIGHT[direction.getHorizontalIndex()]);
+                    shapes.add(BACK_REST_RIGHT[direction.getHorizontalIndex()]);
+                    break;
+            }
+            builder.put(state, VoxelShapeHelper.combineAll(shapes));
+        }
+        return builder.build();
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context)
+    {
+        return SHAPES.get(state);
+    }
+
+    @Override
+    public VoxelShape getRenderShape(BlockState state, IBlockReader reader, BlockPos pos)
+    {
+        return SHAPES.get(state);
     }
 
     @Override
