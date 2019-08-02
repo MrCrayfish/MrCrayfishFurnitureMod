@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:block",
+    "pools": [
+        {
+            "name": "gray_sofa",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "cfm:gray_sofa"
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ]
+        }
+    ]
+}
