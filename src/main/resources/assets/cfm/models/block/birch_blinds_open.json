@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:block/blinds_open",
+    "textures": {
+        "head_rail": "minecraft:block/birch_log",
+        "slat": "minecraft:block/stripped_birch_log",
+        "cord": "minecraft:block/white_concrete"
+    }
+}

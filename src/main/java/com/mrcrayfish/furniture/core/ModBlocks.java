@@ -5,6 +5,7 @@ import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.block.*;
 import com.mrcrayfish.furniture.util.BlockNames;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -160,6 +161,18 @@ public class ModBlocks
     public static final Block SOFA_RED = register(BlockNames.SOFA_RED, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.RED).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block SOFA_BLACK = register(BlockNames.SOFA_BLACK, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.BLACK).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block SOFA_RAINBOW = register(BlockNames.SOFA_RAINBOW, new SofaBlock(Block.Properties.create(WOOL, MaterialColor.SNOW).hardnessAndResistance(0.5F).sound(SoundType.WOOD)), new Item.Properties());
+    public static final Block BLINDS_OAK = register(BlockNames.BLINDS_OAK, new BlindsBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block BLINDS_SPRUCE = register(BlockNames.BLINDS_SPRUCE, new BlindsBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block BLINDS_BIRCH = register(BlockNames.BLINDS_BIRCH, new BlindsBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block BLINDS_JUNGLE = register(BlockNames.BLINDS_JUNGLE, new BlindsBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block BLINDS_ACACIA = register(BlockNames.BLINDS_ACACIA, new BlindsBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block BLINDS_DARK_OAK = register(BlockNames.BLINDS_DARK_OAK, new BlindsBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block BLINDS_STRIPPED_OAK = register(BlockNames.BLINDS_STRIPPED_OAK, new BlindsBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block BLINDS_STRIPPED_SPRUCE = register(BlockNames.BLINDS_STRIPPED_SPRUCE, new BlindsBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block BLINDS_STRIPPED_BIRCH = register(BlockNames.BLINDS_STRIPPED_BIRCH, new BlindsBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block BLINDS_STRIPPED_JUNGLE = register(BlockNames.BLINDS_STRIPPED_JUNGLE, new BlindsBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block BLINDS_STRIPPED_ACACIA = register(BlockNames.BLINDS_STRIPPED_ACACIA, new BlindsBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block BLINDS_STRIPPED_DARK_OAK = register(BlockNames.BLINDS_STRIPPED_DARK_OAK, new BlindsBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
 
     private static Block register(String name, Block block)
     {

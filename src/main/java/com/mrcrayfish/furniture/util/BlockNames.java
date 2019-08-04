@@ -119,7 +119,6 @@ public class BlockNames
     public static final String DESK_CABINET_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_desk_cabinet";
     public static final String DESK_CABINET_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_desk_cabinet";
     public static final String DESK_CABINET_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_desk_cabinet";
-
     public static final String SOFA_WHITE = Reference.MOD_ID + ":white_sofa";
     public static final String SOFA_ORANGE = Reference.MOD_ID + ":orange_sofa";
     public static final String SOFA_MAGENTA = Reference.MOD_ID + ":magenta_sofa";
@@ -138,46 +137,19 @@ public class BlockNames
     public static final String SOFA_BLACK = Reference.MOD_ID + ":black_sofa";
     public static final String SOFA_RAINBOW = Reference.MOD_ID + ":rainbow_sofa";
 
-    public static final String BLINDS_OAK = Reference.MOD_ID + ":blinds_oak";
-    public static final String BLINDS_SPRUCE = Reference.MOD_ID + ":blinds_spruce";
-    public static final String BLINDS_BIRCH = Reference.MOD_ID + ":blinds_birch";
-    public static final String BLINDS_JUNGLE = Reference.MOD_ID + ":blinds_jungle";
-    public static final String BLINDS_ACACIA = Reference.MOD_ID + ":blinds_acacia";
-    public static final String BLINDS_DARK_OAK = Reference.MOD_ID + ":blinds_dark_oak";
-    public static final String CURTAIN_WHITE = Reference.MOD_ID + ":curtain_white";
-    public static final String CURTAIN_ORANGE = Reference.MOD_ID + ":curtain_orange";
-    public static final String CURTAIN_MAGENTA = Reference.MOD_ID + ":curtain_magenta";
-    public static final String CURTAIN_LIGHT_BLUE = Reference.MOD_ID + ":curtain_light_blue";
-    public static final String CURTAIN_YELLOW = Reference.MOD_ID + ":curtain_yellow";
-    public static final String CURTAIN_LIME = Reference.MOD_ID + ":curtain_lime";
-    public static final String CURTAIN_PINK = Reference.MOD_ID + ":curtain_pink";
-    public static final String CURTAIN_GRAY = Reference.MOD_ID + ":curtain_gray";
-    public static final String CURTAIN_LIGHT_GRAY = Reference.MOD_ID + ":curtain_light_gray";
-    public static final String CURTAIN_CYAN = Reference.MOD_ID + ":curtain_cyan";
-    public static final String CURTAIN_PURPLE = Reference.MOD_ID + ":curtain_purple";
-    public static final String CURTAIN_BLUE = Reference.MOD_ID + ":curtain_blue";
-    public static final String CURTAIN_BROWN = Reference.MOD_ID + ":curtain_brown";
-    public static final String CURTAIN_GREEN = Reference.MOD_ID + ":curtain_green";
-    public static final String CURTAIN_RED = Reference.MOD_ID + ":curtain_red";
-    public static final String CURTAIN_BLACK = Reference.MOD_ID + ":curtain_black";
+    public static final String BLINDS_OAK = Reference.MOD_ID + ":oak_blinds";
+    public static final String BLINDS_SPRUCE = Reference.MOD_ID + ":spruce_blinds";
+    public static final String BLINDS_BIRCH = Reference.MOD_ID + ":birch_blinds";
+    public static final String BLINDS_JUNGLE = Reference.MOD_ID + ":jungle_blinds";
+    public static final String BLINDS_ACACIA = Reference.MOD_ID + ":acacia_blinds";
+    public static final String BLINDS_DARK_OAK = Reference.MOD_ID + ":dark_oak_blinds";
+    public static final String BLINDS_STRIPPED_OAK = Reference.MOD_ID + ":stripped_oak_blinds";
+    public static final String BLINDS_STRIPPED_SPRUCE = Reference.MOD_ID + ":stripped_spruce_blinds";
+    public static final String BLINDS_STRIPPED_BIRCH = Reference.MOD_ID + ":stripped_birch_blinds";
+    public static final String BLINDS_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_blinds";
+    public static final String BLINDS_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_blinds";
+    public static final String BLINDS_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_blinds";
 
-    //TODO might not need these
-    /*public static final String CURTAIN_CLOSED_WHITE = Reference.MOD_ID + ":curtain_closed_white";
-    public static final String CURTAIN_CLOSED_ORANGE = Reference.MOD_ID + ":curtain_closed_orange";
-    public static final String CURTAIN_CLOSED_MAGENTA = Reference.MOD_ID + ":curtain_closed_magenta";
-    public static final String CURTAIN_CLOSED_LIGHT_BLUE = Reference.MOD_ID + ":curtain_closed_light_blue";
-    public static final String CURTAIN_CLOSED_YELLOW = Reference.MOD_ID + ":curtain_closed_yellow";
-    public static final String CURTAIN_CLOSED_LIME = Reference.MOD_ID + ":curtain_closed_lime";
-    public static final String CURTAIN_CLOSED_PINK = Reference.MOD_ID + ":curtain_closed_pink";
-    public static final String CURTAIN_CLOSED_GRAY = Reference.MOD_ID + ":curtain_closed_gray";
-    public static final String CURTAIN_CLOSED_LIGHT_GRAY = Reference.MOD_ID + ":curtain_closed_light_gray";
-    public static final String CURTAIN_CLOSED_CYAN = Reference.MOD_ID + ":curtain_closed_cyan";
-    public static final String CURTAIN_CLOSED_PURPLE = Reference.MOD_ID + ":curtain_closed_purple";
-    public static final String CURTAIN_CLOSED_BLUE = Reference.MOD_ID + ":curtain_closed_blue";
-    public static final String CURTAIN_CLOSED_BROWN = Reference.MOD_ID + ":curtain_closed_brown";
-    public static final String CURTAIN_CLOSED_GREEN = Reference.MOD_ID + ":curtain_closed_green";
-    public static final String CURTAIN_CLOSED_RED = Reference.MOD_ID + ":curtain_closed_red";
-    public static final String CURTAIN_CLOSED_BLACK = Reference.MOD_ID + ":curtain_closed_black";*/
 
     /* Electronic Update */
     public static final String TV = Reference.MOD_ID + ":tv";

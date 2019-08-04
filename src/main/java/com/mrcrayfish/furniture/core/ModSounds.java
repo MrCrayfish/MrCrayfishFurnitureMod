@@ -23,6 +23,8 @@ public class ModSounds
     public static final SoundEvent BLOCK_CABINET_CLOSE = register(SoundNames.CABINET_CLOSE);
     public static final SoundEvent BLOCK_BEDSIDE_CABINET_OPEN = register(SoundNames.BEDSIDE_CABINET_OPEN);
     public static final SoundEvent BLOCK_BEDSIDE_CABINET_CLOSE = register(SoundNames.BEDSIDE_CABINET_CLOSE);
+    public static final SoundEvent BLOCK_BLINDS_OPEN = register(SoundNames.BLINDS_OPEN);
+    public static final SoundEvent BLOCK_BLINDS_CLOSE = register(SoundNames.BLINDS_CLOSE);
 
     private static SoundEvent register(String name)
     {
