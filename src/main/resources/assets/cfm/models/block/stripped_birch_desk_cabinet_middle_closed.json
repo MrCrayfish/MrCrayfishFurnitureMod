@@ -1,7 +1,7 @@
 {
     "parent": "cfm:block/desk_cabinet_middle_closed",
     "textures": {
-        "top": "block/birch_log",
-        "base": "block/stripped_birch_log"
+        "top": "block/stripped_birch_log",
+        "base": "minecraft:block/birch_log"
     }
 }

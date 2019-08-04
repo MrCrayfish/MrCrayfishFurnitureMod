@@ -3,6 +3,6 @@
     "textures": {
         "head_rail": "minecraft:block/stripped_oak_log",
         "slat": "minecraft:block/oak_planks",
-        "cord": "minecraft:block/white_concrete"
+        "cord": "minecraft:block/oak_log"
     }
 }

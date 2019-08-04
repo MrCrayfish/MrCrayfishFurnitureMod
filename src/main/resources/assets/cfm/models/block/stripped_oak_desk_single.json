@@ -1,7 +1,7 @@
 {
     "parent": "cfm:block/desk_single",
     "textures": {
-        "base": "minecraft:block/stripped_oak_log",
-        "top": "minecraft:block/oak_log"
+        "base": "minecraft:block/oak_log",
+        "top": "minecraft:block/stripped_oak_log"
     }
 }

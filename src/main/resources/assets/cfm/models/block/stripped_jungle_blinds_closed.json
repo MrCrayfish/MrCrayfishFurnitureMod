@@ -3,6 +3,6 @@
     "textures": {
         "head_rail": "minecraft:block/stripped_jungle_log",
         "slat": "minecraft:block/jungle_planks",
-        "cord": "minecraft:block/white_concrete"
+        "cord": "minecraft:block/jungle_log"
     }
 }

@@ -1,8 +1,8 @@
 {
     "parent": "cfm:block/desk_cabinet_middle_open",
     "textures": {
-        "top": "block/spruce_log",
-        "base": "block/stripped_spruce_log",
+        "top": "block/stripped_spruce_log",
+        "base": "minecraft:block/spruce_log",
         "draw": "block/stripped_spruce_log"
     }
 }

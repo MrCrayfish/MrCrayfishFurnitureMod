@@ -3,6 +3,6 @@
     "textures": {
         "head_rail": "minecraft:block/stripped_acacia_log",
         "slat": "minecraft:block/acacia_planks",
-        "cord": "minecraft:block/white_concrete"
+        "cord": "minecraft:block/acacia_log"
     }
 }

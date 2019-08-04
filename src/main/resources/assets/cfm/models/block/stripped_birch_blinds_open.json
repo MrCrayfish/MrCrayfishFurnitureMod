@@ -3,6 +3,6 @@
     "textures": {
         "head_rail": "minecraft:block/stripped_birch_log",
         "slat": "minecraft:block/birch_planks",
-        "cord": "minecraft:block/white_concrete"
+        "cord": "minecraft:block/birch_log"
     }
 }

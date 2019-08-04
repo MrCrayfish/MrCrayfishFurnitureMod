@@ -3,6 +3,6 @@
     "textures": {
         "head_rail": "minecraft:block/stripped_spruce_log",
         "slat": "minecraft:block/spruce_planks",
-        "cord": "minecraft:block/white_concrete"
+        "cord": "minecraft:block/spruce_log"
     }
 }
