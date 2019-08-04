@@ -115,6 +115,6 @@
     "container.cfm.cabinet": "Szafka",
     "container.cfm.bedside_cabinet": "Szafka nocna",
     "container.cfm.desk_cabinet": "Szafka biurkowa",
-    "subtitle.cfm.open_cabinet": "Otwórz szafkę",
-    "subtitle.cfm.close_cabinet": "Zamknij szafkę"
+    "subtitle.cfm.open_cabinet": "Otwarto szafkę",
+    "subtitle.cfm.close_cabinet": "Zamknięto szafkę"
 }
