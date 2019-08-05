@@ -8,6 +8,7 @@ import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.state.EnumProperty;
@@ -108,6 +109,13 @@ public class SofaBlock extends FurnitureHorizontalWaterloggedBlock
     {
         return SHAPES.get(state);
     }
+
+    //TODO fix initial state
+    /*@Override
+    public BlockState getStateForPlacement(BlockItemUseContext context)
+    {
+        return super.getStateForPlacement(context);
+    }*/
 
     @Override
     public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult)
