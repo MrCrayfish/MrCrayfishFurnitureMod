@@ -2,7 +2,8 @@
     "parent": "cfm:block/bedside_cabinet_open",
     "textures": {
         "base": "minecraft:block/stripped_spruce_log",
-        "top": "minecraft:block/spruce_log",
-        "draw": "minecraft:block/stripped_spruce_log"
+        "top": "minecraft:block/stripped_spruce_log",
+        "draw": "minecraft:block/stripped_spruce_log",
+        "draw_front": "minecraft:block/spruce_log"
     }
 }

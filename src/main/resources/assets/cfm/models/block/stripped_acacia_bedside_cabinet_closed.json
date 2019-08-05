@@ -2,6 +2,7 @@
     "parent": "cfm:block/bedside_cabinet_closed",
     "textures": {
         "base": "minecraft:block/stripped_acacia_log",
-        "top": "minecraft:block/acacia_log"
+        "top": "minecraft:block/stripped_acacia_log",
+        "draw_front": "minecraft:block/acacia_log"
     }
 }

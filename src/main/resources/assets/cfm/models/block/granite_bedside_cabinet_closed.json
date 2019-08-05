@@ -3,6 +3,7 @@
     "textures": {
         "base": "minecraft:block/granite",
         "top": "minecraft:block/polished_granite",
-        "draw": "minecraft:block/granite"
+        "draw": "minecraft:block/granite",
+        "draw_front": "minecraft:block/polished_granite"
     }
 }

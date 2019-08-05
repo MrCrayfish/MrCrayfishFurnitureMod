@@ -2,6 +2,6 @@
     "parent": "cfm:block/desk_middle",
     "textures": {
         "base": "minecraft:block/cobblestone",
-        "top": "minecraft:block/stone"
+        "top": "block/stone"
     }
 }

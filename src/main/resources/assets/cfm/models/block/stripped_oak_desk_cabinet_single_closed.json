@@ -2,6 +2,8 @@
     "parent": "cfm:block/desk_cabinet_single_closed",
     "textures": {
         "top": "block/stripped_oak_log",
-        "base": "minecraft:block/oak_log"
+        "base": "block/stripped_oak_log",
+        "draw_front": "block/oak_log",
+        "legs": "block/oak_log"
     }
 }

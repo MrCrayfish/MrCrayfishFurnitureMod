@@ -2,6 +2,7 @@
     "parent": "cfm:block/bedside_cabinet_closed",
     "textures": {
         "base": "minecraft:block/spruce_planks",
-        "top": "minecraft:block/spruce_log"
+        "top": "minecraft:block/spruce_log",
+        "draw_front": "minecraft:block/spruce_log"
     }
 }

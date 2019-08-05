@@ -3,6 +3,7 @@
     "textures": {
         "top": "block/polished_diorite",
         "base": "block/diorite",
-        "draw": "block/diorite"
+        "draw": "block/diorite",
+        "draw_front": "block/polished_diorite"
     }
 }

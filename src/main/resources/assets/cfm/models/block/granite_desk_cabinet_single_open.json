@@ -3,6 +3,8 @@
     "textures": {
         "top": "block/polished_granite",
         "base": "block/granite",
-        "draw": "block/granite"
+        "draw": "block/granite",
+        "draw_front": "block/polished_granite",
+        "legs": "block/granite"
     }
 }

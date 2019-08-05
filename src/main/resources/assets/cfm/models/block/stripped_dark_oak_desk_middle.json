@@ -1,7 +1,7 @@
 {
     "parent": "cfm:block/desk_middle",
     "textures": {
-        "base": "minecraft:block/dark_oak_log",
+        "base": "minecraft:block/stripped_dark_oak_log",
         "top": "minecraft:block/stripped_dark_oak_log"
     }
 }

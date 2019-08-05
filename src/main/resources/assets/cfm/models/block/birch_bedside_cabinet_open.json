@@ -3,6 +3,7 @@
     "textures": {
         "base": "minecraft:block/birch_planks",
         "top": "minecraft:block/birch_log",
-        "draw": "minecraft:block/stripped_birch_log"
+        "draw": "minecraft:block/stripped_birch_log",
+        "draw_front": "minecraft:block/birch_log"
     }
 }

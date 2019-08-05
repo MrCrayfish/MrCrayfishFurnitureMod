@@ -3,6 +3,8 @@
     "textures": {
         "top": "block/birch_log",
         "base": "block/birch_planks",
-        "draw": "block/stripped_birch_log"
+        "draw": "block/stripped_birch_log",
+        "draw_front": "block/birch_log",
+        "legs": "block/birch_planks"
     }
 }

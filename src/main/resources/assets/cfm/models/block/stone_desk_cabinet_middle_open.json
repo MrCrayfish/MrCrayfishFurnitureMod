@@ -3,6 +3,7 @@
     "textures": {
         "top": "block/stone",
         "base": "block/cobblestone",
-        "draw": "block/cobblestone"
+        "draw": "block/cobblestone",
+        "draw_front": "block/stone"
     }
 }

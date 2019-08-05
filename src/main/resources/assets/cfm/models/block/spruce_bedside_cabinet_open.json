@@ -3,6 +3,7 @@
     "textures": {
         "base": "minecraft:block/spruce_planks",
         "top": "minecraft:block/spruce_log",
-        "draw": "minecraft:block/stripped_spruce_log"
+        "draw": "minecraft:block/stripped_spruce_log",
+        "draw_front": "minecraft:block/spruce_log"
     }
 }

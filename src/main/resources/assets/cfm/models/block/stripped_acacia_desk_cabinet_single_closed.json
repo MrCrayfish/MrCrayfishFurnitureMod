@@ -2,6 +2,8 @@
     "parent": "cfm:block/desk_cabinet_single_closed",
     "textures": {
         "top": "block/stripped_acacia_log",
-        "base": "minecraft:block/acacia_log"
+        "base": "block/stripped_acacia_log",
+        "draw_front": "block/acacia_log",
+        "legs": "block/acacia_log"
     }
 }

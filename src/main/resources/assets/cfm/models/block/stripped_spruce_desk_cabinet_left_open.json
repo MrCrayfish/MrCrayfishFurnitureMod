@@ -2,7 +2,9 @@
     "parent": "cfm:block/desk_cabinet_left_open",
     "textures": {
         "top": "block/stripped_spruce_log",
-        "base": "minecraft:block/spruce_log",
-        "draw": "block/stripped_spruce_log"
+        "base": "block/stripped_spruce_log",
+        "draw": "block/stripped_spruce_log",
+        "draw_front": "block/spruce_log",
+        "legs": "block/spruce_log"
     }
 }

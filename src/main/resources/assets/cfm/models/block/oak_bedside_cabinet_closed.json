@@ -2,6 +2,7 @@
     "parent": "cfm:block/bedside_cabinet_closed",
     "textures": {
         "base": "minecraft:block/oak_planks",
-        "top": "minecraft:block/oak_log"
+        "top": "minecraft:block/oak_log",
+        "draw_front": "minecraft:block/oak_log"
     }
 }

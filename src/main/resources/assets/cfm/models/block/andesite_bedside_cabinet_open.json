@@ -3,6 +3,7 @@
     "textures": {
         "base": "minecraft:block/andesite",
         "top": "minecraft:block/polished_andesite",
-        "draw": "minecraft:block/andesite"
+        "draw": "minecraft:block/andesite",
+        "draw_front": "minecraft:block/polished_andesite"
     }
 }

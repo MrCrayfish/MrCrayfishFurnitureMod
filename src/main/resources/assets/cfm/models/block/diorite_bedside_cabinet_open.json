@@ -3,6 +3,7 @@
     "textures": {
         "base": "minecraft:block/diorite",
         "top": "minecraft:block/polished_diorite",
-        "draw": "minecraft:block/diorite"
+        "draw": "minecraft:block/diorite",
+        "draw_front": "minecraft:block/polished_diorite"
     }
 }

@@ -3,6 +3,7 @@
     "textures": {
         "top": "block/oak_log",
         "base": "block/oak_planks",
-        "draw": "block/stripped_oak_log"
+        "draw": "block/stripped_oak_log",
+        "draw_front": "block/oak_log"
     }
 }

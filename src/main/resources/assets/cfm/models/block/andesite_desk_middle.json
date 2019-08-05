@@ -2,6 +2,6 @@
     "parent": "cfm:block/desk_middle",
     "textures": {
         "base": "minecraft:block/andesite",
-        "top": "minecraft:block/polished_andesite"
+        "top": "block/polished_andesite"
     }
 }

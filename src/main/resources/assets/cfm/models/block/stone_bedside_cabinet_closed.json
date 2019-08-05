@@ -2,6 +2,7 @@
     "parent": "cfm:block/bedside_cabinet_closed",
     "textures": {
         "base": "minecraft:block/cobblestone",
-        "top": "minecraft:block/stone"
+        "top": "minecraft:block/stone",
+        "draw_front": "minecraft:block/stone"
     }
 }

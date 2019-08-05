@@ -3,6 +3,7 @@
     "textures": {
         "base": "minecraft:block/acacia_planks",
         "top": "minecraft:block/acacia_log",
-        "draw": "minecraft:block/stripped_acacia_log"
+        "draw": "minecraft:block/stripped_acacia_log",
+        "draw_front": "minecraft:block/acacia_log"
     }
 }

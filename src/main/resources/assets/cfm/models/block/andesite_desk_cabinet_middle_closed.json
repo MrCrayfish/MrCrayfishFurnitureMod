@@ -2,6 +2,7 @@
     "parent": "cfm:block/desk_cabinet_middle_closed",
     "textures": {
         "top": "block/polished_andesite",
-        "base": "block/andesite"
+        "base": "block/andesite",
+        "draw_front": "block/polished_andesite"
     }
 }

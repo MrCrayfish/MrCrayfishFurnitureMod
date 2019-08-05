@@ -21,7 +21,7 @@
         },
         "head": {
             "rotation": [ 0, 180, 0 ],
-            "translation": [ 0, -1.3, 0 ],
+            "translation": [ 0, -0.8, 0 ],
             "scale": [ 1, 1, 1 ]
         },
         "firstperson_righthand": {
@@ -40,33 +40,33 @@
             "from": [ 0, 0, 0 ], 
             "to": [ 2, 14, 15 ], 
             "faces": {
-                "north": { "texture": "#base", "uv": [ 0, 0, 2, 14 ], "cullface": "north" },
-                "east": { "texture": "#base", "uv": [ 1, 0, 16, 14 ] },
-                "south": { "texture": "#base", "uv": [ 0, 0, 2, 14 ] },
-                "west": { "texture": "#base", "uv": [ 0, 0, 15, 14 ], "cullface": "west" },
-                "down": { "texture": "#base", "uv": [ 0, 0, 2, 15 ], "cullface": "down" }
+                "north": { "texture": "#legs", "uv": [ 14, 0, 16, 14 ], "cullface": "north" },
+                "east": { "texture": "#legs", "uv": [ 1, 0, 16, 14 ] },
+                "south": { "texture": "#legs", "uv": [ 0, 0, 2, 14 ] },
+                "west": { "texture": "#legs", "uv": [ 0, 0, 15, 14 ], "cullface": "west" },
+                "down": { "texture": "#legs", "uv": [ 0, 0, 2, 15 ], "cullface": "down" }
             }
         },
         {
             "from": [ 14, 0, 0 ], 
             "to": [ 16, 14, 15 ], 
             "faces": {
-                "north": { "texture": "#base", "uv": [ 0, 0, 2, 14 ], "cullface": "north" },
-                "east": { "texture": "#base", "uv": [ 1, 0, 16, 14 ], "cullface": "east" },
-                "south": { "texture": "#base", "uv": [ 0, 0, 2, 14 ] },
-                "west": { "texture": "#base", "uv": [ 0, 0, 15, 14 ] },
-                "down": { "texture": "#base", "uv": [ 0, 0, 2, 15 ], "cullface": "down" }
+                "north": { "texture": "#legs", "uv": [ 0, 0, 2, 14 ], "cullface": "north" },
+                "east": { "texture": "#legs", "uv": [ 1, 0, 16, 14 ], "cullface": "east" },
+                "south": { "texture": "#legs", "uv": [ 14, 0, 16, 14 ] },
+                "west": { "texture": "#legs", "uv": [ 0, 0, 15, 14 ] },
+                "down": { "texture": "#legs", "uv": [ 0, 0, 2, 15 ], "cullface": "down" }
             }
         },
         {
             "from": [ 0, 14, 0 ], 
             "to": [ 16, 16, 16 ], 
             "faces": {
-                "north": { "texture": "#top", "uv": [ 0, 0, 16, 2 ], "cullface": "north" },
-                "east": { "texture": "#top", "uv": [ 0, 0, 16, 2 ], "cullface": "east" },
-                "south": { "texture": "#top", "uv": [ 0, 0, 16, 2 ], "cullface": "south" },
-                "west": { "texture": "#top", "uv": [ 0, 0, 16, 2 ], "cullface": "west" },
-                "up": { "texture": "#top", "uv": [ 0, 0, 16, 16 ], "cullface": "up" },
+                "north": { "texture": "#top", "uv": [ 0, 14, 16, 16 ], "cullface": "north" },
+                "east": { "texture": "#top", "uv": [ 0, 14, 16, 16 ], "cullface": "east" },
+                "south": { "texture": "#top", "uv": [ 0, 14, 16, 16 ], "cullface": "south" },
+                "west": { "texture": "#top", "uv": [ 0, 14, 16, 16 ], "cullface": "west" },
+                "up": { "texture": "#top", "uv": [ 0, 0, 16, 16 ], "rotation": 90, "cullface": "up" },
                 "down": { "texture": "#top", "uv": [ 0, 0, 16, 16 ] }
             }
         },
@@ -82,7 +82,7 @@
             "from": [ 2, 8, 13 ], 
             "to": [ 14, 14, 15 ], 
             "faces": {
-                "south": { "texture": "#top", "uv": [ 2, 0, 8, 12 ], "rotation": 90 }
+                "south": { "texture": "#draw_front", "uv": [ 2, 0, 8, 12 ], "rotation": 90 }
             }
         },
         {
@@ -111,8 +111,8 @@
             "from": [ 2, 2, 13 ], 
             "to": [ 14, 8, 15 ], 
             "faces": {
-                "south": { "texture": "#top", "uv": [ 10, 0, 16, 12 ], "rotation": 90 },
-                "down": { "texture": "#top", "uv": [ 0, 0, 2, 12 ], "rotation": 90 }
+                "south": { "texture": "#draw_front", "uv": [ 10, 0, 16, 12 ], "rotation": 90 },
+                "down": { "texture": "#draw_front", "uv": [ 0, 0, 2, 12 ], "rotation": 90 }
             }
         }
     ]

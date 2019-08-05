@@ -2,6 +2,7 @@
     "parent": "cfm:block/desk_right",
     "textures": {
         "base": "minecraft:block/jungle_planks",
-        "top": "minecraft:block/jungle_log"
+        "top": "minecraft:block/jungle_log",
+        "legs": "minecraft:block/jungle_planks"
     }
 }

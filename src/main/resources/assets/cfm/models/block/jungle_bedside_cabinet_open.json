@@ -3,6 +3,7 @@
     "textures": {
         "base": "minecraft:block/jungle_planks",
         "top": "minecraft:block/jungle_log",
-        "draw": "minecraft:block/stripped_jungle_log"
+        "draw": "minecraft:block/stripped_jungle_log",
+        "draw_front": "minecraft:block/jungle_log"
     }
 }

@@ -3,6 +3,7 @@
     "textures": {
         "base": "minecraft:block/oak_planks",
         "top": "minecraft:block/oak_log",
-        "draw": "minecraft:block/stripped_oak_log"
+        "draw": "minecraft:block/stripped_oak_log",
+        "draw_front": "minecraft:block/oak_log"
     }
 }
