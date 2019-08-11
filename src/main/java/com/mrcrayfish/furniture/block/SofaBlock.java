@@ -109,13 +109,13 @@ public class SofaBlock extends FurnitureHorizontalWaterloggedBlock
     {
         return SHAPES.get(state);
     }
-
-    //TODO fix initial state
-    /*@Override
+    
+    @Override
     public BlockState getStateForPlacement(BlockItemUseContext context)
     {
-        return super.getStateForPlacement(context);
-    }*/
+        BlockState state = super.getStateForPlacement(context);
+        return getSofaState(state, context.getWorld(), context.getPos(), state.get(DIRECTION));
+    }
 
     @Override
     public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult)
@@ -136,11 +136,15 @@ public class SofaBlock extends FurnitureHorizontalWaterloggedBlock
     @Override
     public BlockState updatePostPlacement(BlockState state, Direction direction, BlockState newState, IWorld world, BlockPos pos, BlockPos newPos)
     {
-        Direction sofaDirection = state.get(DIRECTION);
-        boolean left = isSofa(world, pos, sofaDirection.rotateYCCW(), sofaDirection) || isSofa(world, pos, sofaDirection.rotateYCCW(), sofaDirection.rotateYCCW());
-        boolean right = isSofa(world, pos, sofaDirection.rotateY(), sofaDirection) || isSofa(world, pos, sofaDirection.rotateY(), sofaDirection.rotateY());
-        boolean cornerLeft = isSofa(world, pos, sofaDirection.getOpposite(), sofaDirection.rotateYCCW());
-        boolean cornerRight = isSofa(world, pos, sofaDirection.getOpposite(), sofaDirection.rotateY());
+        return getSofaState(state, world, pos, state.get(DIRECTION));
+    }
+
+    private BlockState getSofaState(BlockState state, IWorld world, BlockPos pos, Direction dir)
+    {
+        boolean left = isSofa(world, pos, dir.rotateYCCW(), dir) || isSofa(world, pos, dir.rotateYCCW(), dir.rotateYCCW());
+        boolean right = isSofa(world, pos, dir.rotateY(), dir) || isSofa(world, pos, dir.rotateY(), dir.rotateY());
+        boolean cornerLeft = isSofa(world, pos, dir.getOpposite(), dir.rotateYCCW());
+        boolean cornerRight = isSofa(world, pos, dir.getOpposite(), dir.rotateY());
 
         if(cornerLeft)
         {
