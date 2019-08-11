@@ -19,7 +19,7 @@ archivesBaseName = "furniture"
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
-    mappings channel: 'snapshot', version: '20190724-1.14.3'
+    mappings channel: 'snapshot', version: '20190811-1.14.3'
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
     // accessTransformer = file('build/resources/main/META-INF/accesstransformer.cfg')
 
@@ -61,7 +61,7 @@ minecraft {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.14.4-28.0.14'
+    minecraft 'net.minecraftforge:forge:1.14.4-28.0.45'
 }
 
 jar {
