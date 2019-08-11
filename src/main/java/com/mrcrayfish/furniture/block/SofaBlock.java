@@ -109,12 +109,12 @@ public class SofaBlock extends FurnitureHorizontalWaterloggedBlock
     {
         return SHAPES.get(state);
     }
-    
+
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context)
     {
         BlockState state = super.getStateForPlacement(context);
-        return getSofaState(state, context.getWorld(), context.getPos(), state.get(DIRECTION));
+        return this.getSofaState(state, context.getWorld(), context.getPos(), state.get(DIRECTION));
     }
 
     @Override
@@ -136,7 +136,7 @@ public class SofaBlock extends FurnitureHorizontalWaterloggedBlock
     @Override
     public BlockState updatePostPlacement(BlockState state, Direction direction, BlockState newState, IWorld world, BlockPos pos, BlockPos newPos)
     {
-        return getSofaState(state, world, pos, state.get(DIRECTION));
+        return this.getSofaState(state, world, pos, state.get(DIRECTION));
     }
 
     private BlockState getSofaState(BlockState state, IWorld world, BlockPos pos, Direction dir)

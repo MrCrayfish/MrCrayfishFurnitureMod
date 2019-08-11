@@ -81,11 +81,23 @@ public class BlindsBlock extends FurnitureHorizontalWaterloggedBlock
     }
 
     @Override
+    public BlockState getStateForPlacement(BlockItemUseContext context)
+    {
+        BlockState state = super.getStateForPlacement(context);
+        return this.getBlindState(state, context.getWorld(), context.getPos());
+    }
+
+    @Override
     public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
     {
-        BlockState aboveState = worldIn.getBlockState(currentPos.up());
-        boolean isExtension = aboveState.getBlock() == this && aboveState.get(DIRECTION) == stateIn.get(DIRECTION);
-        return stateIn.with(EXTENSION, isExtension);
+        return this.getBlindState(stateIn, worldIn, currentPos);
+    }
+
+    private BlockState getBlindState(BlockState state, IWorld world, BlockPos pos)
+    {
+        BlockState aboveState = world.getBlockState(pos.up());
+        boolean isExtension = aboveState.getBlock() == this && aboveState.get(DIRECTION) == state.get(DIRECTION);
+        return state.with(EXTENSION, isExtension);
     }
 
     @Override
