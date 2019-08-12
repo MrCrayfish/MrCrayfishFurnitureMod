@@ -5,7 +5,6 @@ import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.block.*;
 import com.mrcrayfish.furniture.util.BlockNames;
 import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -173,6 +172,12 @@ public class ModBlocks
     public static final Block BLINDS_STRIPPED_JUNGLE = register(BlockNames.BLINDS_STRIPPED_JUNGLE, new BlindsBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block BLINDS_STRIPPED_ACACIA = register(BlockNames.BLINDS_STRIPPED_ACACIA, new BlindsBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block BLINDS_STRIPPED_DARK_OAK = register(BlockNames.BLINDS_STRIPPED_DARK_OAK, new BlindsBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block UPGRADED_GATE_OAK = register(BlockNames.UPGRADED_GATE_OAK, new UpgradedGateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block UPGRADED_GATE_SPRUCE = register(BlockNames.UPGRADED_GATE_SPRUCE, new UpgradedGateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block UPGRADED_GATE_BIRCH = register(BlockNames.UPGRADED_GATE_BIRCH, new UpgradedGateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block UPGRADED_GATE_JUNGLE = register(BlockNames.UPGRADED_GATE_JUNGLE, new UpgradedGateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block UPGRADED_GATE_ACACIA = register(BlockNames.UPGRADED_GATE_ACACIA, new UpgradedGateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block UPGRADED_GATE_DARK_OAK = register(BlockNames.UPGRADED_GATE_DARK_OAK, new UpgradedGateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
 
     private static Block register(String name, Block block)
     {

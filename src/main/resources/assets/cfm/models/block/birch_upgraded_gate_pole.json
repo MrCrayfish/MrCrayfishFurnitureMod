@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/upgraded_gate_pole",
+    "textures": {
+        "pole": "minecraft:block/birch_log"
+    }
+}

@@ -136,7 +136,6 @@ public class BlockNames
     public static final String SOFA_RED = Reference.MOD_ID + ":red_sofa";
     public static final String SOFA_BLACK = Reference.MOD_ID + ":black_sofa";
     public static final String SOFA_RAINBOW = Reference.MOD_ID + ":rainbow_sofa";
-
     public static final String BLINDS_OAK = Reference.MOD_ID + ":oak_blinds";
     public static final String BLINDS_SPRUCE = Reference.MOD_ID + ":spruce_blinds";
     public static final String BLINDS_BIRCH = Reference.MOD_ID + ":birch_blinds";
@@ -149,6 +148,35 @@ public class BlockNames
     public static final String BLINDS_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_blinds";
     public static final String BLINDS_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_blinds";
     public static final String BLINDS_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_blinds";
+
+    public static final String OAK_UPGRADED_FENCE = Reference.MOD_ID + ":oak_upgraded_fence";
+    public static final String SPRUCE_UPGRADED_FENCE = Reference.MOD_ID + ":spruce_upgraded_fence";
+    public static final String BIRCH_UPGRADED_FENCE = Reference.MOD_ID + ":birch_upgraded_fence";
+    public static final String JUNGLE_UPGRADED_FENCE = Reference.MOD_ID + ":jungle_upgraded_fence";
+    public static final String ACACIA_UPGRADED_FENCE = Reference.MOD_ID + ":acacia_upgraded_fence";
+    public static final String DARK_OAK_UPGRADED_FENCE = Reference.MOD_ID + ":dark_oak_upgraded_fence";
+    public static final String NETHER_BRICK_UPGRADED_FENCE = Reference.MOD_ID + ":nether_brick_upgraded_fence";
+    public static final String UPGRADED_GATE_OAK = Reference.MOD_ID + ":oak_upgraded_gate";
+    public static final String UPGRADED_GATE_SPRUCE = Reference.MOD_ID + ":spruce_upgraded_gate";
+    public static final String UPGRADED_GATE_BIRCH = Reference.MOD_ID + ":birch_upgraded_gate";
+    public static final String UPGRADED_GATE_JUNGLE = Reference.MOD_ID + ":jungle_upgraded_gate";
+    public static final String UPGRADED_GATE_ACACIA = Reference.MOD_ID + ":acacia_upgraded_gate";
+    public static final String UPGRADED_GATE_DARK_OAK = Reference.MOD_ID + ":dark_oak_upgraded_gate";
+    
+    public static final String WHITE_GATE = Reference.MOD_ID + ":white_gate";
+    public static final String OAK_PARK_BENCH = Reference.MOD_ID + ":oak_park_bench";
+    public static final String SPRUCE_PARK_BENCH = Reference.MOD_ID + ":spruce_park_bench";
+    public static final String BIRCH_PARK_BENCH = Reference.MOD_ID + ":birch_park_bench";
+    public static final String JUNGLE_PARK_BENCH = Reference.MOD_ID + ":jungle_park_bench";
+    public static final String ACACIA_PARK_BENCH = Reference.MOD_ID + ":acacia_park_bench";
+    public static final String DARK_OAK_PARK_BENCH = Reference.MOD_ID + ":dark_oak_park_bench";
+
+    public static final String MAIL_BOX_OAK = Reference.MOD_ID + ":mail_box_oak";
+    public static final String MAIL_BOX_SPRUCE = Reference.MOD_ID + ":mail_box_spruce";
+    public static final String MAIL_BOX_BIRCH = Reference.MOD_ID + ":mail_box_birch";
+    public static final String MAIL_BOX_JUNGLE = Reference.MOD_ID + ":mail_box_jungle";
+    public static final String MAIL_BOX_ACACIA = Reference.MOD_ID + ":mail_box_acacia";
+    public static final String MAIL_BOX_DARK_OAK = Reference.MOD_ID + ":mail_box_dark_oak";
 
 
     /* Electronic Update */
@@ -254,36 +282,11 @@ public class BlockNames
     public static final String ROCK_PATH = Reference.MOD_ID + ":rock_path";
     public static final String PICKET_FENCE = Reference.MOD_ID + ":picket_fence";
     public static final String OUTDOOR_TAP = Reference.MOD_ID + ":outdoor_tap";
-    public static final String MAIL_BOX_OAK = Reference.MOD_ID + ":mail_box_oak";
-    public static final String MAIL_BOX_SPRUCE = Reference.MOD_ID + ":mail_box_spruce";
-    public static final String MAIL_BOX_BIRCH = Reference.MOD_ID + ":mail_box_birch";
-    public static final String MAIL_BOX_JUNGLE = Reference.MOD_ID + ":mail_box_jungle";
-    public static final String MAIL_BOX_ACACIA = Reference.MOD_ID + ":mail_box_acacia";
-    public static final String MAIL_BOX_DARK_OAK = Reference.MOD_ID + ":mail_box_dark_oak";
+
     public static final String HEDGE_OAK = Reference.MOD_ID + ":hedge_oak";
     public static final String HEDGE_SPRUCE = Reference.MOD_ID + ":hedge_spruce";
     public static final String HEDGE_BIRCH = Reference.MOD_ID + ":hedge_birch";
     public static final String HEDGE_JUNGLE = Reference.MOD_ID + ":hedge_jungle";
     public static final String HEDGE_ACACIA = Reference.MOD_ID + ":hedge_acacia";
     public static final String HEDGE_DARK_OAK = Reference.MOD_ID + ":hedge_dark_oak";
-    public static final String OAK_FENCE_UPGRADED = Reference.MOD_ID + ":oak_fence_upgraded";
-    public static final String SPRUCE_FENCE_UPGRADED = Reference.MOD_ID + ":spruce_fence_upgraded";
-    public static final String BIRCH_FENCE_UPGRADED = Reference.MOD_ID + ":birch_fence_upgraded";
-    public static final String JUNGLE_FENCE_UPGRADED = Reference.MOD_ID + ":jungle_fence_upgraded";
-    public static final String ACACIA_FENCE_UPGRADED = Reference.MOD_ID + ":acacia_fence_upgraded";
-    public static final String DARK_OAK_FENCE_UPGRADED = Reference.MOD_ID + ":dark_oak_fence_upgraded";
-    public static final String NETHER_BRICK_FENCE_UPGRADED = Reference.MOD_ID + ":nether_brick_fence_upgraded";
-    public static final String OAK_GATE_UPGRADED = Reference.MOD_ID + ":oak_gate_upgraded";
-    public static final String SPRUCE_GATE_UPGRADED = Reference.MOD_ID + ":spruce_gate_upgraded";
-    public static final String BIRCH_GATE_UPGRADED = Reference.MOD_ID + ":birch_gate_upgraded";
-    public static final String JUNGLE_GATE_UPGRADED = Reference.MOD_ID + ":jungle_gate_upgraded";
-    public static final String ACACIA_GATE_UPGRADED = Reference.MOD_ID + ":acacia_gate_upgraded";
-    public static final String DARK_OAK_GATE_UPGRADED = Reference.MOD_ID + ":dark_oak_gate_upgraded";
-    public static final String WHITE_GATE = Reference.MOD_ID + ":white_gate";
-    public static final String OAK_PARK_BENCH = Reference.MOD_ID + ":oak_park_bench";
-    public static final String SPRUCE_PARK_BENCH = Reference.MOD_ID + ":spruce_park_bench";
-    public static final String BIRCH_PARK_BENCH = Reference.MOD_ID + ":birch_park_bench";
-    public static final String JUNGLE_PARK_BENCH = Reference.MOD_ID + ":jungle_park_bench";
-    public static final String ACACIA_PARK_BENCH = Reference.MOD_ID + ":acacia_park_bench";
-    public static final String DARK_OAK_PARK_BENCH = Reference.MOD_ID + ":dark_oak_park_bench";
 }
