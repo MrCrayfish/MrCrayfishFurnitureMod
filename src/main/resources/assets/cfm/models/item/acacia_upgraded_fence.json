@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:item/upgraded_fence",
+    "textures": {
+        "plank": "minecraft:block/acacia_planks",
+        "middle": "minecraft:block/acacia_log"
+    }
+}
