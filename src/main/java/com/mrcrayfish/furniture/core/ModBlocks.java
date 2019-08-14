@@ -178,6 +178,12 @@ public class ModBlocks
     public static final Block UPGRADED_GATE_JUNGLE = register(BlockNames.UPGRADED_GATE_JUNGLE, new UpgradedGateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block UPGRADED_GATE_ACACIA = register(BlockNames.UPGRADED_GATE_ACACIA, new UpgradedGateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block UPGRADED_GATE_DARK_OAK = register(BlockNames.UPGRADED_GATE_DARK_OAK, new UpgradedGateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block UPGRADED_GATE_STRIPPED_OAK = register(BlockNames.UPGRADED_GATE_STRIPPED_OAK, new UpgradedGateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block UPGRADED_GATE_STRIPPED_SPRUCE = register(BlockNames.UPGRADED_GATE_STRIPPED_SPRUCE, new UpgradedGateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block UPGRADED_GATE_STRIPPED_BIRCH = register(BlockNames.UPGRADED_GATE_STRIPPED_BIRCH, new UpgradedGateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block UPGRADED_GATE_STRIPPED_JUNGLE = register(BlockNames.UPGRADED_GATE_STRIPPED_JUNGLE, new UpgradedGateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block UPGRADED_GATE_STRIPPED_ACACIA = register(BlockNames.UPGRADED_GATE_STRIPPED_ACACIA, new UpgradedGateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block UPGRADED_GATE_STRIPPED_DARK_OAK = register(BlockNames.UPGRADED_GATE_STRIPPED_DARK_OAK, new UpgradedGateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
 
     private static Block register(String name, Block block)
     {

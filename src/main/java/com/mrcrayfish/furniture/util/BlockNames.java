@@ -162,6 +162,12 @@ public class BlockNames
     public static final String UPGRADED_GATE_JUNGLE = Reference.MOD_ID + ":jungle_upgraded_gate";
     public static final String UPGRADED_GATE_ACACIA = Reference.MOD_ID + ":acacia_upgraded_gate";
     public static final String UPGRADED_GATE_DARK_OAK = Reference.MOD_ID + ":dark_oak_upgraded_gate";
+    public static final String UPGRADED_GATE_STRIPPED_OAK = Reference.MOD_ID + ":stripped_oak_upgraded_gate";
+    public static final String UPGRADED_GATE_STRIPPED_SPRUCE = Reference.MOD_ID + ":stripped_spruce_upgraded_gate";
+    public static final String UPGRADED_GATE_STRIPPED_BIRCH = Reference.MOD_ID + ":stripped_birch_upgraded_gate";
+    public static final String UPGRADED_GATE_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_upgraded_gate";
+    public static final String UPGRADED_GATE_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_upgraded_gate";
+    public static final String UPGRADED_GATE_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_upgraded_gate";
     
     public static final String WHITE_GATE = Reference.MOD_ID + ":white_gate";
     public static final String OAK_PARK_BENCH = Reference.MOD_ID + ":oak_park_bench";

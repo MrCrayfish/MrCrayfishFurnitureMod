@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/stripped_upgraded_gate_pole",
+    "textures": {
+        "pole": "minecraft:block/stripped_dark_oak_log"
+    }
+}

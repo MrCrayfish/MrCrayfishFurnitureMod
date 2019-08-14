@@ -112,15 +112,26 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
     @Override
     public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult rayTraceResult)
     {
-        Direction direction = state.get(DIRECTION);
         Direction hitFace = rayTraceResult.getFace();
-        DoorHingeSide hingeSide = state.get(HINGE);
+        Direction direction = state.get(DIRECTION);
         boolean open = state.get(OPEN);
+
+        if(hitFace.getAxis() != direction.getAxis())
+        {
+            if(!open || hitFace.getAxis().isVertical())
+            {
+                return false;
+            }
+        }
+
+        DoorHingeSide hingeSide = state.get(HINGE);
         this.openGate(state, world, pos, direction, hitFace, !open);
         this.openDoubleGate(world, pos, direction, hitFace, hingeSide, !open);
         this.openAdjacentGate(world, pos, direction, Direction.UP, hitFace, hingeSide, !open, 5);
         this.openAdjacentGate(world, pos, direction, Direction.DOWN, hitFace, hingeSide, !open, 5);
+
         world.playEvent(playerEntity, !open ? 1008 : 1014, pos, 0);
+
         return true;
     }
 
