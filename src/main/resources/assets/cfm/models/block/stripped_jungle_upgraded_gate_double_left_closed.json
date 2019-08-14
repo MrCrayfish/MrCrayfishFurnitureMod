@@ -1,7 +1,7 @@
 {
     "parent": "cfm:block/stripped_upgraded_gate_double_left_closed",
     "textures": {
-        "hinge": "minecraft:block/light_gray_concrete",
+        "hinge": "minecraft:block/jungle_log",
         "pole": "minecraft:block/jungle_planks",
         "plank": "minecraft:block/stripped_jungle_log"
     }

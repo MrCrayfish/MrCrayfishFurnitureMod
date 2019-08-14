@@ -1,7 +1,7 @@
 {
     "parent": "cfm:block/stripped_upgraded_gate_double_right_open",
     "textures": {
-        "hinge": "minecraft:block/light_gray_concrete",
+        "hinge": "minecraft:block/dark_oak_log",
         "pole": "minecraft:block/dark_oak_planks",
         "plank": "minecraft:block/stripped_dark_oak_log"
     }
