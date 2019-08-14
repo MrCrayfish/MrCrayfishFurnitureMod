@@ -306,12 +306,6 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
         builder.add(DOUBLE);
     }
 
-    @Override
-    public boolean isSideInvisible(BlockState p_200122_1_, BlockState p_200122_2_, Direction p_200122_3_)
-    {
-        return super.isSideInvisible(p_200122_1_, p_200122_2_, p_200122_3_);
-    }
-
     @Nullable
     @Override
     public PathNodeType getAiPathNodeType(BlockState state, IBlockReader world, BlockPos pos, @Nullable MobEntity entity)
