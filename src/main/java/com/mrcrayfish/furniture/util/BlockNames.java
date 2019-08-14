@@ -155,6 +155,12 @@ public class BlockNames
     public static final String UPGRADED_FENCE_ACACIA = Reference.MOD_ID + ":acacia_upgraded_fence";
     public static final String UPGRADED_FENCE_DARK_OAK = Reference.MOD_ID + ":dark_oak_upgraded_fence";
     public static final String UPGRADED_FENCE_NETHER_BRICK = Reference.MOD_ID + ":nether_brick_upgraded_fence";
+    public static final String UPGRADED_FENCE_STRIPPED_OAK = Reference.MOD_ID + ":stripped_oak_upgraded_fence";
+    public static final String UPGRADED_FENCE_STRIPPED_SPRUCE = Reference.MOD_ID + ":stripped_spruce_upgraded_fence";
+    public static final String UPGRADED_FENCE_STRIPPED_BIRCH = Reference.MOD_ID + ":stripped_birch_upgraded_fence";
+    public static final String UPGRADED_FENCE_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_upgraded_fence";
+    public static final String UPGRADED_FENCE_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_upgraded_fence";
+    public static final String UPGRADED_FENCE_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_upgraded_fence";
     public static final String UPGRADED_GATE_OAK = Reference.MOD_ID + ":oak_upgraded_gate";
     public static final String UPGRADED_GATE_SPRUCE = Reference.MOD_ID + ":spruce_upgraded_gate";
     public static final String UPGRADED_GATE_BIRCH = Reference.MOD_ID + ":birch_upgraded_gate";

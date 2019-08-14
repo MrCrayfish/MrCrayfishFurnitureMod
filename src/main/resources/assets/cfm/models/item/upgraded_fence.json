@@ -1,5 +1,8 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "post": "#middle"
+    },
     "display": {
         "gui": {
             "rotation": [ 30, 45, 0 ],
@@ -59,24 +62,24 @@
             "from": [ 0, 0, 6 ], 
             "to": [ 4, 16, 10 ], 
             "faces": {
-                "north": { "texture": "#middle", "uv": [ 0, 0, 16, 4 ], "rotation": 90 },
-                "east": { "texture": "#middle", "uv": [ 0, 4, 16, 8 ], "rotation": 90 },
-                "south": { "texture": "#middle", "uv": [ 0, 8, 16, 12 ], "rotation": 90 },
-                "west": { "texture": "#middle", "uv": [ 0, 12, 16, 16 ], "rotation": 90 },
-                "up": { "texture": "#middle", "uv": [ 0, 0, 4, 4 ] },
-                "down": { "texture": "#middle", "uv": [ 0, 0, 4, 4 ] }
+                "north": { "texture": "#post", "uv": [ 0, 0, 16, 4 ], "rotation": 90 },
+                "east": { "texture": "#post", "uv": [ 0, 4, 16, 8 ], "rotation": 90 },
+                "south": { "texture": "#post", "uv": [ 0, 8, 16, 12 ], "rotation": 90 },
+                "west": { "texture": "#post", "uv": [ 0, 12, 16, 16 ], "rotation": 90 },
+                "up": { "texture": "#post", "uv": [ 0, 0, 4, 4 ] },
+                "down": { "texture": "#post", "uv": [ 0, 0, 4, 4 ] }
             }
         },
         {
             "from": [ 12, 0, 6 ], 
             "to": [ 16, 16, 10 ], 
             "faces": {
-                "north": { "texture": "#middle", "uv": [ 0, 0, 16, 4 ], "rotation": 90 },
-                "east": { "texture": "#middle", "uv": [ 0, 4, 16, 8 ], "rotation": 90 },
-                "south": { "texture": "#middle", "uv": [ 0, 8, 16, 12 ], "rotation": 90 },
-                "west": { "texture": "#middle", "uv": [ 0, 12, 16, 16 ], "rotation": 90 },
-                "up": { "texture": "#middle", "uv": [ 0, 0, 4, 4 ] },
-                "down": { "texture": "#middle", "uv": [ 0, 0, 4, 4 ] }
+                "north": { "texture": "#post", "uv": [ 0, 0, 16, 4 ], "rotation": 90 },
+                "east": { "texture": "#post", "uv": [ 0, 4, 16, 8 ], "rotation": 90 },
+                "south": { "texture": "#post", "uv": [ 0, 8, 16, 12 ], "rotation": 90 },
+                "west": { "texture": "#post", "uv": [ 0, 12, 16, 16 ], "rotation": 90 },
+                "up": { "texture": "#post", "uv": [ 0, 0, 4, 4 ] },
+                "down": { "texture": "#post", "uv": [ 0, 0, 4, 4 ] }
             }
         },
         {

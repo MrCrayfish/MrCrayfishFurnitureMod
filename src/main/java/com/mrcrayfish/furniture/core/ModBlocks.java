@@ -172,14 +172,18 @@ public class ModBlocks
     public static final Block BLINDS_STRIPPED_JUNGLE = register(BlockNames.BLINDS_STRIPPED_JUNGLE, new BlindsBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block BLINDS_STRIPPED_ACACIA = register(BlockNames.BLINDS_STRIPPED_ACACIA, new BlindsBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block BLINDS_STRIPPED_DARK_OAK = register(BlockNames.BLINDS_STRIPPED_DARK_OAK, new BlindsBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
-
     public static final Block UPGRADED_FENCE_OAK = register(BlockNames.UPGRADED_FENCE_OAK, new UpgradedFenceBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block UPGRADED_FENCE_SPRUCE = register(BlockNames.UPGRADED_FENCE_SPRUCE, new UpgradedFenceBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block UPGRADED_FENCE_BIRCH = register(BlockNames.UPGRADED_FENCE_BIRCH, new UpgradedFenceBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block UPGRADED_FENCE_JUNGLE = register(BlockNames.UPGRADED_FENCE_JUNGLE, new UpgradedFenceBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block UPGRADED_FENCE_ACACIA = register(BlockNames.UPGRADED_FENCE_ACACIA, new UpgradedFenceBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block UPGRADED_FENCE_DARK_OAK = register(BlockNames.UPGRADED_FENCE_DARK_OAK, new UpgradedFenceBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
-
+    public static final Block UPGRADED_FENCE_STRIPPED_OAK = register(BlockNames.UPGRADED_FENCE_STRIPPED_OAK, new UpgradedFenceBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block UPGRADED_FENCE_STRIPPED_SPRUCE = register(BlockNames.UPGRADED_FENCE_STRIPPED_SPRUCE, new UpgradedFenceBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block UPGRADED_FENCE_STRIPPED_BIRCH = register(BlockNames.UPGRADED_FENCE_STRIPPED_BIRCH, new UpgradedFenceBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block UPGRADED_FENCE_STRIPPED_JUNGLE = register(BlockNames.UPGRADED_FENCE_STRIPPED_JUNGLE, new UpgradedFenceBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block UPGRADED_FENCE_STRIPPED_ACACIA = register(BlockNames.UPGRADED_FENCE_STRIPPED_ACACIA, new UpgradedFenceBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block UPGRADED_FENCE_STRIPPED_DARK_OAK = register(BlockNames.UPGRADED_FENCE_STRIPPED_DARK_OAK, new UpgradedFenceBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block UPGRADED_GATE_OAK = register(BlockNames.UPGRADED_GATE_OAK, new UpgradedGateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block UPGRADED_GATE_SPRUCE = register(BlockNames.UPGRADED_GATE_SPRUCE, new UpgradedGateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block UPGRADED_GATE_BIRCH = register(BlockNames.UPGRADED_GATE_BIRCH, new UpgradedGateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));

@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:item/upgraded_fence",
+    "textures": {
+        "plank": "minecraft:block/stripped_birch_log",
+        "middle": "minecraft:block/birch_log",
+        "post": "minecraft:block/stripped_birch_log"
+    }
+}

@@ -1,0 +1,52 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "middle": "minecraft:block/oak_log",
+        "plank": "minecraft:block/stripped_oak_log"
+    },
+    "elements": [
+        {
+            "from": [ 0.75, 0, 6.5 ], 
+            "to": [ 4.75, 16, 9.5 ], 
+            "faces": {
+                "north": { "texture": "#plank", "uv": [ 0, 6, 16, 10 ], "rotation": 90 },
+                "east": { "texture": "#plank", "uv": [ 0, 11, 16, 14 ], "rotation": 90 },
+                "south": { "texture": "#plank", "uv": [ 0, 10, 16, 14 ], "rotation": 90 },
+                "west": { "texture": "#plank", "uv": [ 0, 11, 16, 14 ], "rotation": 90 },
+                "up": { "texture": "#plank", "uv": [ 6, 0, 9, 5 ], "rotation": 90, "cullface": "up" },
+                "down": { "texture": "#plank", "uv": [ 6, 0, 9, 5 ], "rotation": 90, "cullface": "down" }
+            }
+        },
+        {
+            "from": [ 0, 2.5, 7 ], 
+            "to": [ 6, 5.5, 9 ], 
+            "faces": {
+                "north": { "texture": "#middle", "uv": [ 0, 0, 3, 5 ], "rotation": 90 },
+                "south": { "texture": "#middle", "uv": [ 0, 0, 3, 5 ], "rotation": 90 },
+                "up": { "texture": "#middle", "uv": [ 0, 0, 5, 2 ] },
+                "down": { "texture": "#middle", "uv": [ 0, 0, 5, 2 ] }
+            }
+        },
+        {
+            "from": [ 6.01, 0, 6.5 ], 
+            "to": [ 8, 16, 9.5 ], 
+            "faces": {
+                "north": { "texture": "#plank", "uv": [ 0, 11, 16, 13 ], "rotation": 270 },
+                "south": { "texture": "#plank", "uv": [ 0, 9, 16, 11 ], "rotation": 270 },
+                "west": { "texture": "#plank", "uv": [ 0, 11, 16, 14 ], "rotation": 270 },
+                "up": { "texture": "#plank", "uv": [ 6, 0, 9, 2 ], "rotation": 270, "cullface": "up" },
+                "down": { "texture": "#plank", "uv": [ 6, 0, 9, 2 ], "rotation": 270, "cullface": "down" }
+            }
+        },
+        {
+            "from": [ 0, 10.5, 7 ], 
+            "to": [ 6.01, 13.5, 9 ], 
+            "faces": {
+                "north": { "texture": "#middle", "uv": [ 0, 0, 3, 5 ], "rotation": 90 },
+                "south": { "texture": "#middle", "uv": [ 0, 0, 3, 5 ], "rotation": 90 },
+                "up": { "texture": "#middle", "uv": [ 0, 0, 5, 1 ] },
+                "down": { "texture": "#middle", "uv": [ 0, 0, 5, 1 ] }
+            }
+        }
+    ]
+}
