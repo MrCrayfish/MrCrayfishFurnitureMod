@@ -1,0 +1,19 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "upgraded_gate",
+    "pattern": [
+        "LGL"
+    ],
+    "key": {
+        "L": {
+            "item": "minecraft:spruce_log"
+        },
+        "G": {
+            "item": "minecraft:spruce_fence_gate"
+        }
+    },
+    "result": {
+        "item": "cfm:spruce_upgraded_gate",
+        "count": 2
+    }
+}
