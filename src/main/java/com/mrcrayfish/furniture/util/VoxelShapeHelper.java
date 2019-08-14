@@ -1,11 +1,13 @@
 package com.mrcrayfish.furniture.util;
 
+import net.minecraft.block.Block;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.math.shapes.VoxelShapes;
 
 import java.util.Collection;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class VoxelShapeHelper
 {
@@ -17,6 +19,33 @@ public class VoxelShapeHelper
             result = VoxelShapes.combine(result, shape, IBooleanFunction.OR);
         }
         return result.simplify();
+    }
+
+    public static VoxelShape setMaxHeight(VoxelShape source, double height)
+    {
+        AtomicReference<VoxelShape> result = new AtomicReference<>(VoxelShapes.empty());
+        source.forEachBox((minX, minY, minZ, maxX, maxY, maxZ) ->
+        {
+            VoxelShape shape = VoxelShapes.create(minX, minY, minZ, maxX, height, maxZ);
+            result.set(VoxelShapes.combine(result.get(), shape, IBooleanFunction.OR));
+        });
+        return result.get().simplify();
+    }
+
+    public static VoxelShape limitHorizontal(VoxelShape source)
+    {
+        AtomicReference<VoxelShape> result = new AtomicReference<>(VoxelShapes.empty());
+        source.forEachBox((minX, minY, minZ, maxX, maxY, maxZ) ->
+        {
+            VoxelShape shape = VoxelShapes.create(limit(minX), minY, limit(minZ), limit(maxX), maxY, limit(maxZ));
+            result.set(VoxelShapes.combine(result.get(), shape, IBooleanFunction.OR));
+        });
+        return result.get().simplify();
+    }
+
+    public static double limit(double value)
+    {
+        return Math.max(0.0, Math.min(1.0, value));
     }
 
     public static VoxelShape[] getRotatedShapes(VoxelShape source)

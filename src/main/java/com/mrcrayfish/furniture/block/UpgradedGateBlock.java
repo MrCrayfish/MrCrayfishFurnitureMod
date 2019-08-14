@@ -38,21 +38,32 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
     public static final BooleanProperty DOUBLE = BooleanProperty.create("double");
 
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
+    public final ImmutableMap<BlockState, VoxelShape> COLLISION_SHAPES;
 
     public UpgradedGateBlock(Properties properties)
     {
         super(properties);
         this.setDefaultState(this.getStateContainer().getBaseState().with(HINGE, DoorHingeSide.LEFT).with(OPEN, false).with(DOUBLE, false));
-        SHAPES = this.generateShapes(this.getStateContainer().getValidStates());
+        SHAPES = this.generateShapes(this.getStateContainer().getValidStates(), false);
+        COLLISION_SHAPES = this.generateShapes(this.getStateContainer().getValidStates(), true);
     }
 
-    private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
+    private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states, boolean collision)
     {
-        final VoxelShape[] GATE_CLOSED = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 1, 7, 16, 17, 10), Direction.SOUTH));
-        final VoxelShape[] GATE_LEFT_OPEN = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 1, -4, 3, 17, 9), Direction.SOUTH));
-        final VoxelShape[] GATE_RIGHT_OPEN = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(13, 1, -4, 16, 17, 9), Direction.SOUTH));
-        final VoxelShape[] POST_LEFT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(-2, 0, 6, 1, 17, 10), Direction.SOUTH));
-        final VoxelShape[] POST_RIGHT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(15, 0, 6, 18, 17, 10), Direction.SOUTH));
+        final VoxelShape[] RIGHT_GATE_CLOSED = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1.5, 1, 7, 14.5, 17, 9), Direction.SOUTH));
+        final VoxelShape[] RIGHT_DOUBLE_GATE_CLOSED = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 1, 7, 14, 17, 9), Direction.SOUTH));
+        final VoxelShape[] RIGHT_GATE_OPEN = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(13, 1, -5, 15, 17, 8), Direction.SOUTH));
+        final VoxelShape[] RIGHT_DOUBLE_GATE_OPEN = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(13, 1, -6, 15, 17, 8), Direction.SOUTH));
+        final VoxelShape[] RIGHT_HINGE_BOTTOM = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(14, 3, 7, 15, 6, 9), Direction.SOUTH));
+        final VoxelShape[] RIGHT_HINGE_TOP = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(14, 12, 7, 15, 15, 9), Direction.SOUTH));
+        final VoxelShape[] RIGHT_POST = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(15, 0, 6, 18, 17, 10), Direction.SOUTH));
+        final VoxelShape[] LEFT_GATE_CLOSED = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1.5, 1, 7, 14.5, 17, 9), Direction.SOUTH));
+        final VoxelShape[] LEFT_DOUBLE_GATE_CLOSED = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(2, 1, 7, 16, 17, 9), Direction.SOUTH));
+        final VoxelShape[] LEFT_GATE_OPEN = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1, 1, -5, 3, 17, 8), Direction.SOUTH));
+        final VoxelShape[] LEFT_DOUBLE_GATE_OPEN = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1, 1, -6, 3, 17, 8), Direction.SOUTH));
+        final VoxelShape[] LEFT_HINGE_BOTTOM = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1, 3, 7, 2, 6, 9), Direction.SOUTH));
+        final VoxelShape[] LEFT_HINGE_TOP = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1, 12, 7, 2, 15, 9), Direction.SOUTH));
+        final VoxelShape[] LEFT_POST = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(-2, 0, 6, 1, 17, 10), Direction.SOUTH));
 
         ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
         for(BlockState state : states)
@@ -63,32 +74,88 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
             boolean double_ = state.get(DOUBLE);
 
             List<VoxelShape> shapes = new ArrayList<>();
-            if(!open)
-            {
-                shapes.add(GATE_CLOSED[direction.getHorizontalIndex()]);
-            }
             switch(hingeSide)
             {
                 case LEFT:
-                    shapes.add(POST_LEFT[direction.getHorizontalIndex()]);
+                    VoxelShape post = LEFT_POST[direction.getHorizontalIndex()];
+                    if(collision)
+                    {
+                        post = VoxelShapeHelper.setMaxHeight(post, 1.5);
+                        post = VoxelShapeHelper.limitHorizontal(post);
+                    }
+                    shapes.add(post);
+                    shapes.add(LEFT_HINGE_BOTTOM[direction.getHorizontalIndex()]);
+                    shapes.add(LEFT_HINGE_TOP[direction.getHorizontalIndex()]);
                     if(open)
                     {
-                        shapes.add(GATE_LEFT_OPEN[direction.getHorizontalIndex()]);
+                        VoxelShape doubleGate = double_ ? LEFT_DOUBLE_GATE_OPEN[direction.getHorizontalIndex()] : LEFT_GATE_OPEN[direction.getHorizontalIndex()];
+                        if(collision)
+                        {
+                            doubleGate = VoxelShapeHelper.setMaxHeight(doubleGate, 1.5);
+                            doubleGate = VoxelShapeHelper.limitHorizontal(doubleGate);
+                        }
+                        shapes.add(doubleGate);
+                    }
+                    else
+                    {
+                        VoxelShape doubleGate = double_ ? LEFT_DOUBLE_GATE_CLOSED[direction.getHorizontalIndex()] : LEFT_GATE_CLOSED[direction.getHorizontalIndex()];
+                        if(collision)
+                        {
+                            doubleGate = VoxelShapeHelper.setMaxHeight(doubleGate, 1.5);
+                            doubleGate = VoxelShapeHelper.limitHorizontal(doubleGate);
+                        }
+                        shapes.add(doubleGate);
                     }
                     if(!double_)
                     {
-                        shapes.add(POST_RIGHT[direction.getHorizontalIndex()]);
+                        post = RIGHT_POST[direction.getHorizontalIndex()];
+                        if(collision)
+                        {
+                            post = VoxelShapeHelper.setMaxHeight(post, 1.5);
+                            post = VoxelShapeHelper.limitHorizontal(post);
+                        }
+                        shapes.add(post);
                     }
                     break;
                 case RIGHT:
-                    shapes.add(POST_RIGHT[direction.getHorizontalIndex()]);
+                    post = RIGHT_POST[direction.getHorizontalIndex()];
+                    if(collision)
+                    {
+                        post = VoxelShapeHelper.setMaxHeight(post, 1.5);
+                        post = VoxelShapeHelper.limitHorizontal(post);
+                    }
+                    shapes.add(post);
+                    shapes.add(RIGHT_HINGE_BOTTOM[direction.getHorizontalIndex()]);
+                    shapes.add(RIGHT_HINGE_TOP[direction.getHorizontalIndex()]);
                     if(open)
                     {
-                        shapes.add(GATE_RIGHT_OPEN[direction.getHorizontalIndex()]);
+                        VoxelShape doubleGate = double_ ? RIGHT_DOUBLE_GATE_OPEN[direction.getHorizontalIndex()] : RIGHT_GATE_OPEN[direction.getHorizontalIndex()];
+                        if(collision)
+                        {
+                            doubleGate = VoxelShapeHelper.setMaxHeight(doubleGate, 1.5);
+                            doubleGate = VoxelShapeHelper.limitHorizontal(doubleGate);
+                        }
+                        shapes.add(doubleGate);
+                    }
+                    else
+                    {
+                        VoxelShape doubleGate = double_ ? RIGHT_DOUBLE_GATE_CLOSED[direction.getHorizontalIndex()] : RIGHT_GATE_CLOSED[direction.getHorizontalIndex()];
+                        if(collision)
+                        {
+                            doubleGate = VoxelShapeHelper.setMaxHeight(doubleGate, 1.5);
+                            doubleGate = VoxelShapeHelper.limitHorizontal(doubleGate);
+                        }
+                        shapes.add(doubleGate);
                     }
                     if(!double_)
                     {
-                        shapes.add(POST_LEFT[direction.getHorizontalIndex()]);
+                        post = LEFT_POST[direction.getHorizontalIndex()];
+                        if(collision)
+                        {
+                            post = VoxelShapeHelper.setMaxHeight(post, 1.5);
+                            post = VoxelShapeHelper.limitHorizontal(post);
+                        }
+                        shapes.add(post);
                     }
                     break;
             }
@@ -107,6 +174,12 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
     public VoxelShape getRenderShape(BlockState state, IBlockReader reader, BlockPos pos)
     {
         return SHAPES.get(state);
+    }
+
+    @Override
+    public VoxelShape getCollisionShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context)
+    {
+        return COLLISION_SHAPES.get(state);
     }
 
     @Override
