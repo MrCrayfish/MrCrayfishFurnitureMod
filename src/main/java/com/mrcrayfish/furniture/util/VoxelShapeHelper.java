@@ -43,11 +43,6 @@ public class VoxelShapeHelper
         return result.get().simplify();
     }
 
-    public static double limit(double value)
-    {
-        return Math.max(0.0, Math.min(1.0, value));
-    }
-
     public static VoxelShape[] getRotatedShapes(VoxelShape source)
     {
         VoxelShape shapeNorth = rotate(source, Direction.NORTH);
@@ -95,5 +90,10 @@ public class VoxelShapeHelper
                 break;
         }
         return new double[]{var1, var2, var3, var4};
+    }
+
+    private static double limit(double value)
+    {
+        return Math.max(0.0, Math.min(1.0, value));
     }
 }
