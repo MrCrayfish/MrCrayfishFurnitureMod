@@ -287,7 +287,6 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
         int offsetZ = playerFacing.getZOffset();
         BlockPos pos = context.getPos();
         Vec3d hitVec = context.getHitVec().subtract(pos.getX(), pos.getY(), pos.getZ());
-        System.out.println(hitVec);
         boolean side = offsetX < 0 && hitVec.z < 0.5 || offsetX > 0 && hitVec.z > 0.5 || offsetZ < 0 && hitVec.x > 0.5 || offsetZ > 0 && hitVec.x < 0.5;
         return side ? DoorHingeSide.RIGHT : DoorHingeSide.LEFT;
     }
