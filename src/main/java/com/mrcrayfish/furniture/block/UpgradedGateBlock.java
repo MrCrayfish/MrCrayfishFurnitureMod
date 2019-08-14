@@ -252,9 +252,16 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
     {
         BlockPos adjacentPos = pos.offset(hingeSide == DoorHingeSide.LEFT ? direction.rotateY() : direction.rotateYCCW());
         BlockState adjacentState = world.getBlockState(adjacentPos);
-        if(adjacentState.getBlock() == this && adjacentState.get(DIRECTION).getAxis() == direction.getAxis() && adjacentState.get(HINGE) != hingeSide)
+        if(adjacentState.getBlock() == this && adjacentState.get(DIRECTION).getAxis() == direction.getAxis())
         {
-            this.openGate(adjacentState, world, adjacentPos, direction, hitFace, open);
+            if(adjacentState.get(HINGE) != hingeSide)
+            {
+                this.openGate(adjacentState, world, adjacentPos, direction, hitFace, open);
+            }
+            else
+            {
+                this.openGate(adjacentState.with(DIRECTION, adjacentState.get(DIRECTION).getOpposite()).with(HINGE, this.getOppositeHinge(adjacentState.get(HINGE))), world, adjacentPos, direction, hitFace, open);
+            }
         }
     }
 
