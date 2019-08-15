@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "picket_fence",
+    "pattern": [
+        "FFF",
+        "FDF",
+        "FFF"
+    ],
+    "key": {
+        "F": {
+            "tag": "cfm:picket_fences"
+        },
+        "D": {
+            "item": "minecraft:light_blue_dye"
+        }
+    },
+    "result": {
+        "item": "cfm:light_blue_picket_fence",
+        "count": 8
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "replace": false,
+    "values": [
+        "#cfm:upgraded_fences",
+        "#cfm:picket_fences"
+    ]
+}
