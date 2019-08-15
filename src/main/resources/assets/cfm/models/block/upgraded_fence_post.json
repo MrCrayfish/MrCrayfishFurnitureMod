@@ -8,22 +8,22 @@
             "from": [ 6, 0, 6 ], 
             "to": [ 10, 16, 10 ],
             "faces": {
-                "north": { "texture": "#post", "uv": [ 0, 0, 16, 4 ], "rotation": 90 },
-                "east": { "texture": "#post", "uv": [ 0, 4, 16, 8 ], "rotation": 90 },
-                "south": { "texture": "#post", "uv": [ 0, 8, 16, 12 ], "rotation": 90 },
-                "west": { "texture": "#post", "uv": [ 0, 12, 16, 16 ], "rotation": 90 },
-                "down": { "texture": "#post", "uv": [ 0, 0, 4, 4 ] }
+                "north": { "texture": "#post", "uv": [ 0, 0, 16, 4 ], "rotation": 90, "tintindex": 1 },
+                "east": { "texture": "#post", "uv": [ 0, 4, 16, 8 ], "rotation": 90, "tintindex": 1 },
+                "south": { "texture": "#post", "uv": [ 0, 8, 16, 12 ], "rotation": 90, "tintindex": 1 },
+                "west": { "texture": "#post", "uv": [ 0, 12, 16, 16 ], "rotation": 90, "tintindex": 1 },
+                "down": { "texture": "#post", "uv": [ 0, 0, 4, 4 ], "tintindex": 1 }
             }
         },
         {
             "from": [ 6, 16, 6 ], 
             "to": [ 10, 17, 10 ],
             "faces": {
-                "north": { "texture": "#post", "uv": [ 15, 0, 16, 4 ], "rotation": 90 },
-                "east": { "texture": "#post", "uv": [ 15, 4, 16, 8 ], "rotation": 90 },
-                "south": { "texture": "#post", "uv": [ 15, 8, 16, 12 ], "rotation": 90 },
-                "west": { "texture": "#post", "uv": [ 15, 12, 16, 16 ], "rotation": 90 },
-                "up": { "texture": "#post", "uv": [ 0, 0, 4, 4 ] }
+                "north": { "texture": "#post", "uv": [ 15, 0, 16, 4 ], "rotation": 90, "tintindex": 1 },
+                "east": { "texture": "#post", "uv": [ 15, 4, 16, 8 ], "rotation": 90, "tintindex": 1 },
+                "south": { "texture": "#post", "uv": [ 15, 8, 16, 12 ], "rotation": 90, "tintindex": 1 },
+                "west": { "texture": "#post", "uv": [ 15, 12, 16, 16 ], "rotation": 90, "tintindex": 1 },
+                "up": { "texture": "#post", "uv": [ 0, 0, 4, 4 ], "tintindex": 1 }
             }
         }
     ]
