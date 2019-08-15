@@ -189,6 +189,22 @@ public class BlockNames
     public static final String PICKET_FENCE_GREEN = Reference.MOD_ID + ":green_picket_fence";
     public static final String PICKET_FENCE_RED = Reference.MOD_ID + ":red_picket_fence";
     public static final String PICKET_FENCE_BLACK = Reference.MOD_ID + ":black_picket_fence";
+    public static final String PICKET_GATE_WHITE = Reference.MOD_ID + ":white_picket_gate";
+    public static final String PICKET_GATE_ORANGE = Reference.MOD_ID + ":orange_picket_gate";
+    public static final String PICKET_GATE_MAGENTA = Reference.MOD_ID + ":magenta_picket_gate";
+    public static final String PICKET_GATE_LIGHT_BLUE = Reference.MOD_ID + ":light_blue_picket_gate";
+    public static final String PICKET_GATE_YELLOW = Reference.MOD_ID + ":yellow_picket_gate";
+    public static final String PICKET_GATE_LIME = Reference.MOD_ID + ":lime_picket_gate";
+    public static final String PICKET_GATE_PINK = Reference.MOD_ID + ":pink_picket_gate";
+    public static final String PICKET_GATE_GRAY = Reference.MOD_ID + ":gray_picket_gate";
+    public static final String PICKET_GATE_LIGHT_GRAY = Reference.MOD_ID + ":light_gray_picket_gate";
+    public static final String PICKET_GATE_CYAN = Reference.MOD_ID + ":cyan_picket_gate";
+    public static final String PICKET_GATE_PURPLE = Reference.MOD_ID + ":purple_picket_gate";
+    public static final String PICKET_GATE_BLUE = Reference.MOD_ID + ":blue_picket_gate";
+    public static final String PICKET_GATE_BROWN = Reference.MOD_ID + ":brown_picket_gate";
+    public static final String PICKET_GATE_GREEN = Reference.MOD_ID + ":green_picket_gate";
+    public static final String PICKET_GATE_RED = Reference.MOD_ID + ":red_picket_gate";
+    public static final String PICKET_GATE_BLACK = Reference.MOD_ID + ":black_picket_gate";
     
     public static final String WHITE_GATE = Reference.MOD_ID + ":white_gate";
     public static final String OAK_PARK_BENCH = Reference.MOD_ID + ":oak_park_bench";

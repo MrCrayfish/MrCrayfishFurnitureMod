@@ -212,6 +212,22 @@ public class ModBlocks
     public static final Block PICKET_FENCE_GREEN = register(BlockNames.PICKET_FENCE_GREEN, new UpgradedFenceBlock(Block.Properties.create(WOOD, MaterialColor.GREEN).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block PICKET_FENCE_RED = register(BlockNames.PICKET_FENCE_RED, new UpgradedFenceBlock(Block.Properties.create(WOOD, MaterialColor.RED).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block PICKET_FENCE_BLACK = register(BlockNames.PICKET_FENCE_BLACK, new UpgradedFenceBlock(Block.Properties.create(WOOD, MaterialColor.BLACK).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block PICKET_GATE_WHITE = register(BlockNames.PICKET_GATE_WHITE, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.SNOW).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block PICKET_GATE_ORANGE = register(BlockNames.PICKET_GATE_ORANGE, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.ADOBE).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block PICKET_GATE_MAGENTA = register(BlockNames.PICKET_GATE_MAGENTA, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.MAGENTA).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block PICKET_GATE_LIGHT_BLUE = register(BlockNames.PICKET_GATE_LIGHT_BLUE, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.LIGHT_BLUE).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block PICKET_GATE_YELLOW = register(BlockNames.PICKET_GATE_YELLOW, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.YELLOW).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block PICKET_GATE_LIME = register(BlockNames.PICKET_GATE_LIME, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.LIME).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block PICKET_GATE_PINK = register(BlockNames.PICKET_GATE_PINK, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.PINK).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block PICKET_GATE_GRAY = register(BlockNames.PICKET_GATE_GRAY, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.GRAY).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block PICKET_GATE_LIGHT_GRAY = register(BlockNames.PICKET_GATE_LIGHT_GRAY, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.LIGHT_GRAY).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block PICKET_GATE_CYAN = register(BlockNames.PICKET_GATE_CYAN, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.CYAN).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block PICKET_GATE_PURPLE = register(BlockNames.PICKET_GATE_PURPLE, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.PURPLE).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block PICKET_GATE_BLUE = register(BlockNames.PICKET_GATE_BLUE, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.BLUE).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block PICKET_GATE_BROWN = register(BlockNames.PICKET_GATE_BROWN, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.BROWN).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block PICKET_GATE_GREEN = register(BlockNames.PICKET_GATE_GREEN, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.GREEN).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block PICKET_GATE_RED = register(BlockNames.PICKET_GATE_RED, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.RED).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block PICKET_GATE_BLACK = register(BlockNames.PICKET_GATE_BLACK, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.BLACK).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
 
     private static Block register(String name, Block block)
     {

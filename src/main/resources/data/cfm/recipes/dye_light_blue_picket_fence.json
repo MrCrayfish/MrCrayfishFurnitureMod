@@ -8,7 +8,7 @@
     ],
     "key": {
         "F": {
-            "tag": "cfm:picket_fences"
+            "tag": "cfm:fences/picket"
         },
         "D": {
             "item": "minecraft:light_blue_dye"

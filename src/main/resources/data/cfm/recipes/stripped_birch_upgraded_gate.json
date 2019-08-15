@@ -9,7 +9,7 @@
             "item": "minecraft:stripped_birch_log"
         },
         "G": {
-            "item": "minecraft:birch_fence_gate"
+            "tag": "forge:fence_gates/wooden"
         }
     },
     "result": {
