@@ -173,6 +173,22 @@ public class BlockNames
     public static final String UPGRADED_GATE_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_upgraded_gate";
     public static final String UPGRADED_GATE_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_upgraded_gate";
     public static final String UPGRADED_GATE_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_upgraded_gate";
+    public static final String PICKET_FENCE_WHITE = Reference.MOD_ID + ":white_picket_fence";
+    public static final String PICKET_FENCE_ORANGE = Reference.MOD_ID + ":orange_picket_fence";
+    public static final String PICKET_FENCE_MAGENTA = Reference.MOD_ID + ":magenta_picket_fence";
+    public static final String PICKET_FENCE_LIGHT_BLUE = Reference.MOD_ID + ":light_blue_picket_fence";
+    public static final String PICKET_FENCE_YELLOW = Reference.MOD_ID + ":yellow_picket_fence";
+    public static final String PICKET_FENCE_LIME = Reference.MOD_ID + ":lime_picket_fence";
+    public static final String PICKET_FENCE_PINK = Reference.MOD_ID + ":pink_picket_fence";
+    public static final String PICKET_FENCE_GRAY = Reference.MOD_ID + ":gray_picket_fence";
+    public static final String PICKET_FENCE_LIGHT_GRAY = Reference.MOD_ID + ":light_gray_picket_fence";
+    public static final String PICKET_FENCE_CYAN = Reference.MOD_ID + ":cyan_picket_fence";
+    public static final String PICKET_FENCE_PURPLE = Reference.MOD_ID + ":purple_picket_fence";
+    public static final String PICKET_FENCE_BLUE = Reference.MOD_ID + ":blue_picket_fence";
+    public static final String PICKET_FENCE_BROWN = Reference.MOD_ID + ":brown_picket_fence";
+    public static final String PICKET_FENCE_GREEN = Reference.MOD_ID + ":green_picket_fence";
+    public static final String PICKET_FENCE_RED = Reference.MOD_ID + ":red_picket_fence";
+    public static final String PICKET_FENCE_BLACK = Reference.MOD_ID + ":black_picket_fence";
     
     public static final String WHITE_GATE = Reference.MOD_ID + ":white_gate";
     public static final String OAK_PARK_BENCH = Reference.MOD_ID + ":oak_park_bench";
