@@ -3,8 +3,11 @@ package com.mrcrayfish.furniture;
 import com.mrcrayfish.furniture.proxy.ClientProxy;
 import com.mrcrayfish.furniture.proxy.CommonProxy;
 import net.minecraft.item.ItemGroup;
+import net.minecraftforge.common.ForgeConfig;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -20,6 +23,7 @@ public class FurnitureMod
 
     public FurnitureMod()
     {
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, FurnitureConfig.clientSpec);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onCommonSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
         //ScreenManager.registerFactory();
