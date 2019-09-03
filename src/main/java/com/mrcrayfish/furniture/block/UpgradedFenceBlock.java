@@ -64,7 +64,7 @@ public class UpgradedFenceBlock extends FurnitureWaterloggedBlock
             List<VoxelShape> shapes = new ArrayList<>();
             if(post)
             {
-                shapes.add(FENCE_POST);
+                shapes.add(this.applyCollision(FENCE_POST, collision));
             }
             if(north)
             {
