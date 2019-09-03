@@ -52,6 +52,19 @@ public class ClientEvents
         }
     }
 
+    /**
+     * A modified version of {@link WorldRenderer#drawVoxelShapeParts(VoxelShape, double, double, double, float, float, float, float)}
+     * that actually uses the colours parameters instead of strange calculated colours.
+     *
+     * @param voxelShapeIn the voxel shape to draw
+     * @param xIn the x position
+     * @param yIn the y position
+     * @param zIn the z position
+     * @param red red in the range of 0 to 1
+     * @param green green in the range of 0 to 1
+     * @param blue blue in the range of 0 to 1
+     * @param alpha alpha in the range of 0 to 1
+     */
     public static void drawVoxelShapeParts(VoxelShape voxelShapeIn, double xIn, double yIn, double zIn, float red, float green, float blue, float alpha)
     {
         List<AxisAlignedBB> boxes = voxelShapeIn.toBoundingBoxList();

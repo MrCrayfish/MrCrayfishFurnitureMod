@@ -1,6 +1,5 @@
 package com.mrcrayfish.furniture.block;
 
-import afu.org.checkerframework.checker.oigj.qual.O;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.core.ModSounds;
