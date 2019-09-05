@@ -229,6 +229,11 @@ public class ModBlocks
     public static final Block PICKET_GATE_RED = register(BlockNames.PICKET_GATE_RED, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.RED).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block PICKET_GATE_BLACK = register(BlockNames.PICKET_GATE_BLACK, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.BLACK).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block CRATE_OAK = register(BlockNames.CRATE_OAK, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block CRATE_SPRUCE = register(BlockNames.CRATE_SPRUCE, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block CRATE_BIRCH = register(BlockNames.CRATE_BIRCH, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block CRATE_JUNGLE = register(BlockNames.CRATE_JUNGLE, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block CRATE_ACACIA = register(BlockNames.CRATE_ACACIA, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block CRATE_DARK_OAK = register(BlockNames.CRATE_DARK_OAK, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
 
     private static Block register(String name, Block block)
     {

@@ -173,7 +173,6 @@ public class BlockNames
     public static final String UPGRADED_GATE_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_upgraded_gate";
     public static final String UPGRADED_GATE_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_upgraded_gate";
     public static final String UPGRADED_GATE_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_upgraded_gate";
-    public static final String CRATE_OAK = Reference.MOD_ID + ":oak_crate";
     public static final String PICKET_FENCE_WHITE = Reference.MOD_ID + ":white_picket_fence";
     public static final String PICKET_FENCE_ORANGE = Reference.MOD_ID + ":orange_picket_fence";
     public static final String PICKET_FENCE_MAGENTA = Reference.MOD_ID + ":magenta_picket_fence";
@@ -206,6 +205,12 @@ public class BlockNames
     public static final String PICKET_GATE_GREEN = Reference.MOD_ID + ":green_picket_gate";
     public static final String PICKET_GATE_RED = Reference.MOD_ID + ":red_picket_gate";
     public static final String PICKET_GATE_BLACK = Reference.MOD_ID + ":black_picket_gate";
+    public static final String CRATE_OAK = Reference.MOD_ID + ":oak_crate";
+    public static final String CRATE_SPRUCE = Reference.MOD_ID + ":spruce_crate";
+    public static final String CRATE_BIRCH = Reference.MOD_ID + ":birch_crate";
+    public static final String CRATE_JUNGLE = Reference.MOD_ID + ":jungle_crate";
+    public static final String CRATE_ACACIA = Reference.MOD_ID + ":acacia_crate";
+    public static final String CRATE_DARK_OAK = Reference.MOD_ID + ":dark_oak_crate";
     
     public static final String WHITE_GATE = Reference.MOD_ID + ":white_gate";
     public static final String OAK_PARK_BENCH = Reference.MOD_ID + ":oak_park_bench";
@@ -305,16 +310,10 @@ public class BlockNames
     public static final String DOOR_BELL_ACACIA = Reference.MOD_ID + ":door_bell_acacia";
     public static final String DOOR_BELL_DARK_OAK = Reference.MOD_ID + ":door_bell_dark_oak";
     public static final String PHOTO_FRAME = Reference.MOD_ID + ":photo_frame"; //TODO flatten
-    public static final String CRATE_SPRUCE = Reference.MOD_ID + ":crate_spruce";
-    public static final String CRATE_BIRCH = Reference.MOD_ID + ":crate_birch";
-    public static final String CRATE_JUNGLE = Reference.MOD_ID + ":crate_jungle";
-    public static final String CRATE_ACACIA = Reference.MOD_ID + ":crate_acacia";
-    public static final String CRATE_DARK_OAK = Reference.MOD_ID + ":crate_dark_oak";
     public static final String TV_STAND = Reference.MOD_ID + ":tv_stand";
 
     /* Outdoor */
     public static final String TRAMPOLINE = Reference.MOD_ID + ":trampoline"; //TODO Make every colour
-    public static final String CRATE = Reference.MOD_ID + ":crate";
     public static final String BENCH = Reference.MOD_ID + ":bench";
     public static final String TABLE_OUTDOOR = Reference.MOD_ID + ":table_outdoor";
     public static final String GRILL = Reference.MOD_ID + ":grill"; //TODO Make every colour

@@ -2,7 +2,7 @@
     "parent": "cfm:block/crate_open",
     "textures": {
         "hinge": "minecraft:block/light_gray_concrete",
-        "panel": "minecraft:block/oak_planks",
-        "frame": "minecraft:block/oak_log"
+        "panel": "minecraft:block/dark_oak_planks",
+        "frame": "minecraft:block/dark_oak_log"
     }
 }
