@@ -228,6 +228,7 @@ public class ModBlocks
     public static final Block PICKET_GATE_GREEN = register(BlockNames.PICKET_GATE_GREEN, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.GREEN).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block PICKET_GATE_RED = register(BlockNames.PICKET_GATE_RED, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.RED).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
     public static final Block PICKET_GATE_BLACK = register(BlockNames.PICKET_GATE_BLACK, new UpgradedGateBlock(Block.Properties.create(WOOD, MaterialColor.BLACK).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
+    public static final Block CRATE_OAK = register(BlockNames.CRATE_OAK, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(0.5F).sound(SoundType.WOOD)));
 
     private static Block register(String name, Block block)
     {

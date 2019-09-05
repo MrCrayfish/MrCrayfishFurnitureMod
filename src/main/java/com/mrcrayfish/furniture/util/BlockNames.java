@@ -173,6 +173,7 @@ public class BlockNames
     public static final String UPGRADED_GATE_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_upgraded_gate";
     public static final String UPGRADED_GATE_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_upgraded_gate";
     public static final String UPGRADED_GATE_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_upgraded_gate";
+    public static final String CRATE_OAK = Reference.MOD_ID + ":oak_crate";
     public static final String PICKET_FENCE_WHITE = Reference.MOD_ID + ":white_picket_fence";
     public static final String PICKET_FENCE_ORANGE = Reference.MOD_ID + ":orange_picket_fence";
     public static final String PICKET_FENCE_MAGENTA = Reference.MOD_ID + ":magenta_picket_fence";
