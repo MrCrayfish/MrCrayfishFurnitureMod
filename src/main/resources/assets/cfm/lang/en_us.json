@@ -207,6 +207,8 @@
     "container.cfm.bedside_cabinet": "Bedside Cabinet",
     "container.cfm.desk_cabinet": "Desk Cabinet",
     "container.cfm.crate": "Crate",
+    "gui.button.cfm.locked": "Locked",
+    "gui.button.cfm.unlocked": "Unlocked",
     "subtitle.cfm.open_cabinet": "Open Cabinet",
     "subtitle.cfm.close_cabinet": "Close Cabinet",
     "subtitle.cfm.open_blinds": "Open Blinds",

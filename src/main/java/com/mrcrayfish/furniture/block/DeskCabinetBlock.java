@@ -6,6 +6,8 @@ import com.mrcrayfish.furniture.tileentity.DeskCabinetTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.ISidedInventoryProvider;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -16,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
@@ -24,7 +27,7 @@ import java.util.Random;
 /**
  * Author: MrCrayfish
  */
-public class DeskCabinetBlock extends DeskBlock
+public class DeskCabinetBlock extends DeskBlock implements ISidedInventoryProvider
 {
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
 
@@ -86,5 +89,16 @@ public class DeskCabinetBlock extends DeskBlock
     {
         super.fillStateContainer(builder);
         builder.add(OPEN);
+    }
+
+    @Override
+    public ISidedInventory createInventory(BlockState state, IWorld world, BlockPos pos)
+    {
+        TileEntity tileEntity = world.getTileEntity(pos);
+        if(tileEntity instanceof ISidedInventory)
+        {
+            return (ISidedInventory) tileEntity;
+        }
+        return null;
     }
 }

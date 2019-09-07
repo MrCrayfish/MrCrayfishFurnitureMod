@@ -1,28 +1,34 @@
 package com.mrcrayfish.furniture.tileentity;
 
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 
+import javax.annotation.Nullable;
 import java.util.Iterator;
+import java.util.stream.IntStream;
 
 /**
  * Author: MrCrayfish
  */
-public abstract class BasicLootTileEntity extends LockableLootTileEntity
+public abstract class BasicLootTileEntity extends LockableLootTileEntity implements ISidedInventory
 {
+    private final int[] slots;
     private NonNullList<ItemStack> stacks;
 
     public BasicLootTileEntity(TileEntityType<?> tileEntityType)
     {
         super(tileEntityType);
         this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        this.slots = IntStream.range(0, this.getSizeInventory()).toArray();
     }
 
     @Override
@@ -83,5 +89,23 @@ public abstract class BasicLootTileEntity extends LockableLootTileEntity
         {
             ItemStackHelper.loadAllItems(compound, this.stacks);
         }
+    }
+
+    @Override
+    public int[] getSlotsForFace(Direction direction)
+    {
+        return slots;
+    }
+
+    @Override
+    public boolean canInsertItem(int i, ItemStack itemStack, @Nullable Direction direction)
+    {
+        return true;
+    }
+
+    @Override
+    public boolean canExtractItem(int i, ItemStack itemStack, Direction direction)
+    {
+        return true;
     }
 }
