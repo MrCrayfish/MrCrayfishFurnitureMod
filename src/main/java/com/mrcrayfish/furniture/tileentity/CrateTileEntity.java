@@ -165,7 +165,7 @@ public class CrateTileEntity extends BasicLootTileEntity
         {
             if(playerEntity.openContainer instanceof CrateContainer)
             {
-                IInventory crateInventory = ((CrateContainer) playerEntity.openContainer).getCrateInventory();
+                IInventory crateInventory = ((CrateContainer) playerEntity.openContainer).getCrateTileEntity();
                 if(inventory == crateInventory)
                 {
                     this.playerCount++;
@@ -185,7 +185,7 @@ public class CrateTileEntity extends BasicLootTileEntity
             {
                 if(playerEntity.openContainer instanceof CrateContainer)
                 {
-                    IInventory crateInventory = ((CrateContainer) playerEntity.openContainer).getCrateInventory();
+                    IInventory crateInventory = ((CrateContainer) playerEntity.openContainer).getCrateTileEntity();
                     if(this == crateInventory && !playerEntity.getUniqueID().equals(ownerUuid))
                     {
                         playerEntity.closeScreen();

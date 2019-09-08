@@ -1,39 +1,31 @@
 package com.mrcrayfish.furniture.inventory.container;
 
 import com.mrcrayfish.furniture.core.ModContainers;
+import com.mrcrayfish.furniture.tileentity.CrateTileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IntReferenceHolder;
 
 /**
  * Author: MrCrayfish
  */
 public class CrateContainer extends Container
 {
-    protected IInventory crateInventory;
-    protected final IntReferenceHolder locked = IntReferenceHolder.single();
+    protected CrateTileEntity crateTileEntity;
 
-    public CrateContainer(int windowId, PlayerInventory playerInventory)
-    {
-        this(windowId, playerInventory, new Inventory(27), false);
-    }
-
-    public CrateContainer(int windowId, PlayerInventory playerInventory, IInventory crateInventory, boolean locked)
+    public CrateContainer(int windowId, PlayerInventory playerInventory, CrateTileEntity crateTileEntity, boolean locked)
     {
         super(ModContainers.CRATE, windowId);
-        this.crateInventory = crateInventory;
-        crateInventory.openInventory(playerInventory.player);
+        this.crateTileEntity = crateTileEntity;
+        crateTileEntity.openInventory(playerInventory.player);
 
         for(int y = 0; y < 3; y++)
         {
             for(int x = 0; x < 9; x++)
             {
-                this.addSlot(new PortableSlot(crateInventory, x + y * 9, 8 + x * 18, 18 + y * 18));
+                this.addSlot(new PortableSlot(crateTileEntity, x + y * 9, 8 + x * 18, 18 + y * 18));
             }
         }
 
@@ -49,14 +41,12 @@ public class CrateContainer extends Container
         {
             this.addSlot(new Slot(playerInventory, x, 8 + x * 18, 142));
         }
-
-        this.trackInt(this.locked).set(locked ? 1 : 0);
     }
 
     @Override
     public boolean canInteractWith(PlayerEntity playerIn)
     {
-        return this.crateInventory.isUsableByPlayer(playerIn);
+        return this.crateTileEntity.isUsableByPlayer(playerIn);
     }
 
     @Override
@@ -68,14 +58,14 @@ public class CrateContainer extends Container
         {
             ItemStack slotStack = slot.getStack();
             clickedStack = slotStack.copy();
-            if(index < this.crateInventory.getSizeInventory())
+            if(index < this.crateTileEntity.getSizeInventory())
             {
-                if(!this.mergeItemStack(slotStack, this.crateInventory.getSizeInventory(), this.inventorySlots.size(), true))
+                if(!this.mergeItemStack(slotStack, this.crateTileEntity.getSizeInventory(), this.inventorySlots.size(), true))
                 {
                     return ItemStack.EMPTY;
                 }
             }
-            else if(!this.mergeItemStack(slotStack, 0, this.crateInventory.getSizeInventory(), false))
+            else if(!this.mergeItemStack(slotStack, 0, this.crateTileEntity.getSizeInventory(), false))
             {
                 return ItemStack.EMPTY;
             }
@@ -96,27 +86,11 @@ public class CrateContainer extends Container
     public void onContainerClosed(PlayerEntity playerEntity)
     {
         super.onContainerClosed(playerEntity);
-        this.crateInventory.closeInventory(playerEntity);
+        this.crateTileEntity.closeInventory(playerEntity);
     }
 
-    public IInventory getCrateInventory()
+    public CrateTileEntity getCrateTileEntity()
     {
-        return crateInventory;
-    }
-
-    /**
-     * Sets the tracker value for the lock state. This does not control the access to the crate.
-     *
-     * @param locked the current lock state of the crate
-     */
-    public void setLocked(boolean locked)
-    {
-        this.locked.set(locked ? 1 : 0);
-        this.detectAndSendChanges();
-    }
-
-    public boolean isLocked()
-    {
-        return this.locked.get() == 1;
+        return crateTileEntity;
     }
 }

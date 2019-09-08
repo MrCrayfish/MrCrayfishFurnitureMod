@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ISidedInventoryProvider;
 import net.minecraft.inventory.container.INamedContainerProvider;
@@ -20,6 +21,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -60,7 +62,7 @@ public class CrateBlock extends FurnitureHorizontalBlock implements IPortableInv
             TileEntity tileEntity = world.getTileEntity(pos);
             if(tileEntity instanceof CrateTileEntity)
             {
-                playerEntity.openContainer((INamedContainerProvider) tileEntity);
+                NetworkHooks.openGui((ServerPlayerEntity) playerEntity, (INamedContainerProvider) tileEntity, pos);
             }
         }
         return true;

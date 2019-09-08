@@ -13,7 +13,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.ForgeI18n;
+
+import java.util.UUID;
 
 /**
  * Author: MrCrayfish
@@ -36,7 +37,7 @@ public class CrateScreen extends ContainerScreen<CrateContainer>
     protected void init()
     {
         super.init();
-        this.button = this.addButton(new IconButton(this.guiLeft + this.xSize + 2, this.guiTop + 17, I18n.format("gui.cfm.lock"), button -> PacketHandler.instance.sendToServer(new MessageLockCrate()), ICONS_TEXTURE, 0, 0));
+        this.button = this.addButton(new IconButton(this.guiLeft + this.xSize + 2, this.guiTop + 17, I18n.format("gui.button.cfm.lock"), button -> PacketHandler.instance.sendToServer(new MessageLockCrate()), ICONS_TEXTURE, 0, 0));
         this.updateLockButton();
     }
 
@@ -44,16 +45,20 @@ public class CrateScreen extends ContainerScreen<CrateContainer>
     public void tick()
     {
         super.tick();
-        if(this.locked != this.container.isLocked())
+        if(this.locked != this.container.getCrateTileEntity().isLocked())
         {
-            this.locked = this.container.isLocked();
+            this.locked = this.container.getCrateTileEntity().isLocked();
             this.updateLockButton();
         }
     }
 
     private void updateLockButton()
     {
-        this.button.setIcon(ICONS_TEXTURE, this.container.isLocked() ? 0 : 16, 0);
+        this.locked = this.container.getCrateTileEntity().isLocked();
+        this.button.setIcon(ICONS_TEXTURE, this.locked ? 0 : 16, 0);
+        this.button.setMessage(I18n.format(this.locked ? "gui.button.cfm.locked" : "gui.button.cfm.unlocked"));
+        UUID ownerUuid = this.container.getCrateTileEntity().getOwner();
+        this.button.visible = ownerUuid == null || this.playerInventory.player.getUniqueID().equals(ownerUuid);
     }
 
     @Override

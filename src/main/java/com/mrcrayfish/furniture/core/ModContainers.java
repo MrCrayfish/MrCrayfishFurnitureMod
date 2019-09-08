@@ -3,18 +3,24 @@ package com.mrcrayfish.furniture.core;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.CrateScreen;
 import com.mrcrayfish.furniture.inventory.container.CrateContainer;
+import com.mrcrayfish.furniture.tileentity.CrateTileEntity;
 import com.mrcrayfish.furniture.util.ContainerNames;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.network.IContainerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Author: MrCrayfish
@@ -24,7 +30,11 @@ public class ModContainers
 {
     private static final List<ContainerType<?>> CONTAINER_TYPES = new ArrayList<>();
 
-    public static final ContainerType<CrateContainer> CRATE = register(ContainerNames.CRATE, CrateContainer::new);
+    @SuppressWarnings("ConstantConditions")
+    public static final ContainerType<CrateContainer> CRATE = register(ContainerNames.CRATE, (IContainerFactory<CrateContainer>) (windowId, playerInventory, data) -> {
+        CrateTileEntity crateTileEntity = (CrateTileEntity) playerInventory.player.world.getTileEntity(data.readBlockPos());
+        return new CrateContainer(windowId, playerInventory, crateTileEntity, crateTileEntity.isLocked());
+    });
 
     private static <T extends Container> ContainerType<T> register(String key, ContainerType.IFactory<T> factory)
     {
