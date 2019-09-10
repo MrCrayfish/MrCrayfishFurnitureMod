@@ -28,7 +28,12 @@ public class ClientProxy extends CommonProxy
     {
         super.onSetupClient();
         RenderingRegistry.registerEntityRenderingHandler(SeatEntity.class, SeatRenderer::new);
+        ScreenManager.registerFactory(ModContainers.CRATE, CrateScreen::new);
+        this.registerColors();
+    }
 
+    private void registerColors()
+    {
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0xCCCCCC : 0,
                 ModBlocks.PICKET_FENCE_WHITE,
                 ModBlocks.PICKET_FENCE_ORANGE,
@@ -99,6 +104,22 @@ public class ClientProxy extends CommonProxy
                 ModBlocks.PICKET_GATE_BLACK
         );
 
-        ScreenManager.registerFactory(ModContainers.CRATE, CrateScreen::new);
+        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0xBBBBBB : 0,
+                ModBlocks.CRATE_STRIPPED_OAK,
+                ModBlocks.CRATE_STRIPPED_SPRUCE,
+                ModBlocks.CRATE_STRIPPED_BIRCH,
+                ModBlocks.CRATE_STRIPPED_JUNGLE,
+                ModBlocks.CRATE_STRIPPED_ACACIA,
+                ModBlocks.CRATE_STRIPPED_DARK_OAK
+        );
+
+        Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0xBBBBBB : 0,
+                ModBlocks.CRATE_STRIPPED_OAK,
+                ModBlocks.CRATE_STRIPPED_SPRUCE,
+                ModBlocks.CRATE_STRIPPED_BIRCH,
+                ModBlocks.CRATE_STRIPPED_JUNGLE,
+                ModBlocks.CRATE_STRIPPED_ACACIA,
+                ModBlocks.CRATE_STRIPPED_DARK_OAK
+        );
     }
 }

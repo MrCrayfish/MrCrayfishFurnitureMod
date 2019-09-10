@@ -234,6 +234,13 @@ public class ModBlocks
     public static final Block CRATE_JUNGLE = register(BlockNames.CRATE_JUNGLE, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
     public static final Block CRATE_ACACIA = register(BlockNames.CRATE_ACACIA, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
     public static final Block CRATE_DARK_OAK = register(BlockNames.CRATE_DARK_OAK, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+    public static final Block CRATE_STRIPPED_OAK = register(BlockNames.CRATE_STRIPPED_OAK, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+    public static final Block CRATE_STRIPPED_SPRUCE = register(BlockNames.CRATE_STRIPPED_SPRUCE, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+    public static final Block CRATE_STRIPPED_BIRCH = register(BlockNames.CRATE_STRIPPED_BIRCH, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+    public static final Block CRATE_STRIPPED_JUNGLE = register(BlockNames.CRATE_STRIPPED_JUNGLE, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+    public static final Block CRATE_STRIPPED_ACACIA = register(BlockNames.CRATE_STRIPPED_ACACIA, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+    public static final Block CRATE_STRIPPED_DARK_OAK = register(BlockNames.CRATE_STRIPPED_DARK_OAK, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+
 
     private static Block register(String name, Block block)
     {

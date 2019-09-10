@@ -211,6 +211,12 @@ public class BlockNames
     public static final String CRATE_JUNGLE = Reference.MOD_ID + ":jungle_crate";
     public static final String CRATE_ACACIA = Reference.MOD_ID + ":acacia_crate";
     public static final String CRATE_DARK_OAK = Reference.MOD_ID + ":dark_oak_crate";
+    public static final String CRATE_STRIPPED_OAK = Reference.MOD_ID + ":stripped_oak_crate";
+    public static final String CRATE_STRIPPED_SPRUCE = Reference.MOD_ID + ":stripped_spruce_crate";
+    public static final String CRATE_STRIPPED_BIRCH = Reference.MOD_ID + ":stripped_birch_crate";
+    public static final String CRATE_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_crate";
+    public static final String CRATE_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_crate";
+    public static final String CRATE_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_crate";
     
     public static final String WHITE_GATE = Reference.MOD_ID + ":white_gate";
     public static final String OAK_PARK_BENCH = Reference.MOD_ID + ":oak_park_bench";
