@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/park_bench_single",
+    "textures": {
+        "legs": "minecraft:block/dark_oak_log",
+        "plank": "minecraft:block/dark_oak_planks"
+    }
+}

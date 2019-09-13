@@ -1,21 +1,12 @@
 package com.mrcrayfish.furniture.proxy;
 
-import com.mrcrayfish.furniture.block.UpgradedFenceBlock;
-import com.mrcrayfish.furniture.block.UpgradedGateBlock;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.CrateScreen;
 import com.mrcrayfish.furniture.client.renderer.SeatRenderer;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModContainers;
 import com.mrcrayfish.furniture.entity.SeatEntity;
-import com.mrcrayfish.furniture.util.BlockNames;
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.MaterialColor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.client.gui.screen.inventory.ChestScreen;
-import net.minecraft.client.renderer.color.BlockColors;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 /**
@@ -120,6 +111,24 @@ public class ClientProxy extends CommonProxy
                 ModBlocks.CRATE_STRIPPED_JUNGLE,
                 ModBlocks.CRATE_STRIPPED_ACACIA,
                 ModBlocks.CRATE_STRIPPED_DARK_OAK
+        );
+
+        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0x999999 : 0,
+                ModBlocks.PARK_BENCH_STRIPPED_OAK,
+                ModBlocks.PARK_BENCH_STRIPPED_SPRUCE,
+                ModBlocks.PARK_BENCH_STRIPPED_BIRCH,
+                ModBlocks.PARK_BENCH_STRIPPED_JUNGLE,
+                ModBlocks.PARK_BENCH_STRIPPED_ACACIA,
+                ModBlocks.PARK_BENCH_STRIPPED_DARK_OAK
+        );
+
+        Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0x999999 : 0,
+                ModBlocks.PARK_BENCH_STRIPPED_OAK,
+                ModBlocks.PARK_BENCH_STRIPPED_SPRUCE,
+                ModBlocks.PARK_BENCH_STRIPPED_BIRCH,
+                ModBlocks.PARK_BENCH_STRIPPED_JUNGLE,
+                ModBlocks.PARK_BENCH_STRIPPED_ACACIA,
+                ModBlocks.PARK_BENCH_STRIPPED_DARK_OAK
         );
     }
 }

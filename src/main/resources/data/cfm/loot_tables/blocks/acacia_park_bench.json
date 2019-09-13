@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:block",
+    "pools": [
+        {
+            "name": "acacia_park_bench",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "cfm:acacia_park_bench"
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ]
+        }
+    ]
+}

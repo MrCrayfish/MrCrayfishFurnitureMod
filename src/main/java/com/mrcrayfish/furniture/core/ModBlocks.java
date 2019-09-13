@@ -240,7 +240,18 @@ public class ModBlocks
     public static final Block CRATE_STRIPPED_JUNGLE = register(BlockNames.CRATE_STRIPPED_JUNGLE, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
     public static final Block CRATE_STRIPPED_ACACIA = register(BlockNames.CRATE_STRIPPED_ACACIA, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
     public static final Block CRATE_STRIPPED_DARK_OAK = register(BlockNames.CRATE_STRIPPED_DARK_OAK, new CrateBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
-
+    public static final Block PARK_BENCH_OAK = register(BlockNames.OAK_PARK_BENCH, new ParkBenchBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+    public static final Block PARK_BENCH_SPRUCE = register(BlockNames.SPRUCE_PARK_BENCH, new ParkBenchBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+    public static final Block PARK_BENCH_BIRCH = register(BlockNames.BIRCH_PARK_BENCH, new ParkBenchBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+    public static final Block PARK_BENCH_JUNGLE = register(BlockNames.JUNGLE_PARK_BENCH, new ParkBenchBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+    public static final Block PARK_BENCH_ACACIA = register(BlockNames.ACACIA_PARK_BENCH, new ParkBenchBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+    public static final Block PARK_BENCH_DARK_OAK = register(BlockNames.DARK_OAK_PARK_BENCH, new ParkBenchBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+    public static final Block PARK_BENCH_STRIPPED_OAK = register(BlockNames.STRIPPED_OAK_PARK_BENCH, new ParkBenchBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+    public static final Block PARK_BENCH_STRIPPED_SPRUCE = register(BlockNames.STRIPPED_SPRUCE_PARK_BENCH, new ParkBenchBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+    public static final Block PARK_BENCH_STRIPPED_BIRCH = register(BlockNames.STRIPPED_BIRCH_PARK_BENCH, new ParkBenchBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+    public static final Block PARK_BENCH_STRIPPED_JUNGLE = register(BlockNames.STRIPPED_JUNGLE_PARK_BENCH, new ParkBenchBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+    public static final Block PARK_BENCH_STRIPPED_ACACIA = register(BlockNames.STRIPPED_ACACIA_PARK_BENCH, new ParkBenchBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+    public static final Block PARK_BENCH_STRIPPED_DARK_OAK = register(BlockNames.STRIPPED_DARK_OAK_PARK_BENCH, new ParkBenchBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
 
     private static Block register(String name, Block block)
     {

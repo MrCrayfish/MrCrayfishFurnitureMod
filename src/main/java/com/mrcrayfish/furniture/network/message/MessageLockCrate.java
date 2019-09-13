@@ -30,18 +30,17 @@ public class MessageLockCrate
             ServerPlayerEntity player = supplier.get().getSender();
             if(player != null && player.openContainer instanceof CrateContainer)
             {
-                IInventory inventory = ((CrateContainer) player.openContainer).getCrateTileEntity();
-                if(inventory instanceof CrateTileEntity)
+                CrateTileEntity inventory = ((CrateContainer) player.openContainer).getCrateTileEntity();
+                if(inventory != null)
                 {
-                    CrateTileEntity crateTileEntity = (CrateTileEntity) inventory;
-                    if(crateTileEntity.getOwner() == null)
+                    if(inventory.getOwner() == null)
                     {
-                        crateTileEntity.setOwner(player.getUniqueID());
+                        inventory.setOwner(player.getUniqueID());
                     }
-                    if(player.getUniqueID().equals(crateTileEntity.getOwner()))
+                    if(player.getUniqueID().equals(inventory.getOwner()))
                     {
-                        crateTileEntity.setLocked(!crateTileEntity.isLocked());
-                        crateTileEntity.removeUnauthorisedPlayers();
+                        inventory.setLocked(!inventory.isLocked());
+                        inventory.removeUnauthorisedPlayers();
                     }
                 }
             }

@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/stripped_park_bench_left",
+    "textures": {
+        "legs": "minecraft:block/stripped_birch_log",
+        "plank": "minecraft:block/stripped_birch_log"
+    }
+}

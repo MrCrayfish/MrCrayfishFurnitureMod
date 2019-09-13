@@ -25,10 +25,12 @@ public class ClientEvents
     @SubscribeEvent
     public static void onRenderOutline(DrawBlockHighlightEvent event)
     {
-        if(FurnitureConfig.CLIENT.drawCollisionShapes.get())
+        if(!FurnitureConfig.CLIENT.drawCollisionShapes.get())
         {
-            event.setCanceled(true);
+            return;
         }
+
+        event.setCanceled(true);
 
         RayTraceResult result = event.getTarget();
         if(result.getType() == RayTraceResult.Type.BLOCK)
