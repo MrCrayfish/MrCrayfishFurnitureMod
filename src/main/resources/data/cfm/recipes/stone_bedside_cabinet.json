@@ -8,10 +8,10 @@
     ],
     "key": {
         "L": {
-            "item": "minecraft:stone_log"
+            "item": "minecraft:stone"
         },
         "P": {
-            "item": "minecraft:stone_planks"
+            "item": "minecraft:cobblestone"
         }
     },
     "result": {
