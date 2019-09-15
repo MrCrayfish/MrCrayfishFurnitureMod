@@ -5,7 +5,7 @@ import com.mrcrayfish.furniture.util.TileEntityUtil;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -46,22 +46,24 @@ public class MessageDishwasher implements IMessage, IMessageHandler<MessageDishw
     @Override
     public IMessage onMessage(MessageDishwasher message, MessageContext ctx)
     {
-        World world = ctx.getServerHandler().player.world;
-        TileEntity tileEntity = world.getTileEntity(new BlockPos(message.x, message.y, message.z));
-        if(tileEntity instanceof TileEntityDishwasher)
-        {
-            TileEntityDishwasher tileEntityDishwasher = (TileEntityDishwasher) tileEntity;
-            if(message.type == 0)
+        WorldServer world = ctx.getServerHandler().player.getServerWorld();
+        world.addScheduledTask(() -> {
+            TileEntity tileEntity = world.getTileEntity(new BlockPos(message.x, message.y, message.z));
+            if(tileEntity instanceof TileEntityDishwasher)
             {
-                tileEntityDishwasher.startWashing();
+                TileEntityDishwasher tileEntityDishwasher = (TileEntityDishwasher) tileEntity;
+                if(message.type == 0)
+                {
+                    tileEntityDishwasher.startWashing();
+                }
+                if(message.type == 1)
+                {
+                    tileEntityDishwasher.stopWashing();
+                }
+                BlockPos pos = new BlockPos(message.x, message.y, message.z);
+                TileEntityUtil.markBlockForUpdate(world, pos);
             }
-            if(message.type == 1)
-            {
-                tileEntityDishwasher.stopWashing();
-            }
-            BlockPos pos = new BlockPos(message.x, message.y, message.z);
-            TileEntityUtil.markBlockForUpdate(world, pos);
-        }
+        });
         return null;
     }
 }

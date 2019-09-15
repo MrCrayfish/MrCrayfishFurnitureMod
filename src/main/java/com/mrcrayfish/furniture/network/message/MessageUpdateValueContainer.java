@@ -7,7 +7,7 @@ import com.mrcrayfish.furniture.util.TileEntityUtil;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -62,16 +62,18 @@ public class MessageUpdateValueContainer implements IMessage, IMessageHandler<Me
     @Override
     public IMessage onMessage(MessageUpdateValueContainer message, MessageContext ctx)
     {
-        //if(ctx.getServerHandler().player.isCreative()) //TODO make TV not use value container implementation
-        {
-            World world = ctx.getServerHandler().player.getServerWorld();
-            TileEntity tileEntity = world.getTileEntity(message.pos);
-            if(tileEntity instanceof IValueContainer)
+        WorldServer world = ctx.getServerHandler().player.getServerWorld();
+        world.addScheduledTask(() -> {
+            //if(ctx.getServerHandler().player.isCreative()) //TODO make TV not use value container implementation
             {
-                ((IValueContainer) tileEntity).updateEntries(message.entryMap);
-                TileEntityUtil.syncToClient(tileEntity);
+                TileEntity tileEntity = world.getTileEntity(message.pos);
+                if(tileEntity instanceof IValueContainer)
+                {
+                    ((IValueContainer) tileEntity).updateEntries(message.entryMap);
+                    TileEntityUtil.syncToClient(tileEntity);
+                }
             }
-        }
+        });
         return null;
     }
 }

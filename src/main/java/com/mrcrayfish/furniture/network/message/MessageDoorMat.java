@@ -5,7 +5,7 @@ import com.mrcrayfish.furniture.util.TileEntityUtil;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -13,7 +13,9 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageDoorMat implements IMessage, IMessageHandler<MessageDoorMat, IMessage>
 {
-    public int x, y, z;
+    private int x;
+    private int y;
+    private int z;
     private String message;
 
     public MessageDoorMat() {}
@@ -47,15 +49,17 @@ public class MessageDoorMat implements IMessage, IMessageHandler<MessageDoorMat,
     @Override
     public IMessage onMessage(MessageDoorMat message, MessageContext ctx)
     {
-        World world = ctx.getServerHandler().player.world;
-        BlockPos pos = new BlockPos(message.x, message.y, message.z);
-        TileEntity tileEntity = world.getTileEntity(pos);
-        if(tileEntity instanceof TileEntityDoorMat)
-        {
-            TileEntityDoorMat doorMat = (TileEntityDoorMat) tileEntity;
-            doorMat.setMessage(message.message);
-            TileEntityUtil.markBlockForUpdate(world, pos);
-        }
+        WorldServer world = ctx.getServerHandler().player.getServerWorld();
+        world.addScheduledTask(() -> {
+            BlockPos pos = new BlockPos(message.x, message.y, message.z);
+            TileEntity tileEntity = world.getTileEntity(pos);
+            if(tileEntity instanceof TileEntityDoorMat)
+            {
+                TileEntityDoorMat doorMat = (TileEntityDoorMat) tileEntity;
+                doorMat.setMessage(message.message);
+                TileEntityUtil.markBlockForUpdate(world, pos);
+            }
+        });
         return null;
     }
 }

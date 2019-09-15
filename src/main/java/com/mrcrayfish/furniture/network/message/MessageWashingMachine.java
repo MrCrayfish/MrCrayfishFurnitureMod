@@ -4,7 +4,7 @@ import com.mrcrayfish.furniture.tileentity.TileEntityWashingMachine;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -45,22 +45,24 @@ public class MessageWashingMachine implements IMessage, IMessageHandler<MessageW
     @Override
     public IMessage onMessage(MessageWashingMachine message, MessageContext ctx)
     {
-        World world = ctx.getServerHandler().player.world;
-        TileEntity tileEntity = world.getTileEntity(new BlockPos(message.x, message.y, message.z));
-        if(tileEntity instanceof TileEntityWashingMachine)
-        {
-            TileEntityWashingMachine tileEntityWashineMachine = (TileEntityWashingMachine) tileEntity;
-            if(message.type == 0)
+        WorldServer world = ctx.getServerHandler().player.getServerWorld();
+        world.addScheduledTask(() -> {
+            TileEntity tileEntity = world.getTileEntity(new BlockPos(message.x, message.y, message.z));
+            if(tileEntity instanceof TileEntityWashingMachine)
             {
-                tileEntityWashineMachine.startWashing();
+                TileEntityWashingMachine tileEntityWashingMachine = (TileEntityWashingMachine) tileEntity;
+                if(message.type == 0)
+                {
+                    tileEntityWashingMachine.startWashing();
+                }
+                if(message.type == 1)
+                {
+                    tileEntityWashingMachine.stopWashing();
+                }
+                BlockPos pos = new BlockPos(message.x, message.y, message.z);
+                world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 3);
             }
-            if(message.type == 1)
-            {
-                tileEntityWashineMachine.stopWashing();
-            }
-            BlockPos pos = new BlockPos(message.x, message.y, message.z);
-            world.notifyBlockUpdate(pos, world.getBlockState(pos), world.getBlockState(pos), 3);
-        }
+        });
         return null;
     }
 }

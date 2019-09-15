@@ -5,7 +5,7 @@ import com.mrcrayfish.furniture.util.TileEntityUtil;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -46,22 +46,24 @@ public class MessageMicrowave implements IMessage, IMessageHandler<MessageMicrow
     @Override
     public IMessage onMessage(MessageMicrowave message, MessageContext ctx)
     {
-        World world = ctx.getServerHandler().player.world;
-        TileEntity tileEntity = world.getTileEntity(new BlockPos(message.x, message.y, message.z));
-        if(tileEntity instanceof TileEntityMicrowave)
-        {
-            TileEntityMicrowave tileEntityMicrowave = (TileEntityMicrowave) tileEntity;
-            if(message.type == 0)
+        WorldServer world = ctx.getServerHandler().player.getServerWorld();
+        world.addScheduledTask(() -> {
+            TileEntity tileEntity = world.getTileEntity(new BlockPos(message.x, message.y, message.z));
+            if(tileEntity instanceof TileEntityMicrowave)
             {
-                tileEntityMicrowave.startCooking();
+                TileEntityMicrowave tileEntityMicrowave = (TileEntityMicrowave) tileEntity;
+                if(message.type == 0)
+                {
+                    tileEntityMicrowave.startCooking();
+                }
+                if(message.type == 1)
+                {
+                    tileEntityMicrowave.stopCooking();
+                }
+                BlockPos pos = new BlockPos(message.x, message.y, message.z);
+                TileEntityUtil.markBlockForUpdate(world, pos);
             }
-            if(message.type == 1)
-            {
-                tileEntityMicrowave.stopCooking();
-            }
-            BlockPos pos = new BlockPos(message.x, message.y, message.z);
-            TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().player.world, pos);
-        }
+        });
         return null;
     }
 }
