@@ -14,4 +14,9 @@ public class RenderUtil
         int scale = (int) mc.mainWindow.getGuiScaleFactor();
         GL11.glScissor(x * scale, mc.mainWindow.getHeight() - y * scale - height * scale, width * scale, height * scale);
     }
+
+    public static boolean isMouseInArea(int mouseX, int mouseY, int x, int y, int width, int height)
+    {
+        return mouseX >= x && mouseX < x + width && mouseY >= y && mouseY < y + height;
+    }
 }

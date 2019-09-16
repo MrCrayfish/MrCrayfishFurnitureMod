@@ -7,6 +7,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.Slot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IWorldPosCallable;
 
 /**
@@ -47,5 +48,10 @@ public class PostBoxContainer extends Container
     public boolean canInteractWith(PlayerEntity playerIn)
     {
         return this.callable.applyOrElse((world, pos) -> playerIn.getDistanceSq(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5) <= 64.0, true);
+    }
+
+    public ItemStack getMail()
+    {
+        return mailInput.getStackInSlot(0);
     }
 }
