@@ -5,6 +5,7 @@ import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.block.*;
 import com.mrcrayfish.furniture.util.BlockNames;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
@@ -252,6 +253,7 @@ public class ModBlocks
     public static final Block PARK_BENCH_STRIPPED_JUNGLE = register(BlockNames.STRIPPED_JUNGLE_PARK_BENCH, new ParkBenchBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
     public static final Block PARK_BENCH_STRIPPED_ACACIA = register(BlockNames.STRIPPED_ACACIA_PARK_BENCH, new ParkBenchBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
     public static final Block PARK_BENCH_STRIPPED_DARK_OAK = register(BlockNames.STRIPPED_DARK_OAK_PARK_BENCH, new ParkBenchBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
+    public static final Block POST_BOX = register(BlockNames.POST_BOX, new PostBoxBlock(Block.Properties.from(Blocks.ANVIL)));
 
     private static Block register(String name, Block block)
     {

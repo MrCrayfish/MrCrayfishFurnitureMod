@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.core;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.CrateScreen;
 import com.mrcrayfish.furniture.inventory.container.CrateContainer;
+import com.mrcrayfish.furniture.inventory.container.PostBoxContainer;
 import com.mrcrayfish.furniture.tileentity.CrateTileEntity;
 import com.mrcrayfish.furniture.util.ContainerNames;
 import net.minecraft.client.gui.ScreenManager;
@@ -35,6 +36,9 @@ public class ModContainers
         CrateTileEntity crateTileEntity = (CrateTileEntity) playerInventory.player.world.getTileEntity(data.readBlockPos());
         return new CrateContainer(windowId, playerInventory, crateTileEntity, crateTileEntity.isLocked());
     });
+
+    @SuppressWarnings("ConstantConditions")
+    public static final ContainerType<PostBoxContainer> POST_BOX = register(ContainerNames.POST_BOX, PostBoxContainer::new);
 
     private static <T extends Container> ContainerType<T> register(String key, ContainerType.IFactory<T> factory)
     {
