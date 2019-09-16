@@ -10,37 +10,45 @@ import java.util.UUID;
  */
 public class MailBoxEntry
 {
-    private String name;
-    private String ownerName;
     private UUID mailBoxId;
+    private String name;
+    private UUID ownerId;
+    private String ownerName;
 
-    public MailBoxEntry(String name, String ownerName, UUID mailBoxId)
+    public MailBoxEntry(UUID mailBoxId, String name, UUID ownerId, String ownerName)
     {
-        this.name = name;
-        this.ownerName = ownerName;
         this.mailBoxId = mailBoxId;
+        this.name = name;
+        this.ownerId = ownerId;
+        this.ownerName = ownerName;
     }
 
     public MailBoxEntry(CompoundNBT compound)
     {
-        this.name = compound.getString("Name");
-        this.ownerName = compound.getString("OwnerName");
         this.mailBoxId = compound.getUniqueId("MailBoxUUID");
-    }
-
-    public String getName()
-    {
-        return name;
-    }
-
-    public String getOwnerName()
-    {
-        return ownerName;
+        this.name = compound.getString("Name");
+        this.ownerId = compound.getUniqueId("OwnerUUID");
+        this.ownerName = compound.getString("OwnerName");
     }
 
     public UUID getMailBoxId()
     {
-        return mailBoxId;
+        return this.mailBoxId;
+    }
+
+    public String getName()
+    {
+        return this.name;
+    }
+
+    public UUID getOwnerId()
+    {
+        return this.ownerId;
+    }
+
+    public String getOwnerName()
+    {
+        return this.ownerName;
     }
 
     @Override
@@ -51,12 +59,12 @@ public class MailBoxEntry
         if(obj == null || getClass() != obj.getClass())
             return false;
         MailBoxEntry other = (MailBoxEntry) obj;
-        return mailBoxId.equals(other.mailBoxId);
+        return this.mailBoxId.equals(other.mailBoxId);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(mailBoxId);
+        return Objects.hash(this.mailBoxId);
     }
 }

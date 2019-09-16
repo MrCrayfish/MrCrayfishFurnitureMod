@@ -1,10 +1,12 @@
 package com.mrcrayfish.furniture.common.mail;
 
 import com.mrcrayfish.furniture.Reference;
+import com.mrcrayfish.furniture.client.MailBoxEntry;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.WorldSavedData;
@@ -13,6 +15,7 @@ import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 import java.util.*;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 /**
  * Author: MrCrayfish
@@ -90,14 +93,43 @@ public class PostOffice extends WorldSavedData
         return compound;
     }
 
-    public static boolean sendMailToPlayer(ServerPlayerEntity playerEntity, UUID mailBoxId, Mail mail)
+    public static void registerMailBox(ServerPlayerEntity playerEntity, UUID mailBoxId, String name, BlockPos pos)
     {
         PostOffice office = get(playerEntity.server);
         Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.computeIfAbsent(playerEntity.getUniqueID(), uuid -> new HashMap<>());
-        if(mailBoxMap.containsKey(mailBoxId))
+        mailBoxMap.put(mailBoxId, new MailBox(mailBoxId, name, playerEntity.getUniqueID(), playerEntity.getName().getString(), pos));
+    }
+
+    public static void unregisterMailBox(UUID playerId, UUID mailBoxId)
+    {
+        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+        if(server != null)
         {
-            mailBoxMap.get(mailBoxId).addMail(mail);
-            return true;
+            PostOffice office = get(server);
+            Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.computeIfAbsent(playerId, uuid -> new HashMap<>());
+            mailBoxMap.remove(mailBoxId);
+            //TODO spawn all items at mail box
+        }
+    }
+
+    public static List<MailBox> getMailBoxes(ServerPlayerEntity playerEntity)
+    {
+        PostOffice office = get(playerEntity.server);
+        return office.playerMailboxMap.values().stream().flatMap(map -> map.values().stream()).collect(Collectors.toList());
+    }
+
+    public static boolean sendMailToPlayer(UUID playerId, UUID mailBoxId, Mail mail)
+    {
+        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+        if(server != null)
+        {
+            PostOffice office = get(server);
+            Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.computeIfAbsent(playerId, uuid -> new HashMap<>());
+            if(mailBoxMap.containsKey(mailBoxId))
+            {
+                mailBoxMap.get(mailBoxId).addMail(mail);
+                return true;
+            }
         }
         return false;
     }

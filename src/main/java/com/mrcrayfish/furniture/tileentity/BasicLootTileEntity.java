@@ -49,6 +49,19 @@ public abstract class BasicLootTileEntity extends LockableLootTileEntity impleme
         this.stacks = stacks;
     }
 
+    protected boolean addItem(ItemStack stack)
+    {
+        for(int i = 0; i < this.getSizeInventory(); i++)
+        {
+            if(this.getStackInSlot(i).isEmpty())
+            {
+                this.setInventorySlotContents(i, stack);
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     protected abstract Container createMenu(int windowId, PlayerInventory playerInventory);
 
@@ -67,6 +80,18 @@ public abstract class BasicLootTileEntity extends LockableLootTileEntity impleme
         }
         while(stack.isEmpty());
         return false;
+    }
+
+    public boolean isFull()
+    {
+        for(ItemStack stack : this.stacks)
+        {
+            if(stack.isEmpty())
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override

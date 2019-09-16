@@ -5,6 +5,9 @@ import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.MailBoxEntry;
 import com.mrcrayfish.furniture.client.gui.widget.button.IconButton;
 import com.mrcrayfish.furniture.inventory.container.PostBoxContainer;
+import com.mrcrayfish.furniture.network.PacketHandler;
+import com.mrcrayfish.furniture.network.message.MessageRequestMailBoxes;
+import com.mrcrayfish.furniture.network.message.MessageSendMail;
 import com.mrcrayfish.furniture.util.RenderUtil;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
@@ -45,13 +48,12 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
     private Button btnSend;
 
     private List<MailBoxEntry> mailBoxList = new ArrayList<>();
-    private List<MailBoxEntry> filteredMailBoxList;
+    private List<MailBoxEntry> filteredMailBoxList = new ArrayList<>();
 
     public PostBoxScreen(PostBoxContainer container, PlayerInventory playerInventory, ITextComponent title)
     {
         super(container, playerInventory, title);
         this.ySize = 187;
-        this.filteredMailBoxList = this.mailBoxList;
     }
 
     @Override
@@ -63,10 +65,17 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
         this.searchField.setMaxStringLength(32);
         this.searchField.setTextColor(16777215);
         this.children.add(this.searchField);
-        this.btnSend = this.addButton(new IconButton(this.guiLeft + 147, this.guiTop + 53, I18n.format("gui.button.cfm.send_mail"), button -> {
-
-        }, ICONS_TEXTURE, 32, 0));
+        this.btnSend = this.addButton(new IconButton(this.guiLeft + 147, this.guiTop + 53, I18n.format("gui.button.cfm.send_mail"), this::sendMail, ICONS_TEXTURE, 32, 0));
         this.btnSend.active = false;
+        PacketHandler.instance.sendToServer(new MessageRequestMailBoxes());
+    }
+
+    private void sendMail(Button button)
+    {
+        if(this.selected != null && !this.container.getMail().isEmpty())
+        {
+            PacketHandler.instance.sendToServer(new MessageSendMail(this.selected.getOwnerId(), this.selected.getMailBoxId()));
+        }
     }
 
     @Override
@@ -262,5 +271,11 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
     private int getMaxScroll()
     {
         return Math.max(0, ITEM_HEIGHT * this.filteredMailBoxList.size() - LIST_HEIGHT);
+    }
+
+    public void updateMailBoxes(List<MailBoxEntry> entries)
+    {
+        this.mailBoxList = entries;
+        this.filteredMailBoxList = entries;
     }
 }

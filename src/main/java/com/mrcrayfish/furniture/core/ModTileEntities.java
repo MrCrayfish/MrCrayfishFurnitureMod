@@ -1,10 +1,7 @@
 package com.mrcrayfish.furniture.core;
 
 import com.mrcrayfish.furniture.Reference;
-import com.mrcrayfish.furniture.tileentity.BedsideCabinetTileEntity;
-import com.mrcrayfish.furniture.tileentity.CabinetTileEntity;
-import com.mrcrayfish.furniture.tileentity.CrateTileEntity;
-import com.mrcrayfish.furniture.tileentity.DeskCabinetTileEntity;
+import com.mrcrayfish.furniture.tileentity.*;
 import com.mrcrayfish.furniture.util.TileEntityNames;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -27,6 +24,7 @@ public class ModTileEntities
     public static final TileEntityType<BedsideCabinetTileEntity> BEDSIDE_CABINET = buildType(TileEntityNames.BEDSIDE_CABINET, TileEntityType.Builder.create(BedsideCabinetTileEntity::new, ModBlocks.BEDSIDE_CABINET_OAK, ModBlocks.BEDSIDE_CABINET_SPRUCE, ModBlocks.BEDSIDE_CABINET_BIRCH, ModBlocks.BEDSIDE_CABINET_JUNGLE, ModBlocks.BEDSIDE_CABINET_ACACIA, ModBlocks.BEDSIDE_CABINET_DARK_OAK, ModBlocks.BEDSIDE_CABINET_STONE, ModBlocks.BEDSIDE_CABINET_GRANITE, ModBlocks.BEDSIDE_CABINET_DIORITE, ModBlocks.BEDSIDE_CABINET_ANDESITE, ModBlocks.BEDSIDE_CABINET_STRIPPED_OAK, ModBlocks.BEDSIDE_CABINET_STRIPPED_SPRUCE, ModBlocks.BEDSIDE_CABINET_STRIPPED_BIRCH, ModBlocks.BEDSIDE_CABINET_STRIPPED_JUNGLE, ModBlocks.BEDSIDE_CABINET_STRIPPED_ACACIA, ModBlocks.BEDSIDE_CABINET_STRIPPED_DARK_OAK));
     public static final TileEntityType<DeskCabinetTileEntity> DESK_CABINET = buildType(TileEntityNames.DESK_CABINET, TileEntityType.Builder.create(DeskCabinetTileEntity::new, ModBlocks.DESK_CABINET_OAK, ModBlocks.DESK_CABINET_SPRUCE, ModBlocks.DESK_CABINET_BIRCH, ModBlocks.DESK_CABINET_JUNGLE, ModBlocks.DESK_CABINET_ACACIA, ModBlocks.DESK_CABINET_DARK_OAK, ModBlocks.DESK_CABINET_STONE, ModBlocks.DESK_CABINET_GRANITE, ModBlocks.DESK_CABINET_DIORITE, ModBlocks.DESK_CABINET_ANDESITE, ModBlocks.DESK_CABINET_STRIPPED_OAK, ModBlocks.DESK_CABINET_STRIPPED_SPRUCE, ModBlocks.DESK_CABINET_STRIPPED_BIRCH, ModBlocks.DESK_CABINET_STRIPPED_JUNGLE, ModBlocks.DESK_CABINET_STRIPPED_ACACIA, ModBlocks.DESK_CABINET_STRIPPED_DARK_OAK));
     public static final TileEntityType<CrateTileEntity> CRATE = buildType(TileEntityNames.CRATE, TileEntityType.Builder.create(CrateTileEntity::new, ModBlocks.CRATE_OAK, ModBlocks.CRATE_SPRUCE, ModBlocks.CRATE_BIRCH, ModBlocks.CRATE_JUNGLE, ModBlocks.CRATE_ACACIA, ModBlocks.CRATE_DARK_OAK));
+    public static final TileEntityType<MailBoxTileEntity> MAIL_BOX = buildType(TileEntityNames.MAIL_BOX, TileEntityType.Builder.create(MailBoxTileEntity::new, ModBlocks.MAIL_BOX_OAK, ModBlocks.MAIL_BOX_SPRUCE, ModBlocks.MAIL_BOX_BIRCH, ModBlocks.MAIL_BOX_JUNGLE, ModBlocks.MAIL_BOX_ACACIA, ModBlocks.MAIL_BOX_DARK_OAK));
     
     private static <T extends TileEntity> TileEntityType<T> buildType(String id, TileEntityType.Builder<T> builder)
     {

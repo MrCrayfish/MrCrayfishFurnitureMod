@@ -16,14 +16,16 @@ import java.util.UUID;
  */
 public class MailBox implements INBTSerializable<CompoundNBT>
 {
+    private UUID id;
     private String name;
     private UUID ownerId;
     private String ownerName;
     private BlockPos pos;
     private List<Mail> mailStorage = new ArrayList<>();
 
-    public MailBox(String name, UUID ownerId, String ownerName, BlockPos pos)
+    public MailBox(UUID id, String name, UUID ownerId, String ownerName, BlockPos pos)
     {
+        this.id = id;
         this.name = name;
         this.ownerId = ownerId;
         this.ownerName = ownerName;
@@ -33,6 +35,11 @@ public class MailBox implements INBTSerializable<CompoundNBT>
     public MailBox(CompoundNBT compound)
     {
         this.deserializeNBT(compound);
+    }
+
+    public UUID getId()
+    {
+        return id;
     }
 
     public String getName()
@@ -68,9 +75,10 @@ public class MailBox implements INBTSerializable<CompoundNBT>
     public CompoundNBT serializeDetails()
     {
         CompoundNBT compound = new CompoundNBT();
+        compound.putUniqueId("MailBoxUUID", this.id);
         compound.putString("Name", this.name);
+        compound.putUniqueId("OwnerUUID", this.ownerId);
         compound.putString("OwnerName", this.ownerName);
-        compound.put("Pos", NBTUtil.writeBlockPos(this.pos));
         return compound;
     }
 

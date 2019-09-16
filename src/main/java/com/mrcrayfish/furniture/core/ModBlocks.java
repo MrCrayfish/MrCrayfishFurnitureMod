@@ -254,6 +254,12 @@ public class ModBlocks
     public static final Block PARK_BENCH_STRIPPED_ACACIA = register(BlockNames.STRIPPED_ACACIA_PARK_BENCH, new ParkBenchBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
     public static final Block PARK_BENCH_STRIPPED_DARK_OAK = register(BlockNames.STRIPPED_DARK_OAK_PARK_BENCH, new ParkBenchBlock(Block.Properties.create(WOOD).hardnessAndResistance(2.0F, 10.0F).sound(SoundType.WOOD)));
     public static final Block POST_BOX = register(BlockNames.POST_BOX, new PostBoxBlock(Block.Properties.from(Blocks.ANVIL)));
+    public static final Block MAIL_BOX_OAK = register(BlockNames.MAIL_BOX_OAK, new MailBoxBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block MAIL_BOX_SPRUCE = register(BlockNames.MAIL_BOX_SPRUCE, new MailBoxBlock(Block.Properties.from(Blocks.SPRUCE_PLANKS)));
+    public static final Block MAIL_BOX_BIRCH = register(BlockNames.MAIL_BOX_BIRCH, new MailBoxBlock(Block.Properties.from(Blocks.BIRCH_PLANKS)));
+    public static final Block MAIL_BOX_JUNGLE = register(BlockNames.MAIL_BOX_JUNGLE, new MailBoxBlock(Block.Properties.from(Blocks.JUNGLE_PLANKS)));
+    public static final Block MAIL_BOX_ACACIA = register(BlockNames.MAIL_BOX_ACACIA, new MailBoxBlock(Block.Properties.from(Blocks.ACACIA_PLANKS)));
+    public static final Block MAIL_BOX_DARK_OAK = register(BlockNames.MAIL_BOX_DARK_OAK, new MailBoxBlock(Block.Properties.from(Blocks.DARK_OAK_PLANKS)));
 
     private static Block register(String name, Block block)
     {

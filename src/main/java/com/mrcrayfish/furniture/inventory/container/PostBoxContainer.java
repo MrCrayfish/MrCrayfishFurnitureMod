@@ -62,6 +62,11 @@ public class PostBoxContainer extends Container
 
     public ItemStack getMail()
     {
-        return mailInput.getStackInSlot(0);
+        return this.mailInput.getStackInSlot(0);
+    }
+
+    public void removeMail()
+    {
+        this.mailInput.clear();
     }
 }

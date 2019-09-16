@@ -1,7 +1,7 @@
 package com.mrcrayfish.furniture.network;
 
 import com.mrcrayfish.furniture.Reference;
-import com.mrcrayfish.furniture.network.message.MessageLockCrate;
+import com.mrcrayfish.furniture.network.message.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
@@ -14,6 +14,7 @@ public class PacketHandler
     public static final String PROTOCOL_VERSION = "1";
 
     public static SimpleChannel instance;
+    private static int nextId = 0;
 
     public static void init()
     {
@@ -23,6 +24,14 @@ public class PacketHandler
                 .clientAcceptedVersions(PROTOCOL_VERSION::equals)
                 .serverAcceptedVersions(PROTOCOL_VERSION::equals)
                 .simpleChannel();
-        instance.registerMessage(0, MessageLockCrate.class, MessageLockCrate::encode, MessageLockCrate::decode, MessageLockCrate::handle);
+        register(MessageLockCrate.class, new MessageLockCrate());
+        register(MessageRequestMailBoxes.class, new MessageRequestMailBoxes());
+        register(MessageUpdateMailBoxes.class, new MessageUpdateMailBoxes());
+        register(MessageSendMail.class, new MessageSendMail());
+    }
+
+    private static <T> void register(Class<T> clazz, IMessage<T> message)
+    {
+        instance.registerMessage(nextId++, clazz, message::encode, message::decode, message::handle);
     }
 }
