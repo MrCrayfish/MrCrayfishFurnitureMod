@@ -50,6 +50,16 @@ public class PostBoxContainer extends Container
         return this.callable.applyOrElse((world, pos) -> playerIn.getDistanceSq(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5) <= 64.0, true);
     }
 
+    @Override
+    public void onContainerClosed(PlayerEntity playerIn)
+    {
+        super.onContainerClosed(playerIn);
+        this.callable.consume((world, pos) ->
+        {
+            this.clearContainer(playerIn, world, this.mailInput);
+        });
+    }
+
     public ItemStack getMail()
     {
         return mailInput.getStackInSlot(0);
