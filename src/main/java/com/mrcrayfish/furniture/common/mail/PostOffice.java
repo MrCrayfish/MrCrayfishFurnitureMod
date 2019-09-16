@@ -21,7 +21,7 @@ public class PostOffice extends WorldSavedData
 {
     private static final String DATA_NAME = Reference.MOD_ID + "_PostOffice";
 
-    private Map<UUID, List<Mail>> playerMailStorage = new HashMap<>();
+    private Map<UUID, Map<UUID, MailBox>> playerMailboxMap = new HashMap<>();
 
     public PostOffice()
     {
@@ -36,24 +36,28 @@ public class PostOffice extends WorldSavedData
     @Override
     public void read(CompoundNBT compound)
     {
-        playerMailStorage.clear();
-        if(compound.contains("PlayerMailStorage", Constants.NBT.TAG_LIST))
+        playerMailboxMap.clear();
+        if(compound.contains("PlayerMailBoxes", Constants.NBT.TAG_LIST))
         {
-            ListNBT playerMailStorageList = compound.getList("PlayerMailStorage", Constants.NBT.TAG_COMPOUND);
-            playerMailStorageList.forEach(nbt ->
+            ListNBT playerMailBoxesList = compound.getList("PlayerMailBoxes", Constants.NBT.TAG_COMPOUND);
+            playerMailBoxesList.forEach(nbt ->
             {
-                CompoundNBT mailStorageCompound = (CompoundNBT) nbt;
+                CompoundNBT playerMailBoxesCompound = (CompoundNBT) nbt;
+                UUID playerId = playerMailBoxesCompound.getUniqueId("PlayerUUID");
 
-                List<Mail> mailStorage = new ArrayList<>();
-                ListNBT mailStorageList = mailStorageCompound.getList("MailStorage", Constants.NBT.TAG_COMPOUND);
-                mailStorageList.forEach(nbt2 ->
+                if(compound.contains("MailBoxes", Constants.NBT.TAG_LIST))
                 {
-                    CompoundNBT mailCompound = (CompoundNBT) nbt2;
-                    mailStorage.add(new Mail(mailCompound));
-                });
-
-                UUID uuid = mailStorageCompound.getUniqueId("PlayerUUID");
-                playerMailStorage.put(uuid, mailStorage);
+                    Map<UUID, MailBox> mailBoxMap = new HashMap<>();
+                    ListNBT mailBoxList = compound.getList("MailBoxes", Constants.NBT.TAG_COMPOUND);
+                    mailBoxList.forEach(nbt2 ->
+                    {
+                        CompoundNBT mailBoxCompound = (CompoundNBT) nbt2;
+                        UUID mailBoxId = mailBoxCompound.getUniqueId("MailBoxUUID");
+                        MailBox mailBox = new MailBox(mailBoxCompound.getCompound("MailBox"));
+                        mailBoxMap.put(mailBoxId, mailBox);
+                    });
+                    playerMailboxMap.put(playerId, mailBoxMap);
+                }
             });
         }
     }
@@ -61,33 +65,44 @@ public class PostOffice extends WorldSavedData
     @Override
     public CompoundNBT write(CompoundNBT compound)
     {
-        ListNBT playerMailStorageList = new ListNBT();
-        this.playerMailStorage.forEach((uuid, mailStorage) ->
+        ListNBT playerMailBoxesList = new ListNBT();
+        this.playerMailboxMap.forEach((playerId, mailStorage) ->
         {
             if(!mailStorage.isEmpty())
             {
-                CompoundNBT mailStorageCompound = new CompoundNBT();
-                mailStorageCompound.putUniqueId("PlayerUUID", uuid);
+                CompoundNBT playerMailBoxesCompound = new CompoundNBT();
+                playerMailBoxesCompound.putUniqueId("PlayerUUID", playerId);
 
-                ListNBT mailStorageList = new ListNBT();
-                mailStorage.forEach(mail -> mailStorageList.add(mail.serializeNBT()));
-                mailStorageCompound.put("MailStorage", mailStorageList);
+                ListNBT mailBoxList = new ListNBT();
+                mailStorage.forEach((mailBoxId, mailBox) ->
+                {
+                    CompoundNBT mailBoxCompound = new CompoundNBT();
+                    mailBoxCompound.putUniqueId("MailBoxUUID", mailBoxId);
+                    mailBoxCompound.put("MailBox", mailBox.serializeNBT());
+                    mailBoxList.add(mailBoxCompound);
+                });
+                playerMailBoxesCompound.put("MailBoxes", mailBoxList);
 
-                playerMailStorageList.add(mailStorageCompound);
+                playerMailBoxesList.add(playerMailBoxesCompound);
             }
         });
-        compound.put("PlayerMailStorage", playerMailStorageList);
+        compound.put("PlayerMailBoxes", playerMailBoxesList);
         return compound;
     }
 
-    public static void sendMailToPlayer(ServerPlayerEntity playerEntity, Mail mail)
+    public static boolean sendMailToPlayer(ServerPlayerEntity playerEntity, UUID mailBoxId, Mail mail)
     {
         PostOffice office = get(playerEntity.server);
-        List<Mail> mailStorage = office.playerMailStorage.computeIfAbsent(playerEntity.getUniqueID(), uuid -> new ArrayList<>());
-        mailStorage.add(mail);
+        Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.computeIfAbsent(playerEntity.getUniqueID(), uuid -> new HashMap<>());
+        if(mailBoxMap.containsKey(mailBoxId))
+        {
+            mailBoxMap.get(mailBoxId).addMail(mail);
+            return true;
+        }
+        return false;
     }
 
-    public static Supplier<Mail> getMailForPlayer(UUID uuid)
+    public static Supplier<Mail> getMailForPlayerMailBox(UUID playerId, UUID mailBoxId)
     {
         return () ->
         {
@@ -95,17 +110,17 @@ public class PostOffice extends WorldSavedData
             if(server != null)
             {
                 PostOffice office = get(server);
-                if(office.playerMailStorage.containsKey(uuid))
+                if(office.playerMailboxMap.containsKey(playerId))
                 {
-                    List<Mail> mailStorage = office.playerMailStorage.get(uuid);
-                    if(!mailStorage.isEmpty())
+                    Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.get(playerId);
+                    if(mailBoxMap.containsKey(mailBoxId))
                     {
-                        Mail mail = mailStorage.remove(0);
-                        if(mailStorage.isEmpty())
+                        MailBox mailBox = mailBoxMap.get(mailBoxId);
+                        List<Mail> mailStorage = mailBox.getMailStorage();
+                        if(!mailStorage.isEmpty())
                         {
-                            office.playerMailStorage.remove(uuid);  //remove memory if mail box is empty
+                            return mailStorage.remove(0);
                         }
-                        return mail;
                     }
                 }
             }
