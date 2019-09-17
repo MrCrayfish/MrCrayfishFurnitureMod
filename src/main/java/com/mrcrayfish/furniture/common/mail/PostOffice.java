@@ -2,15 +2,21 @@ package com.mrcrayfish.furniture.common.mail;
 
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.MailBoxEntry;
+import com.mrcrayfish.furniture.tileentity.MailBoxTileEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.WorldSavedData;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSidedProvider;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 import java.util.*;
@@ -20,6 +26,7 @@ import java.util.stream.Collectors;
 /**
  * Author: MrCrayfish
  */
+@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class PostOffice extends WorldSavedData
 {
     private static final String DATA_NAME = Reference.MOD_ID + "_post_office";
@@ -97,7 +104,7 @@ public class PostOffice extends WorldSavedData
     {
         PostOffice office = get(playerEntity.server);
         Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.computeIfAbsent(playerEntity.getUniqueID(), uuid -> new HashMap<>());
-        mailBoxMap.put(mailBoxId, new MailBox(mailBoxId, name, playerEntity.getUniqueID(), playerEntity.getName().getString(), pos));
+        mailBoxMap.put(mailBoxId, new MailBox(mailBoxId, name, playerEntity.getUniqueID(), playerEntity.getName().getString(), pos, playerEntity.dimension));
         office.markDirty();
     }
 
@@ -168,5 +175,34 @@ public class PostOffice extends WorldSavedData
     {
         ServerWorld world = server.getWorld(DimensionType.OVERWORLD);
         return world.getSavedData().getOrCreate(PostOffice::new, DATA_NAME);
+    }
+
+    /*
+     * Cleans up invalid mail boxes or mail boxes removed by other means than a player.
+     */
+    @SubscribeEvent
+    public static void onTick(TickEvent.ServerTickEvent event)
+    {
+        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+        if(server != null && server.getTickCounter() % 1200 == 0)
+        {
+            PostOffice office = get(server);
+            office.playerMailboxMap.values().forEach(uuidMailBoxMap -> uuidMailBoxMap.values().removeIf(mailBox ->
+            {
+                BlockPos pos = mailBox.getPos();
+                ServerWorld world = server.getWorld(mailBox.getDimensionType());
+                if(world.isAreaLoaded(pos, 0))
+                {
+                    TileEntity tileEntity = world.getTileEntity(pos);
+                    if(tileEntity instanceof MailBoxTileEntity)
+                    {
+                        MailBoxTileEntity mailBoxTileEntity = (MailBoxTileEntity) tileEntity;
+                        return mailBoxTileEntity.getId() == null || !Objects.equals(mailBoxTileEntity.getId(), mailBox.getId());
+                    }
+                    return true;
+                }
+                return false;
+            }));
+        }
     }
 }
