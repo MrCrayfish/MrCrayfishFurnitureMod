@@ -60,6 +60,39 @@ public class PostBoxContainer extends Container
         });
     }
 
+    @Override
+    public ItemStack transferStackInSlot(PlayerEntity playerEntity, int index)
+    {
+        ItemStack clickedStack = ItemStack.EMPTY;
+        Slot slot = this.inventorySlots.get(index);
+        if(slot != null && slot.getHasStack())
+        {
+            ItemStack slotStack = slot.getStack();
+            clickedStack = slotStack.copy();
+            if(index < this.mailInput.getSizeInventory())
+            {
+                if(!this.mergeItemStack(slotStack, this.mailInput.getSizeInventory(), this.inventorySlots.size(), true))
+                {
+                    return ItemStack.EMPTY;
+                }
+            }
+            else if(!this.mergeItemStack(slotStack, 0, this.mailInput.getSizeInventory(), false))
+            {
+                return ItemStack.EMPTY;
+            }
+
+            if(slotStack.isEmpty())
+            {
+                slot.putStack(ItemStack.EMPTY);
+            }
+            else
+            {
+                slot.onSlotChanged();
+            }
+        }
+        return clickedStack;
+    }
+
     public ItemStack getMail()
     {
         return this.mailInput.getStackInSlot(0);
