@@ -14,6 +14,7 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -143,7 +144,7 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
         {
             this.id = compound.getUniqueId("MailBoxUUID");
         }
-        if(compound.hasUniqueId("OwnerName"))
+        if(compound.contains("OwnerName", Constants.NBT.TAG_STRING))
         {
             this.ownerName = compound.getString("OwnerName");
         }
