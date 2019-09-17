@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.block;
 
+import com.mrcrayfish.furniture.common.mail.Mail;
 import com.mrcrayfish.furniture.common.mail.PostOffice;
 import com.mrcrayfish.furniture.tileentity.MailBoxTileEntity;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
@@ -7,6 +8,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -19,6 +21,7 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
+import java.util.function.Supplier;
 
 /**
  * Author: MrCrayfish
@@ -59,6 +62,16 @@ public class MailBoxBlock extends FurnitureHorizontalWaterloggedBlock
                 MailBoxTileEntity mailBox = (MailBoxTileEntity) tileEntity;
                 if(mailBox.getId() != null && mailBox.getOwnerId() != null)
                 {
+                    /* Drops all items that were queue to be inserted into mail box */
+                    Supplier<Mail> supplier = PostOffice.getMailForPlayerMailBox(mailBox.getOwnerId(), mailBox.getId());
+                    while(true)
+                    {
+                        Mail mail = supplier.get();
+                        if(mail == null) break;
+                        InventoryHelper.spawnItemStack(world, pos.getX(), pos.getY(), pos.getZ(), mail.getStack());
+                    }
+
+                    /* Unregisters the mail box */
                     PostOffice.unregisterMailBox(mailBox.getOwnerId(), mailBox.getId());
                 }
             }
