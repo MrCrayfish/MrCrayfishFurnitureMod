@@ -1,8 +1,8 @@
 package com.mrcrayfish.furniture.block;
 
 import com.mrcrayfish.furniture.common.mail.PostOffice;
-import com.mrcrayfish.furniture.tileentity.CabinetTileEntity;
 import com.mrcrayfish.furniture.tileentity.MailBoxTileEntity;
+import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -41,8 +41,9 @@ public class MailBoxBlock extends FurnitureHorizontalWaterloggedBlock
             {
                 MailBoxTileEntity mailBox = (MailBoxTileEntity) tileEntity;
                 mailBox.setId(UUID.randomUUID());
-                mailBox.setOwner(entity.getUniqueID());
+                mailBox.setOwner((ServerPlayerEntity) entity);
                 PostOffice.registerMailBox((ServerPlayerEntity) entity, mailBox.getId(), "Mail Box", pos);
+                TileEntityUtil.sendUpdatePacket(tileEntity);
             }
         }
     }
@@ -56,9 +57,9 @@ public class MailBoxBlock extends FurnitureHorizontalWaterloggedBlock
             if(tileEntity instanceof MailBoxTileEntity)
             {
                 MailBoxTileEntity mailBox = (MailBoxTileEntity) tileEntity;
-                if(mailBox.getId() != null && mailBox.getOwner() != null)
+                if(mailBox.getId() != null && mailBox.getOwnerId() != null)
                 {
-                    PostOffice.unregisterMailBox(mailBox.getOwner(), mailBox.getId());
+                    PostOffice.unregisterMailBox(mailBox.getOwnerId(), mailBox.getId());
                 }
             }
         }
@@ -71,8 +72,17 @@ public class MailBoxBlock extends FurnitureHorizontalWaterloggedBlock
         if(!world.isRemote())
         {
             TileEntity tileEntity = world.getTileEntity(pos);
-            if(tileEntity instanceof INamedContainerProvider)
+            if(tileEntity instanceof MailBoxTileEntity)
             {
+                MailBoxTileEntity mailBox = (MailBoxTileEntity) tileEntity;
+                if(playerEntity.getUniqueID().equals(mailBox.getOwnerId()))
+                {
+                    if(!playerEntity.getName().getString().equals(mailBox.getOwnerName()))
+                    {
+                        mailBox.setOwnerName(playerEntity.getName().getString());
+                        TileEntityUtil.sendUpdatePacket(tileEntity);
+                    }
+                }
                 playerEntity.openContainer((INamedContainerProvider) tileEntity);
             }
         }

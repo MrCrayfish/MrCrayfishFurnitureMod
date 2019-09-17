@@ -4,14 +4,18 @@ import com.mrcrayfish.furniture.common.mail.Mail;
 import com.mrcrayfish.furniture.common.mail.PostOffice;
 import com.mrcrayfish.furniture.core.ModTileEntities;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.ChestContainer;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
+import javax.annotation.Nullable;
 import java.util.UUID;
 import java.util.function.Supplier;
 
@@ -21,7 +25,8 @@ import java.util.function.Supplier;
 public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableTileEntity
 {
     private UUID id;
-    private UUID owner;
+    private String ownerName;
+    private UUID ownerId;
 
     public MailBoxTileEntity()
     {
@@ -38,17 +43,28 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
 
     public UUID getId()
     {
-        return id;
+        return this.id;
     }
 
-    public void setOwner(UUID owner)
+    public void setOwner(ServerPlayerEntity entity)
     {
-        this.owner = owner;
+        this.ownerId = entity.getUniqueID();
+        this.ownerName = entity.getName().getString();
     }
 
-    public UUID getOwner()
+    public UUID getOwnerId()
     {
-        return owner;
+        return this.ownerId;
+    }
+
+    public String getOwnerName()
+    {
+        return this.ownerName;
+    }
+
+    public void setOwnerName(String ownerName)
+    {
+        this.ownerName = ownerName;
     }
 
     @Override
@@ -56,9 +72,9 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
     {
         if(world != null && !world.isRemote)
         {
-            if(!this.isFull() && this.owner != null && this.id != null)
+            if(!this.isFull() && this.ownerId != null && this.id != null)
             {
-                Supplier<Mail> supplier = PostOffice.getMailForPlayerMailBox(this.owner, this.id);
+                Supplier<Mail> supplier = PostOffice.getMailForPlayerMailBox(this.ownerId, this.id);
                 while(!this.isFull())
                 {
                     Mail mail = supplier.get();
@@ -78,7 +94,7 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
     @Override
     protected ITextComponent getDefaultName()
     {
-        return new TranslationTextComponent("container.cfm.mail_box");
+        return new TranslationTextComponent("container.cfm.mail_box", this.getOwnerName());
     }
 
     @Override
@@ -91,27 +107,63 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
     public void read(CompoundNBT compound)
     {
         super.read(compound);
-        if(compound.hasUniqueId("MailBoxUUID"))
-        {
-            this.id = compound.getUniqueId("MailBoxUUID");
-        }
-        if(compound.hasUniqueId("OwnerUUID"))
-        {
-            this.owner = compound.getUniqueId("OwnerUUID");
-        }
+        this.readData(compound);
     }
 
     @Override
     public CompoundNBT write(CompoundNBT compound)
     {
-        compound.putUniqueId("MailBoxUUID", this.id);
-        compound.putUniqueId("OwnerUUID", this.owner);
+        this.writeData(compound);
         return super.write(compound);
     }
 
     @Override
-    public void remove()
+    public CompoundNBT getUpdateTag()
     {
-        super.remove();
+        return this.writeData(new CompoundNBT());
+    }
+
+    @Nullable
+    @Override
+    public SUpdateTileEntityPacket getUpdatePacket()
+    {
+        return new SUpdateTileEntityPacket(this.pos, 0, this.getUpdateTag());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt)
+    {
+        CompoundNBT compound = pkt.getNbtCompound();
+        this.readData(compound);
+    }
+
+    private void readData(CompoundNBT compound)
+    {
+        if(compound.hasUniqueId("MailBoxUUID"))
+        {
+            this.id = compound.getUniqueId("MailBoxUUID");
+        }
+        if(compound.hasUniqueId("OwnerName"))
+        {
+            this.ownerName = compound.getString("OwnerName");
+        }
+        if(compound.hasUniqueId("OwnerUUID"))
+        {
+            this.ownerId = compound.getUniqueId("OwnerUUID");
+        }
+    }
+
+    private CompoundNBT writeData(CompoundNBT compound)
+    {
+        if(this.id != null)
+        {
+            compound.putUniqueId("MailBoxUUID", this.id);
+        }
+        if(this.ownerName != null && this.ownerId != null)
+        {
+            compound.putString("OwnerName", this.ownerName);
+            compound.putUniqueId("OwnerUUID", this.ownerId);
+        }
+        return compound;
     }
 }
