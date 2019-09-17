@@ -94,13 +94,13 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
         int startX = (this.width - this.xSize) / 2;
         int startY = (this.height - this.ySize) / 2;
         this.blit(startX, startY, 0, 0, this.xSize, this.ySize);
-        this.searchField.render(mouseX, mouseY, partialTicks);
 
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         if(this.container.getMail().isEmpty())
         {
             this.blit(startX + 149, startY + 33, 116, 202, 16, 16);
         }
+
+        this.searchField.render(mouseX, mouseY, partialTicks);
     }
 
     @Override
