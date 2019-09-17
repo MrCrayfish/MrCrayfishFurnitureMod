@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/mail_box",
+    "textures": {
+        "roof": "minecraft:block/spruce_log",
+        "box": "minecraft:block/spruce_planks"
+    }
+}

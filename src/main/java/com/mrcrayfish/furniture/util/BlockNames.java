@@ -231,12 +231,12 @@ public class BlockNames
     public static final String STRIPPED_DARK_OAK_PARK_BENCH = Reference.MOD_ID + ":stripped_dark_oak_park_bench";
 
     public static final String POST_BOX = Reference.MOD_ID + ":post_box";
-    public static final String MAIL_BOX_OAK = Reference.MOD_ID + ":mail_box_oak";
-    public static final String MAIL_BOX_SPRUCE = Reference.MOD_ID + ":mail_box_spruce";
-    public static final String MAIL_BOX_BIRCH = Reference.MOD_ID + ":mail_box_birch";
-    public static final String MAIL_BOX_JUNGLE = Reference.MOD_ID + ":mail_box_jungle";
-    public static final String MAIL_BOX_ACACIA = Reference.MOD_ID + ":mail_box_acacia";
-    public static final String MAIL_BOX_DARK_OAK = Reference.MOD_ID + ":mail_box_dark_oak";
+    public static final String MAIL_BOX_OAK = Reference.MOD_ID + ":oak_mail_box";
+    public static final String MAIL_BOX_SPRUCE = Reference.MOD_ID + ":spruce_mail_box";
+    public static final String MAIL_BOX_BIRCH = Reference.MOD_ID + ":birch_mail_box";
+    public static final String MAIL_BOX_JUNGLE = Reference.MOD_ID + ":jungle_mail_box";
+    public static final String MAIL_BOX_ACACIA = Reference.MOD_ID + ":acacia_mail_box";
+    public static final String MAIL_BOX_DARK_OAK = Reference.MOD_ID + ":dark_oak_mail_box";
 
 
     /* Electronic Update */
