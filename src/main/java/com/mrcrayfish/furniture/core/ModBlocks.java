@@ -260,6 +260,12 @@ public class ModBlocks
     public static final Block MAIL_BOX_JUNGLE = register(BlockNames.MAIL_BOX_JUNGLE, new MailBoxBlock(Block.Properties.from(Blocks.JUNGLE_PLANKS)));
     public static final Block MAIL_BOX_ACACIA = register(BlockNames.MAIL_BOX_ACACIA, new MailBoxBlock(Block.Properties.from(Blocks.ACACIA_PLANKS)));
     public static final Block MAIL_BOX_DARK_OAK = register(BlockNames.MAIL_BOX_DARK_OAK, new MailBoxBlock(Block.Properties.from(Blocks.DARK_OAK_PLANKS)));
+    public static final Block MAIL_BOX_STRIPPED_OAK = register(BlockNames.MAIL_BOX_STRIPPED_OAK, new MailBoxBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block MAIL_BOX_STRIPPED_SPRUCE = register(BlockNames.MAIL_BOX_STRIPPED_SPRUCE, new MailBoxBlock(Block.Properties.from(Blocks.SPRUCE_PLANKS)));
+    public static final Block MAIL_BOX_STRIPPED_BIRCH = register(BlockNames.MAIL_BOX_STRIPPED_BIRCH, new MailBoxBlock(Block.Properties.from(Blocks.BIRCH_PLANKS)));
+    public static final Block MAIL_BOX_STRIPPED_JUNGLE = register(BlockNames.MAIL_BOX_STRIPPED_JUNGLE, new MailBoxBlock(Block.Properties.from(Blocks.JUNGLE_PLANKS)));
+    public static final Block MAIL_BOX_STRIPPED_ACACIA = register(BlockNames.MAIL_BOX_STRIPPED_ACACIA, new MailBoxBlock(Block.Properties.from(Blocks.ACACIA_PLANKS)));
+    public static final Block MAIL_BOX_STRIPPED_DARK_OAK = register(BlockNames.MAIL_BOX_STRIPPED_DARK_OAK, new MailBoxBlock(Block.Properties.from(Blocks.DARK_OAK_PLANKS)));
 
     private static Block register(String name, Block block)
     {
