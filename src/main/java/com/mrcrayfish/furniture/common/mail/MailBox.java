@@ -86,6 +86,7 @@ public class MailBox implements INBTSerializable<CompoundNBT>
     public CompoundNBT serializeNBT()
     {
         CompoundNBT compound = new CompoundNBT();
+        compound.putUniqueId("MailBoxUUID", this.id);
         compound.putString("Name", this.name);
         compound.putUniqueId("OwnerUUID", this.ownerId);
         compound.putString("OwnerName", this.ownerName);
@@ -106,6 +107,7 @@ public class MailBox implements INBTSerializable<CompoundNBT>
     {
         this.mailStorage = new ArrayList<>();
 
+        this.id = compound.getUniqueId("MailBoxUUID");
         this.name = compound.getString("Name");
         this.ownerId = compound.getUniqueId("OwnerUUID");
         this.ownerName = compound.getString("OwnerName");

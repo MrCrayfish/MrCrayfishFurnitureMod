@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  */
 public class PostOffice extends WorldSavedData
 {
-    private static final String DATA_NAME = Reference.MOD_ID + "_PostOffice";
+    private static final String DATA_NAME = Reference.MOD_ID + "_post_office";
 
     private Map<UUID, Map<UUID, MailBox>> playerMailboxMap = new HashMap<>();
 
@@ -48,10 +48,10 @@ public class PostOffice extends WorldSavedData
                 CompoundNBT playerMailBoxesCompound = (CompoundNBT) nbt;
                 UUID playerId = playerMailBoxesCompound.getUniqueId("PlayerUUID");
 
-                if(compound.contains("MailBoxes", Constants.NBT.TAG_LIST))
+                if(playerMailBoxesCompound.contains("MailBoxes", Constants.NBT.TAG_LIST))
                 {
                     Map<UUID, MailBox> mailBoxMap = new HashMap<>();
-                    ListNBT mailBoxList = compound.getList("MailBoxes", Constants.NBT.TAG_COMPOUND);
+                    ListNBT mailBoxList = playerMailBoxesCompound.getList("MailBoxes", Constants.NBT.TAG_COMPOUND);
                     mailBoxList.forEach(nbt2 ->
                     {
                         CompoundNBT mailBoxCompound = (CompoundNBT) nbt2;
@@ -98,6 +98,7 @@ public class PostOffice extends WorldSavedData
         PostOffice office = get(playerEntity.server);
         Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.computeIfAbsent(playerEntity.getUniqueID(), uuid -> new HashMap<>());
         mailBoxMap.put(mailBoxId, new MailBox(mailBoxId, name, playerEntity.getUniqueID(), playerEntity.getName().getString(), pos));
+        office.markDirty();
     }
 
     public static void unregisterMailBox(UUID playerId, UUID mailBoxId)
@@ -108,6 +109,7 @@ public class PostOffice extends WorldSavedData
             PostOffice office = get(server);
             Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.computeIfAbsent(playerId, uuid -> new HashMap<>());
             mailBoxMap.remove(mailBoxId);
+            office.markDirty();
             //TODO spawn all items at mail box
         }
     }
@@ -128,6 +130,7 @@ public class PostOffice extends WorldSavedData
             if(mailBoxMap.containsKey(mailBoxId))
             {
                 mailBoxMap.get(mailBoxId).addMail(mail);
+                office.markDirty();
                 return true;
             }
         }
@@ -151,6 +154,7 @@ public class PostOffice extends WorldSavedData
                         List<Mail> mailStorage = mailBox.getMailStorage();
                         if(!mailStorage.isEmpty())
                         {
+                            office.markDirty();
                             return mailStorage.remove(0);
                         }
                     }
