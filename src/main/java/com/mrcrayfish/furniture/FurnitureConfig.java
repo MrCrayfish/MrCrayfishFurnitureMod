@@ -14,7 +14,7 @@ public class FurnitureConfig
 
         Client(ForgeConfigSpec.Builder builder)
         {
-            builder.comment("Server configuration settings").push("server");
+            builder.comment("Client configuration settings").push("client");
             this.drawCollisionShapes = builder
                     .comment("Draws the collision shape rather than the selection shape when hovering blocks. Used for debugging collisions.")
                     .translation("cfm.configgui.drawCollisionShapes")
