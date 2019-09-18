@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.proxy;
 
 import com.mrcrayfish.furniture.client.MailBoxEntry;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.CrateScreen;
+import com.mrcrayfish.furniture.client.gui.screen.inventory.MailBoxScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.PostBoxScreen;
 import com.mrcrayfish.furniture.client.renderer.SeatRenderer;
 import com.mrcrayfish.furniture.core.ModBlocks;
@@ -30,6 +31,7 @@ public class ClientProxy extends CommonProxy
         RenderingRegistry.registerEntityRenderingHandler(SeatEntity.class, SeatRenderer::new);
         ScreenManager.registerFactory(ModContainers.CRATE, CrateScreen::new);
         ScreenManager.registerFactory(ModContainers.POST_BOX, PostBoxScreen::new);
+        ScreenManager.registerFactory(ModContainers.MAIL_BOX, MailBoxScreen::new);
         this.registerColors();
     }
 

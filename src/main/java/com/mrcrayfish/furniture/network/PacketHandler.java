@@ -28,6 +28,8 @@ public class PacketHandler
         register(MessageRequestMailBoxes.class, new MessageRequestMailBoxes());
         register(MessageUpdateMailBoxes.class, new MessageUpdateMailBoxes());
         register(MessageSendMail.class, new MessageSendMail());
+        register(MessageSetMailBoxName.class, new MessageSetMailBoxName());
+        register(MessageOpenMailBox.class, new MessageOpenMailBox());
     }
 
     private static <T> void register(Class<T> clazz, IMessage<T> message)
