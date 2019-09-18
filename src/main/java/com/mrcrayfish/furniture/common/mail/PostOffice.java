@@ -1,8 +1,8 @@
 package com.mrcrayfish.furniture.common.mail;
 
 import com.mrcrayfish.furniture.Reference;
-import com.mrcrayfish.furniture.client.MailBoxEntry;
 import com.mrcrayfish.furniture.tileentity.MailBoxTileEntity;
+import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
@@ -15,7 +15,6 @@ import net.minecraft.world.storage.WorldSavedData;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.LogicalSidedProvider;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
@@ -144,6 +143,15 @@ public class PostOffice extends WorldSavedData
         return false;
     }
 
+    /**
+     * Gets a supplier which provides mail for the specified mail box. Every time you call
+     * {@link Supplier#get} it will remove mail from the queue. You should also not store this
+     * supplier as it contains a MinecraftServer instance.
+     *
+     * @param playerId
+     * @param mailBoxId
+     * @return
+     */
     public static Supplier<Mail> getMailForPlayerMailBox(UUID playerId, UUID mailBoxId)
     {
         return () ->
@@ -169,6 +177,38 @@ public class PostOffice extends WorldSavedData
             }
             return null;
         };
+    }
+
+    public static boolean setMailBoxName(UUID playerId, UUID mailBoxId, String name)
+    {
+        name = name.trim();
+        if(name.trim().isEmpty())
+            return false;
+
+        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+        if(server != null)
+        {
+            PostOffice office = get(server);
+            if(office.playerMailboxMap.containsKey(playerId))
+            {
+                Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.get(playerId);
+                if(mailBoxMap.containsKey(mailBoxId))
+                {
+                    MailBox mailBox = mailBoxMap.get(mailBoxId);
+                    mailBox.setName(name);
+
+                    ServerWorld world = server.getWorld(mailBox.getDimensionType());
+                    TileEntity tileEntity = world.getTileEntity(mailBox.getPos());
+                    if(tileEntity instanceof MailBoxTileEntity)
+                    {
+                        ((MailBoxTileEntity) tileEntity).setMailBoxName(name);
+                        TileEntityUtil.sendUpdatePacket(tileEntity);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     private static PostOffice get(MinecraftServer server)

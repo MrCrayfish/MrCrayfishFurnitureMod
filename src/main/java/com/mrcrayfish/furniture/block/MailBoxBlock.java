@@ -24,6 +24,7 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -85,6 +86,7 @@ public class MailBoxBlock extends FurnitureHorizontalWaterloggedBlock
                 MailBoxTileEntity mailBox = (MailBoxTileEntity) tileEntity;
                 mailBox.setId(UUID.randomUUID());
                 mailBox.setOwner((ServerPlayerEntity) entity);
+                mailBox.setMailBoxName("Mail Box");
                 PostOffice.registerMailBox((ServerPlayerEntity) entity, mailBox.getId(), "Mail Box", pos);
                 TileEntityUtil.sendUpdatePacket(tileEntity);
             }
@@ -133,10 +135,10 @@ public class MailBoxBlock extends FurnitureHorizontalWaterloggedBlock
                     if(!playerEntity.getName().getString().equals(mailBox.getOwnerName()))
                     {
                         mailBox.setOwnerName(playerEntity.getName().getString());
-                        TileEntityUtil.sendUpdatePacket(tileEntity);
                     }
                 }
-                playerEntity.openContainer((INamedContainerProvider) tileEntity);
+                TileEntityUtil.sendUpdatePacket(tileEntity);
+                NetworkHooks.openGui((ServerPlayerEntity) playerEntity, (INamedContainerProvider) tileEntity, pos);
             }
         }
         return true;

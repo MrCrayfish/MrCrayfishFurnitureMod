@@ -3,11 +3,10 @@ package com.mrcrayfish.furniture.tileentity;
 import com.mrcrayfish.furniture.common.mail.Mail;
 import com.mrcrayfish.furniture.common.mail.PostOffice;
 import com.mrcrayfish.furniture.core.ModTileEntities;
+import com.mrcrayfish.furniture.inventory.container.MailBoxContainer;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.container.ChestContainer;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
@@ -26,6 +25,7 @@ import java.util.function.Supplier;
 public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableTileEntity
 {
     private UUID id;
+    private String name;
     private String ownerName;
     private UUID ownerId;
 
@@ -45,6 +45,16 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
     public UUID getId()
     {
         return this.id;
+    }
+
+    public void setMailBoxName(String name)
+    {
+        this.name = name;
+    }
+
+    public String getMailBoxName()
+    {
+        return name;
     }
 
     public void setOwner(ServerPlayerEntity entity)
@@ -79,7 +89,10 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
                 while(!this.isFull())
                 {
                     Mail mail = supplier.get();
-                    if(mail == null) break;
+                    if(mail == null)
+                    {
+                        break;
+                    }
                     this.addItem(mail.getStack());
                 }
             }
@@ -95,13 +108,13 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
     @Override
     protected ITextComponent getDefaultName()
     {
-        return new TranslationTextComponent("container.cfm.mail_box", this.getOwnerName());
+        return new TranslationTextComponent("container.cfm.mail_box", this.ownerName, this.name);
     }
 
     @Override
     protected Container createMenu(int windowId, PlayerInventory playerInventory)
     {
-        return new ChestContainer(ContainerType.GENERIC_9X2, windowId, playerInventory, this, 2);
+        return new MailBoxContainer(windowId, playerInventory, this);
     }
 
     @Override
@@ -144,6 +157,10 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
         {
             this.id = compound.getUniqueId("MailBoxUUID");
         }
+        if(compound.contains("MailBoxName", Constants.NBT.TAG_STRING))
+        {
+            this.name = compound.getString("MailBoxName");
+        }
         if(compound.contains("OwnerName", Constants.NBT.TAG_STRING))
         {
             this.ownerName = compound.getString("OwnerName");
@@ -159,6 +176,10 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
         if(this.id != null)
         {
             compound.putUniqueId("MailBoxUUID", this.id);
+        }
+        if(this.name != null)
+        {
+            compound.putString("MailBoxName", this.name);
         }
         if(this.ownerName != null && this.ownerId != null)
         {

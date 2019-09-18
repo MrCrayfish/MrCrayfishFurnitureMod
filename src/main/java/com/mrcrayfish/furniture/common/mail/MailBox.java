@@ -50,6 +50,11 @@ public class MailBox implements INBTSerializable<CompoundNBT>
         return this.name;
     }
 
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
     public UUID getOwnerId()
     {
         return this.ownerId;
@@ -84,7 +89,7 @@ public class MailBox implements INBTSerializable<CompoundNBT>
     {
         CompoundNBT compound = new CompoundNBT();
         compound.putUniqueId("MailBoxUUID", this.id);
-        compound.putString("Name", this.name);
+        compound.putString("MailBoxName", this.name);
         compound.putUniqueId("OwnerUUID", this.ownerId);
         compound.putString("OwnerName", this.ownerName);
         return compound;
@@ -95,7 +100,7 @@ public class MailBox implements INBTSerializable<CompoundNBT>
     {
         CompoundNBT compound = new CompoundNBT();
         compound.putUniqueId("MailBoxUUID", this.id);
-        compound.putString("Name", this.name);
+        compound.putString("MailBoxName", this.name);
         compound.putUniqueId("OwnerUUID", this.ownerId);
         compound.putString("OwnerName", this.ownerName);
         compound.put("Pos", NBTUtil.writeBlockPos(this.pos));
@@ -117,7 +122,7 @@ public class MailBox implements INBTSerializable<CompoundNBT>
         this.mailStorage = new ArrayList<>();
 
         this.id = compound.getUniqueId("MailBoxUUID");
-        this.name = compound.getString("Name");
+        this.name = compound.getString("MailBoxName");
         this.ownerId = compound.getUniqueId("OwnerUUID");
         this.ownerName = compound.getString("OwnerName");
         this.pos = NBTUtil.readBlockPos(compound.getCompound("Pos"));

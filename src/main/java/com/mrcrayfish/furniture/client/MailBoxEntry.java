@@ -26,7 +26,7 @@ public class MailBoxEntry
     public MailBoxEntry(CompoundNBT compound)
     {
         this.mailBoxId = compound.getUniqueId("MailBoxUUID");
-        this.name = compound.getString("Name");
+        this.name = compound.getString("MailBoxName");
         this.ownerId = compound.getUniqueId("OwnerUUID");
         this.ownerName = compound.getString("OwnerName");
     }
