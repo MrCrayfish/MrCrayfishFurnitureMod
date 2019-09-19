@@ -5,6 +5,7 @@ import com.mrcrayfish.furniture.util.TileEntityUtil;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -42,14 +43,17 @@ public class MessageEmptyBin implements IMessage, IMessageHandler<MessageEmptyBi
     @Override
     public IMessage onMessage(MessageEmptyBin message, MessageContext ctx)
     {
-        TileEntity tile_entity = ctx.getServerHandler().player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
-        if(tile_entity instanceof TileEntityBin)
-        {
-            TileEntityBin tileEntityBin = (TileEntityBin) tile_entity;
-            tileEntityBin.clear();
-        }
-        BlockPos pos = new BlockPos(message.x, message.y, message.z);
-        TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().player.world, pos);
+        final WorldServer world = ctx.getServerHandler().player.getServerWorld();
+        world.addScheduledTask(() -> {
+            TileEntity tile_entity = world.getTileEntity(new BlockPos(message.x, message.y, message.z));
+            if(tile_entity instanceof TileEntityBin)
+            {
+                TileEntityBin tileEntityBin = (TileEntityBin) tile_entity;
+                tileEntityBin.clear();
+                BlockPos pos = new BlockPos(message.x, message.y, message.z);
+                TileEntityUtil.markBlockForUpdate(world, pos);
+            }
+        });
         return null;
     }
 }

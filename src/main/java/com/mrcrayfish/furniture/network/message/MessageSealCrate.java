@@ -4,7 +4,7 @@ import com.mrcrayfish.furniture.tileentity.TileEntityCrate;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -41,14 +41,16 @@ public class MessageSealCrate implements IMessage, IMessageHandler<MessageSealCr
     @Override
     public IMessage onMessage(MessageSealCrate message, MessageContext ctx)
     {
-        World world = ctx.getServerHandler().player.world;
-        BlockPos pos = new BlockPos(message.x, message.y, message.z);
-        TileEntity tileEntity = world.getTileEntity(pos);
-        if(tileEntity instanceof TileEntityCrate)
-        {
-            TileEntityCrate crate = (TileEntityCrate) tileEntity;
-            crate.seal();
-        }
+        final WorldServer world = ctx.getServerHandler().player.getServerWorld();
+        world.addScheduledTask(() -> {
+            BlockPos pos = new BlockPos(message.x, message.y, message.z);
+            TileEntity tileEntity = world.getTileEntity(pos);
+            if(tileEntity instanceof TileEntityCrate)
+            {
+                TileEntityCrate crate = (TileEntityCrate) tileEntity;
+                crate.seal();
+            }
+        });
         return null;
     }
 }

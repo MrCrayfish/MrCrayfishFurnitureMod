@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -49,29 +50,32 @@ public class MessageMineBayBuy implements IMessage, IMessageHandler<MessageMineB
     @Override
     public IMessage onMessage(MessageMineBayBuy message, MessageContext ctx)
     {
-        EntityPlayer player = ctx.getServerHandler().player;
-        TileEntity tileEntity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
-        if(tileEntity instanceof TileEntityComputer)
-        {
-            TileEntityComputer tileEntityComputer = (TileEntityComputer) tileEntity;
-            ItemStack buySlot = tileEntityComputer.getStackInSlot(0);
-            if(buySlot.isEmpty())
-                return null;
-
-            RecipeData[] data = Recipes.getMineBayItems();
-            if(message.itemNum < 0 || message.itemNum >= data.length)
-                return null;
-
-            RecipeData recipe = data[message.itemNum];
-            int price = recipe.getPrice();
-            if(recipe.getCurrency().getItem() == buySlot.getItem() && buySlot.getCount() >= price)
+        final WorldServer world = ctx.getServerHandler().player.getServerWorld();
+        world.addScheduledTask(() -> {
+            EntityPlayer player = ctx.getServerHandler().player;
+            TileEntity tileEntity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
+            if(tileEntity instanceof TileEntityComputer)
             {
-                tileEntityComputer.takeEmeraldFromSlot(price);
-                EntityItem entityItem = new EntityItem(player.world, player.posX, player.posY + 1, player.posZ, data[message.itemNum].getInput().copy());
-                player.world.spawnEntity(entityItem);
-                Triggers.trigger(Triggers.MINEBAY_PURCHASE, player);
+                TileEntityComputer tileEntityComputer = (TileEntityComputer) tileEntity;
+                ItemStack buySlot = tileEntityComputer.getStackInSlot(0);
+                if(buySlot.isEmpty())
+                    return;
+
+                RecipeData[] data = Recipes.getMineBayItems();
+                if(message.itemNum < 0 || message.itemNum >= data.length)
+                    return;
+
+                RecipeData recipe = data[message.itemNum];
+                int price = recipe.getPrice();
+                if(recipe.getCurrency().getItem() == buySlot.getItem() && buySlot.getCount() >= price)
+                {
+                    tileEntityComputer.takeEmeraldFromSlot(price);
+                    EntityItem entityItem = new EntityItem(player.world, player.posX, player.posY + 1, player.posZ, data[message.itemNum].getInput().copy());
+                    player.world.spawnEntity(entityItem);
+                    Triggers.trigger(Triggers.MINEBAY_PURCHASE, player);
+                }
             }
-        }
+        });
         return null;
     }
 

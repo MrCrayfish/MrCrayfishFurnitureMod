@@ -13,7 +13,7 @@ import java.util.List;
 
 public class MessageConfig implements IMessage, IMessageHandler<MessageConfig, IMessage>
 {
-    private ArrayList<String> itemData = new ArrayList<>();
+    private final ArrayList<String> itemData = new ArrayList<>();
 
     public MessageConfig() {}
 

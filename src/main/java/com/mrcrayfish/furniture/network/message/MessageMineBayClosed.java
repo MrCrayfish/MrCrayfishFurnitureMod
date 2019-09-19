@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -44,22 +45,25 @@ public class MessageMineBayClosed implements IMessage, IMessageHandler<MessageMi
     @Override
     public IMessage onMessage(MessageMineBayClosed message, MessageContext ctx)
     {
-        EntityPlayerMP player = ctx.getServerHandler().player;
+        final WorldServer world = ctx.getServerHandler().player.getServerWorld();
+        world.addScheduledTask(() -> {
+            EntityPlayerMP player = ctx.getServerHandler().player;
 
-        TileEntity tile_entity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
-        if(tile_entity instanceof TileEntityComputer)
-        {
-            TileEntityComputer tileEntityComputer = (TileEntityComputer) tile_entity;
-
-            if(!tileEntityComputer.getStackInSlot(0).isEmpty())
+            TileEntity tile_entity = world.getTileEntity(new BlockPos(message.x, message.y, message.z));
+            if(tile_entity instanceof TileEntityComputer)
             {
-                player.world.spawnEntity(new EntityItem(player.world, player.posX, player.posY, player.posZ, tileEntityComputer.getStackInSlot(0)));
-                tileEntityComputer.setInventorySlotContents(0, ItemStack.EMPTY);
+                TileEntityComputer tileEntityComputer = (TileEntityComputer) tile_entity;
+
+                if(!tileEntityComputer.getStackInSlot(0).isEmpty())
+                {
+                    player.world.spawnEntity(new EntityItem(world, player.posX, player.posY, player.posZ, tileEntityComputer.getStackInSlot(0)));
+                    tileEntityComputer.setInventorySlotContents(0, ItemStack.EMPTY);
+                }
+                tileEntityComputer.setTrading(false);
+                BlockPos pos = new BlockPos(message.x, message.y, message.z);
+                TileEntityUtil.markBlockForUpdate(world, pos);
             }
-            tileEntityComputer.setTrading(false);
-        }
-        BlockPos pos = new BlockPos(message.x, message.y, message.z);
-        TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().player.world, pos);
+        });
         return null;
     }
 
