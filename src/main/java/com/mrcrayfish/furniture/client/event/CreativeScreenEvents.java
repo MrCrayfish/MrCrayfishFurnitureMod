@@ -5,8 +5,10 @@ import com.mrcrayfish.furniture.FurnitureMod;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.gui.widget.button.IconButton;
 import com.mrcrayfish.furniture.client.gui.widget.button.TagButton;
+import com.mrcrayfish.furniture.core.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.inventory.CreativeScreen;
 import net.minecraft.client.gui.widget.button.Button;
@@ -15,6 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.lwjgl.glfw.GLFW;
@@ -40,25 +43,34 @@ public class CreativeScreenEvents
     private int guiCenterY = 0;
 
     @SubscribeEvent
+    public void onPlayerConnect(PlayerEvent.PlayerLoggedInEvent event)
+    {
+        Minecraft minecraft = Minecraft.getInstance();
+        if(minecraft.player == null || event.getPlayer().equals(minecraft.player))
+        {
+            this.compileItems();
+        }
+    }
+
+    @SubscribeEvent
     public void onScreenInit(GuiScreenEvent.InitGuiEvent.Post event)
     {
         if(event.getGui() instanceof CreativeScreen)
         {
-            this.compileItems();
             this.viewingFurnitureTab = false;
             this.guiCenterX = ((CreativeScreen) event.getGui()).getGuiLeft();
             this.guiCenterY = ((CreativeScreen) event.getGui()).getGuiTop();
             this.buttons = new ArrayList<>();
 
-            event.addWidget(this.btnScrollUp = new IconButton(this.guiCenterX - 22, this.guiCenterY - 12, "", button -> {
+            event.addWidget(this.btnScrollUp = new IconButton(this.guiCenterX - 22, this.guiCenterY - 12, I18n.format("gui.button.cfm.scroll_filters_up"), button -> {
                 if(startIndex > 0) startIndex--;
             }, ICONS, 64, 0));
 
-            event.addWidget(this.btnScrollDown = new IconButton(this.guiCenterX - 22, this.guiCenterY + 127, "", button -> {
+            event.addWidget(this.btnScrollDown = new IconButton(this.guiCenterX - 22, this.guiCenterY + 127, I18n.format("gui.button.cfm.scroll_filters_down"), button -> {
                 if(startIndex <= filters.size() - 4 - 1) startIndex++;
             }, ICONS, 80, 0));
 
-            event.addWidget(this.btnEnableAll = new IconButton(this.guiCenterX - 50, this.guiCenterY + 10, "", button -> {
+            event.addWidget(this.btnEnableAll = new IconButton(this.guiCenterX - 50, this.guiCenterY + 10, I18n.format("gui.button.cfm.enable_filters"), button -> {
                 this.filters.forEach(filters -> filters.setEnabled(true));
                 this.buttons.forEach(TagButton::updateState);
                 Screen screen = Minecraft.getInstance().currentScreen;
@@ -68,7 +80,7 @@ public class CreativeScreenEvents
                 }
             }, ICONS, 96, 0));
 
-            event.addWidget(this.btnDisableAll = new IconButton(this.guiCenterX - 50, this.guiCenterY + 32, "", button -> {
+            event.addWidget(this.btnDisableAll = new IconButton(this.guiCenterX - 50, this.guiCenterY + 32, I18n.format("gui.button.cfm.disable_filters"), button -> {
                 this.filters.forEach(filters -> filters.setEnabled(false));
                 this.buttons.forEach(TagButton::updateState);
                 Screen screen = Minecraft.getInstance().currentScreen;
@@ -175,12 +187,12 @@ public class CreativeScreenEvents
 
                 if(this.btnEnableAll.isMouseOver(event.getMouseX(), event.getMouseY()))
                 {
-                    screen.renderTooltip(I18n.format("cfm.tooltip.enable_all_filters"), event.getMouseX(), event.getMouseY());
+                    screen.renderTooltip(this.btnEnableAll.getMessage(), event.getMouseX(), event.getMouseY());
                 }
 
                 if(this.btnDisableAll.isMouseOver(event.getMouseX(), event.getMouseY()))
                 {
-                    screen.renderTooltip(I18n.format("cfm.tooltip.disable_all_filters"), event.getMouseX(), event.getMouseY());
+                    screen.renderTooltip(this.btnDisableAll.getMessage(), event.getMouseX(), event.getMouseY());
                 }
             }
             else
@@ -231,26 +243,33 @@ public class CreativeScreenEvents
         container.scrollTo(0);
     }
 
-    public void compileItems()
+    private void compileItems()
     {
-        TagFilter FENCES = new TagFilter(new ResourceLocation(Reference.MOD_ID, "fences"));
+        final TagFilter GENERAL = new TagFilter(new ResourceLocation(Reference.MOD_ID, "general"), new ItemStack(ModBlocks.CHAIR_OAK));
+        final TagFilter STORAGE = new TagFilter(new ResourceLocation(Reference.MOD_ID, "storage"), new ItemStack(ModBlocks.CABINET_OAK));
+        final TagFilter BEDROOM = new TagFilter(new ResourceLocation(Reference.MOD_ID, "bedroom"), new ItemStack(ModBlocks.DESK_OAK));
+        final TagFilter OUTDOORS = new TagFilter(new ResourceLocation(Reference.MOD_ID, "outdoors"), new ItemStack(ModBlocks.MAIL_BOX_OAK));
+        TagFilter[] filters = new TagFilter[] {GENERAL, STORAGE, BEDROOM, OUTDOORS};
 
         ForgeRegistries.ITEMS.getValues().stream()
-                .filter(item -> item.getGroup() == FurnitureMod.GROUP)
-                .filter(item -> item.getRegistryName().getNamespace().equals(Reference.MOD_ID))
-                .forEach(item ->
+            .filter(item -> item.getGroup() == FurnitureMod.GROUP)
+            .filter(item -> item.getRegistryName().getNamespace().equals(Reference.MOD_ID))
+            .forEach(item ->
+            {
+                item.getTags().forEach(location ->
                 {
-                    item.getTags().forEach(location ->
+                    for(TagFilter filter : filters)
                     {
-                        if(location.equals(FENCES.getTag()))
+                        if(location.equals(filter.getTag()))
                         {
-                            FENCES.add(item);
+                            filter.add(item);
                         }
-                    });
+                    }
                 });
+            });
 
         this.filters = new ArrayList<>();
-        this.filters.add(FENCES);
+        this.filters.addAll(Arrays.asList(filters));
     }
 
     /**
@@ -260,13 +279,15 @@ public class CreativeScreenEvents
     {
         private ResourceLocation tag;
         private String translationKey;
+        private ItemStack icon;
         private boolean enabled = true;
         private List<Item> items = Lists.newArrayList();
 
-        public TagFilter(ResourceLocation tag)
+        public TagFilter(ResourceLocation tag, ItemStack icon)
         {
             this.tag = tag;
-            this.translationKey = tag.getNamespace() + ".filter." + tag.getPath().replace("/", ".");
+            this.translationKey = String.format("gui.tag_filter.%s.%s", tag.getNamespace(), tag.getPath().replace("/", "."));
+            this.icon = icon;
         }
 
         public ResourceLocation getTag()
@@ -276,7 +297,7 @@ public class CreativeScreenEvents
 
         public ItemStack getIcon()
         {
-            return !items.isEmpty() ? new ItemStack(items.get(0)) : ItemStack.EMPTY;
+            return this.icon;
         }
 
         public String getName()
