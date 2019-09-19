@@ -17,7 +17,15 @@ public class TileEntityMirror extends TileEntity
     {
         if(bindedMirror == null)
         {
-            EnumFacing facing = world.getBlockState(pos).getValue(BlockMirror.FACING);
+            EnumFacing facing;
+            try
+            {
+                facing = world.getBlockState(pos).getValue(BlockMirror.FACING);
+            }
+            catch(IllegalArgumentException e)
+            {
+                return null;
+            }
             bindedMirror = new EntityMirror(world, pos.getX(), pos.getY(), pos.getZ(), facing);
             world.spawnEntity(bindedMirror);
         }

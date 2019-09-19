@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Author: MrCrayfish
@@ -23,7 +24,7 @@ public final class ImageCache
     public static final ImageCache INSTANCE = new ImageCache();
 
     private final File cache;
-    private Map<String, Texture> cacheMap = new HashMap<>();
+    private Map<String, Texture> cacheMap = new ConcurrentHashMap<>();
 
     private ImageCache()
     {
@@ -50,26 +51,20 @@ public final class ImageCache
         if(url == null)
             return null;
 
-        synchronized(this)
+        Texture texture = cacheMap.get(url);
+        if(texture != null)
         {
-            Texture texture = cacheMap.get(url);
-            if(texture != null)
-            {
-                return texture;
-            }
+            return texture;
         }
         return null;
     }
 
     public void add(String url, File file)
     {
-        synchronized(this)
+        if(!cacheMap.containsKey(url))
         {
-            if(!cacheMap.containsKey(url))
-            {
-                Texture texture = new Texture(file);
-                cacheMap.put(url, texture);
-            }
+            Texture texture = new Texture(file);
+            cacheMap.put(url, texture);
         }
     }
 
@@ -117,12 +112,9 @@ public final class ImageCache
 
     public boolean loadCached(String url)
     {
-        synchronized(this)
+        if(cacheMap.containsKey(url))
         {
-            if(cacheMap.containsKey(url))
-            {
-                return true;
-            }
+            return true;
         }
 
         String id = DigestUtils.sha1Hex(url.getBytes());
@@ -137,10 +129,7 @@ public final class ImageCache
 
     public boolean isCached(String url)
     {
-        synchronized(this)
-        {
-            return cacheMap.containsKey(url);
-        }
+        return cacheMap.containsKey(url);
     }
 
     public File getCache()
