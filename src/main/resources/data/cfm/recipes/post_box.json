@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "post_box",
+    "pattern": [
+        "III",
+        "ISI",
+        "III"
+    ],
+    "key": {
+        "C": {
+            "item": "minecraft:iron_ingot"
+        },
+        "F": {
+            "item": "minecraft:blue_shulker_box"
+        }
+    },
+    "result": {
+        "item": "cfm:post_box",
+        "count": 1
+    }
+}
