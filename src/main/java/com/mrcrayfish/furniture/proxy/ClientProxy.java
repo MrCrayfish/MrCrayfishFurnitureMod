@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.proxy;
 
 import com.mrcrayfish.furniture.client.MailBoxEntry;
+import com.mrcrayfish.furniture.client.event.CreativeScreenEvents;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.CrateScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.MailBoxScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.PostBoxScreen;
@@ -13,6 +14,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
@@ -33,6 +35,11 @@ public class ClientProxy extends CommonProxy
         ScreenManager.registerFactory(ModContainers.POST_BOX, PostBoxScreen::new);
         ScreenManager.registerFactory(ModContainers.MAIL_BOX, MailBoxScreen::new);
         this.registerColors();
+
+        //if(!ModList.get().isLoaded("")) //TODO Future optional library TBA
+        //{
+            MinecraftForge.EVENT_BUS.register(new CreativeScreenEvents());
+        //}
     }
 
     private void registerColors()
