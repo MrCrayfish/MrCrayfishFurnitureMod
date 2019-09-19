@@ -12,18 +12,18 @@ import java.util.function.Supplier;
 /**
  * Author: MrCrayfish
  */
-public class MessageLockCrate
+public class MessageLockCrate implements IMessage<MessageLockCrate>
 {
-    public MessageLockCrate() {}
+    @Override
+    public void encode(MessageLockCrate message, PacketBuffer buffer) {}
 
-    public static void encode(MessageLockCrate message, PacketBuffer buffer) {}
-
-    public static MessageLockCrate decode(PacketBuffer buffer)
+    public MessageLockCrate decode(PacketBuffer buffer)
     {
         return new MessageLockCrate();
     }
 
-    public static void handle(MessageLockCrate message, Supplier<NetworkEvent.Context> supplier)
+    @Override
+    public void handle(MessageLockCrate message, Supplier<NetworkEvent.Context> supplier)
     {
         supplier.get().enqueueWork(() ->
         {

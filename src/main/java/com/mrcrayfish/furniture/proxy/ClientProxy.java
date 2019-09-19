@@ -1,13 +1,23 @@
 package com.mrcrayfish.furniture.proxy;
 
+import com.mrcrayfish.furniture.client.MailBoxEntry;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.CrateScreen;
+import com.mrcrayfish.furniture.client.gui.screen.inventory.MailBoxScreen;
+import com.mrcrayfish.furniture.client.gui.screen.inventory.PostBoxScreen;
 import com.mrcrayfish.furniture.client.renderer.SeatRenderer;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModContainers;
 import com.mrcrayfish.furniture.entity.SeatEntity;
+import com.mrcrayfish.furniture.inventory.container.PostBoxContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Author: MrCrayfish
@@ -20,6 +30,8 @@ public class ClientProxy extends CommonProxy
         super.onSetupClient();
         RenderingRegistry.registerEntityRenderingHandler(SeatEntity.class, SeatRenderer::new);
         ScreenManager.registerFactory(ModContainers.CRATE, CrateScreen::new);
+        ScreenManager.registerFactory(ModContainers.POST_BOX, PostBoxScreen::new);
+        ScreenManager.registerFactory(ModContainers.MAIL_BOX, MailBoxScreen::new);
         this.registerColors();
     }
 
@@ -57,7 +69,8 @@ public class ClientProxy extends CommonProxy
                 ModBlocks.PICKET_GATE_BROWN,
                 ModBlocks.PICKET_GATE_GREEN,
                 ModBlocks.PICKET_GATE_RED,
-                ModBlocks.PICKET_GATE_BLACK
+                ModBlocks.PICKET_GATE_BLACK,
+                ModBlocks.POST_BOX
         );
 
         Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0xCCCCCC : 0,
@@ -92,7 +105,8 @@ public class ClientProxy extends CommonProxy
                 ModBlocks.PICKET_GATE_BROWN,
                 ModBlocks.PICKET_GATE_GREEN,
                 ModBlocks.PICKET_GATE_RED,
-                ModBlocks.PICKET_GATE_BLACK
+                ModBlocks.PICKET_GATE_BLACK,
+                ModBlocks.POST_BOX
         );
 
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0xBBBBBB : 0,
@@ -130,5 +144,20 @@ public class ClientProxy extends CommonProxy
                 ModBlocks.PARK_BENCH_STRIPPED_ACACIA,
                 ModBlocks.PARK_BENCH_STRIPPED_DARK_OAK
         );
+    }
+
+    @Override
+    public void updateMailBoxes(CompoundNBT compound)
+    {
+        if(Minecraft.getInstance().currentScreen instanceof PostBoxScreen)
+        {
+            if(compound.contains("MailBoxes", Constants.NBT.TAG_LIST))
+            {
+                List<MailBoxEntry> entries = new ArrayList<>();
+                ListNBT mailBoxList = compound.getList("MailBoxes", Constants.NBT.TAG_COMPOUND);
+                mailBoxList.forEach(nbt -> entries.add(new MailBoxEntry((CompoundNBT) nbt)));
+                ((PostBoxScreen) Minecraft.getInstance().currentScreen).updateMailBoxes(entries);
+            }
+        }
     }
 }

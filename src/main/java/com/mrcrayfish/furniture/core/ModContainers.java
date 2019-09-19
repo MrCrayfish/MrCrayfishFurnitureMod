@@ -3,7 +3,10 @@ package com.mrcrayfish.furniture.core;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.CrateScreen;
 import com.mrcrayfish.furniture.inventory.container.CrateContainer;
+import com.mrcrayfish.furniture.inventory.container.MailBoxContainer;
+import com.mrcrayfish.furniture.inventory.container.PostBoxContainer;
 import com.mrcrayfish.furniture.tileentity.CrateTileEntity;
+import com.mrcrayfish.furniture.tileentity.MailBoxTileEntity;
 import com.mrcrayfish.furniture.util.ContainerNames;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.entity.player.PlayerInventory;
@@ -34,6 +37,13 @@ public class ModContainers
     public static final ContainerType<CrateContainer> CRATE = register(ContainerNames.CRATE, (IContainerFactory<CrateContainer>) (windowId, playerInventory, data) -> {
         CrateTileEntity crateTileEntity = (CrateTileEntity) playerInventory.player.world.getTileEntity(data.readBlockPos());
         return new CrateContainer(windowId, playerInventory, crateTileEntity, crateTileEntity.isLocked());
+    });
+
+    public static final ContainerType<PostBoxContainer> POST_BOX = register(ContainerNames.POST_BOX, PostBoxContainer::new);
+
+    public static final ContainerType<MailBoxContainer> MAIL_BOX = register(ContainerNames.MAIL_BOX, (IContainerFactory<MailBoxContainer>) (windowId, playerInventory, data) -> {
+        MailBoxTileEntity mailBoxTileEntity = (MailBoxTileEntity) playerInventory.player.world.getTileEntity(data.readBlockPos());
+        return new MailBoxContainer(windowId, playerInventory, mailBoxTileEntity);
     });
 
     private static <T extends Container> ContainerType<T> register(String key, ContainerType.IFactory<T> factory)

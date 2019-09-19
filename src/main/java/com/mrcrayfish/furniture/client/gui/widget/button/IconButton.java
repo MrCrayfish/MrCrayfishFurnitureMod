@@ -43,6 +43,10 @@ public class IconButton extends Button
         int offset = this.getYImage(this.isHovered());
         this.blit(this.x, this.y, 0, 46 + offset * 20, this.width / 2, this.height);
         this.blit(this.x + this.width / 2, this.y, 200 - this.width / 2, 46 + offset * 20, this.width / 2, this.height);
+        if(!this.active)
+        {
+            GlStateManager.color4f(0.5F, 0.5F, 0.5F, 1.0F);
+        }
         Minecraft.getInstance().getTextureManager().bindTexture(this.iconResource);
         this.blit(this.x + 2, this.y + 2, this.iconU, this.iconV, 16, 16);
     }
