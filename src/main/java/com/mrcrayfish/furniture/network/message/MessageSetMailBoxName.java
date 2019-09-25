@@ -36,14 +36,14 @@ public class MessageSetMailBoxName implements IMessage<MessageSetMailBoxName>
     public void encode(MessageSetMailBoxName message, PacketBuffer buffer)
     {
         buffer.writeUniqueId(message.mailBoxId);
-        buffer.writeString(message.name);
+        buffer.writeString(message.name, 32);
         buffer.writeBlockPos(message.pos);
     }
 
     @Override
     public MessageSetMailBoxName decode(PacketBuffer buffer)
     {
-        return new MessageSetMailBoxName(buffer.readUniqueId(), buffer.readString(), buffer.readBlockPos());
+        return new MessageSetMailBoxName(buffer.readUniqueId(), buffer.readString(32), buffer.readBlockPos());
     }
 
     @Override
