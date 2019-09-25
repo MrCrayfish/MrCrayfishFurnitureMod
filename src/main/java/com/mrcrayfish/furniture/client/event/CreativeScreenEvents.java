@@ -16,7 +16,9 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -43,13 +45,15 @@ public class CreativeScreenEvents
     private int guiCenterY = 0;
 
     @SubscribeEvent
-    public void onPlayerConnect(PlayerEvent.PlayerLoggedInEvent event)
+    public void onPlayerLogin(ClientPlayerNetworkEvent.LoggedInEvent event)
     {
-        Minecraft minecraft = Minecraft.getInstance();
-        if(minecraft.player == null || event.getPlayer().equals(minecraft.player))
-        {
-            this.compileItems();
-        }
+        this.compileItems();
+    }
+
+    @SubscribeEvent
+    public void onPlayerLogout(ClientPlayerNetworkEvent.LoggedOutEvent event)
+    {
+        this.filters = null;
     }
 
     @SubscribeEvent
