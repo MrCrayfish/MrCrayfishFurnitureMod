@@ -80,6 +80,12 @@
         "cfm:stripped_birch_mail_box",
         "cfm:stripped_jungle_mail_box",
         "cfm:stripped_acacia_mail_box",
-        "cfm:stripped_dark_oak_mail_box"
+        "cfm:stripped_dark_oak_mail_box",
+        "cfm:oak_hedge",
+        "cfm:spruce_hedge",
+        "cfm:birch_hedge",
+        "cfm:jungle_hedge",
+        "cfm:acacia_hedge",
+        "cfm:dark_oak_hedge"
     ]
 }
