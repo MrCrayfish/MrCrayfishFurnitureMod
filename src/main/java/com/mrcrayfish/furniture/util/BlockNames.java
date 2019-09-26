@@ -242,7 +242,12 @@ public class BlockNames
     public static final String MAIL_BOX_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_mail_box";
     public static final String MAIL_BOX_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_mail_box";
     public static final String MAIL_BOX_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_mail_box";
-
+    public static final String HEDGE_OAK = Reference.MOD_ID + ":oak_hedge";
+    public static final String HEDGE_SPRUCE = Reference.MOD_ID + ":spruce_hedge";
+    public static final String HEDGE_BIRCH = Reference.MOD_ID + ":birch_hedge";
+    public static final String HEDGE_JUNGLE = Reference.MOD_ID + ":jungle_hedge";
+    public static final String HEDGE_ACACIA = Reference.MOD_ID + ":acacia_hedge";
+    public static final String HEDGE_DARK_OAK = Reference.MOD_ID + ":dark_oak_hedge";
 
     /* Electronic Update */
     public static final String TV = Reference.MOD_ID + ":tv";
@@ -341,11 +346,4 @@ public class BlockNames
     public static final String ROCK_PATH = Reference.MOD_ID + ":rock_path";
     public static final String PICKET_FENCE = Reference.MOD_ID + ":picket_fence";
     public static final String OUTDOOR_TAP = Reference.MOD_ID + ":outdoor_tap";
-
-    public static final String HEDGE_OAK = Reference.MOD_ID + ":hedge_oak";
-    public static final String HEDGE_SPRUCE = Reference.MOD_ID + ":hedge_spruce";
-    public static final String HEDGE_BIRCH = Reference.MOD_ID + ":hedge_birch";
-    public static final String HEDGE_JUNGLE = Reference.MOD_ID + ":hedge_jungle";
-    public static final String HEDGE_ACACIA = Reference.MOD_ID + ":hedge_acacia";
-    public static final String HEDGE_DARK_OAK = Reference.MOD_ID + ":hedge_dark_oak";
 }

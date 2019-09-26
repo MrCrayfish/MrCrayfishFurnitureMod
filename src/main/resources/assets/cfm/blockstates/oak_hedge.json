@@ -1,0 +1,39 @@
+{
+    "multipart": [
+        {
+            "apply": { "model": "cfm:block/oak_hedge_post" }
+        },
+        {
+            "when": { "north": "true" },
+            "apply": { "model": "cfm:block/oak_hedge_side", "y": 180 }
+        },
+        {
+            "when": { "east": "true" },
+            "apply": { "model": "cfm:block/oak_hedge_side", "y": 270 }
+        },
+        {
+            "when": { "south": "true" },
+            "apply": { "model": "cfm:block/oak_hedge_side", "y": 0 }
+        },
+        {
+            "when": { "west": "true" },
+            "apply": { "model": "cfm:block/oak_hedge_side", "y": 90 }
+        },
+        {
+            "when": { "north": "false" },
+            "apply": { "model": "cfm:block/oak_hedge_post_side", "y": 180 }
+        },
+        {
+            "when": { "east": "false" },
+            "apply": { "model": "cfm:block/oak_hedge_post_side", "y": 270 }
+        },
+        {
+            "when": { "south": "false" },
+            "apply": { "model": "cfm:block/oak_hedge_post_side", "y": 0 }
+        },
+        {
+            "when": { "west": "false" },
+            "apply": { "model": "cfm:block/oak_hedge_post_side", "y": 90 }
+        }
+    ]
+}

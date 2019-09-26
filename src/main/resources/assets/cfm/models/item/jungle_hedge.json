@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:item/hedge",
+    "textures": {
+        "leaves": "minecraft:block/jungle_leaves"
+    }
+}

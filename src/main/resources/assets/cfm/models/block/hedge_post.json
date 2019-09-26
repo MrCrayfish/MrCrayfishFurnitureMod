@@ -1,0 +1,16 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "particle": "#leaves"
+    },
+    "elements": [
+        {
+            "from": [ 4, 0, 4 ], 
+            "to": [ 12, 16, 12 ], 
+            "faces": {
+                "up": { "texture": "#leaves", "uv": [ 4, 4, 12, 12 ], "cullface": "up", "tintindex": 0 },
+                "down": { "texture": "#leaves", "uv": [ 4, 4, 12, 12 ], "cullface": "down", "tintindex": 0 }
+            }
+        }
+    ]
+}

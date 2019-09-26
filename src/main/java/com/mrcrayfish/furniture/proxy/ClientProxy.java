@@ -10,10 +10,17 @@ import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModContainers;
 import com.mrcrayfish.furniture.entity.SeatEntity;
 import com.mrcrayfish.furniture.inventory.container.PostBoxContainer;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.item.BlockItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.FoliageColors;
+import net.minecraft.world.IEnviromentBlockReader;
+import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -151,6 +158,23 @@ public class ClientProxy extends CommonProxy
                 ModBlocks.PARK_BENCH_STRIPPED_ACACIA,
                 ModBlocks.PARK_BENCH_STRIPPED_DARK_OAK
         );
+
+        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> FoliageColors.getSpruce(),
+                ModBlocks.HEDGE_SPRUCE);
+
+        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> FoliageColors.getBirch(),
+                ModBlocks.HEDGE_BIRCH);
+
+        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> reader != null && pos != null ? BiomeColors.getFoliageColor(reader, pos) : FoliageColors.getDefault(),
+                ModBlocks.HEDGE_OAK,
+                ModBlocks.HEDGE_JUNGLE,
+                ModBlocks.HEDGE_ACACIA,
+                ModBlocks.HEDGE_DARK_OAK);
+
+        Minecraft.getInstance().getItemColors().register((stack, i) -> {
+            BlockState state = ((BlockItem)stack.getItem()).getBlock().getDefaultState();
+            return Minecraft.getInstance().getBlockColors().getColor(state, null, null, i);
+        }, ModBlocks.HEDGE_OAK, ModBlocks.HEDGE_SPRUCE, ModBlocks.HEDGE_BIRCH, ModBlocks.HEDGE_JUNGLE, ModBlocks.HEDGE_ACACIA, ModBlocks.HEDGE_DARK_OAK);
     }
 
     @Override
@@ -166,5 +190,11 @@ public class ClientProxy extends CommonProxy
                 ((PostBoxScreen) Minecraft.getInstance().currentScreen).updateMailBoxes(entries);
             }
         }
+    }
+
+    public boolean useFancyGraphics()
+    {
+        Minecraft mc = Minecraft.getInstance();
+        return mc.gameSettings.fancyGraphics;
     }
 }

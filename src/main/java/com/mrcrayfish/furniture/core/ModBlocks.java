@@ -266,6 +266,12 @@ public class ModBlocks
     public static final Block MAIL_BOX_STRIPPED_JUNGLE = register(BlockNames.MAIL_BOX_STRIPPED_JUNGLE, new MailBoxBlock(Block.Properties.from(Blocks.JUNGLE_PLANKS)));
     public static final Block MAIL_BOX_STRIPPED_ACACIA = register(BlockNames.MAIL_BOX_STRIPPED_ACACIA, new MailBoxBlock(Block.Properties.from(Blocks.ACACIA_PLANKS)));
     public static final Block MAIL_BOX_STRIPPED_DARK_OAK = register(BlockNames.MAIL_BOX_STRIPPED_DARK_OAK, new MailBoxBlock(Block.Properties.from(Blocks.DARK_OAK_PLANKS)));
+    public static final Block HEDGE_OAK = register(BlockNames.HEDGE_OAK, new HedgeBlock(Block.Properties.from(Blocks.OAK_LEAVES)));
+    public static final Block HEDGE_SPRUCE = register(BlockNames.HEDGE_SPRUCE, new HedgeBlock(Block.Properties.from(Blocks.SPRUCE_LEAVES)));
+    public static final Block HEDGE_BIRCH = register(BlockNames.HEDGE_BIRCH, new HedgeBlock(Block.Properties.from(Blocks.BIRCH_LEAVES)));
+    public static final Block HEDGE_JUNGLE = register(BlockNames.HEDGE_JUNGLE, new HedgeBlock(Block.Properties.from(Blocks.JUNGLE_LEAVES)));
+    public static final Block HEDGE_ACACIA = register(BlockNames.HEDGE_ACACIA, new HedgeBlock(Block.Properties.from(Blocks.ACACIA_LEAVES)));
+    public static final Block HEDGE_DARK_OAK = register(BlockNames.HEDGE_DARK_OAK, new HedgeBlock(Block.Properties.from(Blocks.DARK_OAK_LEAVES)));
 
     private static Block register(String name, Block block)
     {

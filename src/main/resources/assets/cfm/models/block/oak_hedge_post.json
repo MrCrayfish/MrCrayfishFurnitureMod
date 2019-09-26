@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/hedge_post",
+    "textures": {
+        "leaves": "minecraft:block/oak_leaves"
+    }
+}
