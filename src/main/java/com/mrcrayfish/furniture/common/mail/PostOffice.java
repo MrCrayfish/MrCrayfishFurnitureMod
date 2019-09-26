@@ -15,6 +15,7 @@ import net.minecraft.world.storage.WorldSavedData;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
@@ -221,8 +222,14 @@ public class PostOffice extends WorldSavedData
      * Cleans up invalid mail boxes or mail boxes removed by other means than a player.
      */
     @SubscribeEvent
-    public static void onTick(TickEvent.ServerTickEvent event)
+    public static void onTick(TickEvent.WorldTickEvent event)
     {
+        if(event.phase != TickEvent.Phase.START)
+            return;
+
+        if(event.side != LogicalSide.SERVER)
+            return;
+
         MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
         if(server != null && server.getTickCounter() % 1200 == 0)
         {
