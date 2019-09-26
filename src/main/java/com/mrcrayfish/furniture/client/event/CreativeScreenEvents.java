@@ -45,12 +45,6 @@ public class CreativeScreenEvents
     private int guiCenterY = 0;
 
     @SubscribeEvent
-    public void onPlayerLogin(ClientPlayerNetworkEvent.LoggedInEvent event)
-    {
-        this.compileItems();
-    }
-
-    @SubscribeEvent
     public void onPlayerLogout(ClientPlayerNetworkEvent.LoggedOutEvent event)
     {
         this.filters = null;
@@ -61,6 +55,11 @@ public class CreativeScreenEvents
     {
         if(event.getGui() instanceof CreativeScreen)
         {
+            if(this.filters == null)
+            {
+                this.compileItems();
+            }
+
             this.viewingFurnitureTab = false;
             this.guiCenterX = ((CreativeScreen) event.getGui()).getGuiLeft();
             this.guiCenterY = ((CreativeScreen) event.getGui()).getGuiTop();
