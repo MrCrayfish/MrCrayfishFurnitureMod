@@ -86,6 +86,7 @@
         "cfm:birch_hedge",
         "cfm:jungle_hedge",
         "cfm:acacia_hedge",
-        "cfm:dark_oak_hedge"
+        "cfm:dark_oak_hedge",
+        "cfm:rock_path"
     ]
 }

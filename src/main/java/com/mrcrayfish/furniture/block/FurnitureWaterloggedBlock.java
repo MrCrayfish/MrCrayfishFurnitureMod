@@ -20,6 +20,7 @@ public abstract class FurnitureWaterloggedBlock extends FurnitureBlock implement
     public FurnitureWaterloggedBlock(Properties properties)
     {
         super(properties);
+        this.setDefaultState(this.getStateContainer().getBaseState().with(WATERLOGGED, false));
     }
 
     @Override

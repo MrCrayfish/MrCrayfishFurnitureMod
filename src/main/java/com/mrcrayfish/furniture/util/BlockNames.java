@@ -205,6 +205,7 @@ public class BlockNames
     public static final String PICKET_GATE_GREEN = Reference.MOD_ID + ":green_picket_gate";
     public static final String PICKET_GATE_RED = Reference.MOD_ID + ":red_picket_gate";
     public static final String PICKET_GATE_BLACK = Reference.MOD_ID + ":black_picket_gate";
+    public static final String ELECTRIC_FENCE = Reference.MOD_ID + ": electric_fence";
     public static final String CRATE_OAK = Reference.MOD_ID + ":oak_crate";
     public static final String CRATE_SPRUCE = Reference.MOD_ID + ":spruce_crate";
     public static final String CRATE_BIRCH = Reference.MOD_ID + ":birch_crate";
@@ -248,13 +249,12 @@ public class BlockNames
     public static final String HEDGE_JUNGLE = Reference.MOD_ID + ":jungle_hedge";
     public static final String HEDGE_ACACIA = Reference.MOD_ID + ":acacia_hedge";
     public static final String HEDGE_DARK_OAK = Reference.MOD_ID + ":dark_oak_hedge";
+    public static final String ROCK_PATH = Reference.MOD_ID + ":rock_path";
 
     /* Electronic Update */
     public static final String TV = Reference.MOD_ID + ":tv";
     public static final String COMPUTER = Reference.MOD_ID + ":computer";
     public static final String PRINTER = Reference.MOD_ID + ":printer";
-    public static final String ELECTRIC_FENCE = Reference.MOD_ID + ":electric_fence";
-    public static final String DOOR_BELL = Reference.MOD_ID + ":door_bell";
     public static final String STEREO = Reference.MOD_ID + ":stereo";
     public static final String FIRE_ALARM_OFF = Reference.MOD_ID + ":fire_alarm_off";
     public static final String FIRE_ALARM_ON = Reference.MOD_ID + ":fire_alarm_on";
@@ -303,9 +303,6 @@ public class BlockNames
     public static final String CANDLE = Reference.MOD_ID + ":candle";
     public static final String CHIMNEY = Reference.MOD_ID + ":chimney";
     public static final String WREATH = Reference.MOD_ID + ":wreath";
-    public static final String FAIRY_LIGHT = Reference.MOD_ID + ":fairy_light";
-    public static final String FIRE_PIT_OFF = Reference.MOD_ID + ":fire_pit_off";
-    public static final String FIRE_PIT_ON = Reference.MOD_ID + ":fire_pit_on";
     public static final String MODERN_WINDOW = Reference.MOD_ID + ":modern_window";
     public static final String MODERN_SLIDING_DOOR = Reference.MOD_ID + ":modern_sliding_door";
     public static final String MODERN_TV = Reference.MOD_ID + ":modern_tv";
@@ -317,33 +314,23 @@ public class BlockNames
     public static final String MODERN_COFFEE_TABLE = Reference.MOD_ID + ":modern_coffee_table";
     public static final String MODERN_STAIRS = Reference.MOD_ID + ":modern_stairs";
     public static final String MODERN_TABLE_OUTDOOR = Reference.MOD_ID + ":modern_table_outdoor";
+    public static final String DOOR_BELL = Reference.MOD_ID + ":door_bell";
     public static final String LIGHT_SWITCH_OFF = Reference.MOD_ID + ":light_switch_off";
     public static final String LIGHT_SWITCH_ON = Reference.MOD_ID + ":light_switch_on";
     public static final String MODERN_LIGHT_OFF = Reference.MOD_ID + ":modern_light_off";
     public static final String MODERN_LIGHT_ON = Reference.MOD_ID + ":modern_light_on";
     public static final String CEILING_FAN = Reference.MOD_ID + ":ceiling_fan";
-
     public static final String DIGITAL_CLOCK = Reference.MOD_ID + ":digital_clock"; //TODO flatten
     public static final String COUNTER_DRAWER = Reference.MOD_ID + ":counter_drawer";
-    public static final String DOOR_BELL_SPRUCE = Reference.MOD_ID + ":door_bell_spruce";
-    public static final String DOOR_BELL_BIRCH = Reference.MOD_ID + ":door_bell_birch";
-    public static final String DOOR_BELL_JUNGLE = Reference.MOD_ID + ":door_bell_jungle";
-    public static final String DOOR_BELL_ACACIA = Reference.MOD_ID + ":door_bell_acacia";
-    public static final String DOOR_BELL_DARK_OAK = Reference.MOD_ID + ":door_bell_dark_oak";
     public static final String PHOTO_FRAME = Reference.MOD_ID + ":photo_frame"; //TODO flatten
     public static final String TV_STAND = Reference.MOD_ID + ":tv_stand";
 
     /* Outdoor */
     public static final String TRAMPOLINE = Reference.MOD_ID + ":trampoline"; //TODO Make every colour
-    public static final String BENCH = Reference.MOD_ID + ":bench";
-    public static final String TABLE_OUTDOOR = Reference.MOD_ID + ":table_outdoor";
     public static final String GRILL = Reference.MOD_ID + ":grill"; //TODO Make every colour
-    public static final String DIVING_BOARD_BASE = Reference.MOD_ID + ":diving_board_base";
-    public static final String DIVING_BOARD_PLANK = Reference.MOD_ID + ":diving_board_plank";
+    public static final String DIVING_BOARD = Reference.MOD_ID + ":diving_board";
     public static final String DOOR_MAT = Reference.MOD_ID + ":door_mat"; //TODO flatten
     public static final String COOLER = Reference.MOD_ID + ":cooler"; //TODO flatten
     public static final String BIRD_BATH = Reference.MOD_ID + ":bird_bath";
-    public static final String ROCK_PATH = Reference.MOD_ID + ":rock_path";
-    public static final String PICKET_FENCE = Reference.MOD_ID + ":picket_fence";
     public static final String OUTDOOR_TAP = Reference.MOD_ID + ":outdoor_tap";
 }

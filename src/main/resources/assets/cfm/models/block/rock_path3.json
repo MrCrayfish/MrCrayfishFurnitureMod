@@ -1,0 +1,45 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "granite": "minecraft:block/granite",
+        "andesite": "minecraft:block/andesite"
+    },
+    "elements": [
+        {
+            "from": [ 4, 0, 1 ], 
+            "to": [ 12, 1, 6 ], 
+            "faces": {
+                "north": { "texture": "#andesite", "uv": [ 0, 0, 8, 1 ] },
+                "east": { "texture": "#andesite", "uv": [ 0, 0, 5, 1 ] },
+                "south": { "texture": "#andesite", "uv": [ 0, 0, 8, 1 ] },
+                "west": { "texture": "#andesite", "uv": [ 0, 0, 5, 1 ] },
+                "up": { "texture": "#andesite", "uv": [ 0, 0, 8, 5 ] },
+                "down": { "texture": "#andesite", "uv": [ 0, 0, 8, 5 ] }
+            }
+        },
+        {
+            "from": [ 2, 0, 8 ], 
+            "to": [ 7, 1, 14 ], 
+            "faces": {
+                "north": { "texture": "#andesite", "uv": [ 0, 0, 5, 1 ] },
+                "east": { "texture": "#andesite", "uv": [ 0, 0, 6, 1 ] },
+                "south": { "texture": "#andesite", "uv": [ 0, 0, 5, 1 ] },
+                "west": { "texture": "#andesite", "uv": [ 0, 0, 6, 1 ] },
+                "up": { "texture": "#andesite", "uv": [ 0, 0, 5, 6 ] },
+                "down": { "texture": "#andesite", "uv": [ 0, 0, 5, 6 ] }
+            }
+        },
+        {
+            "from": [ 9, 0, 7 ], 
+            "to": [ 14, 1, 12 ], 
+            "faces": {
+                "north": { "texture": "#granite", "uv": [ 0, 0, 5, 1 ] },
+                "east": { "texture": "#granite", "uv": [ 0, 0, 5, 1 ] },
+                "south": { "texture": "#granite", "uv": [ 0, 0, 5, 1 ] },
+                "west": { "texture": "#granite", "uv": [ 0, 0, 5, 1 ] },
+                "up": { "texture": "#granite", "uv": [ 0, 0, 5, 5 ] },
+                "down": { "texture": "#granite", "uv": [ 0, 0, 5, 5 ] }
+            }
+        }
+    ]
+}
