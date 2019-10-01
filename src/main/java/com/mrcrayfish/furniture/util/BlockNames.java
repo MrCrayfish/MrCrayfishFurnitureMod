@@ -250,6 +250,22 @@ public class BlockNames
     public static final String HEDGE_ACACIA = Reference.MOD_ID + ":acacia_hedge";
     public static final String HEDGE_DARK_OAK = Reference.MOD_ID + ":dark_oak_hedge";
     public static final String ROCK_PATH = Reference.MOD_ID + ":rock_path";
+    public static final String TRAMPOLINE_WHITE = Reference.MOD_ID + ":white_trampoline";
+    public static final String TRAMPOLINE_ORANGE = Reference.MOD_ID + ":orange_trampoline";
+    public static final String TRAMPOLINE_MAGENTA = Reference.MOD_ID + ":magenta_trampoline";
+    public static final String TRAMPOLINE_LIGHT_BLUE = Reference.MOD_ID + ":light_blue_trampoline";
+    public static final String TRAMPOLINE_YELLOW = Reference.MOD_ID + ":yellow_trampoline";
+    public static final String TRAMPOLINE_LIME = Reference.MOD_ID + ":lime_trampoline";
+    public static final String TRAMPOLINE_PINK = Reference.MOD_ID + ":pink_trampoline";
+    public static final String TRAMPOLINE_GRAY = Reference.MOD_ID + ":gray_trampoline";
+    public static final String TRAMPOLINE_LIGHT_GRAY = Reference.MOD_ID + ":light_gray_trampoline";
+    public static final String TRAMPOLINE_CYAN = Reference.MOD_ID + ":cyan_trampoline";
+    public static final String TRAMPOLINE_PURPLE = Reference.MOD_ID + ":purple_trampoline";
+    public static final String TRAMPOLINE_BLUE = Reference.MOD_ID + ":blue_trampoline";
+    public static final String TRAMPOLINE_BROWN = Reference.MOD_ID + ":brown_trampoline";
+    public static final String TRAMPOLINE_GREEN = Reference.MOD_ID + ":green_trampoline";
+    public static final String TRAMPOLINE_RED = Reference.MOD_ID + ":red_trampoline";
+    public static final String TRAMPOLINE_BLACK = Reference.MOD_ID + ":black_trampoline";
 
     /* Electronic Update */
     public static final String TV = Reference.MOD_ID + ":tv";
@@ -295,14 +311,7 @@ public class BlockNames
     public static final String BAR_STOOL = Reference.MOD_ID + ":bar_stool";
     public static final String CHOPPING_BOARD = Reference.MOD_ID + ":chopping_board";
     public static final String PRESENT = Reference.MOD_ID + ":present"; //TODO flatten?
-    public static final String TREE_BOTTOM = Reference.MOD_ID + ":tree_bottom";
-    public static final String TREE_TOP = Reference.MOD_ID + ":tree_top";
-    public static final String MANTEL_PIECE = Reference.MOD_ID + ":mantel_piece";
-    public static final String GRAND_CHAIR_TOP = Reference.MOD_ID + ":grand_chair_top";
-    public static final String GRAND_CHAIR_BOTTOM = Reference.MOD_ID + ":grand_chair_bottom";
-    public static final String CANDLE = Reference.MOD_ID + ":candle";
-    public static final String CHIMNEY = Reference.MOD_ID + ":chimney";
-    public static final String WREATH = Reference.MOD_ID + ":wreath";
+    public static final String TREE = Reference.MOD_ID + ":tree";
     public static final String MODERN_WINDOW = Reference.MOD_ID + ":modern_window";
     public static final String MODERN_SLIDING_DOOR = Reference.MOD_ID + ":modern_sliding_door";
     public static final String MODERN_TV = Reference.MOD_ID + ":modern_tv";
@@ -326,11 +335,8 @@ public class BlockNames
     public static final String TV_STAND = Reference.MOD_ID + ":tv_stand";
 
     /* Outdoor */
-    public static final String TRAMPOLINE = Reference.MOD_ID + ":trampoline"; //TODO Make every colour
     public static final String GRILL = Reference.MOD_ID + ":grill"; //TODO Make every colour
     public static final String DIVING_BOARD = Reference.MOD_ID + ":diving_board";
     public static final String DOOR_MAT = Reference.MOD_ID + ":door_mat"; //TODO flatten
     public static final String COOLER = Reference.MOD_ID + ":cooler"; //TODO flatten
-    public static final String BIRD_BATH = Reference.MOD_ID + ":bird_bath";
-    public static final String OUTDOOR_TAP = Reference.MOD_ID + ":outdoor_tap";
 }

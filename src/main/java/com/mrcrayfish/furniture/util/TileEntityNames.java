@@ -12,4 +12,5 @@ public class TileEntityNames
     public static final String DESK_CABINET = Reference.MOD_ID + ":desk_cabinet";
     public static final String CRATE = Reference.MOD_ID + ":crate";
     public static final String MAIL_BOX = Reference.MOD_ID + ":mail_box";
+    public static final String TRAMPOLINE = Reference.MOD_ID + ":trampoline";
 }

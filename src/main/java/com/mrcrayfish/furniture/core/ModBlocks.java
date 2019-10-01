@@ -273,6 +273,7 @@ public class ModBlocks
     public static final Block HEDGE_ACACIA = register(BlockNames.HEDGE_ACACIA, new HedgeBlock(Block.Properties.from(Blocks.ACACIA_LEAVES)));
     public static final Block HEDGE_DARK_OAK = register(BlockNames.HEDGE_DARK_OAK, new HedgeBlock(Block.Properties.from(Blocks.DARK_OAK_LEAVES)));
     public static final Block ROCK_PATH = register(BlockNames.ROCK_PATH, new RockPath(Block.Properties.from(Blocks.STONE)));
+    public static final Block TRAMPOLINE_WHITE = register(BlockNames.TRAMPOLINE_WHITE, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
 
     private static Block register(String name, Block block)
     {

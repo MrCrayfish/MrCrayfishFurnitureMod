@@ -1,0 +1,67 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "padding": "minecraft:block/blue_concrete",
+        "mesh": "cfm:block/mesh"
+    },
+    "elements": [
+        {
+            "from": [ 0, 13, 13 ], 
+            "to": [ 16, 16, 16 ], 
+            "faces": {
+                "north": { "texture": "#padding", "uv": [ 0, 0, 16, 3 ] },
+                "south": { "texture": "#padding", "uv": [ 0, 0, 16, 3 ] },
+                "up": { "texture": "#padding", "uv": [ 0, 13, 16, 16 ] },
+                "down": { "texture": "#padding", "uv": [ 0, 0, 16, 3 ] }
+            }
+        },
+        {
+            "from": [ 3, 14, 3 ], 
+            "to": [ 13, 15, 13 ], 
+            "faces": {
+                "up": { "texture": "#mesh", "uv": [ 0, 0, 15, 15 ] },
+                "down": { "texture": "#mesh", "uv": [ 0, 0, 15, 15 ] }
+            }
+        },
+        {
+            "from": [ 13, 14, 3 ], 
+            "to": [ 16, 15, 13 ], 
+            "faces": {
+                "up": { "texture": "#mesh", "uv": [ 1, 0, 5, 15 ] },
+                "down": { "texture": "#mesh", "uv": [ 1, 0, 5, 15 ] }
+            }
+        },
+        {
+            "from": [ 3, 14, 0 ], 
+            "to": [ 13, 15, 3 ], 
+            "faces": {
+                "up": { "texture": "#mesh", "uv": [ 0, 10, 15, 14 ] },
+                "down": { "texture": "#mesh", "uv": [ 0, 11, 15, 15 ] }
+            }
+        },
+        {
+            "from": [ 13, 14, 0 ], 
+            "to": [ 16, 15, 3 ], 
+            "faces": {
+                "up": { "texture": "#mesh", "uv": [ 1, 10, 5, 14 ] },
+                "down": { "texture": "#mesh", "uv": [ 1, 11, 5, 15 ] }
+            }
+        },
+        {
+            "from": [ 0, 14, 3 ], 
+            "to": [ 3, 15, 13 ], 
+            "faces": {
+                "up": { "texture": "#mesh", "uv": [ 0, 0, 4, 15 ] },
+                "down": { "texture": "#mesh", "uv": [ 0, 0, 4, 15 ] }
+            }
+        },
+        {
+            "from": [ 0, 14, 0 ], 
+            "to": [ 3, 15, 3 ], 
+            "faces": {
+                "up": { "texture": "#mesh", "uv": [ 0, 10, 4, 14 ] },
+                "down": { "texture": "#mesh", "uv": [ 0, 11, 4, 15 ] }
+            }
+        }
+    ]
+}
