@@ -1,5 +1,8 @@
 package com.mrcrayfish.furniture.proxy;
 
+import com.mrcrayfish.filters.Filters;
+import com.mrcrayfish.furniture.FurnitureMod;
+import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.MailBoxEntry;
 import com.mrcrayfish.furniture.client.event.CreativeScreenEvents;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.CrateScreen;
@@ -15,14 +18,17 @@ import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.FoliageColors;
 import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 import java.util.ArrayList;
@@ -43,10 +49,17 @@ public class ClientProxy extends CommonProxy
         ScreenManager.registerFactory(ModContainers.MAIL_BOX, MailBoxScreen::new);
         this.registerColors();
 
-        //if(!ModList.get().isLoaded("")) //TODO Future optional library TBA
-        //{
+        if(!ModList.get().isLoaded("filters"))
+        {
             MinecraftForge.EVENT_BUS.register(new CreativeScreenEvents());
-        //}
+        }
+        else
+        {
+            Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "general"), new ItemStack(ModBlocks.CHAIR_OAK));
+            Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "storage"), new ItemStack(ModBlocks.CABINET_OAK));
+            Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "bedroom"), new ItemStack(ModBlocks.DESK_OAK));
+            Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "outdoors"), new ItemStack(ModBlocks.MAIL_BOX_OAK));
+        }
     }
 
     private void registerColors()
