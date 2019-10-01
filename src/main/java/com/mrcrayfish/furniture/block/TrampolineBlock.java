@@ -63,7 +63,7 @@ public class TrampolineBlock extends FurnitureWaterloggedBlock
                 {
                     for(int i = 0; i < 5; i++)
                     {
-                        worldIn.addParticle(ParticleTypes.ENTITY_EFFECT, entityIn.posX, entityIn.posY, entityIn.posZ, 0.0, 0.0, 0.0);
+                        worldIn.addParticle(ParticleTypes.ENTITY_EFFECT, entityIn.posX, entityIn.posY, entityIn.posZ, 1.0, 1.0, 1.0);
                     }
                 }
                 else
