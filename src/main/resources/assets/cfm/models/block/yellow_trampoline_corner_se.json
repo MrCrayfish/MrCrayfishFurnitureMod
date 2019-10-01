@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/trampoline_corner_se",
+    "textures": {
+        "padding": "minecraft:block/yellow_concrete"
+    }
+}

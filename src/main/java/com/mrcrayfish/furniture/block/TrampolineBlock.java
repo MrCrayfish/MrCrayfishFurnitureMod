@@ -31,11 +31,15 @@ public class TrampolineBlock extends FurnitureWaterloggedBlock
     public static final BooleanProperty EAST = BooleanProperty.create("east");
     public static final BooleanProperty SOUTH = BooleanProperty.create("south");
     public static final BooleanProperty WEST = BooleanProperty.create("west");
+    public static final BooleanProperty CORNER_NORTH_WEST = BooleanProperty.create("corner_north_west");
+    public static final BooleanProperty CORNER_NORTH_EAST = BooleanProperty.create("corner_north_east");
+    public static final BooleanProperty CORNER_SOUTH_EAST = BooleanProperty.create("corner_south_east");
+    public static final BooleanProperty CORNER_SOUTH_WEST = BooleanProperty.create("corner_south_west");
 
     public TrampolineBlock(Properties properties)
     {
         super(properties);
-        this.setDefaultState(this.getStateContainer().getBaseState().with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(WATERLOGGED, false));
+        this.setDefaultState(this.getStateContainer().getBaseState().with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(WATERLOGGED, false).with(CORNER_NORTH_WEST, false).with(CORNER_NORTH_EAST, false).with(CORNER_SOUTH_EAST, false).with(CORNER_SOUTH_WEST, false));
     }
 
     @Override
@@ -115,7 +119,11 @@ public class TrampolineBlock extends FurnitureWaterloggedBlock
         boolean east = world.getBlockState(pos.east()).getBlock() == this;
         boolean south = world.getBlockState(pos.south()).getBlock() == this;
         boolean west = world.getBlockState(pos.west()).getBlock() == this;
-        return state.with(NORTH, north).with(EAST, east).with(SOUTH, south).with(WEST, west);
+        boolean cornerNorthWest = north && west && world.getBlockState(pos.north().west()).getBlock() != this;
+        boolean cornerNorthEast = north && east && world.getBlockState(pos.north().east()).getBlock() != this;
+        boolean cornerSouthEast = south && east && world.getBlockState(pos.south().east()).getBlock() != this;
+        boolean cornerSouthWest = south && west && world.getBlockState(pos.south().west()).getBlock() != this;
+        return state.with(NORTH, north).with(EAST, east).with(SOUTH, south).with(WEST, west).with(CORNER_NORTH_WEST, cornerNorthWest).with(CORNER_NORTH_EAST, cornerNorthEast).with(CORNER_SOUTH_EAST, cornerSouthEast).with(CORNER_SOUTH_WEST, cornerSouthWest);
     }
 
     @Override
@@ -126,6 +134,10 @@ public class TrampolineBlock extends FurnitureWaterloggedBlock
         builder.add(EAST);
         builder.add(SOUTH);
         builder.add(WEST);
+        builder.add(CORNER_NORTH_WEST);
+        builder.add(CORNER_NORTH_EAST);
+        builder.add(CORNER_SOUTH_EAST);
+        builder.add(CORNER_SOUTH_WEST);
     }
 
     @Override

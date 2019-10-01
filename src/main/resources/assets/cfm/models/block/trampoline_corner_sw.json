@@ -1,0 +1,43 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "padding": "minecraft:block/blue_concrete",
+        "frame": "minecraft:block/light_gray_concrete"
+    },
+    "elements": [
+        {
+            "from": [ 0, 13, 13 ], 
+            "to": [ 3, 16, 16 ], 
+            "faces": {
+                "north": { "texture": "#padding", "uv": [ 0, 0, 3, 3 ] },
+                "east": { "texture": "#padding", "uv": [ 0, 0, 3, 3 ] },
+                "south": { "texture": "#padding", "uv": [ 13, 0, 16, 3 ] },
+                "west": { "texture": "#padding", "uv": [ 0, 0, 3, 3 ] },
+                "up": { "texture": "#padding", "uv": [ 13, 0, 16, 3 ] },
+                "down": { "texture": "#padding", "uv": [ 13, 0, 16, 3 ] }
+            }
+        },
+        {
+            "from": [ 1, 0, 12 ], 
+            "to": [ 4, 13, 15 ], 
+            "faces": {
+                "north": { "texture": "#frame", "uv": [ 0, 0, 3, 13 ] },
+                "east": { "texture": "#frame", "uv": [ 0, 0, 3, 13 ] },
+                "south": { "texture": "#frame", "uv": [ 0, 0, 3, 13 ] },
+                "west": { "texture": "#frame", "uv": [ 0, 0, 3, 13 ] },
+                "up": { "texture": "#frame", "uv": [ 0, 0, 3, 3 ] },
+                "down": { "texture": "#frame", "uv": [ 0, 0, 3, 3 ] }
+            }
+        },
+        {
+            "from": [ 1, 0, 15 ], 
+            "to": [ 4, 3, 16 ], 
+            "faces": {
+                "east": { "texture": "#frame", "uv": [ 0, 0, 1, 3 ] },
+                "west": { "texture": "#frame", "uv": [ 0, 0, 1, 3 ] },
+                "up": { "texture": "#frame", "uv": [ 0, 0, 3, 1 ] },
+                "down": { "texture": "#frame", "uv": [ 0, 0, 3, 1 ] }
+            }
+        }
+    ]
+}
