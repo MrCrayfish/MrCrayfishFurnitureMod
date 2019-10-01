@@ -35,11 +35,11 @@
             "model": "cfm:block/white_trampoline_ew"
         },
         "east=false,north=true,south=true,west=true": {
-            "model": "cfm:block/white_trampoline_new",
+            "model": "cfm:block/white_trampoline_new_alt",
             "y": 270
         },
         "east=true,north=true,south=true,west=false": {
-            "model": "cfm:block/white_trampoline_new",
+            "model": "cfm:block/white_trampoline_new_alt",
             "y": 90
         },
         "east=true,north=true,south=false,west=true": {
