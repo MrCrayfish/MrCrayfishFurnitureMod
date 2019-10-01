@@ -2,6 +2,7 @@
     "replace": false,
     "values": [
         "cfm:oak_upgraded_fence",
+        "cfm:spruce_upgraded_fence",
         "cfm:birch_upgraded_fence",
         "cfm:jungle_upgraded_fence",
         "cfm:acacia_upgraded_fence",
@@ -101,6 +102,8 @@
         "cfm:purple_trampoline",
         "cfm:blue_trampoline",
         "cfm:brown_trampoline",
-        "cfm:green_trampoline"
+        "cfm:green_trampoline",
+        "cfm:red_trampoline",
+        "cfm:black_trampoline"
     ]
 }

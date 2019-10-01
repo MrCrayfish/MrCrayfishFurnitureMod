@@ -62,6 +62,8 @@
         "cfm:purple_sofa",
         "cfm:blue_sofa",
         "cfm:brown_sofa",
-        "cfm:green_sofa"
+        "cfm:green_sofa",
+        "cfm:red_sofa",
+        "cfm:black_sofa"
     ]
 }
