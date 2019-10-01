@@ -1,6 +1,7 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
     "textures": {
+        "particle": "minecraft:block/stone",
         "granite": "minecraft:block/granite",
         "andesite": "minecraft:block/andesite",
         "stone": "minecraft:block/stone"
