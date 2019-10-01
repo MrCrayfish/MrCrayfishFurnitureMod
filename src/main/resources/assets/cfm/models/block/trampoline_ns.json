@@ -1,0 +1,74 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "padding": "minecraft:block/blue_concrete",
+        "mesh": "cfm:block/mesh",
+        "frame": "minecraft:block/light_gray_concrete"
+    },
+    "elements": [
+        {
+            "from": [ 1, 0, 0 ], 
+            "to": [ 4, 3, 16 ], 
+            "faces": {
+                "east": { "texture": "#frame", "uv": [ 0, 0, 16, 3 ] },
+                "west": { "texture": "#frame", "uv": [ 0, 0, 16, 3 ] },
+                "up": { "texture": "#frame", "uv": [ 0, 0, 3, 16 ] },
+                "down": { "texture": "#frame", "uv": [ 0, 0, 3, 16 ] }
+            }
+        },
+        {
+            "from": [ 0, 13, 0 ], 
+            "to": [ 3, 16, 16 ], 
+            "faces": {
+                "east": { "texture": "#padding", "uv": [ 0, 0, 16, 3 ] },
+                "west": { "texture": "#padding", "uv": [ 0, 0, 16, 3 ] },
+                "up": { "texture": "#padding", "uv": [ 0, 0, 3, 16 ] },
+                "down": { "texture": "#padding", "uv": [ 0, 0, 3, 16 ] }
+            }
+        },
+        {
+            "from": [ 13, 13, 0 ], 
+            "to": [ 16, 16, 16 ], 
+            "faces": {
+                "east": { "texture": "#padding", "uv": [ 0, 0, 16, 3 ] },
+                "west": { "texture": "#padding", "uv": [ 0, 0, 16, 3 ] },
+                "up": { "texture": "#padding", "uv": [ 13, 0, 16, 16 ] },
+                "down": { "texture": "#padding", "uv": [ 13, 0, 16, 16 ] }
+            }
+        },
+        {
+            "from": [ 12, 0, 0 ], 
+            "to": [ 15, 3, 16 ], 
+            "faces": {
+                "east": { "texture": "#frame", "uv": [ 0, 0, 16, 3 ] },
+                "west": { "texture": "#frame", "uv": [ 0, 0, 16, 3 ] },
+                "up": { "texture": "#frame", "uv": [ 0, 0, 3, 16 ] },
+                "down": { "texture": "#frame", "uv": [ 0, 0, 3, 16 ] }
+            }
+        },
+        {
+            "from": [ 3, 14, 3 ], 
+            "to": [ 13, 15, 13 ], 
+            "faces": {
+                "up": { "texture": "#mesh", "uv": [ 0, 0, 15, 15 ] },
+                "down": { "texture": "#mesh", "uv": [ 0, 0, 15, 15 ] }
+            }
+        },
+        {
+            "from": [ 3, 14, 0 ], 
+            "to": [ 13, 15, 3 ], 
+            "faces": {
+                "up": { "texture": "#mesh", "uv": [ 0, 0, 15, 4 ] },
+                "down": { "texture": "#mesh", "uv": [ 0, 1, 15, 5 ] }
+            }
+        },
+        {
+            "from": [ 3, 14, 13 ], 
+            "to": [ 13, 15, 16 ], 
+            "faces": {
+                "up": { "texture": "#mesh", "uv": [ 0, 1, 15, 5 ] },
+                "down": { "texture": "#mesh", "uv": [ 0, 0, 15, 4 ] }
+            }
+        }
+    ]
+}
