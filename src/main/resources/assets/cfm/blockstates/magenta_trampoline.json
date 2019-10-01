@@ -1,0 +1,56 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "east=false,north=false,south=false,west=false": {
+            "model": "cfm:block/magenta_trampoline"
+        },
+        "east=false,north=true,south=false,west=false": {
+            "model": "cfm:block/magenta_trampoline_n"
+        },
+        "east=true,north=false,south=false,west=false": {
+            "model": "cfm:block/magenta_trampoline_e"
+        },
+        "east=false,north=false,south=true,west=false": {
+            "model": "cfm:block/magenta_trampoline_s"
+        },
+        "east=false,north=false,south=false,west=true": {
+            "model": "cfm:block/magenta_trampoline_w"
+        },
+        "east=true,north=true,south=false,west=false": {
+            "model": "cfm:block/magenta_trampoline_ne"
+        },
+        "east=false,north=true,south=false,west=true": {
+            "model": "cfm:block/magenta_trampoline_nw"
+        },
+        "east=true,north=false,south=true,west=false": {
+            "model": "cfm:block/magenta_trampoline_es"
+        },
+        "east=false,north=false,south=true,west=true": {
+            "model": "cfm:block/magenta_trampoline_sw"
+        },
+        "east=false,north=true,south=true,west=false": {
+            "model": "cfm:block/magenta_trampoline_ns"
+        },
+        "east=true,north=false,south=false,west=true": {
+            "model": "cfm:block/magenta_trampoline_ew"
+        },
+        "east=false,north=true,south=true,west=true": {
+            "model": "cfm:block/magenta_trampoline_new_alt",
+            "y": 270
+        },
+        "east=true,north=true,south=true,west=false": {
+            "model": "cfm:block/magenta_trampoline_new_alt",
+            "y": 90
+        },
+        "east=true,north=true,south=false,west=true": {
+            "model": "cfm:block/magenta_trampoline_new"
+        },
+        "east=true,north=false,south=true,west=true": {
+            "model": "cfm:block/magenta_trampoline_new",
+            "y": 180
+        },
+        "east=true,north=true,south=true,west=true": {
+            "model": "cfm:block/magenta_trampoline_nesw"
+        }
+    }
+}

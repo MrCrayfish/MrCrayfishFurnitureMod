@@ -48,6 +48,20 @@
         "cfm:stripped_birch_coffee_table",
         "cfm:stripped_jungle_coffee_table",
         "cfm:stripped_acacia_coffee_table",
-        "cfm:stripped_dark_oak_coffee_table"
+        "cfm:stripped_dark_oak_coffee_table",
+        "cfm:white_sofa",
+        "cfm:orange_sofa",
+        "cfm:magenta_sofa",
+        "cfm:light_blue_sofa",
+        "cfm:yellow_sofa",
+        "cfm:lime_sofa",
+        "cfm:pink_sofa",
+        "cfm:gray_sofa",
+        "cfm:light_gray_sofa",
+        "cfm:cyan_sofa",
+        "cfm:purple_sofa",
+        "cfm:blue_sofa",
+        "cfm:brown_sofa",
+        "cfm:green_sofa"
     ]
 }

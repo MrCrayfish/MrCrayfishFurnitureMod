@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/trampoline_s",
+    "textures": {
+        "padding": "minecraft:block/lime_concrete"
+    }
+}

@@ -1,6 +1,7 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
     "textures": {
+        "particle": "cfm:block/mesh",
         "padding": "minecraft:block/blue_concrete",
         "mesh": "cfm:block/mesh",
         "frame": "minecraft:block/light_gray_concrete"
@@ -8,7 +9,7 @@
     "elements": [
         {
             "from": [ 0, 13, 0 ], 
-            "to": [ 13, 16, 3 ], 
+            "to": [ 13, 16, 3 ],
             "faces": {
                 "north": { "texture": "#padding", "uv": [ 0, 0, 13, 3 ] },
                 "south": { "texture": "#padding", "uv": [ 0, 0, 13, 3 ] },

@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/trampoline_new_alt",
+    "textures": {
+        "padding": "minecraft:block/yellow_concrete"
+    }
+}

@@ -274,6 +274,21 @@ public class ModBlocks
     public static final Block HEDGE_DARK_OAK = register(BlockNames.HEDGE_DARK_OAK, new HedgeBlock(Block.Properties.from(Blocks.DARK_OAK_LEAVES)));
     public static final Block ROCK_PATH = register(BlockNames.ROCK_PATH, new RockPath(Block.Properties.from(Blocks.STONE)));
     public static final Block TRAMPOLINE_WHITE = register(BlockNames.TRAMPOLINE_WHITE, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block TRAMPOLINE_ORANGE = register(BlockNames.TRAMPOLINE_ORANGE, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block TRAMPOLINE_MAGENTA = register(BlockNames.TRAMPOLINE_MAGENTA, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block TRAMPOLINE_LIGHT_BLUE = register(BlockNames.TRAMPOLINE_LIGHT_BLUE, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block TRAMPOLINE_YELLOW = register(BlockNames.TRAMPOLINE_YELLOW, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block TRAMPOLINE_LIME = register(BlockNames.TRAMPOLINE_LIME, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block TRAMPOLINE_PINK = register(BlockNames.TRAMPOLINE_PINK, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block TRAMPOLINE_GRAY = register(BlockNames.TRAMPOLINE_GRAY, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block TRAMPOLINE_LIGHT_GRAY = register(BlockNames.TRAMPOLINE_LIGHT_GRAY, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block TRAMPOLINE_CYAN = register(BlockNames.TRAMPOLINE_CYAN, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block TRAMPOLINE_PURPLE = register(BlockNames.TRAMPOLINE_PURPLE, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block TRAMPOLINE_BLUE = register(BlockNames.TRAMPOLINE_BLUE, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block TRAMPOLINE_BROWN = register(BlockNames.TRAMPOLINE_BROWN, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block TRAMPOLINE_GREEN = register(BlockNames.TRAMPOLINE_GREEN, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block TRAMPOLINE_RED = register(BlockNames.TRAMPOLINE_RED, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block TRAMPOLINE_BLACK = register(BlockNames.TRAMPOLINE_BLACK, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
 
     private static Block register(String name, Block block)
     {
