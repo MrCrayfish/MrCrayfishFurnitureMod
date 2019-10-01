@@ -54,15 +54,15 @@ public class TrampolineBlock extends FurnitureWaterloggedBlock
             {
                 TrampolineTileEntity trampoline = (TrampolineTileEntity) tileEntity;
                 strength += trampoline.getCount() / 100F;
-                maxHeight = trampoline.getCount() * 0.5F;
+                maxHeight = trampoline.getCount() * 0.25F;
             }
 
             float height = entityIn.fallDistance * strength;
             if(height > 0 && !entityIn.isSneaking())
             {
-                if(height > maxHeight - 0.5F) height = maxHeight - 0.5F;
+                if(height > maxHeight - 0.25F) height = maxHeight - 0.25F;
                 entityIn.setMotion(entityIn.getMotion().mul(1.0, 0.0, 1.0));
-                entityIn.addVelocity(0, Math.sqrt(0.22 * (height + 0.5F)), 0);
+                entityIn.addVelocity(0, Math.sqrt(0.22 * (height + 0.25F)), 0);
                 if(worldIn.isRemote)
                 {
                     for(int i = 0; i < 5; i++)
