@@ -13,4 +13,5 @@ public class SoundNames
     public static final String BEDSIDE_CABINET_CLOSE = Reference.MOD_ID + ":block.bedside_cabinet.close";
     public static final String BLINDS_OPEN = Reference.MOD_ID + ":block.blinds.open";
     public static final String BLINDS_CLOSE = Reference.MOD_ID + ":block.blinds.close";
+    public static final String TRAMPOLINE_BOUNCE = Reference.MOD_ID + ":block.trampoline.bounce";
 }

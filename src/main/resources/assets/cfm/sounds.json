@@ -22,5 +22,9 @@
     "block.blinds.close": {
         "subtitle": "subtitle.cfm.close_blinds",
         "sounds": [ "cfm:block/blinds/close" ]
+    },
+    "block.trampoline.bounce": {
+        "subtitle": "subtitle.cfm.trampoline_bounce",
+        "sounds": [ "cfm:block/trampoline/bounce" ]
     }
 }

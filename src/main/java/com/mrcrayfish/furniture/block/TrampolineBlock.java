@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.block;
 
+import com.mrcrayfish.furniture.core.ModSounds;
 import com.mrcrayfish.furniture.tileentity.TrampolineTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -12,6 +13,7 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
@@ -63,6 +65,10 @@ public class TrampolineBlock extends FurnitureWaterloggedBlock
                     {
                         worldIn.addParticle(ParticleTypes.ENTITY_EFFECT, entityIn.posX, entityIn.posY, entityIn.posZ, 0.0, 0.0, 0.0);
                     }
+                }
+                else
+                {
+                    worldIn.playSound(null, pos, ModSounds.BLOCK_TRAMPOLINE_BOUNCE, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.2F + 0.9F);
                 }
             }
             entityIn.fallDistance = 0;
