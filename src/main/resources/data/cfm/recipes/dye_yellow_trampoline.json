@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "trampoline",
+    "pattern": [
+        "TTT",
+        "TDT",
+        "TTT"
+    ],
+    "key": {
+        "T": {
+            "tag": "cfm:trampoline"
+        },
+        "D": {
+            "item": "minecraft:yellow_dye"
+        }
+    },
+    "result": {
+        "item": "cfm:yellow_trampoline",
+        "count": 8
+    }
+}
