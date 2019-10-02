@@ -1,7 +1,10 @@
 package com.mrcrayfish.furniture.block;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.core.ModSounds;
 import com.mrcrayfish.furniture.tileentity.TrampolineTileEntity;
+import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.Entity;
@@ -15,12 +18,16 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Author: MrCrayfish
@@ -36,10 +43,165 @@ public class TrampolineBlock extends FurnitureWaterloggedBlock
     public static final BooleanProperty CORNER_SOUTH_EAST = BooleanProperty.create("corner_south_east");
     public static final BooleanProperty CORNER_SOUTH_WEST = BooleanProperty.create("corner_south_west");
 
+    public final ImmutableMap<BlockState, VoxelShape> SHAPES;
+
     public TrampolineBlock(Properties properties)
     {
         super(properties);
         this.setDefaultState(this.getStateContainer().getBaseState().with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(WATERLOGGED, false).with(CORNER_NORTH_WEST, false).with(CORNER_NORTH_EAST, false).with(CORNER_SOUTH_EAST, false).with(CORNER_SOUTH_WEST, false));
+        SHAPES = this.generateShapes(this.getStateContainer().getValidStates());
+    }
+
+    private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
+    {
+        final VoxelShape BOTTOM_LEFT_SUPPORT_SHORT = Block.makeCuboidShape(1, 0, 1, 4, 3, 15);
+        final VoxelShape BOTTOM_LEFT_SUPPORT_LONG = Block.makeCuboidShape(1, 0, 0, 4, 3, 16);
+        final VoxelShape BOTTOM_LEFT_SUPPORT_NORTH = Block.makeCuboidShape(1, 0, 0, 4, 3, 15);
+        final VoxelShape BOTTOM_LEFT_SUPPORT_SOUTH = Block.makeCuboidShape(1, 0, 1, 4, 3, 16);
+        final VoxelShape BACK_LEFT_LEG = Block.makeCuboidShape(1, 3, 1, 4, 13, 4);
+        final VoxelShape FRONT_LEFT_LEG = Block.makeCuboidShape(1, 3, 12, 4, 13, 15);
+        final VoxelShape TOP = Block.makeCuboidShape(0, 13, 0, 16, 16, 16);
+        final VoxelShape BOTTOM_RIGHT_SUPPORT_SHORT = Block.makeCuboidShape(12, 0, 1, 15, 3, 15);
+        final VoxelShape BOTTOM_RIGHT_SUPPORT_LONG = Block.makeCuboidShape(12, 0, 0, 15, 3, 16);
+        final VoxelShape BOTTOM_RIGHT_SUPPORT_NORTH = Block.makeCuboidShape(12, 0, 0, 15, 3, 15);
+        final VoxelShape BOTTOM_RIGHT_SUPPORT_SOUTH = Block.makeCuboidShape(12, 0, 1, 15, 3, 16);
+        final VoxelShape FRONT_RIGHT_LEG = Block.makeCuboidShape(12, 3, 12, 15, 13, 15);
+        final VoxelShape BACK_RIGHT_LEG = Block.makeCuboidShape(12, 3, 1, 15, 13, 4);
+        final VoxelShape NORTH_WEST_CORNER_SUPPORT = Block.makeCuboidShape(1, 0, 0, 4, 3, 4);
+        final VoxelShape NORTH_EAST_CORNER_SUPPORT = Block.makeCuboidShape(12, 0, 0, 15, 3, 4);
+        final VoxelShape SOUTH_EAST_CORNER_SUPPORT = Block.makeCuboidShape(12, 0, 12, 15, 3, 16);
+        final VoxelShape SOUTH_WEST_CORNER_SUPPORT = Block.makeCuboidShape(1, 0, 12, 4, 3, 16);
+
+        ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
+        for(BlockState state : states)
+        {
+            boolean north = state.get(NORTH);
+            boolean east = state.get(EAST);
+            boolean south = state.get(SOUTH);
+            boolean west = state.get(WEST);
+            boolean cornerNorthWest = state.get(CORNER_NORTH_WEST);
+            boolean cornerNorthEast = state.get(CORNER_NORTH_EAST);
+            boolean cornerSouthEast = state.get(CORNER_SOUTH_EAST);
+            boolean cornerSouthWest = state.get(CORNER_SOUTH_WEST);
+
+            List<VoxelShape> shapes = new ArrayList<>();
+            shapes.add(TOP);
+
+            int count = 0;
+            count += north ? 1 : 0;
+            count += east ? 1 : 0;
+            count += south ? 1 : 0;
+            count += west ? 1 : 0;
+
+            if(count >= 2)
+            {
+                if(north && !east && south && !west)
+                {
+                    shapes.add(BOTTOM_LEFT_SUPPORT_LONG);
+                    shapes.add(BOTTOM_RIGHT_SUPPORT_LONG);
+                    builder.put(state, VoxelShapeHelper.combineAll(shapes));
+                    continue;
+                }
+                if(!north && east && !south && west)
+                {
+                    builder.put(state, VoxelShapeHelper.combineAll(shapes));
+                    continue;
+                }
+            }
+
+            if(north && east && !south && !west)
+            {
+                shapes.add(FRONT_LEFT_LEG);
+            }
+            if(north && !east && !south && west)
+            {
+                shapes.add(FRONT_RIGHT_LEG);
+            }
+            if(!north && east && south && !west)
+            {
+                shapes.add(BACK_LEFT_LEG);
+            }
+            if(!north && !east && south && west)
+            {
+                shapes.add(BACK_RIGHT_LEG);
+            }
+
+            if(!west)
+            {
+                if(south)
+                {
+                    if(!north) shapes.add(BACK_LEFT_LEG);
+                    shapes.add(BOTTOM_LEFT_SUPPORT_SOUTH);
+                }
+                else if(north)
+                {
+                    shapes.add(FRONT_LEFT_LEG);
+                    shapes.add(BOTTOM_LEFT_SUPPORT_NORTH);
+                }
+                else
+                {
+                    shapes.add(FRONT_LEFT_LEG);
+                    shapes.add(BACK_LEFT_LEG);
+                    shapes.add(BOTTOM_LEFT_SUPPORT_SHORT);
+                }
+            }
+
+            if(!east)
+            {
+                if(south)
+                {
+                    if(!north) shapes.add(BACK_RIGHT_LEG);
+                    shapes.add(BOTTOM_RIGHT_SUPPORT_SOUTH);
+                }
+                else if(north)
+                {
+                    shapes.add(FRONT_RIGHT_LEG);
+                    shapes.add(BOTTOM_RIGHT_SUPPORT_NORTH);
+                }
+                else
+                {
+                    shapes.add(FRONT_RIGHT_LEG);
+                    shapes.add(BACK_RIGHT_LEG);
+                    shapes.add(BOTTOM_RIGHT_SUPPORT_SHORT);
+                }
+            }
+
+            if(cornerNorthWest)
+            {
+                shapes.add(NORTH_WEST_CORNER_SUPPORT);
+                shapes.add(BACK_LEFT_LEG);
+            }
+            if(cornerNorthEast)
+            {
+                shapes.add(NORTH_EAST_CORNER_SUPPORT);
+                shapes.add(BACK_RIGHT_LEG);
+            }
+            if(cornerSouthEast)
+            {
+                shapes.add(SOUTH_EAST_CORNER_SUPPORT);
+                shapes.add(FRONT_RIGHT_LEG);
+            }
+            if(cornerSouthWest)
+            {
+                shapes.add(SOUTH_WEST_CORNER_SUPPORT);
+                shapes.add(FRONT_LEFT_LEG);
+            }
+
+            builder.put(state, VoxelShapeHelper.combineAll(shapes));
+        }
+        return builder.build();
+    }
+
+    @Override
+    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context)
+    {
+        return SHAPES.get(state);
+    }
+
+    @Override
+    public VoxelShape getRenderShape(BlockState state, IBlockReader reader, BlockPos pos)
+    {
+        return SHAPES.get(state);
     }
 
     @Override
