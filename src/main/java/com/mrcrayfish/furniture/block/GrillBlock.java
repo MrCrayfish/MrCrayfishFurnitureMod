@@ -24,7 +24,7 @@ import java.util.Optional;
 /**
  * Author: MrCrayfish
  */
-public class GrillBlock extends FurnitureHorizontalWaterloggedBlock
+public class GrillBlock extends FurnitureWaterloggedBlock
 {
     public GrillBlock(Properties properties)
     {
@@ -70,7 +70,7 @@ public class GrillBlock extends FurnitureHorizontalWaterloggedBlock
                     if(optional.isPresent())
                     {
                         GrillCookingRecipe recipe = optional.get();
-                        if(grillTileEntity.addItem(stack, this.getPosition(hit, pos), recipe.getCookTime(), recipe.getExperience()))
+                        if(grillTileEntity.addItem(stack, this.getPosition(hit, pos), recipe.getCookTime(), recipe.getExperience(), (byte) player.getHorizontalFacing().getHorizontalIndex()))
                         {
                             if(!player.abilities.isCreativeMode)
                             {

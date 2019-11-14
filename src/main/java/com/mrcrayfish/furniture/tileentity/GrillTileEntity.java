@@ -37,6 +37,7 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
     private final int[] cookingTotalTimes = new int[4];
     private final boolean[] flipped = new boolean[4];
     private final float[] experience = new float[4];
+    private final byte[] rotations = new byte[4];
     private int remainingFuel = 0;
 
     @OnlyIn(Dist.CLIENT)
@@ -49,15 +50,20 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
 
     public NonNullList<ItemStack> getGrill()
     {
-        return grill;
+        return this.grill;
     }
 
     public NonNullList<ItemStack> getFuel()
     {
-        return fuel;
+        return this.fuel;
     }
 
-    public boolean addItem(ItemStack stack, int position, int cookTime, float experience)
+    public byte[] getRotations()
+    {
+        return this.rotations;
+    }
+
+    public boolean addItem(ItemStack stack, int position, int cookTime, float experience, byte rotation)
     {
         if(this.grill.get(position).isEmpty())
         {
@@ -66,6 +72,7 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
             this.cookingTotalTimes[position] = cookTime / 2; //Half the time because it has to cook both sides
             this.flipped[position] = false;
             this.experience[position] = experience;
+            this.rotations[position] = rotation;
 
             /* Send updates to client */
             CompoundNBT compound = new CompoundNBT();
@@ -73,6 +80,7 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
             this.writeCookingTimes(compound);
             this.writeCookingTotalTimes(compound);
             this.writeFlipped(compound);
+            this.writeRotations(compound);
             TileEntityUtil.sendUpdatePacket(this, super.write(compound));
             return true;
         }
@@ -170,10 +178,9 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
                 }
             }
 
-            this.cookItems();
-
             if(canCook && this.remainingFuel > 0)
             {
+                this.cookItems();
                 this.remainingFuel--;
                 if(this.remainingFuel == 0)
                 {
@@ -334,6 +341,11 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
                 this.experience[i] = Float.intBitsToFloat(experience[i]);
             }
         }
+        if(compound.contains("Rotations", Constants.NBT.TAG_BYTE_ARRAY))
+        {
+            byte[] rotations = compound.getByteArray("Rotations");
+            System.arraycopy(rotations, 0, this.rotations, 0, Math.min(this.rotations.length, rotations.length));
+        }
     }
 
     @Override
@@ -346,6 +358,7 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
         this.writeFlipped(compound);
         this.writeExperience(compound);
         this.writeRemainingFuel(compound);
+        this.writeRotations(compound);
         return super.write(compound);
     }
 
@@ -398,6 +411,12 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
             experience[i] = Float.floatToIntBits(experience[i]);
         }
         compound.putIntArray("Experience", experience);
+        return compound;
+    }
+
+    private CompoundNBT writeRotations(CompoundNBT compound)
+    {
+        compound.putByteArray("Rotations", this.rotations);
         return compound;
     }
 

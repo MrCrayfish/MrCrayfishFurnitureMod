@@ -27,6 +27,7 @@ public class GrillTileEntityRenderer extends TileEntityRenderer<GrillTileEntity>
                 GlStateManager.rotatef(90.0F, 1.0F, 0.0F, 0.0F);
                 GlStateManager.translatef(-0.2F + 0.4F * (i % 2), -0.2F + 0.4F * (i / 2), 0.0F);
                 GlStateManager.scalef(0.375F, 0.375F, 0.5F);
+                GlStateManager.rotatef(90F * tileEntity.getRotations()[i], 0, 0, 1);
                 Minecraft.getInstance().getItemRenderer().renderItem(stack, ItemCameraTransforms.TransformType.FIXED);
                 GlStateManager.popMatrix();
             }
@@ -40,10 +41,10 @@ public class GrillTileEntityRenderer extends TileEntityRenderer<GrillTileEntity>
             {
                 GlStateManager.pushMatrix();
                 GlStateManager.translatef((float) x + 0.5F, (float) y + 0.85F, (float) z + 0.5F);
-                GlStateManager.rotatef(90.0F, 1.0F, 0.0F, 0.0F);
+                GlStateManager.rotatef(90.0F, 1, 0, 0);
                 GlStateManager.translatef(-0.2F + 0.2F * (i % 3), -0.2F + 0.2F * (i / 3), 0.0F);
                 GlStateManager.scalef(0.375F, 0.375F, 0.375F);
-                GlStateManager.rotatef(10.0F, 0.0F, 1.0F, 1.0F);
+                GlStateManager.rotatef(10.0F, 0, 1, 1);
                 Minecraft.getInstance().getItemRenderer().renderItem(stack, ItemCameraTransforms.TransformType.FIXED);
                 GlStateManager.popMatrix();
             }
