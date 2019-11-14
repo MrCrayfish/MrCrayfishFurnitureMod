@@ -3,6 +3,8 @@ package com.mrcrayfish.furniture.tileentity;
 import com.mrcrayfish.furniture.core.ModTileEntities;
 import com.mrcrayfish.furniture.item.crafting.GrillCookingRecipe;
 import com.mrcrayfish.furniture.item.crafting.RecipeType;
+import com.mrcrayfish.furniture.network.PacketHandler;
+import com.mrcrayfish.furniture.network.message.MessageFlipGrill;
 import com.mrcrayfish.furniture.util.ItemStackHelper;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.entity.item.ExperienceOrbEntity;
@@ -22,6 +24,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.network.PacketDistributor;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -31,6 +34,9 @@ import java.util.Optional;
  */
 public class GrillTileEntity extends TileEntity implements IClearable, ITickableTileEntity
 {
+    @OnlyIn(Dist.CLIENT)
+    public static final int MAX_FLIPPING_COUNTER = 15;
+
     private final NonNullList<ItemStack> fuel = NonNullList.withSize(9, ItemStack.EMPTY);
     private final NonNullList<ItemStack> grill = NonNullList.withSize(4, ItemStack.EMPTY);
     private final int[] cookingTimes = new int[4];
@@ -41,11 +47,32 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
     private int remainingFuel = 0;
 
     @OnlyIn(Dist.CLIENT)
+    private final boolean[] flipping = new boolean[4];
+    @OnlyIn(Dist.CLIENT)
     private final int[] flippingCounter = new int[4];
 
     public GrillTileEntity()
     {
         super(ModTileEntities.GRILL);
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public void setFlipping(int position)
+    {
+        this.flipping[position] = true;
+        this.flippingCounter[position] = 0;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public boolean isFlipping(int position)
+    {
+        return this.flipping[position];
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public int getFlippingCount(int position)
+    {
+        return this.flippingCounter[position];
     }
 
     public NonNullList<ItemStack> getGrill()
@@ -61,6 +88,11 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
     public byte[] getRotations()
     {
         return this.rotations;
+    }
+
+    public boolean isFlipped(int position)
+    {
+        return this.flipped[position];
     }
 
     public boolean addItem(ItemStack stack, int position, int cookTime, float experience, byte rotation)
@@ -116,6 +148,9 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
             {
                 this.flipped[position] = true;
                 this.cookingTimes[position] = 0;
+
+                /* Sends a packet to players tracking the chunk the Grill is in indicating that animation should play */
+                PacketHandler.instance.send(PacketDistributor.TRACKING_CHUNK.with(() -> this.world.getChunkAt(this.pos)), new MessageFlipGrill(this.pos, position));
 
                 /* Send updates to client */
                 CompoundNBT compound = new CompoundNBT();
@@ -194,6 +229,18 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
         else
         {
             this.spawnParticles();
+
+            for(int i = 0; i < this.flipping.length; i++)
+            {
+                if(this.flipping[i] && this.flippingCounter[i] < MAX_FLIPPING_COUNTER)
+                {
+                    this.flippingCounter[i]++;
+                    if(this.flippingCounter[i] == MAX_FLIPPING_COUNTER)
+                    {
+                        this.flipping[i] = false;
+                    }
+                }
+            }
         }
     }
 

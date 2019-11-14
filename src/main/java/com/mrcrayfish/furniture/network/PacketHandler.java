@@ -30,6 +30,7 @@ public class PacketHandler
         register(MessageSendMail.class, new MessageSendMail());
         register(MessageSetMailBoxName.class, new MessageSetMailBoxName());
         register(MessageOpenMailBox.class, new MessageOpenMailBox());
+        register(MessageFlipGrill.class, new MessageFlipGrill());
     }
 
     private static <T> void register(Class<T> clazz, IMessage<T> message)

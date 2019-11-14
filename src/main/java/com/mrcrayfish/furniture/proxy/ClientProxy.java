@@ -21,7 +21,9 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.FoliageColors;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.common.MinecraftForge;
@@ -209,5 +211,19 @@ public class ClientProxy extends CommonProxy
     {
         Minecraft mc = Minecraft.getInstance();
         return mc.gameSettings.fancyGraphics;
+    }
+
+    @Override
+    public void setGrillFlipping(BlockPos pos, int position)
+    {
+        Minecraft minecraft = Minecraft.getInstance();
+        if(minecraft.world != null)
+        {
+            TileEntity tileEntity = minecraft.world.getTileEntity(pos);
+            if(tileEntity instanceof GrillTileEntity)
+            {
+                ((GrillTileEntity) tileEntity).setFlipping(position);
+            }
+        }
     }
 }

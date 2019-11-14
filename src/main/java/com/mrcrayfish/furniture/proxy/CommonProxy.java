@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.proxy;
 
 import com.mrcrayfish.furniture.network.PacketHandler;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.util.math.BlockPos;
 
 /**
  * Author: MrCrayfish
@@ -21,4 +22,6 @@ public class CommonProxy
     {
         return false;
     }
+
+    public void setGrillFlipping(BlockPos pos, int position) {}
 }
