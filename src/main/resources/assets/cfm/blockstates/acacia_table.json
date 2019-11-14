@@ -9,7 +9,7 @@
     },
     "variants": {
         "east=true,north=true,south=false,west=false": {
-            "model": "cfm:block/table_corner",
+            "model": "cfm:block/acacia_table_corner",
             "y": 270
         },
         "east=false,north=true,south=false,west=true": {
