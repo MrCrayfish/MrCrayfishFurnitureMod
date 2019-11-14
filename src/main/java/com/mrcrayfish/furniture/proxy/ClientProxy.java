@@ -9,12 +9,12 @@ import com.mrcrayfish.furniture.client.gui.screen.inventory.CrateScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.MailBoxScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.PostBoxScreen;
 import com.mrcrayfish.furniture.client.renderer.SeatRenderer;
+import com.mrcrayfish.furniture.client.renderer.tileentity.GrillTileEntityRenderer;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModContainers;
 import com.mrcrayfish.furniture.entity.SeatEntity;
-import com.mrcrayfish.furniture.inventory.container.PostBoxContainer;
+import com.mrcrayfish.furniture.tileentity.GrillTileEntity;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.item.BlockItem;
@@ -22,13 +22,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.FoliageColors;
-import net.minecraft.world.IEnviromentBlockReader;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 import java.util.ArrayList;
@@ -43,6 +42,7 @@ public class ClientProxy extends CommonProxy
     public void onSetupClient()
     {
         super.onSetupClient();
+        ClientRegistry.bindTileEntitySpecialRenderer(GrillTileEntity.class, new GrillTileEntityRenderer());
         RenderingRegistry.registerEntityRenderingHandler(SeatEntity.class, SeatRenderer::new);
         ScreenManager.registerFactory(ModContainers.CRATE, CrateScreen::new);
         ScreenManager.registerFactory(ModContainers.POST_BOX, PostBoxScreen::new);

@@ -1,0 +1,9 @@
+{
+    "type": "cfm:grill_cooking",
+    "ingredient": {
+        "item": "minecraft:beef"
+    },
+    "result": "minecraft:cooked_beef",
+    "experience": 4.0,
+    "cookingtime": 600
+}
