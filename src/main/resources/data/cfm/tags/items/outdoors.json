@@ -120,6 +120,22 @@
         "cfm:brown_cooler",
         "cfm:green_cooler",
         "cfm:red_cooler",
-        "cfm:black_cooler"
+        "cfm:black_cooler",
+        "cfm:white_grill",
+        "cfm:orange_grill",
+        "cfm:magenta_grill",
+        "cfm:light_blue_grill",
+        "cfm:yellow_grill",
+        "cfm:lime_grill",
+        "cfm:pink_grill",
+        "cfm:gray_grill",
+        "cfm:light_gray_grill",
+        "cfm:cyan_grill",
+        "cfm:purple_grill",
+        "cfm:blue_grill",
+        "cfm:brown_grill",
+        "cfm:green_grill",
+        "cfm:red_grill",
+        "cfm:black_grill"
     ]
 }

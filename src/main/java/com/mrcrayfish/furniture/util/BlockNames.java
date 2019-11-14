@@ -282,6 +282,22 @@ public class BlockNames
     public static final String COOLER_GREEN = Reference.MOD_ID + ":green_cooler";
     public static final String COOLER_RED = Reference.MOD_ID + ":red_cooler";
     public static final String COOLER_BLACK = Reference.MOD_ID + ":black_cooler";
+    public static final String GRILL_WHITE = Reference.MOD_ID + ":white_grill";
+    public static final String GRILL_ORANGE = Reference.MOD_ID + ":orange_grill";
+    public static final String GRILL_MAGENTA = Reference.MOD_ID + ":magenta_grill";
+    public static final String GRILL_LIGHT_BLUE = Reference.MOD_ID + ":light_blue_grill";
+    public static final String GRILL_YELLOW = Reference.MOD_ID + ":yellow_grill";
+    public static final String GRILL_LIME = Reference.MOD_ID + ":lime_grill";
+    public static final String GRILL_PINK = Reference.MOD_ID + ":pink_grill";
+    public static final String GRILL_GRAY = Reference.MOD_ID + ":gray_grill";
+    public static final String GRILL_LIGHT_GRAY = Reference.MOD_ID + ":light_gray_grill";
+    public static final String GRILL_CYAN = Reference.MOD_ID + ":cyan_grill";
+    public static final String GRILL_PURPLE = Reference.MOD_ID + ":purple_grill";
+    public static final String GRILL_BLUE = Reference.MOD_ID + ":blue_grill";
+    public static final String GRILL_BROWN = Reference.MOD_ID + ":brown_grill";
+    public static final String GRILL_GREEN = Reference.MOD_ID + ":green_grill";
+    public static final String GRILL_RED = Reference.MOD_ID + ":red_grill";
+    public static final String GRILL_BLACK = Reference.MOD_ID + ":black_grill";
 
     /* Electronic Update */
     public static final String TV = Reference.MOD_ID + ":tv";
@@ -351,7 +367,6 @@ public class BlockNames
     public static final String TV_STAND = Reference.MOD_ID + ":tv_stand";
 
     /* Outdoor */
-    public static final String GRILL = Reference.MOD_ID + ":grill"; //TODO Make every colour
     public static final String DIVING_BOARD = Reference.MOD_ID + ":diving_board";
     public static final String DOOR_MAT = Reference.MOD_ID + ":door_mat"; //TODO flatten
 }

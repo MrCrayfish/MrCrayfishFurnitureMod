@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "grill",
+    "pattern": [
+        "CBC",
+        "I I",
+        "I I"
+    ],
+    "key": {
+        "C": {
+            "item": "minecraft:orange_concrete"
+        },
+        "B": {
+            "item": "minecraft:iron_bars"
+        },
+        "I": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": {
+        "item": "cfm:orange_grill"
+    }
+}

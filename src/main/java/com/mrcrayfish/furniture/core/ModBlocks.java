@@ -305,6 +305,22 @@ public class ModBlocks
     public static final Block COOLER_GREEN = register(BlockNames.COOLER_GREEN, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block COOLER_RED = register(BlockNames.COOLER_RED, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block COOLER_BLACK = register(BlockNames.COOLER_BLACK, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block GRILL_WHITE = register(BlockNames.GRILL_WHITE, new GrillBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block GRILL_ORANGE = register(BlockNames.GRILL_ORANGE, new GrillBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block GRILL_MAGENTA = register(BlockNames.GRILL_MAGENTA, new GrillBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block GRILL_LIGHT_BLUE = register(BlockNames.GRILL_LIGHT_BLUE, new GrillBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block GRILL_YELLOW = register(BlockNames.GRILL_YELLOW, new GrillBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block GRILL_LIME = register(BlockNames.GRILL_LIME, new GrillBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block GRILL_PINK = register(BlockNames.GRILL_PINK, new GrillBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block GRILL_GRAY = register(BlockNames.GRILL_GRAY, new GrillBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block GRILL_LIGHT_GRAY = register(BlockNames.GRILL_LIGHT_GRAY, new GrillBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block GRILL_CYAN = register(BlockNames.GRILL_CYAN, new GrillBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block GRILL_PURPLE = register(BlockNames.GRILL_PURPLE, new GrillBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block GRILL_BLUE = register(BlockNames.GRILL_BLUE, new GrillBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block GRILL_BROWN = register(BlockNames.GRILL_BROWN, new GrillBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block GRILL_GREEN = register(BlockNames.GRILL_GREEN, new GrillBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block GRILL_RED = register(BlockNames.GRILL_RED, new GrillBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block GRILL_BLACK = register(BlockNames.GRILL_BLACK, new GrillBlock(Block.Properties.from(Blocks.STONE)));
 
     private static Block register(String name, Block block)
     {
