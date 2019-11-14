@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "cooler",
+    "pattern": [
+        "LLL",
+        "WCW",
+        "LLL"
+    ],
+    "key": {
+        "L": {
+            "item": "minecraft:purple_concrete"
+        },
+        "W": {
+            "item": "minecraft:white_concrete"
+        },
+        "C": {
+            "item": "minecraft:chest"
+        }
+    },
+    "result": {
+        "item": "cfm:purple_cooler",
+        "count": 2
+    }
+}

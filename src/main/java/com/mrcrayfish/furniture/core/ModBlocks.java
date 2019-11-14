@@ -289,6 +289,22 @@ public class ModBlocks
     public static final Block TRAMPOLINE_GREEN = register(BlockNames.TRAMPOLINE_GREEN, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
     public static final Block TRAMPOLINE_RED = register(BlockNames.TRAMPOLINE_RED, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
     public static final Block TRAMPOLINE_BLACK = register(BlockNames.TRAMPOLINE_BLACK, new TrampolineBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block COOLER_WHITE = register(BlockNames.COOLER_WHITE, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block COOLER_ORANGE = register(BlockNames.COOLER_ORANGE, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block COOLER_MAGENTA = register(BlockNames.COOLER_MAGENTA, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block COOLER_LIGHT_BLUE = register(BlockNames.COOLER_LIGHT_BLUE, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block COOLER_YELLOW = register(BlockNames.COOLER_YELLOW, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block COOLER_LIME = register(BlockNames.COOLER_LIME, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block COOLER_PINK = register(BlockNames.COOLER_PINK, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block COOLER_GRAY = register(BlockNames.COOLER_GRAY, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block COOLER_LIGHT_GRAY = register(BlockNames.COOLER_LIGHT_GRAY, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block COOLER_CYAN = register(BlockNames.COOLER_CYAN, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block COOLER_PURPLE = register(BlockNames.COOLER_PURPLE, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block COOLER_BLUE = register(BlockNames.COOLER_BLUE, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block COOLER_BROWN = register(BlockNames.COOLER_BROWN, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block COOLER_GREEN = register(BlockNames.COOLER_GREEN, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block COOLER_RED = register(BlockNames.COOLER_RED, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block COOLER_BLACK = register(BlockNames.COOLER_BLACK, new CoolerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
 
     private static Block register(String name, Block block)
     {

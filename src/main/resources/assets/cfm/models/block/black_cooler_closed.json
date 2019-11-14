@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/cooler_closed",
+    "textures": {
+        "color": "minecraft:block/black_concrete"
+    }
+}

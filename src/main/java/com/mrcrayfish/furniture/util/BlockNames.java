@@ -266,6 +266,22 @@ public class BlockNames
     public static final String TRAMPOLINE_GREEN = Reference.MOD_ID + ":green_trampoline";
     public static final String TRAMPOLINE_RED = Reference.MOD_ID + ":red_trampoline";
     public static final String TRAMPOLINE_BLACK = Reference.MOD_ID + ":black_trampoline";
+    public static final String COOLER_WHITE = Reference.MOD_ID + ":white_cooler";
+    public static final String COOLER_ORANGE = Reference.MOD_ID + ":orange_cooler";
+    public static final String COOLER_MAGENTA = Reference.MOD_ID + ":magenta_cooler";
+    public static final String COOLER_LIGHT_BLUE = Reference.MOD_ID + ":light_blue_cooler";
+    public static final String COOLER_YELLOW = Reference.MOD_ID + ":yellow_cooler";
+    public static final String COOLER_LIME = Reference.MOD_ID + ":lime_cooler";
+    public static final String COOLER_PINK = Reference.MOD_ID + ":pink_cooler";
+    public static final String COOLER_GRAY = Reference.MOD_ID + ":gray_cooler";
+    public static final String COOLER_LIGHT_GRAY = Reference.MOD_ID + ":light_gray_cooler";
+    public static final String COOLER_CYAN = Reference.MOD_ID + ":cyan_cooler";
+    public static final String COOLER_PURPLE = Reference.MOD_ID + ":purple_cooler";
+    public static final String COOLER_BLUE = Reference.MOD_ID + ":blue_cooler";
+    public static final String COOLER_BROWN = Reference.MOD_ID + ":brown_cooler";
+    public static final String COOLER_GREEN = Reference.MOD_ID + ":green_cooler";
+    public static final String COOLER_RED = Reference.MOD_ID + ":red_cooler";
+    public static final String COOLER_BLACK = Reference.MOD_ID + ":black_cooler";
 
     /* Electronic Update */
     public static final String TV = Reference.MOD_ID + ":tv";
@@ -338,5 +354,4 @@ public class BlockNames
     public static final String GRILL = Reference.MOD_ID + ":grill"; //TODO Make every colour
     public static final String DIVING_BOARD = Reference.MOD_ID + ":diving_board";
     public static final String DOOR_MAT = Reference.MOD_ID + ":door_mat"; //TODO flatten
-    public static final String COOLER = Reference.MOD_ID + ":cooler"; //TODO flatten
 }

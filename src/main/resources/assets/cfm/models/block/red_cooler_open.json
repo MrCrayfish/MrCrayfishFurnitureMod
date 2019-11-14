@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/cooler_open",
+    "textures": {
+        "color": "minecraft:block/red_concrete"
+    }
+}

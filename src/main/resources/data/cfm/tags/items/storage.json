@@ -72,6 +72,22 @@
         "cfm:stripped_birch_mail_box",
         "cfm:stripped_jungle_mail_box",
         "cfm:stripped_acacia_mail_box",
-        "cfm:stripped_dark_oak_mail_box"
+        "cfm:stripped_dark_oak_mail_box",
+        "cfm:white_cooler",
+        "cfm:orange_cooler",
+        "cfm:magenta_cooler",
+        "cfm:light_blue_cooler",
+        "cfm:yellow_cooler",
+        "cfm:lime_cooler",
+        "cfm:pink_cooler",
+        "cfm:gray_cooler",
+        "cfm:light_gray_cooler",
+        "cfm:cyan_cooler",
+        "cfm:purple_cooler",
+        "cfm:blue_cooler",
+        "cfm:brown_cooler",
+        "cfm:green_cooler",
+        "cfm:red_cooler",
+        "cfm:black_cooler"
     ]
 }

@@ -104,6 +104,22 @@
         "cfm:brown_trampoline",
         "cfm:green_trampoline",
         "cfm:red_trampoline",
-        "cfm:black_trampoline"
+        "cfm:black_trampoline",
+        "cfm:white_cooler",
+        "cfm:orange_cooler",
+        "cfm:magenta_cooler",
+        "cfm:light_blue_cooler",
+        "cfm:yellow_cooler",
+        "cfm:lime_cooler",
+        "cfm:pink_cooler",
+        "cfm:gray_cooler",
+        "cfm:light_gray_cooler",
+        "cfm:cyan_cooler",
+        "cfm:purple_cooler",
+        "cfm:blue_cooler",
+        "cfm:brown_cooler",
+        "cfm:green_cooler",
+        "cfm:red_cooler",
+        "cfm:black_cooler"
     ]
 }
