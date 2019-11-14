@@ -16,10 +16,10 @@ public class GrillTileEntityRenderer extends TileEntityRenderer<GrillTileEntity>
     @Override
     public void render(GrillTileEntity tileEntity, double x, double y, double z, float partialTicks, int destroyStage)
     {
-        NonNullList<ItemStack> inventory = tileEntity.getInventory();
-        for(int i = 0; i < inventory.size(); ++i)
+        NonNullList<ItemStack> grill = tileEntity.getGrill();
+        for(int i = 0; i < grill.size(); ++i)
         {
-            ItemStack stack = inventory.get(i);
+            ItemStack stack = grill.get(i);
             if(!stack.isEmpty())
             {
                 GlStateManager.pushMatrix();
@@ -27,6 +27,23 @@ public class GrillTileEntityRenderer extends TileEntityRenderer<GrillTileEntity>
                 GlStateManager.rotatef(90.0F, 1.0F, 0.0F, 0.0F);
                 GlStateManager.translatef(-0.2F + 0.4F * (i % 2), -0.2F + 0.4F * (i / 2), 0.0F);
                 GlStateManager.scalef(0.375F, 0.375F, 0.5F);
+                Minecraft.getInstance().getItemRenderer().renderItem(stack, ItemCameraTransforms.TransformType.FIXED);
+                GlStateManager.popMatrix();
+            }
+        }
+
+        NonNullList<ItemStack> fuel = tileEntity.getFuel();
+        for(int i = 0; i < fuel.size(); ++i)
+        {
+            ItemStack stack = fuel.get(i);
+            if(!stack.isEmpty())
+            {
+                GlStateManager.pushMatrix();
+                GlStateManager.translatef((float) x + 0.5F, (float) y + 0.85F, (float) z + 0.5F);
+                GlStateManager.rotatef(90.0F, 1.0F, 0.0F, 0.0F);
+                GlStateManager.translatef(-0.2F + 0.2F * (i % 3), -0.2F + 0.2F * (i / 3), 0.0F);
+                GlStateManager.scalef(0.375F, 0.375F, 0.375F);
+                GlStateManager.rotatef(10.0F, 0.0F, 1.0F, 1.0F);
                 Minecraft.getInstance().getItemRenderer().renderItem(stack, ItemCameraTransforms.TransformType.FIXED);
                 GlStateManager.popMatrix();
             }

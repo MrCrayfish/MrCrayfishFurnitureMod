@@ -6,6 +6,7 @@ import com.mrcrayfish.furniture.tileentity.GrillTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -55,6 +56,13 @@ public class GrillBlock extends FurnitureHorizontalWaterloggedBlock
                 if(stack.getItem() == ModItems.SPATULA)
                 {
                     grillTileEntity.flipItem(this.getPosition(hit, pos));
+                }
+                else if(stack.getItem() == Items.COAL || stack.getItem() == Items.CHARCOAL)
+                {
+                    if(grillTileEntity.addFuel(stack))
+                    {
+                        stack.shrink(1);
+                    }
                 }
                 else if(!stack.isEmpty())
                 {
