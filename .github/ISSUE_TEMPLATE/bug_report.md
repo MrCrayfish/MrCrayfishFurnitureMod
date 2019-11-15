@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Create a report to help MrCrayfish improve the mod
-
+title: [MINECRAFT VERSION HERE] ISSUE HERE
 ---
 
 **Describe the bug**
