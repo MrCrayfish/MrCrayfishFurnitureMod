@@ -12,6 +12,7 @@ import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.inventory.IClearable;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
@@ -100,7 +101,9 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
     {
         if(this.grill.get(position).isEmpty())
         {
-            this.grill.set(position, stack);
+            ItemStack copy = stack.copy();
+            copy.setCount(1);
+            this.grill.set(position, copy);
             this.cookingTimes[position] = 0;
             this.cookingTotalTimes[position] = cookTime / 2; //Half the time because it has to cook both sides
             this.flipped[position] = false;
