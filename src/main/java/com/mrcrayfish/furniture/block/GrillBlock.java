@@ -79,6 +79,10 @@ public class GrillBlock extends FurnitureWaterloggedBlock
                         }
                     }
                 }
+                else
+                {
+                    grillTileEntity.removeItem(this.getPosition(hit,pos));
+                }
             }
         }
         return true;

@@ -161,11 +161,29 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
             }
             else if(this.flipped[position] && this.cookingTimes[position] == this.cookingTotalTimes[position])
             {
-                double posX = pos.getX() + 0.3 + 0.4 * (position % 2);
-                double posY = pos.getY() + 1.0;
-                double posZ = pos.getZ() + 0.3 + 0.4 * (position / 2);
+                this.removeItem(position);
+            }
+        }
+    }
 
-                /* Spawn experience orbs */
+    public void removeItem(int position)
+    {
+        if(!this.grill.get(position).isEmpty())
+        {
+            double posX = pos.getX() + 0.3 + 0.4 * (position % 2);
+            double posY = pos.getY() + 1.0;
+            double posZ = pos.getZ() + 0.3 + 0.4 * (position / 2);
+
+            /* Spawns the item */
+            ItemEntity entity = new ItemEntity(this.world, posX, posY + 0.1, posZ, this.grill.get(position).copy());
+            this.world.addEntity(entity);
+
+            /* Remove the item from the inventory */
+            this.grill.set(position, ItemStack.EMPTY);
+
+            /* Spawn experience orbs */
+            if(this.flipped[position] && this.cookingTimes[position] == this.cookingTotalTimes[position])
+            {
                 int amount = (int) experience[position];
                 while(amount > 0)
                 {
@@ -173,19 +191,12 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
                     amount -= splitAmount;
                     this.world.addEntity(new ExperienceOrbEntity(this.world, posX, posY, posZ, splitAmount));
                 }
-
-                /* Spams the result item */
-                ItemEntity entity = new ItemEntity(this.world, posX, posY + 0.1, posZ, this.grill.get(position).copy());
-                this.world.addEntity(entity);
-
-                /* Remove the item from the inventory */
-                this.grill.set(position, ItemStack.EMPTY);
-
-                /* Send updates to client */
-                CompoundNBT compound = new CompoundNBT();
-                this.writeItems(compound);
-                TileEntityUtil.sendUpdatePacket(this, super.write(compound));
             }
+
+            /* Send updates to client */
+            CompoundNBT compound = new CompoundNBT();
+            this.writeItems(compound);
+            TileEntityUtil.sendUpdatePacket(this, super.write(compound));
         }
     }
 
