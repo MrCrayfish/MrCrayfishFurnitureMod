@@ -8,6 +8,7 @@ import com.mrcrayfish.furniture.network.message.MessageFlipGrill;
 import com.mrcrayfish.furniture.util.ItemStackHelper;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.entity.item.ExperienceOrbEntity;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.inventory.IClearable;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.InventoryHelper;
@@ -174,7 +175,8 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
                 }
 
                 /* Spams the result item */
-                InventoryHelper.spawnItemStack(this.world, posX, posY + 0.15, posZ, this.grill.get(position).copy());
+                ItemEntity entity = new ItemEntity(this.world, posX, posY + 0.1, posZ, this.grill.get(position).copy());
+                this.world.addEntity(entity);
 
                 /* Remove the item from the inventory */
                 this.grill.set(position, ItemStack.EMPTY);
