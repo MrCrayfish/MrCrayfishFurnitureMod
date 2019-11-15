@@ -5,8 +5,10 @@ import com.mrcrayfish.furniture.item.crafting.GrillCookingRecipe;
 import com.mrcrayfish.furniture.tileentity.GrillTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.tileentity.CampfireTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -41,6 +43,22 @@ public class GrillBlock extends FurnitureWaterloggedBlock
     public float func_220080_a(BlockState state, IBlockReader worldIn, BlockPos pos)
     {
         return 1.0F;
+    }
+
+    @Override
+    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
+    {
+        if(state.getBlock() != newState.getBlock())
+        {
+            TileEntity tileEntity = worldIn.getTileEntity(pos);
+            if(tileEntity instanceof GrillTileEntity)
+            {
+                GrillTileEntity grillTileEntity = (GrillTileEntity) tileEntity;
+                InventoryHelper.dropItems(worldIn, pos, grillTileEntity.getGrill());
+                InventoryHelper.dropItems(worldIn, pos, grillTileEntity.getFuel());
+            }
+            super.onReplaced(state, worldIn, pos, newState, isMoving);
+        }
     }
 
     @Override
@@ -81,7 +99,7 @@ public class GrillBlock extends FurnitureWaterloggedBlock
                 }
                 else
                 {
-                    grillTileEntity.removeItem(this.getPosition(hit,pos));
+                    grillTileEntity.removeItem(this.getPosition(hit, pos));
                 }
             }
         }
