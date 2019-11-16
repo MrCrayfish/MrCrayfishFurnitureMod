@@ -1,7 +1,5 @@
 package com.mrcrayfish.furniture.block;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.core.ModSounds;
 import com.mrcrayfish.furniture.tileentity.TrampolineTileEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
@@ -27,7 +25,9 @@ import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Author: MrCrayfish
@@ -43,17 +43,20 @@ public class TrampolineBlock extends FurnitureWaterloggedBlock
     public static final BooleanProperty CORNER_SOUTH_EAST = BooleanProperty.create("corner_south_east");
     public static final BooleanProperty CORNER_SOUTH_WEST = BooleanProperty.create("corner_south_west");
 
-    public final ImmutableMap<BlockState, VoxelShape> SHAPES;
+    public final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
 
     public TrampolineBlock(Properties properties)
     {
         super(properties);
         this.setDefaultState(this.getStateContainer().getBaseState().with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(WATERLOGGED, false).with(CORNER_NORTH_WEST, false).with(CORNER_NORTH_EAST, false).with(CORNER_SOUTH_EAST, false).with(CORNER_SOUTH_WEST, false));
-        SHAPES = this.generateShapes(this.getStateContainer().getValidStates());
     }
 
-    private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
+    private VoxelShape getShape(BlockState state)
     {
+        if(SHAPES.containsKey(state))
+        {
+            return SHAPES.get(state);
+        }
         final VoxelShape BOTTOM_LEFT_SUPPORT_SHORT = Block.makeCuboidShape(1, 0, 1, 4, 3, 15);
         final VoxelShape BOTTOM_LEFT_SUPPORT_LONG = Block.makeCuboidShape(1, 0, 0, 4, 3, 16);
         final VoxelShape BOTTOM_LEFT_SUPPORT_NORTH = Block.makeCuboidShape(1, 0, 0, 4, 3, 15);
@@ -72,136 +75,135 @@ public class TrampolineBlock extends FurnitureWaterloggedBlock
         final VoxelShape SOUTH_EAST_CORNER_SUPPORT = Block.makeCuboidShape(12, 0, 12, 15, 3, 16);
         final VoxelShape SOUTH_WEST_CORNER_SUPPORT = Block.makeCuboidShape(1, 0, 12, 4, 3, 16);
 
-        ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
-        for(BlockState state : states)
+        boolean north = state.get(NORTH);
+        boolean east = state.get(EAST);
+        boolean south = state.get(SOUTH);
+        boolean west = state.get(WEST);
+        boolean cornerNorthWest = state.get(CORNER_NORTH_WEST);
+        boolean cornerNorthEast = state.get(CORNER_NORTH_EAST);
+        boolean cornerSouthEast = state.get(CORNER_SOUTH_EAST);
+        boolean cornerSouthWest = state.get(CORNER_SOUTH_WEST);
+
+        List<VoxelShape> shapes = new ArrayList<>();
+        shapes.add(TOP);
+
+        int count = 0;
+        count += north ? 1 : 0;
+        count += east ? 1 : 0;
+        count += south ? 1 : 0;
+        count += west ? 1 : 0;
+
+        if(count >= 2)
         {
-            boolean north = state.get(NORTH);
-            boolean east = state.get(EAST);
-            boolean south = state.get(SOUTH);
-            boolean west = state.get(WEST);
-            boolean cornerNorthWest = state.get(CORNER_NORTH_WEST);
-            boolean cornerNorthEast = state.get(CORNER_NORTH_EAST);
-            boolean cornerSouthEast = state.get(CORNER_SOUTH_EAST);
-            boolean cornerSouthWest = state.get(CORNER_SOUTH_WEST);
-
-            List<VoxelShape> shapes = new ArrayList<>();
-            shapes.add(TOP);
-
-            int count = 0;
-            count += north ? 1 : 0;
-            count += east ? 1 : 0;
-            count += south ? 1 : 0;
-            count += west ? 1 : 0;
-
-            if(count >= 2)
+            if(north && !east && south && !west)
             {
-                if(north && !east && south && !west)
-                {
-                    shapes.add(BOTTOM_LEFT_SUPPORT_LONG);
-                    shapes.add(BOTTOM_RIGHT_SUPPORT_LONG);
-                    builder.put(state, VoxelShapeHelper.combineAll(shapes));
-                    continue;
-                }
-                if(!north && east && !south && west)
-                {
-                    builder.put(state, VoxelShapeHelper.combineAll(shapes));
-                    continue;
-                }
+                shapes.add(BOTTOM_LEFT_SUPPORT_LONG);
+                shapes.add(BOTTOM_RIGHT_SUPPORT_LONG);
+                VoxelShape shape = VoxelShapeHelper.combineAll(shapes);
+                SHAPES.put(state, shape);
+                return shape;
             }
-
-            if(north && east && !south && !west)
+            if(!north && east && !south && west)
             {
-                shapes.add(FRONT_LEFT_LEG);
+                VoxelShape shape = VoxelShapeHelper.combineAll(shapes);
+                SHAPES.put(state, shape);
+                return shape;
             }
-            if(north && !east && !south && west)
-            {
-                shapes.add(FRONT_RIGHT_LEG);
-            }
-            if(!north && east && south && !west)
-            {
-                shapes.add(BACK_LEFT_LEG);
-            }
-            if(!north && !east && south && west)
-            {
-                shapes.add(BACK_RIGHT_LEG);
-            }
-
-            if(!west)
-            {
-                if(south)
-                {
-                    if(!north) shapes.add(BACK_LEFT_LEG);
-                    shapes.add(BOTTOM_LEFT_SUPPORT_SOUTH);
-                }
-                else if(north)
-                {
-                    shapes.add(FRONT_LEFT_LEG);
-                    shapes.add(BOTTOM_LEFT_SUPPORT_NORTH);
-                }
-                else
-                {
-                    shapes.add(FRONT_LEFT_LEG);
-                    shapes.add(BACK_LEFT_LEG);
-                    shapes.add(BOTTOM_LEFT_SUPPORT_SHORT);
-                }
-            }
-
-            if(!east)
-            {
-                if(south)
-                {
-                    if(!north) shapes.add(BACK_RIGHT_LEG);
-                    shapes.add(BOTTOM_RIGHT_SUPPORT_SOUTH);
-                }
-                else if(north)
-                {
-                    shapes.add(FRONT_RIGHT_LEG);
-                    shapes.add(BOTTOM_RIGHT_SUPPORT_NORTH);
-                }
-                else
-                {
-                    shapes.add(FRONT_RIGHT_LEG);
-                    shapes.add(BACK_RIGHT_LEG);
-                    shapes.add(BOTTOM_RIGHT_SUPPORT_SHORT);
-                }
-            }
-
-            if(cornerNorthWest)
-            {
-                shapes.add(NORTH_WEST_CORNER_SUPPORT);
-                shapes.add(BACK_LEFT_LEG);
-            }
-            if(cornerNorthEast)
-            {
-                shapes.add(NORTH_EAST_CORNER_SUPPORT);
-                shapes.add(BACK_RIGHT_LEG);
-            }
-            if(cornerSouthEast)
-            {
-                shapes.add(SOUTH_EAST_CORNER_SUPPORT);
-                shapes.add(FRONT_RIGHT_LEG);
-            }
-            if(cornerSouthWest)
-            {
-                shapes.add(SOUTH_WEST_CORNER_SUPPORT);
-                shapes.add(FRONT_LEFT_LEG);
-            }
-
-            builder.put(state, VoxelShapeHelper.combineAll(shapes));
         }
-        return builder.build();
+
+        if(north && east && !south && !west)
+        {
+            shapes.add(FRONT_LEFT_LEG);
+        }
+        if(north && !east && !south && west)
+        {
+            shapes.add(FRONT_RIGHT_LEG);
+        }
+        if(!north && east && south && !west)
+        {
+            shapes.add(BACK_LEFT_LEG);
+        }
+        if(!north && !east && south && west)
+        {
+            shapes.add(BACK_RIGHT_LEG);
+        }
+
+        if(!west)
+        {
+            if(south)
+            {
+                if(!north) shapes.add(BACK_LEFT_LEG);
+                shapes.add(BOTTOM_LEFT_SUPPORT_SOUTH);
+            }
+            else if(north)
+            {
+                shapes.add(FRONT_LEFT_LEG);
+                shapes.add(BOTTOM_LEFT_SUPPORT_NORTH);
+            }
+            else
+            {
+                shapes.add(FRONT_LEFT_LEG);
+                shapes.add(BACK_LEFT_LEG);
+                shapes.add(BOTTOM_LEFT_SUPPORT_SHORT);
+            }
+        }
+
+        if(!east)
+        {
+            if(south)
+            {
+                if(!north) shapes.add(BACK_RIGHT_LEG);
+                shapes.add(BOTTOM_RIGHT_SUPPORT_SOUTH);
+            }
+            else if(north)
+            {
+                shapes.add(FRONT_RIGHT_LEG);
+                shapes.add(BOTTOM_RIGHT_SUPPORT_NORTH);
+            }
+            else
+            {
+                shapes.add(FRONT_RIGHT_LEG);
+                shapes.add(BACK_RIGHT_LEG);
+                shapes.add(BOTTOM_RIGHT_SUPPORT_SHORT);
+            }
+        }
+
+        if(cornerNorthWest)
+        {
+            shapes.add(NORTH_WEST_CORNER_SUPPORT);
+            shapes.add(BACK_LEFT_LEG);
+        }
+        if(cornerNorthEast)
+        {
+            shapes.add(NORTH_EAST_CORNER_SUPPORT);
+            shapes.add(BACK_RIGHT_LEG);
+        }
+        if(cornerSouthEast)
+        {
+            shapes.add(SOUTH_EAST_CORNER_SUPPORT);
+            shapes.add(FRONT_RIGHT_LEG);
+        }
+        if(cornerSouthWest)
+        {
+            shapes.add(SOUTH_WEST_CORNER_SUPPORT);
+            shapes.add(FRONT_LEFT_LEG);
+        }
+
+        VoxelShape shape = VoxelShapeHelper.combineAll(shapes);
+        SHAPES.put(state, shape);
+        return shape;
     }
 
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context)
     {
-        return SHAPES.get(state);
+        return this.getShape(state);
     }
 
     @Override
     public VoxelShape getRenderShape(BlockState state, IBlockReader reader, BlockPos pos)
     {
-        return SHAPES.get(state);
+        return this.getShape(state);
     }
 
     @Override
@@ -242,7 +244,9 @@ public class TrampolineBlock extends FurnitureWaterloggedBlock
     }
 
     @Override
-    public void onLanded(IBlockReader worldIn, Entity entityIn) {}
+    public void onLanded(IBlockReader worldIn, Entity entityIn)
+    {
+    }
 
     @Override
     public boolean addLandingEffects(BlockState state1, ServerWorld worldserver, BlockPos pos, BlockState state2, LivingEntity entity, int numberOfParticles)
