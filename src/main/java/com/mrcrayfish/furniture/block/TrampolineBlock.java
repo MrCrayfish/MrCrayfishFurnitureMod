@@ -32,7 +32,7 @@ import java.util.Map;
 /**
  * Author: MrCrayfish
  */
-public class TrampolineBlock extends FurnitureWaterloggedBlock
+public class TrampolineBlock extends FurnitureBlock
 {
     public static final BooleanProperty NORTH = BooleanProperty.create("north");
     public static final BooleanProperty EAST = BooleanProperty.create("east");
@@ -48,7 +48,7 @@ public class TrampolineBlock extends FurnitureWaterloggedBlock
     public TrampolineBlock(Properties properties)
     {
         super(properties);
-        this.setDefaultState(this.getStateContainer().getBaseState().with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(WATERLOGGED, false).with(CORNER_NORTH_WEST, false).with(CORNER_NORTH_EAST, false).with(CORNER_SOUTH_EAST, false).with(CORNER_SOUTH_WEST, false));
+        this.setDefaultState(this.getStateContainer().getBaseState().with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(CORNER_NORTH_WEST, false).with(CORNER_NORTH_EAST, false).with(CORNER_SOUTH_EAST, false).with(CORNER_SOUTH_WEST, false));
     }
 
     private VoxelShape getShape(BlockState state)
