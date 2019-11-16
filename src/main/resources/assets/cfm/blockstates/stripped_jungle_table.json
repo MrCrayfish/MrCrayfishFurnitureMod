@@ -1,11 +1,7 @@
 {
     "forge_marker": 1,
     "defaults": {
-        "uvlock": true,
-        "textures": {
-            "top": "block/stripped_jungle_log",
-            "legs": "block/stripped_jungle_planks"
-        }
+        "uvlock": true
     },
     "variants": {
         "east=true,north=true,south=false,west=false": {
