@@ -14,4 +14,6 @@ public class SoundNames
     public static final String BLINDS_OPEN = Reference.MOD_ID + ":block.blinds.open";
     public static final String BLINDS_CLOSE = Reference.MOD_ID + ":block.blinds.close";
     public static final String TRAMPOLINE_BOUNCE = Reference.MOD_ID + ":block.trampoline.bounce";
+    public static final String GRILL_PLACE = Reference.MOD_ID + ":block.grill.place";
+    public static final String GRILL_FLIP = Reference.MOD_ID + ":block.grill.flip";
 }

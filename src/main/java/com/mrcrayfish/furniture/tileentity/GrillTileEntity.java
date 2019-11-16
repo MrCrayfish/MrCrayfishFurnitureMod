@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.tileentity;
 
+import com.mrcrayfish.furniture.core.ModSounds;
 import com.mrcrayfish.furniture.core.ModTileEntities;
 import com.mrcrayfish.furniture.item.crafting.GrillCookingRecipe;
 import com.mrcrayfish.furniture.item.crafting.RecipeType;
@@ -21,6 +22,7 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
@@ -118,6 +120,14 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
             this.writeFlipped(compound);
             this.writeRotations(compound);
             TileEntityUtil.sendUpdatePacket(this, super.write(compound));
+
+            /* Play place sound */
+            World world = this.getWorld();
+            if(world != null)
+            {
+                world.playSound(null, this.pos.getX() + 0.5, this.pos.getY() + 1.0, this.pos.getZ() + 0.5, ModSounds.BLOCK_GRILL_PLACE, SoundCategory.BLOCKS, 0.75F, world.rand.nextFloat() * 0.2F + 0.9F);
+            }
+
             return true;
         }
         return false;
@@ -161,6 +171,13 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
                 this.writeCookingTimes(compound);
                 this.writeFlipped(compound);
                 TileEntityUtil.sendUpdatePacket(this, super.write(compound));
+
+                /* Play flip sound */
+                World world = this.getWorld();
+                if(world != null)
+                {
+                    world.playSound(null, this.pos.getX() + 0.5, this.pos.getY() + 1.0, this.pos.getZ() + 0.5, ModSounds.BLOCK_GRILL_FLIP, SoundCategory.BLOCKS, 0.75F, 1.0F);
+                }
             }
             else if(this.flipped[position] && this.cookingTimes[position] == this.cookingTotalTimes[position])
             {

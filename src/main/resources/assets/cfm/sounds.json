@@ -26,5 +26,13 @@
     "block.trampoline.bounce": {
         "subtitle": "subtitle.cfm.trampoline_bounce",
         "sounds": [ "cfm:block/trampoline/bounce" ]
+    },
+    "block.grill.place": {
+        "subtitle": "subtitle.cfm.grill_place",
+        "sounds": [ "cfm:block/grill/place" ]
+    },
+    "block.grill.flip": {
+        "subtitle": "subtitle.cfm.grill_flip",
+        "sounds": [ "cfm:block/grill/flip" ]
     }
 }

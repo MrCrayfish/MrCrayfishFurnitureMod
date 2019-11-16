@@ -312,5 +312,7 @@
     "subtitle.cfm.close_cabinet": "Close Cabinet",
     "subtitle.cfm.open_blinds": "Open Blinds",
     "subtitle.cfm.close_blinds": "Close Blinds",
-    "subtitle.cfm.trampoline_bounce": "Trampoline Bounce"
+    "subtitle.cfm.trampoline_bounce": "Trampoline Bounce",
+    "subtitle.cfm.grill_place": "Place Food on Grill",
+    "subtitle.cfm.grill_flip": "Flipping Food on Grill"
 }

@@ -26,6 +26,8 @@ public class ModSounds
     public static final SoundEvent BLOCK_BLINDS_OPEN = register(SoundNames.BLINDS_OPEN);
     public static final SoundEvent BLOCK_BLINDS_CLOSE = register(SoundNames.BLINDS_CLOSE);
     public static final SoundEvent BLOCK_TRAMPOLINE_BOUNCE = register(SoundNames.TRAMPOLINE_BOUNCE);
+    public static final SoundEvent BLOCK_GRILL_PLACE = register(SoundNames.GRILL_PLACE);
+    public static final SoundEvent BLOCK_GRILL_FLIP = register(SoundNames.GRILL_FLIP);
 
     private static SoundEvent register(String name)
     {
