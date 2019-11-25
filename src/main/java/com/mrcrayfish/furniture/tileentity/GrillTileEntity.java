@@ -38,7 +38,7 @@ import java.util.Optional;
  */
 public class GrillTileEntity extends TileEntity implements IClearable, ITickableTileEntity
 {
-    @OnlyIn(Dist.CLIENT)
+    /* Used for animations on client only */
     public static final int MAX_FLIPPING_COUNTER = 15;
 
     private final NonNullList<ItemStack> fuel = NonNullList.withSize(9, ItemStack.EMPTY);
@@ -50,9 +50,8 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
     private final byte[] rotations = new byte[4];
     private int remainingFuel = 0;
 
-    @OnlyIn(Dist.CLIENT)
+    /* Used for animations on client only */
     private final boolean[] flipping = new boolean[4];
-    @OnlyIn(Dist.CLIENT)
     private final int[] flippingCounter = new int[4];
 
     public GrillTileEntity()
