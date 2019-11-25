@@ -3,7 +3,7 @@ loaderVersion="[28,)"
 
 [[mods]]
 modId="cfm"
-version="7.0.0-pre12"
+version="7.0.0-pre13"
 displayName="MrCrayfish's Furniture Mod"
 updateJSONURL="https://raw.githubusercontent.com/MrCrayfish/ModUpdates/master/cfm/update.json"
 displayURL="https://mrcrayfish.com/mods?id=cfm"
