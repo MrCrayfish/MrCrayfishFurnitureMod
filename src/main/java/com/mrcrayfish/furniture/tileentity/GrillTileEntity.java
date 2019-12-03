@@ -679,30 +679,10 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
         return this.world.getTileEntity(this.pos) == this && player.getDistanceSq(this.pos.getX() + 0.5, this.pos.getY() + 0.5, this.pos.getZ() + 0.5) <= 64;
     }
 
-    /**
-     * Returns the total count of fuel currently in the grill
-     */
-    private int getFuelCount()
-    {
-        return (int) this.fuel.stream().filter(stack -> !stack.isEmpty()).count();
-    }
-
-    /**
-     * Returns the total count of food currently on the grill
-     */
-    private int getGrillCount()
-    {
-        return (int) this.grill.stream().filter(stack -> !stack.isEmpty()).count();
-    }
-
     @Override
     public int[] getSlotsForFace(Direction side)
     {
-        if(side == Direction.DOWN)
-        {
-            return GRILL_SLOTS;
-        }
-        return ALL_SLOTS;
+        return side == Direction.DOWN ? GRILL_SLOTS : ALL_SLOTS;
     }
 
     @Override
@@ -730,11 +710,7 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
                 if(this.flipped[index] && this.cookingTimes[index] == this.cookingTotalTimes[index])
                 {
                     Optional<GrillCookingRecipe> optional = this.world.getRecipeManager().getRecipe(RecipeType.GRILL_COOKING, new Inventory(stack), this.world);
-                    if(!optional.isPresent())
-                    {
-
-                        return true;
-                    }
+                    return !optional.isPresent();
                 }
             }
         }
