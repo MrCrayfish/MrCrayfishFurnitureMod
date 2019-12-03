@@ -5,6 +5,8 @@ import com.mrcrayfish.furniture.item.crafting.GrillCookingRecipe;
 import com.mrcrayfish.furniture.tileentity.GrillTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.inventory.ISidedInventoryProvider;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -16,6 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
@@ -26,7 +29,7 @@ import java.util.Optional;
 /**
  * Author: MrCrayfish
  */
-public class GrillBlock extends FurnitureWaterloggedBlock
+public class GrillBlock extends FurnitureWaterloggedBlock implements ISidedInventoryProvider
 {
     public GrillBlock(Properties properties)
     {
@@ -126,5 +129,19 @@ public class GrillBlock extends FurnitureWaterloggedBlock
     public TileEntity createTileEntity(BlockState state, IBlockReader world)
     {
         return new GrillTileEntity();
+    }
+
+    @Override
+    public ISidedInventory createInventory(BlockState state, IWorld world, BlockPos pos)
+    {
+        if(!world.isRemote())
+        {
+            TileEntity tileEntity = world.getTileEntity(pos);
+            if(tileEntity instanceof GrillTileEntity)
+            {
+                return (GrillTileEntity) tileEntity;
+            }
+        }
+        return null;
     }
 }

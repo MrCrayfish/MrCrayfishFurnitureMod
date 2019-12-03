@@ -10,17 +10,19 @@ import com.mrcrayfish.furniture.util.ItemStackHelper;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.IClearable;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.Inventory;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -36,10 +38,12 @@ import java.util.Optional;
 /**
  * Author: MrCrayfish
  */
-public class GrillTileEntity extends TileEntity implements IClearable, ITickableTileEntity
+public class GrillTileEntity extends TileEntity implements IClearable, ITickableTileEntity, ISidedInventory
 {
     /* Used for animations on client only */
     public static final int MAX_FLIPPING_COUNTER = 15;
+    public static final int[] ALL_SLOTS = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+    public static final int[] GRILL_SLOTS = new int[]{9, 10, 11, 12};
 
     private final NonNullList<ItemStack> fuel = NonNullList.withSize(9, ItemStack.EMPTY);
     private final NonNullList<ItemStack> grill = NonNullList.withSize(4, ItemStack.EMPTY);
@@ -105,20 +109,7 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
             ItemStack copy = stack.copy();
             copy.setCount(1);
             this.grill.set(position, copy);
-            this.cookingTimes[position] = 0;
-            this.cookingTotalTimes[position] = cookTime / 2; //Half the time because it has to cook both sides
-            this.flipped[position] = false;
-            this.experience[position] = experience;
-            this.rotations[position] = rotation;
-
-            /* Send updates to client */
-            CompoundNBT compound = new CompoundNBT();
-            this.writeItems(compound);
-            this.writeCookingTimes(compound);
-            this.writeCookingTotalTimes(compound);
-            this.writeFlipped(compound);
-            this.writeRotations(compound);
-            TileEntityUtil.sendUpdatePacket(this, super.write(compound));
+            this.resetPosition(position, cookTime, experience, rotation);
 
             /* Play place sound */
             World world = this.getWorld();
@@ -130,6 +121,24 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
             return true;
         }
         return false;
+    }
+
+    private void resetPosition(int position, int cookTime, float experience, byte rotation)
+    {
+        this.cookingTimes[position] = 0;
+        this.cookingTotalTimes[position] = cookTime / 2; //Half the time because it has to cook both sides
+        this.flipped[position] = false;
+        this.experience[position] = experience;
+        this.rotations[position] = rotation;
+
+        /* Send updates to client */
+        CompoundNBT compound = new CompoundNBT();
+        this.writeItems(compound);
+        this.writeCookingTimes(compound);
+        this.writeCookingTotalTimes(compound);
+        this.writeFlipped(compound);
+        this.writeRotations(compound);
+        TileEntityUtil.sendUpdatePacket(this, super.write(compound));
     }
 
     public boolean addFuel(ItemStack stack)
@@ -181,6 +190,21 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
             else if(this.flipped[position] && this.cookingTimes[position] == this.cookingTotalTimes[position])
             {
                 this.removeItem(position);
+            }
+        }
+    }
+
+    public void flipItems()
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            if(!this.grill.get(i).isEmpty())
+            {
+                if(!this.flipped[i] && this.cookingTimes[i] == this.cookingTotalTimes[i])
+                {
+                    this.flipItem(i);
+                    return;
+                }
             }
         }
     }
@@ -290,6 +314,7 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
 
     private void cookItems()
     {
+        boolean itemsChanged = false;
         for(int i = 0; i < this.grill.size(); i++)
         {
             if(!this.grill.get(i).isEmpty())
@@ -305,18 +330,22 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
                             Optional<GrillCookingRecipe> optional = this.world.getRecipeManager().getRecipe(RecipeType.GRILL_COOKING, new Inventory(this.grill.get(i)), this.world);
                             if(optional.isPresent())
                             {
-                                this.grill.set(i, optional.get().getRecipeOutput());
+                                this.grill.set(i, optional.get().getRecipeOutput().copy());
+
                             }
                         }
-
-                        /* Send updates to client */
-                        CompoundNBT compound = new CompoundNBT();
-                        this.writeItems(compound);
-                        this.writeCookingTimes(compound);
-                        TileEntityUtil.sendUpdatePacket(this, super.write(compound));
+                        itemsChanged = true;
                     }
                 }
             }
+        }
+        if(itemsChanged)
+        {
+            /* Send updates to client */
+            CompoundNBT compound = new CompoundNBT();
+            this.writeItems(compound);
+            this.writeCookingTimes(compound);
+            TileEntityUtil.sendUpdatePacket(this, super.write(compound));
         }
     }
 
@@ -371,8 +400,133 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
     }
 
     @Override
+    public int getSizeInventory()
+    {
+        return this.fuel.size() + this.grill.size();
+    }
+
+    @Override
+    public boolean isEmpty()
+    {
+        for(ItemStack stack : this.fuel)
+        {
+            if(!stack.isEmpty())
+            {
+                return false;
+            }
+        }
+        for(ItemStack stack : this.grill)
+        {
+            if(!stack.isEmpty())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public ItemStack getStackInSlot(int index)
+    {
+        if(index - this.fuel.size() >= 0)
+        {
+            return this.grill.get(index - this.fuel.size());
+        }
+        return this.fuel.get(index);
+    }
+
+    @Override
+    public ItemStack decrStackSize(int index, int count)
+    {
+        if(index - this.fuel.size() >= 0)
+        {
+            index -= this.fuel.size();
+            ItemStack result = net.minecraft.inventory.ItemStackHelper.getAndSplit(this.grill, index, count);
+
+            if(this.grill.get(index).isEmpty())
+            {
+                if(this.flipped[index] && this.cookingTimes[index] == this.cookingTotalTimes[index])
+                {
+                    double posX = pos.getX() + 0.3 + 0.4 * (index % 2);
+                    double posY = pos.getY() + 1.0;
+                    double posZ = pos.getZ() + 0.3 + 0.4 * (index / 2);
+                    int amount = (int) experience[index];
+                    while(amount > 0)
+                    {
+                        int splitAmount = ExperienceOrbEntity.getXPSplit(amount);
+                        amount -= splitAmount;
+                        this.world.addEntity(new ExperienceOrbEntity(this.world, posX, posY, posZ, splitAmount));
+                    }
+                }
+            }
+
+            /* Send updates to client */
+            CompoundNBT compound = new CompoundNBT();
+            this.writeItems(compound);
+            TileEntityUtil.sendUpdatePacket(this, super.write(compound));
+
+            return result;
+        }
+
+        ItemStack result = net.minecraft.inventory.ItemStackHelper.getAndSplit(this.fuel, index, count);
+
+        /* Send updates to client */
+        CompoundNBT compound = new CompoundNBT();
+        this.writeFuel(compound);
+        TileEntityUtil.sendUpdatePacket(this, super.write(compound));
+
+        return result;
+    }
+
+    @Override
+    public ItemStack removeStackFromSlot(int index)
+    {
+        if(index - this.fuel.size() >= 0)
+        {
+            return net.minecraft.inventory.ItemStackHelper.getAndRemove(this.grill, index - this.fuel.size());
+        }
+        return net.minecraft.inventory.ItemStackHelper.getAndRemove(this.fuel, index);
+    }
+
+    @Override
+    public void setInventorySlotContents(int index, ItemStack stack)
+    {
+        NonNullList<ItemStack> inventory = this.fuel;
+        if(index - this.fuel.size() >= 0)
+        {
+            index -= this.fuel.size();
+            inventory = this.grill;
+            int finalIndex = index;
+            Optional<GrillCookingRecipe> optional = this.world.getRecipeManager().getRecipe(RecipeType.GRILL_COOKING, new Inventory(stack), this.world);
+            if(optional.isPresent())
+            {
+                GrillCookingRecipe recipe = optional.get();
+                this.resetPosition(finalIndex, recipe.getCookTime(), recipe.getExperience(), (byte) 0);
+            }
+        }
+        inventory.set(index, stack);
+        if(stack.getCount() > this.getInventoryStackLimit())
+        {
+            stack.setCount(this.getInventoryStackLimit());
+        }
+
+        /* Send updates to client */
+        CompoundNBT compound = new CompoundNBT();
+        this.writeItems(compound);
+        this.writeFuel(compound);
+        TileEntityUtil.sendUpdatePacket(this, super.write(compound));
+    }
+
+    @Override
+    public int getInventoryStackLimit()
+    {
+        return 1;
+    }
+
+    @Override
     public void clear()
     {
+        this.fuel.clear();
         this.grill.clear();
     }
 
@@ -517,5 +671,73 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
     {
         CompoundNBT compound = pkt.getNbtCompound();
         this.read(compound);
+    }
+
+    @Override
+    public boolean isUsableByPlayer(PlayerEntity player)
+    {
+        return this.world.getTileEntity(this.pos) == this && player.getDistanceSq(this.pos.getX() + 0.5, this.pos.getY() + 0.5, this.pos.getZ() + 0.5) <= 64;
+    }
+
+    /**
+     * Returns the total count of fuel currently in the grill
+     */
+    private int getFuelCount()
+    {
+        return (int) this.fuel.stream().filter(stack -> !stack.isEmpty()).count();
+    }
+
+    /**
+     * Returns the total count of food currently on the grill
+     */
+    private int getGrillCount()
+    {
+        return (int) this.grill.stream().filter(stack -> !stack.isEmpty()).count();
+    }
+
+    @Override
+    public int[] getSlotsForFace(Direction side)
+    {
+        if(side == Direction.DOWN)
+        {
+            return GRILL_SLOTS;
+        }
+        return ALL_SLOTS;
+    }
+
+    @Override
+    public boolean canInsertItem(int index, ItemStack stack, @Nullable Direction direction)
+    {
+        if(!this.getStackInSlot(index).isEmpty())
+        {
+            return false;
+        }
+        if(index - this.fuel.size() >= 0)
+        {
+            return this.world.getRecipeManager().getRecipe(RecipeType.GRILL_COOKING, new Inventory(stack), this.world).isPresent();
+        }
+        return stack.getItem() == Items.COAL || stack.getItem() == Items.CHARCOAL;
+    }
+
+    @Override
+    public boolean canExtractItem(int index, ItemStack stack, Direction direction)
+    {
+        if(direction == Direction.DOWN)
+        {
+            if(index - this.fuel.size() >= 0)
+            {
+                index -= this.fuel.size();
+                if(this.flipped[index] && this.cookingTimes[index] == this.cookingTotalTimes[index])
+                {
+                    Optional<GrillCookingRecipe> optional = this.world.getRecipeManager().getRecipe(RecipeType.GRILL_COOKING, new Inventory(stack), this.world);
+                    if(!optional.isPresent())
+                    {
+
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
