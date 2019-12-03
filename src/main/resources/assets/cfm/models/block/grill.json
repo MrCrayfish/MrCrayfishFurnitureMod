@@ -1,7 +1,7 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
     "textures": {
-        "color": "minecraft:block/red_concrete",
+        "particle": "#color",
         "legs": "minecraft:block/light_gray_concrete",
         "mesh": "cfm:block/mesh"
     },
@@ -191,7 +191,6 @@
             "faces": {
                 "north": { "texture": "#legs", "uv": [ 0, 0, 7, 2 ] },
                 "south": { "texture": "#legs", "uv": [ 0, 0, 7, 2 ] },
-                "west": { "texture": "#legs", "uv": [ 0, 0, 2, 2 ] },
                 "up": { "texture": "#legs", "uv": [ 0, 0, 7, 2 ] },
                 "down": { "texture": "#legs", "uv": [ 0, 0, 7, 2 ] }
             }
@@ -202,7 +201,6 @@
             "faces": {
                 "north": { "texture": "#legs", "uv": [ 0, 0, 7, 2 ] },
                 "south": { "texture": "#legs", "uv": [ 0, 0, 7, 2 ] },
-                "west": { "texture": "#legs", "uv": [ 0, 0, 2, 2 ] },
                 "up": { "texture": "#legs", "uv": [ 0, 0, 7, 2 ] },
                 "down": { "texture": "#legs", "uv": [ 0, 0, 7, 2 ] }
             }
