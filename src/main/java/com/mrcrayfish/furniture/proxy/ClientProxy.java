@@ -9,10 +9,12 @@ import com.mrcrayfish.furniture.client.gui.screen.inventory.CrateScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.MailBoxScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.PostBoxScreen;
 import com.mrcrayfish.furniture.client.renderer.SeatRenderer;
+import com.mrcrayfish.furniture.client.renderer.tileentity.DoorMatTileEntityRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.GrillTileEntityRenderer;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModContainers;
 import com.mrcrayfish.furniture.entity.SeatEntity;
+import com.mrcrayfish.furniture.tileentity.DoorMatTileEntity;
 import com.mrcrayfish.furniture.tileentity.GrillTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -45,6 +47,7 @@ public class ClientProxy extends CommonProxy
     {
         super.onSetupClient();
         ClientRegistry.bindTileEntitySpecialRenderer(GrillTileEntity.class, new GrillTileEntityRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(DoorMatTileEntity.class, new DoorMatTileEntityRenderer());
         RenderingRegistry.registerEntityRenderingHandler(SeatEntity.class, SeatRenderer::new);
         ScreenManager.registerFactory(ModContainers.CRATE, CrateScreen::new);
         ScreenManager.registerFactory(ModContainers.POST_BOX, PostBoxScreen::new);

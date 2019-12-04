@@ -31,6 +31,7 @@ public class PacketHandler
         register(MessageSetMailBoxName.class, new MessageSetMailBoxName());
         register(MessageOpenMailBox.class, new MessageOpenMailBox());
         register(MessageFlipGrill.class, new MessageFlipGrill());
+        register(MessageSetDoorMatMessage.class, new MessageSetDoorMatMessage());
     }
 
     private static <T> void register(Class<T> clazz, IMessage<T> message)
