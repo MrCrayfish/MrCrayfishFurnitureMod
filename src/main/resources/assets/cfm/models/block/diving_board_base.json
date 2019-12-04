@@ -1,0 +1,32 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "particle": "minecraft:block/white_concrete",
+        "board": "minecraft:block/white_concrete",
+        "base": "minecraft:block/light_gray_concrete"
+    },
+    "elements": [
+        {
+            "from": [ 3, 0, 2 ], 
+            "to": [ 13, 4, 15 ], 
+            "faces": {
+                "north": { "texture": "#base", "uv": [ 0, 0, 10, 4 ] },
+                "east": { "texture": "#base", "uv": [ 0, 0, 13, 4 ] },
+                "south": { "texture": "#base", "uv": [ 0, 0, 10, 4 ] },
+                "west": { "texture": "#base", "uv": [ 0, 0, 13, 4 ] },
+                "down": { "texture": "#base", "uv": [ 0, 0, 10, 13 ], "cullface": "down" }
+            }
+        },
+        {
+            "from": [ 1, 4, 0 ], 
+            "to": [ 15, 6, 16 ], 
+            "faces": {
+                "east": { "texture": "#board", "uv": [ 0, 0, 16, 2 ] },
+                "south": { "texture": "#board", "uv": [ 0, 0, 14, 2 ], "cullface": "south" },
+                "west": { "texture": "#board", "uv": [ 0, 0, 16, 2 ] },
+                "up": { "texture": "#board", "uv": [ 0, 0, 14, 16 ] },
+                "down": { "texture": "#board", "uv": [ 0, 0, 14, 16 ] }
+            }
+        }
+    ]
+}

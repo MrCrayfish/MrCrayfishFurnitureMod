@@ -34,5 +34,9 @@
     "block.grill.flip": {
         "subtitle": "subtitle.cfm.grill_flip",
         "sounds": [ "cfm:block/grill/flip" ]
+    },
+    "block.diving_board.bounce": {
+        "subtitle": "subtitle.cfm.diving_board.bounce",
+        "sounds": [ "cfm:block/diving_board/bounce" ]
     }
 }

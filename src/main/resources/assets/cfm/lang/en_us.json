@@ -290,6 +290,7 @@
     "block.cfm.red_grill": "Red Grill",
     "block.cfm.black_grill": "Black Grill",
     "block.cfm.door_mat": "Door Mat",
+    "block.cfm.diving_board": "Diving Board",
     "item.cfm.spatula": "Spatula",
     "container.cfm.cabinet": "Cabinet",
     "container.cfm.bedside_cabinet": "Bedside Cabinet",
@@ -317,5 +318,6 @@
     "subtitle.cfm.close_blinds": "Close Blinds",
     "subtitle.cfm.trampoline_bounce": "Trampoline Bounce",
     "subtitle.cfm.grill_place": "Place Food on Grill",
-    "subtitle.cfm.grill_flip": "Flipping Food on Grill"
+    "subtitle.cfm.grill_flip": "Flipping Food on Grill",
+    "subtitle.cfm.diving_board.bounce": "Diving Board Bounce"
 }

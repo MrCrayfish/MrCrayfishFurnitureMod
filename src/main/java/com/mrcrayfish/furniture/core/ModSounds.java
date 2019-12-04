@@ -28,6 +28,7 @@ public class ModSounds
     public static final SoundEvent BLOCK_TRAMPOLINE_BOUNCE = register(SoundNames.TRAMPOLINE_BOUNCE);
     public static final SoundEvent BLOCK_GRILL_PLACE = register(SoundNames.GRILL_PLACE);
     public static final SoundEvent BLOCK_GRILL_FLIP = register(SoundNames.GRILL_FLIP);
+    public static final SoundEvent BLOCK_DIVING_BOARD_BOUNCE = register(SoundNames.DIVING_BOARD_BOUNCE);
 
     private static SoundEvent register(String name)
     {

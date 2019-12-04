@@ -299,6 +299,7 @@ public class BlockNames
     public static final String GRILL_RED = Reference.MOD_ID + ":red_grill";
     public static final String GRILL_BLACK = Reference.MOD_ID + ":black_grill";
     public static final String DOOR_MAT = Reference.MOD_ID + ":door_mat";
+    public static final String DIVING_BOARD = Reference.MOD_ID + ":diving_board";
 
     /* Electronic Update */
     public static final String TV = Reference.MOD_ID + ":tv";
@@ -366,7 +367,4 @@ public class BlockNames
     public static final String COUNTER_DRAWER = Reference.MOD_ID + ":counter_drawer";
     public static final String PHOTO_FRAME = Reference.MOD_ID + ":photo_frame"; //TODO flatten
     public static final String TV_STAND = Reference.MOD_ID + ":tv_stand";
-
-    /* Outdoor */
-    public static final String DIVING_BOARD = Reference.MOD_ID + ":diving_board";
 }

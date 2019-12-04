@@ -327,6 +327,7 @@ public class ModBlocks
     public static final Block GRILL_RED = register(BlockNames.GRILL_RED, new GrillBlock(Block.Properties.from(Blocks.STONE)));
     public static final Block GRILL_BLACK = register(BlockNames.GRILL_BLACK, new GrillBlock(Block.Properties.from(Blocks.STONE)));
     public static final Block DOOR_MAT = register(BlockNames.DOOR_MAT, new DoorMatBlock(Block.Properties.from(Blocks.WHITE_WOOL)), block -> new DoorMatItem(block, new Item.Properties().group(FurnitureMod.GROUP)));
+    public static final Block DIVING_BOARD = register(BlockNames.DIVING_BOARD, new DivingBoardBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
 
     private static Block register(String name, Block block)
     {
