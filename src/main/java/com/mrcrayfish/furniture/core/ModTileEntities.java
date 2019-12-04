@@ -28,7 +28,8 @@ public class ModTileEntities
     public static final TileEntityType<TrampolineTileEntity> TRAMPOLINE = buildType(TileEntityNames.TRAMPOLINE, TileEntityType.Builder.create(TrampolineTileEntity::new, ModBlocks.TRAMPOLINE_WHITE));
     public static final TileEntityType<CoolerTileEntity> COOLER = buildType(TileEntityNames.COOLER, TileEntityType.Builder.create(CoolerTileEntity::new, ModBlocks.COOLER_WHITE, ModBlocks.COOLER_ORANGE, ModBlocks.COOLER_MAGENTA, ModBlocks.COOLER_LIGHT_BLUE, ModBlocks.COOLER_YELLOW, ModBlocks.COOLER_LIME, ModBlocks.COOLER_PINK, ModBlocks.COOLER_GRAY, ModBlocks.COOLER_LIGHT_GRAY, ModBlocks.COOLER_CYAN, ModBlocks.COOLER_PURPLE, ModBlocks.COOLER_BLUE, ModBlocks.COOLER_BROWN, ModBlocks.COOLER_GREEN, ModBlocks.COOLER_RED, ModBlocks.COOLER_BLACK));
     public static final TileEntityType<GrillTileEntity> GRILL = buildType(TileEntityNames.GRILL, TileEntityType.Builder.create(GrillTileEntity::new, ModBlocks.GRILL_WHITE, ModBlocks.GRILL_ORANGE, ModBlocks.GRILL_MAGENTA, ModBlocks.GRILL_LIGHT_BLUE, ModBlocks.GRILL_YELLOW, ModBlocks.GRILL_LIME, ModBlocks.GRILL_PINK, ModBlocks.GRILL_GRAY, ModBlocks.GRILL_LIGHT_GRAY, ModBlocks.GRILL_CYAN, ModBlocks.GRILL_PURPLE, ModBlocks.GRILL_BLUE, ModBlocks.GRILL_BROWN, ModBlocks.GRILL_GREEN, ModBlocks.GRILL_RED, ModBlocks.GRILL_BLACK));
-    
+    public static final TileEntityType<DoorMatTileEntity> DOOR_MAT = buildType(TileEntityNames.DOOR_MAT, TileEntityType.Builder.create(DoorMatTileEntity::new, ModBlocks.DOOR_MAT));
+
     private static <T extends TileEntity> TileEntityType<T> buildType(String id, TileEntityType.Builder<T> builder)
     {
         TileEntityType<T> type = builder.build(null); //TODO may not allow null

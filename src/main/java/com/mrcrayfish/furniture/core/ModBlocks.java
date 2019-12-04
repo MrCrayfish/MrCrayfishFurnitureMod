@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.core;
 import com.mrcrayfish.furniture.FurnitureMod;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.block.*;
+import com.mrcrayfish.furniture.item.DoorMatItem;
 import com.mrcrayfish.furniture.util.BlockNames;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -18,6 +19,10 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Author: MrCrayfish
@@ -321,6 +326,7 @@ public class ModBlocks
     public static final Block GRILL_GREEN = register(BlockNames.GRILL_GREEN, new GrillBlock(Block.Properties.from(Blocks.STONE)));
     public static final Block GRILL_RED = register(BlockNames.GRILL_RED, new GrillBlock(Block.Properties.from(Blocks.STONE)));
     public static final Block GRILL_BLACK = register(BlockNames.GRILL_BLACK, new GrillBlock(Block.Properties.from(Blocks.STONE)));
+    public static final Block DOOR_MAT = register(BlockNames.DOOR_MAT, new DoorMatBlock(Block.Properties.from(Blocks.WHITE_WOOL)), block -> new DoorMatItem(block, new Item.Properties().group(FurnitureMod.GROUP)));
 
     private static Block register(String name, Block block)
     {
@@ -334,10 +340,16 @@ public class ModBlocks
 
     private static Block register(String name, Block block, BlockItem item)
     {
+        return register(name, block, block1 -> item);
+    }
+
+    private static Block register(String name, Block block, Function<Block, BlockItem> function)
+    {
         block.setRegistryName(name);
         BLOCKS.add(block);
         if(block.getRegistryName() != null)
         {
+            Item item = function.apply(block);
             item.setRegistryName(name);
             ITEMS.add(item);
         }
