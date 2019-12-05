@@ -328,7 +328,23 @@ public class ModBlocks
     public static final Block GRILL_BLACK = register(BlockNames.GRILL_BLACK, new GrillBlock(Block.Properties.from(Blocks.STONE)));
     public static final Block DOOR_MAT = register(BlockNames.DOOR_MAT, new DoorMatBlock(Block.Properties.from(Blocks.WHITE_WOOL)), block -> new DoorMatItem(block, new Item.Properties().group(FurnitureMod.GROUP)));
     public static final Block DIVING_BOARD = register(BlockNames.DIVING_BOARD, new DivingBoardBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
-
+    public static final Block KITCHEN_COUNTER_WHITE = register(BlockNames.KITCHEN_COUNTER_WHITE, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_ORANGE = register(BlockNames.KITCHEN_COUNTER_ORANGE, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_MAGENTA = register(BlockNames.KITCHEN_COUNTER_MAGENTA, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_LIGHT_BLUE = register(BlockNames.KITCHEN_COUNTER_LIGHT_BLUE, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_YELLOW = register(BlockNames.KITCHEN_COUNTER_YELLOW, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_LIME = register(BlockNames.KITCHEN_COUNTER_LIME, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_PINK = register(BlockNames.KITCHEN_COUNTER_PINK, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_GRAY = register(BlockNames.KITCHEN_COUNTER_GRAY, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_LIGHT_GRAY = register(BlockNames.KITCHEN_COUNTER_LIGHT_GRAY, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_CYAN = register(BlockNames.KITCHEN_COUNTER_CYAN, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_PURPLE = register(BlockNames.KITCHEN_COUNTER_PURPLE, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_BLUE = register(BlockNames.KITCHEN_COUNTER_BLUE, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_BROWN = register(BlockNames.KITCHEN_COUNTER_BROWN, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_GREEN = register(BlockNames.KITCHEN_COUNTER_GREEN, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_RED = register(BlockNames.KITCHEN_COUNTER_RED, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_BLACK = register(BlockNames.KITCHEN_COUNTER_BLACK, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    
     private static Block register(String name, Block block)
     {
         return register(name, block, new Item.Properties().group(FurnitureMod.GROUP));

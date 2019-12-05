@@ -300,16 +300,28 @@ public class BlockNames
     public static final String GRILL_BLACK = Reference.MOD_ID + ":black_grill";
     public static final String DOOR_MAT = Reference.MOD_ID + ":door_mat";
     public static final String DIVING_BOARD = Reference.MOD_ID + ":diving_board";
+    public static final String KITCHEN_COUNTER_WHITE = Reference.MOD_ID + ":white_kitchen_counter";
+    public static final String KITCHEN_COUNTER_ORANGE = Reference.MOD_ID + ":orange_kitchen_counter";
+    public static final String KITCHEN_COUNTER_MAGENTA = Reference.MOD_ID + ":magenta_kitchen_counter";
+    public static final String KITCHEN_COUNTER_LIGHT_BLUE = Reference.MOD_ID + ":light_blue_kitchen_counter";
+    public static final String KITCHEN_COUNTER_YELLOW = Reference.MOD_ID + ":yellow_kitchen_counter";
+    public static final String KITCHEN_COUNTER_LIME = Reference.MOD_ID + ":lime_kitchen_counter";
+    public static final String KITCHEN_COUNTER_PINK = Reference.MOD_ID + ":pink_kitchen_counter";
+    public static final String KITCHEN_COUNTER_GRAY = Reference.MOD_ID + ":gray_kitchen_counter";
+    public static final String KITCHEN_COUNTER_LIGHT_GRAY = Reference.MOD_ID + ":light_gray_kitchen_counter";
+    public static final String KITCHEN_COUNTER_CYAN = Reference.MOD_ID + ":cyan_kitchen_counter";
+    public static final String KITCHEN_COUNTER_PURPLE = Reference.MOD_ID + ":purple_kitchen_counter";
+    public static final String KITCHEN_COUNTER_BLUE = Reference.MOD_ID + ":blue_kitchen_counter";
+    public static final String KITCHEN_COUNTER_BROWN = Reference.MOD_ID + ":brown_kitchen_counter";
+    public static final String KITCHEN_COUNTER_GREEN = Reference.MOD_ID + ":green_kitchen_counter";
+    public static final String KITCHEN_COUNTER_RED = Reference.MOD_ID + ":red_kitchen_counter";
+    public static final String KITCHEN_COUNTER_BLACK = Reference.MOD_ID + ":black_kitchen_counter";
 
     /* Electronic Update */
     public static final String TV = Reference.MOD_ID + ":tv";
     public static final String COMPUTER = Reference.MOD_ID + ":computer";
     public static final String PRINTER = Reference.MOD_ID + ":printer";
     public static final String STEREO = Reference.MOD_ID + ":stereo";
-    public static final String FIRE_ALARM_OFF = Reference.MOD_ID + ":fire_alarm_off";
-    public static final String FIRE_ALARM_ON = Reference.MOD_ID + ":fire_alarm_on";
-    public static final String CEILING_LIGHT_OFF = Reference.MOD_ID + ":ceiling_light_off";
-    public static final String CEILING_LIGHT_ON = Reference.MOD_ID + ":ceiling_light_on";
     public static final String LAMP_ON = Reference.MOD_ID + ":lamp_on";
     public static final String LAMP_OFF = Reference.MOD_ID + ":lamp_off";
 
@@ -336,7 +348,6 @@ public class BlockNames
     public static final String BLENDER = Reference.MOD_ID + ":blender";
     public static final String WASHING_MACHINE = Reference.MOD_ID + ":washing_machine";
     public static final String DISHWASHER = Reference.MOD_ID + ":dishwasher";
-    public static final String COUNTER = Reference.MOD_ID + ":counter"; //TODO flatten?
     public static final String COUNTER_SINK = Reference.MOD_ID + ":counter_sink"; //TODO flatten?
     public static final String KITCHEN_CABINET = Reference.MOD_ID + ":kitchen_cabinet"; //TODO flatten?
     public static final String CUP = Reference.MOD_ID + ":cup";
