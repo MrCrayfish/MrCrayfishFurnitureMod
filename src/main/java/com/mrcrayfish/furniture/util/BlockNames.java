@@ -300,6 +300,12 @@ public class BlockNames
     public static final String GRILL_BLACK = Reference.MOD_ID + ":black_grill";
     public static final String DOOR_MAT = Reference.MOD_ID + ":door_mat";
     public static final String DIVING_BOARD = Reference.MOD_ID + ":diving_board";
+    public static final String KITCHEN_COUNTER_OAK = Reference.MOD_ID + ":oak_kitchen_counter";
+    public static final String KITCHEN_COUNTER_SPRUCE = Reference.MOD_ID + ":spruce_kitchen_counter";
+    public static final String KITCHEN_COUNTER_BIRCH = Reference.MOD_ID + ":birch_kitchen_counter";
+    public static final String KITCHEN_COUNTER_JUNGLE = Reference.MOD_ID + ":jungle_kitchen_counter";
+    public static final String KITCHEN_COUNTER_ACACIA = Reference.MOD_ID + ":acacia_kitchen_counter";
+    public static final String KITCHEN_COUNTER_DARK_OAK = Reference.MOD_ID + ":dark_oak_kitchen_counter";
     public static final String KITCHEN_COUNTER_WHITE = Reference.MOD_ID + ":white_kitchen_counter";
     public static final String KITCHEN_COUNTER_ORANGE = Reference.MOD_ID + ":orange_kitchen_counter";
     public static final String KITCHEN_COUNTER_MAGENTA = Reference.MOD_ID + ":magenta_kitchen_counter";

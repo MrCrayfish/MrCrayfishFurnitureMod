@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/kitchen_counter_default",
+    "textures": {
+        "top": "minecraft:block/oak_log",
+        "base": "minecraft:block/oak_planks"
+    }
+}

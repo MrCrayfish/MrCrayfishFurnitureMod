@@ -1,6 +1,12 @@
 {
     "replace": false,
     "values": [
+        "cfm:oak_kitchen_counter",
+        "cfm:spruce_kitchen_counter",
+        "cfm:birch_kitchen_counter",
+        "cfm:jungle_kitchen_counter",
+        "cfm:acacia_kitchen_counter",
+        "cfm:dark_oak_kitchen_counter",
         "cfm:white_kitchen_counter",
         "cfm:orange_kitchen_counter",
         "cfm:magenta_kitchen_counter",
