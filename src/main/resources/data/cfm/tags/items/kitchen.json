@@ -1,0 +1,21 @@
+{
+    "replace": false,
+    "values": [
+        "cfm:white_kitchen_counter",
+        "cfm:orange_kitchen_counter",
+        "cfm:magenta_kitchen_counter",
+        "cfm:light_blue_kitchen_counter",
+        "cfm:yellow_kitchen_counter",
+        "cfm:lime_kitchen_counter",
+        "cfm:pink_kitchen_counter",
+        "cfm:gray_kitchen_counter",
+        "cfm:light_gray_kitchen_counter",
+        "cfm:cyan_kitchen_counter",
+        "cfm:purple_kitchen_counter",
+        "cfm:blue_kitchen_counter",
+        "cfm:brown_kitchen_counter",
+        "cfm:green_kitchen_counter",
+        "cfm:red_kitchen_counter",
+        "cfm:black_kitchen_counter"
+    ]
+}
