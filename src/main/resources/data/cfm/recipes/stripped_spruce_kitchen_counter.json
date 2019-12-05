@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "kitchen_counter",
+    "pattern": [
+        "LLL",
+        "PPP",
+        "PPP"
+    ],
+    "key": {
+        "L": {
+            "item": "minecraft:stripped_spruce_log"
+        },
+        "P": {
+            "item": "minecraft:spruce_planks"
+        }
+    },
+    "result": {
+        "item": "cfm:stripped_spruce_kitchen_counter",
+        "count": 8
+    }
+}

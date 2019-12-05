@@ -1,0 +1,34 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "top": "minecraft:block/stripped_acacia_log",
+            "base": "minecraft:block/stripped_acacia_log"
+        }
+    },
+    "variants": {
+        "facing": {
+            "north": { "y": 0   },
+            "east":  { "y": 90  },
+            "south": { "y": 180 },
+            "west":  { "y": 270 }
+        },
+        "type": {
+            "default": {
+                "model": "cfm:block/kitchen_counter_default"
+            },
+            "left_corner": {
+                "model": "cfm:block/kitchen_counter_left_corner"
+            },
+            "right_corner": {
+                "model": "cfm:block/kitchen_counter_right_corner"
+            },
+            "left_corner_inverted": {
+                "model": "cfm:block/kitchen_counter_left_corner_inverted"
+            },
+            "right_corner_inverted": {
+                "model": "cfm:block/kitchen_counter_right_corner_inverted"
+            }
+        }
+    }
+}

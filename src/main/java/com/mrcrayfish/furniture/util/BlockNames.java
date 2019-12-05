@@ -306,6 +306,12 @@ public class BlockNames
     public static final String KITCHEN_COUNTER_JUNGLE = Reference.MOD_ID + ":jungle_kitchen_counter";
     public static final String KITCHEN_COUNTER_ACACIA = Reference.MOD_ID + ":acacia_kitchen_counter";
     public static final String KITCHEN_COUNTER_DARK_OAK = Reference.MOD_ID + ":dark_oak_kitchen_counter";
+    public static final String KITCHEN_COUNTER_STRIPPED_OAK = Reference.MOD_ID + ":stripped_oak_kitchen_counter";
+    public static final String KITCHEN_COUNTER_STRIPPED_SPRUCE = Reference.MOD_ID + ":stripped_spruce_kitchen_counter";
+    public static final String KITCHEN_COUNTER_STRIPPED_BIRCH = Reference.MOD_ID + ":stripped_birch_kitchen_counter";
+    public static final String KITCHEN_COUNTER_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_kitchen_counter";
+    public static final String KITCHEN_COUNTER_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_kitchen_counter";
+    public static final String KITCHEN_COUNTER_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_kitchen_counter";
     public static final String KITCHEN_COUNTER_WHITE = Reference.MOD_ID + ":white_kitchen_counter";
     public static final String KITCHEN_COUNTER_ORANGE = Reference.MOD_ID + ":orange_kitchen_counter";
     public static final String KITCHEN_COUNTER_MAGENTA = Reference.MOD_ID + ":magenta_kitchen_counter";

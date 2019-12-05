@@ -334,6 +334,12 @@ public class ModBlocks
     public static final Block KITCHEN_COUNTER_JUNGLE = register(BlockNames.KITCHEN_COUNTER_JUNGLE, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_COUNTER_ACACIA = register(BlockNames.KITCHEN_COUNTER_ACACIA, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_COUNTER_DARK_OAK = register(BlockNames.KITCHEN_COUNTER_DARK_OAK, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_STRIPPED_OAK = register(BlockNames.KITCHEN_COUNTER_STRIPPED_OAK, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_STRIPPED_SPRUCE = register(BlockNames.KITCHEN_COUNTER_STRIPPED_SPRUCE, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_STRIPPED_BIRCH = register(BlockNames.KITCHEN_COUNTER_STRIPPED_BIRCH, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_STRIPPED_JUNGLE = register(BlockNames.KITCHEN_COUNTER_STRIPPED_JUNGLE, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_STRIPPED_ACACIA = register(BlockNames.KITCHEN_COUNTER_STRIPPED_ACACIA, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_COUNTER_STRIPPED_DARK_OAK = register(BlockNames.KITCHEN_COUNTER_STRIPPED_DARK_OAK, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_COUNTER_WHITE = register(BlockNames.KITCHEN_COUNTER_WHITE, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_COUNTER_ORANGE = register(BlockNames.KITCHEN_COUNTER_ORANGE, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_COUNTER_MAGENTA = register(BlockNames.KITCHEN_COUNTER_MAGENTA, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
