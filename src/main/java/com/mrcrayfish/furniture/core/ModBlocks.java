@@ -356,6 +356,34 @@ public class ModBlocks
     public static final Block KITCHEN_COUNTER_GREEN = register(BlockNames.KITCHEN_COUNTER_GREEN, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_COUNTER_RED = register(BlockNames.KITCHEN_COUNTER_RED, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_COUNTER_BLACK = register(BlockNames.KITCHEN_COUNTER_BLACK, new KitchenCounterBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_OAK = register(BlockNames.KITCHEN_DRAWER_OAK, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_SPRUCE = register(BlockNames.KITCHEN_DRAWER_SPRUCE, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_BIRCH = register(BlockNames.KITCHEN_DRAWER_BIRCH, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_JUNGLE = register(BlockNames.KITCHEN_DRAWER_JUNGLE, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_ACACIA = register(BlockNames.KITCHEN_DRAWER_ACACIA, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_DARK_OAK = register(BlockNames.KITCHEN_DRAWER_DARK_OAK, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_STRIPPED_OAK = register(BlockNames.KITCHEN_DRAWER_STRIPPED_OAK, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_STRIPPED_SPRUCE = register(BlockNames.KITCHEN_DRAWER_STRIPPED_SPRUCE, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_STRIPPED_BIRCH = register(BlockNames.KITCHEN_DRAWER_STRIPPED_BIRCH, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_STRIPPED_JUNGLE = register(BlockNames.KITCHEN_DRAWER_STRIPPED_JUNGLE, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_STRIPPED_ACACIA = register(BlockNames.KITCHEN_DRAWER_STRIPPED_ACACIA, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_STRIPPED_DARK_OAK = register(BlockNames.KITCHEN_DRAWER_STRIPPED_DARK_OAK, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_WHITE = register(BlockNames.KITCHEN_DRAWER_WHITE, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_ORANGE = register(BlockNames.KITCHEN_DRAWER_ORANGE, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_MAGENTA = register(BlockNames.KITCHEN_DRAWER_MAGENTA, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_LIGHT_BLUE = register(BlockNames.KITCHEN_DRAWER_LIGHT_BLUE, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_YELLOW = register(BlockNames.KITCHEN_DRAWER_YELLOW, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_LIME = register(BlockNames.KITCHEN_DRAWER_LIME, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_PINK = register(BlockNames.KITCHEN_DRAWER_PINK, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_GRAY = register(BlockNames.KITCHEN_DRAWER_GRAY, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_LIGHT_GRAY = register(BlockNames.KITCHEN_DRAWER_LIGHT_GRAY, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_CYAN = register(BlockNames.KITCHEN_DRAWER_CYAN, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_PURPLE = register(BlockNames.KITCHEN_DRAWER_PURPLE, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_BLUE = register(BlockNames.KITCHEN_DRAWER_BLUE, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_BROWN = register(BlockNames.KITCHEN_DRAWER_BROWN, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_GREEN = register(BlockNames.KITCHEN_DRAWER_GREEN, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_RED = register(BlockNames.KITCHEN_DRAWER_RED, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
+    public static final Block KITCHEN_DRAWER_BLACK = register(BlockNames.KITCHEN_DRAWER_BLACK, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     
     private static Block register(String name, Block block)
     {

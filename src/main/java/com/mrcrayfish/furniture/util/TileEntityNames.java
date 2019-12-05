@@ -16,4 +16,5 @@ public class TileEntityNames
     public static final String COOLER = Reference.MOD_ID + ":cooler";
     public static final String GRILL = Reference.MOD_ID + ":grill";
     public static final String DOOR_MAT = Reference.MOD_ID + ":door_mat";
+    public static final String KITCHEN_DRAWER = Reference.MOD_ID + ":kitchen_drawer";
 }

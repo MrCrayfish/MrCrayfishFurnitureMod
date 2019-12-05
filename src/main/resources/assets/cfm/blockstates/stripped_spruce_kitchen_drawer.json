@@ -1,0 +1,25 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "textures": {
+            "top": "minecraft:block/stripped_spruce_log",
+            "base": "minecraft:block/stripped_spruce_log"
+        }
+    },
+    "variants": {
+        "facing": {
+            "north": { "y": 0   },
+            "east":  { "y": 90  },
+            "south": { "y": 180 },
+            "west":  { "y": 270 }
+        },
+        "open": {
+            "true": {
+                "model": "cfm:block/kitchen_drawer_open"
+            },
+            "false": {
+                "model": "cfm:block/kitchen_drawer_closed"
+            }
+        }
+    }
+}

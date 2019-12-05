@@ -329,6 +329,35 @@ public class BlockNames
     public static final String KITCHEN_COUNTER_RED = Reference.MOD_ID + ":red_kitchen_counter";
     public static final String KITCHEN_COUNTER_BLACK = Reference.MOD_ID + ":black_kitchen_counter";
 
+    public static final String KITCHEN_DRAWER_OAK = Reference.MOD_ID + ":oak_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_SPRUCE = Reference.MOD_ID + ":spruce_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_BIRCH = Reference.MOD_ID + ":birch_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_JUNGLE = Reference.MOD_ID + ":jungle_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_ACACIA = Reference.MOD_ID + ":acacia_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_DARK_OAK = Reference.MOD_ID + ":dark_oak_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_STRIPPED_OAK = Reference.MOD_ID + ":stripped_oak_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_STRIPPED_SPRUCE = Reference.MOD_ID + ":stripped_spruce_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_STRIPPED_BIRCH = Reference.MOD_ID + ":stripped_birch_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_WHITE = Reference.MOD_ID + ":white_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_ORANGE = Reference.MOD_ID + ":orange_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_MAGENTA = Reference.MOD_ID + ":magenta_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_LIGHT_BLUE = Reference.MOD_ID + ":light_blue_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_YELLOW = Reference.MOD_ID + ":yellow_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_LIME = Reference.MOD_ID + ":lime_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_PINK = Reference.MOD_ID + ":pink_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_GRAY = Reference.MOD_ID + ":gray_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_LIGHT_GRAY = Reference.MOD_ID + ":light_gray_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_CYAN = Reference.MOD_ID + ":cyan_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_PURPLE = Reference.MOD_ID + ":purple_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_BLUE = Reference.MOD_ID + ":blue_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_BROWN = Reference.MOD_ID + ":brown_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_GREEN = Reference.MOD_ID + ":green_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_RED = Reference.MOD_ID + ":red_kitchen_drawer";
+    public static final String KITCHEN_DRAWER_BLACK = Reference.MOD_ID + ":black_kitchen_drawer";
+
     /* Electronic Update */
     public static final String TV = Reference.MOD_ID + ":tv";
     public static final String COMPUTER = Reference.MOD_ID + ":computer";

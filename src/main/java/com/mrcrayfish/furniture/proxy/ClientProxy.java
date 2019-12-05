@@ -154,7 +154,13 @@ public class ClientProxy extends CommonProxy
                 ModBlocks.KITCHEN_COUNTER_STRIPPED_BIRCH,
                 ModBlocks.KITCHEN_COUNTER_STRIPPED_JUNGLE,
                 ModBlocks.KITCHEN_COUNTER_STRIPPED_ACACIA,
-                ModBlocks.KITCHEN_COUNTER_STRIPPED_DARK_OAK
+                ModBlocks.KITCHEN_COUNTER_STRIPPED_DARK_OAK,
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_OAK,
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_SPRUCE,
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_BIRCH,
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_JUNGLE,
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_ACACIA,
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_DARK_OAK
         );
 
         Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0xBBBBBB : 0,
@@ -169,7 +175,13 @@ public class ClientProxy extends CommonProxy
                 ModBlocks.KITCHEN_COUNTER_STRIPPED_BIRCH,
                 ModBlocks.KITCHEN_COUNTER_STRIPPED_JUNGLE,
                 ModBlocks.KITCHEN_COUNTER_STRIPPED_ACACIA,
-                ModBlocks.KITCHEN_COUNTER_STRIPPED_DARK_OAK
+                ModBlocks.KITCHEN_COUNTER_STRIPPED_DARK_OAK,
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_OAK,
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_SPRUCE,
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_BIRCH,
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_JUNGLE,
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_ACACIA,
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_DARK_OAK
         );
 
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0x999999 : 0,
