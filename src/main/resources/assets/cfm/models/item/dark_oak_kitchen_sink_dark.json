@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/kitchen_sink",
+    "textures": {
+        "base": "minecraft:block/dark_oak_planks",
+        "sink": "minecraft:block/gray_concrete"
+    }
+}

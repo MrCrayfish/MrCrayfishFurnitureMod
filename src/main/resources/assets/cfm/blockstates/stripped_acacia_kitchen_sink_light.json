@@ -1,0 +1,18 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "model": "cfm:block/kitchen_sink",
+        "textures": {
+            "base": "minecraft:block/stripped_acacia_log",
+            "sink": "minecraft:block/white_concrete"
+        }
+    },
+    "variants": {
+        "facing": {
+            "north": { "y": 0   },
+            "east":  { "y": 90  },
+            "south": { "y": 180 },
+            "west":  { "y": 270 }
+        }
+    }
+}

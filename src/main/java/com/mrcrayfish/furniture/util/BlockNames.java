@@ -328,7 +328,6 @@ public class BlockNames
     public static final String KITCHEN_COUNTER_GREEN = Reference.MOD_ID + ":green_kitchen_counter";
     public static final String KITCHEN_COUNTER_RED = Reference.MOD_ID + ":red_kitchen_counter";
     public static final String KITCHEN_COUNTER_BLACK = Reference.MOD_ID + ":black_kitchen_counter";
-
     public static final String KITCHEN_DRAWER_OAK = Reference.MOD_ID + ":oak_kitchen_drawer";
     public static final String KITCHEN_DRAWER_SPRUCE = Reference.MOD_ID + ":spruce_kitchen_drawer";
     public static final String KITCHEN_DRAWER_BIRCH = Reference.MOD_ID + ":birch_kitchen_drawer";
@@ -357,6 +356,46 @@ public class BlockNames
     public static final String KITCHEN_DRAWER_GREEN = Reference.MOD_ID + ":green_kitchen_drawer";
     public static final String KITCHEN_DRAWER_RED = Reference.MOD_ID + ":red_kitchen_drawer";
     public static final String KITCHEN_DRAWER_BLACK = Reference.MOD_ID + ":black_kitchen_drawer";
+    public static final String KITCHEN_SINK_LIGHT_OAK = Reference.MOD_ID + ":oak_kitchen_sink_light";
+    public static final String KITCHEN_SINK_LIGHT_SPRUCE = Reference.MOD_ID + ":spruce_kitchen_sink_light";
+    public static final String KITCHEN_SINK_LIGHT_BIRCH = Reference.MOD_ID + ":birch_kitchen_sink_light";
+    public static final String KITCHEN_SINK_LIGHT_JUNGLE = Reference.MOD_ID + ":jungle_kitchen_sink_light";
+    public static final String KITCHEN_SINK_LIGHT_ACACIA = Reference.MOD_ID + ":acacia_kitchen_sink_light";
+    public static final String KITCHEN_SINK_LIGHT_DARK_OAK = Reference.MOD_ID + ":dark_oak_kitchen_sink_light";
+    public static final String KITCHEN_SINK_DARK_OAK = Reference.MOD_ID + ":oak_kitchen_sink_dark";
+    public static final String KITCHEN_SINK_DARK_SPRUCE = Reference.MOD_ID + ":spruce_kitchen_sink_dark";
+    public static final String KITCHEN_SINK_DARK_BIRCH = Reference.MOD_ID + ":birch_kitchen_sink_dark";
+    public static final String KITCHEN_SINK_DARK_JUNGLE = Reference.MOD_ID + ":jungle_kitchen_sink_dark";
+    public static final String KITCHEN_SINK_DARK_ACACIA = Reference.MOD_ID + ":acacia_kitchen_sink_dark";
+    public static final String KITCHEN_SINK_DARK_DARK_OAK = Reference.MOD_ID + ":dark_oak_kitchen_sink_dark";
+    public static final String KITCHEN_SINK_LIGHT_STRIPPED_OAK = Reference.MOD_ID + ":stripped_oak_kitchen_sink_light";
+    public static final String KITCHEN_SINK_LIGHT_STRIPPED_SPRUCE = Reference.MOD_ID + ":stripped_spruce_kitchen_sink_light";
+    public static final String KITCHEN_SINK_LIGHT_STRIPPED_BIRCH = Reference.MOD_ID + ":stripped_birch_kitchen_sink_light";
+    public static final String KITCHEN_SINK_LIGHT_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_kitchen_sink_light";
+    public static final String KITCHEN_SINK_LIGHT_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_kitchen_sink_light";
+    public static final String KITCHEN_SINK_LIGHT_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_kitchen_sink_light";
+    public static final String KITCHEN_SINK_DARK_STRIPPED_OAK = Reference.MOD_ID + ":stripped_oak_kitchen_sink_dark";
+    public static final String KITCHEN_SINK_DARK_STRIPPED_SPRUCE = Reference.MOD_ID + ":stripped_spruce_kitchen_sink_dark";
+    public static final String KITCHEN_SINK_DARK_STRIPPED_BIRCH = Reference.MOD_ID + ":stripped_birch_kitchen_sink_dark";
+    public static final String KITCHEN_SINK_DARK_STRIPPED_JUNGLE = Reference.MOD_ID + ":stripped_jungle_kitchen_sink_dark";
+    public static final String KITCHEN_SINK_DARK_STRIPPED_ACACIA = Reference.MOD_ID + ":stripped_acacia_kitchen_sink_dark";
+    public static final String KITCHEN_SINK_DARK_STRIPPED_DARK_OAK = Reference.MOD_ID + ":stripped_dark_oak_kitchen_sink_dark";
+    public static final String KITCHEN_SINK_WHITE = Reference.MOD_ID + ":white_kitchen_sink";
+    public static final String KITCHEN_SINK_ORANGE = Reference.MOD_ID + ":orange_kitchen_sink";
+    public static final String KITCHEN_SINK_MAGENTA = Reference.MOD_ID + ":magenta_kitchen_sink";
+    public static final String KITCHEN_SINK_LIGHT_BLUE = Reference.MOD_ID + ":light_blue_kitchen_sink";
+    public static final String KITCHEN_SINK_YELLOW = Reference.MOD_ID + ":yellow_kitchen_sink";
+    public static final String KITCHEN_SINK_LIME = Reference.MOD_ID + ":lime_kitchen_sink";
+    public static final String KITCHEN_SINK_PINK = Reference.MOD_ID + ":pink_kitchen_sink";
+    public static final String KITCHEN_SINK_GRAY = Reference.MOD_ID + ":gray_kitchen_sink";
+    public static final String KITCHEN_SINK_LIGHT_GRAY = Reference.MOD_ID + ":light_gray_kitchen_sink";
+    public static final String KITCHEN_SINK_CYAN = Reference.MOD_ID + ":cyan_kitchen_sink";
+    public static final String KITCHEN_SINK_PURPLE = Reference.MOD_ID + ":purple_kitchen_sink";
+    public static final String KITCHEN_SINK_BLUE = Reference.MOD_ID + ":blue_kitchen_sink";
+    public static final String KITCHEN_SINK_BROWN = Reference.MOD_ID + ":brown_kitchen_sink";
+    public static final String KITCHEN_SINK_GREEN = Reference.MOD_ID + ":green_kitchen_sink";
+    public static final String KITCHEN_SINK_RED = Reference.MOD_ID + ":red_kitchen_sink";
+    public static final String KITCHEN_SINK_BLACK = Reference.MOD_ID + ":black_kitchen_sink";
 
     /* Electronic Update */
     public static final String TV = Reference.MOD_ID + ":tv";
