@@ -28,12 +28,9 @@ public class KitchenSinkBlock extends FurnitureHorizontalBlock
     {
         if(!worldIn.isRemote)
         {
-            if(FluidUtil.interactWithFluidHandler(player, handIn, worldIn, pos, hit.getFace()))
-            {
-                return true;
-            }
+            return FluidUtil.interactWithFluidHandler(player, handIn, worldIn, pos, hit.getFace());
         }
-        return false;
+        return true;
     }
 
     @Override
