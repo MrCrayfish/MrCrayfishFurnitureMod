@@ -6,6 +6,7 @@ import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.gui.widget.button.IconButton;
 import com.mrcrayfish.furniture.client.gui.widget.button.TagButton;
 import com.mrcrayfish.furniture.core.ModBlocks;
+import com.mrcrayfish.furniture.core.ModItems;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
@@ -253,7 +254,8 @@ public class CreativeScreenEvents
         final TagFilter BEDROOM = new TagFilter(new ResourceLocation(Reference.MOD_ID, "bedroom"), new ItemStack(ModBlocks.DESK_OAK));
         final TagFilter OUTDOORS = new TagFilter(new ResourceLocation(Reference.MOD_ID, "outdoors"), new ItemStack(ModBlocks.MAIL_BOX_OAK));
         final TagFilter KITCHEN = new TagFilter(new ResourceLocation(Reference.MOD_ID, "kitchen"), new ItemStack(ModBlocks.KITCHEN_COUNTER_CYAN));
-        TagFilter[] filters = new TagFilter[] {GENERAL, STORAGE, BEDROOM, OUTDOORS, KITCHEN};
+        final TagFilter ITEMS = new TagFilter(new ResourceLocation(Reference.MOD_ID, "items"), new ItemStack(ModItems.SPATULA));
+        TagFilter[] filters = new TagFilter[] {GENERAL, STORAGE, BEDROOM, OUTDOORS, KITCHEN, ITEMS};
 
         ForgeRegistries.ITEMS.getValues().stream()
             .filter(item -> item.getGroup() == FurnitureMod.GROUP)
