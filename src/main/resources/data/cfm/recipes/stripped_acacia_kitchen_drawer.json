@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "kitchen_drawer",
+    "pattern": [
+        "LLL",
+        "PCP",
+        "PPP"
+    ],
+    "key": {
+        "L": {
+            "item": "minecraft:stripped_acacia_log"
+        },
+        "P": {
+            "item": "minecraft:acacia_planks"
+        },
+        "C": {
+            "item": "minecraft:chest"
+        }
+    },
+    "result": {
+        "item": "cfm:acacia_kitchen_drawer",
+        "count": 4
+    }
+}
