@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "kitchen_sink",
+    "pattern": [
+        "CIC",
+        "PBP",
+        "PPP"
+    ],
+    "key": {
+        "I": {
+            "item": "minecraft:iron_ingot"
+        },
+        "C": {
+            "item": "minecraft:white_concrete"
+        },
+        "P": {
+            "item": "minecraft:white_concrete"
+        },
+        "B": {
+            "item": "minecraft:bucket"
+        }
+    },
+    "result": {
+        "item": "cfm:white_kitchen_sink",
+        "count": 2
+    }
+}

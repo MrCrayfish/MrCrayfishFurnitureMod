@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "group": "kitchen_sink",
+    "pattern": [
+        "CIC",
+        "PBP",
+        "PPP"
+    ],
+    "key": {
+        "I": {
+            "item": "minecraft:iron_ingot"
+        },
+        "C": {
+            "item": "minecraft:gray_concrete"
+        },
+        "P": {
+            "item": "minecraft:jungle_planks"
+        },
+        "B": {
+            "item": "minecraft:bucket"
+        }
+    },
+    "result": {
+        "item": "cfm:jungle_kitchen_sink_dark",
+        "count": 2
+    }
+}
