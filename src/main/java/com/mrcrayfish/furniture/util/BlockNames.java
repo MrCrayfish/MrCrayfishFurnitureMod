@@ -428,8 +428,6 @@ public class BlockNames
     public static final String BLENDER = Reference.MOD_ID + ":blender";
     public static final String WASHING_MACHINE = Reference.MOD_ID + ":washing_machine";
     public static final String DISHWASHER = Reference.MOD_ID + ":dishwasher";
-    public static final String COUNTER_SINK = Reference.MOD_ID + ":counter_sink"; //TODO flatten?
-    public static final String KITCHEN_CABINET = Reference.MOD_ID + ":kitchen_cabinet"; //TODO flatten?
     public static final String CUP = Reference.MOD_ID + ":cup";
     public static final String PLATE = Reference.MOD_ID + ":plate";
     public static final String COOKIE_JAR = Reference.MOD_ID + ":cookie_jar";
@@ -455,7 +453,6 @@ public class BlockNames
     public static final String MODERN_LIGHT_ON = Reference.MOD_ID + ":modern_light_on";
     public static final String CEILING_FAN = Reference.MOD_ID + ":ceiling_fan";
     public static final String DIGITAL_CLOCK = Reference.MOD_ID + ":digital_clock"; //TODO flatten
-    public static final String COUNTER_DRAWER = Reference.MOD_ID + ":counter_drawer";
     public static final String PHOTO_FRAME = Reference.MOD_ID + ":photo_frame"; //TODO flatten
     public static final String TV_STAND = Reference.MOD_ID + ":tv_stand";
 }
