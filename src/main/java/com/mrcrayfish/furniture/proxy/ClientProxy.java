@@ -5,6 +5,7 @@ import com.mrcrayfish.furniture.FurnitureMod;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.MailBoxEntry;
 import com.mrcrayfish.furniture.client.event.CreativeScreenEvents;
+import com.mrcrayfish.furniture.client.gui.screen.DoorMatScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.CrateScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.MailBoxScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.PostBoxScreen;
@@ -30,6 +31,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.FoliageColors;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants;
@@ -264,6 +266,7 @@ public class ClientProxy extends CommonProxy
         }
     }
 
+    @Override
     public boolean useFancyGraphics()
     {
         Minecraft mc = Minecraft.getInstance();
@@ -281,6 +284,16 @@ public class ClientProxy extends CommonProxy
             {
                 ((GrillTileEntity) tileEntity).setFlipping(position);
             }
+        }
+    }
+
+    @Override
+    public void showDoorMatScreen(World world, BlockPos pos)
+    {
+        TileEntity tileEntity = world.getTileEntity(pos);
+        if(tileEntity instanceof DoorMatTileEntity)
+        {
+            Minecraft.getInstance().displayGuiScreen(new DoorMatScreen((DoorMatTileEntity) tileEntity));
         }
     }
 }

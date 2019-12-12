@@ -9,11 +9,8 @@ import com.mrcrayfish.furniture.tileentity.CrateTileEntity;
 import com.mrcrayfish.furniture.tileentity.MailBoxTileEntity;
 import com.mrcrayfish.furniture.util.ContainerNames;
 import net.minecraft.client.gui.ScreenManager;
-import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
@@ -23,7 +20,6 @@ import net.minecraftforge.fml.network.IContainerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Author: MrCrayfish

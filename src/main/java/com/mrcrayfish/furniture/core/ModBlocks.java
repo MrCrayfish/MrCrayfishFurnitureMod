@@ -19,10 +19,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.BiConsumer;
-import java.util.function.BiFunction;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 /**
  * Author: MrCrayfish
@@ -384,7 +381,6 @@ public class ModBlocks
     public static final Block KITCHEN_DRAWER_GREEN = register(BlockNames.KITCHEN_DRAWER_GREEN, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_DRAWER_RED = register(BlockNames.KITCHEN_DRAWER_RED, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_DRAWER_BLACK = register(BlockNames.KITCHEN_DRAWER_BLACK, new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
-    
     public static final Block KITCHEN_SINK_LIGHT_OAK = register(BlockNames.KITCHEN_SINK_LIGHT_OAK, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_SINK_LIGHT_SPRUCE = register(BlockNames.KITCHEN_SINK_LIGHT_SPRUCE, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_SINK_LIGHT_BIRCH = register(BlockNames.KITCHEN_SINK_LIGHT_BIRCH, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
@@ -397,7 +393,6 @@ public class ModBlocks
     public static final Block KITCHEN_SINK_LIGHT_STRIPPED_JUNGLE = register(BlockNames.KITCHEN_SINK_LIGHT_STRIPPED_JUNGLE, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_SINK_LIGHT_STRIPPED_ACACIA = register(BlockNames.KITCHEN_SINK_LIGHT_STRIPPED_ACACIA, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_SINK_LIGHT_STRIPPED_DARK_OAK = register(BlockNames.KITCHEN_SINK_LIGHT_STRIPPED_DARK_OAK, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
-
     public static final Block KITCHEN_SINK_DARK_OAK = register(BlockNames.KITCHEN_SINK_DARK_OAK, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_SINK_DARK_SPRUCE = register(BlockNames.KITCHEN_SINK_DARK_SPRUCE, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_SINK_DARK_BIRCH = register(BlockNames.KITCHEN_SINK_DARK_BIRCH, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
@@ -410,7 +405,6 @@ public class ModBlocks
     public static final Block KITCHEN_SINK_DARK_STRIPPED_JUNGLE = register(BlockNames.KITCHEN_SINK_DARK_STRIPPED_JUNGLE, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_SINK_DARK_STRIPPED_ACACIA = register(BlockNames.KITCHEN_SINK_DARK_STRIPPED_ACACIA, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_SINK_DARK_STRIPPED_DARK_OAK = register(BlockNames.KITCHEN_SINK_DARK_STRIPPED_DARK_OAK, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
-    
     public static final Block KITCHEN_SINK_WHITE = register(BlockNames.KITCHEN_SINK_WHITE, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_SINK_ORANGE = register(BlockNames.KITCHEN_SINK_ORANGE, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final Block KITCHEN_SINK_MAGENTA = register(BlockNames.KITCHEN_SINK_MAGENTA, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS)));

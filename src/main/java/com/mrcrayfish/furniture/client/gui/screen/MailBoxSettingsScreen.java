@@ -13,8 +13,6 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TranslationTextComponent;
 
-import java.util.function.Predicate;
-
 /**
  * Author: MrCrayfish
  */

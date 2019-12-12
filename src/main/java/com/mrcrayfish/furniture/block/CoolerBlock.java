@@ -3,8 +3,6 @@ package com.mrcrayfish.furniture.block;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.tileentity.CoolerTileEntity;
-import com.mrcrayfish.furniture.tileentity.CrateTileEntity;
-import com.mrcrayfish.furniture.tileentity.DeskCabinetTileEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

@@ -1,6 +1,5 @@
 package com.mrcrayfish.furniture.util;
 
-import net.minecraft.block.Block;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.shapes.IBooleanFunction;
 import net.minecraft.util.math.shapes.VoxelShape;

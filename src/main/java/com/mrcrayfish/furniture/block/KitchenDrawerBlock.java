@@ -1,6 +1,5 @@
 package com.mrcrayfish.furniture.block;
 
-import com.mrcrayfish.furniture.tileentity.DeskCabinetTileEntity;
 import com.mrcrayfish.furniture.tileentity.KitchenDrawerTileEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;

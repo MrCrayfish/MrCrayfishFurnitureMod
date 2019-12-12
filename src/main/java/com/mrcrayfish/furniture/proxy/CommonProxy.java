@@ -8,6 +8,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 /**
  * Author: MrCrayfish
@@ -40,4 +41,6 @@ public class CommonProxy
     }
 
     public void setGrillFlipping(BlockPos pos, int position) {}
+
+    public void showDoorMatScreen(World world, BlockPos pos) {}
 }

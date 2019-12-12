@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.inventory.container.RepairContainer;
 import net.minecraft.inventory.container.SimpleNamedContainerProvider;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;

@@ -3,7 +3,6 @@ package com.mrcrayfish.furniture.network.message;
 import com.mrcrayfish.furniture.inventory.container.CrateContainer;
 import com.mrcrayfish.furniture.tileentity.CrateTileEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 
