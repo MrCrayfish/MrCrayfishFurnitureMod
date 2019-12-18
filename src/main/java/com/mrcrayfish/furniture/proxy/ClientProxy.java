@@ -1,8 +1,5 @@
 package com.mrcrayfish.furniture.proxy;
 
-import com.mrcrayfish.filters.Filters;
-import com.mrcrayfish.furniture.FurnitureMod;
-import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.MailBoxEntry;
 import com.mrcrayfish.furniture.client.event.CreativeScreenEvents;
 import com.mrcrayfish.furniture.client.gui.screen.DoorMatScreen;
@@ -15,20 +12,19 @@ import com.mrcrayfish.furniture.client.renderer.tileentity.GrillTileEntityRender
 import com.mrcrayfish.furniture.client.renderer.tileentity.KitchenSinkTileEntityRenderer;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModContainers;
-import com.mrcrayfish.furniture.core.ModItems;
-import com.mrcrayfish.furniture.entity.SeatEntity;
+import com.mrcrayfish.furniture.core.ModEntities;
+import com.mrcrayfish.furniture.core.ModTileEntities;
 import com.mrcrayfish.furniture.tileentity.DoorMatTileEntity;
 import com.mrcrayfish.furniture.tileentity.GrillTileEntity;
-import com.mrcrayfish.furniture.tileentity.KitchenSinkTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.FoliageColors;
 import net.minecraft.world.World;
@@ -41,6 +37,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * Author: MrCrayfish
@@ -51,13 +48,26 @@ public class ClientProxy extends CommonProxy
     public void onSetupClient()
     {
         super.onSetupClient();
-        ClientRegistry.bindTileEntitySpecialRenderer(GrillTileEntity.class, new GrillTileEntityRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(DoorMatTileEntity.class, new DoorMatTileEntityRenderer());
-        ClientRegistry.bindTileEntitySpecialRenderer(KitchenSinkTileEntity.class, new KitchenSinkTileEntityRenderer());
-        RenderingRegistry.registerEntityRenderingHandler(SeatEntity.class, SeatRenderer::new);
+
+        ClientRegistry.bindTileEntityRenderer(ModTileEntities.GRILL, new GrillTileEntityRenderer());
+        ClientRegistry.bindTileEntityRenderer(ModTileEntities.DOOR_MAT, new DoorMatTileEntityRenderer());
+        ClientRegistry.bindTileEntityRenderer(ModTileEntities.KITCHEN_SINK, new KitchenSinkTileEntityRenderer());
+
+        //RenderingRegistry.registerEntityRenderingHandler(); //TODO restore once entity renders are fixed
+        //Minecraft.getInstance().getRenderManager().func_229087_a_(ModEntities.SEAT, new SeatRenderer(Minecraft.getInstance().getRenderManager()));
+
         ScreenManager.registerFactory(ModContainers.CRATE, CrateScreen::new);
         ScreenManager.registerFactory(ModContainers.POST_BOX, PostBoxScreen::new);
         ScreenManager.registerFactory(ModContainers.MAIL_BOX, MailBoxScreen::new);
+
+        Predicate<RenderType> leavesPredicate = renderType -> this.useFancyGraphics() ? renderType == RenderType.func_228641_d_() : renderType == RenderType.func_228639_c_();
+        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_OAK, leavesPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_SPRUCE, leavesPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_BIRCH, leavesPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_JUNGLE, leavesPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_ACACIA, leavesPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_DARK_OAK, leavesPredicate);
+
         this.registerColors();
 
         if(!ModList.get().isLoaded("filters"))
@@ -66,12 +76,12 @@ public class ClientProxy extends CommonProxy
         }
         else
         {
-            Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "general"), new ItemStack(ModBlocks.CHAIR_OAK));
-            Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "storage"), new ItemStack(ModBlocks.CABINET_OAK));
-            Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "bedroom"), new ItemStack(ModBlocks.DESK_OAK));
-            Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "outdoors"), new ItemStack(ModBlocks.MAIL_BOX_OAK));
-            Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "kitchen"), new ItemStack(ModBlocks.KITCHEN_COUNTER_CYAN));
-            Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "items"), new ItemStack(ModItems.SPATULA));
+            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "general"), new ItemStack(ModBlocks.CHAIR_OAK));
+            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "storage"), new ItemStack(ModBlocks.CABINET_OAK));
+            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "bedroom"), new ItemStack(ModBlocks.DESK_OAK));
+            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "outdoors"), new ItemStack(ModBlocks.MAIL_BOX_OAK));
+            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "kitchen"), new ItemStack(ModBlocks.KITCHEN_COUNTER_CYAN));
+            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "items"), new ItemStack(ModItems.SPATULA));
         }
     }
 
@@ -239,7 +249,7 @@ public class ClientProxy extends CommonProxy
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> FoliageColors.getBirch(),
                 ModBlocks.HEDGE_BIRCH);
 
-        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> reader != null && pos != null ? BiomeColors.getFoliageColor(reader, pos) : FoliageColors.getDefault(),
+        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> reader != null && pos != null ? BiomeColors.func_228361_b_(reader, pos) : FoliageColors.getDefault(),
                 ModBlocks.HEDGE_OAK,
                 ModBlocks.HEDGE_JUNGLE,
                 ModBlocks.HEDGE_ACACIA,
@@ -247,7 +257,7 @@ public class ClientProxy extends CommonProxy
 
         Minecraft.getInstance().getItemColors().register((stack, i) -> {
             BlockState state = ((BlockItem)stack.getItem()).getBlock().getDefaultState();
-            return Minecraft.getInstance().getBlockColors().getColor(state, null, null, i);
+            return Minecraft.getInstance().getBlockColors().func_228054_a_(state, null, null, i);
         }, ModBlocks.HEDGE_OAK, ModBlocks.HEDGE_SPRUCE, ModBlocks.HEDGE_BIRCH, ModBlocks.HEDGE_JUNGLE, ModBlocks.HEDGE_ACACIA, ModBlocks.HEDGE_DARK_OAK);
     }
 

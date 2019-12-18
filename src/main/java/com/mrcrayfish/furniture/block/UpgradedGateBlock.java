@@ -13,6 +13,7 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.DoorHingeSide;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -183,9 +184,9 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult rayTraceResult)
+    public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
     {
-        Direction hitFace = rayTraceResult.getFace();
+        Direction hitFace = result.getFace();
         Direction direction = state.get(DIRECTION);
         boolean open = state.get(OPEN);
 
@@ -193,7 +194,7 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
         {
             if(!open || hitFace.getAxis().isVertical())
             {
-                return false;
+                return ActionResultType.PASS;
             }
         }
 
@@ -205,7 +206,7 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
 
         world.playEvent(playerEntity, !open ? 1008 : 1014, pos, 0);
 
-        return true;
+        return ActionResultType.SUCCESS;
     }
 
     private void openGate(BlockState state, IWorld world, BlockPos pos, Direction direction, Direction hitFace, boolean open)

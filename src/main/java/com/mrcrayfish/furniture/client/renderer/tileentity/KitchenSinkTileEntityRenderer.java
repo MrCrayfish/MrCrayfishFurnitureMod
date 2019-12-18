@@ -1,14 +1,17 @@
 package com.mrcrayfish.furniture.client.renderer.tileentity;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mrcrayfish.furniture.block.FurnitureHorizontalBlock;
 import com.mrcrayfish.furniture.tileentity.KitchenSinkTileEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
+import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -21,25 +24,30 @@ import org.lwjgl.opengl.GL11;
  */
 public class KitchenSinkTileEntityRenderer extends TileEntityRenderer<KitchenSinkTileEntity>
 {
-    @Override
-    public void render(KitchenSinkTileEntity tileEntityIn, double x, double y, double z, float partialTicks, int destroyStage)
+    public KitchenSinkTileEntityRenderer()
     {
-        GlStateManager.pushMatrix();
+        super(TileEntityRendererDispatcher.instance);
+    }
+
+    @Override
+    public void func_225616_a_(KitchenSinkTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int i, int i1)
+    {
+        RenderSystem.pushMatrix();
         {
-            GlStateManager.translated(x, y, z);
-            GlStateManager.disableCull();
-            GlStateManager.disableLighting();
-            GlStateManager.enableBlend();
-            GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            Direction direction = tileEntityIn.getBlockState().get(FurnitureHorizontalBlock.DIRECTION);
-            GlStateManager.translated(0.5, 0.5, 0.5);
-            GlStateManager.rotatef(direction.getHorizontalIndex() * -90F - 90F, 0, 1, 0);
-            GlStateManager.translated(-0.5, -0.5, -0.5);
-            this.drawFluid(tileEntityIn, 2 * 0.0625, 10 * 0.0625, 2 * 0.0625, 10 * 0.0625, 5 * 0.0625, 12 * 0.0625);
-            GlStateManager.disableBlend();
-            GlStateManager.enableLighting();
+            //RenderSystem.translated(x, y, z);
+            RenderSystem.disableCull();
+            RenderSystem.disableLighting();
+            RenderSystem.enableBlend();
+            RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+            Direction direction = tileEntity.getBlockState().get(FurnitureHorizontalBlock.DIRECTION);
+            RenderSystem.translated(0.5, 0.5, 0.5);
+            RenderSystem.rotatef(direction.getHorizontalIndex() * -90F - 90F, 0, 1, 0);
+            RenderSystem.translated(-0.5, -0.5, -0.5);
+            this.drawFluid(tileEntity, 2 * 0.0625, 10 * 0.0625, 2 * 0.0625, 10 * 0.0625, 5 * 0.0625, 12 * 0.0625);
+            RenderSystem.disableBlend();
+            RenderSystem.enableLighting();
         }
-        GlStateManager.popMatrix();
+        RenderSystem.popMatrix();
     }
 
     private void drawFluid(KitchenSinkTileEntity te, double x, double y, double z, double width, double height, double depth)
@@ -49,14 +57,14 @@ public class KitchenSinkTileEntityRenderer extends TileEntityRenderer<KitchenSin
             return;
 
         ResourceLocation resource = fluid.getAttributes().getStillTexture();
-        TextureAtlasSprite sprite = Minecraft.getInstance().getTextureMap().getAtlasSprite(resource.toString());
+        TextureAtlasSprite sprite = Minecraft.getInstance().getModelManager().func_229356_a_(AtlasTexture.LOCATION_BLOCKS_TEXTURE).getSprite(resource);
         Minecraft.getInstance().getTextureManager().bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
 
-        double minU = sprite.getMinU();
-        double maxU = Math.min(minU + (sprite.getMaxU() - minU) * depth, sprite.getMaxU());
-        double minV = sprite.getMinV();
-        double maxV = Math.min(minV + (sprite.getMaxV() - minV) * width, sprite.getMaxV());
-        int light = getWorld().getCombinedLight(te.getPos(), fluid.getAttributes().getLuminosity());
+        float minU = sprite.getMinU();
+        float maxU = (float) Math.min(minU + (sprite.getMaxU() - minU) * depth, sprite.getMaxU());
+        float minV = sprite.getMinV();
+        float maxV = (float) Math.min(minV + (sprite.getMaxV() - minV) * width, sprite.getMaxV());
+        int light = te.getWorld().func_226659_b_(te.getPos(), fluid.getAttributes().getLuminosity());
         int lightX = light >> 0x10 & 0xFFFF;
         int lightY = light & 0xFFFF;
         int waterColor = fluid.getAttributes().getColor(te.getWorld(), te.getPos());
@@ -68,11 +76,11 @@ public class KitchenSinkTileEntityRenderer extends TileEntityRenderer<KitchenSin
 
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder buffer = tessellator.getBuffer();
-        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_LMAP_COLOR);
-        buffer.pos(x, y + height, z).tex(maxU, minV).lightmap(lightX, lightY).color(red, green, blue, 1.0F).endVertex();
-        buffer.pos(x, y + height, z + depth).tex(minU, minV).lightmap(lightX, lightY).color(red, green, blue, 1.0F).endVertex();
-        buffer.pos(x + width, y + height, z + depth).tex(minU, maxV).lightmap(lightX, lightY).color(red, green, blue, 1.0F).endVertex();
-        buffer.pos(x + width, y + height, z).tex(maxU, maxV).lightmap(lightX, lightY).color(red, green, blue, 1.0F).endVertex();
+        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.field_227851_o_);
+        buffer.func_225582_a_(x, y + height, z).func_225583_a_(maxU, minV).func_227885_a_(red, green, blue, 1.0F).endVertex();
+        buffer.func_225582_a_(x, y + height, z + depth).func_225583_a_(minU, minV).func_227885_a_(red, green, blue, 1.0F).endVertex();
+        buffer.func_225582_a_(x + width, y + height, z + depth).func_225583_a_(minU, maxV).func_227885_a_(red, green, blue, 1.0F).endVertex();
+        buffer.func_225582_a_(x + width, y + height, z).func_225583_a_(maxU, maxV).func_227885_a_(red, green, blue, 1.0F).endVertex();
         tessellator.draw();
     }
 }

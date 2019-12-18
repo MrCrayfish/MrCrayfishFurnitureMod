@@ -2,14 +2,12 @@ package com.mrcrayfish.furniture.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.mrcrayfish.furniture.FurnitureMod;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -147,14 +145,13 @@ public class HedgeBlock extends FurnitureWaterloggedBlock
         builder.add(WEST);
     }
 
-    @Override
-    public BlockRenderLayer getRenderLayer()
+    /*public boolean causesSuffocation(BlockState state, IBlockReader worldIn, BlockPos pos)
     {
-        return FurnitureMod.PROXY.useFancyGraphics() ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
-    }
+        return false;
+    }*/
 
-    @Override
-    public boolean causesSuffocation(BlockState state, IBlockReader worldIn, BlockPos pos)
+    @Override //causesSuffocation?
+    public boolean func_229869_c_(BlockState p_229869_1_, IBlockReader p_229869_2_, BlockPos p_229869_3_)
     {
         return false;
     }

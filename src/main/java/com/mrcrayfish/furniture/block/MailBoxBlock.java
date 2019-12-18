@@ -16,6 +16,7 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -122,7 +123,7 @@ public class MailBoxBlock extends FurnitureHorizontalWaterloggedBlock
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
+    public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
     {
         if(!world.isRemote())
         {
@@ -141,7 +142,7 @@ public class MailBoxBlock extends FurnitureHorizontalWaterloggedBlock
                 NetworkHooks.openGui((ServerPlayerEntity) playerEntity, (INamedContainerProvider) tileEntity, pos);
             }
         }
-        return true;
+        return ActionResultType.SUCCESS;
     }
 
     @Override

@@ -11,6 +11,7 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -64,18 +65,18 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements ISidedInven
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
+    public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
     {
-        if(!worldIn.isRemote && hit.getFace() == Direction.UP)
+        if(!world.isRemote && result.getFace() == Direction.UP)
         {
-            TileEntity tileEntity = worldIn.getTileEntity(pos);
+            TileEntity tileEntity = world.getTileEntity(pos);
             if(tileEntity instanceof GrillTileEntity)
             {
                 GrillTileEntity grillTileEntity = (GrillTileEntity) tileEntity;
-                ItemStack stack = player.getHeldItem(handIn);
+                ItemStack stack = playerEntity.getHeldItem(hand);
                 if(stack.getItem() == ModItems.SPATULA)
                 {
-                    grillTileEntity.flipItem(this.getPosition(hit, pos));
+                    grillTileEntity.flipItem(this.getPosition(result, pos));
                 }
                 else if(stack.getItem() == Items.COAL || stack.getItem() == Items.CHARCOAL)
                 {
@@ -90,9 +91,9 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements ISidedInven
                     if(optional.isPresent())
                     {
                         GrillCookingRecipe recipe = optional.get();
-                        if(grillTileEntity.addItem(stack, this.getPosition(hit, pos), recipe.getCookTime(), recipe.getExperience(), (byte) player.getHorizontalFacing().getHorizontalIndex()))
+                        if(grillTileEntity.addItem(stack, this.getPosition(result, pos), recipe.getCookTime(), recipe.getExperience(), (byte) playerEntity.getHorizontalFacing().getHorizontalIndex()))
                         {
-                            if(!player.abilities.isCreativeMode)
+                            if(!playerEntity.abilities.isCreativeMode)
                             {
                                 stack.shrink(1);
                             }
@@ -101,11 +102,11 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements ISidedInven
                 }
                 else
                 {
-                    grillTileEntity.removeItem(this.getPosition(hit, pos));
+                    grillTileEntity.removeItem(this.getPosition(result, pos));
                 }
             }
         }
-        return true;
+        return ActionResultType.SUCCESS;
     }
 
     private int getPosition(BlockRayTraceResult hit, BlockPos pos)

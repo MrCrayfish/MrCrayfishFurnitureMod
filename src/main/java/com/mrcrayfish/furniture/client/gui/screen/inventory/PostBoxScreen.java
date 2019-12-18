@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.client.gui.screen.inventory;
 
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.MailBoxEntry;
 import com.mrcrayfish.furniture.client.gui.widget.button.IconButton;
@@ -93,7 +94,7 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
     {
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.minecraft.getTextureManager().bindTexture(GUI_TEXTURE);
         int startX = (this.width - this.xSize) / 2;
         int startY = (this.height - this.ySize) / 2;
@@ -130,10 +131,10 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
             int startIndex = scroll / ITEM_HEIGHT;
             for(int i = startIndex; i < Math.min(startIndex + MAX_VISIBLE_ITEMS, this.filteredMailBoxList.size()); i++)
             {
-                GlStateManager.pushMatrix();
-                GlStateManager.translatef(8, 32, 0);
-                GlStateManager.translatef(0, -scroll, 0);
-                GlStateManager.translatef(0, i * ITEM_HEIGHT, 0);
+                RenderSystem.pushMatrix();
+                RenderSystem.translatef(8, 32, 0);
+                RenderSystem.translatef(0, -scroll, 0);
+                RenderSystem.translatef(0, i * ITEM_HEIGHT, 0);
 
                 MailBoxEntry entry = this.filteredMailBoxList.get(i);
                 this.minecraft.getTextureManager().bindTexture(GUI_TEXTURE);
@@ -153,7 +154,7 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
                     this.font.drawString(entry.getOwnerName(), 3, 13, 0x777777);
                 }
 
-                GlStateManager.popMatrix();
+                RenderSystem.popMatrix();
             }
         }
         GL11.glDisable(GL11.GL_SCISSOR_TEST);

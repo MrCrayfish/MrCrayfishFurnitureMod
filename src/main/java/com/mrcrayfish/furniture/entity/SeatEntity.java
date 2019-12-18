@@ -1,10 +1,10 @@
 package com.mrcrayfish.furniture.entity;
 
-import com.mrcrayfish.furniture.core.ModEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.IPacket;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -21,7 +21,8 @@ public class SeatEntity extends Entity
 
     public SeatEntity(World world)
     {
-        super(ModEntities.SEAT, world);
+        //super(ModEntities.SEAT, world); TODO Restore this once entity renders are fixed
+        super(null, world);
         this.noClip = true;
     }
 
@@ -88,8 +89,13 @@ public class SeatEntity extends Entity
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    public static boolean create(World world, BlockPos pos, double yOffset, PlayerEntity player)
+    public static ActionResultType create(World world, BlockPos pos, double yOffset, PlayerEntity player)
     {
+        if(true)
+        {
+            return ActionResultType.SUCCESS;
+        }
+
         if(!world.isRemote)
         {
             List<SeatEntity> seats = world.getEntitiesWithinAABB(SeatEntity.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1.0, pos.getY() + 1.0, pos.getZ() + 1.0));
@@ -100,6 +106,6 @@ public class SeatEntity extends Entity
                 player.startRiding(seat, false);
             }
         }
-        return true;
+        return ActionResultType.SUCCESS;
     }
 }

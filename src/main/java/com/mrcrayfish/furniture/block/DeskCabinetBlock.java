@@ -12,6 +12,7 @@ import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -20,6 +21,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -44,9 +46,9 @@ public class DeskCabinetBlock extends DeskBlock implements ISidedInventoryProvid
     }
 
     @Override
-    public boolean onBlockActivated(BlockState blockState, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult rayTraceResult)
+    public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
     {
-        if(blockState.get(DIRECTION).getOpposite() == rayTraceResult.getFace())
+        if(state.get(DIRECTION).getOpposite() == result.getFace())
         {
             if(!world.isRemote())
             {
@@ -56,13 +58,13 @@ public class DeskCabinetBlock extends DeskBlock implements ISidedInventoryProvid
                     playerEntity.openContainer((INamedContainerProvider) tileEntity);
                 }
             }
-            return true;
+            return ActionResultType.SUCCESS;
         }
-        return false;
+        return ActionResultType.PASS;
     }
 
     @Override
-    public void tick(BlockState blockState, World world, BlockPos pos, Random random)
+    public void func_225534_a_(BlockState state, ServerWorld world, BlockPos pos, Random random)
     {
         TileEntity tileEntity = world.getTileEntity(pos);
         if(tileEntity instanceof DeskCabinetTileEntity)
