@@ -53,8 +53,7 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntityRenderer(ModTileEntities.DOOR_MAT, new DoorMatTileEntityRenderer());
         ClientRegistry.bindTileEntityRenderer(ModTileEntities.KITCHEN_SINK, new KitchenSinkTileEntityRenderer());
 
-        //RenderingRegistry.registerEntityRenderingHandler(); //TODO restore once entity renders are fixed
-        //Minecraft.getInstance().getRenderManager().func_229087_a_(ModEntities.SEAT, new SeatRenderer(Minecraft.getInstance().getRenderManager()));
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.SEAT, SeatRenderer::new);
 
         ScreenManager.registerFactory(ModContainers.CRATE, CrateScreen::new);
         ScreenManager.registerFactory(ModContainers.POST_BOX, PostBoxScreen::new);

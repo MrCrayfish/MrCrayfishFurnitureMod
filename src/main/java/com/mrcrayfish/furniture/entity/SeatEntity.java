@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.entity;
 
+import com.mrcrayfish.furniture.core.ModEntities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.CompoundNBT;
@@ -21,8 +22,7 @@ public class SeatEntity extends Entity
 
     public SeatEntity(World world)
     {
-        //super(ModEntities.SEAT, world); TODO Restore this once entity renders are fixed
-        super(null, world);
+        super(ModEntities.SEAT, world);
         this.noClip = true;
     }
 
@@ -91,11 +91,6 @@ public class SeatEntity extends Entity
 
     public static ActionResultType create(World world, BlockPos pos, double yOffset, PlayerEntity player)
     {
-        if(true)
-        {
-            return ActionResultType.SUCCESS;
-        }
-
         if(!world.isRemote)
         {
             List<SeatEntity> seats = world.getEntitiesWithinAABB(SeatEntity.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1.0, pos.getY() + 1.0, pos.getZ() + 1.0));
