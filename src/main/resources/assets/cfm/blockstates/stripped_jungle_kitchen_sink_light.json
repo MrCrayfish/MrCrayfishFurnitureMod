@@ -1,18 +1,20 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "model": "cfm:block/kitchen_sink",
-        "textures": {
-            "base": "minecraft:block/stripped_jungle_log",
-            "sink": "minecraft:block/white_concrete"
-        }
-    },
     "variants": {
-        "facing": {
-            "north": { "y": 0   },
-            "east":  { "y": 90  },
-            "south": { "y": 180 },
-            "west":  { "y": 270 }
+        "facing=north": {
+            "model": "cfm:block/stripped_jungle_kitchen_sink_light",
+            "y": 0
+        },
+        "facing=east": {
+            "model": "cfm:block/stripped_jungle_kitchen_sink_light",
+            "y": 90
+        },
+        "facing=south": {
+            "model": "cfm:block/stripped_jungle_kitchen_sink_light",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "cfm:block/stripped_jungle_kitchen_sink_light",
+            "y": 270
         }
     }
 }

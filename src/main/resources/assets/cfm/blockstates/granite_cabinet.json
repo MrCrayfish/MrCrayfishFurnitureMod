@@ -1,19 +1,36 @@
 {
-    "forge_marker": 1,
     "variants": {
-        "facing": {
-            "north": { "y": 0   },
-            "east":  { "y": 90  },
-            "south": { "y": 180 },
-            "west":  { "y": 270 }
+        "facing=north,open=true": {
+            "model": "cfm:block/granite_cabinet_open",
+            "y": 0
         },
-        "open": {
-            "true": {
-                "model": "cfm:block/granite_cabinet_open"
-            },
-            "false": {
-                "model": "cfm:block/granite_cabinet_closed"
-            }
+        "facing=north,open=false": {
+            "model": "cfm:block/granite_cabinet_closed",
+            "y": 0
+        },
+        "facing=east,open=true": {
+            "model": "cfm:block/granite_cabinet_open",
+            "y": 90
+        },
+        "facing=east,open=false": {
+            "model": "cfm:block/granite_cabinet_closed",
+            "y": 90
+        },
+        "facing=south,open=true": {
+            "model": "cfm:block/granite_cabinet_open",
+            "y": 180
+        },
+        "facing=south,open=false": {
+            "model": "cfm:block/granite_cabinet_closed",
+            "y": 180
+        },
+        "facing=west,open=true": {
+            "model": "cfm:block/granite_cabinet_open",
+            "y": 270
+        },
+        "facing=west,open=false": {
+            "model": "cfm:block/granite_cabinet_closed",
+            "y": 270
         }
     }
 }

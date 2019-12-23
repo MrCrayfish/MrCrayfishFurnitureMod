@@ -1,62 +1,74 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "uvlock": true
-    },
     "variants": {
         "east=true,north=true,south=false,west=false": {
             "model": "cfm:block/granite_table_corner",
-            "y": 270
+            "y": 270,
+            "uvlock": true
         },
         "east=false,north=true,south=false,west=true": {
             "model": "cfm:block/granite_table_corner",
-            "y": 180
+            "y": 180,
+            "uvlock": true
         },
         "east=true,north=false,south=true,west=false": {
-            "model": "cfm:block/granite_table_corner"
+            "model": "cfm:block/granite_table_corner",
+            "uvlock": true
         },
         "east=false,north=false,south=true,west=true": {
             "model": "cfm:block/granite_table_corner",
-            "y": 90
+            "y": 90,
+            "uvlock": true
         },
         "east=false,north=true,south=false,west=false": {
             "model": "cfm:block/granite_table_end",
-            "y": 270
+            "y": 270,
+            "uvlock": true
         },
         "east=true,north=false,south=false,west=false": {
-            "model": "cfm:block/granite_table_end"
+            "model": "cfm:block/granite_table_end",
+            "uvlock": true
         },
         "east=false,north=false,south=false,west=true": {
             "model": "cfm:block/granite_table_end",
-            "y": 180
+            "y": 180,
+            "uvlock": true
         },
         "east=false,north=false,south=true,west=false": {
             "model": "cfm:block/granite_table_end",
-            "y": 90
+            "y": 90,
+            "uvlock": true
         },
         "east=false,north=false,south=false,west=false": {
-            "model": "cfm:block/granite_table"
+            "model": "cfm:block/granite_table",
+            "uvlock": true
         },
         "east=false,north=true,south=true,west=false": {
-            "model": "cfm:block/granite_table_center"
+            "model": "cfm:block/granite_table_center",
+            "uvlock": true
         },
         "east=false,north=true,south=true,west=true": {
-            "model": "cfm:block/granite_table_center"
+            "model": "cfm:block/granite_table_center",
+            "uvlock": true
         },
         "east=true,north=true,south=true,west=false": {
-            "model": "cfm:block/granite_table_center"
+            "model": "cfm:block/granite_table_center",
+            "uvlock": true
         },
         "east=true,north=false,south=false,west=true": {
-            "model": "cfm:block/granite_table_center"
+            "model": "cfm:block/granite_table_center",
+            "uvlock": true
         },
         "east=true,north=true,south=false,west=true": {
-            "model": "cfm:block/granite_table_center"
+            "model": "cfm:block/granite_table_center",
+            "uvlock": true
         },
         "east=true,north=false,south=true,west=true": {
-            "model": "cfm:block/granite_table_center"
+            "model": "cfm:block/granite_table_center",
+            "uvlock": true
         },
         "east=true,north=true,south=true,west=true": {
-            "model": "cfm:block/granite_table_center"
+            "model": "cfm:block/granite_table_center",
+            "uvlock": true
         }
     }
 }

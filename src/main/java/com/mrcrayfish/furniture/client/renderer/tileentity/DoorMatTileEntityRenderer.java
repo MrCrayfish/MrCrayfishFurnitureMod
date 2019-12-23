@@ -47,7 +47,7 @@ public class DoorMatTileEntityRenderer extends TileEntityRenderer<DoorMatTileEnt
                 matrixStack.func_227861_a_(0.0, -(lines.size() * fontRenderer.FONT_HEIGHT - 1.0) / 2.0, 0);
 
                 RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-                RenderSystem.disableLighting();
+                
                 RenderSystem.depthMask(false);
                 for(int j = 0; j < lines.size(); j++)
                 {
@@ -57,7 +57,6 @@ public class DoorMatTileEntityRenderer extends TileEntityRenderer<DoorMatTileEnt
                     matrixStack.func_227865_b_();
                 }
                 RenderSystem.depthMask(true);
-                RenderSystem.enableLighting();
 
                 matrixStack.func_227865_b_(); //Pop
             }

@@ -1,18 +1,20 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "model": "cfm:block/kitchen_sink",
-        "textures": {
-            "base": "minecraft:block/stripped_acacia_log",
-            "sink": "minecraft:block/gray_concrete"
-        }
-    },
     "variants": {
-        "facing": {
-            "north": { "y": 0   },
-            "east":  { "y": 90  },
-            "south": { "y": 180 },
-            "west":  { "y": 270 }
+        "facing=north": {
+            "model": "cfm:block/stripped_acacia_kitchen_sink_dark",
+            "y": 0
+        },
+        "facing=east": {
+            "model": "cfm:block/stripped_acacia_kitchen_sink_dark",
+            "y": 90
+        },
+        "facing=south": {
+            "model": "cfm:block/stripped_acacia_kitchen_sink_dark",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "cfm:block/stripped_acacia_kitchen_sink_dark",
+            "y": 270
         }
     }
 }

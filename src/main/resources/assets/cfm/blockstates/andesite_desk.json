@@ -1,25 +1,68 @@
 {
-    "forge_marker": 1,
     "variants": {
-        "facing": {
-            "north": { "y": 0   },
-            "east":  { "y": 90  },
-            "south": { "y": 180 },
-            "west":  { "y": 270 }
+        "facing=north,type=single": {
+            "model": "cfm:block/andesite_desk_single",
+            "y": 0
         },
-        "type": {
-            "single": {
-                "model": "cfm:block/andesite_desk_single"
-            },
-            "left": {
-                "model": "cfm:block/andesite_desk_left"
-            },
-            "right": {
-                "model": "cfm:block/andesite_desk_right"
-            },
-            "middle": {
-                "model": "cfm:block/andesite_desk_middle"
-            }
+        "facing=north,type=left": {
+            "model": "cfm:block/andesite_desk_left",
+            "y": 0
+        },
+        "facing=north,type=right": {
+            "model": "cfm:block/andesite_desk_right",
+            "y": 0
+        },
+        "facing=north,type=middle": {
+            "model": "cfm:block/andesite_desk_middle",
+            "y": 0
+        },
+        "facing=east,type=single": {
+            "model": "cfm:block/andesite_desk_single",
+            "y": 90
+        },
+        "facing=east,type=left": {
+            "model": "cfm:block/andesite_desk_left",
+            "y": 90
+        },
+        "facing=east,type=right": {
+            "model": "cfm:block/andesite_desk_right",
+            "y": 90
+        },
+        "facing=east,type=middle": {
+            "model": "cfm:block/andesite_desk_middle",
+            "y": 90
+        },
+        "facing=south,type=single": {
+            "model": "cfm:block/andesite_desk_single",
+            "y": 180
+        },
+        "facing=south,type=left": {
+            "model": "cfm:block/andesite_desk_left",
+            "y": 180
+        },
+        "facing=south,type=right": {
+            "model": "cfm:block/andesite_desk_right",
+            "y": 180
+        },
+        "facing=south,type=middle": {
+            "model": "cfm:block/andesite_desk_middle",
+            "y": 180
+        },
+        "facing=west,type=single": {
+            "model": "cfm:block/andesite_desk_single",
+            "y": 270
+        },
+        "facing=west,type=left": {
+            "model": "cfm:block/andesite_desk_left",
+            "y": 270
+        },
+        "facing=west,type=right": {
+            "model": "cfm:block/andesite_desk_right",
+            "y": 270
+        },
+        "facing=west,type=middle": {
+            "model": "cfm:block/andesite_desk_middle",
+            "y": 270
         }
     }
 }

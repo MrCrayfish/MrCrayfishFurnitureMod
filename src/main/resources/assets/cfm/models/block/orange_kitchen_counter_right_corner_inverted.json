@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/kitchen_counter_right_corner_inverted",
+    "textures": {
+        "top": "minecraft:block/orange_concrete"
+    }
+}

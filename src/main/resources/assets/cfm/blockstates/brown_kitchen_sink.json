@@ -1,17 +1,20 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "model": "cfm:block/kitchen_sink_alt",
-        "textures": {
-            "sink": "minecraft:block/brown_concrete"
-        }
-    },
     "variants": {
-        "facing": {
-            "north": { "y": 0   },
-            "east":  { "y": 90  },
-            "south": { "y": 180 },
-            "west":  { "y": 270 }
+        "facing=north": {
+            "model": "cfm:block/brown_kitchen_sink_alt",
+            "y": 0
+        },
+        "facing=east": {
+            "model": "cfm:block/brown_kitchen_sink_alt",
+            "y": 90
+        },
+        "facing=south": {
+            "model": "cfm:block/brown_kitchen_sink_alt",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "cfm:block/brown_kitchen_sink_alt",
+            "y": 270
         }
     }
 }
