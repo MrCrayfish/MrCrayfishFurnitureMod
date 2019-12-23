@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.proxy;
 
+import com.mrcrayfish.furniture.block.TrampolineBlock;
 import com.mrcrayfish.furniture.client.MailBoxEntry;
 import com.mrcrayfish.furniture.client.event.CreativeScreenEvents;
 import com.mrcrayfish.furniture.client.gui.screen.DoorMatScreen;
@@ -16,7 +17,10 @@ import com.mrcrayfish.furniture.core.ModEntities;
 import com.mrcrayfish.furniture.core.ModTileEntities;
 import com.mrcrayfish.furniture.tileentity.DoorMatTileEntity;
 import com.mrcrayfish.furniture.tileentity.GrillTileEntity;
+import com.mrcrayfish.furniture.util.BlockNames;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
@@ -66,6 +70,40 @@ public class ClientProxy extends CommonProxy
         RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_JUNGLE, leavesPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_ACACIA, leavesPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_DARK_OAK, leavesPredicate);
+        
+        Predicate<RenderType> cutoutPredicate = renderType -> renderType == RenderType.func_228643_e_();
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_WHITE, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_ORANGE, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_MAGENTA, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_LIGHT_BLUE, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_YELLOW, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_LIME, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_PINK, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_GRAY, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_LIGHT_GRAY, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_CYAN, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_PURPLE, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_BLUE, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_BROWN, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_GREEN, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_RED, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_BLACK, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_WHITE, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_ORANGE, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_MAGENTA, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_LIGHT_BLUE, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_YELLOW, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_LIME, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_PINK, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_GRAY, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_LIGHT_GRAY, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_CYAN, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_PURPLE, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_BLUE, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_BROWN, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_GREEN, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_RED, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_BLACK, cutoutPredicate);
 
         this.registerColors();
 
