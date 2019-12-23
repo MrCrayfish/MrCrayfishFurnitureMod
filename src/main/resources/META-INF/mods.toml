@@ -15,7 +15,7 @@ description="Adds over 80 unique pieces of furniture to the game"
 [[dependencies.cfm]]
     modId="forge"
     mandatory=true
-    versionRange="[30.0.15,)"
+    versionRange="[30.0.11,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.cfm]]
