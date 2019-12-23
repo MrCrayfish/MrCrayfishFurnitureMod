@@ -5,9 +5,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mrcrayfish.furniture.block.FurnitureHorizontalBlock;
 import com.mrcrayfish.furniture.tileentity.KitchenSinkTileEntity;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
@@ -32,25 +30,16 @@ public class KitchenSinkTileEntityRenderer extends TileEntityRenderer<KitchenSin
     @Override
     public void func_225616_a_(KitchenSinkTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int i, int i1)
     {
-        RenderSystem.pushMatrix();
-        {
-            //RenderSystem.translated(x, y, z);
-            RenderSystem.disableCull();
-            RenderSystem.disableLighting();
-            RenderSystem.enableBlend();
-            RenderSystem.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            Direction direction = tileEntity.getBlockState().get(FurnitureHorizontalBlock.DIRECTION);
-            RenderSystem.translated(0.5, 0.5, 0.5);
-            RenderSystem.rotatef(direction.getHorizontalIndex() * -90F - 90F, 0, 1, 0);
-            RenderSystem.translated(-0.5, -0.5, -0.5);
-            this.drawFluid(tileEntity, 2 * 0.0625, 10 * 0.0625, 2 * 0.0625, 10 * 0.0625, 5 * 0.0625, 12 * 0.0625);
-            RenderSystem.disableBlend();
-            RenderSystem.enableLighting();
-        }
-        RenderSystem.popMatrix();
+        matrixStack.func_227860_a_();
+        matrixStack.func_227861_a_(0.5, 0.5, 0.5);
+        Direction direction = tileEntity.getBlockState().get(FurnitureHorizontalBlock.DIRECTION);
+        matrixStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(direction.getHorizontalIndex() * -90F - 90F));
+        matrixStack.func_227861_a_(-0.5, -0.5, -0.5);
+        this.drawFluid(tileEntity, matrixStack, 2 * 0.0625, 10 * 0.0625, 2 * 0.0625, 10 * 0.0625, 5 * 0.0625, 12 * 0.0625);
+        matrixStack.func_227865_b_();
     }
 
-    private void drawFluid(KitchenSinkTileEntity te, double x, double y, double z, double width, double height, double depth)
+    private void drawFluid(KitchenSinkTileEntity te, MatrixStack matrixStack, double x, double y, double z, double width, double height, double depth)
     {
         Fluid fluid = te.getTank().getFluid().getFluid();
         if(fluid == Fluids.EMPTY)
@@ -74,13 +63,26 @@ public class KitchenSinkTileEntityRenderer extends TileEntityRenderer<KitchenSin
 
         height *= ((double) te.getTank().getFluidAmount() / (double) te.getTank().getCapacity());
 
+        RenderSystem.pushMatrix();
+
+        RenderSystem.multMatrix(matrixStack.func_227866_c_().func_227870_a_());
+        RenderSystem.enableBlend();
+        RenderSystem.defaultBlendFunc();
+        RenderHelper.func_227780_a_();
+        RenderSystem.enableDepthTest();
+
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder buffer = tessellator.getBuffer();
-        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.field_227851_o_);
+        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX_COLOR);
         buffer.func_225582_a_(x, y + height, z).func_225583_a_(maxU, minV).func_227885_a_(red, green, blue, 1.0F).endVertex();
         buffer.func_225582_a_(x, y + height, z + depth).func_225583_a_(minU, minV).func_227885_a_(red, green, blue, 1.0F).endVertex();
         buffer.func_225582_a_(x + width, y + height, z + depth).func_225583_a_(minU, maxV).func_227885_a_(red, green, blue, 1.0F).endVertex();
         buffer.func_225582_a_(x + width, y + height, z).func_225583_a_(maxU, maxV).func_227885_a_(red, green, blue, 1.0F).endVertex();
         tessellator.draw();
+
+        RenderSystem.disableDepthTest();
+        RenderHelper.disableStandardItemLighting();
+        RenderSystem.disableBlend();
+        RenderSystem.popMatrix();
     }
 }

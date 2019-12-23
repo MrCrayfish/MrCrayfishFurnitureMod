@@ -6,6 +6,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mrcrayfish.furniture.tileentity.GrillTileEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.RenderHelper;
+import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
@@ -32,32 +34,33 @@ public class GrillTileEntityRenderer extends TileEntityRenderer<GrillTileEntity>
             ItemStack stack = grill.get(j);
             if(!stack.isEmpty())
             {
-                RenderSystem.pushMatrix();
+                matrixStack.func_227860_a_();
 
                 if(tileEntity.isFlipping(j))
                 {
                     float progress = MathHelper.clamp(tileEntity.getFlippingCount(j) + partialTicks, 0F, GrillTileEntity.MAX_FLIPPING_COUNTER) / GrillTileEntity.MAX_FLIPPING_COUNTER;
-                    RenderSystem.translatef(0, (float) Math.sin(Math.toRadians(180 * progress)) * 1.0F, 0);
+                    matrixStack.func_227861_a_(0.0, Math.sin(Math.toRadians(180 * progress)), 0.0);
                 }
 
-                //RenderSystem.translatef((float) x + 0.5F, (float) y + 1.0F, (float) z + 0.5F);
-                RenderSystem.rotatef(90.0F, 1.0F, 0.0F, 0.0F);
-                RenderSystem.translatef(-0.2F + 0.4F * (j % 2), -0.2F + 0.4F * (j / 2), 0.0F);
-                RenderSystem.scalef(0.375F, 0.375F, 0.375F);
-                RenderSystem.rotatef(90F * tileEntity.getRotations()[j], 0, 0, 1);
+                matrixStack.func_227861_a_(0.5, 1.0, 0.5);
+                matrixStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(90F));
+                matrixStack.func_227861_a_(-0.2 + 0.4 * (j % 2), -0.2 + 0.4 * (j / 2), 0.0);
+                matrixStack.func_227862_a_(0.375F, 0.375F, 0.375F);
+                matrixStack.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_(90F * tileEntity.getRotations()[j]));
 
                 if(tileEntity.isFlipping(j))
                 {
                     float progress = MathHelper.clamp(tileEntity.getFlippingCount(j) + partialTicks, 0F, GrillTileEntity.MAX_FLIPPING_COUNTER) / GrillTileEntity.MAX_FLIPPING_COUNTER;
-                    RenderSystem.rotatef(-540F * progress, 1, 0, 0);
+                    matrixStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(-540F * progress));
                 }
                 else if(tileEntity.isFlipped(j))
                 {
-                    RenderSystem.rotatef(180F, 1, 0, 0);
+                    matrixStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(180F));
                 }
 
                 Minecraft.getInstance().getItemRenderer().func_229110_a_(stack, ItemCameraTransforms.TransformType.FIXED, i, i1, matrixStack, renderTypeBuffer);
-                RenderSystem.popMatrix();
+
+                matrixStack.func_227865_b_();
             }
         }
 
@@ -67,14 +70,15 @@ public class GrillTileEntityRenderer extends TileEntityRenderer<GrillTileEntity>
             ItemStack stack = fuel.get(j);
             if(!stack.isEmpty())
             {
-                RenderSystem.pushMatrix();
-                //RenderSystem.translatef((float) x + 0.5F, (float) y + 0.85F, (float) z + 0.5F);
-                RenderSystem.rotatef(90.0F, 1, 0, 0);
-                RenderSystem.translatef(-0.2F + 0.2F * (j % 3), -0.2F + 0.2F * (j / 3), 0.0F);
-                RenderSystem.scalef(0.375F, 0.375F, 0.375F);
-                RenderSystem.rotatef(10.0F, 0, 1, 1);
+                matrixStack.func_227860_a_();
+                matrixStack.func_227861_a_(0.5, 0.85, 0.5);
+                matrixStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(90F));
+                matrixStack.func_227861_a_(-0.2 + 0.2 * (j % 3), -0.2 + 0.2 * (j / 3), 0.0);
+                matrixStack.func_227862_a_(0.375F, 0.375F, 0.375F);
+                matrixStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(10F));
+                matrixStack.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_(10F));
                 Minecraft.getInstance().getItemRenderer().func_229110_a_(stack, ItemCameraTransforms.TransformType.FIXED, i, i1, matrixStack, renderTypeBuffer);
-                RenderSystem.popMatrix();
+                matrixStack.func_227865_b_();
             }
         }
     }
