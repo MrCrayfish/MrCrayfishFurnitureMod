@@ -16,7 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.DrawBlockHighlightEvent;
+import net.minecraftforge.client.event.DrawHighlightEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -29,7 +29,7 @@ import java.util.List;
 public class ClientEvents
 {
     @SubscribeEvent
-    public static void onRenderOutline(DrawBlockHighlightEvent.HighlightBlock event)
+    public static void onRenderOutline(DrawHighlightEvent.HighlightBlock event)
     {
         if(!FurnitureConfig.CLIENT.drawCollisionShapes.get())
         {
