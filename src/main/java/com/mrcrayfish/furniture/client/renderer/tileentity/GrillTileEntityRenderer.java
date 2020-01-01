@@ -1,25 +1,24 @@
 package com.mrcrayfish.furniture.client.renderer.tileentity;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mrcrayfish.furniture.tileentity.GrillTileEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.MathHelper;
+
+import java.util.function.Function;
 
 /**
  * Author: MrCrayfish
  */
-public class GrillTileEntityRenderer extends TileEntityRenderer<GrillTileEntity>
-{
+public class GrillTileEntityRenderer extends TileEntityRenderer<GrillTileEntity> implements Function<TileEntityRendererDispatcher, TileEntityRenderer<? super TileEntity>> {
     public GrillTileEntityRenderer()
     {
         super(TileEntityRendererDispatcher.instance);
@@ -81,5 +80,10 @@ public class GrillTileEntityRenderer extends TileEntityRenderer<GrillTileEntity>
                 matrixStack.func_227865_b_();
             }
         }
+    }
+
+    @Override
+    public TileEntityRenderer<? super TileEntity> apply(TileEntityRendererDispatcher tileEntityRendererDispatcher) {
+        return null;
     }
 }
