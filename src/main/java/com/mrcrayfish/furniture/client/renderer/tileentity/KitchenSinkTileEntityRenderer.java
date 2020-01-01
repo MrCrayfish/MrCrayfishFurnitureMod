@@ -13,16 +13,18 @@ import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.ForgeHooksClient;
 import org.lwjgl.opengl.GL11;
 
+import java.util.function.Function;
+
 /**
  * Author: MrCrayfish
  */
-public class KitchenSinkTileEntityRenderer extends TileEntityRenderer<KitchenSinkTileEntity>
-{
+public class KitchenSinkTileEntityRenderer extends TileEntityRenderer<KitchenSinkTileEntity> implements Function<TileEntityRendererDispatcher, TileEntityRenderer<? super TileEntity>> {
     public KitchenSinkTileEntityRenderer()
     {
         super(TileEntityRendererDispatcher.instance);
@@ -82,5 +84,20 @@ public class KitchenSinkTileEntityRenderer extends TileEntityRenderer<KitchenSin
         RenderSystem.disableBlend();
 
         RenderSystem.popMatrix();
+    }
+
+    @Override
+    public TileEntityRenderer<? super TileEntity> apply(TileEntityRendererDispatcher tileEntityRendererDispatcher) {
+        return null;
+    }
+
+    @Override
+    public <V> Function<V, TileEntityRenderer<? super TileEntity>> compose(Function<? super V, ? extends TileEntityRendererDispatcher> before) {
+        return null;
+    }
+
+    @Override
+    public <V> Function<TileEntityRendererDispatcher, V> andThen(Function<? super TileEntityRenderer<? super TileEntity>, ? extends V> after) {
+        return null;
     }
 }
