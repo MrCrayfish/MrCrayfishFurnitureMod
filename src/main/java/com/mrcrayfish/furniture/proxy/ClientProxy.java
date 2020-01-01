@@ -33,6 +33,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.FoliageColors;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeColors;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.ModList;
@@ -49,6 +51,7 @@ import java.util.function.Predicate;
 public class ClientProxy extends CommonProxy
 {
     @Override
+    @OnlyIn(Dist.CLIENT)
     public void onSetupClient()
     {
         super.onSetupClient();
