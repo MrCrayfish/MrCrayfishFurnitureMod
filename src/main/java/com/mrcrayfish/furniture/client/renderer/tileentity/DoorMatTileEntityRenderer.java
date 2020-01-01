@@ -10,14 +10,15 @@ import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.tileentity.TileEntity;
 
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * Author: MrCrayfish
  */
-public class DoorMatTileEntityRenderer extends TileEntityRenderer<DoorMatTileEntity>
-{
+public class DoorMatTileEntityRenderer extends TileEntityRenderer<DoorMatTileEntity> implements Function<TileEntityRendererDispatcher, TileEntityRenderer<? super TileEntity>> {
     public DoorMatTileEntityRenderer()
     {
         super(TileEntityRendererDispatcher.instance);
@@ -61,5 +62,20 @@ public class DoorMatTileEntityRenderer extends TileEntityRenderer<DoorMatTileEnt
                 matrixStack.func_227865_b_(); //Pop
             }
         }
+    }
+
+    @Override
+    public TileEntityRenderer<? super TileEntity> apply(TileEntityRendererDispatcher tileEntityRendererDispatcher) {
+        return null;
+    }
+
+    @Override
+    public <V> Function<V, TileEntityRenderer<? super TileEntity>> compose(Function<? super V, ? extends TileEntityRendererDispatcher> before) {
+        return null;
+    }
+
+    @Override
+    public <V> Function<TileEntityRendererDispatcher, V> andThen(Function<? super TileEntityRenderer<? super TileEntity>, ? extends V> after) {
+        return null;
     }
 }
