@@ -18,9 +18,9 @@ import java.util.List;
  */
 public class DoorMatTileEntityRenderer extends TileEntityRenderer<DoorMatTileEntity>
 {
-    public DoorMatTileEntityRenderer()
+    public DoorMatTileEntityRenderer(TileEntityRendererDispatcher dispatcher)
     {
-        super(TileEntityRendererDispatcher.instance);
+        super(dispatcher);
     }
 
     @Override

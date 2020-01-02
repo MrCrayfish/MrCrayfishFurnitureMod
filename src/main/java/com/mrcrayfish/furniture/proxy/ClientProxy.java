@@ -53,9 +53,9 @@ public class ClientProxy extends CommonProxy
     {
         super.onSetupClient();
 
-        ClientRegistry.bindTileEntityRenderer(ModTileEntities.GRILL, new GrillTileEntityRenderer());
-        ClientRegistry.bindTileEntityRenderer(ModTileEntities.DOOR_MAT, new DoorMatTileEntityRenderer());
-        ClientRegistry.bindTileEntityRenderer(ModTileEntities.KITCHEN_SINK, new KitchenSinkTileEntityRenderer());
+        ClientRegistry.bindTileEntityRenderer(ModTileEntities.GRILL, GrillTileEntityRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModTileEntities.DOOR_MAT, DoorMatTileEntityRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModTileEntities.KITCHEN_SINK, KitchenSinkTileEntityRenderer::new);
 
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SEAT, SeatRenderer::new);
 

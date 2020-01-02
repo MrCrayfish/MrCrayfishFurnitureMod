@@ -20,9 +20,9 @@ import net.minecraft.util.math.MathHelper;
  */
 public class GrillTileEntityRenderer extends TileEntityRenderer<GrillTileEntity>
 {
-    public GrillTileEntityRenderer()
+    public GrillTileEntityRenderer(TileEntityRendererDispatcher dispatcher)
     {
-        super(TileEntityRendererDispatcher.instance);
+        super(dispatcher);
     }
 
     @Override

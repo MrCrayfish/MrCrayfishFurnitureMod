@@ -23,9 +23,9 @@ import org.lwjgl.opengl.GL11;
  */
 public class KitchenSinkTileEntityRenderer extends TileEntityRenderer<KitchenSinkTileEntity>
 {
-    public KitchenSinkTileEntityRenderer()
+    public KitchenSinkTileEntityRenderer(TileEntityRendererDispatcher dispatcher)
     {
-        super(TileEntityRendererDispatcher.instance);
+        super(dispatcher);
     }
 
     @Override
