@@ -125,7 +125,7 @@ public class FridgeTileEntity extends BasicLootTileEntity
 
     private void playDoorSound(BlockState blockState, SoundEvent soundEvent)
     {
-        Vec3i directionVec = blockState.get(FridgeBlock.DIRECTION).getDirectionVec();
+        Vec3i directionVec = blockState.get(FridgeBlock.DIRECTION).getOpposite().getDirectionVec();
         double x = this.pos.getX() + 0.5D + directionVec.getX() / 2.0D;
         double y = this.pos.getY() + 0.5D + directionVec.getY() / 2.0D;
         double z = this.pos.getZ() + 0.5D + directionVec.getZ() / 2.0D;
