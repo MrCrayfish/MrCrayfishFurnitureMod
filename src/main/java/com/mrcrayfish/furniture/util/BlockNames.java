@@ -396,6 +396,8 @@ public class BlockNames
     public static final String KITCHEN_SINK_GREEN = Reference.MOD_ID + ":green_kitchen_sink";
     public static final String KITCHEN_SINK_RED = Reference.MOD_ID + ":red_kitchen_sink";
     public static final String KITCHEN_SINK_BLACK = Reference.MOD_ID + ":black_kitchen_sink";
+    public static final String FRIDGE_LIGHT = Reference.MOD_ID + ":fridge_light";
+    public static final String FREEZER_LIGHT = Reference.MOD_ID + ":freezer_light";
 
     /* Electronic Update */
     public static final String TV = Reference.MOD_ID + ":tv";
@@ -418,7 +420,6 @@ public class BlockNames
     public static final String BIN = Reference.MOD_ID + ":bin";
 
     /* Kitchen */
-    public static final String FREEZER = Reference.MOD_ID + ":freezer";
     public static final String FRIDGE = Reference.MOD_ID + ":fridge";
     public static final String OVEN = Reference.MOD_ID + ":oven";
     public static final String RANGE_HOOD = Reference.MOD_ID + ":range_hood";

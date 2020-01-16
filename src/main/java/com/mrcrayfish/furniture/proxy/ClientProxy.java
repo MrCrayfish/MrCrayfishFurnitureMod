@@ -280,6 +280,16 @@ public class ClientProxy extends CommonProxy
                 ModBlocks.PARK_BENCH_STRIPPED_DARK_OAK
         );
 
+        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0xDDDDDD : 0,
+                ModBlocks.FRIDGE_LIGHT,
+                ModBlocks.FREEZER_LIGHT
+        );
+
+        Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0xDDDDDD : 0,
+                ModBlocks.FRIDGE_LIGHT,
+                ModBlocks.FREEZER_LIGHT
+        );
+
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> FoliageColors.getSpruce(),
                 ModBlocks.HEDGE_SPRUCE);
 
