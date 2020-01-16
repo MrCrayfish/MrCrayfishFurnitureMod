@@ -419,5 +419,7 @@
     "subtitle.cfm.trampoline_bounce": "Trampoline Bounce",
     "subtitle.cfm.grill_place": "Place Food on Grill",
     "subtitle.cfm.grill_flip": "Flipping Food on Grill",
-    "subtitle.cfm.diving_board.bounce": "Diving Board Bounce"
+    "subtitle.cfm.diving_board.bounce": "Diving Board Bounce",
+    "subtitle.cfm.open_fridge": "Open Fridge",
+    "subtitle.cfm.close_fridge": "Close Fridge"
 }

@@ -17,4 +17,6 @@ public class SoundNames
     public static final String GRILL_PLACE = Reference.MOD_ID + ":block.grill.place";
     public static final String GRILL_FLIP = Reference.MOD_ID + ":block.grill.flip";
     public static final String DIVING_BOARD_BOUNCE = Reference.MOD_ID + ":block.diving_board.bounce";
+    public static final String FRIDGE_OPEN = Reference.MOD_ID + ":block.fridge.open";
+    public static final String FRIDGE_CLOSE = Reference.MOD_ID + ":block.fridge.close";
 }

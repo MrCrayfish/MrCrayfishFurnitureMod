@@ -29,6 +29,8 @@ public class ModSounds
     public static final SoundEvent BLOCK_GRILL_PLACE = register(SoundNames.GRILL_PLACE);
     public static final SoundEvent BLOCK_GRILL_FLIP = register(SoundNames.GRILL_FLIP);
     public static final SoundEvent BLOCK_DIVING_BOARD_BOUNCE = register(SoundNames.DIVING_BOARD_BOUNCE);
+    public static final SoundEvent BLOCK_FRIDGE_OPEN = register(SoundNames.FRIDGE_OPEN);
+    public static final SoundEvent BLOCK_FRIDGE_CLOSE = register(SoundNames.FRIDGE_CLOSE);
 
     private static SoundEvent register(String name)
     {

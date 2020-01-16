@@ -68,7 +68,7 @@ public class FridgeTileEntity extends BasicLootTileEntity
             boolean open = blockState.get(FridgeBlock.OPEN);
             if(!open)
             {
-                this.playDoorSound(blockState, ModSounds.BLOCK_CABINET_OPEN);
+                this.playDoorSound(blockState, ModSounds.BLOCK_FRIDGE_OPEN);
                 this.setDoorState(blockState, true);
             }
 
@@ -116,7 +116,7 @@ public class FridgeTileEntity extends BasicLootTileEntity
                 boolean open = blockState.get(FridgeBlock.OPEN);
                 if(open)
                 {
-                    this.playDoorSound(blockState, ModSounds.BLOCK_CABINET_CLOSE);
+                    this.playDoorSound(blockState, ModSounds.BLOCK_FRIDGE_CLOSE);
                     this.setDoorState(blockState, false);
                 }
             }
@@ -132,7 +132,7 @@ public class FridgeTileEntity extends BasicLootTileEntity
         World world = this.getWorld();
         if(world != null)
         {
-            world.playSound(null, x, y, z, soundEvent, SoundCategory.BLOCKS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+            world.playSound(null, x, y, z, soundEvent, SoundCategory.BLOCKS, 1.0F, 1.0F);
         }
     }
 
