@@ -11,6 +11,9 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
+import net.minecraft.inventory.DoubleSidedInventory;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.container.ChestContainer;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -20,6 +23,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.util.text.ITextComponent;
@@ -452,13 +456,10 @@ public class FreezerTileEntity extends BasicLootTileEntity implements ITickableT
 
     public void onScheduledTick()
     {
-        int x = this.pos.getX();
-        int y = this.pos.getY();
-        int z = this.pos.getZ();
         World world = this.getWorld();
         if(world != null)
         {
-            this.playerCount = ChestTileEntity.func_213976_a(world, this, x, y, z); //Gets a count of players around using this inventory
+            this.updatePlayerCount();
             if(this.playerCount > 0)
             {
                 this.scheduleTick();
@@ -502,5 +503,19 @@ public class FreezerTileEntity extends BasicLootTileEntity implements ITickableT
         {
             world.setBlockState(this.getPos(), blockState.with(FreezerBlock.OPEN, open), 3);
         }
+    }
+
+    public void updatePlayerCount()
+    {
+        int count = 0;
+        float radius = 5.0F;
+        for(PlayerEntity playerentity : this.world.getEntitiesWithinAABB(PlayerEntity.class, new AxisAlignedBB((double) ((float) this.pos.getX() - radius), (double) ((float) this.pos.getY() - radius), (double) ((float) this.pos.getZ() - radius), (double) ((float) (this.pos.getX() + 1) + radius), (double) ((float) (this.pos.getY() + 1) + radius), (double) ((float) (this.pos.getZ() + 1) + radius))))
+        {
+            if(playerentity.openContainer instanceof FreezerContainer)
+            {
+                count++;
+            }
+        }
+        this.playerCount = count;
     }
 }

@@ -32,6 +32,8 @@ public class FreezerContainer extends Container
         assertInventorySize(freezerTileEntity, 3);
         assertIntArraySize(freezerTileEntity.getFreezerData(), 4);
 
+        freezerTileEntity.openInventory(playerInventory.player);
+
         this.freezerTileEntity = freezerTileEntity;
         this.trackedData = freezerTileEntity.getFreezerData();
         this.world = playerInventory.player.world;
@@ -140,6 +142,13 @@ public class FreezerContainer extends Container
     private boolean isIngredient(ItemStack stack)
     {
         return this.world.getRecipeManager().getRecipe(RecipeType.FREEZER_SOLIDIFY, new Inventory(stack), this.world).isPresent();
+    }
+
+    @Override
+    public void onContainerClosed(PlayerEntity player)
+    {
+        super.onContainerClosed(player);
+        this.freezerTileEntity.closeInventory(player);
     }
 
     @OnlyIn(Dist.CLIENT)
