@@ -396,6 +396,7 @@
     "container.cfm.mail_box": "%s - %s",
     "container.cfm.cooler": "Термобокс",
     "container.cfm.kitchen_drawer": "Кухонный ящик",
+    "container.cfm.fridge": "Холодильник",
     "gui.button.cfm.locked": "Заблокировано",
     "gui.button.cfm.unlocked": "Разблокировано",
     "gui.button.cfm.save": "Сохранить",
@@ -418,5 +419,7 @@
     "subtitle.cfm.trampoline_bounce": "Пружинит батут",
     "subtitle.cfm.grill_place": "Помещается еда на гриль",
     "subtitle.cfm.grill_flip": "Переворачивается еда на гриле",
-    "subtitle.cfm.diving_board.bounce": "Пружинит трамплин"
+    "subtitle.cfm.diving_board.bounce": "Пружинит трамплин",
+    "subtitle.cfm.open_fridge": "Открыть холодильник",
+    "subtitle.cfm.close_fridge": "Закрыть холодильник"
 }
