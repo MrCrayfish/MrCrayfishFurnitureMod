@@ -397,6 +397,7 @@
     "container.cfm.cooler": "Термобокс",
     "container.cfm.kitchen_drawer": "Кухонный ящик",
     "container.cfm.fridge": "Холодильник",
+    "container.cfm.freezer": "Морозилка",
     "gui.button.cfm.locked": "Заблокировано",
     "gui.button.cfm.unlocked": "Разблокировано",
     "gui.button.cfm.save": "Сохранить",
