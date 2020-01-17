@@ -3,7 +3,9 @@
     "ingredient": {
         "item": "minecraft:kelp"
     },
-    "result": "minecraft:dried_kelp",
+    "result": {
+        "item": "minecraft:dried_kelp"
+    },
     "experience": 4.0,
     "cookingtime": 600
 }

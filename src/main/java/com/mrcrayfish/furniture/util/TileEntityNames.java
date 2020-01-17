@@ -19,4 +19,5 @@ public class TileEntityNames
     public static final String KITCHEN_DRAWER = Reference.MOD_ID + ":kitchen_drawer";
     public static final String KITCHEN_SINK = Reference.MOD_ID + ":kitchen_sink";
     public static final String FRIDGE = Reference.MOD_ID + ":fridge";
+    public static final String FREEZER = Reference.MOD_ID + ":freezer";
 }

@@ -397,6 +397,7 @@
     "container.cfm.cooler": "Cooler",
     "container.cfm.kitchen_drawer": "Kitchen Drawer",
     "container.cfm.fridge": "Fridge",
+    "container.cfm.freezer": "Freezer",
     "gui.button.cfm.locked": "Locked",
     "gui.button.cfm.unlocked": "Unlocked",
     "gui.button.cfm.save": "Save",

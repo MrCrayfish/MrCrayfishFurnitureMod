@@ -1,10 +1,10 @@
 package com.mrcrayfish.furniture.proxy;
 
-import com.mrcrayfish.furniture.block.TrampolineBlock;
 import com.mrcrayfish.furniture.client.MailBoxEntry;
 import com.mrcrayfish.furniture.client.event.CreativeScreenEvents;
 import com.mrcrayfish.furniture.client.gui.screen.DoorMatScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.CrateScreen;
+import com.mrcrayfish.furniture.client.gui.screen.inventory.FreezerScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.MailBoxScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.PostBoxScreen;
 import com.mrcrayfish.furniture.client.renderer.SeatRenderer;
@@ -17,10 +17,7 @@ import com.mrcrayfish.furniture.core.ModEntities;
 import com.mrcrayfish.furniture.core.ModTileEntities;
 import com.mrcrayfish.furniture.tileentity.DoorMatTileEntity;
 import com.mrcrayfish.furniture.tileentity.GrillTileEntity;
-import com.mrcrayfish.furniture.util.BlockNames;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
@@ -62,6 +59,7 @@ public class ClientProxy extends CommonProxy
         ScreenManager.registerFactory(ModContainers.CRATE, CrateScreen::new);
         ScreenManager.registerFactory(ModContainers.POST_BOX, PostBoxScreen::new);
         ScreenManager.registerFactory(ModContainers.MAIL_BOX, MailBoxScreen::new);
+        ScreenManager.registerFactory(ModContainers.FREEZER, FreezerScreen::new);
 
         Predicate<RenderType> leavesPredicate = renderType -> this.useFancyGraphics() ? renderType == RenderType.func_228641_d_() : renderType == RenderType.func_228639_c_();
         RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_OAK, leavesPredicate);

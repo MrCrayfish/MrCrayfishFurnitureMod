@@ -1,0 +1,13 @@
+{
+    "group": "freezer",
+    "type": "cfm:freezer_solidify",
+    "ingredient": {
+        "item": "minecraft:water_bucket"
+    },
+    "result": {
+        "item": "minecraft:ice",
+        "count": 2
+    },
+    "experience": 1.0,
+    "cookingtime": 1000
+}

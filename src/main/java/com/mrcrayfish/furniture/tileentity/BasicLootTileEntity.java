@@ -22,12 +22,12 @@ import java.util.stream.IntStream;
 public abstract class BasicLootTileEntity extends LockableLootTileEntity implements ISidedInventory
 {
     private final int[] slots;
-    private NonNullList<ItemStack> stacks;
+    protected NonNullList<ItemStack> inventory;
 
     public BasicLootTileEntity(TileEntityType<?> tileEntityType)
     {
         super(tileEntityType);
-        this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         this.slots = IntStream.range(0, this.getSizeInventory()).toArray();
     }
 
@@ -40,13 +40,13 @@ public abstract class BasicLootTileEntity extends LockableLootTileEntity impleme
     @Override
     protected NonNullList<ItemStack> getItems()
     {
-        return stacks;
+        return inventory;
     }
 
     @Override
     protected void setItems(NonNullList<ItemStack> stacks)
     {
-        this.stacks = stacks;
+        this.inventory = stacks;
     }
 
     protected boolean addItem(ItemStack stack)
@@ -68,7 +68,7 @@ public abstract class BasicLootTileEntity extends LockableLootTileEntity impleme
     @Override
     public boolean isEmpty()
     {
-        Iterator it = this.stacks.iterator();
+        Iterator it = this.inventory.iterator();
         ItemStack stack;
         do
         {
@@ -84,7 +84,7 @@ public abstract class BasicLootTileEntity extends LockableLootTileEntity impleme
 
     public boolean isFull()
     {
-        for(ItemStack stack : this.stacks)
+        for(ItemStack stack : this.inventory)
         {
             if(stack.isEmpty())
             {
@@ -100,7 +100,7 @@ public abstract class BasicLootTileEntity extends LockableLootTileEntity impleme
         super.write(compound);
         if(!this.checkLootAndWrite(compound))
         {
-            ItemStackHelper.saveAllItems(compound, this.stacks);
+            ItemStackHelper.saveAllItems(compound, this.inventory);
         }
         return compound;
     }
@@ -109,10 +109,10 @@ public abstract class BasicLootTileEntity extends LockableLootTileEntity impleme
     public void read(CompoundNBT compound)
     {
         super.read(compound);
-        this.stacks = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         if(!this.checkLootAndRead(compound))
         {
-            ItemStackHelper.loadAllItems(compound, this.stacks);
+            ItemStackHelper.loadAllItems(compound, this.inventory);
         }
     }
 

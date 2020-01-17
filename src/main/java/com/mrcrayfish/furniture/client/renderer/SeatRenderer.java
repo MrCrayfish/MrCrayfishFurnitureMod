@@ -7,8 +7,6 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.util.ResourceLocation;
 
-import javax.annotation.Nullable;
-
 /**
  * Author: MrCrayfish
  */

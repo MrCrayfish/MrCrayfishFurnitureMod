@@ -3,7 +3,9 @@
     "ingredient": {
         "item": "minecraft:porkchop"
     },
-    "result": "minecraft:cooked_porkchop",
+    "result": {
+        "item": "minecraft:cooked_porkchop"
+    },
     "experience": 4.0,
     "cookingtime": 600
 }

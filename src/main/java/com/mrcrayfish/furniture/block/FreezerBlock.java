@@ -1,10 +1,11 @@
 package com.mrcrayfish.furniture.block;
 
-import com.mrcrayfish.furniture.tileentity.FridgeTileEntity;
+import com.mrcrayfish.furniture.tileentity.FreezerTileEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -19,6 +20,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -40,8 +42,7 @@ public class FreezerBlock extends FurnitureHorizontalBlock
 
     private VoxelShape getShape(BlockState state)
     {
-        return SHAPES.computeIfAbsent(state, state1 ->
-        {
+        return SHAPES.computeIfAbsent(state, state1 -> {
             Direction direction = state1.get(DIRECTION);
             boolean open = state1.get(OPEN);
             List<VoxelShape> shapes = new ArrayList<>();
@@ -83,7 +84,7 @@ public class FreezerBlock extends FurnitureHorizontalBlock
                 TileEntity tileEntity = world.getTileEntity(pos);
                 if(tileEntity instanceof INamedContainerProvider)
                 {
-                    playerEntity.openContainer((INamedContainerProvider) tileEntity);
+                    NetworkHooks.openGui((ServerPlayerEntity) playerEntity, (INamedContainerProvider) tileEntity, pos);
                 }
             }
         }
@@ -94,9 +95,9 @@ public class FreezerBlock extends FurnitureHorizontalBlock
     public void func_225534_a_(BlockState state, ServerWorld world, BlockPos pos, Random random)
     {
         TileEntity tileEntity = world.getTileEntity(pos);
-        if(tileEntity instanceof FridgeTileEntity)
+        if(tileEntity instanceof FreezerTileEntity)
         {
-            ((FridgeTileEntity) tileEntity).onScheduledTick();
+            ((FreezerTileEntity) tileEntity).onScheduledTick();
         }
     }
 
@@ -110,7 +111,7 @@ public class FreezerBlock extends FurnitureHorizontalBlock
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world)
     {
-        return new FridgeTileEntity();
+        return new FreezerTileEntity();
     }
 
     @Override
