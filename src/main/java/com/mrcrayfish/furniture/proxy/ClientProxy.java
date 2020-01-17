@@ -102,6 +102,7 @@ public class ClientProxy extends CommonProxy
         RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_GREEN, cutoutPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_RED, cutoutPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_BLACK, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.POST_BOX, cutoutPredicate);
 
         this.registerColors();
 
