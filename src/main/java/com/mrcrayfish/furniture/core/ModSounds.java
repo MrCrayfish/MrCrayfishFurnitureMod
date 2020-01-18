@@ -1,7 +1,7 @@
 package com.mrcrayfish.furniture.core;
 
 import com.mrcrayfish.furniture.Reference;
-import com.mrcrayfish.furniture.util.SoundNames;
+import com.mrcrayfish.furniture.util.Names;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -19,18 +19,18 @@ public class ModSounds
 {
     private static final List<SoundEvent> SOUNDS = new ArrayList<>();
 
-    public static final SoundEvent BLOCK_CABINET_OPEN = register(SoundNames.CABINET_OPEN);
-    public static final SoundEvent BLOCK_CABINET_CLOSE = register(SoundNames.CABINET_CLOSE);
-    public static final SoundEvent BLOCK_BEDSIDE_CABINET_OPEN = register(SoundNames.BEDSIDE_CABINET_OPEN);
-    public static final SoundEvent BLOCK_BEDSIDE_CABINET_CLOSE = register(SoundNames.BEDSIDE_CABINET_CLOSE);
-    public static final SoundEvent BLOCK_BLINDS_OPEN = register(SoundNames.BLINDS_OPEN);
-    public static final SoundEvent BLOCK_BLINDS_CLOSE = register(SoundNames.BLINDS_CLOSE);
-    public static final SoundEvent BLOCK_TRAMPOLINE_BOUNCE = register(SoundNames.TRAMPOLINE_BOUNCE);
-    public static final SoundEvent BLOCK_GRILL_PLACE = register(SoundNames.GRILL_PLACE);
-    public static final SoundEvent BLOCK_GRILL_FLIP = register(SoundNames.GRILL_FLIP);
-    public static final SoundEvent BLOCK_DIVING_BOARD_BOUNCE = register(SoundNames.DIVING_BOARD_BOUNCE);
-    public static final SoundEvent BLOCK_FRIDGE_OPEN = register(SoundNames.FRIDGE_OPEN);
-    public static final SoundEvent BLOCK_FRIDGE_CLOSE = register(SoundNames.FRIDGE_CLOSE);
+    public static final SoundEvent BLOCK_CABINET_OPEN = register(Names.Sound.CABINET_OPEN);
+    public static final SoundEvent BLOCK_CABINET_CLOSE = register(Names.Sound.CABINET_CLOSE);
+    public static final SoundEvent BLOCK_BEDSIDE_CABINET_OPEN = register(Names.Sound.BEDSIDE_CABINET_OPEN);
+    public static final SoundEvent BLOCK_BEDSIDE_CABINET_CLOSE = register(Names.Sound.BEDSIDE_CABINET_CLOSE);
+    public static final SoundEvent BLOCK_BLINDS_OPEN = register(Names.Sound.BLINDS_OPEN);
+    public static final SoundEvent BLOCK_BLINDS_CLOSE = register(Names.Sound.BLINDS_CLOSE);
+    public static final SoundEvent BLOCK_TRAMPOLINE_BOUNCE = register(Names.Sound.TRAMPOLINE_BOUNCE);
+    public static final SoundEvent BLOCK_GRILL_PLACE = register(Names.Sound.GRILL_PLACE);
+    public static final SoundEvent BLOCK_GRILL_FLIP = register(Names.Sound.GRILL_FLIP);
+    public static final SoundEvent BLOCK_DIVING_BOARD_BOUNCE = register(Names.Sound.DIVING_BOARD_BOUNCE);
+    public static final SoundEvent BLOCK_FRIDGE_OPEN = register(Names.Sound.FRIDGE_OPEN);
+    public static final SoundEvent BLOCK_FRIDGE_CLOSE = register(Names.Sound.FRIDGE_CLOSE);
 
     private static SoundEvent register(String name)
     {

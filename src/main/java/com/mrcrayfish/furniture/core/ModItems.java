@@ -2,7 +2,7 @@ package com.mrcrayfish.furniture.core;
 
 import com.mrcrayfish.furniture.FurnitureMod;
 import com.mrcrayfish.furniture.Reference;
-import com.mrcrayfish.furniture.util.ItemNames;
+import com.mrcrayfish.furniture.util.Names;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;
 import net.minecraft.item.SwordItem;
@@ -21,7 +21,7 @@ public class ModItems
 {
     private static final List<Item> ITEMS = new ArrayList<>();
 
-    public static final Item SPATULA = register(ItemNames.SPATULA, new SwordItem(ItemTier.IRON, 3, -1.4F, new Item.Properties().group(FurnitureMod.GROUP)));
+    public static final Item SPATULA = register(Names.Item.SPATULA, new SwordItem(ItemTier.IRON, 3, -1.4F, new Item.Properties().group(FurnitureMod.GROUP)));
 
     private static Item register(String name, Item item)
     {
