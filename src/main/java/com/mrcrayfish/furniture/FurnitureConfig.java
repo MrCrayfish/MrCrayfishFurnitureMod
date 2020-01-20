@@ -26,6 +26,7 @@ public class FurnitureConfig
     public static class Common
     {
         public final ForgeConfigSpec.IntValue maxMailQueue;
+        public final ForgeConfigSpec.IntValue pullMailInterval;
 
         Common(ForgeConfigSpec.Builder builder)
         {
@@ -34,6 +35,10 @@ public class FurnitureConfig
                     .comment("The maximum amount of mail that can be in a player's mail queue.")
                     .translation("cfm.configgui.maxMailQueue")
                     .defineInRange("maxMailQueue", 20, 0, Integer.MAX_VALUE);
+            this.pullMailInterval = builder
+                    .comment("The interval in ticks for mail boxes to pull mail from the player's queue")
+                    .translation("cfm.configgui.pullMailInterval")
+                    .defineInRange("pullMailInterval", 20, 1, Integer.MAX_VALUE);
             builder.pop();
         }
     }

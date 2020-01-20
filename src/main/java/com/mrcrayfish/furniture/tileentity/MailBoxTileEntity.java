@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.tileentity;
 
+import com.mrcrayfish.furniture.FurnitureConfig;
 import com.mrcrayfish.furniture.common.mail.Mail;
 import com.mrcrayfish.furniture.common.mail.PostOffice;
 import com.mrcrayfish.furniture.core.ModTileEntities;
@@ -10,10 +11,12 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -83,7 +86,8 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
     {
         if(world != null && !world.isRemote)
         {
-            if(!this.isFull() && this.ownerId != null && this.id != null)
+            MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+            if(!this.isFull() && this.ownerId != null && this.id != null && server.getTickCounter() % FurnitureConfig.COMMON.pullMailInterval.get() == 0)
             {
                 Supplier<Mail> supplier = PostOffice.getMailForPlayerMailBox(this.ownerId, this.id);
                 while(!this.isFull())
