@@ -23,13 +23,35 @@ public class FurnitureConfig
         }
     }
 
+    public static class Common
+    {
+        public final ForgeConfigSpec.IntValue maxMailQueue;
+
+        Common(ForgeConfigSpec.Builder builder)
+        {
+            builder.comment("Mail configuration settings").push("mail");
+            this.maxMailQueue = builder
+                    .comment("The maximum amount of mail that can be in a player's mail queue.")
+                    .translation("cfm.configgui.maxMailQueue")
+                    .defineInRange("maxMailQueue", 20, 0, Integer.MAX_VALUE);
+            builder.pop();
+        }
+    }
+
     static final ForgeConfigSpec clientSpec;
     public static final FurnitureConfig.Client CLIENT;
 
+    static final ForgeConfigSpec commonSpec;
+    public static final FurnitureConfig.Common COMMON;
+
     static
     {
-        final Pair<FurnitureConfig.Client, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(FurnitureConfig.Client::new);
-        clientSpec = specPair.getRight();
-        CLIENT = specPair.getLeft();
+        final Pair<FurnitureConfig.Client, ForgeConfigSpec> clientSpecPair = new ForgeConfigSpec.Builder().configure(FurnitureConfig.Client::new);
+        clientSpec = clientSpecPair.getRight();
+        CLIENT = clientSpecPair.getLeft();
+
+        final Pair<FurnitureConfig.Common, ForgeConfigSpec> commonSpecPair = new ForgeConfigSpec.Builder().configure(FurnitureConfig.Common::new);
+        commonSpec = commonSpecPair.getRight();
+        COMMON = commonSpecPair.getLeft();
     }
 }

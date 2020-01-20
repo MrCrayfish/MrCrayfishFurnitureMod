@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.common.mail;
 
+import com.mrcrayfish.furniture.FurnitureConfig;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.tileentity.MailBoxTileEntity;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
@@ -136,9 +137,12 @@ public class PostOffice extends WorldSavedData
             Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.computeIfAbsent(playerId, uuid -> new HashMap<>());
             if(mailBoxMap.containsKey(mailBoxId))
             {
-                mailBoxMap.get(mailBoxId).addMail(mail);
-                office.markDirty();
-                return true;
+                if(mailBoxMap.get(mailBoxId).getMailCount() < FurnitureConfig.COMMON.maxMailQueue.get())
+                {
+                    mailBoxMap.get(mailBoxId).addMail(mail);
+                    office.markDirty();
+                    return true;
+                }
             }
         }
         return false;

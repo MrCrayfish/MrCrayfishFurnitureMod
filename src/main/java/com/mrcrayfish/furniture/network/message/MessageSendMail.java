@@ -5,6 +5,7 @@ import com.mrcrayfish.furniture.common.mail.PostOffice;
 import com.mrcrayfish.furniture.inventory.container.PostBoxContainer;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.UUID;
@@ -53,8 +54,14 @@ public class MessageSendMail implements IMessage<MessageSendMail>
                     if(!container.getMail().isEmpty())
                     {
                         Mail mail = new Mail("Yo", container.getMail(), entity.getName().getString());
-                        PostOffice.sendMailToPlayer(message.playerId, message.mailBoxId, mail);
-                        container.removeMail();
+                        if(PostOffice.sendMailToPlayer(message.playerId, message.mailBoxId, mail))
+                        {
+                            container.removeMail();
+                        }
+                        else
+                        {
+                            entity.sendMessage(new TranslationTextComponent("message.cfm.mail_queue_full"));
+                        }
                     }
                 }
             }
