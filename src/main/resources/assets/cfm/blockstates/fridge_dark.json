@@ -2,96 +2,96 @@
     "variants": {
         "facing=north,open=true": [
             {
-                "model": "cfm:block/fridge_light_open",
+                "model": "cfm:block/fridge_dark_open",
                 "weight": 8,
                 "y": 0
             },
             {
-                "model": "cfm:block/fridge_light_open_blizzard",
+                "model": "cfm:block/fridge_dark_open_blizzard",
                 "weight": 2,
                 "y": 0
             }
         ],
         "facing=north,open=false": [
             {
-                "model": "cfm:block/fridge_light_closed",
+                "model": "cfm:block/fridge_dark_closed",
                 "weight": 8,
                 "y": 0
             },
             {
-                "model": "cfm:block/fridge_light_closed_blizzard",
+                "model": "cfm:block/fridge_dark_closed_blizzard",
                 "weight": 2,
                 "y": 0
             }
         ],
         "facing=east,open=true": [
             {
-                "model": "cfm:block/fridge_light_open",
+                "model": "cfm:block/fridge_dark_open",
                 "weight": 8,
                 "y": 90
             },
             {
-                "model": "cfm:block/fridge_light_open_blizzard",
+                "model": "cfm:block/fridge_dark_open_blizzard",
                 "weight": 2,
                 "y": 90
             }
         ],
         "facing=east,open=false": [
             {
-                "model": "cfm:block/fridge_light_closed",
+                "model": "cfm:block/fridge_dark_closed",
                 "weight": 8,
                 "y": 90
             },
             {
-                "model": "cfm:block/fridge_light_closed_blizzard",
+                "model": "cfm:block/fridge_dark_closed_blizzard",
                 "weight": 2,
                 "y": 90
             }
         ],
         "facing=south,open=true": [
             {
-                "model": "cfm:block/fridge_light_open",
+                "model": "cfm:block/fridge_dark_open",
                 "weight": 8,
                 "y": 180
             },
             {
-                "model": "cfm:block/fridge_light_open_blizzard",
+                "model": "cfm:block/fridge_dark_open_blizzard",
                 "weight": 2,
                 "y": 180
             }
         ],
         "facing=south,open=false": [
             {
-                "model": "cfm:block/fridge_light_closed",
+                "model": "cfm:block/fridge_dark_closed",
                 "weight": 8,
                 "y": 180
             },
             {
-                "model": "cfm:block/fridge_light_closed_blizzard",
+                "model": "cfm:block/fridge_dark_closed_blizzard",
                 "weight": 2,
                 "y": 180
             }
         ],
         "facing=west,open=true": [
             {
-                "model": "cfm:block/fridge_light_open",
+                "model": "cfm:block/fridge_dark_open",
                 "weight": 8,
                 "y": 270
             },
             {
-                "model": "cfm:block/fridge_light_open_blizzard",
+                "model": "cfm:block/fridge_dark_open_blizzard",
                 "weight": 2,
                 "y": 270
             }
         ],
         "facing=west,open=false": [
             {
-                "model": "cfm:block/fridge_light_closed",
+                "model": "cfm:block/fridge_dark_closed",
                 "weight": 8,
                 "y": 270
             },
             {
-                "model": "cfm:block/fridge_light_closed_blizzard",
+                "model": "cfm:block/fridge_dark_closed_blizzard",
                 "weight": 2,
                 "y": 270
             }

@@ -423,6 +423,8 @@ public class ModBlocks
     public static final Block KITCHEN_SINK_BLACK = register(Names.Block.KITCHEN_SINK_BLACK, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS), false));
     public static final Block FRIDGE_LIGHT = register(Names.Block.FRIDGE_LIGHT, new FridgeBlock(Block.Properties.from(Blocks.IRON_BLOCK)));
     public static final Block FREEZER_LIGHT = register(Names.Block.FREEZER_LIGHT, new FreezerBlock(Block.Properties.from(Blocks.IRON_BLOCK)));
+    public static final Block FRIDGE_DARK = register(Names.Block.FRIDGE_DARK, new FridgeBlock(Block.Properties.from(Blocks.IRON_BLOCK)));
+    public static final Block FREEZER_DARK = register(Names.Block.FREEZER_DARK, new FreezerBlock(Block.Properties.from(Blocks.IRON_BLOCK)));
     
     private static Block register(String name, Block block)
     {

@@ -2,6 +2,8 @@
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
     "textures": {
         "particle": "minecraft:block/white_concrete",
+        "blizzard": "cfm:block/blizzard",
+        "magnet": "minecraft:block/brown_terracotta",
         "base": "minecraft:block/white_concrete"
     },
     "elements": [
@@ -108,6 +110,30 @@
                 "east": { "texture": "#base", "uv": [ 0, 0, 1, 16 ], "cullface": "east", "tintindex": 1 },
                 "west": { "texture": "#base", "uv": [ 0, 0, 1, 16 ], "cullface": "west", "tintindex": 1 },
                 "up": { "texture": "#base", "uv": [ 0, 0, 16, 1 ], "cullface": "up", "tintindex": 1 }
+            }
+        },
+        {
+            "from": [ 8, 8, 16 ], 
+            "to": [ 12, 12, 16.1 ], 
+            "rotation": { "origin": [ 8, 8, 8 ], "axis": "z", "angle": 22.5 },
+            "faces": {
+                "east": { "texture": "#blizzard", "uv": [ 0, 0, 0.1, 4 ] },
+                "south": { "texture": "#blizzard", "uv": [ 0, 0, 16, 16 ] },
+                "west": { "texture": "#blizzard", "uv": [ 0, 0, 0.1, 4 ] },
+                "up": { "texture": "#blizzard", "uv": [ 0, 0, 4, 0.1 ] },
+                "down": { "texture": "#blizzard", "uv": [ 0, 0, 4, 0.1 ] }
+            }
+        },
+        {
+            "from": [ 9.3, 11.9, 16 ], 
+            "to": [ 10.8, 13.4, 16.5 ], 
+            "faces": {
+                "north": { "texture": "#magnet", "uv": [ 0, 0, 1.5, 1.5 ] },
+                "east": { "texture": "#magnet", "uv": [ 0, 0, 0.5, 1.5 ] },
+                "south": { "texture": "#magnet", "uv": [ 0, 0, 1.5, 1.5 ] },
+                "west": { "texture": "#magnet", "uv": [ 0, 0, 0.5, 1.5 ] },
+                "up": { "texture": "#magnet", "uv": [ 0, 0, 1.5, 0.5 ] },
+                "down": { "texture": "#magnet", "uv": [ 0, 0, 1.5, 0.5 ] }
             }
         }
     ]

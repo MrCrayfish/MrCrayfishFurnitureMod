@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/fridge_light_open_blizzard",
+    "textures": {
+        "particle": "minecraft:block/gray_concrete",
+        "base": "minecraft:block/gray_concrete"
+    }
+}

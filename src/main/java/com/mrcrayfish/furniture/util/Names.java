@@ -400,6 +400,8 @@ public class Names
         public static final String KITCHEN_SINK_BLACK = Reference.MOD_ID + ":black_kitchen_sink";
         public static final String FRIDGE_LIGHT = Reference.MOD_ID + ":fridge_light";
         public static final String FREEZER_LIGHT = Reference.MOD_ID + ":freezer_light";
+        public static final String FRIDGE_DARK = Reference.MOD_ID + ":fridge_dark";
+        public static final String FREEZER_DARK = Reference.MOD_ID + ":freezer_dark";
         /* Electronic Update */
         public static final String TV = Reference.MOD_ID + ":tv";
         public static final String COMPUTER = Reference.MOD_ID + ":computer";
