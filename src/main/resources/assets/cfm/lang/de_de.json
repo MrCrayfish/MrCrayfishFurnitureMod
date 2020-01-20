@@ -387,6 +387,10 @@
     "block.cfm.green_kitchen_sink": "Grünes Spülbecken",
     "block.cfm.red_kitchen_sink": "Rotes Spülbecken",
     "block.cfm.black_kitchen_sink": "Schwarzes Spülbecken",
+    "block.cfm.fridge_light": "Kühlschrank (Hell)",
+    "block.cfm.freezer_light": "Gefrierschrank (Hell)",
+    "block.cfm.fridge_dark": "Kühlschrank (Dunkel)",
+    "block.cfm.freezer_dark": "Gefrierschrank (Dunkel)",
     "item.cfm.spatula": "Pfannenwender",
     "container.cfm.cabinet": "Schrank",
     "container.cfm.bedside_cabinet": "Nachttischschrank",
@@ -396,6 +400,8 @@
     "container.cfm.mail_box": "%s - %s",
     "container.cfm.cooler": "Kühlbox",
     "container.cfm.kitchen_drawer": "Küchenschublade",
+    "container.cfm.fridge": "Kühlschrank",
+    "container.cfm.freezer": "Gefrierschrank",
     "gui.button.cfm.locked": "Verschlossen",
     "gui.button.cfm.unlocked": "Geöffnet",
     "gui.button.cfm.save": "Speichern",
@@ -418,5 +424,8 @@
     "subtitle.cfm.trampoline_bounce": "Trampolin hüpfen",
     "subtitle.cfm.grill_place": "Essen auf dem Grill platziert",
     "subtitle.cfm.grill_flip": "Essen auf dem Grill gewendet",
-    "subtitle.cfm.diving_board.bounce": "Sprungbrett Sprung"
+    "subtitle.cfm.diving_board.bounce": "Sprungbrett Sprung",
+    "subtitle.cfm.open_fridge": "Kühlschrank öffnen",
+    "subtitle.cfm.close_fridge": "Kühlschrank schließen",
+    "message.cfm.mail_queue_full": "Die Post-Warteschlange dieses Spielers ist voll. Versuche es später noch einmal..."
 }
