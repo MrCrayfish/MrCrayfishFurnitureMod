@@ -421,7 +421,6 @@ public class Names
         public static final String MIRROR = Reference.MOD_ID + ":mirror";
         public static final String BIN = Reference.MOD_ID + ":bin";
         /* Kitchen */
-        public static final String FRIDGE = Reference.MOD_ID + ":fridge";
         public static final String OVEN = Reference.MOD_ID + ":oven";
         public static final String RANGE_HOOD = Reference.MOD_ID + ":range_hood";
         public static final String RANGE_HOOD_POWERED = Reference.MOD_ID + ":range_hood_powered";
