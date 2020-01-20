@@ -4,6 +4,7 @@ import com.mrcrayfish.furniture.tileentity.FridgeTileEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.state.BooleanProperty;
@@ -118,5 +119,17 @@ public class FridgeBlock extends FurnitureHorizontalBlock
     {
         super.fillStateContainer(builder);
         builder.add(OPEN);
+    }
+
+    @Override
+    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player)
+    {
+        BlockState upState = worldIn.getBlockState(pos.down());
+        if(upState.getBlock() instanceof FreezerBlock)
+        {
+            worldIn.setBlockState(pos.down(), Blocks.AIR.getDefaultState(), 35);
+            worldIn.playEvent(player, 2001, pos.down(), Block.getStateId(upState));
+        }
+        super.onBlockHarvested(worldIn, pos, state, player);
     }
 }

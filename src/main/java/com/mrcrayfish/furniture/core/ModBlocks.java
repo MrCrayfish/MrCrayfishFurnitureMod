@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.core;
 import com.mrcrayfish.furniture.FurnitureMod;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.block.*;
+import com.mrcrayfish.furniture.item.BlockSupplierItem;
 import com.mrcrayfish.furniture.item.DoorMatItem;
 import com.mrcrayfish.furniture.util.Names;
 import net.minecraft.block.Block;
@@ -421,10 +422,10 @@ public class ModBlocks
     public static final Block KITCHEN_SINK_GREEN = register(Names.Block.KITCHEN_SINK_GREEN, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS), false));
     public static final Block KITCHEN_SINK_RED = register(Names.Block.KITCHEN_SINK_RED, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS), false));
     public static final Block KITCHEN_SINK_BLACK = register(Names.Block.KITCHEN_SINK_BLACK, new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS), false));
-    public static final Block FRIDGE_LIGHT = register(Names.Block.FRIDGE_LIGHT, new FridgeBlock(Block.Properties.from(Blocks.IRON_BLOCK)));
-    public static final Block FREEZER_LIGHT = register(Names.Block.FREEZER_LIGHT, new FreezerBlock(Block.Properties.from(Blocks.IRON_BLOCK)));
-    public static final Block FRIDGE_DARK = register(Names.Block.FRIDGE_DARK, new FridgeBlock(Block.Properties.from(Blocks.IRON_BLOCK)));
-    public static final Block FREEZER_DARK = register(Names.Block.FREEZER_DARK, new FreezerBlock(Block.Properties.from(Blocks.IRON_BLOCK)));
+    public static final Block FRIDGE_LIGHT = register(Names.Block.FRIDGE_LIGHT, new FridgeBlock(Block.Properties.from(Blocks.IRON_BLOCK)), block -> new BlockSupplierItem(new Item.Properties().group(FurnitureMod.GROUP), () -> ModBlocks.FREEZER_LIGHT));
+    public static final Block FREEZER_LIGHT = register(Names.Block.FREEZER_LIGHT, new FreezerBlock(Block.Properties.from(Blocks.IRON_BLOCK), FRIDGE_LIGHT), (BlockItem) null);
+    public static final Block FRIDGE_DARK = register(Names.Block.FRIDGE_DARK, new FridgeBlock(Block.Properties.from(Blocks.IRON_BLOCK)), block -> new BlockSupplierItem(new Item.Properties().group(FurnitureMod.GROUP), () -> ModBlocks.FREEZER_DARK));
+    public static final Block FREEZER_DARK = register(Names.Block.FREEZER_DARK, new FreezerBlock(Block.Properties.from(Blocks.IRON_BLOCK), FRIDGE_DARK), (BlockItem) null);
     
     private static Block register(String name, Block block)
     {
@@ -448,8 +449,11 @@ public class ModBlocks
         if(block.getRegistryName() != null)
         {
             Item item = function.apply(block);
-            item.setRegistryName(name);
-            ITEMS.add(item);
+            if(item != null)
+            {
+                item.setRegistryName(name);
+                ITEMS.add(item);
+            }
         }
         return block;
     }

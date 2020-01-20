@@ -4,9 +4,12 @@ import com.mrcrayfish.furniture.tileentity.FreezerTileEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
@@ -18,6 +21,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.fml.network.NetworkHooks;
@@ -33,10 +37,12 @@ public class FreezerBlock extends FurnitureHorizontalBlock
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
 
     public final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
+    private final Block fridge;
 
-    public FreezerBlock(Properties properties)
+    public FreezerBlock(Properties properties, Block fridge)
     {
         super(properties);
+        this.fridge = fridge;
         this.setDefaultState(this.getStateContainer().getBaseState().with(DIRECTION, Direction.NORTH).with(OPEN, false));
     }
 
@@ -119,5 +125,29 @@ public class FreezerBlock extends FurnitureHorizontalBlock
     {
         super.fillStateContainer(builder);
         builder.add(OPEN);
+    }
+
+    @Override
+    public boolean isValidPosition(BlockState state, IWorldReader reader, BlockPos pos)
+    {
+        return reader.getBlockState(pos.up()).isAir();
+    }
+
+    @Override
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack)
+    {
+        worldIn.setBlockState(pos.up(), this.fridge.getDefaultState().with(DIRECTION, placer.getHorizontalFacing()));
+    }
+
+    @Override
+    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player)
+    {
+        BlockState upState = worldIn.getBlockState(pos.up());
+        if(upState.getBlock() instanceof FridgeBlock)
+        {
+            worldIn.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), 35);
+            worldIn.playEvent(player, 2001, pos.up(), Block.getStateId(upState));
+        }
+        super.onBlockHarvested(worldIn, pos, state, player);
     }
 }
