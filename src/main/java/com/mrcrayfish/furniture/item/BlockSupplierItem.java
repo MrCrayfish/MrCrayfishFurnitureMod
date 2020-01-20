@@ -10,12 +10,20 @@ import java.util.function.Supplier;
  */
 public class BlockSupplierItem extends BlockItem
 {
+    private Block block;
     private Supplier<Block> supplier;
 
-    public BlockSupplierItem(Properties properties, Supplier<Block> supplier)
+    public BlockSupplierItem(Properties properties, Block block, Supplier<Block> supplier)
     {
-        super(null, properties);
+        super(block, properties);
+        this.block = block;
         this.supplier = supplier;
+    }
+
+    @Override
+    public String getTranslationKey()
+    {
+        return this.block.getTranslationKey();
     }
 
     @Override
