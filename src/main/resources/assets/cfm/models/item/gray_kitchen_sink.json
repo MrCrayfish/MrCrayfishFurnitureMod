@@ -1,6 +1,6 @@
 {
     "parent": "cfm:block/kitchen_sink_alt",
     "textures": {
-        "sink": "minecraft:block/gray_concrete"
+        "sink": "minecraft:block/gray_terracotta"
     }
 }

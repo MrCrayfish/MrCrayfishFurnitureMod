@@ -1,6 +1,6 @@
 {
     "parent": "cfm:block/kitchen_counter_left_corner",
     "textures": {
-        "top": "minecraft:block/pink_concrete"
+        "top": "minecraft:block/pink_terracotta"
     }
 }

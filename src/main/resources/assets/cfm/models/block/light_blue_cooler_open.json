@@ -1,6 +1,6 @@
 {
     "parent": "cfm:block/cooler_open",
     "textures": {
-        "color": "minecraft:block/light_blue_concrete"
+        "color": "minecraft:block/light_blue_terracotta"
     }
 }

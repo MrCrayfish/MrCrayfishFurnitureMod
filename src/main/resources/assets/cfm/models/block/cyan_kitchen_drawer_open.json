@@ -1,7 +1,7 @@
 {
     "parent": "cfm:block/kitchen_drawer_open",
     "textures": {
-        "top": "minecraft:block/cyan_concrete",
+        "top": "minecraft:block/cyan_terracotta",
         "base": "minecraft:block/white_concrete"
     }
 }
