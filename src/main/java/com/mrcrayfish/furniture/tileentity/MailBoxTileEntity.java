@@ -93,10 +93,7 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
                 while(!this.isFull())
                 {
                     Mail mail = supplier.get();
-                    if(mail == null)
-                    {
-                        break;
-                    }
+                    if(mail == null) break;
                     this.addItem(mail.getStack());
                 }
             }
