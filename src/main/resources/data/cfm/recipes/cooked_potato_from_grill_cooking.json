@@ -3,7 +3,9 @@
     "ingredient": {
         "item": "minecraft:potato"
     },
-    "result": "minecraft:baked_potato",
+    "result": {
+        "item": "minecraft:baked_potato"
+    },
     "experience": 4.0,
     "cookingtime": 600
 }
