@@ -5,7 +5,7 @@
                 "model": "cfm:block/fridge_light_open",
                 "weight": 10,
                 "y": 0
-            },e
+            },
             {
                 "model": "cfm:block/fridge_light_open_blizzard",
                 "weight": 1,
