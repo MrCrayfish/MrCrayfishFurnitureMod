@@ -387,6 +387,10 @@
     "block.cfm.green_kitchen_sink": "Тёмно-зелёная кухонная раковина",
     "block.cfm.red_kitchen_sink": "Рудая кухонная раковина",
     "block.cfm.black_kitchen_sink": "Чёрная кухонная раковина",
+    "block.cfm.fridge_light": "Холодильник (светлый)",
+    "block.cfm.freezer_light": "Морозилка (светлая)",
+    "block.cfm.fridge_dark": "Холодильник (тёмный)",
+    "block.cfm.freezer_dark": "Морозилка (тёмная)",
     "item.cfm.spatula": "Лопатка",
     "container.cfm.cabinet": "Шкафчик",
     "container.cfm.bedside_cabinet": "Тумбочка",
@@ -422,5 +426,6 @@
     "subtitle.cfm.grill_flip": "Переворачивается еда на гриле",
     "subtitle.cfm.diving_board.bounce": "Пружинит трамплин",
     "subtitle.cfm.open_fridge": "Открыть холодильник",
-    "subtitle.cfm.close_fridge": "Закрыть холодильник"
+    "subtitle.cfm.close_fridge": "Закрыть холодильник",
+    "message.cfm.mail_queue_full": "Почтовая очередь этого игрока заполнена. Попробуйте позже..."
 }
