@@ -198,6 +198,10 @@ public class FreezerTileEntity extends BasicLootTileEntity implements ITickableT
         MinecraftForge.EVENT_BUS.post(event);
         return event.getFuelTime();
     }
+        protected int getFreezeTime()
+    {
+        return this.world.getRecipeManager().getRecipe(RecipeType.FREEZER_SOLIDIFY, this, this.world).map(AbstractCookingRecipe::getCookTime).orElse(300);
+    }
 
     private boolean canFreeze(@Nullable IRecipe<?> recipe)
     {
@@ -273,11 +277,6 @@ public class FreezerTileEntity extends BasicLootTileEntity implements ITickableT
             this.freezeTime = 0;
             this.markDirty();
         }
-    }
-
-    protected int getFreezeTime()
-    {
-        return this.world.getRecipeManager().getRecipe(RecipeType.FREEZER_SOLIDIFY, this, this.world).map(AbstractCookingRecipe::getCookTime).orElse(300);
     }
 
     @Override
