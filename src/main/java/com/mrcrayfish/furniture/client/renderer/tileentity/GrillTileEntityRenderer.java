@@ -74,6 +74,7 @@ public class GrillTileEntityRenderer extends TileEntityRenderer<GrillTileEntity>
                 matrixStack.func_227862_a_(0.375F, 0.375F, 0.375F);
                 matrixStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(10F));
                 matrixStack.func_227863_a_(Vector3f.field_229183_f_.func_229187_a_(10F));
+                matrixStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(5F));
                 Minecraft.getInstance().getItemRenderer().func_229110_a_(stack, ItemCameraTransforms.TransformType.FIXED, i, i1, matrixStack, renderTypeBuffer);
                 matrixStack.func_227865_b_();
             }
