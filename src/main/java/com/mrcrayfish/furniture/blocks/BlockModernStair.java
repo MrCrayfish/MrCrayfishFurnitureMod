@@ -34,11 +34,12 @@ public class BlockModernStair extends BlockFurniture
 
     public BlockModernStair()
     {
-        super(Material.WOOD);
+        super(Material.IRON);
         this.setHardness(1.0F);
         this.setUnlocalizedName("modern_stair");
         this.setRegistryName("modern_stair");
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(TYPE, Type.NONE));
+        this.setHarvestLevel("pickaxe", 1); //stone pickaxe, remove this if you want
     }
 
     @Override
