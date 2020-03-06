@@ -22,6 +22,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.tileentity.ITickableTileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
@@ -103,6 +104,14 @@ public class FreezerTileEntity extends BasicLootTileEntity implements ITickableT
     {
         super(ModTileEntities.FREEZER);
     }
+
+    /**
+     * Alternative Constructor useful when reusing this class.
+     * Needed because registering tile entities requires valid blocks.
+     * @see TileEntityType
+     * @param tileEntityType : The TileEntityType you use instead.
+     */
+    public FreezerTileEntity(TileEntityType<?> tileEntityType) { super(tileEntityType); }
 
     @Override
     public void tick()

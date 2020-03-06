@@ -6,6 +6,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
@@ -21,6 +22,14 @@ public class DoorMatTileEntity extends TileEntity
     {
         super(ModTileEntities.DOOR_MAT);
     }
+
+    /**
+     * Alternative Constructor useful when reusing this class.
+     * Needed because registering tile entities requires valid blocks.
+     * @see TileEntityType
+     * @param tileEntityType : The TileEntityType you use instead.
+     */
+    public DoorMatTileEntity(TileEntityType<?> tileEntityType) { super(tileEntityType); }
 
     public void setMessage(String message)
     {

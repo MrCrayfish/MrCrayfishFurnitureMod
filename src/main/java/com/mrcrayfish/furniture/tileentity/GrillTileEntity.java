@@ -22,6 +22,7 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
@@ -62,6 +63,14 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
     {
         super(ModTileEntities.GRILL);
     }
+
+    /**
+     * Alternative Constructor useful when reusing this class.
+     * Needed because registering tile entities requires valid blocks.
+     * @see TileEntityType
+     * @param tileEntityType : The TileEntityType you use instead.
+     */
+    public GrillTileEntity(TileEntityType<?> tileEntityType) { super(tileEntityType); }
 
     @OnlyIn(Dist.CLIENT)
     public void setFlipping(int position)

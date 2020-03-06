@@ -6,6 +6,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants;
@@ -25,6 +26,14 @@ public class TrampolineTileEntity extends TileEntity
     {
         super(ModTileEntities.TRAMPOLINE);
     }
+
+    /**
+     * Alternative Constructor useful when reusing this class.
+     * Needed because registering tile entities requires valid blocks.
+     * @see TileEntityType
+     * @param tileEntityType : The TileEntityType you use instead.
+     */
+    public TrampolineTileEntity(TileEntityType<?> tileEntityType) { super(tileEntityType); }
 
     @Override
     public void onLoad()

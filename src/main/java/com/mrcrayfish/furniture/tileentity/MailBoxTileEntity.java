@@ -13,6 +13,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.ITickableTileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.util.Constants;
@@ -36,6 +37,14 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
     {
         super(ModTileEntities.MAIL_BOX);
     }
+
+    /**
+     * Alternative Constructor useful when reusing this class.
+     * Needed because registering tile entities requires valid blocks.
+     * @see TileEntityType
+     * @param tileEntityType : The TileEntityType you use instead.
+     */
+    public MailBoxTileEntity(TileEntityType<?> tileEntityType) { super(tileEntityType); }
 
     public void setId(UUID id)
     {

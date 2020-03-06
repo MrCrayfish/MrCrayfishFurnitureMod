@@ -11,6 +11,7 @@ import net.minecraft.inventory.container.ChestContainer;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.tileentity.ChestTileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.Vec3i;
@@ -29,6 +30,14 @@ public class KitchenDrawerTileEntity extends BasicLootTileEntity
     {
         super(ModTileEntities.KITCHEN_DRAWER);
     }
+
+    /**
+     * Alternative Constructor useful when reusing this class.
+     * Needed because registering tile entities requires valid blocks.
+     * @see TileEntityType
+     * @param tileEntityType : The TileEntityType you use instead.
+     */
+    public KitchenDrawerTileEntity(TileEntityType<?> tileEntityType) { super(tileEntityType); }
 
     @Override
     public int getSizeInventory()
