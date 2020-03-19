@@ -86,15 +86,37 @@ public class BlockBlinds extends BlockFurniture
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
+    	if(state.getBlock() == FurnitureBlocks.BLINDS_ACACIA || state.getBlock() == FurnitureBlocks.BLINDS_ACACIA_CLOSED)
+    		return new ItemStack(FurnitureBlocks.BLINDS_ACACIA).getItem();
+    	if(state.getBlock() == FurnitureBlocks.BLINDS_BIRCH || state.getBlock() == FurnitureBlocks.BLINDS_BIRCH_CLOSED)
+    		return new ItemStack(FurnitureBlocks.BLINDS_BIRCH).getItem();
+    	if(state.getBlock() == FurnitureBlocks.BLINDS_SPRUCE || state.getBlock() == FurnitureBlocks.BLINDS_SPRUCE_CLOSED)
+    		return new ItemStack(FurnitureBlocks.BLINDS_SPRUCE).getItem();
+    	if(state.getBlock() == FurnitureBlocks.BLINDS_JUNGLE || state.getBlock() == FurnitureBlocks.BLINDS_JUNGLE_CLOSED)
+    		return new ItemStack(FurnitureBlocks.BLINDS_JUNGLE).getItem();
+    	if(state.getBlock() == FurnitureBlocks.BLINDS_DARK_OAK || state.getBlock() == FurnitureBlocks.BLINDS_DARK_OAK_CLOSED)
+    		return new ItemStack(FurnitureBlocks.BLINDS_DARK_OAK).getItem();
+    	
         return new ItemStack(FurnitureBlocks.BLINDS_OAK).getItem();
     }
 
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
+    	if(state.getBlock() == FurnitureBlocks.BLINDS_ACACIA || state.getBlock() == FurnitureBlocks.BLINDS_ACACIA_CLOSED)
+    		return new ItemStack(FurnitureBlocks.BLINDS_ACACIA);
+    	if(state.getBlock() == FurnitureBlocks.BLINDS_BIRCH || state.getBlock() == FurnitureBlocks.BLINDS_BIRCH_CLOSED)
+    		return new ItemStack(FurnitureBlocks.BLINDS_BIRCH);
+    	if(state.getBlock() == FurnitureBlocks.BLINDS_SPRUCE || state.getBlock() == FurnitureBlocks.BLINDS_SPRUCE_CLOSED)
+    		return new ItemStack(FurnitureBlocks.BLINDS_SPRUCE);
+    	if(state.getBlock() == FurnitureBlocks.BLINDS_JUNGLE || state.getBlock() == FurnitureBlocks.BLINDS_JUNGLE_CLOSED)
+    		return new ItemStack(FurnitureBlocks.BLINDS_JUNGLE);
+    	if(state.getBlock() == FurnitureBlocks.BLINDS_DARK_OAK || state.getBlock() == FurnitureBlocks.BLINDS_DARK_OAK_CLOSED)
+    		return new ItemStack(FurnitureBlocks.BLINDS_DARK_OAK);
+    	
         return new ItemStack(FurnitureBlocks.BLINDS_OAK);
-    }
-
+    }    
+    
     @Override
     public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
     {
