@@ -387,6 +387,10 @@
     "block.cfm.green_kitchen_sink": "Lavello verde",
     "block.cfm.red_kitchen_sink": "Lavello rosso",
     "block.cfm.black_kitchen_sink": "Lavello nero",
+    "block.cfm.fridge_light": "Frigo (Chiaro)",
+    "block.cfm.freezer_light": "Freezer (Chiaro)",
+    "block.cfm.fridge_dark": "Frigo (Scuro)",
+    "block.cfm.freezer_dark": "Freezer (Scuro)",
     "item.cfm.spatula": "Spatola",
     "container.cfm.cabinet": "Mobile",
     "container.cfm.bedside_cabinet": "Comodino",
@@ -396,6 +400,8 @@
     "container.cfm.mail_box": "%s - %s",
     "container.cfm.cooler": "Refrigeratore",
     "container.cfm.kitchen_drawer": "Cassetto della cucina",
+    "container.cfm.fridge": "Frigo",
+    "container.cfm.freezer": "Freezer",
     "gui.button.cfm.locked": "Bloccato",
     "gui.button.cfm.unlocked": "Sbloccato",
     "gui.button.cfm.save": "Salva",
@@ -418,5 +424,8 @@
     "subtitle.cfm.trampoline_bounce": "Salto su un trampolino",
     "subtitle.cfm.grill_place": "Cibo piazzato su una griglia ",
     "subtitle.cfm.grill_flip": "Girando cibo su una griglia",
-    "subtitle.cfm.diving_board.bounce": "Salto su un trampolino da piscina"
+    "subtitle.cfm.diving_board.bounce": "Salto su un trampolino da piscina",
+    "subtitle.cfm.open_fridge": "Frigo aperto",
+    "subtitle.cfm.close_fridge": "Frigo chiuso",
+    "message.cfm.mail_queue_full": "La casella di posta di questo giocatore è piena. Riprova più tardi..."
 }
