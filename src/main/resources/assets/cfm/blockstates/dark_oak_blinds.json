@@ -1,5 +1,4 @@
 {
-    "forge_marker": 1,
     "variants": {
         "extension=false,facing=north,open=false": {
             "model": "cfm:block/dark_oak_blinds_closed",

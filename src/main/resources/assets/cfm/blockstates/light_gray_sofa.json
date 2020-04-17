@@ -1,34 +1,124 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "uvlock": true
-    },
     "variants": {
-        "facing": {
-            "north": { "y": 0   },
-            "east":  { "y": 90  },
-            "south": { "y": 180 },
-            "west":  { "y": 270 }
+        "facing=north,type=single": {
+            "model": "cfm:block/light_gray_sofa_single",
+            "uvlock": true,
+            "y": 0
         },
-        "type": {
-            "single": {
-                "model": "cfm:block/light_gray_sofa_single"
-            },
-            "left": {
-                "model": "cfm:block/light_gray_sofa_left"
-            },
-            "right": {
-                "model": "cfm:block/light_gray_sofa_right"
-            },
-            "middle": {
-                "model": "cfm:block/light_gray_sofa_middle"
-            },
-            "corner_left": {
-                "model": "cfm:block/light_gray_sofa_corner_left"
-            },
-            "corner_right": {
-                "model": "cfm:block/light_gray_sofa_corner_right"
-            }
+        "facing=north,type=left": {
+            "model": "cfm:block/light_gray_sofa_left",
+            "uvlock": true,
+            "y": 0
+        },
+        "facing=north,type=right": {
+            "model": "cfm:block/light_gray_sofa_right",
+            "uvlock": true,
+            "y": 0
+        },
+        "facing=north,type=middle": {
+            "model": "cfm:block/light_gray_sofa_middle",
+            "uvlock": true,
+            "y": 0
+        },
+        "facing=north,type=corner_left": {
+            "model": "cfm:block/light_gray_sofa_corner_left",
+            "uvlock": true,
+            "y": 0
+        },
+        "facing=north,type=corner_right": {
+            "model": "cfm:block/light_gray_sofa_corner_right",
+            "uvlock": true,
+            "y": 0
+        },
+        "facing=east,type=single": {
+            "model": "cfm:block/light_gray_sofa_single",
+            "uvlock": true,
+            "y": 90
+        },
+        "facing=east,type=left": {
+            "model": "cfm:block/light_gray_sofa_left",
+            "uvlock": true,
+            "y": 90
+        },
+        "facing=east,type=right": {
+            "model": "cfm:block/light_gray_sofa_right",
+            "uvlock": true,
+            "y": 90
+        },
+        "facing=east,type=middle": {
+            "model": "cfm:block/light_gray_sofa_middle",
+            "uvlock": true,
+            "y": 90
+        },
+        "facing=east,type=corner_left": {
+            "model": "cfm:block/light_gray_sofa_corner_left",
+            "uvlock": true,
+            "y": 90
+        },
+        "facing=east,type=corner_right": {
+            "model": "cfm:block/light_gray_sofa_corner_right",
+            "uvlock": true,
+            "y": 90
+        },
+        "facing=south,type=single": {
+            "model": "cfm:block/light_gray_sofa_single",
+            "uvlock": true,
+            "y": 180
+        },
+        "facing=south,type=left": {
+            "model": "cfm:block/light_gray_sofa_left",
+            "uvlock": true,
+            "y": 180
+        },
+        "facing=south,type=right": {
+            "model": "cfm:block/light_gray_sofa_right",
+            "uvlock": true,
+            "y": 180
+        },
+        "facing=south,type=middle": {
+            "model": "cfm:block/light_gray_sofa_middle",
+            "uvlock": true,
+            "y": 180
+        },
+        "facing=south,type=corner_left": {
+            "model": "cfm:block/light_gray_sofa_corner_left",
+            "uvlock": true,
+            "y": 180
+        },
+        "facing=south,type=corner_right": {
+            "model": "cfm:block/light_gray_sofa_corner_right",
+            "uvlock": true,
+            "y": 180
+        },
+        "facing=west,type=single": {
+            "model": "cfm:block/light_gray_sofa_single",
+            "uvlock": true,
+            "y": 270
+        },
+        "facing=west,type=left": {
+            "model": "cfm:block/light_gray_sofa_left",
+            "uvlock": true,
+            "y": 270
+        },
+        "facing=west,type=right": {
+            "model": "cfm:block/light_gray_sofa_right",
+            "uvlock": true,
+            "y": 270
+        },
+        "facing=west,type=middle": {
+            "model": "cfm:block/light_gray_sofa_middle",
+            "uvlock": true,
+            "y": 270
+        },
+        "facing=west,type=corner_left": {
+            "model": "cfm:block/light_gray_sofa_corner_left",
+            "uvlock": true,
+            "y": 270
+        },
+        "facing=west,type=corner_right": {
+            "model": "cfm:block/light_gray_sofa_corner_right",
+            "uvlock": true,
+            "y": 270
         }
     }
 }

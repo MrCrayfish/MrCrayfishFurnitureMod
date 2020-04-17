@@ -1,34 +1,84 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "textures": {
-            "top": "minecraft:block/acacia_log",
-            "base": "minecraft:block/acacia_planks"
-        }
-    },
     "variants": {
-        "facing": {
-            "north": { "y": 0   },
-            "east":  { "y": 90  },
-            "south": { "y": 180 },
-            "west":  { "y": 270 }
+        "facing=north,type=default": {
+            "model": "cfm:block/acacia_kitchen_counter_default",
+            "y": 0
         },
-        "type": {
-            "default": {
-                "model": "cfm:block/kitchen_counter_default"
-            },
-            "left_corner": {
-                "model": "cfm:block/kitchen_counter_left_corner"
-            },
-            "right_corner": {
-                "model": "cfm:block/kitchen_counter_right_corner"
-            },
-            "left_corner_inverted": {
-                "model": "cfm:block/kitchen_counter_left_corner_inverted"
-            },
-            "right_corner_inverted": {
-                "model": "cfm:block/kitchen_counter_right_corner_inverted"
-            }
+        "facing=north,type=left_corner": {
+            "model": "cfm:block/acacia_kitchen_counter_left_corner",
+            "y": 0
+        },
+        "facing=north,type=right_corner": {
+            "model": "cfm:block/acacia_kitchen_counter_right_corner",
+            "y": 0
+        },
+        "facing=north,type=left_corner_inverted": {
+            "model": "cfm:block/acacia_kitchen_counter_left_corner_inverted",
+            "y": 0
+        },
+        "facing=north,type=right_corner_inverted": {
+            "model": "cfm:block/acacia_kitchen_counter_right_corner_inverted",
+            "y": 0
+        },
+        "facing=east,type=default": {
+            "model": "cfm:block/acacia_kitchen_counter_default",
+            "y": 90
+        },
+        "facing=east,type=left_corner": {
+            "model": "cfm:block/acacia_kitchen_counter_left_corner",
+            "y": 90
+        },
+        "facing=east,type=right_corner": {
+            "model": "cfm:block/acacia_kitchen_counter_right_corner",
+            "y": 90
+        },
+        "facing=east,type=left_corner_inverted": {
+            "model": "cfm:block/acacia_kitchen_counter_left_corner_inverted",
+            "y": 90
+        },
+        "facing=east,type=right_corner_inverted": {
+            "model": "cfm:block/acacia_kitchen_counter_right_corner_inverted",
+            "y": 90
+        },
+        "facing=south,type=default": {
+            "model": "cfm:block/acacia_kitchen_counter_default",
+            "y": 180
+        },
+        "facing=south,type=left_corner": {
+            "model": "cfm:block/acacia_kitchen_counter_left_corner",
+            "y": 180
+        },
+        "facing=south,type=right_corner": {
+            "model": "cfm:block/acacia_kitchen_counter_right_corner",
+            "y": 180
+        },
+        "facing=south,type=left_corner_inverted": {
+            "model": "cfm:block/acacia_kitchen_counter_left_corner_inverted",
+            "y": 180
+        },
+        "facing=south,type=right_corner_inverted": {
+            "model": "cfm:block/acacia_kitchen_counter_right_corner_inverted",
+            "y": 180
+        },
+        "facing=west,type=default": {
+            "model": "cfm:block/acacia_kitchen_counter_default",
+            "y": 270
+        },
+        "facing=west,type=left_corner": {
+            "model": "cfm:block/acacia_kitchen_counter_left_corner",
+            "y": 270
+        },
+        "facing=west,type=right_corner": {
+            "model": "cfm:block/acacia_kitchen_counter_right_corner",
+            "y": 270
+        },
+        "facing=west,type=left_corner_inverted": {
+            "model": "cfm:block/acacia_kitchen_counter_left_corner_inverted",
+            "y": 270
+        },
+        "facing=west,type=right_corner_inverted": {
+            "model": "cfm:block/acacia_kitchen_counter_right_corner_inverted",
+            "y": 270
         }
     }
 }

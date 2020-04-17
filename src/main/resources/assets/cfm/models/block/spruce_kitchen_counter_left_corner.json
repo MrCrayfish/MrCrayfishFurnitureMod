@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/kitchen_counter_left_corner",
+    "textures": {
+        "top": "minecraft:block/spruce_log",
+        "base": "minecraft:block/spruce_planks"
+    }
+}

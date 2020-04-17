@@ -3,6 +3,8 @@ package com.mrcrayfish.furniture.block;
 import com.mrcrayfish.furniture.core.ModItems;
 import com.mrcrayfish.furniture.item.crafting.GrillCookingRecipe;
 import com.mrcrayfish.furniture.tileentity.GrillTileEntity;
+import com.mrcrayfish.furniture.util.VoxelShapeHelper;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.ISidedInventory;
@@ -11,11 +13,14 @@ import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.shapes.ISelectionContext;
+import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
@@ -23,6 +28,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import java.util.Arrays;
 import java.util.Optional;
 
 /**
@@ -30,15 +36,17 @@ import java.util.Optional;
  */
 public class GrillBlock extends FurnitureWaterloggedBlock implements ISidedInventoryProvider
 {
+    public static final VoxelShape SHAPE = VoxelShapeHelper.combineAll(Arrays.asList(Block.makeCuboidShape(0.0, 11.0, 0.0, 16.0, 16.0, 16.0), Block.makeCuboidShape(1.5, 0.0, 1.5, 14.5, 11.0, 14.5)));
+
     public GrillBlock(Properties properties)
     {
         super(properties);
     }
 
     @Override
-    public boolean isNormalCube(BlockState state, IBlockReader worldIn, BlockPos pos)
+    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
     {
-        return false;
+        return SHAPE;
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -64,18 +72,18 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements ISidedInven
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
+    public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
     {
-        if(!worldIn.isRemote && hit.getFace() == Direction.UP)
+        if(!world.isRemote && result.getFace() == Direction.UP)
         {
-            TileEntity tileEntity = worldIn.getTileEntity(pos);
+            TileEntity tileEntity = world.getTileEntity(pos);
             if(tileEntity instanceof GrillTileEntity)
             {
                 GrillTileEntity grillTileEntity = (GrillTileEntity) tileEntity;
-                ItemStack stack = player.getHeldItem(handIn);
+                ItemStack stack = playerEntity.getHeldItem(hand);
                 if(stack.getItem() == ModItems.SPATULA)
                 {
-                    grillTileEntity.flipItem(this.getPosition(hit, pos));
+                    grillTileEntity.flipItem(this.getPosition(result, pos));
                 }
                 else if(stack.getItem() == Items.COAL || stack.getItem() == Items.CHARCOAL)
                 {
@@ -90,9 +98,9 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements ISidedInven
                     if(optional.isPresent())
                     {
                         GrillCookingRecipe recipe = optional.get();
-                        if(grillTileEntity.addItem(stack, this.getPosition(hit, pos), recipe.getCookTime(), recipe.getExperience(), (byte) player.getHorizontalFacing().getHorizontalIndex()))
+                        if(grillTileEntity.addItem(stack, this.getPosition(result, pos), recipe.getCookTime(), recipe.getExperience(), (byte) playerEntity.getHorizontalFacing().getHorizontalIndex()))
                         {
-                            if(!player.abilities.isCreativeMode)
+                            if(!playerEntity.abilities.isCreativeMode)
                             {
                                 stack.shrink(1);
                             }
@@ -101,11 +109,11 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements ISidedInven
                 }
                 else
                 {
-                    grillTileEntity.removeItem(this.getPosition(hit, pos));
+                    grillTileEntity.removeItem(this.getPosition(result, pos));
                 }
             }
         }
-        return true;
+        return ActionResultType.SUCCESS;
     }
 
     private int getPosition(BlockRayTraceResult hit, BlockPos pos)

@@ -65,10 +65,12 @@ public class CreativeScreenEvents
 
             event.addWidget(this.btnScrollUp = new IconButton(this.guiCenterX - 22, this.guiCenterY - 12, I18n.format("gui.button.cfm.scroll_filters_up"), button -> {
                 if(startIndex > 0) startIndex--;
+                this.updateTagButtons();
             }, ICONS, 64, 0));
 
             event.addWidget(this.btnScrollDown = new IconButton(this.guiCenterX - 22, this.guiCenterY + 127, I18n.format("gui.button.cfm.scroll_filters_down"), button -> {
                 if(startIndex <= filters.size() - 4 - 1) startIndex++;
+                this.updateTagButtons();
             }, ICONS, 80, 0));
 
             event.addWidget(this.btnEnableAll = new IconButton(this.guiCenterX - 50, this.guiCenterY + 10, I18n.format("gui.button.cfm.enable_filters"), button -> {

@@ -1,0 +1,11 @@
+{
+    "type": "cfm:grill_cooking",
+    "ingredient": {
+        "item": "minecraft:potato"
+    },
+    "result": {
+        "item": "minecraft:baked_potato"
+    },
+    "experience": 4.0,
+    "cookingtime": 600
+}

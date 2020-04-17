@@ -1,6 +1,6 @@
 {
     "parent": "cfm:block/grill",
     "textures": {
-        "color": "minecraft:block/red_concrete"
+        "color": "minecraft:block/red_terracotta"
     }
 }

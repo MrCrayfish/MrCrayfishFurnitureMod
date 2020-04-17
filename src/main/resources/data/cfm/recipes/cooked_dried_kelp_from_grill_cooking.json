@@ -1,0 +1,11 @@
+{
+    "type": "cfm:grill_cooking",
+    "ingredient": {
+        "item": "minecraft:kelp"
+    },
+    "result": {
+        "item": "minecraft:dried_kelp"
+    },
+    "experience": 4.0,
+    "cookingtime": 600
+}

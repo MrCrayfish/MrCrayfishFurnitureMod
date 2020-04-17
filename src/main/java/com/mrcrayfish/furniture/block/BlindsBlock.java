@@ -10,6 +10,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -105,28 +106,28 @@ public class BlindsBlock extends FurnitureHorizontalWaterloggedBlock
         return !state.get(OPEN);
     }
 
-    @Override
-    public boolean isSolid(BlockState state)
+    /*@Override
+    public boolean isSolid(BlockState state) //Now uses Block Properties to set solid
     {
         return !state.get(OPEN);
-    }
+    }*/
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
+    public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
     {
-        this.toggleBlinds(worldIn, pos, !state.get(OPEN), state.get(DIRECTION), 5);
-        if(!worldIn.isRemote)
+        this.toggleBlinds(world, pos, !state.get(OPEN), state.get(DIRECTION), 5);
+        if(!world.isRemote)
         {
             if(state.get(OPEN))
             {
-                worldIn.playSound(null, pos, ModSounds.BLOCK_BLINDS_CLOSE, SoundCategory.BLOCKS, 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.8F);
+                world.playSound(null, pos, ModSounds.BLOCK_BLINDS_CLOSE, SoundCategory.BLOCKS, 0.5F, world.rand.nextFloat() * 0.1F + 0.8F);
             }
             else
             {
-                worldIn.playSound(null, pos, ModSounds.BLOCK_BLINDS_OPEN, SoundCategory.BLOCKS, 0.5F, worldIn.rand.nextFloat() * 0.1F + 0.9F);
+                world.playSound(null, pos, ModSounds.BLOCK_BLINDS_OPEN, SoundCategory.BLOCKS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
             }
         }
-        return true;
+        return ActionResultType.SUCCESS;
     }
 
     private void toggleBlinds(World world, BlockPos pos, boolean targetOpen, Direction targetDirection, int depth)

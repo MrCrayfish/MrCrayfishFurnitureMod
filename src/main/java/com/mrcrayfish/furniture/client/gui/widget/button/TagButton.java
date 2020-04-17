@@ -1,12 +1,12 @@
 package com.mrcrayfish.furniture.client.gui.widget.button;
 
 import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mrcrayfish.furniture.client.event.CreativeScreenEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
@@ -50,24 +50,23 @@ public class TagButton extends Button
         Minecraft mc = Minecraft.getInstance();
         mc.getTextureManager().bindTexture(TABS);
 
-        GlStateManager.color4f(1.0F, 1.0F, 1.0F, this.alpha);
-        GlStateManager.disableLighting();
-        GlStateManager.enableBlend();
-        GlStateManager.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
-        GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        RenderSystem.color4f(1.0F, 1.0F, 1.0F, this.alpha);
+        RenderSystem.disableLighting();
+        RenderSystem.enableBlend();
+        RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
 
         int width = this.toggled ? 32 : 28;
         int textureX = 28;
         int textureY = this.toggled ? 32 : 0;
         this.drawRotatedTexture(this.x, this.y, textureX, textureY, width, 28);
 
-        GlStateManager.enableRescaleNormal();
-        RenderHelper.enableGUIStandardItemLighting();
+        RenderSystem.enableRescaleNormal();
         ItemRenderer renderer = mc.getItemRenderer();
         renderer.zLevel = 100.0F;
         renderer.renderItemAndEffectIntoGUI(this.stack, x + 8, y + 6);
         renderer.renderItemOverlays(mc.fontRenderer, this.stack, x + 8, y + 6);
-        renderer.zLevel = 100.0F;
+        renderer.zLevel = 0.0F;
     }
 
     private void drawRotatedTexture(int x, int y, int textureX, int textureY, int width, int height)
@@ -75,12 +74,12 @@ public class TagButton extends Button
         float scaleX = 0.00390625F;
         float scaleY = 0.00390625F;
         Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder bufferbuilder = tessellator.getBuffer();
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-        bufferbuilder.pos((double)(x), (double)(y + height), 0.0).tex((double)((float)(textureX + height) * scaleX), (double)((float)(textureY) * scaleY)).endVertex();
-        bufferbuilder.pos((double)(x + width), (double)(y + height), 0.0).tex((double)((float)(textureX + height) * scaleX), (double)((float)(textureY + width) * scaleY)).endVertex();
-        bufferbuilder.pos((double)(x + width), (double)(y), 0.0).tex((double)((float)(textureX) * scaleX), (double)((float)(textureY + width) * scaleY)).endVertex();
-        bufferbuilder.pos((double)(x), (double)(y), 0.0).tex((double)((float)(textureX) * scaleX), (double)((float)(textureY) * scaleY)).endVertex();
+        BufferBuilder buffer = tessellator.getBuffer();
+        buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
+        buffer.func_225582_a_((double)(x), (double)(y + height), 0.0).func_225583_a_(((float)(textureX + height) * scaleX), ((float)(textureY) * scaleY)).endVertex();
+        buffer.func_225582_a_((double)(x + width), (double)(y + height), 0.0).func_225583_a_(((float)(textureX + height) * scaleX), ((float)(textureY + width) * scaleY)).endVertex();
+        buffer.func_225582_a_((double)(x + width), (double)(y), 0.0).func_225583_a_(((float)(textureX) * scaleX), ((float)(textureY + width) * scaleY)).endVertex();
+        buffer.func_225582_a_((double)(x), (double)(y), 0.0).func_225583_a_(((float)(textureX) * scaleX), ((float)(textureY) * scaleY)).endVertex();
         tessellator.draw();
     }
 

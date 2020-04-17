@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.IStringSerializable;
@@ -118,23 +119,23 @@ public class SofaBlock extends FurnitureHorizontalWaterloggedBlock
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult rayTraceResult)
+    public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
     {
         if(!world.isRemote)
         {
-            ItemStack stack = player.getHeldItem(hand);
+            ItemStack stack = playerEntity.getHeldItem(hand);
             if(stack.getItem() == Items.NAME_TAG && this != ModBlocks.SOFA_RAINBOW)
             {
                 if(stack.getDisplayName().getString().equals("jeb_"))
                 {
                     BlockState rainbowSofaState = ModBlocks.SOFA_RAINBOW.getDefaultState().with(DIRECTION, state.get(DIRECTION)).with(TYPE, state.get(TYPE)).with(WATERLOGGED, state.get(WATERLOGGED));
                     world.setBlockState(pos, rainbowSofaState, 3);
-                    return true;
+                    return ActionResultType.SUCCESS;
                 }
             }
-            return SeatEntity.create(world, pos, 0.4, player);
+            return SeatEntity.create(world, pos, 0.4, playerEntity);
         }
-        return true;
+        return ActionResultType.SUCCESS;
     }
 
     @Override

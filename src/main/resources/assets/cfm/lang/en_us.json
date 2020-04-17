@@ -387,6 +387,10 @@
     "block.cfm.green_kitchen_sink": "Green Kitchen Sink",
     "block.cfm.red_kitchen_sink": "Red Kitchen Sink",
     "block.cfm.black_kitchen_sink": "Black Kitchen Sink",
+    "block.cfm.fridge_light": "Fridge (Light)",
+    "block.cfm.freezer_light": "Freezer (Light)",
+    "block.cfm.fridge_dark": "Fridge (Dark)",
+    "block.cfm.freezer_dark": "Freezer (Dark)",
     "item.cfm.spatula": "Spatula",
     "container.cfm.cabinet": "Cabinet",
     "container.cfm.bedside_cabinet": "Bedside Cabinet",
@@ -396,6 +400,8 @@
     "container.cfm.mail_box": "%s - %s",
     "container.cfm.cooler": "Cooler",
     "container.cfm.kitchen_drawer": "Kitchen Drawer",
+    "container.cfm.fridge": "Fridge",
+    "container.cfm.freezer": "Freezer",
     "gui.button.cfm.locked": "Locked",
     "gui.button.cfm.unlocked": "Unlocked",
     "gui.button.cfm.save": "Save",
@@ -418,5 +424,8 @@
     "subtitle.cfm.trampoline_bounce": "Trampoline Bounce",
     "subtitle.cfm.grill_place": "Place Food on Grill",
     "subtitle.cfm.grill_flip": "Flipping Food on Grill",
-    "subtitle.cfm.diving_board.bounce": "Diving Board Bounce"
+    "subtitle.cfm.diving_board.bounce": "Diving Board Bounce",
+    "subtitle.cfm.open_fridge": "Open Fridge",
+    "subtitle.cfm.close_fridge": "Close Fridge",
+    "message.cfm.mail_queue_full": "This player's mail queue is full. Try again later..."
 }

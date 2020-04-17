@@ -1,18 +1,16 @@
 package com.mrcrayfish.furniture.core;
 
 import com.mrcrayfish.furniture.Reference;
-import com.mrcrayfish.furniture.client.gui.screen.inventory.CrateScreen;
 import com.mrcrayfish.furniture.inventory.container.CrateContainer;
+import com.mrcrayfish.furniture.inventory.container.FreezerContainer;
 import com.mrcrayfish.furniture.inventory.container.MailBoxContainer;
 import com.mrcrayfish.furniture.inventory.container.PostBoxContainer;
 import com.mrcrayfish.furniture.tileentity.CrateTileEntity;
+import com.mrcrayfish.furniture.tileentity.FreezerTileEntity;
 import com.mrcrayfish.furniture.tileentity.MailBoxTileEntity;
-import com.mrcrayfish.furniture.util.ContainerNames;
-import net.minecraft.client.gui.ScreenManager;
+import com.mrcrayfish.furniture.util.Names;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -30,16 +28,21 @@ public class ModContainers
     private static final List<ContainerType<?>> CONTAINER_TYPES = new ArrayList<>();
 
     @SuppressWarnings("ConstantConditions")
-    public static final ContainerType<CrateContainer> CRATE = register(ContainerNames.CRATE, (IContainerFactory<CrateContainer>) (windowId, playerInventory, data) -> {
+    public static final ContainerType<CrateContainer> CRATE = register(Names.Container.CRATE, (IContainerFactory<CrateContainer>) (windowId, playerInventory, data) -> {
         CrateTileEntity crateTileEntity = (CrateTileEntity) playerInventory.player.world.getTileEntity(data.readBlockPos());
         return new CrateContainer(windowId, playerInventory, crateTileEntity, crateTileEntity.isLocked());
     });
 
-    public static final ContainerType<PostBoxContainer> POST_BOX = register(ContainerNames.POST_BOX, PostBoxContainer::new);
+    public static final ContainerType<PostBoxContainer> POST_BOX = register(Names.Container.POST_BOX, PostBoxContainer::new);
 
-    public static final ContainerType<MailBoxContainer> MAIL_BOX = register(ContainerNames.MAIL_BOX, (IContainerFactory<MailBoxContainer>) (windowId, playerInventory, data) -> {
+    public static final ContainerType<MailBoxContainer> MAIL_BOX = register(Names.Container.MAIL_BOX, (IContainerFactory<MailBoxContainer>) (windowId, playerInventory, data) -> {
         MailBoxTileEntity mailBoxTileEntity = (MailBoxTileEntity) playerInventory.player.world.getTileEntity(data.readBlockPos());
         return new MailBoxContainer(windowId, playerInventory, mailBoxTileEntity);
+    });
+
+    public static final ContainerType<FreezerContainer> FREEZER = register(Names.Container.FREEZER, (IContainerFactory<FreezerContainer>) (windowId, playerInventory, data) -> {
+        FreezerTileEntity freezerTileEntity = (FreezerTileEntity) playerInventory.player.world.getTileEntity(data.readBlockPos());
+        return new FreezerContainer(windowId, playerInventory, freezerTileEntity);
     });
 
     private static <T extends Container> ContainerType<T> register(String key, ContainerType.IFactory<T> factory)
@@ -56,11 +59,5 @@ public class ModContainers
     {
         CONTAINER_TYPES.forEach(type -> event.getRegistry().register(type));
         CONTAINER_TYPES.clear();
-    }
-
-    @OnlyIn(Dist.CLIENT)
-    public static void registerScreenFactories()
-    {
-        ScreenManager.registerFactory(CRATE, CrateScreen::new);
     }
 }

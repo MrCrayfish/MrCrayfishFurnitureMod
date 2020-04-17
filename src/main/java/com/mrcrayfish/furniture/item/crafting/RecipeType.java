@@ -11,6 +11,7 @@ import net.minecraft.util.registry.Registry;
 public class RecipeType
 {
     public static final IRecipeType<GrillCookingRecipe> GRILL_COOKING = register("cfm:grill_cooking");
+    public static final IRecipeType<FreezerSolidifyRecipe> FREEZER_SOLIDIFY = register("cfm:freezer_solidify");
 
     static <T extends IRecipe<?>> IRecipeType<T> register(final String key)
     {

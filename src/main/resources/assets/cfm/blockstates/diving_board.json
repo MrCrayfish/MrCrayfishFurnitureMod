@@ -1,15 +1,36 @@
 {
-    "forge_marker": 1,
     "variants": {
-        "part": {
-            "base":  { "model": "cfm:block/diving_board_base"  },
-            "board": { "model": "cfm:block/diving_board_board" }
+        "facing=north,part=base": {
+            "model": "cfm:block/diving_board_base",
+            "y": 0
         },
-        "facing": {
-            "north": { "y": 0   },
-            "east":  { "y": 90  },
-            "south": { "y": 180 },
-            "west":  { "y": 270 }
+        "facing=east,part=base": {
+            "model": "cfm:block/diving_board_base",
+            "y": 90
+        },
+        "facing=south,part=base": {
+            "model": "cfm:block/diving_board_base",
+            "y": 180
+        },
+        "facing=west,part=base": {
+            "model": "cfm:block/diving_board_base",
+            "y": 270
+        },
+        "facing=north,part=board": {
+            "model": "cfm:block/diving_board_board",
+            "y": 0
+        },
+        "facing=east,part=board": {
+            "model": "cfm:block/diving_board_board",
+            "y": 90
+        },
+        "facing=south,part=board": {
+            "model": "cfm:block/diving_board_board",
+            "y": 180
+        },
+        "facing=west,part=board": {
+            "model": "cfm:block/diving_board_board",
+            "y": 270
         }
     }
 }

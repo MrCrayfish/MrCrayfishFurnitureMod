@@ -9,6 +9,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
@@ -38,9 +39,7 @@ public class CookingRecipeSerializer<T extends AbstractCookingRecipe> extends ne
         {
             throw new com.google.gson.JsonSyntaxException("Missing result, expected to find a string or object");
         }
-        String result = JSONUtils.getString(json, "result");
-        ResourceLocation location = new ResourceLocation(result);
-        ItemStack stack = new ItemStack(Optional.ofNullable(ForgeRegistries.ITEMS.getValue(location)).orElseThrow(() -> new IllegalStateException("Item: " + result + " does not exist")));
+        ItemStack stack = CraftingHelper.getItemStack(JSONUtils.getJsonObject(json, "result"), true);
         float experience = JSONUtils.getFloat(json, "experience", 0.0F);
         int cookTime = JSONUtils.getInt(json, "cookingtime", this.fallbackCookTime);
         return this.factory.create(recipeId, s, ingredient, stack, experience, cookTime);

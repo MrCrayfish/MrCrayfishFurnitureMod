@@ -3,7 +3,9 @@
     "ingredient": {
         "item": "minecraft:rabbit"
     },
-    "result": "minecraft:cooked_rabbit",
+    "result": {
+        "item": "minecraft:cooked_rabbit"
+    },
     "experience": 4.0,
     "cookingtime": 600
 }

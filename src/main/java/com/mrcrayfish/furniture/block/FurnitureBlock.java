@@ -6,7 +6,6 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -17,11 +16,11 @@ public abstract class FurnitureBlock extends Block
         super(properties);
     }
 
-    @Override
+    /*@Override
     public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
-    }
+    }*/
 
     @Override
     public int getComparatorInputOverride(BlockState state, World world, BlockPos pos)

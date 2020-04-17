@@ -38,5 +38,13 @@
     "block.diving_board.bounce": {
         "subtitle": "subtitle.cfm.diving_board.bounce",
         "sounds": [ "cfm:block/diving_board/bounce" ]
+    },
+    "block.fridge.open": {
+        "subtitle": "subtitle.cfm.open_fridge",
+        "sounds": [ "cfm:block/fridge/open" ]
+    },
+    "block.fridge.close": {
+        "subtitle": "subtitle.cfm.close_fridge",
+        "sounds": [ "cfm:block/fridge/close" ]
     }
 }

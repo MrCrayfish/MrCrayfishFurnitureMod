@@ -1,0 +1,100 @@
+{
+    "variants": {
+        "facing=north,open=true": [
+            {
+                "model": "cfm:block/fridge_light_open",
+                "weight": 10,
+                "y": 0
+            },
+            {
+                "model": "cfm:block/fridge_light_open_blizzard",
+                "weight": 1,
+                "y": 0
+            }
+        ],
+        "facing=north,open=false": [
+            {
+                "model": "cfm:block/fridge_light_closed",
+                "weight": 10,
+                "y": 0
+            },
+            {
+                "model": "cfm:block/fridge_light_closed_blizzard",
+                "weight": 1,
+                "y": 0
+            }
+        ],
+        "facing=east,open=true": [
+            {
+                "model": "cfm:block/fridge_light_open",
+                "weight": 10,
+                "y": 90
+            },
+            {
+                "model": "cfm:block/fridge_light_open_blizzard",
+                "weight": 1,
+                "y": 90
+            }
+        ],
+        "facing=east,open=false": [
+            {
+                "model": "cfm:block/fridge_light_closed",
+                "weight": 10,
+                "y": 90
+            },
+            {
+                "model": "cfm:block/fridge_light_closed_blizzard",
+                "weight": 1,
+                "y": 90
+            }
+        ],
+        "facing=south,open=true": [
+            {
+                "model": "cfm:block/fridge_light_open",
+                "weight": 10,
+                "y": 180
+            },
+            {
+                "model": "cfm:block/fridge_light_open_blizzard",
+                "weight": 1,
+                "y": 180
+            }
+        ],
+        "facing=south,open=false": [
+            {
+                "model": "cfm:block/fridge_light_closed",
+                "weight": 10,
+                "y": 180
+            },
+            {
+                "model": "cfm:block/fridge_light_closed_blizzard",
+                "weight": 1,
+                "y": 180
+            }
+        ],
+        "facing=west,open=true": [
+            {
+                "model": "cfm:block/fridge_light_open",
+                "weight": 10,
+                "y": 270
+            },
+            {
+                "model": "cfm:block/fridge_light_open_blizzard",
+                "weight": 1,
+                "y": 270
+            }
+        ],
+        "facing=west,open=false": [
+            {
+                "model": "cfm:block/fridge_light_closed",
+                "weight": 10,
+                "y": 270
+            },
+            {
+                "model": "cfm:block/fridge_light_closed_blizzard",
+                "weight": 1,
+                "y": 270
+            }
+        ]
+    }
+}

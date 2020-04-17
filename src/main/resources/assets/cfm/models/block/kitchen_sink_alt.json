@@ -1,7 +1,8 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
     "textures": {
-        "sink": "minecraft:block/red_concrete",
+        "particle": "minecraft:block/white_concrete",
+        "sink": "minecraft:block/red_terracotta",
         "taps": "minecraft:block/light_gray_concrete",
         "sink_inside": "minecraft:block/white_concrete",
         "base": "minecraft:block/white_concrete"

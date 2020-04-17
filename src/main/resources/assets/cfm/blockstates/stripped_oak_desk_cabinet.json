@@ -1,5 +1,4 @@
 {
-    "forge_marker": 1,
     "variants": {
         "facing=north,type=single,open=false": {
             "y": 0,

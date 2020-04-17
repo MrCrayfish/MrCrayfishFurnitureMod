@@ -2,7 +2,7 @@ package com.mrcrayfish.furniture.core;
 
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.entity.SeatEntity;
-import com.mrcrayfish.furniture.util.EntityNames;
+import com.mrcrayfish.furniture.util.Names;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
@@ -18,7 +18,7 @@ public class ModEntities
 {
     private static final List<EntityType> ENTITY_TYPES = new ArrayList<>();
 
-    public static final EntityType<SeatEntity> SEAT = buildType(EntityNames.SEAT, EntityType.Builder.<SeatEntity>create((type, world) -> new SeatEntity(world), EntityClassification.MISC).size(0.0F, 0.0F).setCustomClientFactory((spawnEntity, world) -> new SeatEntity(world)));
+    public static final EntityType<SeatEntity> SEAT = buildType(Names.Entity.SEAT, EntityType.Builder.<SeatEntity>create((type, world) -> new SeatEntity(world), EntityClassification.MISC).size(0.0F, 0.0F).setCustomClientFactory((spawnEntity, world) -> new SeatEntity(world)));
 
     private static <T extends Entity> EntityType<T> buildType(String id, EntityType.Builder<T> builder)
     {

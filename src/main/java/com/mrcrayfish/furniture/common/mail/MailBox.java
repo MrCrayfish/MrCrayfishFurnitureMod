@@ -85,6 +85,11 @@ public class MailBox implements INBTSerializable<CompoundNBT>
         return this.mailStorage;
     }
 
+    public int getMailCount()
+    {
+        return this.mailStorage.size();
+    }
+
     public CompoundNBT serializeDetails()
     {
         CompoundNBT compound = new CompoundNBT();
