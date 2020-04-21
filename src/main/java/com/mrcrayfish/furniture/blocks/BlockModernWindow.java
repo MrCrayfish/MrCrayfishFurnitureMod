@@ -26,6 +26,7 @@ public class BlockModernWindow extends BlockPane
     public BlockModernWindow()
     {
         super(Material.WOOD, true);
+        this.setHardness(1.0F);
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);
         this.setDefaultState(this.blockState.getBaseState()
                 .withProperty(NORTH, Boolean.FALSE)

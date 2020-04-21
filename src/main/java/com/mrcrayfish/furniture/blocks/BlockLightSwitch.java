@@ -39,6 +39,7 @@ public class BlockLightSwitch extends BlockFurniture
     public BlockLightSwitch()
     {
         super(Material.WOOD);
+        this.setHardness(0.5F);
     }
 
     @Override

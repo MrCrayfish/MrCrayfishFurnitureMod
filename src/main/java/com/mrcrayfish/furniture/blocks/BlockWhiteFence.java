@@ -37,7 +37,7 @@ public class BlockWhiteFence extends BlockFence
     public BlockWhiteFence(Material material)
     {
         super(material, material.getMaterialMapColor());
-        this.setHardness(1.0F);
+        this.setHardness(2.0F);
         this.setSoundType(SoundType.WOOD);
         this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.FALSE).withProperty(EAST, Boolean.FALSE).withProperty(SOUTH, Boolean.FALSE).withProperty(WEST, Boolean.FALSE));
         this.setCreativeTab(MrCrayfishFurnitureMod.tabFurniture);

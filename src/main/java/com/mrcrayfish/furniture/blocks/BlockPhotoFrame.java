@@ -40,6 +40,7 @@ public class BlockPhotoFrame extends BlockFurnitureTile
     public BlockPhotoFrame()
     {
         super(Material.WOOD);
+        this.setHardness(0.5F);
         this.setUnlocalizedName("photo_frame");
         this.setRegistryName("photo_frame");
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));

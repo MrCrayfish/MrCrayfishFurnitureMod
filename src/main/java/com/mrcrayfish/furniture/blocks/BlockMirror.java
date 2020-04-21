@@ -25,6 +25,7 @@ public class BlockMirror extends BlockFurnitureTile
     public BlockMirror(Material material)
     {
         super(material);
+        this.setHardness(0.5F);
     }
 
     @Override

@@ -14,6 +14,7 @@ public class BlockTV extends BlockAbstractTV
     public BlockTV(Material material)
     {
         super(material, 10, 10, 1.5, -6.1);
+        this.setHardness(1.0F);
         this.setSoundType(SoundType.METAL);
     }
 
