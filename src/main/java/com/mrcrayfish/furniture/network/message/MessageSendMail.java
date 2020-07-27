@@ -60,7 +60,7 @@ public class MessageSendMail implements IMessage<MessageSendMail>
                         }
                         else
                         {
-                            entity.sendMessage(new TranslationTextComponent("message.cfm.mail_queue_full"));
+                            entity.sendMessage(new TranslationTextComponent("message.cfm.mail_queue_full"), playerId);
                         }
                     }
                 }

@@ -164,7 +164,7 @@ public class UpgradedFenceBlock extends FurnitureWaterloggedBlock
             Direction hingeFace = hingeSide == DoorHingeSide.LEFT ? gateDirection.rotateYCCW() : gateDirection.rotateY();
             return direction == hingeFace.getOpposite() || (!offsetState.get(UpgradedGateBlock.DOUBLE) && direction.getAxis() != gateDirection.getAxis());
         }
-        return offsetState.func_224755_d(world, offsetPos, direction.getOpposite());
+        return offsetState.isSolidSide(world, offsetPos, direction.getOpposite());
     }
 
     @Override

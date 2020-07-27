@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.tileentity;
 
 import com.mrcrayfish.furniture.util.TileEntityUtil;
+import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
@@ -45,10 +46,10 @@ public abstract class FluidHandlerSyncedTileEntity extends TileEntity
     }
 
     @Override
-    public void read(CompoundNBT tag)
+    public void read(BlockState blockState, CompoundNBT tag)
     {
         //TODO may need to implement fluid fix from Vehicle Mod. See FluidUtils#fixEmptyTag(NBTTagCompound tag)
-        super.read(tag);
+        super.read(blockState, tag);
         this.tank.readFromNBT(tag);
     }
 
@@ -75,7 +76,7 @@ public abstract class FluidHandlerSyncedTileEntity extends TileEntity
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt)
     {
-        this.read(pkt.getNbtCompound());
+        this.read(this.getBlockState(), pkt.getNbtCompound());
     }
 
     @Override

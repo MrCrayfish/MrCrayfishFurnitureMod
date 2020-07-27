@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.client.event;
 
 import com.google.common.collect.Lists;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mrcrayfish.furniture.FurnitureMod;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.gui.widget.button.IconButton;
@@ -16,6 +17,8 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.ITextProperties;
 import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -176,7 +179,7 @@ public class CreativeScreenEvents
                 /* Render buttons */
                 this.buttons.forEach(button ->
                 {
-                    button.render(event.getMouseX(), event.getMouseY(), event.getRenderPartialTicks());
+                    button.render(event.getMatrixStack(), event.getMouseX(), event.getMouseY(), event.getRenderPartialTicks());
                 });
 
                 /* Render tooltips after so it renders above buttons */
@@ -184,18 +187,18 @@ public class CreativeScreenEvents
                 {
                     if(button.isMouseOver(event.getMouseX(), event.getMouseY()))
                     {
-                        screen.renderTooltip(button.getCategory().getName(), event.getMouseX(), event.getMouseY());
+                        screen.renderTooltip(event.getMatrixStack(), ITextProperties.func_240652_a_(button.getCategory().getName()), event.getMouseX(), event.getMouseY());
                     }
                 });
 
                 if(this.btnEnableAll.isMouseOver(event.getMouseX(), event.getMouseY()))
                 {
-                    screen.renderTooltip(this.btnEnableAll.getMessage(), event.getMouseX(), event.getMouseY());
+                    screen.renderTooltip(event.getMatrixStack(), ITextProperties.func_240652_a_(this.btnEnableAll.getMessage().getString()), event.getMouseX(), event.getMouseY());
                 }
 
                 if(this.btnDisableAll.isMouseOver(event.getMouseX(), event.getMouseY()))
                 {
-                    screen.renderTooltip(this.btnDisableAll.getMessage(), event.getMouseX(), event.getMouseY());
+                    screen.renderTooltip(event.getMatrixStack(), ITextProperties.func_240652_a_(this.btnDisableAll.getMessage().getString()), event.getMouseX(), event.getMouseY());
                 }
             }
             else

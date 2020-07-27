@@ -10,7 +10,7 @@ import net.minecraft.nbt.ListNBT;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.WorldSavedData;
 import net.minecraftforge.common.util.Constants;
@@ -105,7 +105,7 @@ public class PostOffice extends WorldSavedData
     {
         PostOffice office = get(playerEntity.server);
         Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.computeIfAbsent(playerEntity.getUniqueID(), uuid -> new HashMap<>());
-        mailBoxMap.put(mailBoxId, new MailBox(mailBoxId, name, playerEntity.getUniqueID(), playerEntity.getName().getString(), pos, playerEntity.dimension));
+        mailBoxMap.put(mailBoxId, new MailBox(mailBoxId, name, playerEntity.getUniqueID(), playerEntity.getName().getString(), pos, playerEntity.world.func_234923_W_()));
         office.markDirty();
     }
 
@@ -202,7 +202,7 @@ public class PostOffice extends WorldSavedData
                     MailBox mailBox = mailBoxMap.get(mailBoxId);
                     mailBox.setName(name);
 
-                    ServerWorld world = server.getWorld(mailBox.getDimensionType());
+                    ServerWorld world = server.getWorld(mailBox.getWorld());
                     TileEntity tileEntity = world.getTileEntity(mailBox.getPos());
                     if(tileEntity instanceof MailBoxTileEntity)
                     {
@@ -218,7 +218,7 @@ public class PostOffice extends WorldSavedData
 
     private static PostOffice get(MinecraftServer server)
     {
-        ServerWorld world = server.getWorld(DimensionType.OVERWORLD);
+        ServerWorld world = server.getWorld(World.field_234918_g_);
         return world.getSavedData().getOrCreate(PostOffice::new, DATA_NAME);
     }
 
@@ -241,7 +241,7 @@ public class PostOffice extends WorldSavedData
             office.playerMailboxMap.values().forEach(uuidMailBoxMap -> uuidMailBoxMap.values().removeIf(mailBox ->
             {
                 BlockPos pos = mailBox.getPos();
-                ServerWorld world = server.getWorld(mailBox.getDimensionType());
+                ServerWorld world = server.getWorld(mailBox.getWorld());
                 if(world.isAreaLoaded(pos, 0))
                 {
                     TileEntity tileEntity = world.getTileEntity(pos);

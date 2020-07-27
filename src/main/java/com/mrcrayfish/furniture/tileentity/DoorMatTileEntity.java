@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.tileentity;
 
 import com.mrcrayfish.furniture.core.ModTileEntities;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
+import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
@@ -37,9 +38,9 @@ public class DoorMatTileEntity extends TileEntity
     }
 
     @Override
-    public void read(CompoundNBT compound)
+    public void read(BlockState blockState, CompoundNBT compound)
     {
-        super.read(compound);
+        super.read(blockState, compound);
         if(compound.contains("Message", Constants.NBT.TAG_STRING))
         {
             this.message = compound.getString("Message");
@@ -72,6 +73,6 @@ public class DoorMatTileEntity extends TileEntity
     @Override
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt)
     {
-        this.read(pkt.getNbtCompound());
+        this.read(this.getBlockState() ,pkt.getNbtCompound());
     }
 }

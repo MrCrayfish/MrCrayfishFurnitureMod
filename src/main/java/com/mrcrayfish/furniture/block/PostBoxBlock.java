@@ -63,7 +63,7 @@ public class PostBoxBlock extends FurnitureHorizontalWaterloggedBlock
     }
 
     @Override
-    public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
     {
         playerEntity.openContainer(state.getContainer(world, pos));
         return ActionResultType.SUCCESS;

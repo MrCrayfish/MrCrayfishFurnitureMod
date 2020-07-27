@@ -106,7 +106,7 @@ public class ParkBenchBlock extends FurnitureHorizontalWaterloggedBlock
     }
 
     @Override
-    public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
     {
         return SeatEntity.create(world, pos, 0.3375, playerEntity);
     }
@@ -176,7 +176,7 @@ public class ParkBenchBlock extends FurnitureHorizontalWaterloggedBlock
         }
 
         @Override
-        public String getName()
+        public String getString()
         {
             return id;
         }

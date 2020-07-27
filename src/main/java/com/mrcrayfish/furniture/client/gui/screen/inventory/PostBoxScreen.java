@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.client.gui.screen.inventory;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.MailBoxEntry;
@@ -17,6 +18,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.ITextProperties;
 import net.minecraft.util.text.TextFormatting;
 import org.lwjgl.opengl.GL11;
 
@@ -64,7 +66,7 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
     protected void init()
     {
         super.init();
-        this.searchField = new TextFieldWidget(this.font, this.guiLeft + 22, this.guiTop + 19, 101, 9, I18n.format("gui.cfm.post_box.search"));
+        this.searchField = new TextFieldWidget(this.font, this.guiLeft + 22, this.guiTop + 19, 101, 9, ITextComponent.func_241827_a_(I18n.format("gui.cfm.post_box.search")));
         this.searchField.setEnableBackgroundDrawing(false);
         this.searchField.setMaxStringLength(32);
         this.searchField.setTextColor(16777215);
@@ -91,32 +93,32 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+    protected void drawGuiContainerBackgroundLayer(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY)
     {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.minecraft.getTextureManager().bindTexture(GUI_TEXTURE);
         int startX = (this.width - this.xSize) / 2;
         int startY = (this.height - this.ySize) / 2;
-        this.blit(startX, startY, 0, 0, this.xSize, this.ySize);
+        this.blit(matrixStack, startX, startY, 0, 0, this.xSize, this.ySize);
 
         if(this.container.getMail().isEmpty())
         {
-            this.blit(startX + 149, startY + 33, 116, 202, 16, 16);
+            this.blit(matrixStack, startX + 149, startY + 33, 116, 202, 16, 16);
         }
 
-        this.searchField.render(mouseX, mouseY, partialTicks);
+        this.searchField.render(matrixStack,mouseX, mouseY, partialTicks);
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
+    protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int mouseX, int mouseY)
     {
-        this.font.drawString(this.title.getFormattedText(), 8.0F, 6.0F, 0x404040);
-        this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), 8.0F, (float) (this.ySize - 96 + 2), 0x404040);
+        this.font.drawString(matrixStack, this.title.getString(), 8.0F, 6.0F, 0x404040);
+        this.font.drawString(matrixStack, this.playerInventory.getDisplayName().getString(), 8.0F, (float) (this.ySize - 96 + 2), 0x404040);
 
         this.minecraft.getTextureManager().bindTexture(GUI_TEXTURE);
         int scrollBarY = this.getScrollBarY(mouseY);
         int scrollBarUOffset = this.getMaxScroll() <= 0 ? SCROLL_BAR_WIDTH : 0;
-        this.blit(128, 32 + scrollBarY, 116 + scrollBarUOffset, 187, SCROLL_BAR_WIDTH, SCROLL_BAR_HEIGHT);
+        this.blit(matrixStack, 128, 32 + scrollBarY, 116 + scrollBarUOffset, 187, SCROLL_BAR_WIDTH, SCROLL_BAR_HEIGHT);
 
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
         {
@@ -139,18 +141,18 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
                 this.minecraft.getTextureManager().bindTexture(GUI_TEXTURE);
 
                 boolean isSelected = entry == selected;
-                this.blit(0, 0, 0, 211 - (isSelected ? ITEM_HEIGHT : 0), ITEM_WIDTH, ITEM_HEIGHT);
+                this.blit(matrixStack, 0, 0, 0, 211 - (isSelected ? ITEM_HEIGHT : 0), ITEM_WIDTH, ITEM_HEIGHT);
 
                 if(isSelected)
                 {
-                    this.blit(ITEM_WIDTH - 20, 5, 140, 187, 14, 12);
-                    this.font.drawString(TextFormatting.BOLD + entry.getName(), 3, 3, 16777045);
-                    this.font.drawString(entry.getOwnerName(), 3, 13, 0xFFFFFF);
+                    this.blit(matrixStack, ITEM_WIDTH - 20, 5, 140, 187, 14, 12);
+                    this.font.drawString(matrixStack, TextFormatting.BOLD + entry.getName(), 3, 3, 16777045);
+                    this.font.drawString(matrixStack, entry.getOwnerName(), 3, 13, 0xFFFFFF);
                 }
                 else
                 {
-                    this.font.drawString(entry.getName(), 3, 3, 0xFFFFFF);
-                    this.font.drawString(entry.getOwnerName(), 3, 13, 0x777777);
+                    this.font.drawString(matrixStack, entry.getName(), 3, 3, 0xFFFFFF);
+                    this.font.drawString(matrixStack, entry.getOwnerName(), 3, 13, 0x777777);
                 }
 
                 RenderSystem.popMatrix();
@@ -160,11 +162,11 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
     }
 
     @Override
-    public void render(int mouseX, int mouseY, float partialTicks)
+    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks)
     {
-        this.renderBackground();
-        super.render(mouseX, mouseY, partialTicks);
-        this.renderHoveredToolTip(mouseX, mouseY);
+        this.renderBackground(matrixStack);
+        super.render(matrixStack,mouseX, mouseY, partialTicks);
+        this.func_230459_a_(matrixStack, mouseX, mouseY);
     }
 
     @Override

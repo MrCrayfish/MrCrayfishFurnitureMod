@@ -222,7 +222,7 @@ public class TrampolineBlock extends FurnitureBlock
             }
 
             float height = entityIn.fallDistance * strength;
-            if(height > 0 && !entityIn.func_225608_bj_())
+            if(height > 0 && !entityIn.isSneaking())
             {
                 if(height > maxHeight - 0.25F) height = maxHeight - 0.25F;
                 entityIn.setMotion(entityIn.getMotion().mul(1.0, 0.0, 1.0));

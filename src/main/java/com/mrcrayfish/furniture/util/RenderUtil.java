@@ -11,8 +11,8 @@ public class RenderUtil
     public static void scissor(int x, int y, int width, int height)
     {
         Minecraft mc = Minecraft.getInstance();
-        int scale = (int) mc.func_228018_at_().getGuiScaleFactor();
-        GL11.glScissor(x * scale, mc.func_228018_at_().getHeight() - y * scale - height * scale, width * scale, height * scale);
+        int scale = (int) mc.getMainWindow().getGuiScaleFactor();
+        GL11.glScissor(x * scale, mc.getMainWindow().getHeight() - y * scale - height * scale, width * scale, height * scale);
     }
 
     public static boolean isMouseInArea(int mouseX, int mouseY, int x, int y, int width, int height)

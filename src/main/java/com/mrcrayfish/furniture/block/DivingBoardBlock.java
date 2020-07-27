@@ -110,7 +110,7 @@ public class DivingBoardBlock extends FurnitureHorizontalWaterloggedBlock
             float strength = 5.0F;
             float maxHeight = 8F;
             float height = entityIn.fallDistance * strength;
-            if(height > 0 && !entityIn.func_225608_bj_())
+            if(height > 0 && !entityIn.isSneaking())
             {
                 if(height > maxHeight - 0.25F) height = maxHeight - 0.25F;
                 entityIn.setMotion(entityIn.getMotion().mul(1.0, 0.0, 1.0));
@@ -157,11 +157,11 @@ public class DivingBoardBlock extends FurnitureHorizontalWaterloggedBlock
         @Override
         public String toString()
         {
-            return this.getName();
+            return this.getString();
         }
 
         @Override
-        public String getName()
+        public String getString()
         {
             return this == BASE ? "base" : "board";
         }
