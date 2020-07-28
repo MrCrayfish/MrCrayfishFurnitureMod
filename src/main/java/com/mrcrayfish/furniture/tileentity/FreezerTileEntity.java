@@ -25,7 +25,7 @@ import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3i;
+import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -346,7 +346,7 @@ public class FreezerTileEntity extends BasicLootTileEntity implements ITickableT
         {
             int splitExp = ExperienceOrbEntity.getXPSplit(count);
             count -= splitExp;
-            player.world.addEntity(new ExperienceOrbEntity(player.world, player.func_226277_ct_(), player.func_226278_cu_() + 0.5, player.func_226281_cx_(), splitExp));
+            player.world.addEntity(new ExperienceOrbEntity(player.world, player.getPosX(), player.getPosY() + 0.5, player.getPosZ(), splitExp));
         }
     }
 
@@ -377,9 +377,9 @@ public class FreezerTileEntity extends BasicLootTileEntity implements ITickableT
     }
 
     @Override
-    public void read(CompoundNBT compound)
+    public void read(BlockState blockState, CompoundNBT compound)
     {
-        super.read(compound);
+        super.read(blockState, compound);
         this.freezeTime = compound.getInt("FreezeTime");
         this.freezeTimeTotal = compound.getInt("FreezeTimeTotal");
         this.fuelTime = compound.getInt("FuelTime");
@@ -485,7 +485,7 @@ public class FreezerTileEntity extends BasicLootTileEntity implements ITickableT
 
     private void playDoorSound(BlockState blockState, SoundEvent soundEvent)
     {
-        Vec3i directionVec = blockState.get(FreezerBlock.DIRECTION).getOpposite().getDirectionVec();
+        Vector3i directionVec = blockState.get(FreezerBlock.DIRECTION).getOpposite().getDirectionVec();
         double x = this.pos.getX() + 0.5D + directionVec.getX() / 2.0D;
         double y = this.pos.getY() + 0.5D + directionVec.getY() / 2.0D;
         double z = this.pos.getZ() + 0.5D + directionVec.getZ() / 2.0D;

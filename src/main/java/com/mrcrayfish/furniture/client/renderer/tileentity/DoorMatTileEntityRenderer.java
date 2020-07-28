@@ -7,9 +7,10 @@ import com.mrcrayfish.furniture.tileentity.DoorMatTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.Vector3f;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
+import net.minecraft.util.text.ITextProperties;
 
 import java.util.List;
 
@@ -24,36 +25,36 @@ public class DoorMatTileEntityRenderer extends TileEntityRenderer<DoorMatTileEnt
     }
 
     @Override
-    public void func_225616_a_(DoorMatTileEntity tileEntity, float v, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int i, int i1)
+    public void render(DoorMatTileEntity tileEntity, float v, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int i, int i1)
     {
         if(tileEntity.getMessage() != null)
         {
             BlockState state = tileEntity.getBlockState();
             if(state.getBlock() instanceof DoorMatBlock)
             {
-                matrixStack.func_227860_a_(); //Push
+                matrixStack.push(); //Push
 
-                matrixStack.func_227861_a_(0.5, 0.0626, 0.5);
+                matrixStack.translate(0.5, 0.0626, 0.5);
 
                 int rotation = state.get(DoorMatBlock.DIRECTION).getHorizontalIndex();
-                matrixStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(-90F * rotation + 180F));
-                matrixStack.func_227863_a_(Vector3f.field_229179_b_.func_229187_a_(-90F));
+                matrixStack.rotate(Vector3f.YP.rotationDegrees(-90F * rotation + 180F));
+                matrixStack.rotate(Vector3f.XP.rotationDegrees(-90F));
 
-                matrixStack.func_227862_a_(1.0F, -1.0F, -1.0F);
-                matrixStack.func_227862_a_(0.0125F, 0.0125F, 0.0125F);
+                matrixStack.scale(1.0F, -1.0F, -1.0F);
+                matrixStack.scale(0.0125F, 0.0125F, 0.0125F);
 
-                FontRenderer fontRenderer = this.field_228858_b_.getFontRenderer();
-                List<String> lines = fontRenderer.listFormattedStringToWidth(tileEntity.getMessage(), 60);
-                matrixStack.func_227861_a_(0.0, -(lines.size() * fontRenderer.FONT_HEIGHT - 1.0) / 2.0, 0);
+                FontRenderer fontRenderer = this.renderDispatcher.getFontRenderer();
+                List<ITextProperties> lines = fontRenderer.func_238425_b_(ITextProperties.func_240652_a_(tileEntity.getMessage()), 60);
+                matrixStack.translate(0.0, -(lines.size() * fontRenderer.FONT_HEIGHT - 1.0) / 2.0, 0);
 
                 for(int j = 0; j < lines.size(); j++)
                 {
-                    matrixStack.func_227860_a_();
-                    matrixStack.func_227861_a_(-fontRenderer.getStringWidth(lines.get(j)) / 2.0, (j * fontRenderer.FONT_HEIGHT), 0.0);
-                    fontRenderer.func_228079_a_(lines.get(j), 0, 0, i1, false, matrixStack.func_227866_c_().func_227870_a_(), renderTypeBuffer, false, 0, i);
-                    matrixStack.func_227865_b_();
+                    matrixStack.push();
+                    matrixStack.translate(-fontRenderer.getStringWidth(lines.get(j).getString()) / 2.0, (j * fontRenderer.FONT_HEIGHT), 0.0);
+                    fontRenderer.renderString(lines.get(j).getString(), 0, 0, i1, false, matrixStack.getLast().getMatrix(), renderTypeBuffer, false, 0, i);
+                    matrixStack.pop();
                 }
-                matrixStack.func_227865_b_(); //Pop
+                matrixStack.pop(); //Pop
             }
         }
     }

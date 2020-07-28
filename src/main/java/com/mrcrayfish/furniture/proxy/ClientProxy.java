@@ -61,7 +61,7 @@ public class ClientProxy extends CommonProxy
         ScreenManager.registerFactory(ModContainers.MAIL_BOX, MailBoxScreen::new);
         ScreenManager.registerFactory(ModContainers.FREEZER, FreezerScreen::new);
 
-        Predicate<RenderType> leavesPredicate = renderType -> this.useFancyGraphics() ? renderType == RenderType.func_228641_d_() : renderType == RenderType.func_228639_c_();
+        Predicate<RenderType> leavesPredicate = renderType -> this.useFancyGraphics() ? renderType == RenderType.getCutoutMipped() : renderType == RenderType.getSolid();
         RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_OAK, leavesPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_SPRUCE, leavesPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_BIRCH, leavesPredicate);
@@ -69,7 +69,7 @@ public class ClientProxy extends CommonProxy
         RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_ACACIA, leavesPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_DARK_OAK, leavesPredicate);
         
-        Predicate<RenderType> cutoutPredicate = renderType -> renderType == RenderType.func_228643_e_();
+        Predicate<RenderType> cutoutPredicate = renderType -> renderType == RenderType.getCutout();
         RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_WHITE, cutoutPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_ORANGE, cutoutPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_MAGENTA, cutoutPredicate);
@@ -299,7 +299,7 @@ public class ClientProxy extends CommonProxy
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> FoliageColors.getBirch(),
                 ModBlocks.HEDGE_BIRCH);
 
-        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> reader != null && pos != null ? BiomeColors.func_228361_b_(reader, pos) : FoliageColors.getDefault(),
+        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> reader != null && pos != null ? BiomeColors.getFoliageColor(reader, pos) : FoliageColors.getDefault(),
                 ModBlocks.HEDGE_OAK,
                 ModBlocks.HEDGE_JUNGLE,
                 ModBlocks.HEDGE_ACACIA,
@@ -307,7 +307,7 @@ public class ClientProxy extends CommonProxy
 
         Minecraft.getInstance().getItemColors().register((stack, i) -> {
             BlockState state = ((BlockItem)stack.getItem()).getBlock().getDefaultState();
-            return Minecraft.getInstance().getBlockColors().func_228054_a_(state, null, null, i);
+            return Minecraft.getInstance().getBlockColors().getColor(state, null, null, i);
         }, ModBlocks.HEDGE_OAK, ModBlocks.HEDGE_SPRUCE, ModBlocks.HEDGE_BIRCH, ModBlocks.HEDGE_JUNGLE, ModBlocks.HEDGE_ACACIA, ModBlocks.HEDGE_DARK_OAK);
     }
 
@@ -330,7 +330,7 @@ public class ClientProxy extends CommonProxy
     public boolean useFancyGraphics()
     {
         Minecraft mc = Minecraft.getInstance();
-        return mc.gameSettings.fancyGraphics;
+        return mc.gameSettings.field_238330_f_.func_238162_a_() > 0;
     }
 
     @Override

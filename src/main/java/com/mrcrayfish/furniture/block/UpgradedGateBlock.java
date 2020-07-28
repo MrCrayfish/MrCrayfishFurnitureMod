@@ -18,7 +18,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -184,7 +184,7 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
     }
 
     @Override
-    public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
     {
         Direction hitFace = result.getFace();
         Direction direction = state.get(DIRECTION);
@@ -287,7 +287,7 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
         int offsetX = playerFacing.getXOffset();
         int offsetZ = playerFacing.getZOffset();
         BlockPos pos = context.getPos();
-        Vec3d hitVec = context.getHitVec().subtract(pos.getX(), pos.getY(), pos.getZ());
+        Vector3d hitVec = context.getHitVec().subtract(pos.getX(), pos.getY(), pos.getZ());
         boolean side = offsetX < 0 && hitVec.z < 0.5 || offsetX > 0 && hitVec.z > 0.5 || offsetZ < 0 && hitVec.x > 0.5 || offsetZ > 0 && hitVec.x < 0.5;
         return side ? DoorHingeSide.RIGHT : DoorHingeSide.LEFT;
     }

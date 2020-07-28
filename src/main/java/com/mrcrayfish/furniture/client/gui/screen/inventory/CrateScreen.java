@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.client.gui.screen.inventory;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.gui.widget.button.IconButton;
@@ -11,6 +12,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.ITextProperties;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -56,37 +58,37 @@ public class CrateScreen extends ContainerScreen<CrateContainer>
     {
         this.locked = this.container.getCrateTileEntity().isLocked();
         this.button.setIcon(ICONS_TEXTURE, this.locked ? 0 : 16, 0);
-        this.button.setMessage(I18n.format(this.locked ? "gui.button.cfm.locked" : "gui.button.cfm.unlocked"));
+        this.button.setMessage(ITextComponent.func_241827_a_(I18n.format(this.locked ? "gui.button.cfm.locked" : "gui.button.cfm.unlocked")));
         UUID ownerUuid = this.container.getCrateTileEntity().getOwner();
         this.button.visible = ownerUuid == null || this.playerInventory.player.getUniqueID().equals(ownerUuid);
     }
 
     @Override
-    public void render(int mouseX, int mouseY, float partialTicks)
+    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks)
     {
-        this.renderBackground();
-        super.render(mouseX, mouseY, partialTicks);
-        this.renderHoveredToolTip(mouseX, mouseY);
+        this.renderBackground(matrixStack);
+        super.render(matrixStack, mouseX, mouseY, partialTicks);
+        this.func_230459_a_(matrixStack, mouseX, mouseY);
         if(this.button.isMouseOver(mouseX, mouseY))
         {
-            this.renderTooltip(locked ? I18n.format("gui.button.cfm.locked") : I18n.format("gui.button.cfm.unlocked"), mouseX, mouseY);
+            this.renderTooltip(matrixStack, ITextProperties.func_240652_a_(locked ? I18n.format("gui.button.cfm.locked") : I18n.format("gui.button.cfm.unlocked")), mouseX, mouseY);
         }
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
+    protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int mouseX, int mouseY)
     {
-        this.font.drawString(this.title.getFormattedText(), 8.0F, 6.0F, 0x404040);
-        this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), 8.0F, (float) (this.ySize - 96 + 2), 0x404040);
+        this.font.drawString(matrixStack, this.title.getString(), 8.0F, 6.0F, 0x404040);
+        this.font.drawString(matrixStack, this.playerInventory.getDisplayName().getString(), 8.0F, (float) (this.ySize - 96 + 2), 0x404040);
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY)
+    protected void drawGuiContainerBackgroundLayer(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY)
     {
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.minecraft.getTextureManager().bindTexture(GUI_TEXTURE);
         int startX = (this.width - this.xSize) / 2;
         int startY = (this.height - this.ySize) / 2;
-        this.blit(startX, startY, 0, 0, this.xSize, this.ySize);
+        this.blit(matrixStack, startX, startY, 0, 0, this.xSize, this.ySize);
     }
 }

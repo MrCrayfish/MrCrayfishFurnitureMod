@@ -101,7 +101,7 @@ public class BlindsBlock extends FurnitureHorizontalWaterloggedBlock
     }
 
     @Override
-    public boolean func_220074_n(BlockState state)
+    public boolean isTransparent(BlockState state)
     {
         return !state.get(OPEN);
     }
@@ -113,7 +113,7 @@ public class BlindsBlock extends FurnitureHorizontalWaterloggedBlock
     }*/
 
     @Override
-    public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
     {
         this.toggleBlinds(world, pos, !state.get(OPEN), state.get(DIRECTION), 5);
         if(!world.isRemote)

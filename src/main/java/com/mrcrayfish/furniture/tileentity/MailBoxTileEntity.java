@@ -5,6 +5,7 @@ import com.mrcrayfish.furniture.common.mail.Mail;
 import com.mrcrayfish.furniture.common.mail.PostOffice;
 import com.mrcrayfish.furniture.core.ModTileEntities;
 import com.mrcrayfish.furniture.inventory.container.MailBoxContainer;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.Container;
@@ -119,9 +120,9 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
     }
 
     @Override
-    public void read(CompoundNBT compound)
+    public void read(BlockState blockState, CompoundNBT compound)
     {
-        super.read(compound);
+        super.read(blockState, compound);
         this.readData(compound);
     }
 

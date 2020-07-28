@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.tileentity;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -106,9 +107,9 @@ public abstract class BasicLootTileEntity extends LockableLootTileEntity impleme
     }
 
     @Override
-    public void read(CompoundNBT compound)
+    public void read(BlockState blockState, CompoundNBT compound)
     {
-        super.read(compound);
+        super.read(blockState, compound);
         this.inventory = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
         if(!this.checkLootAndRead(compound))
         {

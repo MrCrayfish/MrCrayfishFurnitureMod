@@ -3,8 +3,11 @@ package com.mrcrayfish.furniture.common.mail;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.nbt.NBTUtil;
+import net.minecraft.util.RegistryKey;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.INBTSerializable;
 
@@ -22,17 +25,17 @@ public class MailBox implements INBTSerializable<CompoundNBT>
     private UUID ownerId;
     private String ownerName;
     private BlockPos pos;
-    private DimensionType type = DimensionType.OVERWORLD;
+    private RegistryKey<World> world = World.field_234918_g_;
     private List<Mail> mailStorage = new ArrayList<>();
 
-    public MailBox(UUID id, String name, UUID ownerId, String ownerName, BlockPos pos, DimensionType type)
+    public MailBox(UUID id, String name, UUID ownerId, String ownerName, BlockPos pos, RegistryKey<World> world)
     {
         this.id = id;
         this.name = name;
         this.ownerId = ownerId;
         this.ownerName = ownerName;
         this.pos = pos;
-        this.type = type;
+        this.world = world;
     }
 
     public MailBox(CompoundNBT compound)
@@ -70,9 +73,9 @@ public class MailBox implements INBTSerializable<CompoundNBT>
         return this.pos;
     }
 
-    public DimensionType getDimensionType()
+    public RegistryKey<World> getWorld()
     {
-        return type;
+        return world;
     }
 
     public void addMail(Mail mail)
@@ -109,7 +112,7 @@ public class MailBox implements INBTSerializable<CompoundNBT>
         compound.putUniqueId("OwnerUUID", this.ownerId);
         compound.putString("OwnerName", this.ownerName);
         compound.put("Pos", NBTUtil.writeBlockPos(this.pos));
-        compound.putInt("Dimension", this.type.getId());
+        compound.putString("World", this.world.func_240901_a_().toString());
 
         if(!this.mailStorage.isEmpty())
         {
@@ -131,7 +134,7 @@ public class MailBox implements INBTSerializable<CompoundNBT>
         this.ownerId = compound.getUniqueId("OwnerUUID");
         this.ownerName = compound.getString("OwnerName");
         this.pos = NBTUtil.readBlockPos(compound.getCompound("Pos"));
-        this.type = DimensionType.getById(compound.getInt("Dimension"));
+        this.world = RegistryKey.func_240903_a_(Registry.WORLD_KEY, new ResourceLocation(compound.getString("World")));
 
         if(compound.contains("MailStorage", Constants.NBT.TAG_LIST))
         {

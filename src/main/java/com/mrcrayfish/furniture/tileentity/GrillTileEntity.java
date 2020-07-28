@@ -8,6 +8,7 @@ import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageFlipGrill;
 import com.mrcrayfish.furniture.util.ItemStackHelper;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.item.ExperienceOrbEntity;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -531,9 +532,9 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
     }
 
     @Override
-    public void read(CompoundNBT compound)
+    public void read(BlockState blockState, CompoundNBT compound)
     {
-        super.read(compound);
+        super.read(blockState, compound);
         if(compound.contains("Grill", Constants.NBT.TAG_LIST))
         {
             this.grill.clear();
@@ -670,7 +671,7 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt)
     {
         CompoundNBT compound = pkt.getNbtCompound();
-        this.read(compound);
+        this.read(this.getBlockState(), compound);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.tileentity;
 
 import com.mrcrayfish.furniture.core.ModTileEntities;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
+import net.minecraft.block.BlockState;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
@@ -67,9 +68,9 @@ public class TrampolineTileEntity extends TileEntity
     }
 
     @Override
-    public void read(CompoundNBT compound)
+    public void read(BlockState blockState, CompoundNBT compound)
     {
-        super.read(compound);
+        super.read(blockState, compound);
         this.readData(compound);
     }
 

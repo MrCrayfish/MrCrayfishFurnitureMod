@@ -18,7 +18,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.vector.Vector3d;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -72,7 +72,7 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements ISidedInven
     }
 
     @Override
-    public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
     {
         if(!world.isRemote && result.getFace() == Direction.UP)
         {
@@ -118,7 +118,7 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements ISidedInven
 
     private int getPosition(BlockRayTraceResult hit, BlockPos pos)
     {
-        Vec3d hitVec = hit.getHitVec().subtract(pos.getX(), pos.getY(), pos.getZ());
+        Vector3d hitVec = hit.getHitVec().subtract(pos.getX(), pos.getY(), pos.getZ());
         int position = 0;
         if(hitVec.getX() > 0.5) position += 1;
         if(hitVec.getZ() > 0.5) position += 2;

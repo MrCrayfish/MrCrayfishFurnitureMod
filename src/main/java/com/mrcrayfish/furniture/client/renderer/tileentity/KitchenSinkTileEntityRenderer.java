@@ -15,6 +15,8 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.vector.Matrix4f;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.client.ForgeHooksClient;
 import org.lwjgl.opengl.GL11;
 
@@ -29,15 +31,15 @@ public class KitchenSinkTileEntityRenderer extends TileEntityRenderer<KitchenSin
     }
 
     @Override
-    public void func_225616_a_(KitchenSinkTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int light, int i1)
+    public void render(KitchenSinkTileEntity tileEntity, float partialTicks, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, int light, int i1)
     {
-        matrixStack.func_227860_a_();
-        matrixStack.func_227861_a_(0.5, 0.5, 0.5);
+        matrixStack.push();
+        matrixStack.translate(0.5, 0.5, 0.5);
         Direction direction = tileEntity.getBlockState().get(FurnitureHorizontalBlock.DIRECTION);
-        matrixStack.func_227863_a_(Vector3f.field_229181_d_.func_229187_a_(direction.getHorizontalIndex() * -90F - 90F));
-        matrixStack.func_227861_a_(-0.5, -0.5, -0.5);
+        matrixStack.rotate(Vector3f.YP.rotationDegrees(direction.getHorizontalIndex() * -90F - 90F));
+        matrixStack.translate(-0.5, -0.5, -0.5);
         this.drawFluid(tileEntity, matrixStack, renderTypeBuffer, 2F * 0.0625F, 10F * 0.0625F, 2F * 0.0625F, 10F * 0.0625F, 5F * 0.0625F, 12F * 0.0625F, light);
-        matrixStack.func_227865_b_();
+        matrixStack.pop();
     }
 
     private void drawFluid(KitchenSinkTileEntity te, MatrixStack matrixStack, IRenderTypeBuffer renderTypeBuffer, float x, float y, float z, float width, float height, float depth, int light)
@@ -59,12 +61,12 @@ public class KitchenSinkTileEntityRenderer extends TileEntityRenderer<KitchenSin
 
         height *= ((double) te.getTank().getFluidAmount() / (double) te.getTank().getCapacity());
 
-        IVertexBuilder buffer = renderTypeBuffer.getBuffer(RenderType.func_228645_f_());
-        Matrix4f matrix = matrixStack.func_227866_c_().func_227870_a_();
+        IVertexBuilder buffer = renderTypeBuffer.getBuffer(RenderType.getTranslucent());
+        Matrix4f matrix = matrixStack.getLast().getMatrix();
 
-        buffer.func_227888_a_(matrix, x, y + height, z).func_227885_a_(red, green, blue, 1.0F).func_225583_a_(maxU, minV).func_227886_a_(light).func_225584_a_(0.0F, 1.0F, 0.0F).endVertex();
-        buffer.func_227888_a_(matrix, x, y + height, z + depth).func_227885_a_(red, green, blue, 1.0F).func_225583_a_(minU, minV).func_227886_a_(light).func_225584_a_(0.0F, 1.0F, 0.0F).endVertex();
-        buffer.func_227888_a_(matrix, x + width, y + height, z + depth).func_227885_a_(red, green, blue, 1.0F).func_225583_a_(minU, maxV).func_227886_a_(light).func_225584_a_(0.0F, 1.0F, 0.0F).endVertex();
-        buffer.func_227888_a_(matrix, x + width, y + height, z).func_227885_a_(red, green, blue, 1.0F).func_225583_a_(maxU, maxV).func_227886_a_(light).func_225584_a_(0.0F, 1.0F, 0.0F).endVertex();
+        buffer.pos(matrix, x, y + height, z).color(red, green, blue, 1.0F).tex(maxU, minV).lightmap(light).normal(0.0F, 1.0F, 0.0F).endVertex();
+        buffer.pos(matrix, x, y + height, z + depth).color(red, green, blue, 1.0F).tex(minU, minV).lightmap(light).normal(0.0F, 1.0F, 0.0F).endVertex();
+        buffer.pos(matrix, x + width, y + height, z + depth).color(red, green, blue, 1.0F).tex(minU, maxV).lightmap(light).normal(0.0F, 1.0F, 0.0F).endVertex();
+        buffer.pos(matrix, x + width, y + height, z).color(red, green, blue, 1.0F).tex(maxU, maxV).lightmap(light).normal(0.0F, 1.0F, 0.0F).endVertex();
     }
 }

@@ -130,7 +130,7 @@ public class DeskBlock extends FurnitureHorizontalWaterloggedBlock
         }
 
         @Override
-        public String getName()
+        public String getString()
         {
             return id;
         }

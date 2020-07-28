@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.client.gui.widget.button;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mrcrayfish.furniture.client.event.CreativeScreenEvents;
@@ -11,6 +12,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
 
 /**
  * Author: MrCrayfish
@@ -25,7 +27,7 @@ public class TagButton extends Button
 
     public TagButton(int x, int y, CreativeScreenEvents.TagFilter category, IPressable pressable)
     {
-        super(x, y, 32, 28, "", pressable);
+        super(x, y, 32, 28, ITextComponent.func_241827_a_(""), pressable);
         this.category = category;
         this.stack = category.getIcon();
         this.toggled = category.isEnabled();
@@ -45,7 +47,7 @@ public class TagButton extends Button
     }
 
     @Override
-    public void renderButton(int mouseX, int mouseY, float partialTicks)
+    public void renderButton(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks)
     {
         Minecraft mc = Minecraft.getInstance();
         mc.getTextureManager().bindTexture(TABS);
@@ -76,10 +78,10 @@ public class TagButton extends Button
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder buffer = tessellator.getBuffer();
         buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        buffer.func_225582_a_((double)(x), (double)(y + height), 0.0).func_225583_a_(((float)(textureX + height) * scaleX), ((float)(textureY) * scaleY)).endVertex();
-        buffer.func_225582_a_((double)(x + width), (double)(y + height), 0.0).func_225583_a_(((float)(textureX + height) * scaleX), ((float)(textureY + width) * scaleY)).endVertex();
-        buffer.func_225582_a_((double)(x + width), (double)(y), 0.0).func_225583_a_(((float)(textureX) * scaleX), ((float)(textureY + width) * scaleY)).endVertex();
-        buffer.func_225582_a_((double)(x), (double)(y), 0.0).func_225583_a_(((float)(textureX) * scaleX), ((float)(textureY) * scaleY)).endVertex();
+        buffer.pos((double)(x), (double)(y + height), 0.0).tex(((float)(textureX + height) * scaleX), ((float)(textureY) * scaleY)).endVertex();
+        buffer.pos((double)(x + width), (double)(y + height), 0.0).tex(((float)(textureX + height) * scaleX), ((float)(textureY + width) * scaleY)).endVertex();
+        buffer.pos((double)(x + width), (double)(y), 0.0).tex(((float)(textureX) * scaleX), ((float)(textureY + width) * scaleY)).endVertex();
+        buffer.pos((double)(x), (double)(y), 0.0).tex(((float)(textureX) * scaleX), ((float)(textureY) * scaleY)).endVertex();
         tessellator.draw();
     }
 

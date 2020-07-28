@@ -13,7 +13,7 @@ import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.tileentity.ChestTileEntity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.Vec3i;
+import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -94,7 +94,7 @@ public class KitchenDrawerTileEntity extends BasicLootTileEntity
         World world = this.getWorld();
         if(world != null)
         {
-            this.playerCount = ChestTileEntity.func_213976_a(world, this, x, y, z); //Gets a count of players around using this inventory
+            this.playerCount = ChestTileEntity.calculatePlayersUsing(world, this, x, y, z); //Gets a count of players around using this inventory
             if(this.playerCount > 0)
             {
                 this.scheduleTick();
@@ -120,7 +120,7 @@ public class KitchenDrawerTileEntity extends BasicLootTileEntity
 
     private void playDrawerSound(BlockState blockState, SoundEvent soundEvent)
     {
-        Vec3i directionVec = blockState.get(DeskCabinetBlock.DIRECTION).getDirectionVec();
+        Vector3i directionVec = blockState.get(DeskCabinetBlock.DIRECTION).getDirectionVec();
         double x = this.pos.getX() + 0.5D + directionVec.getX() / 2.0D;
         double y = this.pos.getY() + 0.5D + directionVec.getY() / 2.0D;
         double z = this.pos.getZ() + 0.5D + directionVec.getZ() / 2.0D;

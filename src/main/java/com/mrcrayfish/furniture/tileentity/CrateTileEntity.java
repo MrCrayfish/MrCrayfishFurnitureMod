@@ -20,7 +20,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.Vec3i;
+import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
@@ -61,7 +61,7 @@ public class CrateTileEntity extends BasicLootTileEntity
         if(this.locked && !this.ownerUuid.equals(playerInventory.player.getUniqueID()))
         {
             playerInventory.player.sendStatusMessage(new TranslationTextComponent("container.isLocked", this.getDisplayName()), true);
-            playerInventory.player.func_213823_a(SoundEvents.BLOCK_CHEST_LOCKED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            playerInventory.player.playSound(SoundEvents.BLOCK_CHEST_LOCKED, SoundCategory.BLOCKS, 1.0F, 1.0F);
             return null;
         }
         return new CrateContainer(windowId, playerInventory, this, this.locked);
@@ -197,7 +197,7 @@ public class CrateTileEntity extends BasicLootTileEntity
 
     private void playLidSound(BlockState blockState, SoundEvent soundEvent)
     {
-        Vec3i directionVec = blockState.get(CabinetBlock.DIRECTION).getDirectionVec();
+        Vector3i directionVec = blockState.get(CabinetBlock.DIRECTION).getDirectionVec();
         double x = this.pos.getX() + 0.5D + directionVec.getX() / 2.0D;
         double y = this.pos.getY() + 0.5D + directionVec.getY() / 2.0D;
         double z = this.pos.getZ() + 0.5D + directionVec.getZ() / 2.0D;
@@ -218,9 +218,9 @@ public class CrateTileEntity extends BasicLootTileEntity
     }
 
     @Override
-    public void read(CompoundNBT compound)
+    public void read(BlockState blockState, CompoundNBT compound)
     {
-        super.read(compound);
+        super.read(blockState, compound);
         this.readData(compound);
     }
 

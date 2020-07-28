@@ -11,14 +11,14 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle'
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-version = "7.0.0-pre16-1.15.1"
+version = "7.0.0-pre17-1.16.1"
 group = "com.mrcrayfish"
 archivesBaseName = "furniture"
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 minecraft {
-    mappings channel: 'snapshot', version: '20190719-1.14.3'
+    mappings channel: 'snapshot', version: '20200723-1.16.1'
 
     runs {
         client {
@@ -65,7 +65,7 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.15.1-30.0.17'
+    minecraft 'net.minecraftforge:forge:1.16.1-32.0.75'
     //compileOnly "filters:Filters-1.1.0:1.14.4:deobf"
 }
 

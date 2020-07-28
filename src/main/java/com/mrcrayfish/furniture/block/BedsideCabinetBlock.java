@@ -105,7 +105,7 @@ public class BedsideCabinetBlock extends FurnitureHorizontalWaterloggedBlock
     }
 
     @Override
-    public ActionResultType func_225533_a_(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
     {
         if(state.get(DIRECTION).getOpposite() == result.getFace())
         {
@@ -123,7 +123,7 @@ public class BedsideCabinetBlock extends FurnitureHorizontalWaterloggedBlock
     }
 
     @Override
-    public void func_225534_a_(BlockState state, ServerWorld world, BlockPos pos, Random random)
+    public void tick(BlockState state, ServerWorld world, BlockPos pos, Random random)
     {
         TileEntity tileEntity = world.getTileEntity(pos);
         if(tileEntity instanceof BedsideCabinetTileEntity)
