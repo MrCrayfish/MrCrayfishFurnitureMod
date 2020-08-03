@@ -65,7 +65,7 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.16.1-32.0.75'
+    minecraft 'net.minecraftforge:forge:1.16.1-32.0.97'
     //compileOnly "filters:Filters-1.1.0:1.14.4:deobf"
 }
 

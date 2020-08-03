@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * Author: MrCrayfish
  */
-@Mod.EventBusSubscriber(modid = Reference.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = Reference.MOD_ID, value = Dist.CLIENT)
 public class ClientEvents
 {
     @SubscribeEvent
