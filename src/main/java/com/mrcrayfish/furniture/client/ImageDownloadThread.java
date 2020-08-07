@@ -1,10 +1,13 @@
 package com.mrcrayfish.furniture.client;
 
+import net.buttology.lwjgl.dds.DDSFile;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.Callable;
@@ -66,28 +69,40 @@ public class ImageDownloadThread implements Callable<ImageDownloadThread.ImageDo
             URLConnection connection = new URL(url).openConnection();
             connection.addRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
 
-            boolean failed = true;
-            for(String format : SUPPORTED_FORMATS)
-            {
-                if(format.equals(connection.getContentType()))
-                {
-                    failed = false;
-                    break;
-                }
-            }
-            if(failed)
-            {
-                return ImageDownloadResult.UNKNOWN_FILE;
-            }
-
             long length = Long.parseLong(connection.getHeaderField("Content-Length"));
             if(length > MAX_FILE_SIZE)
             {
                 return ImageDownloadResult.TOO_LARGE;
             }
 
+            byte[] data = null;
+            if (connection.getContentType() == "content/unknown")
+            {
+                data = IOUtils.toByteArray(connection);
+                if (!DDSFile.isDDSFile(data))
+                {
+                    return ImageDownloadResult.UNKNOWN_FILE;
+                }
+            }
+            else
+            {
+                boolean failed = true;
+                for (String format : SUPPORTED_FORMATS)
+                {
+                    if (format.equals(connection.getContentType()))
+                    {
+                        failed = false;
+                        break;
+                    }
+                }
+                if(failed)
+                {
+                    return ImageDownloadResult.UNKNOWN_FILE;
+                }
+                data = IOUtils.toByteArray(connection);
+            }
+
             setLoading(url, true);
-            byte[] data = IOUtils.toByteArray(connection);
             if(ImageCache.INSTANCE.add(url, data))
             {
                 setLoading(url, false);

@@ -83,6 +83,7 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
                 double startY = 0.0;
                 double width = 0.0;
                 double height = 0.0;
+                boolean flipped = false;
 
                 boolean loading = te.isLoading();
                 if (!loading)
@@ -94,6 +95,7 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
                         {
                             width = texture.getWidth();
                             height = texture.getHeight();
+                            flipped = texture.isFlipped();
                             loading = !texture.bind();
                         }
                         else
@@ -149,6 +151,7 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
 
                     double imageWidth = frameWidth;
                     double imageHeight = frameHeight;
+                    double t = flipped ? 1 : 0;
 
                     if(!te.isStretched())
                     {
@@ -179,10 +182,10 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
                     BufferBuilder buffer = tessellator.getBuffer();
                     GlStateManager.translate(0, 0, -0.01 * 0.0625);
                     buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-                    buffer.pos(startX, startY, 0).tex(0, 0).endVertex();
-                    buffer.pos(startX, startY + imageHeight, 0).tex(0, 1).endVertex();
-                    buffer.pos(startX + imageWidth, startY + imageHeight, 0).tex(1, 1).endVertex();
-                    buffer.pos(startX + imageWidth, startY, 0).tex(1, 0).endVertex();
+                    buffer.pos(startX, startY, 0).tex(t, t).endVertex();
+                    buffer.pos(startX, startY + imageHeight, 0).tex(t, 1 - t).endVertex();
+                    buffer.pos(startX + imageWidth, startY + imageHeight, 0).tex(1 - t, 1 - t).endVertex();
+                    buffer.pos(startX + imageWidth, startY, 0).tex(1 - t, t).endVertex();
                     tessellator.draw();
                 }
                 GlStateManager.disableBlend();

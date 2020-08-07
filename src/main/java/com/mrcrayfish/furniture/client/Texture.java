@@ -1,17 +1,17 @@
 package com.mrcrayfish.furniture.client;
 
+import net.buttology.lwjgl.dds.DDSFile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-import org.lwjgl.opengl.GL30;
+import org.lwjgl.opengl.*;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.nio.IntBuffer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -21,6 +21,9 @@ import java.util.concurrent.Executors;
  */
 public class Texture
 {
+    protected static final int GL_COMPRESSED_RGBA_S3TC_DXT1_EXT = 0x83f1;
+    protected static final int GL_COMPRESSED_RGBA_S3TC_DXT3_EXT = 0x83f2;
+    protected static final int GL_COMPRESSED_RGBA_S3TC_DXT5_EXT = 0x83f3;
     protected static final ExecutorService THREAD_SERVICE = Executors.newCachedThreadPool(r -> {
         Thread thread = new Thread(r);
         thread.setName("Texture File I/O");
@@ -29,6 +32,7 @@ public class Texture
 
     protected int textureId = -1;
     protected int width, height;
+    protected boolean flipped = false;
     protected boolean delete = false;
 
     public Texture(File file)
@@ -44,20 +48,44 @@ public class Texture
             {
                 //Loads the image
                 FileInputStream inputStream = new FileInputStream(file);
-                BufferedImage image = ImageIO.read(inputStream);
-                this.width = image.getWidth();
-                this.height = image.getHeight();
+                byte[] magic = new byte[4];
+                inputStream.read(magic);
+                inputStream.close();
 
-                //Create and upload the buffer
-                IntBuffer buffer = createBuffer(image);
-                Minecraft.getMinecraft().addScheduledTask(() -> {
-                    textureId = GlStateManager.generateTexture();
-                    GlStateManager.bindTexture(textureId);
-                    GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA8, width, height, 0, GL12.GL_BGRA, GL12.GL_UNSIGNED_INT_8_8_8_8_REV, buffer);
-                    GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_BASE_LEVEL, 0);
-                    GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_MAX_LEVEL, 2);
-                    GL30.glGenerateMipmap(GL11.GL_TEXTURE_2D);
-                });
+                if (DDSFile.isDDSFile(magic))
+                {
+                    DDSFile image = new DDSFile(file);
+                    this.width = image.getWidth();
+                    this.height = image.getHeight();
+                    this.flipped = true;
+
+                    //Create and upload the buffer
+                    Minecraft.getMinecraft().addScheduledTask(() -> {
+                        textureId = GlStateManager.generateTexture();
+                        GlStateManager.bindTexture(textureId);
+                        for (int level = 0; level < image.getMipMapCount(); level++)
+                            GL13.glCompressedTexImage2D(GL11.GL_TEXTURE_2D, level, image.getFormat(), width >> level, height >> level, 0, image.getBuffer(level));
+                        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_BASE_LEVEL, 0);
+                        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_MAX_LEVEL, image.getMipMapCount() - 1);
+                    });
+                }
+                else
+                {
+                    BufferedImage image = ImageIO.read(file);
+                    this.width = image.getWidth();
+                    this.height = image.getHeight();
+                    IntBuffer buffer = createBuffer(image);
+
+                    //Create and upload the buffer
+                    Minecraft.getMinecraft().addScheduledTask(() -> {
+                        textureId = GlStateManager.generateTexture();
+                        GlStateManager.bindTexture(textureId);
+                        GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA8, width, height, 0, GL12.GL_BGRA, GL12.GL_UNSIGNED_INT_8_8_8_8_REV, buffer);
+                        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_BASE_LEVEL, 0);
+                        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_MAX_LEVEL, 2);
+                        GL30.glGenerateMipmap(GL11.GL_TEXTURE_2D);
+                    });
+                }
             }
             catch(IOException e)
             {
@@ -116,6 +144,11 @@ public class Texture
     public int getHeight()
     {
         return height;
+    }
+
+    public boolean isFlipped()
+    {
+        return flipped;
     }
 
     public boolean isPendingDeletion()
