@@ -2,7 +2,6 @@
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
     "textures": {
         "particle": "#color",
-        "glass": "blocks/glass",
         "back": "blocks/planks_oak",
         "item_frame": "blocks/itemframe_background"
     },
@@ -89,38 +88,6 @@
             "faces": {
                 "north": { "texture": "#back", "uv": [ 0.00, 0.00, 14.00, 14.00 ], "cullface": "north" },
                 "south": { "texture": "#item_frame", "uv": [ 1.00, 1.00, 15.00, 15.00 ] }
-            }
-        },
-        {
-            "name": "glass_3",
-            "from": [ 11.00, 9.50, 0.00 ],
-            "to": [ 14.00, 14.50, 0.60 ],
-            "faces": {
-                "south": { "texture": "#glass", "uv": [ 6.00, 1.00, 15.00, 15.00 ] }
-            }
-        },
-        {
-            "name": "glass_4",
-            "from": [ 9.00, 2.50, 0.00 ],
-            "to": [ 12.00, 7.50, 0.60 ],
-            "faces": {
-                "south": { "texture": "#glass", "uv": [ 6.00, 1.00, 15.00, 15.00 ] }
-            }
-        },
-        {
-            "name": "glass_1",
-            "from": [ 4.00, 8.50, 0.00 ],
-            "to": [ 7.00, 13.50, 0.60 ],
-            "faces": {
-                "south": { "texture": "#glass", "uv": [ 6.00, 1.00, 15.00, 15.00 ] }
-            }
-        },
-        {
-            "name": "glass_2",
-            "from": [ 2.00, 1.50, 0.00 ],
-            "to": [ 5.00, 6.50, 0.60 ],
-            "faces": {
-                "south": { "texture": "#glass", "uv": [ 6.00, 1.00, 15.00, 15.00 ] }
             }
         }
     ]

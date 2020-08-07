@@ -97,15 +97,19 @@ public final class GifCache
         }
     }
 
-    public void load(String url, GifDownloadThread.ResponseProcessor processor)
-    {
-        new GifDownloadThread(url, processor);
-    }
-
     private void tick()
     {
         cacheMap.values().forEach(AnimatedTexture::update);
         cacheMap.keySet().removeIf(key -> cacheMap.get(key).isPendingDeletion());
+    }
+
+    public boolean delete(String url)
+    {
+        Texture texture = get(url);
+        if (texture == null)
+            return false;
+        texture.delete();
+        return true;
     }
 
     @SubscribeEvent

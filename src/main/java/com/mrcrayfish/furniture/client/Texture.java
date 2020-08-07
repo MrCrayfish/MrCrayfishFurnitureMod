@@ -4,13 +4,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+import org.lwjgl.opengl.GL30;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -25,11 +27,9 @@ public class Texture
         return thread;
     });
 
-    private ByteBuffer buffer;
-    private int textureId = -1;
+    protected int textureId = -1;
     protected int width, height;
-    protected int counter;
-    protected boolean delete;
+    protected boolean delete = false;
 
     public Texture(File file)
     {
@@ -48,14 +48,15 @@ public class Texture
                 this.width = image.getWidth();
                 this.height = image.getHeight();
 
-                //Creates the ByteBuffer
-                int[] imageData = new int[this.width * this.height];
-                image.getRGB(0, 0, this.width, this.height, imageData, 0, this.width);
-                buffer = createBuffer(imageData);
-                
+                //Create and upload the buffer
+                IntBuffer buffer = createBuffer(image);
                 Minecraft.getMinecraft().addScheduledTask(() -> {
-                    GlStateManager.bindTexture(getTextureId());
-                    GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, width, height, 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, buffer);
+                    textureId = GlStateManager.generateTexture();
+                    GlStateManager.bindTexture(textureId);
+                    GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA8, width, height, 0, GL12.GL_BGRA, GL12.GL_UNSIGNED_INT_8_8_8_8_REV, buffer);
+                    GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_BASE_LEVEL, 0);
+                    GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_MAX_LEVEL, 2);
+                    GL30.glGenerateMipmap(GL11.GL_TEXTURE_2D);
                 });
             }
             catch(IOException e)
@@ -67,43 +68,43 @@ public class Texture
 
     public void update()
     {
-        if(counter++ >= 600)
+        if (delete)
         {
-            delete = true;
-            GlStateManager.deleteTexture(getTextureId());
+            GlStateManager.deleteTexture(textureId);
+            textureId = -1;
         }
     }
 
-    protected ByteBuffer createBuffer(int[] data)
+    public void delete()
     {
-        ByteBuffer buffer = BufferUtils.createByteBuffer(width * height * 4);
-        for (int y = height - 1; y >= 0; y--)
+        delete = true;
+    }
+
+    static protected IntBuffer createBuffer(BufferedImage image)
+    {
+        IntBuffer buffer = BufferUtils.createIntBuffer(image.getWidth() * image.getHeight());
+        for (int y = image.getHeight() - 1; y >= 0; y--)
         {
-            for (int x = width - 1; x >= 0; x--)
+            for (int x = image.getWidth() - 1; x >= 0; x--)
             {
-                int color = data[x + y * width];
-                buffer.put((byte) ((color >> 16) & 0xff));
-                buffer.put((byte) ((color >> 8) & 0xff));
-                buffer.put((byte) (color & 0xff));
-                buffer.put((byte) ((color >> 24) & 0xff));
+                buffer.put(image.getRGB(x, y));
             }
         }
         buffer.flip();
         return buffer;
     }
 
-    public void bind()
+    public boolean bind()
     {
-        counter = 0;
+        if(textureId == -1 || !GL11.glIsTexture(textureId))
+            return false;
+
         GlStateManager.bindTexture(getTextureId());
+        return true;
     }
 
     public int getTextureId()
     {
-        if(textureId == -1 || !GL11.glIsTexture(textureId))
-        {
-            textureId = GlStateManager.generateTexture();
-        }
         return textureId;
     }
 

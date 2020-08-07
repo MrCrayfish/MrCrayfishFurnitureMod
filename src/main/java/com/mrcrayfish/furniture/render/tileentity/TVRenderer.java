@@ -1,9 +1,7 @@
 package com.mrcrayfish.furniture.render.tileentity;
 
 import com.mrcrayfish.furniture.blocks.BlockFurnitureTile;
-import com.mrcrayfish.furniture.client.AnimatedTexture;
-import com.mrcrayfish.furniture.client.GifCache;
-import com.mrcrayfish.furniture.client.GifDownloadThread;
+import com.mrcrayfish.furniture.client.*;
 import com.mrcrayfish.furniture.tileentity.TileEntityTV;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -19,6 +17,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
 import java.util.List;
 import java.util.Random;
@@ -76,10 +75,35 @@ public class TVRenderer extends TileEntitySpecialRenderer<TileEntityTV>
 
                 double startX = 0.0;
                 double startY = 0.0;
-                double width = te.getWidth();
-                double height = te.getHeight();
+                double width = 0.0;
+                double height = 0.0;
+                double frameWidth = te.getWidth();
+                double frameHeight = te.getHeight();
 
-                if(te.isLoading())
+                boolean loading = te.isLoading();
+                if (!loading)
+                {
+                    if (te.isLoaded())
+                    {
+                        AnimatedTexture texture = GifCache.INSTANCE.get(te.getCurrentChannel());
+                        if (texture != null)
+                        {
+                            width = texture.getWidth();
+                            height = texture.getHeight();
+                            loading = !texture.bind();
+                        }
+                        else
+                        {
+                            String currentChannel = te.getCurrentChannel();
+                            if(currentChannel != null)
+                            {
+                                te.loadUrl(currentChannel);
+                            }
+                        }
+                    }
+                }
+
+                if(loading)
                 {
                     Minecraft.getMinecraft().getTextureManager().bindTexture(NOISE);
                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
@@ -100,8 +124,8 @@ public class TVRenderer extends TileEntitySpecialRenderer<TileEntityTV>
 
                     startX *= 0.0625;
                     startY *= 0.0625;
-                    width *= 0.0625;
-                    height *= 0.0625;
+                    frameWidth *= 0.0625;
+                    frameHeight *= 0.0625;
 
                     //Render the GIF
                     GlStateManager.translate(0, 0, -0.01 * 0.0625);
@@ -109,72 +133,60 @@ public class TVRenderer extends TileEntitySpecialRenderer<TileEntityTV>
                     BufferBuilder buffer = tessellator.getBuffer();
                     buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
                     buffer.pos(startX, startY, 0).tex(u, v).endVertex();
-                    buffer.pos(startX, startY + height, 0).tex(u, v + scaledHeight * pixelScale).endVertex();
-                    buffer.pos(startX + width, startY + height, 0).tex(u + scaledWidth * pixelScale, v + scaledHeight * pixelScale).endVertex();
-                    buffer.pos(startX + width, startY, 0).tex(u + scaledWidth * pixelScale, v).endVertex();
+                    buffer.pos(startX, startY + frameHeight, 0).tex(u, v + scaledHeight * pixelScale).endVertex();
+                    buffer.pos(startX + frameWidth, startY + frameHeight, 0).tex(u + scaledWidth * pixelScale, v + scaledHeight * pixelScale).endVertex();
+                    buffer.pos(startX + frameWidth, startY, 0).tex(u + scaledWidth * pixelScale, v).endVertex();
                     tessellator.draw();
                 }
                 else if(te.isLoaded())
                 {
-                    AnimatedTexture texture = GifCache.INSTANCE.get(te.getCurrentChannel());
-                    if(texture != null)
+                    GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR);
+                    GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
+                    GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL12.GL_CLAMP_TO_EDGE);
+                    GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL12.GL_CLAMP_TO_EDGE);
+
+                    if(!te.isStretched())
                     {
-                        texture.bind();
-
-                        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-                        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-
-                        if(!te.isStretched())
-                        {
-                            //Calculates the positioning and scale so the GIF keeps its ratio and renders within the screen
-                            double scaleWidth = (double) te.getWidth() / (double) texture.getWidth();
-                            double scaleHeight = (double) te.getHeight() / (double) texture.getHeight();
-                            double scale = Math.min(scaleWidth, scaleHeight);
-                            width = texture.getWidth() * scale;
-                            height = texture.getHeight() * scale;
-                            startX = (te.getWidth() - width) / 2.0;
-                            startY = (te.getHeight() - height) / 2.0;
-                        }
-
-                        startX *= 0.0625;
-                        startY *= 0.0625;
-                        width *= 0.0625;
-                        height *= 0.0625;
-
-                        //Setups translations
-                        GlStateManager.translate(8 * 0.0625, te.getScreenYOffset() * 0.0625, 8 * 0.0625);
-                        EnumFacing facing = state.getValue(BlockFurnitureTile.FACING);
-                        GlStateManager.rotate(facing.getHorizontalIndex() * -90F, 0, 1, 0);
-                        GlStateManager.translate(-te.getWidth() / 2 * 0.0625, 0, 0);
-                        GlStateManager.translate(0, 0, te.getScreenZOffset() * 0.0625);
-
-                        //Render a black quad
-                        Tessellator tessellator = Tessellator.getInstance();
-                        BufferBuilder buffer = tessellator.getBuffer();
-                        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
-                        buffer.pos(0, 0, 0).color(0, 0, 0, 255).endVertex();
-                        buffer.pos(0, te.getHeight() * 0.0625, 0).color(0, 0, 0, 255).endVertex();
-                        buffer.pos(te.getWidth() * 0.0625, te.getHeight() * 0.0625, 0).color(0, 0, 0, 255).endVertex();
-                        buffer.pos(te.getWidth() * 0.0625, 0, 0).color(0, 0, 0, 255).endVertex();
-                        tessellator.draw();
-
-                        //Render the GIF
-                        GlStateManager.translate(0, 0, -0.01 * 0.0625);
-                        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-                        buffer.pos(startX, startY, 0).tex(0, 0).endVertex();
-                        buffer.pos(startX, startY + height, 0).tex(0, 1).endVertex();
-                        buffer.pos(startX + width, startY + height, 0).tex(1, 1).endVertex();
-                        buffer.pos(startX + width, startY, 0).tex(1, 0).endVertex();
-                        tessellator.draw();
+                        //Calculates the positioning and scale so the GIF keeps its ratio and renders within the screen
+                        double scaleWidth = (double) te.getWidth() / width;
+                        double scaleHeight = (double) te.getHeight() / height;
+                        double scale = Math.min(scaleWidth, scaleHeight);
+                        frameWidth = width * scale;
+                        frameHeight = height * scale;
+                        startX = (te.getWidth() - frameWidth) / 2.0;
+                        startY = (te.getHeight() - frameHeight) / 2.0;
                     }
-                    else
-                    {
-                        String currentChannel = te.getCurrentChannel();
-                        if(currentChannel != null)
-                        {
-                            te.loadUrl(currentChannel);
-                        }
-                    }
+
+                    startX *= 0.0625;
+                    startY *= 0.0625;
+                    frameWidth *= 0.0625;
+                    frameHeight *= 0.0625;
+
+                    //Setups translations
+                    GlStateManager.translate(8 * 0.0625, te.getScreenYOffset() * 0.0625, 8 * 0.0625);
+                    EnumFacing facing = state.getValue(BlockFurnitureTile.FACING);
+                    GlStateManager.rotate(facing.getHorizontalIndex() * -90F, 0, 1, 0);
+                    GlStateManager.translate(-te.getWidth() / 2 * 0.0625, 0, 0);
+                    GlStateManager.translate(0, 0, te.getScreenZOffset() * 0.0625);
+
+                    //Render a black quad
+                    Tessellator tessellator = Tessellator.getInstance();
+                    BufferBuilder buffer = tessellator.getBuffer();
+                    buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
+                    buffer.pos(0, 0, 0).color(0, 0, 0, 255).endVertex();
+                    buffer.pos(0, te.getHeight() * 0.0625, 0).color(0, 0, 0, 255).endVertex();
+                    buffer.pos(te.getWidth() * 0.0625, te.getHeight() * 0.0625, 0).color(0, 0, 0, 255).endVertex();
+                    buffer.pos(te.getWidth() * 0.0625, 0, 0).color(0, 0, 0, 255).endVertex();
+                    tessellator.draw();
+
+                    //Render the GIF
+                    GlStateManager.translate(0, 0, -0.01 * 0.0625);
+                    buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+                    buffer.pos(startX, startY, 0).tex(0, 0).endVertex();
+                    buffer.pos(startX, startY + frameHeight, 0).tex(0, 1).endVertex();
+                    buffer.pos(startX + frameWidth, startY + frameHeight, 0).tex(1, 1).endVertex();
+                    buffer.pos(startX + frameWidth, startY, 0).tex(1, 0).endVertex();
+                    tessellator.draw();
                 }
                 GlStateManager.disableBlend();
                 GlStateManager.enableLighting();

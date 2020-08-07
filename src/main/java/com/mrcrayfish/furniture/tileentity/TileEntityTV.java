@@ -3,8 +3,7 @@ package com.mrcrayfish.furniture.tileentity;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.blocks.BlockAbstractTV;
-import com.mrcrayfish.furniture.client.GifCache;
-import com.mrcrayfish.furniture.client.GifDownloadThread;
+import com.mrcrayfish.furniture.client.*;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
@@ -19,12 +18,21 @@ import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Author: MrCrayfish
  */
 public class TileEntityTV extends TileEntitySyncClient implements IValueContainer
 {
+    protected static final ExecutorService THREAD_SERVICE = Executors.newCachedThreadPool(r -> {
+        Thread thread = new Thread(r);
+        thread.setName("Gif Download Thread");
+        return thread;
+    });
+
     private int width;
     private int height;
     private double screenYOffset;
@@ -37,11 +45,9 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     private int currentChannel;
 
     @SideOnly(Side.CLIENT)
-    private boolean loading;
+    private boolean cached;
     @SideOnly(Side.CLIENT)
-    private boolean loaded;
-    @SideOnly(Side.CLIENT)
-    private GifDownloadThread.ImageDownloadResult result;
+    private Future<GifDownloadThread.ImageDownloadResult> result;
 
     public TileEntityTV() {}
 
@@ -123,47 +129,48 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     @SideOnly(Side.CLIENT)
     public void loadUrl(String url)
     {
-        if(loading)
+        if(isLoading())
             return;
 
-        this.loaded = false;
+        this.cached = false;
         this.result = null;
         if(!GifCache.INSTANCE.loadCached(url))
         {
-            this.loading = true;
-            new GifDownloadThread(url, (result, message) ->
-            {
-                this.loading = false;
-                this.result = result;
-                if(result == GifDownloadThread.ImageDownloadResult.SUCCESS)
-                {
-                    this.loaded = true;
-                }
-            }).start();
+            this.result = THREAD_SERVICE.submit(new GifDownloadThread(url));
         }
         else
         {
-            this.loaded = true;
+            this.cached = true;
         }
     }
 
     @SideOnly(Side.CLIENT)
     public boolean isLoading()
     {
-        return loading;
+        return result != null && !result.isDone();
     }
 
     @SideOnly(Side.CLIENT)
     public boolean isLoaded()
     {
-        return loaded && !loading;
+        return cached || (result != null && result.isDone());
     }
 
     @Nullable
     @SideOnly(Side.CLIENT)
     public GifDownloadThread.ImageDownloadResult getResult()
     {
-        return result;
+        try
+        {
+            if (result != null && result.isDone())
+                return result.get();
+        }
+        catch(Exception ex)
+        {
+            return GifDownloadThread.ImageDownloadResult.FAILED;
+        }
+
+        return null;
     }
 
     public int getWidth()
@@ -212,15 +219,23 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     @Override
     public void updateEntries(Map<String, String> entries)
     {
-        channels.clear();
+        List<String> newChannels = new ArrayList<>();
         for(int i = 0; i < 3; i++)
         {
             String url = entries.get("channel_" + i);
+            if (i < channels.size())
+            {
+                String oldUrl = channels.get(i);
+                if (!oldUrl.equals(url))
+                    GifCache.INSTANCE.delete(oldUrl);
+            }
+
             if(!Strings.isNullOrEmpty(url))
             {
-                channels.add(url);
+                newChannels.add(url);
             }
         }
+        this.channels = newChannels;
         this.stretch = Boolean.valueOf(entries.get("stretch"));
         this.powered = Boolean.valueOf(entries.get("powered"));
         this.markDirty();
@@ -248,6 +263,10 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
         if(!disabled)
         {
             this.powered = powered;
+            if (!powered)
+            {
+                GifCache.INSTANCE.delete(getCurrentChannel());
+            }
             TileEntityUtil.syncToClient(this);
         }
     }
@@ -261,6 +280,7 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     {
         if(!disabled && powered && channels.size() > 1)
         {
+            GifCache.INSTANCE.delete(getCurrentChannel());
             this.currentChannel++;
             if(this.currentChannel >= channels.size())
             {

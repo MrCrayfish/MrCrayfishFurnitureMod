@@ -81,8 +81,33 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
 
                 double startX = 0.0;
                 double startY = 0.0;
+                double width = 0.0;
+                double height = 0.0;
 
-                if(te.isLoading())
+                boolean loading = te.isLoading();
+                if (!loading)
+                {
+                    if (te.isLoaded())
+                    {
+                        Texture texture = ImageCache.INSTANCE.get(te.getPhoto());
+                        if (texture != null)
+                        {
+                            width = texture.getWidth();
+                            height = texture.getHeight();
+                            loading = !texture.bind();
+                        }
+                        else
+                        {
+                            String photo = te.getPhoto();
+                            if(photo != null)
+                            {
+                                te.loadUrl(photo);
+                            }
+                        }
+                    }
+                }
+
+                if(loading)
                 {
                     Minecraft.getMinecraft().getTextureManager().bindTexture(NOISE);
                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
@@ -117,70 +142,56 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
                     buffer.pos(startX + frameWidth, startY, 0).tex(u + scaledWidth * pixelScale, v).endVertex();
                     tessellator.draw();
                 }
-                else if(te.isLoaded())
+                else
                 {
-                    Texture texture = ImageCache.INSTANCE.get(te.getPhoto());
-                    if(texture != null)
+                    GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR_MIPMAP_LINEAR);
+                    GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+
+                    double imageWidth = frameWidth;
+                    double imageHeight = frameHeight;
+
+                    if(!te.isStretched())
                     {
-                        texture.bind();
-
-                        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-                        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-
-                        double imageWidth = frameWidth;
-                        double imageHeight = frameHeight;
-
-                        if(!te.isStretched())
-                        {
-                            //Calculates the positioning and scale so the GIF keeps its ratio and renders within the screen
-                            double scaleWidth = frameWidth / (double) texture.getWidth();
-                            double scaleHeight = frameWidth / (double) texture.getHeight();
-                            double scale = Math.min(scaleWidth, scaleHeight);
-                            imageWidth = texture.getWidth() * scale;
-                            imageHeight = texture.getHeight() * scale;
-                            startX = (frameWidth - imageWidth) / 2.0;
-                            startY = (frameHeight - imageHeight) / 2.0;
-                        }
-
-                        startX *= 0.0625;
-                        startY *= 0.0625;
-                        imageWidth *= 0.0625;
-                        imageHeight *= 0.0625;
-
-                        //Setups translations
-                        GlStateManager.translate(8 * 0.0625, frameYOffset * 0.0625, 8 * 0.0625);
-                        EnumFacing facing = state.getValue(BlockFurnitureTile.FACING);
-                        GlStateManager.rotate(facing.getHorizontalIndex() * -90F, 0, 1, 0);
-                        GlStateManager.translate(-frameWidth / 2 * 0.0625, 0, 0);
-                        GlStateManager.translate(0, 0, frameZOffset * 0.0625);
-
-                        //Render a black quad
-                        Tessellator tessellator = Tessellator.getInstance();
-                        BufferBuilder buffer = tessellator.getBuffer();
-                        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
-                        buffer.pos(0, 0, 0).color(0, 0, 0, 255).endVertex();
-                        buffer.pos(0, imageHeight * 0.0625, 0).color(0, 0, 0, 255).endVertex();
-                        buffer.pos(imageWidth * 0.0625, imageHeight * 0.0625, 0).color(0, 0, 0, 255).endVertex();
-                        buffer.pos(imageWidth * 0.0625, 0, 0).color(0, 0, 0, 255).endVertex();
-                        tessellator.draw();
-
-                        //Render the Image
-                        GlStateManager.translate(0, 0, -0.01 * 0.0625);
-                        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-                        buffer.pos(startX, startY, 0).tex(0, 0).endVertex();
-                        buffer.pos(startX, startY + imageHeight, 0).tex(0, 1).endVertex();
-                        buffer.pos(startX + imageWidth, startY + imageHeight, 0).tex(1, 1).endVertex();
-                        buffer.pos(startX + imageWidth, startY, 0).tex(1, 0).endVertex();
-                        tessellator.draw();
+                        //Calculates the positioning and scale so the GIF keeps its ratio and renders within the screen
+                        double scaleWidth = frameWidth / width;
+                        double scaleHeight = frameWidth / height;
+                        double scale = Math.min(scaleWidth, scaleHeight);
+                        imageWidth = width * scale;
+                        imageHeight = height * scale;
+                        startX = (frameWidth - imageWidth) / 2.0;
+                        startY = (frameHeight - imageHeight) / 2.0;
                     }
-                    else
-                    {
-                        String photo = te.getPhoto();
-                        if(photo != null)
-                        {
-                            te.loadUrl(photo);
-                        }
-                    }
+
+                    startX *= 0.0625;
+                    startY *= 0.0625;
+                    imageWidth *= 0.0625;
+                    imageHeight *= 0.0625;
+
+                    //Setups translations
+                    GlStateManager.translate(8 * 0.0625, frameYOffset * 0.0625, 8 * 0.0625);
+                    EnumFacing facing = state.getValue(BlockFurnitureTile.FACING);
+                    GlStateManager.rotate(facing.getHorizontalIndex() * -90F, 0, 1, 0);
+                    GlStateManager.translate(-frameWidth / 2 * 0.0625, 0, 0);
+                    GlStateManager.translate(0, 0, frameZOffset * 0.0625);
+
+                    //Render a black quad
+                    Tessellator tessellator = Tessellator.getInstance();
+                    BufferBuilder buffer = tessellator.getBuffer();
+                    buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
+                    buffer.pos(0, 0, 0).color(0, 0, 0, 255).endVertex();
+                    buffer.pos(0, imageHeight * 0.0625, 0).color(0, 0, 0, 255).endVertex();
+                    buffer.pos(imageWidth * 0.0625, imageHeight * 0.0625, 0).color(0, 0, 0, 255).endVertex();
+                    buffer.pos(imageWidth * 0.0625, 0, 0).color(0, 0, 0, 255).endVertex();
+                    tessellator.draw();
+
+                    //Render the Image
+                    GlStateManager.translate(0, 0, -0.01 * 0.0625);
+                    buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+                    buffer.pos(startX, startY, 0).tex(0, 0).endVertex();
+                    buffer.pos(startX, startY + imageHeight, 0).tex(0, 1).endVertex();
+                    buffer.pos(startX + imageWidth, startY + imageHeight, 0).tex(1, 1).endVertex();
+                    buffer.pos(startX + imageWidth, startY, 0).tex(1, 0).endVertex();
+                    tessellator.draw();
                 }
                 GlStateManager.disableBlend();
                 GlStateManager.enableLighting();

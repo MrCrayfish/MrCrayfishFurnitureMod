@@ -12,23 +12,30 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Author: MrCrayfish
  */
 public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValueContainer
 {
+    protected static final ExecutorService THREAD_SERVICE = Executors.newCachedThreadPool(r -> {
+        Thread thread = new Thread(r);
+        thread.setName("Image Download Thread");
+        return thread;
+    });
+
     private int colour = 0;
     private String url;
     private boolean stretch;
     private boolean disabled;
 
     @SideOnly(Side.CLIENT)
-    private boolean loading;
+    private boolean cached;
     @SideOnly(Side.CLIENT)
-    private boolean loaded;
-    @SideOnly(Side.CLIENT)
-    private ImageDownloadThread.ImageDownloadResult result;
+    private Future<ImageDownloadThread.ImageDownloadResult> result;
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound)
@@ -79,47 +86,48 @@ public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValue
     @SideOnly(Side.CLIENT)
     public void loadUrl(String url)
     {
-        if(loading)
+        if(isLoading())
             return;
 
-        this.loaded = false;
+        this.cached = false;
         this.result = null;
         if(!ImageCache.INSTANCE.loadCached(url))
         {
-            this.loading = true;
-            new ImageDownloadThread(url, (result, message) ->
-            {
-                this.loading = false;
-                this.result = result;
-                if(result == ImageDownloadThread.ImageDownloadResult.SUCCESS)
-                {
-                    this.loaded = true;
-                }
-            }).start();
+            this.result = THREAD_SERVICE.submit(new ImageDownloadThread(url));
         }
         else
         {
-            this.loaded = true;
+            this.cached = true;
         }
     }
 
     @SideOnly(Side.CLIENT)
     public boolean isLoading()
     {
-        return loading;
+        return result != null && !result.isDone();
     }
 
     @SideOnly(Side.CLIENT)
     public boolean isLoaded()
     {
-        return loaded && !loading;
+        return cached || (result != null && result.isDone());
     }
 
     @Nullable
     @SideOnly(Side.CLIENT)
     public ImageDownloadThread.ImageDownloadResult getResult()
     {
-        return result;
+        try
+        {
+            if (result != null && result.isDone())
+                return result.get();
+        }
+        catch(Exception ex)
+        {
+            return ImageDownloadThread.ImageDownloadResult.FAILED;
+        }
+
+        return null;
     }
 
     @Override
@@ -134,7 +142,10 @@ public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValue
     @Override
     public void updateEntries(Map<String, String> entries)
     {
-        this.url = entries.get("photo");
+        String photo = entries.get("photo");
+        if (url != null && !url.equals(photo))
+            ImageCache.INSTANCE.delete(getPhoto());
+        this.url = photo;
         this.stretch = Boolean.valueOf(entries.get("stretch"));
         this.markDirty();
     }

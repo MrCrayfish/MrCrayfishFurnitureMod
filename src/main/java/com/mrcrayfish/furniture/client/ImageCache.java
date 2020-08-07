@@ -81,7 +81,6 @@ public final class ImageCache
                     FileUtils.writeByteArrayToFile(image, data);
                     Texture texture = new Texture(image);
                     cacheMap.put(url, texture);
-                    Minecraft.getMinecraft().addScheduledTask(texture::update);
                 }
                 return true;
             }
@@ -98,7 +97,17 @@ public final class ImageCache
         synchronized(this)
         {
             cacheMap.values().forEach(Texture::update);
+            cacheMap.keySet().removeIf(key -> cacheMap.get(key).isPendingDeletion());
         }
+    }
+
+    public boolean delete(String url)
+    {
+        Texture texture = get(url);
+        if (texture == null)
+            return false;
+        texture.delete();
+        return true;
     }
 
     @SubscribeEvent

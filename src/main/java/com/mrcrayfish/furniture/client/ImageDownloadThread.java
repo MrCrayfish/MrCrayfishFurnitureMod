@@ -7,11 +7,12 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.Callable;
 
 /**
  * Author: MrCrayfish
  */
-public class ImageDownloadThread extends Thread
+public class ImageDownloadThread implements Callable<ImageDownloadThread.ImageDownloadResult>
 {
     private static final String[] SUPPORTED_FORMATS = { "image/png", "image/jpeg", "image/gif", "image/bmp" };
     private static final Set<String> LOADING_URLS = new HashSet<>();
@@ -20,23 +21,19 @@ public class ImageDownloadThread extends Thread
     private static final long MAX_FILE_SIZE = 2097152;
 
     private String url;
-    private ResponseProcessor processor;
     private int tryCount;
 
-    public ImageDownloadThread(String url, ResponseProcessor processor)
+    public ImageDownloadThread(String url)
     {
-        super("Image Download Thread");
         this.url = url;
-        this.processor = processor;
     }
 
     @Override
-    public void run()
+    public ImageDownloadResult call()
     {
         if(ImageCache.INSTANCE.loadCached(url))
         {
-            processor.process(ImageDownloadResult.SUCCESS, "Successfully processed image");
-            return;
+            return ImageDownloadResult.SUCCESS;
         }
 
         if(isLoading(url))
@@ -54,14 +51,12 @@ public class ImageDownloadThread extends Thread
 
                 if(ImageCache.INSTANCE.isCached(url))
                 {
-                    processor.process(ImageDownloadResult.SUCCESS, "Successfully processed image");
-                    return;
+                    return ImageDownloadResult.SUCCESS;
                 }
 
                 if(tryCount++ == 10)
                 {
-                    processor.process(ImageDownloadResult.FAILED, "Unable to process image");
-                    return;
+                    return ImageDownloadResult.FAILED;
                 }
             }
         }
@@ -82,15 +77,13 @@ public class ImageDownloadThread extends Thread
             }
             if(failed)
             {
-                processor.process(ImageDownloadResult.UNKNOWN_FILE, "The file is not a image");
-                return;
+                return ImageDownloadResult.UNKNOWN_FILE;
             }
 
             long length = Long.parseLong(connection.getHeaderField("Content-Length"));
             if(length > MAX_FILE_SIZE)
             {
-                processor.process(ImageDownloadResult.TOO_LARGE, "The image is greater than " + MAX_FILE_SIZE / 1024.0 + "MB");
-                return;
+                return ImageDownloadResult.TOO_LARGE;
             }
 
             setLoading(url, true);
@@ -98,18 +91,12 @@ public class ImageDownloadThread extends Thread
             if(ImageCache.INSTANCE.add(url, data))
             {
                 setLoading(url, false);
-                processor.process(ImageDownloadResult.SUCCESS, "Successfully processed image");
-                return;
+                return ImageDownloadResult.SUCCESS;
             }
         }
         catch(IOException ignored) {}
-        processor.process(ImageDownloadResult.FAILED, "Unable to process image");
         setLoading(url, false);
-    }
-
-    public interface ResponseProcessor
-    {
-        void process(ImageDownloadResult result, String message);
+        return ImageDownloadResult.FAILED;
     }
 
     public enum ImageDownloadResult
