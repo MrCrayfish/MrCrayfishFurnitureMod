@@ -174,17 +174,9 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
                     GlStateManager.translate(-frameWidth / 2 * 0.0625, 0, 0);
                     GlStateManager.translate(0, 0, frameZOffset * 0.0625);
 
-                    //Render a black quad
+                    //Render the Image
                     Tessellator tessellator = Tessellator.getInstance();
                     BufferBuilder buffer = tessellator.getBuffer();
-                    buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_COLOR);
-                    buffer.pos(0, 0, 0).color(0, 0, 0, 255).endVertex();
-                    buffer.pos(0, imageHeight * 0.0625, 0).color(0, 0, 0, 255).endVertex();
-                    buffer.pos(imageWidth * 0.0625, imageHeight * 0.0625, 0).color(0, 0, 0, 255).endVertex();
-                    buffer.pos(imageWidth * 0.0625, 0, 0).color(0, 0, 0, 255).endVertex();
-                    tessellator.draw();
-
-                    //Render the Image
                     GlStateManager.translate(0, 0, -0.01 * 0.0625);
                     buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
                     buffer.pos(startX, startY, 0).tex(0, 0).endVertex();
