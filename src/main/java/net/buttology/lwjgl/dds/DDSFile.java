@@ -91,6 +91,17 @@ public class DDSFile {
 	{
 		this.loadFile(file);
 	}
+
+	/**
+	 * Loads a DDS file from the given file stream.
+	 * @param file
+	 * @throws IOException 
+	 * @throws FileNotFoundException 
+	 */
+	public DDSFile(FileInputStream file) throws IOException 
+	{
+		this.loadFile(file);
+	}
 	
 	/**
 	 * Loads a DDS file from the given file path.
@@ -129,7 +140,7 @@ public class DDSFile {
 	/**
 	 * Loads a DDS file.
 	 * @param fis
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public void loadFile(FileInputStream fis) throws IOException
 	{
@@ -231,8 +242,16 @@ public class DDSFile {
 		return header.dwWidth;
 	}
 
+	public int getWidth(int level) {
+		return Math.max(header.dwWidth >> level, 1);
+	}
+
 	public int getHeight() {
 		return header.dwHeight;
+	}
+
+	public int getHeight(int level) {
+		return Math.max(header.dwHeight >> level, 1);
 	}
 
 	/**
@@ -272,7 +291,7 @@ public class DDSFile {
 
 	public ByteBuffer getCubeMapPositiveX() {
 		if(!isCubeMap) return null;
-		return getBuffer(0, 1);
+		return getBuffer(0, 0);
 	}
 
 	public ByteBuffer getCubeMapNegativeX() {
@@ -302,32 +321,32 @@ public class DDSFile {
 
 	public ByteBuffer getCubeMapMipPXLevel(int level) {
 		if(!isCubeMap) return null;
-		return getBuffer(level, 1);
+		return getBuffer(level, 0);
 	}
 
 	public ByteBuffer getCubeMapMipNXLevel(int level) {
 		if(!isCubeMap) return null;
-		return getBuffer(level, 2);
+		return getBuffer(level, 1);
 	}
 
 	public ByteBuffer getCubeMapMipPYLevel(int level) {
 		if(!isCubeMap) return null;
-		return getBuffer(level, 3);
+		return getBuffer(level, 2);
 	}
 
 	public ByteBuffer getCubeMapMipNYLevel(int level) {
 		if(!isCubeMap) return null;
-		return getBuffer(level, 4);
+		return getBuffer(level, 3);
 	}
 
 	public ByteBuffer getCubeMapMipPZLevel(int level) {
 		if(!isCubeMap) return null;
-		return getBuffer(level, 5);
+		return getBuffer(level, 4);
 	}
 
 	public ByteBuffer getCubeMapMipNZLevel(int level) {
 		if(!isCubeMap) return null;
-		return getBuffer(level, 6);
+		return getBuffer(level, 5);
 	}
 
 	public int getFormat() {
