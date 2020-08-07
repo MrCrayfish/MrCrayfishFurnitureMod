@@ -21,7 +21,7 @@ import java.util.concurrent.Future;
  */
 public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValueContainer
 {
-    protected static final ExecutorService THREAD_SERVICE = Executors.newCachedThreadPool(r -> {
+    protected static final ExecutorService THREAD_SERVICE = Executors.newFixedThreadPool(4, r -> {
         Thread thread = new Thread(r);
         thread.setName("Image Download Thread");
         return thread;
@@ -91,7 +91,7 @@ public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValue
 
         this.cached = false;
         this.result = null;
-        if(!ImageCache.INSTANCE.loadCached(url))
+        if(!ImageCache.INSTANCE.loadCached(url, false))
         {
             this.result = THREAD_SERVICE.submit(new ImageDownloadThread(url));
         }

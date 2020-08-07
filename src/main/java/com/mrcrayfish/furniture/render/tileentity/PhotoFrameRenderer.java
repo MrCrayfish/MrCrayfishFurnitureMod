@@ -30,6 +30,7 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
 {
     private static final ResourceLocation NOISE = new ResourceLocation("cfm:textures/noise.png");
     private static final Random RAND = new Random();
+    private static final int GL_TEXTURE_MAX_ANISOTROPY_EXT = 0x84fe;
 
     @Override
     public void render(TileEntityPhotoFrame te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
@@ -83,7 +84,6 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
                 double startY = 0.0;
                 double width = 0.0;
                 double height = 0.0;
-                boolean flipped = false;
 
                 boolean loading = te.isLoading();
                 if (!loading)
@@ -95,7 +95,6 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
                         {
                             width = texture.getWidth();
                             height = texture.getHeight();
-                            flipped = texture.isFlipped();
                             loading = !texture.bind();
                         }
                         else
@@ -146,12 +145,14 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
                 }
                 else
                 {
+                    // There's no anisotropic filtering setting anymore, so we base it on the mip map level
+                    int aniso = 1 << Minecraft.getMinecraft().gameSettings.mipmapLevels;
+                    GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, (float)aniso);
                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR_MIPMAP_LINEAR);
                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                     double imageWidth = frameWidth;
                     double imageHeight = frameHeight;
-                    double t = flipped ? 1 : 0;
 
                     if(!te.isStretched())
                     {
@@ -182,10 +183,10 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
                     BufferBuilder buffer = tessellator.getBuffer();
                     GlStateManager.translate(0, 0, -0.01 * 0.0625);
                     buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-                    buffer.pos(startX, startY, 0).tex(t, t).endVertex();
-                    buffer.pos(startX, startY + imageHeight, 0).tex(t, 1 - t).endVertex();
-                    buffer.pos(startX + imageWidth, startY + imageHeight, 0).tex(1 - t, 1 - t).endVertex();
-                    buffer.pos(startX + imageWidth, startY, 0).tex(1 - t, t).endVertex();
+                    buffer.pos(startX, startY, 0).tex(0, 0).endVertex();
+                    buffer.pos(startX, startY + imageHeight, 0).tex(0, 1).endVertex();
+                    buffer.pos(startX + imageWidth, startY + imageHeight, 0).tex(1, 1).endVertex();
+                    buffer.pos(startX + imageWidth, startY, 0).tex(1, 0).endVertex();
                     tessellator.draw();
                 }
                 GlStateManager.disableBlend();

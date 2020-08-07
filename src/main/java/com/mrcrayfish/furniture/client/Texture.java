@@ -31,8 +31,7 @@ public class Texture
     });
 
     protected int textureId = -1;
-    protected int width, height;
-    protected boolean flipped = false;
+    protected int width, height, levels;
     protected boolean delete = false;
 
     public Texture(File file)
@@ -57,16 +56,16 @@ public class Texture
                     DDSFile image = new DDSFile(file);
                     this.width = image.getWidth();
                     this.height = image.getHeight();
-                    this.flipped = true;
+                    this.levels = Math.min(image.getMipMapCount() - 1, Minecraft.getMinecraft().gameSettings.mipmapLevels);
 
                     //Create and upload the buffer
                     Minecraft.getMinecraft().addScheduledTask(() -> {
                         textureId = GlStateManager.generateTexture();
                         GlStateManager.bindTexture(textureId);
-                        for (int level = 0; level < image.getMipMapCount(); level++)
-                            GL13.glCompressedTexImage2D(GL11.GL_TEXTURE_2D, level, image.getFormat(), width >> level, height >> level, 0, image.getBuffer(level));
+                        for (int level = 0; level <= levels; level++)
+                            GL13.glCompressedTexImage2D(GL11.GL_TEXTURE_2D, level, image.getFormat(), Math.max(width >> level, 1), Math.max(height >> level, 1), 0, image.getBuffer(level));
                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_BASE_LEVEL, 0);
-                        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_MAX_LEVEL, image.getMipMapCount() - 1);
+                        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_MAX_LEVEL, levels);
                     });
                 }
                 else
@@ -74,6 +73,7 @@ public class Texture
                     BufferedImage image = ImageIO.read(file);
                     this.width = image.getWidth();
                     this.height = image.getHeight();
+                    this.levels = Minecraft.getMinecraft().gameSettings.mipmapLevels;
                     IntBuffer buffer = createBuffer(image);
 
                     //Create and upload the buffer
@@ -82,7 +82,7 @@ public class Texture
                         GlStateManager.bindTexture(textureId);
                         GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA8, width, height, 0, GL12.GL_BGRA, GL12.GL_UNSIGNED_INT_8_8_8_8_REV, buffer);
                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_BASE_LEVEL, 0);
-                        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_MAX_LEVEL, 2);
+                        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_MAX_LEVEL, levels);
                         GL30.glGenerateMipmap(GL11.GL_TEXTURE_2D);
                     });
                 }
@@ -96,6 +96,9 @@ public class Texture
 
     public void update()
     {
+        if (this.levels != Minecraft.getMinecraft().gameSettings.mipmapLevels)
+            delete = true;
+
         if (delete)
         {
             GlStateManager.deleteTexture(textureId);
@@ -144,11 +147,6 @@ public class Texture
     public int getHeight()
     {
         return height;
-    }
-
-    public boolean isFlipped()
-    {
-        return flipped;
     }
 
     public boolean isPendingDeletion()

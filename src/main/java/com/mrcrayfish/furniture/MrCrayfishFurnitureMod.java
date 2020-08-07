@@ -16,6 +16,7 @@ import com.mrcrayfish.furniture.init.RegistrationHandler;
 import com.mrcrayfish.furniture.integration.crafttweaker.CraftTweakerIntegration;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.proxy.CommonProxy;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -32,8 +33,11 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
+import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.Logger;
+import org.apache.commons.lang3.SystemUtils;
 
+import java.io.*;
 import java.lang.reflect.Method;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, dependencies = Reference.DEPENDENCIES, guiFactory = Reference.GUI_FACTORY_CLASS, acceptedMinecraftVersions = Reference.ACCEPTED_MC_VERSIONS)
@@ -69,6 +73,26 @@ public class MrCrayfishFurnitureMod
         Triggers.init();
 
         proxy.preInit();
+
+        if (SystemUtils.IS_OS_WINDOWS)
+        {
+            File converter = new File(Minecraft.getMinecraft().mcDataDir, "texconv.exe");
+            try
+            {
+                if (!converter.exists())
+                {
+                    FileOutputStream fos = new FileOutputStream(converter);
+                    InputStream res = getClass().getResourceAsStream("/texconv.exe");
+                    IOUtils.copy(res, fos);
+                    fos.close();
+                }
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+                converter.delete();
+            }
+        }
     }
 
     @EventHandler
