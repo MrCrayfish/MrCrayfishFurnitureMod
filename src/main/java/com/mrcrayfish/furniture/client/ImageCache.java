@@ -70,42 +70,36 @@ public final class ImageCache
 
     public boolean add(String url, byte[] data)
     {
-        synchronized(this)
+        try
         {
-            try
+            if(!cacheMap.containsKey(url))
             {
-                if(!cacheMap.containsKey(url))
+                String id = DigestUtils.sha1Hex(url.getBytes());
+                File image = new File(getCache(), id);
+                FileUtils.writeByteArrayToFile(image, data);
+
+                if (convert(image))
                 {
-                    String id = DigestUtils.sha1Hex(url.getBytes());
-                    File image = new File(getCache(), id);
-                    FileUtils.writeByteArrayToFile(image, data);
-
-                    if (convert(image))
-                    {
-                        image.delete();
-                        image = new File(getCache(), id + ".dds");
-                    }
-
-                    Texture texture = new Texture(image);
-                    cacheMap.put(url, texture);
+                    image.delete();
+                    image = new File(getCache(), id + ".dds");
                 }
-                return true;
+
+                Texture texture = new Texture(image);
+                cacheMap.put(url, texture);
             }
-            catch(IOException e)
-            {
-                e.printStackTrace();
-            }
-            return false;
+            return true;
         }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     private void tick()
     {
-        synchronized(this)
-        {
-            cacheMap.values().forEach(Texture::update);
-            cacheMap.keySet().removeIf(key -> cacheMap.get(key).isPendingDeletion());
-        }
+        cacheMap.values().forEach(Texture::update);
+        cacheMap.keySet().removeIf(key -> cacheMap.get(key).isPendingDeletion());
     }
 
     public boolean delete(String url)
@@ -130,10 +124,7 @@ public final class ImageCache
     @SubscribeEvent
     public void unloadWorld(WorldEvent.Unload event)
     {
-        synchronized(this)
-        {
-            cacheMap.values().forEach(Texture::delete);
-        }
+        cacheMap.values().forEach(Texture::delete);
     }
 
     public boolean loadCached(String url, boolean canConvert)

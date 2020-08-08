@@ -12,8 +12,8 @@ import org.apache.commons.io.FileUtils;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Author: MrCrayfish
@@ -24,7 +24,7 @@ public final class GifCache
     public static final GifCache INSTANCE = new GifCache();
 
     private final File cache;
-    private Map<String, AnimatedTexture> cacheMap = new HashMap<>();
+    private Map<String, AnimatedTexture> cacheMap = new ConcurrentHashMap<>();
 
     private GifCache()
     {
@@ -51,51 +51,42 @@ public final class GifCache
         if(url == null)
             return null;
 
-        synchronized(this)
+        AnimatedTexture texture = cacheMap.get(url);
+        if(texture != null)
         {
-            AnimatedTexture texture = cacheMap.get(url);
-            if(texture != null)
-            {
-                return texture;
-            }
+            return texture;
         }
         return null;
     }
 
     public void add(String url, File file)
     {
-        synchronized(this)
+        if(!cacheMap.containsKey(url))
         {
-            if(!cacheMap.containsKey(url))
-            {
-                AnimatedTexture texture = new AnimatedTexture(file);
-                cacheMap.put(url, texture);
-            }
+            AnimatedTexture texture = new AnimatedTexture(file);
+            cacheMap.put(url, texture);
         }
     }
 
     public boolean add(String url, byte[] data)
     {
-        synchronized(this)
+        try
         {
-            try
+            if(!cacheMap.containsKey(url))
             {
-                if(!cacheMap.containsKey(url))
-                {
-                    String id = DigestUtils.sha1Hex(url.getBytes()) + ".gif";
-                    File gif = new File(getCache(), id);
-                    FileUtils.writeByteArrayToFile(gif, data);
-                    AnimatedTexture texture = new AnimatedTexture(gif);
-                    cacheMap.put(url, texture);
-                }
-                return true;
+                String id = DigestUtils.sha1Hex(url.getBytes()) + ".gif";
+                File gif = new File(getCache(), id);
+                FileUtils.writeByteArrayToFile(gif, data);
+                AnimatedTexture texture = new AnimatedTexture(gif);
+                cacheMap.put(url, texture);
             }
-            catch(IOException e)
-            {
-                e.printStackTrace();
-            }
-            return false;
+            return true;
         }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     private void tick()
@@ -126,20 +117,14 @@ public final class GifCache
     @SubscribeEvent
     public void unloadWorld(WorldEvent.Unload event)
     {
-        synchronized(this)
-        {
-            cacheMap.values().forEach(Texture::delete);
-        }
+        cacheMap.values().forEach(Texture::delete);
     }
 
     public boolean loadCached(String url)
     {
-        synchronized(this)
+        if(cacheMap.containsKey(url))
         {
-            if(cacheMap.containsKey(url))
-            {
-                return true;
-            }
+            return true;
         }
 
         String id = DigestUtils.sha1Hex(url.getBytes()) + ".gif";
@@ -154,10 +139,7 @@ public final class GifCache
 
     public boolean isCached(String url)
     {
-        synchronized(this)
-        {
-            return cacheMap.containsKey(url);
-        }
+        return cacheMap.containsKey(url);
     }
 
     public File getCache()
