@@ -85,6 +85,7 @@ public class MrCrayfishFurnitureMod
                     InputStream res = getClass().getResourceAsStream("/texconv.exe");
                     IOUtils.copy(res, fos);
                     fos.close();
+                    converter.setExecutable(true);
                 }
             }
             catch(IOException e)
