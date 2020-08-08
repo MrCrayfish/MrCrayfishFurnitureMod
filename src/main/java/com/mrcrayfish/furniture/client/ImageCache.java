@@ -175,8 +175,8 @@ public final class ImageCache
 
         ProcessBuilder pb = new ProcessBuilder().inheritIO().command(converter.getAbsolutePath(),
                 "-m", "5", // Minecraft supports a maximum of 4 mipmaps, so we need 5 levels
-                "-f", "BC7_UNORM", "-hflip", "-vflip", "-l",
-                "-o", getCache().getAbsolutePath(),
+                "-f", "BC7_UNORM", "-bc", "x", "-srgb", "-pmalpha", "-hflip", "-vflip",
+                "-l", "-y", "-o", getCache().getAbsolutePath(),
                 file.getAbsolutePath());
 
         try
