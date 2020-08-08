@@ -144,6 +144,13 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
         }
     }
 
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void onChunkUnload()
+    {
+        GifCache.INSTANCE.delete(getCurrentChannel());
+    }
+
     @SideOnly(Side.CLIENT)
     public boolean isLoading()
     {

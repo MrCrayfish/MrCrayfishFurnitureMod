@@ -101,6 +101,13 @@ public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValue
         }
     }
 
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void onChunkUnload()
+    {
+        ImageCache.INSTANCE.delete(url);
+    }
+
     @SideOnly(Side.CLIENT)
     public boolean isLoading()
     {
