@@ -21,9 +21,6 @@ import java.util.concurrent.Executors;
  */
 public class Texture
 {
-    protected static final int GL_COMPRESSED_RGBA_S3TC_DXT1_EXT = 0x83f1;
-    protected static final int GL_COMPRESSED_RGBA_S3TC_DXT3_EXT = 0x83f2;
-    protected static final int GL_COMPRESSED_RGBA_S3TC_DXT5_EXT = 0x83f3;
     protected static final ExecutorService THREAD_SERVICE = Executors.newCachedThreadPool(r -> {
         Thread thread = new Thread(r);
         thread.setName("Texture File I/O");
