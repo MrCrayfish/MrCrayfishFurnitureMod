@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.client;
 
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -11,7 +12,6 @@ import org.apache.commons.io.FileUtils;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -118,11 +118,21 @@ public final class ImageCache
     }
 
     @SubscribeEvent
-    public void onRenderTick(TickEvent.RenderTickEvent event)
+    public void onRenderTick(TickEvent.ClientTickEvent event)
     {
         if(event.phase == TickEvent.Phase.START)
         {
             this.tick();
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void unloadWorld(WorldEvent.Unload event)
+    {
+        synchronized(this)
+        {
+            cacheMap.values().forEach(Texture::delete);
         }
     }
 

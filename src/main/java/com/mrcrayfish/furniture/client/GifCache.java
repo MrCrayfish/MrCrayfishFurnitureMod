@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.client;
 
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -118,6 +119,16 @@ public final class GifCache
         if(event.phase == TickEvent.Phase.START)
         {
             this.tick();
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void unloadWorld(WorldEvent.Unload event)
+    {
+        synchronized(this)
+        {
+            cacheMap.values().forEach(Texture::delete);
         }
     }
 
