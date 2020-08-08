@@ -47,10 +47,11 @@ public class AnimatedTexture extends Texture
                 {
                     BufferedImage image = decoder.getFrame(i);
                     framesTextureData[i] = createBuffer(image);
-                    duration += decoder.getDelay(i); // GIF delay resolution is 1/100th
+                    duration += decoder.getDelay(i);
                 }
 
-                int[] ids = new int[duration / 10];
+                // Minecraft runs at 20 fps which is 50 milliseconds per frame
+                int[] ids = new int[duration / 50];
                 Minecraft.getMinecraft().addScheduledTask(() -> {
                     for(int i = 0, j = 0; i < frameCount; i++)
                     {
@@ -58,9 +59,13 @@ public class AnimatedTexture extends Texture
                         GlStateManager.bindTexture(id);
                         GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA8, width, height, 0, GL12.GL_BGRA, GL12.GL_UNSIGNED_INT_8_8_8_8_REV, framesTextureData[i]);
 
-                        int delay = decoder.getDelay(i) / 10;
+                        int delay = decoder.getDelay(i);
                         while (delay-- > 0)
-                            ids[j++] = id;
+                        {
+                            // We only need to store every fiftieth frame index
+                            if (j++ % 50 == 0)
+                                ids[j / 50] = id;
+                        }
                     }
                     framesTextureIds = ids;
                 });
@@ -80,8 +85,7 @@ public class AnimatedTexture extends Texture
             if (frameCounter >= framesTextureIds.length)
                 frameCounter = 0;
 
-            textureId = framesTextureIds[frameCounter];
-            frameCounter += 5; // 20 fps is 5/100th of a second
+            textureId = framesTextureIds[frameCounter++];
         }
 
         if (delete)
@@ -91,6 +95,7 @@ public class AnimatedTexture extends Texture
             {
                 if (id != prevId)
                     GlStateManager.deleteTexture(id);
+                prevId = id;
             }
             framesTextureIds = new int[0];
             textureId = -1;
