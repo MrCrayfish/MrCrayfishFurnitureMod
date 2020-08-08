@@ -12,14 +12,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.IntBuffer;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Author: MrCrayfish
  */
 public class AnimatedTexture extends Texture
 {
-    private int[] framesTextureIds;
-    private int frameCounter = 0;
+    private ArrayList<Integer> framesTextureIds = new ArrayList<>();
+    private Iterator<Integer> frameIterator;
 
     public AnimatedTexture(File file)
     {
@@ -29,7 +31,6 @@ public class AnimatedTexture extends Texture
     @Override
     public void load(File file)
     {
-        framesTextureIds = new int[0];
         THREAD_SERVICE.submit(() ->
         {
             try
@@ -51,7 +52,7 @@ public class AnimatedTexture extends Texture
                 }
 
                 // Minecraft runs at 20 fps which is 50 milliseconds per frame
-                int[] ids = new int[duration / 50];
+                ArrayList<Integer> ids = new ArrayList<>(duration / 50);
                 Minecraft.getMinecraft().addScheduledTask(() -> {
                     for(int i = 0, j = 0; i < frameCount; i++)
                     {
@@ -60,13 +61,14 @@ public class AnimatedTexture extends Texture
                         GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA8, width, height, 0, GL12.GL_BGRA, GL12.GL_UNSIGNED_INT_8_8_8_8_REV, framesTextureData[i]);
 
                         int delay = decoder.getDelay(i);
-                        while (delay-- > 0)
+                        while (delay-- >= 0)
                         {
                             // We only need to store every fiftieth frame index
                             if (j++ % 50 == 0)
-                                ids[j / 50] = id;
+                                ids.add(id);
                         }
                     }
+                    frameIterator = ids.iterator();
                     framesTextureIds = ids;
                 });
             }
@@ -80,12 +82,12 @@ public class AnimatedTexture extends Texture
     @Override
     public void update()
     {
-        if (framesTextureIds.length > 0)
+        if (!framesTextureIds.isEmpty())
         {
-            if (frameCounter >= framesTextureIds.length)
-                frameCounter = 0;
+            if (!frameIterator.hasNext())
+                frameIterator = framesTextureIds.iterator();
 
-            textureId = framesTextureIds[frameCounter++];
+            textureId = frameIterator.next();
         }
 
         if (delete)
@@ -97,7 +99,7 @@ public class AnimatedTexture extends Texture
                     GlStateManager.deleteTexture(id);
                 prevId = id;
             }
-            framesTextureIds = new int[0];
+            framesTextureIds = new ArrayList<>();
             textureId = -1;
         }
     }
