@@ -1,9 +1,10 @@
 package com.mrcrayfish.furniture.client;
 
+import net.buttology.lwjgl.dds.DDSFile;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import org.lwjgl.BufferUtils;
-import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.*;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -11,6 +12,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+import java.nio.IntBuffer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -25,11 +27,9 @@ public class Texture
         return thread;
     });
 
-    private ByteBuffer buffer;
-    private int textureId = -1;
-    protected int width, height;
-    protected int counter;
-    protected boolean delete;
+    protected int textureId = -1;
+    protected int width, height, maxLevel;
+    protected boolean delete = false;
 
     public Texture(File file)
     {
@@ -44,19 +44,45 @@ public class Texture
             {
                 //Loads the image
                 FileInputStream inputStream = new FileInputStream(file);
-                BufferedImage image = ImageIO.read(inputStream);
-                this.width = image.getWidth();
-                this.height = image.getHeight();
+                byte[] magic = new byte[4];
+                inputStream.read(magic);
+                inputStream.close();
 
-                //Creates the ByteBuffer
-                int[] imageData = new int[this.width * this.height];
-                image.getRGB(0, 0, this.width, this.height, imageData, 0, this.width);
-                buffer = createBuffer(imageData);
-                
-                Minecraft.getMinecraft().addScheduledTask(() -> {
-                    GlStateManager.bindTexture(getTextureId());
-                    GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, width, height, 0, GL11.GL_RGBA, GL11.GL_UNSIGNED_BYTE, buffer);
-                });
+                if (DDSFile.isDDSFile(magic))
+                {
+                    DDSFile image = new DDSFile(file);
+                    this.width = image.getWidth();
+                    this.height = image.getHeight();
+                    this.maxLevel = Math.min(image.getMipMapCount() - 1, Minecraft.getMinecraft().gameSettings.mipmapLevels);
+
+                    //Create and upload the buffer
+                    Minecraft.getMinecraft().addScheduledTask(() -> {
+                        textureId = GlStateManager.generateTexture();
+                        GlStateManager.bindTexture(textureId);
+                        for (int level = 0; level <= maxLevel; level++)
+                            GL13.glCompressedTexImage2D(GL11.GL_TEXTURE_2D, level, image.getFormat(), image.getWidth(level), image.getHeight(level), 0, image.getBuffer(level));
+                        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_BASE_LEVEL, 0);
+                        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_MAX_LEVEL, maxLevel);
+                    });
+                }
+                else
+                {
+                    BufferedImage image = ImageIO.read(file);
+                    this.width = image.getWidth();
+                    this.height = image.getHeight();
+                    this.maxLevel = Minecraft.getMinecraft().gameSettings.mipmapLevels;
+                    IntBuffer buffer = createBuffer(image);
+
+                    //Create and upload the buffer
+                    Minecraft.getMinecraft().addScheduledTask(() -> {
+                        textureId = GlStateManager.generateTexture();
+                        GlStateManager.bindTexture(textureId);
+                        GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA8, width, height, 0, GL12.GL_BGRA, GL12.GL_UNSIGNED_INT_8_8_8_8_REV, buffer);
+                        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_BASE_LEVEL, 0);
+                        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL12.GL_TEXTURE_MAX_LEVEL, maxLevel);
+                        GL30.glGenerateMipmap(GL11.GL_TEXTURE_2D);
+                    });
+                }
             }
             catch(IOException e)
             {
@@ -67,43 +93,46 @@ public class Texture
 
     public void update()
     {
-        if(counter++ >= 600)
-        {
+        if (this.maxLevel != Minecraft.getMinecraft().gameSettings.mipmapLevels)
             delete = true;
-            GlStateManager.deleteTexture(getTextureId());
+
+        if (delete)
+        {
+            GlStateManager.deleteTexture(textureId);
+            textureId = -1;
         }
     }
 
-    protected ByteBuffer createBuffer(int[] data)
+    public void delete()
     {
-        ByteBuffer buffer = BufferUtils.createByteBuffer(width * height * 4);
-        for (int y = height - 1; y >= 0; y--)
+        delete = true;
+    }
+
+    static protected IntBuffer createBuffer(BufferedImage image)
+    {
+        IntBuffer buffer = BufferUtils.createIntBuffer(image.getWidth() * image.getHeight());
+        for (int y = image.getHeight() - 1; y >= 0; y--)
         {
-            for (int x = width - 1; x >= 0; x--)
+            for (int x = image.getWidth() - 1; x >= 0; x--)
             {
-                int color = data[x + y * width];
-                buffer.put((byte) ((color >> 16) & 0xff));
-                buffer.put((byte) ((color >> 8) & 0xff));
-                buffer.put((byte) (color & 0xff));
-                buffer.put((byte) ((color >> 24) & 0xff));
+                buffer.put(image.getRGB(x, y));
             }
         }
         buffer.flip();
         return buffer;
     }
 
-    public void bind()
+    public boolean bind()
     {
-        counter = 0;
+        if(textureId == -1 || !GL11.glIsTexture(textureId))
+            return false;
+
         GlStateManager.bindTexture(getTextureId());
+        return true;
     }
 
     public int getTextureId()
     {
-        if(textureId == -1 || !GL11.glIsTexture(textureId))
-        {
-            textureId = GlStateManager.generateTexture();
-        }
         return textureId;
     }
 

@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.client;
 
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -11,7 +12,6 @@ import org.apache.commons.io.FileUtils;
 import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -70,39 +70,49 @@ public final class ImageCache
 
     public boolean add(String url, byte[] data)
     {
-        synchronized(this)
+        try
         {
-            try
+            if(!cacheMap.containsKey(url))
             {
-                if(!cacheMap.containsKey(url))
+                String id = DigestUtils.sha1Hex(url.getBytes());
+                File image = new File(getCache(), id);
+                FileUtils.writeByteArrayToFile(image, data);
+
+                if (convert(image))
                 {
-                    String id = DigestUtils.sha1Hex(url.getBytes());
-                    File image = new File(getCache(), id);
-                    FileUtils.writeByteArrayToFile(image, data);
-                    Texture texture = new Texture(image);
-                    cacheMap.put(url, texture);
-                    Minecraft.getMinecraft().addScheduledTask(texture::update);
+                    image.delete();
+                    image = new File(getCache(), id + ".dds");
                 }
-                return true;
+
+                Texture texture = new Texture(image);
+                cacheMap.put(url, texture);
             }
-            catch(IOException e)
-            {
-                e.printStackTrace();
-            }
-            return false;
+            return true;
         }
+        catch(IOException e)
+        {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     private void tick()
     {
-        synchronized(this)
-        {
-            cacheMap.values().forEach(Texture::update);
-        }
+        cacheMap.values().forEach(Texture::update);
+        cacheMap.keySet().removeIf(key -> cacheMap.get(key).isPendingDeletion());
+    }
+
+    public boolean delete(String url)
+    {
+        Texture texture = get(url);
+        if (texture == null)
+            return false;
+        texture.delete();
+        return true;
     }
 
     @SubscribeEvent
-    public void onRenderTick(TickEvent.RenderTickEvent event)
+    public void onRenderTick(TickEvent.ClientTickEvent event)
     {
         if(event.phase == TickEvent.Phase.START)
         {
@@ -110,7 +120,14 @@ public final class ImageCache
         }
     }
 
-    public boolean loadCached(String url)
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void unloadWorld(WorldEvent.Unload event)
+    {
+        cacheMap.values().forEach(Texture::delete);
+    }
+
+    public boolean loadCached(String url, boolean canConvert)
     {
         if(cacheMap.containsKey(url))
         {
@@ -118,10 +135,22 @@ public final class ImageCache
         }
 
         String id = DigestUtils.sha1Hex(url.getBytes());
-        File file = new File(getCache(), id);
-        if(file.exists())
+        File rawFile = new File(getCache(), id);
+        File cacheFile = new File(getCache(), id + ".dds");
+
+        // If the raw file is present in the cache try to convert it
+        if (canConvert && rawFile.exists())
         {
-            this.add(url, file);
+            // If conversion fails, simply add the raw file to the cache instead
+            if (convert(rawFile))
+                rawFile.delete();
+            else
+                cacheFile = rawFile;
+        }
+
+        if(cacheFile.exists())
+        {
+            this.add(url, cacheFile);
             return true;
         }
         return false;
@@ -136,5 +165,33 @@ public final class ImageCache
     {
         cache.mkdir();
         return cache;
+    }
+
+    private boolean convert(File file)
+    {
+        File converter = new File(Minecraft.getMinecraft().mcDataDir, "texconv.exe");
+        if (!converter.exists())
+            return false;
+
+        ProcessBuilder pb = new ProcessBuilder().inheritIO().command(converter.getAbsolutePath(),
+                "-m", "5", // Minecraft supports a maximum of 4 mipmaps, so we need 5 levels
+                "-f", "BC7_UNORM", "-bc", "x", "-srgb", "-pmalpha", "-hflip", "-vflip",
+                "-l", "-y", "-o", getCache().getAbsolutePath(),
+                file.getAbsolutePath());
+
+        try
+        {
+            Process compress = pb.start();
+            return compress.waitFor() >= 0;
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

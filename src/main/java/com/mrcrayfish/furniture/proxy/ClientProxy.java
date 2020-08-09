@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.proxy;
 
 import com.mrcrayfish.furniture.client.GifCache;
+import com.mrcrayfish.furniture.client.ImageCache;
 import com.mrcrayfish.furniture.handler.ClientEvents;
 import com.mrcrayfish.furniture.handler.GuiDrawHandler;
 import com.mrcrayfish.furniture.handler.InputHandler;
@@ -62,6 +63,7 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityPhotoFrame.class, new PhotoFrameRenderer());
 
         MinecraftForge.EVENT_BUS.register(GifCache.INSTANCE);
+        MinecraftForge.EVENT_BUS.register(ImageCache.INSTANCE);
         MinecraftForge.EVENT_BUS.register(new MirrorRenderer());
     }
 

@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.AbstractMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.Callable;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 import java.util.stream.Collectors;
@@ -17,7 +18,7 @@ import java.util.stream.Stream;
 /**
  * Author: MrCrayfish
  */
-public class GifDownloadThread extends Thread
+public class GifDownloadThread implements Callable<GifDownloadThread.ImageDownloadResult>
 {
     private static final Set<String> LOADING_URLS = new HashSet<>();
     private static final Map<Pattern, String> MAP_OF_GIF_HOSTS = Stream.of(
@@ -33,23 +34,19 @@ public class GifDownloadThread extends Thread
     private static final long MAX_FILE_SIZE = 2097152;
 
     private String url;
-    private ResponseProcessor processor;
     private int tryCount;
 
-    public GifDownloadThread(String url, ResponseProcessor processor)
+    public GifDownloadThread(String url)
     {
-        super("Image Download Thread");
         this.url = url;
-        this.processor = processor;
     }
 
     @Override
-    public void run()
+    public ImageDownloadResult call()
     {
         if(GifCache.INSTANCE.loadCached(url))
         {
-            processor.process(ImageDownloadResult.SUCCESS, "Successfully processed GIF");
-            return;
+            return ImageDownloadResult.SUCCESS;
         }
 
         if(isLoading(url))
@@ -67,14 +64,12 @@ public class GifDownloadThread extends Thread
 
                 if(GifCache.INSTANCE.isCached(url))
                 {
-                    processor.process(ImageDownloadResult.SUCCESS, "Successfully processed GIF");
-                    return;
+                    return ImageDownloadResult.SUCCESS;
                 }
 
                 if(tryCount++ == 10)
                 {
-                    processor.process(ImageDownloadResult.FAILED, "Unable to process GIF");
-                    return;
+                    return ImageDownloadResult.FAILED;
                 }
             }
         }
@@ -87,15 +82,13 @@ public class GifDownloadThread extends Thread
 
             if(!"image/gif".equals(connection.getContentType()))
             {
-                processor.process(ImageDownloadResult.UNKNOWN_FILE, "The file is not a GIF");
-                return;
+                return ImageDownloadResult.UNKNOWN_FILE;
             }
 
             long length = Long.parseLong(connection.getHeaderField("Content-Length"));
             if(length > MAX_FILE_SIZE)
             {
-                processor.process(ImageDownloadResult.TOO_LARGE, "The GIF is greater than " + MAX_FILE_SIZE / 1024.0 + "MB");
-                return;
+                return ImageDownloadResult.TOO_LARGE;
             }
 
             setLoading(url, true);
@@ -103,16 +96,15 @@ public class GifDownloadThread extends Thread
             if(GifCache.INSTANCE.add(url, data))
             {
                 setLoading(url, false);
-                processor.process(ImageDownloadResult.SUCCESS, "Successfully processed GIF");
-                return;
+                return ImageDownloadResult.SUCCESS;
             }
         }
         catch(IOException e)
         {
             e.printStackTrace();
         }
-        processor.process(ImageDownloadResult.FAILED, "Unable to process GIF");
         setLoading(url, false);
+        return ImageDownloadResult.FAILED;
     }
 
     /**
@@ -135,11 +127,6 @@ public class GifDownloadThread extends Thread
         }
 
         return url;
-    }
-
-    public interface ResponseProcessor
-    {
-        void process(ImageDownloadResult result, String message);
     }
 
     public enum ImageDownloadResult
