@@ -15,9 +15,11 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.settings.GameSettings;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import org.lwjgl.opengl.EXTTextureFilterAnisotropic;
 import org.lwjgl.opengl.GL11;
 
 import java.util.List;
@@ -30,7 +32,6 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
 {
     private static final ResourceLocation NOISE = new ResourceLocation("cfm:textures/noise.png");
     private static final Random RAND = new Random();
-    private static final int GL_TEXTURE_MAX_ANISOTROPY_EXT = 0x84fe;
 
     @Override
     public void render(TileEntityPhotoFrame te, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
@@ -146,8 +147,10 @@ public class PhotoFrameRenderer extends TileEntitySpecialRenderer<TileEntityPhot
                 else
                 {
                     // There's no anisotropic filtering setting anymore, so we base it on the mip map level
-                    int aniso = 1 << Minecraft.getMinecraft().gameSettings.mipmapLevels;
-                    GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, (float)aniso);
+                    GameSettings settings = Minecraft.getMinecraft().gameSettings;
+                    int aniso = 1 << settings.mipmapLevels;
+                    if (settings.fancyGraphics)
+                        GL11.glTexParameterf(GL11.GL_TEXTURE_2D, EXTTextureFilterAnisotropic.GL_TEXTURE_MAX_ANISOTROPY_EXT, (float)aniso);
                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR_MIPMAP_LINEAR);
                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
