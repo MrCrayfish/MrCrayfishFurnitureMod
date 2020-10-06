@@ -22,7 +22,7 @@ public class IconButton extends Button
 
     public IconButton(int x, int y, String message, IPressable pressable, ResourceLocation iconResource, int iconU, int iconV)
     {
-        super(x, y, 20, 20, ITextComponent.func_241827_a_(message), pressable);
+        super(x, y, 20, 20, ITextComponent.getTextComponentOrEmpty(message), pressable);
         this.iconResource = iconResource;
         this.iconU = iconU;
         this.iconV = iconV;

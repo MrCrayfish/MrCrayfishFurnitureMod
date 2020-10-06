@@ -105,7 +105,7 @@ public class PostOffice extends WorldSavedData
     {
         PostOffice office = get(playerEntity.server);
         Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.computeIfAbsent(playerEntity.getUniqueID(), uuid -> new HashMap<>());
-        mailBoxMap.put(mailBoxId, new MailBox(mailBoxId, name, playerEntity.getUniqueID(), playerEntity.getName().getString(), pos, playerEntity.world.func_234923_W_()));
+        mailBoxMap.put(mailBoxId, new MailBox(mailBoxId, name, playerEntity.getUniqueID(), playerEntity.getName().getString(), pos, playerEntity.world.getDimensionKey()));
         office.markDirty();
     }
 
@@ -218,7 +218,7 @@ public class PostOffice extends WorldSavedData
 
     private static PostOffice get(MinecraftServer server)
     {
-        ServerWorld world = server.getWorld(World.field_234918_g_);
+        ServerWorld world = server.getWorld(World.OVERWORLD);
         return world.getSavedData().getOrCreate(PostOffice::new, DATA_NAME);
     }
 

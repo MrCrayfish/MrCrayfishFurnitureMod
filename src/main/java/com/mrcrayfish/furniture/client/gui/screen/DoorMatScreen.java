@@ -41,12 +41,12 @@ public class DoorMatScreen extends Screen
         int guiLeft = (this.width - this.xSize) / 2;
         int guiTop = (this.height - this.ySize) / 2;
 
-        this.nameField = new TextFieldWidget(this.font, guiLeft + 8, guiTop + 18, 160, 18, ITextComponent.func_241827_a_(""))
+        this.nameField = new TextFieldWidget(this.font, guiLeft + 8, guiTop + 18, 160, 18, ITextComponent.getTextComponentOrEmpty(""))
         {
             @Override
             public void writeText(String textToWrite)
             {
-                int lines = DoorMatScreen.this.font.func_238425_b_(ITextProperties.func_240652_a_(this.getText() + textToWrite), 60).size();
+                int lines = DoorMatScreen.this.font.trimStringToWidth(ITextProperties.func_240652_a_(this.getText() + textToWrite), 60).size();
                 if(lines <= 2)
                 {
                     super.writeText(textToWrite);
@@ -59,7 +59,7 @@ public class DoorMatScreen extends Screen
         }
         this.children.add(this.nameField);
 
-        this.btnSave = this.addButton(new Button(guiLeft + 7, guiTop + 42, 79, 20, ITextComponent.func_241827_a_(I18n.format("gui.button.cfm.save")), button ->
+        this.btnSave = this.addButton(new Button(guiLeft + 7, guiTop + 42, 79, 20, ITextComponent.getTextComponentOrEmpty(I18n.format("gui.button.cfm.save")), button ->
         {
             if(this.isValidName())
             {
@@ -69,7 +69,7 @@ public class DoorMatScreen extends Screen
         }));
         this.btnSave.active = false;
 
-        this.addButton(new Button(guiLeft + 91, guiTop + 42, 79, 20, ITextComponent.func_241827_a_(I18n.format("gui.button.cfm.cancel")), button ->
+        this.addButton(new Button(guiLeft + 91, guiTop + 42, 79, 20, ITextComponent.getTextComponentOrEmpty(I18n.format("gui.button.cfm.cancel")), button ->
         {
             this.minecraft.player.closeScreen();
         }));
@@ -103,7 +103,7 @@ public class DoorMatScreen extends Screen
 
     private boolean isValidName()
     {
-        int lines = this.font.func_238425_b_(ITextComponent.func_241827_a_(doorMatTileEntity.getMessage()), 45).size();
+        int lines = this.font.trimStringToWidth(ITextComponent.getTextComponentOrEmpty(doorMatTileEntity.getMessage()), 45).size();
         return !this.nameField.getText().equals(doorMatTileEntity.getMessage()) && !this.nameField.getText().trim().isEmpty() && lines < 2;
     }
 }

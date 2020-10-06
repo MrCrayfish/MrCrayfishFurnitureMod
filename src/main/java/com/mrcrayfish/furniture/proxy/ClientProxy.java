@@ -330,7 +330,7 @@ public class ClientProxy extends CommonProxy
     public boolean useFancyGraphics()
     {
         Minecraft mc = Minecraft.getInstance();
-        return mc.gameSettings.field_238330_f_.func_238162_a_() > 0;
+        return mc.gameSettings.graphicFanciness.func_238162_a_() > 0;
     }
 
     @Override

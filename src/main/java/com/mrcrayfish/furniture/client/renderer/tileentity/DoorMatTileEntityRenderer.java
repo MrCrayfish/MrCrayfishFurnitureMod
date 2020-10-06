@@ -7,6 +7,7 @@ import com.mrcrayfish.furniture.tileentity.DoorMatTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.client.renderer.tileentity.TileEntityRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
@@ -44,14 +45,14 @@ public class DoorMatTileEntityRenderer extends TileEntityRenderer<DoorMatTileEnt
                 matrixStack.scale(0.0125F, 0.0125F, 0.0125F);
 
                 FontRenderer fontRenderer = this.renderDispatcher.getFontRenderer();
-                List<ITextProperties> lines = fontRenderer.func_238425_b_(ITextProperties.func_240652_a_(tileEntity.getMessage()), 60);
+                List<IReorderingProcessor> lines = fontRenderer.trimStringToWidth(ITextProperties.func_240652_a_(tileEntity.getMessage()), 60);
                 matrixStack.translate(0.0, -(lines.size() * fontRenderer.FONT_HEIGHT - 1.0) / 2.0, 0);
 
                 for(int j = 0; j < lines.size(); j++)
                 {
                     matrixStack.push();
-                    matrixStack.translate(-fontRenderer.getStringWidth(lines.get(j).getString()) / 2.0, (j * fontRenderer.FONT_HEIGHT), 0.0);
-                    fontRenderer.renderString(lines.get(j).getString(), 0, 0, i1, false, matrixStack.getLast().getMatrix(), renderTypeBuffer, false, 0, i);
+                    matrixStack.translate(-fontRenderer.func_243245_a(lines.get(j)) / 2.0, (j * fontRenderer.FONT_HEIGHT), 0.0);
+                    fontRenderer.func_238416_a_(lines.get(j), 0, 0, i1, false, matrixStack.getLast().getMatrix(), renderTypeBuffer, false, 0, i);
                     matrixStack.pop();
                 }
                 matrixStack.pop(); //Pop

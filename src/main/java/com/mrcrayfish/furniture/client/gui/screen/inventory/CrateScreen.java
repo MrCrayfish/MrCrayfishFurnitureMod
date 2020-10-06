@@ -58,7 +58,7 @@ public class CrateScreen extends ContainerScreen<CrateContainer>
     {
         this.locked = this.container.getCrateTileEntity().isLocked();
         this.button.setIcon(ICONS_TEXTURE, this.locked ? 0 : 16, 0);
-        this.button.setMessage(ITextComponent.func_241827_a_(I18n.format(this.locked ? "gui.button.cfm.locked" : "gui.button.cfm.unlocked")));
+        this.button.setMessage(ITextComponent.getTextComponentOrEmpty(I18n.format(this.locked ? "gui.button.cfm.locked" : "gui.button.cfm.unlocked")));
         UUID ownerUuid = this.container.getCrateTileEntity().getOwner();
         this.button.visible = ownerUuid == null || this.playerInventory.player.getUniqueID().equals(ownerUuid);
     }
@@ -68,10 +68,10 @@ public class CrateScreen extends ContainerScreen<CrateContainer>
     {
         this.renderBackground(matrixStack);
         super.render(matrixStack, mouseX, mouseY, partialTicks);
-        this.func_230459_a_(matrixStack, mouseX, mouseY);
+        this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
         if(this.button.isMouseOver(mouseX, mouseY))
         {
-            this.renderTooltip(matrixStack, ITextProperties.func_240652_a_(locked ? I18n.format("gui.button.cfm.locked") : I18n.format("gui.button.cfm.unlocked")), mouseX, mouseY);
+            this.renderTooltip(matrixStack, ITextComponent.getTextComponentOrEmpty(locked ? I18n.format("gui.button.cfm.locked") : I18n.format("gui.button.cfm.unlocked")), mouseX, mouseY);
         }
     }
 
