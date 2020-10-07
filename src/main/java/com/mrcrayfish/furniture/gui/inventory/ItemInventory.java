@@ -20,6 +20,22 @@ public class ItemInventory extends InventoryBasic
         super(title, false, slotCount);
         this.stack = stack;
         this.loadInventory();
+        this.addInventoryChangeListener(l -> {
+            NBTTagCompound tagCompound = new NBTTagCompound();
+            NBTTagList itemList = new NBTTagList();
+            for(int i = 0; i < this.getSizeInventory(); i++)
+            {
+                if(!this.getStackInSlot(i).isEmpty())
+                {
+                    NBTTagCompound slotEntry = new NBTTagCompound();
+                    slotEntry.setByte("Slot", (byte) i);
+                    this.getStackInSlot(i).writeToNBT(slotEntry);
+                    itemList.appendTag(slotEntry);
+                }
+            }
+            tagCompound.setTag("Items", itemList);
+            NBTHelper.setCompoundTag(stack, this.getName(), tagCompound);
+        });
     }
 
     public ItemInventory setCanInsertItems(boolean canInsertItems)
