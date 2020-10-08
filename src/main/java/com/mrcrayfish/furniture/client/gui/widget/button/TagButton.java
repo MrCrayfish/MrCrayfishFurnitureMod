@@ -27,7 +27,7 @@ public class TagButton extends Button
 
     public TagButton(int x, int y, CreativeScreenEvents.TagFilter category, IPressable pressable)
     {
-        super(x, y, 32, 28, ITextComponent.func_241827_a_(""), pressable);
+        super(x, y, 32, 28, ITextComponent.getTextComponentOrEmpty(""), pressable);
         this.category = category;
         this.stack = category.getIcon();
         this.toggled = category.isEnabled();

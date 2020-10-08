@@ -41,14 +41,14 @@ public class MailBoxSettingsScreen extends Screen
         int guiLeft = (this.width - this.xSize) / 2;
         int guiTop = (this.height - this.ySize) / 2;
 
-        this.nameField = new TextFieldWidget(this.font, guiLeft + 8, guiTop + 18, 160, 18, ITextComponent.func_241827_a_(""));
+        this.nameField = new TextFieldWidget(this.font, guiLeft + 8, guiTop + 18, 160, 18, ITextComponent.getTextComponentOrEmpty(""));
         if(this.mailBoxTileEntity.getMailBoxName() != null)
         {
             this.nameField.setText(this.mailBoxTileEntity.getMailBoxName());
         }
         this.children.add(this.nameField);
 
-        this.btnSave = this.addButton(new Button(guiLeft + 7, guiTop + 42, 79, 20, ITextComponent.func_241827_a_(I18n.format("gui.button.cfm.save")), button ->
+        this.btnSave = this.addButton(new Button(guiLeft + 7, guiTop + 42, 79, 20, ITextComponent.getTextComponentOrEmpty(I18n.format("gui.button.cfm.save")), button ->
         {
             if(this.isValidName())
             {
@@ -57,7 +57,7 @@ public class MailBoxSettingsScreen extends Screen
         }));
         this.btnSave.active = false;
 
-        this.addButton(new Button(guiLeft + 91, guiTop + 42, 79, 20, ITextComponent.func_241827_a_(I18n.format("gui.button.cfm.back")), button ->
+        this.addButton(new Button(guiLeft + 91, guiTop + 42, 79, 20, ITextComponent.getTextComponentOrEmpty(I18n.format("gui.button.cfm.back")), button ->
         {
             PacketHandler.instance.sendToServer(new MessageOpenMailBox(mailBoxTileEntity.getPos()));
         }));

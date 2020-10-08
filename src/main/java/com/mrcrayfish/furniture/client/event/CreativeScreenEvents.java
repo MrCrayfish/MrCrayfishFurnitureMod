@@ -187,18 +187,18 @@ public class CreativeScreenEvents
                 {
                     if(button.isMouseOver(event.getMouseX(), event.getMouseY()))
                     {
-                        screen.renderTooltip(event.getMatrixStack(), ITextProperties.func_240652_a_(button.getCategory().getName()), event.getMouseX(), event.getMouseY());
+                        screen.renderTooltip(event.getMatrixStack(), ITextComponent.getTextComponentOrEmpty(button.getCategory().getName()), event.getMouseX(), event.getMouseY());
                     }
                 });
 
                 if(this.btnEnableAll.isMouseOver(event.getMouseX(), event.getMouseY()))
                 {
-                    screen.renderTooltip(event.getMatrixStack(), ITextProperties.func_240652_a_(this.btnEnableAll.getMessage().getString()), event.getMouseX(), event.getMouseY());
+                    screen.renderTooltip(event.getMatrixStack(), ITextComponent.getTextComponentOrEmpty(this.btnEnableAll.getMessage().getString()), event.getMouseX(), event.getMouseY());
                 }
 
                 if(this.btnDisableAll.isMouseOver(event.getMouseX(), event.getMouseY()))
                 {
-                    screen.renderTooltip(event.getMatrixStack(), ITextProperties.func_240652_a_(this.btnDisableAll.getMessage().getString()), event.getMouseX(), event.getMouseY());
+                    screen.renderTooltip(event.getMatrixStack(), ITextComponent.getTextComponentOrEmpty(this.btnDisableAll.getMessage().getString()), event.getMouseX(), event.getMouseY());
                 }
             }
             else

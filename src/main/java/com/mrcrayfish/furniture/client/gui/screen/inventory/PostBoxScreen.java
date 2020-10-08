@@ -66,7 +66,7 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
     protected void init()
     {
         super.init();
-        this.searchField = new TextFieldWidget(this.font, this.guiLeft + 22, this.guiTop + 19, 101, 9, ITextComponent.func_241827_a_(I18n.format("gui.cfm.post_box.search")));
+        this.searchField = new TextFieldWidget(this.font, this.guiLeft + 22, this.guiTop + 19, 101, 9, ITextComponent.getTextComponentOrEmpty(I18n.format("gui.cfm.post_box.search")));
         this.searchField.setEnableBackgroundDrawing(false);
         this.searchField.setMaxStringLength(32);
         this.searchField.setTextColor(16777215);
@@ -166,7 +166,7 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
     {
         this.renderBackground(matrixStack);
         super.render(matrixStack,mouseX, mouseY, partialTicks);
-        this.func_230459_a_(matrixStack, mouseX, mouseY);
+        this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
     }
 
     @Override

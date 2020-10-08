@@ -25,7 +25,7 @@ public class MailBox implements INBTSerializable<CompoundNBT>
     private UUID ownerId;
     private String ownerName;
     private BlockPos pos;
-    private RegistryKey<World> world = World.field_234918_g_;
+    private RegistryKey<World> world = World.OVERWORLD;
     private List<Mail> mailStorage = new ArrayList<>();
 
     public MailBox(UUID id, String name, UUID ownerId, String ownerName, BlockPos pos, RegistryKey<World> world)
@@ -112,7 +112,7 @@ public class MailBox implements INBTSerializable<CompoundNBT>
         compound.putUniqueId("OwnerUUID", this.ownerId);
         compound.putString("OwnerName", this.ownerName);
         compound.put("Pos", NBTUtil.writeBlockPos(this.pos));
-        compound.putString("World", this.world.func_240901_a_().toString());
+        compound.putString("World", this.world.getLocation().toString());
 
         if(!this.mailStorage.isEmpty())
         {
@@ -134,7 +134,7 @@ public class MailBox implements INBTSerializable<CompoundNBT>
         this.ownerId = compound.getUniqueId("OwnerUUID");
         this.ownerName = compound.getString("OwnerName");
         this.pos = NBTUtil.readBlockPos(compound.getCompound("Pos"));
-        this.world = RegistryKey.func_240903_a_(Registry.WORLD_KEY, new ResourceLocation(compound.getString("World")));
+        this.world = RegistryKey.getOrCreateKey(Registry.WORLD_KEY, new ResourceLocation(compound.getString("World")));
 
         if(compound.contains("MailStorage", Constants.NBT.TAG_LIST))
         {
