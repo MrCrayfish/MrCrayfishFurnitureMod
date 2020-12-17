@@ -1,35 +1,34 @@
 {
-    "type": "minecraft:block",
-    "pools": [
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
         {
-            "name": "oak_coffee_table",
-            "rolls": 1,
-            "entries": [
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:survives_explosion"
+            }
+          ],
+          "functions": [
+            {
+              "function": "minecraft:set_count",
+              "conditions": [
                 {
-                    "type": "minecraft:item",
-                    "functions": [
-                        {
-                            "function": "minecraft:set_count",
-                            "conditions": [
-                                {
-                                    "condition": "minecraft:block_state_property",
-                                    "block": "cfm:oak_coffee_table",
-                                    "properties": {
-                                        "tall": "true"
-                                    }
-                                }
-                            ],
-                            "count": 2
-                        }
-                    ],
-                    "name": "cfm:oak_coffee_table"
+                  "condition": "minecraft:block_state_property",
+                  "block": "cfm:oak_coffee_table",
+                  "properties": {
+                    "tall": "true"
+                  }
                 }
-            ],
-            "conditions": [
-                {
-                    "condition": "minecraft:survives_explosion"
-                }
-            ]
+              ],
+              "count": 2
+            }
+          ],
+          "name": "cfm:oak_coffee_table"
         }
-    ]
+      ]
+    }
+  ]
 }

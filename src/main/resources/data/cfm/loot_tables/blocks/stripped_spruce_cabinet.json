@@ -1,20 +1,19 @@
 {
-    "type": "minecraft:block",
-    "pools": [
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
         {
-            "name": "stripped_spruce_cabinet",
-            "rolls": 1,
-            "entries": [
-                {
-                    "type": "minecraft:item",
-                    "name": "cfm:stripped_spruce_cabinet"
-                }
-            ],
-            "conditions": [
-                {
-                    "condition": "minecraft:survives_explosion"
-                }
-            ]
+          "type": "minecraft:item",
+          "name": "cfm:stripped_spruce_cabinet"
         }
-    ]
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ]
+    }
+  ]
 }
