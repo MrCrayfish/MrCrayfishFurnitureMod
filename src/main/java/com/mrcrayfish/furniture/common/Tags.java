@@ -1,8 +1,10 @@
 package com.mrcrayfish.furniture.common;
 
+import com.mrcrayfish.furniture.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
+import net.minecraft.util.ResourceLocation;
 
 /**
  * Author: MrCrayfish
@@ -16,7 +18,7 @@ public class Tags
 
         private static ITag.INamedTag<Block> tag(String name)
         {
-            return BlockTags.makeWrapperTag(name);
+            return BlockTags.createOptional(new ResourceLocation(Reference.MOD_ID, name));
         }
     }
 }
