@@ -1,24 +1,24 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "group": "kitchen_counter",
-    "pattern": [
-        "SDS",
-        "CCC",
-        "CCC"
-    ],
-    "key": {
-        "S": {
-            "item": "minecraft:stone"
-        },
-        "D": {
-            "item": "minecraft:black_dye"
-        },
-        "C": {
-            "item": "minecraft:terracotta"
-        }
+  "type": "minecraft:crafting_shaped",
+  "group": "kitchen_counter",
+  "pattern": [
+    "SDS",
+    "CCC",
+    "CCC"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:stone"
     },
-    "result": {
-        "item": "cfm:black_kitchen_counter",
-        "count": 8
+    "D": {
+      "tag": "forge:dyes/black"
+    },
+    "C": {
+      "item": "minecraft:terracotta"
     }
+  },
+  "result": {
+    "item": "cfm:black_kitchen_counter",
+    "count": 8
+  }
 }

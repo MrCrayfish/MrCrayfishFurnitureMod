@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "cfm:oak_hedge"
+    ]
+  },
+  "criteria": {
+    "has_leaves": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:oak_leaves"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "cfm:oak_hedge"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_leaves",
+      "has_the_recipe"
+    ]
+  ]
+}

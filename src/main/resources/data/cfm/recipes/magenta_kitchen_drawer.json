@@ -1,27 +1,27 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "group": "kitchen_drawer",
-    "pattern": [
-        "SDS",
-        "CBC",
-        "CCC"
-    ],
-    "key": {
-        "S": {
-            "item": "minecraft:stone"
-        },
-        "D": {
-            "item": "minecraft:magenta_dye"
-        },
-        "C": {
-            "item": "minecraft:terracotta"
-        },
-        "B": {
-            "item": "minecraft:chest"
-        }
+  "type": "minecraft:crafting_shaped",
+  "group": "kitchen_drawer",
+  "pattern": [
+    "SDS",
+    "CBC",
+    "CCC"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:stone"
     },
-    "result": {
-        "item": "cfm:magenta_kitchen_drawer",
-        "count": 4
+    "D": {
+      "tag": "forge:dyes/magenta"
+    },
+    "C": {
+      "item": "minecraft:terracotta"
+    },
+    "B": {
+      "tag": "forge:chests/wooden"
     }
+  },
+  "result": {
+    "item": "cfm:magenta_kitchen_drawer",
+    "count": 4
+  }
 }

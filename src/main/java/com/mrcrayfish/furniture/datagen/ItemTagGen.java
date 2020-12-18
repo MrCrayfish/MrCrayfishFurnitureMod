@@ -540,7 +540,5 @@ public class ItemTagGen extends ItemTagsProvider
         this.copy(ModTags.Blocks.UPGRADED_FENCES, ModTags.Items.UPGRADED_FENCES);
         this.copy(ModTags.Blocks.PICKET_FENCES, ModTags.Items.PICKET_FENCES);
         this.copy(ModTags.Blocks.HEDGES, ModTags.Items.HEDGES);
-        this.copy(Tags.Blocks.FENCE_GATES_WOODEN, Tags.Items.FENCE_GATES_WOODEN);
-        this.copy(Tags.Blocks.FENCES_WOODEN, Tags.Items.FENCES_WOODEN);
     }
 }

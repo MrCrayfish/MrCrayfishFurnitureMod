@@ -1,21 +1,21 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "group": "chair",
-    "pattern": [
-        "L  ",
-        "LLL",
-        "P P"
-    ],
-    "key": {
-        "L": {
-            "item": "minecraft:oak_log"
-        },
-        "P": {
-            "item": "minecraft:oak_planks"
-        }
+  "type": "minecraft:crafting_shaped",
+  "group": "chair",
+  "pattern": [
+    "L  ",
+    "LLL",
+    "P P"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:oak_log"
     },
-    "result": {
-        "item": "cfm:oak_chair",
-        "count": 4
+    "P": {
+      "item": "minecraft:oak_planks"
     }
+  },
+  "result": {
+    "item": "cfm:oak_chair",
+    "count": 4
+  }
 }

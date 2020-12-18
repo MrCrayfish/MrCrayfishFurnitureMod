@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "cfm:black_kitchen_drawer"
+    ]
+  },
+  "criteria": {
+    "has_stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:stone"
+          }
+        ]
+      }
+    },
+    "has_terracotta": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:terracotta"
+          }
+        ]
+      }
+    },
+    "has_chest": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:chests/wooden"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "cfm:black_kitchen_drawer"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_stone",
+      "has_terracotta",
+      "has_chest",
+      "has_the_recipe"
+    ]
+  ]
+}

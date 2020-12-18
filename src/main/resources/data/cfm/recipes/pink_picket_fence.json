@@ -1,20 +1,20 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "group": "picket_fence",
-    "pattern": [
-        "LSL",
-        "LSL"
-    ],
-    "key": {
-        "L": {
-            "item": "minecraft:pink_concrete"
-        },
-        "S": {
-            "item": "minecraft:stick"
-        }
+  "type": "minecraft:crafting_shaped",
+  "group": "picket_fence",
+  "pattern": [
+    "CSC",
+    "CSC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:pink_concrete"
     },
-    "result": {
-        "item": "cfm:pink_picket_fence",
-        "count": 12
+    "S": {
+      "tag": "forge:rods/wooden"
     }
+  },
+  "result": {
+    "item": "cfm:pink_picket_fence",
+    "count": 12
+  }
 }

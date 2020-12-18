@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "cfm:birch_hedge"
+    ]
+  },
+  "criteria": {
+    "has_leaves": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:birch_leaves"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "cfm:birch_hedge"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_leaves",
+      "has_the_recipe"
+    ]
+  ]
+}

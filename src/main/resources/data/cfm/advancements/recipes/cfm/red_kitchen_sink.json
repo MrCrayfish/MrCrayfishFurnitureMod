@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "cfm:red_kitchen_sink"
+    ]
+  },
+  "criteria": {
+    "has_top": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:red_terracotta"
+          }
+        ]
+      }
+    },
+    "has_stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:stone"
+          }
+        ]
+      }
+    },
+    "has_bucket": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:bucket"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "cfm:red_kitchen_sink"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_top",
+      "has_stone",
+      "has_bucket",
+      "has_the_recipe"
+    ]
+  ]
+}

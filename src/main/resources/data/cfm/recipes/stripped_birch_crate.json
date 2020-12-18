@@ -1,21 +1,21 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "group": "crate",
-    "pattern": [
-        "LPL",
-        "P P",
-        "LPL"
-    ],
-    "key": {
-        "P": {
-            "item": "minecraft:birch_planks"
-        },
-        "L": {
-            "item": "minecraft:stripped_birch_log"
-        }
+  "type": "minecraft:crafting_shaped",
+  "group": "crate",
+  "pattern": [
+    "LPL",
+    "P P",
+    "LPL"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:stripped_birch_log"
     },
-    "result": {
-        "item": "cfm:stripped_birch_crate",
-        "count": 2
+    "P": {
+      "item": "minecraft:birch_log"
     }
+  },
+  "result": {
+    "item": "cfm:stripped_birch_crate",
+    "count": 2
+  }
 }

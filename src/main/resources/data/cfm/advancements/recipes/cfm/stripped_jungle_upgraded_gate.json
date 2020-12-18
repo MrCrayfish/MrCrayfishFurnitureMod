@@ -1,0 +1,43 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "cfm:stripped_jungle_upgraded_gate"
+    ]
+  },
+  "criteria": {
+    "has_log": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:stripped_jungle_log"
+          }
+        ]
+      }
+    },
+    "has_gate": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:fence_gates/wooden"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "cfm:stripped_jungle_upgraded_gate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_log",
+      "has_gate",
+      "has_the_recipe"
+    ]
+  ]
+}

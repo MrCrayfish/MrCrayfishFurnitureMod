@@ -1,21 +1,21 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "group": "park_bench",
-    "pattern": [
-        "PPP",
-        "PPP",
-        "L L"
-    ],
-    "key": {
-        "P": {
-            "item": "minecraft:spruce_planks"
-        },
-        "L": {
-            "item": "minecraft:spruce_log"
-        }
+  "type": "minecraft:crafting_shaped",
+  "group": "park_bench",
+  "pattern": [
+    "PPP",
+    "PPP",
+    "L L"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:spruce_log"
     },
-    "result": {
-        "item": "cfm:spruce_park_bench",
-        "count": 4
+    "P": {
+      "item": "minecraft:spruce_planks"
     }
+  },
+  "result": {
+    "item": "cfm:spruce_park_bench",
+    "count": 4
+  }
 }

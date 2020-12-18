@@ -86,8 +86,5 @@ public class BlockTagGen extends BlockTagsProvider
                 .add(ModBlocks.HEDGE_JUNGLE)
                 .add(ModBlocks.HEDGE_ACACIA)
                 .add(ModBlocks.HEDGE_DARK_OAK);
-
-        this.getOrCreateBuilder(Tags.Blocks.FENCES_WOODEN).addTag(ModTags.Blocks.UPGRADED_FENCES);
-        this.getOrCreateBuilder(Tags.Blocks.FENCE_GATES_WOODEN).addTag(ModTags.Blocks.UPGRADED_FENCE_GATES);
     }
 }

@@ -1,23 +1,23 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "group": "grill",
-    "pattern": [
-        "CBC",
-        "I I",
-        "I I"
-    ],
-    "key": {
-        "C": {
-            "item": "minecraft:yellow_terracotta"
-        },
-        "B": {
-            "item": "minecraft:iron_bars"
-        },
-        "I": {
-            "item": "minecraft:iron_ingot"
-        }
+  "type": "minecraft:crafting_shaped",
+  "group": "grill",
+  "pattern": [
+    "TBT",
+    "I I",
+    "I I"
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:yellow_terracotta"
     },
-    "result": {
-        "item": "cfm:yellow_grill"
+    "B": {
+      "item": "minecraft:iron_bars"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
     }
+  },
+  "result": {
+    "item": "cfm:yellow_grill"
+  }
 }
