@@ -1,21 +1,21 @@
 {
-    "replace": false,
-    "values": [
-        "cfm:white_trampoline",
-        "cfm:orange_trampoline",
-        "cfm:magenta_trampoline",
-        "cfm:light_blue_trampoline",
-        "cfm:yellow_trampoline",
-        "cfm:lime_trampoline",
-        "cfm:pink_trampoline",
-        "cfm:gray_trampoline",
-        "cfm:light_gray_trampoline",
-        "cfm:cyan_trampoline",
-        "cfm:purple_trampoline",
-        "cfm:blue_trampoline",
-        "cfm:brown_trampoline",
-        "cfm:green_trampoline",
-        "cfm:red_trampoline",
-        "cfm:black_trampoline"
-    ]
+  "replace": false,
+  "values": [
+    "cfm:white_trampoline",
+    "cfm:orange_trampoline",
+    "cfm:magenta_trampoline",
+    "cfm:light_blue_trampoline",
+    "cfm:yellow_trampoline",
+    "cfm:lime_trampoline",
+    "cfm:pink_trampoline",
+    "cfm:gray_trampoline",
+    "cfm:light_gray_trampoline",
+    "cfm:cyan_trampoline",
+    "cfm:purple_trampoline",
+    "cfm:blue_trampoline",
+    "cfm:brown_trampoline",
+    "cfm:green_trampoline",
+    "cfm:red_trampoline",
+    "cfm:black_trampoline"
+  ]
 }

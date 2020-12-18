@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.mrcrayfish.furniture.common.ModTags;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -53,7 +54,7 @@ public class UpgradedFenceBlock extends FurnitureWaterloggedBlock
         final VoxelShape[] FRAME_TOP = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 10.5, 7, 6.01, 13.5, 9), Direction.WEST));
 
         ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
-        for(BlockState state : states)
+        for (BlockState state : states)
         {
             boolean north = state.get(NORTH);
             boolean east = state.get(EAST);
@@ -62,32 +63,32 @@ public class UpgradedFenceBlock extends FurnitureWaterloggedBlock
             boolean post = state.get(POST);
 
             List<VoxelShape> shapes = new ArrayList<>();
-            if(post)
+            if (post)
             {
                 shapes.add(this.applyCollision(FENCE_POST, collision));
             }
-            if(north)
+            if (north)
             {
                 shapes.add(this.applyCollision(POST_SIDE[Direction.NORTH.getHorizontalIndex()], collision));
                 shapes.add(this.applyCollision(POST_MIDDLE[Direction.NORTH.getHorizontalIndex()], collision));
                 shapes.add(FRAME_BOTTOM[Direction.NORTH.getHorizontalIndex()]);
                 shapes.add(FRAME_TOP[Direction.NORTH.getHorizontalIndex()]);
             }
-            if(east)
+            if (east)
             {
                 shapes.add(this.applyCollision(POST_SIDE[Direction.EAST.getHorizontalIndex()], collision));
                 shapes.add(this.applyCollision(POST_MIDDLE[Direction.EAST.getHorizontalIndex()], collision));
                 shapes.add(FRAME_BOTTOM[Direction.EAST.getHorizontalIndex()]);
                 shapes.add(FRAME_TOP[Direction.EAST.getHorizontalIndex()]);
             }
-            if(south)
+            if (south)
             {
                 shapes.add(this.applyCollision(POST_SIDE[Direction.SOUTH.getHorizontalIndex()], collision));
                 shapes.add(this.applyCollision(POST_MIDDLE[Direction.SOUTH.getHorizontalIndex()], collision));
                 shapes.add(FRAME_BOTTOM[Direction.SOUTH.getHorizontalIndex()]);
                 shapes.add(FRAME_TOP[Direction.SOUTH.getHorizontalIndex()]);
             }
-            if(west)
+            if (west)
             {
                 shapes.add(this.applyCollision(POST_SIDE[Direction.WEST.getHorizontalIndex()], collision));
                 shapes.add(this.applyCollision(POST_MIDDLE[Direction.WEST.getHorizontalIndex()], collision));
@@ -101,7 +102,7 @@ public class UpgradedFenceBlock extends FurnitureWaterloggedBlock
 
     private VoxelShape applyCollision(VoxelShape shape, boolean collision)
     {
-        if(collision)
+        if (collision)
         {
             shape = VoxelShapeHelper.setMaxHeight(shape, 1.5);
             shape = VoxelShapeHelper.limitHorizontal(shape);
@@ -141,30 +142,31 @@ public class UpgradedFenceBlock extends FurnitureWaterloggedBlock
 
     private BlockState getFenceState(BlockState state, IWorld world, BlockPos pos)
     {
-        boolean north = canConnectToBlock(state, world, pos, Direction.NORTH);
-        boolean east = canConnectToBlock(state, world, pos, Direction.EAST);
-        boolean south = canConnectToBlock(state, world, pos, Direction.SOUTH);
-        boolean west = canConnectToBlock(state, world, pos, Direction.WEST);
+        boolean north = canConnectToBlock(world, pos, Direction.NORTH);
+        boolean east = canConnectToBlock(world, pos, Direction.EAST);
+        boolean south = canConnectToBlock(world, pos, Direction.SOUTH);
+        boolean west = canConnectToBlock(world, pos, Direction.WEST);
         boolean post = !(north && !east && south && !west || !north && east && !south && west);
         return state.with(NORTH, north).with(EAST, east).with(SOUTH, south).with(WEST, west).with(POST, post);
     }
 
-    private boolean canConnectToBlock(BlockState state, IWorld world, BlockPos pos, Direction direction)
+    private boolean canConnectToBlock(IWorld world, BlockPos pos, Direction direction)
     {
         BlockPos offsetPos = pos.offset(direction);
         BlockState offsetState = world.getBlockState(offsetPos);
-        if(offsetState.getBlock() == this)
-        {
-            return true;
-        }
-        if(offsetState.getBlock() instanceof UpgradedGateBlock)
+
+        boolean flag1 = false;
+        if (offsetState.getBlock() instanceof UpgradedGateBlock)
         {
             Direction gateDirection = offsetState.get(UpgradedGateBlock.DIRECTION);
             DoorHingeSide hingeSide = offsetState.get(UpgradedGateBlock.HINGE);
             Direction hingeFace = hingeSide == DoorHingeSide.LEFT ? gateDirection.rotateYCCW() : gateDirection.rotateY();
-            return direction == hingeFace.getOpposite() || (!offsetState.get(UpgradedGateBlock.DOUBLE) && direction.getAxis() != gateDirection.getAxis());
+            flag1 = direction == hingeFace.getOpposite() || (!offsetState.get(UpgradedGateBlock.DOUBLE) && direction.getAxis() != gateDirection.getAxis());
         }
-        return offsetState.isSolidSide(world, offsetPos, direction.getOpposite());
+
+        Block block = offsetState.getBlock();
+        boolean flag = block.isIn(ModTags.Blocks.UPGRADED_FENCES) && block.isIn(ModTags.Blocks.PICKET_FENCES) == this.getDefaultState().isIn(ModTags.Blocks.PICKET_FENCES);
+        return !cannotAttach(block) && offsetState.isSolidSide(world, offsetPos, direction.getOpposite()) || flag || flag1;
     }
 
     @Override

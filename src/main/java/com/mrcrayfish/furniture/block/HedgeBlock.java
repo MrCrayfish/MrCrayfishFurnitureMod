@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.mrcrayfish.furniture.common.ModTags;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -117,22 +118,20 @@ public class HedgeBlock extends FurnitureWaterloggedBlock
 
     private BlockState getHedgeState(BlockState state, IWorld world, BlockPos pos)
     {
-        boolean north = canConnectToBlock(state, world, pos, Direction.NORTH);
-        boolean east = canConnectToBlock(state, world, pos, Direction.EAST);
-        boolean south = canConnectToBlock(state, world, pos, Direction.SOUTH);
-        boolean west = canConnectToBlock(state, world, pos, Direction.WEST);
+        boolean north = canConnectToBlock(world, pos, Direction.NORTH);
+        boolean east = canConnectToBlock(world, pos, Direction.EAST);
+        boolean south = canConnectToBlock(world, pos, Direction.SOUTH);
+        boolean west = canConnectToBlock(world, pos, Direction.WEST);
         return state.with(NORTH, north).with(EAST, east).with(SOUTH, south).with(WEST, west);
     }
 
-    private boolean canConnectToBlock(BlockState state, IWorld world, BlockPos pos, Direction direction)
+    private boolean canConnectToBlock(IWorld world, BlockPos pos, Direction direction)
     {
         BlockPos offsetPos = pos.offset(direction);
         BlockState offsetState = world.getBlockState(offsetPos);
-        if(offsetState.getBlock() == this)
-        {
-            return true;
-        }
-        return offsetState.isSolidSide(world, offsetPos, direction.getOpposite());
+
+        Block block = offsetState.getBlock();
+        return !cannotAttach(block) && offsetState.isSolidSide(world, offsetPos, direction.getOpposite()) || block.isIn(ModTags.Blocks.HEDGES);
     }
 
     @Override
