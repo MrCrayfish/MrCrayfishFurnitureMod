@@ -1,21 +1,21 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "group": "park_bench",
-    "pattern": [
-        "PPP",
-        "PPP",
-        "L L"
-    ],
-    "key": {
-        "P": {
-            "item": "minecraft:birch_planks"
-        },
-        "L": {
-            "item": "minecraft:birch_log"
-        }
+  "type": "minecraft:crafting_shaped",
+  "group": "park_bench",
+  "pattern": [
+    "PPP",
+    "PPP",
+    "L L"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:birch_log"
     },
-    "result": {
-        "item": "cfm:birch_park_bench",
-        "count": 4
+    "P": {
+      "item": "minecraft:birch_planks"
     }
+  },
+  "result": {
+    "item": "cfm:birch_park_bench",
+    "count": 4
+  }
 }

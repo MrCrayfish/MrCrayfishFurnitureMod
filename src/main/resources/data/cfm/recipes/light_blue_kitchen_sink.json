@@ -1,27 +1,27 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "group": "kitchen_sink",
-    "pattern": [
-        "CIC",
-        "PBP",
-        "PPP"
-    ],
-    "key": {
-        "I": {
-            "item": "minecraft:iron_ingot"
-        },
-        "C": {
-            "item": "minecraft:white_concrete"
-        },
-        "P": {
-            "item": "minecraft:light_blue_concrete"
-        },
-        "B": {
-            "item": "minecraft:bucket"
-        }
+  "type": "minecraft:crafting_shaped",
+  "group": "kitchen_sink",
+  "pattern": [
+    "CIC",
+    "PBP",
+    "PPP"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:light_blue_terracotta"
     },
-    "result": {
-        "item": "cfm:light_blue_kitchen_sink",
-        "count": 2
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "P": {
+      "tag": "forge:stone"
+    },
+    "B": {
+      "item": "minecraft:bucket"
     }
+  },
+  "result": {
+    "item": "cfm:light_blue_kitchen_sink",
+    "count": 2
+  }
 }

@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "cfm:spruce_kitchen_sink_dark"
+    ]
+  },
+  "criteria": {
+    "has_top": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:gray_concrete"
+          }
+        ]
+      }
+    },
+    "has_bottom": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:spruce_planks"
+          }
+        ]
+      }
+    },
+    "has_bucket": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "minecraft:bucket"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "cfm:spruce_kitchen_sink_dark"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_top",
+      "has_bottom",
+      "has_bucket",
+      "has_the_recipe"
+    ]
+  ]
+}

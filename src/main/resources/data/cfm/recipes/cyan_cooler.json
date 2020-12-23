@@ -1,24 +1,24 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "group": "cooler",
-    "pattern": [
-        "LLL",
-        "WCW",
-        "LLL"
-    ],
-    "key": {
-        "L": {
-            "item": "minecraft:cyan_terracotta"
-        },
-        "W": {
-            "item": "minecraft:white_concrete"
-        },
-        "C": {
-            "item": "minecraft:chest"
-        }
+  "type": "minecraft:crafting_shaped",
+  "group": "trampoline",
+  "pattern": [
+    "TTT",
+    "WCW",
+    "TTT"
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:cyan_terracotta"
     },
-    "result": {
-        "item": "cfm:cyan_cooler",
-        "count": 2
+    "W": {
+      "item": "minecraft:white_concrete"
+    },
+    "C": {
+      "tag": "forge:chests/wooden"
     }
+  },
+  "result": {
+    "item": "cfm:cyan_cooler",
+    "count": 2
+  }
 }

@@ -1,21 +1,21 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "group": "blinds",
-    "pattern": [
-        "LLL",
-        "SSS",
-        "SSS"
-    ],
-    "key": {
-        "L": {
-            "item": "minecraft:spruce_log"
-        },
-        "S": {
-            "item": "minecraft:stick"
-        }
+  "type": "minecraft:crafting_shaped",
+  "group": "blinds",
+  "pattern": [
+    "LLL",
+    "SSS",
+    "SSS"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:spruce_log"
     },
-    "result": {
-        "item": "cfm:spruce_blinds",
-        "count": 2
+    "S": {
+      "tag": "forge:rods/wooden"
     }
+  },
+  "result": {
+    "item": "cfm:spruce_blinds",
+    "count": 2
+  }
 }

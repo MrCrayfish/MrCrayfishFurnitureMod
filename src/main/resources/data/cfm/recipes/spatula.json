@@ -1,24 +1,22 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "group": "spatula",
-    "pattern": [
-        "B",
-        "I",
-        "W"
-    ],
-    "key": {
-        "B": {
-            "item": "minecraft:iron_bars"
-        },
-        "I": {
-            "item": "minecraft:iron_ingot"
-        },
-        "W": {
-            "item": "minecraft:black_wool"
-        }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B",
+    "I",
+    "W"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:iron_bars"
     },
-    "result": {
-        "item": "cfm:spatula",
-        "count": 1
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "W": {
+      "item": "minecraft:black_wool"
     }
+  },
+  "result": {
+    "item": "cfm:spatula"
+  }
 }

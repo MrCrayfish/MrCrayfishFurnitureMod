@@ -21,4 +21,5 @@ build
 eclipse
 run
 
+src/generated
 classes

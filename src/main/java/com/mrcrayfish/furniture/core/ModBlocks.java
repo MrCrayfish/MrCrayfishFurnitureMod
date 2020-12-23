@@ -426,7 +426,7 @@ public class ModBlocks
     public static final Block FREEZER_LIGHT = register(Names.Block.FREEZER_LIGHT, new FreezerBlock(Block.Properties.from(Blocks.IRON_BLOCK), FRIDGE_LIGHT), (BlockItem) null);
     public static final Block FRIDGE_DARK = register(Names.Block.FRIDGE_DARK, new FridgeBlock(Block.Properties.from(Blocks.IRON_BLOCK), () -> ModBlocks.FREEZER_DARK), block -> new BlockSupplierItem(new Item.Properties().group(FurnitureMod.GROUP), block, () -> ModBlocks.FREEZER_DARK));
     public static final Block FREEZER_DARK = register(Names.Block.FREEZER_DARK, new FreezerBlock(Block.Properties.from(Blocks.IRON_BLOCK), FRIDGE_DARK), (BlockItem) null);
-    
+
     private static Block register(String name, Block block)
     {
         return register(name, block, new Item.Properties().group(FurnitureMod.GROUP));

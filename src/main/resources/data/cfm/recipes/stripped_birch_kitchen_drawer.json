@@ -1,24 +1,24 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "group": "kitchen_drawer",
-    "pattern": [
-        "LLL",
-        "PCP",
-        "PPP"
-    ],
-    "key": {
-        "L": {
-            "item": "minecraft:stripped_birch_log"
-        },
-        "P": {
-            "item": "minecraft:birch_planks"
-        },
-        "C": {
-            "item": "minecraft:chest"
-        }
+  "type": "minecraft:crafting_shaped",
+  "group": "kitchen_drawer",
+  "pattern": [
+    "LLL",
+    "PCP",
+    "PPP"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:birch_log"
     },
-    "result": {
-        "item": "cfm:birch_kitchen_drawer",
-        "count": 4
+    "P": {
+      "item": "minecraft:stripped_birch_log"
+    },
+    "C": {
+      "tag": "forge:chests/wooden"
     }
+  },
+  "result": {
+    "item": "cfm:stripped_birch_kitchen_drawer",
+    "count": 4
+  }
 }

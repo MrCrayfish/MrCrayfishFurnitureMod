@@ -1,20 +1,19 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "group": "rock_path",
-    "pattern": [
-        "SA",
-        "AS"
-    ],
-    "key": {
-        "S": {
-            "item": "minecraft:stone"
-        },
-        "A": {
-            "item": "minecraft:andesite"
-        }
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SA",
+    "AS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:stone"
     },
-    "result": {
-        "item": "cfm:rock_path",
-        "count": 16
+    "A": {
+      "item": "minecraft:andesite"
     }
+  },
+  "result": {
+    "item": "cfm:rock_path",
+    "count": 16
+  }
 }
