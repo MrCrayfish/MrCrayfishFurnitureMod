@@ -9,7 +9,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "6.3.0-1.12.2"
+version = "6.3.1-1.12.2-mc4ep-2"
 group = "com.mrcrayfish"
 archivesBaseName = "furniture"
 
@@ -19,7 +19,7 @@ compileJava {
 }
 
 minecraft {
-    version = "1.12.2-14.23.5.2768"
+    version = "1.12.2-14.23.5.2847"
     runDir = "run"
     mappings = "snapshot_20171003"
 }
