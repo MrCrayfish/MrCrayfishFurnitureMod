@@ -12,6 +12,8 @@ logoFile="furniture.png"
 credits=""
 authors="MrCrayfish"
 description="Adds over 80 unique pieces of furniture to the game"
+itemIcon="cfm:stripped_oak_chair"
+configBackground="minecraft:textures/block/stripped_oak_log.png"
 
 [[dependencies.cfm]]
     modId="forge"
