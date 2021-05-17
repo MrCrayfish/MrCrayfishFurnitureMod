@@ -37,6 +37,7 @@ public class MailBoxScreen extends ContainerScreen<MailBoxContainer>
         this.settingsButton = this.addButton(new IconButton(this.guiLeft + this.xSize + 2, this.guiTop + 17, new TranslationTextComponent("gui.button.cfm.lock"), button -> {
             this.minecraft.displayGuiScreen(new MailBoxSettingsScreen(this.container.getMailBoxTileEntity()));
         }, ICONS_TEXTURE, 48, 0));
+        this.settingsButton.visible = this.playerInventory.player.getUniqueID().equals(this.container.getMailBoxTileEntity().getOwnerId());
     }
 
     @Override
