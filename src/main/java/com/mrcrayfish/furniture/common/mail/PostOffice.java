@@ -234,26 +234,38 @@ public class PostOffice extends WorldSavedData
         if(event.side != LogicalSide.SERVER)
             return;
 
-        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+        MinecraftServer server = event.world.getServer();
         if(server != null && server.getTickCounter() % 1200 == 0)
         {
             PostOffice office = get(server);
-            office.playerMailboxMap.values().forEach(uuidMailBoxMap -> uuidMailBoxMap.values().removeIf(mailBox ->
+            //TODO need to mark office dirty if something is removed
+            office.playerMailboxMap.values().forEach(map ->
             {
-                BlockPos pos = mailBox.getPos();
-                ServerWorld world = server.getWorld(mailBox.getWorld());
-                if(world.isAreaLoaded(pos, 0))
+                Predicate<MailBox> removePredicate = mailBox ->
                 {
-                    TileEntity tileEntity = world.getTileEntity(pos);
-                    if(tileEntity instanceof MailBoxTileEntity)
+                    BlockPos pos = mailBox.getPos();
+                    ServerWorld world = server.getWorld(mailBox.getWorld());
+                    if(world != null)
                     {
-                        MailBoxTileEntity mailBoxTileEntity = (MailBoxTileEntity) tileEntity;
-                        return mailBoxTileEntity.getId() == null || !Objects.equals(mailBoxTileEntity.getId(), mailBox.getId());
+                        if(world.isAreaLoaded(pos, 0))
+                        {
+                            TileEntity tileEntity = world.getTileEntity(pos);
+                            if(tileEntity instanceof MailBoxTileEntity)
+                            {
+                                MailBoxTileEntity mailBoxTileEntity = (MailBoxTileEntity) tileEntity;
+                                return mailBoxTileEntity.getId() == null || !Objects.equals(mailBoxTileEntity.getId(), mailBox.getId());
+                            }
+                            return true;
+                        }
+                        return false;
                     }
                     return true;
+                };
+                if(map.values().removeIf(removePredicate))
+                {
+                    office.markDirty();
                 }
-                return false;
-            }));
+            });
         }
     }
 }
