@@ -13,6 +13,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.ITextProperties;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -39,7 +40,7 @@ public class CrateScreen extends ContainerScreen<CrateContainer>
     protected void init()
     {
         super.init();
-        this.button = this.addButton(new IconButton(this.guiLeft + this.xSize + 2, this.guiTop + 17, I18n.format("gui.button.cfm.lock"), button -> PacketHandler.instance.sendToServer(new MessageLockCrate()), ICONS_TEXTURE, 0, 0));
+        this.button = this.addButton(new IconButton(this.guiLeft + this.xSize + 2, this.guiTop + 17, new TranslationTextComponent("gui.button.cfm.lock"), button -> PacketHandler.instance.sendToServer(new MessageLockCrate()), ICONS_TEXTURE, 0, 0));
         this.updateLockButton();
     }
 
@@ -58,7 +59,7 @@ public class CrateScreen extends ContainerScreen<CrateContainer>
     {
         this.locked = this.container.getCrateTileEntity().isLocked();
         this.button.setIcon(ICONS_TEXTURE, this.locked ? 0 : 16, 0);
-        this.button.setMessage(ITextComponent.getTextComponentOrEmpty(I18n.format(this.locked ? "gui.button.cfm.locked" : "gui.button.cfm.unlocked")));
+        this.button.setMessage(new TranslationTextComponent(this.locked ? "gui.button.cfm.locked" : "gui.button.cfm.unlocked"));
         UUID ownerUuid = this.container.getCrateTileEntity().getOwner();
         this.button.visible = ownerUuid == null || this.playerInventory.player.getUniqueID().equals(ownerUuid);
     }
@@ -71,7 +72,7 @@ public class CrateScreen extends ContainerScreen<CrateContainer>
         this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
         if(this.button.isMouseOver(mouseX, mouseY))
         {
-            this.renderTooltip(matrixStack, ITextComponent.getTextComponentOrEmpty(locked ? I18n.format("gui.button.cfm.locked") : I18n.format("gui.button.cfm.unlocked")), mouseX, mouseY);
+            this.renderTooltip(matrixStack, new TranslationTextComponent(this.locked ? "gui.button.cfm.locked" : "gui.button.cfm.unlocked"), mouseX, mouseY);
         }
     }
 

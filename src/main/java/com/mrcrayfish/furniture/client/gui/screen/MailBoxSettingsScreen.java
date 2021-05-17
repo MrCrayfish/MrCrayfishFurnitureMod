@@ -13,6 +13,7 @@ import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 /**
@@ -41,14 +42,14 @@ public class MailBoxSettingsScreen extends Screen
         int guiLeft = (this.width - this.xSize) / 2;
         int guiTop = (this.height - this.ySize) / 2;
 
-        this.nameField = new TextFieldWidget(this.font, guiLeft + 8, guiTop + 18, 160, 18, ITextComponent.getTextComponentOrEmpty(""));
+        this.nameField = new TextFieldWidget(this.font, guiLeft + 8, guiTop + 18, 160, 18, StringTextComponent.EMPTY);
         if(this.mailBoxTileEntity.getMailBoxName() != null)
         {
             this.nameField.setText(this.mailBoxTileEntity.getMailBoxName());
         }
         this.children.add(this.nameField);
 
-        this.btnSave = this.addButton(new Button(guiLeft + 7, guiTop + 42, 79, 20, ITextComponent.getTextComponentOrEmpty(I18n.format("gui.button.cfm.save")), button ->
+        this.btnSave = this.addButton(new Button(guiLeft + 7, guiTop + 42, 79, 20, new TranslationTextComponent("gui.button.cfm.save"), button ->
         {
             if(this.isValidName())
             {
@@ -57,9 +58,9 @@ public class MailBoxSettingsScreen extends Screen
         }));
         this.btnSave.active = false;
 
-        this.addButton(new Button(guiLeft + 91, guiTop + 42, 79, 20, ITextComponent.getTextComponentOrEmpty(I18n.format("gui.button.cfm.back")), button ->
+        this.addButton(new Button(guiLeft + 91, guiTop + 42, 79, 20, new TranslationTextComponent("gui.button.cfm.back"), button ->
         {
-            PacketHandler.instance.sendToServer(new MessageOpenMailBox(mailBoxTileEntity.getPos()));
+            PacketHandler.instance.sendToServer(new MessageOpenMailBox(this.mailBoxTileEntity.getPos()));
         }));
     }
 
@@ -91,6 +92,6 @@ public class MailBoxSettingsScreen extends Screen
 
     private boolean isValidName()
     {
-        return !this.nameField.getText().equals(mailBoxTileEntity.getMailBoxName()) && !this.nameField.getText().trim().isEmpty();
+        return !this.nameField.getText().equals(this.mailBoxTileEntity.getMailBoxName()) && !this.nameField.getText().trim().isEmpty();
     }
 }

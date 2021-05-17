@@ -6,11 +6,14 @@ import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.gui.screen.MailBoxSettingsScreen;
 import com.mrcrayfish.furniture.client.gui.widget.button.IconButton;
 import com.mrcrayfish.furniture.inventory.container.MailBoxContainer;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
+import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 
 /**
  * Author: MrCrayfish
@@ -19,6 +22,7 @@ public class MailBoxScreen extends ContainerScreen<MailBoxContainer>
 {
     private static final ResourceLocation GUI_TEXTURE = new ResourceLocation(Reference.MOD_ID, "textures/gui/container/mail_box.png");
     private static final ResourceLocation ICONS_TEXTURE = new ResourceLocation(Reference.MOD_ID, "textures/gui/icons.png");
+    private Button settingsButton;
 
     public MailBoxScreen(MailBoxContainer container, PlayerInventory playerInventory, ITextComponent title)
     {
@@ -30,7 +34,7 @@ public class MailBoxScreen extends ContainerScreen<MailBoxContainer>
     protected void init()
     {
         super.init();
-        this.addButton(new IconButton(this.guiLeft + this.xSize + 2, this.guiTop + 17, I18n.format("gui.button.cfm.lock"), button -> {
+        this.settingsButton = this.addButton(new IconButton(this.guiLeft + this.xSize + 2, this.guiTop + 17, new TranslationTextComponent("gui.button.cfm.lock"), button -> {
             this.minecraft.displayGuiScreen(new MailBoxSettingsScreen(this.container.getMailBoxTileEntity()));
         }, ICONS_TEXTURE, 48, 0));
     }

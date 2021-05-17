@@ -59,7 +59,7 @@ public class DoorMatScreen extends Screen
         }
         this.children.add(this.nameField);
 
-        this.btnSave = this.addButton(new Button(guiLeft + 7, guiTop + 42, 79, 20, ITextComponent.getTextComponentOrEmpty(I18n.format("gui.button.cfm.save")), button ->
+        this.btnSave = this.addButton(new Button(guiLeft + 7, guiTop + 42, 79, 20, new TranslationTextComponent("gui.button.cfm.save"), button ->
         {
             if(this.isValidName())
             {
@@ -69,7 +69,7 @@ public class DoorMatScreen extends Screen
         }));
         this.btnSave.active = false;
 
-        this.addButton(new Button(guiLeft + 91, guiTop + 42, 79, 20, ITextComponent.getTextComponentOrEmpty(I18n.format("gui.button.cfm.cancel")), button ->
+        this.addButton(new Button(guiLeft + 91, guiTop + 42, 79, 20, new TranslationTextComponent("gui.button.cfm.cancel"), button ->
         {
             this.minecraft.player.closeScreen();
         }));

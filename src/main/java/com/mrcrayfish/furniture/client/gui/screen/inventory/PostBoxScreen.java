@@ -20,6 +20,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.ITextProperties;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -66,12 +67,12 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
     protected void init()
     {
         super.init();
-        this.searchField = new TextFieldWidget(this.font, this.guiLeft + 22, this.guiTop + 19, 101, 9, ITextComponent.getTextComponentOrEmpty(I18n.format("gui.cfm.post_box.search")));
+        this.searchField = new TextFieldWidget(this.font, this.guiLeft + 22, this.guiTop + 19, 101, 9, new TranslationTextComponent("gui.cfm.post_box.search"));
         this.searchField.setEnableBackgroundDrawing(false);
         this.searchField.setMaxStringLength(32);
         this.searchField.setTextColor(16777215);
         this.children.add(this.searchField);
-        this.btnSend = this.addButton(new IconButton(this.guiLeft + 147, this.guiTop + 53, I18n.format("gui.button.cfm.send_mail"), this::sendMail, ICONS_TEXTURE, 32, 0));
+        this.btnSend = this.addButton(new IconButton(this.guiLeft + 147, this.guiTop + 53, new TranslationTextComponent("gui.button.cfm.send_mail"), this::sendMail, ICONS_TEXTURE, 32, 0));
         this.btnSend.active = false;
         PacketHandler.instance.sendToServer(new MessageRequestMailBoxes());
     }
