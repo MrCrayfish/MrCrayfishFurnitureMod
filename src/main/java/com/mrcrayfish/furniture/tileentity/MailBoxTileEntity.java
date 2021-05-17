@@ -29,7 +29,7 @@ import java.util.function.Supplier;
 public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableTileEntity
 {
     private UUID id;
-    private String name;
+    private String name = "Mail Box";
     private String ownerName;
     private UUID ownerId;
 
@@ -46,6 +46,7 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
         }
     }
 
+    @Nullable
     public UUID getId()
     {
         return this.id;
@@ -67,11 +68,13 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
         this.ownerName = entity.getName().getString();
     }
 
+    @Nullable
     public UUID getOwnerId()
     {
         return this.ownerId;
     }
 
+    @Nullable
     public String getOwnerName()
     {
         return this.ownerName;
@@ -80,6 +83,29 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
     public void setOwnerName(String ownerName)
     {
         this.ownerName = ownerName;
+    }
+
+    public void updateOwnerName(ServerPlayerEntity player)
+    {
+        if(player.getUniqueID().equals(this.ownerId))
+        {
+            if(!player.getName().getString().equals(this.ownerName))
+            {
+                this.ownerName = player.getName().getString();
+            }
+        }
+    }
+    
+    public void updateIdAndAttemptClaim(ServerPlayerEntity player)
+    {
+        if(this.id == null)
+        {
+            this.id = UUID.randomUUID();
+        }
+        if(this.ownerId == null)
+        {
+            this.setOwner(player);
+        }
     }
 
     @Override

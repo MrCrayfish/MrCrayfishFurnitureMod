@@ -130,16 +130,12 @@ public class MailBoxBlock extends FurnitureHorizontalWaterloggedBlock
             TileEntity tileEntity = world.getTileEntity(pos);
             if(tileEntity instanceof MailBoxTileEntity)
             {
+                ServerPlayerEntity serverPlayer = (ServerPlayerEntity) playerEntity;
                 MailBoxTileEntity mailBox = (MailBoxTileEntity) tileEntity;
-                if(playerEntity.getUniqueID().equals(mailBox.getOwnerId()))
-                {
-                    if(!playerEntity.getName().getString().equals(mailBox.getOwnerName()))
-                    {
-                        mailBox.setOwnerName(playerEntity.getName().getString());
-                    }
-                }
-                TileEntityUtil.sendUpdatePacket(tileEntity);
-                NetworkHooks.openGui((ServerPlayerEntity) playerEntity, (INamedContainerProvider) tileEntity, pos);
+                mailBox.updateIdAndAttemptClaim(serverPlayer);
+                mailBox.updateOwnerName(serverPlayer);
+                TileEntityUtil.sendUpdatePacket(mailBox);
+                NetworkHooks.openGui(serverPlayer, mailBox, pos);
             }
         }
         return ActionResultType.SUCCESS;
