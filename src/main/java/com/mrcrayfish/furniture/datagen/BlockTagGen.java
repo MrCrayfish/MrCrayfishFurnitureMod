@@ -5,7 +5,6 @@ import com.mrcrayfish.furniture.common.ModTags;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 /**

@@ -1,7 +1,15 @@
 package com.mrcrayfish.furniture.network;
 
 import com.mrcrayfish.furniture.Reference;
-import com.mrcrayfish.furniture.network.message.*;
+import com.mrcrayfish.furniture.network.message.IMessage;
+import com.mrcrayfish.furniture.network.message.MessageFlipGrill;
+import com.mrcrayfish.furniture.network.message.MessageLockCrate;
+import com.mrcrayfish.furniture.network.message.MessageOpenMailBox;
+import com.mrcrayfish.furniture.network.message.MessageRequestMailBoxes;
+import com.mrcrayfish.furniture.network.message.MessageSendMail;
+import com.mrcrayfish.furniture.network.message.MessageSetDoorMatMessage;
+import com.mrcrayfish.furniture.network.message.MessageSetMailBoxName;
+import com.mrcrayfish.furniture.network.message.MessageUpdateMailBoxes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.network.NetworkRegistry;
 import net.minecraftforge.fml.network.simple.SimpleChannel;

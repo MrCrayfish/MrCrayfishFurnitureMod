@@ -3,21 +3,13 @@ package com.mrcrayfish.furniture.core;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.item.crafting.FreezerSolidifyRecipe;
 import com.mrcrayfish.furniture.item.crafting.GrillCookingRecipe;
-import net.minecraft.item.Item;
 import net.minecraft.item.crafting.CookingHack;
 import net.minecraft.item.crafting.CookingRecipeSerializer;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Author: MrCrayfish

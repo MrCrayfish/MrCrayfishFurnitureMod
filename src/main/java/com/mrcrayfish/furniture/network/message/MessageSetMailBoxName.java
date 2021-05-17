@@ -11,7 +11,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.network.NetworkEvent;
 import net.minecraftforge.fml.network.NetworkHooks;
 
-import java.util.UUID;
 import java.util.function.Supplier;
 
 /**

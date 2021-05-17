@@ -2,7 +2,6 @@ package com.mrcrayfish.furniture.core;
 
 import com.mrcrayfish.furniture.FurnitureMod;
 import com.mrcrayfish.furniture.Reference;
-import com.mrcrayfish.furniture.item.BlockSupplierItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;
 import net.minecraft.item.SwordItem;
