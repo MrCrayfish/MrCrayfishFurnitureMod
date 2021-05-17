@@ -85,10 +85,22 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
     @Override
     public void tick()
     {
-        if(world != null && !world.isRemote)
+        if(this.world != null && !this.world.isRemote)
         {
-            MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
-            if(!this.isFull() && this.ownerId != null && this.id != null && server.getTickCounter() % FurnitureConfig.COMMON.pullMailInterval.get() == 0)
+            MinecraftServer server = this.world.getServer();
+            if(server == null || this.ownerId == null || this.id == null)
+                return;
+
+            // Attempt to register the mail box if it was somehow removed
+            if(!PostOffice.isRegistered(this.ownerId, this.id))
+            {
+                ServerPlayerEntity player = server.getPlayerList().getPlayerByUUID(this.ownerId);
+                if(player != null)
+                {
+                    PostOffice.registerMailBox(player, this.id, "Mail Box", this.pos);
+                }
+            }
+            else if(!this.isFull() && server.getTickCounter() % FurnitureConfig.COMMON.pullMailInterval.get() == 0)
             {
                 Supplier<Mail> supplier = PostOffice.getMailForPlayerMailBox(this.ownerId, this.id);
                 while(!this.isFull())
