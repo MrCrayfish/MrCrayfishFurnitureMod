@@ -84,12 +84,13 @@ public class MailBoxBlock extends FurnitureHorizontalWaterloggedBlock
             TileEntity tileEntity = world.getTileEntity(pos);
             if(tileEntity instanceof MailBoxTileEntity)
             {
+                ServerPlayerEntity serverPlayer = (ServerPlayerEntity) entity;
                 MailBoxTileEntity mailBox = (MailBoxTileEntity) tileEntity;
                 mailBox.setId(UUID.randomUUID());
-                mailBox.setOwner((ServerPlayerEntity) entity);
+                mailBox.setOwner(serverPlayer);
                 mailBox.setMailBoxName("Mail Box");
-                PostOffice.registerMailBox((ServerPlayerEntity) entity, mailBox.getId(), "Mail Box", pos);
-                TileEntityUtil.sendUpdatePacket(tileEntity);
+                PostOffice.registerMailBox(serverPlayer, mailBox.getId(), "Mail Box", pos);
+                TileEntityUtil.sendUpdatePacket(mailBox);
             }
         }
     }
