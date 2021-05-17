@@ -61,7 +61,7 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
 
     public GrillTileEntity()
     {
-        super(ModTileEntities.GRILL);
+        super(ModTileEntities.GRILL.get());
     }
 
     @OnlyIn(Dist.CLIENT)
@@ -116,7 +116,7 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
             World world = this.getWorld();
             if(world != null)
             {
-                world.playSound(null, this.pos.getX() + 0.5, this.pos.getY() + 1.0, this.pos.getZ() + 0.5, ModSounds.BLOCK_GRILL_PLACE, SoundCategory.BLOCKS, 0.75F, world.rand.nextFloat() * 0.2F + 0.9F);
+                world.playSound(null, this.pos.getX() + 0.5, this.pos.getY() + 1.0, this.pos.getZ() + 0.5, ModSounds.BLOCK_GRILL_PLACE.get(), SoundCategory.BLOCKS, 0.75F, world.rand.nextFloat() * 0.2F + 0.9F);
             }
 
             return true;
@@ -185,7 +185,7 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
                 World world = this.getWorld();
                 if(world != null)
                 {
-                    world.playSound(null, this.pos.getX() + 0.5, this.pos.getY() + 1.0, this.pos.getZ() + 0.5, ModSounds.BLOCK_GRILL_FLIP, SoundCategory.BLOCKS, 0.75F, 1.0F);
+                    world.playSound(null, this.pos.getX() + 0.5, this.pos.getY() + 1.0, this.pos.getZ() + 0.5, ModSounds.BLOCK_GRILL_FLIP.get(), SoundCategory.BLOCKS, 0.75F, 1.0F);
                 }
             }
             else if(this.flipped[position] && this.cookingTimes[position] == this.cookingTotalTimes[position])

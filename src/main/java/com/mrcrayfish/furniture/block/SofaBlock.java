@@ -124,11 +124,11 @@ public class SofaBlock extends FurnitureHorizontalWaterloggedBlock
         if(!world.isRemote)
         {
             ItemStack stack = playerEntity.getHeldItem(hand);
-            if(stack.getItem() == Items.NAME_TAG && this != ModBlocks.SOFA_RAINBOW)
+            if(stack.getItem() == Items.NAME_TAG && this != ModBlocks.SOFA_RAINBOW.get())
             {
                 if(stack.getDisplayName().getString().equals("jeb_"))
                 {
-                    BlockState rainbowSofaState = ModBlocks.SOFA_RAINBOW.getDefaultState().with(DIRECTION, state.get(DIRECTION)).with(TYPE, state.get(TYPE)).with(WATERLOGGED, state.get(WATERLOGGED));
+                    BlockState rainbowSofaState = ModBlocks.SOFA_RAINBOW.get().getDefaultState().with(DIRECTION, state.get(DIRECTION)).with(TYPE, state.get(TYPE)).with(WATERLOGGED, state.get(WATERLOGGED));
                     world.setBlockState(pos, rainbowSofaState, 3);
                     return ActionResultType.SUCCESS;
                 }

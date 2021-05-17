@@ -21,12 +21,12 @@ public class GrillCookingRecipe extends AbstractCookingRecipe
     @Override
     public ItemStack getIcon()
     {
-        return new ItemStack(ModBlocks.GRILL_RED);
+        return new ItemStack(ModBlocks.GRILL_RED.get());
     }
 
     @Override
     public IRecipeSerializer<?> getSerializer()
     {
-        return ModRecipeSerializers.GRILL_COOKING;
+        return ModRecipeSerializers.GRILL_COOKING.get();
     }
 }

@@ -31,242 +31,242 @@ public class RecipeGen extends RecipeProvider
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer)
     {
         // Tables
-        table(consumer, ModBlocks.TABLE_OAK, Blocks.OAK_LOG, Blocks.OAK_PLANKS);
-        table(consumer, ModBlocks.TABLE_SPRUCE, Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
-        table(consumer, ModBlocks.TABLE_BIRCH, Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
-        table(consumer, ModBlocks.TABLE_JUNGLE, Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
-        table(consumer, ModBlocks.TABLE_ACACIA, Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
-        table(consumer, ModBlocks.TABLE_DARK_OAK, Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
-        table(consumer, ModBlocks.TABLE_STONE, Blocks.STONE, Blocks.COBBLESTONE);
-        table(consumer, ModBlocks.TABLE_GRANITE, Blocks.POLISHED_GRANITE, Blocks.GRANITE);
-        table(consumer, ModBlocks.TABLE_DIORITE, Blocks.POLISHED_DIORITE, Blocks.DIORITE);
-        table(consumer, ModBlocks.TABLE_ANDESITE, Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
-        table(consumer, ModBlocks.TABLE_STRIPPED_OAK, Blocks.STRIPPED_OAK_LOG, Blocks.OAK_LOG);
-        table(consumer, ModBlocks.TABLE_STRIPPED_SPRUCE, Blocks.STRIPPED_SPRUCE_LOG, Blocks.SPRUCE_LOG);
-        table(consumer, ModBlocks.TABLE_STRIPPED_BIRCH, Blocks.STRIPPED_BIRCH_LOG, Blocks.BIRCH_LOG);
-        table(consumer, ModBlocks.TABLE_STRIPPED_JUNGLE, Blocks.STRIPPED_JUNGLE_LOG, Blocks.JUNGLE_LOG);
-        table(consumer, ModBlocks.TABLE_STRIPPED_ACACIA, Blocks.STRIPPED_ACACIA_LOG, Blocks.ACACIA_LOG);
-        table(consumer, ModBlocks.TABLE_STRIPPED_DARK_OAK, Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
+        table(consumer, ModBlocks.TABLE_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
+        table(consumer, ModBlocks.TABLE_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
+        table(consumer, ModBlocks.TABLE_BIRCH.get(), Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
+        table(consumer, ModBlocks.TABLE_JUNGLE.get(), Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
+        table(consumer, ModBlocks.TABLE_ACACIA.get(), Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
+        table(consumer, ModBlocks.TABLE_DARK_OAK.get(), Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
+        table(consumer, ModBlocks.TABLE_STONE.get(), Blocks.STONE, Blocks.COBBLESTONE);
+        table(consumer, ModBlocks.TABLE_GRANITE.get(), Blocks.POLISHED_GRANITE, Blocks.GRANITE);
+        table(consumer, ModBlocks.TABLE_DIORITE.get(), Blocks.POLISHED_DIORITE, Blocks.DIORITE);
+        table(consumer, ModBlocks.TABLE_ANDESITE.get(), Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
+        table(consumer, ModBlocks.TABLE_STRIPPED_OAK.get(), Blocks.STRIPPED_OAK_LOG, Blocks.OAK_LOG);
+        table(consumer, ModBlocks.TABLE_STRIPPED_SPRUCE.get(), Blocks.STRIPPED_SPRUCE_LOG, Blocks.SPRUCE_LOG);
+        table(consumer, ModBlocks.TABLE_STRIPPED_BIRCH.get(), Blocks.STRIPPED_BIRCH_LOG, Blocks.BIRCH_LOG);
+        table(consumer, ModBlocks.TABLE_STRIPPED_JUNGLE.get(), Blocks.STRIPPED_JUNGLE_LOG, Blocks.JUNGLE_LOG);
+        table(consumer, ModBlocks.TABLE_STRIPPED_ACACIA.get(), Blocks.STRIPPED_ACACIA_LOG, Blocks.ACACIA_LOG);
+        table(consumer, ModBlocks.TABLE_STRIPPED_DARK_OAK.get(), Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
         // Chairs
-        chair(consumer, ModBlocks.CHAIR_OAK, Blocks.OAK_LOG, Blocks.OAK_PLANKS);
-        chair(consumer, ModBlocks.CHAIR_SPRUCE, Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
-        chair(consumer, ModBlocks.CHAIR_BIRCH, Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
-        chair(consumer, ModBlocks.CHAIR_JUNGLE, Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
-        chair(consumer, ModBlocks.CHAIR_ACACIA, Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
-        chair(consumer, ModBlocks.CHAIR_DARK_OAK, Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
-        chair(consumer, ModBlocks.CHAIR_STONE, Blocks.STONE, Blocks.COBBLESTONE);
-        chair(consumer, ModBlocks.CHAIR_GRANITE, Blocks.POLISHED_GRANITE, Blocks.GRANITE);
-        chair(consumer, ModBlocks.CHAIR_DIORITE, Blocks.POLISHED_DIORITE, Blocks.DIORITE);
-        chair(consumer, ModBlocks.CHAIR_ANDESITE, Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
-        chair(consumer, ModBlocks.CHAIR_STRIPPED_OAK, Blocks.STRIPPED_OAK_LOG, Blocks.OAK_LOG);
-        chair(consumer, ModBlocks.CHAIR_STRIPPED_SPRUCE, Blocks.STRIPPED_SPRUCE_LOG, Blocks.SPRUCE_LOG);
-        chair(consumer, ModBlocks.CHAIR_STRIPPED_BIRCH, Blocks.STRIPPED_BIRCH_LOG, Blocks.BIRCH_LOG);
-        chair(consumer, ModBlocks.CHAIR_STRIPPED_JUNGLE, Blocks.STRIPPED_JUNGLE_LOG, Blocks.JUNGLE_LOG);
-        chair(consumer, ModBlocks.CHAIR_STRIPPED_ACACIA, Blocks.STRIPPED_ACACIA_LOG, Blocks.ACACIA_LOG);
-        chair(consumer, ModBlocks.CHAIR_STRIPPED_DARK_OAK, Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
+        chair(consumer, ModBlocks.CHAIR_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
+        chair(consumer, ModBlocks.CHAIR_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
+        chair(consumer, ModBlocks.CHAIR_BIRCH.get(), Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
+        chair(consumer, ModBlocks.CHAIR_JUNGLE.get(), Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
+        chair(consumer, ModBlocks.CHAIR_ACACIA.get(), Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
+        chair(consumer, ModBlocks.CHAIR_DARK_OAK.get(), Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
+        chair(consumer, ModBlocks.CHAIR_STONE.get(), Blocks.STONE, Blocks.COBBLESTONE);
+        chair(consumer, ModBlocks.CHAIR_GRANITE.get(), Blocks.POLISHED_GRANITE, Blocks.GRANITE);
+        chair(consumer, ModBlocks.CHAIR_DIORITE.get(), Blocks.POLISHED_DIORITE, Blocks.DIORITE);
+        chair(consumer, ModBlocks.CHAIR_ANDESITE.get(), Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
+        chair(consumer, ModBlocks.CHAIR_STRIPPED_OAK.get(), Blocks.STRIPPED_OAK_LOG, Blocks.OAK_LOG);
+        chair(consumer, ModBlocks.CHAIR_STRIPPED_SPRUCE.get(), Blocks.STRIPPED_SPRUCE_LOG, Blocks.SPRUCE_LOG);
+        chair(consumer, ModBlocks.CHAIR_STRIPPED_BIRCH.get(), Blocks.STRIPPED_BIRCH_LOG, Blocks.BIRCH_LOG);
+        chair(consumer, ModBlocks.CHAIR_STRIPPED_JUNGLE.get(), Blocks.STRIPPED_JUNGLE_LOG, Blocks.JUNGLE_LOG);
+        chair(consumer, ModBlocks.CHAIR_STRIPPED_ACACIA.get(), Blocks.STRIPPED_ACACIA_LOG, Blocks.ACACIA_LOG);
+        chair(consumer, ModBlocks.CHAIR_STRIPPED_DARK_OAK.get(), Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
         // Coffee Table
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_OAK, Blocks.OAK_LOG, Blocks.OAK_PLANKS);
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_SPRUCE, Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_BIRCH, Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_JUNGLE, Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_ACACIA, Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_DARK_OAK, Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_STONE, Blocks.STONE, Blocks.COBBLESTONE);
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_GRANITE, Blocks.POLISHED_GRANITE, Blocks.GRANITE);
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_DIORITE, Blocks.POLISHED_DIORITE, Blocks.DIORITE);
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_ANDESITE, Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_STRIPPED_OAK, Blocks.STRIPPED_OAK_LOG, Blocks.OAK_LOG);
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_STRIPPED_SPRUCE, Blocks.STRIPPED_SPRUCE_LOG, Blocks.SPRUCE_LOG);
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_STRIPPED_BIRCH, Blocks.STRIPPED_BIRCH_LOG, Blocks.BIRCH_LOG);
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_STRIPPED_JUNGLE, Blocks.STRIPPED_JUNGLE_LOG, Blocks.JUNGLE_LOG);
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_STRIPPED_ACACIA, Blocks.STRIPPED_ACACIA_LOG, Blocks.ACACIA_LOG);
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_STRIPPED_DARK_OAK, Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_BIRCH.get(), Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_JUNGLE.get(), Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_ACACIA.get(), Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_DARK_OAK.get(), Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_STONE.get(), Blocks.STONE, Blocks.COBBLESTONE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_GRANITE.get(), Blocks.POLISHED_GRANITE, Blocks.GRANITE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_DIORITE.get(), Blocks.POLISHED_DIORITE, Blocks.DIORITE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_ANDESITE.get(), Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_STRIPPED_OAK.get(), Blocks.STRIPPED_OAK_LOG, Blocks.OAK_LOG);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_STRIPPED_SPRUCE.get(), Blocks.STRIPPED_SPRUCE_LOG, Blocks.SPRUCE_LOG);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_STRIPPED_BIRCH.get(), Blocks.STRIPPED_BIRCH_LOG, Blocks.BIRCH_LOG);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_STRIPPED_JUNGLE.get(), Blocks.STRIPPED_JUNGLE_LOG, Blocks.JUNGLE_LOG);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_STRIPPED_ACACIA.get(), Blocks.STRIPPED_ACACIA_LOG, Blocks.ACACIA_LOG);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_STRIPPED_DARK_OAK.get(), Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
         // Cabinet
-        cabinet(consumer, ModBlocks.CABINET_OAK, Blocks.OAK_LOG, Blocks.OAK_PLANKS);
-        cabinet(consumer, ModBlocks.CABINET_SPRUCE, Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
-        cabinet(consumer, ModBlocks.CABINET_BIRCH, Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
-        cabinet(consumer, ModBlocks.CABINET_JUNGLE, Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
-        cabinet(consumer, ModBlocks.CABINET_ACACIA, Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
-        cabinet(consumer, ModBlocks.CABINET_DARK_OAK, Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
-        cabinet(consumer, ModBlocks.CABINET_STONE, Blocks.STONE, Blocks.COBBLESTONE);
-        cabinet(consumer, ModBlocks.CABINET_GRANITE, Blocks.POLISHED_GRANITE, Blocks.GRANITE);
-        cabinet(consumer, ModBlocks.CABINET_DIORITE, Blocks.POLISHED_DIORITE, Blocks.DIORITE);
-        cabinet(consumer, ModBlocks.CABINET_ANDESITE, Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
-        cabinet(consumer, ModBlocks.CABINET_STRIPPED_OAK, Blocks.OAK_LOG, Blocks.STRIPPED_OAK_LOG);
-        cabinet(consumer, ModBlocks.CABINET_STRIPPED_SPRUCE, Blocks.SPRUCE_LOG, Blocks.STRIPPED_SPRUCE_LOG);
-        cabinet(consumer, ModBlocks.CABINET_STRIPPED_BIRCH, Blocks.BIRCH_LOG, Blocks.STRIPPED_BIRCH_LOG);
-        cabinet(consumer, ModBlocks.CABINET_STRIPPED_JUNGLE, Blocks.JUNGLE_LOG, Blocks.STRIPPED_JUNGLE_LOG);
-        cabinet(consumer, ModBlocks.CABINET_STRIPPED_ACACIA, Blocks.ACACIA_LOG, Blocks.STRIPPED_ACACIA_LOG);
-        cabinet(consumer, ModBlocks.CABINET_STRIPPED_DARK_OAK, Blocks.DARK_OAK_LOG, Blocks.STRIPPED_DARK_OAK_LOG);
+        cabinet(consumer, ModBlocks.CABINET_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
+        cabinet(consumer, ModBlocks.CABINET_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
+        cabinet(consumer, ModBlocks.CABINET_BIRCH.get(), Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
+        cabinet(consumer, ModBlocks.CABINET_JUNGLE.get(), Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
+        cabinet(consumer, ModBlocks.CABINET_ACACIA.get(), Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
+        cabinet(consumer, ModBlocks.CABINET_DARK_OAK.get(), Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
+        cabinet(consumer, ModBlocks.CABINET_STONE.get(), Blocks.STONE, Blocks.COBBLESTONE);
+        cabinet(consumer, ModBlocks.CABINET_GRANITE.get(), Blocks.POLISHED_GRANITE, Blocks.GRANITE);
+        cabinet(consumer, ModBlocks.CABINET_DIORITE.get(), Blocks.POLISHED_DIORITE, Blocks.DIORITE);
+        cabinet(consumer, ModBlocks.CABINET_ANDESITE.get(), Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
+        cabinet(consumer, ModBlocks.CABINET_STRIPPED_OAK.get(), Blocks.OAK_LOG, Blocks.STRIPPED_OAK_LOG);
+        cabinet(consumer, ModBlocks.CABINET_STRIPPED_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.STRIPPED_SPRUCE_LOG);
+        cabinet(consumer, ModBlocks.CABINET_STRIPPED_BIRCH.get(), Blocks.BIRCH_LOG, Blocks.STRIPPED_BIRCH_LOG);
+        cabinet(consumer, ModBlocks.CABINET_STRIPPED_JUNGLE.get(), Blocks.JUNGLE_LOG, Blocks.STRIPPED_JUNGLE_LOG);
+        cabinet(consumer, ModBlocks.CABINET_STRIPPED_ACACIA.get(), Blocks.ACACIA_LOG, Blocks.STRIPPED_ACACIA_LOG);
+        cabinet(consumer, ModBlocks.CABINET_STRIPPED_DARK_OAK.get(), Blocks.DARK_OAK_LOG, Blocks.STRIPPED_DARK_OAK_LOG);
         // Coffee Table
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_OAK, Blocks.OAK_LOG, Blocks.OAK_PLANKS);
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_SPRUCE, Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_BIRCH, Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_JUNGLE, Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_ACACIA, Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_DARK_OAK, Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_STONE, Blocks.STONE, Blocks.COBBLESTONE);
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_GRANITE, Blocks.POLISHED_GRANITE, Blocks.GRANITE);
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_DIORITE, Blocks.POLISHED_DIORITE, Blocks.DIORITE);
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_ANDESITE, Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_STRIPPED_OAK, Blocks.STRIPPED_OAK_LOG, Blocks.OAK_LOG);
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_STRIPPED_SPRUCE, Blocks.STRIPPED_SPRUCE_LOG, Blocks.SPRUCE_LOG);
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_STRIPPED_BIRCH, Blocks.STRIPPED_BIRCH_LOG, Blocks.BIRCH_LOG);
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_STRIPPED_JUNGLE, Blocks.STRIPPED_JUNGLE_LOG, Blocks.JUNGLE_LOG);
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_STRIPPED_ACACIA, Blocks.STRIPPED_ACACIA_LOG, Blocks.ACACIA_LOG);
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_STRIPPED_DARK_OAK, Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_BIRCH.get(), Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_JUNGLE.get(), Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_ACACIA.get(), Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_DARK_OAK.get(), Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_STONE.get(), Blocks.STONE, Blocks.COBBLESTONE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_GRANITE.get(), Blocks.POLISHED_GRANITE, Blocks.GRANITE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_DIORITE.get(), Blocks.POLISHED_DIORITE, Blocks.DIORITE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_ANDESITE.get(), Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_STRIPPED_OAK.get(), Blocks.STRIPPED_OAK_LOG, Blocks.OAK_LOG);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_STRIPPED_SPRUCE.get(), Blocks.STRIPPED_SPRUCE_LOG, Blocks.SPRUCE_LOG);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_STRIPPED_BIRCH.get(), Blocks.STRIPPED_BIRCH_LOG, Blocks.BIRCH_LOG);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_STRIPPED_JUNGLE.get(), Blocks.STRIPPED_JUNGLE_LOG, Blocks.JUNGLE_LOG);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_STRIPPED_ACACIA.get(), Blocks.STRIPPED_ACACIA_LOG, Blocks.ACACIA_LOG);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_STRIPPED_DARK_OAK.get(), Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
         // Desk
-        desk(consumer, ModBlocks.DESK_OAK, Blocks.OAK_LOG, Blocks.OAK_PLANKS);
-        desk(consumer, ModBlocks.DESK_SPRUCE, Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
-        desk(consumer, ModBlocks.DESK_BIRCH, Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
-        desk(consumer, ModBlocks.DESK_JUNGLE, Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
-        desk(consumer, ModBlocks.DESK_ACACIA, Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
-        desk(consumer, ModBlocks.DESK_DARK_OAK, Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
-        desk(consumer, ModBlocks.DESK_STONE, Blocks.STONE, Blocks.COBBLESTONE);
-        desk(consumer, ModBlocks.DESK_GRANITE, Blocks.POLISHED_GRANITE, Blocks.GRANITE);
-        desk(consumer, ModBlocks.DESK_DIORITE, Blocks.POLISHED_DIORITE, Blocks.DIORITE);
-        desk(consumer, ModBlocks.DESK_ANDESITE, Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
-        desk(consumer, ModBlocks.DESK_STRIPPED_OAK, Blocks.STRIPPED_OAK_LOG, Blocks.OAK_LOG);
-        desk(consumer, ModBlocks.DESK_STRIPPED_SPRUCE, Blocks.STRIPPED_SPRUCE_LOG, Blocks.SPRUCE_LOG);
-        desk(consumer, ModBlocks.DESK_STRIPPED_BIRCH, Blocks.STRIPPED_BIRCH_LOG, Blocks.BIRCH_LOG);
-        desk(consumer, ModBlocks.DESK_STRIPPED_JUNGLE, Blocks.STRIPPED_JUNGLE_LOG, Blocks.JUNGLE_LOG);
-        desk(consumer, ModBlocks.DESK_STRIPPED_ACACIA, Blocks.STRIPPED_ACACIA_LOG, Blocks.ACACIA_LOG);
-        desk(consumer, ModBlocks.DESK_STRIPPED_DARK_OAK, Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
+        desk(consumer, ModBlocks.DESK_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
+        desk(consumer, ModBlocks.DESK_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
+        desk(consumer, ModBlocks.DESK_BIRCH.get(), Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
+        desk(consumer, ModBlocks.DESK_JUNGLE.get(), Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
+        desk(consumer, ModBlocks.DESK_ACACIA.get(), Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
+        desk(consumer, ModBlocks.DESK_DARK_OAK.get(), Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
+        desk(consumer, ModBlocks.DESK_STONE.get(), Blocks.STONE, Blocks.COBBLESTONE);
+        desk(consumer, ModBlocks.DESK_GRANITE.get(), Blocks.POLISHED_GRANITE, Blocks.GRANITE);
+        desk(consumer, ModBlocks.DESK_DIORITE.get(), Blocks.POLISHED_DIORITE, Blocks.DIORITE);
+        desk(consumer, ModBlocks.DESK_ANDESITE.get(), Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
+        desk(consumer, ModBlocks.DESK_STRIPPED_OAK.get(), Blocks.STRIPPED_OAK_LOG, Blocks.OAK_LOG);
+        desk(consumer, ModBlocks.DESK_STRIPPED_SPRUCE.get(), Blocks.STRIPPED_SPRUCE_LOG, Blocks.SPRUCE_LOG);
+        desk(consumer, ModBlocks.DESK_STRIPPED_BIRCH.get(), Blocks.STRIPPED_BIRCH_LOG, Blocks.BIRCH_LOG);
+        desk(consumer, ModBlocks.DESK_STRIPPED_JUNGLE.get(), Blocks.STRIPPED_JUNGLE_LOG, Blocks.JUNGLE_LOG);
+        desk(consumer, ModBlocks.DESK_STRIPPED_ACACIA.get(), Blocks.STRIPPED_ACACIA_LOG, Blocks.ACACIA_LOG);
+        desk(consumer, ModBlocks.DESK_STRIPPED_DARK_OAK.get(), Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
         // Desk Cabinet
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_OAK, Blocks.OAK_LOG, Blocks.OAK_PLANKS);
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_SPRUCE, Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_BIRCH, Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_JUNGLE, Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_ACACIA, Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_DARK_OAK, Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_STONE, Blocks.STONE, Blocks.COBBLESTONE);
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_GRANITE, Blocks.POLISHED_GRANITE, Blocks.GRANITE);
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_DIORITE, Blocks.POLISHED_DIORITE, Blocks.DIORITE);
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_ANDESITE, Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_STRIPPED_OAK, Blocks.STRIPPED_OAK_LOG, Blocks.OAK_LOG);
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_STRIPPED_SPRUCE, Blocks.STRIPPED_SPRUCE_LOG, Blocks.SPRUCE_LOG);
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_STRIPPED_BIRCH, Blocks.STRIPPED_BIRCH_LOG, Blocks.BIRCH_LOG);
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_STRIPPED_JUNGLE, Blocks.STRIPPED_JUNGLE_LOG, Blocks.JUNGLE_LOG);
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_STRIPPED_ACACIA, Blocks.STRIPPED_ACACIA_LOG, Blocks.ACACIA_LOG);
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_STRIPPED_DARK_OAK, Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_BIRCH.get(), Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_JUNGLE.get(), Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_ACACIA.get(), Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_DARK_OAK.get(), Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_STONE.get(), Blocks.STONE, Blocks.COBBLESTONE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_GRANITE.get(), Blocks.POLISHED_GRANITE, Blocks.GRANITE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_DIORITE.get(), Blocks.POLISHED_DIORITE, Blocks.DIORITE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_ANDESITE.get(), Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_STRIPPED_OAK.get(), Blocks.STRIPPED_OAK_LOG, Blocks.OAK_LOG);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_STRIPPED_SPRUCE.get(), Blocks.STRIPPED_SPRUCE_LOG, Blocks.SPRUCE_LOG);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_STRIPPED_BIRCH.get(), Blocks.STRIPPED_BIRCH_LOG, Blocks.BIRCH_LOG);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_STRIPPED_JUNGLE.get(), Blocks.STRIPPED_JUNGLE_LOG, Blocks.JUNGLE_LOG);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_STRIPPED_ACACIA.get(), Blocks.STRIPPED_ACACIA_LOG, Blocks.ACACIA_LOG);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_STRIPPED_DARK_OAK.get(), Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
         // Desk Cabinet
-        sofa(consumer, ModBlocks.SOFA_WHITE, Blocks.WHITE_WOOL);
-        sofa(consumer, ModBlocks.SOFA_ORANGE, Blocks.ORANGE_WOOL);
-        sofa(consumer, ModBlocks.SOFA_MAGENTA, Blocks.MAGENTA_WOOL);
-        sofa(consumer, ModBlocks.SOFA_LIGHT_BLUE, Blocks.LIGHT_BLUE_WOOL);
-        sofa(consumer, ModBlocks.SOFA_YELLOW, Blocks.YELLOW_WOOL);
-        sofa(consumer, ModBlocks.SOFA_LIME, Blocks.LIME_WOOL);
-        sofa(consumer, ModBlocks.SOFA_PINK, Blocks.PINK_WOOL);
-        sofa(consumer, ModBlocks.SOFA_GRAY, Blocks.GRAY_WOOL);
-        sofa(consumer, ModBlocks.SOFA_LIGHT_GRAY, Blocks.LIGHT_GRAY_WOOL);
-        sofa(consumer, ModBlocks.SOFA_CYAN, Blocks.CYAN_WOOL);
-        sofa(consumer, ModBlocks.SOFA_PURPLE, Blocks.PURPLE_WOOL);
-        sofa(consumer, ModBlocks.SOFA_BLUE, Blocks.BLUE_WOOL);
-        sofa(consumer, ModBlocks.SOFA_BROWN, Blocks.BROWN_WOOL);
-        sofa(consumer, ModBlocks.SOFA_GREEN, Blocks.GREEN_WOOL);
-        sofa(consumer, ModBlocks.SOFA_RED, Blocks.RED_WOOL);
-        sofa(consumer, ModBlocks.SOFA_BLACK, Blocks.BLACK_WOOL);
+        sofa(consumer, ModBlocks.SOFA_WHITE.get(), Blocks.WHITE_WOOL);
+        sofa(consumer, ModBlocks.SOFA_ORANGE.get(), Blocks.ORANGE_WOOL);
+        sofa(consumer, ModBlocks.SOFA_MAGENTA.get(), Blocks.MAGENTA_WOOL);
+        sofa(consumer, ModBlocks.SOFA_LIGHT_BLUE.get(), Blocks.LIGHT_BLUE_WOOL);
+        sofa(consumer, ModBlocks.SOFA_YELLOW.get(), Blocks.YELLOW_WOOL);
+        sofa(consumer, ModBlocks.SOFA_LIME.get(), Blocks.LIME_WOOL);
+        sofa(consumer, ModBlocks.SOFA_PINK.get(), Blocks.PINK_WOOL);
+        sofa(consumer, ModBlocks.SOFA_GRAY.get(), Blocks.GRAY_WOOL);
+        sofa(consumer, ModBlocks.SOFA_LIGHT_GRAY.get(), Blocks.LIGHT_GRAY_WOOL);
+        sofa(consumer, ModBlocks.SOFA_CYAN.get(), Blocks.CYAN_WOOL);
+        sofa(consumer, ModBlocks.SOFA_PURPLE.get(), Blocks.PURPLE_WOOL);
+        sofa(consumer, ModBlocks.SOFA_BLUE.get(), Blocks.BLUE_WOOL);
+        sofa(consumer, ModBlocks.SOFA_BROWN.get(), Blocks.BROWN_WOOL);
+        sofa(consumer, ModBlocks.SOFA_GREEN.get(), Blocks.GREEN_WOOL);
+        sofa(consumer, ModBlocks.SOFA_RED.get(), Blocks.RED_WOOL);
+        sofa(consumer, ModBlocks.SOFA_BLACK.get(), Blocks.BLACK_WOOL);
         // Blinds
-        blinds(consumer, ModBlocks.BLINDS_OAK, Blocks.OAK_LOG);
-        blinds(consumer, ModBlocks.BLINDS_SPRUCE, Blocks.SPRUCE_LOG);
-        blinds(consumer, ModBlocks.BLINDS_BIRCH, Blocks.BIRCH_LOG);
-        blinds(consumer, ModBlocks.BLINDS_JUNGLE, Blocks.JUNGLE_LOG);
-        blinds(consumer, ModBlocks.BLINDS_ACACIA, Blocks.ACACIA_LOG);
-        blinds(consumer, ModBlocks.BLINDS_DARK_OAK, Blocks.DARK_OAK_LOG);
-        blinds(consumer, ModBlocks.BLINDS_STRIPPED_OAK, Blocks.STRIPPED_OAK_LOG);
-        blinds(consumer, ModBlocks.BLINDS_STRIPPED_SPRUCE, Blocks.STRIPPED_SPRUCE_LOG);
-        blinds(consumer, ModBlocks.BLINDS_STRIPPED_BIRCH, Blocks.STRIPPED_BIRCH_LOG);
-        blinds(consumer, ModBlocks.BLINDS_STRIPPED_JUNGLE, Blocks.STRIPPED_JUNGLE_LOG);
-        blinds(consumer, ModBlocks.BLINDS_STRIPPED_ACACIA, Blocks.STRIPPED_ACACIA_LOG);
-        blinds(consumer, ModBlocks.BLINDS_STRIPPED_DARK_OAK, Blocks.STRIPPED_DARK_OAK_LOG);
+        blinds(consumer, ModBlocks.BLINDS_OAK.get(), Blocks.OAK_LOG);
+        blinds(consumer, ModBlocks.BLINDS_SPRUCE.get(), Blocks.SPRUCE_LOG);
+        blinds(consumer, ModBlocks.BLINDS_BIRCH.get(), Blocks.BIRCH_LOG);
+        blinds(consumer, ModBlocks.BLINDS_JUNGLE.get(), Blocks.JUNGLE_LOG);
+        blinds(consumer, ModBlocks.BLINDS_ACACIA.get(), Blocks.ACACIA_LOG);
+        blinds(consumer, ModBlocks.BLINDS_DARK_OAK.get(), Blocks.DARK_OAK_LOG);
+        blinds(consumer, ModBlocks.BLINDS_STRIPPED_OAK.get(), Blocks.STRIPPED_OAK_LOG);
+        blinds(consumer, ModBlocks.BLINDS_STRIPPED_SPRUCE.get(), Blocks.STRIPPED_SPRUCE_LOG);
+        blinds(consumer, ModBlocks.BLINDS_STRIPPED_BIRCH.get(), Blocks.STRIPPED_BIRCH_LOG);
+        blinds(consumer, ModBlocks.BLINDS_STRIPPED_JUNGLE.get(), Blocks.STRIPPED_JUNGLE_LOG);
+        blinds(consumer, ModBlocks.BLINDS_STRIPPED_ACACIA.get(), Blocks.STRIPPED_ACACIA_LOG);
+        blinds(consumer, ModBlocks.BLINDS_STRIPPED_DARK_OAK.get(), Blocks.STRIPPED_DARK_OAK_LOG);
         // Upgraded Fence
-        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_OAK, Blocks.OAK_LOG);
-        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_SPRUCE, Blocks.SPRUCE_LOG);
-        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_BIRCH, Blocks.BIRCH_LOG);
-        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_JUNGLE, Blocks.JUNGLE_LOG);
-        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_ACACIA, Blocks.ACACIA_LOG);
-        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_DARK_OAK, Blocks.DARK_OAK_LOG);
-        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_STRIPPED_OAK, Blocks.STRIPPED_OAK_LOG);
-        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_STRIPPED_SPRUCE, Blocks.STRIPPED_SPRUCE_LOG);
-        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_STRIPPED_BIRCH, Blocks.STRIPPED_BIRCH_LOG);
-        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_STRIPPED_JUNGLE, Blocks.STRIPPED_JUNGLE_LOG);
-        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_STRIPPED_ACACIA, Blocks.STRIPPED_ACACIA_LOG);
-        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_STRIPPED_DARK_OAK, Blocks.STRIPPED_DARK_OAK_LOG);
+        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_OAK.get(), Blocks.OAK_LOG);
+        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_SPRUCE.get(), Blocks.SPRUCE_LOG);
+        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_BIRCH.get(), Blocks.BIRCH_LOG);
+        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_JUNGLE.get(), Blocks.JUNGLE_LOG);
+        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_ACACIA.get(), Blocks.ACACIA_LOG);
+        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_DARK_OAK.get(), Blocks.DARK_OAK_LOG);
+        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_STRIPPED_OAK.get(), Blocks.STRIPPED_OAK_LOG);
+        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_STRIPPED_SPRUCE.get(), Blocks.STRIPPED_SPRUCE_LOG);
+        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_STRIPPED_BIRCH.get(), Blocks.STRIPPED_BIRCH_LOG);
+        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_STRIPPED_JUNGLE.get(), Blocks.STRIPPED_JUNGLE_LOG);
+        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_STRIPPED_ACACIA.get(), Blocks.STRIPPED_ACACIA_LOG);
+        upgradedFence(consumer, ModBlocks.UPGRADED_FENCE_STRIPPED_DARK_OAK.get(), Blocks.STRIPPED_DARK_OAK_LOG);
         // Upgraded Gate
-        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_OAK, Blocks.OAK_LOG);
-        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_SPRUCE, Blocks.SPRUCE_LOG);
-        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_BIRCH, Blocks.BIRCH_LOG);
-        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_JUNGLE, Blocks.JUNGLE_LOG);
-        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_ACACIA, Blocks.ACACIA_LOG);
-        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_DARK_OAK, Blocks.DARK_OAK_LOG);
-        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_STRIPPED_OAK, Blocks.STRIPPED_OAK_LOG);
-        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_STRIPPED_SPRUCE, Blocks.STRIPPED_SPRUCE_LOG);
-        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_STRIPPED_BIRCH, Blocks.STRIPPED_BIRCH_LOG);
-        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_STRIPPED_JUNGLE, Blocks.STRIPPED_JUNGLE_LOG);
-        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_STRIPPED_ACACIA, Blocks.STRIPPED_ACACIA_LOG);
-        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_STRIPPED_DARK_OAK, Blocks.STRIPPED_DARK_OAK_LOG);
+        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_OAK.get(), Blocks.OAK_LOG);
+        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_SPRUCE.get(), Blocks.SPRUCE_LOG);
+        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_BIRCH.get(), Blocks.BIRCH_LOG);
+        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_JUNGLE.get(), Blocks.JUNGLE_LOG);
+        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_ACACIA.get(), Blocks.ACACIA_LOG);
+        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_DARK_OAK.get(), Blocks.DARK_OAK_LOG);
+        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_STRIPPED_OAK.get(), Blocks.STRIPPED_OAK_LOG);
+        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_STRIPPED_SPRUCE.get(), Blocks.STRIPPED_SPRUCE_LOG);
+        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_STRIPPED_BIRCH.get(), Blocks.STRIPPED_BIRCH_LOG);
+        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_STRIPPED_JUNGLE.get(), Blocks.STRIPPED_JUNGLE_LOG);
+        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_STRIPPED_ACACIA.get(), Blocks.STRIPPED_ACACIA_LOG);
+        upgradedGate(consumer, ModBlocks.UPGRADED_GATE_STRIPPED_DARK_OAK.get(), Blocks.STRIPPED_DARK_OAK_LOG);
         // Picket Fence
-        picketFence(consumer, ModBlocks.PICKET_FENCE_WHITE, Blocks.WHITE_CONCRETE, Tags.Items.DYES_WHITE);
-        picketFence(consumer, ModBlocks.PICKET_FENCE_ORANGE, Blocks.ORANGE_CONCRETE, Tags.Items.DYES_ORANGE);
-        picketFence(consumer, ModBlocks.PICKET_FENCE_MAGENTA, Blocks.MAGENTA_CONCRETE, Tags.Items.DYES_MAGENTA);
-        picketFence(consumer, ModBlocks.PICKET_FENCE_LIGHT_BLUE, Blocks.LIGHT_BLUE_CONCRETE, Tags.Items.DYES_LIGHT_BLUE);
-        picketFence(consumer, ModBlocks.PICKET_FENCE_YELLOW, Blocks.YELLOW_CONCRETE, Tags.Items.DYES_YELLOW);
-        picketFence(consumer, ModBlocks.PICKET_FENCE_LIME, Blocks.LIME_CONCRETE, Tags.Items.DYES_LIME);
-        picketFence(consumer, ModBlocks.PICKET_FENCE_PINK, Blocks.PINK_CONCRETE, Tags.Items.DYES_PINK);
-        picketFence(consumer, ModBlocks.PICKET_FENCE_GRAY, Blocks.GRAY_CONCRETE, Tags.Items.DYES_GRAY);
-        picketFence(consumer, ModBlocks.PICKET_FENCE_LIGHT_GRAY, Blocks.LIGHT_GRAY_CONCRETE, Tags.Items.DYES_LIGHT_GRAY);
-        picketFence(consumer, ModBlocks.PICKET_FENCE_CYAN, Blocks.CYAN_CONCRETE, Tags.Items.DYES_CYAN);
-        picketFence(consumer, ModBlocks.PICKET_FENCE_PURPLE, Blocks.PURPLE_CONCRETE, Tags.Items.DYES_PURPLE);
-        picketFence(consumer, ModBlocks.PICKET_FENCE_BLUE, Blocks.BLUE_CONCRETE, Tags.Items.DYES_BLUE);
-        picketFence(consumer, ModBlocks.PICKET_FENCE_BROWN, Blocks.BROWN_CONCRETE, Tags.Items.DYES_BROWN);
-        picketFence(consumer, ModBlocks.PICKET_FENCE_GREEN, Blocks.GREEN_CONCRETE, Tags.Items.DYES_GREEN);
-        picketFence(consumer, ModBlocks.PICKET_FENCE_RED, Blocks.RED_CONCRETE, Tags.Items.DYES_RED);
-        picketFence(consumer, ModBlocks.PICKET_FENCE_BLACK, Blocks.BLACK_CONCRETE, Tags.Items.DYES_BLACK);
+        picketFence(consumer, ModBlocks.PICKET_FENCE_WHITE.get(), Blocks.WHITE_CONCRETE, Tags.Items.DYES_WHITE);
+        picketFence(consumer, ModBlocks.PICKET_FENCE_ORANGE.get(), Blocks.ORANGE_CONCRETE, Tags.Items.DYES_ORANGE);
+        picketFence(consumer, ModBlocks.PICKET_FENCE_MAGENTA.get(), Blocks.MAGENTA_CONCRETE, Tags.Items.DYES_MAGENTA);
+        picketFence(consumer, ModBlocks.PICKET_FENCE_LIGHT_BLUE.get(), Blocks.LIGHT_BLUE_CONCRETE, Tags.Items.DYES_LIGHT_BLUE);
+        picketFence(consumer, ModBlocks.PICKET_FENCE_YELLOW.get(), Blocks.YELLOW_CONCRETE, Tags.Items.DYES_YELLOW);
+        picketFence(consumer, ModBlocks.PICKET_FENCE_LIME.get(), Blocks.LIME_CONCRETE, Tags.Items.DYES_LIME);
+        picketFence(consumer, ModBlocks.PICKET_FENCE_PINK.get(), Blocks.PINK_CONCRETE, Tags.Items.DYES_PINK);
+        picketFence(consumer, ModBlocks.PICKET_FENCE_GRAY.get(), Blocks.GRAY_CONCRETE, Tags.Items.DYES_GRAY);
+        picketFence(consumer, ModBlocks.PICKET_FENCE_LIGHT_GRAY.get(), Blocks.LIGHT_GRAY_CONCRETE, Tags.Items.DYES_LIGHT_GRAY);
+        picketFence(consumer, ModBlocks.PICKET_FENCE_CYAN.get(), Blocks.CYAN_CONCRETE, Tags.Items.DYES_CYAN);
+        picketFence(consumer, ModBlocks.PICKET_FENCE_PURPLE.get(), Blocks.PURPLE_CONCRETE, Tags.Items.DYES_PURPLE);
+        picketFence(consumer, ModBlocks.PICKET_FENCE_BLUE.get(), Blocks.BLUE_CONCRETE, Tags.Items.DYES_BLUE);
+        picketFence(consumer, ModBlocks.PICKET_FENCE_BROWN.get(), Blocks.BROWN_CONCRETE, Tags.Items.DYES_BROWN);
+        picketFence(consumer, ModBlocks.PICKET_FENCE_GREEN.get(), Blocks.GREEN_CONCRETE, Tags.Items.DYES_GREEN);
+        picketFence(consumer, ModBlocks.PICKET_FENCE_RED.get(), Blocks.RED_CONCRETE, Tags.Items.DYES_RED);
+        picketFence(consumer, ModBlocks.PICKET_FENCE_BLACK.get(), Blocks.BLACK_CONCRETE, Tags.Items.DYES_BLACK);
         // Picket Gate
-        picketGate(consumer, ModBlocks.PICKET_GATE_WHITE, Blocks.WHITE_CONCRETE, Tags.Items.DYES_WHITE);
-        picketGate(consumer, ModBlocks.PICKET_GATE_ORANGE, Blocks.ORANGE_CONCRETE, Tags.Items.DYES_ORANGE);
-        picketGate(consumer, ModBlocks.PICKET_GATE_MAGENTA, Blocks.MAGENTA_CONCRETE, Tags.Items.DYES_MAGENTA);
-        picketGate(consumer, ModBlocks.PICKET_GATE_LIGHT_BLUE, Blocks.LIGHT_BLUE_CONCRETE, Tags.Items.DYES_LIGHT_BLUE);
-        picketGate(consumer, ModBlocks.PICKET_GATE_YELLOW, Blocks.YELLOW_CONCRETE, Tags.Items.DYES_YELLOW);
-        picketGate(consumer, ModBlocks.PICKET_GATE_LIME, Blocks.LIME_CONCRETE, Tags.Items.DYES_LIME);
-        picketGate(consumer, ModBlocks.PICKET_GATE_PINK, Blocks.PINK_CONCRETE, Tags.Items.DYES_PINK);
-        picketGate(consumer, ModBlocks.PICKET_GATE_GRAY, Blocks.GRAY_CONCRETE, Tags.Items.DYES_GRAY);
-        picketGate(consumer, ModBlocks.PICKET_GATE_LIGHT_GRAY, Blocks.LIGHT_GRAY_CONCRETE, Tags.Items.DYES_LIGHT_GRAY);
-        picketGate(consumer, ModBlocks.PICKET_GATE_CYAN, Blocks.CYAN_CONCRETE, Tags.Items.DYES_CYAN);
-        picketGate(consumer, ModBlocks.PICKET_GATE_PURPLE, Blocks.PURPLE_CONCRETE, Tags.Items.DYES_PURPLE);
-        picketGate(consumer, ModBlocks.PICKET_GATE_BLUE, Blocks.BLUE_CONCRETE, Tags.Items.DYES_BLUE);
-        picketGate(consumer, ModBlocks.PICKET_GATE_BROWN, Blocks.BROWN_CONCRETE, Tags.Items.DYES_BROWN);
-        picketGate(consumer, ModBlocks.PICKET_GATE_GREEN, Blocks.GREEN_CONCRETE, Tags.Items.DYES_GREEN);
-        picketGate(consumer, ModBlocks.PICKET_GATE_RED, Blocks.RED_CONCRETE, Tags.Items.DYES_RED);
-        picketGate(consumer, ModBlocks.PICKET_GATE_BLACK, Blocks.BLACK_CONCRETE, Tags.Items.DYES_BLACK);
+        picketGate(consumer, ModBlocks.PICKET_GATE_WHITE.get(), Blocks.WHITE_CONCRETE, Tags.Items.DYES_WHITE);
+        picketGate(consumer, ModBlocks.PICKET_GATE_ORANGE.get(), Blocks.ORANGE_CONCRETE, Tags.Items.DYES_ORANGE);
+        picketGate(consumer, ModBlocks.PICKET_GATE_MAGENTA.get(), Blocks.MAGENTA_CONCRETE, Tags.Items.DYES_MAGENTA);
+        picketGate(consumer, ModBlocks.PICKET_GATE_LIGHT_BLUE.get(), Blocks.LIGHT_BLUE_CONCRETE, Tags.Items.DYES_LIGHT_BLUE);
+        picketGate(consumer, ModBlocks.PICKET_GATE_YELLOW.get(), Blocks.YELLOW_CONCRETE, Tags.Items.DYES_YELLOW);
+        picketGate(consumer, ModBlocks.PICKET_GATE_LIME.get(), Blocks.LIME_CONCRETE, Tags.Items.DYES_LIME);
+        picketGate(consumer, ModBlocks.PICKET_GATE_PINK.get(), Blocks.PINK_CONCRETE, Tags.Items.DYES_PINK);
+        picketGate(consumer, ModBlocks.PICKET_GATE_GRAY.get(), Blocks.GRAY_CONCRETE, Tags.Items.DYES_GRAY);
+        picketGate(consumer, ModBlocks.PICKET_GATE_LIGHT_GRAY.get(), Blocks.LIGHT_GRAY_CONCRETE, Tags.Items.DYES_LIGHT_GRAY);
+        picketGate(consumer, ModBlocks.PICKET_GATE_CYAN.get(), Blocks.CYAN_CONCRETE, Tags.Items.DYES_CYAN);
+        picketGate(consumer, ModBlocks.PICKET_GATE_PURPLE.get(), Blocks.PURPLE_CONCRETE, Tags.Items.DYES_PURPLE);
+        picketGate(consumer, ModBlocks.PICKET_GATE_BLUE.get(), Blocks.BLUE_CONCRETE, Tags.Items.DYES_BLUE);
+        picketGate(consumer, ModBlocks.PICKET_GATE_BROWN.get(), Blocks.BROWN_CONCRETE, Tags.Items.DYES_BROWN);
+        picketGate(consumer, ModBlocks.PICKET_GATE_GREEN.get(), Blocks.GREEN_CONCRETE, Tags.Items.DYES_GREEN);
+        picketGate(consumer, ModBlocks.PICKET_GATE_RED.get(), Blocks.RED_CONCRETE, Tags.Items.DYES_RED);
+        picketGate(consumer, ModBlocks.PICKET_GATE_BLACK.get(), Blocks.BLACK_CONCRETE, Tags.Items.DYES_BLACK);
         // Crate
-        crate(consumer, ModBlocks.CRATE_OAK, Blocks.OAK_LOG, Blocks.OAK_PLANKS);
-        crate(consumer, ModBlocks.CRATE_SPRUCE, Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
-        crate(consumer, ModBlocks.CRATE_BIRCH, Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
-        crate(consumer, ModBlocks.CRATE_JUNGLE, Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
-        crate(consumer, ModBlocks.CRATE_ACACIA, Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
-        crate(consumer, ModBlocks.CRATE_DARK_OAK, Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
-        crate(consumer, ModBlocks.CRATE_STRIPPED_OAK, Blocks.STRIPPED_OAK_LOG, Blocks.OAK_LOG);
-        crate(consumer, ModBlocks.CRATE_STRIPPED_SPRUCE, Blocks.STRIPPED_SPRUCE_LOG, Blocks.SPRUCE_LOG);
-        crate(consumer, ModBlocks.CRATE_STRIPPED_BIRCH, Blocks.STRIPPED_BIRCH_LOG, Blocks.BIRCH_LOG);
-        crate(consumer, ModBlocks.CRATE_STRIPPED_JUNGLE, Blocks.STRIPPED_JUNGLE_LOG, Blocks.JUNGLE_LOG);
-        crate(consumer, ModBlocks.CRATE_STRIPPED_ACACIA, Blocks.STRIPPED_ACACIA_LOG, Blocks.ACACIA_LOG);
-        crate(consumer, ModBlocks.CRATE_STRIPPED_DARK_OAK, Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
+        crate(consumer, ModBlocks.CRATE_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
+        crate(consumer, ModBlocks.CRATE_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
+        crate(consumer, ModBlocks.CRATE_BIRCH.get(), Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
+        crate(consumer, ModBlocks.CRATE_JUNGLE.get(), Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
+        crate(consumer, ModBlocks.CRATE_ACACIA.get(), Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
+        crate(consumer, ModBlocks.CRATE_DARK_OAK.get(), Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
+        crate(consumer, ModBlocks.CRATE_STRIPPED_OAK.get(), Blocks.STRIPPED_OAK_LOG, Blocks.OAK_LOG);
+        crate(consumer, ModBlocks.CRATE_STRIPPED_SPRUCE.get(), Blocks.STRIPPED_SPRUCE_LOG, Blocks.SPRUCE_LOG);
+        crate(consumer, ModBlocks.CRATE_STRIPPED_BIRCH.get(), Blocks.STRIPPED_BIRCH_LOG, Blocks.BIRCH_LOG);
+        crate(consumer, ModBlocks.CRATE_STRIPPED_JUNGLE.get(), Blocks.STRIPPED_JUNGLE_LOG, Blocks.JUNGLE_LOG);
+        crate(consumer, ModBlocks.CRATE_STRIPPED_ACACIA.get(), Blocks.STRIPPED_ACACIA_LOG, Blocks.ACACIA_LOG);
+        crate(consumer, ModBlocks.CRATE_STRIPPED_DARK_OAK.get(), Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
         // Park Bench
-        parkBench(consumer, ModBlocks.PARK_BENCH_OAK, Blocks.OAK_LOG, Blocks.OAK_PLANKS);
-        parkBench(consumer, ModBlocks.PARK_BENCH_SPRUCE, Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
-        parkBench(consumer, ModBlocks.PARK_BENCH_BIRCH, Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
-        parkBench(consumer, ModBlocks.PARK_BENCH_JUNGLE, Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
-        parkBench(consumer, ModBlocks.PARK_BENCH_ACACIA, Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
-        parkBench(consumer, ModBlocks.PARK_BENCH_DARK_OAK, Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
-        parkBench(consumer, ModBlocks.PARK_BENCH_STRIPPED_OAK, Blocks.OAK_LOG, Blocks.STRIPPED_OAK_LOG);
-        parkBench(consumer, ModBlocks.PARK_BENCH_STRIPPED_SPRUCE, Blocks.SPRUCE_LOG, Blocks.STRIPPED_SPRUCE_LOG);
-        parkBench(consumer, ModBlocks.PARK_BENCH_STRIPPED_BIRCH, Blocks.BIRCH_LOG, Blocks.STRIPPED_BIRCH_LOG);
-        parkBench(consumer, ModBlocks.PARK_BENCH_STRIPPED_JUNGLE, Blocks.JUNGLE_LOG, Blocks.STRIPPED_JUNGLE_LOG);
-        parkBench(consumer, ModBlocks.PARK_BENCH_STRIPPED_ACACIA, Blocks.ACACIA_LOG, Blocks.STRIPPED_ACACIA_LOG);
-        parkBench(consumer, ModBlocks.PARK_BENCH_STRIPPED_DARK_OAK, Blocks.DARK_OAK_LOG, Blocks.STRIPPED_DARK_OAK_LOG);
+        parkBench(consumer, ModBlocks.PARK_BENCH_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
+        parkBench(consumer, ModBlocks.PARK_BENCH_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
+        parkBench(consumer, ModBlocks.PARK_BENCH_BIRCH.get(), Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
+        parkBench(consumer, ModBlocks.PARK_BENCH_JUNGLE.get(), Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
+        parkBench(consumer, ModBlocks.PARK_BENCH_ACACIA.get(), Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
+        parkBench(consumer, ModBlocks.PARK_BENCH_DARK_OAK.get(), Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
+        parkBench(consumer, ModBlocks.PARK_BENCH_STRIPPED_OAK.get(), Blocks.OAK_LOG, Blocks.STRIPPED_OAK_LOG);
+        parkBench(consumer, ModBlocks.PARK_BENCH_STRIPPED_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.STRIPPED_SPRUCE_LOG);
+        parkBench(consumer, ModBlocks.PARK_BENCH_STRIPPED_BIRCH.get(), Blocks.BIRCH_LOG, Blocks.STRIPPED_BIRCH_LOG);
+        parkBench(consumer, ModBlocks.PARK_BENCH_STRIPPED_JUNGLE.get(), Blocks.JUNGLE_LOG, Blocks.STRIPPED_JUNGLE_LOG);
+        parkBench(consumer, ModBlocks.PARK_BENCH_STRIPPED_ACACIA.get(), Blocks.ACACIA_LOG, Blocks.STRIPPED_ACACIA_LOG);
+        parkBench(consumer, ModBlocks.PARK_BENCH_STRIPPED_DARK_OAK.get(), Blocks.DARK_OAK_LOG, Blocks.STRIPPED_DARK_OAK_LOG);
         // Post Box
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.POST_BOX)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.POST_BOX.get())
                 .patternLine("III")
                 .patternLine("ISI")
                 .patternLine("III")
@@ -276,27 +276,27 @@ public class RecipeGen extends RecipeProvider
                 .addCriterion("has_shulker_box", hasItem(Blocks.BLUE_SHULKER_BOX))
                 .build(consumer);
         // Park Bench
-        mailBox(consumer, ModBlocks.MAIL_BOX_OAK, ModBlocks.UPGRADED_FENCE_OAK);
-        mailBox(consumer, ModBlocks.MAIL_BOX_SPRUCE, ModBlocks.UPGRADED_FENCE_SPRUCE);
-        mailBox(consumer, ModBlocks.MAIL_BOX_BIRCH, ModBlocks.UPGRADED_FENCE_BIRCH);
-        mailBox(consumer, ModBlocks.MAIL_BOX_JUNGLE, ModBlocks.UPGRADED_FENCE_JUNGLE);
-        mailBox(consumer, ModBlocks.MAIL_BOX_ACACIA, ModBlocks.UPGRADED_FENCE_ACACIA);
-        mailBox(consumer, ModBlocks.MAIL_BOX_DARK_OAK, ModBlocks.UPGRADED_FENCE_DARK_OAK);
-        mailBox(consumer, ModBlocks.MAIL_BOX_STRIPPED_OAK, ModBlocks.UPGRADED_FENCE_STRIPPED_OAK);
-        mailBox(consumer, ModBlocks.MAIL_BOX_STRIPPED_SPRUCE, ModBlocks.UPGRADED_FENCE_STRIPPED_SPRUCE);
-        mailBox(consumer, ModBlocks.MAIL_BOX_STRIPPED_BIRCH, ModBlocks.UPGRADED_FENCE_STRIPPED_BIRCH);
-        mailBox(consumer, ModBlocks.MAIL_BOX_STRIPPED_JUNGLE, ModBlocks.UPGRADED_FENCE_STRIPPED_JUNGLE);
-        mailBox(consumer, ModBlocks.MAIL_BOX_STRIPPED_ACACIA, ModBlocks.UPGRADED_FENCE_STRIPPED_ACACIA);
-        mailBox(consumer, ModBlocks.MAIL_BOX_STRIPPED_DARK_OAK, ModBlocks.UPGRADED_FENCE_STRIPPED_DARK_OAK);
+        mailBox(consumer, ModBlocks.MAIL_BOX_OAK.get(), ModBlocks.UPGRADED_FENCE_OAK.get());
+        mailBox(consumer, ModBlocks.MAIL_BOX_SPRUCE.get(), ModBlocks.UPGRADED_FENCE_SPRUCE.get());
+        mailBox(consumer, ModBlocks.MAIL_BOX_BIRCH.get(), ModBlocks.UPGRADED_FENCE_BIRCH.get());
+        mailBox(consumer, ModBlocks.MAIL_BOX_JUNGLE.get(), ModBlocks.UPGRADED_FENCE_JUNGLE.get());
+        mailBox(consumer, ModBlocks.MAIL_BOX_ACACIA.get(), ModBlocks.UPGRADED_FENCE_ACACIA.get());
+        mailBox(consumer, ModBlocks.MAIL_BOX_DARK_OAK.get(), ModBlocks.UPGRADED_FENCE_DARK_OAK.get());
+        mailBox(consumer, ModBlocks.MAIL_BOX_STRIPPED_OAK.get(), ModBlocks.UPGRADED_FENCE_STRIPPED_OAK.get());
+        mailBox(consumer, ModBlocks.MAIL_BOX_STRIPPED_SPRUCE.get(), ModBlocks.UPGRADED_FENCE_STRIPPED_SPRUCE.get());
+        mailBox(consumer, ModBlocks.MAIL_BOX_STRIPPED_BIRCH.get(), ModBlocks.UPGRADED_FENCE_STRIPPED_BIRCH.get());
+        mailBox(consumer, ModBlocks.MAIL_BOX_STRIPPED_JUNGLE.get(), ModBlocks.UPGRADED_FENCE_STRIPPED_JUNGLE.get());
+        mailBox(consumer, ModBlocks.MAIL_BOX_STRIPPED_ACACIA.get(), ModBlocks.UPGRADED_FENCE_STRIPPED_ACACIA.get());
+        mailBox(consumer, ModBlocks.MAIL_BOX_STRIPPED_DARK_OAK.get(), ModBlocks.UPGRADED_FENCE_STRIPPED_DARK_OAK.get());
         // Hedge
-        hedge(consumer, ModBlocks.HEDGE_OAK, Blocks.OAK_LEAVES);
-        hedge(consumer, ModBlocks.HEDGE_SPRUCE, Blocks.SPRUCE_LEAVES);
-        hedge(consumer, ModBlocks.HEDGE_BIRCH, Blocks.BIRCH_LEAVES);
-        hedge(consumer, ModBlocks.HEDGE_JUNGLE, Blocks.JUNGLE_LEAVES);
-        hedge(consumer, ModBlocks.HEDGE_ACACIA, Blocks.ACACIA_LEAVES);
-        hedge(consumer, ModBlocks.HEDGE_DARK_OAK, Blocks.DARK_OAK_LEAVES);
+        hedge(consumer, ModBlocks.HEDGE_OAK.get(), Blocks.OAK_LEAVES);
+        hedge(consumer, ModBlocks.HEDGE_SPRUCE.get(), Blocks.SPRUCE_LEAVES);
+        hedge(consumer, ModBlocks.HEDGE_BIRCH.get(), Blocks.BIRCH_LEAVES);
+        hedge(consumer, ModBlocks.HEDGE_JUNGLE.get(), Blocks.JUNGLE_LEAVES);
+        hedge(consumer, ModBlocks.HEDGE_ACACIA.get(), Blocks.ACACIA_LEAVES);
+        hedge(consumer, ModBlocks.HEDGE_DARK_OAK.get(), Blocks.DARK_OAK_LEAVES);
         // Rock Path
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.ROCK_PATH, 16)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.ROCK_PATH.get(), 16)
                 .patternLine("SA")
                 .patternLine("AS")
                 .key('S', Blocks.STONE)
@@ -305,65 +305,65 @@ public class RecipeGen extends RecipeProvider
                 .addCriterion("has_andesite", hasItem(Blocks.ANDESITE))
                 .build(consumer);
         // Trampoline
-        trampoline(consumer, ModBlocks.TRAMPOLINE_WHITE, Blocks.WHITE_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_ORANGE, Blocks.ORANGE_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_MAGENTA, Blocks.MAGENTA_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_LIGHT_BLUE, Blocks.LIGHT_BLUE_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_YELLOW, Blocks.YELLOW_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_LIME, Blocks.LIME_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_PINK, Blocks.PINK_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_GRAY, Blocks.GRAY_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_LIGHT_GRAY, Blocks.LIGHT_GRAY_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_CYAN, Blocks.CYAN_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_PURPLE, Blocks.PURPLE_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_BLUE, Blocks.BLUE_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_BROWN, Blocks.BROWN_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_GREEN, Blocks.GREEN_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_RED, Blocks.RED_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_BLACK, Blocks.BLACK_WOOL);
+        trampoline(consumer, ModBlocks.TRAMPOLINE_WHITE.get(), Blocks.WHITE_WOOL);
+        trampoline(consumer, ModBlocks.TRAMPOLINE_ORANGE.get(), Blocks.ORANGE_WOOL);
+        trampoline(consumer, ModBlocks.TRAMPOLINE_MAGENTA.get(), Blocks.MAGENTA_WOOL);
+        trampoline(consumer, ModBlocks.TRAMPOLINE_LIGHT_BLUE.get(), Blocks.LIGHT_BLUE_WOOL);
+        trampoline(consumer, ModBlocks.TRAMPOLINE_YELLOW.get(), Blocks.YELLOW_WOOL);
+        trampoline(consumer, ModBlocks.TRAMPOLINE_LIME.get(), Blocks.LIME_WOOL);
+        trampoline(consumer, ModBlocks.TRAMPOLINE_PINK.get(), Blocks.PINK_WOOL);
+        trampoline(consumer, ModBlocks.TRAMPOLINE_GRAY.get(), Blocks.GRAY_WOOL);
+        trampoline(consumer, ModBlocks.TRAMPOLINE_LIGHT_GRAY.get(), Blocks.LIGHT_GRAY_WOOL);
+        trampoline(consumer, ModBlocks.TRAMPOLINE_CYAN.get(), Blocks.CYAN_WOOL);
+        trampoline(consumer, ModBlocks.TRAMPOLINE_PURPLE.get(), Blocks.PURPLE_WOOL);
+        trampoline(consumer, ModBlocks.TRAMPOLINE_BLUE.get(), Blocks.BLUE_WOOL);
+        trampoline(consumer, ModBlocks.TRAMPOLINE_BROWN.get(), Blocks.BROWN_WOOL);
+        trampoline(consumer, ModBlocks.TRAMPOLINE_GREEN.get(), Blocks.GREEN_WOOL);
+        trampoline(consumer, ModBlocks.TRAMPOLINE_RED.get(), Blocks.RED_WOOL);
+        trampoline(consumer, ModBlocks.TRAMPOLINE_BLACK.get(), Blocks.BLACK_WOOL);
         // Cooler
-        cooler(consumer, ModBlocks.COOLER_WHITE, Blocks.WHITE_TERRACOTTA);
-        cooler(consumer, ModBlocks.COOLER_ORANGE, Blocks.ORANGE_TERRACOTTA);
-        cooler(consumer, ModBlocks.COOLER_MAGENTA, Blocks.MAGENTA_TERRACOTTA);
-        cooler(consumer, ModBlocks.COOLER_LIGHT_BLUE, Blocks.LIGHT_BLUE_TERRACOTTA);
-        cooler(consumer, ModBlocks.COOLER_YELLOW, Blocks.YELLOW_TERRACOTTA);
-        cooler(consumer, ModBlocks.COOLER_LIME, Blocks.LIME_TERRACOTTA);
-        cooler(consumer, ModBlocks.COOLER_PINK, Blocks.PINK_TERRACOTTA);
-        cooler(consumer, ModBlocks.COOLER_GRAY, Blocks.GRAY_TERRACOTTA);
-        cooler(consumer, ModBlocks.COOLER_LIGHT_GRAY, Blocks.LIGHT_GRAY_TERRACOTTA);
-        cooler(consumer, ModBlocks.COOLER_CYAN, Blocks.CYAN_TERRACOTTA);
-        cooler(consumer, ModBlocks.COOLER_PURPLE, Blocks.PURPLE_TERRACOTTA);
-        cooler(consumer, ModBlocks.COOLER_BLUE, Blocks.BLUE_TERRACOTTA);
-        cooler(consumer, ModBlocks.COOLER_BROWN, Blocks.BROWN_TERRACOTTA);
-        cooler(consumer, ModBlocks.COOLER_GREEN, Blocks.GREEN_TERRACOTTA);
-        cooler(consumer, ModBlocks.COOLER_RED, Blocks.RED_TERRACOTTA);
-        cooler(consumer, ModBlocks.COOLER_BLACK, Blocks.BLACK_TERRACOTTA);
+        cooler(consumer, ModBlocks.COOLER_WHITE.get(), Blocks.WHITE_TERRACOTTA);
+        cooler(consumer, ModBlocks.COOLER_ORANGE.get(), Blocks.ORANGE_TERRACOTTA);
+        cooler(consumer, ModBlocks.COOLER_MAGENTA.get(), Blocks.MAGENTA_TERRACOTTA);
+        cooler(consumer, ModBlocks.COOLER_LIGHT_BLUE.get(), Blocks.LIGHT_BLUE_TERRACOTTA);
+        cooler(consumer, ModBlocks.COOLER_YELLOW.get(), Blocks.YELLOW_TERRACOTTA);
+        cooler(consumer, ModBlocks.COOLER_LIME.get(), Blocks.LIME_TERRACOTTA);
+        cooler(consumer, ModBlocks.COOLER_PINK.get(), Blocks.PINK_TERRACOTTA);
+        cooler(consumer, ModBlocks.COOLER_GRAY.get(), Blocks.GRAY_TERRACOTTA);
+        cooler(consumer, ModBlocks.COOLER_LIGHT_GRAY.get(), Blocks.LIGHT_GRAY_TERRACOTTA);
+        cooler(consumer, ModBlocks.COOLER_CYAN.get(), Blocks.CYAN_TERRACOTTA);
+        cooler(consumer, ModBlocks.COOLER_PURPLE.get(), Blocks.PURPLE_TERRACOTTA);
+        cooler(consumer, ModBlocks.COOLER_BLUE.get(), Blocks.BLUE_TERRACOTTA);
+        cooler(consumer, ModBlocks.COOLER_BROWN.get(), Blocks.BROWN_TERRACOTTA);
+        cooler(consumer, ModBlocks.COOLER_GREEN.get(), Blocks.GREEN_TERRACOTTA);
+        cooler(consumer, ModBlocks.COOLER_RED.get(), Blocks.RED_TERRACOTTA);
+        cooler(consumer, ModBlocks.COOLER_BLACK.get(), Blocks.BLACK_TERRACOTTA);
         // Grill
-        grill(consumer, ModBlocks.GRILL_WHITE, Blocks.WHITE_TERRACOTTA);
-        grill(consumer, ModBlocks.GRILL_ORANGE, Blocks.ORANGE_TERRACOTTA);
-        grill(consumer, ModBlocks.GRILL_MAGENTA, Blocks.MAGENTA_TERRACOTTA);
-        grill(consumer, ModBlocks.GRILL_LIGHT_BLUE, Blocks.LIGHT_BLUE_TERRACOTTA);
-        grill(consumer, ModBlocks.GRILL_YELLOW, Blocks.YELLOW_TERRACOTTA);
-        grill(consumer, ModBlocks.GRILL_LIME, Blocks.LIME_TERRACOTTA);
-        grill(consumer, ModBlocks.GRILL_PINK, Blocks.PINK_TERRACOTTA);
-        grill(consumer, ModBlocks.GRILL_GRAY, Blocks.GRAY_TERRACOTTA);
-        grill(consumer, ModBlocks.GRILL_LIGHT_GRAY, Blocks.LIGHT_GRAY_TERRACOTTA);
-        grill(consumer, ModBlocks.GRILL_CYAN, Blocks.CYAN_TERRACOTTA);
-        grill(consumer, ModBlocks.GRILL_PURPLE, Blocks.PURPLE_TERRACOTTA);
-        grill(consumer, ModBlocks.GRILL_BLUE, Blocks.BLUE_TERRACOTTA);
-        grill(consumer, ModBlocks.GRILL_BROWN, Blocks.BROWN_TERRACOTTA);
-        grill(consumer, ModBlocks.GRILL_GREEN, Blocks.GREEN_TERRACOTTA);
-        grill(consumer, ModBlocks.GRILL_RED, Blocks.RED_TERRACOTTA);
-        grill(consumer, ModBlocks.GRILL_BLACK, Blocks.BLACK_TERRACOTTA);
+        grill(consumer, ModBlocks.GRILL_WHITE.get(), Blocks.WHITE_TERRACOTTA);
+        grill(consumer, ModBlocks.GRILL_ORANGE.get(), Blocks.ORANGE_TERRACOTTA);
+        grill(consumer, ModBlocks.GRILL_MAGENTA.get(), Blocks.MAGENTA_TERRACOTTA);
+        grill(consumer, ModBlocks.GRILL_LIGHT_BLUE.get(), Blocks.LIGHT_BLUE_TERRACOTTA);
+        grill(consumer, ModBlocks.GRILL_YELLOW.get(), Blocks.YELLOW_TERRACOTTA);
+        grill(consumer, ModBlocks.GRILL_LIME.get(), Blocks.LIME_TERRACOTTA);
+        grill(consumer, ModBlocks.GRILL_PINK.get(), Blocks.PINK_TERRACOTTA);
+        grill(consumer, ModBlocks.GRILL_GRAY.get(), Blocks.GRAY_TERRACOTTA);
+        grill(consumer, ModBlocks.GRILL_LIGHT_GRAY.get(), Blocks.LIGHT_GRAY_TERRACOTTA);
+        grill(consumer, ModBlocks.GRILL_CYAN.get(), Blocks.CYAN_TERRACOTTA);
+        grill(consumer, ModBlocks.GRILL_PURPLE.get(), Blocks.PURPLE_TERRACOTTA);
+        grill(consumer, ModBlocks.GRILL_BLUE.get(), Blocks.BLUE_TERRACOTTA);
+        grill(consumer, ModBlocks.GRILL_BROWN.get(), Blocks.BROWN_TERRACOTTA);
+        grill(consumer, ModBlocks.GRILL_GREEN.get(), Blocks.GREEN_TERRACOTTA);
+        grill(consumer, ModBlocks.GRILL_RED.get(), Blocks.RED_TERRACOTTA);
+        grill(consumer, ModBlocks.GRILL_BLACK.get(), Blocks.BLACK_TERRACOTTA);
         // Door Mat
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.DOOR_MAT)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.DOOR_MAT.get())
                 .patternLine("WWW")
                 .patternLine("WWW")
                 .key('W', Items.WHEAT)
                 .addCriterion("has_wheat", hasItem(Tags.Items.CROPS_WHEAT))
                 .build(consumer);
         // Diving Board
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.DIVING_BOARD)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.DIVING_BOARD.get())
                 .patternLine("CCC")
                 .patternLine("SSS")
                 .patternLine("G  ")
@@ -373,106 +373,106 @@ public class RecipeGen extends RecipeProvider
                 .addCriterion("has_wheat", hasItem(Tags.Items.CROPS_WHEAT))
                 .build(consumer);
         // Kitchen Counter
-        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_OAK, Blocks.OAK_LOG, Blocks.OAK_PLANKS);
-        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_SPRUCE, Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
-        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_BIRCH, Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
-        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_JUNGLE, Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
-        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_ACACIA, Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
-        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_DARK_OAK, Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
-        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_STRIPPED_OAK, Blocks.OAK_LOG, Blocks.STRIPPED_OAK_LOG);
-        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_STRIPPED_SPRUCE, Blocks.SPRUCE_LOG, Blocks.STRIPPED_SPRUCE_LOG);
-        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_STRIPPED_BIRCH, Blocks.BIRCH_LOG, Blocks.STRIPPED_BIRCH_LOG);
-        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_STRIPPED_JUNGLE, Blocks.JUNGLE_LOG, Blocks.STRIPPED_JUNGLE_LOG);
-        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_STRIPPED_ACACIA, Blocks.ACACIA_LOG, Blocks.STRIPPED_ACACIA_LOG);
-        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_STRIPPED_DARK_OAK, Blocks.DARK_OAK_LOG, Blocks.STRIPPED_DARK_OAK_LOG);
-        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_WHITE, Tags.Items.DYES_WHITE);
-        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_ORANGE, Tags.Items.DYES_ORANGE);
-        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_MAGENTA, Tags.Items.DYES_MAGENTA);
-        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_LIGHT_BLUE, Tags.Items.DYES_LIGHT_BLUE);
-        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_YELLOW, Tags.Items.DYES_YELLOW);
-        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_LIME, Tags.Items.DYES_LIME);
-        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_PINK, Tags.Items.DYES_PINK);
-        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_GRAY, Tags.Items.DYES_GRAY);
-        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_LIGHT_GRAY, Tags.Items.DYES_LIGHT_GRAY);
-        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_CYAN, Tags.Items.DYES_CYAN);
-        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_PURPLE, Tags.Items.DYES_PURPLE);
-        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_BLUE, Tags.Items.DYES_BLUE);
-        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_BROWN, Tags.Items.DYES_BROWN);
-        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_GREEN, Tags.Items.DYES_GREEN);
-        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_RED, Tags.Items.DYES_RED);
-        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_BLACK, Tags.Items.DYES_BLACK);
+        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
+        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
+        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_BIRCH.get(), Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
+        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_JUNGLE.get(), Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
+        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_ACACIA.get(), Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
+        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_DARK_OAK.get(), Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
+        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_STRIPPED_OAK.get(), Blocks.OAK_LOG, Blocks.STRIPPED_OAK_LOG);
+        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_STRIPPED_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.STRIPPED_SPRUCE_LOG);
+        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_STRIPPED_BIRCH.get(), Blocks.BIRCH_LOG, Blocks.STRIPPED_BIRCH_LOG);
+        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_STRIPPED_JUNGLE.get(), Blocks.JUNGLE_LOG, Blocks.STRIPPED_JUNGLE_LOG);
+        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_STRIPPED_ACACIA.get(), Blocks.ACACIA_LOG, Blocks.STRIPPED_ACACIA_LOG);
+        kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_STRIPPED_DARK_OAK.get(), Blocks.DARK_OAK_LOG, Blocks.STRIPPED_DARK_OAK_LOG);
+        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_WHITE.get(), Tags.Items.DYES_WHITE);
+        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_ORANGE.get(), Tags.Items.DYES_ORANGE);
+        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_MAGENTA.get(), Tags.Items.DYES_MAGENTA);
+        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_LIGHT_BLUE.get(), Tags.Items.DYES_LIGHT_BLUE);
+        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_YELLOW.get(), Tags.Items.DYES_YELLOW);
+        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_LIME.get(), Tags.Items.DYES_LIME);
+        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_PINK.get(), Tags.Items.DYES_PINK);
+        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_GRAY.get(), Tags.Items.DYES_GRAY);
+        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_LIGHT_GRAY.get(), Tags.Items.DYES_LIGHT_GRAY);
+        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_CYAN.get(), Tags.Items.DYES_CYAN);
+        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_PURPLE.get(), Tags.Items.DYES_PURPLE);
+        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_BLUE.get(), Tags.Items.DYES_BLUE);
+        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_BROWN.get(), Tags.Items.DYES_BROWN);
+        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_GREEN.get(), Tags.Items.DYES_GREEN);
+        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_RED.get(), Tags.Items.DYES_RED);
+        coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_BLACK.get(), Tags.Items.DYES_BLACK);
         // Kitchen Drawer
-        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_OAK, Blocks.OAK_LOG, Blocks.OAK_PLANKS);
-        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_SPRUCE, Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
-        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_BIRCH, Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
-        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_JUNGLE, Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
-        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_ACACIA, Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
-        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_DARK_OAK, Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
-        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_STRIPPED_OAK, Blocks.OAK_LOG, Blocks.STRIPPED_OAK_LOG);
-        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_STRIPPED_SPRUCE, Blocks.SPRUCE_LOG, Blocks.STRIPPED_SPRUCE_LOG);
-        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_STRIPPED_BIRCH, Blocks.BIRCH_LOG, Blocks.STRIPPED_BIRCH_LOG);
-        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_STRIPPED_JUNGLE, Blocks.JUNGLE_LOG, Blocks.STRIPPED_JUNGLE_LOG);
-        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_STRIPPED_ACACIA, Blocks.ACACIA_LOG, Blocks.STRIPPED_ACACIA_LOG);
-        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_STRIPPED_DARK_OAK, Blocks.DARK_OAK_LOG, Blocks.STRIPPED_DARK_OAK_LOG);
-        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_WHITE, Tags.Items.DYES_WHITE);
-        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_ORANGE, Tags.Items.DYES_ORANGE);
-        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_MAGENTA, Tags.Items.DYES_MAGENTA);
-        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_LIGHT_BLUE, Tags.Items.DYES_LIGHT_BLUE);
-        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_YELLOW, Tags.Items.DYES_YELLOW);
-        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_LIME, Tags.Items.DYES_LIME);
-        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_PINK, Tags.Items.DYES_PINK);
-        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_GRAY, Tags.Items.DYES_GRAY);
-        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_LIGHT_GRAY, Tags.Items.DYES_LIGHT_GRAY);
-        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_CYAN, Tags.Items.DYES_CYAN);
-        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_PURPLE, Tags.Items.DYES_PURPLE);
-        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_BLUE, Tags.Items.DYES_BLUE);
-        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_BROWN, Tags.Items.DYES_BROWN);
-        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_GREEN, Tags.Items.DYES_GREEN);
-        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_RED, Tags.Items.DYES_RED);
-        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_BLACK, Tags.Items.DYES_BLACK);
+        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
+        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
+        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_BIRCH.get(), Blocks.BIRCH_LOG, Blocks.BIRCH_PLANKS);
+        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_JUNGLE.get(), Blocks.JUNGLE_LOG, Blocks.JUNGLE_PLANKS);
+        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_ACACIA.get(), Blocks.ACACIA_LOG, Blocks.ACACIA_PLANKS);
+        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_DARK_OAK.get(), Blocks.DARK_OAK_LOG, Blocks.DARK_OAK_PLANKS);
+        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_STRIPPED_OAK.get(), Blocks.OAK_LOG, Blocks.STRIPPED_OAK_LOG);
+        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_STRIPPED_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.STRIPPED_SPRUCE_LOG);
+        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_STRIPPED_BIRCH.get(), Blocks.BIRCH_LOG, Blocks.STRIPPED_BIRCH_LOG);
+        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_STRIPPED_JUNGLE.get(), Blocks.JUNGLE_LOG, Blocks.STRIPPED_JUNGLE_LOG);
+        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_STRIPPED_ACACIA.get(), Blocks.ACACIA_LOG, Blocks.STRIPPED_ACACIA_LOG);
+        kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_STRIPPED_DARK_OAK.get(), Blocks.DARK_OAK_LOG, Blocks.STRIPPED_DARK_OAK_LOG);
+        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_WHITE.get(), Tags.Items.DYES_WHITE);
+        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_ORANGE.get(), Tags.Items.DYES_ORANGE);
+        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_MAGENTA.get(), Tags.Items.DYES_MAGENTA);
+        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_LIGHT_BLUE.get(), Tags.Items.DYES_LIGHT_BLUE);
+        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_YELLOW.get(), Tags.Items.DYES_YELLOW);
+        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_LIME.get(), Tags.Items.DYES_LIME);
+        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_PINK.get(), Tags.Items.DYES_PINK);
+        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_GRAY.get(), Tags.Items.DYES_GRAY);
+        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_LIGHT_GRAY.get(), Tags.Items.DYES_LIGHT_GRAY);
+        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_CYAN.get(), Tags.Items.DYES_CYAN);
+        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_PURPLE.get(), Tags.Items.DYES_PURPLE);
+        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_BLUE.get(), Tags.Items.DYES_BLUE);
+        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_BROWN.get(), Tags.Items.DYES_BROWN);
+        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_GREEN.get(), Tags.Items.DYES_GREEN);
+        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_RED.get(), Tags.Items.DYES_RED);
+        coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_BLACK.get(), Tags.Items.DYES_BLACK);
         // Kitchen Sink
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_OAK, Blocks.WHITE_CONCRETE, Blocks.OAK_PLANKS);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_SPRUCE, Blocks.WHITE_CONCRETE, Blocks.SPRUCE_PLANKS);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_BIRCH, Blocks.WHITE_CONCRETE, Blocks.BIRCH_PLANKS);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_JUNGLE, Blocks.WHITE_CONCRETE, Blocks.JUNGLE_PLANKS);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_ACACIA, Blocks.WHITE_CONCRETE, Blocks.ACACIA_PLANKS);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_DARK_OAK, Blocks.WHITE_CONCRETE, Blocks.DARK_OAK_PLANKS);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_OAK, Blocks.WHITE_CONCRETE, Blocks.STRIPPED_OAK_LOG);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_SPRUCE, Blocks.WHITE_CONCRETE, Blocks.STRIPPED_SPRUCE_LOG);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_BIRCH, Blocks.WHITE_CONCRETE, Blocks.STRIPPED_BIRCH_LOG);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_JUNGLE, Blocks.WHITE_CONCRETE, Blocks.STRIPPED_JUNGLE_LOG);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_ACACIA, Blocks.WHITE_CONCRETE, Blocks.STRIPPED_ACACIA_LOG);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_DARK_OAK, Blocks.WHITE_CONCRETE, Blocks.STRIPPED_DARK_OAK_LOG);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_OAK, Blocks.GRAY_CONCRETE, Blocks.OAK_PLANKS);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_SPRUCE, Blocks.GRAY_CONCRETE, Blocks.SPRUCE_PLANKS);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_BIRCH, Blocks.GRAY_CONCRETE, Blocks.BIRCH_PLANKS);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_JUNGLE, Blocks.GRAY_CONCRETE, Blocks.JUNGLE_PLANKS);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_ACACIA, Blocks.GRAY_CONCRETE, Blocks.ACACIA_PLANKS);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_DARK_OAK, Blocks.GRAY_CONCRETE, Blocks.DARK_OAK_PLANKS);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_STRIPPED_OAK, Blocks.GRAY_CONCRETE, Blocks.STRIPPED_OAK_LOG);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_STRIPPED_SPRUCE, Blocks.GRAY_CONCRETE, Blocks.STRIPPED_SPRUCE_LOG);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_STRIPPED_BIRCH, Blocks.GRAY_CONCRETE, Blocks.STRIPPED_BIRCH_LOG);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_STRIPPED_JUNGLE, Blocks.GRAY_CONCRETE, Blocks.STRIPPED_JUNGLE_LOG);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_STRIPPED_ACACIA, Blocks.GRAY_CONCRETE, Blocks.STRIPPED_ACACIA_LOG);
-        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_STRIPPED_DARK_OAK, Blocks.GRAY_CONCRETE, Blocks.STRIPPED_DARK_OAK_LOG);
-        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_WHITE, Blocks.WHITE_TERRACOTTA);
-        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_ORANGE, Blocks.ORANGE_TERRACOTTA);
-        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_MAGENTA, Blocks.MAGENTA_TERRACOTTA);
-        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_BLUE, Blocks.LIGHT_BLUE_TERRACOTTA);
-        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_YELLOW, Blocks.YELLOW_TERRACOTTA);
-        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIME, Blocks.LIME_TERRACOTTA);
-        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_PINK, Blocks.PINK_TERRACOTTA);
-        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_GRAY, Blocks.GRAY_TERRACOTTA);
-        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_GRAY, Blocks.LIGHT_GRAY_TERRACOTTA);
-        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_CYAN, Blocks.CYAN_TERRACOTTA);
-        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_PURPLE, Blocks.PURPLE_TERRACOTTA);
-        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_BLUE, Blocks.BLUE_TERRACOTTA);
-        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_BROWN, Blocks.BROWN_TERRACOTTA);
-        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_GREEN, Blocks.GREEN_TERRACOTTA);
-        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_RED, Blocks.RED_TERRACOTTA);
-        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_BLACK, Blocks.BLACK_TERRACOTTA);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_OAK.get(), Blocks.WHITE_CONCRETE, Blocks.OAK_PLANKS);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_SPRUCE.get(), Blocks.WHITE_CONCRETE, Blocks.SPRUCE_PLANKS);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_BIRCH.get(), Blocks.WHITE_CONCRETE, Blocks.BIRCH_PLANKS);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_JUNGLE.get(), Blocks.WHITE_CONCRETE, Blocks.JUNGLE_PLANKS);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_ACACIA.get(), Blocks.WHITE_CONCRETE, Blocks.ACACIA_PLANKS);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_DARK_OAK.get(), Blocks.WHITE_CONCRETE, Blocks.DARK_OAK_PLANKS);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_OAK.get(), Blocks.WHITE_CONCRETE, Blocks.STRIPPED_OAK_LOG);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_SPRUCE.get(), Blocks.WHITE_CONCRETE, Blocks.STRIPPED_SPRUCE_LOG);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_BIRCH.get(), Blocks.WHITE_CONCRETE, Blocks.STRIPPED_BIRCH_LOG);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_JUNGLE.get(), Blocks.WHITE_CONCRETE, Blocks.STRIPPED_JUNGLE_LOG);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_ACACIA.get(), Blocks.WHITE_CONCRETE, Blocks.STRIPPED_ACACIA_LOG);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_DARK_OAK.get(), Blocks.WHITE_CONCRETE, Blocks.STRIPPED_DARK_OAK_LOG);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_OAK.get(), Blocks.GRAY_CONCRETE, Blocks.OAK_PLANKS);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_SPRUCE.get(), Blocks.GRAY_CONCRETE, Blocks.SPRUCE_PLANKS);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_BIRCH.get(), Blocks.GRAY_CONCRETE, Blocks.BIRCH_PLANKS);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_JUNGLE.get(), Blocks.GRAY_CONCRETE, Blocks.JUNGLE_PLANKS);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_ACACIA.get(), Blocks.GRAY_CONCRETE, Blocks.ACACIA_PLANKS);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_DARK_OAK.get(), Blocks.GRAY_CONCRETE, Blocks.DARK_OAK_PLANKS);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_STRIPPED_OAK.get(), Blocks.GRAY_CONCRETE, Blocks.STRIPPED_OAK_LOG);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_STRIPPED_SPRUCE.get(), Blocks.GRAY_CONCRETE, Blocks.STRIPPED_SPRUCE_LOG);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_STRIPPED_BIRCH.get(), Blocks.GRAY_CONCRETE, Blocks.STRIPPED_BIRCH_LOG);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_STRIPPED_JUNGLE.get(), Blocks.GRAY_CONCRETE, Blocks.STRIPPED_JUNGLE_LOG);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_STRIPPED_ACACIA.get(), Blocks.GRAY_CONCRETE, Blocks.STRIPPED_ACACIA_LOG);
+        kitchenSink(consumer, ModBlocks.KITCHEN_SINK_DARK_STRIPPED_DARK_OAK.get(), Blocks.GRAY_CONCRETE, Blocks.STRIPPED_DARK_OAK_LOG);
+        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_WHITE.get(), Blocks.WHITE_TERRACOTTA);
+        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_ORANGE.get(), Blocks.ORANGE_TERRACOTTA);
+        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_MAGENTA.get(), Blocks.MAGENTA_TERRACOTTA);
+        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_BLUE.get(), Blocks.LIGHT_BLUE_TERRACOTTA);
+        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_YELLOW.get(), Blocks.YELLOW_TERRACOTTA);
+        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIME.get(), Blocks.LIME_TERRACOTTA);
+        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_PINK.get(), Blocks.PINK_TERRACOTTA);
+        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_GRAY.get(), Blocks.GRAY_TERRACOTTA);
+        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_GRAY.get(), Blocks.LIGHT_GRAY_TERRACOTTA);
+        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_CYAN.get(), Blocks.CYAN_TERRACOTTA);
+        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_PURPLE.get(), Blocks.PURPLE_TERRACOTTA);
+        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_BLUE.get(), Blocks.BLUE_TERRACOTTA);
+        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_BROWN.get(), Blocks.BROWN_TERRACOTTA);
+        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_GREEN.get(), Blocks.GREEN_TERRACOTTA);
+        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_RED.get(), Blocks.RED_TERRACOTTA);
+        coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_BLACK.get(), Blocks.BLACK_TERRACOTTA);
         // Fridges
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.FREEZER_LIGHT)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.FREEZER_LIGHT.get())
                 .patternLine("CIC")
                 .patternLine("IBI")
                 .patternLine("CIC")
@@ -483,7 +483,7 @@ public class RecipeGen extends RecipeProvider
                 .addCriterion("has_iron", hasItem(Tags.Items.INGOTS_IRON))
                 .addCriterion("has_chest", hasItem(Tags.Items.CHESTS_WOODEN))
                 .build(consumer);
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.FREEZER_DARK)
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.FREEZER_DARK.get())
                 .patternLine("CIC")
                 .patternLine("IBI")
                 .patternLine("CIC")
@@ -495,7 +495,7 @@ public class RecipeGen extends RecipeProvider
                 .addCriterion("has_chest", hasItem(Tags.Items.CHESTS_WOODEN))
                 .build(consumer);
         // Spatula
-        ShapedRecipeBuilder.shapedRecipe(ModItems.SPATULA)
+        ShapedRecipeBuilder.shapedRecipe(ModItems.SPATULA.get())
                 .patternLine("B")
                 .patternLine("I")
                 .patternLine("W")
@@ -505,11 +505,11 @@ public class RecipeGen extends RecipeProvider
                 .addCriterion("has_iron", hasItem(Tags.Items.INGOTS_IRON))
                 .build(consumer);
         // Cooking Recipes
-        cookingRecipesForMethod(consumer, "grill_cooking", ModRecipeSerializers.GRILL_COOKING, 600);
+        cookingRecipesForMethod(consumer, "grill_cooking", ModRecipeSerializers.GRILL_COOKING.get(), 600);
         // Freezing Recipes
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.WATER_BUCKET), Blocks.ICE, 1, 1000, ModRecipeSerializers.FREEZER_SOLIDIFY).addCriterion("has_water", hasItem(Items.WATER_BUCKET)).build(consumer, "ice_from_freezing");
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.ICE), Blocks.PACKED_ICE, 1, 2000, ModRecipeSerializers.FREEZER_SOLIDIFY).addCriterion("has_ice", hasItem(Items.ICE)).build(consumer, "packed_ice_from_freezing");
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.PACKED_ICE), Blocks.BLUE_ICE, 1, 4000, ModRecipeSerializers.FREEZER_SOLIDIFY).addCriterion("has_packed_ice", hasItem(Items.PACKED_ICE)).build(consumer, "blue_ice_from_freezing");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.WATER_BUCKET), Blocks.ICE, 1, 1000, ModRecipeSerializers.FREEZER_SOLIDIFY.get()).addCriterion("has_water", hasItem(Items.WATER_BUCKET)).build(consumer, "ice_from_freezing");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.ICE), Blocks.PACKED_ICE, 1, 2000, ModRecipeSerializers.FREEZER_SOLIDIFY.get()).addCriterion("has_ice", hasItem(Items.ICE)).build(consumer, "packed_ice_from_freezing");
+        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.PACKED_ICE), Blocks.BLUE_ICE, 1, 4000, ModRecipeSerializers.FREEZER_SOLIDIFY.get()).addCriterion("has_packed_ice", hasItem(Items.PACKED_ICE)).build(consumer, "blue_ice_from_freezing");
     }
 
     private static void table(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider table, IItemProvider log, IItemProvider planks)
@@ -669,17 +669,17 @@ public class RecipeGen extends RecipeProvider
                 .setGroup("picket_fence")
                 .addCriterion("has_concrete", hasItem(concrete))
                 .build(recipeConsumer);
-        if (fence == ModBlocks.PICKET_FENCE_WHITE)
+        if (fence == ModBlocks.PICKET_FENCE_WHITE.get())
             return;
         ResourceLocation registryName = fence.asItem().getRegistryName();
         ShapedRecipeBuilder.shapedRecipe(fence, 8)
                 .patternLine("FFF")
                 .patternLine("FDF")
                 .patternLine("FFF")
-                .key('F', ModBlocks.PICKET_FENCE_WHITE)
+                .key('F', ModBlocks.PICKET_FENCE_WHITE.get())
                 .key('D', dye)
                 .setGroup("picket_fence")
-                .addCriterion("has_fence", hasItem(ModBlocks.PICKET_FENCE_WHITE))
+                .addCriterion("has_fence", hasItem(ModBlocks.PICKET_FENCE_WHITE.get()))
                 .addCriterion("has_dye", hasItem(dye))
                 .build(recipeConsumer, new ResourceLocation(registryName.getNamespace(), "dye_" + registryName.getPath()));
     }
@@ -694,17 +694,17 @@ public class RecipeGen extends RecipeProvider
                 .addCriterion("has_concrete", hasItem(concrete))
                 .addCriterion("has_gate", hasItem(Tags.Items.FENCE_GATES_WOODEN))
                 .build(recipeConsumer);
-        if (gate == ModBlocks.PICKET_GATE_WHITE)
+        if (gate == ModBlocks.PICKET_GATE_WHITE.get())
             return;
         ResourceLocation registryName = gate.asItem().getRegistryName();
         ShapedRecipeBuilder.shapedRecipe(gate, 8)
                 .patternLine("GGG")
                 .patternLine("GDG")
                 .patternLine("GGG")
-                .key('G', ModBlocks.PICKET_GATE_WHITE)
+                .key('G', ModBlocks.PICKET_GATE_WHITE.get())
                 .key('D', dye)
                 .setGroup("picket_fence")
-                .addCriterion("has_gate", hasItem(ModBlocks.PICKET_GATE_WHITE))
+                .addCriterion("has_gate", hasItem(ModBlocks.PICKET_GATE_WHITE.get()))
                 .addCriterion("has_dye", hasItem(dye))
                 .build(recipeConsumer, new ResourceLocation(registryName.getNamespace(), "dye_" + registryName.getPath()));
     }
@@ -746,7 +746,7 @@ public class RecipeGen extends RecipeProvider
                 .key('C', Tags.Items.CHESTS_WOODEN)
                 .key('F', fence)
                 .setGroup("mail_box")
-                .addCriterion("has_postbox", hasItem(ModBlocks.POST_BOX)) // Mailbox depends on post box so if you have a postbox unlock all mailboxes
+                .addCriterion("has_postbox", hasItem(ModBlocks.POST_BOX.get())) // Mailbox depends on post box so if you have a postbox unlock all mailboxes
                 .addCriterion("has_chest", hasItem(Tags.Items.CHESTS_WOODEN))
                 .build(recipeConsumer);
     }

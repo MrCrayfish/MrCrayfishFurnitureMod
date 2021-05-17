@@ -26,7 +26,7 @@ public class CoolerTileEntity extends BasicLootTileEntity
 
     public CoolerTileEntity()
     {
-        super(ModTileEntities.COOLER);
+        super(ModTileEntities.COOLER.get());
     }
 
     @Override
@@ -62,7 +62,7 @@ public class CoolerTileEntity extends BasicLootTileEntity
             boolean open = blockState.get(CoolerBlock.OPEN);
             if(!open)
             {
-                this.playLidSound(blockState, ModSounds.BLOCK_CABINET_OPEN);
+                this.playLidSound(blockState, ModSounds.BLOCK_CABINET_OPEN.get());
                 this.setLidState(blockState, true);
             }
 
@@ -109,7 +109,7 @@ public class CoolerTileEntity extends BasicLootTileEntity
                 boolean open = blockState.get(CoolerBlock.OPEN);
                 if(open)
                 {
-                    this.playLidSound(blockState, ModSounds.BLOCK_CABINET_CLOSE);
+                    this.playLidSound(blockState, ModSounds.BLOCK_CABINET_CLOSE.get());
                     this.setLidState(blockState, false);
                 }
             }

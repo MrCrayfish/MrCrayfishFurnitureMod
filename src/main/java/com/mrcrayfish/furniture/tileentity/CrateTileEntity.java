@@ -40,7 +40,7 @@ public class CrateTileEntity extends BasicLootTileEntity
 
     public CrateTileEntity()
     {
-        super(ModTileEntities.CRATE);
+        super(ModTileEntities.CRATE.get());
     }
 
     @Override
@@ -103,7 +103,7 @@ public class CrateTileEntity extends BasicLootTileEntity
             boolean open = blockState.get(CrateBlock.OPEN);
             if(!open)
             {
-                this.playLidSound(blockState, ModSounds.BLOCK_CABINET_OPEN);
+                this.playLidSound(blockState, ModSounds.BLOCK_CABINET_OPEN.get());
                 this.setLidState(blockState, true);
             }
 
@@ -151,7 +151,7 @@ public class CrateTileEntity extends BasicLootTileEntity
                 boolean open = blockState.get(CrateBlock.OPEN);
                 if(open)
                 {
-                    this.playLidSound(blockState, ModSounds.BLOCK_CABINET_CLOSE);
+                    this.playLidSound(blockState, ModSounds.BLOCK_CABINET_CLOSE.get());
                     this.setLidState(blockState, false);
                 }
             }

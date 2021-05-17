@@ -27,7 +27,7 @@ public class FreezerContainer extends Container
 
     public FreezerContainer(int windowId, PlayerInventory playerInventory, FreezerTileEntity freezerTileEntity)
     {
-        super(ModContainers.FREEZER, windowId);
+        super(ModContainers.FREEZER.get(), windowId);
 
         assertInventorySize(freezerTileEntity, 3);
         assertIntArraySize(freezerTileEntity.getFreezerData(), 4);

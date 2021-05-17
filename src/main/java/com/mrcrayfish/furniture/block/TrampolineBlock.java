@@ -236,7 +236,7 @@ public class TrampolineBlock extends FurnitureBlock
                 }
                 else
                 {
-                    worldIn.playSound(null, pos, ModSounds.BLOCK_TRAMPOLINE_BOUNCE, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.2F + 0.9F);
+                    worldIn.playSound(null, pos, ModSounds.BLOCK_TRAMPOLINE_BOUNCE.get(), SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.2F + 0.9F);
                 }
             }
             entityIn.fallDistance = 0;

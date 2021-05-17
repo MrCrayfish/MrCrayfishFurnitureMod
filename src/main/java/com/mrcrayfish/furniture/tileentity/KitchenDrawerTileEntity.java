@@ -27,7 +27,7 @@ public class KitchenDrawerTileEntity extends BasicLootTileEntity
 
     public KitchenDrawerTileEntity()
     {
-        super(ModTileEntities.KITCHEN_DRAWER);
+        super(ModTileEntities.KITCHEN_DRAWER.get());
     }
 
     @Override
@@ -63,7 +63,7 @@ public class KitchenDrawerTileEntity extends BasicLootTileEntity
             boolean open = blockState.get(KitchenDrawerBlock.OPEN);
             if(!open)
             {
-                this.playDrawerSound(blockState, ModSounds.BLOCK_BEDSIDE_CABINET_OPEN);
+                this.playDrawerSound(blockState, ModSounds.BLOCK_BEDSIDE_CABINET_OPEN.get());
                 this.setDrawerState(blockState, true);
             }
 
@@ -111,7 +111,7 @@ public class KitchenDrawerTileEntity extends BasicLootTileEntity
                 boolean open = blockState.get(KitchenDrawerBlock.OPEN);
                 if(open)
                 {
-                    this.playDrawerSound(blockState, ModSounds.BLOCK_BEDSIDE_CABINET_CLOSE);
+                    this.playDrawerSound(blockState, ModSounds.BLOCK_BEDSIDE_CABINET_CLOSE.get());
                     this.setDrawerState(blockState, false);
                 }
             }

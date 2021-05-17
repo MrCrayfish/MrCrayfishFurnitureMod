@@ -50,59 +50,59 @@ public class ClientProxy extends CommonProxy
     {
         super.onSetupClient();
 
-        ClientRegistry.bindTileEntityRenderer(ModTileEntities.GRILL, GrillTileEntityRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(ModTileEntities.DOOR_MAT, DoorMatTileEntityRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(ModTileEntities.KITCHEN_SINK, KitchenSinkTileEntityRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModTileEntities.GRILL.get(), GrillTileEntityRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModTileEntities.DOOR_MAT.get(), DoorMatTileEntityRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModTileEntities.KITCHEN_SINK.get(), KitchenSinkTileEntityRenderer::new);
 
-        RenderingRegistry.registerEntityRenderingHandler(ModEntities.SEAT, SeatRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(ModEntities.SEAT.get(), SeatRenderer::new);
 
-        ScreenManager.registerFactory(ModContainers.CRATE, CrateScreen::new);
-        ScreenManager.registerFactory(ModContainers.POST_BOX, PostBoxScreen::new);
-        ScreenManager.registerFactory(ModContainers.MAIL_BOX, MailBoxScreen::new);
-        ScreenManager.registerFactory(ModContainers.FREEZER, FreezerScreen::new);
+        ScreenManager.registerFactory(ModContainers.CRATE.get(), CrateScreen::new);
+        ScreenManager.registerFactory(ModContainers.POST_BOX.get(), PostBoxScreen::new);
+        ScreenManager.registerFactory(ModContainers.MAIL_BOX.get(), MailBoxScreen::new);
+        ScreenManager.registerFactory(ModContainers.FREEZER.get(), FreezerScreen::new);
 
         Predicate<RenderType> leavesPredicate = renderType -> this.useFancyGraphics() ? renderType == RenderType.getCutoutMipped() : renderType == RenderType.getSolid();
-        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_OAK, leavesPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_SPRUCE, leavesPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_BIRCH, leavesPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_JUNGLE, leavesPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_ACACIA, leavesPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_DARK_OAK, leavesPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_OAK.get(), leavesPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_SPRUCE.get(), leavesPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_BIRCH.get(), leavesPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_JUNGLE.get(), leavesPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_ACACIA.get(), leavesPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_DARK_OAK.get(), leavesPredicate);
         
         Predicate<RenderType> cutoutPredicate = renderType -> renderType == RenderType.getCutout();
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_WHITE, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_ORANGE, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_MAGENTA, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_LIGHT_BLUE, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_YELLOW, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_LIME, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_PINK, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_GRAY, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_LIGHT_GRAY, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_CYAN, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_PURPLE, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_BLUE, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_BROWN, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_GREEN, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_RED, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_BLACK, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_WHITE, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_ORANGE, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_MAGENTA, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_LIGHT_BLUE, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_YELLOW, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_LIME, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_PINK, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_GRAY, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_LIGHT_GRAY, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_CYAN, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_PURPLE, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_BLUE, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_BROWN, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_GREEN, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_RED, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_BLACK, cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.POST_BOX, cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_WHITE.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_ORANGE.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_MAGENTA.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_LIGHT_BLUE.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_YELLOW.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_LIME.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_PINK.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_GRAY.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_LIGHT_GRAY.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_CYAN.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_PURPLE.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_BLUE.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_BROWN.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_GREEN.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_RED.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_BLACK.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_WHITE.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_ORANGE.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_MAGENTA.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_LIGHT_BLUE.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_YELLOW.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_LIME.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_PINK.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_GRAY.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_LIGHT_GRAY.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_CYAN.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_PURPLE.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_BLUE.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_BROWN.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_GREEN.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_RED.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_BLACK.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.POST_BOX.get(), cutoutPredicate);
 
         this.registerColors();
 
@@ -124,191 +124,191 @@ public class ClientProxy extends CommonProxy
     private void registerColors()
     {
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0xCCCCCC : 0,
-                ModBlocks.PICKET_FENCE_WHITE,
-                ModBlocks.PICKET_FENCE_ORANGE,
-                ModBlocks.PICKET_FENCE_MAGENTA,
-                ModBlocks.PICKET_FENCE_LIGHT_BLUE,
-                ModBlocks.PICKET_FENCE_YELLOW,
-                ModBlocks.PICKET_FENCE_LIME,
-                ModBlocks.PICKET_FENCE_PINK,
-                ModBlocks.PICKET_FENCE_GRAY,
-                ModBlocks.PICKET_FENCE_LIGHT_GRAY,
-                ModBlocks.PICKET_FENCE_CYAN,
-                ModBlocks.PICKET_FENCE_PURPLE,
-                ModBlocks.PICKET_FENCE_BLUE,
-                ModBlocks.PICKET_FENCE_BROWN,
-                ModBlocks.PICKET_FENCE_GREEN,
-                ModBlocks.PICKET_FENCE_RED,
-                ModBlocks.PICKET_FENCE_BLACK,
-                ModBlocks.PICKET_GATE_WHITE,
-                ModBlocks.PICKET_GATE_ORANGE,
-                ModBlocks.PICKET_GATE_MAGENTA,
-                ModBlocks.PICKET_GATE_LIGHT_BLUE,
-                ModBlocks.PICKET_GATE_YELLOW,
-                ModBlocks.PICKET_GATE_LIME,
-                ModBlocks.PICKET_GATE_PINK,
-                ModBlocks.PICKET_GATE_GRAY,
-                ModBlocks.PICKET_GATE_LIGHT_GRAY,
-                ModBlocks.PICKET_GATE_CYAN,
-                ModBlocks.PICKET_GATE_PURPLE,
-                ModBlocks.PICKET_GATE_BLUE,
-                ModBlocks.PICKET_GATE_BROWN,
-                ModBlocks.PICKET_GATE_GREEN,
-                ModBlocks.PICKET_GATE_RED,
-                ModBlocks.PICKET_GATE_BLACK,
-                ModBlocks.POST_BOX
+                ModBlocks.PICKET_FENCE_WHITE.get(),
+                ModBlocks.PICKET_FENCE_ORANGE.get(),
+                ModBlocks.PICKET_FENCE_MAGENTA.get(),
+                ModBlocks.PICKET_FENCE_LIGHT_BLUE.get(),
+                ModBlocks.PICKET_FENCE_YELLOW.get(),
+                ModBlocks.PICKET_FENCE_LIME.get(),
+                ModBlocks.PICKET_FENCE_PINK.get(),
+                ModBlocks.PICKET_FENCE_GRAY.get(),
+                ModBlocks.PICKET_FENCE_LIGHT_GRAY.get(),
+                ModBlocks.PICKET_FENCE_CYAN.get(),
+                ModBlocks.PICKET_FENCE_PURPLE.get(),
+                ModBlocks.PICKET_FENCE_BLUE.get(),
+                ModBlocks.PICKET_FENCE_BROWN.get(),
+                ModBlocks.PICKET_FENCE_GREEN.get(),
+                ModBlocks.PICKET_FENCE_RED.get(),
+                ModBlocks.PICKET_FENCE_BLACK.get(),
+                ModBlocks.PICKET_GATE_WHITE.get(),
+                ModBlocks.PICKET_GATE_ORANGE.get(),
+                ModBlocks.PICKET_GATE_MAGENTA.get(),
+                ModBlocks.PICKET_GATE_LIGHT_BLUE.get(),
+                ModBlocks.PICKET_GATE_YELLOW.get(),
+                ModBlocks.PICKET_GATE_LIME.get(),
+                ModBlocks.PICKET_GATE_PINK.get(),
+                ModBlocks.PICKET_GATE_GRAY.get(),
+                ModBlocks.PICKET_GATE_LIGHT_GRAY.get(),
+                ModBlocks.PICKET_GATE_CYAN.get(),
+                ModBlocks.PICKET_GATE_PURPLE.get(),
+                ModBlocks.PICKET_GATE_BLUE.get(),
+                ModBlocks.PICKET_GATE_BROWN.get(),
+                ModBlocks.PICKET_GATE_GREEN.get(),
+                ModBlocks.PICKET_GATE_RED.get(),
+                ModBlocks.PICKET_GATE_BLACK.get(),
+                ModBlocks.POST_BOX.get()
         );
 
         Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0xCCCCCC : 0,
-                ModBlocks.PICKET_FENCE_WHITE,
-                ModBlocks.PICKET_FENCE_ORANGE,
-                ModBlocks.PICKET_FENCE_MAGENTA,
-                ModBlocks.PICKET_FENCE_LIGHT_BLUE,
-                ModBlocks.PICKET_FENCE_YELLOW,
-                ModBlocks.PICKET_FENCE_LIME,
-                ModBlocks.PICKET_FENCE_PINK,
-                ModBlocks.PICKET_FENCE_GRAY,
-                ModBlocks.PICKET_FENCE_LIGHT_GRAY,
-                ModBlocks.PICKET_FENCE_CYAN,
-                ModBlocks.PICKET_FENCE_PURPLE,
-                ModBlocks.PICKET_FENCE_BLUE,
-                ModBlocks.PICKET_FENCE_BROWN,
-                ModBlocks.PICKET_FENCE_GREEN,
-                ModBlocks.PICKET_FENCE_RED,
-                ModBlocks.PICKET_FENCE_BLACK,
-                ModBlocks.PICKET_GATE_WHITE,
-                ModBlocks.PICKET_GATE_ORANGE,
-                ModBlocks.PICKET_GATE_MAGENTA,
-                ModBlocks.PICKET_GATE_LIGHT_BLUE,
-                ModBlocks.PICKET_GATE_YELLOW,
-                ModBlocks.PICKET_GATE_LIME,
-                ModBlocks.PICKET_GATE_PINK,
-                ModBlocks.PICKET_GATE_GRAY,
-                ModBlocks.PICKET_GATE_LIGHT_GRAY,
-                ModBlocks.PICKET_GATE_CYAN,
-                ModBlocks.PICKET_GATE_PURPLE,
-                ModBlocks.PICKET_GATE_BLUE,
-                ModBlocks.PICKET_GATE_BROWN,
-                ModBlocks.PICKET_GATE_GREEN,
-                ModBlocks.PICKET_GATE_RED,
-                ModBlocks.PICKET_GATE_BLACK,
-                ModBlocks.POST_BOX
+                ModBlocks.PICKET_FENCE_WHITE.get(),
+                ModBlocks.PICKET_FENCE_ORANGE.get(),
+                ModBlocks.PICKET_FENCE_MAGENTA.get(),
+                ModBlocks.PICKET_FENCE_LIGHT_BLUE.get(),
+                ModBlocks.PICKET_FENCE_YELLOW.get(),
+                ModBlocks.PICKET_FENCE_LIME.get(),
+                ModBlocks.PICKET_FENCE_PINK.get(),
+                ModBlocks.PICKET_FENCE_GRAY.get(),
+                ModBlocks.PICKET_FENCE_LIGHT_GRAY.get(),
+                ModBlocks.PICKET_FENCE_CYAN.get(),
+                ModBlocks.PICKET_FENCE_PURPLE.get(),
+                ModBlocks.PICKET_FENCE_BLUE.get(),
+                ModBlocks.PICKET_FENCE_BROWN.get(),
+                ModBlocks.PICKET_FENCE_GREEN.get(),
+                ModBlocks.PICKET_FENCE_RED.get(),
+                ModBlocks.PICKET_FENCE_BLACK.get(),
+                ModBlocks.PICKET_GATE_WHITE.get(),
+                ModBlocks.PICKET_GATE_ORANGE.get(),
+                ModBlocks.PICKET_GATE_MAGENTA.get(),
+                ModBlocks.PICKET_GATE_LIGHT_BLUE.get(),
+                ModBlocks.PICKET_GATE_YELLOW.get(),
+                ModBlocks.PICKET_GATE_LIME.get(),
+                ModBlocks.PICKET_GATE_PINK.get(),
+                ModBlocks.PICKET_GATE_GRAY.get(),
+                ModBlocks.PICKET_GATE_LIGHT_GRAY.get(),
+                ModBlocks.PICKET_GATE_CYAN.get(),
+                ModBlocks.PICKET_GATE_PURPLE.get(),
+                ModBlocks.PICKET_GATE_BLUE.get(),
+                ModBlocks.PICKET_GATE_BROWN.get(),
+                ModBlocks.PICKET_GATE_GREEN.get(),
+                ModBlocks.PICKET_GATE_RED.get(),
+                ModBlocks.PICKET_GATE_BLACK.get(),
+                ModBlocks.POST_BOX.get()
         );
 
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0xBBBBBB : 0,
-                ModBlocks.CRATE_STRIPPED_OAK,
-                ModBlocks.CRATE_STRIPPED_SPRUCE,
-                ModBlocks.CRATE_STRIPPED_BIRCH,
-                ModBlocks.CRATE_STRIPPED_JUNGLE,
-                ModBlocks.CRATE_STRIPPED_ACACIA,
-                ModBlocks.CRATE_STRIPPED_DARK_OAK,
-                ModBlocks.KITCHEN_COUNTER_STRIPPED_OAK,
-                ModBlocks.KITCHEN_COUNTER_STRIPPED_SPRUCE,
-                ModBlocks.KITCHEN_COUNTER_STRIPPED_BIRCH,
-                ModBlocks.KITCHEN_COUNTER_STRIPPED_JUNGLE,
-                ModBlocks.KITCHEN_COUNTER_STRIPPED_ACACIA,
-                ModBlocks.KITCHEN_COUNTER_STRIPPED_DARK_OAK,
-                ModBlocks.KITCHEN_DRAWER_STRIPPED_OAK,
-                ModBlocks.KITCHEN_DRAWER_STRIPPED_SPRUCE,
-                ModBlocks.KITCHEN_DRAWER_STRIPPED_BIRCH,
-                ModBlocks.KITCHEN_DRAWER_STRIPPED_JUNGLE,
-                ModBlocks.KITCHEN_DRAWER_STRIPPED_ACACIA,
-                ModBlocks.KITCHEN_DRAWER_STRIPPED_DARK_OAK,
-                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_OAK,
-                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_SPRUCE,
-                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_BIRCH,
-                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_JUNGLE,
-                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_ACACIA,
-                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_DARK_OAK,
-                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_OAK,
-                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_SPRUCE,
-                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_BIRCH,
-                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_JUNGLE,
-                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_ACACIA,
-                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_DARK_OAK
+                ModBlocks.CRATE_STRIPPED_OAK.get(),
+                ModBlocks.CRATE_STRIPPED_SPRUCE.get(),
+                ModBlocks.CRATE_STRIPPED_BIRCH.get(),
+                ModBlocks.CRATE_STRIPPED_JUNGLE.get(),
+                ModBlocks.CRATE_STRIPPED_ACACIA.get(),
+                ModBlocks.CRATE_STRIPPED_DARK_OAK.get(),
+                ModBlocks.KITCHEN_COUNTER_STRIPPED_OAK.get(),
+                ModBlocks.KITCHEN_COUNTER_STRIPPED_SPRUCE.get(),
+                ModBlocks.KITCHEN_COUNTER_STRIPPED_BIRCH.get(),
+                ModBlocks.KITCHEN_COUNTER_STRIPPED_JUNGLE.get(),
+                ModBlocks.KITCHEN_COUNTER_STRIPPED_ACACIA.get(),
+                ModBlocks.KITCHEN_COUNTER_STRIPPED_DARK_OAK.get(),
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_OAK.get(),
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_SPRUCE.get(),
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_BIRCH.get(),
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_JUNGLE.get(),
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_ACACIA.get(),
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_DARK_OAK.get(),
+                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_OAK.get(),
+                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_SPRUCE.get(),
+                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_BIRCH.get(),
+                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_JUNGLE.get(),
+                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_ACACIA.get(),
+                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_DARK_OAK.get(),
+                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_OAK.get(),
+                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_SPRUCE.get(),
+                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_BIRCH.get(),
+                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_JUNGLE.get(),
+                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_ACACIA.get(),
+                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_DARK_OAK.get()
         );
 
         Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0xBBBBBB : 0,
-                ModBlocks.CRATE_STRIPPED_OAK,
-                ModBlocks.CRATE_STRIPPED_SPRUCE,
-                ModBlocks.CRATE_STRIPPED_BIRCH,
-                ModBlocks.CRATE_STRIPPED_JUNGLE,
-                ModBlocks.CRATE_STRIPPED_ACACIA,
-                ModBlocks.CRATE_STRIPPED_DARK_OAK,
-                ModBlocks.KITCHEN_COUNTER_STRIPPED_OAK,
-                ModBlocks.KITCHEN_COUNTER_STRIPPED_SPRUCE,
-                ModBlocks.KITCHEN_COUNTER_STRIPPED_BIRCH,
-                ModBlocks.KITCHEN_COUNTER_STRIPPED_JUNGLE,
-                ModBlocks.KITCHEN_COUNTER_STRIPPED_ACACIA,
-                ModBlocks.KITCHEN_COUNTER_STRIPPED_DARK_OAK,
-                ModBlocks.KITCHEN_DRAWER_STRIPPED_OAK,
-                ModBlocks.KITCHEN_DRAWER_STRIPPED_SPRUCE,
-                ModBlocks.KITCHEN_DRAWER_STRIPPED_BIRCH,
-                ModBlocks.KITCHEN_DRAWER_STRIPPED_JUNGLE,
-                ModBlocks.KITCHEN_DRAWER_STRIPPED_ACACIA,
-                ModBlocks.KITCHEN_DRAWER_STRIPPED_DARK_OAK,
-                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_OAK,
-                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_SPRUCE,
-                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_BIRCH,
-                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_JUNGLE,
-                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_ACACIA,
-                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_DARK_OAK,
-                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_OAK,
-                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_SPRUCE,
-                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_BIRCH,
-                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_JUNGLE,
-                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_ACACIA,
-                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_DARK_OAK
+                ModBlocks.CRATE_STRIPPED_OAK.get(),
+                ModBlocks.CRATE_STRIPPED_SPRUCE.get(),
+                ModBlocks.CRATE_STRIPPED_BIRCH.get(),
+                ModBlocks.CRATE_STRIPPED_JUNGLE.get(),
+                ModBlocks.CRATE_STRIPPED_ACACIA.get(),
+                ModBlocks.CRATE_STRIPPED_DARK_OAK.get(),
+                ModBlocks.KITCHEN_COUNTER_STRIPPED_OAK.get(),
+                ModBlocks.KITCHEN_COUNTER_STRIPPED_SPRUCE.get(),
+                ModBlocks.KITCHEN_COUNTER_STRIPPED_BIRCH.get(),
+                ModBlocks.KITCHEN_COUNTER_STRIPPED_JUNGLE.get(),
+                ModBlocks.KITCHEN_COUNTER_STRIPPED_ACACIA.get(),
+                ModBlocks.KITCHEN_COUNTER_STRIPPED_DARK_OAK.get(),
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_OAK.get(),
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_SPRUCE.get(),
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_BIRCH.get(),
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_JUNGLE.get(),
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_ACACIA.get(),
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_DARK_OAK.get(),
+                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_OAK.get(),
+                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_SPRUCE.get(),
+                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_BIRCH.get(),
+                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_JUNGLE.get(),
+                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_ACACIA.get(),
+                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_DARK_OAK.get(),
+                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_OAK.get(),
+                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_SPRUCE.get(),
+                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_BIRCH.get(),
+                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_JUNGLE.get(),
+                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_ACACIA.get(),
+                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_DARK_OAK.get()
         );
 
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0x999999 : 0,
-                ModBlocks.PARK_BENCH_STRIPPED_OAK,
-                ModBlocks.PARK_BENCH_STRIPPED_SPRUCE,
-                ModBlocks.PARK_BENCH_STRIPPED_BIRCH,
-                ModBlocks.PARK_BENCH_STRIPPED_JUNGLE,
-                ModBlocks.PARK_BENCH_STRIPPED_ACACIA,
-                ModBlocks.PARK_BENCH_STRIPPED_DARK_OAK
+                ModBlocks.PARK_BENCH_STRIPPED_OAK.get(),
+                ModBlocks.PARK_BENCH_STRIPPED_SPRUCE.get(),
+                ModBlocks.PARK_BENCH_STRIPPED_BIRCH.get(),
+                ModBlocks.PARK_BENCH_STRIPPED_JUNGLE.get(),
+                ModBlocks.PARK_BENCH_STRIPPED_ACACIA.get(),
+                ModBlocks.PARK_BENCH_STRIPPED_DARK_OAK.get()
         );
 
         Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0x999999 : 0,
-                ModBlocks.PARK_BENCH_STRIPPED_OAK,
-                ModBlocks.PARK_BENCH_STRIPPED_SPRUCE,
-                ModBlocks.PARK_BENCH_STRIPPED_BIRCH,
-                ModBlocks.PARK_BENCH_STRIPPED_JUNGLE,
-                ModBlocks.PARK_BENCH_STRIPPED_ACACIA,
-                ModBlocks.PARK_BENCH_STRIPPED_DARK_OAK
+                ModBlocks.PARK_BENCH_STRIPPED_OAK.get(),
+                ModBlocks.PARK_BENCH_STRIPPED_SPRUCE.get(),
+                ModBlocks.PARK_BENCH_STRIPPED_BIRCH.get(),
+                ModBlocks.PARK_BENCH_STRIPPED_JUNGLE.get(),
+                ModBlocks.PARK_BENCH_STRIPPED_ACACIA.get(),
+                ModBlocks.PARK_BENCH_STRIPPED_DARK_OAK.get()
         );
 
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0xCCCCCC : 0,
-                ModBlocks.FRIDGE_LIGHT,
-                ModBlocks.FREEZER_LIGHT,
-                ModBlocks.FRIDGE_DARK,
-                ModBlocks.FREEZER_DARK
+                ModBlocks.FRIDGE_LIGHT.get(),
+                ModBlocks.FREEZER_LIGHT.get(),
+                ModBlocks.FRIDGE_DARK.get(),
+                ModBlocks.FREEZER_DARK.get()
         );
 
         Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0xCCCCCC : 0,
-                ModBlocks.FRIDGE_LIGHT,
-                ModBlocks.FREEZER_LIGHT,
-                ModBlocks.FRIDGE_DARK,
-                ModBlocks.FREEZER_DARK
+                ModBlocks.FRIDGE_LIGHT.get(),
+                ModBlocks.FREEZER_LIGHT.get(),
+                ModBlocks.FRIDGE_DARK.get(),
+                ModBlocks.FREEZER_DARK.get()
         );
 
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> FoliageColors.getSpruce(),
-                ModBlocks.HEDGE_SPRUCE);
+                ModBlocks.HEDGE_SPRUCE.get());
 
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> FoliageColors.getBirch(),
-                ModBlocks.HEDGE_BIRCH);
+                ModBlocks.HEDGE_BIRCH.get());
 
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> reader != null && pos != null ? BiomeColors.getFoliageColor(reader, pos) : FoliageColors.getDefault(),
-                ModBlocks.HEDGE_OAK,
-                ModBlocks.HEDGE_JUNGLE,
-                ModBlocks.HEDGE_ACACIA,
-                ModBlocks.HEDGE_DARK_OAK);
+                ModBlocks.HEDGE_OAK.get(),
+                ModBlocks.HEDGE_JUNGLE.get(),
+                ModBlocks.HEDGE_ACACIA.get(),
+                ModBlocks.HEDGE_DARK_OAK.get());
 
         Minecraft.getInstance().getItemColors().register((stack, i) -> {
             BlockState state = ((BlockItem)stack.getItem()).getBlock().getDefaultState();
             return Minecraft.getInstance().getBlockColors().getColor(state, null, null, i);
-        }, ModBlocks.HEDGE_OAK, ModBlocks.HEDGE_SPRUCE, ModBlocks.HEDGE_BIRCH, ModBlocks.HEDGE_JUNGLE, ModBlocks.HEDGE_ACACIA, ModBlocks.HEDGE_DARK_OAK);
+        }, ModBlocks.HEDGE_OAK.get(), ModBlocks.HEDGE_SPRUCE.get(), ModBlocks.HEDGE_BIRCH.get(), ModBlocks.HEDGE_JUNGLE.get(), ModBlocks.HEDGE_ACACIA.get(), ModBlocks.HEDGE_DARK_OAK.get());
     }
 
     @Override

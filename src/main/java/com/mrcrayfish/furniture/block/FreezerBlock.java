@@ -24,10 +24,12 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.*;
+import java.util.function.Supplier;
 
 /**
  * Author: MrCrayfish
@@ -37,9 +39,9 @@ public class FreezerBlock extends FurnitureHorizontalBlock
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
 
     public final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
-    private final Block fridge;
+    private Supplier<RegistryObject<Block>> fridge;
 
-    public FreezerBlock(Properties properties, Block fridge)
+    public FreezerBlock(Properties properties, Supplier<RegistryObject<Block>> fridge)
     {
         super(properties);
         this.fridge = fridge;
@@ -136,7 +138,7 @@ public class FreezerBlock extends FurnitureHorizontalBlock
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack)
     {
-        worldIn.setBlockState(pos.up(), this.fridge.getDefaultState().with(DIRECTION, placer.getHorizontalFacing()));
+        worldIn.setBlockState(pos.up(), this.fridge.get().get().getDefaultState().with(DIRECTION, placer.getHorizontalFacing()));
     }
 
     @Override

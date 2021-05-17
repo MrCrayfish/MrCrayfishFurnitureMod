@@ -26,7 +26,7 @@ public class FridgeTileEntity extends BasicLootTileEntity
 
     public FridgeTileEntity()
     {
-        super(ModTileEntities.FRIDGE);
+        super(ModTileEntities.FRIDGE.get());
     }
 
     @Override
@@ -62,7 +62,7 @@ public class FridgeTileEntity extends BasicLootTileEntity
             boolean open = blockState.get(FridgeBlock.OPEN);
             if(!open)
             {
-                this.playDoorSound(blockState, ModSounds.BLOCK_FRIDGE_OPEN);
+                this.playDoorSound(blockState, ModSounds.BLOCK_FRIDGE_OPEN.get());
                 this.setDoorState(blockState, true);
             }
 
@@ -110,7 +110,7 @@ public class FridgeTileEntity extends BasicLootTileEntity
                 boolean open = blockState.get(FridgeBlock.OPEN);
                 if(open)
                 {
-                    this.playDoorSound(blockState, ModSounds.BLOCK_FRIDGE_CLOSE);
+                    this.playDoorSound(blockState, ModSounds.BLOCK_FRIDGE_CLOSE.get());
                     this.setDoorState(blockState, false);
                 }
             }

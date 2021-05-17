@@ -21,12 +21,12 @@ public class FreezerSolidifyRecipe extends AbstractCookingRecipe
     @Override
     public ItemStack getIcon()
     {
-        return new ItemStack(ModBlocks.FREEZER_LIGHT);
+        return new ItemStack(ModBlocks.FREEZER_LIGHT.get());
     }
 
     @Override
     public IRecipeSerializer<?> getSerializer()
     {
-        return ModRecipeSerializers.FREEZER_SOLIDIFY;
+        return ModRecipeSerializers.FREEZER_SOLIDIFY.get();
     }
 }

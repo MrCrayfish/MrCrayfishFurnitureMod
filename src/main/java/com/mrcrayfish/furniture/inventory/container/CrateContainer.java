@@ -17,7 +17,7 @@ public class CrateContainer extends Container
 
     public CrateContainer(int windowId, PlayerInventory playerInventory, CrateTileEntity crateTileEntity, boolean locked)
     {
-        super(ModContainers.CRATE, windowId);
+        super(ModContainers.CRATE.get(), windowId);
         this.crateTileEntity = crateTileEntity;
         crateTileEntity.openInventory(playerInventory.player);
 

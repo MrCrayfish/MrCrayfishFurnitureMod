@@ -22,6 +22,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.fml.RegistryObject;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -35,9 +36,9 @@ public class FridgeBlock extends FurnitureHorizontalBlock
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
 
     public final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
-    private Supplier<Block> freezer;
+    private Supplier<RegistryObject<Block>> freezer;
 
-    public FridgeBlock(Properties properties, Supplier<Block> freezer)
+    public FridgeBlock(Properties properties, Supplier<RegistryObject<Block>> freezer)
     {
         super(properties);
         this.freezer = freezer;
@@ -141,6 +142,6 @@ public class FridgeBlock extends FurnitureHorizontalBlock
     @Override
     public ItemStack getItem(IBlockReader reader, BlockPos pos, BlockState state)
     {
-        return new ItemStack(this.freezer.get());
+        return new ItemStack(this.freezer.get().get());
     }
 }

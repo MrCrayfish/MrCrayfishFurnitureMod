@@ -22,7 +22,7 @@ public class SeatEntity extends Entity
 
     public SeatEntity(World world)
     {
-        super(ModEntities.SEAT, world);
+        super(ModEntities.SEAT.get(), world);
         this.noClip = true;
     }
 

@@ -26,7 +26,7 @@ public class BedsideCabinetTileEntity extends BasicLootTileEntity
 
     public BedsideCabinetTileEntity()
     {
-        super(ModTileEntities.BEDSIDE_CABINET);
+        super(ModTileEntities.BEDSIDE_CABINET.get());
     }
 
     @Override
@@ -62,7 +62,7 @@ public class BedsideCabinetTileEntity extends BasicLootTileEntity
             boolean open = blockState.get(BedsideCabinetBlock.OPEN);
             if(!open)
             {
-                this.playDoorSound(blockState, ModSounds.BLOCK_BEDSIDE_CABINET_OPEN);
+                this.playDoorSound(blockState, ModSounds.BLOCK_BEDSIDE_CABINET_OPEN.get());
                 this.setDoorState(blockState, true);
             }
 
@@ -110,7 +110,7 @@ public class BedsideCabinetTileEntity extends BasicLootTileEntity
                 boolean open = blockState.get(BedsideCabinetBlock.OPEN);
                 if(open)
                 {
-                    this.playDoorSound(blockState, ModSounds.BLOCK_BEDSIDE_CABINET_CLOSE); //TODO change
+                    this.playDoorSound(blockState, ModSounds.BLOCK_BEDSIDE_CABINET_CLOSE.get()); //TODO change
                     this.setDoorState(blockState, false);
                 }
             }

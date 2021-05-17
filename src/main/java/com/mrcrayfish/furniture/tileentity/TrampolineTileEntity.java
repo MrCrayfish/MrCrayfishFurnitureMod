@@ -24,7 +24,7 @@ public class TrampolineTileEntity extends TileEntity
 
     public TrampolineTileEntity()
     {
-        super(ModTileEntities.TRAMPOLINE);
+        super(ModTileEntities.TRAMPOLINE.get());
     }
 
     @Override

@@ -14,6 +14,6 @@ public class FurnitureGroup extends ItemGroup
     @Override
     public ItemStack createIcon()
     {
-        return new ItemStack(ModBlocks.CHAIR_OAK);
+        return new ItemStack(ModBlocks.CHAIR_OAK.get());
     }
 }

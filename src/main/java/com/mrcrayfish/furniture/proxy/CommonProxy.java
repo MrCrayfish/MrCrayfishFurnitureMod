@@ -18,7 +18,7 @@ public class CommonProxy
     public void onSetupCommon()
     {
         PacketHandler.init();
-        DispenserBlock.registerDispenseBehavior(() -> ModItems.SPATULA, (source, stack) ->
+        DispenserBlock.registerDispenseBehavior(ModItems.SPATULA::get, (source, stack) ->
         {
             Direction direction = source.getBlockState().get(DispenserBlock.FACING);
             BlockPos pos = source.getBlockPos().offset(direction).down();

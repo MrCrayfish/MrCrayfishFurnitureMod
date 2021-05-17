@@ -2,39 +2,25 @@ package com.mrcrayfish.furniture.core;
 
 import com.mrcrayfish.furniture.FurnitureMod;
 import com.mrcrayfish.furniture.Reference;
-import com.mrcrayfish.furniture.util.Names;
+import com.mrcrayfish.furniture.item.BlockSupplierItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemTier;
 import net.minecraft.item.SwordItem;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-
-import java.util.ArrayList;
-import java.util.List;
+import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
 
 /**
  * Author: MrCrayfish
  */
-@Mod.EventBusSubscriber(modid = Reference.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModItems
 {
-    private static final List<Item> ITEMS = new ArrayList<>();
+    public static final DeferredRegister<Item> REGISTER = DeferredRegister.create(ForgeRegistries.ITEMS, Reference.MOD_ID);
 
-    public static final Item SPATULA = register(Names.Item.SPATULA, new SwordItem(ItemTier.IRON, 3, -1.4F, new Item.Properties().group(FurnitureMod.GROUP)));
+    public static final RegistryObject<Item> SPATULA = register("spatula", new SwordItem(ItemTier.IRON, 3, -1.4F, new Item.Properties().group(FurnitureMod.GROUP)));
 
-    private static Item register(String name, Item item)
+    private static RegistryObject<Item> register(String name, Item item)
     {
-        item.setRegistryName(name);
-        ITEMS.add(item);
-        return item;
-    }
-
-    @SubscribeEvent
-    @SuppressWarnings("unused")
-    public static void registerItems(final RegistryEvent.Register<Item> event)
-    {
-        ITEMS.forEach(item -> event.getRegistry().register(item));
-        ITEMS.clear();
+        return REGISTER.register(name, () -> item);
     }
 }

@@ -124,7 +124,7 @@ public class DivingBoardBlock extends FurnitureHorizontalWaterloggedBlock
                 }
                 else
                 {
-                    worldIn.playSound(null, pos, ModSounds.BLOCK_DIVING_BOARD_BOUNCE, SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.1F + 1.0F);
+                    worldIn.playSound(null, pos, ModSounds.BLOCK_DIVING_BOARD_BOUNCE.get(), SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.1F + 1.0F);
                 }
             }
             entityIn.fallDistance = 0;

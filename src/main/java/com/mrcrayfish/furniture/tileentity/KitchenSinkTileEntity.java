@@ -10,6 +10,6 @@ public class KitchenSinkTileEntity extends FluidHandlerSyncedTileEntity
 {
     public KitchenSinkTileEntity()
     {
-        super(ModTileEntities.KITCHEN_SINK, FluidAttributes.BUCKET_VOLUME * 10);
+        super(ModTileEntities.KITCHEN_SINK.get(), FluidAttributes.BUCKET_VOLUME * 10);
     }
 }

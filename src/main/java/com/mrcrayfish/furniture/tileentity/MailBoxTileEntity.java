@@ -35,7 +35,7 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
 
     public MailBoxTileEntity()
     {
-        super(ModTileEntities.MAIL_BOX);
+        super(ModTileEntities.MAIL_BOX.get());
     }
 
     public void setId(UUID id)
@@ -95,7 +95,7 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
             }
         }
     }
-    
+
     public void updateIdAndAttemptClaim(ServerPlayerEntity player)
     {
         if(this.id == null)

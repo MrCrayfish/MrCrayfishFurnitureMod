@@ -26,7 +26,7 @@ public class CabinetTileEntity extends BasicLootTileEntity
 
     public CabinetTileEntity()
     {
-        super(ModTileEntities.CABINET);
+        super(ModTileEntities.CABINET.get());
     }
 
     @Override
@@ -62,7 +62,7 @@ public class CabinetTileEntity extends BasicLootTileEntity
             boolean open = blockState.get(CabinetBlock.OPEN);
             if(!open)
             {
-                this.playDoorSound(blockState, ModSounds.BLOCK_CABINET_OPEN);
+                this.playDoorSound(blockState, ModSounds.BLOCK_CABINET_OPEN.get());
                 this.setDoorState(blockState, true);
             }
 
@@ -110,7 +110,7 @@ public class CabinetTileEntity extends BasicLootTileEntity
                 boolean open = blockState.get(CabinetBlock.OPEN);
                 if(open)
                 {
-                    this.playDoorSound(blockState, ModSounds.BLOCK_CABINET_CLOSE);
+                    this.playDoorSound(blockState, ModSounds.BLOCK_CABINET_CLOSE.get());
                     this.setDoorState(blockState, false);
                 }
             }

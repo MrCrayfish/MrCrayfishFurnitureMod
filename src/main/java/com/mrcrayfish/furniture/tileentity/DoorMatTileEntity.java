@@ -20,7 +20,7 @@ public class DoorMatTileEntity extends TileEntity
 
     public DoorMatTileEntity()
     {
-        super(ModTileEntities.DOOR_MAT);
+        super(ModTileEntities.DOOR_MAT.get());
     }
 
     public void setMessage(String message)

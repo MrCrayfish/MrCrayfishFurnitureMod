@@ -25,7 +25,7 @@ public class PostBoxContainer extends Container
 
     public PostBoxContainer(int windowId, PlayerInventory inventory, final IWorldPosCallable callable)
     {
-        super(ModContainers.POST_BOX, windowId);
+        super(ModContainers.POST_BOX.get(), windowId);
         this.callable = callable;
 
         this.addSlot(new Slot(this.mailInput, 0, 149, 33));

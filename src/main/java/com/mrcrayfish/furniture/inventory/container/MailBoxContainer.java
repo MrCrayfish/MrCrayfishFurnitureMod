@@ -17,7 +17,7 @@ public class MailBoxContainer extends Container
 
     public MailBoxContainer(int windowId, PlayerInventory playerInventory, MailBoxTileEntity mailBoxTileEntity)
     {
-        super(ModContainers.MAIL_BOX, windowId);
+        super(ModContainers.MAIL_BOX.get(), windowId);
         this.mailBoxTileEntity = mailBoxTileEntity;
         mailBoxTileEntity.openInventory(playerInventory.player);
 

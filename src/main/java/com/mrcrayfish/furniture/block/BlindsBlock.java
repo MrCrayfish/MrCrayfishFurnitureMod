@@ -120,11 +120,11 @@ public class BlindsBlock extends FurnitureHorizontalWaterloggedBlock
         {
             if(state.get(OPEN))
             {
-                world.playSound(null, pos, ModSounds.BLOCK_BLINDS_CLOSE, SoundCategory.BLOCKS, 0.5F, world.rand.nextFloat() * 0.1F + 0.8F);
+                world.playSound(null, pos, ModSounds.BLOCK_BLINDS_CLOSE.get(), SoundCategory.BLOCKS, 0.5F, world.rand.nextFloat() * 0.1F + 0.8F);
             }
             else
             {
-                world.playSound(null, pos, ModSounds.BLOCK_BLINDS_OPEN, SoundCategory.BLOCKS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
+                world.playSound(null, pos, ModSounds.BLOCK_BLINDS_OPEN.get(), SoundCategory.BLOCKS, 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
             }
         }
         return ActionResultType.SUCCESS;

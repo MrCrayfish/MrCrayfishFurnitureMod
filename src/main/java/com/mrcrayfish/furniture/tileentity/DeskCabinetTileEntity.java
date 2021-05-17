@@ -26,7 +26,7 @@ public class DeskCabinetTileEntity extends BasicLootTileEntity
 
     public DeskCabinetTileEntity()
     {
-        super(ModTileEntities.DESK_CABINET);
+        super(ModTileEntities.DESK_CABINET.get());
     }
 
     @Override
@@ -62,7 +62,7 @@ public class DeskCabinetTileEntity extends BasicLootTileEntity
             boolean open = blockState.get(DeskCabinetBlock.OPEN);
             if(!open)
             {
-                this.playDoorSound(blockState, ModSounds.BLOCK_BEDSIDE_CABINET_OPEN); //TODO change
+                this.playDoorSound(blockState, ModSounds.BLOCK_BEDSIDE_CABINET_OPEN.get()); //TODO change
                 this.setDoorState(blockState, true);
             }
 
@@ -110,7 +110,7 @@ public class DeskCabinetTileEntity extends BasicLootTileEntity
                 boolean open = blockState.get(DeskCabinetBlock.OPEN);
                 if(open)
                 {
-                    this.playDoorSound(blockState, ModSounds.BLOCK_BEDSIDE_CABINET_CLOSE);
+                    this.playDoorSound(blockState, ModSounds.BLOCK_BEDSIDE_CABINET_CLOSE.get());
                     this.setDoorState(blockState, false);
                 }
             }

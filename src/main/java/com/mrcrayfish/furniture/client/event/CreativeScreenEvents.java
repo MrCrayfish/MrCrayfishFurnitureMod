@@ -251,12 +251,12 @@ public class CreativeScreenEvents
 
     private void compileItems()
     {
-        final TagFilter GENERAL = new TagFilter(new ResourceLocation(Reference.MOD_ID, "general"), new ItemStack(ModBlocks.CHAIR_OAK));
-        final TagFilter STORAGE = new TagFilter(new ResourceLocation(Reference.MOD_ID, "storage"), new ItemStack(ModBlocks.CABINET_OAK));
-        final TagFilter BEDROOM = new TagFilter(new ResourceLocation(Reference.MOD_ID, "bedroom"), new ItemStack(ModBlocks.DESK_OAK));
-        final TagFilter OUTDOORS = new TagFilter(new ResourceLocation(Reference.MOD_ID, "outdoors"), new ItemStack(ModBlocks.MAIL_BOX_OAK));
-        final TagFilter KITCHEN = new TagFilter(new ResourceLocation(Reference.MOD_ID, "kitchen"), new ItemStack(ModBlocks.KITCHEN_COUNTER_CYAN));
-        final TagFilter ITEMS = new TagFilter(new ResourceLocation(Reference.MOD_ID, "items"), new ItemStack(ModItems.SPATULA));
+        final TagFilter GENERAL = new TagFilter(new ResourceLocation(Reference.MOD_ID, "general"), new ItemStack(ModBlocks.CHAIR_OAK.get()));
+        final TagFilter STORAGE = new TagFilter(new ResourceLocation(Reference.MOD_ID, "storage"), new ItemStack(ModBlocks.CABINET_OAK.get()));
+        final TagFilter BEDROOM = new TagFilter(new ResourceLocation(Reference.MOD_ID, "bedroom"), new ItemStack(ModBlocks.DESK_OAK.get()));
+        final TagFilter OUTDOORS = new TagFilter(new ResourceLocation(Reference.MOD_ID, "outdoors"), new ItemStack(ModBlocks.MAIL_BOX_OAK.get()));
+        final TagFilter KITCHEN = new TagFilter(new ResourceLocation(Reference.MOD_ID, "kitchen"), new ItemStack(ModBlocks.KITCHEN_COUNTER_CYAN.get()));
+        final TagFilter ITEMS = new TagFilter(new ResourceLocation(Reference.MOD_ID, "items"), new ItemStack(ModItems.SPATULA.get()));
         TagFilter[] filters = new TagFilter[] {GENERAL, STORAGE, BEDROOM, OUTDOORS, KITCHEN, ITEMS};
 
         ForgeRegistries.ITEMS.getValues().stream()

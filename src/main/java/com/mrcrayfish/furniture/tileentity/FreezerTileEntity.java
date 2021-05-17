@@ -101,7 +101,7 @@ public class FreezerTileEntity extends BasicLootTileEntity implements ITickableT
 
     public FreezerTileEntity()
     {
-        super(ModTileEntities.FREEZER);
+        super(ModTileEntities.FREEZER.get());
     }
 
     @Override
@@ -431,7 +431,7 @@ public class FreezerTileEntity extends BasicLootTileEntity implements ITickableT
             boolean open = blockState.get(FreezerBlock.OPEN);
             if(!open)
             {
-                this.playDoorSound(blockState, ModSounds.BLOCK_FRIDGE_OPEN);
+                this.playDoorSound(blockState, ModSounds.BLOCK_FRIDGE_OPEN.get());
                 this.setDoorState(blockState, true);
             }
 
@@ -476,7 +476,7 @@ public class FreezerTileEntity extends BasicLootTileEntity implements ITickableT
                 boolean open = blockState.get(FreezerBlock.OPEN);
                 if(open)
                 {
-                    this.playDoorSound(blockState, ModSounds.BLOCK_FRIDGE_CLOSE);
+                    this.playDoorSound(blockState, ModSounds.BLOCK_FRIDGE_CLOSE.get());
                     this.setDoorState(blockState, false);
                 }
             }

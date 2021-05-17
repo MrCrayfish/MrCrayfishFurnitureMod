@@ -81,7 +81,7 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements ISidedInven
             {
                 GrillTileEntity grillTileEntity = (GrillTileEntity) tileEntity;
                 ItemStack stack = playerEntity.getHeldItem(hand);
-                if(stack.getItem() == ModItems.SPATULA)
+                if(stack.getItem() == ModItems.SPATULA.get())
                 {
                     grillTileEntity.flipItem(this.getPosition(result, pos));
                 }
