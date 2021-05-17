@@ -21,6 +21,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
@@ -203,12 +204,15 @@ public class PostOffice extends WorldSavedData
                     mailBox.setName(name);
 
                     ServerWorld world = server.getWorld(mailBox.getWorld());
-                    TileEntity tileEntity = world.getTileEntity(mailBox.getPos());
-                    if(tileEntity instanceof MailBoxTileEntity)
+                    if(world != null && world.isAreaLoaded(mailBox.getPos(), 0))
                     {
-                        ((MailBoxTileEntity) tileEntity).setMailBoxName(name);
-                        TileEntityUtil.sendUpdatePacket(tileEntity);
-                        return true;
+                        TileEntity tileEntity = world.getTileEntity(mailBox.getPos());
+                        if(tileEntity instanceof MailBoxTileEntity)
+                        {
+                            ((MailBoxTileEntity) tileEntity).setMailBoxName(name);
+                            TileEntityUtil.sendUpdatePacket(tileEntity);
+                            return true;
+                        }
                     }
                 }
             }
