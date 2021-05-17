@@ -19,15 +19,13 @@ import java.util.function.Supplier;
  */
 public class MessageSetMailBoxName implements IMessage<MessageSetMailBoxName>
 {
-    private UUID mailBoxId;
     private String name;
     private BlockPos pos;
 
     public MessageSetMailBoxName() {}
 
-    public MessageSetMailBoxName(UUID mailBoxId, String name, BlockPos pos)
+    public MessageSetMailBoxName(String name, BlockPos pos)
     {
-        this.mailBoxId = mailBoxId;
         this.name = name;
         this.pos = pos;
     }
@@ -35,7 +33,6 @@ public class MessageSetMailBoxName implements IMessage<MessageSetMailBoxName>
     @Override
     public void encode(MessageSetMailBoxName message, PacketBuffer buffer)
     {
-        buffer.writeUniqueId(message.mailBoxId);
         buffer.writeString(message.name, 32);
         buffer.writeBlockPos(message.pos);
     }
@@ -43,7 +40,7 @@ public class MessageSetMailBoxName implements IMessage<MessageSetMailBoxName>
     @Override
     public MessageSetMailBoxName decode(PacketBuffer buffer)
     {
-        return new MessageSetMailBoxName(buffer.readUniqueId(), buffer.readString(32), buffer.readBlockPos());
+        return new MessageSetMailBoxName(buffer.readString(32), buffer.readBlockPos());
     }
 
     @Override
@@ -52,20 +49,27 @@ public class MessageSetMailBoxName implements IMessage<MessageSetMailBoxName>
         supplier.get().enqueueWork(() ->
         {
             ServerPlayerEntity entity = supplier.get().getSender();
-            if(entity != null)
+            if(entity == null)
+                return;
+
+            if(!entity.world.isAreaLoaded(message.pos, 0))
+                return;
+
+            TileEntity tileEntity = entity.world.getTileEntity(message.pos);
+            if(tileEntity instanceof MailBoxTileEntity)
             {
-                if(PostOffice.setMailBoxName(entity.getUniqueID(), message.mailBoxId, message.name))
-                {
-                    TileEntity tileEntity = entity.world.getTileEntity(message.pos);
-                    if(tileEntity instanceof MailBoxTileEntity)
-                    {
-                        if(((MailBoxTileEntity) tileEntity).isUsableByPlayer(entity))
-                        {
-                            TileEntityUtil.sendUpdatePacket(tileEntity);
-                            NetworkHooks.openGui(entity, (INamedContainerProvider) tileEntity, message.pos);
-                        }
-                    }
-                }
+                MailBoxTileEntity mailBox = (MailBoxTileEntity) tileEntity;
+                if(!entity.getUniqueID().equals(mailBox.getOwnerId()))
+                    return;
+
+                if(!((MailBoxTileEntity) tileEntity).isUsableByPlayer(entity))
+                    return;
+
+                if(!PostOffice.setMailBoxName(entity.getUniqueID(), mailBox.getId(), message.name))
+                    return;
+
+                TileEntityUtil.sendUpdatePacket(tileEntity);
+                NetworkHooks.openGui(entity, (INamedContainerProvider) tileEntity, message.pos);
             }
         });
         supplier.get().setPacketHandled(true);

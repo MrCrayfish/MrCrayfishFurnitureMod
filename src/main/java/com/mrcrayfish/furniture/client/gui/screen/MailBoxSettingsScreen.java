@@ -52,7 +52,7 @@ public class MailBoxSettingsScreen extends Screen
         {
             if(this.isValidName())
             {
-                PacketHandler.instance.sendToServer(new MessageSetMailBoxName(mailBoxTileEntity.getId(), this.nameField.getText(), mailBoxTileEntity.getPos()));
+                PacketHandler.instance.sendToServer(new MessageSetMailBoxName(this.nameField.getText(), this.mailBoxTileEntity.getPos()));
             }
         }));
         this.btnSave.active = false;
