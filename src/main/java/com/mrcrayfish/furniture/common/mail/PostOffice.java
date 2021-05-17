@@ -216,6 +216,20 @@ public class PostOffice extends WorldSavedData
         return false;
     }
 
+    public static boolean isRegistered(UUID playerId, UUID mailBoxId)
+    {
+        MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+        if(server != null)
+        {
+            PostOffice office = get(server);
+            if(office.playerMailboxMap.containsKey(playerId))
+            {
+                return office.playerMailboxMap.get(playerId).containsKey(mailBoxId);
+            }
+        }
+        return false;
+    }
+
     private static PostOffice get(MinecraftServer server)
     {
         ServerWorld world = server.getWorld(World.OVERWORLD);
