@@ -32,7 +32,6 @@ public class UpgradedFenceBlock extends FurnitureWaterloggedBlock
     public static final BooleanProperty EAST = BooleanProperty.create("east");
     public static final BooleanProperty SOUTH = BooleanProperty.create("south");
     public static final BooleanProperty WEST = BooleanProperty.create("west");
-    public static final BooleanProperty POST = BooleanProperty.create("post");
 
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
     public final ImmutableMap<BlockState, VoxelShape> COLLISION_SHAPES;
@@ -40,7 +39,7 @@ public class UpgradedFenceBlock extends FurnitureWaterloggedBlock
     public UpgradedFenceBlock(Properties properties)
     {
         super(properties);
-        this.setDefaultState(this.getStateContainer().getBaseState().with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(POST, false));
+        this.setDefaultState(this.getStateContainer().getBaseState().with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false));
         SHAPES = this.generateShapes(this.getStateContainer().getValidStates(), false);
         COLLISION_SHAPES = this.generateShapes(this.getStateContainer().getValidStates(), true);
     }
@@ -60,7 +59,7 @@ public class UpgradedFenceBlock extends FurnitureWaterloggedBlock
             boolean east = state.get(EAST);
             boolean south = state.get(SOUTH);
             boolean west = state.get(WEST);
-            boolean post = state.get(POST);
+            boolean post = !(north && !east && south && !west || !north && east && !south && west);
 
             List<VoxelShape> shapes = new ArrayList<>();
             if (post)
@@ -146,8 +145,7 @@ public class UpgradedFenceBlock extends FurnitureWaterloggedBlock
         boolean east = canConnectToBlock(world, pos, Direction.EAST);
         boolean south = canConnectToBlock(world, pos, Direction.SOUTH);
         boolean west = canConnectToBlock(world, pos, Direction.WEST);
-        boolean post = !(north && !east && south && !west || !north && east && !south && west);
-        return state.with(NORTH, north).with(EAST, east).with(SOUTH, south).with(WEST, west).with(POST, post);
+        return state.with(NORTH, north).with(EAST, east).with(SOUTH, south).with(WEST, west);
     }
 
     private boolean canConnectToBlock(IWorld world, BlockPos pos, Direction direction)
@@ -177,7 +175,6 @@ public class UpgradedFenceBlock extends FurnitureWaterloggedBlock
         builder.add(EAST);
         builder.add(SOUTH);
         builder.add(WEST);
-        builder.add(POST);
     }
 
     @Nullable
