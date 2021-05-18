@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 
 /**
  * Author: MrCrayfish
@@ -27,7 +27,7 @@ public class TagButton extends Button
 
     public TagButton(int x, int y, CreativeScreenEvents.TagFilter category, IPressable pressable)
     {
-        super(x, y, 32, 28, ITextComponent.getTextComponentOrEmpty(""), pressable);
+        super(x, y, 32, 28, StringTextComponent.EMPTY, pressable);
         this.category = category;
         this.stack = category.getIcon();
         this.toggled = category.isEnabled();
@@ -35,7 +35,7 @@ public class TagButton extends Button
 
     public CreativeScreenEvents.TagFilter getCategory()
     {
-        return category;
+        return this.category;
     }
 
     @Override
@@ -78,15 +78,15 @@ public class TagButton extends Button
         Tessellator tessellator = Tessellator.getInstance();
         BufferBuilder buffer = tessellator.getBuffer();
         buffer.begin(7, DefaultVertexFormats.POSITION_TEX);
-        buffer.pos((double)(x), (double)(y + height), 0.0).tex(((float)(textureX + height) * scaleX), ((float)(textureY) * scaleY)).endVertex();
-        buffer.pos((double)(x + width), (double)(y + height), 0.0).tex(((float)(textureX + height) * scaleX), ((float)(textureY + width) * scaleY)).endVertex();
-        buffer.pos((double)(x + width), (double)(y), 0.0).tex(((float)(textureX) * scaleX), ((float)(textureY + width) * scaleY)).endVertex();
-        buffer.pos((double)(x), (double)(y), 0.0).tex(((float)(textureX) * scaleX), ((float)(textureY) * scaleY)).endVertex();
+        buffer.pos(x, y + height, 0.0).tex(((float) (textureX + height) * scaleX), ((float) (textureY) * scaleY)).endVertex();
+        buffer.pos(x + width, y + height, 0.0).tex(((float) (textureX + height) * scaleX), ((float) (textureY + width) * scaleY)).endVertex();
+        buffer.pos(x + width, y, 0.0).tex(((float) (textureX) * scaleX), ((float) (textureY + width) * scaleY)).endVertex();
+        buffer.pos(x, y, 0.0).tex(((float) (textureX) * scaleX), ((float) (textureY) * scaleY)).endVertex();
         tessellator.draw();
     }
 
     public void updateState()
     {
-        this.toggled = category.isEnabled();
+        this.toggled = this.category.isEnabled();
     }
 }

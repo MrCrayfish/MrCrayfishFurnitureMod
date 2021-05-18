@@ -33,8 +33,8 @@ public class FreezerScreen extends ContainerScreen<FreezerContainer>
     @Override
     protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int mouseX, int mouseY)
     {
-        ITextProperties lvt_3_1_ = this.title;
-        this.font.drawString(matrixStack, lvt_3_1_.getString(), (float) (this.xSize / 2 - this.font.getStringWidth(lvt_3_1_.getString()) / 2), 6.0F, 4210752);
+        ITextProperties title = this.title;
+        this.font.drawString(matrixStack, title.getString(), (float) (this.xSize / 2 - this.font.getStringWidth(title.getString()) / 2), 6.0F, 4210752);
         this.font.drawString(matrixStack, this.playerInventory.getDisplayName().getString(), 8.0F, (float) (this.ySize - 96 + 2), 4210752);
     }
 

@@ -191,18 +191,18 @@ public class CreativeScreenEvents
                 {
                     if(button.isMouseOver(event.getMouseX(), event.getMouseY()))
                     {
-                        screen.renderTooltip(event.getMatrixStack(), ITextComponent.getTextComponentOrEmpty(button.getCategory().getName()), event.getMouseX(), event.getMouseY());
+                        screen.renderTooltip(event.getMatrixStack(), button.getCategory().getName(), event.getMouseX(), event.getMouseY());
                     }
                 });
 
                 if(this.btnEnableAll.isMouseOver(event.getMouseX(), event.getMouseY()))
                 {
-                    screen.renderTooltip(event.getMatrixStack(), ITextComponent.getTextComponentOrEmpty(this.btnEnableAll.getMessage().getString()), event.getMouseX(), event.getMouseY());
+                    screen.renderTooltip(event.getMatrixStack(), this.btnEnableAll.getMessage(), event.getMouseX(), event.getMouseY());
                 }
 
                 if(this.btnDisableAll.isMouseOver(event.getMouseX(), event.getMouseY()))
                 {
-                    screen.renderTooltip(event.getMatrixStack(), ITextComponent.getTextComponentOrEmpty(this.btnDisableAll.getMessage().getString()), event.getMouseX(), event.getMouseY());
+                    screen.renderTooltip(event.getMatrixStack(), this.btnDisableAll.getMessage(), event.getMouseX(), event.getMouseY());
                 }
             }
             else
@@ -289,16 +289,16 @@ public class CreativeScreenEvents
      */
     public static class TagFilter
     {
-        private ResourceLocation tag;
-        private String translationKey;
-        private ItemStack icon;
+        private final List<Item> items = Lists.newArrayList();
+        private final ResourceLocation tag;
+        private final TranslationTextComponent name;
+        private final ItemStack icon;
         private boolean enabled = true;
-        private List<Item> items = Lists.newArrayList();
 
         public TagFilter(ResourceLocation tag, ItemStack icon)
         {
             this.tag = tag;
-            this.translationKey = String.format("gui.tag_filter.%s.%s", tag.getNamespace(), tag.getPath().replace("/", "."));
+            this.name = new TranslationTextComponent(String.format("gui.tag_filter.%s.%s", tag.getNamespace(), tag.getPath().replace("/", ".")));
             this.icon = icon;
         }
 
@@ -312,9 +312,9 @@ public class CreativeScreenEvents
             return this.icon;
         }
 
-        public String getName()
+        public TranslationTextComponent getName()
         {
-            return I18n.format(this.translationKey);
+            return this.name;
         }
 
         public void setEnabled(boolean enabled)
@@ -324,22 +324,22 @@ public class CreativeScreenEvents
 
         public boolean isEnabled()
         {
-            return enabled;
+            return this.enabled;
         }
 
         public void add(Item item)
         {
-            items.add(item);
+            this.items.add(item);
         }
 
         public void add(Block block)
         {
-            items.add(Item.getItemFromBlock(block));
+            this.items.add(Item.getItemFromBlock(block));
         }
 
         public List<Item> getItems()
         {
-            return items;
+            return this.items;
         }
     }
 }

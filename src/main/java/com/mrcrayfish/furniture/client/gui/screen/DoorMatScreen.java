@@ -12,6 +12,7 @@ import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.ITextProperties;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 
 /**
@@ -40,7 +41,7 @@ public class DoorMatScreen extends Screen
         int guiLeft = (this.width - this.xSize) / 2;
         int guiTop = (this.height - this.ySize) / 2;
 
-        this.nameField = new TextFieldWidget(this.font, guiLeft + 8, guiTop + 18, 160, 18, ITextComponent.getTextComponentOrEmpty(""))
+        this.nameField = new TextFieldWidget(this.font, guiLeft + 8, guiTop + 18, 160, 18, StringTextComponent.EMPTY)
         {
             @Override
             public void writeText(String textToWrite)
@@ -68,10 +69,7 @@ public class DoorMatScreen extends Screen
         }));
         this.btnSave.active = false;
 
-        this.addButton(new Button(guiLeft + 91, guiTop + 42, 79, 20, new TranslationTextComponent("gui.button.cfm.cancel"), button ->
-        {
-            this.minecraft.player.closeScreen();
-        }));
+        this.addButton(new Button(guiLeft + 91, guiTop + 42, 79, 20, new TranslationTextComponent("gui.button.cfm.cancel"), button -> this.closeScreen()));
     }
 
     @Override
@@ -86,23 +84,19 @@ public class DoorMatScreen extends Screen
     public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks)
     {
         this.renderBackground(matrixStack);
-
         RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.minecraft.getTextureManager().bindTexture(GUI_TEXTURE);
         int startX = (this.width - this.xSize) / 2;
         int startY = (this.height - this.ySize) / 2;
         this.blit(matrixStack, startX, startY, 0, 0, this.xSize, this.ySize);
-
         super.render(matrixStack, mouseX, mouseY, partialTicks);
-
         this.font.drawString(matrixStack, this.title.getString(), startX + 8.0F, startY + 6.0F, 0x404040);
-
         this.nameField.render(matrixStack, mouseX, mouseY, partialTicks);
     }
 
     private boolean isValidName()
     {
-        int lines = this.font.trimStringToWidth(ITextComponent.getTextComponentOrEmpty(doorMatTileEntity.getMessage()), 45).size();
-        return !this.nameField.getText().equals(doorMatTileEntity.getMessage()) && !this.nameField.getText().trim().isEmpty() && lines < 2;
+        int lines = this.font.trimStringToWidth(ITextComponent.getTextComponentOrEmpty(this.doorMatTileEntity.getMessage()), 45).size();
+        return !this.nameField.getText().equals(this.doorMatTileEntity.getMessage()) && !this.nameField.getText().trim().isEmpty() && lines < 2;
     }
 }
