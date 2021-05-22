@@ -15,6 +15,7 @@ import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -239,16 +240,19 @@ public class CreativeScreenEvents
     private void updateItems(CreativeScreen screen)
     {
         CreativeScreen.CreativeContainer container = screen.getContainer();
-        Set<Item> categorisedItems = new LinkedHashSet<>();
+        NonNullList<ItemStack> categorisedItems = NonNullList.create();
         for(TagFilter filter : this.filters)
         {
             if(filter.isEnabled())
             {
-                categorisedItems.addAll(filter.getItems());
+                for(Item item : filter.getItems())
+                {
+                    item.fillItemGroup(FurnitureMod.GROUP, categorisedItems);
+                }
             }
         }
         container.itemList.clear();
-        categorisedItems.forEach(item -> container.itemList.add(new ItemStack(item)));
+        container.itemList.addAll(categorisedItems);
         container.itemList.sort(Comparator.comparingInt(o -> Item.getIdFromItem(o.getItem())));
         container.scrollTo(0);
     }
