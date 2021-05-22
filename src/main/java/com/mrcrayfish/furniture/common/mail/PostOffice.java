@@ -37,7 +37,7 @@ public class PostOffice extends WorldSavedData
 {
     private static final String DATA_NAME = Reference.MOD_ID + "_post_office";
 
-    private Map<UUID, Map<UUID, MailBox>> playerMailboxMap = new HashMap<>();
+    private final Map<UUID, Map<UUID, MailBox>> playerMailboxMap = new HashMap<>();
 
     public PostOffice()
     {
@@ -52,7 +52,7 @@ public class PostOffice extends WorldSavedData
     @Override
     public void read(CompoundNBT compound)
     {
-        playerMailboxMap.clear();
+        this.playerMailboxMap.clear();
         if(compound.contains("PlayerMailBoxes", Constants.NBT.TAG_LIST))
         {
             ListNBT playerMailBoxesList = compound.getList("PlayerMailBoxes", Constants.NBT.TAG_COMPOUND);
@@ -72,7 +72,7 @@ public class PostOffice extends WorldSavedData
                         MailBox mailBox = new MailBox(mailBoxCompound.getCompound("MailBox"));
                         mailBoxMap.put(mailBoxId, mailBox);
                     });
-                    playerMailboxMap.put(playerId, mailBoxMap);
+                    this.playerMailboxMap.put(playerId, mailBoxMap);
                 }
             });
         }
@@ -260,7 +260,6 @@ public class PostOffice extends WorldSavedData
         if(server != null && server.getTickCounter() % 1200 == 0)
         {
             PostOffice office = get(server);
-            //TODO need to mark office dirty if something is removed
             office.playerMailboxMap.values().forEach(map ->
             {
                 Predicate<MailBox> removePredicate = mailBox ->
