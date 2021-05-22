@@ -3,20 +3,25 @@ package com.mrcrayfish.furniture.datagen;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModItems;
 import com.mrcrayfish.furniture.core.ModRecipeSerializers;
+import com.mrcrayfish.furniture.data.ForgeShapedRecipeBuilder;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
 import net.minecraft.data.RecipeProvider;
 import net.minecraft.data.ShapedRecipeBuilder;
+import net.minecraft.item.DyeColor;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.item.crafting.CookingRecipeSerializer;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.IItemProvider;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Util;
 import net.minecraftforge.common.Tags;
 
 import java.util.function.Consumer;
@@ -309,22 +314,22 @@ public class RecipeGen extends RecipeProvider
                 .addCriterion("has_andesite", hasItem(Blocks.ANDESITE))
                 .build(consumer);
         // Trampoline
-        trampoline(consumer, ModBlocks.TRAMPOLINE_WHITE.get(), Blocks.WHITE_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_ORANGE.get(), Blocks.ORANGE_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_MAGENTA.get(), Blocks.MAGENTA_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_LIGHT_BLUE.get(), Blocks.LIGHT_BLUE_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_YELLOW.get(), Blocks.YELLOW_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_LIME.get(), Blocks.LIME_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_PINK.get(), Blocks.PINK_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_GRAY.get(), Blocks.GRAY_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_LIGHT_GRAY.get(), Blocks.LIGHT_GRAY_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_CYAN.get(), Blocks.CYAN_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_PURPLE.get(), Blocks.PURPLE_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_BLUE.get(), Blocks.BLUE_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_BROWN.get(), Blocks.BROWN_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_GREEN.get(), Blocks.GREEN_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_RED.get(), Blocks.RED_WOOL);
-        trampoline(consumer, ModBlocks.TRAMPOLINE_BLACK.get(), Blocks.BLACK_WOOL);
+        trampoline(consumer, "white_trampoline", new ItemStack(ModBlocks.TRAMPOLINE.get()), DyeColor.WHITE, Blocks.WHITE_WOOL);
+        trampoline(consumer, "orange_trampoline", new ItemStack(ModBlocks.TRAMPOLINE.get()), DyeColor.ORANGE, Blocks.ORANGE_WOOL);
+        trampoline(consumer, "magenta_trampoline", new ItemStack(ModBlocks.TRAMPOLINE.get()), DyeColor.MAGENTA, Blocks.MAGENTA_WOOL);
+        trampoline(consumer, "light_blue_trampoline", new ItemStack(ModBlocks.TRAMPOLINE.get()), DyeColor.LIGHT_BLUE, Blocks.LIGHT_BLUE_WOOL);
+        trampoline(consumer, "yellow_trampoline", new ItemStack(ModBlocks.TRAMPOLINE.get()), DyeColor.YELLOW, Blocks.YELLOW_WOOL);
+        trampoline(consumer, "lime_trampoline", new ItemStack(ModBlocks.TRAMPOLINE.get()), DyeColor.LIME, Blocks.LIME_WOOL);
+        trampoline(consumer, "pink_trampoline", new ItemStack(ModBlocks.TRAMPOLINE.get()), DyeColor.PINK, Blocks.PINK_WOOL);
+        trampoline(consumer, "gray_trampoline", new ItemStack(ModBlocks.TRAMPOLINE.get()), DyeColor.GRAY, Blocks.GRAY_WOOL);
+        trampoline(consumer, "light_gray_trampoline", new ItemStack(ModBlocks.TRAMPOLINE.get()), DyeColor.LIGHT_GRAY, Blocks.LIGHT_GRAY_WOOL);
+        trampoline(consumer, "cyan_trampoline", new ItemStack(ModBlocks.TRAMPOLINE.get()), DyeColor.CYAN, Blocks.CYAN_WOOL);
+        trampoline(consumer, "purple_trampoline", new ItemStack(ModBlocks.TRAMPOLINE.get()), DyeColor.PURPLE, Blocks.PURPLE_WOOL);
+        trampoline(consumer, "blue_trampoline", new ItemStack(ModBlocks.TRAMPOLINE.get()), DyeColor.BLUE, Blocks.BLUE_WOOL);
+        trampoline(consumer, "brown_trampoline", new ItemStack(ModBlocks.TRAMPOLINE.get()), DyeColor.BROWN, Blocks.BROWN_WOOL);
+        trampoline(consumer, "green_trampoline", new ItemStack(ModBlocks.TRAMPOLINE.get()), DyeColor.GREEN, Blocks.GREEN_WOOL);
+        trampoline(consumer, "red_trampoline", new ItemStack(ModBlocks.TRAMPOLINE.get()), DyeColor.RED, Blocks.RED_WOOL);
+        trampoline(consumer, "black_trampoline", new ItemStack(ModBlocks.TRAMPOLINE.get()), DyeColor.BLACK, Blocks.BLACK_WOOL);
         // Cooler
         cooler(consumer, ModBlocks.COOLER_WHITE.get(), Blocks.WHITE_TERRACOTTA);
         cooler(consumer, ModBlocks.COOLER_ORANGE.get(), Blocks.ORANGE_TERRACOTTA);
@@ -766,9 +771,14 @@ public class RecipeGen extends RecipeProvider
                 .build(recipeConsumer);
     }
 
-    private static void trampoline(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider trampoline, IItemProvider wool)
+    private static void trampoline(Consumer<IFinishedRecipe> recipeConsumer, String key, ItemStack trampoline, DyeColor color, IItemProvider wool)
     {
-        ShapedRecipeBuilder.shapedRecipe(trampoline, 4)
+        CompoundNBT tag = new CompoundNBT();
+        CompoundNBT blockEntityTag = new CompoundNBT();
+        blockEntityTag.putInt("Color", color.getId());
+        tag.put("BlockEntityTag", blockEntityTag);
+        trampoline.setTag(tag);
+        ForgeShapedRecipeBuilder.shapedRecipe(key, trampoline)
                 .patternLine("WSW")
                 .patternLine("I I")
                 .patternLine("III")

@@ -298,22 +298,7 @@ public class ItemTagGen extends ItemTagsProvider
                 // Rock Path
                 .add(ModBlocks.ROCK_PATH.get().asItem())
                 // Trampolines
-                .add(ModBlocks.TRAMPOLINE_WHITE.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_ORANGE.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_MAGENTA.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_LIGHT_BLUE.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_YELLOW.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_LIME.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_PINK.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_GRAY.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_LIGHT_GRAY.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_CYAN.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_PURPLE.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_BLUE.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_BROWN.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_GREEN.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_RED.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_BLACK.get().asItem())
+                .add(ModBlocks.TRAMPOLINE.get().asItem())
                 // Coolers
                 .add(ModBlocks.COOLER_WHITE.get().asItem())
                 .add(ModBlocks.COOLER_ORANGE.get().asItem())
@@ -515,22 +500,7 @@ public class ItemTagGen extends ItemTagsProvider
 
         this.getOrCreateBuilder(ModTags.Items.TRAMPOLINE)
                 // Trampolines
-                .add(ModBlocks.TRAMPOLINE_WHITE.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_ORANGE.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_MAGENTA.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_LIGHT_BLUE.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_YELLOW.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_LIME.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_PINK.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_GRAY.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_LIGHT_GRAY.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_CYAN.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_PURPLE.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_BLUE.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_BROWN.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_GREEN.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_RED.get().asItem())
-                .add(ModBlocks.TRAMPOLINE_BLACK.get().asItem());
+                .add(ModBlocks.TRAMPOLINE.get().asItem());
 
         this.getOrCreateBuilder(ModTags.Items.ITEMS).add(ModItems.SPATULA.get());
 

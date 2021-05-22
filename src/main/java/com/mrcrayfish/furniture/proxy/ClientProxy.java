@@ -17,12 +17,14 @@ import com.mrcrayfish.furniture.core.ModEntities;
 import com.mrcrayfish.furniture.core.ModTileEntities;
 import com.mrcrayfish.furniture.tileentity.DoorMatTileEntity;
 import com.mrcrayfish.furniture.tileentity.GrillTileEntity;
+import com.mrcrayfish.furniture.tileentity.TrampolineTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.BlockItem;
+import net.minecraft.item.DyeColor;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.ListNBT;
 import net.minecraft.tileentity.TileEntity;
@@ -43,6 +45,8 @@ import java.util.function.Predicate;
 /**
  * Author: MrCrayfish
  */
+
+//TODO replace this with a client handler instead because this design is dumb
 public class ClientProxy extends CommonProxy
 {
     @Override
@@ -70,22 +74,7 @@ public class ClientProxy extends CommonProxy
         RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_DARK_OAK.get(), leavesPredicate);
         
         Predicate<RenderType> cutoutPredicate = renderType -> renderType == RenderType.getCutout();
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_WHITE.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_ORANGE.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_MAGENTA.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_LIGHT_BLUE.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_YELLOW.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_LIME.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_PINK.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_GRAY.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_LIGHT_GRAY.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_CYAN.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_PURPLE.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_BLUE.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_BROWN.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_GREEN.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_RED.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE_BLACK.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE.get(), cutoutPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_WHITE.get(), cutoutPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_ORANGE.get(), cutoutPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_MAGENTA.get(), cutoutPredicate);
@@ -309,6 +298,31 @@ public class ClientProxy extends CommonProxy
             BlockState state = ((BlockItem)stack.getItem()).getBlock().getDefaultState();
             return Minecraft.getInstance().getBlockColors().getColor(state, null, null, i);
         }, ModBlocks.HEDGE_OAK.get(), ModBlocks.HEDGE_SPRUCE.get(), ModBlocks.HEDGE_BIRCH.get(), ModBlocks.HEDGE_JUNGLE.get(), ModBlocks.HEDGE_ACACIA.get(), ModBlocks.HEDGE_DARK_OAK.get());
+
+        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> {
+            if(reader != null && pos != null)
+            {
+                TileEntity tileEntity = reader.getTileEntity(pos);
+                if(tileEntity instanceof TrampolineTileEntity)
+                {
+                    return ((TrampolineTileEntity) tileEntity).getColour().getColorValue();
+                }
+            }
+            return 0xFFFFFFFF;
+        }, ModBlocks.TRAMPOLINE.get());
+
+        Minecraft.getInstance().getItemColors().register((stack, i) -> {
+            CompoundNBT tag = stack.getTag();
+            if(tag != null)
+            {
+                CompoundNBT blockEntityTag = tag.getCompound("BlockEntityTag");
+                if(blockEntityTag.contains("Color", Constants.NBT.TAG_INT))
+                {
+                    return DyeColor.byId(blockEntityTag.getInt("Color")).getColorValue();
+                }
+            }
+            return 0xFFFFFFFF;
+        }, ModBlocks.TRAMPOLINE.get());
     }
 
     @Override

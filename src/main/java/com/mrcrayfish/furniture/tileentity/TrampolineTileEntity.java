@@ -3,14 +3,17 @@ package com.mrcrayfish.furniture.tileentity;
 import com.mrcrayfish.furniture.core.ModTileEntities;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.BlockState;
+import net.minecraft.item.DyeColor;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.client.model.data.IModelData;
 import net.minecraftforge.common.util.Constants;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,6 +24,7 @@ import java.util.Set;
 public class TrampolineTileEntity extends TileEntity
 {
     private int count = 1;
+    private DyeColor colour = DyeColor.WHITE;
 
     public TrampolineTileEntity()
     {
@@ -41,7 +45,17 @@ public class TrampolineTileEntity extends TileEntity
 
     public int getCount()
     {
-        return count;
+        return this.count;
+    }
+
+    public DyeColor getColour()
+    {
+        return this.colour;
+    }
+
+    public void setColour(DyeColor colour)
+    {
+        this.colour = colour;
     }
 
     public void updateCount()
@@ -53,7 +67,10 @@ public class TrampolineTileEntity extends TileEntity
 
     private void isTrampoline(Set<TrampolineTileEntity> trampolines, BlockPos pos)
     {
-        TileEntity tileEntity = world.getTileEntity(pos);
+        if(this.world == null)
+            return;
+
+        TileEntity tileEntity = this.world.getTileEntity(pos);
         if(tileEntity instanceof TrampolineTileEntity)
         {
             if(trampolines.contains(tileEntity))
@@ -107,11 +124,23 @@ public class TrampolineTileEntity extends TileEntity
         {
             this.count = compound.getInt("Count");
         }
+        if(compound.contains("Color", Constants.NBT.TAG_INT))
+        {
+            this.colour = DyeColor.byId(compound.getInt("Color"));
+        }
     }
 
     private CompoundNBT writeData(CompoundNBT compound)
     {
         compound.putInt("Count", this.count);
+        compound.putInt("Color", this.colour.getId());
         return compound;
+    }
+
+    @Nonnull
+    @Override
+    public IModelData getModelData()
+    {
+        return super.getModelData();
     }
 }

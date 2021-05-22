@@ -7,6 +7,7 @@ import com.mrcrayfish.furniture.block.CoffeeTableBlock;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import net.minecraft.advancements.criterion.StatePropertiesPredicate;
 import net.minecraft.block.Block;
+import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraft.data.loot.ChestLootTables;
@@ -15,6 +16,7 @@ import net.minecraft.data.loot.FishingLootTables;
 import net.minecraft.data.loot.GiftLootTables;
 import net.minecraft.entity.EntityType;
 import net.minecraft.loot.ConstantRange;
+import net.minecraft.loot.DynamicLootEntry;
 import net.minecraft.loot.ItemLootEntry;
 import net.minecraft.loot.LootParameterSet;
 import net.minecraft.loot.LootParameterSets;
@@ -22,6 +24,9 @@ import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.PiglinBarteringAddition;
 import net.minecraft.loot.conditions.BlockStateProperty;
+import net.minecraft.loot.functions.CopyName;
+import net.minecraft.loot.functions.CopyNbt;
+import net.minecraft.loot.functions.SetContents;
 import net.minecraft.loot.functions.SetCount;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.data.ForgeLootTableProvider;
@@ -327,22 +332,7 @@ public class LootTableGen extends ForgeLootTableProvider
             this.registerDropSelfLootTable(ModBlocks.HEDGE_ACACIA.get());
             this.registerDropSelfLootTable(ModBlocks.HEDGE_DARK_OAK.get());
             this.registerDropSelfLootTable(ModBlocks.ROCK_PATH.get());
-            this.registerDropSelfLootTable(ModBlocks.TRAMPOLINE_WHITE.get());
-            this.registerDropSelfLootTable(ModBlocks.TRAMPOLINE_ORANGE.get());
-            this.registerDropSelfLootTable(ModBlocks.TRAMPOLINE_MAGENTA.get());
-            this.registerDropSelfLootTable(ModBlocks.TRAMPOLINE_LIGHT_BLUE.get());
-            this.registerDropSelfLootTable(ModBlocks.TRAMPOLINE_YELLOW.get());
-            this.registerDropSelfLootTable(ModBlocks.TRAMPOLINE_LIME.get());
-            this.registerDropSelfLootTable(ModBlocks.TRAMPOLINE_PINK.get());
-            this.registerDropSelfLootTable(ModBlocks.TRAMPOLINE_GRAY.get());
-            this.registerDropSelfLootTable(ModBlocks.TRAMPOLINE_LIGHT_GRAY.get());
-            this.registerDropSelfLootTable(ModBlocks.TRAMPOLINE_CYAN.get());
-            this.registerDropSelfLootTable(ModBlocks.TRAMPOLINE_PURPLE.get());
-            this.registerDropSelfLootTable(ModBlocks.TRAMPOLINE_BLUE.get());
-            this.registerDropSelfLootTable(ModBlocks.TRAMPOLINE_BROWN.get());
-            this.registerDropSelfLootTable(ModBlocks.TRAMPOLINE_GREEN.get());
-            this.registerDropSelfLootTable(ModBlocks.TRAMPOLINE_RED.get());
-            this.registerDropSelfLootTable(ModBlocks.TRAMPOLINE_BLACK.get());
+            this.registerTrampoline(ModBlocks.TRAMPOLINE.get());
             this.registerDropSelfLootTable(ModBlocks.COOLER_WHITE.get());
             this.registerDropSelfLootTable(ModBlocks.COOLER_ORANGE.get());
             this.registerDropSelfLootTable(ModBlocks.COOLER_MAGENTA.get());
@@ -481,7 +471,12 @@ public class LootTableGen extends ForgeLootTableProvider
 
         public void registerCoffeeTable(Block block)
         {
-            this.registerLootTable(block, (coffeeTable) -> LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(withSurvivesExplosion(block, ItemLootEntry.builder(coffeeTable).acceptFunction(SetCount.builder(ConstantRange.of(2)).acceptCondition(BlockStateProperty.builder(coffeeTable).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withBoolProp(CoffeeTableBlock.TALL, true))))))));
+            this.registerLootTable(block, coffeeTable -> LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(withSurvivesExplosion(block, ItemLootEntry.builder(coffeeTable).acceptFunction(SetCount.builder(ConstantRange.of(2)).acceptCondition(BlockStateProperty.builder(coffeeTable).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withBoolProp(CoffeeTableBlock.TALL, true))))))));
+        }
+
+        public void registerTrampoline(Block block)
+        {
+            this.registerLootTable(block, trampoline -> LootTable.builder().addLootPool(LootPool.builder().rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(trampoline).acceptFunction(CopyName.builder(CopyName.Source.BLOCK_ENTITY)).acceptFunction(CopyNbt.builder(CopyNbt.Source.BLOCK_ENTITY).replaceOperation("BlockEntityTag.Count", "")))));
         }
 
         @Override
