@@ -1,6 +1,6 @@
 package com.mrcrayfish.furniture.network.message;
 
-import com.mrcrayfish.furniture.FurnitureMod;
+import com.mrcrayfish.furniture.client.ClientPlayHandler;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
@@ -37,7 +37,12 @@ public class MessageUpdateMailBoxes implements IMessage<MessageUpdateMailBoxes>
     @Override
     public void handle(MessageUpdateMailBoxes message, Supplier<NetworkEvent.Context> supplier)
     {
-        supplier.get().enqueueWork(() -> FurnitureMod.PROXY.updateMailBoxes(message.compound));
+        supplier.get().enqueueWork(() -> ClientPlayHandler.handleUpdateMailboxesMessage(this));
         supplier.get().setPacketHandled(true);
+    }
+
+    public CompoundNBT getCompound()
+    {
+        return this.compound;
     }
 }

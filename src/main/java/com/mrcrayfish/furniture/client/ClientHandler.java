@@ -1,6 +1,5 @@
-package com.mrcrayfish.furniture.proxy;
+package com.mrcrayfish.furniture.client;
 
-import com.mrcrayfish.furniture.client.MailBoxEntry;
 import com.mrcrayfish.furniture.client.event.CreativeScreenEvents;
 import com.mrcrayfish.furniture.client.gui.screen.DoorMatScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.CrateScreen;
@@ -16,7 +15,6 @@ import com.mrcrayfish.furniture.core.ModContainers;
 import com.mrcrayfish.furniture.core.ModEntities;
 import com.mrcrayfish.furniture.core.ModTileEntities;
 import com.mrcrayfish.furniture.tileentity.DoorMatTileEntity;
-import com.mrcrayfish.furniture.tileentity.GrillTileEntity;
 import com.mrcrayfish.furniture.tileentity.TrampolineTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
@@ -26,7 +24,6 @@ import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.DyeColor;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.FoliageColors;
@@ -38,41 +35,67 @@ import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Predicate;
 
 /**
  * Author: MrCrayfish
  */
-
-//TODO replace this with a client handler instead because this design is dumb
-public class ClientProxy extends CommonProxy
+public class ClientHandler
 {
-    @Override
-    public void onSetupClient()
+    public static void setup()
     {
-        super.onSetupClient();
+        registerTileEntityRenderers();
+        registerEntityRenderers();
+        registerScreenFactories();
+        registerLayers();
+        registerColors();
 
+        if(!ModList.get().isLoaded("filters"))
+        {
+            MinecraftForge.EVENT_BUS.register(new CreativeScreenEvents());
+        }
+        else
+        {
+            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "general"), new ItemStack(ModBlocks.CHAIR_OAK));
+            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "storage"), new ItemStack(ModBlocks.CABINET_OAK));
+            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "bedroom"), new ItemStack(ModBlocks.DESK_OAK));
+            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "outdoors"), new ItemStack(ModBlocks.MAIL_BOX_OAK));
+            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "kitchen"), new ItemStack(ModBlocks.KITCHEN_COUNTER_CYAN));
+            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "items"), new ItemStack(ModItems.SPATULA));
+        }
+    }
+
+    private static void registerTileEntityRenderers()
+    {
         ClientRegistry.bindTileEntityRenderer(ModTileEntities.GRILL.get(), GrillTileEntityRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntities.DOOR_MAT.get(), DoorMatTileEntityRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntities.KITCHEN_SINK.get(), KitchenSinkTileEntityRenderer::new);
+    }
 
+    private static void registerEntityRenderers()
+    {
         RenderingRegistry.registerEntityRenderingHandler(ModEntities.SEAT.get(), SeatRenderer::new);
 
+    }
+
+    private static void registerScreenFactories()
+    {
         ScreenManager.registerFactory(ModContainers.CRATE.get(), CrateScreen::new);
         ScreenManager.registerFactory(ModContainers.POST_BOX.get(), PostBoxScreen::new);
         ScreenManager.registerFactory(ModContainers.MAIL_BOX.get(), MailBoxScreen::new);
         ScreenManager.registerFactory(ModContainers.FREEZER.get(), FreezerScreen::new);
+    }
 
-        Predicate<RenderType> leavesPredicate = renderType -> this.useFancyGraphics() ? renderType == RenderType.getCutoutMipped() : renderType == RenderType.getSolid();
+    private static void registerLayers()
+    {
+        Predicate<RenderType> leavesPredicate = renderType -> useFancyGraphics() ? renderType == RenderType.getCutoutMipped() : renderType == RenderType.getSolid();
         RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_OAK.get(), leavesPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_SPRUCE.get(), leavesPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_BIRCH.get(), leavesPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_JUNGLE.get(), leavesPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_ACACIA.get(), leavesPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_DARK_OAK.get(), leavesPredicate);
-        
+
         Predicate<RenderType> cutoutPredicate = renderType -> renderType == RenderType.getCutout();
         RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE.get(), cutoutPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_WHITE.get(), cutoutPredicate);
@@ -92,25 +115,9 @@ public class ClientProxy extends CommonProxy
         RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_RED.get(), cutoutPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_BLACK.get(), cutoutPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.POST_BOX.get(), cutoutPredicate);
-
-        this.registerColors();
-
-        if(!ModList.get().isLoaded("filters"))
-        {
-            MinecraftForge.EVENT_BUS.register(new CreativeScreenEvents());
-        }
-        else
-        {
-            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "general"), new ItemStack(ModBlocks.CHAIR_OAK));
-            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "storage"), new ItemStack(ModBlocks.CABINET_OAK));
-            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "bedroom"), new ItemStack(ModBlocks.DESK_OAK));
-            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "outdoors"), new ItemStack(ModBlocks.MAIL_BOX_OAK));
-            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "kitchen"), new ItemStack(ModBlocks.KITCHEN_COUNTER_CYAN));
-            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "items"), new ItemStack(ModItems.SPATULA));
-        }
     }
 
-    private void registerColors()
+    private static void registerColors()
     {
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0xCCCCCC : 0,
                 ModBlocks.PICKET_FENCE_WHITE.get(),
@@ -325,44 +332,13 @@ public class ClientProxy extends CommonProxy
         }, ModBlocks.TRAMPOLINE.get());
     }
 
-    @Override
-    public void updateMailBoxes(CompoundNBT compound)
-    {
-        if(Minecraft.getInstance().currentScreen instanceof PostBoxScreen)
-        {
-            if(compound.contains("MailBoxes", Constants.NBT.TAG_LIST))
-            {
-                List<MailBoxEntry> entries = new ArrayList<>();
-                ListNBT mailBoxList = compound.getList("MailBoxes", Constants.NBT.TAG_COMPOUND);
-                mailBoxList.forEach(nbt -> entries.add(new MailBoxEntry((CompoundNBT) nbt)));
-                ((PostBoxScreen) Minecraft.getInstance().currentScreen).updateMailBoxes(entries);
-            }
-        }
-    }
-
-    @Override
-    public boolean useFancyGraphics()
+    private static boolean useFancyGraphics()
     {
         Minecraft mc = Minecraft.getInstance();
         return mc.gameSettings.graphicFanciness.func_238162_a_() > 0;
     }
 
-    @Override
-    public void setGrillFlipping(BlockPos pos, int position)
-    {
-        Minecraft minecraft = Minecraft.getInstance();
-        if(minecraft.world != null)
-        {
-            TileEntity tileEntity = minecraft.world.getTileEntity(pos);
-            if(tileEntity instanceof GrillTileEntity)
-            {
-                ((GrillTileEntity) tileEntity).setFlipping(position);
-            }
-        }
-    }
-
-    @Override
-    public void showDoorMatScreen(World world, BlockPos pos)
+    public static void showDoorMatScreen(World world, BlockPos pos)
     {
         TileEntity tileEntity = world.getTileEntity(pos);
         if(tileEntity instanceof DoorMatTileEntity)

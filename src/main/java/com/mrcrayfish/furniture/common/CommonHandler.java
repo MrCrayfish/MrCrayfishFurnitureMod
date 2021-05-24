@@ -1,21 +1,19 @@
-package com.mrcrayfish.furniture.proxy;
+package com.mrcrayfish.furniture.common;
 
 import com.mrcrayfish.furniture.core.ModItems;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.tileentity.GrillTileEntity;
 import net.minecraft.block.DispenserBlock;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 /**
  * Author: MrCrayfish
  */
-public class CommonProxy
+public class CommonHandler
 {
-    public void onSetupCommon()
+    public static void setup()
     {
         PacketHandler.init();
         DispenserBlock.registerDispenseBehavior(ModItems.SPATULA::get, (source, stack) ->
@@ -30,17 +28,4 @@ public class CommonProxy
             return stack;
         });
     }
-
-    public void onSetupClient() {}
-
-    public void updateMailBoxes(CompoundNBT nbt) {}
-
-    public boolean useFancyGraphics()
-    {
-        return false;
-    }
-
-    public void setGrillFlipping(BlockPos pos, int position) {}
-
-    public void showDoorMatScreen(World world, BlockPos pos) {}
 }

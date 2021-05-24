@@ -1,6 +1,6 @@
 package com.mrcrayfish.furniture.item;
 
-import com.mrcrayfish.furniture.FurnitureMod;
+import com.mrcrayfish.furniture.client.ClientHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -27,7 +27,7 @@ public class DoorMatItem extends BlockItem
         boolean placedTileEntity = super.onBlockPlaced(pos, worldIn, player, stack, state);
         if(worldIn.isRemote && !placedTileEntity && player != null)
         {
-            FurnitureMod.PROXY.showDoorMatScreen(worldIn, pos);
+            ClientHandler.showDoorMatScreen(worldIn, pos);
         }
         return placedTileEntity;
     }

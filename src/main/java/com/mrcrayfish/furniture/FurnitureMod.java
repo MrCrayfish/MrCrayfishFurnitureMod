@@ -1,5 +1,7 @@
 package com.mrcrayfish.furniture;
 
+import com.mrcrayfish.furniture.client.ClientHandler;
+import com.mrcrayfish.furniture.common.CommonHandler;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModContainers;
 import com.mrcrayfish.furniture.core.ModEntities;
@@ -13,13 +15,10 @@ import com.mrcrayfish.furniture.datagen.FluidTagGen;
 import com.mrcrayfish.furniture.datagen.ItemTagGen;
 import com.mrcrayfish.furniture.datagen.LootTableGen;
 import com.mrcrayfish.furniture.datagen.RecipeGen;
-import com.mrcrayfish.furniture.proxy.ClientProxy;
-import com.mrcrayfish.furniture.proxy.CommonProxy;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.ItemGroup;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -35,7 +34,6 @@ public class FurnitureMod
 {
     public static final Logger LOGGER = LogManager.getLogger(Reference.MOD_ID);
     public static final ItemGroup GROUP = new FurnitureGroup(Reference.MOD_ID);
-    public static final CommonProxy PROXY = DistExecutor.runForDist(() -> ClientProxy::new, () -> CommonProxy::new);
 
     public FurnitureMod()
     {
@@ -56,12 +54,12 @@ public class FurnitureMod
 
     private void onCommonSetup(FMLCommonSetupEvent event)
     {
-        PROXY.onSetupCommon();
+        CommonHandler.setup();
     }
 
     private void onClientSetup(FMLClientSetupEvent event)
     {
-        PROXY.onSetupClient();
+        ClientHandler.setup();
     }
 
     private void onDataSetup(GatherDataEvent event)

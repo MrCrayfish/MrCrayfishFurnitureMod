@@ -1,6 +1,6 @@
 package com.mrcrayfish.furniture.network.message;
 
-import com.mrcrayfish.furniture.FurnitureMod;
+import com.mrcrayfish.furniture.client.ClientPlayHandler;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.network.NetworkEvent;
@@ -39,7 +39,17 @@ public class MessageFlipGrill implements IMessage<MessageFlipGrill>
     @Override
     public void handle(MessageFlipGrill message, Supplier<NetworkEvent.Context> supplier)
     {
-        supplier.get().enqueueWork(() -> FurnitureMod.PROXY.setGrillFlipping(message.pos, message.position));
+        supplier.get().enqueueWork(() -> ClientPlayHandler.handleFlipGrillMessage(this));
         supplier.get().setPacketHandled(true);
+    }
+
+    public BlockPos getPos()
+    {
+        return this.pos;
+    }
+
+    public int getPosition()
+    {
+        return this.position;
     }
 }
