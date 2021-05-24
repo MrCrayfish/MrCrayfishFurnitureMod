@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.block;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.tileentity.DeskCabinetTileEntity;
+import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
@@ -24,6 +25,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -42,7 +45,37 @@ public class DeskCabinetBlock extends DeskBlock implements ISidedInventoryProvid
     @Override
     protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
     {
-        return super.generateShapes(states);
+        final VoxelShape[] DESK_TOP = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 14, 0, 16, 16, 16), Direction.SOUTH));
+        final VoxelShape[] DESK_BACK = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 2, 1, 16, 14, 3), Direction.SOUTH));
+        final VoxelShape[] DESK_LEFT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 0, 0, 2, 14, 15), Direction.SOUTH));
+        final VoxelShape[] DESK_RIGHT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(14, 0, 0, 16, 14, 15), Direction.SOUTH));
+        final VoxelShape[] DESK_DRAWS = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(2, 2, 3, 14, 14, 15), Direction.SOUTH));
+
+        ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
+        for(BlockState state : states)
+        {
+            Direction direction = state.get(DIRECTION);
+            Type type = state.get(TYPE);
+            List<VoxelShape> shapes = new ArrayList<>();
+            shapes.add(DESK_TOP[direction.getHorizontalIndex()]);
+            shapes.add(DESK_BACK[direction.getHorizontalIndex()]);
+            shapes.add(DESK_DRAWS[direction.getHorizontalIndex()]);
+            switch(type)
+            {
+                case SINGLE:
+                    shapes.add(DESK_LEFT[direction.getHorizontalIndex()]);
+                    shapes.add(DESK_RIGHT[direction.getHorizontalIndex()]);
+                    break;
+                case LEFT:
+                    shapes.add(DESK_LEFT[direction.getHorizontalIndex()]);
+                    break;
+                case RIGHT:
+                    shapes.add(DESK_RIGHT[direction.getHorizontalIndex()]);
+                    break;
+            }
+            builder.put(state, VoxelShapeHelper.combineAll(shapes));
+        }
+        return builder.build();
     }
 
     @Override
