@@ -7,7 +7,7 @@
                 { "south": "false" },
                 { "west": "false" }
             ]},
-            "apply": { "model": "cfm:block/white_trampoline" }
+            "apply": { "model": "cfm:block/trampoline" }
         },
         {
             "when": { "AND": [
@@ -16,7 +16,7 @@
                 { "south": "false" },
                 { "west": "false" }
             ]},
-            "apply": { "model": "cfm:block/white_trampoline_n" }
+            "apply": { "model": "cfm:block/trampoline_n" }
         },
         {
             "when": { "AND": [
@@ -25,7 +25,7 @@
                 { "south": "false" },
                 { "west": "false" }
             ]},
-            "apply": { "model": "cfm:block/white_trampoline_e" }
+            "apply": { "model": "cfm:block/trampoline_e" }
         },
         {
             "when": { "AND": [
@@ -34,7 +34,7 @@
                 { "south": "true" },
                 { "west": "false" }
             ]},
-            "apply": { "model": "cfm:block/white_trampoline_s" }
+            "apply": { "model": "cfm:block/trampoline_s" }
         },
         {
             "when": { "AND": [
@@ -43,7 +43,7 @@
                 { "south": "false" },
                 { "west": "true" }
             ]},
-            "apply": { "model": "cfm:block/white_trampoline_w" }
+            "apply": { "model": "cfm:block/trampoline_w" }
         },
         {
             "when": { "AND": [
@@ -52,7 +52,7 @@
                 { "south": "false" },
                 { "west": "false" }
             ]},
-            "apply": { "model": "cfm:block/white_trampoline_ne" }
+            "apply": { "model": "cfm:block/trampoline_ne" }
         },
         {
             "when": { "AND": [
@@ -61,7 +61,7 @@
                 { "south": "false" },
                 { "west": "true" }
             ]},
-            "apply": { "model": "cfm:block/white_trampoline_nw" }
+            "apply": { "model": "cfm:block/trampoline_nw" }
         },
         {
             "when": { "AND": [
@@ -70,7 +70,7 @@
                 { "south": "true" },
                 { "west": "false" }
             ]},
-            "apply": { "model": "cfm:block/white_trampoline_es" }
+            "apply": { "model": "cfm:block/trampoline_es" }
         },
         {
             "when": { "AND": [
@@ -79,7 +79,7 @@
                 { "south": "true" },
                 { "west": "true" }
             ]},
-            "apply": { "model": "cfm:block/white_trampoline_sw" }
+            "apply": { "model": "cfm:block/trampoline_sw" }
         },
         {
             "when": { "AND": [
@@ -88,7 +88,7 @@
                 { "south": "true" },
                 { "west": "false" }
             ]},
-            "apply": { "model": "cfm:block/white_trampoline_ns" }
+            "apply": { "model": "cfm:block/trampoline_ns" }
         },
         {
             "when": { "AND": [
@@ -97,7 +97,7 @@
                 { "south": "false" },
                 { "west": "true" }
             ]},
-            "apply": { "model": "cfm:block/white_trampoline_ew" }
+            "apply": { "model": "cfm:block/trampoline_ew" }
         },
         {
             "when": { "AND": [
@@ -106,7 +106,7 @@
                 { "south": "true" },
                 { "west": "true" }
             ]},
-            "apply": { "model": "cfm:block/white_trampoline_new_alt", "y": 270 }
+            "apply": { "model": "cfm:block/trampoline_new_alt", "y": 270 }
         },
         {
             "when": { "AND": [
@@ -115,7 +115,7 @@
                 { "south": "true" },
                 { "west": "false" }
             ]},
-            "apply": { "model": "cfm:block/white_trampoline_new_alt", "y": 90 }
+            "apply": { "model": "cfm:block/trampoline_new_alt", "y": 90 }
         },
         {
             "when": { "AND": [
@@ -124,7 +124,7 @@
                 { "south": "false" },
                 { "west": "true" }
             ]},
-            "apply": { "model": "cfm:block/white_trampoline_new", "y": 0 }
+            "apply": { "model": "cfm:block/trampoline_new", "y": 0 }
         },
         {
             "when": { "AND": [
@@ -133,7 +133,7 @@
                 { "south": "true" },
                 { "west": "true" }
             ]},
-            "apply": { "model": "cfm:block/white_trampoline_new", "y": 180 }
+            "apply": { "model": "cfm:block/trampoline_new", "y": 180 }
         },
         {
             "when": { "AND": [
@@ -142,23 +142,23 @@
                 { "south": "true" },
                 { "west": "true" }
             ]},
-            "apply": { "model": "cfm:block/white_trampoline_nesw" }
+            "apply": { "model": "cfm:block/trampoline_nesw" }
         },
         {
             "when": { "corner_north_west": "true" },
-            "apply": { "model": "cfm:block/white_trampoline_corner_nw" }
+            "apply": { "model": "cfm:block/trampoline_corner_nw" }
         },
         {
             "when": { "corner_north_east": "true" },
-            "apply": { "model": "cfm:block/white_trampoline_corner_ne" }
+            "apply": { "model": "cfm:block/trampoline_corner_ne" }
         },
         {
             "when": { "corner_south_east": "true" },
-            "apply": { "model": "cfm:block/white_trampoline_corner_se" }
+            "apply": { "model": "cfm:block/trampoline_corner_se" }
         },
         {
             "when": { "corner_south_west": "true" },
-            "apply": { "model": "cfm:block/white_trampoline_corner_sw" }
+            "apply": { "model": "cfm:block/trampoline_corner_sw" }
         }
     ]
 }

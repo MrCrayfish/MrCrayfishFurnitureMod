@@ -1,7 +1,7 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
     "textures": {
-        "padding": "minecraft:block/blue_concrete",
+        "padding": "minecraft:block/white_concrete",
         "frame": "minecraft:block/light_gray_concrete"
     },
     "elements": [
