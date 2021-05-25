@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:block/stripped_upgraded_gate_left_open",
+    "textures": {
+        "hinge": "minecraft:block/warped_stem",
+        "pole": "minecraft:block/warped_planks",
+        "plank": "minecraft:block/stripped_warped_stem"
+    }
+}

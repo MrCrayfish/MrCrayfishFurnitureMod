@@ -1,0 +1,9 @@
+{
+    "parent": "cfm:block/bedside_cabinet_open",
+    "textures": {
+        "base": "minecraft:block/stripped_crimson_stem",
+        "top": "minecraft:block/stripped_crimson_stem",
+        "draw": "minecraft:block/stripped_crimson_stem",
+        "draw_front": "minecraft:block/crimson_stem"
+    }
+}

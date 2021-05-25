@@ -1,0 +1,132 @@
+{
+    "variants": {
+        "facing=north,type=single,open=false": {
+            "y": 0,
+            "model": "cfm:block/crimson_desk_cabinet_single_closed"
+        },
+        "facing=north,type=single,open=true": {
+            "y": 0,
+            "model": "cfm:block/crimson_desk_cabinet_single_open"
+        },
+        "facing=east,type=single,open=false": {
+            "y": 90,
+            "model": "cfm:block/crimson_desk_cabinet_single_closed"
+        },
+        "facing=east,type=single,open=true": {
+            "y": 90,
+            "model": "cfm:block/crimson_desk_cabinet_single_open"
+        },
+        "facing=south,type=single,open=false": {
+            "y": 180,
+            "model": "cfm:block/crimson_desk_cabinet_single_closed"
+        },
+        "facing=south,type=single,open=true": {
+            "y": 180,
+            "model": "cfm:block/crimson_desk_cabinet_single_open"
+        },
+        "facing=west,type=single,open=false": {
+            "y": 270,
+            "model": "cfm:block/crimson_desk_cabinet_single_closed"
+        },
+        "facing=west,type=single,open=true": {
+            "y": 270,
+            "model": "cfm:block/crimson_desk_cabinet_single_open"
+        },
+        "facing=north,type=left,open=false": {
+            "y": 0,
+            "model": "cfm:block/crimson_desk_cabinet_left_closed"
+        },
+        "facing=north,type=left,open=true": {
+            "y": 0,
+            "model": "cfm:block/crimson_desk_cabinet_left_open"
+        },
+        "facing=east,type=left,open=false": {
+            "y": 90,
+            "model": "cfm:block/crimson_desk_cabinet_left_closed"
+        },
+        "facing=east,type=left,open=true": {
+            "y": 90,
+            "model": "cfm:block/crimson_desk_cabinet_left_open"
+        },
+        "facing=south,type=left,open=false": {
+            "y": 180,
+            "model": "cfm:block/crimson_desk_cabinet_left_closed"
+        },
+        "facing=south,type=left,open=true": {
+            "y": 180,
+            "model": "cfm:block/crimson_desk_cabinet_left_open"
+        },
+        "facing=west,type=left,open=false": {
+            "y": 270,
+            "model": "cfm:block/crimson_desk_cabinet_left_closed"
+        },
+        "facing=west,type=left,open=true": {
+            "y": 270,
+            "model": "cfm:block/crimson_desk_cabinet_left_open"
+        },
+        "facing=north,type=right,open=false": {
+            "y": 0,
+            "model": "cfm:block/crimson_desk_cabinet_right_closed"
+        },
+        "facing=north,type=right,open=true": {
+            "y": 0,
+            "model": "cfm:block/crimson_desk_cabinet_right_open"
+        },
+        "facing=east,type=right,open=false": {
+            "y": 90,
+            "model": "cfm:block/crimson_desk_cabinet_right_closed"
+        },
+        "facing=east,type=right,open=true": {
+            "y": 90,
+            "model": "cfm:block/crimson_desk_cabinet_right_open"
+        },
+        "facing=south,type=right,open=false": {
+            "y": 180,
+            "model": "cfm:block/crimson_desk_cabinet_right_closed"
+        },
+        "facing=south,type=right,open=true": {
+            "y": 180,
+            "model": "cfm:block/crimson_desk_cabinet_right_open"
+        },
+        "facing=west,type=right,open=false": {
+            "y": 270,
+            "model": "cfm:block/crimson_desk_cabinet_right_closed"
+        },
+        "facing=west,type=right,open=true": {
+            "y": 270,
+            "model": "cfm:block/crimson_desk_cabinet_right_open"
+        },
+        "facing=north,type=middle,open=false": {
+            "y": 0,
+            "model": "cfm:block/crimson_desk_cabinet_middle_closed"
+        },
+        "facing=north,type=middle,open=true": {
+            "y": 0,
+            "model": "cfm:block/crimson_desk_cabinet_middle_open"
+        },
+        "facing=east,type=middle,open=false": {
+            "y": 90,
+            "model": "cfm:block/crimson_desk_cabinet_middle_closed"
+        },
+        "facing=east,type=middle,open=true": {
+            "y": 90,
+            "model": "cfm:block/crimson_desk_cabinet_middle_open"
+        },
+        "facing=south,type=middle,open=false": {
+            "y": 180,
+            "model": "cfm:block/crimson_desk_cabinet_middle_closed"
+        },
+        "facing=south,type=middle,open=true": {
+            "y": 180,
+            "model": "cfm:block/crimson_desk_cabinet_middle_open"
+        },
+        "facing=west,type=middle,open=false": {
+            "y": 270,
+            "model": "cfm:block/crimson_desk_cabinet_middle_closed"
+        },
+        "facing=west,type=middle,open=true": {
+            "y": 270,
+            "model": "cfm:block/crimson_desk_cabinet_middle_open"
+        }
+    }
+}

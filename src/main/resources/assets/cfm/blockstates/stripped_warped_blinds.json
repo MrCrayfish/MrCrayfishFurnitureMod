@@ -1,0 +1,68 @@
+{
+    "variants": {
+        "extension=false,facing=north,open=false": {
+            "model": "cfm:block/stripped_warped_blinds_closed",
+            "y": 0
+        },
+        "extension=true,facing=north,open=false": {
+            "model": "cfm:block/stripped_warped_blinds_extension_closed",
+            "y": 0
+        },
+        "extension=false,facing=north,open=true": {
+            "model": "cfm:block/stripped_warped_blinds_open",
+            "y": 0
+        },
+        "extension=true,facing=north,open=true": {
+            "model": "cfm:block/stripped_warped_blinds_extension_open",
+            "y": 0
+        },
+        "extension=false,facing=east,open=false": {
+            "model": "cfm:block/stripped_warped_blinds_closed",
+            "y": 90
+        },
+        "extension=true,facing=east,open=false": {
+            "model": "cfm:block/stripped_warped_blinds_extension_closed",
+            "y": 90
+        },
+        "extension=false,facing=east,open=true": {
+            "model": "cfm:block/stripped_warped_blinds_open",
+            "y": 90
+        },
+        "extension=true,facing=east,open=true": {
+            "model": "cfm:block/stripped_warped_blinds_extension_open",
+            "y": 90
+        },
+        "extension=false,facing=south,open=false": {
+            "model": "cfm:block/stripped_warped_blinds_closed",
+            "y": 180
+        },
+        "extension=true,facing=south,open=false": {
+            "model": "cfm:block/stripped_warped_blinds_extension_closed",
+            "y": 180
+        },
+        "extension=false,facing=south,open=true": {
+            "model": "cfm:block/stripped_warped_blinds_open",
+            "y": 180
+        },
+        "extension=true,facing=south,open=true": {
+            "model": "cfm:block/stripped_warped_blinds_extension_open",
+            "y": 180
+        },
+        "extension=false,facing=west,open=false": {
+            "model": "cfm:block/stripped_warped_blinds_closed",
+            "y": 270
+        },
+        "extension=true,facing=west,open=false": {
+            "model": "cfm:block/stripped_warped_blinds_extension_closed",
+            "y": 270
+        },
+        "extension=false,facing=west,open=true": {
+            "model": "cfm:block/stripped_warped_blinds_open",
+            "y": 270
+        },
+        "extension=true,facing=west,open=true": {
+            "model": "cfm:block/stripped_warped_blinds_extension_open",
+            "y": 270
+        }
+    }
+}

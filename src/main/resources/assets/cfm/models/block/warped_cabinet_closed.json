@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/cabinet_closed",
+    "textures": {
+        "door": "block/warped_stem",
+        "base": "block/warped_planks"
+    }
+}

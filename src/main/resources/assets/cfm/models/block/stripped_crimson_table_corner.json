@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/table_corner",
+    "textures": {
+        "top": "block/stripped_crimson_stem",
+        "legs": "block/crimson_stem"
+    }
+}

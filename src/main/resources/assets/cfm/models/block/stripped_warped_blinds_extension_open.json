@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/blinds_extension_open",
+    "textures": {
+        "slat": "minecraft:block/warped_planks",
+        "cord": "minecraft:block/warped_stem"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/kitchen_sink",
+    "textures": {
+        "base": "minecraft:block/stripped_warped_stem",
+        "sink": "minecraft:block/white_concrete"
+    }
+}

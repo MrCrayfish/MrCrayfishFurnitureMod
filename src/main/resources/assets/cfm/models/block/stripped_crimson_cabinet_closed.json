@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/cabinet_closed",
+    "textures": {
+        "door": "block/crimson_stem",
+        "base": "block/stripped_crimson_stem"
+    }
+}

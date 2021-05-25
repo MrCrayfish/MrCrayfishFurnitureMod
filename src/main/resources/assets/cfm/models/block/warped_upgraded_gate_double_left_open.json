@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:block/upgraded_gate_double_left_open",
+    "textures": {
+        "hinge": "minecraft:block/light_gray_concrete",
+        "pole": "minecraft:block/warped_stem",
+        "plank": "minecraft:block/warped_planks"
+    }
+}

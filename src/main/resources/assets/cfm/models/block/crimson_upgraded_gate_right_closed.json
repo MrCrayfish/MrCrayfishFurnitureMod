@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:block/upgraded_gate_right_closed",
+    "textures": {
+        "hinge": "minecraft:block/light_gray_concrete",
+        "pole": "minecraft:block/crimson_stem",
+        "plank": "minecraft:block/crimson_planks"
+    }
+}

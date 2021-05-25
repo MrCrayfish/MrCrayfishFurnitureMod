@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/coffee_table_short_two",
+    "textures": {
+        "top": "block/warped_stem",
+        "legs": "block/stripped_warped_stem"
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "variants": {
+        "facing=north,open=true": {
+            "model": "cfm:block/stripped_warped_bedside_cabinet_open",
+            "y": 0
+        },
+        "facing=north,open=false": {
+            "model": "cfm:block/stripped_warped_bedside_cabinet_closed",
+            "y": 0
+        },
+        "facing=east,open=true": {
+            "model": "cfm:block/stripped_warped_bedside_cabinet_open",
+            "y": 90
+        },
+        "facing=east,open=false": {
+            "model": "cfm:block/stripped_warped_bedside_cabinet_closed",
+            "y": 90
+        },
+        "facing=south,open=true": {
+            "model": "cfm:block/stripped_warped_bedside_cabinet_open",
+            "y": 180
+        },
+        "facing=south,open=false": {
+            "model": "cfm:block/stripped_warped_bedside_cabinet_closed",
+            "y": 180
+        },
+        "facing=west,open=true": {
+            "model": "cfm:block/stripped_warped_bedside_cabinet_open",
+            "y": 270
+        },
+        "facing=west,open=false": {
+            "model": "cfm:block/stripped_warped_bedside_cabinet_closed",
+            "y": 270
+        }
+    }
+}

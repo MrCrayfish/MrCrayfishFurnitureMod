@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/chair",
+    "textures": {
+        "seat": "block/stripped_crimson_stem",
+        "legs": "block/crimson_stem"
+    }
+}

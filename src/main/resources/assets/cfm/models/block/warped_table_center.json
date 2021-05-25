@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/table_center",
+    "textures": {
+        "top": "block/warped_stem",
+        "legs": "block/stripped_warped_stem"
+    }
+}

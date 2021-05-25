@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/kitchen_sink",
+    "textures": {
+        "base": "minecraft:block/stripped_crimson_stem",
+        "sink": "minecraft:block/gray_concrete"
+    }
+}

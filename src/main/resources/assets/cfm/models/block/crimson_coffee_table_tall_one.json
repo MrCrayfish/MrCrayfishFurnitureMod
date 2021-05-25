@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/coffee_table_tall_one",
+    "textures": {
+        "top": "block/crimson_stem",
+        "legs": "block/stripped_crimson_stem"
+    }
+}

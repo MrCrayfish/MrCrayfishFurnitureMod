@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/blinds_extension_open",
+    "textures": {
+        "slat": "minecraft:block/crimson_planks",
+        "cord": "minecraft:block/crimson_stem"
+    }
+}

@@ -1,0 +1,10 @@
+{
+    "parent": "cfm:block/desk_cabinet_single_open",
+    "textures": {
+        "top": "block/warped_stem",
+        "base": "block/warped_planks",
+        "draw": "block/stripped_warped_stem",
+        "draw_front": "block/warped_stem",
+        "legs": "block/warped_planks"
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/chair",
+    "textures": {
+        "seat": "minecraft:block/warped_stem",
+        "legs": "minecraft:block/stripped_warped_stem"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "parent": "cfm:block/bedside_cabinet_open",
+    "textures": {
+        "base": "minecraft:block/warped_planks",
+        "top": "minecraft:block/warped_stem",
+        "draw": "minecraft:block/stripped_warped_stem",
+        "draw_front": "minecraft:block/warped_stem"
+    }
+}

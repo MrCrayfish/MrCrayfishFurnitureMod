@@ -1,0 +1,41 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "OR": [
+                    { "north": "false", "east": "false", "south": "false", "west": "false" },
+                    { "north": "true", "east": "false", "south": "false", "west": "false" },
+                    { "north": "false", "east": "true", "south": "false", "west": "false" },
+                    { "north": "false", "east": "false", "south": "true", "west": "false" },
+                    { "north": "false", "east": "false", "south": "false", "west": "true" },
+                    { "north": "true", "east": "true", "south": "false", "west": "false" },
+                    { "north": "true", "east": "false", "south": "false", "west": "true" },
+                    { "north": "false", "east": "true", "south": "true", "west": "false" },
+                    { "north": "false", "east": "false", "south": "true", "west": "true" },
+                    { "north": "true", "east": "true", "south": "true", "west": "false" },
+                    { "north": "true", "east": "true", "south": "false", "west": "true" },
+                    { "north": "true", "east": "false", "south": "true", "west": "true" },
+                    { "north": "false", "east": "true", "south": "true", "west": "true" },
+                    { "north": "true", "east": "true", "south": "true", "west": "true" }
+                ]
+            },
+            "apply": { "model": "cfm:block/warped_upgraded_fence_post" }
+        },
+        {
+            "when": { "north": "true" },
+            "apply": { "model": "cfm:block/warped_upgraded_fence_side", "y": 90 }
+        },
+        {
+            "when": { "east": "true" },
+            "apply": { "model": "cfm:block/warped_upgraded_fence_side", "y": 180 }
+        },
+        {
+            "when": { "south": "true" },
+            "apply": { "model": "cfm:block/warped_upgraded_fence_side", "y": 270 }
+        },
+        {
+            "when": { "west": "true" },
+            "apply": { "model": "cfm:block/warped_upgraded_fence_side", "y": 0 }
+        }
+    ]
+}

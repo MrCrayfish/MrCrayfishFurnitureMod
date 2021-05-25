@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:block/desk_cabinet_middle_closed",
+    "textures": {
+        "top": "block/warped_stem",
+        "base": "block/warped_planks",
+        "draw_front": "block/warped_stem"
+    }
+}

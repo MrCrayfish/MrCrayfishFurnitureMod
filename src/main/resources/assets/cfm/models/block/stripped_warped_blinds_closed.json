@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:block/blinds_closed",
+    "textures": {
+        "head_rail": "minecraft:block/stripped_warped_stem",
+        "slat": "minecraft:block/warped_planks",
+        "cord": "minecraft:block/warped_stem"
+    }
+}

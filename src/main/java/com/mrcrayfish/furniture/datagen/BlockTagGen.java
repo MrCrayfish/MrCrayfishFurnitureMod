@@ -48,12 +48,16 @@ public class BlockTagGen extends BlockTagsProvider
                 .add(ModBlocks.UPGRADED_FENCE_JUNGLE.get())
                 .add(ModBlocks.UPGRADED_FENCE_ACACIA.get())
                 .add(ModBlocks.UPGRADED_FENCE_DARK_OAK.get())
+                .add(ModBlocks.UPGRADED_FENCE_CRIMSON.get())
+                .add(ModBlocks.UPGRADED_FENCE_WARPED.get())
                 .add(ModBlocks.UPGRADED_FENCE_STRIPPED_OAK.get())
                 .add(ModBlocks.UPGRADED_FENCE_STRIPPED_SPRUCE.get())
                 .add(ModBlocks.UPGRADED_FENCE_STRIPPED_BIRCH.get())
                 .add(ModBlocks.UPGRADED_FENCE_STRIPPED_JUNGLE.get())
                 .add(ModBlocks.UPGRADED_FENCE_STRIPPED_ACACIA.get())
-                .add(ModBlocks.UPGRADED_FENCE_STRIPPED_DARK_OAK.get());
+                .add(ModBlocks.UPGRADED_FENCE_STRIPPED_DARK_OAK.get())
+                .add(ModBlocks.UPGRADED_FENCE_STRIPPED_CRIMSON.get())
+                .add(ModBlocks.UPGRADED_FENCE_STRIPPED_WARPED.get());
 
         // Picket fence gates connect to other picket fence gates
         this.getOrCreateBuilder(ModTags.Blocks.PICKET_FENCE_GATES)
@@ -83,12 +87,16 @@ public class BlockTagGen extends BlockTagsProvider
                 .add(ModBlocks.UPGRADED_GATE_JUNGLE.get())
                 .add(ModBlocks.UPGRADED_GATE_ACACIA.get())
                 .add(ModBlocks.UPGRADED_GATE_DARK_OAK.get())
+                .add(ModBlocks.UPGRADED_GATE_CRIMSON.get())
+                .add(ModBlocks.UPGRADED_GATE_WARPED.get())
                 .add(ModBlocks.UPGRADED_GATE_STRIPPED_OAK.get())
                 .add(ModBlocks.UPGRADED_GATE_STRIPPED_SPRUCE.get())
                 .add(ModBlocks.UPGRADED_GATE_STRIPPED_BIRCH.get())
                 .add(ModBlocks.UPGRADED_GATE_STRIPPED_JUNGLE.get())
                 .add(ModBlocks.UPGRADED_GATE_STRIPPED_ACACIA.get())
-                .add(ModBlocks.UPGRADED_GATE_STRIPPED_DARK_OAK.get());
+                .add(ModBlocks.UPGRADED_GATE_STRIPPED_DARK_OAK.get())
+                .add(ModBlocks.UPGRADED_GATE_STRIPPED_CRIMSON.get())
+                .add(ModBlocks.UPGRADED_GATE_STRIPPED_WARPED.get());
 
         this.getOrCreateBuilder(ModTags.Blocks.HEDGES)
                 .add(ModBlocks.HEDGE_OAK.get())
