@@ -841,7 +841,6 @@ public class RecipeGen extends RecipeProvider
 
     private static void trampoline(Consumer<IFinishedRecipe> recipeConsumer, String key, ItemStack trampoline, DyeColor color, IItemProvider wool)
     {
-        ConditionalRecipe.builder().addRecipe()
         CompoundNBT tag = new CompoundNBT();
         CompoundNBT blockEntityTag = new CompoundNBT();
         blockEntityTag.putInt("Color", color.getId());
