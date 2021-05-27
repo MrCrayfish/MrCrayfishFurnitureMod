@@ -13,6 +13,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.inventory.CreativeScreen;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
@@ -250,7 +251,7 @@ public class CreativeScreenEvents
         NonNullList<ItemStack> newItems = NonNullList.create();
         for(Item item : categorisedItems)
         {
-            item.fillItemGroup(FurnitureMod.GROUP, newItems);
+            item.fillItemGroup(ItemGroup.SEARCH, newItems);
         }
 
         container.itemList.clear();
