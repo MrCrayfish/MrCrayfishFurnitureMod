@@ -26,7 +26,9 @@ import org.lwjgl.glfw.GLFW;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Author: MrCrayfish
@@ -236,19 +238,23 @@ public class CreativeScreenEvents
     private void updateItems(CreativeScreen screen)
     {
         CreativeScreen.CreativeContainer container = screen.getContainer();
-        NonNullList<ItemStack> categorisedItems = NonNullList.create();
+        LinkedHashSet<Item> categorisedItems = new LinkedHashSet<>();
         for(TagFilter filter : this.filters)
         {
             if(filter.isEnabled())
             {
-                for(Item item : filter.getItems())
-                {
-                    item.fillItemGroup(FurnitureMod.GROUP, categorisedItems);
-                }
+                categorisedItems.addAll(filter.getItems());
             }
         }
+
+        NonNullList<ItemStack> newItems = NonNullList.create();
+        for(Item item : categorisedItems)
+        {
+            item.fillItemGroup(FurnitureMod.GROUP, newItems);
+        }
+
         container.itemList.clear();
-        container.itemList.addAll(categorisedItems);
+        container.itemList.addAll(newItems);
         container.itemList.sort(Comparator.comparingInt(o -> Item.getIdFromItem(o.getItem())));
         container.scrollTo(0);
     }
