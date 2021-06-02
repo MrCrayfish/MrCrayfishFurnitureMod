@@ -13,8 +13,6 @@ logoFile="furniture.png"
 credits="The people who helped me when I first started creating mods. I wouldn't be here without them!"
 authors="MrCrayfish"
 description="MrCrayfish's Furniture Mod is all about adding functioning furniture and decorations. This mod currently adds over eighty unique blocks and is continuely growing with new updates."
-itemIcon="cfm:stripped_oak_chair"
-configBackground="minecraft:textures/block/stripped_oak_log.png"
 
 [[dependencies.cfm]]
     modId="forge"
@@ -28,3 +26,7 @@ configBackground="minecraft:textures/block/stripped_oak_log.png"
     versionRange="[1.16.3,)"
     ordering="NONE"
     side="BOTH"
+
+[modproperties.cfm]
+    catalogueItemIcon="cfm:stripped_oak_chair"
+    configuredBackground="minecraft:textures/block/stripped_oak_log.png"
