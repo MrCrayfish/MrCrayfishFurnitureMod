@@ -5,6 +5,7 @@ import com.mrcrayfish.furniture.common.ModTags;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 /**
@@ -105,5 +106,11 @@ public class BlockTagGen extends BlockTagsProvider
                 .add(ModBlocks.HEDGE_JUNGLE.get())
                 .add(ModBlocks.HEDGE_ACACIA.get())
                 .add(ModBlocks.HEDGE_DARK_OAK.get());
+
+        this.getOrCreateBuilder(BlockTags.FENCES)
+                .addTag(ModTags.Blocks.UPGRADED_FENCES);
+
+        this.getOrCreateBuilder(BlockTags.FENCE_GATES)
+                .addTag(ModTags.Blocks.UPGRADED_FENCE_GATES);
     }
 }
