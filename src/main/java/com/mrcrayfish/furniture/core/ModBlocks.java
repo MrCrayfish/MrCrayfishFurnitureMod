@@ -472,10 +472,10 @@ public class ModBlocks
     public static final RegistryObject<Block> KITCHEN_SINK_GREEN = register("green_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS), false));
     public static final RegistryObject<Block> KITCHEN_SINK_RED = register("red_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS), false));
     public static final RegistryObject<Block> KITCHEN_SINK_BLACK = register("black_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS), false));
-    public static final RegistryObject<Block> FREEZER_LIGHT = register("freezer_light", new FreezerBlock(Block.Properties.from(Blocks.IRON_BLOCK), () -> ModBlocks.FRIDGE_LIGHT), (Supplier<BlockItem>) null);
-    public static final RegistryObject<Block> FRIDGE_LIGHT = register("fridge_light", new FridgeBlock(Block.Properties.from(Blocks.IRON_BLOCK), () -> ModBlocks.FREEZER_LIGHT), block -> new BlockSupplierItem(new Item.Properties().group(FurnitureMod.GROUP), block, ModBlocks.FREEZER_LIGHT));
-    public static final RegistryObject<Block> FREEZER_DARK = register("freezer_dark", new FreezerBlock(Block.Properties.from(Blocks.IRON_BLOCK), () -> ModBlocks.FRIDGE_DARK), (Supplier<BlockItem>) null);
-    public static final RegistryObject<Block> FRIDGE_DARK = register("fridge_dark", new FridgeBlock(Block.Properties.from(Blocks.IRON_BLOCK), () -> ModBlocks.FREEZER_DARK), block -> new BlockSupplierItem(new Item.Properties().group(FurnitureMod.GROUP), block, ModBlocks.FREEZER_DARK));
+    public static final RegistryObject<Block> FREEZER_LIGHT = register("freezer_light", new FreezerBlock(Block.Properties.from(Blocks.IRON_BLOCK).notSolid(), () -> ModBlocks.FRIDGE_LIGHT), (Supplier<BlockItem>) null);
+    public static final RegistryObject<Block> FRIDGE_LIGHT = register("fridge_light", new FridgeBlock(Block.Properties.from(Blocks.IRON_BLOCK).notSolid(), () -> ModBlocks.FREEZER_LIGHT), block -> new BlockSupplierItem(new Item.Properties().group(FurnitureMod.GROUP), block, ModBlocks.FREEZER_LIGHT));
+    public static final RegistryObject<Block> FREEZER_DARK = register("freezer_dark", new FreezerBlock(Block.Properties.from(Blocks.IRON_BLOCK).notSolid(), () -> ModBlocks.FRIDGE_DARK), (Supplier<BlockItem>) null);
+    public static final RegistryObject<Block> FRIDGE_DARK = register("fridge_dark", new FridgeBlock(Block.Properties.from(Blocks.IRON_BLOCK).notSolid(), () -> ModBlocks.FREEZER_DARK), block -> new BlockSupplierItem(new Item.Properties().group(FurnitureMod.GROUP), block, ModBlocks.FREEZER_DARK));
 
     private static RegistryObject<Block> register(String name, Block block)
     {
