@@ -6,9 +6,14 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.particles.ParticleTypes;
+import net.minecraft.potion.PotionUtils;
+import net.minecraft.potion.Potions;
+import net.minecraft.stats.Stats;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -89,13 +94,43 @@ public class KitchenSinkBlock extends FurnitureHorizontalBlock
     @Override
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
     {
-        if(!world.isRemote)
+        if(!world.isRemote())
         {
             ItemStack heldItem = playerEntity.getHeldItem(hand);
+            if(heldItem.getItem() == Items.GLASS_BOTTLE)
+            {
+                IFluidHandler handler = FluidUtil.getFluidHandler(world, pos, null).orElse(null);
+                if(handler.getFluidInTank(0).getAmount() > 0 && !world.isRemote())
+                {
+                    if(!playerEntity.abilities.isCreativeMode)
+                    {
+                        ItemStack waterPotion = PotionUtils.addPotionToItemStack(new ItemStack(Items.POTION), Potions.WATER);
+                        heldItem.shrink(1);
+                        if(heldItem.isEmpty())
+                        {
+                            playerEntity.setHeldItem(hand, waterPotion);
+                        }
+                        else if(!playerEntity.inventory.addItemStackToInventory(waterPotion))
+                        {
+                            playerEntity.dropItem(waterPotion, false);
+                        }
+                        else if(playerEntity instanceof ServerPlayerEntity)
+                        {
+                            ((ServerPlayerEntity) playerEntity).sendContainerToPlayer(playerEntity.container);
+                        }
+                    }
+
+                    world.playSound(null, pos, SoundEvents.ITEM_BOTTLE_FILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                    handler.drain(FluidAttributes.BUCKET_VOLUME, IFluidHandler.FluidAction.EXECUTE);
+                }
+                return ActionResultType.func_233537_a_(world.isRemote());
+            }
+
             if(!heldItem.isEmpty() && heldItem.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY).isPresent())
             {
                 return FluidUtil.interactWithFluidHandler(playerEntity, hand, world, pos, result.getFace()) ? ActionResultType.SUCCESS : ActionResultType.PASS;
             }
+
             BlockPos waterPos = pos.down().down();
             if(this.isWaterSource(world, waterPos))
             {
