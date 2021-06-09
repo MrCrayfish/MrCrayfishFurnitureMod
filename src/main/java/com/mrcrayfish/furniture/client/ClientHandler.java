@@ -119,7 +119,7 @@ public class ClientHandler
 
     private static void registerColors()
     {
-        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0xCCCCCC : 0,
+        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0xFFCCCCCC : 0xFFFFFFFF,
                 ModBlocks.PICKET_FENCE_WHITE.get(),
                 ModBlocks.PICKET_FENCE_ORANGE.get(),
                 ModBlocks.PICKET_FENCE_MAGENTA.get(),
@@ -155,7 +155,7 @@ public class ClientHandler
                 ModBlocks.POST_BOX.get()
         );
 
-        Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0xCCCCCC : 0,
+        Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0xCCCCCC : 0xFFFFFFFF,
                 ModBlocks.PICKET_FENCE_WHITE.get(),
                 ModBlocks.PICKET_FENCE_ORANGE.get(),
                 ModBlocks.PICKET_FENCE_MAGENTA.get(),
@@ -191,7 +191,7 @@ public class ClientHandler
                 ModBlocks.POST_BOX.get()
         );
 
-        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0xBBBBBB : 0,
+        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0xBBBBBB : 0xFFFFFFFF,
                 ModBlocks.CRATE_STRIPPED_OAK.get(),
                 ModBlocks.CRATE_STRIPPED_SPRUCE.get(),
                 ModBlocks.CRATE_STRIPPED_BIRCH.get(),
@@ -234,7 +234,7 @@ public class ClientHandler
                 ModBlocks.KITCHEN_SINK_DARK_STRIPPED_WARPED.get()
         );
 
-        Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0xBBBBBB : 0,
+        Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0xBBBBBB : 0xFFFFFFFF,
                 ModBlocks.CRATE_STRIPPED_OAK.get(),
                 ModBlocks.CRATE_STRIPPED_SPRUCE.get(),
                 ModBlocks.CRATE_STRIPPED_BIRCH.get(),
@@ -277,7 +277,7 @@ public class ClientHandler
                 ModBlocks.KITCHEN_SINK_DARK_STRIPPED_WARPED.get()
         );
 
-        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0x999999 : 0,
+        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0x999999 : 0xFFFFFFFF,
                 ModBlocks.PARK_BENCH_STRIPPED_OAK.get(),
                 ModBlocks.PARK_BENCH_STRIPPED_SPRUCE.get(),
                 ModBlocks.PARK_BENCH_STRIPPED_BIRCH.get(),
@@ -288,7 +288,7 @@ public class ClientHandler
                 ModBlocks.PARK_BENCH_STRIPPED_WARPED.get()
         );
 
-        Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0x999999 : 0,
+        Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0x999999 : 0xFFFFFFFF,
                 ModBlocks.PARK_BENCH_STRIPPED_OAK.get(),
                 ModBlocks.PARK_BENCH_STRIPPED_SPRUCE.get(),
                 ModBlocks.PARK_BENCH_STRIPPED_BIRCH.get(),
@@ -299,14 +299,14 @@ public class ClientHandler
                 ModBlocks.PARK_BENCH_STRIPPED_WARPED.get()
         );
 
-        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0xCCCCCC : 0,
+        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0xCCCCCC : 0xFFFFFFFF,
                 ModBlocks.FRIDGE_LIGHT.get(),
                 ModBlocks.FREEZER_LIGHT.get(),
                 ModBlocks.FRIDGE_DARK.get(),
                 ModBlocks.FREEZER_DARK.get()
         );
 
-        Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0xCCCCCC : 0,
+        Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0xCCCCCC : 0xFFFFFFFF,
                 ModBlocks.FRIDGE_LIGHT.get(),
                 ModBlocks.FREEZER_LIGHT.get(),
                 ModBlocks.FRIDGE_DARK.get(),
