@@ -914,7 +914,7 @@ public class RecipeGen extends RecipeProvider
                 .key('C', Blocks.WHITE_CONCRETE)
                 .setGroup("kitchen_counter")
                 .addCriterion("has_stone", hasItem(Blocks.TERRACOTTA))
-                .addCriterion("has_terracotta", hasItem(Blocks.WHITE_CONCRETE))
+                .addCriterion("has_concrete", hasItem(Blocks.WHITE_CONCRETE))
                 .build(recipeConsumer);
     }
 
@@ -940,13 +940,13 @@ public class RecipeGen extends RecipeProvider
                 .patternLine("SDS")
                 .patternLine("CBC")
                 .patternLine("CCC")
-                .key('S', Tags.Items.STONE)
+                .key('S', Blocks.TERRACOTTA)
                 .key('D', dye)
-                .key('C', Blocks.TERRACOTTA)
+                .key('C', Blocks.WHITE_CONCRETE)
                 .key('B', Tags.Items.CHESTS_WOODEN)
                 .setGroup("kitchen_drawer")
-                .addCriterion("has_stone", hasItem(Tags.Items.STONE))
                 .addCriterion("has_terracotta", hasItem(Blocks.TERRACOTTA))
+                .addCriterion("has_concrete", hasItem(Blocks.WHITE_CONCRETE))
                 .addCriterion("has_chest", hasItem(Tags.Items.CHESTS_WOODEN))
                 .build(recipeConsumer);
     }
@@ -976,11 +976,11 @@ public class RecipeGen extends RecipeProvider
                 .patternLine("PPP")
                 .key('C', top)
                 .key('I', Tags.Items.INGOTS_IRON)
-                .key('P', Tags.Items.STONE)
+                .key('P', Blocks.WHITE_CONCRETE)
                 .key('B', Items.BUCKET)
                 .setGroup("kitchen_sink")
                 .addCriterion("has_top", hasItem(top))
-                .addCriterion("has_stone", hasItem(Tags.Items.STONE))
+                .addCriterion("has_concrete", hasItem(Blocks.WHITE_CONCRETE))
                 .addCriterion("has_bucket", hasItem(Items.BUCKET))
                 .build(recipeConsumer);
     }
