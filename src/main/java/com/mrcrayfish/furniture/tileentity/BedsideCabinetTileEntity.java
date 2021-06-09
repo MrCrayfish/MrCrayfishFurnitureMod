@@ -10,6 +10,8 @@ import net.minecraft.inventory.container.ChestContainer;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.tileentity.ChestTileEntity;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.vector.Vector3i;
@@ -23,6 +25,11 @@ import net.minecraft.world.World;
 public class BedsideCabinetTileEntity extends BasicLootTileEntity
 {
     private int playerCount;
+
+    protected BedsideCabinetTileEntity(TileEntityType<?> type)
+    {
+        super(type);
+    }
 
     public BedsideCabinetTileEntity()
     {

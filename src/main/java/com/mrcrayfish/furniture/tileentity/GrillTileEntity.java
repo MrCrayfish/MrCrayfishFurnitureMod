@@ -23,6 +23,7 @@ import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
@@ -58,6 +59,11 @@ public class GrillTileEntity extends TileEntity implements IClearable, ITickable
     /* Used for animations on client only */
     private final boolean[] flipping = new boolean[4];
     private final int[] flippingCounter = new int[4];
+
+    protected GrillTileEntity(TileEntityType<?> type)
+    {
+        super(type);
+    }
 
     public GrillTileEntity()
     {

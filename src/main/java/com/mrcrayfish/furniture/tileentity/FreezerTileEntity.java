@@ -18,6 +18,7 @@ import net.minecraft.item.crafting.AbstractCookingRecipe;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.IIntArray;
 import net.minecraft.util.ResourceLocation;
@@ -98,6 +99,11 @@ public class FreezerTileEntity extends BasicLootTileEntity implements ITickableT
     };
 
     private final Map<ResourceLocation, Integer> usedRecipeCount = Maps.newHashMap();
+
+    protected FreezerTileEntity(TileEntityType<?> type)
+    {
+        super(type);
+    }
 
     public FreezerTileEntity()
     {

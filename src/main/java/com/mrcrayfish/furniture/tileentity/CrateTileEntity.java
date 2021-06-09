@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
@@ -37,6 +38,11 @@ public class CrateTileEntity extends BasicLootTileEntity
     private UUID ownerUuid;
     private boolean locked;
     private int playerCount;
+
+    protected CrateTileEntity(TileEntityType<?> type)
+    {
+        super(type);
+    }
 
     public CrateTileEntity()
     {

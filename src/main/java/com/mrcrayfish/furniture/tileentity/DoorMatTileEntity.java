@@ -7,6 +7,7 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
@@ -17,6 +18,11 @@ import javax.annotation.Nullable;
 public class DoorMatTileEntity extends TileEntity
 {
     private String message = null;
+
+    protected DoorMatTileEntity(TileEntityType<?> type)
+    {
+        super(type);
+    }
 
     public DoorMatTileEntity()
     {

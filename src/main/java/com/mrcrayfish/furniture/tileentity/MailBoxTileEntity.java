@@ -14,6 +14,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.ITickableTileEntity;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.util.Constants;
@@ -31,6 +32,11 @@ public class MailBoxTileEntity extends BasicLootTileEntity implements ITickableT
     private String name = "Mail Box";
     private String ownerName;
     private UUID ownerId;
+
+    protected MailBoxTileEntity(TileEntityType<?> type)
+    {
+        super(type);
+    }
 
     public MailBoxTileEntity()
     {
