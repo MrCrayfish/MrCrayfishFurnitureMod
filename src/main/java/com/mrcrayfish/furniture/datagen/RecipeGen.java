@@ -909,12 +909,12 @@ public class RecipeGen extends RecipeProvider
                 .patternLine("SDS")
                 .patternLine("CCC")
                 .patternLine("CCC")
-                .key('S', Tags.Items.STONE)
+                .key('S', Blocks.TERRACOTTA)
                 .key('D', dye)
-                .key('C', Blocks.TERRACOTTA)
+                .key('C', Blocks.WHITE_CONCRETE)
                 .setGroup("kitchen_counter")
-                .addCriterion("has_stone", hasItem(Tags.Items.STONE))
-                .addCriterion("has_terracotta", hasItem(Blocks.TERRACOTTA))
+                .addCriterion("has_stone", hasItem(Blocks.TERRACOTTA))
+                .addCriterion("has_terracotta", hasItem(Blocks.WHITE_CONCRETE))
                 .build(recipeConsumer);
     }
 
