@@ -278,9 +278,7 @@ public class FreezerTileEntity extends BasicLootTileEntity implements ITickableT
     public void setInventorySlotContents(int index, ItemStack stack)
     {
         super.setInventorySlotContents(index, stack);
-        ItemStack slotStack = this.inventory.get(index);
-        boolean sameItem = !stack.isEmpty() && stack.isItemEqual(slotStack) && ItemStack.areItemStackTagsEqual(stack, slotStack);
-        if(index == 0 && !sameItem)
+        if(index == 0)
         {
             this.freezeTimeTotal = this.getFreezeTime();
             this.freezeTime = 0;
