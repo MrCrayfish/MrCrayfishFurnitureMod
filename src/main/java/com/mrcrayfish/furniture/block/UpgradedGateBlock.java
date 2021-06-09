@@ -12,6 +12,7 @@ import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.state.properties.DoorHingeSide;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -35,8 +36,9 @@ import java.util.List;
 public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
 {
     public static final EnumProperty<DoorHingeSide> HINGE = EnumProperty.create("hinge", DoorHingeSide.class);
-    public static final BooleanProperty OPEN = BooleanProperty.create("open");
+    public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
     public static final BooleanProperty DOUBLE = BooleanProperty.create("double");
+    public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
     public final ImmutableMap<BlockState, VoxelShape> COLLISION_SHAPES;
@@ -304,6 +306,7 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
         builder.add(HINGE);
         builder.add(OPEN);
         builder.add(DOUBLE);
+        builder.add(POWERED);
     }
 
     @Nullable
@@ -311,5 +314,22 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
     public PathNodeType getAiPathNodeType(BlockState state, IBlockReader world, BlockPos pos, @Nullable MobEntity entity)
     {
         return !state.get(OPEN) ? PathNodeType.FENCE : PathNodeType.OPEN;
+    }
+
+    @Override
+    public void neighborChanged(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving)
+    {
+        if(!world.isRemote())
+        {
+            boolean powered = world.isBlockPowered(pos);
+            if(state.get(POWERED) != powered)
+            {
+                world.setBlockState(pos, state.with(POWERED, powered).with(OPEN, powered), 2);
+                if(state.get(OPEN) != powered)
+                {
+                    world.playEvent(null, powered ? 1008 : 1014, pos, 0);
+                }
+            }
+        }
     }
 }
