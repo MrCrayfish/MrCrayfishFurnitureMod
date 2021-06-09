@@ -257,7 +257,14 @@ public class FreezerTileEntity extends BasicLootTileEntity implements ITickableT
                 this.addRecipeUsed(recipe);
             }
 
-            sourceStack.shrink(1);
+            if(sourceStack.hasContainerItem())
+            {
+                this.inventory.set(0, sourceStack.getContainerItem());
+            }
+            else
+            {
+                sourceStack.shrink(1);
+            }
         }
     }
 
