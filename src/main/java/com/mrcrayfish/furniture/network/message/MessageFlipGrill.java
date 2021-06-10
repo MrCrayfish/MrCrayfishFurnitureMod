@@ -39,7 +39,7 @@ public class MessageFlipGrill implements IMessage<MessageFlipGrill>
     @Override
     public void handle(MessageFlipGrill message, Supplier<NetworkEvent.Context> supplier)
     {
-        supplier.get().enqueueWork(() -> ClientPlayHandler.handleFlipGrillMessage(this));
+        supplier.get().enqueueWork(() -> ClientPlayHandler.handleFlipGrillMessage(message));
         supplier.get().setPacketHandled(true);
     }
 
