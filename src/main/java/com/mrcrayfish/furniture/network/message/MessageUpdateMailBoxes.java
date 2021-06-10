@@ -37,7 +37,7 @@ public class MessageUpdateMailBoxes implements IMessage<MessageUpdateMailBoxes>
     @Override
     public void handle(MessageUpdateMailBoxes message, Supplier<NetworkEvent.Context> supplier)
     {
-        supplier.get().enqueueWork(() -> ClientPlayHandler.handleUpdateMailboxesMessage(this));
+        supplier.get().enqueueWork(() -> ClientPlayHandler.handleUpdateMailboxesMessage(message));
         supplier.get().setPacketHandled(true);
     }
 
