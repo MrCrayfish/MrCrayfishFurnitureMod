@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.mrcrayfish.furniture.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "minVersion": "0.8",
+  "refmap": "cfm.refmap.json",
+  "client": [
+    "client.BlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
