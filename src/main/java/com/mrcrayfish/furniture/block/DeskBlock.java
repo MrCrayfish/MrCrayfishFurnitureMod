@@ -150,6 +150,8 @@ public class DeskBlock extends FurnitureHorizontalWaterloggedBlock
         JUNGLE,
         ACACIA,
         DARK_OAK,
+        CRIMSON,
+        WARPED,
         STONE,
         GRANITE,
         DIORITE,
@@ -159,6 +161,8 @@ public class DeskBlock extends FurnitureHorizontalWaterloggedBlock
         STRIPPED_SPRUCE,
         STRIPPED_JUNGLE,
         STRIPPED_ACACIA,
-        STRIPPED_DARK_OAK
+        STRIPPED_DARK_OAK,
+        STRIPPED_CRIMSON,
+        STRIPPED_WARPED
     }
 }
