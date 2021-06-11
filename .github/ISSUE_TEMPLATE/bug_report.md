@@ -4,6 +4,8 @@ about: Create a report to help MrCrayfish improve the mod
 title: "[MINECRAFT VERSION HERE] ISSUE HERE"
 ---
 
+ARE YOU USING 1.12? IF SO, I NO LONGER MAINTAIN THIS VERSION AND WON'T BE FIXING BUGS. PLEASE UPDATE TO A NEWER VERSION
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
