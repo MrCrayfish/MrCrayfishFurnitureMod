@@ -4,23 +4,23 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.entity.SeatEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,54 +37,54 @@ public class ParkBenchBlock extends FurnitureHorizontalWaterloggedBlock
     public ParkBenchBlock(Properties properties)
     {
         super(properties);
-        this.setDefaultState(this.getStateContainer().getBaseState().with(DIRECTION, Direction.NORTH).with(TYPE, Type.SINGLE).with(WATERLOGGED, false));
-        SHAPES = this.generateShapes(this.getStateContainer().getValidStates());
+        this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(TYPE, Type.SINGLE).setValue(WATERLOGGED, false));
+        SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
 
     private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
     {
-        final VoxelShape[] SEAT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 8, 3, 16, 9, 16), Direction.SOUTH));
-        final VoxelShape[] BACKREST = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 9, 1, 16, 20, 5), Direction.SOUTH));
-        final VoxelShape[] BACK_LEFT_LEG = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1, 0, 3, 4, 8, 6), Direction.SOUTH));
-        final VoxelShape[] FRONT_LEFT_LEG = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1, 0, 12, 4, 8, 15), Direction.SOUTH));
-        final VoxelShape[] FRONT_RIGHT_LEG = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(12, 0, 12, 15, 8, 15), Direction.SOUTH));
-        final VoxelShape[] BACK_RIGHT_LEG = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(12, 0, 3, 15, 8, 6), Direction.SOUTH));
-        final VoxelShape[] LEFT_SUPPORT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1, 6, 6, 4, 8, 12), Direction.SOUTH));
-        final VoxelShape[] RIGHT_SUPPORT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(12, 6, 6, 15, 8, 12), Direction.SOUTH));
-        final VoxelShape[] FRONT_SUPPORT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1, 6, 12, 15, 8, 15), Direction.SOUTH));
-        final VoxelShape[] BACK_SUPPORT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1, 6, 3, 15, 8, 6), Direction.SOUTH));
+        final VoxelShape[] SEAT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 8, 3, 16, 9, 16), Direction.SOUTH));
+        final VoxelShape[] BACKREST = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 9, 1, 16, 20, 5), Direction.SOUTH));
+        final VoxelShape[] BACK_LEFT_LEG = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(1, 0, 3, 4, 8, 6), Direction.SOUTH));
+        final VoxelShape[] FRONT_LEFT_LEG = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(1, 0, 12, 4, 8, 15), Direction.SOUTH));
+        final VoxelShape[] FRONT_RIGHT_LEG = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(12, 0, 12, 15, 8, 15), Direction.SOUTH));
+        final VoxelShape[] BACK_RIGHT_LEG = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(12, 0, 3, 15, 8, 6), Direction.SOUTH));
+        final VoxelShape[] LEFT_SUPPORT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(1, 6, 6, 4, 8, 12), Direction.SOUTH));
+        final VoxelShape[] RIGHT_SUPPORT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(12, 6, 6, 15, 8, 12), Direction.SOUTH));
+        final VoxelShape[] FRONT_SUPPORT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(1, 6, 12, 15, 8, 15), Direction.SOUTH));
+        final VoxelShape[] BACK_SUPPORT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(1, 6, 3, 15, 8, 6), Direction.SOUTH));
 
         ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
         for(BlockState state : states)
         {
-            Direction direction = state.get(DIRECTION);
-            Type type = state.get(TYPE);
+            Direction direction = state.getValue(DIRECTION);
+            Type type = state.getValue(TYPE);
 
             List<VoxelShape> shapes = new ArrayList<>();
-            shapes.add(SEAT[direction.getHorizontalIndex()]);
-            shapes.add(BACKREST[direction.getHorizontalIndex()]);
-            shapes.add(FRONT_SUPPORT[direction.getHorizontalIndex()]);
-            shapes.add(BACK_SUPPORT[direction.getHorizontalIndex()]);
+            shapes.add(SEAT[direction.get2DDataValue()]);
+            shapes.add(BACKREST[direction.get2DDataValue()]);
+            shapes.add(FRONT_SUPPORT[direction.get2DDataValue()]);
+            shapes.add(BACK_SUPPORT[direction.get2DDataValue()]);
 
             switch(type)
             {
                 case SINGLE:
-                    shapes.add(BACK_LEFT_LEG[direction.getHorizontalIndex()]);
-                    shapes.add(FRONT_LEFT_LEG[direction.getHorizontalIndex()]);
-                    shapes.add(FRONT_RIGHT_LEG[direction.getHorizontalIndex()]);
-                    shapes.add(BACK_RIGHT_LEG[direction.getHorizontalIndex()]);
-                    shapes.add(LEFT_SUPPORT[direction.getHorizontalIndex()]);
-                    shapes.add(RIGHT_SUPPORT[direction.getHorizontalIndex()]);
+                    shapes.add(BACK_LEFT_LEG[direction.get2DDataValue()]);
+                    shapes.add(FRONT_LEFT_LEG[direction.get2DDataValue()]);
+                    shapes.add(FRONT_RIGHT_LEG[direction.get2DDataValue()]);
+                    shapes.add(BACK_RIGHT_LEG[direction.get2DDataValue()]);
+                    shapes.add(LEFT_SUPPORT[direction.get2DDataValue()]);
+                    shapes.add(RIGHT_SUPPORT[direction.get2DDataValue()]);
                     break;
                 case LEFT:
-                    shapes.add(BACK_LEFT_LEG[direction.getHorizontalIndex()]);
-                    shapes.add(FRONT_LEFT_LEG[direction.getHorizontalIndex()]);
-                    shapes.add(LEFT_SUPPORT[direction.getHorizontalIndex()]);
+                    shapes.add(BACK_LEFT_LEG[direction.get2DDataValue()]);
+                    shapes.add(FRONT_LEFT_LEG[direction.get2DDataValue()]);
+                    shapes.add(LEFT_SUPPORT[direction.get2DDataValue()]);
                     break;
                 case RIGHT:
-                    shapes.add(FRONT_RIGHT_LEG[direction.getHorizontalIndex()]);
-                    shapes.add(BACK_RIGHT_LEG[direction.getHorizontalIndex()]);
-                    shapes.add(RIGHT_SUPPORT[direction.getHorizontalIndex()]);
+                    shapes.add(FRONT_RIGHT_LEG[direction.get2DDataValue()]);
+                    shapes.add(BACK_RIGHT_LEG[direction.get2DDataValue()]);
+                    shapes.add(RIGHT_SUPPORT[direction.get2DDataValue()]);
                     break;
             }
 
@@ -94,74 +94,74 @@ public class ParkBenchBlock extends FurnitureHorizontalWaterloggedBlock
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context)
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getRenderShape(BlockState state, IBlockReader reader, BlockPos pos)
+    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult result)
     {
-        return SeatEntity.create(world, pos, 0.3375, playerEntity);
+        return SeatEntity.create(level, pos, 0.3375, playerEntity);
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context)
+    public BlockState getStateForPlacement(BlockPlaceContext context)
     {
         BlockState state = super.getStateForPlacement(context);
-        return this.getBenchState(state, context.getWorld(), context.getPos(), state.get(DIRECTION));
+        return this.getBenchState(state, context.getLevel(), context.getClickedPos(), state.getValue(DIRECTION));
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState state, Direction direction, BlockState newState, IWorld world, BlockPos pos, BlockPos newPos)
+    public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos)
     {
-        return this.getBenchState(state, world, pos, state.get(DIRECTION));
+        return this.getBenchState(state, level, pos, state.getValue(DIRECTION));
     }
 
-    private BlockState getBenchState(BlockState state, IWorld world, BlockPos pos, Direction dir)
+    private BlockState getBenchState(BlockState state, LevelAccessor level, BlockPos pos, Direction dir)
     {
-        boolean left = isBench(world, pos, dir.rotateYCCW(), dir);
-        boolean right = isBench(world, pos, dir.rotateY(), dir);
+        boolean left = this.isBench(level, pos, dir.getCounterClockWise(), dir);
+        boolean right = this.isBench(level, pos, dir.getClockWise(), dir);
         if(left && right)
         {
-            return state.with(TYPE, Type.MIDDLE);
+            return state.setValue(TYPE, Type.MIDDLE);
         }
         else if(left)
         {
-            return state.with(TYPE, Type.RIGHT);
+            return state.setValue(TYPE, Type.RIGHT);
         }
         else if(right)
         {
-            return state.with(TYPE, Type.LEFT);
+            return state.setValue(TYPE, Type.LEFT);
         }
-        return state.with(TYPE, Type.SINGLE);
+        return state.setValue(TYPE, Type.SINGLE);
     }
 
-    private boolean isBench(IWorld world, BlockPos source, Direction direction, Direction targetDirection)
+    private boolean isBench(LevelAccessor level, BlockPos source, Direction direction, Direction targetDirection)
     {
-        BlockState state = world.getBlockState(source.offset(direction));
+        BlockState state = level.getBlockState(source.relative(direction));
         if(state.getBlock() == this)
         {
-            Direction sofaDirection = state.get(DIRECTION);
+            Direction sofaDirection = state.getValue(DIRECTION);
             return sofaDirection.equals(targetDirection);
         }
         return false;
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
-        super.fillStateContainer(builder);
+        super.createBlockStateDefinition(builder);
         builder.add(TYPE);
     }
 
-    public enum Type implements IStringSerializable
+    public enum Type implements StringRepresentable
     {
         SINGLE("single"),
         LEFT("left"),
@@ -176,7 +176,7 @@ public class ParkBenchBlock extends FurnitureHorizontalWaterloggedBlock
         }
 
         @Override
-        public String getString()
+        public String getSerializedName()
         {
             return id;
         }

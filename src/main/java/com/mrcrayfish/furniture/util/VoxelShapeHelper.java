@@ -1,9 +1,9 @@
 package com.mrcrayfish.furniture.util;
 
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.shapes.IBooleanFunction;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
+import net.minecraft.core.Direction;
+import net.minecraft.world.phys.shapes.BooleanOp;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.Collection;
 import java.util.concurrent.atomic.AtomicReference;
@@ -12,34 +12,34 @@ public class VoxelShapeHelper
 {
     public static VoxelShape combineAll(Collection<VoxelShape> shapes)
     {
-        VoxelShape result = VoxelShapes.empty();
+        VoxelShape result = Shapes.empty();
         for(VoxelShape shape : shapes)
         {
-            result = VoxelShapes.combine(result, shape, IBooleanFunction.OR);
+            result = Shapes.joinUnoptimized(result, shape, BooleanOp.OR);
         }
-        return result.simplify();
+        return result.optimize();
     }
 
     public static VoxelShape setMaxHeight(VoxelShape source, double height)
     {
-        AtomicReference<VoxelShape> result = new AtomicReference<>(VoxelShapes.empty());
-        source.forEachBox((minX, minY, minZ, maxX, maxY, maxZ) ->
+        AtomicReference<VoxelShape> result = new AtomicReference<>(Shapes.empty());
+        source.forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) ->
         {
-            VoxelShape shape = VoxelShapes.create(minX, minY, minZ, maxX, height, maxZ);
-            result.set(VoxelShapes.combine(result.get(), shape, IBooleanFunction.OR));
+            VoxelShape shape = Shapes.box(minX, minY, minZ, maxX, height, maxZ);
+            result.set(Shapes.joinUnoptimized(result.get(), shape, BooleanOp.OR));
         });
-        return result.get().simplify();
+        return result.get().optimize();
     }
 
     public static VoxelShape limitHorizontal(VoxelShape source)
     {
-        AtomicReference<VoxelShape> result = new AtomicReference<>(VoxelShapes.empty());
-        source.forEachBox((minX, minY, minZ, maxX, maxY, maxZ) ->
+        AtomicReference<VoxelShape> result = new AtomicReference<>(Shapes.empty());
+        source.forAllBoxes((minX, minY, minZ, maxX, maxY, maxZ) ->
         {
-            VoxelShape shape = VoxelShapes.create(limit(minX), minY, limit(minZ), limit(maxX), maxY, limit(maxZ));
-            result.set(VoxelShapes.combine(result.get(), shape, IBooleanFunction.OR));
+            VoxelShape shape = Shapes.box(limit(minX), minY, limit(minZ), limit(maxX), maxY, limit(maxZ));
+            result.set(Shapes.joinUnoptimized(result.get(), shape, BooleanOp.OR));
         });
-        return result.get().simplify();
+        return result.get().optimize();
     }
 
     public static VoxelShape[] getRotatedShapes(VoxelShape source)
@@ -53,8 +53,8 @@ public class VoxelShapeHelper
 
     public static VoxelShape rotate(VoxelShape source, Direction direction)
     {
-        double[] adjustedValues = adjustValues(direction, source.getStart(Direction.Axis.X), source.getStart(Direction.Axis.Z), source.getEnd(Direction.Axis.X), source.getEnd(Direction.Axis.Z));
-        return VoxelShapes.create(adjustedValues[0], source.getStart(Direction.Axis.Y), adjustedValues[1], adjustedValues[2], source.getEnd(Direction.Axis.Y), adjustedValues[3]);
+        double[] adjustedValues = adjustValues(direction, source.min(Direction.Axis.X), source.min(Direction.Axis.Z), source.max(Direction.Axis.X), source.max(Direction.Axis.Z));
+        return Shapes.box(adjustedValues[0], source.min(Direction.Axis.Y), adjustedValues[1], adjustedValues[2], source.max(Direction.Axis.Y), adjustedValues[3]);
     }
 
     private static double[] adjustValues(Direction direction, double var1, double var2, double var3, double var4)

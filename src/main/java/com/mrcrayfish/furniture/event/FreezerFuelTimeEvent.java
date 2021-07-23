@@ -1,6 +1,6 @@
 package com.mrcrayfish.furniture.event;
 
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.Event;
 
 /**

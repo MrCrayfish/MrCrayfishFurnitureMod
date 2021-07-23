@@ -1,7 +1,7 @@
 package com.mrcrayfish.furniture.event;
 
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.Event;
 
 /**
@@ -9,16 +9,16 @@ import net.minecraftforge.eventbus.api.Event;
  */
 public class ItemSolidifyEvent extends Event
 {
-    private PlayerEntity player;
+    private Player player;
     private ItemStack stack;
 
-    public ItemSolidifyEvent(PlayerEntity player, ItemStack stack)
+    public ItemSolidifyEvent(Player player, ItemStack stack)
     {
         this.player = player;
         this.stack = stack;
     }
 
-    public PlayerEntity getPlayer()
+    public Player getPlayer()
     {
         return player;
     }

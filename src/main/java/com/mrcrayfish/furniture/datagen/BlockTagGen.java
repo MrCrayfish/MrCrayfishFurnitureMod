@@ -3,8 +3,8 @@ package com.mrcrayfish.furniture.datagen;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.common.ModTags;
 import com.mrcrayfish.furniture.core.ModBlocks;
-import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
@@ -19,10 +19,10 @@ public class BlockTagGen extends BlockTagsProvider
     }
 
     @Override
-    protected void registerTags()
+    protected void addTags()
     {
         // Picket fences connect to other picket fences
-        this.getOrCreateBuilder(ModTags.Blocks.PICKET_FENCES)
+        this.tag(ModTags.Blocks.PICKET_FENCES)
                 .add(ModBlocks.PICKET_FENCE_WHITE.get())
                 .add(ModBlocks.PICKET_FENCE_ORANGE.get())
                 .add(ModBlocks.PICKET_FENCE_MAGENTA.get())
@@ -41,7 +41,7 @@ public class BlockTagGen extends BlockTagsProvider
                 .add(ModBlocks.PICKET_FENCE_BLACK.get());
 
         // Picket fences are considered "upgraded" since they work the same. The tag is used for connecting
-        this.getOrCreateBuilder(ModTags.Blocks.UPGRADED_FENCES)
+        this.tag(ModTags.Blocks.UPGRADED_FENCES)
                 .addTag(ModTags.Blocks.PICKET_FENCES)
                 .add(ModBlocks.UPGRADED_FENCE_OAK.get())
                 .add(ModBlocks.UPGRADED_FENCE_SPRUCE.get())
@@ -61,7 +61,7 @@ public class BlockTagGen extends BlockTagsProvider
                 .add(ModBlocks.UPGRADED_FENCE_STRIPPED_WARPED.get());
 
         // Picket fence gates connect to other picket fence gates
-        this.getOrCreateBuilder(ModTags.Blocks.PICKET_FENCE_GATES)
+        this.tag(ModTags.Blocks.PICKET_FENCE_GATES)
                 .add(ModBlocks.PICKET_GATE_WHITE.get())
                 .add(ModBlocks.PICKET_GATE_ORANGE.get())
                 .add(ModBlocks.PICKET_GATE_MAGENTA.get())
@@ -80,7 +80,7 @@ public class BlockTagGen extends BlockTagsProvider
                 .add(ModBlocks.PICKET_GATE_BLACK.get());
 
         // Picket fence gates are considered "upgraded" since they work the same.
-        this.getOrCreateBuilder(ModTags.Blocks.UPGRADED_FENCE_GATES)
+        this.tag(ModTags.Blocks.UPGRADED_FENCE_GATES)
                 .addTag(ModTags.Blocks.PICKET_FENCE_GATES)
                 .add(ModBlocks.UPGRADED_GATE_OAK.get())
                 .add(ModBlocks.UPGRADED_GATE_SPRUCE.get())
@@ -99,7 +99,7 @@ public class BlockTagGen extends BlockTagsProvider
                 .add(ModBlocks.UPGRADED_GATE_STRIPPED_CRIMSON.get())
                 .add(ModBlocks.UPGRADED_GATE_STRIPPED_WARPED.get());
 
-        this.getOrCreateBuilder(ModTags.Blocks.HEDGES)
+        this.tag(ModTags.Blocks.HEDGES)
                 .add(ModBlocks.HEDGE_OAK.get())
                 .add(ModBlocks.HEDGE_SPRUCE.get())
                 .add(ModBlocks.HEDGE_BIRCH.get())
@@ -107,10 +107,10 @@ public class BlockTagGen extends BlockTagsProvider
                 .add(ModBlocks.HEDGE_ACACIA.get())
                 .add(ModBlocks.HEDGE_DARK_OAK.get());
 
-        this.getOrCreateBuilder(BlockTags.FENCES)
+        this.tag(BlockTags.FENCES)
                 .addTag(ModTags.Blocks.UPGRADED_FENCES);
 
-        this.getOrCreateBuilder(BlockTags.FENCE_GATES)
+        this.tag(BlockTags.FENCE_GATES)
                 .addTag(ModTags.Blocks.UPGRADED_FENCE_GATES);
     }
 }

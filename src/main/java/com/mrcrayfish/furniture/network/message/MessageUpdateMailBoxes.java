@@ -1,9 +1,9 @@
 package com.mrcrayfish.furniture.network.message;
 
 import com.mrcrayfish.furniture.client.ClientPlayHandler;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
@@ -12,25 +12,25 @@ import java.util.function.Supplier;
  */
 public class MessageUpdateMailBoxes implements IMessage<MessageUpdateMailBoxes>
 {
-    private CompoundNBT compound;
+    private CompoundTag compound;
 
     public MessageUpdateMailBoxes() {}
 
-    public MessageUpdateMailBoxes(CompoundNBT compound)
+    public MessageUpdateMailBoxes(CompoundTag compound)
     {
         this.compound = compound;
     }
 
     @Override
-    public void encode(MessageUpdateMailBoxes message, PacketBuffer buffer)
+    public void encode(MessageUpdateMailBoxes message, FriendlyByteBuf buffer)
     {
-        buffer.writeCompoundTag(message.compound);
+        buffer.writeNbt(message.compound);
     }
 
     @Override
-    public MessageUpdateMailBoxes decode(PacketBuffer buffer)
+    public MessageUpdateMailBoxes decode(FriendlyByteBuf buffer)
     {
-        CompoundNBT compound = buffer.readCompoundTag();
+        CompoundTag compound = buffer.readNbt();
         return new MessageUpdateMailBoxes(compound);
     }
 
@@ -41,7 +41,7 @@ public class MessageUpdateMailBoxes implements IMessage<MessageUpdateMailBoxes>
         supplier.get().setPacketHandled(true);
     }
 
-    public CompoundNBT getCompound()
+    public CompoundTag getCompound()
     {
         return this.compound;
     }

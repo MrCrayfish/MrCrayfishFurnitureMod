@@ -2,34 +2,32 @@ package com.mrcrayfish.furniture.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.mrcrayfish.furniture.tileentity.CrateTileEntity;
+import com.mrcrayfish.furniture.tileentity.BasicLootBlockEntity;
+import com.mrcrayfish.furniture.tileentity.CrateBlockEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.ISidedInventoryProvider;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.shapes.VoxelShapes;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -39,7 +37,7 @@ import java.util.Random;
 /**
  * Author: MrCrayfish
  */
-public class CrateBlock extends FurnitureHorizontalBlock implements IPortableInventory, ISidedInventoryProvider
+public class CrateBlock extends FurnitureHorizontalBlock implements IPortableInventory, EntityBlock
 {
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
 
@@ -48,29 +46,29 @@ public class CrateBlock extends FurnitureHorizontalBlock implements IPortableInv
     public CrateBlock(Properties properties)
     {
         super(properties);
-        this.setDefaultState(this.getStateContainer().getBaseState().with(OPEN, false).with(DIRECTION, Direction.NORTH));
-        SHAPES = this.generateShapes(this.getStateContainer().getValidStates());
+        this.registerDefaultState(this.getStateDefinition().any().setValue(OPEN, false).setValue(DIRECTION, Direction.NORTH));
+        SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
 
     private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
     {
-        final VoxelShape[] OPEN_LID = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 13, -2, 16, 29, 1), Direction.SOUTH));
+        final VoxelShape[] OPEN_LID = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 13, -2, 16, 29, 1), Direction.SOUTH));
 
         ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
         for(BlockState state : states)
         {
-            Direction direction = state.get(DIRECTION);
-            boolean open = state.get(OPEN);
+            Direction direction = state.getValue(DIRECTION);
+            boolean open = state.getValue(OPEN);
 
             List<VoxelShape> shapes = new ArrayList<>();
             if(open)
             {
-                shapes.add(Block.makeCuboidShape(0, 0, 0, 16, 13, 16));
-                shapes.add(OPEN_LID[direction.getHorizontalIndex()]);
+                shapes.add(Block.box(0, 0, 0, 16, 13, 16));
+                shapes.add(OPEN_LID[direction.get2DDataValue()]);
             }
             else
             {
-                shapes.add(VoxelShapes.fullCube());
+                shapes.add(Shapes.block());
             }
             builder.put(state, VoxelShapeHelper.combineAll(shapes));
         }
@@ -79,97 +77,72 @@ public class CrateBlock extends FurnitureHorizontalBlock implements IPortableInv
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context)
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getRenderShape(BlockState state, IBlockReader reader, BlockPos pos)
+    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public float getPlayerRelativeBlockHardness(BlockState blockState, PlayerEntity playerEntity, IBlockReader reader, BlockPos pos)
+    public float getDestroyProgress(BlockState state, Player player, BlockGetter reader, BlockPos pos)
     {
-        TileEntity tileEntity = reader.getTileEntity(pos);
-        if(tileEntity instanceof CrateTileEntity)
+        if(reader.getBlockEntity(pos) instanceof CrateBlockEntity blockEntity)
         {
-            CrateTileEntity crateTileEntity = (CrateTileEntity) tileEntity;
-            if(crateTileEntity.isLocked() && !playerEntity.getUniqueID().equals(crateTileEntity.getOwner()))
+            if(blockEntity.isLocked() && !player.getUUID().equals(blockEntity.getOwner()))
             {
                 return 0.0005F;
             }
         }
-        return super.getPlayerRelativeBlockHardness(blockState, playerEntity, reader, pos);
+        return super.getDestroyProgress(state, player, reader, pos);
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
-        if(!world.isRemote())
+        if(!level.isClientSide())
         {
-            TileEntity tileEntity = world.getTileEntity(pos);
-            if(tileEntity instanceof CrateTileEntity)
+            if(level.getBlockEntity(pos) instanceof CrateBlockEntity blockEntity)
             {
-                NetworkHooks.openGui((ServerPlayerEntity) playerEntity, (INamedContainerProvider) tileEntity, pos);
+                NetworkHooks.openGui((ServerPlayer) player, blockEntity, pos);
             }
         }
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override
-    public void tick(BlockState state, ServerWorld world, BlockPos pos, Random random)
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, Random random)
     {
-        TileEntity tileEntity = world.getTileEntity(pos);
-        if(tileEntity instanceof CrateTileEntity)
+        if(level.getBlockEntity(pos) instanceof BasicLootBlockEntity blockEntity)
         {
-            ((CrateTileEntity) tileEntity).onScheduledTick();
+            blockEntity.updateOpenerCount();
         }
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, BlockState state, @Nullable LivingEntity entity, ItemStack stack)
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity entity, ItemStack stack)
     {
-        TileEntity tileEntity = world.getTileEntity(pos);
-        if(entity != null && tileEntity instanceof CrateTileEntity)
+        if(entity != null && level.getBlockEntity(pos) instanceof CrateBlockEntity blockEntity)
         {
-            ((CrateTileEntity) tileEntity).setOwner(entity.getUniqueID());
+            blockEntity.setOwner(entity.getUUID());
         }
     }
 
     @Override
-    public boolean hasTileEntity(BlockState state)
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
-        return true;
+        super.createBlockStateDefinition(builder);
+        builder.add(OPEN);
     }
 
     @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world)
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
     {
-        return new CrateTileEntity();
-    }
-
-    @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
-    {
-        super.fillStateContainer(builder);
-        builder.add(OPEN);
-    }
-
-    @Override
-    public ISidedInventory createInventory(BlockState state, IWorld world, BlockPos pos)
-    {
-        TileEntity tileEntity = world.getTileEntity(pos);
-        if(tileEntity instanceof CrateTileEntity)
-        {
-            if(!((CrateTileEntity) tileEntity).isLocked())
-            {
-                return (CrateTileEntity) tileEntity;
-            }
-        }
-        return null;
+        return new CrateBlockEntity(pos, state);
     }
 }

@@ -2,11 +2,11 @@ package com.mrcrayfish.furniture.network.message;
 
 import com.mrcrayfish.furniture.common.mail.Mail;
 import com.mrcrayfish.furniture.common.mail.PostOffice;
-import com.mrcrayfish.furniture.inventory.container.PostBoxContainer;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.fml.network.NetworkEvent;
+import com.mrcrayfish.furniture.inventory.container.PostBoxMenu;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 import java.util.UUID;
 import java.util.function.Supplier;
@@ -28,16 +28,16 @@ public class MessageSendMail implements IMessage<MessageSendMail>
     }
 
     @Override
-    public void encode(MessageSendMail message, PacketBuffer buffer)
+    public void encode(MessageSendMail message, FriendlyByteBuf buffer)
     {
-        buffer.writeUniqueId(message.playerId);
-        buffer.writeUniqueId(message.mailBoxId);
+        buffer.writeUUID(message.playerId);
+        buffer.writeUUID(message.mailBoxId);
     }
 
     @Override
-    public MessageSendMail decode(PacketBuffer buffer)
+    public MessageSendMail decode(FriendlyByteBuf buffer)
     {
-        return new MessageSendMail(buffer.readUniqueId(), buffer.readUniqueId());
+        return new MessageSendMail(buffer.readUUID(), buffer.readUUID());
     }
 
     @Override
@@ -45,12 +45,12 @@ public class MessageSendMail implements IMessage<MessageSendMail>
     {
         supplier.get().enqueueWork(() ->
         {
-            ServerPlayerEntity entity = supplier.get().getSender();
+            ServerPlayer entity = supplier.get().getSender();
             if(entity != null)
             {
-                if(entity.openContainer instanceof PostBoxContainer)
+                if(entity.containerMenu instanceof PostBoxMenu)
                 {
-                    PostBoxContainer container = (PostBoxContainer) entity.openContainer;
+                    PostBoxMenu container = (PostBoxMenu) entity.containerMenu;
                     if(!container.getMail().isEmpty())
                     {
                         Mail mail = new Mail("Yo", container.getMail(), entity.getName().getString());
@@ -60,7 +60,7 @@ public class MessageSendMail implements IMessage<MessageSendMail>
                         }
                         else
                         {
-                            entity.sendMessage(new TranslationTextComponent("message.cfm.mail_queue_full"), playerId);
+                            entity.sendMessage(new TranslatableComponent("message.cfm.mail_queue_full"), this.playerId);
                         }
                     }
                 }

@@ -7,33 +7,34 @@ import com.mrcrayfish.furniture.client.gui.screen.inventory.FreezerScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.MailBoxScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.PostBoxScreen;
 import com.mrcrayfish.furniture.client.renderer.SeatRenderer;
-import com.mrcrayfish.furniture.client.renderer.tileentity.DoorMatTileEntityRenderer;
-import com.mrcrayfish.furniture.client.renderer.tileentity.GrillTileEntityRenderer;
-import com.mrcrayfish.furniture.client.renderer.tileentity.KitchenSinkTileEntityRenderer;
+import com.mrcrayfish.furniture.client.renderer.tileentity.DoorMatBlockEntityRenderer;
+import com.mrcrayfish.furniture.client.renderer.tileentity.GrillBlockEntityRenderer;
+import com.mrcrayfish.furniture.client.renderer.tileentity.KitchenSinkBlockEntityRenderer;
+import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModContainers;
 import com.mrcrayfish.furniture.core.ModEntities;
-import com.mrcrayfish.furniture.core.ModTileEntities;
-import com.mrcrayfish.furniture.tileentity.DoorMatTileEntity;
-import com.mrcrayfish.furniture.tileentity.TrampolineTileEntity;
-import net.minecraft.block.BlockState;
+import com.mrcrayfish.furniture.tileentity.DoorMatBlockEntity;
+import com.mrcrayfish.furniture.tileentity.TrampolineBlockEntity;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.RenderTypeLookup;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.DyeColor;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.FoliageColors;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeColors;
+import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.FoliageColor;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fmlclient.registry.RenderingRegistry;
 
 import java.util.function.Predicate;
 
@@ -44,7 +45,7 @@ public class ClientHandler
 {
     public static void setup()
     {
-        registerTileEntityRenderers();
+        registerBlockEntityRenderers();
         registerEntityRenderers();
         registerScreenFactories();
         registerLayers();
@@ -65,56 +66,55 @@ public class ClientHandler
         }
     }
 
-    private static void registerTileEntityRenderers()
+    private static void registerBlockEntityRenderers()
     {
-        ClientRegistry.bindTileEntityRenderer(ModTileEntities.GRILL.get(), GrillTileEntityRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(ModTileEntities.DOOR_MAT.get(), DoorMatTileEntityRenderer::new);
-        ClientRegistry.bindTileEntityRenderer(ModTileEntities.KITCHEN_SINK.get(), KitchenSinkTileEntityRenderer::new);
+        BlockEntityRenderers.register(ModBlockEntities.GRILL.get(), GrillBlockEntityRenderer::new);
+        BlockEntityRenderers.register(ModBlockEntities.DOOR_MAT.get(), DoorMatBlockEntityRenderer::new);
+        BlockEntityRenderers.register(ModBlockEntities.KITCHEN_SINK.get(), KitchenSinkBlockEntityRenderer::new);
     }
 
     private static void registerEntityRenderers()
     {
-        RenderingRegistry.registerEntityRenderingHandler(ModEntities.SEAT.get(), SeatRenderer::new);
-
+        EntityRenderers.register(ModEntities.SEAT.get(), SeatRenderer::new);
     }
 
     private static void registerScreenFactories()
     {
-        ScreenManager.registerFactory(ModContainers.CRATE.get(), CrateScreen::new);
-        ScreenManager.registerFactory(ModContainers.POST_BOX.get(), PostBoxScreen::new);
-        ScreenManager.registerFactory(ModContainers.MAIL_BOX.get(), MailBoxScreen::new);
-        ScreenManager.registerFactory(ModContainers.FREEZER.get(), FreezerScreen::new);
+        MenuScreens.register(ModContainers.CRATE.get(), CrateScreen::new);
+        MenuScreens.register(ModContainers.POST_BOX.get(), PostBoxScreen::new);
+        MenuScreens.register(ModContainers.MAIL_BOX.get(), MailBoxScreen::new);
+        MenuScreens.register(ModContainers.FREEZER.get(), FreezerScreen::new);
     }
 
     private static void registerLayers()
     {
-        Predicate<RenderType> leavesPredicate = renderType -> useFancyGraphics() ? renderType == RenderType.getCutoutMipped() : renderType == RenderType.getSolid();
-        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_OAK.get(), leavesPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_SPRUCE.get(), leavesPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_BIRCH.get(), leavesPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_JUNGLE.get(), leavesPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_ACACIA.get(), leavesPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.HEDGE_DARK_OAK.get(), leavesPredicate);
+        Predicate<RenderType> leavesPredicate = renderType -> useFancyGraphics() ? renderType == RenderType.cutoutMipped() : renderType == RenderType.solid();
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_OAK.get(), leavesPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_SPRUCE.get(), leavesPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_BIRCH.get(), leavesPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_JUNGLE.get(), leavesPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_ACACIA.get(), leavesPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_DARK_OAK.get(), leavesPredicate);
 
-        Predicate<RenderType> cutoutPredicate = renderType -> renderType == RenderType.getCutout();
-        RenderTypeLookup.setRenderLayer(ModBlocks.TRAMPOLINE.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_WHITE.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_ORANGE.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_MAGENTA.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_LIGHT_BLUE.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_YELLOW.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_LIME.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_PINK.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_GRAY.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_LIGHT_GRAY.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_CYAN.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_PURPLE.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_BLUE.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_BROWN.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_GREEN.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_RED.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_BLACK.get(), cutoutPredicate);
-        RenderTypeLookup.setRenderLayer(ModBlocks.POST_BOX.get(), cutoutPredicate);
+        Predicate<RenderType> cutoutPredicate = renderType -> renderType == RenderType.cutout();
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.TRAMPOLINE.get(), cutoutPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRILL_WHITE.get(), cutoutPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRILL_ORANGE.get(), cutoutPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRILL_MAGENTA.get(), cutoutPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRILL_LIGHT_BLUE.get(), cutoutPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRILL_YELLOW.get(), cutoutPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRILL_LIME.get(), cutoutPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRILL_PINK.get(), cutoutPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRILL_GRAY.get(), cutoutPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRILL_LIGHT_GRAY.get(), cutoutPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRILL_CYAN.get(), cutoutPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRILL_PURPLE.get(), cutoutPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRILL_BLUE.get(), cutoutPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRILL_BROWN.get(), cutoutPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRILL_GREEN.get(), cutoutPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRILL_RED.get(), cutoutPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRILL_BLACK.get(), cutoutPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.POST_BOX.get(), cutoutPredicate);
     }
 
     private static void registerColors()
@@ -313,43 +313,43 @@ public class ClientHandler
                 ModBlocks.FREEZER_DARK.get()
         );
 
-        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> FoliageColors.getSpruce(),
+        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> FoliageColor.getEvergreenColor(),
                 ModBlocks.HEDGE_SPRUCE.get());
 
-        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> FoliageColors.getBirch(),
+        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> FoliageColor.getBirchColor(),
                 ModBlocks.HEDGE_BIRCH.get());
 
-        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> reader != null && pos != null ? BiomeColors.getFoliageColor(reader, pos) : FoliageColors.getDefault(),
+        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> reader != null && pos != null ? BiomeColors.getAverageFoliageColor(reader, pos) : FoliageColor.getDefaultColor(),
                 ModBlocks.HEDGE_OAK.get(),
                 ModBlocks.HEDGE_JUNGLE.get(),
                 ModBlocks.HEDGE_ACACIA.get(),
                 ModBlocks.HEDGE_DARK_OAK.get());
 
         Minecraft.getInstance().getItemColors().register((stack, i) -> {
-            BlockState state = ((BlockItem)stack.getItem()).getBlock().getDefaultState();
+            BlockState state = ((BlockItem)stack.getItem()).getBlock().defaultBlockState();
             return Minecraft.getInstance().getBlockColors().getColor(state, null, null, i);
         }, ModBlocks.HEDGE_OAK.get(), ModBlocks.HEDGE_SPRUCE.get(), ModBlocks.HEDGE_BIRCH.get(), ModBlocks.HEDGE_JUNGLE.get(), ModBlocks.HEDGE_ACACIA.get(), ModBlocks.HEDGE_DARK_OAK.get());
 
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> {
             if(reader != null && pos != null)
             {
-                TileEntity tileEntity = reader.getTileEntity(pos);
-                if(tileEntity instanceof TrampolineTileEntity)
+                BlockEntity tileEntity = reader.getBlockEntity(pos);
+                if(tileEntity instanceof TrampolineBlockEntity)
                 {
-                    return ((TrampolineTileEntity) tileEntity).getColour().getColorValue();
+                    return ((TrampolineBlockEntity) tileEntity).getColour().getTextColor();
                 }
             }
             return 0xFFFFFFFF;
         }, ModBlocks.TRAMPOLINE.get());
 
         Minecraft.getInstance().getItemColors().register((stack, i) -> {
-            CompoundNBT tag = stack.getTag();
+            CompoundTag tag = stack.getTag();
             if(tag != null)
             {
-                CompoundNBT blockEntityTag = tag.getCompound("BlockEntityTag");
+                CompoundTag blockEntityTag = tag.getCompound("BlockEntityTag");
                 if(blockEntityTag.contains("Color", Constants.NBT.TAG_INT))
                 {
-                    return DyeColor.byId(blockEntityTag.getInt("Color")).getColorValue();
+                    return DyeColor.byId(blockEntityTag.getInt("Color")).getTextColor();
                 }
             }
             return 0xFFFFFFFF;
@@ -359,15 +359,14 @@ public class ClientHandler
     private static boolean useFancyGraphics()
     {
         Minecraft mc = Minecraft.getInstance();
-        return mc.gameSettings.graphicFanciness.func_238162_a_() > 0;
+        return mc.options.graphicsMode.getId() > 0;
     }
 
-    public static void showDoorMatScreen(World world, BlockPos pos)
+    public static void showDoorMatScreen(Level level, BlockPos pos)
     {
-        TileEntity tileEntity = world.getTileEntity(pos);
-        if(tileEntity instanceof DoorMatTileEntity)
+        if(level.getBlockEntity(pos) instanceof DoorMatBlockEntity blockEntity)
         {
-            Minecraft.getInstance().displayGuiScreen(new DoorMatScreen((DoorMatTileEntity) tileEntity));
+            Minecraft.getInstance().setScreen(new DoorMatScreen(blockEntity));
         }
     }
 }

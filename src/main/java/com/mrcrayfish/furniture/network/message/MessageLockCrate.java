@@ -1,10 +1,10 @@
 package com.mrcrayfish.furniture.network.message;
 
-import com.mrcrayfish.furniture.inventory.container.CrateContainer;
-import com.mrcrayfish.furniture.tileentity.CrateTileEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.fml.network.NetworkEvent;
+import com.mrcrayfish.furniture.inventory.container.CrateMenu;
+import com.mrcrayfish.furniture.tileentity.CrateBlockEntity;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
@@ -14,9 +14,9 @@ import java.util.function.Supplier;
 public class MessageLockCrate implements IMessage<MessageLockCrate>
 {
     @Override
-    public void encode(MessageLockCrate message, PacketBuffer buffer) {}
+    public void encode(MessageLockCrate message, FriendlyByteBuf buffer) {}
 
-    public MessageLockCrate decode(PacketBuffer buffer)
+    public MessageLockCrate decode(FriendlyByteBuf buffer)
     {
         return new MessageLockCrate();
     }
@@ -26,17 +26,17 @@ public class MessageLockCrate implements IMessage<MessageLockCrate>
     {
         supplier.get().enqueueWork(() ->
         {
-            ServerPlayerEntity player = supplier.get().getSender();
-            if(player != null && player.openContainer instanceof CrateContainer)
+            ServerPlayer player = supplier.get().getSender();
+            if(player != null && player.containerMenu instanceof CrateMenu)
             {
-                CrateTileEntity inventory = ((CrateContainer) player.openContainer).getCrateTileEntity();
+                CrateBlockEntity inventory = ((CrateMenu) player.containerMenu).getBlockEntity();
                 if(inventory != null)
                 {
                     if(inventory.getOwner() == null)
                     {
-                        inventory.setOwner(player.getUniqueID());
+                        inventory.setOwner(player.getUUID());
                     }
-                    if(player.getUniqueID().equals(inventory.getOwner()))
+                    if(player.getUUID().equals(inventory.getOwner()))
                     {
                         inventory.setLocked(!inventory.isLocked());
                         inventory.removeUnauthorisedPlayers();

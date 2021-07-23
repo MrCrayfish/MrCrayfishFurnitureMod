@@ -10,9 +10,9 @@ import com.mrcrayfish.furniture.network.message.MessageSendMail;
 import com.mrcrayfish.furniture.network.message.MessageSetDoorMatMessage;
 import com.mrcrayfish.furniture.network.message.MessageSetMailBoxName;
 import com.mrcrayfish.furniture.network.message.MessageUpdateMailBoxes;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.network.NetworkRegistry;
-import net.minecraftforge.fml.network.simple.SimpleChannel;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.fmllegacy.network.NetworkRegistry;
+import net.minecraftforge.fmllegacy.network.simple.SimpleChannel;
 
 /**
  * Author: MrCrayfish

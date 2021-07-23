@@ -1,7 +1,8 @@
 package com.mrcrayfish.furniture.item;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 
 import java.util.function.Supplier;
 
@@ -13,7 +14,7 @@ public class BlockSupplierItem extends BlockItem
     private Block block;
     private Supplier<Block> supplier;
 
-    public BlockSupplierItem(Properties properties, Block block, Supplier<Block> supplier)
+    public BlockSupplierItem(Item.Properties properties, Block block, Supplier<Block> supplier)
     {
         super(block, properties);
         this.block = block;
@@ -21,9 +22,9 @@ public class BlockSupplierItem extends BlockItem
     }
 
     @Override
-    public String getTranslationKey()
+    public String getDescriptionId()
     {
-        return this.block.getTranslationKey();
+        return this.block.getDescriptionId();
     }
 
     @Override

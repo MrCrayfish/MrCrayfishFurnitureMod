@@ -2,26 +2,26 @@ package com.mrcrayfish.furniture.block;
 
 import com.mrcrayfish.furniture.core.ModSounds;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.particles.ParticleTypes;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.util.Direction;
-import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,67 +40,67 @@ public class DivingBoardBlock extends FurnitureHorizontalWaterloggedBlock
     public DivingBoardBlock(Properties properties)
     {
         super(properties);
-        this.setDefaultState(this.getStateContainer().getBaseState().with(PART, DivingBoardPart.BASE).with(DIRECTION, Direction.NORTH).with(WATERLOGGED, false));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(PART, DivingBoardPart.BASE).setValue(DIRECTION, Direction.NORTH).setValue(WATERLOGGED, false));
     }
 
     private VoxelShape getShape(BlockState state)
     {
         return SHAPES.computeIfAbsent(state, state1 -> {
-            final VoxelShape[] BOARD = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1, 4, 0, 15, 6, 16), Direction.SOUTH));
+            final VoxelShape[] BOARD = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(1, 4, 0, 15, 6, 16), Direction.SOUTH));
             List<VoxelShape> shapes = new ArrayList<>();
-            shapes.add(BOARD[state.get(DIRECTION).getHorizontalIndex()]);
-            if(state1.get(PART) == DivingBoardPart.BASE)
+            shapes.add(BOARD[state.getValue(DIRECTION).get2DDataValue()]);
+            if(state1.getValue(PART) == DivingBoardPart.BASE)
             {
-                final VoxelShape[] BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(3, 0, 2, 13, 4, 15), Direction.SOUTH));
-                shapes.add(BASE[state.get(DIRECTION).getHorizontalIndex()]);
+                final VoxelShape[] BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(3, 0, 2, 13, 4, 15), Direction.SOUTH));
+                shapes.add(BASE[state.getValue(DIRECTION).get2DDataValue()]);
             }
             return VoxelShapeHelper.combineAll(shapes);
         });
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context)
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return this.getShape(state);
     }
 
     @Override
-    public VoxelShape getRenderShape(BlockState state, IBlockReader reader, BlockPos pos)
+    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
     {
         return this.getShape(state);
     }
 
     @Override
-    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player)
+    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player)
     {
-        Direction direction = state.get(DIRECTION);
-        DivingBoardPart part = state.get(PART);
-        BlockPos otherPos = part == DivingBoardPart.BASE ? pos.offset(direction) : pos.offset(direction.getOpposite());
-        BlockState otherBlockState = worldIn.getBlockState(otherPos);
-        if(otherBlockState.getBlock() == this && otherBlockState.get(PART) != part)
+        Direction direction = state.getValue(DIRECTION);
+        DivingBoardPart part = state.getValue(PART);
+        BlockPos otherPos = part == DivingBoardPart.BASE ? pos.relative(direction) : pos.relative(direction.getOpposite());
+        BlockState otherBlockState = level.getBlockState(otherPos);
+        if(otherBlockState.getBlock() == this && otherBlockState.getValue(PART) != part)
         {
-            worldIn.setBlockState(otherPos, Blocks.AIR.getDefaultState(), 35);
-            worldIn.playEvent(player, 2001, otherPos, Block.getStateId(otherBlockState));
+            level.setBlock(otherPos, Blocks.AIR.defaultBlockState(), 35);
+            level.levelEvent(player, 2001, otherPos, Block.getId(otherBlockState));
         }
-        super.onBlockHarvested(worldIn, pos, state, player);
+        super.playerWillDestroy(level, pos, state, player);
     }
 
     @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack)
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack)
     {
-        worldIn.setBlockState(pos.offset(placer.getHorizontalFacing()), this.getDefaultState().with(PART, DivingBoardPart.BOARD).with(DIRECTION, placer.getHorizontalFacing()), 3);
+        level.setBlock(pos.relative(placer.getDirection()), this.defaultBlockState().setValue(PART, DivingBoardPart.BOARD).setValue(DIRECTION, placer.getDirection()), 3);
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos)
+    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos)
     {
-        return worldIn.getBlockState(pos.offset(state.get(DIRECTION))).isAir();
+        return worldIn.getBlockState(pos.relative(state.getValue(DIRECTION))).isAir();
     }
 
     @Override
-    public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
+    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entityIn, float fallDistance)
     {
-        if(worldIn.getBlockState(pos).get(PART) != DivingBoardPart.BOARD)
+        if(level.getBlockState(pos).getValue(PART) != DivingBoardPart.BOARD)
         {
             return;
         }
@@ -110,21 +110,21 @@ public class DivingBoardBlock extends FurnitureHorizontalWaterloggedBlock
             float strength = 5.0F;
             float maxHeight = 8F;
             float height = entityIn.fallDistance * strength;
-            if(height > 0 && !entityIn.isSneaking())
+            if(height > 0 && !entityIn.isShiftKeyDown())
             {
                 if(height > maxHeight - 0.25F) height = maxHeight - 0.25F;
-                entityIn.setMotion(entityIn.getMotion().mul(1.0, 0.0, 1.0));
-                entityIn.addVelocity(0, Math.sqrt(0.22 * (height + 0.25F)), 0);
-                if(worldIn.isRemote)
+                entityIn.setDeltaMovement(entityIn.getDeltaMovement().multiply(1.0, 0.0, 1.0));
+                entityIn.push(0, Math.sqrt(0.22 * (height + 0.25F)), 0);
+                if(level.isClientSide)
                 {
                     for(int i = 0; i < 5; i++)
                     {
-                        worldIn.addParticle(ParticleTypes.ENTITY_EFFECT, entityIn.prevPosX, entityIn.prevPosY, entityIn.prevPosZ, 1.0, 1.0, 1.0);
+                        level.addParticle(ParticleTypes.ENTITY_EFFECT, entityIn.xo, entityIn.yo, entityIn.zo, 1.0, 1.0, 1.0);
                     }
                 }
                 else
                 {
-                    worldIn.playSound(null, pos, ModSounds.BLOCK_DIVING_BOARD_BOUNCE.get(), SoundCategory.BLOCKS, 1.0F, worldIn.rand.nextFloat() * 0.1F + 1.0F);
+                    level.playSound(null, pos, ModSounds.BLOCK_DIVING_BOARD_BOUNCE.get(), SoundSource.BLOCKS, 1.0F, level.random.nextFloat() * 0.1F + 1.0F);
                 }
             }
             entityIn.fallDistance = 0;
@@ -132,24 +132,24 @@ public class DivingBoardBlock extends FurnitureHorizontalWaterloggedBlock
     }
 
     @Override
-    public void onLanded(IBlockReader worldIn, Entity entityIn)
+    public void updateEntityAfterFallOn(BlockGetter worldIn, Entity entityIn)
     {
     }
 
     @Override
-    public boolean addLandingEffects(BlockState state1, ServerWorld worldserver, BlockPos pos, BlockState state2, LivingEntity entity, int numberOfParticles)
+    public boolean addLandingEffects(BlockState state1, ServerLevel level, BlockPos pos, BlockState state2, LivingEntity entity, int numberOfParticles)
     {
         return true;
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
-        super.fillStateContainer(builder);
+        super.createBlockStateDefinition(builder);
         builder.add(PART);
     }
 
-    public enum DivingBoardPart implements IStringSerializable
+    public enum DivingBoardPart implements StringRepresentable
     {
         BASE,
         BOARD;
@@ -157,11 +157,11 @@ public class DivingBoardBlock extends FurnitureHorizontalWaterloggedBlock
         @Override
         public String toString()
         {
-            return this.getString();
+            return this.getSerializedName();
         }
 
         @Override
-        public String getString()
+        public String getSerializedName()
         {
             return this == BASE ? "base" : "board";
         }

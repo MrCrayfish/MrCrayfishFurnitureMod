@@ -1,24 +1,25 @@
 package com.mrcrayfish.furniture.client.gui.screen.inventory;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.MailBoxEntry;
 import com.mrcrayfish.furniture.client.gui.widget.button.IconButton;
-import com.mrcrayfish.furniture.inventory.container.PostBoxContainer;
+import com.mrcrayfish.furniture.inventory.container.PostBoxMenu;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageRequestMailBoxes;
 import com.mrcrayfish.furniture.network.message.MessageSendMail;
 import com.mrcrayfish.furniture.util.RenderUtil;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.player.Inventory;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ import static org.lwjgl.glfw.GLFW.GLFW_MOUSE_BUTTON_LEFT;
 /**
  * Author: MrCrayfish
  */
-public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
+public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
 {
     private static final ResourceLocation GUI_TEXTURE = new ResourceLocation(Reference.MOD_ID, "textures/gui/container/post_box.png");
     private static final ResourceLocation ICONS_TEXTURE = new ResourceLocation(Reference.MOD_ID, "textures/gui/icons.png");
@@ -46,7 +47,7 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
     private static final int ITEM_HEIGHT = 24;
     private static final int MAX_VISIBLE_ITEMS = (int) Math.ceil((double) LIST_HEIGHT / (double) ITEM_HEIGHT) + 1;
 
-    private TextFieldWidget searchField;
+    private EditBox searchField;
     private int scroll;
     private int pressedMouseY = -1;
     private MailBoxEntry selected;
@@ -55,73 +56,75 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
     private List<MailBoxEntry> mailBoxList = new ArrayList<>();
     private List<MailBoxEntry> filteredMailBoxList = new ArrayList<>();
 
-    public PostBoxScreen(PostBoxContainer container, PlayerInventory playerInventory, ITextComponent title)
+    public PostBoxScreen(PostBoxMenu container, Inventory playerInventory, Component title)
     {
         super(container, playerInventory, title);
-        this.ySize = 187;
+        this.imageHeight = 187;
     }
 
     @Override
     protected void init()
     {
         super.init();
-        this.searchField = new TextFieldWidget(this.font, this.guiLeft + 22, this.guiTop + 19, 101, 9, new TranslationTextComponent("gui.cfm.post_box.search"));
-        this.searchField.setEnableBackgroundDrawing(false);
-        this.searchField.setMaxStringLength(32);
+        this.searchField = new EditBox(this.font, this.leftPos + 22, this.topPos + 19, 101, 9, new TranslatableComponent("gui.cfm.post_box.search"));
+        this.searchField.setBordered(false);
+        this.searchField.setMaxLength(32);
         this.searchField.setTextColor(16777215);
-        this.children.add(this.searchField);
-        this.btnSend = this.addButton(new IconButton(this.guiLeft + 147, this.guiTop + 53, new TranslationTextComponent("gui.button.cfm.send_mail"), this::sendMail, ICONS_TEXTURE, 32, 0));
+        this.addWidget(this.searchField);
+        this.btnSend = this.addRenderableWidget(new IconButton(this.leftPos + 147, this.topPos + 53, new TranslatableComponent("gui.button.cfm.send_mail"), this::sendMail, ICONS_TEXTURE, 32, 0));
         this.btnSend.active = false;
         PacketHandler.instance.sendToServer(new MessageRequestMailBoxes());
     }
 
     private void sendMail(Button button)
     {
-        if(this.selected != null && !this.container.getMail().isEmpty())
+        if(this.selected != null && !this.menu.getMail().isEmpty())
         {
             PacketHandler.instance.sendToServer(new MessageSendMail(this.selected.getOwnerId(), this.selected.getMailBoxId()));
         }
     }
 
     @Override
-    public void tick()
+    public void containerTick()
     {
-        super.tick();
         this.searchField.tick();
-        this.btnSend.active = this.selected != null && !this.container.getMail().isEmpty();
+        this.btnSend.active = this.selected != null && !this.menu.getMail().isEmpty();
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY)
+    protected void renderBg(PoseStack poseStack, float partialTicks, int mouseX, int mouseY)
     {
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bindTexture(GUI_TEXTURE);
-        int startX = (this.width - this.xSize) / 2;
-        int startY = (this.height - this.ySize) / 2;
-        this.blit(matrixStack, startX, startY, 0, 0, this.xSize, this.ySize);
+        RenderSystem.setShader(GameRenderer::getPositionColorTexShader);
+        RenderSystem.setShaderTexture(0, GUI_TEXTURE);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        int startX = (this.width - this.imageWidth) / 2;
+        int startY = (this.height - this.imageHeight) / 2;
+        this.blit(poseStack, startX, startY, 0, 0, this.imageWidth, this.imageHeight);
 
-        if(this.container.getMail().isEmpty())
+        if(this.menu.getMail().isEmpty())
         {
-            this.blit(matrixStack, startX + 149, startY + 33, 116, 202, 16, 16);
+            this.blit(poseStack, startX + 149, startY + 33, 116, 202, 16, 16);
         }
 
-        this.searchField.render(matrixStack,mouseX, mouseY, partialTicks);
+        this.searchField.render(poseStack,mouseX, mouseY, partialTicks);
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int mouseX, int mouseY)
+    protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY)
     {
-        this.font.drawString(matrixStack, this.title.getString(), 8.0F, 6.0F, 0x404040);
-        this.font.drawString(matrixStack, this.playerInventory.getDisplayName().getString(), 8.0F, (float) (this.ySize - 96 + 2), 0x404040);
+        this.font.draw(poseStack, this.title.getString(), 8.0F, 6.0F, 0x404040);
+        this.font.draw(poseStack, this.playerInventoryTitle, 8.0F, (float) (this.imageHeight - 96 + 2), 0x404040);
 
-        this.minecraft.getTextureManager().bindTexture(GUI_TEXTURE);
+        RenderSystem.setShader(GameRenderer::getPositionColorTexShader);
+        RenderSystem.setShaderTexture(0, GUI_TEXTURE);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         int scrollBarY = this.getScrollBarY(mouseY);
         int scrollBarUOffset = this.getMaxScroll() <= 0 ? SCROLL_BAR_WIDTH : 0;
-        this.blit(matrixStack, 128, 32 + scrollBarY, 116 + scrollBarUOffset, 187, SCROLL_BAR_WIDTH, SCROLL_BAR_HEIGHT);
+        this.blit(poseStack, 128, 32 + scrollBarY, 116 + scrollBarUOffset, 187, SCROLL_BAR_WIDTH, SCROLL_BAR_HEIGHT);
 
         GL11.glEnable(GL11.GL_SCISSOR_TEST);
         {
-            RenderUtil.scissor(this.guiLeft + 8, this.guiTop + 32, 116, 57);
+            RenderUtil.scissor(this.leftPos + 8, this.topPos + 32, 116, 57);
 
             int scroll = this.scroll;
             if(this.pressedMouseY != -1)
@@ -131,49 +134,51 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
             int startIndex = scroll / ITEM_HEIGHT;
             for(int i = startIndex; i < Math.min(startIndex + MAX_VISIBLE_ITEMS, this.filteredMailBoxList.size()); i++)
             {
-                RenderSystem.pushMatrix();
-                RenderSystem.translatef(8, 32, 0);
-                RenderSystem.translatef(0, -scroll, 0);
-                RenderSystem.translatef(0, i * ITEM_HEIGHT, 0);
+                poseStack.pushPose();
+                poseStack.translate(8, 32, 0);
+                poseStack.translate(0, -scroll, 0);
+                poseStack.translate(0, i * ITEM_HEIGHT, 0);
 
                 MailBoxEntry entry = this.filteredMailBoxList.get(i);
-                this.minecraft.getTextureManager().bindTexture(GUI_TEXTURE);
+
+                RenderSystem.setShaderTexture(0, GUI_TEXTURE);
+                RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
                 boolean isSelected = entry == selected;
-                this.blit(matrixStack, 0, 0, 0, 211 - (isSelected ? ITEM_HEIGHT : 0), ITEM_WIDTH, ITEM_HEIGHT);
+                this.blit(poseStack, 0, 0, 0, 211 - (isSelected ? ITEM_HEIGHT : 0), ITEM_WIDTH, ITEM_HEIGHT);
 
                 if(isSelected)
                 {
-                    this.blit(matrixStack, ITEM_WIDTH - 20, 5, 140, 187, 14, 12);
-                    this.font.drawString(matrixStack, TextFormatting.BOLD + entry.getName(), 3, 3, 16777045);
-                    this.font.drawString(matrixStack, entry.getOwnerName(), 3, 13, 0xFFFFFF);
+                    this.blit(poseStack, ITEM_WIDTH - 20, 5, 140, 187, 14, 12);
+                    this.font.draw(poseStack, ChatFormatting.BOLD + entry.getName(), 3, 3, 16777045);
+                    this.font.draw(poseStack, entry.getOwnerName(), 3, 13, 0xFFFFFF);
                 }
                 else
                 {
-                    this.font.drawString(matrixStack, entry.getName(), 3, 3, 0xFFFFFF);
-                    this.font.drawString(matrixStack, entry.getOwnerName(), 3, 13, 0x777777);
+                    this.font.draw(poseStack, entry.getName(), 3, 3, 0xFFFFFF);
+                    this.font.draw(poseStack, entry.getOwnerName(), 3, 13, 0x777777);
                 }
 
-                RenderSystem.popMatrix();
+                poseStack.popPose();
             }
         }
         GL11.glDisable(GL11.GL_SCISSOR_TEST);
     }
 
     @Override
-    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks)
+    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks)
     {
-        this.renderBackground(matrixStack);
-        super.render(matrixStack,mouseX, mouseY, partialTicks);
-        this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
+        this.renderBackground(poseStack);
+        super.render(poseStack,mouseX, mouseY, partialTicks);
+        this.renderTooltip(poseStack, mouseX, mouseY);
     }
 
     @Override
     public boolean mouseClicked(double mouseX, double mouseY, int button)
     {
-        if(RenderUtil.isMouseInArea((int) mouseX, (int) mouseY, this.guiLeft + 8, this.guiTop + 32, 116, 57))
+        if(RenderUtil.isMouseInArea((int) mouseX, (int) mouseY, this.leftPos + 8, this.topPos + 32, 116, 57))
         {
-            int clickedIndex = (int) ((mouseY - this.guiTop - 32 + scroll) / ITEM_HEIGHT);
+            int clickedIndex = (int) ((mouseY - this.topPos - 32 + scroll) / ITEM_HEIGHT);
             if(clickedIndex >= 0 && clickedIndex < this.filteredMailBoxList.size())
             {
                 MailBoxEntry entry = this.filteredMailBoxList.get(clickedIndex);
@@ -182,7 +187,7 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
             }
         }
         int scrollBarY = (int) ((LIST_HEIGHT - SCROLL_BAR_HEIGHT) * (scroll / (double) this.getMaxScroll()));
-        if(this.getMaxScroll() > 0 && RenderUtil.isMouseInArea((int) mouseX, (int) mouseY, this.guiLeft + 128, this.guiTop + 32 + scrollBarY, SCROLL_BAR_WIDTH, SCROLL_BAR_HEIGHT))
+        if(this.getMaxScroll() > 0 && RenderUtil.isMouseInArea((int) mouseX, (int) mouseY, this.leftPos + 128, this.topPos + 32 + scrollBarY, SCROLL_BAR_WIDTH, SCROLL_BAR_HEIGHT))
         {
             this.pressedMouseY = (int) mouseY;
         }
@@ -203,7 +208,7 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double speed)
     {
-        if(RenderUtil.isMouseInArea((int) mouseX, (int) mouseY, this.guiLeft + 8, this.guiTop + 32, 116, 57))
+        if(RenderUtil.isMouseInArea((int) mouseX, (int) mouseY, this.leftPos + 8, this.topPos + 32, 116, 57))
         {
             this.scroll = (int) Math.max(0, Math.min(this.getMaxScroll(), this.scroll - (speed * 10)));
             return true;
@@ -214,10 +219,10 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
     @Override
     public boolean charTyped(char c, int code)
     {
-        String s = this.searchField.getText();
+        String s = this.searchField.getValue();
         if(this.searchField.charTyped(c, code))
         {
-            if(!Objects.equals(s, this.searchField.getText()))
+            if(!Objects.equals(s, this.searchField.getValue()))
             {
                 this.updateMailBoxList();
             }
@@ -229,21 +234,21 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
     @Override
     public boolean keyPressed(int key, int scanCode, int mods)
     {
-        String s = this.searchField.getText();
+        String s = this.searchField.getValue();
         if(this.searchField.keyPressed(key, scanCode, mods))
         {
-            if(!Objects.equals(s, this.searchField.getText()))
+            if(!Objects.equals(s, this.searchField.getValue()))
             {
                 this.updateMailBoxList();
             }
             return true;
         }
-        return this.searchField.isFocused() && this.searchField.getVisible() && key != GLFW_KEY_ESCAPE || super.keyPressed(key, scanCode, mods);
+        return this.searchField.isFocused() && this.searchField.isVisible() && key != GLFW_KEY_ESCAPE || super.keyPressed(key, scanCode, mods);
     }
 
     private void updateMailBoxList()
     {
-        if(this.searchField.getText().isEmpty())
+        if(this.searchField.getValue().isEmpty())
         {
             this.filteredMailBoxList = this.mailBoxList;
         }
@@ -251,7 +256,7 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
         {
             Stream<MailBoxEntry> stream = this.mailBoxList.stream().filter(entry ->
             {
-                String searchText = this.searchField.getText().toLowerCase(Locale.ENGLISH).trim();
+                String searchText = this.searchField.getValue().toLowerCase(Locale.ENGLISH).trim();
                 if(entry.getName().toLowerCase().contains(searchText))
                 {
                     return true;
@@ -270,7 +275,7 @@ public class PostBoxScreen extends ContainerScreen<PostBoxContainer>
             scrollOffset = (mouseY - pressedMouseY);
         }
         int scrollBarY = (int) ((LIST_HEIGHT - SCROLL_BAR_HEIGHT) * (scroll / (double) this.getMaxScroll()));
-        return MathHelper.clamp(scrollBarY + scrollOffset, 0, LIST_HEIGHT - SCROLL_BAR_HEIGHT);
+        return Mth.clamp(scrollBarY + scrollOffset, 0, LIST_HEIGHT - SCROLL_BAR_HEIGHT);
     }
 
     private int getMaxScroll()

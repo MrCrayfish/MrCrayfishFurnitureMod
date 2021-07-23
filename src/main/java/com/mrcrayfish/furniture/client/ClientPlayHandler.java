@@ -1,17 +1,13 @@
 package com.mrcrayfish.furniture.client;
 
-import com.mrcrayfish.furniture.client.gui.screen.DoorMatScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.PostBoxScreen;
 import com.mrcrayfish.furniture.network.message.MessageFlipGrill;
 import com.mrcrayfish.furniture.network.message.MessageUpdateMailBoxes;
-import com.mrcrayfish.furniture.tileentity.DoorMatTileEntity;
-import com.mrcrayfish.furniture.tileentity.GrillTileEntity;
+import com.mrcrayfish.furniture.tileentity.GrillBlockEntity;
 import net.minecraft.client.Minecraft;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.Constants;
 
 import java.util.ArrayList;
@@ -24,29 +20,25 @@ public class ClientPlayHandler
 {
     public static void handleUpdateMailboxesMessage(MessageUpdateMailBoxes message)
     {
-        if(Minecraft.getInstance().currentScreen instanceof PostBoxScreen)
+        if(Minecraft.getInstance().screen instanceof PostBoxScreen)
         {
-            CompoundNBT compound = message.getCompound();
+            CompoundTag compound = message.getCompound();
             if(compound.contains("MailBoxes", Constants.NBT.TAG_LIST))
             {
                 List<MailBoxEntry> entries = new ArrayList<>();
-                ListNBT mailBoxList = compound.getList("MailBoxes", Constants.NBT.TAG_COMPOUND);
-                mailBoxList.forEach(nbt -> entries.add(new MailBoxEntry((CompoundNBT) nbt)));
-                ((PostBoxScreen) Minecraft.getInstance().currentScreen).updateMailBoxes(entries);
+                ListTag mailBoxList = compound.getList("MailBoxes", Constants.NBT.TAG_COMPOUND);
+                mailBoxList.forEach(nbt -> entries.add(new MailBoxEntry((CompoundTag) nbt)));
+                ((PostBoxScreen) Minecraft.getInstance().screen).updateMailBoxes(entries);
             }
         }
     }
 
     public static void handleFlipGrillMessage(MessageFlipGrill message)
     {
-        Minecraft minecraft = Minecraft.getInstance();
-        if(minecraft.world != null)
+        Level level = Minecraft.getInstance().level;
+        if(level != null && level.getBlockEntity(message.getPos()) instanceof GrillBlockEntity blockEntity)
         {
-            TileEntity tileEntity = minecraft.world.getTileEntity(message.getPos());
-            if(tileEntity instanceof GrillTileEntity)
-            {
-                ((GrillTileEntity) tileEntity).setFlipping(message.getPosition());
-            }
+            blockEntity.setFlipping(message.getPosition());
         }
     }
 }

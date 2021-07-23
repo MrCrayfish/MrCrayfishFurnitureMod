@@ -2,28 +2,26 @@ package com.mrcrayfish.furniture.block;
 
 import com.mrcrayfish.furniture.core.ModItems;
 import com.mrcrayfish.furniture.item.crafting.GrillCookingRecipe;
-import com.mrcrayfish.furniture.tileentity.GrillTileEntity;
+import com.mrcrayfish.furniture.tileentity.GrillBlockEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.ISidedInventoryProvider;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
@@ -34,9 +32,9 @@ import java.util.Optional;
 /**
  * Author: MrCrayfish
  */
-public class GrillBlock extends FurnitureWaterloggedBlock implements ISidedInventoryProvider
+public class GrillBlock extends FurnitureWaterloggedBlock implements EntityBlock
 {
-    public static final VoxelShape SHAPE = VoxelShapeHelper.combineAll(Arrays.asList(Block.makeCuboidShape(0.0, 11.0, 0.0, 16.0, 16.0, 16.0), Block.makeCuboidShape(1.5, 0.0, 1.5, 14.5, 11.0, 14.5)));
+    public static final VoxelShape SHAPE = VoxelShapeHelper.combineAll(Arrays.asList(Block.box(0.0, 11.0, 0.0, 16.0, 16.0, 16.0), Block.box(1.5, 0.0, 1.5, 14.5, 11.0, 14.5)));
 
     public GrillBlock(Properties properties)
     {
@@ -44,63 +42,59 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements ISidedInven
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
+    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context)
     {
         return SHAPE;
     }
 
     @OnlyIn(Dist.CLIENT)
-    public float func_220080_a(BlockState state, IBlockReader worldIn, BlockPos pos)
+    public float getShadeBrightness(BlockState state, BlockGetter worldIn, BlockPos pos)
     {
         return 1.0F;
     }
 
     @Override
-    public void onReplaced(BlockState state, World worldIn, BlockPos pos, BlockState newState, boolean isMoving)
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving)
     {
         if(state.getBlock() != newState.getBlock())
         {
-            TileEntity tileEntity = worldIn.getTileEntity(pos);
-            if(tileEntity instanceof GrillTileEntity)
+            if(level.getBlockEntity(pos) instanceof GrillBlockEntity blockEntity)
             {
-                GrillTileEntity grillTileEntity = (GrillTileEntity) tileEntity;
-                InventoryHelper.dropItems(worldIn, pos, grillTileEntity.getGrill());
-                InventoryHelper.dropItems(worldIn, pos, grillTileEntity.getFuel());
+                Containers.dropContents(level, pos, blockEntity.getGrill());
+                Containers.dropContents(level, pos, blockEntity.getFuel());
             }
-            super.onReplaced(state, worldIn, pos, newState, isMoving);
+            super.onRemove(state, level, pos, newState, isMoving);
         }
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
-        if(!world.isRemote && result.getFace() == Direction.UP)
+        if(!level.isClientSide() && result.getDirection() == Direction.UP)
         {
-            TileEntity tileEntity = world.getTileEntity(pos);
-            if(tileEntity instanceof GrillTileEntity)
+            if(level.getBlockEntity(pos) instanceof GrillBlockEntity blockEntity)
             {
-                GrillTileEntity grillTileEntity = (GrillTileEntity) tileEntity;
-                ItemStack stack = playerEntity.getHeldItem(hand);
+                ItemStack stack = player.getItemInHand(hand);
                 if(stack.getItem() == ModItems.SPATULA.get())
                 {
-                    grillTileEntity.flipItem(this.getPosition(result, pos));
+                    blockEntity.flipItem(this.getPosition(result, pos));
                 }
                 else if(stack.getItem() == Items.COAL || stack.getItem() == Items.CHARCOAL)
                 {
-                    if(grillTileEntity.addFuel(stack))
+                    if(blockEntity.addFuel(stack))
                     {
                         stack.shrink(1);
                     }
                 }
                 else if(!stack.isEmpty())
                 {
-                    Optional<GrillCookingRecipe> optional = grillTileEntity.findMatchingRecipe(stack);
+                    Optional<GrillCookingRecipe> optional = blockEntity.findMatchingRecipe(stack);
                     if(optional.isPresent())
                     {
                         GrillCookingRecipe recipe = optional.get();
-                        if(grillTileEntity.addItem(stack, this.getPosition(result, pos), recipe.getCookTime(), recipe.getExperience(), (byte) playerEntity.getHorizontalFacing().getHorizontalIndex()))
+                        if(blockEntity.addItem(stack, this.getPosition(result, pos), recipe.getCookingTime(), recipe.getExperience(), (byte) player.getDirection().get2DDataValue()))
                         {
-                            if(!playerEntity.abilities.isCreativeMode)
+                            if(!player.getAbilities().instabuild)
                             {
                                 stack.shrink(1);
                             }
@@ -109,46 +103,26 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements ISidedInven
                 }
                 else
                 {
-                    grillTileEntity.removeItem(this.getPosition(result, pos));
+                    blockEntity.removeItem(this.getPosition(result, pos));
                 }
             }
         }
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
-    private int getPosition(BlockRayTraceResult hit, BlockPos pos)
+    private int getPosition(BlockHitResult hit, BlockPos pos)
     {
-        Vector3d hitVec = hit.getHitVec().subtract(pos.getX(), pos.getY(), pos.getZ());
+        Vec3 hitVec = hit.getLocation().subtract(pos.getX(), pos.getY(), pos.getZ());
         int position = 0;
-        if(hitVec.getX() > 0.5) position += 1;
-        if(hitVec.getZ() > 0.5) position += 2;
+        if(hitVec.x() > 0.5) position += 1;
+        if(hitVec.z() > 0.5) position += 2;
         return position;
-    }
-
-    @Override
-    public boolean hasTileEntity(BlockState state)
-    {
-        return true;
     }
 
     @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world)
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
     {
-        return new GrillTileEntity();
-    }
-
-    @Override
-    public ISidedInventory createInventory(BlockState state, IWorld world, BlockPos pos)
-    {
-        if(!world.isRemote())
-        {
-            TileEntity tileEntity = world.getTileEntity(pos);
-            if(tileEntity instanceof GrillTileEntity)
-            {
-                return (GrillTileEntity) tileEntity;
-            }
-        }
-        return null;
+        return new GrillBlockEntity(pos, state);
     }
 }

@@ -1,18 +1,19 @@
 package com.mrcrayfish.furniture.client.gui.screen;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageOpenMailBox;
 import com.mrcrayfish.furniture.network.message.MessageSetMailBoxName;
-import com.mrcrayfish.furniture.tileentity.MailBoxTileEntity;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import com.mrcrayfish.furniture.tileentity.MailBoxBlockEntity;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
 
 /**
  * Author: MrCrayfish
@@ -24,14 +25,14 @@ public class MailBoxSettingsScreen extends Screen
     private int xSize = 176;
     private int ySize = 69;
 
-    private MailBoxTileEntity mailBoxTileEntity;
-    private TextFieldWidget nameField;
+    private MailBoxBlockEntity mailBoxBlockEntity;
+    private EditBox nameField;
     private Button btnSave;
 
-    public MailBoxSettingsScreen(MailBoxTileEntity mailBoxTileEntity)
+    public MailBoxSettingsScreen(MailBoxBlockEntity mailBoxBlockEntity)
     {
-        super(new TranslationTextComponent("gui.cfm.mail_box_settings"));
-        this.mailBoxTileEntity = mailBoxTileEntity;
+        super(new TranslatableComponent("gui.cfm.mail_box_settings"));
+        this.mailBoxBlockEntity = mailBoxBlockEntity;
     }
 
     @Override
@@ -40,25 +41,25 @@ public class MailBoxSettingsScreen extends Screen
         int guiLeft = (this.width - this.xSize) / 2;
         int guiTop = (this.height - this.ySize) / 2;
 
-        this.nameField = new TextFieldWidget(this.font, guiLeft + 8, guiTop + 18, 160, 18, StringTextComponent.EMPTY);
-        if(this.mailBoxTileEntity.getMailBoxName() != null)
+        this.nameField = new EditBox(this.font, guiLeft + 8, guiTop + 18, 160, 18, TextComponent.EMPTY);
+        if(this.mailBoxBlockEntity.getMailBoxName() != null)
         {
-            this.nameField.setText(this.mailBoxTileEntity.getMailBoxName());
+            this.nameField.setValue(this.mailBoxBlockEntity.getMailBoxName());
         }
-        this.children.add(this.nameField);
+        this.addWidget(this.nameField);
 
-        this.btnSave = this.addButton(new Button(guiLeft + 7, guiTop + 42, 79, 20, new TranslationTextComponent("gui.button.cfm.save"), button ->
+        this.btnSave = this.addRenderableWidget(new Button(guiLeft + 7, guiTop + 42, 79, 20, new TranslatableComponent("gui.button.cfm.save"), button ->
         {
             if(this.isValidName())
             {
-                PacketHandler.instance.sendToServer(new MessageSetMailBoxName(this.nameField.getText(), this.mailBoxTileEntity.getPos()));
+                PacketHandler.instance.sendToServer(new MessageSetMailBoxName(this.nameField.getValue(), this.mailBoxBlockEntity.getBlockPos()));
             }
         }));
         this.btnSave.active = false;
 
-        this.addButton(new Button(guiLeft + 91, guiTop + 42, 79, 20, new TranslationTextComponent("gui.button.cfm.back"), button ->
+        this.addRenderableWidget(new Button(guiLeft + 91, guiTop + 42, 79, 20, new TranslatableComponent("gui.button.cfm.back"), button ->
         {
-            PacketHandler.instance.sendToServer(new MessageOpenMailBox(this.mailBoxTileEntity.getPos()));
+            PacketHandler.instance.sendToServer(new MessageOpenMailBox(this.mailBoxBlockEntity.getBlockPos()));
         }));
     }
 
@@ -71,25 +72,22 @@ public class MailBoxSettingsScreen extends Screen
     }
 
     @Override
-    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks)
+    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks)
     {
-        this.renderBackground(matrixStack);
-
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bindTexture(GUI_TEXTURE);
+        this.renderBackground(poseStack);
+        RenderSystem.setShader(GameRenderer::getPositionColorTexShader);
+        RenderSystem.setShaderTexture(0, GUI_TEXTURE);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         int startX = (this.width - this.xSize) / 2;
         int startY = (this.height - this.ySize) / 2;
-        this.blit(matrixStack, startX, startY, 0, 0, this.xSize, this.ySize);
-
-        super.render(matrixStack, mouseX, mouseY, partialTicks);
-
-        this.font.drawString(matrixStack, this.title.getString(), startX + 8.0F, startY + 6.0F, 0x404040);
-
-        this.nameField.render(matrixStack, mouseX, mouseY, partialTicks);
+        this.blit(poseStack, startX, startY, 0, 0, this.xSize, this.ySize);
+        super.render(poseStack, mouseX, mouseY, partialTicks);
+        this.font.draw(poseStack, this.title.getString(), startX + 8.0F, startY + 6.0F, 0x404040);
+        this.nameField.render(poseStack, mouseX, mouseY, partialTicks);
     }
 
     private boolean isValidName()
     {
-        return !this.nameField.getText().equals(this.mailBoxTileEntity.getMailBoxName()) && !this.nameField.getText().trim().isEmpty();
+        return !this.nameField.getValue().equals(this.mailBoxBlockEntity.getMailBoxName()) && !this.nameField.getValue().trim().isEmpty();
     }
 }

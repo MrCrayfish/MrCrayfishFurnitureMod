@@ -1,13 +1,13 @@
 package com.mrcrayfish.furniture.common.mail;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.util.INBTSerializable;
 
 /**
  * Author: MrCrayfish
  */
-public class Mail implements INBTSerializable<CompoundNBT>
+public class Mail implements INBTSerializable<CompoundTag>
 {
     private String note;
     private ItemStack stack;
@@ -20,7 +20,7 @@ public class Mail implements INBTSerializable<CompoundNBT>
         this.sender = sender;
     }
 
-    public Mail(CompoundNBT compound)
+    public Mail(CompoundTag compound)
     {
         this.deserializeNBT(compound);
     }
@@ -41,20 +41,20 @@ public class Mail implements INBTSerializable<CompoundNBT>
     }
 
     @Override
-    public CompoundNBT serializeNBT()
+    public CompoundTag serializeNBT()
     {
-        CompoundNBT compound = new CompoundNBT();
+        CompoundTag compound = new CompoundTag();
         compound.putString("Note", this.note);
-        compound.put("Item", this.stack.write(new CompoundNBT()));
+        compound.put("Item", this.stack.save(new CompoundTag()));
         compound.putString("Sender", this.sender);
         return compound;
     }
 
     @Override
-    public void deserializeNBT(CompoundNBT compound)
+    public void deserializeNBT(CompoundTag compound)
     {
         this.note = compound.getString("Note");
-        this.stack = ItemStack.read(compound.getCompound("Item"));
+        this.stack = ItemStack.of(compound.getCompound("Item"));
         this.sender = compound.getString("Sender");
     }
 }

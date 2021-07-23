@@ -4,25 +4,24 @@ import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModItems;
 import com.mrcrayfish.furniture.core.ModRecipeSerializers;
 import com.mrcrayfish.furniture.data.ForgeShapedRecipeBuilder;
-import net.minecraft.block.Blocks;
-import net.minecraft.data.CookingRecipeBuilder;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.data.RecipeProvider;
-import net.minecraft.data.ShapedRecipeBuilder;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.item.crafting.CookingRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tags.ITag;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
+import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.tags.Tag;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.SimpleCookingSerializer;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
-import net.minecraftforge.common.crafting.ConditionalRecipe;
 
 import java.util.function.Consumer;
 
@@ -37,7 +36,7 @@ public class RecipeGen extends RecipeProvider
     }
 
     @Override
-    protected void registerRecipes(Consumer<IFinishedRecipe> consumer)
+    protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer)
     {
         // Tables
         table(consumer, ModBlocks.TABLE_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
@@ -323,15 +322,15 @@ public class RecipeGen extends RecipeProvider
         parkBench(consumer, ModBlocks.PARK_BENCH_STRIPPED_CRIMSON.get(), Blocks.CRIMSON_STEM, Blocks.STRIPPED_CRIMSON_STEM);
         parkBench(consumer, ModBlocks.PARK_BENCH_STRIPPED_WARPED.get(), Blocks.WARPED_STEM, Blocks.STRIPPED_WARPED_STEM);
         // Post Box
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.POST_BOX.get())
-                .patternLine("III")
-                .patternLine("ISI")
-                .patternLine("III")
-                .key('I', Tags.Items.INGOTS_IRON)
-                .key('S', Blocks.BLUE_SHULKER_BOX)
-                .addCriterion("has_iron", hasItem(Tags.Items.INGOTS_IRON))
-                .addCriterion("has_shulker_box", hasItem(Blocks.BLUE_SHULKER_BOX))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(ModBlocks.POST_BOX.get())
+                .pattern("III")
+                .pattern("ISI")
+                .pattern("III")
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('S', Blocks.BLUE_SHULKER_BOX)
+                .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
+                .unlockedBy("has_shulker_box", has(Blocks.BLUE_SHULKER_BOX))
+                .save(consumer);
         // Park Bench
         mailBox(consumer, ModBlocks.MAIL_BOX_OAK.get(), ModBlocks.UPGRADED_FENCE_OAK.get());
         mailBox(consumer, ModBlocks.MAIL_BOX_SPRUCE.get(), ModBlocks.UPGRADED_FENCE_SPRUCE.get());
@@ -357,14 +356,14 @@ public class RecipeGen extends RecipeProvider
         hedge(consumer, ModBlocks.HEDGE_ACACIA.get(), Blocks.ACACIA_LEAVES);
         hedge(consumer, ModBlocks.HEDGE_DARK_OAK.get(), Blocks.DARK_OAK_LEAVES);
         // Rock Path
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.ROCK_PATH.get(), 16)
-                .patternLine("SA")
-                .patternLine("AS")
-                .key('S', Blocks.STONE)
-                .key('A', Blocks.ANDESITE)
-                .addCriterion("has_stone", hasItem(Blocks.STONE))
-                .addCriterion("has_andesite", hasItem(Blocks.ANDESITE))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(ModBlocks.ROCK_PATH.get(), 16)
+                .pattern("SA")
+                .pattern("AS")
+                .define('S', Blocks.STONE)
+                .define('A', Blocks.ANDESITE)
+                .unlockedBy("has_stone", has(Blocks.STONE))
+                .unlockedBy("has_andesite", has(Blocks.ANDESITE))
+                .save(consumer);
         // Trampoline
         trampoline(consumer, "white_trampoline", new ItemStack(ModBlocks.TRAMPOLINE.get()), DyeColor.WHITE, Blocks.WHITE_WOOL);
         trampoline(consumer, "orange_trampoline", new ItemStack(ModBlocks.TRAMPOLINE.get()), DyeColor.ORANGE, Blocks.ORANGE_WOOL);
@@ -417,22 +416,22 @@ public class RecipeGen extends RecipeProvider
         grill(consumer, ModBlocks.GRILL_RED.get(), Blocks.RED_TERRACOTTA);
         grill(consumer, ModBlocks.GRILL_BLACK.get(), Blocks.BLACK_TERRACOTTA);
         // Door Mat
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.DOOR_MAT.get())
-                .patternLine("WWW")
-                .patternLine("WWW")
-                .key('W', Items.WHEAT)
-                .addCriterion("has_wheat", hasItem(Tags.Items.CROPS_WHEAT))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(ModBlocks.DOOR_MAT.get())
+                .pattern("WWW")
+                .pattern("WWW")
+                .define('W', Items.WHEAT)
+                .unlockedBy("has_wheat", has(Tags.Items.CROPS_WHEAT))
+                .save(consumer);
         // Diving Board
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.DIVING_BOARD.get())
-                .patternLine("CCC")
-                .patternLine("SSS")
-                .patternLine("G  ")
-                .key('C', Blocks.WHITE_CONCRETE)
-                .key('S', Tags.Items.SLIMEBALLS)
-                .key('G', Blocks.LIGHT_GRAY_CONCRETE)
-                .addCriterion("has_wheat", hasItem(Tags.Items.CROPS_WHEAT))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(ModBlocks.DIVING_BOARD.get())
+                .pattern("CCC")
+                .pattern("SSS")
+                .pattern("G  ")
+                .define('C', Blocks.WHITE_CONCRETE)
+                .define('S', Tags.Items.SLIMEBALLS)
+                .define('G', Blocks.LIGHT_GRAY_CONCRETE)
+                .unlockedBy("has_wheat", has(Tags.Items.CROPS_WHEAT))
+                .save(consumer);
         // Kitchen Counter
         kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
         kitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
@@ -549,300 +548,301 @@ public class RecipeGen extends RecipeProvider
         coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_RED.get(), Blocks.RED_TERRACOTTA);
         coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_BLACK.get(), Blocks.BLACK_TERRACOTTA);
         // Fridges
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.FREEZER_LIGHT.get())
-                .patternLine("CIC")
-                .patternLine("IBI")
-                .patternLine("CIC")
-                .key('C', Blocks.WHITE_CONCRETE)
-                .key('I', Tags.Items.INGOTS_IRON)
-                .key('B', Tags.Items.CHESTS_WOODEN)
-                .setGroup("fridge")
-                .addCriterion("has_iron", hasItem(Tags.Items.INGOTS_IRON))
-                .addCriterion("has_chest", hasItem(Tags.Items.CHESTS_WOODEN))
-                .build(consumer);
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.FREEZER_DARK.get())
-                .patternLine("CIC")
-                .patternLine("IBI")
-                .patternLine("CIC")
-                .key('C', Blocks.GRAY_CONCRETE)
-                .key('I', Tags.Items.INGOTS_IRON)
-                .key('B', Tags.Items.CHESTS_WOODEN)
-                .setGroup("fridge")
-                .addCriterion("has_iron", hasItem(Tags.Items.INGOTS_IRON))
-                .addCriterion("has_chest", hasItem(Tags.Items.CHESTS_WOODEN))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(ModBlocks.FREEZER_LIGHT.get())
+                .pattern("CIC")
+                .pattern("IBI")
+                .pattern("CIC")
+                .define('C', Blocks.WHITE_CONCRETE)
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('B', Tags.Items.CHESTS_WOODEN)
+                .group("fridge")
+                .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
+                .unlockedBy("has_chest", has(Tags.Items.CHESTS_WOODEN))
+                .save(consumer);
+        ShapedRecipeBuilder.shaped(ModBlocks.FREEZER_DARK.get())
+                .pattern("CIC")
+                .pattern("IBI")
+                .pattern("CIC")
+                .define('C', Blocks.GRAY_CONCRETE)
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('B', Tags.Items.CHESTS_WOODEN)
+                .group("fridge")
+                .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
+                .unlockedBy("has_chest", has(Tags.Items.CHESTS_WOODEN))
+                .save(consumer);
         // Spatula
-        ShapedRecipeBuilder.shapedRecipe(ModItems.SPATULA.get())
-                .patternLine("B")
-                .patternLine("I")
-                .patternLine("W")
-                .key('B', Items.IRON_BARS)
-                .key('I', Tags.Items.INGOTS_IRON)
-                .key('W', Blocks.BLACK_WOOL)
-                .addCriterion("has_iron", hasItem(Tags.Items.INGOTS_IRON))
-                .build(consumer);
+        ShapedRecipeBuilder.shaped(ModItems.SPATULA.get())
+                .pattern("B")
+                .pattern("I")
+                .pattern("W")
+                .define('B', Items.IRON_BARS)
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('W', Blocks.BLACK_WOOL)
+                .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
+                .save(consumer);
         // Cooking Recipes
         cookingRecipesForMethod(consumer, "grill_cooking", ModRecipeSerializers.GRILL_COOKING.get(), 600);
         // Freezing Recipes
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.WATER_BUCKET), Blocks.ICE, 1, 1000, ModRecipeSerializers.FREEZER_SOLIDIFY.get()).addCriterion("has_water", hasItem(Items.WATER_BUCKET)).build(consumer, "ice_from_freezing");
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.ICE), Blocks.PACKED_ICE, 1, 2000, ModRecipeSerializers.FREEZER_SOLIDIFY.get()).addCriterion("has_ice", hasItem(Items.ICE)).build(consumer, "packed_ice_from_freezing");
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.PACKED_ICE), Blocks.BLUE_ICE, 1, 4000, ModRecipeSerializers.FREEZER_SOLIDIFY.get()).addCriterion("has_packed_ice", hasItem(Items.PACKED_ICE)).build(consumer, "blue_ice_from_freezing");
+
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.WATER_BUCKET), Blocks.ICE, 1, 1000, ModRecipeSerializers.FREEZER_SOLIDIFY.get()).unlockedBy("has_water", has(Items.WATER_BUCKET)).save(consumer, "ice_from_freezing");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.ICE), Blocks.PACKED_ICE, 1, 2000, ModRecipeSerializers.FREEZER_SOLIDIFY.get()).unlockedBy("has_ice", has(Items.ICE)).save(consumer, "packed_ice_from_freezing");
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.PACKED_ICE), Blocks.BLUE_ICE, 1, 4000, ModRecipeSerializers.FREEZER_SOLIDIFY.get()).unlockedBy("has_packed_ice", has(Items.PACKED_ICE)).save(consumer, "blue_ice_from_freezing");
     }
 
-    private static void table(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider table, IItemProvider log, IItemProvider planks)
+    private static void table(Consumer<FinishedRecipe> recipeConsumer, ItemLike table, ItemLike log, ItemLike planks)
     {
-        ShapedRecipeBuilder.shapedRecipe(table, 4)
-                .patternLine("LLL")
-                .patternLine(" P ")
-                .patternLine(" P ")
-                .key('L', log)
-                .key('P', planks)
-                .setGroup("table")
-                .addCriterion("has_log", hasItem(log))
-                .addCriterion("has_planks", hasItem(planks))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(table, 4)
+                .pattern("LLL")
+                .pattern(" P ")
+                .pattern(" P ")
+                .define('L', log)
+                .define('P', planks)
+                .group("table")
+                .unlockedBy("has_log", has(log))
+                .unlockedBy("has_planks", has(planks))
+                .save(recipeConsumer);
     }
 
-    private static void chair(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider chair, IItemProvider log, IItemProvider planks)
+    private static void chair(Consumer<FinishedRecipe> recipeConsumer, ItemLike chair, ItemLike log, ItemLike planks)
     {
-        ShapedRecipeBuilder.shapedRecipe(chair, 4)
-                .patternLine("L  ")
-                .patternLine("LLL")
-                .patternLine("P P")
-                .key('L', log)
-                .key('P', planks)
-                .setGroup("chair")
-                .addCriterion("has_log", hasItem(log))
-                .addCriterion("has_planks", hasItem(planks))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(chair, 4)
+                .pattern("L  ")
+                .pattern("LLL")
+                .pattern("P P")
+                .define('L', log)
+                .define('P', planks)
+                .group("chair")
+                .unlockedBy("has_log", has(log))
+                .unlockedBy("has_planks", has(planks))
+                .save(recipeConsumer);
     }
 
-    private static void coffeeTable(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider table, IItemProvider log, IItemProvider planks)
+    private static void coffeeTable(Consumer<FinishedRecipe> recipeConsumer, ItemLike table, ItemLike log, ItemLike planks)
     {
-        ShapedRecipeBuilder.shapedRecipe(table, 4)
-                .patternLine("LLL")
-                .patternLine("P P")
-                .key('L', log)
-                .key('P', planks)
-                .setGroup("coffee_table")
-                .addCriterion("has_log", hasItem(log))
-                .addCriterion("has_planks", hasItem(planks))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(table, 4)
+                .pattern("LLL")
+                .pattern("P P")
+                .define('L', log)
+                .define('P', planks)
+                .group("coffee_table")
+                .unlockedBy("has_log", has(log))
+                .unlockedBy("has_planks", has(planks))
+                .save(recipeConsumer);
     }
 
-    private static void cabinet(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider cabinet, IItemProvider log, IItemProvider planks)
+    private static void cabinet(Consumer<FinishedRecipe> recipeConsumer, ItemLike cabinet, ItemLike log, ItemLike planks)
     {
-        ShapedRecipeBuilder.shapedRecipe(cabinet, 2)
-                .patternLine("PPL")
-                .patternLine("P L")
-                .patternLine("PPL")
-                .key('L', log)
-                .key('P', planks)
-                .setGroup("cabinet")
-                .addCriterion("has_log", hasItem(log))
-                .addCriterion("has_planks", hasItem(planks))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(cabinet, 2)
+                .pattern("PPL")
+                .pattern("P L")
+                .pattern("PPL")
+                .define('L', log)
+                .define('P', planks)
+                .group("cabinet")
+                .unlockedBy("has_log", has(log))
+                .unlockedBy("has_planks", has(planks))
+                .save(recipeConsumer);
     }
 
-    private static void bedsideCabinet(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider cabinet, IItemProvider log, IItemProvider planks)
+    private static void bedsideCabinet(Consumer<FinishedRecipe> recipeConsumer, ItemLike cabinet, ItemLike log, ItemLike planks)
     {
-        ShapedRecipeBuilder.shapedRecipe(cabinet, 2)
-                .patternLine("LLL")
-                .patternLine("P P")
-                .patternLine("PPP")
-                .key('L', log)
-                .key('P', planks)
-                .setGroup("bedside_cabinet")
-                .addCriterion("has_log", hasItem(log))
-                .addCriterion("has_planks", hasItem(planks))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(cabinet, 2)
+                .pattern("LLL")
+                .pattern("P P")
+                .pattern("PPP")
+                .define('L', log)
+                .define('P', planks)
+                .group("bedside_cabinet")
+                .unlockedBy("has_log", has(log))
+                .unlockedBy("has_planks", has(planks))
+                .save(recipeConsumer);
     }
 
-    private static void desk(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider desk, IItemProvider log, IItemProvider planks)
+    private static void desk(Consumer<FinishedRecipe> recipeConsumer, ItemLike desk, ItemLike log, ItemLike planks)
     {
-        ShapedRecipeBuilder.shapedRecipe(desk, 2)
-                .patternLine("LLL")
-                .patternLine("P P")
-                .patternLine("P P")
-                .key('L', log)
-                .key('P', planks)
-                .setGroup("desk")
-                .addCriterion("has_log", hasItem(log))
-                .addCriterion("has_planks", hasItem(planks))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(desk, 2)
+                .pattern("LLL")
+                .pattern("P P")
+                .pattern("P P")
+                .define('L', log)
+                .define('P', planks)
+                .group("desk")
+                .unlockedBy("has_log", has(log))
+                .unlockedBy("has_planks", has(planks))
+                .save(recipeConsumer);
     }
 
-    private static void deskCabinet(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider desk, IItemProvider log, IItemProvider planks)
+    private static void deskCabinet(Consumer<FinishedRecipe> recipeConsumer, ItemLike desk, ItemLike log, ItemLike planks)
     {
-        ShapedRecipeBuilder.shapedRecipe(desk, 2)
-                .patternLine("LLL")
-                .patternLine("PPP")
-                .patternLine("P P")
-                .key('L', log)
-                .key('P', planks)
-                .setGroup("desk_cabinet")
-                .addCriterion("has_log", hasItem(log))
-                .addCriterion("has_planks", hasItem(planks))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(desk, 2)
+                .pattern("LLL")
+                .pattern("PPP")
+                .pattern("P P")
+                .define('L', log)
+                .define('P', planks)
+                .group("desk_cabinet")
+                .unlockedBy("has_log", has(log))
+                .unlockedBy("has_planks", has(planks))
+                .save(recipeConsumer);
     }
 
-    private static void sofa(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider sofa, IItemProvider wool)
+    private static void sofa(Consumer<FinishedRecipe> recipeConsumer, ItemLike sofa, ItemLike wool)
     {
-        ShapedRecipeBuilder.shapedRecipe(sofa, 2)
-                .patternLine("W  ")
-                .patternLine("WWW")
-                .patternLine("LLL")
-                .key('W', wool)
-                .key('L', ItemTags.LOGS)
-                .setGroup("sofa")
-                .addCriterion("has_wool", hasItem(wool))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(sofa, 2)
+                .pattern("W  ")
+                .pattern("WWW")
+                .pattern("LLL")
+                .define('W', wool)
+                .define('L', ItemTags.LOGS)
+                .group("sofa")
+                .unlockedBy("has_wool", has(wool))
+                .save(recipeConsumer);
     }
 
-    private static void blinds(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider blinds, IItemProvider log)
+    private static void blinds(Consumer<FinishedRecipe> recipeConsumer, ItemLike blinds, ItemLike log)
     {
-        ShapedRecipeBuilder.shapedRecipe(blinds, 2)
-                .patternLine("LLL")
-                .patternLine("SSS")
-                .patternLine("SSS")
-                .key('L', log)
-                .key('S', Tags.Items.RODS_WOODEN)
-                .setGroup("blinds")
-                .addCriterion("has_log", hasItem(log))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(blinds, 2)
+                .pattern("LLL")
+                .pattern("SSS")
+                .pattern("SSS")
+                .define('L', log)
+                .define('S', Tags.Items.RODS_WOODEN)
+                .group("blinds")
+                .unlockedBy("has_log", has(log))
+                .save(recipeConsumer);
     }
 
-    private static void upgradedFence(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider fence, IItemProvider log)
+    private static void upgradedFence(Consumer<FinishedRecipe> recipeConsumer, ItemLike fence, ItemLike log)
     {
-        ShapedRecipeBuilder.shapedRecipe(fence, 12)
-                .patternLine("LSL")
-                .patternLine("LSL")
-                .key('L', log)
-                .key('S', Tags.Items.RODS_WOODEN)
-                .setGroup("upgraded_fence")
-                .addCriterion("has_log", hasItem(log))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(fence, 12)
+                .pattern("LSL")
+                .pattern("LSL")
+                .define('L', log)
+                .define('S', Tags.Items.RODS_WOODEN)
+                .group("upgraded_fence")
+                .unlockedBy("has_log", has(log))
+                .save(recipeConsumer);
     }
 
-    private static void upgradedGate(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider gate, IItemProvider log)
+    private static void upgradedGate(Consumer<FinishedRecipe> recipeConsumer, ItemLike gate, ItemLike log)
     {
-        ShapedRecipeBuilder.shapedRecipe(gate, 2)
-                .patternLine("LGL")
-                .key('L', log)
-                .key('G', Tags.Items.FENCE_GATES_WOODEN)
-                .setGroup("upgraded_gate")
-                .addCriterion("has_log", hasItem(log))
-                .addCriterion("has_gate", hasItem(Tags.Items.FENCE_GATES_WOODEN))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(gate, 2)
+                .pattern("LGL")
+                .define('L', log)
+                .define('G', Tags.Items.FENCE_GATES_WOODEN)
+                .group("upgraded_gate")
+                .unlockedBy("has_log", has(log))
+                .unlockedBy("has_gate", has(Tags.Items.FENCE_GATES_WOODEN))
+                .save(recipeConsumer);
     }
 
-    private static void picketFence(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider fence, IItemProvider concrete, ITag<Item> dye)
+    private static void picketFence(Consumer<FinishedRecipe> recipeConsumer, ItemLike fence, ItemLike concrete, Tag<Item> dye)
     {
-        ShapedRecipeBuilder.shapedRecipe(fence, 12)
-                .patternLine("CSC")
-                .patternLine("CSC")
-                .key('C', concrete)
-                .key('S', Tags.Items.RODS_WOODEN)
-                .setGroup("picket_fence")
-                .addCriterion("has_concrete", hasItem(concrete))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(fence, 12)
+                .pattern("CSC")
+                .pattern("CSC")
+                .define('C', concrete)
+                .define('S', Tags.Items.RODS_WOODEN)
+                .group("picket_fence")
+                .unlockedBy("has_concrete", has(concrete))
+                .save(recipeConsumer);
         if (fence == ModBlocks.PICKET_FENCE_WHITE.get())
             return;
         ResourceLocation registryName = fence.asItem().getRegistryName();
-        ShapedRecipeBuilder.shapedRecipe(fence, 8)
-                .patternLine("FFF")
-                .patternLine("FDF")
-                .patternLine("FFF")
-                .key('F', ModBlocks.PICKET_FENCE_WHITE.get())
-                .key('D', dye)
-                .setGroup("picket_fence")
-                .addCriterion("has_fence", hasItem(ModBlocks.PICKET_FENCE_WHITE.get()))
-                .addCriterion("has_dye", hasItem(dye))
-                .build(recipeConsumer, new ResourceLocation(registryName.getNamespace(), "dye_" + registryName.getPath()));
+        ShapedRecipeBuilder.shaped(fence, 8)
+                .pattern("FFF")
+                .pattern("FDF")
+                .pattern("FFF")
+                .define('F', ModBlocks.PICKET_FENCE_WHITE.get())
+                .define('D', dye)
+                .group("picket_fence")
+                .unlockedBy("has_fence", has(ModBlocks.PICKET_FENCE_WHITE.get()))
+                .unlockedBy("has_dye", has(dye))
+                .save(recipeConsumer, new ResourceLocation(registryName.getNamespace(), "dye_" + registryName.getPath()));
     }
 
-    private static void picketGate(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider gate, IItemProvider concrete, ITag<Item> dye)
+    private static void picketGate(Consumer<FinishedRecipe> recipeConsumer, ItemLike gate, ItemLike concrete, Tag<Item> dye)
     {
-        ShapedRecipeBuilder.shapedRecipe(gate, 2)
-                .patternLine("CGC")
-                .key('C', concrete)
-                .key('G', Tags.Items.FENCE_GATES_WOODEN)
-                .setGroup("picket_fence")
-                .addCriterion("has_concrete", hasItem(concrete))
-                .addCriterion("has_gate", hasItem(Tags.Items.FENCE_GATES_WOODEN))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(gate, 2)
+                .pattern("CGC")
+                .define('C', concrete)
+                .define('G', Tags.Items.FENCE_GATES_WOODEN)
+                .group("picket_fence")
+                .unlockedBy("has_concrete", has(concrete))
+                .unlockedBy("has_gate", has(Tags.Items.FENCE_GATES_WOODEN))
+                .save(recipeConsumer);
         if (gate == ModBlocks.PICKET_GATE_WHITE.get())
             return;
         ResourceLocation registryName = gate.asItem().getRegistryName();
-        ShapedRecipeBuilder.shapedRecipe(gate, 8)
-                .patternLine("GGG")
-                .patternLine("GDG")
-                .patternLine("GGG")
-                .key('G', ModBlocks.PICKET_GATE_WHITE.get())
-                .key('D', dye)
-                .setGroup("picket_fence")
-                .addCriterion("has_gate", hasItem(ModBlocks.PICKET_GATE_WHITE.get()))
-                .addCriterion("has_dye", hasItem(dye))
-                .build(recipeConsumer, new ResourceLocation(registryName.getNamespace(), "dye_" + registryName.getPath()));
+        ShapedRecipeBuilder.shaped(gate, 8)
+                .pattern("GGG")
+                .pattern("GDG")
+                .pattern("GGG")
+                .define('G', ModBlocks.PICKET_GATE_WHITE.get())
+                .define('D', dye)
+                .group("picket_fence")
+                .unlockedBy("has_gate", has(ModBlocks.PICKET_GATE_WHITE.get()))
+                .unlockedBy("has_dye", has(dye))
+                .save(recipeConsumer, new ResourceLocation(registryName.getNamespace(), "dye_" + registryName.getPath()));
     }
 
-    private static void crate(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider crate, IItemProvider log, IItemProvider planks)
+    private static void crate(Consumer<FinishedRecipe> recipeConsumer, ItemLike crate, ItemLike log, ItemLike planks)
     {
-        ShapedRecipeBuilder.shapedRecipe(crate, 2)
-                .patternLine("LPL")
-                .patternLine("P P")
-                .patternLine("LPL")
-                .key('L', log)
-                .key('P', planks)
-                .setGroup("crate")
-                .addCriterion("has_log", hasItem(log))
-                .addCriterion("has_planks", hasItem(planks))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(crate, 2)
+                .pattern("LPL")
+                .pattern("P P")
+                .pattern("LPL")
+                .define('L', log)
+                .define('P', planks)
+                .group("crate")
+                .unlockedBy("has_log", has(log))
+                .unlockedBy("has_planks", has(planks))
+                .save(recipeConsumer);
     }
 
-    private static void parkBench(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider bench, IItemProvider log, IItemProvider planks)
+    private static void parkBench(Consumer<FinishedRecipe> recipeConsumer, ItemLike bench, ItemLike log, ItemLike planks)
     {
-        ShapedRecipeBuilder.shapedRecipe(bench, 4)
-                .patternLine("PPP")
-                .patternLine("PPP")
-                .patternLine("L L")
-                .key('L', log)
-                .key('P', planks)
-                .setGroup("park_bench")
-                .addCriterion("has_log", hasItem(log))
-                .addCriterion("has_planks", hasItem(planks))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(bench, 4)
+                .pattern("PPP")
+                .pattern("PPP")
+                .pattern("L L")
+                .define('L', log)
+                .define('P', planks)
+                .group("park_bench")
+                .unlockedBy("has_log", has(log))
+                .unlockedBy("has_planks", has(planks))
+                .save(recipeConsumer);
     }
 
-    private static void mailBox(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider mailbox, IItemProvider fence)
+    private static void mailBox(Consumer<FinishedRecipe> recipeConsumer, ItemLike mailbox, ItemLike fence)
     {
-        ShapedRecipeBuilder.shapedRecipe(mailbox)
-                .patternLine("C")
-                .patternLine("F")
-                .patternLine("F")
-                .key('C', Tags.Items.CHESTS_WOODEN)
-                .key('F', fence)
-                .setGroup("mail_box")
-                .addCriterion("has_postbox", hasItem(ModBlocks.POST_BOX.get())) // Mailbox depends on post box so if you have a postbox unlock all mailboxes
-                .addCriterion("has_chest", hasItem(Tags.Items.CHESTS_WOODEN))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(mailbox)
+                .pattern("C")
+                .pattern("F")
+                .pattern("F")
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .define('F', fence)
+                .group("mail_box")
+                .unlockedBy("has_postbox", has(ModBlocks.POST_BOX.get())) // Mailbox depends on post box so if you have a postbox unlock all mailboxes
+                .unlockedBy("has_chest", has(Tags.Items.CHESTS_WOODEN))
+                .save(recipeConsumer);
     }
 
-    private static void hedge(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider hedge, IItemProvider leaves)
+    private static void hedge(Consumer<FinishedRecipe> recipeConsumer, ItemLike hedge, ItemLike leaves)
     {
-        ShapedRecipeBuilder.shapedRecipe(hedge, 12)
-                .patternLine("LLL")
-                .patternLine("LLL")
-                .key('L', leaves)
-                .setGroup("hedge")
-                .addCriterion("has_leaves", hasItem(leaves))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(hedge, 12)
+                .pattern("LLL")
+                .pattern("LLL")
+                .define('L', leaves)
+                .group("hedge")
+                .unlockedBy("has_leaves", has(leaves))
+                .save(recipeConsumer);
     }
 
-    private static void trampoline(Consumer<IFinishedRecipe> recipeConsumer, String key, ItemStack trampoline, DyeColor color, IItemProvider wool)
+    private static void trampoline(Consumer<FinishedRecipe> recipeConsumer, String key, ItemStack trampoline, DyeColor color, ItemLike wool)
     {
-        CompoundNBT tag = new CompoundNBT();
-        CompoundNBT blockEntityTag = new CompoundNBT();
+        CompoundTag tag = new CompoundTag();
+        CompoundTag blockEntityTag = new CompoundTag();
         blockEntityTag.putInt("Color", color.getId());
         tag.put("BlockEntityTag", blockEntityTag);
         trampoline.setTag(tag);
@@ -854,147 +854,147 @@ public class RecipeGen extends RecipeProvider
                 .key('S', Tags.Items.SLIMEBALLS)
                 .key('I', Tags.Items.INGOTS_IRON)
                 .setGroup("trampoline")
-                .addCriterion("has_wool", hasItem(wool))
-                .addCriterion("has_iron", hasItem(Tags.Items.INGOTS_IRON))
+                .addCriterion("has_wool", has(wool))
+                .addCriterion("has_iron", has(Tags.Items.INGOTS_IRON))
                 .build(recipeConsumer);
     }
 
-    private static void cooler(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider cooler, IItemProvider terracotta)
+    private static void cooler(Consumer<FinishedRecipe> recipeConsumer, ItemLike cooler, ItemLike terracotta)
     {
-        ShapedRecipeBuilder.shapedRecipe(cooler, 2)
-                .patternLine("TTT")
-                .patternLine("WCW")
-                .patternLine("TTT")
-                .key('T', terracotta)
-                .key('W', Blocks.WHITE_CONCRETE)
-                .key('C', Tags.Items.CHESTS_WOODEN)
-                .setGroup("trampoline")
-                .addCriterion("has_terracotta", hasItem(terracotta))
-                .addCriterion("has_chest", hasItem(Tags.Items.CHESTS_WOODEN))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(cooler, 2)
+                .pattern("TTT")
+                .pattern("WCW")
+                .pattern("TTT")
+                .define('T', terracotta)
+                .define('W', Blocks.WHITE_CONCRETE)
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .group("trampoline")
+                .unlockedBy("has_terracotta", has(terracotta))
+                .unlockedBy("has_chest", has(Tags.Items.CHESTS_WOODEN))
+                .save(recipeConsumer);
     }
 
-    private static void grill(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider grill, IItemProvider terracotta)
+    private static void grill(Consumer<FinishedRecipe> recipeConsumer, ItemLike grill, ItemLike terracotta)
     {
-        ShapedRecipeBuilder.shapedRecipe(grill)
-                .patternLine("TBT")
-                .patternLine("I I")
-                .patternLine("I I")
-                .key('T', terracotta)
-                .key('B', Items.IRON_BARS)
-                .key('I', Tags.Items.INGOTS_IRON)
-                .setGroup("grill")
-                .addCriterion("has_terracotta", hasItem(terracotta))
-                .addCriterion("has_iron", hasItem(Tags.Items.INGOTS_IRON))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(grill)
+                .pattern("TBT")
+                .pattern("I I")
+                .pattern("I I")
+                .define('T', terracotta)
+                .define('B', Items.IRON_BARS)
+                .define('I', Tags.Items.INGOTS_IRON)
+                .group("grill")
+                .unlockedBy("has_terracotta", has(terracotta))
+                .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
+                .save(recipeConsumer);
     }
 
-    private static void kitchenCounter(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider counter, IItemProvider log, IItemProvider planks)
+    private static void kitchenCounter(Consumer<FinishedRecipe> recipeConsumer, ItemLike counter, ItemLike log, ItemLike planks)
     {
-        ShapedRecipeBuilder.shapedRecipe(counter, 8)
-                .patternLine("LLL")
-                .patternLine("PPP")
-                .patternLine("PPP")
-                .key('L', log)
-                .key('P', planks)
-                .setGroup("kitchen_counter")
-                .addCriterion("has_log", hasItem(log))
-                .addCriterion("has_planks", hasItem(planks))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(counter, 8)
+                .pattern("LLL")
+                .pattern("PPP")
+                .pattern("PPP")
+                .define('L', log)
+                .define('P', planks)
+                .group("kitchen_counter")
+                .unlockedBy("has_log", has(log))
+                .unlockedBy("has_planks", has(planks))
+                .save(recipeConsumer);
     }
 
-    private static void coloredKitchenCounter(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider counter, ITag<Item> dye)
+    private static void coloredKitchenCounter(Consumer<FinishedRecipe> recipeConsumer, ItemLike counter, Tag<Item> dye)
     {
-        ShapedRecipeBuilder.shapedRecipe(counter, 8)
-                .patternLine("SDS")
-                .patternLine("CCC")
-                .patternLine("CCC")
-                .key('S', Blocks.TERRACOTTA)
-                .key('D', dye)
-                .key('C', Blocks.WHITE_CONCRETE)
-                .setGroup("kitchen_counter")
-                .addCriterion("has_stone", hasItem(Blocks.TERRACOTTA))
-                .addCriterion("has_concrete", hasItem(Blocks.WHITE_CONCRETE))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(counter, 8)
+                .pattern("SDS")
+                .pattern("CCC")
+                .pattern("CCC")
+                .define('S', Blocks.TERRACOTTA)
+                .define('D', dye)
+                .define('C', Blocks.WHITE_CONCRETE)
+                .group("kitchen_counter")
+                .unlockedBy("has_stone", has(Blocks.TERRACOTTA))
+                .unlockedBy("has_concrete", has(Blocks.WHITE_CONCRETE))
+                .save(recipeConsumer);
     }
 
-    private static void kitchenDrawer(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider counter, IItemProvider log, IItemProvider planks)
+    private static void kitchenDrawer(Consumer<FinishedRecipe> recipeConsumer, ItemLike counter, ItemLike log, ItemLike planks)
     {
-        ShapedRecipeBuilder.shapedRecipe(counter, 4)
-                .patternLine("LLL")
-                .patternLine("PCP")
-                .patternLine("PPP")
-                .key('L', log)
-                .key('P', planks)
-                .key('C', Tags.Items.CHESTS_WOODEN)
-                .setGroup("kitchen_drawer")
-                .addCriterion("has_log", hasItem(log))
-                .addCriterion("has_planks", hasItem(planks))
-                .addCriterion("has_chest", hasItem(Tags.Items.CHESTS_WOODEN))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(counter, 4)
+                .pattern("LLL")
+                .pattern("PCP")
+                .pattern("PPP")
+                .define('L', log)
+                .define('P', planks)
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .group("kitchen_drawer")
+                .unlockedBy("has_log", has(log))
+                .unlockedBy("has_planks", has(planks))
+                .unlockedBy("has_chest", has(Tags.Items.CHESTS_WOODEN))
+                .save(recipeConsumer);
     }
 
-    private static void coloredKitchenDrawer(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider counter, ITag<Item> dye)
+    private static void coloredKitchenDrawer(Consumer<FinishedRecipe> recipeConsumer, ItemLike counter, Tag<Item> dye)
     {
-        ShapedRecipeBuilder.shapedRecipe(counter, 4)
-                .patternLine("SDS")
-                .patternLine("CBC")
-                .patternLine("CCC")
-                .key('S', Blocks.TERRACOTTA)
-                .key('D', dye)
-                .key('C', Blocks.WHITE_CONCRETE)
-                .key('B', Tags.Items.CHESTS_WOODEN)
-                .setGroup("kitchen_drawer")
-                .addCriterion("has_terracotta", hasItem(Blocks.TERRACOTTA))
-                .addCriterion("has_concrete", hasItem(Blocks.WHITE_CONCRETE))
-                .addCriterion("has_chest", hasItem(Tags.Items.CHESTS_WOODEN))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(counter, 4)
+                .pattern("SDS")
+                .pattern("CBC")
+                .pattern("CCC")
+                .define('S', Blocks.TERRACOTTA)
+                .define('D', dye)
+                .define('C', Blocks.WHITE_CONCRETE)
+                .define('B', Tags.Items.CHESTS_WOODEN)
+                .group("kitchen_drawer")
+                .unlockedBy("has_terracotta", has(Blocks.TERRACOTTA))
+                .unlockedBy("has_concrete", has(Blocks.WHITE_CONCRETE))
+                .unlockedBy("has_chest", has(Tags.Items.CHESTS_WOODEN))
+                .save(recipeConsumer);
     }
 
-    private static void kitchenSink(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider sink, IItemProvider top, IItemProvider bottom)
+    private static void kitchenSink(Consumer<FinishedRecipe> recipeConsumer, ItemLike sink, ItemLike top, ItemLike bottom)
     {
-        ShapedRecipeBuilder.shapedRecipe(sink, 2)
-                .patternLine("CIC")
-                .patternLine("PBP")
-                .patternLine("PPP")
-                .key('C', top)
-                .key('I', Tags.Items.INGOTS_IRON)
-                .key('P', bottom)
-                .key('B', Items.BUCKET)
-                .setGroup("kitchen_sink")
-                .addCriterion("has_top", hasItem(top))
-                .addCriterion("has_bottom", hasItem(bottom))
-                .addCriterion("has_bucket", hasItem(Items.BUCKET))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(sink, 2)
+                .pattern("CIC")
+                .pattern("PBP")
+                .pattern("PPP")
+                .define('C', top)
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('P', bottom)
+                .define('B', Items.BUCKET)
+                .group("kitchen_sink")
+                .unlockedBy("has_top", has(top))
+                .unlockedBy("has_bottom", has(bottom))
+                .unlockedBy("has_bucket", has(Items.BUCKET))
+                .save(recipeConsumer);
     }
 
-    private static void coloredKitchenSink(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider sink, IItemProvider top)
+    private static void coloredKitchenSink(Consumer<FinishedRecipe> recipeConsumer, ItemLike sink, ItemLike top)
     {
-        ShapedRecipeBuilder.shapedRecipe(sink, 2)
-                .patternLine("CIC")
-                .patternLine("PBP")
-                .patternLine("PPP")
-                .key('C', top)
-                .key('I', Tags.Items.INGOTS_IRON)
-                .key('P', Blocks.WHITE_CONCRETE)
-                .key('B', Items.BUCKET)
-                .setGroup("kitchen_sink")
-                .addCriterion("has_top", hasItem(top))
-                .addCriterion("has_concrete", hasItem(Blocks.WHITE_CONCRETE))
-                .addCriterion("has_bucket", hasItem(Items.BUCKET))
-                .build(recipeConsumer);
+        ShapedRecipeBuilder.shaped(sink, 2)
+                .pattern("CIC")
+                .pattern("PBP")
+                .pattern("PPP")
+                .define('C', top)
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('P', Blocks.WHITE_CONCRETE)
+                .define('B', Items.BUCKET)
+                .group("kitchen_sink")
+                .unlockedBy("has_top", has(top))
+                .unlockedBy("has_concrete", has(Blocks.WHITE_CONCRETE))
+                .unlockedBy("has_bucket", has(Items.BUCKET))
+                .save(recipeConsumer);
     }
 
-    private static void cookingRecipesForMethod(Consumer<IFinishedRecipe> recipeConsumer, String recipeConsumerIn, CookingRecipeSerializer<?> cookingMethod, int cookingTime)
+    private static void cookingRecipesForMethod(Consumer<FinishedRecipe> recipeConsumer, String recipeConsumerIn, SimpleCookingSerializer<?> cookingMethod, int cookingTime)
     {
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.BEEF), Items.COOKED_BEEF, 0.35F, cookingTime, cookingMethod).addCriterion("has_beef", hasItem(Items.BEEF)).build(recipeConsumer, "cooked_beef_from_" + recipeConsumerIn);
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.CHICKEN), Items.COOKED_CHICKEN, 0.35F, cookingTime, cookingMethod).addCriterion("has_chicken", hasItem(Items.CHICKEN)).build(recipeConsumer, "cooked_chicken_from_" + recipeConsumerIn);
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.COD), Items.COOKED_COD, 0.35F, cookingTime, cookingMethod).addCriterion("has_cod", hasItem(Items.COD)).build(recipeConsumer, "cooked_cod_from_" + recipeConsumerIn);
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Blocks.KELP), Items.DRIED_KELP, 0.1F, cookingTime, cookingMethod).addCriterion("has_kelp", hasItem(Blocks.KELP)).build(recipeConsumer, "dried_kelp_from_" + recipeConsumerIn);
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.SALMON), Items.COOKED_SALMON, 0.35F, cookingTime, cookingMethod).addCriterion("has_salmon", hasItem(Items.SALMON)).build(recipeConsumer, "cooked_salmon_from_" + recipeConsumerIn);
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.MUTTON), Items.COOKED_MUTTON, 0.35F, cookingTime, cookingMethod).addCriterion("has_mutton", hasItem(Items.MUTTON)).build(recipeConsumer, "cooked_mutton_from_" + recipeConsumerIn);
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.PORKCHOP), Items.COOKED_PORKCHOP, 0.35F, cookingTime, cookingMethod).addCriterion("has_porkchop", hasItem(Items.PORKCHOP)).build(recipeConsumer, "cooked_porkchop_from_" + recipeConsumerIn);
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.POTATO), Items.BAKED_POTATO, 0.35F, cookingTime, cookingMethod).addCriterion("has_potato", hasItem(Items.POTATO)).build(recipeConsumer, "baked_potato_from_" + recipeConsumerIn);
-        CookingRecipeBuilder.cookingRecipe(Ingredient.fromItems(Items.RABBIT), Items.COOKED_RABBIT, 0.35F, cookingTime, cookingMethod).addCriterion("has_rabbit", hasItem(Items.RABBIT)).build(recipeConsumer, "cooked_rabbit_from_" + recipeConsumerIn);
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.BEEF), Items.COOKED_BEEF, 0.35F, cookingTime, cookingMethod).unlockedBy("has_beef", has(Items.BEEF)).save(recipeConsumer, "cooked_beef_from_" + recipeConsumerIn);
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.CHICKEN), Items.COOKED_CHICKEN, 0.35F, cookingTime, cookingMethod).unlockedBy("has_chicken", has(Items.CHICKEN)).save(recipeConsumer, "cooked_chicken_from_" + recipeConsumerIn);
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.COD), Items.COOKED_COD, 0.35F, cookingTime, cookingMethod).unlockedBy("has_cod", has(Items.COD)).save(recipeConsumer, "cooked_cod_from_" + recipeConsumerIn);
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(Blocks.KELP), Items.DRIED_KELP, 0.1F, cookingTime, cookingMethod).unlockedBy("has_kelp", has(Blocks.KELP)).save(recipeConsumer, "dried_kelp_from_" + recipeConsumerIn);
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.SALMON), Items.COOKED_SALMON, 0.35F, cookingTime, cookingMethod).unlockedBy("has_salmon", has(Items.SALMON)).save(recipeConsumer, "cooked_salmon_from_" + recipeConsumerIn);
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.MUTTON), Items.COOKED_MUTTON, 0.35F, cookingTime, cookingMethod).unlockedBy("has_mutton", has(Items.MUTTON)).save(recipeConsumer, "cooked_mutton_from_" + recipeConsumerIn);
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.PORKCHOP), Items.COOKED_PORKCHOP, 0.35F, cookingTime, cookingMethod).unlockedBy("has_porkchop", has(Items.PORKCHOP)).save(recipeConsumer, "cooked_porkchop_from_" + recipeConsumerIn);
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.POTATO), Items.BAKED_POTATO, 0.35F, cookingTime, cookingMethod).unlockedBy("has_potato", has(Items.POTATO)).save(recipeConsumer, "baked_potato_from_" + recipeConsumerIn);
+        SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.RABBIT), Items.COOKED_RABBIT, 0.35F, cookingTime, cookingMethod).unlockedBy("has_rabbit", has(Items.RABBIT)).save(recipeConsumer, "cooked_rabbit_from_" + recipeConsumerIn);
     }
 }

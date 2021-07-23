@@ -4,9 +4,9 @@ import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.common.ModTags;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModItems;
-import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.ItemTagsProvider;
+import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 /**
@@ -20,9 +20,9 @@ public class ItemTagGen extends ItemTagsProvider
     }
 
     @Override
-    protected void registerTags()
+    protected void addTags()
     {
-        this.getOrCreateBuilder(ModTags.Items.BEDROOM)
+        this.tag(ModTags.Items.BEDROOM)
                 // Cabinets
                 .add(ModBlocks.BEDSIDE_CABINET_OAK.get().asItem())
                 .add(ModBlocks.BEDSIDE_CABINET_SPRUCE.get().asItem())
@@ -88,7 +88,7 @@ public class ItemTagGen extends ItemTagsProvider
                 .add(ModBlocks.BLINDS_STRIPPED_ACACIA.get().asItem())
                 .add(ModBlocks.BLINDS_STRIPPED_DARK_OAK.get().asItem());
 
-        this.getOrCreateBuilder(ModTags.Items.GENERAL)
+        this.tag(ModTags.Items.GENERAL)
                 // Tables
                 .add(ModBlocks.TABLE_OAK.get().asItem())
                 .add(ModBlocks.TABLE_SPRUCE.get().asItem())
@@ -158,7 +158,7 @@ public class ItemTagGen extends ItemTagsProvider
                 .add(ModBlocks.SOFA_RED.get().asItem())
                 .add(ModBlocks.SOFA_BLACK.get().asItem());
 
-        this.getOrCreateBuilder(ModTags.Items.KITCHEN)
+        this.tag(ModTags.Items.KITCHEN)
                 // Kitchen Counters
                 .add(ModBlocks.KITCHEN_COUNTER_OAK.get().asItem())
                 .add(ModBlocks.KITCHEN_COUNTER_SPRUCE.get().asItem())
@@ -261,7 +261,7 @@ public class ItemTagGen extends ItemTagsProvider
                 .add(ModBlocks.KITCHEN_SINK_RED.get().asItem())
                 .add(ModBlocks.KITCHEN_SINK_BLACK.get().asItem());
 
-        this.getOrCreateBuilder(ModTags.Items.OUTDOORS)
+        this.tag(ModTags.Items.OUTDOORS)
                 // Fences and Fence Gates
                 .addTag(ModTags.Items.UPGRADED_FENCE_GATES)
                 .addTag(ModTags.Items.UPGRADED_FENCES)
@@ -336,7 +336,7 @@ public class ItemTagGen extends ItemTagsProvider
                 // Spatula
                 .add(ModItems.SPATULA.get());
 
-        this.getOrCreateBuilder(ModTags.Items.STORAGE)
+        this.tag(ModTags.Items.STORAGE)
                 // Cabinets
                 .add(ModBlocks.CABINET_OAK.get().asItem())
                 .add(ModBlocks.CABINET_SPRUCE.get().asItem())
@@ -498,11 +498,11 @@ public class ItemTagGen extends ItemTagsProvider
                 .add(ModBlocks.KITCHEN_DRAWER_RED.get().asItem())
                 .add(ModBlocks.KITCHEN_DRAWER_BLACK.get().asItem());
 
-        this.getOrCreateBuilder(ModTags.Items.TRAMPOLINE)
+        this.tag(ModTags.Items.TRAMPOLINE)
                 // Trampolines
                 .add(ModBlocks.TRAMPOLINE.get().asItem());
 
-        this.getOrCreateBuilder(ModTags.Items.ITEMS).add(ModItems.SPATULA.get());
+        this.tag(ModTags.Items.ITEMS).add(ModItems.SPATULA.get());
 
         this.copy(ModTags.Blocks.UPGRADED_FENCE_GATES, ModTags.Items.UPGRADED_FENCE_GATES);
         this.copy(ModTags.Blocks.PICKET_FENCE_GATES, ModTags.Items.PICKET_FENCE_GATES);

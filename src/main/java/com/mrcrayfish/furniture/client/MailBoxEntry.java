@@ -1,6 +1,6 @@
 package com.mrcrayfish.furniture.client;
 
-import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.CompoundTag;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -23,11 +23,11 @@ public class MailBoxEntry
         this.ownerName = ownerName;
     }
 
-    public MailBoxEntry(CompoundNBT compound)
+    public MailBoxEntry(CompoundTag compound)
     {
-        this.mailBoxId = compound.getUniqueId("MailBoxUUID");
+        this.mailBoxId = compound.getUUID("MailBoxUUID");
         this.name = compound.getString("MailBoxName");
-        this.ownerId = compound.getUniqueId("OwnerUUID");
+        this.ownerId = compound.getUUID("OwnerUUID");
         this.ownerName = compound.getString("OwnerName");
     }
 

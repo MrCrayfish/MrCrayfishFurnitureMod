@@ -1,19 +1,20 @@
 package com.mrcrayfish.furniture.client.gui.screen;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageSetDoorMatMessage;
-import com.mrcrayfish.furniture.tileentity.DoorMatTileEntity;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.TextFieldWidget;
-import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.ITextProperties;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
+import com.mrcrayfish.furniture.tileentity.DoorMatBlockEntity;
+import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FormattedText;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
 
 /**
  * Author: MrCrayfish
@@ -25,14 +26,14 @@ public class DoorMatScreen extends Screen
     private int xSize = 176;
     private int ySize = 69;
 
-    private DoorMatTileEntity doorMatTileEntity;
-    private TextFieldWidget nameField;
+    private DoorMatBlockEntity doorMatBlockEntity;
+    private EditBox nameField;
     private Button btnSave;
 
-    public DoorMatScreen(DoorMatTileEntity doorMatTileEntity)
+    public DoorMatScreen(DoorMatBlockEntity doorMatBlockEntity)
     {
-        super(new TranslationTextComponent("gui.cfm.door_mat_message"));
-        this.doorMatTileEntity = doorMatTileEntity;
+        super(new TranslatableComponent("gui.cfm.door_mat_message"));
+        this.doorMatBlockEntity = doorMatBlockEntity;
     }
 
     @Override
@@ -41,35 +42,35 @@ public class DoorMatScreen extends Screen
         int guiLeft = (this.width - this.xSize) / 2;
         int guiTop = (this.height - this.ySize) / 2;
 
-        this.nameField = new TextFieldWidget(this.font, guiLeft + 8, guiTop + 18, 160, 18, StringTextComponent.EMPTY)
+        this.nameField = new EditBox(this.font, guiLeft + 8, guiTop + 18, 160, 18, TextComponent.EMPTY)
         {
             @Override
-            public void writeText(String textToWrite)
+            public void insertText(String textToWrite)
             {
-                int lines = DoorMatScreen.this.font.trimStringToWidth(ITextProperties.func_240652_a_(this.getText() + textToWrite), 60).size();
+                int lines = DoorMatScreen.this.font.split(FormattedText.of(this.getValue() + textToWrite), 60).size();
                 if(lines <= 2)
                 {
-                    super.writeText(textToWrite);
+                    super.insertText(textToWrite);
                 }
             }
         };
-        if(this.doorMatTileEntity.getMessage() != null)
+        if(this.doorMatBlockEntity.getMessage() != null)
         {
-            this.nameField.setText(this.doorMatTileEntity.getMessage());
+            this.nameField.setValue(this.doorMatBlockEntity.getMessage());
         }
-        this.children.add(this.nameField);
+        this.addWidget(this.nameField);
 
-        this.btnSave = this.addButton(new Button(guiLeft + 7, guiTop + 42, 79, 20, new TranslationTextComponent("gui.button.cfm.save"), button ->
+        this.btnSave = this.addRenderableWidget(new Button(guiLeft + 7, guiTop + 42, 79, 20, new TranslatableComponent("gui.button.cfm.save"), button ->
         {
             if(this.isValidName())
             {
-                PacketHandler.instance.sendToServer(new MessageSetDoorMatMessage(this.doorMatTileEntity.getPos(), this.nameField.getText()));
-                this.minecraft.player.closeScreen();
+                PacketHandler.instance.sendToServer(new MessageSetDoorMatMessage(this.doorMatBlockEntity.getBlockPos(), this.nameField.getValue()));
+                this.minecraft.player.closeContainer();
             }
         }));
         this.btnSave.active = false;
 
-        this.addButton(new Button(guiLeft + 91, guiTop + 42, 79, 20, new TranslationTextComponent("gui.button.cfm.cancel"), button -> this.closeScreen()));
+        this.addRenderableWidget(new Button(guiLeft + 91, guiTop + 42, 79, 20, new TranslatableComponent("gui.button.cfm.cancel"), button -> this.onClose()));
     }
 
     @Override
@@ -81,22 +82,23 @@ public class DoorMatScreen extends Screen
     }
 
     @Override
-    public void render(MatrixStack matrixStack, int mouseX, int mouseY, float partialTicks)
+    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks)
     {
-        this.renderBackground(matrixStack);
-        RenderSystem.color4f(1.0F, 1.0F, 1.0F, 1.0F);
-        this.minecraft.getTextureManager().bindTexture(GUI_TEXTURE);
+        this.renderBackground(poseStack);
+        RenderSystem.setShader(GameRenderer::getPositionColorTexShader);
+        RenderSystem.setShaderTexture(0, GUI_TEXTURE);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         int startX = (this.width - this.xSize) / 2;
         int startY = (this.height - this.ySize) / 2;
-        this.blit(matrixStack, startX, startY, 0, 0, this.xSize, this.ySize);
-        super.render(matrixStack, mouseX, mouseY, partialTicks);
-        this.font.drawString(matrixStack, this.title.getString(), startX + 8.0F, startY + 6.0F, 0x404040);
-        this.nameField.render(matrixStack, mouseX, mouseY, partialTicks);
+        this.blit(poseStack, startX, startY, 0, 0, this.xSize, this.ySize);
+        super.render(poseStack, mouseX, mouseY, partialTicks);
+        this.font.draw(poseStack, this.title.getString(), startX + 8.0F, startY + 6.0F, 0x404040);
+        this.nameField.render(poseStack, mouseX, mouseY, partialTicks);
     }
 
     private boolean isValidName()
     {
-        int lines = this.font.trimStringToWidth(ITextComponent.getTextComponentOrEmpty(this.doorMatTileEntity.getMessage()), 45).size();
-        return !this.nameField.getText().equals(this.doorMatTileEntity.getMessage()) && !this.nameField.getText().trim().isEmpty() && lines < 2;
+        int lines = this.font.split(Component.nullToEmpty(this.doorMatBlockEntity.getMessage()), 45).size();
+        return !this.nameField.getValue().equals(this.doorMatBlockEntity.getMessage()) && !this.nameField.getValue().trim().isEmpty() && lines < 2;
     }
 }

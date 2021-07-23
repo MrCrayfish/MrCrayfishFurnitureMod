@@ -2,27 +2,24 @@ package com.mrcrayfish.furniture.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.mrcrayfish.furniture.tileentity.DeskCabinetTileEntity;
+import com.mrcrayfish.furniture.tileentity.BasicLootBlockEntity;
+import com.mrcrayfish.furniture.tileentity.DeskCabinetBlockEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.inventory.ISidedInventoryProvider;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -32,45 +29,45 @@ import java.util.Random;
 /**
  * Author: MrCrayfish
  */
-public class DeskCabinetBlock extends DeskBlock implements ISidedInventoryProvider
+public class DeskCabinetBlock extends DeskBlock implements EntityBlock
 {
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
 
     public DeskCabinetBlock(Properties properties, MaterialType materialType)
     {
         super(properties, materialType);
-        this.setDefaultState(this.getStateContainer().getBaseState().with(DIRECTION, Direction.NORTH).with(TYPE, Type.SINGLE).with(OPEN, false));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(TYPE, Type.SINGLE).setValue(OPEN, false));
     }
 
     @Override
     protected ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
     {
-        final VoxelShape[] DESK_TOP = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 14, 0, 16, 16, 16), Direction.SOUTH));
-        final VoxelShape[] DESK_BACK = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 2, 1, 16, 14, 3), Direction.SOUTH));
-        final VoxelShape[] DESK_LEFT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 0, 0, 2, 14, 15), Direction.SOUTH));
-        final VoxelShape[] DESK_RIGHT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(14, 0, 0, 16, 14, 15), Direction.SOUTH));
-        final VoxelShape[] DESK_DRAWS = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(2, 2, 3, 14, 14, 15), Direction.SOUTH));
+        final VoxelShape[] DESK_TOP = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 14, 0, 16, 16, 16), Direction.SOUTH));
+        final VoxelShape[] DESK_BACK = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 2, 1, 16, 14, 3), Direction.SOUTH));
+        final VoxelShape[] DESK_LEFT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 0, 0, 2, 14, 15), Direction.SOUTH));
+        final VoxelShape[] DESK_RIGHT = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(14, 0, 0, 16, 14, 15), Direction.SOUTH));
+        final VoxelShape[] DESK_DRAWS = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(2, 2, 3, 14, 14, 15), Direction.SOUTH));
 
         ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
         for(BlockState state : states)
         {
-            Direction direction = state.get(DIRECTION);
-            Type type = state.get(TYPE);
+            Direction direction = state.getValue(DIRECTION);
+            Type type = state.getValue(TYPE);
             List<VoxelShape> shapes = new ArrayList<>();
-            shapes.add(DESK_TOP[direction.getHorizontalIndex()]);
-            shapes.add(DESK_BACK[direction.getHorizontalIndex()]);
-            shapes.add(DESK_DRAWS[direction.getHorizontalIndex()]);
+            shapes.add(DESK_TOP[direction.get2DDataValue()]);
+            shapes.add(DESK_BACK[direction.get2DDataValue()]);
+            shapes.add(DESK_DRAWS[direction.get2DDataValue()]);
             switch(type)
             {
                 case SINGLE:
-                    shapes.add(DESK_LEFT[direction.getHorizontalIndex()]);
-                    shapes.add(DESK_RIGHT[direction.getHorizontalIndex()]);
+                    shapes.add(DESK_LEFT[direction.get2DDataValue()]);
+                    shapes.add(DESK_RIGHT[direction.get2DDataValue()]);
                     break;
                 case LEFT:
-                    shapes.add(DESK_LEFT[direction.getHorizontalIndex()]);
+                    shapes.add(DESK_LEFT[direction.get2DDataValue()]);
                     break;
                 case RIGHT:
-                    shapes.add(DESK_RIGHT[direction.getHorizontalIndex()]);
+                    shapes.add(DESK_RIGHT[direction.get2DDataValue()]);
                     break;
             }
             builder.put(state, VoxelShapeHelper.combineAll(shapes));
@@ -79,61 +76,42 @@ public class DeskCabinetBlock extends DeskBlock implements ISidedInventoryProvid
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
-        if(state.get(DIRECTION).getOpposite() == result.getFace())
+        if(state.getValue(DIRECTION).getOpposite() == result.getDirection())
         {
-            if(!world.isRemote())
+            if(!level.isClientSide())
             {
-                TileEntity tileEntity = world.getTileEntity(pos);
-                if(tileEntity instanceof DeskCabinetTileEntity)
+                if(level.getBlockEntity(pos) instanceof DeskCabinetBlockEntity blockEntity)
                 {
-                    playerEntity.openContainer((INamedContainerProvider) tileEntity);
+                    player.openMenu(blockEntity);
                 }
             }
-            return ActionResultType.SUCCESS;
+            return InteractionResult.SUCCESS;
         }
-        return ActionResultType.PASS;
+        return InteractionResult.PASS;
     }
 
     @Override
-    public void tick(BlockState state, ServerWorld world, BlockPos pos, Random random)
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, Random random)
     {
-        TileEntity tileEntity = world.getTileEntity(pos);
-        if(tileEntity instanceof DeskCabinetTileEntity)
+        if(level.getBlockEntity(pos) instanceof BasicLootBlockEntity blockEntity)
         {
-            ((DeskCabinetTileEntity) tileEntity).onScheduledTick();
+            blockEntity.updateOpenerCount();
         }
     }
 
     @Override
-    public boolean hasTileEntity(BlockState state)
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
-        return true;
+        super.createBlockStateDefinition(builder);
+        builder.add(OPEN);
     }
 
     @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world)
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
     {
-        return new DeskCabinetTileEntity();
-    }
-
-    @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
-    {
-        super.fillStateContainer(builder);
-        builder.add(OPEN);
-    }
-
-    @Override
-    public ISidedInventory createInventory(BlockState state, IWorld world, BlockPos pos)
-    {
-        TileEntity tileEntity = world.getTileEntity(pos);
-        if(tileEntity instanceof ISidedInventory)
-        {
-            return (ISidedInventory) tileEntity;
-        }
-        return null;
+        return new DeskCabinetBlockEntity(pos, state);
     }
 }

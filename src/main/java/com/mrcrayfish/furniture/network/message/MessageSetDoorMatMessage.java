@@ -1,12 +1,11 @@
 package com.mrcrayfish.furniture.network.message;
 
-import com.mrcrayfish.furniture.tileentity.DoorMatTileEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkEvent;
+import com.mrcrayfish.furniture.tileentity.DoorMatBlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
@@ -27,16 +26,16 @@ public class MessageSetDoorMatMessage implements IMessage<MessageSetDoorMatMessa
     }
 
     @Override
-    public void encode(MessageSetDoorMatMessage message, PacketBuffer buffer)
+    public void encode(MessageSetDoorMatMessage message, FriendlyByteBuf buffer)
     {
         buffer.writeBlockPos(message.pos);
-        buffer.writeString(message.message, 64);
+        buffer.writeUtf(message.message, 64);
     }
 
     @Override
-    public MessageSetDoorMatMessage decode(PacketBuffer buffer)
+    public MessageSetDoorMatMessage decode(FriendlyByteBuf buffer)
     {
-        return new MessageSetDoorMatMessage(buffer.readBlockPos(), buffer.readString(64));
+        return new MessageSetDoorMatMessage(buffer.readBlockPos(), buffer.readUtf(64));
     }
 
     @Override
@@ -44,16 +43,15 @@ public class MessageSetDoorMatMessage implements IMessage<MessageSetDoorMatMessa
     {
         supplier.get().enqueueWork(() ->
         {
-            ServerPlayerEntity player = supplier.get().getSender();
+            ServerPlayer player = supplier.get().getSender();
             if(player != null)
             {
-                World world = player.getServerWorld();
-                if(world.isAreaLoaded(message.pos, 0))
+                Level level = player.getLevel();
+                if(level.isAreaLoaded(message.pos, 0))
                 {
-                    TileEntity tileEntity = world.getTileEntity(message.pos);
-                    if(tileEntity instanceof DoorMatTileEntity)
+                    if(level.getBlockEntity(message.pos) instanceof DoorMatBlockEntity blockEntity)
                     {
-                        ((DoorMatTileEntity) tileEntity).setMessage(message.message);
+                        blockEntity.setMessage(message.message);
                     }
                 }
             }

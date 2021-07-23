@@ -1,13 +1,18 @@
 package com.mrcrayfish.furniture.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.Container;
+import net.minecraft.world.Containers;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+
+import javax.annotation.Nullable;
 
 public abstract class FurnitureBlock extends Block
 {
@@ -23,37 +28,42 @@ public abstract class FurnitureBlock extends Block
     }*/
 
     @Override
-    public int getComparatorInputOverride(BlockState state, World world, BlockPos pos)
+    public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos)
     {
-        return Container.calcRedstone(world.getTileEntity(pos));
+        return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(pos));
     }
 
     @Override
-    public boolean hasComparatorInputOverride(BlockState state)
+    public boolean hasAnalogOutputSignal(BlockState state)
     {
-        return this.hasTileEntity(state);
+        return state.getBlock() instanceof EntityBlock;
     }
 
     @Override
-    public void onReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean isMoving)
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving)
     {
         if(state.getBlock() != newState.getBlock())
         {
-            TileEntity tileEntity = world.getTileEntity(pos);
-            if(tileEntity instanceof IInventory)
+            if(level.getBlockEntity(pos) instanceof Container container)
             {
-                InventoryHelper.dropInventoryItems(world, pos, (IInventory) tileEntity);
-                world.updateComparatorOutputLevel(pos, this);
+                Containers.dropContents(level, pos, container);
+                level.updateNeighbourForOutputSignal(pos, this);
             }
         }
-        super.onReplaced(state, world, pos, newState, isMoving);
+        super.onRemove(state, level, pos, newState, isMoving);
     }
 
     @Override
-    public boolean eventReceived(BlockState state, World world, BlockPos pos, int id, int type)
+    public boolean triggerEvent(BlockState state, Level level, BlockPos pos, int id, int type)
     {
-        super.eventReceived(state, world, pos, id, type);
-        TileEntity tileEntity = world.getTileEntity(pos);
-        return tileEntity != null && tileEntity.receiveClientEvent(id, type);
+        super.triggerEvent(state, level, pos, id, type);
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        return blockEntity != null && blockEntity.triggerEvent(id, type);
+    }
+
+    @Nullable
+    protected static <E extends BlockEntity, A extends BlockEntity> BlockEntityTicker<A> createTickerHelper(BlockEntityType<A> type1, BlockEntityType<E> type2, BlockEntityTicker<? super E> ticker)
+    {
+        return type2 == type1 ? (BlockEntityTicker<A>) ticker : null;
     }
 }

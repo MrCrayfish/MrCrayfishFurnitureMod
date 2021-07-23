@@ -2,11 +2,11 @@ package com.mrcrayfish.furniture.item.crafting;
 
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModRecipeSerializers;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.AbstractCookingRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 
 /**
  * Author: MrCrayfish
@@ -15,17 +15,17 @@ public class GrillCookingRecipe extends AbstractCookingRecipe
 {
     public GrillCookingRecipe(ResourceLocation idIn, String groupIn, Ingredient ingredientIn, ItemStack resultIn, float experienceIn, int cookTimeIn)
     {
-        super(RecipeType.GRILL_COOKING, idIn, groupIn, ingredientIn, resultIn, experienceIn, cookTimeIn);
+        super(ModRecipeType.GRILL_COOKING, idIn, groupIn, ingredientIn, resultIn, experienceIn, cookTimeIn);
     }
 
     @Override
-    public ItemStack getIcon()
+    public ItemStack getToastSymbol()
     {
         return new ItemStack(ModBlocks.GRILL_RED.get());
     }
 
     @Override
-    public IRecipeSerializer<?> getSerializer()
+    public RecipeSerializer<?> getSerializer()
     {
         return ModRecipeSerializers.GRILL_COOKING.get();
     }

@@ -3,28 +3,28 @@ package com.mrcrayfish.furniture.block;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.MobEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.pathfinding.PathNodeType;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.EnumProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.state.properties.DoorHingeSide;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.math.vector.Vector3d;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DoorHingeSide;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -46,52 +46,52 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
     public UpgradedGateBlock(Properties properties)
     {
         super(properties);
-        this.setDefaultState(this.getStateContainer().getBaseState().with(HINGE, DoorHingeSide.LEFT).with(OPEN, false).with(DOUBLE, false));
-        SHAPES = this.generateShapes(this.getStateContainer().getValidStates(), false);
-        COLLISION_SHAPES = this.generateShapes(this.getStateContainer().getValidStates(), true);
+        this.registerDefaultState(this.getStateDefinition().any().setValue(HINGE, DoorHingeSide.LEFT).setValue(OPEN, false).setValue(DOUBLE, false));
+        SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates(), false);
+        COLLISION_SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates(), true);
     }
 
     private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states, boolean collision)
     {
-        final VoxelShape[] RIGHT_GATE_CLOSED = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1.5, 1, 7, 14.5, 17, 9), Direction.SOUTH));
-        final VoxelShape[] RIGHT_DOUBLE_GATE_CLOSED = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 1, 7, 14, 17, 9), Direction.SOUTH));
-        final VoxelShape[] RIGHT_GATE_OPEN = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(13, 1, -5, 15, 17, 8), Direction.SOUTH));
-        final VoxelShape[] RIGHT_DOUBLE_GATE_OPEN = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(13, 1, -6, 15, 17, 8), Direction.SOUTH));
-        final VoxelShape[] RIGHT_HINGE_BOTTOM = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(14, 3, 7, 15, 6, 9), Direction.SOUTH));
-        final VoxelShape[] RIGHT_HINGE_TOP = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(14, 12, 7, 15, 15, 9), Direction.SOUTH));
-        final VoxelShape[] RIGHT_POST = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(15, 0, 6, 18, 17, 10), Direction.SOUTH));
-        final VoxelShape[] LEFT_GATE_CLOSED = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1.5, 1, 7, 14.5, 17, 9), Direction.SOUTH));
-        final VoxelShape[] LEFT_DOUBLE_GATE_CLOSED = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(2, 1, 7, 16, 17, 9), Direction.SOUTH));
-        final VoxelShape[] LEFT_GATE_OPEN = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1, 1, -5, 3, 17, 8), Direction.SOUTH));
-        final VoxelShape[] LEFT_DOUBLE_GATE_OPEN = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1, 1, -6, 3, 17, 8), Direction.SOUTH));
-        final VoxelShape[] LEFT_HINGE_BOTTOM = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1, 3, 7, 2, 6, 9), Direction.SOUTH));
-        final VoxelShape[] LEFT_HINGE_TOP = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(1, 12, 7, 2, 15, 9), Direction.SOUTH));
-        final VoxelShape[] LEFT_POST = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(-2, 0, 6, 1, 17, 10), Direction.SOUTH));
+        final VoxelShape[] RIGHT_GATE_CLOSED = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(1.5, 1, 7, 14.5, 17, 9), Direction.SOUTH));
+        final VoxelShape[] RIGHT_DOUBLE_GATE_CLOSED = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 1, 7, 14, 17, 9), Direction.SOUTH));
+        final VoxelShape[] RIGHT_GATE_OPEN = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(13, 1, -5, 15, 17, 8), Direction.SOUTH));
+        final VoxelShape[] RIGHT_DOUBLE_GATE_OPEN = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(13, 1, -6, 15, 17, 8), Direction.SOUTH));
+        final VoxelShape[] RIGHT_HINGE_BOTTOM = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(14, 3, 7, 15, 6, 9), Direction.SOUTH));
+        final VoxelShape[] RIGHT_HINGE_TOP = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(14, 12, 7, 15, 15, 9), Direction.SOUTH));
+        final VoxelShape[] RIGHT_POST = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(15, 0, 6, 18, 17, 10), Direction.SOUTH));
+        final VoxelShape[] LEFT_GATE_CLOSED = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(1.5, 1, 7, 14.5, 17, 9), Direction.SOUTH));
+        final VoxelShape[] LEFT_DOUBLE_GATE_CLOSED = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(2, 1, 7, 16, 17, 9), Direction.SOUTH));
+        final VoxelShape[] LEFT_GATE_OPEN = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(1, 1, -5, 3, 17, 8), Direction.SOUTH));
+        final VoxelShape[] LEFT_DOUBLE_GATE_OPEN = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(1, 1, -6, 3, 17, 8), Direction.SOUTH));
+        final VoxelShape[] LEFT_HINGE_BOTTOM = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(1, 3, 7, 2, 6, 9), Direction.SOUTH));
+        final VoxelShape[] LEFT_HINGE_TOP = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(1, 12, 7, 2, 15, 9), Direction.SOUTH));
+        final VoxelShape[] LEFT_POST = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(-2, 0, 6, 1, 17, 10), Direction.SOUTH));
 
         ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
         for(BlockState state : states)
         {
-            Direction direction = state.get(DIRECTION);
-            DoorHingeSide hingeSide = state.get(HINGE);
-            boolean open = state.get(OPEN);
-            boolean double_ = state.get(DOUBLE);
+            Direction direction = state.getValue(DIRECTION);
+            DoorHingeSide hingeSide = state.getValue(HINGE);
+            boolean open = state.getValue(OPEN);
+            boolean double_ = state.getValue(DOUBLE);
 
             List<VoxelShape> shapes = new ArrayList<>();
             switch(hingeSide)
             {
                 case LEFT:
-                    VoxelShape post = LEFT_POST[direction.getHorizontalIndex()];
+                    VoxelShape post = LEFT_POST[direction.get2DDataValue()];
                     if(collision)
                     {
                         post = VoxelShapeHelper.setMaxHeight(post, 1.5);
                         post = VoxelShapeHelper.limitHorizontal(post);
                     }
                     shapes.add(post);
-                    shapes.add(LEFT_HINGE_BOTTOM[direction.getHorizontalIndex()]);
-                    shapes.add(LEFT_HINGE_TOP[direction.getHorizontalIndex()]);
+                    shapes.add(LEFT_HINGE_BOTTOM[direction.get2DDataValue()]);
+                    shapes.add(LEFT_HINGE_TOP[direction.get2DDataValue()]);
                     if(open)
                     {
-                        VoxelShape doubleGate = double_ ? LEFT_DOUBLE_GATE_OPEN[direction.getHorizontalIndex()] : LEFT_GATE_OPEN[direction.getHorizontalIndex()];
+                        VoxelShape doubleGate = double_ ? LEFT_DOUBLE_GATE_OPEN[direction.get2DDataValue()] : LEFT_GATE_OPEN[direction.get2DDataValue()];
                         if(collision)
                         {
                             doubleGate = VoxelShapeHelper.setMaxHeight(doubleGate, 1.5);
@@ -101,7 +101,7 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
                     }
                     else
                     {
-                        VoxelShape doubleGate = double_ ? LEFT_DOUBLE_GATE_CLOSED[direction.getHorizontalIndex()] : LEFT_GATE_CLOSED[direction.getHorizontalIndex()];
+                        VoxelShape doubleGate = double_ ? LEFT_DOUBLE_GATE_CLOSED[direction.get2DDataValue()] : LEFT_GATE_CLOSED[direction.get2DDataValue()];
                         if(collision)
                         {
                             doubleGate = VoxelShapeHelper.setMaxHeight(doubleGate, 1.5);
@@ -111,7 +111,7 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
                     }
                     if(!double_)
                     {
-                        post = RIGHT_POST[direction.getHorizontalIndex()];
+                        post = RIGHT_POST[direction.get2DDataValue()];
                         if(collision)
                         {
                             post = VoxelShapeHelper.setMaxHeight(post, 1.5);
@@ -121,18 +121,18 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
                     }
                     break;
                 case RIGHT:
-                    post = RIGHT_POST[direction.getHorizontalIndex()];
+                    post = RIGHT_POST[direction.get2DDataValue()];
                     if(collision)
                     {
                         post = VoxelShapeHelper.setMaxHeight(post, 1.5);
                         post = VoxelShapeHelper.limitHorizontal(post);
                     }
                     shapes.add(post);
-                    shapes.add(RIGHT_HINGE_BOTTOM[direction.getHorizontalIndex()]);
-                    shapes.add(RIGHT_HINGE_TOP[direction.getHorizontalIndex()]);
+                    shapes.add(RIGHT_HINGE_BOTTOM[direction.get2DDataValue()]);
+                    shapes.add(RIGHT_HINGE_TOP[direction.get2DDataValue()]);
                     if(open)
                     {
-                        VoxelShape doubleGate = double_ ? RIGHT_DOUBLE_GATE_OPEN[direction.getHorizontalIndex()] : RIGHT_GATE_OPEN[direction.getHorizontalIndex()];
+                        VoxelShape doubleGate = double_ ? RIGHT_DOUBLE_GATE_OPEN[direction.get2DDataValue()] : RIGHT_GATE_OPEN[direction.get2DDataValue()];
                         if(collision)
                         {
                             doubleGate = VoxelShapeHelper.setMaxHeight(doubleGate, 1.5);
@@ -142,7 +142,7 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
                     }
                     else
                     {
-                        VoxelShape doubleGate = double_ ? RIGHT_DOUBLE_GATE_CLOSED[direction.getHorizontalIndex()] : RIGHT_GATE_CLOSED[direction.getHorizontalIndex()];
+                        VoxelShape doubleGate = double_ ? RIGHT_DOUBLE_GATE_CLOSED[direction.get2DDataValue()] : RIGHT_GATE_CLOSED[direction.get2DDataValue()];
                         if(collision)
                         {
                             doubleGate = VoxelShapeHelper.setMaxHeight(doubleGate, 1.5);
@@ -152,7 +152,7 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
                     }
                     if(!double_)
                     {
-                        post = LEFT_POST[direction.getHorizontalIndex()];
+                        post = LEFT_POST[direction.get2DDataValue()];
                         if(collision)
                         {
                             post = VoxelShapeHelper.setMaxHeight(post, 1.5);
@@ -168,128 +168,128 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context)
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getRenderShape(BlockState state, IBlockReader reader, BlockPos pos)
+    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context)
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return COLLISION_SHAPES.get(state);
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult result)
     {
-        Direction hitFace = result.getFace();
-        Direction direction = state.get(DIRECTION);
-        boolean open = state.get(OPEN);
+        Direction hitFace = result.getDirection();
+        Direction direction = state.getValue(DIRECTION);
+        boolean open = state.getValue(OPEN);
 
         if(hitFace.getAxis() != direction.getAxis())
         {
             if(!open || hitFace.getAxis().isVertical())
             {
-                return ActionResultType.PASS;
+                return InteractionResult.PASS;
             }
         }
 
-        DoorHingeSide hingeSide = state.get(HINGE);
-        this.openGate(state, world, pos, direction, hitFace, !open);
-        this.openDoubleGate(world, pos, direction, hitFace, hingeSide, !open);
-        this.openAdjacentGate(world, pos, direction, Direction.UP, hitFace, hingeSide, !open, 5);
-        this.openAdjacentGate(world, pos, direction, Direction.DOWN, hitFace, hingeSide, !open, 5);
+        DoorHingeSide hingeSide = state.getValue(HINGE);
+        this.openGate(state, level, pos, direction, hitFace, !open);
+        this.openDoubleGate(level, pos, direction, hitFace, hingeSide, !open);
+        this.openAdjacentGate(level, pos, direction, Direction.UP, hitFace, hingeSide, !open, 5);
+        this.openAdjacentGate(level, pos, direction, Direction.DOWN, hitFace, hingeSide, !open, 5);
 
-        world.playEvent(playerEntity, !open ? 1008 : 1014, pos, 0);
+        level.levelEvent(playerEntity, !open ? 1008 : 1014, pos, 0);
 
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
-    private void openGate(BlockState state, IWorld world, BlockPos pos, Direction direction, Direction hitFace, boolean open)
+    private void openGate(BlockState state, LevelAccessor level, BlockPos pos, Direction direction, Direction hitFace, boolean open)
     {
         if(open)
         {
             if(hitFace.getOpposite() == direction)
             {
-                world.setBlockState(pos, state.with(OPEN, open), 3);
+                level.setBlock(pos, state.setValue(OPEN, open), 3);
             }
             else if(hitFace == direction)
             {
-                world.setBlockState(pos, state.with(OPEN, open).with(HINGE, this.getOppositeHinge(state.get(HINGE))).with(DIRECTION, hitFace.getOpposite()), 3);
+                level.setBlock(pos, state.setValue(OPEN, open).setValue(HINGE, this.getOppositeHinge(state.getValue(HINGE))).setValue(DIRECTION, hitFace.getOpposite()), 3);
             }
         }
         else
         {
-            world.setBlockState(pos, state.with(OPEN, open), 3);
+            level.setBlock(pos, state.setValue(OPEN, open), 3);
         }
     }
 
-    private void openAdjacentGate(IWorld world, BlockPos pos, Direction direction, Direction offset, Direction hitFace, DoorHingeSide hingeSide, boolean open, int limit)
+    private void openAdjacentGate(LevelAccessor level, BlockPos pos, Direction direction, Direction offset, Direction hitFace, DoorHingeSide hingeSide, boolean open, int limit)
     {
         if(limit <= 0)
         {
             return;
         }
 
-        BlockPos offsetPos = pos.offset(offset);
-        BlockState state = world.getBlockState(offsetPos);
+        BlockPos offsetPos = pos.relative(offset);
+        BlockState state = level.getBlockState(offsetPos);
         if(state.getBlock() == this)
         {
-            if(state.get(DIRECTION) != direction || state.get(HINGE) != hingeSide || state.get(OPEN) == open)
+            if(state.getValue(DIRECTION) != direction || state.getValue(HINGE) != hingeSide || state.getValue(OPEN) == open)
             {
                 return;
             }
-            this.openGate(state, world, offsetPos, direction, hitFace, open);
-            this.openDoubleGate(world, offsetPos, direction, hitFace, hingeSide, open);
-            this.openAdjacentGate(world, offsetPos, direction, offset, hitFace, hingeSide, open, limit - 1);
+            this.openGate(state, level, offsetPos, direction, hitFace, open);
+            this.openDoubleGate(level, offsetPos, direction, hitFace, hingeSide, open);
+            this.openAdjacentGate(level, offsetPos, direction, offset, hitFace, hingeSide, open, limit - 1);
         }
     }
 
-    private void openDoubleGate(IWorld world, BlockPos pos, Direction direction, Direction hitFace, DoorHingeSide hingeSide, boolean open)
+    private void openDoubleGate(LevelAccessor level, BlockPos pos, Direction direction, Direction hitFace, DoorHingeSide hingeSide, boolean open)
     {
-        BlockPos adjacentPos = pos.offset(hingeSide == DoorHingeSide.LEFT ? direction.rotateY() : direction.rotateYCCW());
-        BlockState adjacentState = world.getBlockState(adjacentPos);
-        if(adjacentState.getBlock() == this && adjacentState.get(DIRECTION).getAxis() == direction.getAxis())
+        BlockPos adjacentPos = pos.relative(hingeSide == DoorHingeSide.LEFT ? direction.getClockWise() : direction.getCounterClockWise());
+        BlockState adjacentState = level.getBlockState(adjacentPos);
+        if(adjacentState.getBlock() == this && adjacentState.getValue(DIRECTION).getAxis() == direction.getAxis())
         {
-            if(adjacentState.get(HINGE) != hingeSide)
+            if(adjacentState.getValue(HINGE) != hingeSide)
             {
-                this.openGate(adjacentState, world, adjacentPos, direction, hitFace, open);
+                this.openGate(adjacentState, level, adjacentPos, direction, hitFace, open);
             }
             else
             {
-                this.openGate(adjacentState.with(DIRECTION, adjacentState.get(DIRECTION).getOpposite()).with(HINGE, this.getOppositeHinge(adjacentState.get(HINGE))), world, adjacentPos, direction, hitFace, open);
+                this.openGate(adjacentState.setValue(DIRECTION, adjacentState.getValue(DIRECTION).getOpposite()).setValue(HINGE, this.getOppositeHinge(adjacentState.getValue(HINGE))), level, adjacentPos, direction, hitFace, open);
             }
         }
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context)
+    public BlockState getStateForPlacement(BlockPlaceContext context)
     {
-        return super.getStateForPlacement(context).with(HINGE, this.getHingeSide(context));
+        return super.getStateForPlacement(context).setValue(HINGE, this.getHingeSide(context));
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState state, Direction direction, BlockState newState, IWorld world, BlockPos pos, BlockPos newPos)
+    public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos)
     {
-        Direction facing = state.get(DIRECTION);
-        Direction offset = state.get(HINGE) == DoorHingeSide.LEFT ? facing.rotateY() : facing.rotateYCCW();
-        BlockState adjacentBlock = world.getBlockState(pos.offset(offset));
-        return state.with(DOUBLE, adjacentBlock.getBlock() == this);
+        Direction facing = state.getValue(DIRECTION);
+        Direction offset = state.getValue(HINGE) == DoorHingeSide.LEFT ? facing.getClockWise() : facing.getCounterClockWise();
+        BlockState adjacentBlock = level.getBlockState(pos.relative(offset));
+        return state.setValue(DOUBLE, adjacentBlock.getBlock() == this);
     }
 
-    private DoorHingeSide getHingeSide(BlockItemUseContext context)
+    private DoorHingeSide getHingeSide(BlockPlaceContext context)
     {
-        Direction playerFacing = context.getPlacementHorizontalFacing();
-        int offsetX = playerFacing.getXOffset();
-        int offsetZ = playerFacing.getZOffset();
-        BlockPos pos = context.getPos();
-        Vector3d hitVec = context.getHitVec().subtract(pos.getX(), pos.getY(), pos.getZ());
+        Direction playerFacing = context.getHorizontalDirection();
+        int offsetX = playerFacing.getStepX();
+        int offsetZ = playerFacing.getStepZ();
+        BlockPos pos = context.getClickedPos();
+        Vec3 hitVec = context.getClickLocation().subtract(pos.getX(), pos.getY(), pos.getZ());
         boolean side = offsetX < 0 && hitVec.z < 0.5 || offsetX > 0 && hitVec.z > 0.5 || offsetZ < 0 && hitVec.x > 0.5 || offsetZ > 0 && hitVec.x < 0.5;
         return side ? DoorHingeSide.RIGHT : DoorHingeSide.LEFT;
     }
@@ -300,9 +300,9 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
-        super.fillStateContainer(builder);
+        super.createBlockStateDefinition(builder);
         builder.add(HINGE);
         builder.add(OPEN);
         builder.add(DOUBLE);
@@ -311,23 +311,23 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
 
     @Nullable
     @Override
-    public PathNodeType getAiPathNodeType(BlockState state, IBlockReader world, BlockPos pos, @Nullable MobEntity entity)
+    public BlockPathTypes getAiPathNodeType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity)
     {
-        return !state.get(OPEN) ? PathNodeType.FENCE : PathNodeType.OPEN;
+        return !state.getValue(OPEN) ? BlockPathTypes.FENCE : BlockPathTypes.OPEN;
     }
 
     @Override
-    public void neighborChanged(BlockState state, World world, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving)
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving)
     {
-        if(!world.isRemote())
+        if(!level.isClientSide())
         {
-            boolean powered = world.isBlockPowered(pos);
-            if(state.get(POWERED) != powered)
+            boolean powered = level.hasNeighborSignal(pos);
+            if(state.getValue(POWERED) != powered)
             {
-                world.setBlockState(pos, state.with(POWERED, powered).with(OPEN, powered), 2);
-                if(state.get(OPEN) != powered)
+                level.setBlock(pos, state.setValue(POWERED, powered).setValue(OPEN, powered), 2);
+                if(state.getValue(OPEN) != powered)
                 {
-                    world.playEvent(null, powered ? 1008 : 1014, pos, 0);
+                    level.levelEvent(null, powered ? 1008 : 1014, pos, 0);
                 }
             }
         }

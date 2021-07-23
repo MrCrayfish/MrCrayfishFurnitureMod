@@ -1,17 +1,17 @@
 package com.mrcrayfish.furniture.core;
 
 import com.mrcrayfish.furniture.Reference;
-import com.mrcrayfish.furniture.inventory.container.CrateContainer;
-import com.mrcrayfish.furniture.inventory.container.FreezerContainer;
-import com.mrcrayfish.furniture.inventory.container.MailBoxContainer;
-import com.mrcrayfish.furniture.inventory.container.PostBoxContainer;
-import com.mrcrayfish.furniture.tileentity.CrateTileEntity;
-import com.mrcrayfish.furniture.tileentity.FreezerTileEntity;
-import com.mrcrayfish.furniture.tileentity.MailBoxTileEntity;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.ContainerType;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.network.IContainerFactory;
+import com.mrcrayfish.furniture.inventory.container.CrateMenu;
+import com.mrcrayfish.furniture.inventory.container.FreezerMenu;
+import com.mrcrayfish.furniture.inventory.container.MailBoxMenu;
+import com.mrcrayfish.furniture.inventory.container.PostBoxMenu;
+import com.mrcrayfish.furniture.tileentity.CrateBlockEntity;
+import com.mrcrayfish.furniture.tileentity.FreezerBlockEntity;
+import com.mrcrayfish.furniture.tileentity.MailBoxBlockEntity;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
+import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.fmllegacy.network.IContainerFactory;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -20,29 +20,29 @@ import net.minecraftforge.registries.ForgeRegistries;
  */
 public class ModContainers
 {
-    public static final DeferredRegister<ContainerType<?>> REGISTER = DeferredRegister.create(ForgeRegistries.CONTAINERS, Reference.MOD_ID);
+    public static final DeferredRegister<MenuType<?>> REGISTER = DeferredRegister.create(ForgeRegistries.CONTAINERS, Reference.MOD_ID);
 
     @SuppressWarnings("ConstantConditions")
-    public static final RegistryObject<ContainerType<CrateContainer>> CRATE = register("crate", (IContainerFactory<CrateContainer>) (windowId, playerInventory, data) -> {
-        CrateTileEntity crateTileEntity = (CrateTileEntity) playerInventory.player.world.getTileEntity(data.readBlockPos());
-        return new CrateContainer(windowId, playerInventory, crateTileEntity, crateTileEntity.isLocked());
+    public static final RegistryObject<MenuType<CrateMenu>> CRATE = register("crate", (IContainerFactory<CrateMenu>) (windowId, playerInventory, data) -> {
+        CrateBlockEntity crateBlockEntity = (CrateBlockEntity) playerInventory.player.level.getBlockEntity(data.readBlockPos());
+        return new CrateMenu(windowId, playerInventory, crateBlockEntity, crateBlockEntity.isLocked());
     });
 
-    public static final RegistryObject<ContainerType<PostBoxContainer>> POST_BOX = register("post_box", PostBoxContainer::new);
+    public static final RegistryObject<MenuType<PostBoxMenu>> POST_BOX = register("post_box", PostBoxMenu::new);
 
-    public static final RegistryObject<ContainerType<MailBoxContainer>> MAIL_BOX = register("mail_box", (IContainerFactory<MailBoxContainer>) (windowId, playerInventory, data) -> {
-        MailBoxTileEntity mailBoxTileEntity = (MailBoxTileEntity) playerInventory.player.world.getTileEntity(data.readBlockPos());
-        return new MailBoxContainer(windowId, playerInventory, mailBoxTileEntity);
+    public static final RegistryObject<MenuType<MailBoxMenu>> MAIL_BOX = register("mail_box", (IContainerFactory<MailBoxMenu>) (windowId, playerInventory, data) -> {
+        MailBoxBlockEntity mailBoxBlockEntity = (MailBoxBlockEntity) playerInventory.player.level.getBlockEntity(data.readBlockPos());
+        return new MailBoxMenu(windowId, playerInventory, mailBoxBlockEntity);
     });
 
-    public static final RegistryObject<ContainerType<FreezerContainer>> FREEZER = register("freezer", (IContainerFactory<FreezerContainer>) (windowId, playerInventory, data) -> {
-        FreezerTileEntity freezerTileEntity = (FreezerTileEntity) playerInventory.player.world.getTileEntity(data.readBlockPos());
-        return new FreezerContainer(windowId, playerInventory, freezerTileEntity);
+    public static final RegistryObject<MenuType<FreezerMenu>> FREEZER = register("freezer", (IContainerFactory<FreezerMenu>) (windowId, playerInventory, data) -> {
+        FreezerBlockEntity freezerBlockEntity = (FreezerBlockEntity) playerInventory.player.level.getBlockEntity(data.readBlockPos());
+        return new FreezerMenu(windowId, playerInventory, freezerBlockEntity);
     });
 
-    private static <T extends Container> RegistryObject<ContainerType<T>> register(String key, ContainerType.IFactory<T> factory)
+    private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> register(String key, MenuType.MenuSupplier<T> supplier)
     {
-        ContainerType<T> type = new ContainerType<>(factory);
+        MenuType<T> type = new MenuType<>(supplier);
         return REGISTER.register(key, () -> type);
     }
 }

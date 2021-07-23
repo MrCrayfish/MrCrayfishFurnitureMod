@@ -1,15 +1,13 @@
 package com.mrcrayfish.furniture.network.message;
 
 import com.mrcrayfish.furniture.common.mail.PostOffice;
-import com.mrcrayfish.furniture.tileentity.MailBoxTileEntity;
-import com.mrcrayfish.furniture.util.TileEntityUtil;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.network.PacketBuffer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraftforge.fml.network.NetworkEvent;
-import net.minecraftforge.fml.network.NetworkHooks;
+import com.mrcrayfish.furniture.tileentity.MailBoxBlockEntity;
+import com.mrcrayfish.furniture.util.BlockEntityUtil;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
 import java.util.function.Supplier;
 
@@ -30,16 +28,16 @@ public class MessageSetMailBoxName implements IMessage<MessageSetMailBoxName>
     }
 
     @Override
-    public void encode(MessageSetMailBoxName message, PacketBuffer buffer)
+    public void encode(MessageSetMailBoxName message, FriendlyByteBuf buffer)
     {
-        buffer.writeString(message.name, 32);
+        buffer.writeUtf(message.name, 32);
         buffer.writeBlockPos(message.pos);
     }
 
     @Override
-    public MessageSetMailBoxName decode(PacketBuffer buffer)
+    public MessageSetMailBoxName decode(FriendlyByteBuf buffer)
     {
-        return new MessageSetMailBoxName(buffer.readString(32), buffer.readBlockPos());
+        return new MessageSetMailBoxName(buffer.readUtf(32), buffer.readBlockPos());
     }
 
     @Override
@@ -47,28 +45,26 @@ public class MessageSetMailBoxName implements IMessage<MessageSetMailBoxName>
     {
         supplier.get().enqueueWork(() ->
         {
-            ServerPlayerEntity entity = supplier.get().getSender();
+            ServerPlayer entity = supplier.get().getSender();
             if(entity == null)
                 return;
 
-            if(!entity.world.isAreaLoaded(message.pos, 0))
+            if(!entity.level.isAreaLoaded(message.pos, 0))
                 return;
 
-            TileEntity tileEntity = entity.world.getTileEntity(message.pos);
-            if(tileEntity instanceof MailBoxTileEntity)
+            if(entity.level.getBlockEntity(message.pos) instanceof MailBoxBlockEntity blockEntity)
             {
-                MailBoxTileEntity mailBox = (MailBoxTileEntity) tileEntity;
-                if(!entity.getUniqueID().equals(mailBox.getOwnerId()))
+                if(!entity.getUUID().equals(blockEntity.getOwnerId()))
                     return;
 
-                if(!((MailBoxTileEntity) tileEntity).isUsableByPlayer(entity))
+                if(!blockEntity.stillValid(entity))
                     return;
 
-                if(!PostOffice.setMailBoxName(entity.getUniqueID(), mailBox.getId(), message.name))
+                if(!PostOffice.setMailBoxName(entity.getUUID(), blockEntity.getId(), message.name))
                     return;
 
-                TileEntityUtil.sendUpdatePacket(tileEntity);
-                NetworkHooks.openGui(entity, (INamedContainerProvider) tileEntity, message.pos);
+                BlockEntityUtil.sendUpdatePacket(blockEntity);
+                NetworkHooks.openGui(entity, blockEntity, message.pos);
             }
         });
         supplier.get().setPacketHandled(true);

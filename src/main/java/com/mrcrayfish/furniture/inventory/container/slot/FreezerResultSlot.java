@@ -1,11 +1,11 @@
 package com.mrcrayfish.furniture.inventory.container.slot;
 
 import com.mrcrayfish.furniture.event.ItemSolidifyEvent;
-import com.mrcrayfish.furniture.tileentity.FreezerTileEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.container.Slot;
-import net.minecraft.item.ItemStack;
+import com.mrcrayfish.furniture.tileentity.FreezerBlockEntity;
+import net.minecraft.world.Container;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 
 /**
@@ -13,53 +13,52 @@ import net.minecraftforge.common.MinecraftForge;
  */
 public class FreezerResultSlot extends Slot
 {
-    private final PlayerEntity player;
+    private final Player player;
     private int removeCount;
 
-    public FreezerResultSlot(PlayerEntity player, IInventory inventoryIn, int slotIndex, int xPosition, int yPosition)
+    public FreezerResultSlot(Player player, Container container, int index, int x, int y)
     {
-        super(inventoryIn, slotIndex, xPosition, yPosition);
+        super(container, index, x, y);
         this.player = player;
     }
 
     @Override
-    public boolean isItemValid(ItemStack stack)
+    public boolean mayPlace(ItemStack stack)
     {
         return false;
     }
 
     @Override
-    public ItemStack decrStackSize(int amount)
+    public ItemStack remove(int amount)
     {
-        if(this.getHasStack())
+        if(this.hasItem())
         {
-            this.removeCount += Math.min(amount, this.getStack().getCount());
+            this.removeCount += Math.min(amount, this.getItem().getCount());
         }
-        return super.decrStackSize(amount);
+        return super.remove(amount);
     }
 
     @Override
-    public ItemStack onTake(PlayerEntity thePlayer, ItemStack stack)
+    public void onTake(Player thePlayer, ItemStack stack)
     {
-        this.onCrafting(stack);
+        this.checkTakeAchievements(stack);
         super.onTake(thePlayer, stack);
-        return stack;
     }
 
     @Override
-    protected void onCrafting(ItemStack stack, int amount)
+    protected void onQuickCraft(ItemStack stack, int amount)
     {
         this.removeCount += amount;
-        this.onCrafting(stack);
+        this.checkTakeAchievements(stack);
     }
 
     @Override
-    protected void onCrafting(ItemStack stack)
+    protected void checkTakeAchievements(ItemStack stack)
     {
-        stack.onCrafting(this.player.world, this.player, this.removeCount);
-        if(!this.player.world.isRemote && this.inventory instanceof FreezerTileEntity)
+        stack.onCraftedBy(this.player.level, this.player, this.removeCount);
+        if(!this.player.level.isClientSide && this.container instanceof FreezerBlockEntity)
         {
-            ((FreezerTileEntity) this.inventory).spawnExperience(this.player);
+            ((FreezerBlockEntity) this.container).spawnExperience(this.player);
         }
         this.removeCount = 0;
         MinecraftForge.EVENT_BUS.post(new ItemSolidifyEvent(this.player, stack));

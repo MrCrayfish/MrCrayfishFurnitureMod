@@ -1,13 +1,15 @@
 package com.mrcrayfish.furniture.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.Rotation;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
 public abstract class FurnitureHorizontalBlock extends FurnitureBlock
 {
@@ -19,27 +21,27 @@ public abstract class FurnitureHorizontalBlock extends FurnitureBlock
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context)
+    public BlockState getStateForPlacement(BlockPlaceContext context)
     {
-        return super.getStateForPlacement(context).with(DIRECTION, context.getPlacementHorizontalFacing());
+        return super.getStateForPlacement(context).setValue(DIRECTION, context.getHorizontalDirection());
     }
 
     @Override
-    public BlockState rotate(BlockState state, Rotation rotation)
+    public BlockState rotate(BlockState state, LevelAccessor world, BlockPos pos, Rotation rotation)
     {
-        return state.with(DIRECTION, rotation.rotate(state.get(DIRECTION)));
+        return state.setValue(DIRECTION, rotation.rotate(state.getValue(DIRECTION)));
     }
 
     @Override
     public BlockState mirror(BlockState state, Mirror mirror)
     {
-        return state.rotate(mirror.toRotation(state.get(DIRECTION)));
+        return state.rotate(mirror.getRotation(state.getValue(DIRECTION)));
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
-        super.fillStateContainer(builder);
+        super.createBlockStateDefinition(builder);
         builder.add(DIRECTION);
     }
 }

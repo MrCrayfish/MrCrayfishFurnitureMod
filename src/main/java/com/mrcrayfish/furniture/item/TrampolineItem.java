@@ -1,19 +1,19 @@
 package com.mrcrayfish.furniture.item;
 
 import com.mrcrayfish.furniture.Reference;
-import com.mrcrayfish.furniture.tileentity.TrampolineTileEntity;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.DyeColor;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import com.mrcrayfish.furniture.tileentity.TrampolineBlockEntity;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
 
@@ -22,51 +22,50 @@ import javax.annotation.Nullable;
  */
 public class TrampolineItem extends BlockItem
 {
-    public TrampolineItem(Block blockIn, Properties builder)
+    public TrampolineItem(Block blockIn, Item.Properties builder)
     {
         super(blockIn, builder);
     }
 
     @Override
-    protected boolean onBlockPlaced(BlockPos pos, World worldIn, @Nullable PlayerEntity player, ItemStack stack, BlockState state)
+    protected boolean updateCustomBlockEntityTag(BlockPos pos, Level level, @Nullable Player player, ItemStack stack, BlockState state)
     {
-        super.onBlockPlaced(pos, worldIn, player, stack, state);
-        CompoundNBT blockEntityTag = stack.getChildTag("BlockEntityTag");
+        super.updateCustomBlockEntityTag(pos, level, player, stack, state);
+        CompoundTag blockEntityTag = stack.getTagElement("BlockEntityTag");
         if(blockEntityTag != null)
         {
             DyeColor color = DyeColor.byId(blockEntityTag.getInt("Color"));
-            TileEntity tileEntity = worldIn.getTileEntity(pos);
-            if(tileEntity instanceof TrampolineTileEntity)
+            if(level.getBlockEntity(pos) instanceof TrampolineBlockEntity blockEntity)
             {
-                ((TrampolineTileEntity) tileEntity).setColour(color);
+                blockEntity.setColour(color);
             }
         }
         return true;
     }
 
     @Override
-    public String getTranslationKey(ItemStack stack)
+    public String getDescriptionId(ItemStack stack)
     {
-        CompoundNBT tag = stack.getTag();
+        CompoundTag tag = stack.getTag();
         if(tag != null)
         {
-            CompoundNBT blockEntityTag = tag.getCompound("BlockEntityTag");
+            CompoundTag blockEntityTag = tag.getCompound("BlockEntityTag");
             DyeColor color = DyeColor.byId(blockEntityTag.getInt("Color"));
-            return String.format("block.%s.%s_trampoline", Reference.MOD_ID, color.getTranslationKey());
+            return String.format("block.%s.%s_trampoline", Reference.MOD_ID, color.getName());
         }
-        return super.getTranslationKey(stack);
+        return super.getDescriptionId(stack);
     }
 
     @Override
-    public void fillItemGroup(ItemGroup group, NonNullList<ItemStack> items)
+    public void fillItemCategory(CreativeModeTab tab, NonNullList<ItemStack> items)
     {
-        if(this.isInGroup(group))
+        if(this.allowdedIn(tab))
         {
             for(DyeColor color : DyeColor.values())
             {
                 ItemStack stack = new ItemStack(this);
-                CompoundNBT tag = new CompoundNBT();
-                CompoundNBT blockEntityTag = new CompoundNBT();
+                CompoundTag tag = new CompoundTag();
+                CompoundTag blockEntityTag = new CompoundTag();
                 blockEntityTag.putInt("Color", color.getId());
                 tag.put("BlockEntityTag", blockEntityTag);
                 stack.setTag(tag);

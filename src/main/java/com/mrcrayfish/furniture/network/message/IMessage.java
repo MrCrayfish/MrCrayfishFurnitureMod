@@ -1,7 +1,7 @@
 package com.mrcrayfish.furniture.network.message;
 
-import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
@@ -10,9 +10,9 @@ import java.util.function.Supplier;
  */
 public interface IMessage<T>
 {
-    void encode(T message, PacketBuffer buffer);
+    void encode(T message, FriendlyByteBuf buffer);
 
-    T decode(PacketBuffer buffer);
+    T decode(FriendlyByteBuf buffer);
 
     void handle(T message, Supplier<NetworkEvent.Context> supplier);
 }

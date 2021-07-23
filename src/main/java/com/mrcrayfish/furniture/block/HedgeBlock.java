@@ -4,17 +4,17 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.common.ModTags;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,41 +35,41 @@ public class HedgeBlock extends FurnitureWaterloggedBlock
     public HedgeBlock(Properties properties)
     {
         super(properties);
-        this.setDefaultState(this.getStateContainer().getBaseState().with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(WATERLOGGED, false));
-        SHAPES = this.generateShapes(this.getStateContainer().getValidStates(), false);
-        COLLISION_SHAPES = this.generateShapes(this.getStateContainer().getValidStates(), true);
+        this.registerDefaultState(this.getStateDefinition().any().setValue(NORTH, false).setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false).setValue(WATERLOGGED, false));
+        SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates(), false);
+        COLLISION_SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates(), true);
     }
 
     private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states, boolean collision)
     {
-        final VoxelShape POST = Block.makeCuboidShape(4, 0, 4, 12, 16, 12);
-        final VoxelShape[] SIDE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(4, 0, 0, 12, 16, 4), Direction.SOUTH));
+        final VoxelShape POST = Block.box(4, 0, 4, 12, 16, 12);
+        final VoxelShape[] SIDE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(4, 0, 0, 12, 16, 4), Direction.SOUTH));
 
         ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
         for(BlockState state : states)
         {
-            boolean north = state.get(NORTH);
-            boolean east = state.get(EAST);
-            boolean south = state.get(SOUTH);
-            boolean west = state.get(WEST);
+            boolean north = state.getValue(NORTH);
+            boolean east = state.getValue(EAST);
+            boolean south = state.getValue(SOUTH);
+            boolean west = state.getValue(WEST);
 
             List<VoxelShape> shapes = new ArrayList<>();
             shapes.add(this.applyCollision(POST, collision));
             if(north)
             {
-                shapes.add(this.applyCollision(SIDE[Direction.NORTH.getHorizontalIndex()], collision));
+                shapes.add(this.applyCollision(SIDE[Direction.NORTH.get2DDataValue()], collision));
             }
             if(east)
             {
-                shapes.add(this.applyCollision(SIDE[Direction.EAST.getHorizontalIndex()], collision));
+                shapes.add(this.applyCollision(SIDE[Direction.EAST.get2DDataValue()], collision));
             }
             if(south)
             {
-                shapes.add(this.applyCollision(SIDE[Direction.SOUTH.getHorizontalIndex()], collision));
+                shapes.add(this.applyCollision(SIDE[Direction.SOUTH.get2DDataValue()], collision));
             }
             if(west)
             {
-                shapes.add(this.applyCollision(SIDE[Direction.WEST.getHorizontalIndex()], collision));
+                shapes.add(this.applyCollision(SIDE[Direction.WEST.get2DDataValue()], collision));
             }
             builder.put(state, VoxelShapeHelper.combineAll(shapes));
         }
@@ -87,76 +87,63 @@ public class HedgeBlock extends FurnitureWaterloggedBlock
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context)
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getRenderShape(BlockState state, IBlockReader reader, BlockPos pos)
+    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context)
+    public VoxelShape getCollisionShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return COLLISION_SHAPES.get(state);
     }
 
     @Override
-    public BlockState updatePostPlacement(BlockState state, Direction direction, BlockState newState, IWorld world, BlockPos pos, BlockPos newPos)
+    public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos)
     {
-        return this.getHedgeState(state, world, pos);
+        return this.getHedgeState(state, level, pos);
     }
 
     @Override
-    public BlockState getStateForPlacement(BlockItemUseContext context)
+    public BlockState getStateForPlacement(BlockPlaceContext context)
     {
-        return this.getHedgeState(super.getStateForPlacement(context), context.getWorld(), context.getPos());
+        return this.getHedgeState(super.getStateForPlacement(context), context.getLevel(), context.getClickedPos());
     }
 
-    private BlockState getHedgeState(BlockState state, IWorld world, BlockPos pos)
+    private BlockState getHedgeState(BlockState state, LevelAccessor level, BlockPos pos)
     {
-        boolean north = canConnectToBlock(world, pos, Direction.NORTH);
-        boolean east = canConnectToBlock(world, pos, Direction.EAST);
-        boolean south = canConnectToBlock(world, pos, Direction.SOUTH);
-        boolean west = canConnectToBlock(world, pos, Direction.WEST);
-        return state.with(NORTH, north).with(EAST, east).with(SOUTH, south).with(WEST, west);
+        boolean north = canConnectToBlock(level, pos, Direction.NORTH);
+        boolean east = canConnectToBlock(level, pos, Direction.EAST);
+        boolean south = canConnectToBlock(level, pos, Direction.SOUTH);
+        boolean west = canConnectToBlock(level, pos, Direction.WEST);
+        return state.setValue(NORTH, north).setValue(EAST, east).setValue(SOUTH, south).setValue(WEST, west);
     }
 
-    private boolean canConnectToBlock(IWorld world, BlockPos pos, Direction direction)
+    private boolean canConnectToBlock(LevelAccessor level, BlockPos pos, Direction direction)
     {
-        BlockPos offsetPos = pos.offset(direction);
-        BlockState offsetState = world.getBlockState(offsetPos);
-
-        Block block = offsetState.getBlock();
-        return !cannotAttach(block) && offsetState.isSolidSide(world, offsetPos, direction.getOpposite()) || block.isIn(ModTags.Blocks.HEDGES);
+        BlockPos offsetPos = pos.relative(direction);
+        BlockState offsetState = level.getBlockState(offsetPos);
+        return !isExceptionForConnection(offsetState) && offsetState.isFaceSturdy(level, offsetPos, direction.getOpposite()) || offsetState.is(ModTags.Blocks.HEDGES);
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
-        super.fillStateContainer(builder);
+        super.createBlockStateDefinition(builder);
         builder.add(NORTH);
         builder.add(EAST);
         builder.add(SOUTH);
         builder.add(WEST);
     }
 
-    /*public boolean causesSuffocation(BlockState state, IBlockReader worldIn, BlockPos pos)
-    {
-        return false;
-    }*/
-
-    /*@Override //causesSuffocation?
-    public boolean func_229869_c_(BlockState p_229869_1_, IBlockReader p_229869_2_, BlockPos p_229869_3_)
-    {
-        return false;
-    }*/
-
     @Deprecated
-    public int getOpacity(BlockState state, IBlockReader worldIn, BlockPos pos)
+    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos)
     {
         return 1;
     }

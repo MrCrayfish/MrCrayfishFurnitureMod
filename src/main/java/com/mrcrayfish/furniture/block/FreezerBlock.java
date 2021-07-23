@@ -1,31 +1,32 @@
 package com.mrcrayfish.furniture.block;
 
-import com.mrcrayfish.furniture.tileentity.FreezerTileEntity;
+import com.mrcrayfish.furniture.tileentity.BasicLootBlockEntity;
+import com.mrcrayfish.furniture.tileentity.FreezerBlockEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.inventory.container.INamedContainerProvider;
-import net.minecraft.item.ItemStack;
-import net.minecraft.state.BooleanProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.Hand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorldReader;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ import java.util.function.Supplier;
 /**
  * Author: MrCrayfish
  */
-public class FreezerBlock extends FurnitureHorizontalBlock
+public class FreezerBlock extends FurnitureHorizontalBlock implements EntityBlock
 {
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
 
@@ -49,111 +50,103 @@ public class FreezerBlock extends FurnitureHorizontalBlock
     {
         super(properties);
         this.fridge = fridge;
-        this.setDefaultState(this.getStateContainer().getBaseState().with(DIRECTION, Direction.NORTH).with(OPEN, false));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(OPEN, false));
     }
 
     private VoxelShape getShape(BlockState state)
     {
         return SHAPES.computeIfAbsent(state, state1 -> {
-            Direction direction = state1.get(DIRECTION);
-            boolean open = state1.get(OPEN);
+            Direction direction = state1.getValue(DIRECTION);
+            boolean open = state1.getValue(OPEN);
             List<VoxelShape> shapes = new ArrayList<>();
-            shapes.add(Block.makeCuboidShape(0, 16, 0, 16, 32, 16));
+            shapes.add(Block.box(0, 16, 0, 16, 32, 16));
             if(open)
             {
-                final VoxelShape[] BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 1, 0, 16, 16, 13), Direction.SOUTH));
-                final VoxelShape[] DOOR = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(13, 1, 29, 16, 16, 13), Direction.SOUTH));
-                shapes.add(BASE[direction.getHorizontalIndex()]);
-                shapes.add(DOOR[direction.getHorizontalIndex()]);
+                final VoxelShape[] BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 1, 0, 16, 16, 13), Direction.SOUTH));
+                final VoxelShape[] DOOR = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(13, 1, 13, 16, 16, 29), Direction.SOUTH));
+                shapes.add(BASE[direction.get2DDataValue()]);
+                shapes.add(DOOR[direction.get2DDataValue()]);
             }
             else
             {
-                shapes.add(Block.makeCuboidShape(0, 1, 0, 16, 16, 16));
+                shapes.add(Block.box(0, 1, 0, 16, 16, 16));
             }
             return VoxelShapeHelper.combineAll(shapes);
         });
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context)
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return this.getShape(state);
     }
 
     @Override
-    public VoxelShape getRenderShape(BlockState state, IBlockReader reader, BlockPos pos)
+    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
     {
         return this.getShape(state);
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
-        if(state.get(DIRECTION).getOpposite() == result.getFace())
+        if(state.getValue(DIRECTION).getOpposite() == result.getDirection())
         {
-            if(!world.isRemote())
+            if(!level.isClientSide())
             {
-                TileEntity tileEntity = world.getTileEntity(pos);
-                if(tileEntity instanceof INamedContainerProvider)
+                if(level.getBlockEntity(pos) instanceof FreezerBlockEntity blockEntity)
                 {
-                    NetworkHooks.openGui((ServerPlayerEntity) playerEntity, (INamedContainerProvider) tileEntity, pos);
+                    NetworkHooks.openGui((ServerPlayer) player, blockEntity, pos);
                 }
             }
         }
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 
     @Override
-    public void tick(BlockState state, ServerWorld world, BlockPos pos, Random random)
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, Random random)
     {
-        TileEntity tileEntity = world.getTileEntity(pos);
-        if(tileEntity instanceof FreezerTileEntity)
+        if(level.getBlockEntity(pos) instanceof BasicLootBlockEntity blockEntity)
         {
-            ((FreezerTileEntity) tileEntity).onScheduledTick();
+            blockEntity.updateOpenerCount();
         }
     }
 
     @Override
-    public boolean hasTileEntity(BlockState state)
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
-        return true;
-    }
-
-    @Nullable
-    @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world)
-    {
-        return new FreezerTileEntity();
-    }
-
-    @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
-    {
-        super.fillStateContainer(builder);
+        super.createBlockStateDefinition(builder);
         builder.add(OPEN);
     }
 
     @Override
-    public boolean isValidPosition(BlockState state, IWorldReader reader, BlockPos pos)
+    public boolean canSurvive(BlockState state, LevelReader reader, BlockPos pos)
     {
-        return reader.getBlockState(pos.up()).isAir();
+        return reader.getBlockState(pos.above()).isAir();
     }
 
     @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, BlockState state, LivingEntity placer, ItemStack stack)
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack)
     {
-        worldIn.setBlockState(pos.up(), this.fridge.get().get().getDefaultState().with(DIRECTION, placer.getHorizontalFacing()));
+        level.setBlockAndUpdate(pos.above(), this.fridge.get().get().defaultBlockState().setValue(DIRECTION, placer.getDirection()));
     }
 
     @Override
-    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player)
+    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player)
     {
-        BlockState upState = worldIn.getBlockState(pos.up());
+        BlockState upState = level.getBlockState(pos.above());
         if(upState.getBlock() instanceof FridgeBlock)
         {
-            worldIn.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), 35);
-            worldIn.playEvent(player, 2001, pos.up(), Block.getStateId(upState));
+            level.setBlock(pos.above(), Blocks.AIR.defaultBlockState(), 35);
+            level.levelEvent(player, 2001, pos.above(), Block.getId(upState));
         }
-        super.onBlockHarvested(worldIn, pos, state, player);
+        super.playerWillDestroy(level, pos, state, player);
+    }
+
+    @Nullable
+    @Override
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
+    {
+        return new FreezerBlockEntity(pos, state);
     }
 }

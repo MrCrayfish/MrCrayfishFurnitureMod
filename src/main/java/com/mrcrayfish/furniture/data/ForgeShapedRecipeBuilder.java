@@ -7,18 +7,18 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementRewards;
-import net.minecraft.advancements.ICriterionInstance;
-import net.minecraft.advancements.IRequirementsStrategy;
-import net.minecraft.advancements.criterion.RecipeUnlockedTrigger;
-import net.minecraft.data.IFinishedRecipe;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.tags.ITag;
-import net.minecraft.util.IItemProvider;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.advancements.CriterionTriggerInstance;
+import net.minecraft.advancements.RequirementsStrategy;
+import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
+import net.minecraft.core.Registry;
+import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.Tag;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.level.ItemLike;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -38,7 +38,7 @@ public class ForgeShapedRecipeBuilder
     private final ItemStack result;
     private final List<String> pattern = Lists.newArrayList();
     private final Map<Character, Ingredient> ingredientMap = Maps.newLinkedHashMap();
-    private final Advancement.Builder advancementBuilder = Advancement.Builder.builder();
+    private final Advancement.Builder advancementBuilder = Advancement.Builder.advancement();
     private String group;
 
     private ForgeShapedRecipeBuilder(String key, ItemStack resultIn)
@@ -52,14 +52,14 @@ public class ForgeShapedRecipeBuilder
         return new ForgeShapedRecipeBuilder(key, resultIn);
     }
 
-    public ForgeShapedRecipeBuilder key(Character symbol, ITag<Item> tagIn)
+    public ForgeShapedRecipeBuilder key(Character symbol, Tag<Item> tagIn)
     {
-        return this.key(symbol, Ingredient.fromTag(tagIn));
+        return this.key(symbol, Ingredient.of(tagIn));
     }
 
-    public ForgeShapedRecipeBuilder key(Character symbol, IItemProvider itemIn)
+    public ForgeShapedRecipeBuilder key(Character symbol, ItemLike itemIn)
     {
-        return this.key(symbol, Ingredient.fromItems(itemIn));
+        return this.key(symbol, Ingredient.of(itemIn));
     }
 
     public ForgeShapedRecipeBuilder key(Character symbol, Ingredient ingredientIn)
@@ -92,9 +92,9 @@ public class ForgeShapedRecipeBuilder
         }
     }
 
-    public ForgeShapedRecipeBuilder addCriterion(String name, ICriterionInstance criterionIn)
+    public ForgeShapedRecipeBuilder addCriterion(String name, CriterionTriggerInstance criterion)
     {
-        this.advancementBuilder.withCriterion(name, criterionIn);
+        this.advancementBuilder.addCriterion(name, criterion);
         return this;
     }
 
@@ -104,12 +104,12 @@ public class ForgeShapedRecipeBuilder
         return this;
     }
 
-    public void build(Consumer<IFinishedRecipe> consumerIn)
+    public void build(Consumer<FinishedRecipe> consumerIn)
     {
         this.build(consumerIn, Registry.ITEM.getKey(this.result.getItem()));
     }
 
-    public void build(Consumer<IFinishedRecipe> consumerIn, String save)
+    public void build(Consumer<FinishedRecipe> consumerIn, String save)
     {
         ResourceLocation resourcelocation = Registry.ITEM.getKey(this.result.getItem());
         if((new ResourceLocation(save)).equals(resourcelocation))
@@ -123,13 +123,13 @@ public class ForgeShapedRecipeBuilder
     }
 
     /**
-     * Builds this recipe into an {@link IFinishedRecipe}.
+     * Builds this recipe into an {@link FinishedRecipe}.
      */
-    public void build(Consumer<IFinishedRecipe> consumerIn, ResourceLocation id)
+    public void build(Consumer<FinishedRecipe> consumerIn, ResourceLocation id)
     {
         this.validate(id);
-        this.advancementBuilder.withParentId(new ResourceLocation("recipes/root")).withCriterion("has_the_recipe", RecipeUnlockedTrigger.create(id)).withRewards(AdvancementRewards.Builder.recipe(id)).withRequirementsStrategy(IRequirementsStrategy.OR);
-        consumerIn.accept(new ForgeShapedRecipeBuilder.Result(this.key, id, this.result, this.group == null ? "" : this.group, this.pattern, this.ingredientMap, this.advancementBuilder, new ResourceLocation(id.getNamespace(), "recipes/" + this.result.getItem().getGroup().getPath() + "/" + id.getPath())));
+        this.advancementBuilder.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id)).rewards(AdvancementRewards.Builder.recipe(id)).requirements(RequirementsStrategy.OR);
+        consumerIn.accept(new ForgeShapedRecipeBuilder.Result(this.key, id, this.result, this.group == null ? "" : this.group, this.pattern, this.ingredientMap, this.advancementBuilder, new ResourceLocation(id.getNamespace(), "recipes/" + this.result.getItem().getItemCategory().getRecipeFolderName() + "/" + id.getPath())));
     }
 
     /**
@@ -175,7 +175,7 @@ public class ForgeShapedRecipeBuilder
         }
     }
 
-    public class Result implements IFinishedRecipe
+    public class Result implements FinishedRecipe
     {
         private final String key;
         private final ResourceLocation id;
@@ -198,7 +198,7 @@ public class ForgeShapedRecipeBuilder
             this.advancementId = advancementIdIn;
         }
 
-        public void serialize(JsonObject json)
+        public void serializeRecipeData(JsonObject json)
         {
             if(!this.group.isEmpty())
             {
@@ -217,7 +217,7 @@ public class ForgeShapedRecipeBuilder
 
             for(Map.Entry<Character, Ingredient> entry : this.ingredientMap.entrySet())
             {
-                jsonobject.add(String.valueOf(entry.getKey()), entry.getValue().serialize());
+                jsonobject.add(String.valueOf(entry.getKey()), entry.getValue().toJson());
             }
 
             json.add("key", jsonobject);
@@ -234,24 +234,25 @@ public class ForgeShapedRecipeBuilder
             json.add("result", result);
         }
 
-        public IRecipeSerializer<?> getSerializer()
+        //TODO figure out what happened to serializers
+        public RecipeSerializer<?> getType()
         {
-            return IRecipeSerializer.CRAFTING_SHAPED;
+            return RecipeSerializer.SHAPED_RECIPE;
         }
 
-        public ResourceLocation getID()
+        public ResourceLocation getId()
         {
             return new ResourceLocation(this.id.getNamespace(), this.key);
         }
 
         @Nullable
-        public JsonObject getAdvancementJson()
+        public JsonObject serializeAdvancement()
         {
-            return this.advancementBuilder.serialize();
+            return this.advancementBuilder.serializeToJson();
         }
 
         @Nullable
-        public ResourceLocation getAdvancementID()
+        public ResourceLocation getAdvancementId()
         {
             return this.advancementId;
         }

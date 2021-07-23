@@ -2,23 +2,22 @@ package com.mrcrayfish.furniture.common.mail;
 
 import com.mrcrayfish.furniture.FurnitureConfig;
 import com.mrcrayfish.furniture.Reference;
-import com.mrcrayfish.furniture.tileentity.MailBoxTileEntity;
-import com.mrcrayfish.furniture.util.TileEntityUtil;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.nbt.ListNBT;
+import com.mrcrayfish.furniture.tileentity.MailBoxBlockEntity;
+import com.mrcrayfish.furniture.util.BlockEntityUtil;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
-import net.minecraft.world.storage.WorldSavedData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.server.ServerLifecycleHooks;
+import net.minecraftforge.fmllegacy.server.ServerLifecycleHooks;
 
 import java.util.HashMap;
 import java.util.List;
@@ -33,42 +32,38 @@ import java.util.stream.Collectors;
  * Author: MrCrayfish
  */
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
-public class PostOffice extends WorldSavedData
+public class PostOffice extends SavedData
 {
-    private static final String DATA_NAME = Reference.MOD_ID + "_post_office";
+    private static final String ID = Reference.MOD_ID + "_post_office";
 
     private final Map<UUID, Map<UUID, MailBox>> playerMailboxMap = new HashMap<>();
 
-    public PostOffice()
+    public static PostOffice load(CompoundTag tag)
     {
-        super(DATA_NAME);
+        PostOffice postOffice = new PostOffice();
+        postOffice.read(tag);
+        return postOffice;
     }
 
-    public PostOffice(String name)
-    {
-        super(name);
-    }
-
-    @Override
-    public void read(CompoundNBT compound)
+    public void read(CompoundTag compound)
     {
         this.playerMailboxMap.clear();
         if(compound.contains("PlayerMailBoxes", Constants.NBT.TAG_LIST))
         {
-            ListNBT playerMailBoxesList = compound.getList("PlayerMailBoxes", Constants.NBT.TAG_COMPOUND);
+            ListTag playerMailBoxesList = compound.getList("PlayerMailBoxes", Constants.NBT.TAG_COMPOUND);
             playerMailBoxesList.forEach(nbt ->
             {
-                CompoundNBT playerMailBoxesCompound = (CompoundNBT) nbt;
-                UUID playerId = playerMailBoxesCompound.getUniqueId("PlayerUUID");
+                CompoundTag playerMailBoxesCompound = (CompoundTag) nbt;
+                UUID playerId = playerMailBoxesCompound.getUUID("PlayerUUID");
 
                 if(playerMailBoxesCompound.contains("MailBoxes", Constants.NBT.TAG_LIST))
                 {
                     Map<UUID, MailBox> mailBoxMap = new HashMap<>();
-                    ListNBT mailBoxList = playerMailBoxesCompound.getList("MailBoxes", Constants.NBT.TAG_COMPOUND);
+                    ListTag mailBoxList = playerMailBoxesCompound.getList("MailBoxes", Constants.NBT.TAG_COMPOUND);
                     mailBoxList.forEach(nbt2 ->
                     {
-                        CompoundNBT mailBoxCompound = (CompoundNBT) nbt2;
-                        UUID mailBoxId = mailBoxCompound.getUniqueId("MailBoxUUID");
+                        CompoundTag mailBoxCompound = (CompoundTag) nbt2;
+                        UUID mailBoxId = mailBoxCompound.getUUID("MailBoxUUID");
                         MailBox mailBox = new MailBox(mailBoxCompound.getCompound("MailBox"));
                         mailBoxMap.put(mailBoxId, mailBox);
                     });
@@ -79,21 +74,21 @@ public class PostOffice extends WorldSavedData
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound)
+    public CompoundTag save(CompoundTag compound)
     {
-        ListNBT playerMailBoxesList = new ListNBT();
+        ListTag playerMailBoxesList = new ListTag();
         this.playerMailboxMap.forEach((playerId, mailStorage) ->
         {
             if(!mailStorage.isEmpty())
             {
-                CompoundNBT playerMailBoxesCompound = new CompoundNBT();
-                playerMailBoxesCompound.putUniqueId("PlayerUUID", playerId);
+                CompoundTag playerMailBoxesCompound = new CompoundTag();
+                playerMailBoxesCompound.putUUID("PlayerUUID", playerId);
 
-                ListNBT mailBoxList = new ListNBT();
+                ListTag mailBoxList = new ListTag();
                 mailStorage.forEach((mailBoxId, mailBox) ->
                 {
-                    CompoundNBT mailBoxCompound = new CompoundNBT();
-                    mailBoxCompound.putUniqueId("MailBoxUUID", mailBoxId);
+                    CompoundTag mailBoxCompound = new CompoundTag();
+                    mailBoxCompound.putUUID("MailBoxUUID", mailBoxId);
                     mailBoxCompound.put("MailBox", mailBox.serializeNBT());
                     mailBoxList.add(mailBoxCompound);
                 });
@@ -106,12 +101,12 @@ public class PostOffice extends WorldSavedData
         return compound;
     }
 
-    public static void registerMailBox(ServerPlayerEntity playerEntity, UUID mailBoxId, String name, BlockPos pos)
+    public static void registerMailBox(ServerPlayer player, UUID mailBoxId, String name, BlockPos pos)
     {
-        PostOffice office = get(playerEntity.server);
-        Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.computeIfAbsent(playerEntity.getUniqueID(), uuid -> new HashMap<>());
-        mailBoxMap.put(mailBoxId, new MailBox(mailBoxId, name, playerEntity.getUniqueID(), playerEntity.getName().getString(), pos, playerEntity.world.getDimensionKey()));
-        office.markDirty();
+        PostOffice office = get(player.server);
+        Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.computeIfAbsent(player.getUUID(), uuid -> new HashMap<>());
+        mailBoxMap.put(mailBoxId, new MailBox(mailBoxId, name, player.getUUID(), player.getName().getString(), pos, player.level.dimension()));
+        office.setDirty();
     }
 
     public static void unregisterMailBox(UUID playerId, UUID mailBoxId)
@@ -122,12 +117,12 @@ public class PostOffice extends WorldSavedData
             PostOffice office = get(server);
             Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.computeIfAbsent(playerId, uuid -> new HashMap<>());
             mailBoxMap.remove(mailBoxId);
-            office.markDirty();
+            office.setDirty();
             //TODO spawn all items at mail box
         }
     }
 
-    public static List<MailBox> getMailBoxes(ServerPlayerEntity playerEntity)
+    public static List<MailBox> getMailBoxes(ServerPlayer playerEntity)
     {
         PostOffice office = get(playerEntity.server);
         return office.playerMailboxMap.values().stream().flatMap(map -> map.values().stream()).collect(Collectors.toList());
@@ -145,7 +140,7 @@ public class PostOffice extends WorldSavedData
                 if(mailBoxMap.get(mailBoxId).getMailCount() < FurnitureConfig.COMMON.maxMailQueue.get())
                 {
                     mailBoxMap.get(mailBoxId).addMail(mail);
-                    office.markDirty();
+                    office.setDirty();
                     return true;
                 }
             }
@@ -179,7 +174,7 @@ public class PostOffice extends WorldSavedData
                         List<Mail> mailStorage = mailBox.getMailStorage();
                         if(!mailStorage.isEmpty())
                         {
-                            office.markDirty();
+                            office.setDirty();
                             return mailStorage.remove(0);
                         }
                     }
@@ -199,27 +194,26 @@ public class PostOffice extends WorldSavedData
         if(server != null)
         {
             PostOffice office = get(server);
-            if(office.playerMailboxMap.containsKey(playerId))
-            {
-                Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.get(playerId);
-                if(mailBoxMap.containsKey(mailBoxId))
-                {
-                    MailBox mailBox = mailBoxMap.get(mailBoxId);
-                    mailBox.setName(name);
+            if(!office.playerMailboxMap.containsKey(playerId))
+                return false;
 
-                    ServerWorld world = server.getWorld(mailBox.getWorld());
-                    if(world != null && world.isAreaLoaded(mailBox.getPos(), 0))
-                    {
-                        TileEntity tileEntity = world.getTileEntity(mailBox.getPos());
-                        if(tileEntity instanceof MailBoxTileEntity)
-                        {
-                            ((MailBoxTileEntity) tileEntity).setMailBoxName(name);
-                            TileEntityUtil.sendUpdatePacket(tileEntity);
-                            return true;
-                        }
-                    }
-                }
-            }
+            Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.get(playerId);
+            if(!mailBoxMap.containsKey(mailBoxId))
+                return false;
+
+            MailBox mailBox = mailBoxMap.get(mailBoxId);
+            mailBox.setName(name);
+
+            ServerLevel level = server.getLevel(mailBox.getLevelResourceKey());
+            if(level == null || !level.isAreaLoaded(mailBox.getPos(), 0))
+                return false;
+
+            if(!(level.getBlockEntity(mailBox.getPos()) instanceof MailBoxBlockEntity mailBoxBlockEntity))
+                return false;
+
+            mailBoxBlockEntity.setMailBoxName(name);
+            BlockEntityUtil.sendUpdatePacket(mailBoxBlockEntity);
+            return true;
         }
         return false;
     }
@@ -240,8 +234,8 @@ public class PostOffice extends WorldSavedData
 
     private static PostOffice get(MinecraftServer server)
     {
-        ServerWorld world = server.getWorld(World.OVERWORLD);
-        return world.getSavedData().getOrCreate(PostOffice::new, DATA_NAME);
+        ServerLevel level = server.getLevel(Level.OVERWORLD);
+        return Objects.requireNonNull(level).getDataStorage().computeIfAbsent(PostOffice::load, PostOffice::new, ID);
     }
 
     /*
@@ -257,7 +251,7 @@ public class PostOffice extends WorldSavedData
             return;
 
         MinecraftServer server = event.world.getServer();
-        if(server != null && server.getTickCounter() % 1200 == 0)
+        if(server != null && server.getTickCount() % 1200 == 0)
         {
             PostOffice office = get(server);
             office.playerMailboxMap.values().forEach(map ->
@@ -265,16 +259,14 @@ public class PostOffice extends WorldSavedData
                 Predicate<MailBox> removePredicate = mailBox ->
                 {
                     BlockPos pos = mailBox.getPos();
-                    ServerWorld world = server.getWorld(mailBox.getWorld());
-                    if(world != null)
+                    ServerLevel level = server.getLevel(mailBox.getLevelResourceKey());
+                    if(level != null)
                     {
-                        if(world.isAreaLoaded(pos, 0))
+                        if(level.isAreaLoaded(pos, 0))
                         {
-                            TileEntity tileEntity = world.getTileEntity(pos);
-                            if(tileEntity instanceof MailBoxTileEntity)
+                            if(level.getBlockEntity(pos) instanceof MailBoxBlockEntity mailBoxBlockEntity)
                             {
-                                MailBoxTileEntity mailBoxTileEntity = (MailBoxTileEntity) tileEntity;
-                                return mailBoxTileEntity.getId() == null || !Objects.equals(mailBoxTileEntity.getId(), mailBox.getId());
+                                return mailBoxBlockEntity.getId() == null || !Objects.equals(mailBoxBlockEntity.getId(), mailBox.getId());
                             }
                             return true;
                         }
@@ -284,7 +276,7 @@ public class PostOffice extends WorldSavedData
                 };
                 if(map.values().removeIf(removePredicate))
                 {
-                    office.markDirty();
+                    office.setDirty();
                 }
             });
         }

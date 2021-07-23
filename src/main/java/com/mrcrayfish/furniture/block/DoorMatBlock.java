@@ -1,18 +1,19 @@
 package com.mrcrayfish.furniture.block;
 
-import com.mrcrayfish.furniture.tileentity.DoorMatTileEntity;
+import com.mrcrayfish.furniture.tileentity.DoorMatBlockEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.shapes.ISelectionContext;
-import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.world.IBlockReader;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.IWorldReader;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.EntityBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -21,7 +22,7 @@ import java.util.Map;
 /**
  * Author: MrCrayfish
  */
-public class DoorMatBlock extends FurnitureHorizontalWaterloggedBlock
+public class DoorMatBlock extends FurnitureHorizontalWaterloggedBlock implements EntityBlock
 {
     public final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
 
@@ -33,45 +34,39 @@ public class DoorMatBlock extends FurnitureHorizontalWaterloggedBlock
     private VoxelShape getShape(BlockState state)
     {
         return SHAPES.computeIfAbsent(state, state1 -> {
-            final VoxelShape[] BOXES = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0, 0, 2, 16, 1, 14), Direction.SOUTH));
-            return BOXES[state.get(DIRECTION).getHorizontalIndex()];
+            final VoxelShape[] BOXES = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 0, 2, 16, 1, 14), Direction.SOUTH));
+            return BOXES[state.getValue(DIRECTION).get2DDataValue()];
         });
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context)
+    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return this.getShape(state);
     }
 
     @Override
-    public VoxelShape getRenderShape(BlockState state, IBlockReader reader, BlockPos pos)
+    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
     {
         return this.getShape(state);
     }
 
     @Override
-    public boolean hasTileEntity(BlockState state)
+    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
     {
-        return true;
+        return !stateIn.canSurvive(level, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(stateIn, facing, facingState, level, currentPos, facingPos);
+    }
+
+    @Override
+    public boolean canSurvive(BlockState state, LevelReader reader, BlockPos pos)
+    {
+        return !reader.isEmptyBlock(pos.below());
     }
 
     @Nullable
     @Override
-    public TileEntity createTileEntity(BlockState state, IBlockReader world)
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
     {
-        return new DoorMatTileEntity();
-    }
-
-    @Override
-    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
-    {
-        return !stateIn.isValidPosition(worldIn, currentPos) ? Blocks.AIR.getDefaultState() : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
-    }
-
-    @Override
-    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos)
-    {
-        return !worldIn.isAirBlock(pos.down());
+        return new DoorMatBlockEntity(pos, state);
     }
 }

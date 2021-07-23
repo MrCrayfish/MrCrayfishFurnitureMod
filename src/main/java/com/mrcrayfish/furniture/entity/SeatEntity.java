@@ -1,15 +1,15 @@
 package com.mrcrayfish.furniture.entity;
 
 import com.mrcrayfish.furniture.core.ModEntities;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.IPacket;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.network.NetworkHooks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
+import net.minecraftforge.fmllegacy.network.NetworkHooks;
 
 import java.util.List;
 
@@ -20,54 +20,48 @@ public class SeatEntity extends Entity
 {
     private BlockPos source;
 
-    public SeatEntity(World world)
+    public SeatEntity(Level level)
     {
-        super(ModEntities.SEAT.get(), world);
-        this.noClip = true;
+        super(ModEntities.SEAT.get(), level);
+        this.noPhysics = true;
     }
 
-    private SeatEntity(World world, BlockPos source, double yOffset)
+    private SeatEntity(Level level, BlockPos source, double yOffset)
     {
-        this(world);
+        this(level);
         this.source = source;
-        this.setPosition(source.getX() + 0.5, source.getY() + yOffset, source.getZ() + 0.5);
+        this.setPos(source.getX() + 0.5, source.getY() + yOffset, source.getZ() + 0.5);
     }
-
-    @Override
-    protected void registerData() {}
 
     @Override
     public void tick()
     {
         super.tick();
-        if(source == null)
+        if(this.source == null)
         {
-            source = this.getPosition();
+            this.source = this.blockPosition();
         }
-        if(!this.world.isRemote)
+        if(!this.level.isClientSide)
         {
-            if(this.getPassengers().isEmpty() || this.world.isAirBlock(source))
+            if(this.getPassengers().isEmpty() || this.level.isEmptyBlock(this.source))
             {
-                this.remove();
-                world.updateComparatorOutputLevel(getPosition(), world.getBlockState(getPosition()).getBlock());
+                this.remove(false);
+                this.level.updateNeighbourForOutputSignal(blockPosition(), this.level.getBlockState(blockPosition()).getBlock());
             }
         }
     }
 
     @Override
-    protected void readAdditional(CompoundNBT compound)
-    {
-
-    }
+    protected void defineSynchedData() {}
 
     @Override
-    protected void writeAdditional(CompoundNBT compound)
-    {
-
-    }
+    protected void readAdditionalSaveData(CompoundTag compound) {}
 
     @Override
-    public double getMountedYOffset()
+    protected void addAdditionalSaveData(CompoundTag compound) {}
+
+    @Override
+    public double getPassengersRidingOffset()
     {
         return 0.0;
     }
@@ -78,29 +72,29 @@ public class SeatEntity extends Entity
     }
 
     @Override
-    protected boolean canBeRidden(Entity entity)
+    protected boolean canRide(Entity entity)
     {
         return true;
     }
 
     @Override
-    public IPacket<?> createSpawnPacket()
+    public Packet<?> getAddEntityPacket()
     {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
-    public static ActionResultType create(World world, BlockPos pos, double yOffset, PlayerEntity player)
+    public static InteractionResult create(Level level, BlockPos pos, double yOffset, Player player)
     {
-        if(!world.isRemote)
+        if(!level.isClientSide())
         {
-            List<SeatEntity> seats = world.getEntitiesWithinAABB(SeatEntity.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1.0, pos.getY() + 1.0, pos.getZ() + 1.0));
+            List<SeatEntity> seats = level.getEntitiesOfClass(SeatEntity.class, new AABB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1.0, pos.getY() + 1.0, pos.getZ() + 1.0));
             if(seats.isEmpty())
             {
-                SeatEntity seat = new SeatEntity(world, pos, yOffset);
-                world.addEntity(seat);
+                SeatEntity seat = new SeatEntity(level, pos, yOffset);
+                level.addFreshEntity(seat);
                 player.startRiding(seat, false);
             }
         }
-        return ActionResultType.SUCCESS;
+        return InteractionResult.SUCCESS;
     }
 }
