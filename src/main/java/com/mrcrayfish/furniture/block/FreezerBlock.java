@@ -1,7 +1,9 @@
 package com.mrcrayfish.furniture.block;
 
+import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.tileentity.BasicLootBlockEntity;
 import com.mrcrayfish.furniture.tileentity.FreezerBlockEntity;
+import com.mrcrayfish.furniture.tileentity.MailBoxBlockEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,6 +21,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -148,5 +152,17 @@ public class FreezerBlock extends FurnitureHorizontalBlock implements EntityBloc
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
     {
         return new FreezerBlockEntity(pos, state);
+    }
+
+    @Nullable
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type)
+    {
+        return createMailBoxTicker(level, type, ModBlockEntities.FREEZER.get());
+    }
+
+    @Nullable
+    protected static <T extends BlockEntity> BlockEntityTicker<T> createMailBoxTicker(Level level, BlockEntityType<T> blockEntityType, BlockEntityType<? extends FreezerBlockEntity> freezerBlockEntity)
+    {
+        return level.isClientSide() ? null : createTickerHelper(blockEntityType, freezerBlockEntity, FreezerBlockEntity::serverTick);
     }
 }

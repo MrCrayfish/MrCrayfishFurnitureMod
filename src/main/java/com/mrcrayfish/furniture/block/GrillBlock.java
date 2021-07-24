@@ -1,7 +1,9 @@
 package com.mrcrayfish.furniture.block;
 
+import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.core.ModItems;
 import com.mrcrayfish.furniture.item.crafting.GrillCookingRecipe;
+import com.mrcrayfish.furniture.tileentity.FreezerBlockEntity;
 import com.mrcrayfish.furniture.tileentity.GrillBlockEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.core.BlockPos;
@@ -17,6 +19,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityTicker;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -52,6 +56,8 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements EntityBlock
     {
         return 1.0F;
     }
+
+    //TODO add tickers for all block entities that need them
 
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving)
@@ -124,5 +130,24 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements EntityBlock
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state)
     {
         return new GrillBlockEntity(pos, state);
+    }
+
+    @Nullable
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type)
+    {
+        return createMailBoxTicker(level, type, ModBlockEntities.GRILL.get());
+    }
+
+    @Nullable
+    protected static <T extends BlockEntity> BlockEntityTicker<T> createMailBoxTicker(Level level, BlockEntityType<T> blockEntityType, BlockEntityType<? extends GrillBlockEntity> grillBlockEntity)
+    {
+        if(level.isClientSide())
+        {
+            return createTickerHelper(blockEntityType, grillBlockEntity, GrillBlockEntity::clientTick);
+        }
+        else
+        {
+            return createTickerHelper(blockEntityType, grillBlockEntity, GrillBlockEntity::serverTick);
+        }
     }
 }

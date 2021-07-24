@@ -148,8 +148,6 @@ public class MailBoxBlock extends FurnitureHorizontalWaterloggedBlock implements
         return new MailBoxBlockEntity(pos, state);
     }
 
-    //TODO see if I can make this easier
-
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type)
     {
