@@ -144,7 +144,7 @@ public class MailBoxBlockEntity extends BasicLootBlockEntity
     @Override
     public int getContainerSize()
     {
-        return 18;
+        return 9;
     }
 
     @Override
