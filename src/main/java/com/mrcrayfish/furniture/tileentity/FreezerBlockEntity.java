@@ -49,7 +49,6 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
     private int fuelTimeTotal;
     private int freezeTime;
     private int freezeTimeTotal;
-    private int playerCount;
 
     protected final SimpleContainerData freezerData = new SimpleContainerData(4)
     {
