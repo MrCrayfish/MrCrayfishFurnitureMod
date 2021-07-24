@@ -336,7 +336,7 @@ public class ClientHandler
                 BlockEntity tileEntity = reader.getBlockEntity(pos);
                 if(tileEntity instanceof TrampolineBlockEntity)
                 {
-                    return ((TrampolineBlockEntity) tileEntity).getColour().getTextColor();
+                    return ((TrampolineBlockEntity) tileEntity).getColour().getMaterialColor().col;
                 }
             }
             return 0xFFFFFFFF;
@@ -349,7 +349,7 @@ public class ClientHandler
                 CompoundTag blockEntityTag = tag.getCompound("BlockEntityTag");
                 if(blockEntityTag.contains("Color", Constants.NBT.TAG_INT))
                 {
-                    return DyeColor.byId(blockEntityTag.getInt("Color")).getTextColor();
+                    return DyeColor.byId(blockEntityTag.getInt("Color")).getMaterialColor().col;
                 }
             }
             return 0xFFFFFFFF;
