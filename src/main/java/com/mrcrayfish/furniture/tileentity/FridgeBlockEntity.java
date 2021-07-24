@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.tileentity;
 import com.mrcrayfish.furniture.block.FridgeBlock;
 import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.core.ModSounds;
+import com.mrcrayfish.furniture.inventory.container.FreezerMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.network.chat.Component;

@@ -21,6 +21,7 @@ import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.item.ItemStack;
@@ -291,6 +292,12 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
     protected AbstractContainerMenu createMenu(int windowId, Inventory playerInventory)
     {
         return new FreezerMenu(windowId, playerInventory, this);
+    }
+
+    @Override
+    public boolean isMatchingContainerMenu(AbstractContainerMenu menu)
+    {
+        return menu instanceof FreezerMenu freezerMenu && freezerMenu.getBlockEntity() == this;
     }
 
     @Override

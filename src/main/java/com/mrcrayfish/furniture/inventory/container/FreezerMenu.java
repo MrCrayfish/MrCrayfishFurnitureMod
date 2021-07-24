@@ -58,6 +58,11 @@ public class FreezerMenu extends AbstractContainerMenu
         this.addDataSlots(this.data);
     }
 
+    public FreezerBlockEntity getBlockEntity()
+    {
+        return this.blockEntity;
+    }
+
     @Override
     public boolean stillValid(Player playerIn)
     {

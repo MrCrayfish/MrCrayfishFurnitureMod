@@ -41,9 +41,6 @@ public class BasicContainerOpenersCounter extends ContainerOpenersCounter
     @Override
     protected boolean isOwnContainer(Player player)
     {
-        if(!(player.containerMenu instanceof ChestMenu))
-            return false;
-        Container container = ((ChestMenu) player.containerMenu).getContainer();
-        return container == this.blockEntity;
+        return this.blockEntity.isMatchingContainerMenu(player.containerMenu);
     }
 }
