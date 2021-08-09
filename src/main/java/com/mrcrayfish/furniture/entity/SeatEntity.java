@@ -45,7 +45,7 @@ public class SeatEntity extends Entity
         {
             if(this.getPassengers().isEmpty() || this.level.isEmptyBlock(this.source))
             {
-                this.remove(false);
+                this.remove(RemovalReason.DISCARDED);
                 this.level.updateNeighbourForOutputSignal(blockPosition(), this.level.getBlockState(blockPosition()).getBlock());
             }
         }

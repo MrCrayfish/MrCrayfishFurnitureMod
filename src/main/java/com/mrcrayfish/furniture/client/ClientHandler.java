@@ -34,7 +34,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.ModList;
-import net.minecraftforge.fmlclient.registry.RenderingRegistry;
 
 import java.util.function.Predicate;
 
