@@ -60,6 +60,22 @@ public class RecipeGen extends RecipeProvider
         table(consumer, ModBlocks.TABLE_STRIPPED_DARK_OAK.get(), Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
         table(consumer, ModBlocks.TABLE_STRIPPED_CRIMSON.get(), Blocks.STRIPPED_CRIMSON_STEM, Blocks.CRIMSON_STEM);
         table(consumer, ModBlocks.TABLE_STRIPPED_WARPED.get(), Blocks.STRIPPED_WARPED_STEM, Blocks.WARPED_STEM);
+        table(consumer, ModBlocks.TABLE_WHITE_MODERN.get(), Blocks.WHITE_CONCRETE, Blocks.STONE);
+        table(consumer, ModBlocks.TABLE_ORANGE_MODERN.get(), Blocks.ORANGE_CONCRETE, Blocks.STONE);
+        table(consumer, ModBlocks.TABLE_MAGENTA_MODERN.get(), Blocks.MAGENTA_CONCRETE, Blocks.STONE);
+        table(consumer, ModBlocks.TABLE_LIGHT_BLUE_MODERN.get(), Blocks.LIGHT_BLUE_CONCRETE, Blocks.STONE);
+        table(consumer, ModBlocks.TABLE_YELLOW_MODERN.get(), Blocks.YELLOW_CONCRETE, Blocks.STONE);
+        table(consumer, ModBlocks.TABLE_LIME_MODERN.get(), Blocks.LIME_CONCRETE, Blocks.STONE);
+        table(consumer, ModBlocks.TABLE_PINK_MODERN.get(), Blocks.PINK_CONCRETE, Blocks.STONE);
+        table(consumer, ModBlocks.TABLE_GRAY_MODERN.get(), Blocks.GRAY_CONCRETE, Blocks.STONE);
+        table(consumer, ModBlocks.TABLE_LIGHT_GRAY_MODERN.get(), Blocks.LIGHT_GRAY_CONCRETE, Blocks.STONE);
+        table(consumer, ModBlocks.TABLE_CYAN_MODERN.get(), Blocks.CYAN_CONCRETE, Blocks.STONE);
+        table(consumer, ModBlocks.TABLE_PURPLE_MODERN.get(), Blocks.PURPLE_CONCRETE, Blocks.STONE);
+        table(consumer, ModBlocks.TABLE_BLUE_MODERN.get(), Blocks.BLUE_CONCRETE, Blocks.STONE);
+        table(consumer, ModBlocks.TABLE_BROWN_MODERN.get(), Blocks.BROWN_CONCRETE, Blocks.STONE);
+        table(consumer, ModBlocks.TABLE_GREEN_MODERN.get(), Blocks.GREEN_CONCRETE, Blocks.STONE);
+        table(consumer, ModBlocks.TABLE_RED_MODERN.get(), Blocks.RED_CONCRETE, Blocks.STONE);
+        table(consumer, ModBlocks.TABLE_BLACK_MODERN.get(), Blocks.BLACK_CONCRETE, Blocks.STONE);
         // Chairs
         chair(consumer, ModBlocks.CHAIR_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
         chair(consumer, ModBlocks.CHAIR_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
@@ -81,6 +97,22 @@ public class RecipeGen extends RecipeProvider
         chair(consumer, ModBlocks.CHAIR_STRIPPED_DARK_OAK.get(), Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
         chair(consumer, ModBlocks.CHAIR_STRIPPED_CRIMSON.get(), Blocks.STRIPPED_CRIMSON_STEM, Blocks.CRIMSON_STEM);
         chair(consumer, ModBlocks.CHAIR_STRIPPED_WARPED.get(), Blocks.STRIPPED_WARPED_STEM, Blocks.WARPED_STEM);
+        chair(consumer, ModBlocks.CHAIR_WHITE_MODERN.get(), Blocks.WHITE_CONCRETE, Blocks.STONE);
+        chair(consumer, ModBlocks.CHAIR_ORANGE_MODERN.get(), Blocks.ORANGE_CONCRETE, Blocks.STONE);
+        chair(consumer, ModBlocks.CHAIR_MAGENTA_MODERN.get(), Blocks.MAGENTA_CONCRETE, Blocks.STONE);
+        chair(consumer, ModBlocks.CHAIR_LIGHT_BLUE_MODERN.get(), Blocks.LIGHT_BLUE_CONCRETE, Blocks.STONE);
+        chair(consumer, ModBlocks.CHAIR_YELLOW_MODERN.get(), Blocks.YELLOW_CONCRETE, Blocks.STONE);
+        chair(consumer, ModBlocks.CHAIR_LIME_MODERN.get(), Blocks.LIME_CONCRETE, Blocks.STONE);
+        chair(consumer, ModBlocks.CHAIR_PINK_MODERN.get(), Blocks.PINK_CONCRETE, Blocks.STONE);
+        chair(consumer, ModBlocks.CHAIR_GRAY_MODERN.get(), Blocks.GRAY_CONCRETE, Blocks.STONE);
+        chair(consumer, ModBlocks.CHAIR_LIGHT_GRAY_MODERN.get(), Blocks.LIGHT_GRAY_CONCRETE, Blocks.STONE);
+        chair(consumer, ModBlocks.CHAIR_CYAN_MODERN.get(), Blocks.CYAN_CONCRETE, Blocks.STONE);
+        chair(consumer, ModBlocks.CHAIR_PURPLE_MODERN.get(), Blocks.PURPLE_CONCRETE, Blocks.STONE);
+        chair(consumer, ModBlocks.CHAIR_BLUE_MODERN.get(), Blocks.BLUE_CONCRETE, Blocks.STONE);
+        chair(consumer, ModBlocks.CHAIR_BROWN_MODERN.get(), Blocks.BROWN_CONCRETE, Blocks.STONE);
+        chair(consumer, ModBlocks.CHAIR_GREEN_MODERN.get(), Blocks.GREEN_CONCRETE, Blocks.STONE);
+        chair(consumer, ModBlocks.CHAIR_RED_MODERN.get(), Blocks.RED_CONCRETE, Blocks.STONE);
+        chair(consumer, ModBlocks.CHAIR_BLACK_MODERN.get(), Blocks.BLACK_CONCRETE, Blocks.STONE);
         // Coffee Table
         coffeeTable(consumer, ModBlocks.COFFEE_TABLE_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
         coffeeTable(consumer, ModBlocks.COFFEE_TABLE_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
@@ -102,6 +134,22 @@ public class RecipeGen extends RecipeProvider
         coffeeTable(consumer, ModBlocks.COFFEE_TABLE_STRIPPED_DARK_OAK.get(), Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
         coffeeTable(consumer, ModBlocks.COFFEE_TABLE_STRIPPED_CRIMSON.get(), Blocks.STRIPPED_CRIMSON_STEM, Blocks.CRIMSON_STEM);
         coffeeTable(consumer, ModBlocks.COFFEE_TABLE_STRIPPED_WARPED.get(), Blocks.STRIPPED_WARPED_STEM, Blocks.WARPED_STEM);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_WHITE_MODERN.get(), Blocks.WHITE_CONCRETE, Blocks.STONE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_ORANGE_MODERN.get(), Blocks.ORANGE_CONCRETE, Blocks.STONE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_MAGENTA_MODERN.get(), Blocks.MAGENTA_CONCRETE, Blocks.STONE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_LIGHT_BLUE_MODERN.get(), Blocks.LIGHT_BLUE_CONCRETE, Blocks.STONE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_YELLOW_MODERN.get(), Blocks.YELLOW_CONCRETE, Blocks.STONE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_LIME_MODERN.get(), Blocks.LIME_CONCRETE, Blocks.STONE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_PINK_MODERN.get(), Blocks.PINK_CONCRETE, Blocks.STONE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_GRAY_MODERN.get(), Blocks.GRAY_CONCRETE, Blocks.STONE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_LIGHT_GRAY_MODERN.get(), Blocks.LIGHT_GRAY_CONCRETE, Blocks.STONE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_CYAN_MODERN.get(), Blocks.CYAN_CONCRETE, Blocks.STONE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_PURPLE_MODERN.get(), Blocks.PURPLE_CONCRETE, Blocks.STONE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_BLUE_MODERN.get(), Blocks.BLUE_CONCRETE, Blocks.STONE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_BROWN_MODERN.get(), Blocks.BROWN_CONCRETE, Blocks.STONE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_GREEN_MODERN.get(), Blocks.GREEN_CONCRETE, Blocks.STONE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_RED_MODERN.get(), Blocks.RED_CONCRETE, Blocks.STONE);
+        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_BLACK_MODERN.get(), Blocks.BLACK_CONCRETE, Blocks.STONE);
         // Cabinet
         cabinet(consumer, ModBlocks.CABINET_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
         cabinet(consumer, ModBlocks.CABINET_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);

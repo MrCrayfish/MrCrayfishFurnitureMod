@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/modern_table_three",
+    "textures": {
+        "color": "minecraft:block/light_gray_concrete"
+    }
+}

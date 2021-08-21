@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/modern_coffee_table_three",
+    "textures": {
+        "color": "minecraft:block/pink_concrete"
+    }
+}

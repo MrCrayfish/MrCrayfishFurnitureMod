@@ -1,0 +1,19 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "color": "#color",
+		"particle": "#color"
+    },
+    "elements": [
+        {
+            "name": "table_top_1",
+            "from": [ 0.00, 14.00, 0.00 ], 
+            "to": [ 16.00, 16.00, 16.00 ], 
+            "faces": {
+                "south": { "texture": "#color", "uv": [ 0.00, 0.00, 16.00, 2.00 ], "cullface": "south" },
+                "up": { "texture": "#color", "uv": [ 0.00, 0.00, 16.00, 16.00 ], "cullface": "up" },
+                "down": { "texture": "#color", "uv": [ 0.00, 0.00, 16.00, 16.00 ] }
+            }
+        }
+    ]
+}

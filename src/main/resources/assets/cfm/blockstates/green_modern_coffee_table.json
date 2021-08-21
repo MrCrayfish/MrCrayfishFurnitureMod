@@ -1,0 +1,133 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "cfm:block/green_modern_coffee_table_single",
+		"uvlock": true,
+		"textures": {
+			"particle": "block/green_concrete"
+		}
+	},
+	"variants": {
+		"inventory": [{
+			"model": "cfm:block/green_modern_coffee_table_single"
+		}],
+		"south=false,north=true,west=false,east=true,tall=false": {
+			"model": "cfm:block/green_modern_coffee_table_two_alt",
+			"y": 90
+		},
+		"south=false,north=true,west=true,east=false,tall=false": {
+			"model": "cfm:block/green_modern_coffee_table_two_alt",
+			"y": 0
+		},
+		"south=true,north=false,west=false,east=true,tall=false": {
+			"model": "cfm:block/green_modern_coffee_table_two_alt",
+			"y": 180
+		},
+		"south=true,north=false,west=true,east=false,tall=false": {
+			"model": "cfm:block/green_modern_coffee_table_two_alt",
+			"y": 270
+		},
+		"south=false,north=true,west=false,east=false,tall=false": {
+			"model": "cfm:block/green_modern_coffee_table_one"
+		},
+		"south=false,north=false,west=false,east=true,tall=false": {
+			"model": "cfm:block/green_modern_coffee_table_one",
+			"y": 90
+		},
+		"south=false,north=false,west=true,east=false,tall=false": {
+			"model": "cfm:block/green_modern_coffee_table_one",
+			"y": 270
+		},
+		"south=true,north=false,west=false,east=false,tall=false": {
+			"model": "cfm:block/green_modern_coffee_table_one",
+			"y": 180
+		},
+		"south=false,north=false,west=false,east=false,tall=false": {
+			"model": "cfm:block/green_modern_coffee_table_single"
+		},
+		"south=true,north=true,west=false,east=false,tall=false": {
+			"model": "cfm:block/green_modern_coffee_table_two",
+			"y": 90
+		},
+		"south=true,north=true,west=true,east=false,tall=false": {
+			"model": "cfm:block/green_modern_coffee_table_three",
+			"y": 270
+		},
+		"south=true,north=true,west=false,east=true,tall=false": {
+			"model": "cfm:block/green_modern_coffee_table_three",
+			"y": 90
+		},
+		"south=false,north=false,west=true,east=true,tall=false": {
+			"model": "cfm:block/green_modern_coffee_table_two"
+		},
+		"south=false,north=true,west=true,east=true,tall=false": {
+			"model": "cfm:block/green_modern_coffee_table_three"
+		},
+		"south=true,north=false,west=true,east=true,tall=false": {
+			"model": "cfm:block/green_modern_coffee_table_three",
+			"y": 180
+		},
+		"south=true,north=true,west=true,east=true,tall=false": {
+			"model": "cfm:block/green_modern_coffee_table_four"
+		},
+		"south=false,north=true,west=false,east=true,tall=true": {
+			"model": "cfm:block/green_modern_table_two_alt",
+			"y": 90
+		},
+		"south=false,north=true,west=true,east=false,tall=true": {
+			"model": "cfm:block/green_modern_table_two_alt",
+			"y": 0
+		},
+		"south=true,north=false,west=false,east=true,tall=true": {
+			"model": "cfm:block/green_modern_table_two_alt",
+			"y": 180
+		},
+		"south=true,north=false,west=true,east=false,tall=true": {
+			"model": "cfm:block/green_modern_table_two_alt",
+			"y": 270
+		},
+		"south=false,north=true,west=false,east=false,tall=true": {
+			"model": "cfm:block/green_modern_table_one"
+		},
+		"south=false,north=false,west=false,east=true,tall=true": {
+			"model": "cfm:block/green_modern_table_one",
+			"y": 90
+		},
+		"south=false,north=false,west=true,east=false,tall=true": {
+			"model": "cfm:block/green_modern_table_one",
+			"y": 270
+		},
+		"south=true,north=false,west=false,east=false,tall=true": {
+			"model": "cfm:block/green_modern_table_one",
+			"y": 180
+		},
+		"south=false,north=false,west=false,east=false,tall=true": {
+			"model": "cfm:block/green_modern_table_single"
+		},
+		"south=true,north=true,west=false,east=false,tall=true": {
+			"model": "cfm:block/green_modern_table_two",
+			"y": 90
+		},
+		"south=true,north=true,west=true,east=false,tall=true": {
+			"model": "cfm:block/green_modern_table_three",
+			"y": 270
+		},
+		"south=true,north=true,west=false,east=true,tall=true": {
+			"model": "cfm:block/green_modern_table_three",
+			"y": 90
+		},
+		"south=false,north=false,west=true,east=true,tall=true": {
+			"model": "cfm:block/green_modern_table_two"
+		},
+		"south=false,north=true,west=true,east=true,tall=true": {
+			"model": "cfm:block/green_modern_table_three"
+		},
+		"south=true,north=false,west=true,east=true,tall=true": {
+			"model": "cfm:block/green_modern_table_three",
+			"y": 180
+		},
+		"south=true,north=true,west=true,east=true,tall=true": {
+			"model": "cfm:block/green_modern_table_four"
+		}
+	}
+}

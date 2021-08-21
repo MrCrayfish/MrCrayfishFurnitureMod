@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/modern_chair",
+    "textures": {
+        "color": "minecraft:block/light_blue_concrete"
+    }
+}

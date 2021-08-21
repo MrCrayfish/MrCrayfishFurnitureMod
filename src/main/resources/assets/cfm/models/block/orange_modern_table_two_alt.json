@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/modern_table_two_alt",
+    "textures": {
+        "color": "minecraft:block/orange_concrete"
+    }
+}

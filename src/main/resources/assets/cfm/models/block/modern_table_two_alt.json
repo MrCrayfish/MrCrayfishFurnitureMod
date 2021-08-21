@@ -1,0 +1,57 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "0": "block/stone",
+        "color": "#color",
+		"particle": "#color"
+    },
+    "elements": [
+        {
+            "name": "leg_3",
+            "from": [ 13.50, 0.00, 13.50 ], 
+            "to": [ 15.00, 14.00, 15.00 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.00, 0.00, 1.50, 14.00 ] },
+                "east": { "texture": "#0", "uv": [ 0.00, 0.00, 1.50, 14.00 ] },
+                "south": { "texture": "#0", "uv": [ 0.00, 0.00, 1.50, 14.00 ] },
+                "west": { "texture": "#0", "uv": [ 0.00, 0.00, 1.50, 14.00 ] },
+                "down": { "texture": "#0", "uv": [ 0.00, 0.00, 1.50, 1.50 ], "cullface": "down" }
+            }
+        },
+        {
+            "name": "table_top_1",
+            "from": [ 0.00, 14.00, 0.00 ], 
+            "to": [ 15.00, 16.00, 16.00 ], 
+            "faces": {
+                "south": { "texture": "#color", "uv": [ 0.00, 0.00, 15.00, 2.00 ], "cullface": "south" },
+                "up": { "texture": "#color", "uv": [ 0.00, 0.00, 15.00, 16.00 ], "cullface": "up" },
+                "down": { "texture": "#color", "uv": [ 0.00, 0.00, 15.00, 16.00 ] }
+            }
+        },
+        {
+            "name": "table_top_3",
+            "from": [ 15.00, 14.00, 0.00 ], 
+            "to": [ 16.00, 16.00, 15.00 ], 
+            "faces": {
+                "east": { "texture": "#color", "uv": [ 0.00, 0.00, 15.00, 2.00 ], "cullface": "east" },
+                "south": { "texture": "#color", "uv": [ 0.00, 0.00, 1.00, 2.00 ] },
+                "up": { "texture": "#color", "uv": [ 0.00, 0.00, 1.00, 15.00 ], "cullface": "up" },
+                "down": { "texture": "#color", "uv": [ 0.00, 0.00, 1.00, 15.00 ] }
+            }
+        },
+        {
+            "name": "table_top_6",
+            "from": [ 15.00, 14.00, 15.00 ], 
+            "to": [ 16.40, 16.00, 16.00 ], 
+            "rotation": { "origin": [ 15.0, 15.0, 16.0 ], "axis": "y", "angle": 45.0 },
+            "faces": {
+                "north": { "texture": "#color", "uv": [ 0.00, 0.00, 1.40, 2.00 ] },
+                "east": { "texture": "#color", "uv": [ 0.00, 0.00, 1.00, 2.00 ] },
+                "south": { "texture": "#color", "uv": [ 0.00, 0.00, 1.40, 2.00 ] },
+                "west": { "texture": "#color", "uv": [ 0.00, 0.00, 1.00, 2.00 ] },
+                "up": { "texture": "#color", "uv": [ 0.00, 0.00, 1.40, 1.00 ], "cullface": "up" },
+                "down": { "texture": "#color", "uv": [ 0.00, 0.00, 1.40, 1.00 ] }
+            }
+        }
+    ]
+}

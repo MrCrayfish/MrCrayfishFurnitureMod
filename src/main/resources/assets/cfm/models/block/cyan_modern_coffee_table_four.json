@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/modern_coffee_table_four",
+    "textures": {
+        "color": "minecraft:block/cyan_concrete"
+    }
+}

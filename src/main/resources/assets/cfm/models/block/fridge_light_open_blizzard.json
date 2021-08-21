@@ -3,7 +3,8 @@
     "textures": {
         "magnet": "minecraft:block/brown_terracotta",
         "blizzard": "cfm:block/blizzard",
-        "base": "minecraft:block/white_concrete"
+        "base": "minecraft:block/white_concrete",
+		"particle": "minecraft:block/white_concrete"
     },
     "elements": [
         {
