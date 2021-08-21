@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "facing=east": {
+            "model": "cfm:block/dark_toilet",
+            "y": 0
+        },
+        "facing=south": {
+            "model": "cfm:block/dark_toilet",
+            "y": 90
+        },
+        "facing=west": {
+            "model": "cfm:block/dark_toilet",
+            "y": 180
+        },
+        "facing=north": {
+            "model": "cfm:block/dark_toilet",
+            "y": 270
+        }
+    }
+}
