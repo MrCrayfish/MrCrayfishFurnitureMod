@@ -507,6 +507,8 @@
     "block.cfm.freezer_light": "Freezer (Light)",
     "block.cfm.fridge_dark": "Fridge (Dark)",
     "block.cfm.freezer_dark": "Freezer (Dark)",
+	"block.cfm.toilet_light": "Toilet (Light)",
+	"block.cfm.toilet_dark": "Toilet (Dark)",
     "item.cfm.spatula": "Spatula",
     "container.cfm.cabinet": "Cabinet",
     "container.cfm.bedside_cabinet": "Bedside Cabinet",

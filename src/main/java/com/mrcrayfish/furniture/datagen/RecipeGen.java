@@ -619,6 +619,23 @@ public class RecipeGen extends RecipeProvider
                 .addCriterion("has_iron", hasItem(Tags.Items.INGOTS_IRON))
                 .addCriterion("has_chest", hasItem(Tags.Items.CHESTS_WOODEN))
                 .build(consumer);
+        //Toilet
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.TOILET_LIGHT.get())
+                .patternLine("WG ")
+                .patternLine("WWW")
+                .patternLine(" W ")
+                .key('W', Blocks.WHITE_CONCRETE)
+                .key('G', Blocks.GRAY_CONCRETE)
+                .setGroup("toilet")
+                .build(consumer);
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.TOILET_LIGHT.get())
+                .patternLine("GW ")
+                .patternLine("GGG")
+                .patternLine(" G ")
+                .key('W', Blocks.WHITE_CONCRETE)
+                .key('G', Blocks.GRAY_CONCRETE)
+                .setGroup("toilet")
+                .build(consumer);
         // Spatula
         ShapedRecipeBuilder.shapedRecipe(ModItems.SPATULA.get())
                 .patternLine("B")

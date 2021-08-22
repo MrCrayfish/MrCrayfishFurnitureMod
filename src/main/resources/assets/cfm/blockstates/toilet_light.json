@@ -1,19 +1,19 @@
 {
     "variants": {
         "facing=east": {
-            "model": "cfm:block/light_toilet",
+            "model": "cfm:block/toilet_light",
             "y": 0
         },
         "facing=south": {
-            "model": "cfm:block/light_toilet",
+            "model": "cfm:block/toilet_light",
             "y": 90
         },
         "facing=west": {
-            "model": "cfm:block/light_toilet",
+            "model": "cfm:block/toilet_light",
             "y": 180
         },
         "facing=north": {
-            "model": "cfm:block/light_toilet",
+            "model": "cfm:block/toilet_light",
             "y": 270
         }
     }

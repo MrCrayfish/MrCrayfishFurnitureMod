@@ -35,11 +35,11 @@ public class ModernTableBlock extends FurnitureWaterloggedBlock {
 
     private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
     {
-        final VoxelShape TOP = Block.makeCuboidShape(0.0, 14.0, 0.0, 16.0, 16.0, 16.0);
-        final VoxelShape SOUTH_EAST_LEG = Block.makeCuboidShape(1.0, 0.0, 13.5, 2.5, 14.0, 15.0);
-        final VoxelShape SOUTH_WEST_LEG = Block.makeCuboidShape(13.5, 0.0, 13.5, 15.0, 14.0, 15.0);
-        final VoxelShape NORTH_EAST_LEG = Block.makeCuboidShape(1.0, 0.0, 1.0, 2.5, 14.0, 2.5);
-        final VoxelShape NORTH_WEST_LEG = Block.makeCuboidShape(13.5, 0.0, 1.0, 15.0, 14.0, 2.5);
+        final VoxelShape TABLE_TOP = Block.makeCuboidShape(0.0, 14.0, 0.0, 16.0, 16.0, 16.0);
+        final VoxelShape LEG_SOUTH_EAST = Block.makeCuboidShape(13.5, 0.0, 13.5, 15.0, 14.0, 15.0);
+        final VoxelShape LEG_SOUTH_WEST = Block.makeCuboidShape(1.0, 0.0, 13.5, 2.5, 14.0, 15.0);
+        final VoxelShape LEG_NORTH_EAST = Block.makeCuboidShape(13.5, 0.0, 1.0, 15.0, 14.0, 2.5);
+        final VoxelShape LEG_NORTH_WEST = Block.makeCuboidShape(1.0, 0.0, 1.0, 2.5, 14.0, 2.5);
 
         ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
         for(BlockState state : states)
@@ -50,35 +50,24 @@ public class ModernTableBlock extends FurnitureWaterloggedBlock {
             boolean west = state.get(WEST);
 
             List<VoxelShape> shapes = new ArrayList<>();
-            shapes.add(TOP);
+            shapes.add(TABLE_TOP);
 
-            if (!north && !west && !east)
+            if(!north && !west)
             {
-                shapes.add(NORTH_WEST_LEG);
-                shapes.add(NORTH_EAST_LEG);
+                shapes.add(LEG_NORTH_WEST);
             }
-            if (!north && west)
+            if(!north && !east)
             {
-                shapes.add(NORTH_WEST_LEG);
+                shapes.add(LEG_NORTH_EAST);
             }
-            if (!north && east)
+            if(!south && !west)
             {
-                shapes.add(NORTH_EAST_LEG);
+                shapes.add(LEG_SOUTH_WEST);
             }
-            if (!south && !west && !east)
+            if(!south && !east)
             {
-                shapes.add(SOUTH_WEST_LEG);
-                shapes.add(SOUTH_EAST_LEG);
+                shapes.add(LEG_SOUTH_EAST);
             }
-            if (!south && west)
-            {
-                shapes.add(SOUTH_WEST_LEG);
-            }
-            if (!south && east)
-            {
-                shapes.add(SOUTH_EAST_LEG);
-            }
-
             builder.put(state, VoxelShapeHelper.combineAll(shapes));
         }
         return builder.build();

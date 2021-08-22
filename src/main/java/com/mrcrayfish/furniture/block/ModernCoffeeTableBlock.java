@@ -39,16 +39,16 @@ public class ModernCoffeeTableBlock extends FurnitureWaterloggedBlock {
 
     private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
     {
-        final VoxelShape TOP = Block.makeCuboidShape(0.0, 6.0, 0.0, 16.0, 8.0, 16.0);
-        final VoxelShape TALL_TOP = Block.makeCuboidShape(0.0, 14.0, 0.0, 16.0, 16.0, 16.0);
-        final VoxelShape SOUTH_EAST_LEG = Block.makeCuboidShape(1.0, 0.0, 13.5, 2.5, 6.0, 15.0);
-        final VoxelShape TALL_SOUTH_EAST_LEG = Block.makeCuboidShape(1.0, 0.0, 13.5, 2.5, 14.0, 15.0);
-        final VoxelShape SOUTH_WEST_LEG = Block.makeCuboidShape(13.5, 0.0, 13.5, 15.0, 6.0, 15.0);
-        final VoxelShape TALL_SOUTH_WEST_LEG = Block.makeCuboidShape(13.5, 0.0, 13.5, 15.0, 14.0, 15.0);
-        final VoxelShape NORTH_EAST_LEG = Block.makeCuboidShape(1.0, 0.0, 1.0, 2.5, 6.0, 2.5);
-        final VoxelShape TALL_NORTH_EAST_LEG = Block.makeCuboidShape(1.0, 0.0, 1.0, 2.5, 14.0, 2.5);
-        final VoxelShape NORTH_WEST_LEG = Block.makeCuboidShape(13.5, 0.0, 1.0, 15.0, 6.0, 2.5);
-        final VoxelShape TALL_NORTH_WEST_LEG = Block.makeCuboidShape(13.5, 0.0, 1.0, 15.0, 14.0, 2.5);
+        final VoxelShape TABLE_TOP_SHORT = Block.makeCuboidShape(0.0, 6.0, 0.0, 16.0, 8.0, 16.0);
+        final VoxelShape TABLE_TOP_TALL = Block.makeCuboidShape(0.0, 14.0, 0.0, 16.0, 16.0, 16.0);
+        final VoxelShape LEG_SOUTH_EAST_TALL = Block.makeCuboidShape(13.5, 0.0, 13.5, 15.0, 14.0, 15.0);
+        final VoxelShape LEG_SOUTH_WEST_TALL = Block.makeCuboidShape(1.0, 0.0, 13.5, 2.5, 14.0, 15.0);
+        final VoxelShape LEG_NORTH_WEST_TALL = Block.makeCuboidShape(1.0, 0.0, 1.0, 2.5, 14.0, 2.5);
+        final VoxelShape LEG_NORTH_EAST_TALL = Block.makeCuboidShape(13.5, 0.0, 1.0, 15.0, 14.0, 2.5);
+        final VoxelShape LEG_SOUTH_EAST_SHORT = Block.makeCuboidShape(13.5, 0.0, 13.5, 15.0, 6.0, 15.0);
+        final VoxelShape LEG_SOUTH_WEST_SHORT = Block.makeCuboidShape(1.0, 0.0, 13.5, 2.5, 6.0, 15.0);
+        final VoxelShape LEG_NORTH_WEST_SHORT = Block.makeCuboidShape(1.0, 0.0, 1.0, 2.5, 6.0, 2.5);
+        final VoxelShape LEG_NORTH_EAST_SHORT = Block.makeCuboidShape(13.5, 0.0, 1.0, 15.0, 6.0, 2.5);
 
         ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
         for(BlockState state : states)
@@ -60,70 +60,23 @@ public class ModernCoffeeTableBlock extends FurnitureWaterloggedBlock {
             boolean west = state.get(WEST);
 
             List<VoxelShape> shapes = new ArrayList<>();
-            shapes.add(tall ? TALL_TOP : TOP);
-
-            if (tall)
+            shapes.add(tall ? TABLE_TOP_TALL : TABLE_TOP_SHORT);
+            if(!north && !west)
             {
-                if (!north && !west && !east)
-                {
-                    shapes.add(TALL_NORTH_WEST_LEG);
-                    shapes.add(TALL_NORTH_EAST_LEG);
-                }
-                if (!north && west)
-                {
-                    shapes.add(TALL_NORTH_WEST_LEG);
-                }
-                if (!north && east)
-                {
-                    shapes.add(TALL_NORTH_EAST_LEG);
-                }
-                if (!south && !west && !east)
-                {
-                    shapes.add(TALL_SOUTH_WEST_LEG);
-                    shapes.add(TALL_SOUTH_EAST_LEG);
-                }
-                if (!south && west)
-                {
-                    shapes.add(TALL_SOUTH_WEST_LEG);
-                }
-                if (!south && east)
-                {
-                    shapes.add(TALL_SOUTH_EAST_LEG);
-                }
+                shapes.add(tall ? LEG_NORTH_WEST_TALL : LEG_NORTH_WEST_SHORT);
             }
-
-            if (!tall)
+            if(!north && !east)
             {
-                if (!north && !west && !east)
-                {
-                    shapes.add(NORTH_WEST_LEG);
-                    shapes.add(NORTH_EAST_LEG);
-                }
-                if (!north && west)
-                {
-                    shapes.add(NORTH_WEST_LEG);
-                }
-                if (!north && east)
-                {
-                    shapes.add(NORTH_EAST_LEG);
-                }
-                if (!south && !west && !east)
-                {
-                    shapes.add(SOUTH_WEST_LEG);
-                    shapes.add(SOUTH_EAST_LEG);
-                }
-                if (!south && west)
-                {
-                    shapes.add(SOUTH_WEST_LEG);
-                }
-                if (!south && east)
-                {
-                    shapes.add(SOUTH_EAST_LEG);
-                }
+                shapes.add(tall ? LEG_NORTH_EAST_TALL : LEG_NORTH_EAST_SHORT);
             }
-
-
-
+            if(!south && !west)
+            {
+                shapes.add(tall ? LEG_SOUTH_WEST_TALL : LEG_SOUTH_WEST_SHORT);
+            }
+            if(!south && !east)
+            {
+                shapes.add(tall ? LEG_SOUTH_EAST_TALL : LEG_SOUTH_EAST_SHORT);
+            }
             builder.put(state, VoxelShapeHelper.combineAll(shapes));
         }
         return builder.build();
