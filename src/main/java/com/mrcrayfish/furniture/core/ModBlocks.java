@@ -522,6 +522,8 @@ public class ModBlocks
     public static final RegistryObject<Block> FRIDGE_LIGHT = register("fridge_light", new FridgeBlock(Block.Properties.from(Blocks.IRON_BLOCK).notSolid(), () -> ModBlocks.FREEZER_LIGHT), block -> new BlockSupplierItem(new Item.Properties().group(FurnitureMod.GROUP), block, ModBlocks.FREEZER_LIGHT));
     public static final RegistryObject<Block> FREEZER_DARK = register("freezer_dark", new FreezerBlock(Block.Properties.from(Blocks.IRON_BLOCK).notSolid(), () -> ModBlocks.FRIDGE_DARK), (Supplier<BlockItem>) null);
     public static final RegistryObject<Block> FRIDGE_DARK = register("fridge_dark", new FridgeBlock(Block.Properties.from(Blocks.IRON_BLOCK).notSolid(), () -> ModBlocks.FREEZER_DARK), block -> new BlockSupplierItem(new Item.Properties().group(FurnitureMod.GROUP), block, ModBlocks.FREEZER_DARK));
+    public static final RegistryObject<Block> MICROWAVE_LIGHT = register("microwave_light", new MicrowaveBlock(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).notSolid()));
+    public static final RegistryObject<Block> MICROWAVE_DARK = register("microwave_dark", new MicrowaveBlock(AbstractBlock.Properties.from(Blocks.GRAY_CONCRETE).notSolid()));
     public static final RegistryObject<Block> TOILET_LIGHT = register("toilet_light", new ToiletBlock(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).notSolid()));
     public static final RegistryObject<Block> TOILET_DARK = register("toilet_dark", new ToiletBlock(AbstractBlock.Properties.from(Blocks.GRAY_CONCRETE).notSolid()));
 

@@ -1,0 +1,10 @@
+{
+    "parent": "cfm:block/microwave",
+    "textures": {
+        "1": "minecraft:block/gray_concrete",
+        "2": "minecraft:block/white_concrete",
+        "3": "minecraft:block/light_gray_concrete",
+        "4": "minecraft:block/gray_stained_glass",
+        "5": "minecraft:block/light_gray_concrete"
+    }
+}

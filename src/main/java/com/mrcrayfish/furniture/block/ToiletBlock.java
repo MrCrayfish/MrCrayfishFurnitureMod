@@ -20,21 +20,25 @@ import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ToiletBlock extends FurnitureHorizontalWaterloggedBlock {
+public class ToiletBlock extends FurnitureHorizontalWaterloggedBlock
+{
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
 
-    public ToiletBlock(Properties properties) {
+    public ToiletBlock(Properties properties)
+    {
         super(properties);
         this.setDefaultState(this.getStateContainer().getBaseState().with(DIRECTION, Direction.NORTH));
         SHAPES = this.generateShapes(this.getStateContainer().getValidStates());
     }
 
-    private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states) {
+    private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
+    {
         final VoxelShape[] LEFT_TOP = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(11.2, 6.4, 8.16, 12.8, 18.4, 9.76), Direction.EAST));
         final VoxelShape[] RIGHT_TOP = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(11.2, 6.4, 6.24, 12.8, 18.4, 7.84), Direction.EAST));
         final VoxelShape[] TANK_TOP = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(9.6, 16.0, 1.6, 16.0, 17.6, 14.4), Direction.EAST));
@@ -70,7 +74,8 @@ public class ToiletBlock extends FurnitureHorizontalWaterloggedBlock {
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context) {
+    public VoxelShape getShape(BlockState state, IBlockReader reader, BlockPos pos, ISelectionContext context)
+    {
         return SHAPES.get(state);
     }
 
@@ -80,17 +85,20 @@ public class ToiletBlock extends FurnitureHorizontalWaterloggedBlock {
     }
 
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
     {
-        if (playerEntity.isSneaking())
+        if(!world.isRemote)
         {
-            world.playSound(playerEntity, pos, ModSounds.BLOCK_TOILET_FLUSH.get(), SoundCategory.BLOCKS, 1.0F, 1.0F);
+            if(player.isSneaking())
+            {
+                world.playSound(null, pos, ModSounds.BLOCK_TOILET_FLUSH.get(), SoundCategory.BLOCKS, 0.75F, 1.0F);
+            }
+            else
+            {
+                return SeatEntity.create(world, pos, 0.4, player);
+            }
         }
-        else
-        {
-            return SeatEntity.create(world, pos, 0.4, playerEntity);
-        }
-        return ActionResultType.PASS;
+        return ActionResultType.SUCCESS;
     }
 
 }

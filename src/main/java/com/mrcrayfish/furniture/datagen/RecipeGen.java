@@ -628,7 +628,7 @@ public class RecipeGen extends RecipeProvider
                 .key('G', Blocks.GRAY_CONCRETE)
                 .setGroup("toilet")
                 .build(consumer);
-        ShapedRecipeBuilder.shapedRecipe(ModBlocks.TOILET_LIGHT.get())
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.TOILET_DARK.get())
                 .patternLine("GW ")
                 .patternLine("GGG")
                 .patternLine(" G ")

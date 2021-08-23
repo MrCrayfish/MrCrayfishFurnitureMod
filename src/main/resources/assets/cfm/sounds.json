@@ -46,5 +46,13 @@
     "block.fridge.close": {
         "subtitle": "subtitle.cfm.close_fridge",
         "sounds": [ "cfm:block/fridge/close" ]
+    },
+	"block.toilet.fart": {
+        "subtitle": "subtitle.toilet.fart",
+        "sounds": [ "cfm:block/toilet/fart" ]
+    },
+	"block.toilet.flush": {
+        "subtitle": "subtitle.toilet.flush",
+        "sounds": [ "cfm:block/toilet/flush" ]
     }
 }

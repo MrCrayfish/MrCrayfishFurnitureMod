@@ -134,4 +134,6 @@ public abstract class BasicLootTileEntity extends LockableLootTileEntity impleme
     {
         return true;
     }
+
+    public abstract void onScheduledTick();
 }

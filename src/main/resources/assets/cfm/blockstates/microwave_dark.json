@@ -1,0 +1,21 @@
+{
+    "variants": {
+        "facing=east": {
+            "model": "cfm:block/microwave_dark",
+            "y": 0
+        },
+        "facing=south": {
+            "model": "cfm:block/microwave_dark",
+            "y": 90
+        },
+        "facing=west": {
+            "model": "cfm:block/microwave_dark",
+            "y": 180
+        },
+        "facing=north": {
+            "model": "cfm:block/microwave_dark",
+            "y": 270
+        }
+    }
+}
+
