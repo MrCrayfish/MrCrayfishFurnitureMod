@@ -2,7 +2,6 @@ package com.mrcrayfish.furniture.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.mrcrayfish.furniture.tileentity.MicrowaveTileEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -11,7 +10,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -95,6 +93,8 @@ public class MicrowaveBlock extends FurnitureHorizontalWaterloggedBlock
         return SHAPES.get(state);
     }
 
+    /*
+    UNDER CONSTRUCTION
     @Override
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
     {
@@ -152,5 +152,7 @@ public class MicrowaveBlock extends FurnitureHorizontalWaterloggedBlock
         }
         super.onBlockHarvested(worldIn, pos, state, player);
     }
+
+    */
 
 }
