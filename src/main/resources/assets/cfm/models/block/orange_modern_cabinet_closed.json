@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/cabinet_closed",
+    "textures": {
+        "door": "block/stone",
+        "base": "block/orange_concrete"
+    }
+}

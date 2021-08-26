@@ -171,6 +171,22 @@ public class RecipeGen extends RecipeProvider
         cabinet(consumer, ModBlocks.CABINET_STRIPPED_DARK_OAK.get(), Blocks.DARK_OAK_LOG, Blocks.STRIPPED_DARK_OAK_LOG);
         cabinet(consumer, ModBlocks.CABINET_STRIPPED_CRIMSON.get(), Blocks.CRIMSON_STEM, Blocks.STRIPPED_CRIMSON_STEM);
         cabinet(consumer, ModBlocks.CABINET_STRIPPED_WARPED.get(), Blocks.WARPED_STEM, Blocks.STRIPPED_WARPED_STEM);
+        cabinet(consumer, ModBlocks.CABINET_WHITE_MODERN.get(), Blocks.WHITE_CONCRETE, Blocks.STONE);
+        cabinet(consumer, ModBlocks.CABINET_ORANGE_MODERN.get(), Blocks.ORANGE_CONCRETE, Blocks.STONE);
+        cabinet(consumer, ModBlocks.CABINET_MAGENTA_MODERN.get(), Blocks.MAGENTA_CONCRETE, Blocks.STONE);
+        cabinet(consumer, ModBlocks.CABINET_LIGHT_BLUE_MODERN.get(), Blocks.LIGHT_BLUE_CONCRETE, Blocks.STONE);
+        cabinet(consumer, ModBlocks.CABINET_YELLOW_MODERN.get(), Blocks.YELLOW_CONCRETE, Blocks.STONE);
+        cabinet(consumer, ModBlocks.CABINET_LIME_MODERN.get(), Blocks.LIME_CONCRETE, Blocks.STONE);
+        cabinet(consumer, ModBlocks.CABINET_PINK_MODERN.get(), Blocks.PINK_CONCRETE, Blocks.STONE);
+        cabinet(consumer, ModBlocks.CABINET_GRAY_MODERN.get(), Blocks.GRAY_CONCRETE, Blocks.STONE);
+        cabinet(consumer, ModBlocks.CABINET_LIGHT_GRAY_MODERN.get(), Blocks.LIGHT_GRAY_CONCRETE, Blocks.STONE);
+        cabinet(consumer, ModBlocks.CABINET_CYAN_MODERN.get(), Blocks.CYAN_CONCRETE, Blocks.STONE);
+        cabinet(consumer, ModBlocks.CABINET_PURPLE_MODERN.get(), Blocks.PURPLE_CONCRETE, Blocks.STONE);
+        cabinet(consumer, ModBlocks.CABINET_BLUE_MODERN.get(), Blocks.BLUE_CONCRETE, Blocks.STONE);
+        cabinet(consumer, ModBlocks.CABINET_BROWN_MODERN.get(), Blocks.BROWN_CONCRETE, Blocks.STONE);
+        cabinet(consumer, ModBlocks.CABINET_GREEN_MODERN.get(), Blocks.GREEN_CONCRETE, Blocks.STONE);
+        cabinet(consumer, ModBlocks.CABINET_RED_MODERN.get(), Blocks.RED_CONCRETE, Blocks.STONE);
+        cabinet(consumer, ModBlocks.CABINET_BLACK_MODERN.get(), Blocks.BLACK_CONCRETE, Blocks.STONE);
         // Coffee Table
         bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
         bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
@@ -618,6 +634,27 @@ public class RecipeGen extends RecipeProvider
                 .setGroup("fridge")
                 .addCriterion("has_iron", hasItem(Tags.Items.INGOTS_IRON))
                 .addCriterion("has_chest", hasItem(Tags.Items.CHESTS_WOODEN))
+                .build(consumer);
+        //Microwave
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.MICROWAVE_LIGHT.get())
+                .patternLine("IIC")
+                .patternLine("GGB")
+                .patternLine("IIC")
+                .key('C', Blocks.WHITE_CONCRETE)
+                .key('B', Blocks.STONE_BUTTON)
+                .key('G', Blocks.WHITE_STAINED_GLASS_PANE)
+                .key('I', Items.IRON_INGOT)
+                .setGroup("microwave")
+                .build(consumer);
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.MICROWAVE_DARK.get())
+                .patternLine("IIC")
+                .patternLine("GGB")
+                .patternLine("IIC")
+                .key('C', Blocks.GRAY_CONCRETE)
+                .key('B', Blocks.STONE_BUTTON)
+                .key('G', Blocks.GRAY_STAINED_GLASS_PANE)
+                .key('I', Items.IRON_INGOT)
+                .setGroup("microwave")
                 .build(consumer);
         //Toilet
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.TOILET_LIGHT.get())
