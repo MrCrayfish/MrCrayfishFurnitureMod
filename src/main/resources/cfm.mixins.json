@@ -4,9 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "minVersion": "0.8",
   "refmap": "cfm.refmap.json",
-  "client": [
-    "client.BlockMixin"
-  ],
+  "client": [],
   "injectors": {
     "defaultRequire": 1
   }
