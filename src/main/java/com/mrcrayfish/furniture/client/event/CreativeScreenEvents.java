@@ -270,21 +270,21 @@ public class CreativeScreenEvents
         TagFilter[] filters = new TagFilter[] {GENERAL, STORAGE, BEDROOM, OUTDOORS, KITCHEN, ITEMS};
 
         ForgeRegistries.ITEMS.getValues().stream()
-            .filter(item -> item.getGroup() == FurnitureMod.GROUP)
-            .filter(item -> item.getRegistryName().getNamespace().equals(Reference.MOD_ID))
-            .forEach(item ->
-            {
-                item.getTags().forEach(location ->
+                .filter(item -> item.getGroup() == FurnitureMod.GROUP)
+                .filter(item -> item.getRegistryName().getNamespace().equals(Reference.MOD_ID))
+                .forEach(item ->
                 {
-                    for(TagFilter filter : filters)
+                    item.getTags().forEach(location ->
                     {
-                        if(location.equals(filter.getTag()))
+                        for(TagFilter filter : filters)
                         {
-                            filter.add(item);
+                            if(location.equals(filter.getTag()))
+                            {
+                                filter.add(item);
+                            }
                         }
-                    }
+                    });
                 });
-            });
 
         this.filters = new ArrayList<>();
         this.filters.addAll(Arrays.asList(filters));

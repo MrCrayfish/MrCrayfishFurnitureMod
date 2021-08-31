@@ -1,0 +1,9 @@
+{
+    "parent": "cfm:block/bedside_cabinet_open",
+    "textures": {
+        "base": "minecraft:block/stone",
+        "top": "minecraft:block/cyan_concrete",
+        "draw": "minecraft:block/cyan_concrete",
+        "draw_front": "minecraft:block/cyan_concrete"
+    }
+}

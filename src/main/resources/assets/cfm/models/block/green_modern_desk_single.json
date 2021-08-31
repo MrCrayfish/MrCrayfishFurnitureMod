@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:block/desk_single",
+    "textures": {
+        "base": "minecraft:block/stone",
+        "top": "minecraft:block/green_concrete",
+        "legs": "minecraft:block/stone"
+    }
+}

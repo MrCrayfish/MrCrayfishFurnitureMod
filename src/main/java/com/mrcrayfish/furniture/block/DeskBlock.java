@@ -163,6 +163,22 @@ public class DeskBlock extends FurnitureHorizontalWaterloggedBlock
         STRIPPED_ACACIA,
         STRIPPED_DARK_OAK,
         STRIPPED_CRIMSON,
-        STRIPPED_WARPED
+        STRIPPED_WARPED,
+        WHITE_CONCRETE,
+        ORANGE_CONCRETE,
+        MAGENTA_CONCRETE,
+        LIGHT_BLUE_CONCRETE,
+        YELLOW_CONCRETE,
+        LIME_CONCRETE,
+        PINK_CONCRETE,
+        GRAY_CONCRETE,
+        LIGHT_GRAY_CONCRETE,
+        CYAN_CONCRETE,
+        PURPLE_CONCRETE,
+        BLUE_CONCRETE,
+        BROWN_CONCRETE,
+        GREEN_CONCRETE,
+        RED_CONCRETE,
+        BLACK_CONCRETE
     }
 }

@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:block/bedside_cabinet_closed",
+    "textures": {
+        "base": "minecraft:block/stone",
+        "top": "minecraft:block/brown_concrete",
+        "draw_front": "minecraft:block/brown_concrete"
+    }
+}

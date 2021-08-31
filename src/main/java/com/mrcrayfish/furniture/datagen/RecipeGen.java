@@ -208,6 +208,22 @@ public class RecipeGen extends RecipeProvider
         bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_STRIPPED_DARK_OAK.get(), Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
         bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_STRIPPED_CRIMSON.get(), Blocks.STRIPPED_CRIMSON_STEM, Blocks.CRIMSON_STEM);
         bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_STRIPPED_WARPED.get(), Blocks.STRIPPED_WARPED_STEM, Blocks.WARPED_STEM);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_WHITE_MODERN.get(), Blocks.STONE, Blocks.WHITE_CONCRETE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_ORANGE_MODERN.get(), Blocks.STONE, Blocks.ORANGE_CONCRETE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_MAGENTA_MODERN.get(), Blocks.STONE, Blocks.MAGENTA_CONCRETE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_LIGHT_BLUE_MODERN.get(), Blocks.STONE, Blocks.LIGHT_BLUE_CONCRETE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_YELLOW_MODERN.get(), Blocks.STONE, Blocks.YELLOW_CONCRETE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_LIME_MODERN.get(), Blocks.STONE, Blocks.LIME_CONCRETE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_PINK_MODERN.get(), Blocks.STONE, Blocks.PINK_CONCRETE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_GRAY_MODERN.get(), Blocks.STONE, Blocks.GRAY_CONCRETE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_LIGHT_GRAY_MODERN.get(), Blocks.STONE, Blocks.LIGHT_GRAY_CONCRETE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_CYAN_MODERN.get(), Blocks.STONE, Blocks.CYAN_CONCRETE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_PURPLE_MODERN.get(), Blocks.STONE, Blocks.PURPLE_CONCRETE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_BLUE_MODERN.get(), Blocks.STONE, Blocks.BLUE_CONCRETE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_BROWN_MODERN.get(), Blocks.STONE, Blocks.BROWN_CONCRETE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_GREEN_MODERN.get(), Blocks.STONE, Blocks.GREEN_CONCRETE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_RED_MODERN.get(), Blocks.STONE, Blocks.RED_CONCRETE);
+        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_BLACK_MODERN.get(), Blocks.STONE, Blocks.BLACK_CONCRETE);
         // Desk
         desk(consumer, ModBlocks.DESK_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
         desk(consumer, ModBlocks.DESK_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
@@ -229,6 +245,22 @@ public class RecipeGen extends RecipeProvider
         desk(consumer, ModBlocks.DESK_STRIPPED_DARK_OAK.get(), Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
         desk(consumer, ModBlocks.DESK_STRIPPED_CRIMSON.get(), Blocks.STRIPPED_CRIMSON_STEM, Blocks.CRIMSON_STEM);
         desk(consumer, ModBlocks.DESK_STRIPPED_WARPED.get(), Blocks.STRIPPED_WARPED_STEM, Blocks.WARPED_STEM);
+        desk(consumer, ModBlocks.DESK_WHITE_MODERN.get(), Blocks.STONE, Blocks.WHITE_CONCRETE);
+        desk(consumer, ModBlocks.DESK_ORANGE_MODERN.get(), Blocks.STONE, Blocks.ORANGE_CONCRETE);
+        desk(consumer, ModBlocks.DESK_MAGENTA_MODERN.get(), Blocks.STONE, Blocks.MAGENTA_CONCRETE);
+        desk(consumer, ModBlocks.DESK_LIGHT_BLUE_MODERN.get(), Blocks.STONE, Blocks.LIGHT_BLUE_CONCRETE);
+        desk(consumer, ModBlocks.DESK_YELLOW_MODERN.get(), Blocks.STONE, Blocks.YELLOW_CONCRETE);
+        desk(consumer, ModBlocks.DESK_LIME_MODERN.get(), Blocks.STONE, Blocks.LIME_CONCRETE);
+        desk(consumer, ModBlocks.DESK_PINK_MODERN.get(), Blocks.STONE, Blocks.PINK_CONCRETE);
+        desk(consumer, ModBlocks.DESK_GRAY_MODERN.get(), Blocks.STONE, Blocks.GRAY_CONCRETE);
+        desk(consumer, ModBlocks.DESK_LIGHT_GRAY_MODERN.get(), Blocks.STONE, Blocks.LIGHT_GRAY_CONCRETE);
+        desk(consumer, ModBlocks.DESK_CYAN_MODERN.get(), Blocks.STONE, Blocks.CYAN_CONCRETE);
+        desk(consumer, ModBlocks.DESK_PURPLE_MODERN.get(), Blocks.STONE, Blocks.PURPLE_CONCRETE);
+        desk(consumer, ModBlocks.DESK_BLUE_MODERN.get(), Blocks.STONE, Blocks.BLUE_CONCRETE);
+        desk(consumer, ModBlocks.DESK_BROWN_MODERN.get(), Blocks.STONE, Blocks.BROWN_CONCRETE);
+        desk(consumer, ModBlocks.DESK_GREEN_MODERN.get(), Blocks.STONE, Blocks.GREEN_CONCRETE);
+        desk(consumer, ModBlocks.DESK_RED_MODERN.get(), Blocks.STONE, Blocks.RED_CONCRETE);
+        desk(consumer, ModBlocks.DESK_BLACK_MODERN.get(), Blocks.STONE, Blocks.BLACK_CONCRETE);
         // Desk Cabinet
         deskCabinet(consumer, ModBlocks.DESK_CABINET_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
         deskCabinet(consumer, ModBlocks.DESK_CABINET_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);

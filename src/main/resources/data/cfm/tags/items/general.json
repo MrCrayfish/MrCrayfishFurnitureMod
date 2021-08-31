@@ -1,0 +1,389 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "cfm:oak_table",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_oak_table",
+      "required": false
+    },
+	{
+      "id": "cfm:oak_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:stripped_oak_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:oak_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:stripped_oak_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:spruce_table",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_spruce_table",
+      "required": false
+    },
+	{
+      "id": "cfm:spruce_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:stripped_spruce_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:spruce_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:stripped_spruce_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:birch_table",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_birch_table",
+      "required": false
+    },
+	{
+      "id": "cfm:birch_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:stripped_birch_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:birch_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:stripped_birch_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:jungle_table",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_jungle_table",
+      "required": false
+    },
+	{
+      "id": "cfm:jungle_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:stripped_jungle_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:jungle_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:stripped_jungle_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:acacia_table",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_acacia_table",
+      "required": false
+    },
+	{
+      "id": "cfm:acacia_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:stripped_acacia_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:acacia_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:stripped_acacia_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:dark_oak_table",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_dark_oak_table",
+      "required": false
+    },
+	{
+      "id": "cfm:dark_oak_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:stripped_dark_oak_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:dark_oak_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:stripped_dark_oak_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:crimson_table",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_crimson_table",
+      "required": false
+    },
+	{
+      "id": "cfm:crimson_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:stripped_crimson_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:crimson_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:stripped_crimson_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:warped_table",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_warped_table",
+      "required": false
+    },
+	{
+      "id": "cfm:warped_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:stripped_warped_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:warped_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:stripped_warped_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:white_modern_table",
+      "required": false
+    },
+	{
+      "id": "cfm:white_modern_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:white_modern_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:orange_modern_table",
+      "required": false
+    },
+	{
+      "id": "cfm:orange_modern_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:orange_modern_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:magenta_modern_table",
+      "required": false
+    },
+	{
+      "id": "cfm:magenta_modern_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:magenta_modern_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:light_blue_modern_table",
+      "required": false
+    },
+	{
+      "id": "cfm:light_blue_modern_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:light_blue_modern_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:yellow_modern_table",
+      "required": false
+    },
+	{
+      "id": "cfm:yellow_modern_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:yellow_modern_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:lime_modern_table",
+      "required": false
+    },
+	{
+      "id": "cfm:lime_modern_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:lime_modern_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:pink_modern_table",
+      "required": false
+    },
+	{
+      "id": "cfm:pink_modern_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:pink_modern_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:gray_modern_table",
+      "required": false
+    },
+	{
+      "id": "cfm:gray_modern_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:gray_modern_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:light_gray_modern_table",
+      "required": false
+    },
+	{
+      "id": "cfm:light_gray_modern_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:light_gray_modern_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:cyan_modern_table",
+      "required": false
+    },
+	{
+      "id": "cfm:cyan_modern_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:cyan_modern_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:purple_modern_table",
+      "required": false
+    },
+	{
+      "id": "cfm:purple_modern_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:purple_modern_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:blue_modern_table",
+      "required": false
+    },
+	{
+      "id": "cfm:blue_modern_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:blue_modern_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:brown_modern_table",
+      "required": false
+    },
+	{
+      "id": "cfm:brown_modern_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:brown_modern_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:green_modern_table",
+      "required": false
+    },
+	{
+      "id": "cfm:green_modern_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:green_modern_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:red_modern_table",
+      "required": false
+    },
+	{
+      "id": "cfm:red_modern_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:red_modern_coffee_table",
+      "required": false
+    },
+	{
+      "id": "cfm:black_modern_table",
+      "required": false
+    },
+	{
+      "id": "cfm:black_modern_chair",
+      "required": false
+    },
+	{
+      "id": "cfm:black_modern_coffee_table",
+      "required": false
+    }
+  ]
+}
