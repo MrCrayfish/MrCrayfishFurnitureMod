@@ -266,6 +266,22 @@ public class ModBlocks
     public static final RegistryObject<Block> DESK_CABINET_STRIPPED_DARK_OAK = register("stripped_dark_oak_desk_cabinet", new DeskCabinetBlock(Block.Properties.from(Blocks.DARK_OAK_PLANKS), DeskBlock.MaterialType.STRIPPED_DARK_OAK));
     public static final RegistryObject<Block> DESK_CABINET_STRIPPED_CRIMSON = register("stripped_crimson_desk_cabinet", new DeskCabinetBlock(Block.Properties.from(Blocks.CRIMSON_PLANKS), DeskBlock.MaterialType.DARK_OAK));
     public static final RegistryObject<Block> DESK_CABINET_STRIPPED_WARPED = register("stripped_warped_desk_cabinet", new DeskCabinetBlock(Block.Properties.from(Blocks.WARPED_PLANKS), DeskBlock.MaterialType.DARK_OAK));
+    public static final RegistryObject<Block> DESK_CABINET_WHITE_MODERN = register("white_modern_desk_cabinet", new DeskCabinetBlock(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE), DeskBlock.MaterialType.WHITE_CONCRETE));
+    public static final RegistryObject<Block> DESK_CABINET_ORANGE_MODERN = register("orange_modern_desk_cabinet", new DeskCabinetBlock(AbstractBlock.Properties.from(Blocks.ORANGE_CONCRETE), DeskBlock.MaterialType.ORANGE_CONCRETE));
+    public static final RegistryObject<Block> DESK_CABINET_MAGENTA_MODERN = register("magenta_modern_desk_cabinet", new DeskCabinetBlock(AbstractBlock.Properties.from(Blocks.MAGENTA_CONCRETE), DeskBlock.MaterialType.MAGENTA_CONCRETE));
+    public static final RegistryObject<Block> DESK_CABINET_LIGHT_BLUE_MODERN = register("light_blue_modern_desk_cabinet", new DeskCabinetBlock(AbstractBlock.Properties.from(Blocks.LIGHT_BLUE_CONCRETE), DeskBlock.MaterialType.LIGHT_BLUE_CONCRETE));
+    public static final RegistryObject<Block> DESK_CABINET_YELLOW_MODERN = register("yellow_modern_desk_cabinet", new DeskCabinetBlock(AbstractBlock.Properties.from(Blocks.YELLOW_CONCRETE), DeskBlock.MaterialType.YELLOW_CONCRETE));
+    public static final RegistryObject<Block> DESK_CABINET_LIME_MODERN = register("lime_modern_desk_cabinet", new DeskCabinetBlock(AbstractBlock.Properties.from(Blocks.LIME_CONCRETE), DeskBlock.MaterialType.LIME_CONCRETE));
+    public static final RegistryObject<Block> DESK_CABINET_PINK_MODERN = register("pink_modern_desk_cabinet", new DeskCabinetBlock(AbstractBlock.Properties.from(Blocks.PINK_CONCRETE), DeskBlock.MaterialType.PINK_CONCRETE));
+    public static final RegistryObject<Block> DESK_CABINET_GRAY_MODERN = register("gray_modern_desk_cabinet", new DeskCabinetBlock(AbstractBlock.Properties.from(Blocks.GRAY_CONCRETE), DeskBlock.MaterialType.GRAY_CONCRETE));
+    public static final RegistryObject<Block> DESK_CABINET_LIGHT_GRAY_MODERN = register("light_gray_modern_desk_cabinet", new DeskCabinetBlock(AbstractBlock.Properties.from(Blocks.LIGHT_GRAY_CONCRETE), DeskBlock.MaterialType.LIGHT_GRAY_CONCRETE));
+    public static final RegistryObject<Block> DESK_CABINET_CYAN_MODERN = register("cyan_modern_desk_cabinet", new DeskCabinetBlock(AbstractBlock.Properties.from(Blocks.CYAN_CONCRETE), DeskBlock.MaterialType.CYAN_CONCRETE));
+    public static final RegistryObject<Block> DESK_CABINET_PURPLE_MODERN = register("purple_modern_desk_cabinet", new DeskCabinetBlock(AbstractBlock.Properties.from(Blocks.PURPLE_CONCRETE), DeskBlock.MaterialType.PURPLE_CONCRETE));
+    public static final RegistryObject<Block> DESK_CABINET_BLUE_MODERN = register("blue_modern_desk_cabinet", new DeskCabinetBlock(AbstractBlock.Properties.from(Blocks.BLUE_CONCRETE), DeskBlock.MaterialType.BLUE_CONCRETE));
+    public static final RegistryObject<Block> DESK_CABINET_BROWN_MODERN = register("brown_modern_desk_cabinet", new DeskCabinetBlock(AbstractBlock.Properties.from(Blocks.BROWN_CONCRETE), DeskBlock.MaterialType.BROWN_CONCRETE));
+    public static final RegistryObject<Block> DESK_CABINET_GREEN_MODERN = register("green_modern_desk_cabinet", new DeskCabinetBlock(AbstractBlock.Properties.from(Blocks.GREEN_CONCRETE), DeskBlock.MaterialType.GREEN_CONCRETE));
+    public static final RegistryObject<Block> DESK_CABINET_RED_MODERN = register("red_modern_desk_cabinet", new DeskCabinetBlock(AbstractBlock.Properties.from(Blocks.RED_CONCRETE), DeskBlock.MaterialType.RED_CONCRETE));
+    public static final RegistryObject<Block> DESK_CABINET_BLACK_MODERN = register("black_modern_desk_cabinet", new DeskCabinetBlock(AbstractBlock.Properties.from(Blocks.BLACK_CONCRETE), DeskBlock.MaterialType.BLACK_CONCRETE));
     public static final RegistryObject<Block> SOFA_WHITE = register("white_sofa", new SofaBlock(Block.Properties.from(Blocks.WHITE_WOOL).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> SOFA_ORANGE = register("orange_sofa", new SofaBlock(Block.Properties.from(Blocks.ORANGE_WOOL).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> SOFA_MAGENTA = register("magenta_sofa", new SofaBlock(Block.Properties.from(Blocks.MAGENTA_WOOL).sound(SoundType.WOOD)));
@@ -283,6 +299,24 @@ public class ModBlocks
     public static final RegistryObject<Block> SOFA_RED = register("red_sofa", new SofaBlock(Block.Properties.from(Blocks.RED_WOOL).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> SOFA_BLACK = register("black_sofa", new SofaBlock(Block.Properties.from(Blocks.BLACK_WOOL).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> SOFA_RAINBOW = register("rainbow_sofa", new SofaBlock(Block.Properties.from(Blocks.WHITE_WOOL).sound(SoundType.WOOD)), new Item.Properties());
+
+    public static final RegistryObject<Block> SOFA_WHITE_MODERN = register("white_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.WHITE_CONCRETE).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> SOFA_ORANGE_MODERN = register("orange_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.ORANGE_CONCRETE).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> SOFA_MAGENTA_MODERN = register("magenta_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.MAGENTA_CONCRETE).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> SOFA_LIGHT_BLUE_MODERN = register("light_blue_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.LIGHT_BLUE_CONCRETE).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> SOFA_YELLOW_MODERN = register("yellow_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.YELLOW_CONCRETE).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> SOFA_LIME_MODERN = register("lime_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.LIME_CONCRETE).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> SOFA_PINK_MODERN = register("pink_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.PINK_CONCRETE).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> SOFA_GRAY_MODERN = register("gray_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.GRAY_CONCRETE).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> SOFA_LIGHT_GRAY_MODERN = register("light_gray_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.LIGHT_GRAY_CONCRETE).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> SOFA_CYAN_MODERN = register("cyan_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.CYAN_CONCRETE).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> SOFA_PURPLE_MODERN = register("purple_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.PURPLE_CONCRETE).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> SOFA_BLUE_MODERN = register("blue_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.BLUE_CONCRETE).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> SOFA_BROWN_MODERN = register("brown_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.BROWN_CONCRETE).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> SOFA_GREEN_MODERN = register("green_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.GREEN_CONCRETE).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> SOFA_RED_MODERN = register("red_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.RED_CONCRETE).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> SOFA_BLACK_MODERN = register("black_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.BLACK_CONCRETE).sound(SoundType.STONE)));
+
     public static final RegistryObject<Block> BLINDS_OAK = register("oak_blinds", new BlindsBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> BLINDS_SPRUCE = register("spruce_blinds", new BlindsBlock(Block.Properties.from(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> BLINDS_BIRCH = register("birch_blinds", new BlindsBlock(Block.Properties.from(Blocks.BIRCH_PLANKS)));

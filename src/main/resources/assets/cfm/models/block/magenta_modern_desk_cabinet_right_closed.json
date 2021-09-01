@@ -1,0 +1,9 @@
+{
+    "parent": "cfm:block/desk_cabinet_right_closed",
+    "textures": {
+        "top": "minecraft:block/magenta_concrete",
+        "base": "minecraft:block/stone",
+        "draw_front": "minecraft:block/magenta_concrete",
+        "legs": "minecraft:block/stone"
+    }
+}

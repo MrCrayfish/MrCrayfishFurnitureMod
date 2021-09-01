@@ -282,7 +282,23 @@ public class RecipeGen extends RecipeProvider
         deskCabinet(consumer, ModBlocks.DESK_CABINET_STRIPPED_DARK_OAK.get(), Blocks.STRIPPED_DARK_OAK_LOG, Blocks.DARK_OAK_LOG);
         deskCabinet(consumer, ModBlocks.DESK_CABINET_STRIPPED_CRIMSON.get(), Blocks.STRIPPED_CRIMSON_STEM, Blocks.CRIMSON_STEM);
         deskCabinet(consumer, ModBlocks.DESK_CABINET_STRIPPED_WARPED.get(), Blocks.STRIPPED_WARPED_STEM, Blocks.WARPED_STEM);
-        // Desk Cabinet
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_WHITE_MODERN.get(), Blocks.STONE, Blocks.WHITE_CONCRETE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_ORANGE_MODERN.get(), Blocks.STONE, Blocks.ORANGE_CONCRETE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_MAGENTA_MODERN.get(), Blocks.STONE, Blocks.MAGENTA_CONCRETE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_LIGHT_BLUE_MODERN.get(), Blocks.STONE, Blocks.LIGHT_BLUE_CONCRETE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_YELLOW_MODERN.get(), Blocks.STONE, Blocks.YELLOW_CONCRETE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_LIME_MODERN.get(), Blocks.STONE, Blocks.LIME_CONCRETE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_PINK_MODERN.get(), Blocks.STONE, Blocks.PINK_CONCRETE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_GRAY_MODERN.get(), Blocks.STONE, Blocks.GRAY_CONCRETE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_LIGHT_GRAY_MODERN.get(), Blocks.STONE, Blocks.LIGHT_GRAY_CONCRETE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_CYAN_MODERN.get(), Blocks.STONE, Blocks.CYAN_CONCRETE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_PURPLE_MODERN.get(), Blocks.STONE, Blocks.PURPLE_CONCRETE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_BLUE_MODERN.get(), Blocks.STONE, Blocks.BLUE_CONCRETE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_BROWN_MODERN.get(), Blocks.STONE, Blocks.BROWN_CONCRETE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_GREEN_MODERN.get(), Blocks.STONE, Blocks.GREEN_CONCRETE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_RED_MODERN.get(), Blocks.STONE, Blocks.RED_CONCRETE);
+        deskCabinet(consumer, ModBlocks.DESK_CABINET_BLACK_MODERN.get(), Blocks.STONE, Blocks.BLACK_CONCRETE);
+        // Sofa
         sofa(consumer, ModBlocks.SOFA_WHITE.get(), Blocks.WHITE_WOOL);
         sofa(consumer, ModBlocks.SOFA_ORANGE.get(), Blocks.ORANGE_WOOL);
         sofa(consumer, ModBlocks.SOFA_MAGENTA.get(), Blocks.MAGENTA_WOOL);
@@ -299,6 +315,23 @@ public class RecipeGen extends RecipeProvider
         sofa(consumer, ModBlocks.SOFA_GREEN.get(), Blocks.GREEN_WOOL);
         sofa(consumer, ModBlocks.SOFA_RED.get(), Blocks.RED_WOOL);
         sofa(consumer, ModBlocks.SOFA_BLACK.get(), Blocks.BLACK_WOOL);
+
+        sofa(consumer, ModBlocks.SOFA_WHITE_MODERN.get(), Blocks.WHITE_CONCRETE);
+        sofa(consumer, ModBlocks.SOFA_ORANGE_MODERN.get(), Blocks.ORANGE_CONCRETE);
+        sofa(consumer, ModBlocks.SOFA_MAGENTA_MODERN.get(), Blocks.MAGENTA_CONCRETE);
+        sofa(consumer, ModBlocks.SOFA_LIGHT_BLUE_MODERN.get(), Blocks.LIGHT_BLUE_CONCRETE);
+        sofa(consumer, ModBlocks.SOFA_YELLOW_MODERN.get(), Blocks.YELLOW_CONCRETE);
+        sofa(consumer, ModBlocks.SOFA_LIME_MODERN.get(), Blocks.LIME_CONCRETE);
+        sofa(consumer, ModBlocks.SOFA_PINK_MODERN.get(), Blocks.PINK_CONCRETE);
+        sofa(consumer, ModBlocks.SOFA_GRAY_MODERN.get(), Blocks.GRAY_CONCRETE);
+        sofa(consumer, ModBlocks.SOFA_LIGHT_GRAY_MODERN.get(), Blocks.LIGHT_GRAY_CONCRETE);
+        sofa(consumer, ModBlocks.SOFA_CYAN_MODERN.get(), Blocks.CYAN_CONCRETE);
+        sofa(consumer, ModBlocks.SOFA_PURPLE_MODERN.get(), Blocks.PURPLE_CONCRETE);
+        sofa(consumer, ModBlocks.SOFA_BLUE_MODERN.get(), Blocks.BLUE_CONCRETE);
+        sofa(consumer, ModBlocks.SOFA_BROWN_MODERN.get(), Blocks.BROWN_CONCRETE);
+        sofa(consumer, ModBlocks.SOFA_GREEN_MODERN.get(), Blocks.GREEN_CONCRETE);
+        sofa(consumer, ModBlocks.SOFA_RED_MODERN.get(), Blocks.RED_CONCRETE);
+        sofa(consumer, ModBlocks.SOFA_BLACK_MODERN.get(), Blocks.BLACK_CONCRETE);
         // Blinds
         blinds(consumer, ModBlocks.BLINDS_OAK.get(), Blocks.OAK_LOG);
         blinds(consumer, ModBlocks.BLINDS_SPRUCE.get(), Blocks.SPRUCE_LOG);

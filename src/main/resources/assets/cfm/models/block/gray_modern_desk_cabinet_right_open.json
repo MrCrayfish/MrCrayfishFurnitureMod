@@ -1,0 +1,10 @@
+{
+    "parent": "cfm:block/desk_cabinet_right_open",
+    "textures": {
+        "top": "minecraft:block/gray_concrete",
+        "base": "minecraft:block/stone",
+        "draw": "minecraft:block/stone",
+        "draw_front": "minecraft:block/gray_concrete",
+        "legs": "minecraft:block/stone"
+    }
+}

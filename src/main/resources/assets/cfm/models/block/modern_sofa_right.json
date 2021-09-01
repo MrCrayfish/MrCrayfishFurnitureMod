@@ -1,0 +1,160 @@
+{
+    "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "textures": {
+        "particle": "#couch",
+        "0": "minecraft:block/light_gray_concrete",
+        "2": "minecraft:block/white_concrete"
+    },
+    "display": {
+        "gui": {
+            "rotation": [ 30, 225, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 0.625, 0.625, 0.625 ]
+        },
+        "ground": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 3, 0 ],
+            "scale": [ 0.25, 0.25, 0.25 ]
+        },
+        "fixed": {
+            "rotation": [ 0, 0, 0 ],
+            "translation": [ 0, 0, 0 ],
+            "scale": [ 0.5, 0.5, 0.5 ]
+        },
+        "thirdperson_righthand": {
+            "rotation": [ 75, 45, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        },
+        "thirdperson_lefthand": {
+            "rotation": [ 75, 255, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        },
+        "firstperson_righthand": {
+            "rotation": [ 0, 45, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.4, 0.4, 0.4 ]
+        },
+        "firstperson_lefthand": {
+            "rotation": [ 0, 225, 0 ],
+            "translation": [ 0, 2.5, 0 ],
+            "scale": [ 0.4, 0.4, 0.4 ]
+        }
+    },
+    "elements": [
+        {
+            "name": "right_arm_top",
+            "from": [ 14.00, 11.00, 1.00 ], 
+            "to": [ 16.00, 13.00, 15.00 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.00, 0.00, 2.00, 2.00 ] },
+                "east": { "texture": "#0", "uv": [ 0.00, 0.00, 14.00, 2.00 ] },
+                "south": { "texture": "#0", "uv": [ 0.00, 0.00, 2.00, 2.00 ] },
+                "west": { "texture": "#0", "uv": [ 0.00, 0.00, 14.00, 2.00 ] },
+                "up": { "texture": "#0", "uv": [ 0.00, 0.00, 2.00, 14.00 ] },
+                "down": { "texture": "#0", "uv": [ 0.00, 0.00, 2.00, 14.00 ] }
+            }
+        },
+        {
+            "name": "right_arm_bottom",
+            "from": [ 14.00, 0.00, 1.00 ], 
+            "to": [ 16.00, 2.00, 15.00 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.00, 0.00, 2.00, 2.00 ] },
+                "east": { "texture": "#0", "uv": [ 0.00, 0.00, 14.00, 2.00 ] },
+                "south": { "texture": "#0", "uv": [ 0.00, 0.00, 2.00, 2.00 ] },
+                "west": { "texture": "#0", "uv": [ 0.00, 0.00, 14.00, 2.00 ] },
+                "up": { "texture": "#0", "uv": [ 0.00, 0.00, 2.00, 14.00 ] },
+                "down": { "texture": "#0", "uv": [ 0.00, 0.00, 2.00, 14.00 ] }
+            }
+        },
+        {
+            "name": "right_arm_front",
+            "from": [ 14.00, 2.00, 13.00 ], 
+            "to": [ 16.00, 11.00, 15.00 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.00, 1.00, 2.00, 10.00 ] },
+                "east": { "texture": "#0", "uv": [ 0.00, 1.00, 2.00, 10.00 ] },
+                "south": { "texture": "#0", "uv": [ 0.00, 1.00, 2.00, 10.00 ] },
+                "west": { "texture": "#0", "uv": [ 0.00, 1.00, 2.00, 10.00 ] }
+            }
+        },
+        {
+            "name": "right_arm_back",
+            "from": [ 14.00, 2.00, 1.00 ], 
+            "to": [ 16.00, 11.00, 3.00 ], 
+            "faces": {
+                "north": { "texture": "#0", "uv": [ 0.00, 1.00, 2.00, 10.00 ] },
+                "east": { "texture": "#0", "uv": [ 0.00, 1.00, 2.00, 10.00 ] },
+                "south": { "texture": "#0", "uv": [ 0.00, 1.00, 2.00, 10.00 ] },
+                "west": { "texture": "#0", "uv": [ 0.00, 1.00, 2.00, 10.00 ] }
+            }
+        },
+        {
+            "name": "chair_base",
+            "from": [ 2.00, 5.00, 2.00 ], 
+            "to": [ 14.00, 9.00, 15.00 ], 
+            "faces": {
+                "north": { "texture": "#couch", "uv": [ 0.00, 0.00, 12.00, 4.00 ] },
+                "east": { "texture": "#couch", "uv": [ 0.00, 0.00, 13.00, 4.00 ] },
+                "south": { "texture": "#couch", "uv": [ 0.00, 0.00, 12.00, 4.00 ] },
+                "up": { "texture": "#couch", "uv": [ 0.00, 0.00, 12.00, 13.00 ] },
+                "down": { "texture": "#couch", "uv": [ 0.00, 0.00, 12.00, 13.00 ] }
+            }
+        },
+        {
+            "name": "chair_backrest",
+            "from": [ 2.00, 9.00, 2.00 ], 
+            "to": [ 14.00, 19.00, 5.00 ], 
+            "faces": {
+                "north": { "texture": "#couch", "uv": [ 0.00, 0.00, 12.00, 10.00 ] },
+                "east": { "texture": "#couch", "uv": [ 0.00, 0.00, 3.00, 10.00 ] },
+                "south": { "texture": "#couch", "uv": [ 0.00, 0.00, 12.00, 10.00 ] },
+                "up": { "texture": "#couch", "uv": [ 0.00, 0.00, 12.00, 3.00 ] }
+            }
+        },
+        {
+            "name": "chair_base_extension",
+            "from": [ 0.00, 5.00, 2.00 ], 
+            "to": [ 2.00, 9.00, 15.00 ], 
+            "faces": {
+                "north": { "texture": "#couch", "uv": [ 4.00, 0.00, 6.00, 4.00 ] },
+                "south": { "texture": "#couch", "uv": [ 6.00, 7.00, 8.00, 11.00 ] },
+                "up": { "texture": "#couch", "uv": [ 10.00, 0.00, 12.00, 13.00 ] },
+                "down": { "texture": "#couch", "uv": [ 8.00, 0.00, 10.00, 13.00 ] }
+            }
+        },
+        {
+            "name": "chair_backrest_extension",
+            "from": [ 0.00, 9.00, 2.00 ], 
+            "to": [ 2.00, 19.00, 5.00 ], 
+            "faces": {
+                "north": { "texture": "#couch", "uv": [ 12.00, 0.00, 14.00, 10.00 ] },
+                "south": { "texture": "#couch", "uv": [ 8.00, 0.00, 10.00, 10.00 ] },
+                "up": { "texture": "#couch", "uv": [ 0.00, 0.00, 2.00, 3.00 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 0.00, 3.00, 1.00 ], 
+            "to": [ 14.00, 5.00, 15.00 ], 
+            "faces": {
+                "north": { "texture": "#2", "uv": [ 0.00, 3.00, 14.00, 5.00 ] },
+                "east": { "texture": "#2", "uv": [ 0.00, 0.00, 14.00, 2.00 ] },
+                "south": { "texture": "#2", "uv": [ 0.00, 0.00, 14.00, 2.00 ] },
+                "down": { "texture": "#2", "uv": [ 0.00, 0.00, 14.00, 14.00 ] }
+            }
+        },
+        {
+            "name": "Cube",
+            "from": [ 0.00, 5.00, 1.00 ], 
+            "to": [ 14.00, 19.00, 2.00 ], 
+            "faces": {
+                "north": { "texture": "#2", "uv": [ 0.00, 1.00, 14.00, 15.00 ] },
+                "east": { "texture": "#2", "uv": [ 0.00, 0.00, 1.00, 14.00 ] },
+                "up": { "texture": "#2", "uv": [ 0.00, 0.00, 14.00, 1.00 ] }
+            }
+        }
+    ]
+}
