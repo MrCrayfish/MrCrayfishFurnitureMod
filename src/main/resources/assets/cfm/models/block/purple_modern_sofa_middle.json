@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/modern_sofa_middle",
+    "textures": {
+        "couch": "minecraft:block/purple_wool"
+    }
+}

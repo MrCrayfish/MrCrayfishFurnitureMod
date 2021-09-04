@@ -41,14 +41,15 @@ public class ModernSofaBlock extends FurnitureHorizontalWaterloggedBlock
 
     private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
     {
-        final VoxelShape[] BACKBASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0.0, 5.0, 1.0, 16.0, 19.0, 2.0), Direction.SOUTH));
-        final VoxelShape[] LEFT_BACKBASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(2.0, 5.0, 1.0, 16.0, 16.0, 3.0), Direction.SOUTH));
-        final VoxelShape[] RIGHT_BACKBASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0.0, 5.0, 1.0, 14.0, 14.0, 1.0), Direction.SOUTH))
-        final VoxelShape[] UNDERBASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0.0, 3.0, 1.0, 16.0, 5.0, 15.0), Direction.SOUTH));
-        final VoxelShape[] LEFT_UNDERBASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape()))
+        final VoxelShape[] BACKBASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(2.0, 5.0, 1.0, 14.0, 19.0, 2.0), Direction.SOUTH));
+        final VoxelShape[] LEFT_BACKBASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(14.0, 5.0, 1.0, 16.0, 19.0, 2.0), Direction.SOUTH));
+        final VoxelShape[] RIGHT_BACKBASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0.0, 5.0, 1.0, 2.0, 19.0, 2.0), Direction.SOUTH));
         final VoxelShape[] BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(2.0, 5.0, 2.0, 14.0, 9.0, 15.0), Direction.SOUTH));
         final VoxelShape[] LEFT_BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(14.0, 5.0, 2.0, 16.0, 9.0, 15.0), Direction.SOUTH));
         final VoxelShape[] RIGHT_BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0.0, 5.0, 2.0, 2.0, 9.0, 15.0), Direction.SOUTH));
+        final VoxelShape[] UNDERBASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(2.0, 3.0, 1.0, 14.0, 5.0, 15.0), Direction.SOUTH));
+        final VoxelShape[] LEFT_UNDERBASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(14.0, 3.0, 1.0, 16.0, 5.0, 15.0), Direction.SOUTH));
+        final VoxelShape[] RIGHT_UNDERBASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0.0, 3.0, 1.0, 2.0, 5.0, 15.0), Direction.SOUTH));
         final VoxelShape[] BACKREST = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(2.0, 9.0, 2.0, 14.0, 19.0, 5.0), Direction.SOUTH));
         final VoxelShape[] LEFT_BACKREST = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(14.0, 9.0, 2.0, 16.0, 19.0, 5.0), Direction.SOUTH));
         final VoxelShape[] RIGHT_BACKREST = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.makeCuboidShape(0.0, 9.0, 2.0, 2.0, 19.0, 5.0), Direction.SOUTH));
@@ -90,6 +91,8 @@ public class ModernSofaBlock extends FurnitureHorizontalWaterloggedBlock
                     shapes.add(LEFT_ARM_BOTTOM[direction.getHorizontalIndex()]);
                     shapes.add(LEFT_BACKREST[direction.getHorizontalIndex()]);
                     shapes.add(LEFT_BASE[direction.getHorizontalIndex()]);
+                    shapes.add(LEFT_BACKBASE[direction.getHorizontalIndex()]);
+                    shapes.add(LEFT_UNDERBASE[direction.getHorizontalIndex()]);
                     break;
                 case RIGHT:
                     shapes.add(RIGHT_ARM_TOP[direction.getHorizontalIndex()]);
@@ -98,12 +101,18 @@ public class ModernSofaBlock extends FurnitureHorizontalWaterloggedBlock
                     shapes.add(RIGHT_ARM_BOTTOM[direction.getHorizontalIndex()]);
                     shapes.add(RIGHT_BACKREST[direction.getHorizontalIndex()]);
                     shapes.add(RIGHT_BASE[direction.getHorizontalIndex()]);
+                    shapes.add(RIGHT_BACKBASE[direction.getHorizontalIndex()]);
+                    shapes.add(RIGHT_UNDERBASE[direction.getHorizontalIndex()]);
                     break;
                 case MIDDLE:
-                    shapes.add(LEFT_BASE[direction.getHorizontalIndex()]);
-                    shapes.add(RIGHT_BASE[direction.getHorizontalIndex()]);
                     shapes.add(LEFT_BACKREST[direction.getHorizontalIndex()]);
+                    shapes.add(LEFT_BASE[direction.getHorizontalIndex()]);
+                    shapes.add(LEFT_BACKBASE[direction.getHorizontalIndex()]);
+                    shapes.add(LEFT_UNDERBASE[direction.getHorizontalIndex()]);
                     shapes.add(RIGHT_BACKREST[direction.getHorizontalIndex()]);
+                    shapes.add(RIGHT_BASE[direction.getHorizontalIndex()]);
+                    shapes.add(RIGHT_BACKBASE[direction.getHorizontalIndex()]);
+                    shapes.add(RIGHT_UNDERBASE[direction.getHorizontalIndex()]);
                     break;
 
             }

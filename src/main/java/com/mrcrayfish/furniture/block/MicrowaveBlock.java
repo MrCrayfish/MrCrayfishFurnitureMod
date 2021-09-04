@@ -2,12 +2,16 @@ package com.mrcrayfish.furniture.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.mrcrayfish.furniture.tileentity.KitchenDrawerTileEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.inventory.container.INamedContainerProvider;
+import net.minecraft.item.ItemStack;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
@@ -18,6 +22,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
@@ -93,20 +98,15 @@ public class MicrowaveBlock extends FurnitureHorizontalWaterloggedBlock
         return SHAPES.get(state);
     }
 
-    /*
-    UNDER CONSTRUCTION
     @Override
     public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity playerEntity, Hand hand, BlockRayTraceResult result)
     {
-        if(state.get(DIRECTION).getOpposite() == result.getFace())
+        if(!world.isRemote())
         {
-            if(!world.isRemote())
+            TileEntity tileEntity = world.getTileEntity(pos);
+            if (tileEntity instanceof MicrowaveTileEntity)
             {
-                TileEntity tileEntity = world.getTileEntity(pos);
-                if(tileEntity instanceof INamedContainerProvider)
-                {
-                    playerEntity.openContainer((INamedContainerProvider) tileEntity);
-                }
+                playerEntity.openContainer((INamedContainerProvider) tileEntity);
             }
         }
         return ActionResultType.SUCCESS;
@@ -116,7 +116,7 @@ public class MicrowaveBlock extends FurnitureHorizontalWaterloggedBlock
     public void tick(BlockState state, ServerWorld world, BlockPos pos, Random random)
     {
         TileEntity tileEntity = world.getTileEntity(pos);
-        if(tileEntity instanceof MicrowaveTileEntity)
+        if(tileEntity instanceof KitchenDrawerTileEntity)
         {
             ((MicrowaveTileEntity) tileEntity).onScheduledTick();
         }
@@ -136,23 +136,14 @@ public class MicrowaveBlock extends FurnitureHorizontalWaterloggedBlock
     }
 
     @Override
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
+    public ISidedInventory createInventory(BlockState state, IWorld world, BlockPos pos)
     {
-        super.fillStateContainer(builder);
-    }
-
-    @Override
-    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player)
-    {
-        BlockState upState = worldIn.getBlockState(pos.down());
-        if(upState.getBlock() instanceof MicrowaveBlock)
+        TileEntity tileEntity = world.getTileEntity(pos);
+        if(tileEntity instanceof ISidedInventory)
         {
-            worldIn.setBlockState(pos.down(), Blocks.AIR.getDefaultState(), 35);
-            worldIn.playEvent(player, 2001, pos.down(), Block.getStateId(upState));
+            return (ISidedInventory) tileEntity;
         }
-        super.onBlockHarvested(worldIn, pos, state, player);
+        return null;
     }
-
-    */
 
 }
