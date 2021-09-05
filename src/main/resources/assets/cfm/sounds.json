@@ -47,12 +47,20 @@
         "subtitle": "subtitle.cfm.close_fridge",
         "sounds": [ "cfm:block/fridge/close" ]
     },
+	"block.microwave.finish": {
+        "subtitle": "subtitle.cfm.finish_microwave",
+        "sounds": [ "cfm:block/microwave/finish" ]
+    },
+    "block.microwave.running": {
+        "subtitle": "subtitle.cfm.running_microwave",
+        "sounds": [ "cfm:block/microwave/running" ]
+    },
 	"block.toilet.fart": {
-        "subtitle": "subtitle.toilet.fart",
+        "subtitle": "subtitle.cfm.toilet_fart",
         "sounds": [ "cfm:block/toilet/fart" ]
     },
 	"block.toilet.flush": {
-        "subtitle": "subtitle.toilet.flush",
+        "subtitle": "subtitle.cfm.toilet_flush",
         "sounds": [ "cfm:block/toilet/flush" ]
     }
 }
