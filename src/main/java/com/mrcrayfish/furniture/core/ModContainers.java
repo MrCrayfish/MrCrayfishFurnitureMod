@@ -5,7 +5,6 @@ import com.mrcrayfish.furniture.inventory.container.*;
 import com.mrcrayfish.furniture.tileentity.CrateTileEntity;
 import com.mrcrayfish.furniture.tileentity.FreezerTileEntity;
 import com.mrcrayfish.furniture.tileentity.MailBoxTileEntity;
-import com.mrcrayfish.furniture.tileentity.MicrowaveTileEntity;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.fml.RegistryObject;
@@ -36,11 +35,6 @@ public class ModContainers
     public static final RegistryObject<ContainerType<FreezerContainer>> FREEZER = register("freezer", (IContainerFactory<FreezerContainer>) (windowId, playerInventory, data) -> {
         FreezerTileEntity freezerTileEntity = (FreezerTileEntity) playerInventory.player.world.getTileEntity(data.readBlockPos());
         return new FreezerContainer(windowId, playerInventory, freezerTileEntity);
-    });
-
-    public static final RegistryObject<ContainerType<FreezerContainer>> MICROWAVE = register("microwave", (IContainerFactory<MicrowaveContainer>) (windowId, playerInventory, data) -> {
-        MicrowaveTileEntity microwaveTileEntity = (MicrowaveTileEntity) playerInventory.player.world.getTileEntity(data.readBlockPos());
-        return new MicrowaveContainer(windowId, playerInventory, microwaveTileEntity);
     });
 
     private static <T extends Container> RegistryObject<ContainerType<T>> register(String key, ContainerType.IFactory<T> factory)

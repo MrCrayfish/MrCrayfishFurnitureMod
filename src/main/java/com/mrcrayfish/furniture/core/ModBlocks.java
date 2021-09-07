@@ -299,7 +299,6 @@ public class ModBlocks
     public static final RegistryObject<Block> SOFA_RED = register("red_sofa", new SofaBlock(Block.Properties.from(Blocks.RED_WOOL).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> SOFA_BLACK = register("black_sofa", new SofaBlock(Block.Properties.from(Blocks.BLACK_WOOL).sound(SoundType.WOOD)));
     public static final RegistryObject<Block> SOFA_RAINBOW = register("rainbow_sofa", new SofaBlock(Block.Properties.from(Blocks.WHITE_WOOL).sound(SoundType.WOOD)), new Item.Properties());
-
     public static final RegistryObject<Block> SOFA_WHITE_MODERN = register("white_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.WHITE_CONCRETE).sound(SoundType.STONE)));
     public static final RegistryObject<Block> SOFA_ORANGE_MODERN = register("orange_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.ORANGE_CONCRETE).sound(SoundType.STONE)));
     public static final RegistryObject<Block> SOFA_MAGENTA_MODERN = register("magenta_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.MAGENTA_CONCRETE).sound(SoundType.STONE)));
@@ -316,7 +315,6 @@ public class ModBlocks
     public static final RegistryObject<Block> SOFA_GREEN_MODERN = register("green_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.GREEN_CONCRETE).sound(SoundType.STONE)));
     public static final RegistryObject<Block> SOFA_RED_MODERN = register("red_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.RED_CONCRETE).sound(SoundType.STONE)));
     public static final RegistryObject<Block> SOFA_BLACK_MODERN = register("black_modern_sofa", new ModernSofaBlock(Block.Properties.from(Blocks.BLACK_CONCRETE).sound(SoundType.STONE)));
-
     public static final RegistryObject<Block> BLINDS_OAK = register("oak_blinds", new BlindsBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> BLINDS_SPRUCE = register("spruce_blinds", new BlindsBlock(Block.Properties.from(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> BLINDS_BIRCH = register("birch_blinds", new BlindsBlock(Block.Properties.from(Blocks.BIRCH_PLANKS)));
@@ -520,6 +518,8 @@ public class ModBlocks
     public static final RegistryObject<Block> KITCHEN_COUNTER_GREEN = register("green_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.GREEN_TERRACOTTA)));
     public static final RegistryObject<Block> KITCHEN_COUNTER_RED = register("red_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.RED_TERRACOTTA)));
     public static final RegistryObject<Block> KITCHEN_COUNTER_BLACK = register("black_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.BLACK_TERRACOTTA)));
+    
+
     public static final RegistryObject<Block> KITCHEN_DRAWER_OAK = register("oak_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_DRAWER_SPRUCE = register("spruce_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_DRAWER_BIRCH = register("birch_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.BIRCH_PLANKS)));
