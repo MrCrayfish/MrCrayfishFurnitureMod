@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/modern_kitchen_counter_default",
+    "textures": {
+        "top": "minecraft:block/cyan_concrete"
+    }
+}

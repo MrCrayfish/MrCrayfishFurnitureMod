@@ -315,7 +315,6 @@ public class RecipeGen extends RecipeProvider
         sofa(consumer, ModBlocks.SOFA_GREEN.get(), Blocks.GREEN_WOOL);
         sofa(consumer, ModBlocks.SOFA_RED.get(), Blocks.RED_WOOL);
         sofa(consumer, ModBlocks.SOFA_BLACK.get(), Blocks.BLACK_WOOL);
-
         sofa(consumer, ModBlocks.SOFA_WHITE_MODERN.get(), Blocks.WHITE_CONCRETE);
         sofa(consumer, ModBlocks.SOFA_ORANGE_MODERN.get(), Blocks.ORANGE_CONCRETE);
         sofa(consumer, ModBlocks.SOFA_MAGENTA_MODERN.get(), Blocks.MAGENTA_CONCRETE);
@@ -595,6 +594,22 @@ public class RecipeGen extends RecipeProvider
         coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_GREEN.get(), Tags.Items.DYES_GREEN);
         coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_RED.get(), Tags.Items.DYES_RED);
         coloredKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_BLACK.get(), Tags.Items.DYES_BLACK);
+        modernKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_WHITE_MODERN.get(), Tags.Items.DYES_WHITE);
+        modernKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_ORANGE_MODERN.get(), Tags.Items.DYES_ORANGE);
+        modernKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_MAGENTA_MODERN.get(), Tags.Items.DYES_MAGENTA);
+        modernKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_LIGHT_BLUE_MODERN.get(), Tags.Items.DYES_LIGHT_BLUE);
+        modernKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_YELLOW_MODERN.get(), Tags.Items.DYES_YELLOW);
+        modernKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_LIME_MODERN.get(), Tags.Items.DYES_LIME);
+        modernKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_PINK_MODERN.get(), Tags.Items.DYES_PINK);
+        modernKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_GRAY_MODERN.get(), Tags.Items.DYES_GRAY);
+        modernKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_LIGHT_GRAY_MODERN.get(), Tags.Items.DYES_LIGHT_GRAY);
+        modernKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_CYAN_MODERN.get(), Tags.Items.DYES_CYAN);
+        modernKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_PURPLE_MODERN.get(), Tags.Items.DYES_PURPLE);
+        modernKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_BLUE_MODERN.get(), Tags.Items.DYES_BLUE);
+        modernKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_BROWN_MODERN.get(), Tags.Items.DYES_BROWN);
+        modernKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_GREEN_MODERN.get(), Tags.Items.DYES_GREEN);
+        modernKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_RED_MODERN.get(), Tags.Items.DYES_RED);
+        modernKitchenCounter(consumer, ModBlocks.KITCHEN_COUNTER_BLACK_MODERN.get(), Tags.Items.DYES_BLACK);
         // Kitchen Drawer
         kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_OAK.get(), Blocks.OAK_LOG, Blocks.OAK_PLANKS);
         kitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_SPRUCE.get(), Blocks.SPRUCE_LOG, Blocks.SPRUCE_PLANKS);
@@ -1081,6 +1096,21 @@ public class RecipeGen extends RecipeProvider
                 .key('C', Blocks.WHITE_CONCRETE)
                 .setGroup("kitchen_counter")
                 .addCriterion("has_stone", hasItem(Blocks.TERRACOTTA))
+                .addCriterion("has_concrete", hasItem(Blocks.WHITE_CONCRETE))
+                .build(recipeConsumer);
+    }
+
+    private static void modernKitchenCounter(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider counter, ITag<Item> dye)
+    {
+        ShapedRecipeBuilder.shapedRecipe(counter, 8)
+                .patternLine("CDC")
+                .patternLine("SSS")
+                .patternLine("SSS")
+                .key('S', Blocks.STONE)
+                .key('D', dye)
+                .key('C', Blocks.WHITE_CONCRETE)
+                .setGroup("kitchen_counter")
+                .addCriterion("has_stone", hasItem(Blocks.STONE))
                 .addCriterion("has_concrete", hasItem(Blocks.WHITE_CONCRETE))
                 .build(recipeConsumer);
     }

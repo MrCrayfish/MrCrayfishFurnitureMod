@@ -21,6 +21,7 @@ public class ModTags
         public static final ITag.INamedTag<Item> PICKET_FENCE_GATES = tag("fence_gates/picket");
         public static final ITag.INamedTag<Item> HEDGES = tag("fences/hedge");
         public static final ITag.INamedTag<Item> BEDROOM = tag("bedroom");
+        public static final ITag.INamedTag<Item> BATHROOM = tag("bathroom");
         public static final ITag.INamedTag<Item> GENERAL = tag("general");
         public static final ITag.INamedTag<Item> ITEMS = tag("items");
         public static final ITag.INamedTag<Item> KITCHEN = tag("kitchen");

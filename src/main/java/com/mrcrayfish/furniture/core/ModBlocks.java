@@ -518,8 +518,22 @@ public class ModBlocks
     public static final RegistryObject<Block> KITCHEN_COUNTER_GREEN = register("green_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.GREEN_TERRACOTTA)));
     public static final RegistryObject<Block> KITCHEN_COUNTER_RED = register("red_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.RED_TERRACOTTA)));
     public static final RegistryObject<Block> KITCHEN_COUNTER_BLACK = register("black_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.BLACK_TERRACOTTA)));
-    
-
+    public static final RegistryObject<Block> KITCHEN_COUNTER_WHITE_MODERN = register("white_modern_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.WHITE_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_COUNTER_ORANGE_MODERN = register("orange_modern_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.ORANGE_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_COUNTER_MAGENTA_MODERN = register("magenta_modern_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.MAGENTA_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_COUNTER_LIGHT_BLUE_MODERN = register("light_blue_modern_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.LIGHT_BLUE_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_COUNTER_YELLOW_MODERN = register("yellow_modern_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.YELLOW_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_COUNTER_LIME_MODERN = register("lime_modern_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.LIME_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_COUNTER_PINK_MODERN = register("pink_modern_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.PINK_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_COUNTER_GRAY_MODERN = register("gray_modern_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.GRAY_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_COUNTER_LIGHT_GRAY_MODERN = register("light_gray_modern_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.LIGHT_GRAY_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_COUNTER_CYAN_MODERN = register("cyan_modern_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.CYAN_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_COUNTER_PURPLE_MODERN = register("purple_modern_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.PURPLE_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_COUNTER_BLUE_MODERN = register("blue_modern_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.BLUE_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_COUNTER_BROWN_MODERN = register("brown_modern_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.BROWN_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_COUNTER_GREEN_MODERN = register("green_modern_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.GREEN_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_COUNTER_RED_MODERN = register("red_modern_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.RED_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_COUNTER_BLACK_MODERN = register("black_modern_kitchen_counter", new KitchenCounterBlock(Block.Properties.from(Blocks.BLACK_CONCRETE)));
     public static final RegistryObject<Block> KITCHEN_DRAWER_OAK = register("oak_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_DRAWER_SPRUCE = register("spruce_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_DRAWER_BIRCH = register("birch_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.BIRCH_PLANKS)));

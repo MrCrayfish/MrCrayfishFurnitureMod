@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/modern_kitchen_counter_left_corner",
+    "textures": {
+        "top": "minecraft:block/magenta_concrete"
+    }
+}

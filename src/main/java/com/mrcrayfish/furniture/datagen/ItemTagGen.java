@@ -8,6 +8,7 @@ import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.fml.common.Mod;
 
 /**
  * @author Ocelot
@@ -20,8 +21,7 @@ public class ItemTagGen extends ItemTagsProvider
     }
 
     @Override
-    protected void registerTags()
-    {
+    protected void registerTags() {
         this.getOrCreateBuilder(ModTags.Items.BEDROOM)
                 // Cabinets
                 .add(ModBlocks.BEDSIDE_CABINET_OAK.get().asItem())
@@ -87,6 +87,11 @@ public class ItemTagGen extends ItemTagsProvider
                 .add(ModBlocks.BLINDS_STRIPPED_JUNGLE.get().asItem())
                 .add(ModBlocks.BLINDS_STRIPPED_ACACIA.get().asItem())
                 .add(ModBlocks.BLINDS_STRIPPED_DARK_OAK.get().asItem());
+
+        this.getOrCreateBuilder(ModTags.Items.BATHROOM)
+                //Toilets
+                .add(ModBlocks.TOILET_LIGHT.get().asItem())
+                .add(ModBlocks.TOILET_DARK.get().asItem());
 
         this.getOrCreateBuilder(ModTags.Items.GENERAL)
                 // Tables
