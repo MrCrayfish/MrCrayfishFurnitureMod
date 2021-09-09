@@ -752,6 +752,23 @@ public class RecipeGen extends RecipeProvider
                 .key('I', Items.IRON_INGOT)
                 .setGroup("microwave")
                 .build(consumer);
+        //Shower Head
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.SHOWER_HEAD_LIGHT.get())
+                .patternLine("II ")
+                .patternLine(" I ")
+                .patternLine("CCC")
+                .key('C', Blocks.WHITE_CONCRETE)
+                .key('I', Items.IRON_INGOT)
+                .setGroup("shower_head")
+                .build(consumer);
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.SHOWER_HEAD_DARK.get())
+                .patternLine("II ")
+                .patternLine(" I ")
+                .patternLine("CCC")
+                .key('C', Blocks.GRAY_CONCRETE)
+                .key('I', Items.IRON_INGOT)
+                .setGroup("shower_head")
+                .build(consumer);
         //Toilet
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.TOILET_LIGHT.get())
                 .patternLine("WG ")

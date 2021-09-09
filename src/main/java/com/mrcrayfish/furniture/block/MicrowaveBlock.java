@@ -16,7 +16,6 @@ import java.util.List;
 
 public class MicrowaveBlock extends FurnitureHorizontalWaterloggedBlock
 {
-
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
 
     public MicrowaveBlock(Properties properties)
