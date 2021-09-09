@@ -566,6 +566,22 @@ public class ModBlocks
     public static final RegistryObject<Block> KITCHEN_DRAWER_GREEN = register("green_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.GREEN_TERRACOTTA)));
     public static final RegistryObject<Block> KITCHEN_DRAWER_RED = register("red_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.RED_TERRACOTTA)));
     public static final RegistryObject<Block> KITCHEN_DRAWER_BLACK = register("black_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.BLACK_TERRACOTTA)));
+    public static final RegistryObject<Block> KITCHEN_DRAWER_WHITE_MODERN = register("white_modern_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.WHITE_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_DRAWER_ORANGE_MODERN = register("orange_modern_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.ORANGE_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_DRAWER_MAGENTA_MODERN = register("magenta_modern_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.MAGENTA_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_DRAWER_LIGHT_BLUE_MODERN = register("light_blue_modern_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.LIGHT_BLUE_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_DRAWER_YELLOW_MODERN = register("yellow_modern_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.YELLOW_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_DRAWER_LIME_MODERN = register("lime_modern_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.LIME_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_DRAWER_PINK_MODERN = register("pink_modern_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.PINK_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_DRAWER_GRAY_MODERN = register("gray_modern_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.GRAY_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_DRAWER_LIGHT_GRAY_MODERN = register("light_gray_modern_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.LIGHT_GRAY_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_DRAWER_CYAN_MODERN = register("cyan_modern_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.CYAN_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_DRAWER_PURPLE_MODERN = register("purple_modern_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.PURPLE_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_DRAWER_BLUE_MODERN = register("blue_modern_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.BLUE_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_DRAWER_BROWN_MODERN = register("brown_modern_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.BROWN_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_DRAWER_GREEN_MODERN = register("green_modern_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.GREEN_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_DRAWER_RED_MODERN = register("red_modern_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.RED_CONCRETE)));
+    public static final RegistryObject<Block> KITCHEN_DRAWER_BLACK_MODERN = register("black_modern_kitchen_drawer", new KitchenDrawerBlock(Block.Properties.from(Blocks.BLACK_CONCRETE)));
     public static final RegistryObject<Block> KITCHEN_SINK_LIGHT_OAK = register("oak_kitchen_sink_light", new KitchenSinkBlock(Block.Properties.from(Blocks.OAK_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_LIGHT_SPRUCE = register("spruce_kitchen_sink_light", new KitchenSinkBlock(Block.Properties.from(Blocks.SPRUCE_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_LIGHT_BIRCH = register("birch_kitchen_sink_light", new KitchenSinkBlock(Block.Properties.from(Blocks.BIRCH_PLANKS), true));
@@ -615,13 +631,14 @@ public class ModBlocks
     public static final RegistryObject<Block> KITCHEN_SINK_RED = register("red_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.RED_TERRACOTTA), false));
     public static final RegistryObject<Block> KITCHEN_SINK_BLACK = register("black_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.BLACK_TERRACOTTA), false));
     public static final RegistryObject<Block> FREEZER_LIGHT = register("freezer_light", new FreezerBlock(Block.Properties.from(Blocks.IRON_BLOCK).notSolid(), () -> ModBlocks.FRIDGE_LIGHT), (Supplier<BlockItem>) null);
-    public static final RegistryObject<Block> FRIDGE_LIGHT = register("fridge_light", new FridgeBlock(Block.Properties.from(Blocks.IRON_BLOCK).notSolid(), () -> ModBlocks.FREEZER_LIGHT), block -> new BlockSupplierItem(new Item.Properties().group(FurnitureMod.GROUP), block, ModBlocks.FREEZER_LIGHT));
     public static final RegistryObject<Block> FREEZER_DARK = register("freezer_dark", new FreezerBlock(Block.Properties.from(Blocks.IRON_BLOCK).notSolid(), () -> ModBlocks.FRIDGE_DARK), (Supplier<BlockItem>) null);
+    public static final RegistryObject<Block> FRIDGE_LIGHT = register("fridge_light", new FridgeBlock(Block.Properties.from(Blocks.IRON_BLOCK).notSolid(), () -> ModBlocks.FREEZER_LIGHT), block -> new BlockSupplierItem(new Item.Properties().group(FurnitureMod.GROUP), block, ModBlocks.FREEZER_LIGHT));
     public static final RegistryObject<Block> FRIDGE_DARK = register("fridge_dark", new FridgeBlock(Block.Properties.from(Blocks.IRON_BLOCK).notSolid(), () -> ModBlocks.FREEZER_DARK), block -> new BlockSupplierItem(new Item.Properties().group(FurnitureMod.GROUP), block, ModBlocks.FREEZER_DARK));
     public static final RegistryObject<Block> MICROWAVE_LIGHT = register("microwave_light", new MicrowaveBlock(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).notSolid()));
     public static final RegistryObject<Block> MICROWAVE_DARK = register("microwave_dark", new MicrowaveBlock(AbstractBlock.Properties.from(Blocks.GRAY_CONCRETE).notSolid()));
     public static final RegistryObject<Block> TOILET_LIGHT = register("toilet_light", new ToiletBlock(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).notSolid()));
     public static final RegistryObject<Block> TOILET_DARK = register("toilet_dark", new ToiletBlock(AbstractBlock.Properties.from(Blocks.GRAY_CONCRETE).notSolid()));
+
 
     private static RegistryObject<Block> register(String name, Block block)
     {

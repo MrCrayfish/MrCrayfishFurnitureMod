@@ -643,6 +643,22 @@ public class RecipeGen extends RecipeProvider
         coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_GREEN.get(), Tags.Items.DYES_GREEN);
         coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_RED.get(), Tags.Items.DYES_RED);
         coloredKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_BLACK.get(), Tags.Items.DYES_BLACK);
+        modernKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_WHITE_MODERN.get(), Tags.Items.DYES_WHITE);
+        modernKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_ORANGE_MODERN.get(), Tags.Items.DYES_ORANGE);
+        modernKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_MAGENTA_MODERN.get(), Tags.Items.DYES_MAGENTA);
+        modernKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_LIGHT_BLUE_MODERN.get(), Tags.Items.DYES_LIGHT_BLUE);
+        modernKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_YELLOW_MODERN.get(), Tags.Items.DYES_YELLOW);
+        modernKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_LIME_MODERN.get(), Tags.Items.DYES_LIME);
+        modernKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_PINK_MODERN.get(), Tags.Items.DYES_PINK);
+        modernKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_GRAY_MODERN.get(), Tags.Items.DYES_GRAY);
+        modernKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_LIGHT_GRAY_MODERN.get(), Tags.Items.DYES_LIGHT_GRAY);
+        modernKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_CYAN_MODERN.get(), Tags.Items.DYES_CYAN);
+        modernKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_PURPLE_MODERN.get(), Tags.Items.DYES_PURPLE);
+        modernKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_BLUE_MODERN.get(), Tags.Items.DYES_BLUE);
+        modernKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_BROWN_MODERN.get(), Tags.Items.DYES_BROWN);
+        modernKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_GREEN_MODERN.get(), Tags.Items.DYES_GREEN);
+        modernKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_RED_MODERN.get(), Tags.Items.DYES_RED);
+        modernKitchenDrawer(consumer, ModBlocks.KITCHEN_DRAWER_BLACK_MODERN.get(), Tags.Items.DYES_BLACK);
         // Kitchen Sink
         kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_OAK.get(), Blocks.WHITE_CONCRETE, Blocks.OAK_PLANKS);
         kitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_SPRUCE.get(), Blocks.WHITE_CONCRETE, Blocks.SPRUCE_PLANKS);
@@ -1143,6 +1159,23 @@ public class RecipeGen extends RecipeProvider
                 .key('B', Tags.Items.CHESTS_WOODEN)
                 .setGroup("kitchen_drawer")
                 .addCriterion("has_terracotta", hasItem(Blocks.TERRACOTTA))
+                .addCriterion("has_concrete", hasItem(Blocks.WHITE_CONCRETE))
+                .addCriterion("has_chest", hasItem(Tags.Items.CHESTS_WOODEN))
+                .build(recipeConsumer);
+    }
+
+    private static void modernKitchenDrawer(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider counter, ITag<Item> dye)
+    {
+        ShapedRecipeBuilder.shapedRecipe(counter, 4)
+                .patternLine("CDC")
+                .patternLine("SBS")
+                .patternLine("SSS")
+                .key('S', Blocks.STONE)
+                .key('D', dye)
+                .key('C', Blocks.WHITE_CONCRETE)
+                .key('B', Tags.Items.CHESTS_WOODEN)
+                .setGroup("kitchen_drawer")
+                .addCriterion("has_stone", hasItem(Blocks.STONE))
                 .addCriterion("has_concrete", hasItem(Blocks.WHITE_CONCRETE))
                 .addCriterion("has_chest", hasItem(Tags.Items.CHESTS_WOODEN))
                 .build(recipeConsumer);
