@@ -5,14 +5,17 @@ import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ShowerHeadBlock extends FurnitureHorizontalWaterloggedBlock
 {
@@ -38,6 +41,7 @@ public class ShowerHeadBlock extends FurnitureHorizontalWaterloggedBlock
             shapes.add(TOP_PIPE[direction.getHorizontalIndex()]);
             shapes.add(CENTER_PIPE[direction.getHorizontalIndex()]);
             shapes.add(MAIN_WATER_OUTPUT[direction.getHorizontalIndex()]);
+            builder.put(state, VoxelShapeHelper.combineAll(shapes));
         }
         return builder.build();
     }
