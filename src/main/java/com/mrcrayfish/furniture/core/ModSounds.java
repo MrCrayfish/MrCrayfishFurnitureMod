@@ -28,6 +28,7 @@ public class ModSounds
     public static final RegistryObject<SoundEvent> BLOCK_FRIDGE_CLOSE = register("block.fridge.close");
     public static final RegistryObject<SoundEvent> BLOCK_MICROWAVE_FINISH = register("block.microwave.finish");
     public static final RegistryObject<SoundEvent> BLOCK_MICROWAVE_RUNNING = register("block.microwave.running");
+    public static final RegistryObject<SoundEvent> BLOCK_SHOWER_RUNNING = register("block.shower.running");
     public static final RegistryObject<SoundEvent> BLOCK_TOILET_FART = register("block.toilet.fart");
     public static final RegistryObject<SoundEvent> BLOCK_TOILET_FLUSH = register("block.toilet.flush");
 

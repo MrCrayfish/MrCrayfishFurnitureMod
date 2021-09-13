@@ -2,13 +2,7 @@ package com.mrcrayfish.furniture;
 
 import com.mrcrayfish.furniture.client.ClientHandler;
 import com.mrcrayfish.furniture.common.CommonHandler;
-import com.mrcrayfish.furniture.core.ModBlocks;
-import com.mrcrayfish.furniture.core.ModContainers;
-import com.mrcrayfish.furniture.core.ModEntities;
-import com.mrcrayfish.furniture.core.ModItems;
-import com.mrcrayfish.furniture.core.ModRecipeSerializers;
-import com.mrcrayfish.furniture.core.ModSounds;
-import com.mrcrayfish.furniture.core.ModTileEntities;
+import com.mrcrayfish.furniture.core.*;
 import com.mrcrayfish.furniture.datagen.BlockTagGen;
 import com.mrcrayfish.furniture.datagen.EntityTypeTagGen;
 import com.mrcrayfish.furniture.datagen.FluidTagGen;
@@ -44,6 +38,7 @@ public class FurnitureMod
         ModTileEntities.REGISTER.register(eventBus);
         ModContainers.REGISTER.register(eventBus);
         ModSounds.REGISTER.register(eventBus);
+        ModParticles.REGISTER.register(eventBus);
         ModRecipeSerializers.REGISTER.register(eventBus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, FurnitureConfig.clientSpec);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FurnitureConfig.commonSpec);

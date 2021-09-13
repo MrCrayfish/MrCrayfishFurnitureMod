@@ -55,6 +55,10 @@
         "subtitle": "subtitle.cfm.running_microwave",
         "sounds": [ "cfm:block/microwave/running" ]
     },
+    "block.shower.running": {
+        "subtitle": "subtitle.cfm.running_shower",
+        "sounds": [ "cfm:block/shower/running" ]
+    },
 	"block.toilet.fart": {
         "subtitle": "subtitle.cfm.toilet_fart",
         "sounds": [ "cfm:block/toilet/fart" ]
