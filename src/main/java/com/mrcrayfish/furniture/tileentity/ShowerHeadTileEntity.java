@@ -37,9 +37,7 @@ public class ShowerHeadTileEntity extends TileEntity implements ITickableTileEnt
     {
         if(this.world.isRemote)
         {
-            double posX = pos.getX() + 0.35D + (random.nextDouble() / 3);
-            double posZ = pos.getZ() + 0.35D + (random.nextDouble() / 3);
-            world.addParticle(ModParticles.SHOWER_PARTICLE.get(), posX, pos.getY(), posZ, 0.0D, 0.0D, 0.0D);
+            return;
         }
         else
         {

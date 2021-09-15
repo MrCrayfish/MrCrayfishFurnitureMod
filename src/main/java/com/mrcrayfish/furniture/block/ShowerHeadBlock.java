@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.block;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.mrcrayfish.furniture.core.ModParticles;
 import com.mrcrayfish.furniture.core.ModTileEntities;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
@@ -19,10 +20,14 @@ import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class ShowerHeadBlock extends FurnitureHorizontalWaterloggedBlock
 {
@@ -82,5 +87,25 @@ public class ShowerHeadBlock extends FurnitureHorizontalWaterloggedBlock
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
         return ModTileEntities.SHOWER_HEAD.get().create();
+    }
+
+    public ActionResultType onBlockActivated(World world, BlockState state, BlockPos pos, Random random) {
+        if(state.get(ACTIVATED)) {
+            world.setBlockState(pos, state.with(ACTIVATED, Boolean.valueOf(false)), 2);
+        } else {
+            world.setBlockState(pos, state.with(ACTIVATED, Boolean.valueOf(true)), 2);
+            animateTick(world, state, pos, random);
+        }
+        return ActionResultType.SUCCESS;
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    public void animateTick(World world, BlockState state, BlockPos pos, Random random)
+    {
+        if(state.get(ACTIVATED)) {
+            double posX = pos.getX() + 0.35D + (random.nextDouble() / 3);
+            double posZ = pos.getZ() + 0.35D + (random.nextDouble() / 3);
+            world.addParticle(ModParticles.SHOWER_PARTICLE.get(), posX, pos.getY(), posZ, 0.0D, 0.0D, 0.0D);
+        }
     }
 }
