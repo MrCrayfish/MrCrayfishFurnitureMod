@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.core.ModParticles;
 import com.mrcrayfish.furniture.core.ModTileEntities;
+import com.mrcrayfish.furniture.tileentity.ShowerHeadTileEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -96,7 +97,6 @@ public class ShowerHeadBlock extends FurnitureHorizontalWaterloggedBlock
         } else {
             Random random = new Random();
             setActivated(state, world, pos);
-            addParticles(world, pos, random);
         }
         return ActionResultType.SUCCESS;
     }
@@ -109,12 +109,6 @@ public class ShowerHeadBlock extends FurnitureHorizontalWaterloggedBlock
     public BlockState setUnactivated(BlockState state, World world, BlockPos pos) {
         world.setBlockState(pos, state.with(ACTIVATED, Boolean.valueOf(false)), 2);
         return state;
-    }
-    
-    public static void addParticles(World world, BlockPos pos, Random random) {
-        double posX = pos.getX() + 0.35D + (random.nextDouble() / 3);
-        double posZ = pos.getZ() + 0.35D + (random.nextDouble() / 3);
-        world.addParticle(ModParticles.SHOWER_PARTICLE.get(), posX, pos.getY(), posZ, 0.0D, 0.0D, 0.0D);
     }
 
 }
