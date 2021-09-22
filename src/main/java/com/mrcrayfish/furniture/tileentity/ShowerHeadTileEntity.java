@@ -1,10 +1,7 @@
 package com.mrcrayfish.furniture.tileentity;
 
-import com.mrcrayfish.furniture.block.ShowerHeadBlock;
 import com.mrcrayfish.furniture.core.ModParticles;
 import com.mrcrayfish.furniture.core.ModSounds;
-import com.mrcrayfish.furniture.core.ModTileEntities;
-import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
@@ -28,13 +25,6 @@ public class ShowerHeadTileEntity extends TileEntity implements ITickableTileEnt
     {
         super(tileEntityTypeIn);
     }
-
-    public ShowerHeadTileEntity()
-    {
-        this(ModTileEntities.SHOWER_HEAD.get());
-    }
-
-    if()
 
     @Override
     public void tick()
@@ -86,9 +76,4 @@ public class ShowerHeadTileEntity extends TileEntity implements ITickableTileEnt
         }
     }
 
-    @Override
-    public BlockState getBlockState() {
-        world.getBlockState(ShowerHeadBlock.ACTIVATED);
-        return super.getBlockState();
-    }
 }
