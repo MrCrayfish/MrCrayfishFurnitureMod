@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.tileentity;
 
 import com.mrcrayfish.furniture.core.ModParticles;
 import com.mrcrayfish.furniture.core.ModSounds;
+import com.mrcrayfish.furniture.core.ModTileEntities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
@@ -12,6 +13,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.List;
 import java.util.Random;
@@ -21,9 +23,11 @@ public class ShowerHeadTileEntity extends TileEntity implements ITickableTileEnt
     private Random random = new Random();
     private int timer = 20;
 
-    public ShowerHeadTileEntity(TileEntityType<?> tileEntityTypeIn)
+    protected ShowerHeadTileEntity(TileEntityType<?> type) { super(type); };
+
+    public ShowerHeadTileEntity()
     {
-        super(tileEntityTypeIn);
+        super(ModTileEntities.SHOWER_HEAD.get());
     }
 
     @Override
@@ -44,6 +48,7 @@ public class ShowerHeadTileEntity extends TileEntity implements ITickableTileEnt
                 {
                     player.curePotionEffects(new ItemStack(Items.MILK_BUCKET));
 
+                    /*
                     for(int i = 0; i < 4; i++)
                     {
                         ItemStack itemstack = player.inventory.armorInventory.get(i);
@@ -54,11 +59,12 @@ public class ShowerHeadTileEntity extends TileEntity implements ITickableTileEnt
                                 ArmorItem armor = (ArmorItem) itemstack.getItem();
                                 if(armor.getArmorMaterial() == ArmorMaterial.LEATHER)
                                 {
-                                   // player.inventory.armorInventory.set(i, new ItemStack(itemstack.getItem(), 1, itemstack.getDamage()));
+                                   player.inventory.armorInventory.set(i, new ItemStack(itemstack.getItem(), 1, itemstack.getDamage()));
                                 }
                             }
                         }
                     }
+                    */
 
                     if(player.isBurning())
                     {

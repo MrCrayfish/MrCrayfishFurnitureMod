@@ -636,6 +636,8 @@ public class ModBlocks
     public static final RegistryObject<Block> FRIDGE_DARK = register("fridge_dark", new FridgeBlock(Block.Properties.from(Blocks.IRON_BLOCK).notSolid(), () -> ModBlocks.FREEZER_DARK), block -> new BlockSupplierItem(new Item.Properties().group(FurnitureMod.GROUP), block, ModBlocks.FREEZER_DARK));
     public static final RegistryObject<Block> MICROWAVE_LIGHT = register("microwave_light", new MicrowaveBlock(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).notSolid()));
     public static final RegistryObject<Block> MICROWAVE_DARK = register("microwave_dark", new MicrowaveBlock(AbstractBlock.Properties.from(Blocks.GRAY_CONCRETE).notSolid()));
+    public static final RegistryObject<Block> SHOWER_LIGHT = register("shower_light", new ShowerBlock(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).notSolid()));
+    public static final RegistryObject<Block> SHOWER_DARK = register("shower_dark", new ShowerBlock(AbstractBlock.Properties.from(Blocks.GRAY_CONCRETE).notSolid()));
     public static final RegistryObject<Block> SHOWER_HEAD_LIGHT = register("shower_head_light", new ShowerHeadBlock(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).notSolid()));
     public static final RegistryObject<Block> SHOWER_HEAD_DARK = register("shower_head_dark", new ShowerHeadBlock(AbstractBlock.Properties.from(Blocks.GRAY_CONCRETE).notSolid()));
     public static final RegistryObject<Block> TOILET_LIGHT = register("toilet_light", new ToiletBlock(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).notSolid()));

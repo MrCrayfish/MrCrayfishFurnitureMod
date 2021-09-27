@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/shower_bottom",
+    "textures": {
+        "1": "minecraft:block/white_concrete",
+        "2": "minecraft:blocks/glass"
+    }
+}
