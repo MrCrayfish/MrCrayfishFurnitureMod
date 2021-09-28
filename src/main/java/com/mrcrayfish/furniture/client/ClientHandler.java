@@ -115,6 +115,13 @@ public class ClientHandler
         RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_RED.get(), cutoutPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.GRILL_BLACK.get(), cutoutPredicate);
         RenderTypeLookup.setRenderLayer(ModBlocks.POST_BOX.get(), cutoutPredicate);
+
+        RenderTypeLookup.setRenderLayer(ModBlocks.MICROWAVE_DARK.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.MICROWAVE_LIGHT.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.OVEN_DARK.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.OVEN_LIGHT.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.SHOWER_DARK.get(), cutoutPredicate);
+        RenderTypeLookup.setRenderLayer(ModBlocks.SHOWER_LIGHT.get(), cutoutPredicate);
     }
 
     private static void registerColors()

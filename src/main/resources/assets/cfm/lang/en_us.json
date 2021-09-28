@@ -621,6 +621,8 @@
     "block.cfm.freezer_dark": "Freezer (Dark)",
 	"block.cfm.microwave_light": "Microwave (Light)",
 	"block.cfm.microwave_dark": "Microwave (Dark)",
+	"block.cfm.oven_light": "Oven (Light)",
+	"block.cfm.oven_dark": "Oven (Dark)",
 	"block.cfm.shower_light": "Shower (Light)",
 	"block.cfm.shower_dark": "Shower (Dark)",
 	"block.cfm.shower_head_light": "Shower Head (Light)",

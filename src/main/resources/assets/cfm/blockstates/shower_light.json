@@ -1,19 +1,19 @@
 {
     "variants": {
         "facing=north": {
-            "model": "cfm:block/shower_bottom_light",
+            "model": "cfm:block/shower_light",
             "y": 270
         },
         "facing=east": {
-            "model": "cfm:block/shower_bottom_light",
+            "model": "cfm:block/shower_light",
             "y": 0
         },
         "facing=south": {
-            "model": "cfm:block/shower_bottom_light",
+            "model": "cfm:block/shower_light",
             "y": 90
         },
         "facing=west": {
-            "model": "cfm:block/shower_bottom_light",
+            "model": "cfm:block/shower_light",
             "y": 180
         }
     }
