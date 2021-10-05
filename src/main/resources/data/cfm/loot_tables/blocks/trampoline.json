@@ -1,0 +1,1 @@
+{"type":"minecraft:block","pools":[{"rolls":1,"entries":[{"type":"minecraft:item","functions":[{"function":"minecraft:copy_nbt","source":"block_entity","ops":[{"source":"Color","target":"BlockEntityTag.Color","op":"replace"}]}],"name":"cfm:trampoline"}]}]}

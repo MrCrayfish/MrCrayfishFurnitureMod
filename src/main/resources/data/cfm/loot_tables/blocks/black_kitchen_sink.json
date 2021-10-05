@@ -1,0 +1,1 @@
+{"type":"minecraft:block","pools":[{"rolls":1,"entries":[{"type":"minecraft:item","name":"cfm:black_kitchen_sink"}],"conditions":[{"condition":"minecraft:survives_explosion"}]}]}

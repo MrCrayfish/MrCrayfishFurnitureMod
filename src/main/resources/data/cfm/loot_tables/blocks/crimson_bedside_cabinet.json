@@ -1,0 +1,1 @@
+{"type":"minecraft:block","pools":[{"rolls":1,"entries":[{"type":"minecraft:item","name":"cfm:crimson_bedside_cabinet"}],"conditions":[{"condition":"minecraft:survives_explosion"}]}]}

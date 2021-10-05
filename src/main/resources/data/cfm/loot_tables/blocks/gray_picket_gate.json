@@ -1,0 +1,1 @@
+{"type":"minecraft:block","pools":[{"rolls":1,"entries":[{"type":"minecraft:item","name":"cfm:gray_picket_gate"}],"conditions":[{"condition":"minecraft:survives_explosion"}]}]}

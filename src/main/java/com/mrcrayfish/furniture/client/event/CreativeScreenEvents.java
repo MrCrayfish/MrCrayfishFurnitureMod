@@ -268,7 +268,7 @@ public class CreativeScreenEvents
         final TagFilter KITCHEN = new TagFilter(new ResourceLocation(Reference.MOD_ID, "kitchen"), new ItemStack(ModBlocks.KITCHEN_COUNTER_CYAN.get()));
         final TagFilter BATHROOM = new TagFilter(new ResourceLocation(Reference.MOD_ID, "bathroom"), new ItemStack(ModBlocks.TOILET_LIGHT.get()));
         final TagFilter ITEMS = new TagFilter(new ResourceLocation(Reference.MOD_ID, "items"), new ItemStack(ModItems.SPATULA.get()));
-        TagFilter[] filters = new TagFilter[] {GENERAL, STORAGE, BEDROOM, OUTDOORS, KITCHEN, ITEMS};
+        TagFilter[] filters = new TagFilter[] {GENERAL, STORAGE, BEDROOM, OUTDOORS, KITCHEN, BATHROOM, ITEMS};
 
         ForgeRegistries.ITEMS.getValues().stream()
                 .filter(item -> item.getGroup() == FurnitureMod.GROUP)

@@ -652,6 +652,7 @@
     "gui.tag_filter.cfm.bedroom": "Bedroom",
     "gui.tag_filter.cfm.outdoors": "Outdoors",
     "gui.tag_filter.cfm.kitchen": "Kitchen",
+    "gui.tag_filter.cfm.bathroom": "Bathroom",
     "gui.tag_filter.cfm.items": "Items",
     "gui.cfm.mail_box_settings": "Change Mail Box Name",
     "gui.cfm.door_mat_message": "Set Door Mat Message",
