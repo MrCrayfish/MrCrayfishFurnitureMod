@@ -9,7 +9,7 @@ buildscript {
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-version = "6.3.1-1.12.2-mc4ep-2"
+version = "6.3.1-1.12.2-mc4ep-3"
 group = "com.mrcrayfish"
 archivesBaseName = "furniture"
 
@@ -45,3 +45,9 @@ processResources {
         exclude 'mcmod.info'
     }
 }
+apply plugin: 'idea'
+idea { module {
+    inheritOutputDirs = false
+    outputDir = compileJava.destinationDir
+    testOutputDir = compileTestJava.destinationDir
+} }
