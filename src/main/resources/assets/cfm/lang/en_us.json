@@ -623,6 +623,8 @@
 	"block.cfm.microwave_dark": "Microwave (Dark)",
 	"block.cfm.oven_light": "Oven (Light)",
 	"block.cfm.oven_dark": "Oven (Dark)",
+	"block.cfm.oven_range_hood_light": "Oven Range Hood (Light)",
+	"block.cfm.oven_range_hood_dark": "Oven Range Hood (Dark)",
 	"block.cfm.sink_light": "Sink (Light)",
 	"block.cfm.sink_dark": "Sink (Dark)",
 	"block.cfm.shower_light": "Shower (Light)",

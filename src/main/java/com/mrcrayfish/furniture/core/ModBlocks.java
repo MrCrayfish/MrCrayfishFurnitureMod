@@ -6,15 +6,13 @@ import com.mrcrayfish.furniture.block.*;
 import com.mrcrayfish.furniture.item.BlockSupplierItem;
 import com.mrcrayfish.furniture.item.DoorMatItem;
 import com.mrcrayfish.furniture.item.TrampolineItem;
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SoundType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.block.material.PushReaction;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -22,6 +20,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import javax.annotation.Nullable;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.function.ToIntFunction;
 
 /**
  * Author: MrCrayfish
@@ -638,6 +637,8 @@ public class ModBlocks
     public static final RegistryObject<Block> MICROWAVE_DARK = register("microwave_dark", new MicrowaveBlock(AbstractBlock.Properties.from(Blocks.GRAY_CONCRETE).notSolid()));
     public static final RegistryObject<Block> OVEN_LIGHT = register("oven_light", new OvenBlock(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).notSolid()));
     public static final RegistryObject<Block> OVEN_DARK = register("oven_dark", new OvenBlock(AbstractBlock.Properties.from(Blocks.GRAY_CONCRETE).notSolid()));
+    public static final RegistryObject<Block> OVEN_RANGE_HOOD_LIGHT = register("oven_range_hood_light", new OvenRangeHoodBlock(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).setLightLevel(getLightValueLit(14)).notSolid()));
+    public static final RegistryObject<Block> OVEN_RANGE_HOOD_DARK = register("oven_range_hood_dark", new OvenRangeHoodBlock(AbstractBlock.Properties.from(Blocks.GRAY_CONCRETE).setLightLevel(getLightValueLit(14)).notSolid()));
     public static final RegistryObject<Block> SINK_LIGHT = register("sink_light", new SinkBlock(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).notSolid()));
     public static final RegistryObject<Block> SINK_DARK = register("sink_dark", new SinkBlock(AbstractBlock.Properties.from(Blocks.GRAY_CONCRETE).notSolid()));
     public static final RegistryObject<Block> SHOWER_LIGHT = register("shower_light", new ShowerBlock(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).notSolid()));
@@ -647,6 +648,11 @@ public class ModBlocks
     public static final RegistryObject<Block> TOILET_LIGHT = register("toilet_light", new ToiletBlock(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).notSolid()));
     public static final RegistryObject<Block> TOILET_DARK = register("toilet_dark", new ToiletBlock(AbstractBlock.Properties.from(Blocks.GRAY_CONCRETE).notSolid()));
 
+    private static ToIntFunction<BlockState> getLightValueLit(int lightValue) {
+        return (state) -> {
+            return state.get(BlockStateProperties.LIT) ? lightValue : 0;
+        };
+    }
 
     private static RegistryObject<Block> register(String name, Block block)
     {

@@ -752,6 +752,40 @@ public class RecipeGen extends RecipeProvider
                 .key('I', Items.IRON_INGOT)
                 .setGroup("microwave")
                 .build(consumer);
+        //Oven
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.OVEN_LIGHT.get())
+                .patternLine("WWW")
+                .patternLine("WFW")
+                .patternLine("WWW")
+                .key('W', Blocks.WHITE_CONCRETE)
+                .key('F', Blocks.FURNACE)
+                .setGroup("sink")
+                .build(consumer);
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.OVEN_DARK.get())
+                .patternLine("GGG")
+                .patternLine("GFG")
+                .patternLine("GGG")
+                .key('G', Blocks.GRAY_CONCRETE)
+                .key('F', Blocks.FURNACE)
+                .setGroup("sink")
+                .build(consumer);
+        //Oven Range Hood
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.OVEN_RANGE_HOOD_LIGHT.get())
+                .patternLine(" W ")
+                .patternLine(" W ")
+                .patternLine("WSW")
+                .key('W', Blocks.WHITE_CONCRETE)
+                .key('S', Blocks.SEA_LANTERN)
+                .setGroup("sink")
+                .build(consumer);
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.OVEN_RANGE_HOOD_DARK.get())
+                .patternLine(" G ")
+                .patternLine(" G ")
+                .patternLine("GSG")
+                .key('G', Blocks.GRAY_CONCRETE)
+                .key('S', Blocks.SEA_LANTERN)
+                .setGroup("sink")
+                .build(consumer);
         //Shower Head
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.SHOWER_HEAD_LIGHT.get())
                 .patternLine("II ")
@@ -768,6 +802,25 @@ public class RecipeGen extends RecipeProvider
                 .key('C', Blocks.GRAY_CONCRETE)
                 .key('I', Items.IRON_INGOT)
                 .setGroup("shower_head")
+                .build(consumer);
+        //Sink
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.SINK_LIGHT.get())
+                .patternLine("BIB")
+                .patternLine("WWW")
+                .patternLine(" W ")
+                .key('B', Blocks.STONE_BUTTON)
+                .key('I', Items.IRON_INGOT)
+                .key('W', Blocks.WHITE_CONCRETE)
+                .setGroup("sink")
+                .build(consumer);
+        ShapedRecipeBuilder.shapedRecipe(ModBlocks.SINK_DARK.get())
+                .patternLine("BIB")
+                .patternLine("GGG")
+                .patternLine(" G ")
+                .key('B', Blocks.STONE_BUTTON)
+                .key('I', Items.IRON_INGOT)
+                .key('G', Blocks.GRAY_CONCRETE)
+                .setGroup("sink")
                 .build(consumer);
         //Toilet
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.TOILET_LIGHT.get())

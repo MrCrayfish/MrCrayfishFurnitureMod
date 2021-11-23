@@ -1,0 +1,36 @@
+{
+    "variants": {
+        "facing=north,down=false": {
+            "model": "cfm:block/oven_range_hood_light",
+            "y": 270
+        },
+        "facing=east,down=false": {
+            "model": "cfm:block/oven_range_hood_light",
+            "y": 0
+        },
+        "facing=south,down=false": {
+            "model": "cfm:block/oven_range_hood_light",
+            "y": 90
+        },
+        "facing=west,down=false": {
+            "model": "cfm:block/oven_range_hood_light",
+            "y": 180
+        },
+		"facing=north,down=true": {
+            "model": "cfm:block/oven_range_hood_vent_light",
+            "y": 270
+        },
+        "facing=east,down=true": {
+            "model": "cfm:block/oven_range_hood_vent_light",
+            "y": 0
+        },
+        "facing=south,down=true": {
+            "model": "cfm:block/oven_range_hood_vent_light",
+            "y": 90
+        },
+        "facing=west,down=true": {
+            "model": "cfm:block/oven_range_hood_vent_light",
+            "y": 180
+        }
+    }
+}

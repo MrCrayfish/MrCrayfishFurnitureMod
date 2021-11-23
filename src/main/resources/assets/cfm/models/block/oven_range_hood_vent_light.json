@@ -1,0 +1,19 @@
+{
+    "textures": {
+        "particle": "minecraft:block/white_concrete",
+        "1": "minecraft:block/white_concrete"
+    },
+    "elements": [
+        {
+            "from": [ 8.0, 0.0, 3.2 ],
+            "to": [ 16.0, 16.0, 12.8 ],
+            "faces": {
+                "up": { "uv": [ 8.0, 0.0, 16.0, 12.8 ], "texture": "#1" },
+                "north": { "uv": [ 8.0, 0.0, 16.0, 16.0 ], "texture": "#1" },
+                "south": { "uv": [ 8.0, 0.0, 16.0, 16.0 ], "texture": "#1" },
+                "west": { "uv": [ 3.2, 0.0, 12.8, 16.0 ], "texture": "#1" },
+                "east": { "uv": [ 3.2, 0.0, 12.8, 16.0 ], "texture": "#1" }
+            }
+        }
+    ]
+}
