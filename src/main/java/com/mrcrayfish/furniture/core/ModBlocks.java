@@ -638,6 +638,8 @@ public class ModBlocks
     public static final RegistryObject<Block> MICROWAVE_DARK = register("microwave_dark", new MicrowaveBlock(AbstractBlock.Properties.from(Blocks.GRAY_CONCRETE).notSolid()));
     public static final RegistryObject<Block> OVEN_LIGHT = register("oven_light", new OvenBlock(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).notSolid()));
     public static final RegistryObject<Block> OVEN_DARK = register("oven_dark", new OvenBlock(AbstractBlock.Properties.from(Blocks.GRAY_CONCRETE).notSolid()));
+    public static final RegistryObject<Block> SINK_LIGHT = register("sink_light", new SinkBlock(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).notSolid()));
+    public static final RegistryObject<Block> SINK_DARK = register("sink_dark", new SinkBlock(AbstractBlock.Properties.from(Blocks.GRAY_CONCRETE).notSolid()));
     public static final RegistryObject<Block> SHOWER_LIGHT = register("shower_light", new ShowerBlock(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).notSolid()));
     public static final RegistryObject<Block> SHOWER_DARK = register("shower_dark", new ShowerBlock(AbstractBlock.Properties.from(Blocks.GRAY_CONCRETE).notSolid()));
     public static final RegistryObject<Block> SHOWER_HEAD_LIGHT = register("shower_head_light", new ShowerHeadBlock(AbstractBlock.Properties.from(Blocks.WHITE_CONCRETE).notSolid()));

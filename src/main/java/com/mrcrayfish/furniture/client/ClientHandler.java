@@ -10,6 +10,7 @@ import com.mrcrayfish.furniture.client.renderer.SeatRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.DoorMatTileEntityRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.GrillTileEntityRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.KitchenSinkTileEntityRenderer;
+import com.mrcrayfish.furniture.client.renderer.tileentity.SinkTileEntityRenderer;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModContainers;
 import com.mrcrayfish.furniture.core.ModEntities;
@@ -71,6 +72,7 @@ public class ClientHandler
         ClientRegistry.bindTileEntityRenderer(ModTileEntities.GRILL.get(), GrillTileEntityRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntities.DOOR_MAT.get(), DoorMatTileEntityRenderer::new);
         ClientRegistry.bindTileEntityRenderer(ModTileEntities.KITCHEN_SINK.get(), KitchenSinkTileEntityRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModTileEntities.SINK.get(), SinkTileEntityRenderer::new);
     }
 
     private static void registerEntityRenderers()
