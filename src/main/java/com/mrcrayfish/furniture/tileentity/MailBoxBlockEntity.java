@@ -7,6 +7,7 @@ import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.inventory.container.MailBoxMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -16,9 +17,9 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -183,7 +184,7 @@ public class MailBoxBlockEntity extends BasicLootBlockEntity
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return new ClientboundBlockEntityDataPacket(this.worldPosition, 0, this.getUpdateTag());
+        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
     }
 
     @Override
@@ -199,11 +200,11 @@ public class MailBoxBlockEntity extends BasicLootBlockEntity
         {
             this.id = compound.getUUID("MailBoxUUID");
         }
-        if(compound.contains("MailBoxName", Constants.NBT.TAG_STRING))
+        if(compound.contains("MailBoxName", Tag.TAG_STRING))
         {
             this.name = compound.getString("MailBoxName");
         }
-        if(compound.contains("OwnerName", Constants.NBT.TAG_STRING))
+        if(compound.contains("OwnerName", Tag.TAG_STRING))
         {
             this.ownerName = compound.getString("OwnerName");
         }

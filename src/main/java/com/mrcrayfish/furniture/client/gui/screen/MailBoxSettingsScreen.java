@@ -52,14 +52,16 @@ public class MailBoxSettingsScreen extends Screen
         {
             if(this.isValidName())
             {
-                PacketHandler.instance.sendToServer(new MessageSetMailBoxName(this.nameField.getValue(), this.mailBoxBlockEntity.getBlockPos()));
+                PacketHandler.getPlayChannel()
+                        .sendToServer(new MessageSetMailBoxName(this.nameField.getValue(), this.mailBoxBlockEntity.getBlockPos()));
             }
         }));
         this.btnSave.active = false;
 
         this.addRenderableWidget(new Button(guiLeft + 91, guiTop + 42, 79, 20, new TranslatableComponent("gui.button.cfm.back"), button ->
         {
-            PacketHandler.instance.sendToServer(new MessageOpenMailBox(this.mailBoxBlockEntity.getBlockPos()));
+            PacketHandler.getPlayChannel()
+                    .sendToServer(new MessageOpenMailBox(this.mailBoxBlockEntity.getBlockPos()));
         }));
     }
 

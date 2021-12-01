@@ -7,8 +7,8 @@ import com.mrcrayfish.furniture.tileentity.GrillBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.util.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +23,10 @@ public class ClientPlayHandler
         if(Minecraft.getInstance().screen instanceof PostBoxScreen)
         {
             CompoundTag compound = message.getCompound();
-            if(compound.contains("MailBoxes", Constants.NBT.TAG_LIST))
+            if(compound.contains("MailBoxes", Tag.TAG_LIST))
             {
                 List<MailBoxEntry> entries = new ArrayList<>();
-                ListTag mailBoxList = compound.getList("MailBoxes", Constants.NBT.TAG_COMPOUND);
+                ListTag mailBoxList = compound.getList("MailBoxes", Tag.TAG_COMPOUND);
                 mailBoxList.forEach(nbt -> entries.add(new MailBoxEntry((CompoundTag) nbt)));
                 ((PostBoxScreen) Minecraft.getInstance().screen).updateMailBoxes(entries);
             }

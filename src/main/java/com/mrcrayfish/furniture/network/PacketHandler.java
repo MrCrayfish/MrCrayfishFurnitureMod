@@ -11,8 +11,8 @@ import com.mrcrayfish.furniture.network.message.MessageSetDoorMatMessage;
 import com.mrcrayfish.furniture.network.message.MessageSetMailBoxName;
 import com.mrcrayfish.furniture.network.message.MessageUpdateMailBoxes;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.fmllegacy.network.NetworkRegistry;
-import net.minecraftforge.fmllegacy.network.simple.SimpleChannel;
+import net.minecraftforge.network.NetworkRegistry;
+import net.minecraftforge.network.simple.SimpleChannel;
 
 /**
  * Author: MrCrayfish
@@ -21,7 +21,7 @@ public class PacketHandler
 {
     public static final String PROTOCOL_VERSION = "1";
 
-    public static SimpleChannel instance;
+    private static SimpleChannel instance;
     private static int nextId = 0;
 
     public static void init()
@@ -45,5 +45,10 @@ public class PacketHandler
     private static <T> void register(Class<T> clazz, IMessage<T> message)
     {
         instance.registerMessage(nextId++, clazz, message::encode, message::decode, message::handle);
+    }
+
+    public static SimpleChannel getPlayChannel()
+    {
+        return instance;
     }
 }

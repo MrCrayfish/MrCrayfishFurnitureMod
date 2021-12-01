@@ -25,6 +25,7 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.FoliageColor;
@@ -32,7 +33,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.ModList;
 
 import java.util.function.Predicate;
@@ -346,7 +346,7 @@ public class ClientHandler
             if(tag != null)
             {
                 CompoundTag blockEntityTag = tag.getCompound("BlockEntityTag");
-                if(blockEntityTag.contains("Color", Constants.NBT.TAG_INT))
+                if(blockEntityTag.contains("Color", Tag.TAG_INT))
                 {
                     return DyeColor.byId(blockEntityTag.getInt("Color")).getMaterialColor().col;
                 }

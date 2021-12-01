@@ -41,8 +41,8 @@ public class ClientEvents
         double posX = camera.getPosition().x;
         double posY = camera.getPosition().y;
         double posZ = camera.getPosition().z;
-        VertexConsumer builder = event.getBuffers().getBuffer(RenderType.lines());
-        drawShape(event.getMatrix(), builder, collisionShape, -posX + pos.getX(), -posY + pos.getY(), -posZ + pos.getZ(), 0.0F, 1.0F, 0.0F, 1.0F);
+        VertexConsumer builder = event.getMultiBufferSource().getBuffer(RenderType.lines());
+        drawShape(event.getPoseStack(), builder, collisionShape, -posX + pos.getX(), -posY + pos.getY(), -posZ + pos.getZ(), 0.0F, 1.0F, 0.0F, 1.0F);
     }
 
     private static void drawShape(PoseStack poseStack, VertexConsumer consumer, VoxelShape voxelShape, double xIn, double yIn, double zIn, float red, float green, float blue, float alpha)

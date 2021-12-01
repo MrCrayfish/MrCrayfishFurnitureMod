@@ -13,15 +13,13 @@ buildscript {
     }
 }
 apply plugin: 'net.minecraftforge.gradle'
-apply from: 'https://raw.githubusercontent.com/SizableShrimp/Forge-Class-Remapper/main/classremapper.gradle'
 //apply plugin: 'org.spongepowered.mixin'
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 version = project.property('mod.version') + "-" + project.property('minecraft.version')
 group = "com.mrcrayfish"
 archivesBaseName = "furniture"
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(16)
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 /*mixin {
     add sourceSets.main, "cfm.refmap.json"
@@ -38,7 +36,7 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
-            //arg '-mixin.config=cfm.mixins.json'
+            arg '-mixin.config=cfm.mixins.json'
             mods {
                 cfm {
                     source sourceSets.main
@@ -50,7 +48,7 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
             property 'forge.logging.console.level', 'debug'
-            //arg '-mixin.config=cfm.mixins.json'
+            arg '-mixin.config=cfm.mixins.json'
             mods {
                 cfm {
                     source sourceSets.main
@@ -79,9 +77,10 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.17.1-37.0.24'
-    runtimeOnly fg.deobf('curse.maven:configured-457570:3397732')
-    runtimeOnly fg.deobf('curse.maven:catalogue-459701:3397798')
+    minecraft 'net.minecraftforge:forge:1.18-38.0.3'
+    //annotationProcessor 'org.spongepowered:mixin:0.8.4:processor'
+    //runtimeOnly fg.deobf('curse.maven:configured-457570:3397732')
+    //runtimeOnly fg.deobf('curse.maven:catalogue-459701:3397798')
 }
 
 //processResources {
