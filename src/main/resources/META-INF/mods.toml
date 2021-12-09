@@ -5,7 +5,7 @@ issueTrackerURL="https://github.com/MrCrayfish/MrCrayfishFurnitureMod/issues"
 
 [[mods]]
 modId="cfm"
-version="7.0.0-pre25"
+version="7.0.0-pre26"
 displayName="MrCrayfish's Furniture Mod"
 updateJSONURL="https://mrcrayfish.com/modupdatejson?id=cfm"
 displayURL="https://mrcrayfish.com/mods?id=cfm"
