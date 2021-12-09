@@ -166,10 +166,10 @@ public class CrateBlockEntity extends BasicLootBlockEntity
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound)
+    protected void saveAdditional(CompoundTag tag)
     {
-        this.writeData(compound);
-        return super.save(compound);
+        super.saveAdditional(tag);
+        this.writeData(tag);
     }
 
     @Override

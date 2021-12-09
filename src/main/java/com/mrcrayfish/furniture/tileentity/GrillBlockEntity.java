@@ -585,17 +585,17 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound)
+    protected void saveAdditional(CompoundTag tag)
     {
-        this.writeItems(compound);
-        this.writeFuel(compound);
-        this.writeCookingTimes(compound);
-        this.writeCookingTotalTimes(compound);
-        this.writeFlipped(compound);
-        this.writeExperience(compound);
-        this.writeRemainingFuel(compound);
-        this.writeRotations(compound);
-        return super.save(compound);
+        super.saveAdditional(tag);
+        this.writeItems(tag);
+        this.writeFuel(tag);
+        this.writeCookingTimes(tag);
+        this.writeCookingTotalTimes(tag);
+        this.writeFlipped(tag);
+        this.writeExperience(tag);
+        this.writeRemainingFuel(tag);
+        this.writeRotations(tag);
     }
 
     private CompoundTag writeItems(CompoundTag compound)

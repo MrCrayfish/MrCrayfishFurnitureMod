@@ -55,13 +55,13 @@ public class DoorMatBlockEntity extends BlockEntity
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound)
+    protected void saveAdditional(CompoundTag tag)
     {
+        super.saveAdditional(tag);
         if(this.message != null)
         {
-            compound.putString("Message", this.message);
+            tag.putString("Message", this.message);
         }
-        return super.save(compound);
     }
 
     @Nullable

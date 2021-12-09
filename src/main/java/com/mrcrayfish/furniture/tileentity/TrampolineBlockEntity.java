@@ -98,10 +98,10 @@ public class TrampolineBlockEntity extends BlockEntity
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound)
+    protected void saveAdditional(CompoundTag tag)
     {
-        this.writeData(compound);
-        return super.save(compound);
+        super.saveAdditional(tag);
+        this.writeData(tag);
     }
 
     @Override

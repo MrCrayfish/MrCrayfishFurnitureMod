@@ -55,10 +55,10 @@ public abstract class FluidHandlerSyncedBlockEntity extends BlockEntity
     }
 
     @Override
-    public CompoundTag save(CompoundTag tag)
+    protected void saveAdditional(CompoundTag tag)
     {
+        super.saveAdditional(tag);
         this.tank.writeToNBT(tag);
-        return super.save(tag);
     }
 
     @Override

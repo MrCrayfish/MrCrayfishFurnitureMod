@@ -400,21 +400,20 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound)
+    protected void saveAdditional(CompoundTag tag)
     {
-        super.save(compound);
-        compound.putInt("FreezeTime", this.freezeTime);
-        compound.putInt("FreezeTimeTotal", this.freezeTimeTotal);
-        compound.putInt("FuelTime", this.fuelTime);
-        compound.putShort("RecipesUsedSize", (short)this.usedRecipeCount.size());
+        super.saveAdditional(tag);
+        tag.putInt("FreezeTime", this.freezeTime);
+        tag.putInt("FreezeTimeTotal", this.freezeTimeTotal);
+        tag.putInt("FuelTime", this.fuelTime);
+        tag.putShort("RecipesUsedSize", (short)this.usedRecipeCount.size());
         int i = 0;
         for(Map.Entry<ResourceLocation, Integer> entry : this.usedRecipeCount.entrySet())
         {
-            compound.putString("RecipeLocation" + i, entry.getKey().toString());
-            compound.putInt("RecipeAmount" + i, entry.getValue());
-            ++i;
+            tag.putString("RecipeLocation" + i, entry.getKey().toString());
+            tag.putInt("RecipeAmount" + i, entry.getValue());
+            i++;
         }
-        return compound;
     }
 
     public ContainerData getFreezerData()
