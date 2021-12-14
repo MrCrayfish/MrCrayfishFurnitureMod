@@ -1,6 +1,5 @@
 { 
   "itemGroup.cfm": "MrCrayfish's Furniture Mod", 
-  //mesas "block.cfm.oak_table": "Mesa de carvalho", 
   "block.cfm.spruce_table": "Mesa de abeto", 
   "block.cfm.birch_table": "Mesa de bétula", 
   "block.cfm.jungle_table": "Mesa de madeira da selva", 
@@ -20,7 +19,6 @@
   "block.cfm.stripped_dark_oak_table": "Mesa de carvalho escuro descascado", 
   "block.cfm.stripped_crimson_table": "Mesa carmesim descascada", 
   "block.cfm.stripped_warped_table": "Mesa deformada descascada", 
-  //cadeiras 
   "block.cfm.oak_chair": "Cadeira de carvalho", 
   "block.cfm.spruce_chair": "Cadeira de abeto", 
   "block.cfm.birch_chair": "Cadeira de bétula", 
@@ -40,8 +38,7 @@
   "block.cfm.stripped_acacia_chair": "Cadeira de acácia descascada", 
   "block.cfm.stripped_dark_oak_chair": "Cadeira de carvalho escuro descascado", 
   "block.cfm.stripped_crimson_chair": "Mesa carmesim descascada", 
-  "block.cfm.stripped_warped_chair": "Mesa deformada descascada", 
-  //mesas centrais 
+  "block.cfm.stripped_warped_chair": "Mesa deformada descascada",  
   "block.cfm.oak_coffee_table": "Mesa de centro de carvalho", 
   "block.cfm.spruce_coffee_table": "Mesa de centro de abeto", 
   "block.cfm.birch_coffee_table": "Mesa de centro de bétula", 
@@ -62,7 +59,6 @@
   "block.cfm.stripped_dark_oak_coffee_table": "Mesa de centro de carvalho escuro descascado", 
   "block.cfm.stripped_crimson_coffee_table": "Mesa de centro carmesim descascada", 
   "block.cfm.stripped_warped_coffee_table": "Mesa de centro deformada descascada", 
-  //armários 
   "block.cfm.oak_cabinet": "Armário de carvalho", 
   "block.cfm.spruce_cabinet": "Armário de abeto", 
   "block.cfm.birch_cabinet": "Armário de bétula", 
@@ -83,7 +79,6 @@
   "block.cfm.stripped_dark_oak_cabinet": "Armário de carvalho escuro descascado", 
   "block.cfm.stripped_crimson_cabinet": "Armário carmesim descascado", 
   "block.cfm.stripped_warped_cabinet": "Armário deformado descascado", 
-  //mesas de cabeçeira 
   "block.cfm.oak_bedside_cabinet": "Mesa de cabeçeira de carvalho", 
   "block.cfm.spruce_bedside_cabinet": "Mesa de cabeçeira de abeto", 
   "block.cfm.birch_bedside_cabinet": "Mesa de cabeçeira de bétula", 
@@ -104,7 +99,6 @@
   "block.cfm.stripped_dark_oak_bedside_cabinet": "Mesa de cabeçeira de carvalho escuro descascado", 
   "block.cfm.stripped_crimson_bedside_cabinet": "Mesa de cabeçeira carmim descascada", 
   "block.cfm.stripped_warped_bedside_cabinet": "Mesa de cabeçeira deformada descascada", 
-  //secretárias 
   "block.cfm.oak_desk": "Secretária de carvalho", 
   "block.cfm.spruce_desk": "Secretária de abeto", 
   "block.cfm.birch_desk": "Secretária de bétula", 
@@ -125,7 +119,6 @@
   "block.cfm.stripped_dark_oak_desk": "Secretária de carvalho escuro descascado", 
   "block.cfm.stripped_crimson_desk": "Secretária carmesim descascada", 
   "block.cfm.stripped_warped_desk": "Secretária deformada descascada", 
-  //armários de secretária 
   "block.cfm.oak_desk_cabinet": "Armário de secretária de carvalho", 
   "block.cfm.spruce_desk_cabinet": "Armário de secretária de abeto", 
   "block.cfm.birch_desk_cabinet": "Armário de secretária de bétula", 
@@ -146,7 +139,6 @@
   "block.cfm.stripped_dark_oak_desk_cabinet": "Armário de secretária de carvalho escuro descascado", 
   "block.cfm.stripped_crimson_desk_cabinet": "Armário de secretária carmesim descascado", 
   "block.cfm.stripped_warped_desk_cabinet": "Armário de secretária deformado descascado", 
-  //sofás 
   "block.cfm.white_sofa": "Sofá branco", 
   "block.cfm.orange_sofa": "Sofá laranja", 
   "block.cfm.magenta_sofa": "Sofá magenta", 
@@ -164,7 +156,6 @@
   "block.cfm.red_sofa": "Sofá vermelho", 
   "block.cfm.black_sofa": "Sofá preto", 
   "block.cfm.rainbow_sofa": "Sofá arco-íris", 
-  //cortinas 
   "block.cfm.oak_blinds": "Cortinas de carvalho", 
   "block.cfm.spruce_blinds": "Cortinas de abeto", 
   "block.cfm.birch_blinds": "Cortinas de bétula", 
@@ -181,7 +172,6 @@
   "block.cfm.stripped_dark_oak_blinds": "Cortinas de carvalho escuro descascado", 
   "block.cfm.stripped_crimson_blinds": "Cortinas carmesim descascadas", 
   "block.cfm.stripped_warped_blinds": "Cortinas deformadas descascadas", 
-  //cercas 
   "block.cfm.oak_upgraded_fence": "Cerca melhorada de carvalho", 
   "block.cfm.spruce_upgraded_fence": "Cerca melhorada de abeto", 
   "block.cfm.birch_upgraded_fence": "Cerca melhorada de bétula", 
@@ -198,7 +188,6 @@
   "block.cfm.stripped_dark_oak_upgraded_fence": "Cerca melhorada de carvalho escuro descascado", 
   "block.cfm.stripped_crimson_upgraded_fence": "Cerca melhorada carmesim descascada", 
   "block.cfm.stripped_warped_upgraded_fence": "Cerca melhorada deformada descascada", 
-  //portoes 
   "block.cfm.oak_upgraded_gate": "Portão melhorado de carvalho", 
   "block.cfm.spruce_upgraded_gate": "Portão melhorado de abeto", 
   "block.cfm.birch_upgraded_gate": "Portão melhorado de bétula", 
@@ -215,7 +204,6 @@
   "block.cfm.stripped_dark_oak_upgraded_gate": "Portão melhorado de carvalho escuro descascado", 
   "block.cfm.stripped_crimson_upgraded_gate": "Portão melhorado carmesim descascado", 
   "block.cfm.stripped_warped_upgraded_gate": "Portão melhorado deformado descascado", 
-  //cercas de estacas 
   "block.cfm.white_picket_fence": "Cerca de estacas branca", 
   "block.cfm.orange_picket_fence": "Cerca de estacas laranja", 
   "block.cfm.magenta_picket_fence": "Cerca de estacas magenta", 
@@ -248,7 +236,6 @@
   "block.cfm.green_picket_gate": "Portão de estacas verde", 
   "block.cfm.red_picket_gate": "Portão de estacas vermelho", 
   "block.cfm.black_picket_gate": "Portão de estacas preto", 
-  //caixas 
   "block.cfm.oak_crate": "Caixa de carvalho", 
   "block.cfm.spruce_crate": "Caixa de abeto", 
   "block.cfm.birch_crate": "Caixa de bétula", 
@@ -265,7 +252,6 @@
   "block.cfm.stripped_dark_oak_crate": "Caixa de carvalho escuro descascado", 
   "block.cfm.stripped_crimson_crate": "Caixa carmesim descascada", 
   "block.cfm.stripped_warped_crate": "Caixa deformada descascada", 
-  //bancos de jardim 
   "block.cfm.oak_park_bench": "Banco de jardim de carvalho", 
   "block.cfm.spruce_park_bench": "Banco de jardim de abeto", 
   "block.cfm.birch_park_bench": "Banco de jardim de bétula", 
@@ -282,7 +268,6 @@
   "block.cfm.stripped_dark_oak_park_bench": "Banco de jardim de carvalho escuro descascado", 
   "block.cfm.stripped_crimson_park_bench": "Banco de jardim carmesim descascado", 
   "block.cfm.stripped_warped_park_bench": "Banco de jardim deformado descascado", 
-  //caixas de correio 
   "block.cfm.post_box": "Caixa de correio", 
   "block.cfm.oak_mail_box": "Caixa de correio de carvalho", 
   "block.cfm.spruce_mail_box": "Caixa de correio de abeto", 
@@ -300,7 +285,6 @@
   "block.cfm.stripped_dark_oak_mail_box": "Caixa de correio de carvalho escuro descascado", 
   "block.cfm.stripped_crimson_mail_box": "Caixa de correio carmesim descascada", 
   "block.cfm.stripped_warped_mail_box": "Caixa de correio deformada descascada", 
-  //sebes 
   "block.cfm.oak_hedge": "Sebe de carvalho", 
   "block.cfm.spruce_hedge": "Sebe de abeto", 
   "block.cfm.birch_hedge": "Sebe de bétula", 
@@ -308,7 +292,6 @@
   "block.cfm.acacia_hedge": "Sebe de acácia", 
   "block.cfm.dark_oak_hedge": "Sebe de carvalho escuro", 
   "block.cfm.rock_path": "Caminho de pedras", 
-  //trampolims 
   "block.cfm.white_trampoline": "Trampolim branco", 
   "block.cfm.orange_trampoline": "Trampolim laranja", 
   "block.cfm.magenta_trampoline": "Trampolim magenta", 
@@ -325,7 +308,6 @@
   "block.cfm.green_trampoline": "Trampolim verde", 
   "block.cfm.red_trampoline": "Trampolim vermelho", 
   "block.cfm.black_trampoline": "Trampolim preto", 
-  //refrigeradores 
   "block.cfm.white_cooler": "Refrigerador branco", 
   "block.cfm.orange_cooler": "Refrigerador laranja", 
   "block.cfm.magenta_cooler": "Refrigerador magenta", 
@@ -342,7 +324,6 @@
   "block.cfm.green_cooler": "Refrigerador verde", 
   "block.cfm.red_cooler": "Refrigerador vermelho", 
   "block.cfm.black_cooler": "Refrigerador preto", 
-  //grelhadores 
   "block.cfm.white_grill": "Grelhador branco", 
   "block.cfm.orange_grill": "Grelhador laranja", 
   "block.cfm.magenta_grill": "Grelhador magenta", 
@@ -360,7 +341,6 @@
   "block.cfm.red_grill": "Grelhador vermelho", 
   "block.cfm.black_grill": "Grelhador preto", 
   "block.cfm.door_mat": "Capacho", "block.cfm.diving_board": "Prancha de mergulho", 
-  //balcoes de cozilha 
   "block.cfm.oak_kitchen_counter": "Balcão de cozinha de carvalho", 
   "block.cfm.spruce_kitchen_counter": "Balcão de cozinha de abeto", 
   "block.cfm.birch_kitchen_counter": "Balcão de cozinha de bétula", 
@@ -393,7 +373,6 @@
   "block.cfm.green_kitchen_counter": "Balcão de cozinha verde", 
   "block.cfm.red_kitchen_counter": "Balcão de cozinha vermelho", 
   "block.cfm.black_kitchen_counter": "Balcão de cozinha preto", 
-  //gavetas de cozinha 
   "block.cfm.oak_kitchen_drawer": "Gavetas de cozinha de carvalho", 
   "block.cfm.spruce_kitchen_drawer": "Gavetas de cozinha de abeto", 
   "block.cfm.birch_kitchen_drawer": "Gavetas de cozinha de bétula", 
@@ -426,7 +405,6 @@
   "block.cfm.green_kitchen_drawer": "Gavetas de cozinha verdes", 
   "block.cfm.red_kitchen_drawer": "Gavetas de cozinha vermelhas", 
   "block.cfm.black_kitchen_drawer": "Gavetas de cozinha pretas", 
-  //pias 
   "block.cfm.oak_kitchen_sink_light": "Pia de carvalho (Clara)", 
   "block.cfm.spruce_kitchen_sink_light": "Pia de abeto (Clara)", 
   "block.cfm.birch_kitchen_sink_light": "Pia de bétula (Clara)", 
@@ -475,13 +453,11 @@
   "block.cfm.green_kitchen_sink": "Pia verde", 
   "block.cfm.red_kitchen_sink": "Pia vermelha", 
   "block.cfm.black_kitchen_sink": "Pia preta", 
-  //outros 
   "block.cfm.fridge_light": "Frigorífico (Claro)", 
   "block.cfm.freezer_light": "Congelador (Claro)", 
   "block.cfm.fridge_dark": "Frigorífico (Escuro)", 
   "block.cfm.freezer_dark": "Congelador (Escuro)", 
   "item.cfm.spatula": "Espátula", 
-  //containers
   "container.cfm.cabinet": "Armário", 
   "container.cfm.bedside_cabinet": "Mesa de cabeçeira", 
   "container.cfm.desk_cabinet": "Armário de secretária", 
@@ -492,7 +468,6 @@
   "container.cfm.kitchen_drawer": "Gaveta de Cozinha", 
   "container.cfm.fridge": "Frigorífico", 
   "container.cfm.freezer": "Congelador", 
-  //GUI
   "gui.button.cfm.locked": "Trancado", 
   "gui.button.cfm.unlocked": "Destrancado", 
   "gui.button.cfm.save": "Salvar", 
@@ -515,7 +490,6 @@
   "subtitle.cfm.trampoline_bounce": "Salto no trampolim", 
   "subtitle.cfm.grill_place": "Colocar comida no grelhador", 
   "subtitle.cfm.grill_flip": "Virar comida no grelhador", 
-  //legendas
   "subtitle.cfm.diving_board.bounce": "Salto na prancha de mergulho", 
   "subtitle.cfm.open_fridge": "Abrir frigorífico", 
   "subtitle.cfm.close_fridge": "Fechar frigorífico", 
