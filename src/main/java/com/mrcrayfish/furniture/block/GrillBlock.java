@@ -3,7 +3,6 @@ package com.mrcrayfish.furniture.block;
 import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.core.ModItems;
 import com.mrcrayfish.furniture.item.crafting.GrillCookingRecipe;
-import com.mrcrayfish.furniture.tileentity.FreezerBlockEntity;
 import com.mrcrayfish.furniture.tileentity.GrillBlockEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.core.BlockPos;

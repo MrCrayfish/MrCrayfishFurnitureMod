@@ -44,7 +44,7 @@ public class IconButton extends Button
         RenderSystem.enableBlend();
         RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
-        int offset = this.getYImage(this.isHovered());
+        int offset = this.getYImage(this.isHoveredOrFocused());
         this.blit(poseStack, this.x, this.y, 0, 46 + offset * 20, this.width / 2, this.height);
         this.blit(poseStack, this.x + this.width / 2, this.y, 200 - this.width / 2, 46 + offset * 20, this.width / 2, this.height);
         if(!this.active)

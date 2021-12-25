@@ -4,10 +4,10 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.INBTSerializable;
 
 import java.util.ArrayList;
@@ -135,9 +135,9 @@ public class MailBox implements INBTSerializable<CompoundTag>
         this.pos = BlockPos.of(compound.getLong("Pos"));
         this.levelResourceKey = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(compound.getString("World")));
 
-        if(compound.contains("MailStorage", Constants.NBT.TAG_LIST))
+        if(compound.contains("MailStorage", Tag.TAG_LIST))
         {
-            ListTag mailStorageList = compound.getList("MailStorage", Constants.NBT.TAG_COMPOUND);
+            ListTag mailStorageList = compound.getList("MailStorage", Tag.TAG_COMPOUND);
             mailStorageList.forEach(nbt2 ->
             {
                 CompoundTag mailCompound = (CompoundTag) nbt2;

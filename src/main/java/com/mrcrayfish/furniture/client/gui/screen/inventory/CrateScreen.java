@@ -41,7 +41,8 @@ public class CrateScreen extends AbstractContainerScreen<CrateMenu>
     protected void init()
     {
         super.init();
-        this.button = this.addRenderableWidget(new IconButton(this.leftPos + this.imageWidth + 2, this.topPos + 17, new TranslatableComponent("gui.button.cfm.lock"), button -> PacketHandler.instance.sendToServer(new MessageLockCrate()), ICONS_TEXTURE, 0, 0));
+        this.button = this.addRenderableWidget(new IconButton(this.leftPos + this.imageWidth + 2, this.topPos + 17, new TranslatableComponent("gui.button.cfm.lock"), button -> PacketHandler.getPlayChannel()
+                .sendToServer(new MessageLockCrate()), ICONS_TEXTURE, 0, 0));
         this.updateLockButton();
     }
 

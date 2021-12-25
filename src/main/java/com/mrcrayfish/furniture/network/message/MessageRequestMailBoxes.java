@@ -7,7 +7,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.fmllegacy.network.NetworkEvent;
+import net.minecraftforge.network.NetworkEvent;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -39,7 +39,8 @@ public class MessageRequestMailBoxes implements IMessage<MessageRequestMailBoxes
                 ListTag mailBoxList = new ListTag();
                 mailBoxes.forEach(mailBox -> mailBoxList.add(mailBox.serializeDetails()));
                 compound.put("MailBoxes", mailBoxList);
-                PacketHandler.instance.reply(new MessageUpdateMailBoxes(compound), supplier.get());
+                PacketHandler.getPlayChannel()
+                        .reply(new MessageUpdateMailBoxes(compound), supplier.get());
             }
         });
         supplier.get().setPacketHandled(true);

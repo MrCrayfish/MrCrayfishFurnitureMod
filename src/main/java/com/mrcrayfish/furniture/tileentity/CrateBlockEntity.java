@@ -10,6 +10,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -21,13 +22,12 @@ import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nullable;
 import java.util.UUID;
@@ -166,10 +166,10 @@ public class CrateBlockEntity extends BasicLootBlockEntity
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound)
+    protected void saveAdditional(CompoundTag tag)
     {
-        this.writeData(compound);
-        return super.save(compound);
+        super.saveAdditional(tag);
+        this.writeData(tag);
     }
 
     @Override
@@ -182,7 +182,7 @@ public class CrateBlockEntity extends BasicLootBlockEntity
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return new ClientboundBlockEntityDataPacket(this.worldPosition, 0, this.getUpdateTag());
+        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
     }
 
     @Override
@@ -198,7 +198,7 @@ public class CrateBlockEntity extends BasicLootBlockEntity
         {
             this.ownerUuid = compound.getUUID("OwnerUUID");
         }
-        if(compound.contains("Locked", Constants.NBT.TAG_BYTE))
+        if(compound.contains("Locked", Tag.TAG_BYTE))
         {
             this.locked = compound.getBoolean("Locked");
         }

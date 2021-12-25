@@ -7,17 +7,17 @@ import com.mrcrayfish.furniture.util.BlockEntityUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.saveddata.SavedData;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fmllegacy.server.ServerLifecycleHooks;
+import net.minecraftforge.server.ServerLifecycleHooks;
 
 import java.util.HashMap;
 import java.util.List;
@@ -48,18 +48,18 @@ public class PostOffice extends SavedData
     public void read(CompoundTag compound)
     {
         this.playerMailboxMap.clear();
-        if(compound.contains("PlayerMailBoxes", Constants.NBT.TAG_LIST))
+        if(compound.contains("PlayerMailBoxes", Tag.TAG_LIST))
         {
-            ListTag playerMailBoxesList = compound.getList("PlayerMailBoxes", Constants.NBT.TAG_COMPOUND);
+            ListTag playerMailBoxesList = compound.getList("PlayerMailBoxes", Tag.TAG_COMPOUND);
             playerMailBoxesList.forEach(nbt ->
             {
                 CompoundTag playerMailBoxesCompound = (CompoundTag) nbt;
                 UUID playerId = playerMailBoxesCompound.getUUID("PlayerUUID");
 
-                if(playerMailBoxesCompound.contains("MailBoxes", Constants.NBT.TAG_LIST))
+                if(playerMailBoxesCompound.contains("MailBoxes", Tag.TAG_LIST))
                 {
                     Map<UUID, MailBox> mailBoxMap = new HashMap<>();
-                    ListTag mailBoxList = playerMailBoxesCompound.getList("MailBoxes", Constants.NBT.TAG_COMPOUND);
+                    ListTag mailBoxList = playerMailBoxesCompound.getList("MailBoxes", Tag.TAG_COMPOUND);
                     mailBoxList.forEach(nbt2 ->
                     {
                         CompoundTag mailBoxCompound = (CompoundTag) nbt2;

@@ -1,11 +1,11 @@
 modLoader="javafml"
-loaderVersion="[37,)"
+loaderVersion="[39,)"
 license="GPLv3"
 issueTrackerURL="https://github.com/MrCrayfish/MrCrayfishFurnitureMod/issues"
 
 [[mods]]
 modId="cfm"
-version="7.0.0-pre25"
+version="7.0.0-pre27"
 displayName="MrCrayfish's Furniture Mod"
 updateJSONURL="https://mrcrayfish.com/modupdatejson?id=cfm"
 displayURL="https://mrcrayfish.com/mods?id=cfm"
@@ -17,13 +17,13 @@ description="MrCrayfish's Furniture Mod is all about adding functioning furnitur
 [[dependencies.cfm]]
     modId="forge"
     mandatory=true
-    versionRange="[37.0.24,)"
+    versionRange="[39,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.cfm]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.17.1,)"
+    versionRange="[1.18.1,1.19)"
     ordering="NONE"
     side="BOTH"
 

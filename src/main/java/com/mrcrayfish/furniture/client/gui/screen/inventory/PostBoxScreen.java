@@ -73,14 +73,16 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
         this.addWidget(this.searchField);
         this.btnSend = this.addRenderableWidget(new IconButton(this.leftPos + 147, this.topPos + 53, new TranslatableComponent("gui.button.cfm.send_mail"), this::sendMail, ICONS_TEXTURE, 32, 0));
         this.btnSend.active = false;
-        PacketHandler.instance.sendToServer(new MessageRequestMailBoxes());
+        PacketHandler.getPlayChannel()
+                .sendToServer(new MessageRequestMailBoxes());
     }
 
     private void sendMail(Button button)
     {
         if(this.selected != null && !this.menu.getMail().isEmpty())
         {
-            PacketHandler.instance.sendToServer(new MessageSendMail(this.selected.getOwnerId(), this.selected.getMailBoxId()));
+            PacketHandler.getPlayChannel()
+                    .sendToServer(new MessageSendMail(this.selected.getOwnerId(), this.selected.getMailBoxId()));
         }
     }
 

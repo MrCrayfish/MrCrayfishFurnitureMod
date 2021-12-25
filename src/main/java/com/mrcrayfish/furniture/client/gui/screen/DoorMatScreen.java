@@ -64,7 +64,8 @@ public class DoorMatScreen extends Screen
         {
             if(this.isValidName())
             {
-                PacketHandler.instance.sendToServer(new MessageSetDoorMatMessage(this.doorMatBlockEntity.getBlockPos(), this.nameField.getValue()));
+                PacketHandler.getPlayChannel()
+                        .sendToServer(new MessageSetDoorMatMessage(this.doorMatBlockEntity.getBlockPos(), this.nameField.getValue()));
                 this.minecraft.player.closeContainer();
             }
         }));
