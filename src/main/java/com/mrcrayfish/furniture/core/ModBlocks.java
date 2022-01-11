@@ -101,6 +101,9 @@ public class ModBlocks
     public static final RegistryObject<Block> CHAIR_GREEN_MODERN = register("green_modern_chair", new ModernChairBlock(Block.Properties.from(Blocks.GREEN_CONCRETE).notSolid()));
     public static final RegistryObject<Block> CHAIR_RED_MODERN = register("red_modern_chair", new ModernChairBlock(Block.Properties.from(Blocks.RED_CONCRETE).notSolid()));
     public static final RegistryObject<Block> CHAIR_BLACK_MODERN = register("black_modern_chair", new ModernChairBlock(Block.Properties.from(Blocks.BLACK_CONCRETE).notSolid()));
+
+    public static final RegistryObject<Block> CHAIR_WHITE_OFFICE = register("white_office_chair", new OfficeChairBlock(AbstractBlock.Properties.from(Blocks.WHITE_WOOL).notSolid()));
+
     public static final RegistryObject<Block> COFFEE_TABLE_OAK = register("oak_coffee_table", new CoffeeTableBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> COFFEE_TABLE_SPRUCE = register("spruce_coffee_table", new CoffeeTableBlock(Block.Properties.from(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> COFFEE_TABLE_BIRCH = register("birch_coffee_table", new CoffeeTableBlock(Block.Properties.from(Blocks.BIRCH_PLANKS)));
