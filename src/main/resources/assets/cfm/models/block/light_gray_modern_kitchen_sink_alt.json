@@ -1,0 +1,6 @@
+{
+    "parent": "cfm:block/modern_kitchen_sink_alt",
+    "textures": {
+        "sink": "minecraft:block/light_gray_concrete"
+    }
+}

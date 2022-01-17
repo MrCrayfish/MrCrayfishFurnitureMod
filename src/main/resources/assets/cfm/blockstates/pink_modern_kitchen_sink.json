@@ -1,0 +1,20 @@
+{
+    "variants": {
+        "facing=north": {
+            "model": "cfm:block/pink_modern_kitchen_sink_alt",
+            "y": 0
+        },
+        "facing=east": {
+            "model": "cfm:block/pink_modern_kitchen_sink_alt",
+            "y": 90
+        },
+        "facing=south": {
+            "model": "cfm:block/pink_modern_kitchen_sink_alt",
+            "y": 180
+        },
+        "facing=west": {
+            "model": "cfm:block/pink_modern_kitchen_sink_alt",
+            "y": 270
+        }
+    }
+}

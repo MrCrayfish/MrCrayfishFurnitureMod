@@ -1,12 +1,12 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
     "textures": {
-        "particle": "minecraft:block/white_wool",
+        "particle": "minecraft:block/pink_wool",
         "0": "minecraft:block/black_concrete",
         "1": "minecraft:block/cyan_terracotta",
         "2": "minecraft:block/stone",
         "3": "minecraft:block/gray_concrete",
-        "chair_color": "minecraft:block/white_wool"
+        "chair_color": "minecraft:block/pink_wool"
     },
     "display": {
         "gui": {

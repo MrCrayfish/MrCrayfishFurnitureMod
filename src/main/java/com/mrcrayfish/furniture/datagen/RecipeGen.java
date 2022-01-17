@@ -708,6 +708,23 @@ public class RecipeGen extends RecipeProvider
         coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_GREEN.get(), Blocks.GREEN_TERRACOTTA);
         coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_RED.get(), Blocks.RED_TERRACOTTA);
         coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_BLACK.get(), Blocks.BLACK_TERRACOTTA);
+        modernKitchenSink(consumer, ModBlocks.KITCHEN_SINK_WHITE.get(), Blocks.WHITE_CONCRETE);
+        modernKitchenSink(consumer, ModBlocks.KITCHEN_SINK_ORANGE.get(), Blocks.ORANGE_CONCRETE);
+        modernKitchenSink(consumer, ModBlocks.KITCHEN_SINK_MAGENTA.get(), Blocks.MAGENTA_CONCRETE);
+        modernKitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_BLUE.get(), Blocks.LIGHT_BLUE_CONCRETE);
+        modernKitchenSink(consumer, ModBlocks.KITCHEN_SINK_YELLOW.get(), Blocks.YELLOW_CONCRETE);
+        modernKitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIME.get(), Blocks.LIME_CONCRETE);
+        modernKitchenSink(consumer, ModBlocks.KITCHEN_SINK_PINK.get(), Blocks.PINK_CONCRETE);
+        modernKitchenSink(consumer, ModBlocks.KITCHEN_SINK_GRAY.get(), Blocks.GRAY_CONCRETE);
+        modernKitchenSink(consumer, ModBlocks.KITCHEN_SINK_LIGHT_GRAY.get(), Blocks.LIGHT_GRAY_CONCRETE);
+        modernKitchenSink(consumer, ModBlocks.KITCHEN_SINK_CYAN.get(), Blocks.CYAN_CONCRETE);
+        modernKitchenSink(consumer, ModBlocks.KITCHEN_SINK_PURPLE.get(), Blocks.PURPLE_CONCRETE);
+        modernKitchenSink(consumer, ModBlocks.KITCHEN_SINK_BLUE.get(), Blocks.BLUE_CONCRETE);
+        modernKitchenSink(consumer, ModBlocks.KITCHEN_SINK_BROWN.get(), Blocks.BROWN_CONCRETE);
+        modernKitchenSink(consumer, ModBlocks.KITCHEN_SINK_GREEN.get(), Blocks.GREEN_CONCRETE);
+        modernKitchenSink(consumer, ModBlocks.KITCHEN_SINK_RED.get(), Blocks.RED_CONCRETE);
+        modernKitchenSink(consumer, ModBlocks.KITCHEN_SINK_BLACK.get(), Blocks.BLACK_CONCRETE);
+
         // Fridges
         ShapedRecipeBuilder.shapedRecipe(ModBlocks.FREEZER_LIGHT.get())
                 .patternLine("CIC")
@@ -1281,6 +1298,23 @@ public class RecipeGen extends RecipeProvider
                 .setGroup("kitchen_sink")
                 .addCriterion("has_top", hasItem(top))
                 .addCriterion("has_concrete", hasItem(Blocks.WHITE_CONCRETE))
+                .addCriterion("has_bucket", hasItem(Items.BUCKET))
+                .build(recipeConsumer);
+    }
+
+    private static void modernKitchenSink(Consumer<IFinishedRecipe> recipeConsumer, IItemProvider sink, IItemProvider top)
+    {
+        ShapedRecipeBuilder.shapedRecipe(sink, 2)
+                .patternLine("CIC")
+                .patternLine("PBP")
+                .patternLine("PPP")
+                .key('C', top)
+                .key('I', Tags.Items.INGOTS_IRON)
+                .key('P', Blocks.STONE)
+                .key('B', Items.BUCKET)
+                .setGroup("kitchen_sink")
+                .addCriterion("has_top", hasItem(top))
+                .addCriterion("has_andesite", hasItem(Blocks.POLISHED_ANDESITE))
                 .addCriterion("has_bucket", hasItem(Items.BUCKET))
                 .build(recipeConsumer);
     }

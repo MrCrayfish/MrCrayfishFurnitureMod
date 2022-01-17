@@ -18,6 +18,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
+import java.rmi.registry.Registry;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
@@ -101,9 +102,22 @@ public class ModBlocks
     public static final RegistryObject<Block> CHAIR_GREEN_MODERN = register("green_modern_chair", new ModernChairBlock(Block.Properties.from(Blocks.GREEN_CONCRETE).notSolid()));
     public static final RegistryObject<Block> CHAIR_RED_MODERN = register("red_modern_chair", new ModernChairBlock(Block.Properties.from(Blocks.RED_CONCRETE).notSolid()));
     public static final RegistryObject<Block> CHAIR_BLACK_MODERN = register("black_modern_chair", new ModernChairBlock(Block.Properties.from(Blocks.BLACK_CONCRETE).notSolid()));
-
     public static final RegistryObject<Block> CHAIR_WHITE_OFFICE = register("white_office_chair", new OfficeChairBlock(AbstractBlock.Properties.from(Blocks.WHITE_WOOL).notSolid()));
-
+    public static final RegistryObject<Block> CHAIR_ORANGE_OFFICE = register("orange_office_chair", new OfficeChairBlock(AbstractBlock.Properties.from(Blocks.ORANGE_WOOL).notSolid()));
+    public static final RegistryObject<Block> CHAIR_MAGENTA_OFFICE = register("magenta_office_chair", new OfficeChairBlock(AbstractBlock.Properties.from(Blocks.MAGENTA_WOOL).notSolid()));
+    public static final RegistryObject<Block> CHAIR_LIGHT_BLUE_OFFICE = register("light_blue_office_chair", new OfficeChairBlock(AbstractBlock.Properties.from(Blocks.LIGHT_BLUE_WOOL).notSolid()));
+    public static final RegistryObject<Block> CHAIR_YELLOW_OFFICE = register("yellow_office_chair", new OfficeChairBlock(AbstractBlock.Properties.from(Blocks.YELLOW_WOOL).notSolid()));
+    public static final RegistryObject<Block> CHAIR_LIME_OFFICE = register("lime_office_chair", new OfficeChairBlock(AbstractBlock.Properties.from(Blocks.LIME_WOOL).notSolid()));
+    public static final RegistryObject<Block> CHAIR_PINK_OFFICE = register("pink_office_chair", new OfficeChairBlock(AbstractBlock.Properties.from(Blocks.PINK_WOOL).notSolid()));
+    public static final RegistryObject<Block> CHAIR_GRAY_OFFICE = register("gray_office_chair", new OfficeChairBlock(AbstractBlock.Properties.from(Blocks.GRAY_WOOL).notSolid()));
+    public static final RegistryObject<Block> CHAIR_LIGHT_GRAY_OFFICE = register("light_gray_office_chair", new OfficeChairBlock(AbstractBlock.Properties.from(Blocks.LIGHT_GRAY_WOOL).notSolid()));
+    public static final RegistryObject<Block> CHAIR_CYAN_OFFICE = register("cyan_office_chair", new OfficeChairBlock(AbstractBlock.Properties.from(Blocks.CYAN_WOOL).notSolid()));
+    public static final RegistryObject<Block> CHAIR_PURPLE_OFFICE = register("purple_office_chair", new OfficeChairBlock(AbstractBlock.Properties.from(Blocks.PURPLE_WOOL).notSolid()));
+    public static final RegistryObject<Block> CHAIR_BLUE_OFFICE = register("blue_office_chair", new OfficeChairBlock(AbstractBlock.Properties.from(Blocks.BLUE_WOOL).notSolid()));
+    public static final RegistryObject<Block> CHAIR_BROWN_OFFICE = register("brown_office_chair", new OfficeChairBlock(AbstractBlock.Properties.from(Blocks.BROWN_WOOL).notSolid()));
+    public static final RegistryObject<Block> CHAIR_GREEN_OFFICE = register("green_office_chair", new OfficeChairBlock(AbstractBlock.Properties.from(Blocks.GREEN_WOOL).notSolid()));
+    public static final RegistryObject<Block> CHAIR_RED_OFFICE = register("red_office_chair", new OfficeChairBlock(AbstractBlock.Properties.from(Blocks.RED_WOOL).notSolid()));
+    public static final RegistryObject<Block> CHAIR_BLACK_OFFICE = register("black_office_chair", new OfficeChairBlock(AbstractBlock.Properties.from(Blocks.BLACK_WOOL).notSolid()));
     public static final RegistryObject<Block> COFFEE_TABLE_OAK = register("oak_coffee_table", new CoffeeTableBlock(Block.Properties.from(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> COFFEE_TABLE_SPRUCE = register("spruce_coffee_table", new CoffeeTableBlock(Block.Properties.from(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> COFFEE_TABLE_BIRCH = register("birch_coffee_table", new CoffeeTableBlock(Block.Properties.from(Blocks.BIRCH_PLANKS)));
@@ -632,6 +646,22 @@ public class ModBlocks
     public static final RegistryObject<Block> KITCHEN_SINK_GREEN = register("green_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.GREEN_TERRACOTTA), false));
     public static final RegistryObject<Block> KITCHEN_SINK_RED = register("red_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.RED_TERRACOTTA), false));
     public static final RegistryObject<Block> KITCHEN_SINK_BLACK = register("black_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.BLACK_TERRACOTTA), false));
+    public static final RegistryObject<Block> KITCHEN_SINK_WHITE_MODERN = register("white_modern_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.WHITE_CONCRETE), false));
+    public static final RegistryObject<Block> KITCHEN_SINK_ORANGE_MODERN = register("orange_modern_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.ORANGE_CONCRETE), false));
+    public static final RegistryObject<Block> KITCHEN_SINK_MAGENTA_MODERN = register("magenta_modern_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.MAGENTA_CONCRETE), false));
+    public static final RegistryObject<Block> KITCHEN_SINK_LIGHT_BLUE_MODERN = register("light_blue_modern_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.LIGHT_BLUE_CONCRETE), false));
+    public static final RegistryObject<Block> KITCHEN_SINK_YELLOW_MODERN = register("yellow_modern_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.YELLOW_CONCRETE), false));
+    public static final RegistryObject<Block> KITCHEN_SINK_LIME_MODERN = register("lime_modern_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.LIME_CONCRETE), false));
+    public static final RegistryObject<Block> KITCHEN_SINK_PINK_MODERN = register("pink_modern_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.PINK_CONCRETE), false));
+    public static final RegistryObject<Block> KITCHEN_SINK_GRAY_MODERN = register("gray_modern_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.GRAY_CONCRETE), false));
+    public static final RegistryObject<Block> KITCHEN_SINK_LIGHT_GRAY_MODERN = register("light_gray_modern_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.LIGHT_GRAY_CONCRETE), false));
+    public static final RegistryObject<Block> KITCHEN_SINK_CYAN_MODERN = register("cyan_modern_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.CYAN_CONCRETE), false));
+    public static final RegistryObject<Block> KITCHEN_SINK_PURPLE_MODERN = register("purple_modern_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.PURPLE_CONCRETE), false));
+    public static final RegistryObject<Block> KITCHEN_SINK_BLUE_MODERN = register("blue_modern_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.BLUE_CONCRETE), false));
+    public static final RegistryObject<Block> KITCHEN_SINK_BROWN_MODERN = register("brown_modern_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.BROWN_CONCRETE), false));
+    public static final RegistryObject<Block> KITCHEN_SINK_GREEN_MODERN = register("green_modern_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.GREEN_CONCRETE), false));
+    public static final RegistryObject<Block> KITCHEN_SINK_RED_MODERN = register("red_modern_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.RED_CONCRETE), false));
+    public static final RegistryObject<Block> KITCHEN_SINK_BLACK_MODERN = register("black_modern_kitchen_sink", new KitchenSinkBlock(Block.Properties.from(Blocks.BLACK_CONCRETE), false));
     public static final RegistryObject<Block> FREEZER_LIGHT = register("freezer_light", new FreezerBlock(Block.Properties.from(Blocks.IRON_BLOCK).notSolid(), () -> ModBlocks.FRIDGE_LIGHT), (Supplier<BlockItem>) null);
     public static final RegistryObject<Block> FREEZER_DARK = register("freezer_dark", new FreezerBlock(Block.Properties.from(Blocks.IRON_BLOCK).notSolid(), () -> ModBlocks.FRIDGE_DARK), (Supplier<BlockItem>) null);
     public static final RegistryObject<Block> FRIDGE_LIGHT = register("fridge_light", new FridgeBlock(Block.Properties.from(Blocks.IRON_BLOCK).notSolid(), () -> ModBlocks.FREEZER_LIGHT), block -> new BlockSupplierItem(new Item.Properties().group(FurnitureMod.GROUP), block, ModBlocks.FREEZER_LIGHT));
