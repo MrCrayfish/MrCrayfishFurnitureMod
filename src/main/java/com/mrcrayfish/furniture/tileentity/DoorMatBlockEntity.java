@@ -74,7 +74,7 @@ public class DoorMatBlockEntity extends BlockEntity
     @Override
     public CompoundTag getUpdateTag()
     {
-        return this.save(new CompoundTag());
+        return this.saveWithFullMetadata();
     }
 
     @Override

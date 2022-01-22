@@ -14,7 +14,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 /**
  * Author: MrCrayfish
@@ -42,6 +41,7 @@ public class BlockEntityUtil
      */
     public static void sendUpdatePacket(BlockEntity blockEntity, CompoundTag compound)
     {
+        addIdAndPosition(blockEntity, compound);
         ClientboundBlockEntityDataPacket packet = ClientboundBlockEntityDataPacket.create(blockEntity, e -> compound);
         sendUpdatePacket(blockEntity.getLevel(), blockEntity.getBlockPos(), packet);
     }
@@ -63,6 +63,18 @@ public class BlockEntityUtil
         {
             List<ServerPlayer> players = server.getChunkSource().chunkMap.getPlayers(new ChunkPos(pos), false);
             players.forEach(player -> player.connection.send(packet));
+        }
+    }
+
+    private static void addIdAndPosition(BlockEntity blockEntity, CompoundTag tag)
+    {
+        ResourceLocation id = BlockEntityType.getKey(blockEntity.getType());
+        if(id != null)
+        {
+            tag.putString("id", id.toString());
+            tag.putInt("x", blockEntity.getBlockPos().getX());
+            tag.putInt("y", blockEntity.getBlockPos().getY());
+            tag.putInt("z", blockEntity.getBlockPos().getZ());
         }
     }
 }

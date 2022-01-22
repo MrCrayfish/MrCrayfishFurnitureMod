@@ -43,7 +43,7 @@ public abstract class FluidHandlerSyncedBlockEntity extends BlockEntity
 
     private void syncFluidToClient()
     {
-        BlockEntityUtil.sendUpdatePacket(this, this.save(new CompoundTag()));
+        BlockEntityUtil.sendUpdatePacket(this, this.saveWithFullMetadata());
     }
 
     @Override
@@ -64,7 +64,7 @@ public abstract class FluidHandlerSyncedBlockEntity extends BlockEntity
     @Override
     public CompoundTag getUpdateTag()
     {
-        return this.save(new CompoundTag());
+        return this.saveWithFullMetadata();
     }
 
     @Nullable
