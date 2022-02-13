@@ -74,10 +74,10 @@ public class BlockPresent extends Block implements ITileEntityProvider
         if(present != null)
         {
             world.playSound(pos.getX(), pos.getY(), pos.getZ(), SoundEvents.ENTITY_PLAYER_LEVELUP, SoundCategory.BLOCKS, 0.75F, 1.0F, false);
-            if(world.isRemote)
-            {
-                player.sendMessage(new TextComponentTranslation("cfm.message.present_christmas", TextFormatting.RED + present.ownerName));
-            }
+//            if(world.isRemote)
+//            {
+//                player.sendMessage(new TextComponentTranslation("cfm.message.present_christmas", TextFormatting.RED + present.ownerName));
+//            }
             Triggers.trigger(Triggers.UNWRAP_PRESENT, player);
         }
     }
