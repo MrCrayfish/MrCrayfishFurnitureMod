@@ -1,5 +1,30 @@
 {
     "variants": {
-        "normal": {"model": "cfm:ceiling_fan"}
+        "normal": {"model": "cfm:ceiling_fan"},
+        "facing=north": {
+            "model": "cfm:ceiling_fan",
+            "x": 270
+        },
+        "facing=south": {
+            "model": "cfm:ceiling_fan",
+            "x": 90
+        },
+        "facing=west": {
+            "model": "cfm:ceiling_fan",
+            "x": 90,
+            "y": 90
+        },
+        "facing=east": {
+            "model": "cfm:ceiling_fan",
+            "x": 270,
+            "y": 90
+        },
+        "facing=down": {
+            "model": "cfm:ceiling_fan"
+        },
+        "facing=up": {
+            "model": "cfm:ceiling_fan",
+            "x": 180
+        }
     }
 }

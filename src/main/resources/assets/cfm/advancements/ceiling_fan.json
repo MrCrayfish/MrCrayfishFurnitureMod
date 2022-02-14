@@ -1,0 +1,65 @@
+{
+    "display": {
+        "icon": {
+            "item": "cfm:ceiling_fan"
+        },
+        "title": {
+            "translate": "advancements.cfm.ceiling_fan"
+        },
+        "description": {
+            "translate": "advancements.cfm.ceiling_fan.desc"
+        },
+        "hidden": true
+    },
+	"parent": "cfm:modern_technology",
+    "criteria": {
+        "place_fan_up": {
+            "trigger": "minecraft:placed_block",
+            "conditions": {
+                "block": "cfm:ceiling_fan",
+                "state": {
+                    "facing": "up"
+                }
+            }
+        },
+        "place_fan_north": {
+            "trigger": "minecraft:placed_block",
+            "conditions": {
+                "block": "cfm:ceiling_fan",
+                "state": {
+                    "facing": "north"
+                }
+            }
+        },
+        "place_fan_south": {
+            "trigger": "minecraft:placed_block",
+            "conditions": {
+                "block": "cfm:ceiling_fan",
+                "state": {
+                    "facing": "south"
+                }
+            }
+        },
+        "place_fan_east": {
+            "trigger": "minecraft:placed_block",
+            "conditions": {
+                "block": "cfm:ceiling_fan",
+                "state": {
+                    "facing": "east"
+                }
+            }
+        },
+        "place_fan_west": {
+            "trigger": "minecraft:placed_block",
+            "conditions": {
+                "block": "cfm:ceiling_fan",
+                "state": {
+                    "facing": "west"
+                }
+            }
+        }
+    },
+    "requirements": [
+        ["place_fan_up", "place_fan_north", "place_fan_south", "place_fan_east", "place_fan_west"]
+    ]
+}

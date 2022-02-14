@@ -66,62 +66,48 @@ public class ItemPresent extends ItemBlock implements IItemInventory, SubItems, 
     public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         ItemStack stack = player.getHeldItem(hand);
-        if(worldIn.isSideSolid(pos, EnumFacing.UP))
-        {
-            if(stack.hasTagCompound())
-            {
-                NBTTagCompound nbttagcompound = stack.getTagCompound();
-                NBTTagString nbttagstring = (NBTTagString) nbttagcompound.getTag("Author");
-
-                if(nbttagstring != null)
-                {
-                    NBTTagList itemList = (NBTTagList) NBTHelper.getCompoundTag(stack, "Present").getTag("Items");
-                    if(itemList.tagCount() > 0)
-                    {
-                        IBlockState state = FurnitureBlocks.PRESENT.getDefaultState().withProperty(BlockPresent.COLOUR, EnumDyeColor.byMetadata(stack.getItemDamage()));
-
-                        worldIn.setBlockState(pos.up(), state, 2);
-                        worldIn.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, state.getBlock().getSoundType().getPlaceSound(), SoundCategory.BLOCKS, (state.getBlock().getSoundType().getVolume() + 1.0F) / 2.0F, state.getBlock().getSoundType().getPitch() * 0.8F, false);
-
-
-                        TileEntityPresent tep = new TileEntityPresent();
-                        tep.setOwner(player.getName());
-
-                        for(int i = 0; i < itemList.tagCount(); i++)
-                        {
-                            tep.setInventorySlotContents(i, new ItemStack(itemList.getCompoundTagAt(i)));
-                        }
-
-                        worldIn.setTileEntity(pos.up(), tep);
-
-                        stack.shrink(1);
-                        return EnumActionResult.SUCCESS;
-                    }
-                    else
-                    {
-                        if(worldIn.isRemote)
-                        {
-                            player.sendMessage(new TextComponentTranslation("cfm.message.present_place"));
-                        }
-                    }
-                }
-                else
-                {
-                    if(worldIn.isRemote)
-                    {
-                        player.sendMessage(new TextComponentTranslation("cfm.message.present_sign"));
-                    }
-                }
-            }
-            else
-            {
-                if(worldIn.isRemote)
-                {
-                    player.sendMessage(new TextComponentTranslation("cfm.message.present_sign"));
-                }
-            }
+        if (facing != EnumFacing.UP || !worldIn.isSideSolid(pos, facing) || !worldIn.mayPlace(FurnitureBlocks.PRESENT, pos.offset(facing), false, facing, player)) {
+            return EnumActionResult.PASS;
         }
-        return EnumActionResult.PASS;
+        if (!stack.hasTagCompound()) {
+            if(worldIn.isRemote) {
+                player.sendMessage(new TextComponentTranslation("cfm.message.present_sign"));
+            }
+            return EnumActionResult.PASS;
+        }
+        NBTTagCompound nbttagcompound = stack.getTagCompound();
+        NBTTagString nbttagstring = (NBTTagString) nbttagcompound.getTag("Author");
+
+        if (nbttagstring == null) {
+            if(worldIn.isRemote) {
+                player.sendMessage(new TextComponentTranslation("cfm.message.present_sign"));
+            }
+            return EnumActionResult.PASS;
+        }
+        NBTTagList itemList = (NBTTagList) NBTHelper.getCompoundTag(stack, "Present").getTag("Items");
+        if (itemList.tagCount() <= 0) {
+            if(worldIn.isRemote) {
+                player.sendMessage(new TextComponentTranslation("cfm.message.present_place"));
+            }
+            return EnumActionResult.PASS;
+        }
+        IBlockState state = FurnitureBlocks.PRESENT.getDefaultState().withProperty(BlockPresent.COLOUR, EnumDyeColor.byMetadata(stack.getItemDamage()));
+
+        worldIn.setBlockState(pos.up(), state, 2);
+        worldIn.playSound(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, state.getBlock().getSoundType().getPlaceSound(), SoundCategory.BLOCKS, (state.getBlock().getSoundType().getVolume() + 1.0F) / 2.0F, state.getBlock().getSoundType().getPitch() * 0.8F, false);
+
+
+        TileEntityPresent tep = new TileEntityPresent();
+        tep.setOwner(player.getName());
+
+        for(int i = 0; i < itemList.tagCount(); i++) {
+            tep.setInventorySlotContents(i, new ItemStack(itemList.getCompoundTagAt(i)));
+        }
+
+        worldIn.setTileEntity(pos.up(), tep);
+
+        stack.shrink(1);
+        return EnumActionResult.SUCCESS;
     }
 
     @Override
