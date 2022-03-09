@@ -8,10 +8,12 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.vehicle.DismountHelper;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.entity.IEntityAdditionalSpawnData;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 
 import java.util.List;
@@ -88,6 +90,22 @@ public class SeatEntity extends Entity
             }
         }
         return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public Vec3 getDismountLocationForPassenger(LivingEntity entity)
+    {
+        Direction original = this.getDirection();
+        Direction[] offsets = {original, original.getClockWise(), original.getCounterClockWise(), original.getOpposite()};
+        for(Direction dir : offsets)
+        {
+            Vec3 safeVec = DismountHelper.findSafeDismountLocation(entity.getType(), this.level, this.blockPosition().relative(dir), false);
+            if(safeVec != null)
+            {
+                return safeVec.add(0, 0.25, 0);
+            }
+        }
+        return super.getDismountLocationForPassenger(entity);
     }
 
     @Override
