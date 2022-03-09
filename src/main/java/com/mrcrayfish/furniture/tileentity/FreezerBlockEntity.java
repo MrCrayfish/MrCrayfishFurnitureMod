@@ -31,6 +31,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
 import javax.annotation.Nullable;
 import java.util.Map;
@@ -48,6 +53,8 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
     private int fuelTimeTotal;
     private int freezeTime;
     private int freezeTimeTotal;
+
+    private LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
 
     protected final SimpleContainerData freezerData = new SimpleContainerData(4)
     {
@@ -455,5 +462,43 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
         {
             level.setBlock(this.getBlockPos(), state.setValue(FreezerBlock.OPEN, open), 3);
         }
+    }
+
+    @Override
+    public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing)
+    {
+        if(!this.remove && facing != null && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+        {
+            if(facing == Direction.UP)
+            {
+                return this.handlers[0].cast();
+            }
+            else if(facing == Direction.DOWN)
+            {
+                return this.handlers[1].cast();
+            }
+            else
+            {
+                return this.handlers[2].cast();
+            }
+        }
+        return super.getCapability(capability, facing);
+    }
+
+    @Override
+    public void invalidateCaps()
+    {
+        super.invalidateCaps();
+        for(LazyOptional<? extends IItemHandler> handler : this.handlers)
+        {
+            handler.invalidate();
+        }
+    }
+
+    @Override
+    public void reviveCaps()
+    {
+        super.reviveCaps();
+        this.handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
     }
 }
