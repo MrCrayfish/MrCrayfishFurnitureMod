@@ -29,4 +29,10 @@ public class GrillCookingRecipe extends AbstractCookingRecipe
     {
         return ModRecipeSerializers.GRILL_COOKING.get();
     }
+
+    @Override
+    public boolean isSpecial()
+    {
+        return true;
+    }
 }

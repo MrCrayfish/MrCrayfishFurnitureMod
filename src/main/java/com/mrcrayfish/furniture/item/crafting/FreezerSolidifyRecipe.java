@@ -29,4 +29,10 @@ public class FreezerSolidifyRecipe extends AbstractCookingRecipe
     {
         return ModRecipeSerializers.FREEZER_SOLIDIFY.get();
     }
+
+    @Override
+    public boolean isSpecial()
+    {
+        return true;
+    }
 }
