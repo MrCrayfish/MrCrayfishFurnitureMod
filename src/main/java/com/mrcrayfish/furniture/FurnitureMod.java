@@ -13,7 +13,6 @@ import com.mrcrayfish.furniture.datagen.BlockTagGen;
 import com.mrcrayfish.furniture.datagen.ItemTagGen;
 import com.mrcrayfish.furniture.datagen.LootTableGen;
 import com.mrcrayfish.furniture.datagen.RecipeGen;
-import com.mrcrayfish.furniture.item.crafting.ModRecipeTypes;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.common.data.ExistingFileHelper;

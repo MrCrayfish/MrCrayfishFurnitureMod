@@ -30,8 +30,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.network.PacketDistributor;
 
 import javax.annotation.Nullable;
@@ -70,20 +68,17 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
         super(ModBlockEntities.GRILL.get(), pos, state);
     }
 
-    @OnlyIn(Dist.CLIENT)
     public void setFlipping(int position)
     {
         this.flipping[position] = true;
         this.flippingCounter[position] = 0;
     }
 
-    @OnlyIn(Dist.CLIENT)
     public boolean isFlipping(int position)
     {
         return this.flipping[position];
     }
 
-    @OnlyIn(Dist.CLIENT)
     public int getFlippingCount(int position)
     {
         return this.flippingCounter[position];
