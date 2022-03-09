@@ -3,7 +3,7 @@ package com.mrcrayfish.furniture.inventory.container;
 import com.mrcrayfish.furniture.core.ModContainers;
 import com.mrcrayfish.furniture.inventory.container.slot.FreezerFuelSlot;
 import com.mrcrayfish.furniture.inventory.container.slot.FreezerResultSlot;
-import com.mrcrayfish.furniture.item.crafting.ModRecipeType;
+import com.mrcrayfish.furniture.item.crafting.ModRecipeTypes;
 import com.mrcrayfish.furniture.tileentity.FreezerBlockEntity;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -146,7 +146,7 @@ public class FreezerMenu extends AbstractContainerMenu
 
     private boolean isIngredient(ItemStack stack)
     {
-        return this.level.getRecipeManager().getRecipeFor(ModRecipeType.FREEZER_SOLIDIFY, new SimpleContainer(stack), this.level).isPresent();
+        return this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.FREEZER_SOLIDIFY, new SimpleContainer(stack), this.level).isPresent();
     }
 
     @Override

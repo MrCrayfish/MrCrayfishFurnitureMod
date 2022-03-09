@@ -15,7 +15,7 @@ public class FreezerSolidifyRecipe extends AbstractCookingRecipe
 {
     public FreezerSolidifyRecipe(ResourceLocation id, String group, Ingredient ingredient, ItemStack stack, float experience, int freezeTime)
     {
-        super(ModRecipeType.FREEZER_SOLIDIFY, id, group, ingredient, stack, experience, freezeTime);
+        super(ModRecipeTypes.FREEZER_SOLIDIFY, id, group, ingredient, stack, experience, freezeTime);
     }
 
     @Override

@@ -17,13 +17,13 @@ description="MrCrayfish's Furniture Mod is all about adding functioning furnitur
 [[dependencies.cfm]]
     modId="forge"
     mandatory=true
-    versionRange="[39.0.45,)"
+    versionRange="[40.0.12,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.cfm]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.18.1,1.19)"
+    versionRange="[1.18.2,1.19)"
     ordering="NONE"
     side="BOTH"
 

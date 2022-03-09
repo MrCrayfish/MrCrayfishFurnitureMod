@@ -5,6 +5,7 @@ import com.mrcrayfish.furniture.FurnitureMod;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.gui.widget.button.IconButton;
 import com.mrcrayfish.furniture.client.gui.widget.button.TagButton;
+import com.mrcrayfish.furniture.common.ModTags;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModItems;
 import net.minecraft.client.Minecraft;
@@ -14,6 +15,7 @@ import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -257,24 +259,25 @@ public class CreativeScreenEvents
 
     private void compileItems()
     {
-        final TagFilter GENERAL = new TagFilter(new ResourceLocation(Reference.MOD_ID, "general"), new ItemStack(ModBlocks.CHAIR_OAK.get()));
-        final TagFilter STORAGE = new TagFilter(new ResourceLocation(Reference.MOD_ID, "storage"), new ItemStack(ModBlocks.CABINET_OAK.get()));
-        final TagFilter BEDROOM = new TagFilter(new ResourceLocation(Reference.MOD_ID, "bedroom"), new ItemStack(ModBlocks.DESK_OAK.get()));
-        final TagFilter OUTDOORS = new TagFilter(new ResourceLocation(Reference.MOD_ID, "outdoors"), new ItemStack(ModBlocks.MAIL_BOX_OAK.get()));
-        final TagFilter KITCHEN = new TagFilter(new ResourceLocation(Reference.MOD_ID, "kitchen"), new ItemStack(ModBlocks.KITCHEN_COUNTER_CYAN.get()));
-        final TagFilter ITEMS = new TagFilter(new ResourceLocation(Reference.MOD_ID, "items"), new ItemStack(ModItems.SPATULA.get()));
-        TagFilter[] filters = new TagFilter[] {GENERAL, STORAGE, BEDROOM, OUTDOORS, KITCHEN, ITEMS};
+        TagFilter[] filters = new TagFilter[] {
+            new TagFilter(ModTags.Items.GENERAL, new ItemStack(ModBlocks.CHAIR_OAK.get())),
+            new TagFilter(ModTags.Items.STORAGE, new ItemStack(ModBlocks.CABINET_OAK.get())),
+            new TagFilter(ModTags.Items.BEDROOM, new ItemStack(ModBlocks.DESK_OAK.get())),
+            new TagFilter(ModTags.Items.OUTDOORS, new ItemStack(ModBlocks.MAIL_BOX_OAK.get())),
+            new TagFilter(ModTags.Items.KITCHEN, new ItemStack(ModBlocks.KITCHEN_COUNTER_CYAN.get())),
+            new TagFilter(ModTags.Items.ITEMS, new ItemStack(ModItems.SPATULA.get()))
+        };
 
         ForgeRegistries.ITEMS.getValues().stream()
             .filter(item -> item.getItemCategory() == FurnitureMod.GROUP)
             .filter(item -> item.getRegistryName().getNamespace().equals(Reference.MOD_ID))
             .forEach(item ->
             {
-                item.getTags().forEach(location ->
+                item.builtInRegistryHolder().tags().forEach(tagKey ->
                 {
                     for(TagFilter filter : filters)
                     {
-                        if(location.equals(filter.getTag()))
+                        if(tagKey == filter.getTag())
                         {
                             filter.add(item);
                         }
@@ -292,19 +295,19 @@ public class CreativeScreenEvents
     public static class TagFilter
     {
         private final List<Item> items = Lists.newArrayList();
-        private final ResourceLocation tag;
+        private final TagKey<Item> tag;
         private final TranslatableComponent name;
         private final ItemStack icon;
         private boolean enabled = true;
 
-        public TagFilter(ResourceLocation tag, ItemStack icon)
+        public TagFilter(TagKey<Item> tag, ItemStack icon)
         {
             this.tag = tag;
-            this.name = new TranslatableComponent(String.format("gui.tag_filter.%s.%s", tag.getNamespace(), tag.getPath().replace("/", ".")));
+            this.name = new TranslatableComponent(String.format("gui.tag_filter.%s.%s", tag.location().getNamespace(), tag.location().getPath().replace("/", ".")));
             this.icon = icon;
         }
 
-        public ResourceLocation getTag()
+        public TagKey<Item> getTag()
         {
             return tag;
         }
