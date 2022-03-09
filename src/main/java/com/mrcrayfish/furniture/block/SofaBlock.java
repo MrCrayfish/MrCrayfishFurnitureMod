@@ -133,7 +133,7 @@ public class SofaBlock extends FurnitureHorizontalWaterloggedBlock
                     return InteractionResult.SUCCESS;
                 }
             }
-            return SeatEntity.create(level, pos, 0.4, playerEntity);
+            return SeatEntity.create(level, pos, 0.4, playerEntity, state.getValue(DIRECTION));
         }
         return InteractionResult.SUCCESS;
     }
