@@ -46,7 +46,7 @@ public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
     public UpgradedGateBlock(Properties properties)
     {
         super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(HINGE, DoorHingeSide.LEFT).setValue(OPEN, false).setValue(DOUBLE, false));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(HINGE, DoorHingeSide.LEFT).setValue(OPEN, false).setValue(DOUBLE, false).setValue(POWERED, false));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates(), false);
         COLLISION_SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates(), true);
     }
