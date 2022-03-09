@@ -7,6 +7,8 @@ import com.mrcrayfish.furniture.tileentity.GrillBlockEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -86,6 +88,7 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements EntityBlock
                     if(blockEntity.addFuel(stack))
                     {
                         stack.shrink(1);
+                        level.playSound(null, pos, SoundEvents.ANCIENT_DEBRIS_HIT, SoundSource.BLOCKS, 1.0F, 1.5F);
                     }
                 }
                 else if(!stack.isEmpty())
