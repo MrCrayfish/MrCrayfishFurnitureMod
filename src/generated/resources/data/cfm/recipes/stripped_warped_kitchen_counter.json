@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "kitchen_counter",
+  "pattern": [
+    "LLL",
+    "PPP",
+    "PPP"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:warped_stem"
+    },
+    "P": {
+      "item": "minecraft:stripped_warped_stem"
+    }
+  },
+  "result": {
+    "item": "cfm:stripped_warped_kitchen_counter",
+    "count": 8
+  }
+}

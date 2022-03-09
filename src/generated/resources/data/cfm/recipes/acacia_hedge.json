@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "hedge",
+  "pattern": [
+    "LLL",
+    "LLL"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:acacia_leaves"
+    }
+  },
+  "result": {
+    "item": "cfm:acacia_hedge",
+    "count": 12
+  }
+}

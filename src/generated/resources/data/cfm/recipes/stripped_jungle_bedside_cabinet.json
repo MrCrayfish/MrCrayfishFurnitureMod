@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bedside_cabinet",
+  "pattern": [
+    "LLL",
+    "P P",
+    "PPP"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:stripped_jungle_log"
+    },
+    "P": {
+      "item": "minecraft:jungle_log"
+    }
+  },
+  "result": {
+    "item": "cfm:stripped_jungle_bedside_cabinet",
+    "count": 2
+  }
+}

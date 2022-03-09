@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "chair",
+  "pattern": [
+    "L  ",
+    "LLL",
+    "P P"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:stripped_jungle_log"
+    },
+    "P": {
+      "item": "minecraft:jungle_log"
+    }
+  },
+  "result": {
+    "item": "cfm:stripped_jungle_chair",
+    "count": 4
+  }
+}

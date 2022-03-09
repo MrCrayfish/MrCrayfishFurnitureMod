@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "function": "minecraft:copy_name",
+              "source": "block_entity"
+            },
+            {
+              "function": "minecraft:copy_nbt",
+              "source": "block_entity",
+              "ops": [
+                {
+                  "source": "BlockEntityTag.Count",
+                  "target": "",
+                  "op": "replace"
+                }
+              ]
+            }
+          ],
+          "name": "cfm:trampoline"
+        }
+      ]
+    }
+  ]
+}

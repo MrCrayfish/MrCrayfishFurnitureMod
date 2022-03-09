@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "cfm:white_picket_fence",
+    "cfm:orange_picket_fence",
+    "cfm:magenta_picket_fence",
+    "cfm:light_blue_picket_fence",
+    "cfm:yellow_picket_fence",
+    "cfm:lime_picket_fence",
+    "cfm:pink_picket_fence",
+    "cfm:gray_picket_fence",
+    "cfm:light_gray_picket_fence",
+    "cfm:cyan_picket_fence",
+    "cfm:purple_picket_fence",
+    "cfm:blue_picket_fence",
+    "cfm:brown_picket_fence",
+    "cfm:green_picket_fence",
+    "cfm:red_picket_fence",
+    "cfm:black_picket_fence"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sofa",
+  "pattern": [
+    "W  ",
+    "WWW",
+    "LLL"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:pink_wool"
+    },
+    "L": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "result": {
+    "item": "cfm:pink_sofa",
+    "count": 2
+  }
+}

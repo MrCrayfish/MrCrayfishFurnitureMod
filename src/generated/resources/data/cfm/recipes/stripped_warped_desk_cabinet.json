@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "desk_cabinet",
+  "pattern": [
+    "LLL",
+    "PPP",
+    "P P"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:stripped_warped_stem"
+    },
+    "P": {
+      "item": "minecraft:warped_stem"
+    }
+  },
+  "result": {
+    "item": "cfm:stripped_warped_desk_cabinet",
+    "count": 2
+  }
+}

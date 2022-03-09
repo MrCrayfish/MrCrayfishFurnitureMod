@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "kitchen_drawer",
+  "pattern": [
+    "SDS",
+    "CBC",
+    "CCC"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:terracotta"
+    },
+    "D": {
+      "tag": "forge:dyes/pink"
+    },
+    "C": {
+      "item": "minecraft:white_concrete"
+    },
+    "B": {
+      "tag": "forge:chests/wooden"
+    }
+  },
+  "result": {
+    "item": "cfm:pink_kitchen_drawer",
+    "count": 4
+  }
+}

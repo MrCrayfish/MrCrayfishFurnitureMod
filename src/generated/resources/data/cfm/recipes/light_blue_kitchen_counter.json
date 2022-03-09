@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "kitchen_counter",
+  "pattern": [
+    "SDS",
+    "CCC",
+    "CCC"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:terracotta"
+    },
+    "D": {
+      "tag": "forge:dyes/light_blue"
+    },
+    "C": {
+      "item": "minecraft:white_concrete"
+    }
+  },
+  "result": {
+    "item": "cfm:light_blue_kitchen_counter",
+    "count": 8
+  }
+}

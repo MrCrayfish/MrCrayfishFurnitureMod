@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "mail_box",
+  "pattern": [
+    "C",
+    "F",
+    "F"
+  ],
+  "key": {
+    "C": {
+      "tag": "forge:chests/wooden"
+    },
+    "F": {
+      "item": "cfm:birch_upgraded_fence"
+    }
+  },
+  "result": {
+    "item": "cfm:birch_mail_box"
+  }
+}

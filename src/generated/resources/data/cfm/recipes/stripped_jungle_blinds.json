@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "blinds",
+  "pattern": [
+    "LLL",
+    "SSS",
+    "SSS"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:stripped_jungle_log"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "result": {
+    "item": "cfm:stripped_jungle_blinds",
+    "count": 2
+  }
+}

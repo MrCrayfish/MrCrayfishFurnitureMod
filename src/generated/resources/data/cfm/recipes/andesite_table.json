@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "table",
+  "pattern": [
+    "LLL",
+    " P ",
+    " P "
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:polished_andesite"
+    },
+    "P": {
+      "item": "minecraft:andesite"
+    }
+  },
+  "result": {
+    "item": "cfm:andesite_table",
+    "count": 4
+  }
+}

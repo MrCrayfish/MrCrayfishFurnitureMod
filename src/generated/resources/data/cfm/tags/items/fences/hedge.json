@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "cfm:oak_hedge",
+    "cfm:spruce_hedge",
+    "cfm:birch_hedge",
+    "cfm:jungle_hedge",
+    "cfm:acacia_hedge",
+    "cfm:dark_oak_hedge"
+  ]
+}
