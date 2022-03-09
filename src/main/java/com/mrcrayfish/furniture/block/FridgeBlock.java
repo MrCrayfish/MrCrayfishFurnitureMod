@@ -21,6 +21,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -75,7 +76,7 @@ public class FridgeBlock extends FurnitureHorizontalBlock implements EntityBlock
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
-        return this.getShape(state);
+        return context == CollisionContext.empty() ? Shapes.block() : this.getShape(state);
     }
 
     @Override
@@ -119,11 +120,11 @@ public class FridgeBlock extends FurnitureHorizontalBlock implements EntityBlock
     @Override
     public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player)
     {
-        BlockState upState = level.getBlockState(pos.below());
-        if(upState.getBlock() instanceof FreezerBlock)
+        BlockState belowState = level.getBlockState(pos.below());
+        if(belowState.getBlock() instanceof FreezerBlock)
         {
             level.setBlock(pos.below(), Blocks.AIR.defaultBlockState(), 35);
-            level.levelEvent(player, 2001, pos.below(), Block.getId(upState));
+            level.levelEvent(player, 2001, pos.below(), Block.getId(belowState));
         }
         super.playerWillDestroy(level, pos, state, player);
     }
