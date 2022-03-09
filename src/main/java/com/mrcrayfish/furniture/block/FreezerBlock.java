@@ -83,17 +83,11 @@ public class FreezerBlock extends FurnitureHorizontalBlock implements EntityBloc
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
-        return this.getShape(state);
+        return context == CollisionContext.empty() ? Shapes.block() : this.getShape(state);
     }
 
     @Override
     public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
-    {
-        return this.getShape(state);
-    }
-
-    @Override
-    public VoxelShape getVisualShape(BlockState state, BlockGetter getter, BlockPos pos, CollisionContext context)
     {
         return this.getShape(state);
     }
