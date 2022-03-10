@@ -97,6 +97,8 @@
     "cfm:brown_kitchen_sink",
     "cfm:green_kitchen_sink",
     "cfm:red_kitchen_sink",
-    "cfm:black_kitchen_sink"
+    "cfm:black_kitchen_sink",
+    "cfm:fridge_light",
+    "cfm:fridge_dark"
   ]
 }

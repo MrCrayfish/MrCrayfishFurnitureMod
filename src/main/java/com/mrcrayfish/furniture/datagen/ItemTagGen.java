@@ -259,7 +259,10 @@ public class ItemTagGen extends ItemTagsProvider
                 .add(ModBlocks.KITCHEN_SINK_BROWN.get().asItem())
                 .add(ModBlocks.KITCHEN_SINK_GREEN.get().asItem())
                 .add(ModBlocks.KITCHEN_SINK_RED.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_BLACK.get().asItem());
+                .add(ModBlocks.KITCHEN_SINK_BLACK.get().asItem())
+                //Fridge
+                .add(ModBlocks.FRIDGE_LIGHT.get().asItem())
+                .add(ModBlocks.FRIDGE_DARK.get().asItem());
 
         this.tag(ModTags.Items.OUTDOORS)
                 // Fences and Fence Gates

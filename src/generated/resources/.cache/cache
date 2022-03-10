@@ -591,8 +591,8 @@ f9ff8899f1f11bb77ce77d037091071ad32e2a4e data/cfm/loot_tables/blocks/diorite_des
 deeb20a5766ef99690babfd965c341574886d4e6 data/cfm/loot_tables/blocks/door_mat.json
 e55b19c8746d5e108906ce64653fc56ce640c075 data/cfm/loot_tables/blocks/freezer_dark.json
 a240a33e6e2f40b46a7ddf4b147263f88cfade23 data/cfm/loot_tables/blocks/freezer_light.json
-5c1df8443043b3fe3b665dba348e2ff188bcbe31 data/cfm/loot_tables/blocks/fridge_dark.json
-5c1df8443043b3fe3b665dba348e2ff188bcbe31 data/cfm/loot_tables/blocks/fridge_light.json
+e55b19c8746d5e108906ce64653fc56ce640c075 data/cfm/loot_tables/blocks/fridge_dark.json
+a240a33e6e2f40b46a7ddf4b147263f88cfade23 data/cfm/loot_tables/blocks/fridge_light.json
 0a8b5085cfaf3f08ddf7bf37755bf18f76d4b9f1 data/cfm/loot_tables/blocks/granite_bedside_cabinet.json
 dc3bb45cbd71d1dd82e1a58b6dcc29e513b9a22a data/cfm/loot_tables/blocks/granite_cabinet.json
 0fd08ca4f4741c1d5d28b49cb96a3a863829d8d8 data/cfm/loot_tables/blocks/granite_chair.json
@@ -1414,7 +1414,7 @@ c6955944ecaab46c87395237b585ef77ea630c2d data/cfm/tags/items/fences/picket.json
 24aa9cb3ea3c5ddc01137473ed70a4e8163b091f data/cfm/tags/items/fences/upgraded.json
 c8cd140aaea6cb8e5544a4669e6cfbfe05d002cf data/cfm/tags/items/general.json
 b2ed6f98a591a31ff2bc388e31a5d082c36d29cf data/cfm/tags/items/items.json
-9a0764dde2d35b7d8157a924247c7de6f46c10bf data/cfm/tags/items/kitchen.json
+63b87e72b1d3838e75f282a3c1e8abea04dfafeb data/cfm/tags/items/kitchen.json
 0216dcd4544aed527a64f43f9d4276ff02801d67 data/cfm/tags/items/outdoors.json
 c08a8bd388ad862fca4b6563733268403b9ed773 data/cfm/tags/items/storage.json
 059ccc539678b15de3b139bdf964f94edc0772f5 data/cfm/tags/items/trampoline.json
@@ -1445,4 +1445,4 @@ b1cdae56b984f6a34e5533569e1cf086a10014ca data/minecraft/recipes/packed_ice_from_
 8914dfebcd03990e1c0c5d4793dc54b6bdcda54e data/minecraft/tags/blocks/fence_gates.json
 672f091ac47e7a3e98a728fc2557ce0e0ed3a103 data/minecraft/tags/blocks/fences.json
 6122de9bc15e579935f9bdd2212cea2fcd168590 data/minecraft/tags/blocks/mineable/axe.json
-ce1a4722951208c143b94cb67d948a2bc1f9fed9 data/minecraft/tags/blocks/mineable/pickaxe.json
+c305240daf883fa8a2862b05973cf4216c28fbbe data/minecraft/tags/blocks/mineable/pickaxe.json
