@@ -550,7 +550,7 @@ public class RecipeGen extends RecipeProvider
         coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_RED.get(), Blocks.RED_TERRACOTTA);
         coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_BLACK.get(), Blocks.BLACK_TERRACOTTA);
         // Fridges
-        ShapedRecipeBuilder.shaped(ModBlocks.FREEZER_LIGHT.get())
+        ShapedRecipeBuilder.shaped(ModBlocks.FRIDGE_LIGHT.get())
                 .pattern("CIC")
                 .pattern("IBI")
                 .pattern("CIC")
@@ -561,7 +561,7 @@ public class RecipeGen extends RecipeProvider
                 .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
                 .unlockedBy("has_chest", has(Tags.Items.CHESTS_WOODEN))
                 .save(consumer);
-        ShapedRecipeBuilder.shaped(ModBlocks.FREEZER_DARK.get())
+        ShapedRecipeBuilder.shaped(ModBlocks.FRIDGE_DARK.get())
                 .pattern("CIC")
                 .pattern("IBI")
                 .pattern("CIC")

@@ -12,6 +12,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -49,7 +50,7 @@ public class FreezerBlock extends FurnitureHorizontalBlock implements EntityBloc
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
 
     public final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
-    private Supplier<RegistryObject<Block>> fridge;
+    private final Supplier<RegistryObject<Block>> fridge;
 
     public FreezerBlock(Properties properties, Supplier<RegistryObject<Block>> fridge)
     {
@@ -165,5 +166,11 @@ public class FreezerBlock extends FurnitureHorizontalBlock implements EntityBloc
     protected static <T extends BlockEntity> BlockEntityTicker<T> createMailBoxTicker(Level level, BlockEntityType<T> blockEntityType, BlockEntityType<? extends FreezerBlockEntity> freezerBlockEntity)
     {
         return level.isClientSide() ? null : createTickerHelper(blockEntityType, freezerBlockEntity, FreezerBlockEntity::serverTick);
+    }
+
+    @Override
+    public Item asItem()
+    {
+        return this.fridge.get().get().asItem();
     }
 }

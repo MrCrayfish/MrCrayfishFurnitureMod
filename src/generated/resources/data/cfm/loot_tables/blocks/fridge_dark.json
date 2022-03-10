@@ -7,7 +7,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "cfm:fridge_dark"
         }
       ],
       "conditions": [
