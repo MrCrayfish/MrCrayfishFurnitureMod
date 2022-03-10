@@ -127,7 +127,7 @@ public class BlockTagGen extends BlockTagsProvider
         // Dynamically gets all stone blocks and marks them as mineable with an pickaxe
         TagsProvider.TagAppender<Block> mineableWithPickaxe = this.tag(BlockTags.MINEABLE_WITH_PICKAXE);
         ModBlocks.REGISTER.getEntries().stream()
-                .filter(s -> s.get().defaultBlockState().getMaterial() == Material.STONE)
+                .filter(s -> s.get().defaultBlockState().getMaterial() == Material.STONE || s.get().defaultBlockState().getMaterial() == Material.METAL)
                 .map(RegistryObject::get)
                 .forEach(mineableWithPickaxe::add);
     }

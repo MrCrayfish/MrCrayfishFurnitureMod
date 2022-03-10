@@ -10,6 +10,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.loot.BlockLoot;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
@@ -499,9 +500,9 @@ public class LootTableGen extends LootTableProvider
             this.dropSelf(ModBlocks.KITCHEN_SINK_RED.get());
             this.dropSelf(ModBlocks.KITCHEN_SINK_BLACK.get());
             this.dropSelf(ModBlocks.FRIDGE_LIGHT.get());
-            this.dropSelf(ModBlocks.FREEZER_LIGHT.get());
             this.dropSelf(ModBlocks.FRIDGE_DARK.get());
-            this.dropSelf(ModBlocks.FREEZER_DARK.get());
+            this.dropOther(ModBlocks.FREEZER_LIGHT.get(), ModBlocks.FRIDGE_LIGHT.get());
+            this.dropOther(ModBlocks.FREEZER_DARK.get(), ModBlocks.FRIDGE_DARK.get());
         }
 
         public void registerCoffeeTable(Block block)
