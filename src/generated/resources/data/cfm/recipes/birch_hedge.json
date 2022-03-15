@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "hedge",
+  "pattern": [
+    "LLL",
+    "LLL"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:birch_leaves"
+    }
+  },
+  "result": {
+    "item": "cfm:birch_hedge",
+    "count": 12
+  }
+}

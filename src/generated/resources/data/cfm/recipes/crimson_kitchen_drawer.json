@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "kitchen_drawer",
+  "pattern": [
+    "LLL",
+    "PCP",
+    "PPP"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:crimson_stem"
+    },
+    "P": {
+      "item": "minecraft:crimson_planks"
+    },
+    "C": {
+      "tag": "forge:chests/wooden"
+    }
+  },
+  "result": {
+    "item": "cfm:crimson_kitchen_drawer",
+    "count": 4
+  }
+}

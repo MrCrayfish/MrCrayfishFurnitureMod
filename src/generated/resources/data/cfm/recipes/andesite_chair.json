@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "chair",
+  "pattern": [
+    "L  ",
+    "LLL",
+    "P P"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:polished_andesite"
+    },
+    "P": {
+      "item": "minecraft:andesite"
+    }
+  },
+  "result": {
+    "item": "cfm:andesite_chair",
+    "count": 4
+  }
+}

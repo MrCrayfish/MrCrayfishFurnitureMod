@@ -3,7 +3,6 @@ package com.mrcrayfish.furniture.block;
 import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.tileentity.BasicLootBlockEntity;
 import com.mrcrayfish.furniture.tileentity.FreezerBlockEntity;
-import com.mrcrayfish.furniture.tileentity.MailBoxBlockEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -13,6 +12,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -28,9 +28,10 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.fmllegacy.RegistryObject;
-import net.minecraftforge.fmllegacy.network.NetworkHooks;
+import net.minecraftforge.network.NetworkHooks;
+import net.minecraftforge.registries.RegistryObject;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class FreezerBlock extends FurnitureHorizontalBlock implements EntityBloc
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
 
     public final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
-    private Supplier<RegistryObject<Block>> fridge;
+    private final Supplier<RegistryObject<Block>> fridge;
 
     public FreezerBlock(Properties properties, Supplier<RegistryObject<Block>> fridge)
     {
@@ -82,7 +83,7 @@ public class FreezerBlock extends FurnitureHorizontalBlock implements EntityBloc
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
-        return this.getShape(state);
+        return context == CollisionContext.empty() ? Shapes.block() : this.getShape(state);
     }
 
     @Override
@@ -164,5 +165,11 @@ public class FreezerBlock extends FurnitureHorizontalBlock implements EntityBloc
     protected static <T extends BlockEntity> BlockEntityTicker<T> createMailBoxTicker(Level level, BlockEntityType<T> blockEntityType, BlockEntityType<? extends FreezerBlockEntity> freezerBlockEntity)
     {
         return level.isClientSide() ? null : createTickerHelper(blockEntityType, freezerBlockEntity, FreezerBlockEntity::serverTick);
+    }
+
+    @Override
+    public Item asItem()
+    {
+        return this.fridge.get().get().asItem();
     }
 }

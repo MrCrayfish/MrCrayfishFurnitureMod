@@ -13,7 +13,7 @@ import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.core.Registry;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -52,7 +52,7 @@ public class ForgeShapedRecipeBuilder
         return new ForgeShapedRecipeBuilder(key, resultIn);
     }
 
-    public ForgeShapedRecipeBuilder key(Character symbol, Tag<Item> tagIn)
+    public ForgeShapedRecipeBuilder key(Character symbol, TagKey<Item> tagIn)
     {
         return this.key(symbol, Ingredient.of(tagIn));
     }

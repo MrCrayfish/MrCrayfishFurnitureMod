@@ -5,6 +5,7 @@ import com.mrcrayfish.furniture.util.BlockEntityUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.item.DyeColor;
@@ -12,7 +13,6 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.data.IModelData;
-import net.minecraftforge.common.util.Constants;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -98,23 +98,23 @@ public class TrampolineBlockEntity extends BlockEntity
     }
 
     @Override
-    public CompoundTag save(CompoundTag compound)
+    protected void saveAdditional(CompoundTag tag)
     {
-        this.writeData(compound);
-        return super.save(compound);
+        super.saveAdditional(tag);
+        this.writeData(tag);
     }
 
     @Override
     public CompoundTag getUpdateTag()
     {
-        return this.save(new CompoundTag());
+        return this.saveWithFullMetadata();
     }
 
     @Nullable
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return new ClientboundBlockEntityDataPacket(this.worldPosition, 0, this.getUpdateTag());
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
@@ -126,11 +126,11 @@ public class TrampolineBlockEntity extends BlockEntity
 
     private void readData(CompoundTag compound)
     {
-        if(compound.contains("Count", Constants.NBT.TAG_INT))
+        if(compound.contains("Count", Tag.TAG_INT))
         {
             this.count = compound.getInt("Count");
         }
-        if(compound.contains("Color", Constants.NBT.TAG_INT))
+        if(compound.contains("Color", Tag.TAG_INT))
         {
             this.colour = DyeColor.byId(compound.getInt("Color"));
         }

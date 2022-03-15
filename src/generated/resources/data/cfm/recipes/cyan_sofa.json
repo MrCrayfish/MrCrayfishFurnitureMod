@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "sofa",
+  "pattern": [
+    "W  ",
+    "WWW",
+    "LLL"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:cyan_wool"
+    },
+    "L": {
+      "tag": "minecraft:logs"
+    }
+  },
+  "result": {
+    "item": "cfm:cyan_sofa",
+    "count": 2
+  }
+}

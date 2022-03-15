@@ -3,11 +3,12 @@ package com.mrcrayfish.furniture.block;
 import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.core.ModItems;
 import com.mrcrayfish.furniture.item.crafting.GrillCookingRecipe;
-import com.mrcrayfish.furniture.tileentity.FreezerBlockEntity;
 import com.mrcrayfish.furniture.tileentity.GrillBlockEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -26,8 +27,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.Arrays;
@@ -51,7 +50,6 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements EntityBlock
         return SHAPE;
     }
 
-    @OnlyIn(Dist.CLIENT)
     public float getShadeBrightness(BlockState state, BlockGetter worldIn, BlockPos pos)
     {
         return 1.0F;
@@ -90,6 +88,7 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements EntityBlock
                     if(blockEntity.addFuel(stack))
                     {
                         stack.shrink(1);
+                        level.playSound(null, pos, SoundEvents.ANCIENT_DEBRIS_HIT, SoundSource.BLOCKS, 1.0F, 1.5F);
                     }
                 }
                 else if(!stack.isEmpty())

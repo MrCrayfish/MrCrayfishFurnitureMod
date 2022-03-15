@@ -4,6 +4,8 @@ import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModItems;
 import com.mrcrayfish.furniture.core.ModRecipeSerializers;
 import com.mrcrayfish.furniture.data.ForgeShapedRecipeBuilder;
+import net.minecraft.advancements.critereon.InventoryChangeTrigger;
+import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
@@ -12,7 +14,7 @@ import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.Tag;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -548,7 +550,7 @@ public class RecipeGen extends RecipeProvider
         coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_RED.get(), Blocks.RED_TERRACOTTA);
         coloredKitchenSink(consumer, ModBlocks.KITCHEN_SINK_BLACK.get(), Blocks.BLACK_TERRACOTTA);
         // Fridges
-        ShapedRecipeBuilder.shaped(ModBlocks.FREEZER_LIGHT.get())
+        ShapedRecipeBuilder.shaped(ModBlocks.FRIDGE_LIGHT.get())
                 .pattern("CIC")
                 .pattern("IBI")
                 .pattern("CIC")
@@ -559,7 +561,7 @@ public class RecipeGen extends RecipeProvider
                 .unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON))
                 .unlockedBy("has_chest", has(Tags.Items.CHESTS_WOODEN))
                 .save(consumer);
-        ShapedRecipeBuilder.shaped(ModBlocks.FREEZER_DARK.get())
+        ShapedRecipeBuilder.shaped(ModBlocks.FRIDGE_DARK.get())
                 .pattern("CIC")
                 .pattern("IBI")
                 .pattern("CIC")
@@ -736,7 +738,7 @@ public class RecipeGen extends RecipeProvider
                 .save(recipeConsumer);
     }
 
-    private static void picketFence(Consumer<FinishedRecipe> recipeConsumer, ItemLike fence, ItemLike concrete, Tag<Item> dye)
+    private static void picketFence(Consumer<FinishedRecipe> recipeConsumer, ItemLike fence, ItemLike concrete, TagKey<Item> dye)
     {
         ShapedRecipeBuilder.shaped(fence, 12)
                 .pattern("CSC")
@@ -761,7 +763,7 @@ public class RecipeGen extends RecipeProvider
                 .save(recipeConsumer, new ResourceLocation(registryName.getNamespace(), "dye_" + registryName.getPath()));
     }
 
-    private static void picketGate(Consumer<FinishedRecipe> recipeConsumer, ItemLike gate, ItemLike concrete, Tag<Item> dye)
+    private static void picketGate(Consumer<FinishedRecipe> recipeConsumer, ItemLike gate, ItemLike concrete, TagKey<Item> dye)
     {
         ShapedRecipeBuilder.shaped(gate, 2)
                 .pattern("CGC")
@@ -903,7 +905,7 @@ public class RecipeGen extends RecipeProvider
                 .save(recipeConsumer);
     }
 
-    private static void coloredKitchenCounter(Consumer<FinishedRecipe> recipeConsumer, ItemLike counter, Tag<Item> dye)
+    private static void coloredKitchenCounter(Consumer<FinishedRecipe> recipeConsumer, ItemLike counter, TagKey<Item> dye)
     {
         ShapedRecipeBuilder.shaped(counter, 8)
                 .pattern("SDS")
@@ -934,7 +936,7 @@ public class RecipeGen extends RecipeProvider
                 .save(recipeConsumer);
     }
 
-    private static void coloredKitchenDrawer(Consumer<FinishedRecipe> recipeConsumer, ItemLike counter, Tag<Item> dye)
+    private static void coloredKitchenDrawer(Consumer<FinishedRecipe> recipeConsumer, ItemLike counter, TagKey<Item> dye)
     {
         ShapedRecipeBuilder.shaped(counter, 4)
                 .pattern("SDS")
@@ -996,5 +998,10 @@ public class RecipeGen extends RecipeProvider
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.PORKCHOP), Items.COOKED_PORKCHOP, 0.35F, cookingTime, cookingMethod).unlockedBy("has_porkchop", has(Items.PORKCHOP)).save(recipeConsumer, "cooked_porkchop_from_" + recipeConsumerIn);
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.POTATO), Items.BAKED_POTATO, 0.35F, cookingTime, cookingMethod).unlockedBy("has_potato", has(Items.POTATO)).save(recipeConsumer, "baked_potato_from_" + recipeConsumerIn);
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.RABBIT), Items.COOKED_RABBIT, 0.35F, cookingTime, cookingMethod).unlockedBy("has_rabbit", has(Items.RABBIT)).save(recipeConsumer, "cooked_rabbit_from_" + recipeConsumerIn);
+    }
+
+    private static InventoryChangeTrigger.TriggerInstance has(TagKey<Item> tag)
+    {
+        return inventoryTrigger(ItemPredicate.Builder.item().of(tag).build());
     }
 }

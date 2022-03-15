@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "trampoline",
+  "pattern": [
+    "WSW",
+    "I I",
+    "III"
+  ],
+  "key": {
+    "W": {
+      "item": "minecraft:gray_wool"
+    },
+    "S": {
+      "tag": "forge:slimeballs"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    }
+  },
+  "result": {
+    "item": "cfm:trampoline",
+    "nbt": "{BlockEntityTag:{Color:7}}"
+  }
+}

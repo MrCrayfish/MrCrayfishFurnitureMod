@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "chair",
+  "pattern": [
+    "L  ",
+    "LLL",
+    "P P"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:polished_granite"
+    },
+    "P": {
+      "item": "minecraft:granite"
+    }
+  },
+  "result": {
+    "item": "cfm:granite_chair",
+    "count": 4
+  }
+}

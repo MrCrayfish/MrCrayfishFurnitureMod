@@ -4,6 +4,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
+import java.util.Map;
 import java.util.function.Supplier;
 
 /**
@@ -31,5 +32,11 @@ public class BlockSupplierItem extends BlockItem
     public Block getBlock()
     {
         return this.supplier.get();
+    }
+
+    @Override
+    public void registerBlocks(Map<Block, Item> map, Item item)
+    {
+        map.put(this.block, item);
     }
 }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "chair",
+  "pattern": [
+    "L  ",
+    "LLL",
+    "P P"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:stripped_crimson_stem"
+    },
+    "P": {
+      "item": "minecraft:crimson_stem"
+    }
+  },
+  "result": {
+    "item": "cfm:stripped_crimson_chair",
+    "count": 4
+  }
+}

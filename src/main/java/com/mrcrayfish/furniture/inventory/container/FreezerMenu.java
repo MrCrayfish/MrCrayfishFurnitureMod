@@ -3,7 +3,7 @@ package com.mrcrayfish.furniture.inventory.container;
 import com.mrcrayfish.furniture.core.ModContainers;
 import com.mrcrayfish.furniture.inventory.container.slot.FreezerFuelSlot;
 import com.mrcrayfish.furniture.inventory.container.slot.FreezerResultSlot;
-import com.mrcrayfish.furniture.item.crafting.ModRecipeType;
+import com.mrcrayfish.furniture.item.crafting.ModRecipeTypes;
 import com.mrcrayfish.furniture.tileentity.FreezerBlockEntity;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -13,8 +13,6 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 /**
  * Author: MrCrayfish
@@ -146,7 +144,7 @@ public class FreezerMenu extends AbstractContainerMenu
 
     private boolean isIngredient(ItemStack stack)
     {
-        return this.level.getRecipeManager().getRecipeFor(ModRecipeType.FREEZER_SOLIDIFY, new SimpleContainer(stack), this.level).isPresent();
+        return this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.FREEZER_SOLIDIFY, new SimpleContainer(stack), this.level).isPresent();
     }
 
     @Override
@@ -156,7 +154,6 @@ public class FreezerMenu extends AbstractContainerMenu
         this.blockEntity.stopOpen(player);
     }
 
-    @OnlyIn(Dist.CLIENT)
     public int getSolidifyProgressionScaled()
     {
         int freezeTime = this.data.get(2);
@@ -164,7 +161,6 @@ public class FreezerMenu extends AbstractContainerMenu
         return freezeTimeTotal != 0 && freezeTime != 0 ? freezeTime * 24 / freezeTimeTotal : 0;
     }
 
-    @OnlyIn(Dist.CLIENT)
     public int getFuelLeftScaled()
     {
         int fuelTimeTotal = this.data.get(1);
@@ -175,7 +171,6 @@ public class FreezerMenu extends AbstractContainerMenu
         return this.data.get(0) * 13 / fuelTimeTotal;
     }
 
-    @OnlyIn(Dist.CLIENT)
     public boolean isFueling()
     {
         return this.data.get(0) > 0;

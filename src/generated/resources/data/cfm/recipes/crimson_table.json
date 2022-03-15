@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "table",
+  "pattern": [
+    "LLL",
+    " P ",
+    " P "
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:crimson_stem"
+    },
+    "P": {
+      "item": "minecraft:crimson_planks"
+    }
+  },
+  "result": {
+    "item": "cfm:crimson_table",
+    "count": 4
+  }
+}

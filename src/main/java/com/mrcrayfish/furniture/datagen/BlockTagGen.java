@@ -5,8 +5,12 @@ import com.mrcrayfish.furniture.common.ModTags;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.RegistryObject;
 
 /**
  * @author Ocelot
@@ -112,5 +116,19 @@ public class BlockTagGen extends BlockTagsProvider
 
         this.tag(BlockTags.FENCE_GATES)
                 .addTag(ModTags.Blocks.UPGRADED_FENCE_GATES);
+
+        // Dynamically gets all wooden blocks and marks them as mineable with an axe
+        TagsProvider.TagAppender<Block> mineableWithAxe = this.tag(BlockTags.MINEABLE_WITH_AXE);
+        ModBlocks.REGISTER.getEntries().stream()
+                .filter(s -> s.get().defaultBlockState().getMaterial() == Material.WOOD)
+                .map(RegistryObject::get)
+                .forEach(mineableWithAxe::add);
+
+        // Dynamically gets all stone blocks and marks them as mineable with an pickaxe
+        TagsProvider.TagAppender<Block> mineableWithPickaxe = this.tag(BlockTags.MINEABLE_WITH_PICKAXE);
+        ModBlocks.REGISTER.getEntries().stream()
+                .filter(s -> s.get().defaultBlockState().getMaterial() == Material.STONE || s.get().defaultBlockState().getMaterial() == Material.METAL)
+                .map(RegistryObject::get)
+                .forEach(mineableWithPickaxe::add);
     }
 }

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "trampoline",
+  "pattern": [
+    "TTT",
+    "WCW",
+    "TTT"
+  ],
+  "key": {
+    "T": {
+      "item": "minecraft:purple_terracotta"
+    },
+    "W": {
+      "item": "minecraft:white_concrete"
+    },
+    "C": {
+      "tag": "forge:chests/wooden"
+    }
+  },
+  "result": {
+    "item": "cfm:purple_cooler",
+    "count": 2
+  }
+}

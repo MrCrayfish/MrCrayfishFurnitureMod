@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "park_bench",
+  "pattern": [
+    "PPP",
+    "PPP",
+    "L L"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:birch_log"
+    },
+    "P": {
+      "item": "minecraft:stripped_birch_log"
+    }
+  },
+  "result": {
+    "item": "cfm:stripped_birch_park_bench",
+    "count": 4
+  }
+}

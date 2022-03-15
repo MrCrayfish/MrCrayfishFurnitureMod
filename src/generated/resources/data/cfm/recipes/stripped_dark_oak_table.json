@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "table",
+  "pattern": [
+    "LLL",
+    " P ",
+    " P "
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:stripped_dark_oak_log"
+    },
+    "P": {
+      "item": "minecraft:dark_oak_log"
+    }
+  },
+  "result": {
+    "item": "cfm:stripped_dark_oak_table",
+    "count": 4
+  }
+}

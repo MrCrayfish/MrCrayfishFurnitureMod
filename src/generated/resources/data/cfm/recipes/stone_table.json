@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "table",
+  "pattern": [
+    "LLL",
+    " P ",
+    " P "
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:stone"
+    },
+    "P": {
+      "item": "minecraft:cobblestone"
+    }
+  },
+  "result": {
+    "item": "cfm:stone_table",
+    "count": 4
+  }
+}

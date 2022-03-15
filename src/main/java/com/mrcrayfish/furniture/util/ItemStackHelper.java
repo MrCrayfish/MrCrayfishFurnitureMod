@@ -3,8 +3,8 @@ package com.mrcrayfish.furniture.util;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
+import net.minecraft.nbt.Tag;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.util.Constants;
 
 //import net.minecraft.world.item.ItemStack;
 
@@ -41,7 +41,7 @@ public class ItemStackHelper
 
     public static void loadAllItems(String key, CompoundTag tag, NonNullList<ItemStack> list)
     {
-        ListTag listTag = tag.getList(key, Constants.NBT.TAG_COMPOUND);
+        ListTag listTag = tag.getList(key, Tag.TAG_COMPOUND);
         for(int i = 0; i < listTag.size(); i++)
         {
             CompoundTag slotCompound = listTag.getCompound(i);

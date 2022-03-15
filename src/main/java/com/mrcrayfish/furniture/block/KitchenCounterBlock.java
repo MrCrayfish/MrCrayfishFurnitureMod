@@ -100,7 +100,7 @@ public class KitchenCounterBlock extends FurnitureHorizontalBlock
     {
         Direction direction = state.getValue(DIRECTION);
         BlockState frontState = level.getBlockState(pos.relative(direction.getOpposite()));
-        if(frontState.getBlock() instanceof KitchenCounterBlock)
+        if(this.isKitchenBlock(frontState))
         {
             if(frontState.getValue(DIRECTION) == direction.getClockWise())
             {
@@ -134,6 +134,11 @@ public class KitchenCounterBlock extends FurnitureHorizontalBlock
         }
 
         return state.setValue(TYPE, Type.DEFAULT);
+    }
+
+    protected boolean isKitchenBlock(BlockState state)
+    {
+        return state.getBlock() instanceof KitchenCounterBlock || state.getBlock() instanceof KitchenDrawerBlock || state.getBlock() instanceof KitchenSinkBlock;
     }
 
     @Override

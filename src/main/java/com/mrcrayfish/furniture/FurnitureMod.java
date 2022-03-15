@@ -47,27 +47,27 @@ public class FurnitureMod
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FurnitureConfig.commonSpec);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onCommonSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onDataSetup);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onGatherData);
     }
 
     private void onCommonSetup(FMLCommonSetupEvent event)
     {
-        CommonHandler.setup();
+        event.enqueueWork(CommonHandler::setup);
     }
 
     private void onClientSetup(FMLClientSetupEvent event)
     {
-        ClientHandler.setup();
+        event.enqueueWork(ClientHandler::setup);
     }
 
-    private void onDataSetup(GatherDataEvent event)
+    private void onGatherData(GatherDataEvent event)
     {
-        DataGenerator dataGenerator = event.getGenerator();
+        DataGenerator generator = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-        BlockTagGen blockTagGen = new BlockTagGen(dataGenerator, existingFileHelper);
-        dataGenerator.addProvider(new RecipeGen(dataGenerator));
-        dataGenerator.addProvider(new LootTableGen(dataGenerator));
-        dataGenerator.addProvider(blockTagGen);
-        dataGenerator.addProvider(new ItemTagGen(dataGenerator, blockTagGen, existingFileHelper));
+        BlockTagGen blockTagGen = new BlockTagGen(generator, existingFileHelper);
+        generator.addProvider(new RecipeGen(generator));
+        generator.addProvider(new LootTableGen(generator));
+        generator.addProvider(blockTagGen);
+        generator.addProvider(new ItemTagGen(generator, blockTagGen, existingFileHelper));
     }
 }

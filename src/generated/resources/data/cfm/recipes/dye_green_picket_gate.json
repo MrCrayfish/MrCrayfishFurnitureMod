@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "picket_fence",
+  "pattern": [
+    "GGG",
+    "GDG",
+    "GGG"
+  ],
+  "key": {
+    "G": {
+      "item": "cfm:white_picket_gate"
+    },
+    "D": {
+      "tag": "forge:dyes/green"
+    }
+  },
+  "result": {
+    "item": "cfm:green_picket_gate",
+    "count": 8
+  }
+}

@@ -43,7 +43,7 @@ public abstract class FluidHandlerSyncedBlockEntity extends BlockEntity
 
     private void syncFluidToClient()
     {
-        BlockEntityUtil.sendUpdatePacket(this, this.save(new CompoundTag()));
+        BlockEntityUtil.sendUpdatePacket(this, this.saveWithFullMetadata());
     }
 
     @Override
@@ -55,23 +55,23 @@ public abstract class FluidHandlerSyncedBlockEntity extends BlockEntity
     }
 
     @Override
-    public CompoundTag save(CompoundTag tag)
+    protected void saveAdditional(CompoundTag tag)
     {
+        super.saveAdditional(tag);
         this.tank.writeToNBT(tag);
-        return super.save(tag);
     }
 
     @Override
     public CompoundTag getUpdateTag()
     {
-        return this.save(new CompoundTag());
+        return this.saveWithFullMetadata();
     }
 
     @Nullable
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return new ClientboundBlockEntityDataPacket(this.worldPosition, 0, this.getUpdateTag());
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override

@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "kitchen_drawer",
+  "pattern": [
+    "LLL",
+    "PCP",
+    "PPP"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:spruce_log"
+    },
+    "P": {
+      "item": "minecraft:spruce_planks"
+    },
+    "C": {
+      "tag": "forge:chests/wooden"
+    }
+  },
+  "result": {
+    "item": "cfm:spruce_kitchen_drawer",
+    "count": 4
+  }
+}

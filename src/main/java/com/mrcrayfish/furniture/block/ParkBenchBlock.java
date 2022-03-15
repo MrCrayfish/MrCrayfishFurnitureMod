@@ -108,7 +108,7 @@ public class ParkBenchBlock extends FurnitureHorizontalWaterloggedBlock
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult result)
     {
-        return SeatEntity.create(level, pos, 0.3375, playerEntity);
+        return SeatEntity.create(level, pos, 0.3375, playerEntity, state.getValue(DIRECTION));
     }
 
     @Override

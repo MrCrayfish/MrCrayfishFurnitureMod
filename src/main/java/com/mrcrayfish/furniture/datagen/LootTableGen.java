@@ -499,9 +499,9 @@ public class LootTableGen extends LootTableProvider
             this.dropSelf(ModBlocks.KITCHEN_SINK_RED.get());
             this.dropSelf(ModBlocks.KITCHEN_SINK_BLACK.get());
             this.dropSelf(ModBlocks.FRIDGE_LIGHT.get());
-            this.dropSelf(ModBlocks.FREEZER_LIGHT.get());
             this.dropSelf(ModBlocks.FRIDGE_DARK.get());
-            this.dropSelf(ModBlocks.FREEZER_DARK.get());
+            this.dropOther(ModBlocks.FREEZER_LIGHT.get(), ModBlocks.FRIDGE_LIGHT.get());
+            this.dropOther(ModBlocks.FREEZER_DARK.get(), ModBlocks.FRIDGE_DARK.get());
         }
 
         public void registerCoffeeTable(Block block)

@@ -13,15 +13,12 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.UUID;
 
 /**
  * Author: MrCrayfish
  */
-@OnlyIn(Dist.CLIENT)
 public class CrateScreen extends AbstractContainerScreen<CrateMenu>
 {
     private static final ResourceLocation GUI_TEXTURE = new ResourceLocation(Reference.MOD_ID, "textures/gui/container/crate.png");
@@ -41,7 +38,8 @@ public class CrateScreen extends AbstractContainerScreen<CrateMenu>
     protected void init()
     {
         super.init();
-        this.button = this.addRenderableWidget(new IconButton(this.leftPos + this.imageWidth + 2, this.topPos + 17, new TranslatableComponent("gui.button.cfm.lock"), button -> PacketHandler.instance.sendToServer(new MessageLockCrate()), ICONS_TEXTURE, 0, 0));
+        this.button = this.addRenderableWidget(new IconButton(this.leftPos + this.imageWidth + 2, this.topPos + 17, new TranslatableComponent("gui.button.cfm.lock"), button -> PacketHandler.getPlayChannel()
+                .sendToServer(new MessageLockCrate()), ICONS_TEXTURE, 0, 0));
         this.updateLockButton();
     }
 

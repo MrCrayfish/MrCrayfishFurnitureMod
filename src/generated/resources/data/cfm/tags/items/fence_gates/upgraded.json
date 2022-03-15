@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "#cfm:fence_gates/picket",
+    "cfm:oak_upgraded_gate",
+    "cfm:spruce_upgraded_gate",
+    "cfm:birch_upgraded_gate",
+    "cfm:jungle_upgraded_gate",
+    "cfm:acacia_upgraded_gate",
+    "cfm:dark_oak_upgraded_gate",
+    "cfm:crimson_upgraded_gate",
+    "cfm:warped_upgraded_gate",
+    "cfm:stripped_oak_upgraded_gate",
+    "cfm:stripped_spruce_upgraded_gate",
+    "cfm:stripped_birch_upgraded_gate",
+    "cfm:stripped_jungle_upgraded_gate",
+    "cfm:stripped_acacia_upgraded_gate",
+    "cfm:stripped_dark_oak_upgraded_gate",
+    "cfm:stripped_crimson_upgraded_gate",
+    "cfm:stripped_warped_upgraded_gate"
+  ]
+}

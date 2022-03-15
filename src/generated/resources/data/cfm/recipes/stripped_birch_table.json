@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "table",
+  "pattern": [
+    "LLL",
+    " P ",
+    " P "
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:stripped_birch_log"
+    },
+    "P": {
+      "item": "minecraft:birch_log"
+    }
+  },
+  "result": {
+    "item": "cfm:stripped_birch_table",
+    "count": 4
+  }
+}

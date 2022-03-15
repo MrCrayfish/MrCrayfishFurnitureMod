@@ -15,7 +15,7 @@ public class GrillCookingRecipe extends AbstractCookingRecipe
 {
     public GrillCookingRecipe(ResourceLocation idIn, String groupIn, Ingredient ingredientIn, ItemStack resultIn, float experienceIn, int cookTimeIn)
     {
-        super(ModRecipeType.GRILL_COOKING, idIn, groupIn, ingredientIn, resultIn, experienceIn, cookTimeIn);
+        super(ModRecipeTypes.GRILL_COOKING, idIn, groupIn, ingredientIn, resultIn, experienceIn, cookTimeIn);
     }
 
     @Override
@@ -28,5 +28,11 @@ public class GrillCookingRecipe extends AbstractCookingRecipe
     public RecipeSerializer<?> getSerializer()
     {
         return ModRecipeSerializers.GRILL_COOKING.get();
+    }
+
+    @Override
+    public boolean isSpecial()
+    {
+        return true;
     }
 }

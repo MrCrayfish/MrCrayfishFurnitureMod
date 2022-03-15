@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "coffee_table",
+  "pattern": [
+    "LLL",
+    "P P"
+  ],
+  "key": {
+    "L": {
+      "item": "minecraft:polished_granite"
+    },
+    "P": {
+      "item": "minecraft:granite"
+    }
+  },
+  "result": {
+    "item": "cfm:granite_coffee_table",
+    "count": 4
+  }
+}
