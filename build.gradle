@@ -1,19 +1,9 @@
-//import groovy.json.JsonOutput
-//import groovy.json.JsonSlurper
-
-buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net' }
-        maven { url = 'https://repo.spongepowered.org/maven' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
-    }
+plugins {
+    id 'eclipse'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '5.+'
+    id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'
 }
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'org.spongepowered.mixin'
 
 version = project.property('mod.version') + "-" + project.property('minecraft.version')
 group = "com.mrcrayfish"
@@ -34,8 +24,9 @@ minecraft {
     runs {
         client {
             workingDirectory project.file('run')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
+            property 'forge.enabledGameTestNamespaces', 'cfm'
             arg '-mixin.config=cfm.mixins.json'
             mods {
                 cfm {
@@ -46,9 +37,22 @@ minecraft {
 
         server {
             workingDirectory project.file('run')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
+            property 'forge.enabledGameTestNamespaces', 'cfm'
             arg '-mixin.config=cfm.mixins.json'
+            mods {
+                cfm {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        gameTestServer {
+            workingDirectory project.file('run')
+            property 'forge.logging.markers', 'REGISTRIES'
+            property 'forge.logging.console.level', 'debug'
+            property 'forge.enabledGameTestNamespaces', 'cfm'
             mods {
                 cfm {
                     source sourceSets.main
@@ -58,7 +62,7 @@ minecraft {
 
         data {
             workingDirectory project.file('run')
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+            property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             args '--mod', 'cfm', '--all', '--output', file('src/generated/resources/')
             mods {
@@ -77,20 +81,11 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.18.2-40.0.12'
+    minecraft 'net.minecraftforge:forge:1.19-41.0.1'
+    implementation fg.deobf('curse.maven:configured-457570:3822820')
+    implementation fg.deobf('curse.maven:catalogue-459701:3822882')
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-    //runtimeOnly fg.deobf('curse.maven:configured-457570:3397732')
-    //runtimeOnly fg.deobf('curse.maven:catalogue-459701:3397798')
 }
-
-//processResources {
-//    // Minify json resources
-//    doLast {
-//        fileTree(dir: outputs.files.asPath, include: "**/*.json").each {
-//            File file -> file.text = JsonOutput.toJson(new JsonSlurper().parse(file))
-//        }
-//    }
-//}
 
 jar {
     manifest {
@@ -105,4 +100,10 @@ jar {
             "MixinConfigs": "cfm.mixins.json"
         ])
     }
+}
+
+jar.finalizedBy('reobfJar')
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
 }

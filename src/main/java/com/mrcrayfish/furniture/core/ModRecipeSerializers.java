@@ -6,6 +6,7 @@ import com.mrcrayfish.furniture.item.crafting.GrillCookingRecipe;
 import com.mrcrayfish.furniture.item.crafting.SimpleCookingSerializer;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;

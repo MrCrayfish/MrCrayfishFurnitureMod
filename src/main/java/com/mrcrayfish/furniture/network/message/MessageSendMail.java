@@ -4,7 +4,7 @@ import com.mrcrayfish.furniture.common.mail.Mail;
 import com.mrcrayfish.furniture.common.mail.PostOffice;
 import com.mrcrayfish.furniture.inventory.container.PostBoxMenu;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
 
@@ -60,7 +60,7 @@ public class MessageSendMail implements IMessage<MessageSendMail>
                         }
                         else
                         {
-                            entity.sendMessage(new TranslatableComponent("message.cfm.mail_queue_full"), this.playerId);
+                            entity.sendSystemMessage(Component.translatable("message.cfm.mail_queue_full"));
                         }
                     }
                 }

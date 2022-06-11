@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * Author: MrCrayfish
  */
-public class ParkBenchBlock extends FurnitureHorizontalWaterloggedBlock
+public class ParkBenchBlock extends FurnitureHorizontalBlock
 {
     public static final EnumProperty<Type> TYPE = EnumProperty.create("type", Type.class);
 
@@ -37,7 +37,7 @@ public class ParkBenchBlock extends FurnitureHorizontalWaterloggedBlock
     public ParkBenchBlock(Properties properties)
     {
         super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(TYPE, Type.SINGLE).setValue(WATERLOGGED, false));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(TYPE, Type.SINGLE));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
 

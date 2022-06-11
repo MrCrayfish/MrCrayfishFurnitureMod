@@ -129,7 +129,7 @@ public class ForgeShapedRecipeBuilder
     {
         this.validate(id);
         this.advancementBuilder.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id)).rewards(AdvancementRewards.Builder.recipe(id)).requirements(RequirementsStrategy.OR);
-        consumerIn.accept(new ForgeShapedRecipeBuilder.Result(this.key, id, this.result, this.group == null ? "" : this.group, this.pattern, this.ingredientMap, this.advancementBuilder, new ResourceLocation(id.getNamespace(), "recipes/" + this.result.getItem().getItemCategory().getRecipeFolderName() + "/" + id.getPath())));
+        consumerIn.accept(new Result(this.key, id, this.result, this.group == null ? "" : this.group, this.pattern, this.ingredientMap, this.advancementBuilder, new ResourceLocation(id.getNamespace(), "recipes/" + this.result.getItem().getItemCategory().getRecipeFolderName() + "/" + id.getPath())));
     }
 
     /**
@@ -175,7 +175,7 @@ public class ForgeShapedRecipeBuilder
         }
     }
 
-    public class Result implements FinishedRecipe
+    public static class Result implements FinishedRecipe
     {
         private final String key;
         private final ResourceLocation id;

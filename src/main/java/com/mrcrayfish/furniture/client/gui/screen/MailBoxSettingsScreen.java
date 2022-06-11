@@ -11,8 +11,8 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.CommonComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
 /**
@@ -31,7 +31,7 @@ public class MailBoxSettingsScreen extends Screen
 
     public MailBoxSettingsScreen(MailBoxBlockEntity mailBoxBlockEntity)
     {
-        super(new TranslatableComponent("gui.cfm.mail_box_settings"));
+        super(Component.translatable("gui.cfm.mail_box_settings"));
         this.mailBoxBlockEntity = mailBoxBlockEntity;
     }
 
@@ -41,14 +41,14 @@ public class MailBoxSettingsScreen extends Screen
         int guiLeft = (this.width - this.xSize) / 2;
         int guiTop = (this.height - this.ySize) / 2;
 
-        this.nameField = new EditBox(this.font, guiLeft + 8, guiTop + 18, 160, 18, TextComponent.EMPTY);
+        this.nameField = new EditBox(this.font, guiLeft + 8, guiTop + 18, 160, 18, CommonComponents.EMPTY);
         if(this.mailBoxBlockEntity.getMailBoxName() != null)
         {
             this.nameField.setValue(this.mailBoxBlockEntity.getMailBoxName());
         }
         this.addWidget(this.nameField);
 
-        this.btnSave = this.addRenderableWidget(new Button(guiLeft + 7, guiTop + 42, 79, 20, new TranslatableComponent("gui.button.cfm.save"), button ->
+        this.btnSave = this.addRenderableWidget(new Button(guiLeft + 7, guiTop + 42, 79, 20, Component.translatable("gui.button.cfm.save"), button ->
         {
             if(this.isValidName())
             {
@@ -58,7 +58,7 @@ public class MailBoxSettingsScreen extends Screen
         }));
         this.btnSave.active = false;
 
-        this.addRenderableWidget(new Button(guiLeft + 91, guiTop + 42, 79, 20, new TranslatableComponent("gui.button.cfm.back"), button ->
+        this.addRenderableWidget(new Button(guiLeft + 91, guiTop + 42, 79, 20, Component.translatable("gui.button.cfm.back"), button ->
         {
             PacketHandler.getPlayChannel()
                     .sendToServer(new MessageOpenMailBox(this.mailBoxBlockEntity.getBlockPos()));

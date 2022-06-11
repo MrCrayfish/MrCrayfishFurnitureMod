@@ -59,7 +59,7 @@ public class TrampolineItem extends BlockItem
     @Override
     public void fillItemCategory(CreativeModeTab tab, NonNullList<ItemStack> items)
     {
-        if(this.allowdedIn(tab))
+        if(this.allowedIn(tab))
         {
             for(DyeColor color : DyeColor.values())
             {

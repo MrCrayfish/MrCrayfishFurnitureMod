@@ -22,7 +22,7 @@ import java.util.Map;
 /**
  * Author: MrCrayfish
  */
-public class DoorMatBlock extends FurnitureHorizontalWaterloggedBlock implements EntityBlock
+public class DoorMatBlock extends FurnitureHorizontalBlock implements EntityBlock
 {
     public final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
 

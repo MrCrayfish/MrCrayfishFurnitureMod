@@ -16,7 +16,6 @@ import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
@@ -66,12 +65,12 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
     protected void init()
     {
         super.init();
-        this.searchField = new EditBox(this.font, this.leftPos + 22, this.topPos + 19, 101, 9, new TranslatableComponent("gui.cfm.post_box.search"));
+        this.searchField = new EditBox(this.font, this.leftPos + 22, this.topPos + 19, 101, 9, Component.translatable("gui.cfm.post_box.search"));
         this.searchField.setBordered(false);
         this.searchField.setMaxLength(32);
         this.searchField.setTextColor(16777215);
         this.addWidget(this.searchField);
-        this.btnSend = this.addRenderableWidget(new IconButton(this.leftPos + 147, this.topPos + 53, new TranslatableComponent("gui.button.cfm.send_mail"), this::sendMail, ICONS_TEXTURE, 32, 0));
+        this.btnSend = this.addRenderableWidget(new IconButton(this.leftPos + 147, this.topPos + 53, Component.translatable("gui.button.cfm.send_mail"), this::sendMail, ICONS_TEXTURE, 32, 0));
         this.btnSend.active = false;
         PacketHandler.getPlayChannel()
                 .sendToServer(new MessageRequestMailBoxes());

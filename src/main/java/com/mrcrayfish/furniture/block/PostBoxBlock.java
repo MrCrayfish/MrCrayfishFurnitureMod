@@ -4,7 +4,7 @@ import com.mrcrayfish.furniture.inventory.container.PostBoxMenu;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -26,9 +26,9 @@ import java.util.List;
 /**
  * Author: MrCrayfish
  */
-public class PostBoxBlock extends FurnitureHorizontalWaterloggedBlock
+public class PostBoxBlock extends FurnitureHorizontalBlock
 {
-    private static final TranslatableComponent TITLE = new TranslatableComponent("container.cfm.post_box");
+    private static final Component TITLE = Component.translatable("container.cfm.post_box");
 
     public final VoxelShape SHAPE;
 

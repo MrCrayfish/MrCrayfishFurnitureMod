@@ -39,14 +39,14 @@ import java.util.function.Supplier;
 /**
  * Author: MrCrayfish
  */
-public class MailBoxBlock extends FurnitureHorizontalWaterloggedBlock implements EntityBlock
+public class MailBoxBlock extends FurnitureHorizontalBlock implements EntityBlock
 {
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
 
     public MailBoxBlock(Properties properties)
     {
         super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(WATERLOGGED, false));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
 

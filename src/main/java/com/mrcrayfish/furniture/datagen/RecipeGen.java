@@ -24,6 +24,7 @@ import net.minecraft.world.item.crafting.SimpleCookingSerializer;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.function.Consumer;
 
@@ -750,7 +751,7 @@ public class RecipeGen extends RecipeProvider
                 .save(recipeConsumer);
         if (fence == ModBlocks.PICKET_FENCE_WHITE.get())
             return;
-        ResourceLocation registryName = fence.asItem().getRegistryName();
+        ResourceLocation registryName = ForgeRegistries.ITEMS.getKey(fence.asItem());
         ShapedRecipeBuilder.shaped(fence, 8)
                 .pattern("FFF")
                 .pattern("FDF")
@@ -775,7 +776,7 @@ public class RecipeGen extends RecipeProvider
                 .save(recipeConsumer);
         if (gate == ModBlocks.PICKET_GATE_WHITE.get())
             return;
-        ResourceLocation registryName = gate.asItem().getRegistryName();
+        ResourceLocation registryName = ForgeRegistries.ITEMS.getKey(gate.asItem());
         ShapedRecipeBuilder.shaped(gate, 8)
                 .pattern("GGG")
                 .pattern("GDG")
@@ -998,10 +999,5 @@ public class RecipeGen extends RecipeProvider
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.PORKCHOP), Items.COOKED_PORKCHOP, 0.35F, cookingTime, cookingMethod).unlockedBy("has_porkchop", has(Items.PORKCHOP)).save(recipeConsumer, "cooked_porkchop_from_" + recipeConsumerIn);
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.POTATO), Items.BAKED_POTATO, 0.35F, cookingTime, cookingMethod).unlockedBy("has_potato", has(Items.POTATO)).save(recipeConsumer, "baked_potato_from_" + recipeConsumerIn);
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.RABBIT), Items.COOKED_RABBIT, 0.35F, cookingTime, cookingMethod).unlockedBy("has_rabbit", has(Items.RABBIT)).save(recipeConsumer, "cooked_rabbit_from_" + recipeConsumerIn);
-    }
-
-    private static InventoryChangeTrigger.TriggerInstance has(TagKey<Item> tag)
-    {
-        return inventoryTrigger(ItemPredicate.Builder.item().of(tag).build());
     }
 }

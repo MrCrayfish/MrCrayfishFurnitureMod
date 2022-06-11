@@ -1,9 +1,9 @@
 package com.mrcrayfish.furniture.tileentity;
 
 import com.mrcrayfish.furniture.core.ModBlockEntities;
+import com.mrcrayfish.furniture.core.ModRecipeTypes;
 import com.mrcrayfish.furniture.core.ModSounds;
 import com.mrcrayfish.furniture.item.crafting.GrillCookingRecipe;
-import com.mrcrayfish.furniture.item.crafting.ModRecipeTypes;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.MessageFlipGrill;
 import com.mrcrayfish.furniture.util.BlockEntityUtil;
@@ -325,7 +325,7 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
                         /* Set to result on cooked and flipped */
                         if(this.flipped[i])
                         {
-                            Optional<GrillCookingRecipe> optional = this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.GRILL_COOKING, new SimpleContainer(this.grill.get(i)), this.level);
+                            Optional<GrillCookingRecipe> optional = this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.GRILL_COOKING.get(), new SimpleContainer(this.grill.get(i)), this.level);
                             if(optional.isPresent())
                             {
                                 this.grill.set(i, optional.get().getResultItem().copy());
@@ -394,7 +394,7 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
 
     public Optional<GrillCookingRecipe> findMatchingRecipe(ItemStack input)
     {
-        return this.grill.stream().noneMatch(ItemStack::isEmpty) ? Optional.empty() : this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.GRILL_COOKING, new SimpleContainer(input), this.level);
+        return this.grill.stream().noneMatch(ItemStack::isEmpty) ? Optional.empty() : this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.GRILL_COOKING.get(), new SimpleContainer(input), this.level);
     }
 
     @Override
@@ -495,7 +495,7 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
             index -= this.fuel.size();
             inventory = this.grill;
             int finalIndex = index;
-            Optional<GrillCookingRecipe> optional = this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.GRILL_COOKING, new SimpleContainer(stack), this.level);
+            Optional<GrillCookingRecipe> optional = this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.GRILL_COOKING.get(), new SimpleContainer(stack), this.level);
             if(optional.isPresent())
             {
                 GrillCookingRecipe recipe = optional.get();
@@ -692,7 +692,7 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
         }
         if(index - this.fuel.size() >= 0)
         {
-            return this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.GRILL_COOKING, new SimpleContainer(stack), this.level).isPresent();
+            return this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.GRILL_COOKING.get(), new SimpleContainer(stack), this.level).isPresent();
         }
         return stack.getItem() == Items.COAL || stack.getItem() == Items.CHARCOAL;
     }
@@ -707,7 +707,7 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
                 index -= this.fuel.size();
                 if(this.flipped[index] && this.cookingTimes[index] == this.cookingTotalTimes[index])
                 {
-                    Optional<GrillCookingRecipe> optional = this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.GRILL_COOKING, new SimpleContainer(stack), this.level);
+                    Optional<GrillCookingRecipe> optional = this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.GRILL_COOKING.get(), new SimpleContainer(stack), this.level);
                     return !optional.isPresent();
                 }
             }

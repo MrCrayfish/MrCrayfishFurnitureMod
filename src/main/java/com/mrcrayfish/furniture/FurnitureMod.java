@@ -8,6 +8,7 @@ import com.mrcrayfish.furniture.core.ModContainers;
 import com.mrcrayfish.furniture.core.ModEntities;
 import com.mrcrayfish.furniture.core.ModItems;
 import com.mrcrayfish.furniture.core.ModRecipeSerializers;
+import com.mrcrayfish.furniture.core.ModRecipeTypes;
 import com.mrcrayfish.furniture.core.ModSounds;
 import com.mrcrayfish.furniture.datagen.BlockTagGen;
 import com.mrcrayfish.furniture.datagen.ItemTagGen;
@@ -42,6 +43,7 @@ public class FurnitureMod
         ModBlockEntities.REGISTER.register(eventBus);
         ModContainers.REGISTER.register(eventBus);
         ModSounds.REGISTER.register(eventBus);
+        ModRecipeTypes.REGISTER.register(eventBus);
         ModRecipeSerializers.REGISTER.register(eventBus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, FurnitureConfig.clientSpec);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FurnitureConfig.commonSpec);
@@ -65,9 +67,9 @@ public class FurnitureMod
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
         BlockTagGen blockTagGen = new BlockTagGen(generator, existingFileHelper);
-        generator.addProvider(new RecipeGen(generator));
-        generator.addProvider(new LootTableGen(generator));
-        generator.addProvider(blockTagGen);
-        generator.addProvider(new ItemTagGen(generator, blockTagGen, existingFileHelper));
+        generator.addProvider(event.includeServer(), new RecipeGen(generator));
+        generator.addProvider(event.includeServer(), new LootTableGen(generator));
+        generator.addProvider(event.includeServer(), blockTagGen);
+        generator.addProvider(event.includeServer(), new ItemTagGen(generator, blockTagGen, existingFileHelper));
     }
 }

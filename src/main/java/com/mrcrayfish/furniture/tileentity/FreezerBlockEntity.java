@@ -3,16 +3,15 @@ package com.mrcrayfish.furniture.tileentity;
 import com.google.common.collect.Maps;
 import com.mrcrayfish.furniture.block.FreezerBlock;
 import com.mrcrayfish.furniture.core.ModBlockEntities;
+import com.mrcrayfish.furniture.core.ModRecipeTypes;
 import com.mrcrayfish.furniture.core.ModSounds;
 import com.mrcrayfish.furniture.event.FreezerFuelTimeEvent;
 import com.mrcrayfish.furniture.inventory.container.FreezerMenu;
-import com.mrcrayfish.furniture.item.crafting.ModRecipeTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -123,7 +122,7 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
         ItemStack fuelStack = blockEntity.items.get(1);
         if(blockEntity.isFreezing() || !fuelStack.isEmpty() && !blockEntity.items.get(0).isEmpty())
         {
-            Recipe<?> recipe = level.getRecipeManager().getRecipeFor(ModRecipeTypes.FREEZER_SOLIDIFY, blockEntity, level).orElse(null);
+            Recipe<?> recipe = level.getRecipeManager().getRecipeFor(ModRecipeTypes.FREEZER_SOLIDIFY.get(), blockEntity, level).orElse(null);
             if(!blockEntity.isFreezing() && blockEntity.canFreeze(recipe))
             {
                 blockEntity.fuelTime = blockEntity.getFreezeTime(fuelStack);
@@ -284,13 +283,13 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
 
     protected int getFreezeTime()
     {
-        return this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.FREEZER_SOLIDIFY, this, this.level).map(AbstractCookingRecipe::getCookingTime).orElse(300);
+        return this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.FREEZER_SOLIDIFY.get(), this, this.level).map(AbstractCookingRecipe::getCookingTime).orElse(300);
     }
 
     @Override
     protected Component getDefaultName()
     {
-        return new TranslatableComponent("container.cfm.freezer");
+        return Component.translatable("container.cfm.freezer");
     }
 
     @Override

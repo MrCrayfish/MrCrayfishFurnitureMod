@@ -7,7 +7,6 @@ import com.mrcrayfish.furniture.core.ModSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Vec3i;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Inventory;
@@ -42,7 +41,7 @@ public class KitchenDrawerBlockEntity extends BasicLootBlockEntity
     @Override
     protected Component getDefaultName()
     {
-        return new TranslatableComponent("container.cfm.kitchen_drawer");
+        return Component.translatable("container.cfm.kitchen_drawer");
     }
 
     @Override

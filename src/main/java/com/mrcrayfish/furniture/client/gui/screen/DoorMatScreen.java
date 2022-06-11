@@ -10,10 +10,9 @@ import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 
 /**
@@ -32,7 +31,7 @@ public class DoorMatScreen extends Screen
 
     public DoorMatScreen(DoorMatBlockEntity doorMatBlockEntity)
     {
-        super(new TranslatableComponent("gui.cfm.door_mat_message"));
+        super(Component.translatable("gui.cfm.door_mat_message"));
         this.doorMatBlockEntity = doorMatBlockEntity;
     }
 
@@ -42,7 +41,7 @@ public class DoorMatScreen extends Screen
         int guiLeft = (this.width - this.xSize) / 2;
         int guiTop = (this.height - this.ySize) / 2;
 
-        this.nameField = new EditBox(this.font, guiLeft + 8, guiTop + 18, 160, 18, TextComponent.EMPTY)
+        this.nameField = new EditBox(this.font, guiLeft + 8, guiTop + 18, 160, 18, CommonComponents.EMPTY)
         {
             @Override
             public void insertText(String textToWrite)
@@ -60,7 +59,7 @@ public class DoorMatScreen extends Screen
         }
         this.addWidget(this.nameField);
 
-        this.btnSave = this.addRenderableWidget(new Button(guiLeft + 7, guiTop + 42, 79, 20, new TranslatableComponent("gui.button.cfm.save"), button ->
+        this.btnSave = this.addRenderableWidget(new Button(guiLeft + 7, guiTop + 42, 79, 20, Component.translatable("gui.button.cfm.save"), button ->
         {
             if(this.isValidName())
             {
@@ -71,7 +70,7 @@ public class DoorMatScreen extends Screen
         }));
         this.btnSave.active = false;
 
-        this.addRenderableWidget(new Button(guiLeft + 91, guiTop + 42, 79, 20, new TranslatableComponent("gui.button.cfm.cancel"), button -> this.onClose()));
+        this.addRenderableWidget(new Button(guiLeft + 91, guiTop + 42, 79, 20, Component.translatable("gui.button.cfm.cancel"), button -> this.onClose()));
     }
 
     @Override

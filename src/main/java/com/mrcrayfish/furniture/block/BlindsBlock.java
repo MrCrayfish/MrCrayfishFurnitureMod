@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * Author: MrCrayfish
  */
-public class BlindsBlock extends FurnitureHorizontalWaterloggedBlock
+public class BlindsBlock extends FurnitureHorizontalBlock
 {
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
     public static final BooleanProperty EXTENSION = BooleanProperty.create("extension");
@@ -38,7 +38,7 @@ public class BlindsBlock extends FurnitureHorizontalWaterloggedBlock
     public BlindsBlock(Properties properties)
     {
         super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(OPEN, true).setValue(EXTENSION, false).setValue(WATERLOGGED, false));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(OPEN, true).setValue(EXTENSION, false));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
 

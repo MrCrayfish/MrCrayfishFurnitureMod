@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Author: MrCrayfish
  */
-public class ChairBlock extends FurnitureHorizontalWaterloggedBlock
+public class ChairBlock extends FurnitureHorizontalBlock
 {
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
     

@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * Author: MrCrayfish
  */
-public class DivingBoardBlock extends FurnitureHorizontalWaterloggedBlock
+public class DivingBoardBlock extends FurnitureHorizontalBlock
 {
     public static final EnumProperty<DivingBoardPart> PART = EnumProperty.create("part", DivingBoardPart.class);
 
@@ -40,7 +40,7 @@ public class DivingBoardBlock extends FurnitureHorizontalWaterloggedBlock
     public DivingBoardBlock(Properties properties)
     {
         super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(PART, DivingBoardPart.BASE).setValue(DIRECTION, Direction.NORTH).setValue(WATERLOGGED, false));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(PART, DivingBoardPart.BASE).setValue(DIRECTION, Direction.NORTH));
     }
 
     private VoxelShape getShape(BlockState state)

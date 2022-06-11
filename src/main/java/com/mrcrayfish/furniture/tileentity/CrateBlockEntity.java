@@ -13,7 +13,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -59,7 +58,7 @@ public class CrateBlockEntity extends BasicLootBlockEntity
     @Override
     protected Component getDefaultName()
     {
-        return new TranslatableComponent("container.cfm.crate");
+        return Component.translatable("container.cfm.crate");
     }
 
     @Override
@@ -67,7 +66,7 @@ public class CrateBlockEntity extends BasicLootBlockEntity
     {
         if(this.locked && !this.ownerUuid.equals(playerInventory.player.getUUID()))
         {
-            playerInventory.player.displayClientMessage(new TranslatableComponent("container.isLocked", this.getDisplayName()), true);
+            playerInventory.player.displayClientMessage(Component.translatable("container.isLocked", this.getDisplayName()), true);
             playerInventory.player.playNotifySound(SoundEvents.CHEST_LOCKED, SoundSource.BLOCKS, 1.0F, 1.0F);
             return null;
         }

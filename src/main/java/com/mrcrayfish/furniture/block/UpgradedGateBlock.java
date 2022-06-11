@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * Author: MrCrayfish
  */
-public class UpgradedGateBlock extends FurnitureHorizontalWaterloggedBlock
+public class UpgradedGateBlock extends FurnitureHorizontalBlock
 {
     public static final EnumProperty<DoorHingeSide> HINGE = EnumProperty.create("hinge", DoorHingeSide.class);
     public static final BooleanProperty OPEN = BlockStateProperties.OPEN;

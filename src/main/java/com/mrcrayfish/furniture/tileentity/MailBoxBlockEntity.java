@@ -10,7 +10,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
@@ -151,7 +150,7 @@ public class MailBoxBlockEntity extends BasicLootBlockEntity
     @Override
     protected Component getDefaultName()
     {
-        return new TranslatableComponent("container.cfm.mail_box", this.ownerName, this.name);
+        return Component.translatable("container.cfm.mail_box", this.ownerName, this.name);
     }
 
     @Override

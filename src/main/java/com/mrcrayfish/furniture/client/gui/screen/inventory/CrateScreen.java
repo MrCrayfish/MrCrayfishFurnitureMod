@@ -10,7 +10,6 @@ import com.mrcrayfish.furniture.network.message.MessageLockCrate;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
@@ -38,7 +37,7 @@ public class CrateScreen extends AbstractContainerScreen<CrateMenu>
     protected void init()
     {
         super.init();
-        this.button = this.addRenderableWidget(new IconButton(this.leftPos + this.imageWidth + 2, this.topPos + 17, new TranslatableComponent("gui.button.cfm.lock"), button -> PacketHandler.getPlayChannel()
+        this.button = this.addRenderableWidget(new IconButton(this.leftPos + this.imageWidth + 2, this.topPos + 17, Component.translatable("gui.button.cfm.lock"), button -> PacketHandler.getPlayChannel()
                 .sendToServer(new MessageLockCrate()), ICONS_TEXTURE, 0, 0));
         this.updateLockButton();
     }
@@ -57,7 +56,7 @@ public class CrateScreen extends AbstractContainerScreen<CrateMenu>
     {
         this.locked = this.menu.getBlockEntity().isLocked();
         this.button.setIcon(ICONS_TEXTURE, this.locked ? 0 : 16, 0);
-        this.button.setMessage(new TranslatableComponent(this.locked ? "gui.button.cfm.locked" : "gui.button.cfm.unlocked"));
+        this.button.setMessage(Component.translatable(this.locked ? "gui.button.cfm.locked" : "gui.button.cfm.unlocked"));
         UUID ownerUuid = this.menu.getBlockEntity().getOwner();
         this.button.visible = ownerUuid == null || this.playerId.equals(ownerUuid);
     }
@@ -70,7 +69,7 @@ public class CrateScreen extends AbstractContainerScreen<CrateMenu>
         this.renderTooltip(poseStack, mouseX, mouseY);
         if(this.button.isMouseOver(mouseX, mouseY))
         {
-            this.renderTooltip(poseStack, new TranslatableComponent(this.locked ? "gui.button.cfm.locked" : "gui.button.cfm.unlocked"), mouseX, mouseY);
+            this.renderTooltip(poseStack, Component.translatable(this.locked ? "gui.button.cfm.locked" : "gui.button.cfm.unlocked"), mouseX, mouseY);
         }
     }
 

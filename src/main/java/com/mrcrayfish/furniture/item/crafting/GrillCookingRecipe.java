@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.item.crafting;
 
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModRecipeSerializers;
+import com.mrcrayfish.furniture.core.ModRecipeTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
@@ -15,7 +16,7 @@ public class GrillCookingRecipe extends AbstractCookingRecipe
 {
     public GrillCookingRecipe(ResourceLocation idIn, String groupIn, Ingredient ingredientIn, ItemStack resultIn, float experienceIn, int cookTimeIn)
     {
-        super(ModRecipeTypes.GRILL_COOKING, idIn, groupIn, ingredientIn, resultIn, experienceIn, cookTimeIn);
+        super(ModRecipeTypes.GRILL_COOKING.get(), idIn, groupIn, ingredientIn, resultIn, experienceIn, cookTimeIn);
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.mrcrayfish.furniture.common;
 
 import com.mrcrayfish.furniture.core.ModItems;
-import com.mrcrayfish.furniture.item.crafting.ModRecipeTypes;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.tileentity.GrillBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -16,7 +15,6 @@ public class CommonHandler
 {
     public static void setup()
     {
-        ModRecipeTypes.init();
         PacketHandler.init();
         DispenserBlock.registerBehavior(ModItems.SPATULA::get, (source, stack) ->
         {

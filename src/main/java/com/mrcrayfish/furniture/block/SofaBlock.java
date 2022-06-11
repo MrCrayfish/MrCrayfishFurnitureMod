@@ -31,7 +31,7 @@ import java.util.List;
 /**
  * Author: MrCrayfish
  */
-public class SofaBlock extends FurnitureHorizontalWaterloggedBlock
+public class SofaBlock extends FurnitureHorizontalBlock
 {
     public static final EnumProperty<Type> TYPE = EnumProperty.create("type", Type.class);
 
@@ -128,7 +128,7 @@ public class SofaBlock extends FurnitureHorizontalWaterloggedBlock
             {
                 if(stack.getHoverName().getString().equals("jeb_"))
                 {
-                    BlockState rainbowSofaState = ModBlocks.SOFA_RAINBOW.get().defaultBlockState().setValue(DIRECTION, state.getValue(DIRECTION)).setValue(TYPE, state.getValue(TYPE)).setValue(WATERLOGGED, state.getValue(WATERLOGGED));
+                    BlockState rainbowSofaState = ModBlocks.SOFA_RAINBOW.get().defaultBlockState().setValue(DIRECTION, state.getValue(DIRECTION)).setValue(TYPE, state.getValue(TYPE));
                     level.setBlock(pos, rainbowSofaState, 3);
                     return InteractionResult.SUCCESS;
                 }

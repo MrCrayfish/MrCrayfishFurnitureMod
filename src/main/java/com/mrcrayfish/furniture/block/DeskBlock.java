@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Author: MrCrayfish
  */
-public class DeskBlock extends FurnitureHorizontalWaterloggedBlock
+public class DeskBlock extends FurnitureHorizontalBlock
 {
     public static final EnumProperty<Type> TYPE = EnumProperty.create("type", Type.class);
 

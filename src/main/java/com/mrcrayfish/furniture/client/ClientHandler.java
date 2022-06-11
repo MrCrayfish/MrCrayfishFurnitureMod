@@ -358,7 +358,7 @@ public class ClientHandler
     private static boolean useFancyGraphics()
     {
         Minecraft mc = Minecraft.getInstance();
-        return mc.options.graphicsMode.getId() > 0;
+        return mc.options.graphicsMode().get().getId() > 0;
     }
 
     public static void showDoorMatScreen(Level level, BlockPos pos)
