@@ -71,7 +71,9 @@ public class BlockTagGen extends BlockTagsProvider
                 .add(ModBlocks.HEDGE_JUNGLE.get())
                 .add(ModBlocks.HEDGE_ACACIA.get())
                 .add(ModBlocks.HEDGE_DARK_OAK.get())
-                .add(ModBlocks.HEDGE_MANGROVE.get());
+                .add(ModBlocks.HEDGE_MANGROVE.get())
+                .add(ModBlocks.HEDGE_AZALEA.get())
+                .add(ModBlocks.HEDGE_FLOWERING_AZALEA.get());
 
         // Dynamically registers upgraded fences to the upgraded fences tag
         TagBuilder upgradedFences = this.getOrCreateRawBuilder(ModTags.Blocks.UPGRADED_FENCES).replace(false);

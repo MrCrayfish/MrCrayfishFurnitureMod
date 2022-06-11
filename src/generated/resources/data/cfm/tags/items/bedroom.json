@@ -12,293 +12,77 @@
     "cfm:granite_desk_cabinet",
     "cfm:diorite_desk_cabinet",
     "cfm:andesite_desk_cabinet",
-    {
-      "id": "cfm:oak_bedside_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_oak_bedside_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:oak_desk",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_oak_desk",
-      "required": false
-    },
-    {
-      "id": "cfm:oak_desk_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_oak_desk_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:oak_blinds",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_oak_blinds",
-      "required": false
-    },
-    {
-      "id": "cfm:birch_bedside_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_birch_bedside_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:birch_desk",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_birch_desk",
-      "required": false
-    },
-    {
-      "id": "cfm:birch_desk_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_birch_desk_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:birch_blinds",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_birch_blinds",
-      "required": false
-    },
-    {
-      "id": "cfm:spruce_bedside_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_spruce_bedside_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:spruce_desk",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_spruce_desk",
-      "required": false
-    },
-    {
-      "id": "cfm:spruce_desk_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_spruce_desk_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:spruce_blinds",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_spruce_blinds",
-      "required": false
-    },
-    {
-      "id": "cfm:jungle_bedside_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_jungle_bedside_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:jungle_desk",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_jungle_desk",
-      "required": false
-    },
-    {
-      "id": "cfm:jungle_desk_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_jungle_desk_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:jungle_blinds",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_jungle_blinds",
-      "required": false
-    },
-    {
-      "id": "cfm:acacia_bedside_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_acacia_bedside_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:acacia_desk",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_acacia_desk",
-      "required": false
-    },
-    {
-      "id": "cfm:acacia_desk_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_acacia_desk_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:acacia_blinds",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_acacia_blinds",
-      "required": false
-    },
-    {
-      "id": "cfm:dark_oak_bedside_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_dark_oak_bedside_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:dark_oak_desk",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_dark_oak_desk",
-      "required": false
-    },
-    {
-      "id": "cfm:dark_oak_desk_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_dark_oak_desk_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:dark_oak_blinds",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_dark_oak_blinds",
-      "required": false
-    },
-    {
-      "id": "cfm:crimson_bedside_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_crimson_bedside_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:crimson_desk",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_crimson_desk",
-      "required": false
-    },
-    {
-      "id": "cfm:crimson_desk_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_crimson_desk_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:crimson_blinds",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_crimson_blinds",
-      "required": false
-    },
-    {
-      "id": "cfm:warped_bedside_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_warped_bedside_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:warped_desk",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_warped_desk",
-      "required": false
-    },
-    {
-      "id": "cfm:warped_desk_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_warped_desk_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:warped_blinds",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_warped_blinds",
-      "required": false
-    },
-    {
-      "id": "cfm:mangrove_bedside_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_mangrove_bedside_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:mangrove_desk",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_mangrove_desk",
-      "required": false
-    },
-    {
-      "id": "cfm:mangrove_desk_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_mangrove_desk_cabinet",
-      "required": false
-    },
-    {
-      "id": "cfm:mangrove_blinds",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_mangrove_blinds",
-      "required": false
-    }
+    "cfm:oak_bedside_cabinet",
+    "cfm:stripped_oak_bedside_cabinet",
+    "cfm:oak_desk",
+    "cfm:stripped_oak_desk",
+    "cfm:oak_desk_cabinet",
+    "cfm:stripped_oak_desk_cabinet",
+    "cfm:oak_blinds",
+    "cfm:stripped_oak_blinds",
+    "cfm:birch_bedside_cabinet",
+    "cfm:stripped_birch_bedside_cabinet",
+    "cfm:birch_desk",
+    "cfm:stripped_birch_desk",
+    "cfm:birch_desk_cabinet",
+    "cfm:stripped_birch_desk_cabinet",
+    "cfm:birch_blinds",
+    "cfm:stripped_birch_blinds",
+    "cfm:spruce_bedside_cabinet",
+    "cfm:stripped_spruce_bedside_cabinet",
+    "cfm:spruce_desk",
+    "cfm:stripped_spruce_desk",
+    "cfm:spruce_desk_cabinet",
+    "cfm:stripped_spruce_desk_cabinet",
+    "cfm:spruce_blinds",
+    "cfm:stripped_spruce_blinds",
+    "cfm:jungle_bedside_cabinet",
+    "cfm:stripped_jungle_bedside_cabinet",
+    "cfm:jungle_desk",
+    "cfm:stripped_jungle_desk",
+    "cfm:jungle_desk_cabinet",
+    "cfm:stripped_jungle_desk_cabinet",
+    "cfm:jungle_blinds",
+    "cfm:stripped_jungle_blinds",
+    "cfm:acacia_bedside_cabinet",
+    "cfm:stripped_acacia_bedside_cabinet",
+    "cfm:acacia_desk",
+    "cfm:stripped_acacia_desk",
+    "cfm:acacia_desk_cabinet",
+    "cfm:stripped_acacia_desk_cabinet",
+    "cfm:acacia_blinds",
+    "cfm:stripped_acacia_blinds",
+    "cfm:dark_oak_bedside_cabinet",
+    "cfm:stripped_dark_oak_bedside_cabinet",
+    "cfm:dark_oak_desk",
+    "cfm:stripped_dark_oak_desk",
+    "cfm:dark_oak_desk_cabinet",
+    "cfm:stripped_dark_oak_desk_cabinet",
+    "cfm:dark_oak_blinds",
+    "cfm:stripped_dark_oak_blinds",
+    "cfm:crimson_bedside_cabinet",
+    "cfm:stripped_crimson_bedside_cabinet",
+    "cfm:crimson_desk",
+    "cfm:stripped_crimson_desk",
+    "cfm:crimson_desk_cabinet",
+    "cfm:stripped_crimson_desk_cabinet",
+    "cfm:crimson_blinds",
+    "cfm:stripped_crimson_blinds",
+    "cfm:warped_bedside_cabinet",
+    "cfm:stripped_warped_bedside_cabinet",
+    "cfm:warped_desk",
+    "cfm:stripped_warped_desk",
+    "cfm:warped_desk_cabinet",
+    "cfm:stripped_warped_desk_cabinet",
+    "cfm:warped_blinds",
+    "cfm:stripped_warped_blinds",
+    "cfm:mangrove_bedside_cabinet",
+    "cfm:stripped_mangrove_bedside_cabinet",
+    "cfm:mangrove_desk",
+    "cfm:stripped_mangrove_desk",
+    "cfm:mangrove_desk_cabinet",
+    "cfm:stripped_mangrove_desk_cabinet",
+    "cfm:mangrove_blinds",
+    "cfm:stripped_mangrove_blinds"
   ]
 }

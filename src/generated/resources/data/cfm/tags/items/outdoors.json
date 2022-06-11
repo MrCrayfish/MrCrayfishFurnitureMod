@@ -39,221 +39,59 @@
     "cfm:red_grill",
     "cfm:black_grill",
     "cfm:spatula",
-    {
-      "id": "cfm:oak_park_bench",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_oak_park_bench",
-      "required": false
-    },
-    {
-      "id": "cfm:oak_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_oak_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:oak_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_oak_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:birch_park_bench",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_birch_park_bench",
-      "required": false
-    },
-    {
-      "id": "cfm:birch_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_birch_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:birch_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_birch_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:spruce_park_bench",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_spruce_park_bench",
-      "required": false
-    },
-    {
-      "id": "cfm:spruce_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_spruce_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:spruce_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_spruce_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:jungle_park_bench",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_jungle_park_bench",
-      "required": false
-    },
-    {
-      "id": "cfm:jungle_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_jungle_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:jungle_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_jungle_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:acacia_park_bench",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_acacia_park_bench",
-      "required": false
-    },
-    {
-      "id": "cfm:acacia_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_acacia_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:acacia_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_acacia_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:dark_oak_park_bench",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_dark_oak_park_bench",
-      "required": false
-    },
-    {
-      "id": "cfm:dark_oak_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_dark_oak_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:dark_oak_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_dark_oak_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:crimson_park_bench",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_crimson_park_bench",
-      "required": false
-    },
-    {
-      "id": "cfm:crimson_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_crimson_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:crimson_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_crimson_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:warped_park_bench",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_warped_park_bench",
-      "required": false
-    },
-    {
-      "id": "cfm:warped_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_warped_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:warped_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_warped_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:mangrove_park_bench",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_mangrove_park_bench",
-      "required": false
-    },
-    {
-      "id": "cfm:mangrove_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_mangrove_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:mangrove_mail_box",
-      "required": false
-    },
-    {
-      "id": "cfm:stripped_mangrove_mail_box",
-      "required": false
-    }
+    "cfm:oak_park_bench",
+    "cfm:stripped_oak_park_bench",
+    "cfm:oak_mail_box",
+    "cfm:stripped_oak_mail_box",
+    "cfm:oak_mail_box",
+    "cfm:stripped_oak_mail_box",
+    "cfm:birch_park_bench",
+    "cfm:stripped_birch_park_bench",
+    "cfm:birch_mail_box",
+    "cfm:stripped_birch_mail_box",
+    "cfm:birch_mail_box",
+    "cfm:stripped_birch_mail_box",
+    "cfm:spruce_park_bench",
+    "cfm:stripped_spruce_park_bench",
+    "cfm:spruce_mail_box",
+    "cfm:stripped_spruce_mail_box",
+    "cfm:spruce_mail_box",
+    "cfm:stripped_spruce_mail_box",
+    "cfm:jungle_park_bench",
+    "cfm:stripped_jungle_park_bench",
+    "cfm:jungle_mail_box",
+    "cfm:stripped_jungle_mail_box",
+    "cfm:jungle_mail_box",
+    "cfm:stripped_jungle_mail_box",
+    "cfm:acacia_park_bench",
+    "cfm:stripped_acacia_park_bench",
+    "cfm:acacia_mail_box",
+    "cfm:stripped_acacia_mail_box",
+    "cfm:acacia_mail_box",
+    "cfm:stripped_acacia_mail_box",
+    "cfm:dark_oak_park_bench",
+    "cfm:stripped_dark_oak_park_bench",
+    "cfm:dark_oak_mail_box",
+    "cfm:stripped_dark_oak_mail_box",
+    "cfm:dark_oak_mail_box",
+    "cfm:stripped_dark_oak_mail_box",
+    "cfm:crimson_park_bench",
+    "cfm:stripped_crimson_park_bench",
+    "cfm:crimson_mail_box",
+    "cfm:stripped_crimson_mail_box",
+    "cfm:crimson_mail_box",
+    "cfm:stripped_crimson_mail_box",
+    "cfm:warped_park_bench",
+    "cfm:stripped_warped_park_bench",
+    "cfm:warped_mail_box",
+    "cfm:stripped_warped_mail_box",
+    "cfm:warped_mail_box",
+    "cfm:stripped_warped_mail_box",
+    "cfm:mangrove_park_bench",
+    "cfm:stripped_mangrove_park_bench",
+    "cfm:mangrove_mail_box",
+    "cfm:stripped_mangrove_mail_box",
+    "cfm:mangrove_mail_box",
+    "cfm:stripped_mangrove_mail_box"
   ]
 }

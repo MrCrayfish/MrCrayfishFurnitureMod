@@ -199,6 +199,8 @@ public class RecipeGen extends RecipeProvider
         hedge(consumer, ModBlocks.HEDGE_ACACIA.get(), Blocks.ACACIA_LEAVES);
         hedge(consumer, ModBlocks.HEDGE_DARK_OAK.get(), Blocks.DARK_OAK_LEAVES);
         hedge(consumer, ModBlocks.HEDGE_MANGROVE.get(), Blocks.MANGROVE_LEAVES);
+        hedge(consumer, ModBlocks.HEDGE_AZALEA.get(), Blocks.AZALEA_LEAVES);
+        hedge(consumer, ModBlocks.HEDGE_FLOWERING_AZALEA.get(), Blocks.FLOWERING_AZALEA_LEAVES);
 
         // Rock Path
         ShapedRecipeBuilder.shaped(ModBlocks.ROCK_PATH.get(), 16)

@@ -144,6 +144,8 @@ public class LootTableGen extends LootTableProvider
             this.dropSelf(ModBlocks.HEDGE_ACACIA.get());
             this.dropSelf(ModBlocks.HEDGE_DARK_OAK.get());
             this.dropSelf(ModBlocks.HEDGE_MANGROVE.get());
+            this.dropSelf(ModBlocks.HEDGE_AZALEA.get());
+            this.dropSelf(ModBlocks.HEDGE_FLOWERING_AZALEA.get());
             this.dropSelf(ModBlocks.ROCK_PATH.get());
             this.registerTrampoline(ModBlocks.TRAMPOLINE.get());
             this.dropSelf(ModBlocks.COOLER_WHITE.get());

@@ -1,4 +1,4 @@
-// 1.19	2022-06-11T20:18:46.855731	Recipes
+// 1.19	2022-06-11T21:05:54.3652133	Recipes
 1f2fa4cb48977e67a4314f2b4d19be333d70250d data/cfm/advancements/recipes/cfm/acacia_bedside_cabinet.json
 2a09e2156b61d13698a2167362f94473ee89166c data/cfm/advancements/recipes/cfm/acacia_blinds.json
 e4cf3e4261aa8255883c83c5b29a8bed495523c5 data/cfm/advancements/recipes/cfm/acacia_cabinet.json
@@ -24,6 +24,7 @@ f3c0600f76a7b8659e5ee7da55cdfc1e34fae089 data/cfm/advancements/recipes/cfm/andes
 8a6dcd162ce4e1f65d01605830faaab4e79edce3 data/cfm/advancements/recipes/cfm/andesite_desk.json
 60788ffe9221734789237c9d21692f8d1478f896 data/cfm/advancements/recipes/cfm/andesite_desk_cabinet.json
 59151d9c5f1f1ba3327deccfc31f54b135b0613d data/cfm/advancements/recipes/cfm/andesite_table.json
+af4e3577e819be7264834d7d734ba7783e8639e7 data/cfm/advancements/recipes/cfm/azalea_hedge.json
 e434d81e6c18648b50e66122678878b0111794d7 data/cfm/advancements/recipes/cfm/birch_bedside_cabinet.json
 37c99dc71b683f4108223d944602ef7d5a973f1b data/cfm/advancements/recipes/cfm/birch_blinds.json
 97bb8cb2f8bfe913da984566806cdadf123fa9ab data/cfm/advancements/recipes/cfm/birch_cabinet.json
@@ -148,6 +149,7 @@ d545871bf60a31f54f630138dd0fdea864faffce data/cfm/advancements/recipes/cfm/dye_r
 43061e4dad54842dc8e1d72670cd8d0502245630 data/cfm/advancements/recipes/cfm/dye_red_picket_gate.json
 fb144a4a4c75b5ddd15c59ed4f1570373078f776 data/cfm/advancements/recipes/cfm/dye_yellow_picket_fence.json
 37665181cd1d9a180b3b5d7f4c448e42440a543e data/cfm/advancements/recipes/cfm/dye_yellow_picket_gate.json
+d18afe1615724e1eff683b9494f8487ae9db3a2f data/cfm/advancements/recipes/cfm/flowering_azalea_hedge.json
 9a16d57cacff039b6ddeb3a2f34f9e22131f898c data/cfm/advancements/recipes/cfm/fridge_dark.json
 61464ad9dc5252da58c47282dd2b2e4976509b60 data/cfm/advancements/recipes/cfm/fridge_light.json
 1fa43f36e3d7c310f7bfeccac9b819564380b2d3 data/cfm/advancements/recipes/cfm/granite_bedside_cabinet.json
@@ -531,6 +533,7 @@ d5cf014d78bb243b4d27716eb818aea1dd8cb041 data/cfm/recipes/andesite_bedside_cabin
 8b9785fad3408f1e6bba58ebe4a1a293784ac619 data/cfm/recipes/andesite_desk.json
 0c82431166ccba9710c6df68a85850c8f300d5bd data/cfm/recipes/andesite_desk_cabinet.json
 2cd3312f5cd86ab9b13a976ec71eb661e82f61da data/cfm/recipes/andesite_table.json
+3afb722120e5af39bddead5ecde230496eaf2a50 data/cfm/recipes/azalea_hedge.json
 7add3dfec84baa69aaa5c5f0bc2682bd4e2b58d7 data/cfm/recipes/birch_bedside_cabinet.json
 f458b04f5636168f38660121cfc8804634ab9e7f data/cfm/recipes/birch_blinds.json
 48ae3c1133ce6026c91d88b7f792862c9da7130a data/cfm/recipes/birch_cabinet.json
@@ -659,6 +662,7 @@ f07ef43f41cc2bad703595bf6fe9de292331f8b6 data/cfm/recipes/dye_pink_picket_gate.j
 748d114073a5954fb437be17cee3bb6b3f457b8a data/cfm/recipes/dye_red_picket_gate.json
 ba04949213fcca24335aea381a3188d4c20dc0e7 data/cfm/recipes/dye_yellow_picket_fence.json
 beb80f1746f10b15edbfb8566ef92939975d305b data/cfm/recipes/dye_yellow_picket_gate.json
+ed2c784fc7db2fdd9151f21cf285c884882a9a7e data/cfm/recipes/flowering_azalea_hedge.json
 b9331f0408b2b4daf65ad2f39653c320484da922 data/cfm/recipes/fridge_dark.json
 4a37c8476ad2335b974fc37c7dc913fd6c589cef data/cfm/recipes/fridge_light.json
 bbea71f2f7387e227c8afed8b635ce414206cec7 data/cfm/recipes/granite_bedside_cabinet.json

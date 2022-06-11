@@ -1,9 +1,9 @@
-// 1.19	2022-06-11T20:18:46.8457572	Tags for minecraft:block
-d52059bd490dc6c9d483d97ddc7b18959bece0fd data/cfm/tags/blocks/fences/hedge.json
+// 1.19	2022-06-11T21:05:54.3562384	Tags for minecraft:block
+214f75cd032a631f1a0d235bcd21e5bcd76b5c82 data/cfm/tags/blocks/fences/hedge.json
 c2381928c291ecfd9e7bd1979e0413bfeb5eb9f9 data/cfm/tags/blocks/fences/picket.json
-598d02b15d17006d2863b772dacd4cc4f1055aca data/cfm/tags/blocks/fences/upgraded.json
+df801ba9f499d6d7936b85ccd53c2981c42b8a36 data/cfm/tags/blocks/fences/upgraded.json
 1d77ff0e898da53822781b06790bfb3cefc0c514 data/cfm/tags/blocks/fence_gates/picket.json
-bc620ba0f0b6f44a276afea0a8911d1020e0cdf0 data/cfm/tags/blocks/fence_gates/upgraded.json
+ed00804745d3a61865d45671dbb3ea514d67d597 data/cfm/tags/blocks/fence_gates/upgraded.json
 cf0aef9804995e115f43400bf9feb70f1320b57a data/minecraft/tags/blocks/fences.json
 b1daead2a634617cb775b11a1d803800b1734c5b data/minecraft/tags/blocks/fence_gates.json
 4f382915a57f6f45c7273e59d81b010a50e46165 data/minecraft/tags/blocks/mineable/axe.json

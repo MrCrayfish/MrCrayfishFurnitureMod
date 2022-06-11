@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "hedge",
+  "key": {
+    "L": {
+      "item": "minecraft:azalea_leaves"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "LLL"
+  ],
+  "result": {
+    "count": 12,
+    "item": "cfm:azalea_hedge"
+  }
+}

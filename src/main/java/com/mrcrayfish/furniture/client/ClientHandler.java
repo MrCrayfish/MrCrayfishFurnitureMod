@@ -82,6 +82,8 @@ public class ClientHandler
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_ACACIA.get(), leavesPredicate);
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_DARK_OAK.get(), leavesPredicate);
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_MANGROVE.get(), leavesPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_AZALEA.get(), leavesPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_FLOWERING_AZALEA.get(), leavesPredicate);
 
         Predicate<RenderType> cutoutPredicate = renderType -> renderType == RenderType.cutout();
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.TRAMPOLINE.get(), cutoutPredicate);

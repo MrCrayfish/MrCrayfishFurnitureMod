@@ -1,4 +1,4 @@
-// 1.19	2022-06-11T20:18:46.8477534	LootTables
+// 1.19	2022-06-11T21:05:54.3572355	LootTables
 3eadf828fb496496bf132cba85e354d0e47e5b9c data/cfm/loot_tables/blocks/acacia_bedside_cabinet.json
 5824ac53abb95f237121519fecf8530f7be9f8c6 data/cfm/loot_tables/blocks/acacia_blinds.json
 0796ba77d2c76df038831f78216889dafd12475b data/cfm/loot_tables/blocks/acacia_cabinet.json
@@ -24,6 +24,7 @@ dbaccfbc6b64af62f74dff01946a2b1b68dcb29a data/cfm/loot_tables/blocks/andesite_ch
 e6d780173e355faca58f9d4b276a969cc9c77a64 data/cfm/loot_tables/blocks/andesite_desk.json
 cffe17f9d1ebe174082b7b7d719e1722059cbeb6 data/cfm/loot_tables/blocks/andesite_desk_cabinet.json
 633a620cb4bb217478b5cdec73a0e55c3b79dc44 data/cfm/loot_tables/blocks/andesite_table.json
+14925dcda5865820c5fb21651a40448df43d7e61 data/cfm/loot_tables/blocks/azalea_hedge.json
 b97216d8e0da4205f257606e6f631a479202c07e data/cfm/loot_tables/blocks/birch_bedside_cabinet.json
 be37fc950374f2d3b189eb1b079ae6c19447441a data/cfm/loot_tables/blocks/birch_blinds.json
 ca0f25ad26077d6766a57be488ef69d13fad0505 data/cfm/loot_tables/blocks/birch_cabinet.json
@@ -118,6 +119,7 @@ e76b0431b96bdcabb5ad7814b68173e1499f21a2 data/cfm/loot_tables/blocks/diorite_cha
 15c70af78963dd9ecc17598aa38a4392ac93f619 data/cfm/loot_tables/blocks/diorite_table.json
 ea1c6e8372b274bffdc34735c23fc6d742a88e88 data/cfm/loot_tables/blocks/diving_board.json
 75097a808c1dc208ee8eec5ee110d4f49ab94697 data/cfm/loot_tables/blocks/door_mat.json
+1190a19ea12b6928f285e838ff5cb78aaebe898e data/cfm/loot_tables/blocks/flowering_azalea_hedge.json
 bcaa3efef647be3cd74925fb38a331789b9e19df data/cfm/loot_tables/blocks/freezer_dark.json
 73ea2a2fe72084322c268b961a70ae66fb860b87 data/cfm/loot_tables/blocks/freezer_light.json
 bcaa3efef647be3cd74925fb38a331789b9e19df data/cfm/loot_tables/blocks/fridge_dark.json

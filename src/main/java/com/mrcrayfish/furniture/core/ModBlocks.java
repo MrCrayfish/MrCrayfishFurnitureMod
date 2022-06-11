@@ -346,6 +346,8 @@ public class ModBlocks
     public static final RegistryObject<Block> HEDGE_ACACIA = register("acacia_hedge", () -> new HedgeBlock(Block.Properties.copy(Blocks.ACACIA_LEAVES)));
     public static final RegistryObject<Block> HEDGE_DARK_OAK = register("dark_oak_hedge", () -> new HedgeBlock(Block.Properties.copy(Blocks.DARK_OAK_LEAVES)));
     public static final RegistryObject<Block> HEDGE_MANGROVE = register("mangrove_hedge", () -> new HedgeBlock(Block.Properties.copy(Blocks.MANGROVE_LEAVES)));
+    public static final RegistryObject<Block> HEDGE_AZALEA = register("azalea_hedge", () -> new HedgeBlock(Block.Properties.copy(Blocks.AZALEA_LEAVES)));
+    public static final RegistryObject<Block> HEDGE_FLOWERING_AZALEA = register("flowering_azalea_hedge", () -> new HedgeBlock(Block.Properties.copy(Blocks.FLOWERING_AZALEA_LEAVES)));
     public static final RegistryObject<Block> ROCK_PATH = register("rock_path", () -> new RockPath(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> TRAMPOLINE = register("trampoline", () -> new TrampolineBlock(Block.Properties.copy(Blocks.STONE)), block -> new TrampolineItem(block.get(), new Item.Properties().tab(FurnitureMod.GROUP)));
     public static final RegistryObject<Block> COOLER_WHITE = register("white_cooler", () -> new CoolerBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
