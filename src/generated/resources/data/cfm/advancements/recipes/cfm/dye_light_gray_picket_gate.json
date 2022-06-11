@@ -1,13 +1,17 @@
 {
   "parent": "minecraft:recipes/root",
-  "rewards": {
-    "recipes": [
-      "cfm:dye_light_gray_picket_gate"
-    ]
-  },
   "criteria": {
+    "has_dye": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:dyes/light_gray"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_gate": {
-      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -16,23 +20,14 @@
             ]
           }
         ]
-      }
-    },
-    "has_dye": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "tag": "forge:dyes/light_gray"
-          }
-        ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
     },
     "has_the_recipe": {
-      "trigger": "minecraft:recipe_unlocked",
       "conditions": {
         "recipe": "cfm:dye_light_gray_picket_gate"
-      }
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
@@ -41,5 +36,10 @@
       "has_dye",
       "has_the_recipe"
     ]
-  ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cfm:dye_light_gray_picket_gate"
+    ]
+  }
 }

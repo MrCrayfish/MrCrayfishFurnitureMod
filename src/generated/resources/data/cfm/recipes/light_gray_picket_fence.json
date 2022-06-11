@@ -1,10 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "picket_fence",
-  "pattern": [
-    "CSC",
-    "CSC"
-  ],
   "key": {
     "C": {
       "item": "minecraft:light_gray_concrete"
@@ -13,8 +9,12 @@
       "tag": "forge:rods/wooden"
     }
   },
+  "pattern": [
+    "CSC",
+    "CSC"
+  ],
   "result": {
-    "item": "cfm:light_gray_picket_fence",
-    "count": 12
+    "count": 12,
+    "item": "cfm:light_gray_picket_fence"
   }
 }

@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/mail_box",
+    "textures": {
+        "roof": "minecraft:block/stripped_mangrove_log",
+        "box": "minecraft:block/mangrove_log"
+    }
+}

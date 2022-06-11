@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "blinds",
+  "key": {
+    "L": {
+      "item": "minecraft:stripped_mangrove_log"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "SSS",
+    "SSS"
+  ],
+  "result": {
+    "count": 2,
+    "item": "cfm:stripped_mangrove_blinds"
+  }
+}

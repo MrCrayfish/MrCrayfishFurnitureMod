@@ -152,6 +152,7 @@ public class DeskBlock extends FurnitureHorizontalBlock
         DARK_OAK,
         CRIMSON,
         WARPED,
+        MANGROVE,
         STONE,
         GRANITE,
         DIORITE,
@@ -163,6 +164,7 @@ public class DeskBlock extends FurnitureHorizontalBlock
         STRIPPED_ACACIA,
         STRIPPED_DARK_OAK,
         STRIPPED_CRIMSON,
-        STRIPPED_WARPED
+        STRIPPED_WARPED,
+        STRIPPED_MANGROVE
     }
 }

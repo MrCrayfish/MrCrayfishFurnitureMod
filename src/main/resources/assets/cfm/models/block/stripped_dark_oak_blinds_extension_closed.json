@@ -2,6 +2,6 @@
     "parent": "cfm:block/blinds_extension_closed",
     "textures": {
         "slat": "minecraft:block/dark_oak_planks",
-        "cord": "minecraft:block/oak_log"
+        "cord": "minecraft:block/dark_oak_log"
     }
 }

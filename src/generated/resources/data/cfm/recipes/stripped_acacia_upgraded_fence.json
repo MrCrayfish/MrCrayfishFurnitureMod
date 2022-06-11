@@ -1,10 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "upgraded_fence",
-  "pattern": [
-    "LSL",
-    "LSL"
-  ],
   "key": {
     "L": {
       "item": "minecraft:stripped_acacia_log"
@@ -13,8 +9,12 @@
       "tag": "forge:rods/wooden"
     }
   },
+  "pattern": [
+    "LSL",
+    "LSL"
+  ],
   "result": {
-    "item": "cfm:stripped_acacia_upgraded_fence",
-    "count": 12
+    "count": 12,
+    "item": "cfm:stripped_acacia_upgraded_fence"
   }
 }

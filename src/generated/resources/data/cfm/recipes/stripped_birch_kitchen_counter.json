@@ -1,11 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "kitchen_counter",
-  "pattern": [
-    "LLL",
-    "PPP",
-    "PPP"
-  ],
   "key": {
     "L": {
       "item": "minecraft:birch_log"
@@ -14,8 +9,13 @@
       "item": "minecraft:stripped_birch_log"
     }
   },
+  "pattern": [
+    "LLL",
+    "PPP",
+    "PPP"
+  ],
   "result": {
-    "item": "cfm:stripped_birch_kitchen_counter",
-    "count": 8
+    "count": 8,
+    "item": "cfm:stripped_birch_kitchen_counter"
   }
 }

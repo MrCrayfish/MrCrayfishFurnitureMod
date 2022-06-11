@@ -1,27 +1,27 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "kitchen_drawer",
+  "key": {
+    "B": {
+      "tag": "forge:chests/wooden"
+    },
+    "C": {
+      "item": "minecraft:white_concrete"
+    },
+    "D": {
+      "tag": "forge:dyes/cyan"
+    },
+    "S": {
+      "item": "minecraft:terracotta"
+    }
+  },
   "pattern": [
     "SDS",
     "CBC",
     "CCC"
   ],
-  "key": {
-    "S": {
-      "item": "minecraft:terracotta"
-    },
-    "D": {
-      "tag": "forge:dyes/cyan"
-    },
-    "C": {
-      "item": "minecraft:white_concrete"
-    },
-    "B": {
-      "tag": "forge:chests/wooden"
-    }
-  },
   "result": {
-    "item": "cfm:cyan_kitchen_drawer",
-    "count": 4
+    "count": 4,
+    "item": "cfm:cyan_kitchen_drawer"
   }
 }

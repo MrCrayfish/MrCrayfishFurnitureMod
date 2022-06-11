@@ -1,19 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "upgraded_gate",
+  "key": {
+    "G": {
+      "tag": "forge:fence_gates/wooden"
+    },
+    "L": {
+      "item": "minecraft:acacia_log"
+    }
+  },
   "pattern": [
     "LGL"
   ],
-  "key": {
-    "L": {
-      "item": "minecraft:acacia_log"
-    },
-    "G": {
-      "tag": "forge:fence_gates/wooden"
-    }
-  },
   "result": {
-    "item": "cfm:acacia_upgraded_gate",
-    "count": 2
+    "count": 2,
+    "item": "cfm:acacia_upgraded_gate"
   }
 }

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "upgraded_gate",
+  "key": {
+    "G": {
+      "tag": "forge:fence_gates/wooden"
+    },
+    "L": {
+      "item": "minecraft:stripped_mangrove_log"
+    }
+  },
+  "pattern": [
+    "LGL"
+  ],
+  "result": {
+    "count": 2,
+    "item": "cfm:stripped_mangrove_upgraded_gate"
+  }
+}

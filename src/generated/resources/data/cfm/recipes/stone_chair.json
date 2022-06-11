@@ -1,11 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "chair",
-  "pattern": [
-    "L  ",
-    "LLL",
-    "P P"
-  ],
   "key": {
     "L": {
       "item": "minecraft:stone"
@@ -14,8 +9,13 @@
       "item": "minecraft:cobblestone"
     }
   },
+  "pattern": [
+    "L  ",
+    "LLL",
+    "P P"
+  ],
   "result": {
-    "item": "cfm:stone_chair",
-    "count": 4
+    "count": 4,
+    "item": "cfm:stone_chair"
   }
 }

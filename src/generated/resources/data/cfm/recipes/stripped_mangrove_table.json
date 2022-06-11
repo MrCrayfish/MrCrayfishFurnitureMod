@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "table",
+  "key": {
+    "L": {
+      "item": "minecraft:stripped_mangrove_log"
+    },
+    "P": {
+      "item": "minecraft:mangrove_log"
+    }
+  },
+  "pattern": [
+    "LLL",
+    " P ",
+    " P "
+  ],
+  "result": {
+    "count": 4,
+    "item": "cfm:stripped_mangrove_table"
+  }
+}

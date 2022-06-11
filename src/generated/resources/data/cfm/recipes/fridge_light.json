@@ -1,22 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "fridge",
-  "pattern": [
-    "CIC",
-    "IBI",
-    "CIC"
-  ],
   "key": {
+    "B": {
+      "tag": "forge:chests/wooden"
+    },
     "C": {
       "item": "minecraft:white_concrete"
     },
     "I": {
       "tag": "forge:ingots/iron"
-    },
-    "B": {
-      "tag": "forge:chests/wooden"
     }
   },
+  "pattern": [
+    "CIC",
+    "IBI",
+    "CIC"
+  ],
   "result": {
     "item": "cfm:fridge_light"
   }

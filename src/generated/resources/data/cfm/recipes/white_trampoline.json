@@ -1,22 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "trampoline",
+  "key": {
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "S": {
+      "tag": "forge:slimeballs"
+    },
+    "W": {
+      "item": "minecraft:white_wool"
+    }
+  },
   "pattern": [
     "WSW",
     "I I",
     "III"
   ],
-  "key": {
-    "W": {
-      "item": "minecraft:white_wool"
-    },
-    "S": {
-      "tag": "forge:slimeballs"
-    },
-    "I": {
-      "tag": "forge:ingots/iron"
-    }
-  },
   "result": {
     "item": "cfm:trampoline",
     "nbt": "{BlockEntityTag:{Color:0}}"

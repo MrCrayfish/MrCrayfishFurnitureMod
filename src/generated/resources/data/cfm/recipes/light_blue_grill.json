@@ -1,22 +1,22 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "grill",
-  "pattern": [
-    "TBT",
-    "I I",
-    "I I"
-  ],
   "key": {
-    "T": {
-      "item": "minecraft:light_blue_terracotta"
-    },
     "B": {
       "item": "minecraft:iron_bars"
     },
     "I": {
       "tag": "forge:ingots/iron"
+    },
+    "T": {
+      "item": "minecraft:light_blue_terracotta"
     }
   },
+  "pattern": [
+    "TBT",
+    "I I",
+    "I I"
+  ],
   "result": {
     "item": "cfm:light_blue_grill"
   }

@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "hedge",
-  "pattern": [
-    "LLL",
-    "LLL"
-  ],
   "key": {
     "L": {
       "item": "minecraft:oak_leaves"
     }
   },
+  "pattern": [
+    "LLL",
+    "LLL"
+  ],
   "result": {
-    "item": "cfm:oak_hedge",
-    "count": 12
+    "count": 12,
+    "item": "cfm:oak_hedge"
   }
 }

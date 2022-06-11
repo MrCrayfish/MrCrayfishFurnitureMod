@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "kitchen_sink",
+  "key": {
+    "B": {
+      "item": "minecraft:bucket"
+    },
+    "C": {
+      "item": "minecraft:white_concrete"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "P": {
+      "item": "minecraft:stripped_mangrove_log"
+    }
+  },
+  "pattern": [
+    "CIC",
+    "PBP",
+    "PPP"
+  ],
+  "result": {
+    "count": 2,
+    "item": "cfm:stripped_mangrove_kitchen_sink_light"
+  }
+}

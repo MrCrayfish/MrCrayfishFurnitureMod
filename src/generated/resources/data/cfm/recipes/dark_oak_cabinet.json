@@ -1,11 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "cabinet",
-  "pattern": [
-    "PPL",
-    "P L",
-    "PPL"
-  ],
   "key": {
     "L": {
       "item": "minecraft:dark_oak_log"
@@ -14,8 +9,13 @@
       "item": "minecraft:dark_oak_planks"
     }
   },
+  "pattern": [
+    "PPL",
+    "P L",
+    "PPL"
+  ],
   "result": {
-    "item": "cfm:dark_oak_cabinet",
-    "count": 2
+    "count": 2,
+    "item": "cfm:dark_oak_cabinet"
   }
 }

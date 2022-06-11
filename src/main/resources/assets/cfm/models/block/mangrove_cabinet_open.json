@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/cabinet_open",
+    "textures": {
+        "door": "block/mangrove_log",
+        "base": "block/mangrove_planks"
+    }
+}

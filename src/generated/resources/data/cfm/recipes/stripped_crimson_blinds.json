@@ -1,11 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "blinds",
-  "pattern": [
-    "LLL",
-    "SSS",
-    "SSS"
-  ],
   "key": {
     "L": {
       "item": "minecraft:stripped_crimson_stem"
@@ -14,8 +9,13 @@
       "tag": "forge:rods/wooden"
     }
   },
+  "pattern": [
+    "LLL",
+    "SSS",
+    "SSS"
+  ],
   "result": {
-    "item": "cfm:stripped_crimson_blinds",
-    "count": 2
+    "count": 2,
+    "item": "cfm:stripped_crimson_blinds"
   }
 }

@@ -1,70 +1,5 @@
 {
-  "replace": false,
   "values": [
-    "cfm:oak_cabinet",
-    "cfm:spruce_cabinet",
-    "cfm:birch_cabinet",
-    "cfm:jungle_cabinet",
-    "cfm:acacia_cabinet",
-    "cfm:dark_oak_cabinet",
-    "cfm:stripped_oak_cabinet",
-    "cfm:stripped_spruce_cabinet",
-    "cfm:stripped_birch_cabinet",
-    "cfm:stripped_jungle_cabinet",
-    "cfm:stripped_acacia_cabinet",
-    "cfm:stripped_dark_oak_cabinet",
-    "cfm:oak_bedside_cabinet",
-    "cfm:spruce_bedside_cabinet",
-    "cfm:birch_bedside_cabinet",
-    "cfm:jungle_bedside_cabinet",
-    "cfm:acacia_bedside_cabinet",
-    "cfm:dark_oak_bedside_cabinet",
-    "cfm:stripped_oak_bedside_cabinet",
-    "cfm:stripped_spruce_bedside_cabinet",
-    "cfm:stripped_birch_bedside_cabinet",
-    "cfm:stripped_jungle_bedside_cabinet",
-    "cfm:stripped_acacia_bedside_cabinet",
-    "cfm:stripped_dark_oak_bedside_cabinet",
-    "cfm:oak_desk_cabinet",
-    "cfm:spruce_desk_cabinet",
-    "cfm:birch_desk_cabinet",
-    "cfm:jungle_desk_cabinet",
-    "cfm:acacia_desk_cabinet",
-    "cfm:dark_oak_desk_cabinet",
-    "cfm:stone_desk_cabinet",
-    "cfm:granite_desk_cabinet",
-    "cfm:diorite_desk_cabinet",
-    "cfm:andesite_desk_cabinet",
-    "cfm:stripped_oak_desk_cabinet",
-    "cfm:stripped_spruce_desk_cabinet",
-    "cfm:stripped_birch_desk_cabinet",
-    "cfm:stripped_jungle_desk_cabinet",
-    "cfm:stripped_acacia_desk_cabinet",
-    "cfm:stripped_dark_oak_desk_cabinet",
-    "cfm:oak_crate",
-    "cfm:spruce_crate",
-    "cfm:birch_crate",
-    "cfm:jungle_crate",
-    "cfm:acacia_crate",
-    "cfm:dark_oak_crate",
-    "cfm:stripped_oak_crate",
-    "cfm:stripped_spruce_crate",
-    "cfm:stripped_birch_crate",
-    "cfm:stripped_jungle_crate",
-    "cfm:stripped_acacia_crate",
-    "cfm:stripped_dark_oak_crate",
-    "cfm:oak_mail_box",
-    "cfm:spruce_mail_box",
-    "cfm:birch_mail_box",
-    "cfm:jungle_mail_box",
-    "cfm:acacia_mail_box",
-    "cfm:dark_oak_mail_box",
-    "cfm:stripped_oak_mail_box",
-    "cfm:stripped_spruce_mail_box",
-    "cfm:stripped_birch_mail_box",
-    "cfm:stripped_jungle_mail_box",
-    "cfm:stripped_acacia_mail_box",
-    "cfm:stripped_dark_oak_mail_box",
     "cfm:white_cooler",
     "cfm:orange_cooler",
     "cfm:magenta_cooler",
@@ -81,31 +16,7 @@
     "cfm:green_cooler",
     "cfm:red_cooler",
     "cfm:black_cooler",
-    "cfm:oak_park_bench",
-    "cfm:spruce_park_bench",
-    "cfm:birch_park_bench",
-    "cfm:jungle_park_bench",
-    "cfm:acacia_park_bench",
-    "cfm:dark_oak_park_bench",
-    "cfm:stripped_oak_park_bench",
-    "cfm:stripped_spruce_park_bench",
-    "cfm:stripped_birch_park_bench",
-    "cfm:stripped_jungle_park_bench",
-    "cfm:stripped_acacia_park_bench",
-    "cfm:stripped_dark_oak_park_bench",
     "cfm:post_box",
-    "cfm:oak_mail_box",
-    "cfm:spruce_mail_box",
-    "cfm:birch_mail_box",
-    "cfm:jungle_mail_box",
-    "cfm:acacia_mail_box",
-    "cfm:dark_oak_mail_box",
-    "cfm:stripped_oak_mail_box",
-    "cfm:stripped_spruce_mail_box",
-    "cfm:stripped_birch_mail_box",
-    "cfm:stripped_jungle_mail_box",
-    "cfm:stripped_acacia_mail_box",
-    "cfm:stripped_dark_oak_mail_box",
     "cfm:white_cooler",
     "cfm:orange_cooler",
     "cfm:magenta_cooler",
@@ -122,18 +33,6 @@
     "cfm:green_cooler",
     "cfm:red_cooler",
     "cfm:black_cooler",
-    "cfm:oak_kitchen_drawer",
-    "cfm:spruce_kitchen_drawer",
-    "cfm:birch_kitchen_drawer",
-    "cfm:jungle_kitchen_drawer",
-    "cfm:acacia_kitchen_drawer",
-    "cfm:dark_oak_kitchen_drawer",
-    "cfm:stripped_oak_kitchen_drawer",
-    "cfm:stripped_spruce_kitchen_drawer",
-    "cfm:stripped_birch_kitchen_drawer",
-    "cfm:stripped_jungle_kitchen_drawer",
-    "cfm:stripped_acacia_kitchen_drawer",
-    "cfm:stripped_dark_oak_kitchen_drawer",
     "cfm:white_kitchen_drawer",
     "cfm:orange_kitchen_drawer",
     "cfm:magenta_kitchen_drawer",
@@ -149,6 +48,582 @@
     "cfm:brown_kitchen_drawer",
     "cfm:green_kitchen_drawer",
     "cfm:red_kitchen_drawer",
-    "cfm:black_kitchen_drawer"
+    "cfm:black_kitchen_drawer",
+    {
+      "id": "cfm:oak_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_oak_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:oak_bedside_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_oak_bedside_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:oak_desk_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_oak_desk_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:oak_crate",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_oak_crate",
+      "required": false
+    },
+    {
+      "id": "cfm:oak_mail_box",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_oak_mail_box",
+      "required": false
+    },
+    {
+      "id": "cfm:oak_kitchen_drawer",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_oak_kitchen_drawer",
+      "required": false
+    },
+    {
+      "id": "cfm:oak_kitchen_sink_light",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_oak_kitchen_sink_light",
+      "required": false
+    },
+    {
+      "id": "cfm:oak_kitchen_sink_dark",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_oak_kitchen_sink_dark",
+      "required": false
+    },
+    {
+      "id": "cfm:birch_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_birch_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:birch_bedside_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_birch_bedside_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:birch_desk_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_birch_desk_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:birch_crate",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_birch_crate",
+      "required": false
+    },
+    {
+      "id": "cfm:birch_mail_box",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_birch_mail_box",
+      "required": false
+    },
+    {
+      "id": "cfm:birch_kitchen_drawer",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_birch_kitchen_drawer",
+      "required": false
+    },
+    {
+      "id": "cfm:birch_kitchen_sink_light",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_birch_kitchen_sink_light",
+      "required": false
+    },
+    {
+      "id": "cfm:birch_kitchen_sink_dark",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_birch_kitchen_sink_dark",
+      "required": false
+    },
+    {
+      "id": "cfm:spruce_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_spruce_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:spruce_bedside_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_spruce_bedside_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:spruce_desk_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_spruce_desk_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:spruce_crate",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_spruce_crate",
+      "required": false
+    },
+    {
+      "id": "cfm:spruce_mail_box",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_spruce_mail_box",
+      "required": false
+    },
+    {
+      "id": "cfm:spruce_kitchen_drawer",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_spruce_kitchen_drawer",
+      "required": false
+    },
+    {
+      "id": "cfm:spruce_kitchen_sink_light",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_spruce_kitchen_sink_light",
+      "required": false
+    },
+    {
+      "id": "cfm:spruce_kitchen_sink_dark",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_spruce_kitchen_sink_dark",
+      "required": false
+    },
+    {
+      "id": "cfm:jungle_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_jungle_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:jungle_bedside_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_jungle_bedside_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:jungle_desk_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_jungle_desk_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:jungle_crate",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_jungle_crate",
+      "required": false
+    },
+    {
+      "id": "cfm:jungle_mail_box",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_jungle_mail_box",
+      "required": false
+    },
+    {
+      "id": "cfm:jungle_kitchen_drawer",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_jungle_kitchen_drawer",
+      "required": false
+    },
+    {
+      "id": "cfm:jungle_kitchen_sink_light",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_jungle_kitchen_sink_light",
+      "required": false
+    },
+    {
+      "id": "cfm:jungle_kitchen_sink_dark",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_jungle_kitchen_sink_dark",
+      "required": false
+    },
+    {
+      "id": "cfm:acacia_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_acacia_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:acacia_bedside_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_acacia_bedside_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:acacia_desk_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_acacia_desk_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:acacia_crate",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_acacia_crate",
+      "required": false
+    },
+    {
+      "id": "cfm:acacia_mail_box",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_acacia_mail_box",
+      "required": false
+    },
+    {
+      "id": "cfm:acacia_kitchen_drawer",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_acacia_kitchen_drawer",
+      "required": false
+    },
+    {
+      "id": "cfm:acacia_kitchen_sink_light",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_acacia_kitchen_sink_light",
+      "required": false
+    },
+    {
+      "id": "cfm:acacia_kitchen_sink_dark",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_acacia_kitchen_sink_dark",
+      "required": false
+    },
+    {
+      "id": "cfm:dark_oak_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_dark_oak_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:dark_oak_bedside_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_dark_oak_bedside_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:dark_oak_desk_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_dark_oak_desk_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:dark_oak_crate",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_dark_oak_crate",
+      "required": false
+    },
+    {
+      "id": "cfm:dark_oak_mail_box",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_dark_oak_mail_box",
+      "required": false
+    },
+    {
+      "id": "cfm:dark_oak_kitchen_drawer",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_dark_oak_kitchen_drawer",
+      "required": false
+    },
+    {
+      "id": "cfm:dark_oak_kitchen_sink_light",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_dark_oak_kitchen_sink_light",
+      "required": false
+    },
+    {
+      "id": "cfm:dark_oak_kitchen_sink_dark",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_dark_oak_kitchen_sink_dark",
+      "required": false
+    },
+    {
+      "id": "cfm:crimson_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_crimson_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:crimson_bedside_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_crimson_bedside_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:crimson_desk_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_crimson_desk_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:crimson_crate",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_crimson_crate",
+      "required": false
+    },
+    {
+      "id": "cfm:crimson_mail_box",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_crimson_mail_box",
+      "required": false
+    },
+    {
+      "id": "cfm:crimson_kitchen_drawer",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_crimson_kitchen_drawer",
+      "required": false
+    },
+    {
+      "id": "cfm:crimson_kitchen_sink_light",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_crimson_kitchen_sink_light",
+      "required": false
+    },
+    {
+      "id": "cfm:crimson_kitchen_sink_dark",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_crimson_kitchen_sink_dark",
+      "required": false
+    },
+    {
+      "id": "cfm:warped_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_warped_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:warped_bedside_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_warped_bedside_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:warped_desk_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_warped_desk_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:warped_crate",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_warped_crate",
+      "required": false
+    },
+    {
+      "id": "cfm:warped_mail_box",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_warped_mail_box",
+      "required": false
+    },
+    {
+      "id": "cfm:warped_kitchen_drawer",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_warped_kitchen_drawer",
+      "required": false
+    },
+    {
+      "id": "cfm:warped_kitchen_sink_light",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_warped_kitchen_sink_light",
+      "required": false
+    },
+    {
+      "id": "cfm:warped_kitchen_sink_dark",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_warped_kitchen_sink_dark",
+      "required": false
+    },
+    {
+      "id": "cfm:mangrove_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_mangrove_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:mangrove_bedside_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_mangrove_bedside_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:mangrove_desk_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_mangrove_desk_cabinet",
+      "required": false
+    },
+    {
+      "id": "cfm:mangrove_crate",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_mangrove_crate",
+      "required": false
+    },
+    {
+      "id": "cfm:mangrove_mail_box",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_mangrove_mail_box",
+      "required": false
+    },
+    {
+      "id": "cfm:mangrove_kitchen_drawer",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_mangrove_kitchen_drawer",
+      "required": false
+    },
+    {
+      "id": "cfm:mangrove_kitchen_sink_light",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_mangrove_kitchen_sink_light",
+      "required": false
+    },
+    {
+      "id": "cfm:mangrove_kitchen_sink_dark",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_mangrove_kitchen_sink_dark",
+      "required": false
+    }
   ]
 }

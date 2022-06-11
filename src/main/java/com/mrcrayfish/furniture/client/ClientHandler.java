@@ -49,20 +49,7 @@ public class ClientHandler
         registerScreenFactories();
         registerLayers();
         registerColors();
-
-        if(!ModList.get().isLoaded("filters"))
-        {
-            MinecraftForge.EVENT_BUS.register(new CreativeScreenEvents());
-        }
-        else
-        {
-            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "general"), new ItemStack(ModBlocks.CHAIR_OAK));
-            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "storage"), new ItemStack(ModBlocks.CABINET_OAK));
-            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "bedroom"), new ItemStack(ModBlocks.DESK_OAK));
-            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "outdoors"), new ItemStack(ModBlocks.MAIL_BOX_OAK));
-            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "kitchen"), new ItemStack(ModBlocks.KITCHEN_COUNTER_CYAN));
-            //Filters.get().register(FurnitureMod.GROUP, new ResourceLocation(Reference.MOD_ID, "items"), new ItemStack(ModItems.SPATULA));
-        }
+        MinecraftForge.EVENT_BUS.register(new CreativeScreenEvents());
     }
 
     private static void registerBlockEntityRenderers()
@@ -94,6 +81,7 @@ public class ClientHandler
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_JUNGLE.get(), leavesPredicate);
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_ACACIA.get(), leavesPredicate);
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_DARK_OAK.get(), leavesPredicate);
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_MANGROVE.get(), leavesPredicate);
 
         Predicate<RenderType> cutoutPredicate = renderType -> renderType == RenderType.cutout();
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.TRAMPOLINE.get(), cutoutPredicate);
@@ -199,6 +187,7 @@ public class ClientHandler
                 ModBlocks.CRATE_STRIPPED_DARK_OAK.get(),
                 ModBlocks.CRATE_STRIPPED_CRIMSON.get(),
                 ModBlocks.CRATE_STRIPPED_WARPED.get(),
+                ModBlocks.CRATE_STRIPPED_MANGROVE.get(),
                 ModBlocks.KITCHEN_COUNTER_STRIPPED_OAK.get(),
                 ModBlocks.KITCHEN_COUNTER_STRIPPED_SPRUCE.get(),
                 ModBlocks.KITCHEN_COUNTER_STRIPPED_BIRCH.get(),
@@ -207,6 +196,7 @@ public class ClientHandler
                 ModBlocks.KITCHEN_COUNTER_STRIPPED_DARK_OAK.get(),
                 ModBlocks.KITCHEN_COUNTER_STRIPPED_CRIMSON.get(),
                 ModBlocks.KITCHEN_COUNTER_STRIPPED_WARPED.get(),
+                ModBlocks.KITCHEN_COUNTER_STRIPPED_MANGROVE.get(),
                 ModBlocks.KITCHEN_DRAWER_STRIPPED_OAK.get(),
                 ModBlocks.KITCHEN_DRAWER_STRIPPED_SPRUCE.get(),
                 ModBlocks.KITCHEN_DRAWER_STRIPPED_BIRCH.get(),
@@ -215,6 +205,7 @@ public class ClientHandler
                 ModBlocks.KITCHEN_DRAWER_STRIPPED_DARK_OAK.get(),
                 ModBlocks.KITCHEN_DRAWER_STRIPPED_CRIMSON.get(),
                 ModBlocks.KITCHEN_DRAWER_STRIPPED_WARPED.get(),
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_MANGROVE.get(),
                 ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_OAK.get(),
                 ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_SPRUCE.get(),
                 ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_BIRCH.get(),
@@ -223,6 +214,7 @@ public class ClientHandler
                 ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_DARK_OAK.get(),
                 ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_CRIMSON.get(),
                 ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_WARPED.get(),
+                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_MANGROVE.get(),
                 ModBlocks.KITCHEN_SINK_DARK_STRIPPED_OAK.get(),
                 ModBlocks.KITCHEN_SINK_DARK_STRIPPED_SPRUCE.get(),
                 ModBlocks.KITCHEN_SINK_DARK_STRIPPED_BIRCH.get(),
@@ -230,7 +222,8 @@ public class ClientHandler
                 ModBlocks.KITCHEN_SINK_DARK_STRIPPED_ACACIA.get(),
                 ModBlocks.KITCHEN_SINK_DARK_STRIPPED_DARK_OAK.get(),
                 ModBlocks.KITCHEN_SINK_DARK_STRIPPED_CRIMSON.get(),
-                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_WARPED.get()
+                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_WARPED.get(),
+                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_MANGROVE.get()
         );
 
         Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0xBBBBBB : 0xFFFFFFFF,
@@ -242,6 +235,7 @@ public class ClientHandler
                 ModBlocks.CRATE_STRIPPED_DARK_OAK.get(),
                 ModBlocks.CRATE_STRIPPED_CRIMSON.get(),
                 ModBlocks.CRATE_STRIPPED_WARPED.get(),
+                ModBlocks.CRATE_STRIPPED_MANGROVE.get(),
                 ModBlocks.KITCHEN_COUNTER_STRIPPED_OAK.get(),
                 ModBlocks.KITCHEN_COUNTER_STRIPPED_SPRUCE.get(),
                 ModBlocks.KITCHEN_COUNTER_STRIPPED_BIRCH.get(),
@@ -250,6 +244,7 @@ public class ClientHandler
                 ModBlocks.KITCHEN_COUNTER_STRIPPED_DARK_OAK.get(),
                 ModBlocks.KITCHEN_COUNTER_STRIPPED_CRIMSON.get(),
                 ModBlocks.KITCHEN_COUNTER_STRIPPED_WARPED.get(),
+                ModBlocks.KITCHEN_COUNTER_STRIPPED_MANGROVE.get(),
                 ModBlocks.KITCHEN_DRAWER_STRIPPED_OAK.get(),
                 ModBlocks.KITCHEN_DRAWER_STRIPPED_SPRUCE.get(),
                 ModBlocks.KITCHEN_DRAWER_STRIPPED_BIRCH.get(),
@@ -258,6 +253,7 @@ public class ClientHandler
                 ModBlocks.KITCHEN_DRAWER_STRIPPED_DARK_OAK.get(),
                 ModBlocks.KITCHEN_DRAWER_STRIPPED_CRIMSON.get(),
                 ModBlocks.KITCHEN_DRAWER_STRIPPED_WARPED.get(),
+                ModBlocks.KITCHEN_DRAWER_STRIPPED_MANGROVE.get(),
                 ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_OAK.get(),
                 ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_SPRUCE.get(),
                 ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_BIRCH.get(),
@@ -266,6 +262,7 @@ public class ClientHandler
                 ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_DARK_OAK.get(),
                 ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_CRIMSON.get(),
                 ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_WARPED.get(),
+                ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_MANGROVE.get(),
                 ModBlocks.KITCHEN_SINK_DARK_STRIPPED_OAK.get(),
                 ModBlocks.KITCHEN_SINK_DARK_STRIPPED_SPRUCE.get(),
                 ModBlocks.KITCHEN_SINK_DARK_STRIPPED_BIRCH.get(),
@@ -273,7 +270,8 @@ public class ClientHandler
                 ModBlocks.KITCHEN_SINK_DARK_STRIPPED_ACACIA.get(),
                 ModBlocks.KITCHEN_SINK_DARK_STRIPPED_DARK_OAK.get(),
                 ModBlocks.KITCHEN_SINK_DARK_STRIPPED_CRIMSON.get(),
-                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_WARPED.get()
+                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_WARPED.get(),
+                ModBlocks.KITCHEN_SINK_DARK_STRIPPED_MANGROVE.get()
         );
 
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0x999999 : 0xFFFFFFFF,
@@ -284,7 +282,8 @@ public class ClientHandler
                 ModBlocks.PARK_BENCH_STRIPPED_ACACIA.get(),
                 ModBlocks.PARK_BENCH_STRIPPED_DARK_OAK.get(),
                 ModBlocks.PARK_BENCH_STRIPPED_CRIMSON.get(),
-                ModBlocks.PARK_BENCH_STRIPPED_WARPED.get()
+                ModBlocks.PARK_BENCH_STRIPPED_WARPED.get(),
+                ModBlocks.PARK_BENCH_STRIPPED_MANGROVE.get()
         );
 
         Minecraft.getInstance().getItemColors().register((stack, i) -> i == 1 ? 0x999999 : 0xFFFFFFFF,
@@ -295,7 +294,8 @@ public class ClientHandler
                 ModBlocks.PARK_BENCH_STRIPPED_ACACIA.get(),
                 ModBlocks.PARK_BENCH_STRIPPED_DARK_OAK.get(),
                 ModBlocks.PARK_BENCH_STRIPPED_CRIMSON.get(),
-                ModBlocks.PARK_BENCH_STRIPPED_WARPED.get()
+                ModBlocks.PARK_BENCH_STRIPPED_WARPED.get(),
+                ModBlocks.PARK_BENCH_STRIPPED_MANGROVE.get()
         );
 
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> i == 1 ? 0xCCCCCC : 0xFFFFFFFF,
@@ -324,10 +324,13 @@ public class ClientHandler
                 ModBlocks.HEDGE_ACACIA.get(),
                 ModBlocks.HEDGE_DARK_OAK.get());
 
+        Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> FoliageColor.getMangroveColor(),
+                ModBlocks.HEDGE_MANGROVE.get());
+
         Minecraft.getInstance().getItemColors().register((stack, i) -> {
             BlockState state = ((BlockItem)stack.getItem()).getBlock().defaultBlockState();
             return Minecraft.getInstance().getBlockColors().getColor(state, null, null, i);
-        }, ModBlocks.HEDGE_OAK.get(), ModBlocks.HEDGE_SPRUCE.get(), ModBlocks.HEDGE_BIRCH.get(), ModBlocks.HEDGE_JUNGLE.get(), ModBlocks.HEDGE_ACACIA.get(), ModBlocks.HEDGE_DARK_OAK.get());
+        }, ModBlocks.HEDGE_OAK.get(), ModBlocks.HEDGE_SPRUCE.get(), ModBlocks.HEDGE_BIRCH.get(), ModBlocks.HEDGE_JUNGLE.get(), ModBlocks.HEDGE_ACACIA.get(), ModBlocks.HEDGE_DARK_OAK.get(), ModBlocks.HEDGE_MANGROVE.get());
 
         Minecraft.getInstance().getBlockColors().register((state, reader, pos, i) -> {
             if(reader != null && pos != null)

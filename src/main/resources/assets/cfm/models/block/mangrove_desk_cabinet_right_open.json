@@ -1,0 +1,10 @@
+{
+    "parent": "cfm:block/desk_cabinet_right_open",
+    "textures": {
+        "top": "block/mangrove_log",
+        "base": "block/mangrove_planks",
+        "draw": "block/stripped_mangrove_log",
+        "draw_front": "block/mangrove_log",
+        "legs": "block/mangrove_planks"
+    }
+}

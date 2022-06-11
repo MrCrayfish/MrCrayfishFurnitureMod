@@ -1,0 +1,13 @@
+// 1.19	2022-06-11T20:18:46.8686959	Tags for minecraft:item
+b3b81a189208bb958cdb42991177777259b00eff data/cfm/tags/items/bedroom.json
+d52059bd490dc6c9d483d97ddc7b18959bece0fd data/cfm/tags/items/fences/hedge.json
+c2381928c291ecfd9e7bd1979e0413bfeb5eb9f9 data/cfm/tags/items/fences/picket.json
+598d02b15d17006d2863b772dacd4cc4f1055aca data/cfm/tags/items/fences/upgraded.json
+1d77ff0e898da53822781b06790bfb3cefc0c514 data/cfm/tags/items/fence_gates/picket.json
+bc620ba0f0b6f44a276afea0a8911d1020e0cdf0 data/cfm/tags/items/fence_gates/upgraded.json
+679c997a814b7d1aeec1adb9eb665b6f3ab09d8a data/cfm/tags/items/general.json
+4b011c2fb1426373c61581613fc4b8b4d5434235 data/cfm/tags/items/items.json
+041e582e0d9f175f92f009a6c6186246906e7570 data/cfm/tags/items/kitchen.json
+94fe1a7ec0b7428b5f2e50bfc324a10621ea0f74 data/cfm/tags/items/outdoors.json
+a1ea83e7e9e773706914ec4fb53a16858cb90b43 data/cfm/tags/items/storage.json
+a62aa5749109a67d1ba646265d5308ba1351ea04 data/cfm/tags/items/trampoline.json

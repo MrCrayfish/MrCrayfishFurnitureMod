@@ -1,11 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "park_bench",
-  "pattern": [
-    "PPP",
-    "PPP",
-    "L L"
-  ],
   "key": {
     "L": {
       "item": "minecraft:acacia_log"
@@ -14,8 +9,13 @@
       "item": "minecraft:stripped_acacia_log"
     }
   },
+  "pattern": [
+    "PPP",
+    "PPP",
+    "L L"
+  ],
   "result": {
-    "item": "cfm:stripped_acacia_park_bench",
-    "count": 4
+    "count": 4,
+    "item": "cfm:stripped_acacia_park_bench"
   }
 }

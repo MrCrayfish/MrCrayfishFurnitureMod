@@ -1,9 +1,9 @@
 {
   "type": "cfm:freezer_solidify",
+  "cookingtime": 2000,
+  "experience": 1.0,
   "ingredient": {
     "item": "minecraft:ice"
   },
-  "result": "minecraft:packed_ice",
-  "experience": 1.0,
-  "cookingtime": 2000
+  "result": "minecraft:packed_ice"
 }

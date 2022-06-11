@@ -1,11 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "desk",
-  "pattern": [
-    "LLL",
-    "P P",
-    "P P"
-  ],
   "key": {
     "L": {
       "item": "minecraft:stripped_oak_log"
@@ -14,8 +9,13 @@
       "item": "minecraft:oak_log"
     }
   },
+  "pattern": [
+    "LLL",
+    "P P",
+    "P P"
+  ],
   "result": {
-    "item": "cfm:stripped_oak_desk",
-    "count": 2
+    "count": 2,
+    "item": "cfm:stripped_oak_desk"
   }
 }

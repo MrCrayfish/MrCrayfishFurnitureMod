@@ -1,11 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "desk",
-  "pattern": [
-    "LLL",
-    "P P",
-    "P P"
-  ],
   "key": {
     "L": {
       "item": "minecraft:polished_granite"
@@ -14,8 +9,13 @@
       "item": "minecraft:granite"
     }
   },
+  "pattern": [
+    "LLL",
+    "P P",
+    "P P"
+  ],
   "result": {
-    "item": "cfm:granite_desk",
-    "count": 2
+    "count": 2,
+    "item": "cfm:granite_desk"
   }
 }

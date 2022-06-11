@@ -1,24 +1,24 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "kitchen_counter",
+  "key": {
+    "C": {
+      "item": "minecraft:white_concrete"
+    },
+    "D": {
+      "tag": "forge:dyes/magenta"
+    },
+    "S": {
+      "item": "minecraft:terracotta"
+    }
+  },
   "pattern": [
     "SDS",
     "CCC",
     "CCC"
   ],
-  "key": {
-    "S": {
-      "item": "minecraft:terracotta"
-    },
-    "D": {
-      "tag": "forge:dyes/magenta"
-    },
-    "C": {
-      "item": "minecraft:white_concrete"
-    }
-  },
   "result": {
-    "item": "cfm:magenta_kitchen_counter",
-    "count": 8
+    "count": 8,
+    "item": "cfm:magenta_kitchen_counter"
   }
 }

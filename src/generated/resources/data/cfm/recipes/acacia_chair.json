@@ -1,11 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "chair",
-  "pattern": [
-    "L  ",
-    "LLL",
-    "P P"
-  ],
   "key": {
     "L": {
       "item": "minecraft:acacia_log"
@@ -14,8 +9,13 @@
       "item": "minecraft:acacia_planks"
     }
   },
+  "pattern": [
+    "L  ",
+    "LLL",
+    "P P"
+  ],
   "result": {
-    "item": "cfm:acacia_chair",
-    "count": 4
+    "count": 4,
+    "item": "cfm:acacia_chair"
   }
 }

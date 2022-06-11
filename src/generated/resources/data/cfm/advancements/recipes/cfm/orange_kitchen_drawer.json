@@ -1,25 +1,17 @@
 {
   "parent": "minecraft:recipes/root",
-  "rewards": {
-    "recipes": [
-      "cfm:orange_kitchen_drawer"
-    ]
-  },
   "criteria": {
-    "has_terracotta": {
-      "trigger": "minecraft:inventory_changed",
+    "has_chest": {
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:terracotta"
-            ]
+            "tag": "forge:chests/wooden"
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
     },
     "has_concrete": {
-      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -28,23 +20,26 @@
             ]
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
     },
-    "has_chest": {
-      "trigger": "minecraft:inventory_changed",
+    "has_terracotta": {
       "conditions": {
         "items": [
           {
-            "tag": "forge:chests/wooden"
+            "items": [
+              "minecraft:terracotta"
+            ]
           }
         ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
     },
     "has_the_recipe": {
-      "trigger": "minecraft:recipe_unlocked",
       "conditions": {
         "recipe": "cfm:orange_kitchen_drawer"
-      }
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
@@ -54,5 +49,10 @@
       "has_chest",
       "has_the_recipe"
     ]
-  ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cfm:orange_kitchen_drawer"
+    ]
+  }
 }

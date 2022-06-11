@@ -1,22 +1,76 @@
 {
-  "replace": false,
   "values": [
-    "#cfm:fences/picket",
-    "cfm:oak_upgraded_fence",
-    "cfm:spruce_upgraded_fence",
-    "cfm:birch_upgraded_fence",
-    "cfm:jungle_upgraded_fence",
-    "cfm:acacia_upgraded_fence",
-    "cfm:dark_oak_upgraded_fence",
-    "cfm:crimson_upgraded_fence",
-    "cfm:warped_upgraded_fence",
-    "cfm:stripped_oak_upgraded_fence",
-    "cfm:stripped_spruce_upgraded_fence",
-    "cfm:stripped_birch_upgraded_fence",
-    "cfm:stripped_jungle_upgraded_fence",
-    "cfm:stripped_acacia_upgraded_fence",
-    "cfm:stripped_dark_oak_upgraded_fence",
-    "cfm:stripped_crimson_upgraded_fence",
-    "cfm:stripped_warped_upgraded_fence"
+    {
+      "id": "cfm:oak_upgraded_fence",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_oak_upgraded_fence",
+      "required": false
+    },
+    {
+      "id": "cfm:birch_upgraded_fence",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_birch_upgraded_fence",
+      "required": false
+    },
+    {
+      "id": "cfm:spruce_upgraded_fence",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_spruce_upgraded_fence",
+      "required": false
+    },
+    {
+      "id": "cfm:jungle_upgraded_fence",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_jungle_upgraded_fence",
+      "required": false
+    },
+    {
+      "id": "cfm:acacia_upgraded_fence",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_acacia_upgraded_fence",
+      "required": false
+    },
+    {
+      "id": "cfm:dark_oak_upgraded_fence",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_dark_oak_upgraded_fence",
+      "required": false
+    },
+    {
+      "id": "cfm:crimson_upgraded_fence",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_crimson_upgraded_fence",
+      "required": false
+    },
+    {
+      "id": "cfm:warped_upgraded_fence",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_warped_upgraded_fence",
+      "required": false
+    },
+    {
+      "id": "cfm:mangrove_upgraded_fence",
+      "required": false
+    },
+    {
+      "id": "cfm:stripped_mangrove_upgraded_fence",
+      "required": false
+    }
   ]
 }

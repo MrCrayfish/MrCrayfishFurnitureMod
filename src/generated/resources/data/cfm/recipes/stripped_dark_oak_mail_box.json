@@ -1,11 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "mail_box",
-  "pattern": [
-    "C",
-    "F",
-    "F"
-  ],
   "key": {
     "C": {
       "tag": "forge:chests/wooden"
@@ -14,6 +9,11 @@
       "item": "cfm:stripped_dark_oak_upgraded_fence"
     }
   },
+  "pattern": [
+    "C",
+    "F",
+    "F"
+  ],
   "result": {
     "item": "cfm:stripped_dark_oak_mail_box"
   }

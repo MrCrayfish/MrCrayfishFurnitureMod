@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "upgraded_fence",
+  "key": {
+    "L": {
+      "item": "minecraft:mangrove_log"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "pattern": [
+    "LSL",
+    "LSL"
+  ],
+  "result": {
+    "count": 12,
+    "item": "cfm:mangrove_upgraded_fence"
+  }
+}

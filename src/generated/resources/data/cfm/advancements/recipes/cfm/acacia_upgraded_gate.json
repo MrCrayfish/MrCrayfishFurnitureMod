@@ -1,13 +1,17 @@
 {
   "parent": "minecraft:recipes/root",
-  "rewards": {
-    "recipes": [
-      "cfm:acacia_upgraded_gate"
-    ]
-  },
   "criteria": {
+    "has_gate": {
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:fence_gates/wooden"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_log": {
-      "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
@@ -16,23 +20,14 @@
             ]
           }
         ]
-      }
-    },
-    "has_gate": {
-      "trigger": "minecraft:inventory_changed",
-      "conditions": {
-        "items": [
-          {
-            "tag": "forge:fence_gates/wooden"
-          }
-        ]
-      }
+      },
+      "trigger": "minecraft:inventory_changed"
     },
     "has_the_recipe": {
-      "trigger": "minecraft:recipe_unlocked",
       "conditions": {
         "recipe": "cfm:acacia_upgraded_gate"
-      }
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
@@ -41,5 +36,10 @@
       "has_gate",
       "has_the_recipe"
     ]
-  ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cfm:acacia_upgraded_gate"
+    ]
+  }
 }

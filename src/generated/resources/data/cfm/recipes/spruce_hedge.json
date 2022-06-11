@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "hedge",
-  "pattern": [
-    "LLL",
-    "LLL"
-  ],
   "key": {
     "L": {
       "item": "minecraft:spruce_leaves"
     }
   },
+  "pattern": [
+    "LLL",
+    "LLL"
+  ],
   "result": {
-    "item": "cfm:spruce_hedge",
-    "count": 12
+    "count": 12,
+    "item": "cfm:spruce_hedge"
   }
 }

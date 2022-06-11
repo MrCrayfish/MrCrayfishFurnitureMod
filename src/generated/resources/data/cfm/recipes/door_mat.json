@@ -1,14 +1,14 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "WWW",
-    "WWW"
-  ],
   "key": {
     "W": {
       "item": "minecraft:wheat"
     }
   },
+  "pattern": [
+    "WWW",
+    "WWW"
+  ],
   "result": {
     "item": "cfm:door_mat"
   }

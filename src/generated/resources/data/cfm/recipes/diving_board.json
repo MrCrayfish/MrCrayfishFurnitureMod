@@ -1,21 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": {
+      "item": "minecraft:white_concrete"
+    },
+    "G": {
+      "item": "minecraft:light_gray_concrete"
+    },
+    "S": {
+      "tag": "forge:slimeballs"
+    }
+  },
   "pattern": [
     "CCC",
     "SSS",
     "G  "
   ],
-  "key": {
-    "C": {
-      "item": "minecraft:white_concrete"
-    },
-    "S": {
-      "tag": "forge:slimeballs"
-    },
-    "G": {
-      "item": "minecraft:light_gray_concrete"
-    }
-  },
   "result": {
     "item": "cfm:diving_board"
   }

@@ -35,6 +35,7 @@ public class ModBlocks
     public static final RegistryObject<Block> TABLE_DARK_OAK = register("dark_oak_table", () -> new TableBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> TABLE_CRIMSON = register("crimson_table", () -> new TableBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> TABLE_WARPED = register("warped_table", () -> new TableBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> TABLE_MANGROVE = register("mangrove_table", () -> new TableBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> TABLE_STONE = register("stone_table", () -> new TableBlock(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> TABLE_GRANITE = register("granite_table", () -> new TableBlock(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> TABLE_DIORITE = register("diorite_table", () -> new TableBlock(Block.Properties.copy(Blocks.STONE)));
@@ -47,6 +48,7 @@ public class ModBlocks
     public static final RegistryObject<Block> TABLE_STRIPPED_DARK_OAK = register("stripped_dark_oak_table", () -> new TableBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> TABLE_STRIPPED_CRIMSON = register("stripped_crimson_table", () -> new TableBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> TABLE_STRIPPED_WARPED = register("stripped_warped_table", () -> new TableBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> TABLE_STRIPPED_MANGROVE = register("stripped_mangrove_table", () -> new TableBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> CHAIR_OAK = register("oak_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> CHAIR_SPRUCE = register("spruce_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> CHAIR_BIRCH = register("birch_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -55,6 +57,7 @@ public class ModBlocks
     public static final RegistryObject<Block> CHAIR_DARK_OAK = register("dark_oak_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> CHAIR_CRIMSON = register("crimson_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> CHAIR_WARPED = register("warped_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> CHAIR_MANGROVE = register("mangrove_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> CHAIR_STONE = register("stone_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> CHAIR_GRANITE = register("granite_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> CHAIR_DIORITE = register("diorite_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.STONE)));
@@ -67,6 +70,7 @@ public class ModBlocks
     public static final RegistryObject<Block> CHAIR_STRIPPED_DARK_OAK = register("stripped_dark_oak_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> CHAIR_STRIPPED_CRIMSON = register("stripped_crimson_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> CHAIR_STRIPPED_WARPED = register("stripped_warped_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> CHAIR_STRIPPED_MANGROVE = register("stripped_mangrove_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> COFFEE_TABLE_OAK = register("oak_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> COFFEE_TABLE_SPRUCE = register("spruce_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> COFFEE_TABLE_BIRCH = register("birch_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -75,6 +79,7 @@ public class ModBlocks
     public static final RegistryObject<Block> COFFEE_TABLE_DARK_OAK = register("dark_oak_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> COFFEE_TABLE_CRIMSON = register("crimson_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> COFFEE_TABLE_WARPED = register("warped_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> COFFEE_TABLE_MANGROVE = register("mangrove_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> COFFEE_TABLE_STONE = register("stone_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> COFFEE_TABLE_GRANITE = register("granite_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> COFFEE_TABLE_DIORITE = register("diorite_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.STONE)));
@@ -87,6 +92,7 @@ public class ModBlocks
     public static final RegistryObject<Block> COFFEE_TABLE_STRIPPED_DARK_OAK = register("stripped_dark_oak_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> COFFEE_TABLE_STRIPPED_CRIMSON = register("stripped_crimson_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> COFFEE_TABLE_STRIPPED_WARPED = register("stripped_warped_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> COFFEE_TABLE_STRIPPED_MANGROVE = register("stripped_mangrove_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> CABINET_OAK = register("oak_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> CABINET_SPRUCE = register("spruce_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> CABINET_BIRCH = register("birch_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -95,6 +101,7 @@ public class ModBlocks
     public static final RegistryObject<Block> CABINET_DARK_OAK = register("dark_oak_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> CABINET_CRIMSON = register("crimson_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> CABINET_WARPED = register("warped_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> CABINET_MANGROVE = register("mangrove_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> CABINET_STONE = register("stone_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> CABINET_GRANITE = register("granite_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> CABINET_DIORITE = register("diorite_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.STONE)));
@@ -107,6 +114,7 @@ public class ModBlocks
     public static final RegistryObject<Block> CABINET_STRIPPED_DARK_OAK = register("stripped_dark_oak_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> CABINET_STRIPPED_CRIMSON = register("stripped_crimson_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> CABINET_STRIPPED_WARPED = register("stripped_warped_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> CABINET_STRIPPED_MANGROVE = register("stripped_mangrove_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> BEDSIDE_CABINET_OAK = register("oak_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> BEDSIDE_CABINET_SPRUCE = register("spruce_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> BEDSIDE_CABINET_BIRCH = register("birch_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -115,6 +123,7 @@ public class ModBlocks
     public static final RegistryObject<Block> BEDSIDE_CABINET_DARK_OAK = register("dark_oak_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> BEDSIDE_CABINET_CRIMSON = register("crimson_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> BEDSIDE_CABINET_WARPED = register("warped_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> BEDSIDE_CABINET_MANGROVE = register("mangrove_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> BEDSIDE_CABINET_STONE = register("stone_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> BEDSIDE_CABINET_GRANITE = register("granite_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> BEDSIDE_CABINET_DIORITE = register("diorite_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.STONE)));
@@ -127,6 +136,7 @@ public class ModBlocks
     public static final RegistryObject<Block> BEDSIDE_CABINET_STRIPPED_DARK_OAK = register("stripped_dark_oak_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> BEDSIDE_CABINET_STRIPPED_CRIMSON = register("stripped_crimson_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> BEDSIDE_CABINET_STRIPPED_WARPED = register("stripped_warped_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> BEDSIDE_CABINET_STRIPPED_MANGROVE = register("stripped_mangrove_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> DESK_OAK = register("oak_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.OAK_PLANKS), DeskBlock.MaterialType.OAK));
     public static final RegistryObject<Block> DESK_SPRUCE = register("spruce_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS), DeskBlock.MaterialType.BIRCH));
     public static final RegistryObject<Block> DESK_BIRCH = register("birch_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS), DeskBlock.MaterialType.SPRUCE));
@@ -135,6 +145,7 @@ public class ModBlocks
     public static final RegistryObject<Block> DESK_DARK_OAK = register("dark_oak_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS), DeskBlock.MaterialType.DARK_OAK));
     public static final RegistryObject<Block> DESK_CRIMSON = register("crimson_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS), DeskBlock.MaterialType.CRIMSON));
     public static final RegistryObject<Block> DESK_WARPED = register("warped_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.WARPED_PLANKS), DeskBlock.MaterialType.WARPED));
+    public static final RegistryObject<Block> DESK_MANGROVE = register("mangrove_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS), DeskBlock.MaterialType.MANGROVE));
     public static final RegistryObject<Block> DESK_STONE = register("stone_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.STONE), DeskBlock.MaterialType.STONE));
     public static final RegistryObject<Block> DESK_GRANITE = register("granite_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.STONE), DeskBlock.MaterialType.GRANITE));
     public static final RegistryObject<Block> DESK_DIORITE = register("diorite_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.STONE), DeskBlock.MaterialType.DIORITE));
@@ -147,14 +158,16 @@ public class ModBlocks
     public static final RegistryObject<Block> DESK_STRIPPED_DARK_OAK = register("stripped_dark_oak_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS), DeskBlock.MaterialType.STRIPPED_DARK_OAK));
     public static final RegistryObject<Block> DESK_STRIPPED_CRIMSON = register("stripped_crimson_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS), DeskBlock.MaterialType.STRIPPED_CRIMSON));
     public static final RegistryObject<Block> DESK_STRIPPED_WARPED = register("stripped_warped_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.WARPED_PLANKS), DeskBlock.MaterialType.STRIPPED_WARPED));
+    public static final RegistryObject<Block> DESK_STRIPPED_MANGROVE = register("stripped_mangrove_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS), DeskBlock.MaterialType.STRIPPED_MANGROVE));
     public static final RegistryObject<Block> DESK_CABINET_OAK = register("oak_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.OAK_PLANKS), DeskBlock.MaterialType.OAK));
     public static final RegistryObject<Block> DESK_CABINET_SPRUCE = register("spruce_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS), DeskBlock.MaterialType.BIRCH));
     public static final RegistryObject<Block> DESK_CABINET_BIRCH = register("birch_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS), DeskBlock.MaterialType.SPRUCE));
     public static final RegistryObject<Block> DESK_CABINET_JUNGLE = register("jungle_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.JUNGLE_PLANKS), DeskBlock.MaterialType.JUNGLE));
     public static final RegistryObject<Block> DESK_CABINET_ACACIA = register("acacia_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS), DeskBlock.MaterialType.ACACIA));
-    public static final RegistryObject<Block> DESK_CABINET_CRIMSON = register("crimson_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS), DeskBlock.MaterialType.DARK_OAK));
-    public static final RegistryObject<Block> DESK_CABINET_WARPED = register("warped_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.WARPED_PLANKS), DeskBlock.MaterialType.DARK_OAK));
     public static final RegistryObject<Block> DESK_CABINET_DARK_OAK = register("dark_oak_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS), DeskBlock.MaterialType.DARK_OAK));
+    public static final RegistryObject<Block> DESK_CABINET_CRIMSON = register("crimson_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS), DeskBlock.MaterialType.CRIMSON));
+    public static final RegistryObject<Block> DESK_CABINET_WARPED = register("warped_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.WARPED_PLANKS), DeskBlock.MaterialType.WARPED));
+    public static final RegistryObject<Block> DESK_CABINET_MANGROVE = register("mangrove_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS), DeskBlock.MaterialType.MANGROVE));
     public static final RegistryObject<Block> DESK_CABINET_STONE = register("stone_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.STONE), DeskBlock.MaterialType.STONE));
     public static final RegistryObject<Block> DESK_CABINET_GRANITE = register("granite_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.STONE), DeskBlock.MaterialType.GRANITE));
     public static final RegistryObject<Block> DESK_CABINET_DIORITE = register("diorite_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.STONE), DeskBlock.MaterialType.DIORITE));
@@ -165,8 +178,9 @@ public class ModBlocks
     public static final RegistryObject<Block> DESK_CABINET_STRIPPED_JUNGLE = register("stripped_jungle_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.JUNGLE_PLANKS), DeskBlock.MaterialType.STRIPPED_JUNGLE));
     public static final RegistryObject<Block> DESK_CABINET_STRIPPED_ACACIA = register("stripped_acacia_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.ACACIA_PLANKS), DeskBlock.MaterialType.STRIPPED_ACACIA));
     public static final RegistryObject<Block> DESK_CABINET_STRIPPED_DARK_OAK = register("stripped_dark_oak_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS), DeskBlock.MaterialType.STRIPPED_DARK_OAK));
-    public static final RegistryObject<Block> DESK_CABINET_STRIPPED_CRIMSON = register("stripped_crimson_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS), DeskBlock.MaterialType.DARK_OAK));
-    public static final RegistryObject<Block> DESK_CABINET_STRIPPED_WARPED = register("stripped_warped_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.WARPED_PLANKS), DeskBlock.MaterialType.DARK_OAK));
+    public static final RegistryObject<Block> DESK_CABINET_STRIPPED_CRIMSON = register("stripped_crimson_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS), DeskBlock.MaterialType.STRIPPED_CRIMSON));
+    public static final RegistryObject<Block> DESK_CABINET_STRIPPED_WARPED = register("stripped_warped_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.WARPED_PLANKS), DeskBlock.MaterialType.STRIPPED_WARPED));
+    public static final RegistryObject<Block> DESK_CABINET_STRIPPED_MANGROVE = register("stripped_mangrove_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS), DeskBlock.MaterialType.STRIPPED_MANGROVE));
     public static final RegistryObject<Block> SOFA_WHITE = register("white_sofa", () -> new SofaBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> SOFA_ORANGE = register("orange_sofa", () -> new SofaBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> SOFA_MAGENTA = register("magenta_sofa", () -> new SofaBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
@@ -192,6 +206,7 @@ public class ModBlocks
     public static final RegistryObject<Block> BLINDS_DARK_OAK = register("dark_oak_blinds", () -> new BlindsBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> BLINDS_CRIMSON = register("crimson_blinds", () -> new BlindsBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> BLINDS_WARPED = register("warped_blinds", () -> new BlindsBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> BLINDS_MANGROVE = register("mangrove_blinds", () -> new BlindsBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> BLINDS_STRIPPED_OAK = register("stripped_oak_blinds", () -> new BlindsBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> BLINDS_STRIPPED_SPRUCE = register("stripped_spruce_blinds", () -> new BlindsBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> BLINDS_STRIPPED_BIRCH = register("stripped_birch_blinds", () -> new BlindsBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -200,6 +215,7 @@ public class ModBlocks
     public static final RegistryObject<Block> BLINDS_STRIPPED_DARK_OAK = register("stripped_dark_oak_blinds", () -> new BlindsBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> BLINDS_STRIPPED_CRIMSON = register("stripped_crimson_blinds", () -> new BlindsBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> BLINDS_STRIPPED_WARPED = register("stripped_warped_blinds", () -> new BlindsBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> BLINDS_STRIPPED_MANGROVE = register("stripped_mangrove_blinds", () -> new BlindsBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_FENCE_OAK = register("oak_upgraded_fence", () -> new UpgradedFenceBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_FENCE_SPRUCE = register("spruce_upgraded_fence", () -> new UpgradedFenceBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_FENCE_BIRCH = register("birch_upgraded_fence", () -> new UpgradedFenceBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -208,6 +224,7 @@ public class ModBlocks
     public static final RegistryObject<Block> UPGRADED_FENCE_DARK_OAK = register("dark_oak_upgraded_fence", () -> new UpgradedFenceBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_FENCE_CRIMSON = register("crimson_upgraded_fence", () -> new UpgradedFenceBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_FENCE_WARPED = register("warped_upgraded_fence", () -> new UpgradedFenceBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> UPGRADED_FENCE_MANGROVE = register("mangrove_upgraded_fence", () -> new UpgradedFenceBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_FENCE_STRIPPED_OAK = register("stripped_oak_upgraded_fence", () -> new UpgradedFenceBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_FENCE_STRIPPED_SPRUCE = register("stripped_spruce_upgraded_fence", () -> new UpgradedFenceBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_FENCE_STRIPPED_BIRCH = register("stripped_birch_upgraded_fence", () -> new UpgradedFenceBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -216,6 +233,7 @@ public class ModBlocks
     public static final RegistryObject<Block> UPGRADED_FENCE_STRIPPED_DARK_OAK = register("stripped_dark_oak_upgraded_fence", () -> new UpgradedFenceBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_FENCE_STRIPPED_CRIMSON = register("stripped_crimson_upgraded_fence", () -> new UpgradedFenceBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_FENCE_STRIPPED_WARPED = register("stripped_warped_upgraded_fence", () -> new UpgradedFenceBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> UPGRADED_FENCE_STRIPPED_MANGROVE = register("stripped_mangrove_upgraded_fence", () -> new UpgradedFenceBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_GATE_OAK = register("oak_upgraded_gate", () -> new UpgradedGateBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_GATE_SPRUCE = register("spruce_upgraded_gate", () -> new UpgradedGateBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_GATE_BIRCH = register("birch_upgraded_gate", () -> new UpgradedGateBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -224,6 +242,7 @@ public class ModBlocks
     public static final RegistryObject<Block> UPGRADED_GATE_DARK_OAK = register("dark_oak_upgraded_gate", () -> new UpgradedGateBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_GATE_CRIMSON = register("crimson_upgraded_gate", () -> new UpgradedGateBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_GATE_WARPED = register("warped_upgraded_gate", () -> new UpgradedGateBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> UPGRADED_GATE_MANGROVE = register("mangrove_upgraded_gate", () -> new UpgradedGateBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_GATE_STRIPPED_OAK = register("stripped_oak_upgraded_gate", () -> new UpgradedGateBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_GATE_STRIPPED_SPRUCE = register("stripped_spruce_upgraded_gate", () -> new UpgradedGateBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_GATE_STRIPPED_BIRCH = register("stripped_birch_upgraded_gate", () -> new UpgradedGateBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -232,6 +251,7 @@ public class ModBlocks
     public static final RegistryObject<Block> UPGRADED_GATE_STRIPPED_DARK_OAK = register("stripped_dark_oak_upgraded_gate", () -> new UpgradedGateBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_GATE_STRIPPED_CRIMSON = register("stripped_crimson_upgraded_gate", () -> new UpgradedGateBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> UPGRADED_GATE_STRIPPED_WARPED = register("stripped_warped_upgraded_gate", () -> new UpgradedGateBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> UPGRADED_GATE_STRIPPED_MANGROVE = register("stripped_mangrove_upgraded_gate", () -> new UpgradedGateBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> PICKET_FENCE_WHITE = register("white_picket_fence", () -> new UpgradedFenceBlock(Block.Properties.of(Material.WOOD, MaterialColor.SNOW)));
     public static final RegistryObject<Block> PICKET_FENCE_ORANGE = register("orange_picket_fence", () -> new UpgradedFenceBlock(Block.Properties.of(Material.WOOD, MaterialColor.COLOR_ORANGE)));
     public static final RegistryObject<Block> PICKET_FENCE_MAGENTA = register("magenta_picket_fence", () -> new UpgradedFenceBlock(Block.Properties.of(Material.WOOD, MaterialColor.COLOR_MAGENTA)));
@@ -272,6 +292,7 @@ public class ModBlocks
     public static final RegistryObject<Block> CRATE_DARK_OAK = register("dark_oak_crate", () -> new CrateBlock(Block.Properties.copy(Blocks.CHEST)));
     public static final RegistryObject<Block> CRATE_CRIMSON = register("crimson_crate", () -> new CrateBlock(Block.Properties.copy(Blocks.CHEST)));
     public static final RegistryObject<Block> CRATE_WARPED = register("warped_crate", () -> new CrateBlock(Block.Properties.copy(Blocks.CHEST)));
+    public static final RegistryObject<Block> CRATE_MANGROVE = register("mangrove_crate", () -> new CrateBlock(Block.Properties.copy(Blocks.CHEST)));
     public static final RegistryObject<Block> CRATE_STRIPPED_OAK = register("stripped_oak_crate", () -> new CrateBlock(Block.Properties.copy(Blocks.CHEST)));
     public static final RegistryObject<Block> CRATE_STRIPPED_SPRUCE = register("stripped_spruce_crate", () -> new CrateBlock(Block.Properties.copy(Blocks.CHEST)));
     public static final RegistryObject<Block> CRATE_STRIPPED_BIRCH = register("stripped_birch_crate", () -> new CrateBlock(Block.Properties.copy(Blocks.CHEST)));
@@ -280,6 +301,7 @@ public class ModBlocks
     public static final RegistryObject<Block> CRATE_STRIPPED_DARK_OAK = register("stripped_dark_oak_crate", () -> new CrateBlock(Block.Properties.copy(Blocks.CHEST)));
     public static final RegistryObject<Block> CRATE_STRIPPED_CRIMSON = register("stripped_crimson_crate", () -> new CrateBlock(Block.Properties.copy(Blocks.CHEST)));
     public static final RegistryObject<Block> CRATE_STRIPPED_WARPED = register("stripped_warped_crate", () -> new CrateBlock(Block.Properties.copy(Blocks.CHEST)));
+    public static final RegistryObject<Block> CRATE_STRIPPED_MANGROVE = register("stripped_mangrove_crate", () -> new CrateBlock(Block.Properties.copy(Blocks.CHEST)));
     public static final RegistryObject<Block> PARK_BENCH_OAK = register("oak_park_bench", () -> new ParkBenchBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> PARK_BENCH_SPRUCE = register("spruce_park_bench", () -> new ParkBenchBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> PARK_BENCH_BIRCH = register("birch_park_bench", () -> new ParkBenchBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -288,6 +310,7 @@ public class ModBlocks
     public static final RegistryObject<Block> PARK_BENCH_DARK_OAK = register("dark_oak_park_bench", () -> new ParkBenchBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> PARK_BENCH_CRIMSON = register("crimson_park_bench", () -> new ParkBenchBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> PARK_BENCH_WARPED = register("warped_park_bench", () -> new ParkBenchBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> PARK_BENCH_MANGROVE = register("mangrove_park_bench", () -> new ParkBenchBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> PARK_BENCH_STRIPPED_OAK = register("stripped_oak_park_bench", () -> new ParkBenchBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> PARK_BENCH_STRIPPED_SPRUCE = register("stripped_spruce_park_bench", () -> new ParkBenchBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> PARK_BENCH_STRIPPED_BIRCH = register("stripped_birch_park_bench", () -> new ParkBenchBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -296,6 +319,7 @@ public class ModBlocks
     public static final RegistryObject<Block> PARK_BENCH_STRIPPED_DARK_OAK = register("stripped_dark_oak_park_bench", () -> new ParkBenchBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> PARK_BENCH_STRIPPED_CRIMSON = register("stripped_crimson_park_bench", () -> new ParkBenchBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> PARK_BENCH_STRIPPED_WARPED = register("stripped_warped_park_bench", () -> new ParkBenchBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> PARK_BENCH_STRIPPED_MANGROVE = register("stripped_mangrove_park_bench", () -> new ParkBenchBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> POST_BOX = register("post_box", () -> new PostBoxBlock(Block.Properties.copy(Blocks.ANVIL)));
     public static final RegistryObject<Block> MAIL_BOX_OAK = register("oak_mail_box", () -> new MailBoxBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> MAIL_BOX_SPRUCE = register("spruce_mail_box", () -> new MailBoxBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
@@ -305,6 +329,7 @@ public class ModBlocks
     public static final RegistryObject<Block> MAIL_BOX_DARK_OAK = register("dark_oak_mail_box", () -> new MailBoxBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> MAIL_BOX_CRIMSON = register("crimson_mail_box", () -> new MailBoxBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> MAIL_BOX_WARPED = register("warped_mail_box", () -> new MailBoxBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> MAIL_BOX_MANGROVE = register("mangrove_mail_box", () -> new MailBoxBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> MAIL_BOX_STRIPPED_OAK = register("stripped_oak_mail_box", () -> new MailBoxBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> MAIL_BOX_STRIPPED_SPRUCE = register("stripped_spruce_mail_box", () -> new MailBoxBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> MAIL_BOX_STRIPPED_BIRCH = register("stripped_birch_mail_box", () -> new MailBoxBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -313,12 +338,14 @@ public class ModBlocks
     public static final RegistryObject<Block> MAIL_BOX_STRIPPED_DARK_OAK = register("stripped_dark_oak_mail_box", () -> new MailBoxBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> MAIL_BOX_STRIPPED_CRIMSON = register("stripped_crimson_mail_box", () -> new MailBoxBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> MAIL_BOX_STRIPPED_WARPED = register("stripped_warped_mail_box", () -> new MailBoxBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> MAIL_BOX_STRIPPED_MANGROVE = register("stripped_mangrove_mail_box", () -> new MailBoxBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> HEDGE_OAK = register("oak_hedge", () -> new HedgeBlock(Block.Properties.copy(Blocks.OAK_LEAVES)));
     public static final RegistryObject<Block> HEDGE_SPRUCE = register("spruce_hedge", () -> new HedgeBlock(Block.Properties.copy(Blocks.SPRUCE_LEAVES)));
     public static final RegistryObject<Block> HEDGE_BIRCH = register("birch_hedge", () -> new HedgeBlock(Block.Properties.copy(Blocks.BIRCH_LEAVES)));
     public static final RegistryObject<Block> HEDGE_JUNGLE = register("jungle_hedge", () -> new HedgeBlock(Block.Properties.copy(Blocks.JUNGLE_LEAVES)));
     public static final RegistryObject<Block> HEDGE_ACACIA = register("acacia_hedge", () -> new HedgeBlock(Block.Properties.copy(Blocks.ACACIA_LEAVES)));
     public static final RegistryObject<Block> HEDGE_DARK_OAK = register("dark_oak_hedge", () -> new HedgeBlock(Block.Properties.copy(Blocks.DARK_OAK_LEAVES)));
+    public static final RegistryObject<Block> HEDGE_MANGROVE = register("mangrove_hedge", () -> new HedgeBlock(Block.Properties.copy(Blocks.MANGROVE_LEAVES)));
     public static final RegistryObject<Block> ROCK_PATH = register("rock_path", () -> new RockPath(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> TRAMPOLINE = register("trampoline", () -> new TrampolineBlock(Block.Properties.copy(Blocks.STONE)), block -> new TrampolineItem(block.get(), new Item.Properties().tab(FurnitureMod.GROUP)));
     public static final RegistryObject<Block> COOLER_WHITE = register("white_cooler", () -> new CoolerBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
@@ -363,6 +390,7 @@ public class ModBlocks
     public static final RegistryObject<Block> KITCHEN_COUNTER_DARK_OAK = register("dark_oak_kitchen_counter", () -> new KitchenCounterBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_COUNTER_CRIMSON = register("crimson_kitchen_counter", () -> new KitchenCounterBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_COUNTER_WARPED = register("warped_kitchen_counter", () -> new KitchenCounterBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> KITCHEN_COUNTER_MANGROVE = register("mangrove_kitchen_counter", () -> new KitchenCounterBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_COUNTER_STRIPPED_OAK = register("stripped_oak_kitchen_counter", () -> new KitchenCounterBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_COUNTER_STRIPPED_SPRUCE = register("stripped_spruce_kitchen_counter", () -> new KitchenCounterBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_COUNTER_STRIPPED_BIRCH = register("stripped_birch_kitchen_counter", () -> new KitchenCounterBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -371,6 +399,7 @@ public class ModBlocks
     public static final RegistryObject<Block> KITCHEN_COUNTER_STRIPPED_DARK_OAK = register("stripped_dark_oak_kitchen_counter", () -> new KitchenCounterBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_COUNTER_STRIPPED_CRIMSON = register("stripped_crimson_kitchen_counter", () -> new KitchenCounterBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_COUNTER_STRIPPED_WARPED = register("stripped_warped_kitchen_counter", () -> new KitchenCounterBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> KITCHEN_COUNTER_STRIPPED_MANGROVE = register("stripped_mangrove_kitchen_counter", () -> new KitchenCounterBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_COUNTER_WHITE = register("white_kitchen_counter", () -> new KitchenCounterBlock(Block.Properties.copy(Blocks.WHITE_TERRACOTTA)));
     public static final RegistryObject<Block> KITCHEN_COUNTER_ORANGE = register("orange_kitchen_counter", () -> new KitchenCounterBlock(Block.Properties.copy(Blocks.ORANGE_TERRACOTTA)));
     public static final RegistryObject<Block> KITCHEN_COUNTER_MAGENTA = register("magenta_kitchen_counter", () -> new KitchenCounterBlock(Block.Properties.copy(Blocks.MAGENTA_TERRACOTTA)));
@@ -395,6 +424,7 @@ public class ModBlocks
     public static final RegistryObject<Block> KITCHEN_DRAWER_DARK_OAK = register("dark_oak_kitchen_drawer", () -> new KitchenDrawerBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_DRAWER_CRIMSON = register("crimson_kitchen_drawer", () -> new KitchenDrawerBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_DRAWER_WARPED = register("warped_kitchen_drawer", () -> new KitchenDrawerBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> KITCHEN_DRAWER_MANGROVE = register("mangrove_kitchen_drawer", () -> new KitchenDrawerBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_DRAWER_STRIPPED_OAK = register("stripped_oak_kitchen_drawer", () -> new KitchenDrawerBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_DRAWER_STRIPPED_SPRUCE = register("stripped_spruce_kitchen_drawer", () -> new KitchenDrawerBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_DRAWER_STRIPPED_BIRCH = register("stripped_birch_kitchen_drawer", () -> new KitchenDrawerBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -403,6 +433,7 @@ public class ModBlocks
     public static final RegistryObject<Block> KITCHEN_DRAWER_STRIPPED_DARK_OAK = register("stripped_dark_oak_kitchen_drawer", () -> new KitchenDrawerBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_DRAWER_STRIPPED_CRIMSON = register("stripped_crimson_kitchen_drawer", () -> new KitchenDrawerBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_DRAWER_STRIPPED_WARPED = register("stripped_warped_kitchen_drawer", () -> new KitchenDrawerBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
+    public static final RegistryObject<Block> KITCHEN_DRAWER_STRIPPED_MANGROVE = register("stripped_mangrove_kitchen_drawer", () -> new KitchenDrawerBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_DRAWER_WHITE = register("white_kitchen_drawer", () -> new KitchenDrawerBlock(Block.Properties.copy(Blocks.WHITE_TERRACOTTA)));
     public static final RegistryObject<Block> KITCHEN_DRAWER_ORANGE = register("orange_kitchen_drawer", () -> new KitchenDrawerBlock(Block.Properties.copy(Blocks.ORANGE_TERRACOTTA)));
     public static final RegistryObject<Block> KITCHEN_DRAWER_MAGENTA = register("magenta_kitchen_drawer", () -> new KitchenDrawerBlock(Block.Properties.copy(Blocks.MAGENTA_TERRACOTTA)));
@@ -427,6 +458,7 @@ public class ModBlocks
     public static final RegistryObject<Block> KITCHEN_SINK_LIGHT_DARK_OAK = register("dark_oak_kitchen_sink_light", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_LIGHT_CRIMSON = register("crimson_kitchen_sink_light", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_LIGHT_WARPED = register("warped_kitchen_sink_light", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.WARPED_PLANKS), true));
+    public static final RegistryObject<Block> KITCHEN_SINK_LIGHT_MANGROVE = register("mangrove_kitchen_sink_light", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_LIGHT_STRIPPED_OAK = register("stripped_oak_kitchen_sink_light", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.OAK_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_LIGHT_STRIPPED_SPRUCE = register("stripped_spruce_kitchen_sink_light", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_LIGHT_STRIPPED_BIRCH = register("stripped_birch_kitchen_sink_light", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS), true));
@@ -435,6 +467,7 @@ public class ModBlocks
     public static final RegistryObject<Block> KITCHEN_SINK_LIGHT_STRIPPED_DARK_OAK = register("stripped_dark_oak_kitchen_sink_light", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_LIGHT_STRIPPED_CRIMSON = register("stripped_crimson_kitchen_sink_light", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_LIGHT_STRIPPED_WARPED = register("stripped_warped_kitchen_sink_light", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.WARPED_PLANKS), true));
+    public static final RegistryObject<Block> KITCHEN_SINK_LIGHT_STRIPPED_MANGROVE = register("stripped_mangrove_kitchen_sink_light", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_DARK_OAK = register("oak_kitchen_sink_dark", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.OAK_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_DARK_SPRUCE = register("spruce_kitchen_sink_dark", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_DARK_BIRCH = register("birch_kitchen_sink_dark", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS), true));
@@ -443,6 +476,7 @@ public class ModBlocks
     public static final RegistryObject<Block> KITCHEN_SINK_DARK_DARK_OAK = register("dark_oak_kitchen_sink_dark", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_DARK_CRIMSON = register("crimson_kitchen_sink_dark", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_DARK_WARPED = register("warped_kitchen_sink_dark", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.WARPED_PLANKS), true));
+    public static final RegistryObject<Block> KITCHEN_SINK_DARK_MANGROVE = register("mangrove_kitchen_sink_dark", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_DARK_STRIPPED_OAK = register("stripped_oak_kitchen_sink_dark", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.OAK_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_DARK_STRIPPED_SPRUCE = register("stripped_spruce_kitchen_sink_dark", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_DARK_STRIPPED_BIRCH = register("stripped_birch_kitchen_sink_dark", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS), true));
@@ -451,6 +485,7 @@ public class ModBlocks
     public static final RegistryObject<Block> KITCHEN_SINK_DARK_STRIPPED_DARK_OAK = register("stripped_dark_oak_kitchen_sink_dark", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.DARK_OAK_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_DARK_STRIPPED_CRIMSON = register("stripped_crimson_kitchen_sink_dark", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_DARK_STRIPPED_WARPED = register("stripped_warped_kitchen_sink_dark", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.WARPED_PLANKS), true));
+    public static final RegistryObject<Block> KITCHEN_SINK_DARK_STRIPPED_MANGROVE = register("stripped_mangrove_kitchen_sink_dark", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS), true));
     public static final RegistryObject<Block> KITCHEN_SINK_WHITE = register("white_kitchen_sink", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.WHITE_TERRACOTTA), false));
     public static final RegistryObject<Block> KITCHEN_SINK_ORANGE = register("orange_kitchen_sink", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.ORANGE_TERRACOTTA), false));
     public static final RegistryObject<Block> KITCHEN_SINK_MAGENTA = register("magenta_kitchen_sink", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.MAGENTA_TERRACOTTA), false));

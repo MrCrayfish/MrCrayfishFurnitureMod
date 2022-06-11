@@ -1,10 +1,5 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "B",
-    "I",
-    "W"
-  ],
   "key": {
     "B": {
       "item": "minecraft:iron_bars"
@@ -16,6 +11,11 @@
       "item": "minecraft:black_wool"
     }
   },
+  "pattern": [
+    "B",
+    "I",
+    "W"
+  ],
   "result": {
     "item": "cfm:spatula"
   }

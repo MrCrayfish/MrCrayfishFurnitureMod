@@ -1,10 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "coffee_table",
-  "pattern": [
-    "LLL",
-    "P P"
-  ],
   "key": {
     "L": {
       "item": "minecraft:stripped_acacia_log"
@@ -13,8 +9,12 @@
       "item": "minecraft:acacia_log"
     }
   },
+  "pattern": [
+    "LLL",
+    "P P"
+  ],
   "result": {
-    "item": "cfm:stripped_acacia_coffee_table",
-    "count": 4
+    "count": 4,
+    "item": "cfm:stripped_acacia_coffee_table"
   }
 }

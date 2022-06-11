@@ -1,11 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
   "group": "bedside_cabinet",
-  "pattern": [
-    "LLL",
-    "P P",
-    "PPP"
-  ],
   "key": {
     "L": {
       "item": "minecraft:stripped_birch_log"
@@ -14,8 +9,13 @@
       "item": "minecraft:birch_log"
     }
   },
+  "pattern": [
+    "LLL",
+    "P P",
+    "PPP"
+  ],
   "result": {
-    "item": "cfm:stripped_birch_bedside_cabinet",
-    "count": 2
+    "count": 2,
+    "item": "cfm:stripped_birch_bedside_cabinet"
   }
 }

@@ -7,6 +7,7 @@ import com.mrcrayfish.furniture.core.ModItems;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
+import net.minecraft.tags.TagBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 /**
@@ -24,122 +25,37 @@ public class ItemTagGen extends ItemTagsProvider
     {
         this.tag(ModTags.Items.BEDROOM)
                 // Cabinets
-                .add(ModBlocks.BEDSIDE_CABINET_OAK.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_SPRUCE.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_BIRCH.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_JUNGLE.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_ACACIA.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_DARK_OAK.get().asItem())
                 .add(ModBlocks.BEDSIDE_CABINET_STONE.get().asItem())
                 .add(ModBlocks.BEDSIDE_CABINET_GRANITE.get().asItem())
                 .add(ModBlocks.BEDSIDE_CABINET_DIORITE.get().asItem())
                 .add(ModBlocks.BEDSIDE_CABINET_ANDESITE.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_STRIPPED_DARK_OAK.get().asItem())
                 // Desks
-                .add(ModBlocks.DESK_OAK.get().asItem())
-                .add(ModBlocks.DESK_SPRUCE.get().asItem())
-                .add(ModBlocks.DESK_BIRCH.get().asItem())
-                .add(ModBlocks.DESK_JUNGLE.get().asItem())
-                .add(ModBlocks.DESK_ACACIA.get().asItem())
-                .add(ModBlocks.DESK_DARK_OAK.get().asItem())
                 .add(ModBlocks.DESK_STONE.get().asItem())
                 .add(ModBlocks.DESK_GRANITE.get().asItem())
                 .add(ModBlocks.DESK_DIORITE.get().asItem())
                 .add(ModBlocks.DESK_ANDESITE.get().asItem())
-                .add(ModBlocks.DESK_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.DESK_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.DESK_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.DESK_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.DESK_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.DESK_STRIPPED_DARK_OAK.get().asItem())
                 // Desk Cabinets
-                .add(ModBlocks.DESK_CABINET_OAK.get().asItem())
-                .add(ModBlocks.DESK_CABINET_SPRUCE.get().asItem())
-                .add(ModBlocks.DESK_CABINET_BIRCH.get().asItem())
-                .add(ModBlocks.DESK_CABINET_JUNGLE.get().asItem())
-                .add(ModBlocks.DESK_CABINET_ACACIA.get().asItem())
-                .add(ModBlocks.DESK_CABINET_DARK_OAK.get().asItem())
                 .add(ModBlocks.DESK_CABINET_STONE.get().asItem())
                 .add(ModBlocks.DESK_CABINET_GRANITE.get().asItem())
                 .add(ModBlocks.DESK_CABINET_DIORITE.get().asItem())
-                .add(ModBlocks.DESK_CABINET_ANDESITE.get().asItem())
-                .add(ModBlocks.DESK_CABINET_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.DESK_CABINET_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.DESK_CABINET_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.DESK_CABINET_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.DESK_CABINET_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.DESK_CABINET_STRIPPED_DARK_OAK.get().asItem())
-                // Blinds
-                .add(ModBlocks.BLINDS_OAK.get().asItem())
-                .add(ModBlocks.BLINDS_SPRUCE.get().asItem())
-                .add(ModBlocks.BLINDS_BIRCH.get().asItem())
-                .add(ModBlocks.BLINDS_JUNGLE.get().asItem())
-                .add(ModBlocks.BLINDS_ACACIA.get().asItem())
-                .add(ModBlocks.BLINDS_DARK_OAK.get().asItem())
-                .add(ModBlocks.BLINDS_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.BLINDS_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.BLINDS_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.BLINDS_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.BLINDS_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.BLINDS_STRIPPED_DARK_OAK.get().asItem());
+                .add(ModBlocks.DESK_CABINET_ANDESITE.get().asItem());
 
         this.tag(ModTags.Items.GENERAL)
                 // Tables
-                .add(ModBlocks.TABLE_OAK.get().asItem())
-                .add(ModBlocks.TABLE_SPRUCE.get().asItem())
-                .add(ModBlocks.TABLE_BIRCH.get().asItem())
-                .add(ModBlocks.TABLE_JUNGLE.get().asItem())
-                .add(ModBlocks.TABLE_ACACIA.get().asItem())
-                .add(ModBlocks.TABLE_DARK_OAK.get().asItem())
                 .add(ModBlocks.TABLE_STONE.get().asItem())
                 .add(ModBlocks.TABLE_GRANITE.get().asItem())
                 .add(ModBlocks.TABLE_DIORITE.get().asItem())
                 .add(ModBlocks.TABLE_ANDESITE.get().asItem())
-                .add(ModBlocks.TABLE_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.TABLE_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.TABLE_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.TABLE_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.TABLE_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.TABLE_STRIPPED_DARK_OAK.get().asItem())
                 // Chairs
-                .add(ModBlocks.CHAIR_OAK.get().asItem())
-                .add(ModBlocks.CHAIR_SPRUCE.get().asItem())
-                .add(ModBlocks.CHAIR_BIRCH.get().asItem())
-                .add(ModBlocks.CHAIR_JUNGLE.get().asItem())
-                .add(ModBlocks.CHAIR_ACACIA.get().asItem())
-                .add(ModBlocks.CHAIR_DARK_OAK.get().asItem())
                 .add(ModBlocks.CHAIR_STONE.get().asItem())
                 .add(ModBlocks.CHAIR_GRANITE.get().asItem())
                 .add(ModBlocks.CHAIR_DIORITE.get().asItem())
                 .add(ModBlocks.CHAIR_ANDESITE.get().asItem())
-                .add(ModBlocks.CHAIR_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.CHAIR_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.CHAIR_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.CHAIR_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.CHAIR_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.CHAIR_STRIPPED_DARK_OAK.get().asItem())
                 // Coffee Table
-                .add(ModBlocks.COFFEE_TABLE_OAK.get().asItem())
-                .add(ModBlocks.COFFEE_TABLE_SPRUCE.get().asItem())
-                .add(ModBlocks.COFFEE_TABLE_BIRCH.get().asItem())
-                .add(ModBlocks.COFFEE_TABLE_JUNGLE.get().asItem())
-                .add(ModBlocks.COFFEE_TABLE_ACACIA.get().asItem())
-                .add(ModBlocks.COFFEE_TABLE_DARK_OAK.get().asItem())
                 .add(ModBlocks.COFFEE_TABLE_STONE.get().asItem())
                 .add(ModBlocks.COFFEE_TABLE_GRANITE.get().asItem())
                 .add(ModBlocks.COFFEE_TABLE_DIORITE.get().asItem())
                 .add(ModBlocks.COFFEE_TABLE_ANDESITE.get().asItem())
-                .add(ModBlocks.COFFEE_TABLE_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.COFFEE_TABLE_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.COFFEE_TABLE_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.COFFEE_TABLE_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.COFFEE_TABLE_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.COFFEE_TABLE_STRIPPED_DARK_OAK.get().asItem())
                 // Sofa
                 .add(ModBlocks.SOFA_WHITE.get().asItem())
                 .add(ModBlocks.SOFA_ORANGE.get().asItem())
@@ -160,18 +76,6 @@ public class ItemTagGen extends ItemTagsProvider
 
         this.tag(ModTags.Items.KITCHEN)
                 // Kitchen Counters
-                .add(ModBlocks.KITCHEN_COUNTER_OAK.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_SPRUCE.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_BIRCH.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_JUNGLE.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_ACACIA.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_DARK_OAK.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_STRIPPED_DARK_OAK.get().asItem())
                 .add(ModBlocks.KITCHEN_COUNTER_WHITE.get().asItem())
                 .add(ModBlocks.KITCHEN_COUNTER_ORANGE.get().asItem())
                 .add(ModBlocks.KITCHEN_COUNTER_MAGENTA.get().asItem())
@@ -189,18 +93,6 @@ public class ItemTagGen extends ItemTagsProvider
                 .add(ModBlocks.KITCHEN_COUNTER_RED.get().asItem())
                 .add(ModBlocks.KITCHEN_COUNTER_BLACK.get().asItem())
                 // Kitchen Drawers
-                .add(ModBlocks.KITCHEN_DRAWER_OAK.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_SPRUCE.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_BIRCH.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_JUNGLE.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_ACACIA.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_DARK_OAK.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_STRIPPED_DARK_OAK.get().asItem())
                 .add(ModBlocks.KITCHEN_DRAWER_WHITE.get().asItem())
                 .add(ModBlocks.KITCHEN_DRAWER_ORANGE.get().asItem())
                 .add(ModBlocks.KITCHEN_DRAWER_MAGENTA.get().asItem())
@@ -220,30 +112,6 @@ public class ItemTagGen extends ItemTagsProvider
                 // Spatula
                 .add(ModItems.SPATULA.get())
                 // Kitchen Sinks
-                .add(ModBlocks.KITCHEN_SINK_LIGHT_OAK.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_LIGHT_SPRUCE.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_LIGHT_BIRCH.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_LIGHT_JUNGLE.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_LIGHT_ACACIA.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_LIGHT_DARK_OAK.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_LIGHT_STRIPPED_DARK_OAK.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_DARK_OAK.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_DARK_SPRUCE.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_DARK_BIRCH.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_DARK_JUNGLE.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_DARK_ACACIA.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_DARK_DARK_OAK.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_DARK_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_DARK_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_DARK_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_DARK_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_DARK_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_DARK_STRIPPED_DARK_OAK.get().asItem())
                 .add(ModBlocks.KITCHEN_SINK_WHITE.get().asItem())
                 .add(ModBlocks.KITCHEN_SINK_ORANGE.get().asItem())
                 .add(ModBlocks.KITCHEN_SINK_MAGENTA.get().asItem())
@@ -268,34 +136,8 @@ public class ItemTagGen extends ItemTagsProvider
                 // Fences and Fence Gates
                 .addTag(ModTags.Items.UPGRADED_FENCE_GATES)
                 .addTag(ModTags.Items.UPGRADED_FENCES)
-                // Park Benches
-                .add(ModBlocks.PARK_BENCH_OAK.get().asItem())
-                .add(ModBlocks.PARK_BENCH_SPRUCE.get().asItem())
-                .add(ModBlocks.PARK_BENCH_BIRCH.get().asItem())
-                .add(ModBlocks.PARK_BENCH_JUNGLE.get().asItem())
-                .add(ModBlocks.PARK_BENCH_ACACIA.get().asItem())
-                .add(ModBlocks.PARK_BENCH_DARK_OAK.get().asItem())
-                .add(ModBlocks.PARK_BENCH_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.PARK_BENCH_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.PARK_BENCH_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.PARK_BENCH_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.PARK_BENCH_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.PARK_BENCH_STRIPPED_DARK_OAK.get().asItem())
                 // Post Box
                 .add(ModBlocks.POST_BOX.get().asItem())
-                // Mail Boxes
-                .add(ModBlocks.MAIL_BOX_OAK.get().asItem())
-                .add(ModBlocks.MAIL_BOX_SPRUCE.get().asItem())
-                .add(ModBlocks.MAIL_BOX_BIRCH.get().asItem())
-                .add(ModBlocks.MAIL_BOX_JUNGLE.get().asItem())
-                .add(ModBlocks.MAIL_BOX_ACACIA.get().asItem())
-                .add(ModBlocks.MAIL_BOX_DARK_OAK.get().asItem())
-                .add(ModBlocks.MAIL_BOX_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.MAIL_BOX_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.MAIL_BOX_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.MAIL_BOX_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.MAIL_BOX_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.MAIL_BOX_STRIPPED_DARK_OAK.get().asItem())
                 // Hedge
                 .addTag(ModTags.Items.HEDGES)
                 // Rock Path
@@ -340,75 +182,6 @@ public class ItemTagGen extends ItemTagsProvider
                 .add(ModItems.SPATULA.get());
 
         this.tag(ModTags.Items.STORAGE)
-                // Cabinets
-                .add(ModBlocks.CABINET_OAK.get().asItem())
-                .add(ModBlocks.CABINET_SPRUCE.get().asItem())
-                .add(ModBlocks.CABINET_BIRCH.get().asItem())
-                .add(ModBlocks.CABINET_JUNGLE.get().asItem())
-                .add(ModBlocks.CABINET_ACACIA.get().asItem())
-                .add(ModBlocks.CABINET_DARK_OAK.get().asItem())
-                .add(ModBlocks.CABINET_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.CABINET_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.CABINET_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.CABINET_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.CABINET_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.CABINET_STRIPPED_DARK_OAK.get().asItem())
-                // Bedside Cabinets
-                .add(ModBlocks.BEDSIDE_CABINET_OAK.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_SPRUCE.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_BIRCH.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_JUNGLE.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_ACACIA.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_DARK_OAK.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_STRIPPED_DARK_OAK.get().asItem())
-                // Desk Cabinets
-                .add(ModBlocks.DESK_CABINET_OAK.get().asItem())
-                .add(ModBlocks.DESK_CABINET_SPRUCE.get().asItem())
-                .add(ModBlocks.DESK_CABINET_BIRCH.get().asItem())
-                .add(ModBlocks.DESK_CABINET_JUNGLE.get().asItem())
-                .add(ModBlocks.DESK_CABINET_ACACIA.get().asItem())
-                .add(ModBlocks.DESK_CABINET_DARK_OAK.get().asItem())
-                .add(ModBlocks.DESK_CABINET_STONE.get().asItem())
-                .add(ModBlocks.DESK_CABINET_GRANITE.get().asItem())
-                .add(ModBlocks.DESK_CABINET_DIORITE.get().asItem())
-                .add(ModBlocks.DESK_CABINET_ANDESITE.get().asItem())
-                .add(ModBlocks.DESK_CABINET_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.DESK_CABINET_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.DESK_CABINET_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.DESK_CABINET_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.DESK_CABINET_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.DESK_CABINET_STRIPPED_DARK_OAK.get().asItem())
-                // Crate
-                .add(ModBlocks.CRATE_OAK.get().asItem())
-                .add(ModBlocks.CRATE_SPRUCE.get().asItem())
-                .add(ModBlocks.CRATE_BIRCH.get().asItem())
-                .add(ModBlocks.CRATE_JUNGLE.get().asItem())
-                .add(ModBlocks.CRATE_ACACIA.get().asItem())
-                .add(ModBlocks.CRATE_DARK_OAK.get().asItem())
-                .add(ModBlocks.CRATE_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.CRATE_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.CRATE_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.CRATE_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.CRATE_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.CRATE_STRIPPED_DARK_OAK.get().asItem())
-                // Mailbox
-                .add(ModBlocks.MAIL_BOX_OAK.get().asItem())
-                .add(ModBlocks.MAIL_BOX_SPRUCE.get().asItem())
-                .add(ModBlocks.MAIL_BOX_BIRCH.get().asItem())
-                .add(ModBlocks.MAIL_BOX_JUNGLE.get().asItem())
-                .add(ModBlocks.MAIL_BOX_ACACIA.get().asItem())
-                .add(ModBlocks.MAIL_BOX_DARK_OAK.get().asItem())
-                .add(ModBlocks.MAIL_BOX_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.MAIL_BOX_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.MAIL_BOX_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.MAIL_BOX_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.MAIL_BOX_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.MAIL_BOX_STRIPPED_DARK_OAK.get().asItem())
                 // Coolers
                 .add(ModBlocks.COOLER_WHITE.get().asItem())
                 .add(ModBlocks.COOLER_ORANGE.get().asItem())
@@ -426,34 +199,8 @@ public class ItemTagGen extends ItemTagsProvider
                 .add(ModBlocks.COOLER_GREEN.get().asItem())
                 .add(ModBlocks.COOLER_RED.get().asItem())
                 .add(ModBlocks.COOLER_BLACK.get().asItem())
-                // Park Benches
-                .add(ModBlocks.PARK_BENCH_OAK.get().asItem())
-                .add(ModBlocks.PARK_BENCH_SPRUCE.get().asItem())
-                .add(ModBlocks.PARK_BENCH_BIRCH.get().asItem())
-                .add(ModBlocks.PARK_BENCH_JUNGLE.get().asItem())
-                .add(ModBlocks.PARK_BENCH_ACACIA.get().asItem())
-                .add(ModBlocks.PARK_BENCH_DARK_OAK.get().asItem())
-                .add(ModBlocks.PARK_BENCH_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.PARK_BENCH_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.PARK_BENCH_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.PARK_BENCH_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.PARK_BENCH_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.PARK_BENCH_STRIPPED_DARK_OAK.get().asItem())
                 // Post Box
                 .add(ModBlocks.POST_BOX.get().asItem())
-                // Mail Boxes
-                .add(ModBlocks.MAIL_BOX_OAK.get().asItem())
-                .add(ModBlocks.MAIL_BOX_SPRUCE.get().asItem())
-                .add(ModBlocks.MAIL_BOX_BIRCH.get().asItem())
-                .add(ModBlocks.MAIL_BOX_JUNGLE.get().asItem())
-                .add(ModBlocks.MAIL_BOX_ACACIA.get().asItem())
-                .add(ModBlocks.MAIL_BOX_DARK_OAK.get().asItem())
-                .add(ModBlocks.MAIL_BOX_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.MAIL_BOX_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.MAIL_BOX_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.MAIL_BOX_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.MAIL_BOX_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.MAIL_BOX_STRIPPED_DARK_OAK.get().asItem())
                 // Coolers
                 .add(ModBlocks.COOLER_WHITE.get().asItem())
                 .add(ModBlocks.COOLER_ORANGE.get().asItem())
@@ -472,18 +219,6 @@ public class ItemTagGen extends ItemTagsProvider
                 .add(ModBlocks.COOLER_RED.get().asItem())
                 .add(ModBlocks.COOLER_BLACK.get().asItem())
                 // Kitchen Drawers
-                .add(ModBlocks.KITCHEN_DRAWER_OAK.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_SPRUCE.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_BIRCH.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_JUNGLE.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_ACACIA.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_DARK_OAK.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_STRIPPED_OAK.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_STRIPPED_SPRUCE.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_STRIPPED_BIRCH.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_STRIPPED_JUNGLE.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_STRIPPED_ACACIA.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_STRIPPED_DARK_OAK.get().asItem())
                 .add(ModBlocks.KITCHEN_DRAWER_WHITE.get().asItem())
                 .add(ModBlocks.KITCHEN_DRAWER_ORANGE.get().asItem())
                 .add(ModBlocks.KITCHEN_DRAWER_MAGENTA.get().asItem())
@@ -501,10 +236,7 @@ public class ItemTagGen extends ItemTagsProvider
                 .add(ModBlocks.KITCHEN_DRAWER_RED.get().asItem())
                 .add(ModBlocks.KITCHEN_DRAWER_BLACK.get().asItem());
 
-        this.tag(ModTags.Items.TRAMPOLINE)
-                // Trampolines
-                .add(ModBlocks.TRAMPOLINE.get().asItem());
-
+        this.tag(ModTags.Items.TRAMPOLINE).add(ModBlocks.TRAMPOLINE.get().asItem());
         this.tag(ModTags.Items.ITEMS).add(ModItems.SPATULA.get());
 
         this.copy(ModTags.Blocks.UPGRADED_FENCE_GATES, ModTags.Items.UPGRADED_FENCE_GATES);
@@ -512,5 +244,157 @@ public class ItemTagGen extends ItemTagsProvider
         this.copy(ModTags.Blocks.UPGRADED_FENCES, ModTags.Items.UPGRADED_FENCES);
         this.copy(ModTags.Blocks.PICKET_FENCES, ModTags.Items.PICKET_FENCES);
         this.copy(ModTags.Blocks.HEDGES, ModTags.Items.HEDGES);
+
+        TagBuilder bedroomTag = this.getOrCreateRawBuilder(ModTags.Items.BEDROOM).replace(false);
+        for(GeneratorData.Variant variant : GeneratorData.ALL_VARIANTS)
+        {
+            bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.BEDSIDE_CABINET, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.BEDSIDE_CABINET, variant, true));
+            }
+
+            bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.DESK, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.DESK, variant, true));
+            }
+
+            bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.DESK_CABINET, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.DESK_CABINET, variant, true));
+            }
+
+            bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.BLINDS, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.BLINDS, variant, true));
+            }
+        }
+
+        TagBuilder generalTag = this.getOrCreateRawBuilder(ModTags.Items.GENERAL).replace(false);
+        for(GeneratorData.Variant variant : GeneratorData.ALL_VARIANTS)
+        {
+            generalTag.addElement(GeneratorData.getResultBlock(GeneratorData.TABLE, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                generalTag.addElement(GeneratorData.getResultBlock(GeneratorData.TABLE, variant, true));
+            }
+
+            generalTag.addElement(GeneratorData.getResultBlock(GeneratorData.CHAIR, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                generalTag.addElement(GeneratorData.getResultBlock(GeneratorData.CHAIR, variant, true));
+            }
+
+            generalTag.addElement(GeneratorData.getResultBlock(GeneratorData.COFFEE_TABLE, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                generalTag.addElement(GeneratorData.getResultBlock(GeneratorData.COFFEE_TABLE, variant, true));
+            }
+        }
+
+        TagBuilder kitchenTag = this.getOrCreateRawBuilder(ModTags.Items.KITCHEN).replace(false);
+        for(GeneratorData.Variant variant : GeneratorData.ALL_VARIANTS)
+        {
+            kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_COUNTER, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_COUNTER, variant, true));
+            }
+
+            kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_DRAWER, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_DRAWER, variant, true));
+            }
+
+            kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_LIGHT, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_LIGHT, variant, true));
+            }
+
+            kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_DARK, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_DARK, variant, true));
+            }
+        }
+
+        TagBuilder outdoorTag = this.getOrCreateRawBuilder(ModTags.Items.OUTDOORS).replace(false);
+        for(GeneratorData.Variant variant : GeneratorData.ALL_VARIANTS)
+        {
+            outdoorTag.addElement(GeneratorData.getResultBlock(GeneratorData.PARK_BENCH, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                outdoorTag.addElement(GeneratorData.getResultBlock(GeneratorData.PARK_BENCH, variant, true));
+            }
+
+            outdoorTag.addElement(GeneratorData.getResultBlock(GeneratorData.MAIL_BOX, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                outdoorTag.addElement(GeneratorData.getResultBlock(GeneratorData.MAIL_BOX, variant, true));
+            }
+
+            outdoorTag.addElement(GeneratorData.getResultBlock(GeneratorData.MAIL_BOX, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                outdoorTag.addElement(GeneratorData.getResultBlock(GeneratorData.MAIL_BOX, variant, true));
+            }
+        }
+
+        TagBuilder storageTag = this.getOrCreateRawBuilder(ModTags.Items.STORAGE).replace(false);
+        for(GeneratorData.Variant variant : GeneratorData.ALL_VARIANTS)
+        {
+            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.CABINET, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.CABINET, variant, true));
+            }
+
+            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.BEDSIDE_CABINET, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.BEDSIDE_CABINET, variant, true));
+            }
+
+            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.DESK_CABINET, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.DESK_CABINET, variant, true));
+            }
+
+            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.CRATE, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.CRATE, variant, true));
+            }
+
+            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.MAIL_BOX, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.MAIL_BOX, variant, true));
+            }
+
+            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_DRAWER, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_DRAWER, variant, true));
+            }
+
+            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_LIGHT, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_LIGHT, variant, true));
+            }
+
+            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_DARK, variant, false));
+            if(variant.strippedLog() != null)
+            {
+                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_DARK, variant, true));
+            }
+        }
     }
 }

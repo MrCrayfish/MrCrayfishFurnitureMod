@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:block/desk_cabinet_middle_closed",
+    "textures": {
+        "top": "block/mangrove_log",
+        "base": "block/mangrove_planks",
+        "draw_front": "block/mangrove_log"
+    }
+}

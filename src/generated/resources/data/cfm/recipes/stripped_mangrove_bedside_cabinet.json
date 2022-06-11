@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bedside_cabinet",
+  "key": {
+    "L": {
+      "item": "minecraft:stripped_mangrove_log"
+    },
+    "P": {
+      "item": "minecraft:mangrove_log"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "P P",
+    "PPP"
+  ],
+  "result": {
+    "count": 2,
+    "item": "cfm:stripped_mangrove_bedside_cabinet"
+  }
+}
