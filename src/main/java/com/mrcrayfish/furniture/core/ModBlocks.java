@@ -36,10 +36,6 @@ public class ModBlocks
     public static final RegistryObject<Block> TABLE_CRIMSON = register("crimson_table", () -> new TableBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> TABLE_WARPED = register("warped_table", () -> new TableBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
     public static final RegistryObject<Block> TABLE_MANGROVE = register("mangrove_table", () -> new TableBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
-    public static final RegistryObject<Block> TABLE_STONE = register("stone_table", () -> new TableBlock(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> TABLE_GRANITE = register("granite_table", () -> new TableBlock(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> TABLE_DIORITE = register("diorite_table", () -> new TableBlock(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> TABLE_ANDESITE = register("andesite_table", () -> new TableBlock(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> TABLE_STRIPPED_OAK = register("stripped_oak_table", () -> new TableBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> TABLE_STRIPPED_SPRUCE = register("stripped_spruce_table", () -> new TableBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> TABLE_STRIPPED_BIRCH = register("stripped_birch_table", () -> new TableBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -58,10 +54,6 @@ public class ModBlocks
     public static final RegistryObject<Block> CHAIR_CRIMSON = register("crimson_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> CHAIR_WARPED = register("warped_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
     public static final RegistryObject<Block> CHAIR_MANGROVE = register("mangrove_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
-    public static final RegistryObject<Block> CHAIR_STONE = register("stone_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> CHAIR_GRANITE = register("granite_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> CHAIR_DIORITE = register("diorite_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> CHAIR_ANDESITE = register("andesite_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> CHAIR_STRIPPED_OAK = register("stripped_oak_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> CHAIR_STRIPPED_SPRUCE = register("stripped_spruce_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> CHAIR_STRIPPED_BIRCH = register("stripped_birch_chair", () -> new ChairBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -80,10 +72,6 @@ public class ModBlocks
     public static final RegistryObject<Block> COFFEE_TABLE_CRIMSON = register("crimson_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> COFFEE_TABLE_WARPED = register("warped_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
     public static final RegistryObject<Block> COFFEE_TABLE_MANGROVE = register("mangrove_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
-    public static final RegistryObject<Block> COFFEE_TABLE_STONE = register("stone_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> COFFEE_TABLE_GRANITE = register("granite_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> COFFEE_TABLE_DIORITE = register("diorite_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> COFFEE_TABLE_ANDESITE = register("andesite_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> COFFEE_TABLE_STRIPPED_OAK = register("stripped_oak_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> COFFEE_TABLE_STRIPPED_SPRUCE = register("stripped_spruce_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> COFFEE_TABLE_STRIPPED_BIRCH = register("stripped_birch_coffee_table", () -> new CoffeeTableBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -102,10 +90,6 @@ public class ModBlocks
     public static final RegistryObject<Block> CABINET_CRIMSON = register("crimson_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> CABINET_WARPED = register("warped_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
     public static final RegistryObject<Block> CABINET_MANGROVE = register("mangrove_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
-    public static final RegistryObject<Block> CABINET_STONE = register("stone_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> CABINET_GRANITE = register("granite_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> CABINET_DIORITE = register("diorite_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> CABINET_ANDESITE = register("andesite_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> CABINET_STRIPPED_OAK = register("stripped_oak_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> CABINET_STRIPPED_SPRUCE = register("stripped_spruce_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> CABINET_STRIPPED_BIRCH = register("stripped_birch_cabinet", () -> new CabinetBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -124,10 +108,6 @@ public class ModBlocks
     public static final RegistryObject<Block> BEDSIDE_CABINET_CRIMSON = register("crimson_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS)));
     public static final RegistryObject<Block> BEDSIDE_CABINET_WARPED = register("warped_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.WARPED_PLANKS)));
     public static final RegistryObject<Block> BEDSIDE_CABINET_MANGROVE = register("mangrove_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS)));
-    public static final RegistryObject<Block> BEDSIDE_CABINET_STONE = register("stone_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> BEDSIDE_CABINET_GRANITE = register("granite_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> BEDSIDE_CABINET_DIORITE = register("diorite_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> BEDSIDE_CABINET_ANDESITE = register("andesite_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.STONE)));
     public static final RegistryObject<Block> BEDSIDE_CABINET_STRIPPED_OAK = register("stripped_oak_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> BEDSIDE_CABINET_STRIPPED_SPRUCE = register("stripped_spruce_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
     public static final RegistryObject<Block> BEDSIDE_CABINET_STRIPPED_BIRCH = register("stripped_birch_bedside_cabinet", () -> new BedsideCabinetBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS)));
@@ -146,10 +126,6 @@ public class ModBlocks
     public static final RegistryObject<Block> DESK_CRIMSON = register("crimson_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS), DeskBlock.MaterialType.CRIMSON));
     public static final RegistryObject<Block> DESK_WARPED = register("warped_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.WARPED_PLANKS), DeskBlock.MaterialType.WARPED));
     public static final RegistryObject<Block> DESK_MANGROVE = register("mangrove_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS), DeskBlock.MaterialType.MANGROVE));
-    public static final RegistryObject<Block> DESK_STONE = register("stone_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.STONE), DeskBlock.MaterialType.STONE));
-    public static final RegistryObject<Block> DESK_GRANITE = register("granite_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.STONE), DeskBlock.MaterialType.GRANITE));
-    public static final RegistryObject<Block> DESK_DIORITE = register("diorite_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.STONE), DeskBlock.MaterialType.DIORITE));
-    public static final RegistryObject<Block> DESK_ANDESITE = register("andesite_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.STONE), DeskBlock.MaterialType.ANDESITE));
     public static final RegistryObject<Block> DESK_STRIPPED_OAK = register("stripped_oak_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.OAK_PLANKS), DeskBlock.MaterialType.STRIPPED_OAK));
     public static final RegistryObject<Block> DESK_STRIPPED_SPRUCE = register("stripped_spruce_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS), DeskBlock.MaterialType.STRIPPED_BIRCH));
     public static final RegistryObject<Block> DESK_STRIPPED_BIRCH = register("stripped_birch_desk", () -> new DeskBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS), DeskBlock.MaterialType.STRIPPED_SPRUCE));
@@ -168,10 +144,6 @@ public class ModBlocks
     public static final RegistryObject<Block> DESK_CABINET_CRIMSON = register("crimson_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.CRIMSON_PLANKS), DeskBlock.MaterialType.CRIMSON));
     public static final RegistryObject<Block> DESK_CABINET_WARPED = register("warped_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.WARPED_PLANKS), DeskBlock.MaterialType.WARPED));
     public static final RegistryObject<Block> DESK_CABINET_MANGROVE = register("mangrove_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.MANGROVE_PLANKS), DeskBlock.MaterialType.MANGROVE));
-    public static final RegistryObject<Block> DESK_CABINET_STONE = register("stone_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.STONE), DeskBlock.MaterialType.STONE));
-    public static final RegistryObject<Block> DESK_CABINET_GRANITE = register("granite_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.STONE), DeskBlock.MaterialType.GRANITE));
-    public static final RegistryObject<Block> DESK_CABINET_DIORITE = register("diorite_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.STONE), DeskBlock.MaterialType.DIORITE));
-    public static final RegistryObject<Block> DESK_CABINET_ANDESITE = register("andesite_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.STONE), DeskBlock.MaterialType.ANDESITE));
     public static final RegistryObject<Block> DESK_CABINET_STRIPPED_OAK = register("stripped_oak_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.OAK_PLANKS), DeskBlock.MaterialType.STRIPPED_OAK));
     public static final RegistryObject<Block> DESK_CABINET_STRIPPED_SPRUCE = register("stripped_spruce_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS), DeskBlock.MaterialType.STRIPPED_BIRCH));
     public static final RegistryObject<Block> DESK_CABINET_STRIPPED_BIRCH = register("stripped_birch_desk_cabinet", () -> new DeskCabinetBlock(Block.Properties.copy(Blocks.BIRCH_PLANKS), DeskBlock.MaterialType.STRIPPED_SPRUCE));

@@ -1,4 +1,4 @@
-// 1.19	2022-06-11T21:05:54.3562384	Tags for minecraft:block
+// 1.19	2022-06-11T21:24:57.2113062	Tags for minecraft:block
 214f75cd032a631f1a0d235bcd21e5bcd76b5c82 data/cfm/tags/blocks/fences/hedge.json
 c2381928c291ecfd9e7bd1979e0413bfeb5eb9f9 data/cfm/tags/blocks/fences/picket.json
 df801ba9f499d6d7936b85ccd53c2981c42b8a36 data/cfm/tags/blocks/fences/upgraded.json
@@ -7,4 +7,4 @@ ed00804745d3a61865d45671dbb3ea514d67d597 data/cfm/tags/blocks/fence_gates/upgrad
 cf0aef9804995e115f43400bf9feb70f1320b57a data/minecraft/tags/blocks/fences.json
 b1daead2a634617cb775b11a1d803800b1734c5b data/minecraft/tags/blocks/fence_gates.json
 4f382915a57f6f45c7273e59d81b010a50e46165 data/minecraft/tags/blocks/mineable/axe.json
-c6d353da4b75aaa4b7a888b495fcf2beac7bf693 data/minecraft/tags/blocks/mineable/pickaxe.json
+d8d638f15f87b0ba893e5bf08a143d75e43b019d data/minecraft/tags/blocks/mineable/pickaxe.json

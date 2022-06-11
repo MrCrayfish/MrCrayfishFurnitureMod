@@ -1,8 +1,0 @@
-{
-    "parent": "cfm:block/desk_single",
-    "textures": {
-        "base": "minecraft:block/diorite",
-        "top": "block/polished_diorite",
-        "legs": "minecraft:block/diorite"
-    }
-}

@@ -1,7 +1,0 @@
-{
-    "parent": "cfm:block/coffee_table_tall_all",
-    "textures": {
-        "top": "block/polished_granite",
-        "legs": "block/granite"
-    }
-}

@@ -23,39 +23,7 @@ public class ItemTagGen extends ItemTagsProvider
     @Override
     protected void addTags()
     {
-        this.tag(ModTags.Items.BEDROOM)
-                // Cabinets
-                .add(ModBlocks.BEDSIDE_CABINET_STONE.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_GRANITE.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_DIORITE.get().asItem())
-                .add(ModBlocks.BEDSIDE_CABINET_ANDESITE.get().asItem())
-                // Desks
-                .add(ModBlocks.DESK_STONE.get().asItem())
-                .add(ModBlocks.DESK_GRANITE.get().asItem())
-                .add(ModBlocks.DESK_DIORITE.get().asItem())
-                .add(ModBlocks.DESK_ANDESITE.get().asItem())
-                // Desk Cabinets
-                .add(ModBlocks.DESK_CABINET_STONE.get().asItem())
-                .add(ModBlocks.DESK_CABINET_GRANITE.get().asItem())
-                .add(ModBlocks.DESK_CABINET_DIORITE.get().asItem())
-                .add(ModBlocks.DESK_CABINET_ANDESITE.get().asItem());
-
         this.tag(ModTags.Items.GENERAL)
-                // Tables
-                .add(ModBlocks.TABLE_STONE.get().asItem())
-                .add(ModBlocks.TABLE_GRANITE.get().asItem())
-                .add(ModBlocks.TABLE_DIORITE.get().asItem())
-                .add(ModBlocks.TABLE_ANDESITE.get().asItem())
-                // Chairs
-                .add(ModBlocks.CHAIR_STONE.get().asItem())
-                .add(ModBlocks.CHAIR_GRANITE.get().asItem())
-                .add(ModBlocks.CHAIR_DIORITE.get().asItem())
-                .add(ModBlocks.CHAIR_ANDESITE.get().asItem())
-                // Coffee Table
-                .add(ModBlocks.COFFEE_TABLE_STONE.get().asItem())
-                .add(ModBlocks.COFFEE_TABLE_GRANITE.get().asItem())
-                .add(ModBlocks.COFFEE_TABLE_DIORITE.get().asItem())
-                .add(ModBlocks.COFFEE_TABLE_ANDESITE.get().asItem())
                 // Sofa
                 .add(ModBlocks.SOFA_WHITE.get().asItem())
                 .add(ModBlocks.SOFA_ORANGE.get().asItem())

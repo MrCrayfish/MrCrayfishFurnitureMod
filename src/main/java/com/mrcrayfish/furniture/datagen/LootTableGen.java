@@ -59,34 +59,6 @@ public class LootTableGen extends LootTableProvider
         @Override
         protected void addTables()
         {
-            this.dropSelf(ModBlocks.TABLE_STONE.get());
-            this.dropSelf(ModBlocks.TABLE_GRANITE.get());
-            this.dropSelf(ModBlocks.TABLE_DIORITE.get());
-            this.dropSelf(ModBlocks.TABLE_ANDESITE.get());
-            this.dropSelf(ModBlocks.CHAIR_STONE.get());
-            this.dropSelf(ModBlocks.CHAIR_GRANITE.get());
-            this.dropSelf(ModBlocks.CHAIR_DIORITE.get());
-            this.dropSelf(ModBlocks.CHAIR_ANDESITE.get());
-            this.registerCoffeeTable(ModBlocks.COFFEE_TABLE_STONE.get());
-            this.registerCoffeeTable(ModBlocks.COFFEE_TABLE_GRANITE.get());
-            this.registerCoffeeTable(ModBlocks.COFFEE_TABLE_DIORITE.get());
-            this.registerCoffeeTable(ModBlocks.COFFEE_TABLE_ANDESITE.get());
-            this.dropSelf(ModBlocks.CABINET_STONE.get());
-            this.dropSelf(ModBlocks.CABINET_GRANITE.get());
-            this.dropSelf(ModBlocks.CABINET_DIORITE.get());
-            this.dropSelf(ModBlocks.CABINET_ANDESITE.get());
-            this.dropSelf(ModBlocks.BEDSIDE_CABINET_STONE.get());
-            this.dropSelf(ModBlocks.BEDSIDE_CABINET_GRANITE.get());
-            this.dropSelf(ModBlocks.BEDSIDE_CABINET_DIORITE.get());
-            this.dropSelf(ModBlocks.BEDSIDE_CABINET_ANDESITE.get());
-            this.dropSelf(ModBlocks.DESK_STONE.get());
-            this.dropSelf(ModBlocks.DESK_GRANITE.get());
-            this.dropSelf(ModBlocks.DESK_DIORITE.get());
-            this.dropSelf(ModBlocks.DESK_ANDESITE.get());
-            this.dropSelf(ModBlocks.DESK_CABINET_STONE.get());
-            this.dropSelf(ModBlocks.DESK_CABINET_GRANITE.get());
-            this.dropSelf(ModBlocks.DESK_CABINET_DIORITE.get());
-            this.dropSelf(ModBlocks.DESK_CABINET_ANDESITE.get());
             this.dropSelf(ModBlocks.SOFA_WHITE.get());
             this.dropSelf(ModBlocks.SOFA_ORANGE.get());
             this.dropSelf(ModBlocks.SOFA_MAGENTA.get());

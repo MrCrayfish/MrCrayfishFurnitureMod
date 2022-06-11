@@ -1,17 +1,5 @@
 {
   "values": [
-    "cfm:stone_bedside_cabinet",
-    "cfm:granite_bedside_cabinet",
-    "cfm:diorite_bedside_cabinet",
-    "cfm:andesite_bedside_cabinet",
-    "cfm:stone_desk",
-    "cfm:granite_desk",
-    "cfm:diorite_desk",
-    "cfm:andesite_desk",
-    "cfm:stone_desk_cabinet",
-    "cfm:granite_desk_cabinet",
-    "cfm:diorite_desk_cabinet",
-    "cfm:andesite_desk_cabinet",
     "cfm:oak_bedside_cabinet",
     "cfm:stripped_oak_bedside_cabinet",
     "cfm:oak_desk",

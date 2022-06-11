@@ -1,7 +1,0 @@
-{
-    "parent": "cfm:block/coffee_table_short_one",
-    "textures": {
-        "top": "block/polished_andesite",
-        "legs": "block/andesite"
-    }
-}

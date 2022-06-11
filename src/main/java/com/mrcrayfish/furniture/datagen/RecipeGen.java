@@ -84,48 +84,6 @@ public class RecipeGen extends RecipeProvider
             }
         }
 
-        // Tables
-        table(consumer, ModBlocks.TABLE_STONE.get(), Blocks.STONE, Blocks.COBBLESTONE);
-        table(consumer, ModBlocks.TABLE_GRANITE.get(), Blocks.POLISHED_GRANITE, Blocks.GRANITE);
-        table(consumer, ModBlocks.TABLE_DIORITE.get(), Blocks.POLISHED_DIORITE, Blocks.DIORITE);
-        table(consumer, ModBlocks.TABLE_ANDESITE.get(), Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
-
-        // Chairs
-        chair(consumer, ModBlocks.CHAIR_STONE.get(), Blocks.STONE, Blocks.COBBLESTONE);
-        chair(consumer, ModBlocks.CHAIR_GRANITE.get(), Blocks.POLISHED_GRANITE, Blocks.GRANITE);
-        chair(consumer, ModBlocks.CHAIR_DIORITE.get(), Blocks.POLISHED_DIORITE, Blocks.DIORITE);
-        chair(consumer, ModBlocks.CHAIR_ANDESITE.get(), Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
-
-        // Coffee Table
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_STONE.get(), Blocks.STONE, Blocks.COBBLESTONE);
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_GRANITE.get(), Blocks.POLISHED_GRANITE, Blocks.GRANITE);
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_DIORITE.get(), Blocks.POLISHED_DIORITE, Blocks.DIORITE);
-        coffeeTable(consumer, ModBlocks.COFFEE_TABLE_ANDESITE.get(), Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
-
-        // Cabinet
-        cabinet(consumer, ModBlocks.CABINET_STONE.get(), Blocks.STONE, Blocks.COBBLESTONE);
-        cabinet(consumer, ModBlocks.CABINET_GRANITE.get(), Blocks.POLISHED_GRANITE, Blocks.GRANITE);
-        cabinet(consumer, ModBlocks.CABINET_DIORITE.get(), Blocks.POLISHED_DIORITE, Blocks.DIORITE);
-        cabinet(consumer, ModBlocks.CABINET_ANDESITE.get(), Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
-
-        // Coffee Table
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_STONE.get(), Blocks.STONE, Blocks.COBBLESTONE);
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_GRANITE.get(), Blocks.POLISHED_GRANITE, Blocks.GRANITE);
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_DIORITE.get(), Blocks.POLISHED_DIORITE, Blocks.DIORITE);
-        bedsideCabinet(consumer, ModBlocks.BEDSIDE_CABINET_ANDESITE.get(), Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
-
-        // Desk
-        desk(consumer, ModBlocks.DESK_STONE.get(), Blocks.STONE, Blocks.COBBLESTONE);
-        desk(consumer, ModBlocks.DESK_GRANITE.get(), Blocks.POLISHED_GRANITE, Blocks.GRANITE);
-        desk(consumer, ModBlocks.DESK_DIORITE.get(), Blocks.POLISHED_DIORITE, Blocks.DIORITE);
-        desk(consumer, ModBlocks.DESK_ANDESITE.get(), Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
-
-        // Desk Cabinet
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_STONE.get(), Blocks.STONE, Blocks.COBBLESTONE);
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_GRANITE.get(), Blocks.POLISHED_GRANITE, Blocks.GRANITE);
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_DIORITE.get(), Blocks.POLISHED_DIORITE, Blocks.DIORITE);
-        deskCabinet(consumer, ModBlocks.DESK_CABINET_ANDESITE.get(), Blocks.POLISHED_ANDESITE, Blocks.ANDESITE);
-
         // Desk Cabinet
         sofa(consumer, ModBlocks.SOFA_WHITE.get(), Blocks.WHITE_WOOL);
         sofa(consumer, ModBlocks.SOFA_ORANGE.get(), Blocks.ORANGE_WOOL);
