@@ -14,7 +14,10 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.client.FluidContainerColorer;
 import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraftforge.client.RenderProperties;
+import net.minecraftforge.fluids.FluidStack;
 
 /**
  * Author: MrCrayfish
@@ -37,7 +40,8 @@ public class KitchenSinkBlockEntityRenderer implements BlockEntityRenderer<Kitch
 
     private void drawFluid(KitchenSinkBlockEntity te, PoseStack poseStack, MultiBufferSource source, float x, float y, float z, float width, float height, float depth, int light)
     {
-        Fluid fluid = te.getTank().getFluid().getFluid();
+        FluidStack fluidStack = te.getTank().getFluid();
+        Fluid fluid = fluidStack.getFluid();
         if(fluid == Fluids.EMPTY)
             return;
 
@@ -47,7 +51,7 @@ public class KitchenSinkBlockEntityRenderer implements BlockEntityRenderer<Kitch
         float maxU = Math.min(minU + (sprite.getU1() - minU) * depth, sprite.getU1());
         float minV = sprite.getV0();
         float maxV = Math.min(minV + (sprite.getV1() - minV) * width, sprite.getV1());
-        int waterColor = fluid.getAttributes().getColor(te.getLevel(), te.getBlockPos());
+        int waterColor = RenderProperties.get(fluid).getColorTint(fluid.defaultFluidState(), te.getLevel(), te.getBlockPos());
         float red = (float)(waterColor >> 16 & 255) / 255.0F;
         float green = (float)(waterColor >> 8 & 255) / 255.0F;
         float blue = (float)(waterColor & 255) / 255.0F;

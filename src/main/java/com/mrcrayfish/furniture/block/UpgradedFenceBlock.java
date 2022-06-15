@@ -178,7 +178,7 @@ public class UpgradedFenceBlock extends FurnitureWaterloggedBlock
 
     @Nullable
     @Override
-    public BlockPathTypes getAiPathNodeType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity)
+    public BlockPathTypes getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity)
     {
         return BlockPathTypes.FENCE;
     }

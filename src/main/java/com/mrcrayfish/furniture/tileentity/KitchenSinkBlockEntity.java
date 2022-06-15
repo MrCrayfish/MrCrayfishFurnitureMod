@@ -4,7 +4,7 @@ import com.mrcrayfish.furniture.core.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.fluids.FluidAttributes;
+import net.minecraftforge.fluids.FluidType;
 
 /**
  * Author: MrCrayfish
@@ -18,6 +18,6 @@ public class KitchenSinkBlockEntity extends FluidHandlerSyncedBlockEntity
 
     public KitchenSinkBlockEntity(BlockPos pos, BlockState state)
     {
-        super(ModBlockEntities.KITCHEN_SINK.get(), pos, state, FluidAttributes.BUCKET_VOLUME * 10);
+        super(ModBlockEntities.KITCHEN_SINK.get(), pos, state, FluidType.BUCKET_VOLUME * 10);
     }
 }

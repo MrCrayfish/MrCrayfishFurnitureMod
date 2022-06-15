@@ -311,7 +311,7 @@ public class UpgradedGateBlock extends FurnitureHorizontalBlock
 
     @Nullable
     @Override
-    public BlockPathTypes getAiPathNodeType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity)
+    public BlockPathTypes getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity)
     {
         return !state.getValue(OPEN) ? BlockPathTypes.FENCE : BlockPathTypes.OPEN;
     }
