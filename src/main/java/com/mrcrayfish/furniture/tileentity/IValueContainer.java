@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.tileentity;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 
 import javax.annotation.Nullable;
@@ -13,7 +14,7 @@ public interface IValueContainer
 {
     List<Entry> getEntries();
 
-    void updateEntries(Map<String, String> entries);
+    String updateEntries(Map<String, String> entries, EntityPlayer player);
 
     default boolean requiresTool()
     {

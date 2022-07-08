@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.network.message;
 
 import com.google.common.collect.Maps;
+import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
 import com.mrcrayfish.furniture.gui.components.ValueComponent;
 import com.mrcrayfish.furniture.tileentity.IValueContainer;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
@@ -68,7 +69,12 @@ public class MessageUpdateValueContainer implements IMessage, IMessageHandler<Me
             TileEntity tileEntity = world.getTileEntity(message.pos);
             if(tileEntity instanceof IValueContainer)
             {
-                ((IValueContainer) tileEntity).updateEntries(message.entryMap);
+                String result = ((IValueContainer) tileEntity).updateEntries(message.entryMap, ctx.getServerHandler().player);
+                if(result != null)
+                {
+                    MrCrayfishFurnitureMod.logger().warn(result);
+                    return null;
+                }
                 TileEntityUtil.syncToClient(tileEntity);
             }
         }

@@ -5,8 +5,10 @@ import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.blocks.BlockAbstractTV;
 import com.mrcrayfish.furniture.client.GifCache;
 import com.mrcrayfish.furniture.client.GifDownloadThread;
+import com.mrcrayfish.furniture.handler.ConfigurationHandler;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
@@ -16,6 +18,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -80,7 +84,11 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
                 if(nbtBase instanceof NBTTagString)
                 {
                     NBTTagString url = (NBTTagString) nbtBase;
-                    channels.add(url.getString());
+                    URI uri = validateUrl(url.getString(), "gif");
+                    if(uri != null)
+                    {
+                        channels.add(uri.toString());
+                    }
                 }
             });
         }
@@ -198,9 +206,13 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
         for(int i = 0; i < 3; i++)
         {
             String url = "";
-            if(channels.size() > 0 && i >= 0 && i < channels.size())
+            if(channels.size() > 0 && i < channels.size())
             {
                 url = channels.get(i);
+                if(validateUrl(url, "gif") == null)
+                {
+                    url = "";
+                }
             }
             entries.add(new Entry("channel_" + i, "Channel #" + (i + 1), Entry.Type.TEXT_FIELD, url));
         }
@@ -210,8 +222,16 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     }
 
     @Override
-    public void updateEntries(Map<String, String> entries)
+    public String updateEntries(Map<String, String> entries, EntityPlayer player)
     {
+        for(int i = 0; i < 3; i++)
+        {
+            String url = entries.get("channel_" + i);
+            if(!url.isEmpty() && validateUrl(url, "gif") == null)
+            {
+                return String.format("%s (%s) tried to add an invalid URL to the TV or photo frame: %s", player.getName(), player.getUniqueID(), url);
+            }
+        }
         channels.clear();
         for(int i = 0; i < 3; i++)
         {
@@ -224,6 +244,7 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
         this.stretch = Boolean.valueOf(entries.get("stretch"));
         this.powered = Boolean.valueOf(entries.get("powered"));
         this.markDirty();
+        return null;
     }
 
     @Override
@@ -275,5 +296,75 @@ public class TileEntityTV extends TileEntitySyncClient implements IValueContaine
     public boolean isDisabled()
     {
         return disabled;
+    }
+
+    @Nullable
+    public static URI validateUrl(String url, String ... types)
+    {
+        if(url == null || url.trim().isEmpty())
+        {
+            return null;
+        }
+
+        try
+        {
+            URI uri = new URI(url);
+            String scheme = uri.getScheme();
+
+            // Only allow http or https
+            if(scheme == null || !scheme.equals("http") && !scheme.equals("https"))
+            {
+                return null;
+            }
+
+            // Check if the path ends with the specified file type
+            if(uri.getPath() == null)
+            {
+                return null;
+            }
+
+            boolean supported = false;
+            for(String type : types)
+            {
+                if(uri.getPath().endsWith("." + type))
+                {
+                    supported = true;
+                    break;
+                }
+            }
+            if(!supported)
+            {
+                return null;
+            }
+
+            // Validate the domain name
+            String domain = uri.getHost();
+            if(domain == null)
+            {
+                return null;
+            }
+            if(domain.startsWith("www."))
+            {
+                domain = domain.substring(4);
+            }
+            boolean trusted = false;
+            for(String trustedDomain : ConfigurationHandler.trustedUrlDomains)
+            {
+                if(domain.equals(trustedDomain))
+                {
+                    trusted = true;
+                    break;
+                }
+            }
+            if(!trusted)
+            {
+                return null;
+            }
+            return uri;
+        }
+        catch(URISyntaxException e)
+        {
+            return null;
+        }
     }
 }

@@ -1,8 +1,10 @@
 package com.mrcrayfish.furniture.client;
 
+import com.mrcrayfish.furniture.tileentity.TileEntityTV;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
+import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashSet;
@@ -32,6 +34,13 @@ public class GifDownloadThread extends Thread
     @Override
     public void run()
     {
+        URI uri = TileEntityTV.validateUrl(url, "gif");
+        if(uri == null)
+        {
+            processor.process(ImageDownloadResult.FAILED, "Invalid URL or domain");
+            return;
+        }
+
         if(GifCache.INSTANCE.loadCached(url))
         {
             processor.process(ImageDownloadResult.SUCCESS, "Successfully processed GIF");
@@ -67,7 +76,7 @@ public class GifDownloadThread extends Thread
 
         try
         {
-            URLConnection connection = new URL(url).openConnection();
+            URLConnection connection = uri.toURL().openConnection();
             connection.addRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
 
             if(!"image/gif".equals(connection.getContentType()))

@@ -1,8 +1,13 @@
 package com.mrcrayfish.furniture.client;
 
+import com.mrcrayfish.furniture.handler.ConfigurationHandler;
+import com.mrcrayfish.furniture.tileentity.TileEntityTV;
 import org.apache.commons.io.IOUtils;
 
+import javax.annotation.Nullable;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashSet;
@@ -13,7 +18,7 @@ import java.util.Set;
  */
 public class ImageDownloadThread extends Thread
 {
-    private static final String[] SUPPORTED_FORMATS = { "image/png", "image/jpeg", "image/gif", "image/bmp" };
+    private static final String[] SUPPORTED_FORMATS = { "image/png", "image/jpeg", "image/gif" };
     private static final Set<String> LOADING_URLS = new HashSet<>();
 
     //Prevents GIFs larger than 2MB from loading
@@ -33,6 +38,13 @@ public class ImageDownloadThread extends Thread
     @Override
     public void run()
     {
+        URI uri = TileEntityTV.validateUrl(url, "png", "jpeg");
+        if(uri == null)
+        {
+            processor.process(ImageDownloadResult.FAILED, "Invalid URL or domain");
+            return;
+        }
+
         if(ImageCache.INSTANCE.loadCached(url))
         {
             processor.process(ImageDownloadResult.SUCCESS, "Successfully processed image");
@@ -68,7 +80,7 @@ public class ImageDownloadThread extends Thread
 
         try
         {
-            URLConnection connection = new URL(url).openConnection();
+            URLConnection connection = uri.toURL().openConnection();
             connection.addRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
 
             boolean failed = true;

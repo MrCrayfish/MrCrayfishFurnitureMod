@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.tileentity;
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.client.ImageCache;
 import com.mrcrayfish.furniture.client.ImageDownloadThread;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants;
@@ -10,6 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.net.URI;
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +52,12 @@ public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValue
         super.readFromNBT(compound);
         if(compound.hasKey("Photo", Constants.NBT.TAG_STRING))
         {
-            this.url = compound.getString("Photo");
+            String url = compound.getString("Photo");
+            URI uri = TileEntityTV.validateUrl(url, "png", "jpeg");
+            if(uri != null)
+            {
+                this.url = uri.toString();
+            }
         }
         if(compound.hasKey("Stretch", Constants.NBT.TAG_BYTE))
         {
@@ -126,17 +133,24 @@ public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValue
     public List<IValueContainer.Entry> getEntries()
     {
         List<IValueContainer.Entry> entries = Lists.newArrayList();
-        entries.add(new IValueContainer.Entry("photo", "Photo URL", Entry.Type.TEXT_FIELD, this.url));
+        String url = TileEntityTV.validateUrl(this.url, "png", "jpeg") != null ? this.url : "";
+        entries.add(new IValueContainer.Entry("photo", "Photo URL", Entry.Type.TEXT_FIELD, url));
         entries.add(new IValueContainer.Entry("stretch", "Stretch to Border", Entry.Type.TOGGLE, this.stretch));
         return entries;
     }
 
     @Override
-    public void updateEntries(Map<String, String> entries)
+    public String updateEntries(Map<String, String> entries, EntityPlayer player)
     {
+        String url = entries.get("photo");
+        if(TileEntityTV.validateUrl(url, "png", "jpeg") == null)
+        {
+            return String.format("%s (%s) tried to add an invalid URL to the TV or photo frame: %s", player.getName(), player.getUniqueID(), url);
+        }
         this.url = entries.get("photo");
         this.stretch = Boolean.valueOf(entries.get("stretch"));
         this.markDirty();
+        return null;
     }
 
     @Override
