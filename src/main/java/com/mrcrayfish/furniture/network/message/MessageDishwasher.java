@@ -47,7 +47,10 @@ public class MessageDishwasher implements IMessage, IMessageHandler<MessageDishw
     public IMessage onMessage(MessageDishwasher message, MessageContext ctx)
     {
         World world = ctx.getServerHandler().player.world;
-        TileEntity tileEntity = world.getTileEntity(new BlockPos(message.x, message.y, message.z));
+        BlockPos pos = new BlockPos(message.x, message.y, message.z);
+        if(!world.isAreaLoaded(pos, 0))
+            return null;
+        TileEntity tileEntity = world.getTileEntity(pos);
         if(tileEntity instanceof TileEntityDishwasher)
         {
             TileEntityDishwasher tileEntityDishwasher = (TileEntityDishwasher) tileEntity;
@@ -59,7 +62,6 @@ public class MessageDishwasher implements IMessage, IMessageHandler<MessageDishw
             {
                 tileEntityDishwasher.stopWashing();
             }
-            BlockPos pos = new BlockPos(message.x, message.y, message.z);
             TileEntityUtil.markBlockForUpdate(world, pos);
         }
         return null;

@@ -66,6 +66,13 @@ public class MessageUpdateValueContainer implements IMessage, IMessageHandler<Me
         //if(ctx.getServerHandler().player.isCreative()) //TODO make TV not use value container implementation
         {
             World world = ctx.getServerHandler().player.getServerWorld();
+            if(!world.isAreaLoaded(message.pos, 0))
+                return null;
+
+            double distance = ctx.getServerHandler().player.getPosition().getDistance(message.pos.getX(), message.pos.getY(), message.pos.getZ());
+            if(distance > 8)
+                return null;
+
             TileEntity tileEntity = world.getTileEntity(message.pos);
             if(tileEntity instanceof IValueContainer)
             {

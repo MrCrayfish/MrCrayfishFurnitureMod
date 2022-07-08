@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.network.message;
 
+import com.mrcrayfish.furniture.gui.containers.ContainerFreezer;
 import com.mrcrayfish.furniture.tileentity.TileEntityDoorMat;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import io.netty.buffer.ByteBuf;
@@ -49,6 +50,8 @@ public class MessageDoorMat implements IMessage, IMessageHandler<MessageDoorMat,
     {
         World world = ctx.getServerHandler().player.world;
         BlockPos pos = new BlockPos(message.x, message.y, message.z);
+        if(!world.isAreaLoaded(pos, 0))
+            return null;
         TileEntity tileEntity = world.getTileEntity(pos);
         if(tileEntity instanceof TileEntityDoorMat)
         {

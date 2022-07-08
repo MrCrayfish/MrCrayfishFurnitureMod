@@ -72,4 +72,8 @@ public class ContainerComputer extends Container
         return itemCopy;
     }
 
+    public IInventory getComputerInventory()
+    {
+        return computerInventory;
+    }
 }

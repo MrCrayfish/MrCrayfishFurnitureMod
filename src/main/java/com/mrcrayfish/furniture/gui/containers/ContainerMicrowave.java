@@ -97,4 +97,9 @@ public class ContainerMicrowave extends Container
         super.onContainerClosed(player);
         this.microwaveInventory.closeInventory(player);
     }
+
+    public IInventory getMicrowaveInventory()
+    {
+        return microwaveInventory;
+    }
 }

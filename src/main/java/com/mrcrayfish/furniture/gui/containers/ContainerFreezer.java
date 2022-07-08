@@ -116,4 +116,9 @@ public class ContainerFreezer extends Container
 
         return itemCopy;
     }
+
+    public IInventory getFreezerInventory()
+    {
+        return freezerInventory;
+    }
 }

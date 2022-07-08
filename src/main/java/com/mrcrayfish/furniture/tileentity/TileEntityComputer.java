@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.tileentity;
 
+import com.mrcrayfish.furniture.api.Recipes;
 import com.mrcrayfish.furniture.gui.containers.ContainerComputer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -24,7 +25,10 @@ public class TileEntityComputer extends TileEntityFurniture
 
     public void setBrowsingInfo(int stockNum)
     {
-        this.stockNum = stockNum;
+        if(stockNum >= 0 && stockNum < Recipes.getMineBayItems().length)
+        {
+            this.stockNum = stockNum;
+        }
     }
 
     public int getBrowsingInfo()

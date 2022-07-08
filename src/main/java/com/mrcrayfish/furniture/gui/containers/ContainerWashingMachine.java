@@ -139,4 +139,9 @@ public class ContainerWashingMachine extends Container
         super.onContainerClosed(player);
         washingMachineInventory.closeInventory(player);
     }
+
+    public IInventory getWashingMachineInventory()
+    {
+        return washingMachineInventory;
+    }
 }

@@ -3,13 +3,16 @@ package com.mrcrayfish.furniture.network.message;
 import com.mrcrayfish.furniture.advancement.Triggers;
 import com.mrcrayfish.furniture.api.RecipeData;
 import com.mrcrayfish.furniture.api.Recipes;
+import com.mrcrayfish.furniture.gui.containers.ContainerComputer;
 import com.mrcrayfish.furniture.tileentity.TileEntityComputer;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -50,10 +53,22 @@ public class MessageMineBayBuy implements IMessage, IMessageHandler<MessageMineB
     public IMessage onMessage(MessageMineBayBuy message, MessageContext ctx)
     {
         EntityPlayer player = ctx.getServerHandler().player;
+        World world = player.world;
+        BlockPos pos = new BlockPos(message.x, message.y, message.z);
+        if(!world.isAreaLoaded(pos, 0))
+            return null;
+
+        Container container = ctx.getServerHandler().player.openContainer;
+        if(!(container instanceof ContainerComputer))
+            return null;
+
         TileEntity tileEntity = player.world.getTileEntity(new BlockPos(message.x, message.y, message.z));
         if(tileEntity instanceof TileEntityComputer)
         {
             TileEntityComputer tileEntityComputer = (TileEntityComputer) tileEntity;
+            if(((ContainerComputer) container).getComputerInventory() != tileEntityComputer)
+                return null;
+
             ItemStack buySlot = tileEntityComputer.getStackInSlot(0);
             if(buySlot.isEmpty())
                 return null;

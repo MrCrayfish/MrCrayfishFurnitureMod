@@ -78,4 +78,9 @@ public class ContainerCrate extends Container
 
         return itemCopy;
     }
+
+    public IInventory getCrateInventory()
+    {
+        return crateInventory;
+    }
 }

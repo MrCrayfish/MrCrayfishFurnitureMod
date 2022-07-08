@@ -1,8 +1,13 @@
 package com.mrcrayfish.furniture.network.message;
 
+import com.mrcrayfish.furniture.gui.containers.ContainerBin;
+import com.mrcrayfish.furniture.gui.containers.ContainerFreezer;
+import com.mrcrayfish.furniture.tileentity.TileEntityBin;
 import com.mrcrayfish.furniture.tileentity.TileEntityFreezer;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -46,11 +51,23 @@ public class MessageFreezer implements IMessage, IMessageHandler<MessageFreezer,
     @Override
     public IMessage onMessage(MessageFreezer message, MessageContext ctx)
     {
-        World world = ctx.getServerHandler().player.world;
-        TileEntity tileEntity = world.getTileEntity(new BlockPos(message.x, message.y, message.z));
+        EntityPlayer player = ctx.getServerHandler().player;
+        World world = player.world;
+        BlockPos pos = new BlockPos(message.x, message.y, message.z);
+        if(!world.isAreaLoaded(pos, 0))
+            return null;
+
+        Container container = ctx.getServerHandler().player.openContainer;
+        if(!(container instanceof ContainerFreezer))
+            return null;
+
+        TileEntity tileEntity = world.getTileEntity(pos);
         if(tileEntity instanceof TileEntityFreezer)
         {
             TileEntityFreezer tileEntityFreezer = (TileEntityFreezer) tileEntity;
+            if(((ContainerFreezer) container).getFreezerInventory() != tileEntityFreezer)
+                return null;
+
             if(message.type == 0)
             {
                 tileEntityFreezer.startFreezing();
@@ -59,7 +76,6 @@ public class MessageFreezer implements IMessage, IMessageHandler<MessageFreezer,
             {
                 tileEntityFreezer.stopFreezing();
             }
-            BlockPos pos = new BlockPos(message.x, message.y, message.z);
             TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().player.world, pos);
         }
         return null;

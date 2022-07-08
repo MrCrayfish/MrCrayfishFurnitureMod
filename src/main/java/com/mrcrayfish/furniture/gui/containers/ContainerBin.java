@@ -86,4 +86,8 @@ public class ContainerBin extends Container
         binInventory.closeInventory(entityPlayer);
     }
 
+    public IInventory getBinInventory()
+    {
+        return binInventory;
+    }
 }

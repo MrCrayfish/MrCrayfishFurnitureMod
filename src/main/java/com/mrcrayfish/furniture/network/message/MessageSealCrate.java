@@ -1,7 +1,10 @@
 package com.mrcrayfish.furniture.network.message;
 
+import com.mrcrayfish.furniture.gui.containers.ContainerComputer;
+import com.mrcrayfish.furniture.gui.containers.ContainerCrate;
 import com.mrcrayfish.furniture.tileentity.TileEntityCrate;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -43,10 +46,19 @@ public class MessageSealCrate implements IMessage, IMessageHandler<MessageSealCr
     {
         World world = ctx.getServerHandler().player.world;
         BlockPos pos = new BlockPos(message.x, message.y, message.z);
+        if(!world.isAreaLoaded(pos, 0))
+            return null;
+
+        Container container = ctx.getServerHandler().player.openContainer;
+        if(!(container instanceof ContainerCrate))
+            return null;
+
         TileEntity tileEntity = world.getTileEntity(pos);
         if(tileEntity instanceof TileEntityCrate)
         {
             TileEntityCrate crate = (TileEntityCrate) tileEntity;
+            if(((ContainerCrate) container).getCrateInventory() != crate)
+                return null;
             crate.seal();
         }
         return null;

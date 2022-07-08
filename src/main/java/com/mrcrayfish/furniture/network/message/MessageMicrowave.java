@@ -1,8 +1,11 @@
 package com.mrcrayfish.furniture.network.message;
 
+import com.mrcrayfish.furniture.gui.containers.ContainerFreezer;
+import com.mrcrayfish.furniture.gui.containers.ContainerMicrowave;
 import com.mrcrayfish.furniture.tileentity.TileEntityMicrowave;
 import com.mrcrayfish.furniture.util.TileEntityUtil;
 import io.netty.buffer.ByteBuf;
+import net.minecraft.inventory.Container;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -47,10 +50,21 @@ public class MessageMicrowave implements IMessage, IMessageHandler<MessageMicrow
     public IMessage onMessage(MessageMicrowave message, MessageContext ctx)
     {
         World world = ctx.getServerHandler().player.world;
-        TileEntity tileEntity = world.getTileEntity(new BlockPos(message.x, message.y, message.z));
+        BlockPos pos = new BlockPos(message.x, message.y, message.z);
+        if(!world.isAreaLoaded(pos, 0))
+            return null;
+
+        Container container = ctx.getServerHandler().player.openContainer;
+        if(!(container instanceof ContainerMicrowave))
+            return null;
+
+        TileEntity tileEntity = world.getTileEntity(pos);
         if(tileEntity instanceof TileEntityMicrowave)
         {
             TileEntityMicrowave tileEntityMicrowave = (TileEntityMicrowave) tileEntity;
+            if(((ContainerMicrowave) container).getMicrowaveInventory() != tileEntityMicrowave)
+                return null;
+
             if(message.type == 0)
             {
                 tileEntityMicrowave.startCooking();
@@ -59,7 +73,6 @@ public class MessageMicrowave implements IMessage, IMessageHandler<MessageMicrow
             {
                 tileEntityMicrowave.stopCooking();
             }
-            BlockPos pos = new BlockPos(message.x, message.y, message.z);
             TileEntityUtil.markBlockForUpdate(ctx.getServerHandler().player.world, pos);
         }
         return null;

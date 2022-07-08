@@ -295,7 +295,7 @@ public class Recipes
 
     public static ArrayList<RecipeData> getRecipes(String type)
     {
-        if(MrCrayfishFurnitureMod.proxy.isSinglePlayer() | MrCrayfishFurnitureMod.proxy.isDedicatedServer())
+        if(MrCrayfishFurnitureMod.proxy.isSinglePlayer() || MrCrayfishFurnitureMod.proxy.isDedicatedServer())
         {
             if(type.equalsIgnoreCase("minebay"))
             {
