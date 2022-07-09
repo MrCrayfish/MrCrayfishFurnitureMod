@@ -97,11 +97,6 @@ public final class GifCache
         }
     }
 
-    public void load(String url, GifDownloadThread.ResponseProcessor processor)
-    {
-        new GifDownloadThread(url, processor);
-    }
-
     private void tick()
     {
         cacheMap.values().forEach(AnimatedTexture::update);

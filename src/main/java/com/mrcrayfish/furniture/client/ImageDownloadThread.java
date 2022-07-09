@@ -1,14 +1,10 @@
 package com.mrcrayfish.furniture.client;
 
-import com.mrcrayfish.furniture.handler.ConfigurationHandler;
-import com.mrcrayfish.furniture.tileentity.TileEntityTV;
+import com.google.common.primitives.Longs;
 import org.apache.commons.io.IOUtils;
 
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,32 +14,28 @@ import java.util.Set;
  */
 public class ImageDownloadThread extends Thread
 {
-    private static final String[] SUPPORTED_FORMATS = { "image/png", "image/jpeg", "image/gif" };
+    private static final String[] SUPPORTED_FILE_TYPES = { "png", "jpeg", "jpg" };
+    private static final String[] SUPPORTED_CONTENT_TYPES = { "image/png", "image/jpeg" };
     private static final Set<String> LOADING_URLS = new HashSet<>();
 
     //Prevents GIFs larger than 2MB from loading
     private static final long MAX_FILE_SIZE = 2097152;
 
-    private String url;
+    private URI uri;
     private ResponseProcessor processor;
     private int tryCount;
 
-    public ImageDownloadThread(String url, ResponseProcessor processor)
+    public ImageDownloadThread(URI uri, ResponseProcessor processor)
     {
         super("Image Download Thread");
-        this.url = url;
+        this.uri = uri;
         this.processor = processor;
     }
 
     @Override
     public void run()
     {
-        URI uri = TileEntityTV.validateUrl(url, "png", "jpeg");
-        if(uri == null)
-        {
-            processor.process(ImageDownloadResult.FAILED, "Invalid URL or domain");
-            return;
-        }
+        String url = uri.toString();
 
         if(ImageCache.INSTANCE.loadCached(url))
         {
@@ -84,7 +76,7 @@ public class ImageDownloadThread extends Thread
             connection.addRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.0)");
 
             boolean failed = true;
-            for(String format : SUPPORTED_FORMATS)
+            for(String format : SUPPORTED_CONTENT_TYPES)
             {
                 if(format.equals(connection.getContentType()))
                 {
@@ -98,7 +90,20 @@ public class ImageDownloadThread extends Thread
                 return;
             }
 
-            long length = Long.parseLong(connection.getHeaderField("Content-Length"));
+            String lengthString = connection.getHeaderField("Content-Length");
+            if(lengthString == null)
+            {
+                processor.process(ImageDownloadResult.UNKNOWN_SIZE, "Unable to determine size of image");
+                return;
+            }
+
+            Long length = Longs.tryParse(lengthString);
+            if(length == null)
+            {
+                processor.process(ImageDownloadResult.UNKNOWN_SIZE, "Unable to determine size of GIF image");
+                return;
+            }
+
             if(length > MAX_FILE_SIZE)
             {
                 processor.process(ImageDownloadResult.TOO_LARGE, "The image is greater than " + MAX_FILE_SIZE / 1024.0 + "MB");
@@ -129,7 +134,12 @@ public class ImageDownloadThread extends Thread
         SUCCESS("cfm.photo_frame.success"),
         FAILED("cfm.photo_frame.failed"),
         UNKNOWN_FILE("cfm.photo_frame.unknown_file"),
-        TOO_LARGE("cfm.photo_frame.too_large");
+        TOO_LARGE("cfm.photo_frame.too_large"),
+        UNTRUSTED("cfm.photo_frame.untrusted"),
+        INVALID_URL("cfm.photo_frame.invalid"),
+        WRONG_SCHEME("cfm.photo_frame.wrong_scheme"),
+        UNSUPPORTED_FILE_TYPE("cfm.photo_frame.unsupported_type"),
+        UNKNOWN_SIZE("cfm.photo_frame.unknown_size");
 
         private String key;
 

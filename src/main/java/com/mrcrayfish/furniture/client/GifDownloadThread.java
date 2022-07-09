@@ -1,11 +1,11 @@
 package com.mrcrayfish.furniture.client;
 
+import com.google.common.primitives.Longs;
 import com.mrcrayfish.furniture.tileentity.TileEntityTV;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.net.URI;
-import java.net.URL;
 import java.net.URLConnection;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,26 +20,21 @@ public class GifDownloadThread extends Thread
     //Prevents GIFs larger than 2MB from loading
     private static final long MAX_FILE_SIZE = 2097152;
 
-    private String url;
+    private URI uri;
     private ResponseProcessor processor;
     private int tryCount;
 
-    public GifDownloadThread(String url, ResponseProcessor processor)
+    public GifDownloadThread(URI uri, ResponseProcessor processor)
     {
         super("Image Download Thread");
-        this.url = url;
+        this.uri = uri;
         this.processor = processor;
     }
 
     @Override
     public void run()
     {
-        URI uri = TileEntityTV.validateUrl(url, "gif");
-        if(uri == null)
-        {
-            processor.process(ImageDownloadResult.FAILED, "Invalid URL or domain");
-            return;
-        }
+        String url = uri.toString();
 
         if(GifCache.INSTANCE.loadCached(url))
         {
@@ -85,7 +80,20 @@ public class GifDownloadThread extends Thread
                 return;
             }
 
-            long length = Long.parseLong(connection.getHeaderField("Content-Length"));
+            String lengthString = connection.getHeaderField("Content-Length");
+            if(lengthString == null)
+            {
+                processor.process(ImageDownloadResult.UNKNOWN_SIZE, "Unable to determine size of GIF image");
+                return;
+            }
+
+            Long length = Longs.tryParse(lengthString);
+            if(length == null)
+            {
+                processor.process(ImageDownloadResult.UNKNOWN_SIZE, "Unable to determine size of GIF image");
+                return;
+            }
+
             if(length > MAX_FILE_SIZE)
             {
                 processor.process(ImageDownloadResult.TOO_LARGE, "The GIF is greater than " + MAX_FILE_SIZE / 1024.0 + "MB");
@@ -119,7 +127,12 @@ public class GifDownloadThread extends Thread
         SUCCESS("cfm.tv.success"),
         FAILED("cfm.tv.failed"),
         UNKNOWN_FILE("cfm.tv.unknown_file"),
-        TOO_LARGE("cfm.tv.too_large");
+        UNKNOWN_SIZE("cfm.tv.unknown_size"),
+        TOO_LARGE("cfm.tv.too_large"),
+        UNTRUSTED("cfm.tv.untrusted"),
+        INVALID_URL("cfm.tv.invalid"),
+        WRONG_SCHEME("cfm.tv.wrong_scheme"),
+        UNSUPPORTED_FILE_TYPE("cfm.tv.unsupported_type");
 
         private String key;
 

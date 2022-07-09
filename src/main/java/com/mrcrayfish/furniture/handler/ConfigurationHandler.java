@@ -22,7 +22,7 @@ public class ConfigurationHandler
     public static boolean canDisplay = true;
     public static boolean hasDisplayedOnce = false;
     public static boolean api_debug = false;
-    public static String[] trustedUrlDomains = { "i.imgur.com" };
+    public static String[] trustedUrlDomains = {};
 
     public static boolean mirrorEnabled = true;
     public static int mirrorQuality = 128;
@@ -66,7 +66,7 @@ public class ConfigurationHandler
         api_debug = config.getBoolean("recipe-api-debug", CATEGORY_SETTINGS, false, "If true, prints out information about RecipeAPI. Recommended 'true' for people trying to add custom recipes.");
         canDisplay = config.getBoolean("welcome_message", CATEGORY_SETTINGS, canDisplay, "Enabled or disable the welcome message");
         items = config.getStringList("custom-recipes", CATEGORY_API, items, "Insert custom recipes here");
-        trustedUrlDomains = config.getStringList("valid-url-domains", CATEGORY_SETTINGS, trustedUrlDomains, "List of valid domains to download images for the TV and Photo Frame");
+        trustedUrlDomains = config.getStringList("trusted-url-domains", CATEGORY_SETTINGS, trustedUrlDomains, "List of trusted domains to download images for the TV and Photo Frame. For example, the domain of the URL (https://i.imgur.com/Jvh1OQm.jpeg) is i.imgur.com");
         config.addCustomCategoryComment(CATEGORY_RECIPE_SETTINGS, "Enabled or disable the default recipes");
         config.addCustomCategoryComment(CATEGORY_API, "RecipeAPI Configuration. How to use: http://mrcrayfishs-furniture-mod.wikia.com/wiki/Configuration");
         updateEnabledRecipes();

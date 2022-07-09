@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.tileentity;
 
 import com.google.common.collect.Lists;
+import com.mrcrayfish.furniture.client.DownloadUtils;
 import com.mrcrayfish.furniture.client.ImageCache;
 import com.mrcrayfish.furniture.client.ImageDownloadThread;
 import net.minecraft.entity.player.EntityPlayer;
@@ -52,12 +53,7 @@ public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValue
         super.readFromNBT(compound);
         if(compound.hasKey("Photo", Constants.NBT.TAG_STRING))
         {
-            String url = compound.getString("Photo");
-            URI uri = TileEntityTV.validateUrl(url, "png", "jpeg");
-            if(uri != null)
-            {
-                this.url = uri.toString();
-            }
+            this.url = compound.getString("Photo");
         }
         if(compound.hasKey("Stretch", Constants.NBT.TAG_BYTE))
         {
@@ -83,18 +79,47 @@ public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValue
         return url;
     }
 
-    @SideOnly(Side.CLIENT)
+    // Client only
     public void loadUrl(String url)
     {
         if(loading)
             return;
+
+        URI uri = DownloadUtils.createUri(url);
+        if(uri == null)
+        {
+            this.result = ImageDownloadThread.ImageDownloadResult.INVALID_URL;
+            this.loaded = true;
+            return;
+        }
+
+        if(!DownloadUtils.isValidScheme(uri))
+        {
+            this.result = ImageDownloadThread.ImageDownloadResult.WRONG_SCHEME;
+            this.loaded = true;
+            return;
+        }
+
+        if(!DownloadUtils.isValidType(uri, "png", "jpg", "jpeg"))
+        {
+            this.result = ImageDownloadThread.ImageDownloadResult.UNSUPPORTED_FILE_TYPE;
+            this.loaded = true;
+            return;
+        }
+
+        if(!DownloadUtils.isTrustedDomain(uri))
+        {
+            this.result = ImageDownloadThread.ImageDownloadResult.UNTRUSTED;
+            this.loaded = true;
+            return;
+        }
 
         this.loaded = false;
         this.result = null;
         if(!ImageCache.INSTANCE.loadCached(url))
         {
             this.loading = true;
-            new ImageDownloadThread(url, (result, message) ->
+            new ImageDownloadThread(uri, (result, message) ->
             {
                 this.loading = false;
                 this.result = result;
@@ -110,20 +135,19 @@ public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValue
         }
     }
 
-    @SideOnly(Side.CLIENT)
+    // Client only
     public boolean isLoading()
     {
         return loading;
     }
 
-    @SideOnly(Side.CLIENT)
+    // Client only
     public boolean isLoaded()
     {
         return loaded && !loading;
     }
 
     @Nullable
-    @SideOnly(Side.CLIENT)
     public ImageDownloadThread.ImageDownloadResult getResult()
     {
         return result;
@@ -133,8 +157,7 @@ public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValue
     public List<IValueContainer.Entry> getEntries()
     {
         List<IValueContainer.Entry> entries = Lists.newArrayList();
-        String url = TileEntityTV.validateUrl(this.url, "png", "jpeg") != null ? this.url : "";
-        entries.add(new IValueContainer.Entry("photo", "Photo URL", Entry.Type.TEXT_FIELD, url));
+        entries.add(new IValueContainer.Entry("photo", "Photo URL", Entry.Type.TEXT_FIELD, this.url));
         entries.add(new IValueContainer.Entry("stretch", "Stretch to Border", Entry.Type.TOGGLE, this.stretch));
         return entries;
     }
@@ -142,11 +165,6 @@ public class TileEntityPhotoFrame extends TileEntitySyncClient implements IValue
     @Override
     public String updateEntries(Map<String, String> entries, EntityPlayer player)
     {
-        String url = entries.get("photo");
-        if(TileEntityTV.validateUrl(url, "png", "jpeg") == null)
-        {
-            return String.format("%s (%s) tried to add an invalid URL to the TV or photo frame: %s", player.getName(), player.getUniqueID(), url);
-        }
         this.url = entries.get("photo");
         this.stretch = Boolean.valueOf(entries.get("stretch"));
         this.markDirty();
