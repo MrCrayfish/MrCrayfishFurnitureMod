@@ -11,7 +11,7 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = "6.3.1-1.12.2"
+version = "6.3.2-1.12.2"
 group = "com.mrcrayfish"
 archivesBaseName = "furniture"
 
