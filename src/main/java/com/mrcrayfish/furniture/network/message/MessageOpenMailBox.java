@@ -52,7 +52,7 @@ public class MessageOpenMailBox implements IMessage<MessageOpenMailBox>
                 return;
 
             BlockEntityUtil.sendUpdatePacket(blockEntity);
-            NetworkHooks.openGui(entity, blockEntity, message.pos);
+            NetworkHooks.openScreen(entity, blockEntity, message.pos);
         });
         supplier.get().setPacketHandled(true);
     }

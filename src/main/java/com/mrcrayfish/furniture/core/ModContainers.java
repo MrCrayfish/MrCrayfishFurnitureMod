@@ -20,7 +20,7 @@ import net.minecraftforge.registries.RegistryObject;
  */
 public class ModContainers
 {
-    public static final DeferredRegister<MenuType<?>> REGISTER = DeferredRegister.create(ForgeRegistries.CONTAINERS, Reference.MOD_ID);
+    public static final DeferredRegister<MenuType<?>> REGISTER = DeferredRegister.create(ForgeRegistries.MENU_TYPES, Reference.MOD_ID);
 
     @SuppressWarnings("ConstantConditions")
     public static final RegistryObject<MenuType<CrateMenu>> CRATE = register("crate", (IContainerFactory<CrateMenu>) (windowId, playerInventory, data) -> {

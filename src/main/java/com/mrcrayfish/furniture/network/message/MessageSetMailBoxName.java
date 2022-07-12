@@ -64,7 +64,7 @@ public class MessageSetMailBoxName implements IMessage<MessageSetMailBoxName>
                     return;
 
                 BlockEntityUtil.sendUpdatePacket(blockEntity);
-                NetworkHooks.openGui(entity, blockEntity, message.pos);
+                NetworkHooks.openScreen(entity, blockEntity, message.pos);
             }
         });
         supplier.get().setPacketHandled(true);

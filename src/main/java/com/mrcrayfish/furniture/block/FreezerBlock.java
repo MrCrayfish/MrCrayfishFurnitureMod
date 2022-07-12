@@ -102,7 +102,7 @@ public class FreezerBlock extends FurnitureHorizontalBlock implements EntityBloc
             {
                 if(level.getBlockEntity(pos) instanceof FreezerBlockEntity blockEntity)
                 {
-                    NetworkHooks.openGui((ServerPlayer) player, blockEntity, pos);
+                    NetworkHooks.openScreen((ServerPlayer) player, blockEntity, pos);
                 }
             }
         }

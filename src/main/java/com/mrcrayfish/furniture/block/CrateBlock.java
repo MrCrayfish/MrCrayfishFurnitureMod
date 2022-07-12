@@ -109,7 +109,7 @@ public class CrateBlock extends FurnitureHorizontalBlock implements IPortableInv
         {
             if(level.getBlockEntity(pos) instanceof CrateBlockEntity blockEntity)
             {
-                NetworkHooks.openGui((ServerPlayer) player, blockEntity, pos);
+                NetworkHooks.openScreen((ServerPlayer) player, blockEntity, pos);
             }
         }
         return InteractionResult.SUCCESS;

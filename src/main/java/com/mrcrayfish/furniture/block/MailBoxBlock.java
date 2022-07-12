@@ -135,7 +135,7 @@ public class MailBoxBlock extends FurnitureHorizontalBlock implements EntityBloc
                 blockEntity.updateIdAndAttemptClaim(serverPlayer);
                 blockEntity.updateOwnerName(serverPlayer);
                 BlockEntityUtil.sendUpdatePacket(blockEntity);
-                NetworkHooks.openGui(serverPlayer, blockEntity, pos);
+                NetworkHooks.openScreen(serverPlayer, blockEntity, pos);
             }
         }
         return InteractionResult.SUCCESS;

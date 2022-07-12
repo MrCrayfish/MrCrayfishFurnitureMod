@@ -242,7 +242,7 @@ public class PostOffice extends SavedData
      * Cleans up invalid mail boxes or mail boxes removed by other means than a player.
      */
     @SubscribeEvent
-    public static void onTick(TickEvent.WorldTickEvent event)
+    public static void onTick(TickEvent.LevelTickEvent event)
     {
         if(event.phase != TickEvent.Phase.START)
             return;
@@ -250,7 +250,7 @@ public class PostOffice extends SavedData
         if(event.side != LogicalSide.SERVER)
             return;
 
-        MinecraftServer server = event.world.getServer();
+        MinecraftServer server = event.level.getServer();
         if(server != null && server.getTickCount() % 1200 == 0)
         {
             PostOffice office = get(server);

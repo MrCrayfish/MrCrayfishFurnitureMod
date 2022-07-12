@@ -130,16 +130,16 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
                 if(blockEntity.isFreezing())
                 {
                     shouldMarkDirty = true;
-                    if(fuelStack.hasContainerItem())
+                    if(fuelStack.hasCraftingRemainingItem())
                     {
-                        blockEntity.items.set(1, fuelStack.getContainerItem());
+                        blockEntity.items.set(1, fuelStack.getCraftingRemainingItem());
                     }
                     else if(!fuelStack.isEmpty())
                     {
                         fuelStack.shrink(1);
                         if(fuelStack.isEmpty())
                         {
-                            blockEntity.items.set(1, fuelStack.getContainerItem());
+                            blockEntity.items.set(1, fuelStack.getCraftingRemainingItem());
                         }
                     }
                 }
@@ -252,9 +252,9 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
                 this.addRecipeUsed(recipe);
             }
 
-            if(sourceStack.hasContainerItem())
+            if(sourceStack.hasCraftingRemainingItem())
             {
-                this.items.set(0, sourceStack.getContainerItem());
+                this.items.set(0, sourceStack.getCraftingRemainingItem());
             }
             else
             {
