@@ -51,13 +51,13 @@ public class CreativeScreenEvents
     private int guiCenterY = 0;
 
     @SubscribeEvent
-    public void onPlayerLogout(ClientPlayerNetworkEvent.LoggedOutEvent event)
+    public void onPlayerLogout(ClientPlayerNetworkEvent.LoggingOut event)
     {
         this.filters = null;
     }
 
     @SubscribeEvent
-    public void onScreenInit(ScreenEvent.InitScreenEvent.Post event)
+    public void onScreenInit(ScreenEvent.Init.Post event)
     {
         if(event.getScreen() instanceof CreativeModeInventoryScreen creativeScreen)
         {
@@ -122,7 +122,7 @@ public class CreativeScreenEvents
     }
 
     @SubscribeEvent
-    public void onScreenClick(ScreenEvent.MouseClickedEvent.Pre event)
+    public void onScreenClick(ScreenEvent.MouseButtonPressed.Pre event)
     {
         if(event.getButton() != GLFW.GLFW_MOUSE_BUTTON_LEFT)
             return;
@@ -143,7 +143,7 @@ public class CreativeScreenEvents
     }
 
     @SubscribeEvent
-    public void onScreenDrawPre(ScreenEvent.DrawScreenEvent.Pre event)
+    public void onScreenDrawPre(ScreenEvent.Render.Pre event)
     {
         if(event.getScreen() instanceof CreativeModeInventoryScreen creativeScreen)
         {
@@ -163,7 +163,7 @@ public class CreativeScreenEvents
     }
 
     @SubscribeEvent
-    public void onScreenDrawPost(ScreenEvent.DrawScreenEvent.Post event)
+    public void onScreenDrawPost(ScreenEvent.Render.Post event)
     {
         if(event.getScreen() instanceof CreativeModeInventoryScreen creativeScreen)
         {

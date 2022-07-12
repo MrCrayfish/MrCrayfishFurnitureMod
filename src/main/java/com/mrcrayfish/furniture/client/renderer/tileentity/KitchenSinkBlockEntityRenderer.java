@@ -6,17 +6,18 @@ import com.mojang.math.Matrix4f;
 import com.mojang.math.Vector3f;
 import com.mrcrayfish.furniture.block.FurnitureHorizontalBlock;
 import com.mrcrayfish.furniture.tileentity.KitchenSinkBlockEntity;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.client.FluidContainerColorer;
 import net.minecraftforge.client.ForgeHooksClient;
-import net.minecraftforge.client.RenderProperties;
+import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 
 /**
@@ -45,16 +46,16 @@ public class KitchenSinkBlockEntityRenderer implements BlockEntityRenderer<Kitch
         if(fluid == Fluids.EMPTY)
             return;
 
-        TextureAtlasSprite sprite = ForgeHooksClient.getFluidSprites(te.getLevel(), te.getBlockPos(), fluid.defaultFluidState())[0];
-
+        IClientFluidTypeExtensions fluidType = IClientFluidTypeExtensions.of(fluid);
+        TextureAtlasSprite sprite = Minecraft.getInstance().getTextureAtlas(TextureAtlas.LOCATION_BLOCKS).apply(fluidType.getStillTexture(fluid.defaultFluidState(), te.getLevel(), te.getBlockPos()));
         float minU = sprite.getU0();
         float maxU = Math.min(minU + (sprite.getU1() - minU) * depth, sprite.getU1());
         float minV = sprite.getV0();
         float maxV = Math.min(minV + (sprite.getV1() - minV) * width, sprite.getV1());
-        int waterColor = RenderProperties.get(fluid).getColorTint(fluid.defaultFluidState(), te.getLevel(), te.getBlockPos());
-        float red = (float)(waterColor >> 16 & 255) / 255.0F;
-        float green = (float)(waterColor >> 8 & 255) / 255.0F;
-        float blue = (float)(waterColor & 255) / 255.0F;
+        int waterColor = fluidType.getTintColor(fluid.defaultFluidState(), te.getLevel(), te.getBlockPos());
+        float red = (float) (waterColor >> 16 & 255) / 255.0F;
+        float green = (float) (waterColor >> 8 & 255) / 255.0F;
+        float blue = (float) (waterColor & 255) / 255.0F;
 
         height *= ((double) te.getTank().getFluidAmount() / (double) te.getTank().getCapacity());
 

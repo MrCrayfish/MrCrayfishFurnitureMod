@@ -12,9 +12,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.model.data.IModelData;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Set;
@@ -141,12 +139,5 @@ public class TrampolineBlockEntity extends BlockEntity
         compound.putInt("Count", this.count);
         compound.putInt("Color", this.colour.getId());
         return compound;
-    }
-
-    @Nonnull
-    @Override
-    public IModelData getModelData()
-    {
-        return super.getModelData();
     }
 }
