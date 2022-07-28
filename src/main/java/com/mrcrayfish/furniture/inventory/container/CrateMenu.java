@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
  */
 public class CrateMenu extends AbstractContainerMenu
 {
-    protected CrateBlockEntity blockEntity;
+    protected final CrateBlockEntity blockEntity;
 
     public CrateMenu(int windowId, Inventory playerInventory, CrateBlockEntity blockEntity, boolean locked)
     {

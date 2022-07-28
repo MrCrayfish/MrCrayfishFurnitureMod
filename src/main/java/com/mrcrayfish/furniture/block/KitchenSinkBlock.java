@@ -44,7 +44,7 @@ import java.util.Map;
  */
 public class KitchenSinkBlock extends FurnitureHorizontalBlock implements EntityBlock
 {
-    private boolean bigSink;
+    private final boolean bigSink;
 
     public final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
 

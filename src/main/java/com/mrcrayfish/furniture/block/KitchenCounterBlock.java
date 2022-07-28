@@ -156,7 +156,7 @@ public class KitchenCounterBlock extends FurnitureHorizontalBlock
         LEFT_CORNER_INVERTED("left_corner_inverted"),
         RIGHT_CORNER_INVERTED("right_corner_inverted");
 
-        private String id;
+        private final String id;
 
         Type(String id)
         {

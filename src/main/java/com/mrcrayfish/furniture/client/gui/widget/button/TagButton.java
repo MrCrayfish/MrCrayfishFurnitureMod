@@ -24,8 +24,8 @@ public class TagButton extends Button
 {
     private static final ResourceLocation TABS = new ResourceLocation("textures/gui/container/creative_inventory/tabs.png");
 
-    private CreativeScreenEvents.TagFilter category;
-    private ItemStack stack;
+    private final CreativeScreenEvents.TagFilter category;
+    private final ItemStack stack;
     private boolean toggled;
 
     public TagButton(int x, int y, CreativeScreenEvents.TagFilter category, OnPress onPress)

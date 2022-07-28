@@ -42,7 +42,7 @@ public class FridgeBlock extends FurnitureHorizontalBlock implements EntityBlock
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
 
     public final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
-    private Supplier<RegistryObject<Block>> freezer;
+    private final Supplier<RegistryObject<Block>> freezer;
 
     public FridgeBlock(Properties properties, Supplier<RegistryObject<Block>> freezer)
     {

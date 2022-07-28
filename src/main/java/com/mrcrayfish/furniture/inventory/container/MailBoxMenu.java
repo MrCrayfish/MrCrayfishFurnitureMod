@@ -13,7 +13,7 @@ import net.minecraft.world.item.ItemStack;
  */
 public class MailBoxMenu extends AbstractContainerMenu
 {
-    private MailBoxBlockEntity mailBoxBlockEntity;
+    private final MailBoxBlockEntity mailBoxBlockEntity;
 
     public MailBoxMenu(int windowId, Inventory playerInventory, MailBoxBlockEntity mailBoxBlockEntity)
     {

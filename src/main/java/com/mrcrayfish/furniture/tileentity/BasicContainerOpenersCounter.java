@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.state.BlockState;
  */
 public class BasicContainerOpenersCounter extends ContainerOpenersCounter
 {
-    private BasicLootBlockEntity blockEntity;
+    private final BasicLootBlockEntity blockEntity;
 
     public BasicContainerOpenersCounter(BasicLootBlockEntity blockEntity)
     {

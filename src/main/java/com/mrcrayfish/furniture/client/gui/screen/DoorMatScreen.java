@@ -22,10 +22,10 @@ public class DoorMatScreen extends Screen
 {
     private static final ResourceLocation GUI_TEXTURE = new ResourceLocation(Reference.MOD_ID, "textures/gui/mail_box_settings.png");
 
-    private int xSize = 176;
-    private int ySize = 69;
+    private final int xSize = 176;
+    private final int ySize = 69;
 
-    private DoorMatBlockEntity doorMatBlockEntity;
+    private final DoorMatBlockEntity doorMatBlockEntity;
     private EditBox nameField;
     private Button btnSave;
 

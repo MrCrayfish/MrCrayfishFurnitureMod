@@ -25,7 +25,7 @@ public class DeskBlock extends FurnitureHorizontalBlock
 {
     public static final EnumProperty<Type> TYPE = EnumProperty.create("type", Type.class);
 
-    private MaterialType materialType;
+    private final MaterialType materialType;
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
 
     public DeskBlock(Properties properties, MaterialType materialType)

@@ -9,8 +9,8 @@ import net.minecraftforge.eventbus.api.Event;
  */
 public class ItemSolidifyEvent extends Event
 {
-    private Player player;
-    private ItemStack stack;
+    private final Player player;
+    private final ItemStack stack;
 
     public ItemSolidifyEvent(Player player, ItemStack stack)
     {

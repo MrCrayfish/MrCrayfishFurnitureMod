@@ -55,8 +55,6 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements EntityBlock
         return 1.0F;
     }
 
-    //TODO add tickers for all block entities that need them
-
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving)
     {

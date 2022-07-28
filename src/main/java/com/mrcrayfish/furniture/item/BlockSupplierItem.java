@@ -12,8 +12,8 @@ import java.util.function.Supplier;
  */
 public class BlockSupplierItem extends BlockItem
 {
-    private Block block;
-    private Supplier<Block> supplier;
+    private final Block block;
+    private final Supplier<Block> supplier;
 
     public BlockSupplierItem(Item.Properties properties, Block block, Supplier<Block> supplier)
     {

@@ -10,10 +10,10 @@ import java.util.UUID;
  */
 public class MailBoxEntry
 {
-    private UUID mailBoxId;
-    private String name;
-    private UUID ownerId;
-    private String ownerName;
+    private final UUID mailBoxId;
+    private final String name;
+    private final UUID ownerId;
+    private final String ownerName;
 
     public MailBoxEntry(UUID mailBoxId, String name, UUID ownerId, String ownerName)
     {
