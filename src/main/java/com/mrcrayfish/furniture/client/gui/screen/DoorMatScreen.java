@@ -4,7 +4,7 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.network.PacketHandler;
-import com.mrcrayfish.furniture.network.message.MessageSetDoorMatMessage;
+import com.mrcrayfish.furniture.network.message.C2SMessageSetDoorMat;
 import com.mrcrayfish.furniture.tileentity.DoorMatBlockEntity;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
@@ -64,7 +64,7 @@ public class DoorMatScreen extends Screen
             if(this.isValidName())
             {
                 PacketHandler.getPlayChannel()
-                        .sendToServer(new MessageSetDoorMatMessage(this.doorMatBlockEntity.getBlockPos(), this.nameField.getValue()));
+                        .sendToServer(new C2SMessageSetDoorMat(this.doorMatBlockEntity.getBlockPos(), this.nameField.getValue()));
                 this.minecraft.player.closeContainer();
             }
         }));

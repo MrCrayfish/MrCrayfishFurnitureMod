@@ -4,8 +4,8 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.network.PacketHandler;
-import com.mrcrayfish.furniture.network.message.MessageOpenMailBox;
-import com.mrcrayfish.furniture.network.message.MessageSetMailBoxName;
+import com.mrcrayfish.furniture.network.message.C2SMessageOpenMailBox;
+import com.mrcrayfish.furniture.network.message.C2SMessageSetMailBoxName;
 import com.mrcrayfish.furniture.tileentity.MailBoxBlockEntity;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
@@ -53,7 +53,7 @@ public class MailBoxSettingsScreen extends Screen
             if(this.isValidName())
             {
                 PacketHandler.getPlayChannel()
-                        .sendToServer(new MessageSetMailBoxName(this.nameField.getValue(), this.mailBoxBlockEntity.getBlockPos()));
+                        .sendToServer(new C2SMessageSetMailBoxName(this.nameField.getValue(), this.mailBoxBlockEntity.getBlockPos()));
             }
         }));
         this.btnSave.active = false;
@@ -61,7 +61,7 @@ public class MailBoxSettingsScreen extends Screen
         this.addRenderableWidget(new Button(guiLeft + 91, guiTop + 42, 79, 20, Component.translatable("gui.button.cfm.back"), button ->
         {
             PacketHandler.getPlayChannel()
-                    .sendToServer(new MessageOpenMailBox(this.mailBoxBlockEntity.getBlockPos()));
+                    .sendToServer(new C2SMessageOpenMailBox(this.mailBoxBlockEntity.getBlockPos()));
         }));
     }
 

@@ -41,7 +41,7 @@ public class DoorMatBlockEntity extends BlockEntity
 
     public String getMessage()
     {
-        return message != null ? message : "";
+        return this.message != null ? this.message : "";
     }
 
     @Override

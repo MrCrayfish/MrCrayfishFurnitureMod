@@ -1,6 +1,6 @@
 package com.mrcrayfish.furniture.network.message;
 
-import com.mrcrayfish.furniture.client.ClientPlayHandler;
+import com.mrcrayfish.furniture.network.play.ClientPlayHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
@@ -10,34 +10,34 @@ import java.util.function.Supplier;
 /**
  * Author: MrCrayfish
  */
-public class MessageFlipGrill implements IMessage<MessageFlipGrill>
+public class S2CMessageFlipGrill implements IMessage<S2CMessageFlipGrill>
 {
     private BlockPos pos;
     private int position;
 
-    public MessageFlipGrill() {}
+    public S2CMessageFlipGrill() {}
 
-    public MessageFlipGrill(BlockPos pos, int position)
+    public S2CMessageFlipGrill(BlockPos pos, int position)
     {
         this.pos = pos;
         this.position = position;
     }
 
     @Override
-    public void encode(MessageFlipGrill message, FriendlyByteBuf buffer)
+    public void encode(S2CMessageFlipGrill message, FriendlyByteBuf buffer)
     {
         buffer.writeBlockPos(message.pos);
         buffer.writeInt(message.position);
     }
 
     @Override
-    public MessageFlipGrill decode(FriendlyByteBuf buffer)
+    public S2CMessageFlipGrill decode(FriendlyByteBuf buffer)
     {
-        return new MessageFlipGrill(buffer.readBlockPos(), buffer.readInt());
+        return new S2CMessageFlipGrill(buffer.readBlockPos(), buffer.readInt());
     }
 
     @Override
-    public void handle(MessageFlipGrill message, Supplier<NetworkEvent.Context> supplier)
+    public void handle(S2CMessageFlipGrill message, Supplier<NetworkEvent.Context> supplier)
     {
         supplier.get().enqueueWork(() -> ClientPlayHandler.handleFlipGrillMessage(message));
         supplier.get().setPacketHandled(true);

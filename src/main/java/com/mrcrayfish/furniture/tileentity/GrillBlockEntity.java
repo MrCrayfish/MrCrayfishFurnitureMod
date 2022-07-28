@@ -5,7 +5,7 @@ import com.mrcrayfish.furniture.core.ModRecipeTypes;
 import com.mrcrayfish.furniture.core.ModSounds;
 import com.mrcrayfish.furniture.item.crafting.GrillCookingRecipe;
 import com.mrcrayfish.furniture.network.PacketHandler;
-import com.mrcrayfish.furniture.network.message.MessageFlipGrill;
+import com.mrcrayfish.furniture.network.message.S2CMessageFlipGrill;
 import com.mrcrayfish.furniture.util.BlockEntityUtil;
 import com.mrcrayfish.furniture.util.ItemStackHelper;
 import net.minecraft.core.BlockPos;
@@ -174,7 +174,7 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
                 this.cookingTimes[position] = 0;
 
                 /* Sends a packet to players tracking the chunk the Grill is in indicating that animation should play */
-                PacketHandler.getPlayChannel().send(PacketDistributor.TRACKING_CHUNK.with(() -> this.level.getChunkAt(this.worldPosition)), new MessageFlipGrill(this.worldPosition, position));
+                PacketHandler.getPlayChannel().send(PacketDistributor.TRACKING_CHUNK.with(() -> this.level.getChunkAt(this.worldPosition)), new S2CMessageFlipGrill(this.worldPosition, position));
 
                 /* Send updates to client */
                 CompoundTag compound = new CompoundTag();

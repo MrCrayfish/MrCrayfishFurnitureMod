@@ -6,7 +6,7 @@ import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.client.gui.widget.button.IconButton;
 import com.mrcrayfish.furniture.inventory.container.CrateMenu;
 import com.mrcrayfish.furniture.network.PacketHandler;
-import com.mrcrayfish.furniture.network.message.MessageLockCrate;
+import com.mrcrayfish.furniture.network.message.C2SMessageLockCrate;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -38,7 +38,7 @@ public class CrateScreen extends AbstractContainerScreen<CrateMenu>
     {
         super.init();
         this.button = this.addRenderableWidget(new IconButton(this.leftPos + this.imageWidth + 2, this.topPos + 17, Component.translatable("gui.button.cfm.lock"), button -> PacketHandler.getPlayChannel()
-                .sendToServer(new MessageLockCrate()), ICONS_TEXTURE, 0, 0));
+                .sendToServer(new C2SMessageLockCrate()), ICONS_TEXTURE, 0, 0));
         this.updateLockButton();
     }
 

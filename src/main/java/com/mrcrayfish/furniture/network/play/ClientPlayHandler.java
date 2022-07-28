@@ -1,8 +1,9 @@
-package com.mrcrayfish.furniture.client;
+package com.mrcrayfish.furniture.network.play;
 
+import com.mrcrayfish.furniture.client.MailBoxEntry;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.PostBoxScreen;
-import com.mrcrayfish.furniture.network.message.MessageFlipGrill;
-import com.mrcrayfish.furniture.network.message.MessageUpdateMailBoxes;
+import com.mrcrayfish.furniture.network.message.S2CMessageFlipGrill;
+import com.mrcrayfish.furniture.network.message.S2CMessageUpdateMailBoxes;
 import com.mrcrayfish.furniture.tileentity.GrillBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundTag;
@@ -18,9 +19,9 @@ import java.util.List;
  */
 public class ClientPlayHandler
 {
-    public static void handleUpdateMailboxesMessage(MessageUpdateMailBoxes message)
+    public static void handleUpdateMailboxesMessage(S2CMessageUpdateMailBoxes message)
     {
-        if(Minecraft.getInstance().screen instanceof PostBoxScreen)
+        if(Minecraft.getInstance().screen instanceof PostBoxScreen screen)
         {
             CompoundTag compound = message.getCompound();
             if(compound.contains("MailBoxes", Tag.TAG_LIST))
@@ -28,17 +29,17 @@ public class ClientPlayHandler
                 List<MailBoxEntry> entries = new ArrayList<>();
                 ListTag mailBoxList = compound.getList("MailBoxes", Tag.TAG_COMPOUND);
                 mailBoxList.forEach(nbt -> entries.add(new MailBoxEntry((CompoundTag) nbt)));
-                ((PostBoxScreen) Minecraft.getInstance().screen).updateMailBoxes(entries);
+                screen.updateMailBoxes(entries);
             }
         }
     }
 
-    public static void handleFlipGrillMessage(MessageFlipGrill message)
+    public static void handleFlipGrillMessage(S2CMessageFlipGrill message)
     {
         Level level = Minecraft.getInstance().level;
-        if(level != null && level.getBlockEntity(message.getPos()) instanceof GrillBlockEntity blockEntity)
+        if(level != null && level.getBlockEntity(message.getPos()) instanceof GrillBlockEntity grill)
         {
-            blockEntity.setFlipping(message.getPosition());
+            grill.setFlipping(message.getPosition());
         }
     }
 }
