@@ -1,5 +1,6 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "render_type": "minecraft:cutout",
     "textures": {
         "hole": "minecraft:block/gray_concrete",
         "mail": "cfm:item/mail",

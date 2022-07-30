@@ -16,9 +16,11 @@ import com.mrcrayfish.furniture.datagen.LootTableGen;
 import com.mrcrayfish.furniture.datagen.RecipeGen;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -47,9 +49,15 @@ public class FurnitureMod
         ModRecipeSerializers.REGISTER.register(eventBus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, FurnitureConfig.clientSpec);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FurnitureConfig.commonSpec);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onCommonSetup);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onClientSetup);
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::onGatherData);
+        eventBus.addListener(this::onCommonSetup);
+        eventBus.addListener(this::onClientSetup);
+        eventBus.addListener(this::onGatherData);
+        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
+            eventBus.addListener(ClientHandler::onRegisterBlockColors);
+            eventBus.addListener(ClientHandler::onRegisterItemColors);
+            eventBus.addListener(ClientHandler::onRegisterRenderers);
+            eventBus.addListener(ClientHandler::onRegisterGeometryLoaders);
+        });
     }
 
     private void onCommonSetup(FMLCommonSetupEvent event)

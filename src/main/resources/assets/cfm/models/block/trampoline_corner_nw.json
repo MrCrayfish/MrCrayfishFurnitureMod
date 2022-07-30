@@ -1,5 +1,6 @@
 {
     "__comment": "Model generated using MrCrayfish's Model Creator (https://mrcrayfish.com/tools?id=mc)",
+    "render_type": "minecraft:cutout",
     "textures": {
         "padding": "minecraft:block/white_concrete",
         "frame": "minecraft:block/light_gray_concrete"
