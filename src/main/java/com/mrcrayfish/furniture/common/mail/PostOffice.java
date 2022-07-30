@@ -118,7 +118,6 @@ public class PostOffice extends SavedData
             Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.computeIfAbsent(playerId, uuid -> new HashMap<>());
             mailBoxMap.remove(mailBoxId);
             office.setDirty();
-            //TODO spawn all items at mail box
         }
     }
 
@@ -205,7 +204,7 @@ public class PostOffice extends SavedData
             mailBox.setName(name);
 
             ServerLevel level = server.getLevel(mailBox.getLevelResourceKey());
-            if(level == null || !level.isAreaLoaded(mailBox.getPos(), 0))
+            if(level == null || !level.isLoaded(mailBox.getPos()))
                 return false;
 
             if(!(level.getBlockEntity(mailBox.getPos()) instanceof MailBoxBlockEntity mailBoxBlockEntity))
@@ -262,7 +261,7 @@ public class PostOffice extends SavedData
                     ServerLevel level = server.getLevel(mailBox.getLevelResourceKey());
                     if(level != null)
                     {
-                        if(level.isAreaLoaded(pos, 0))
+                        if(level.isLoaded(pos))
                         {
                             if(level.getBlockEntity(pos) instanceof MailBoxBlockEntity mailBoxBlockEntity)
                             {
