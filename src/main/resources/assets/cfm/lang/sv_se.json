@@ -343,7 +343,7 @@
     "block.cfm.red_grill": "Röd grill",
     "block.cfm.black_grill": "Svart grill",
     "block.cfm.door_mat": "Dörrmatta",
-    "block.cfm.diving_board": "Dykbräda",
+    "block.cfm.diving_board": "Sviktbräda",
     "block.cfm.oak_kitchen_counter": "Ekköksbänk",
     "block.cfm.spruce_kitchen_counter": "Granköksbänk",
     "block.cfm.birch_kitchen_counter": "Björkköksbänk",
@@ -501,7 +501,7 @@
     "subtitle.cfm.trampoline_bounce": "Trampolin studsar",
     "subtitle.cfm.grill_place": "Mat placeras på grill",
     "subtitle.cfm.grill_flip": "Mat vänds på grill",
-    "subtitle.cfm.diving_board.bounce": "Dykbräda studsar",
+    "subtitle.cfm.diving_board.bounce": "Sviktbräda studsar",
     "subtitle.cfm.open_fridge": "Frysskåp öppnas",
     "subtitle.cfm.close_fridge": "Frysskåp stängs",
     "message.cfm.mail_queue_full": "Denna spelares brevkö är full. Försök igen senare..."
