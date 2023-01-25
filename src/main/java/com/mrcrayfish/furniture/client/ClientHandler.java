@@ -52,17 +52,6 @@ public class ClientHandler
         MenuScreens.register(ModContainers.MAIL_BOX.get(), MailBoxScreen::new);
         MenuScreens.register(ModContainers.FREEZER.get(), FreezerScreen::new);
         MinecraftForge.EVENT_BUS.register(new CreativeScreenEvents());
-
-        Predicate<RenderType> leavesPredicate = renderType -> Minecraft.useFancyGraphics() ? renderType == RenderType.cutoutMipped() : renderType == RenderType.solid();
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_OAK.get(), leavesPredicate);
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_SPRUCE.get(), leavesPredicate);
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_BIRCH.get(), leavesPredicate);
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_JUNGLE.get(), leavesPredicate);
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_ACACIA.get(), leavesPredicate);
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_DARK_OAK.get(), leavesPredicate);
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_MANGROVE.get(), leavesPredicate);
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_AZALEA.get(), leavesPredicate);
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.HEDGE_FLOWERING_AZALEA.get(), leavesPredicate);
     }
 
     public static void showDoorMatScreen(Level level, BlockPos pos)
