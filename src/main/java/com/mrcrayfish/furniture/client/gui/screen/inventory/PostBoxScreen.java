@@ -7,7 +7,6 @@ import com.mrcrayfish.furniture.client.MailBoxEntry;
 import com.mrcrayfish.furniture.client.gui.widget.button.IconButton;
 import com.mrcrayfish.furniture.inventory.container.PostBoxMenu;
 import com.mrcrayfish.furniture.network.PacketHandler;
-import com.mrcrayfish.furniture.network.message.C2SMessageRequestMailBoxes;
 import com.mrcrayfish.furniture.network.message.C2SMessageSendMail;
 import com.mrcrayfish.furniture.util.RenderUtil;
 import net.minecraft.ChatFormatting;
@@ -52,13 +51,15 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
     private MailBoxEntry selected;
     private Button btnSend;
 
-    private List<MailBoxEntry> mailBoxList = new ArrayList<>();
+    private final List<MailBoxEntry> mailBoxList;
     private List<MailBoxEntry> filteredMailBoxList = new ArrayList<>();
 
     public PostBoxScreen(PostBoxMenu container, Inventory playerInventory, Component title)
     {
         super(container, playerInventory, title);
         this.imageHeight = 187;
+        this.mailBoxList = container.getMailBoxes();
+        this.filteredMailBoxList.addAll(this.mailBoxList);
     }
 
     @Override
@@ -72,7 +73,6 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
         this.addWidget(this.searchField);
         this.btnSend = this.addRenderableWidget(new IconButton(this.leftPos + 147, this.topPos + 53, Component.translatable("gui.button.cfm.send_mail"), this::sendMail, ICONS_TEXTURE, 32, 0));
         this.btnSend.active = false;
-        PacketHandler.getPlayChannel().sendToServer(new C2SMessageRequestMailBoxes());
     }
 
     private void sendMail(Button button)
@@ -280,11 +280,5 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
     private int getMaxScroll()
     {
         return Math.max(0, ITEM_HEIGHT * this.filteredMailBoxList.size() - LIST_HEIGHT);
-    }
-
-    public void updateMailBoxes(List<MailBoxEntry> entries)
-    {
-        this.mailBoxList = entries;
-        this.filteredMailBoxList = entries;
     }
 }

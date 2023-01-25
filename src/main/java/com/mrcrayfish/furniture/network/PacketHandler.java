@@ -3,13 +3,11 @@ package com.mrcrayfish.furniture.network;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.network.message.C2SMessageLockCrate;
 import com.mrcrayfish.furniture.network.message.C2SMessageOpenMailBox;
-import com.mrcrayfish.furniture.network.message.C2SMessageRequestMailBoxes;
 import com.mrcrayfish.furniture.network.message.C2SMessageSendMail;
 import com.mrcrayfish.furniture.network.message.C2SMessageSetDoorMat;
 import com.mrcrayfish.furniture.network.message.C2SMessageSetMailBoxName;
 import com.mrcrayfish.furniture.network.message.IMessage;
 import com.mrcrayfish.furniture.network.message.S2CMessageFlipGrill;
-import com.mrcrayfish.furniture.network.message.S2CMessageUpdateMailBoxes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkRegistry;
@@ -37,8 +35,6 @@ public class PacketHandler
                 .serverAcceptedVersions(PROTOCOL_VERSION::equals)
                 .simpleChannel();
         register(C2SMessageLockCrate.class, new C2SMessageLockCrate(), NetworkDirection.PLAY_TO_SERVER);
-        register(C2SMessageRequestMailBoxes.class, new C2SMessageRequestMailBoxes(), NetworkDirection.PLAY_TO_SERVER);
-        register(S2CMessageUpdateMailBoxes.class, new S2CMessageUpdateMailBoxes(), NetworkDirection.PLAY_TO_CLIENT);
         register(C2SMessageSendMail.class, new C2SMessageSendMail(), NetworkDirection.PLAY_TO_SERVER);
         register(C2SMessageSetMailBoxName.class, new C2SMessageSetMailBoxName(), NetworkDirection.PLAY_TO_SERVER);
         register(C2SMessageOpenMailBox.class, new C2SMessageOpenMailBox(), NetworkDirection.PLAY_TO_SERVER);

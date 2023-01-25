@@ -1,5 +1,7 @@
 package com.mrcrayfish.furniture.inventory.container;
 
+import com.google.common.collect.ImmutableList;
+import com.mrcrayfish.furniture.client.MailBoxEntry;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModContainers;
 import net.minecraft.world.SimpleContainer;
@@ -10,6 +12,8 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.List;
+
 /**
  * Author: MrCrayfish
  */
@@ -17,16 +21,18 @@ public class PostBoxMenu extends AbstractContainerMenu
 {
     private final SimpleContainer mailInput = new SimpleContainer(1);
     private final ContainerLevelAccess access;
+    private final List<MailBoxEntry> mailBoxes;
 
-    public PostBoxMenu(int windowId, Inventory inventory)
+    public PostBoxMenu(int windowId, Inventory inventory, List<MailBoxEntry> mailBoxes)
     {
-        this(windowId, inventory, ContainerLevelAccess.NULL);
+        this(windowId, inventory, ContainerLevelAccess.NULL, mailBoxes);
     }
 
-    public PostBoxMenu(int windowId, Inventory playerInventory, ContainerLevelAccess access)
+    public PostBoxMenu(int windowId, Inventory playerInventory, ContainerLevelAccess access, List<MailBoxEntry> mailBoxes)
     {
         super(ModContainers.POST_BOX.get(), windowId);
         this.access = access;
+        this.mailBoxes = ImmutableList.copyOf(mailBoxes);
 
         this.addSlot(new Slot(this.mailInput, 0, 149, 33));
 
@@ -42,6 +48,11 @@ public class PostBoxMenu extends AbstractContainerMenu
         {
             this.addSlot(new Slot(playerInventory, x, 8 + x * 18, 163));
         }
+    }
+
+    public List<MailBoxEntry> getMailBoxes()
+    {
+        return this.mailBoxes;
     }
 
     @Override

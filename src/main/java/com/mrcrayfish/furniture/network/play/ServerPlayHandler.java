@@ -1,31 +1,22 @@
 package com.mrcrayfish.furniture.network.play;
 
 import com.mrcrayfish.furniture.common.mail.Mail;
-import com.mrcrayfish.furniture.common.mail.MailBox;
 import com.mrcrayfish.furniture.common.mail.PostOffice;
 import com.mrcrayfish.furniture.inventory.container.CrateMenu;
 import com.mrcrayfish.furniture.inventory.container.PostBoxMenu;
-import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.C2SMessageLockCrate;
 import com.mrcrayfish.furniture.network.message.C2SMessageOpenMailBox;
-import com.mrcrayfish.furniture.network.message.C2SMessageRequestMailBoxes;
 import com.mrcrayfish.furniture.network.message.C2SMessageSendMail;
 import com.mrcrayfish.furniture.network.message.C2SMessageSetDoorMat;
 import com.mrcrayfish.furniture.network.message.C2SMessageSetMailBoxName;
-import com.mrcrayfish.furniture.network.message.S2CMessageUpdateMailBoxes;
 import com.mrcrayfish.furniture.tileentity.CrateBlockEntity;
 import com.mrcrayfish.furniture.tileentity.DoorMatBlockEntity;
 import com.mrcrayfish.furniture.tileentity.MailBoxBlockEntity;
 import com.mrcrayfish.furniture.util.BlockEntityUtil;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.network.NetworkHooks;
-import net.minecraftforge.network.PacketDistributor;
-
-import java.util.List;
 
 /**
  * Author: MrCrayfish
@@ -67,19 +58,6 @@ public class ServerPlayHandler
 
         BlockEntityUtil.sendUpdatePacket(blockEntity);
         NetworkHooks.openScreen(player, blockEntity, message.getPos());
-    }
-
-    public static void handleRequestMailBoxesMessage(ServerPlayer player, C2SMessageRequestMailBoxes message)
-    {
-        if(player.containerMenu instanceof PostBoxMenu)
-        {
-            List<MailBox> mailBoxes = PostOffice.getMailBoxes(player);
-            CompoundTag compound = new CompoundTag();
-            ListTag mailBoxList = new ListTag();
-            mailBoxes.forEach(mailBox -> mailBoxList.add(mailBox.serializeDetails()));
-            compound.put("MailBoxes", mailBoxList);
-            PacketHandler.getPlayChannel().send(PacketDistributor.PLAYER.with(() -> player), new S2CMessageUpdateMailBoxes(compound));
-        }
     }
 
     public static void handleSendMailMessage(ServerPlayer player, C2SMessageSendMail message)
