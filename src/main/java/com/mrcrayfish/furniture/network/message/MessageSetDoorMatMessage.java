@@ -47,7 +47,7 @@ public class MessageSetDoorMatMessage implements IMessage<MessageSetDoorMatMessa
             if(player != null)
             {
                 Level level = player.getLevel();
-                if(level.isAreaLoaded(message.pos, 0))
+                if(level.isLoaded(message.pos))
                 {
                     if(level.getBlockEntity(message.pos) instanceof DoorMatBlockEntity blockEntity)
                     {

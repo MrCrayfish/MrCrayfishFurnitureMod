@@ -49,7 +49,7 @@ public class MessageSetMailBoxName implements IMessage<MessageSetMailBoxName>
             if(entity == null)
                 return;
 
-            if(!entity.level.isAreaLoaded(message.pos, 0))
+            if(!entity.level.isLoaded(message.pos))
                 return;
 
             if(entity.level.getBlockEntity(message.pos) instanceof MailBoxBlockEntity blockEntity)
