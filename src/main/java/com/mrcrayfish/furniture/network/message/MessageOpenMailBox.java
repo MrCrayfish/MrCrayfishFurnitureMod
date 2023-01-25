@@ -45,6 +45,9 @@ public class MessageOpenMailBox implements IMessage<MessageOpenMailBox>
             if(entity == null)
                 return;
 
+            if(!entity.level.isLoaded(message.pos))
+                return;
+
             if(!(entity.level.getBlockEntity(message.pos) instanceof MailBoxBlockEntity blockEntity))
                 return;
 

@@ -5,11 +5,9 @@ import com.mrcrayfish.furniture.network.message.IMessage;
 import com.mrcrayfish.furniture.network.message.MessageFlipGrill;
 import com.mrcrayfish.furniture.network.message.MessageLockCrate;
 import com.mrcrayfish.furniture.network.message.MessageOpenMailBox;
-import com.mrcrayfish.furniture.network.message.MessageRequestMailBoxes;
 import com.mrcrayfish.furniture.network.message.MessageSendMail;
 import com.mrcrayfish.furniture.network.message.MessageSetDoorMatMessage;
 import com.mrcrayfish.furniture.network.message.MessageSetMailBoxName;
-import com.mrcrayfish.furniture.network.message.MessageUpdateMailBoxes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
@@ -33,8 +31,6 @@ public class PacketHandler
                 .serverAcceptedVersions(PROTOCOL_VERSION::equals)
                 .simpleChannel();
         register(MessageLockCrate.class, new MessageLockCrate());
-        register(MessageRequestMailBoxes.class, new MessageRequestMailBoxes());
-        register(MessageUpdateMailBoxes.class, new MessageUpdateMailBoxes());
         register(MessageSendMail.class, new MessageSendMail());
         register(MessageSetMailBoxName.class, new MessageSetMailBoxName());
         register(MessageOpenMailBox.class, new MessageOpenMailBox());
