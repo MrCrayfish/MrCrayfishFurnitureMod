@@ -1,7 +1,8 @@
 package com.mrcrayfish.furniture.util;
 
+import com.mojang.blaze3d.platform.Window;
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
-import org.lwjgl.opengl.GL11;
 
 /**
  * Author: MrCrayfish
@@ -11,8 +12,18 @@ public class RenderUtil
     public static void scissor(int x, int y, int width, int height)
     {
         Minecraft mc = Minecraft.getInstance();
-        int scale = (int) mc.getWindow().getGuiScale();
-        GL11.glScissor(x * scale, mc.getWindow().getScreenHeight() - y * scale - height * scale, width * scale, height * scale);
+        Window window = mc.getWindow();
+        double scale = window.getGuiScale();
+        int boxX = (int) (x * scale);
+        int boxY = (int) ((window.getGuiScaledHeight() - y - height) * scale);
+        int boxWidth = (int) (width * scale);
+        int boxHeight = (int) (height * scale);
+        RenderSystem.enableScissor(boxX, boxY, boxWidth, boxHeight);
+    }
+
+    public static void endScissor()
+    {
+        RenderSystem.disableScissor();
     }
 
     public static boolean isMouseInArea(int mouseX, int mouseY, int x, int y, int width, int height)

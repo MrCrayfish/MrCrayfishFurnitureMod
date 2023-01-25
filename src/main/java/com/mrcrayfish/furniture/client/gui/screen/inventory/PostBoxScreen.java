@@ -18,7 +18,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.player.Inventory;
-import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,10 +120,8 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
         int scrollBarUOffset = this.getMaxScroll() <= 0 ? SCROLL_BAR_WIDTH : 0;
         this.blit(poseStack, 128, 32 + scrollBarY, 116 + scrollBarUOffset, 187, SCROLL_BAR_WIDTH, SCROLL_BAR_HEIGHT);
 
-        GL11.glEnable(GL11.GL_SCISSOR_TEST);
+        RenderUtil.scissor(this.leftPos + 8, this.topPos + 32, 116, 57);
         {
-            RenderUtil.scissor(this.leftPos + 8, this.topPos + 32, 116, 57);
-
             int scroll = this.scroll;
             if(this.pressedMouseY != -1)
             {
@@ -161,7 +158,7 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
                 poseStack.popPose();
             }
         }
-        GL11.glDisable(GL11.GL_SCISSOR_TEST);
+        RenderUtil.endScissor();
     }
 
     @Override
