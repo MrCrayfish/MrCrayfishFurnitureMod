@@ -999,9 +999,4 @@ public class RecipeGen extends RecipeProvider
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.POTATO), Items.BAKED_POTATO, 0.35F, cookingTime, cookingMethod).unlockedBy("has_potato", has(Items.POTATO)).save(recipeConsumer, "baked_potato_from_" + recipeConsumerIn);
         SimpleCookingRecipeBuilder.cooking(Ingredient.of(Items.RABBIT), Items.COOKED_RABBIT, 0.35F, cookingTime, cookingMethod).unlockedBy("has_rabbit", has(Items.RABBIT)).save(recipeConsumer, "cooked_rabbit_from_" + recipeConsumerIn);
     }
-
-    private static InventoryChangeTrigger.TriggerInstance has(TagKey<Item> tag)
-    {
-        return inventoryTrigger(ItemPredicate.Builder.item().of(tag).build());
-    }
 }

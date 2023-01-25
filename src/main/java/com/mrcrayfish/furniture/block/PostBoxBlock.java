@@ -65,7 +65,10 @@ public class PostBoxBlock extends FurnitureHorizontalWaterloggedBlock
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult result)
     {
-        playerEntity.openMenu(state.getMenuProvider(level, pos));
+        if(!level.isClientSide())
+        {
+            playerEntity.openMenu(state.getMenuProvider(level, pos));
+        }
         return InteractionResult.SUCCESS;
     }
 
