@@ -6,6 +6,7 @@ import com.mrcrayfish.furniture.core.ModRecipeTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
+import net.minecraft.world.item.crafting.CookingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
@@ -14,9 +15,9 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
  */
 public class FreezerSolidifyRecipe extends AbstractCookingRecipe
 {
-    public FreezerSolidifyRecipe(ResourceLocation id, String group, Ingredient ingredient, ItemStack stack, float experience, int freezeTime)
+    public FreezerSolidifyRecipe(ResourceLocation id, String group, CookingBookCategory category, Ingredient ingredient, ItemStack stack, float experience, int freezeTime)
     {
-        super(ModRecipeTypes.FREEZER_SOLIDIFY.get(), id, group, ingredient, stack, experience, freezeTime);
+        super(ModRecipeTypes.FREEZER_SOLIDIFY.get(), id, group, category, ingredient, stack, experience, freezeTime);
     }
 
     @Override

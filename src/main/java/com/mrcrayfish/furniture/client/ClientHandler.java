@@ -16,18 +16,20 @@ import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModContainers;
 import com.mrcrayfish.furniture.core.ModEntities;
+import com.mrcrayfish.furniture.core.ModItems;
 import com.mrcrayfish.furniture.tileentity.DoorMatBlockEntity;
 import com.mrcrayfish.furniture.tileentity.TrampolineBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -36,9 +38,7 @@ import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import java.util.function.Predicate;
+import net.minecraftforge.event.CreativeModeTabEvent;
 
 /**
  * Author: MrCrayfish
@@ -62,7 +62,6 @@ public class ClientHandler
         }
     }
 
-    @SubscribeEvent
     public static void onRegisterBlockColors(RegisterColorHandlersEvent.Block event)
     {
         event.register((state, reader, pos, i) -> i == 1 ? 0xFFCCCCCC : 0xFFFFFFFF,
@@ -197,7 +196,6 @@ public class ClientHandler
         }, ModBlocks.TRAMPOLINE.get());
     }
 
-    @SubscribeEvent
     public static void onRegisterItemColors(RegisterColorHandlersEvent.Item event)
     {
         event.register((stack, i) -> i == 1 ? 0xCCCCCC : 0xFFFFFFFF,
@@ -323,7 +321,6 @@ public class ClientHandler
         }, ModBlocks.TRAMPOLINE.get());
     }
 
-    @SubscribeEvent
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event)
     {
         event.registerEntityRenderer(ModEntities.SEAT.get(), SeatRenderer::new);
@@ -332,12 +329,22 @@ public class ClientHandler
         event.registerBlockEntityRenderer(ModBlockEntities.KITCHEN_SINK.get(), KitchenSinkBlockEntityRenderer::new);
     }
 
-    @SubscribeEvent
-    public static void onRegisterGeometryLoaders(ModelEvent.BakingCompleted event)
+    public static void onModifyBakingResult(ModelEvent.ModifyBakingResult event)
     {
         // Patches hedge models to have a predicate render type.
         event.getModels().entrySet().stream()
             .filter(entry -> entry.getKey().getNamespace().equals(Reference.MOD_ID) && entry.getKey().getPath().contains("hedge"))
             .forEach(entry -> event.getModels().put(entry.getKey(), new FancyModel(entry.getValue())));
+    }
+
+    public static void onRegisterCreativeTab(CreativeModeTabEvent.Register event)
+    {
+        event.registerCreativeModeTab(new ResourceLocation(Reference.MOD_ID, "creative_tab"), builder -> {
+            builder.title(Component.translatable("itemGroup." + Reference.MOD_ID));
+            builder.icon(() -> new ItemStack(ModBlocks.CHAIR_OAK.get()));
+            builder.displayItems((flags, output, permission) -> {
+                ModItems.REGISTER.getEntries().forEach(registryObject -> output.accept(registryObject.get()));
+            });
+        });
     }
 }

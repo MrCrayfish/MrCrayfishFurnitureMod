@@ -19,7 +19,7 @@ public class IconButton extends Button
 
     public IconButton(int x, int y, Component message, OnPress onPress, ResourceLocation iconResource, int iconU, int iconV)
     {
-        super(x, y, 20, 20, message, onPress);
+        super(x, y, 20, 20, message, onPress, Button.DEFAULT_NARRATION);
         this.iconResource = iconResource;
         this.iconU = iconU;
         this.iconV = iconV;
@@ -42,13 +42,13 @@ public class IconButton extends Button
         RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         RenderSystem.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
         int offset = this.getYImage(this.isHoveredOrFocused());
-        this.blit(poseStack, this.x, this.y, 0, 46 + offset * 20, this.width / 2, this.height);
-        this.blit(poseStack, this.x + this.width / 2, this.y, 200 - this.width / 2, 46 + offset * 20, this.width / 2, this.height);
+        this.blit(poseStack, this.getX(), this.getY(), 0, 46 + offset * 20, this.width / 2, this.height);
+        this.blit(poseStack, this.getX() + this.width / 2, this.getY(), 200 - this.width / 2, 46 + offset * 20, this.width / 2, this.height);
         if(!this.active)
         {
             RenderSystem.setShaderColor(0.5F, 0.5F, 0.5F, 1.0F);
         }
         RenderSystem.setShaderTexture(0, this.iconResource);
-        this.blit(poseStack, this.x + 2, this.y + 2, this.iconU, this.iconV, 16, 16);
+        this.blit(poseStack, this.getX() + 2, this.getY() + 2, this.iconU, this.iconV, 16, 16);
     }
 }

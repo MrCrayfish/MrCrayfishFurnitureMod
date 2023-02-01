@@ -1,7 +1,7 @@
 package com.mrcrayfish.furniture.client.renderer.tileentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Vector3f;
+import com.mojang.math.Axis;
 import com.mrcrayfish.furniture.block.DoorMatBlock;
 import com.mrcrayfish.furniture.tileentity.DoorMatBlockEntity;
 import net.minecraft.client.gui.Font;
@@ -39,8 +39,8 @@ public class DoorMatBlockEntityRenderer implements BlockEntityRenderer<DoorMatBl
                 poseStack.translate(0.5, 0.0626, 0.5);
 
                 int rotation = state.getValue(DoorMatBlock.DIRECTION).get2DDataValue();
-                poseStack.mulPose(Vector3f.YP.rotationDegrees(-90F * rotation + 180F));
-                poseStack.mulPose(Vector3f.XP.rotationDegrees(-90F));
+                poseStack.mulPose(Axis.YP.rotationDegrees(-90F * rotation + 180F));
+                poseStack.mulPose(Axis.XP.rotationDegrees(-90F));
 
                 poseStack.scale(1.0F, -1.0F, -1.0F);
                 poseStack.scale(0.0125F, 0.0125F, 0.0125F);

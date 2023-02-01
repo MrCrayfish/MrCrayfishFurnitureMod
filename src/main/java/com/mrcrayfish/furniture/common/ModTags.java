@@ -2,10 +2,12 @@ package com.mrcrayfish.furniture.common;
 
 import com.mrcrayfish.furniture.Reference;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.registries.ForgeRegistries;
 
 /**
  * Author: MrCrayfish
@@ -29,7 +31,7 @@ public class ModTags
 
         private static TagKey<Item> tag(String name)
         {
-            return TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation(Reference.MOD_ID, name));
+            return TagKey.create(ForgeRegistries.ITEMS.getRegistryKey(), new ResourceLocation(Reference.MOD_ID, name));
         }
     }
 
@@ -43,7 +45,7 @@ public class ModTags
 
         private static TagKey<Block> tag(String name)
         {
-            return TagKey.create(Registry.BLOCK_REGISTRY, new ResourceLocation(Reference.MOD_ID, name));
+            return TagKey.create(ForgeRegistries.BLOCKS.getRegistryKey(), new ResourceLocation(Reference.MOD_ID, name));
         }
     }
 }

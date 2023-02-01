@@ -4,24 +4,27 @@ import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.common.ModTags;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModItems;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.TagBuilder;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * @author Ocelot
  */
 public class ItemTagGen extends ItemTagsProvider
 {
-    public ItemTagGen(DataGenerator generator, BlockTagsProvider blockTagsProvider, ExistingFileHelper existingFileHelper)
+    public ItemTagGen(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, BlockTagsProvider blockTagsProvider, ExistingFileHelper existingFileHelper)
     {
-        super(generator, blockTagsProvider, Reference.MOD_ID, existingFileHelper);
+        super(output, lookupProvider, blockTagsProvider, Reference.MOD_ID, existingFileHelper);
     }
 
     @Override
-    protected void addTags()
+    protected void addTags(HolderLookup.Provider provider)
     {
         this.tag(ModTags.Items.GENERAL)
                 // Sofa

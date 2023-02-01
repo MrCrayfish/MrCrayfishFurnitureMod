@@ -321,7 +321,7 @@ public class ModBlocks
     public static final RegistryObject<Block> HEDGE_AZALEA = register("azalea_hedge", () -> new HedgeBlock(Block.Properties.copy(Blocks.AZALEA_LEAVES)));
     public static final RegistryObject<Block> HEDGE_FLOWERING_AZALEA = register("flowering_azalea_hedge", () -> new HedgeBlock(Block.Properties.copy(Blocks.FLOWERING_AZALEA_LEAVES)));
     public static final RegistryObject<Block> ROCK_PATH = register("rock_path", () -> new RockPath(Block.Properties.copy(Blocks.STONE)));
-    public static final RegistryObject<Block> TRAMPOLINE = register("trampoline", () -> new TrampolineBlock(Block.Properties.copy(Blocks.STONE)), block -> new TrampolineItem(block.get(), new Item.Properties().tab(FurnitureMod.GROUP)));
+    public static final RegistryObject<Block> TRAMPOLINE = register("trampoline", () -> new TrampolineBlock(Block.Properties.copy(Blocks.STONE)), block -> new TrampolineItem(block.get(), new Item.Properties()));
     public static final RegistryObject<Block> COOLER_WHITE = register("white_cooler", () -> new CoolerBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> COOLER_ORANGE = register("orange_cooler", () -> new CoolerBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> COOLER_MAGENTA = register("magenta_cooler", () -> new CoolerBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
@@ -354,7 +354,7 @@ public class ModBlocks
     public static final RegistryObject<Block> GRILL_GREEN = register("green_grill", () -> new GrillBlock(Block.Properties.copy(Blocks.GREEN_CONCRETE)));
     public static final RegistryObject<Block> GRILL_RED = register("red_grill", () -> new GrillBlock(Block.Properties.copy(Blocks.RED_CONCRETE)));
     public static final RegistryObject<Block> GRILL_BLACK = register("black_grill", () -> new GrillBlock(Block.Properties.copy(Blocks.BLACK_CONCRETE)));
-    public static final RegistryObject<Block> DOOR_MAT = register("door_mat", () -> new DoorMatBlock(Block.Properties.copy(Blocks.HAY_BLOCK)), block -> new DoorMatItem(block.get(), new Item.Properties().tab(FurnitureMod.GROUP)));
+    public static final RegistryObject<Block> DOOR_MAT = register("door_mat", () -> new DoorMatBlock(Block.Properties.copy(Blocks.HAY_BLOCK)), block -> new DoorMatItem(block.get(), new Item.Properties()));
     public static final RegistryObject<Block> DIVING_BOARD = register("diving_board", () -> new DivingBoardBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_COUNTER_OAK = register("oak_kitchen_counter", () -> new KitchenCounterBlock(Block.Properties.copy(Blocks.OAK_PLANKS)));
     public static final RegistryObject<Block> KITCHEN_COUNTER_SPRUCE = register("spruce_kitchen_counter", () -> new KitchenCounterBlock(Block.Properties.copy(Blocks.SPRUCE_PLANKS)));
@@ -477,13 +477,13 @@ public class ModBlocks
     public static final RegistryObject<Block> KITCHEN_SINK_RED = register("red_kitchen_sink", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.RED_TERRACOTTA), false));
     public static final RegistryObject<Block> KITCHEN_SINK_BLACK = register("black_kitchen_sink", () -> new KitchenSinkBlock(Block.Properties.copy(Blocks.BLACK_TERRACOTTA), false));
     public static final RegistryObject<Block> FREEZER_LIGHT = registerNoItem("freezer_light", () -> new FreezerBlock(Block.Properties.copy(Blocks.IRON_BLOCK).noOcclusion(), () -> ModBlocks.FRIDGE_LIGHT));
-    public static final RegistryObject<Block> FRIDGE_LIGHT = register("fridge_light", () -> new FridgeBlock(Block.Properties.copy(Blocks.IRON_BLOCK).noOcclusion(), () -> ModBlocks.FREEZER_LIGHT), block -> new BlockSupplierItem(new Item.Properties().tab(FurnitureMod.GROUP), block.get(), ModBlocks.FREEZER_LIGHT));
+    public static final RegistryObject<Block> FRIDGE_LIGHT = register("fridge_light", () -> new FridgeBlock(Block.Properties.copy(Blocks.IRON_BLOCK).noOcclusion(), () -> ModBlocks.FREEZER_LIGHT), block -> new BlockSupplierItem(new Item.Properties(), block.get(), ModBlocks.FREEZER_LIGHT));
     public static final RegistryObject<Block> FREEZER_DARK = registerNoItem("freezer_dark", () -> new FreezerBlock(Block.Properties.copy(Blocks.IRON_BLOCK).noOcclusion(), () -> ModBlocks.FRIDGE_DARK));
-    public static final RegistryObject<Block> FRIDGE_DARK = register("fridge_dark", () -> new FridgeBlock(Block.Properties.copy(Blocks.IRON_BLOCK).noOcclusion(), () -> ModBlocks.FREEZER_DARK), block -> new BlockSupplierItem(new Item.Properties().tab(FurnitureMod.GROUP), block.get(), ModBlocks.FREEZER_DARK));
+    public static final RegistryObject<Block> FRIDGE_DARK = register("fridge_dark", () -> new FridgeBlock(Block.Properties.copy(Blocks.IRON_BLOCK).noOcclusion(), () -> ModBlocks.FREEZER_DARK), block -> new BlockSupplierItem(new Item.Properties(), block.get(), ModBlocks.FREEZER_DARK));
 
     private static RegistryObject<Block> register(String name, Supplier<Block> block)
     {
-        return register(name, block, new Item.Properties().tab(FurnitureMod.GROUP));
+        return register(name, block, new Item.Properties());
     }
 
     private static RegistryObject<Block> register(String name, Supplier<Block> block, Item.Properties properties)

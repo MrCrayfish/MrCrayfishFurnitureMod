@@ -12,6 +12,7 @@ import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.core.Registry;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -19,10 +20,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -34,6 +37,7 @@ import java.util.function.Consumer;
  */
 public class ForgeShapedRecipeBuilder
 {
+    private final RecipeCategory category;
     private final String key;
     private final ItemStack result;
     private final List<String> pattern = Lists.newArrayList();
@@ -41,15 +45,16 @@ public class ForgeShapedRecipeBuilder
     private final Advancement.Builder advancementBuilder = Advancement.Builder.advancement();
     private String group;
 
-    private ForgeShapedRecipeBuilder(String key, ItemStack resultIn)
+    private ForgeShapedRecipeBuilder(RecipeCategory category, String key, ItemStack resultIn)
     {
+        this.category = category;
         this.key = key;
         this.result = resultIn.copy();
     }
 
-    public static ForgeShapedRecipeBuilder shapedRecipe(String key, ItemStack resultIn)
+    public static ForgeShapedRecipeBuilder shapedRecipe(RecipeCategory category, String key, ItemStack resultIn)
     {
-        return new ForgeShapedRecipeBuilder(key, resultIn);
+        return new ForgeShapedRecipeBuilder(category, key, resultIn);
     }
 
     public ForgeShapedRecipeBuilder key(Character symbol, TagKey<Item> tagIn)
@@ -106,12 +111,12 @@ public class ForgeShapedRecipeBuilder
 
     public void build(Consumer<FinishedRecipe> consumerIn)
     {
-        this.build(consumerIn, Registry.ITEM.getKey(this.result.getItem()));
+        this.build(consumerIn, ForgeRegistries.ITEMS.getKey(this.result.getItem()));
     }
 
     public void build(Consumer<FinishedRecipe> consumerIn, String save)
     {
-        ResourceLocation resourcelocation = Registry.ITEM.getKey(this.result.getItem());
+        ResourceLocation resourcelocation = ForgeRegistries.ITEMS.getKey(this.result.getItem());
         if((new ResourceLocation(save)).equals(resourcelocation))
         {
             throw new IllegalStateException("Shaped Recipe " + save + " should remove its 'save' argument");
@@ -129,7 +134,7 @@ public class ForgeShapedRecipeBuilder
     {
         this.validate(id);
         this.advancementBuilder.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id)).rewards(AdvancementRewards.Builder.recipe(id)).requirements(RequirementsStrategy.OR);
-        consumerIn.accept(new Result(this.key, id, this.result, this.group == null ? "" : this.group, this.pattern, this.ingredientMap, this.advancementBuilder, new ResourceLocation(id.getNamespace(), "recipes/" + this.result.getItem().getItemCategory().getRecipeFolderName() + "/" + id.getPath())));
+        consumerIn.accept(new Result(this.key, id, this.result, this.group == null ? "" : this.group, this.pattern, this.ingredientMap, this.advancementBuilder, new ResourceLocation(id.getNamespace(), "recipes/" + this.category.getFolderName() + "/" + id.getPath())));
     }
 
     /**
@@ -222,7 +227,7 @@ public class ForgeShapedRecipeBuilder
 
             json.add("key", jsonobject);
             JsonObject result = new JsonObject();
-            result.addProperty("item", Registry.ITEM.getKey(this.result.getItem()).toString());
+            result.addProperty("item", Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(this.result.getItem())).toString());
             if(this.result.getCount() > 1)
             {
                 result.addProperty("count", this.result.getCount());

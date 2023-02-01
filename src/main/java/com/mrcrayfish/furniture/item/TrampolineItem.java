@@ -56,7 +56,8 @@ public class TrampolineItem extends BlockItem
         return super.getDescriptionId(stack);
     }
 
-    @Override
+    //TODO fix this
+    /*@Override
     public void fillItemCategory(CreativeModeTab tab, NonNullList<ItemStack> items)
     {
         if(this.allowedIn(tab))
@@ -72,5 +73,5 @@ public class TrampolineItem extends BlockItem
                 items.add(stack);
             }
         }
-    }
+    }*/
 }

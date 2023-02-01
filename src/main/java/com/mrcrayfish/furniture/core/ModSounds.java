@@ -29,6 +29,6 @@ public class ModSounds
 
     private static RegistryObject<SoundEvent> register(String name)
     {
-        return REGISTER.register(name, () -> new SoundEvent(new ResourceLocation(Reference.MOD_ID, name)));
+        return REGISTER.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(Reference.MOD_ID, name)));
     }
 }

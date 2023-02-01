@@ -31,6 +31,7 @@ import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Author: MrCrayfish
@@ -50,7 +51,7 @@ public class CreativeScreenEvents
     private int guiCenterX = 0;
     private int guiCenterY = 0;
 
-    @SubscribeEvent
+    /*@SubscribeEvent
     public void onPlayerLogout(ClientPlayerNetworkEvent.LoggingOut event)
     {
         this.filters = null;
@@ -108,7 +109,7 @@ public class CreativeScreenEvents
 
             this.updateTagButtons();
 
-            if(creativeScreen.getSelectedTab() == FurnitureMod.GROUP.getId())
+            if(creativeScreen. == FurnitureMod.GROUP.getId())
             {
                 this.btnScrollUp.visible = true;
                 this.btnScrollDown.visible = true;
@@ -145,7 +146,7 @@ public class CreativeScreenEvents
     @SubscribeEvent
     public void onScreenDrawPre(ScreenEvent.Render.Pre event)
     {
-        if(event.getScreen() instanceof CreativeModeInventoryScreen creativeScreen)
+        /*if(event.getScreen() instanceof CreativeModeInventoryScreen creativeScreen)
         {
             if(creativeScreen.getSelectedTab() == FurnitureMod.GROUP.getId())
             {
@@ -165,6 +166,7 @@ public class CreativeScreenEvents
     @SubscribeEvent
     public void onScreenDrawPost(ScreenEvent.Render.Post event)
     {
+        /*
         if(event.getScreen() instanceof CreativeModeInventoryScreen creativeScreen)
         {
             this.guiCenterX = creativeScreen.getGuiLeft();
@@ -178,13 +180,13 @@ public class CreativeScreenEvents
                 this.btnDisableAll.visible = true;
                 this.buttons.forEach(button -> button.visible = true);
 
-                /* Render buttons */
+                // Render buttons
                 this.buttons.forEach(button ->
                 {
                     button.render(event.getPoseStack(), event.getMouseX(), event.getMouseY(), event.getPartialTick());
                 });
 
-                /* Render tooltips after so it renders above buttons */
+                // Render tooltips after so it renders above buttons
                 this.buttons.forEach(button ->
                 {
                     if(button.isMouseOver(event.getMouseX(), event.getMouseY()))
@@ -237,23 +239,17 @@ public class CreativeScreenEvents
     private void updateItems(CreativeModeInventoryScreen screen)
     {
         CreativeModeInventoryScreen.ItemPickerMenu menu = screen.getMenu();
-        LinkedHashSet<Item> categorisedItems = new LinkedHashSet<>();
+        LinkedHashSet<ItemStack> categorisedItems = new LinkedHashSet<>();
         for(TagFilter filter : this.filters)
         {
             if(filter.isEnabled())
             {
-                categorisedItems.addAll(filter.getItems());
+                categorisedItems.addAll(filter.getItems().stream().map(ItemStack::new).collect(Collectors.toList()));
             }
         }
 
-        NonNullList<ItemStack> newItems = NonNullList.create();
-        for(Item item : categorisedItems)
-        {
-            item.fillItemCategory(FurnitureMod.GROUP, newItems);
-        }
-
         menu.items.clear();
-        menu.items.addAll(newItems);
+        menu.items.addAll(categorisedItems);
         menu.items.sort(Comparator.comparingInt(o -> Item.getId(o.getItem())));
         menu.scrollTo(0);
     }
@@ -270,7 +266,6 @@ public class CreativeScreenEvents
         };
 
         ForgeRegistries.ITEMS.getValues().stream()
-            .filter(item -> item.getItemCategory() == FurnitureMod.GROUP)
             .filter(item -> Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item)).getNamespace().equals(Reference.MOD_ID))
             .forEach(item -> {
                 ForgeRegistries.ITEMS.getHolder(item).ifPresent(holder -> {
@@ -286,7 +281,7 @@ public class CreativeScreenEvents
 
         this.filters = new ArrayList<>();
         this.filters.addAll(Arrays.asList(filters));
-    }
+    }*/
 
     /**
      * Author: MrCrayfish

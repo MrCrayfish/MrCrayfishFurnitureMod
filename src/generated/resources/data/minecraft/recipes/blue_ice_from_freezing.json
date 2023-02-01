@@ -1,5 +1,6 @@
 {
   "type": "cfm:freezer_solidify",
+  "category": "misc",
   "cookingtime": 4000,
   "experience": 1.0,
   "ingredient": {

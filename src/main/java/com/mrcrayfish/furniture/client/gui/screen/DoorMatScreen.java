@@ -59,18 +59,17 @@ public class DoorMatScreen extends Screen
         }
         this.addWidget(this.nameField);
 
-        this.btnSave = this.addRenderableWidget(new Button(guiLeft + 7, guiTop + 42, 79, 20, Component.translatable("gui.button.cfm.save"), button ->
+        this.btnSave = this.addRenderableWidget(Button.builder(Component.translatable("gui.button.cfm.save"), button ->
         {
             if(this.isValidName())
             {
-                PacketHandler.getPlayChannel()
-                        .sendToServer(new C2SMessageSetDoorMat(this.doorMatBlockEntity.getBlockPos(), this.nameField.getValue()));
+                PacketHandler.getPlayChannel().sendToServer(new C2SMessageSetDoorMat(this.doorMatBlockEntity.getBlockPos(), this.nameField.getValue()));
                 this.minecraft.player.closeContainer();
             }
-        }));
+        }).pos(guiLeft + 7, guiTop + 42).size(79, 20).build());
         this.btnSave.active = false;
 
-        this.addRenderableWidget(new Button(guiLeft + 91, guiTop + 42, 79, 20, Component.translatable("gui.button.cfm.cancel"), button -> this.onClose()));
+        this.addRenderableWidget(Button.builder(Component.translatable("gui.button.cfm.cancel"), button -> this.onClose()).pos(guiLeft + 91, guiTop + 42).size(79, 20).build());
     }
 
     @Override
