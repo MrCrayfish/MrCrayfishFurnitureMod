@@ -474,7 +474,7 @@
     "container.cfm.desk_cabinet": "ʇǝuᴉqɐƆ ʞsǝᗡ",
     "container.cfm.crate": "ǝʇɐɹƆ",
     "container.cfm.post_box": "xoᗺ ʇsoԀ",
-    "container.cfm.mail_box": "%s - %s",
+    "container.cfm.mail_box": "%2$s - %1$s",
     "container.cfm.cooler": "ɹǝꞁooƆ",
     "container.cfm.kitchen_drawer": "ɹǝʍɐɹᗡ uǝɥɔʇᴉꞰ",
     "container.cfm.fridge": "ǝᵷpᴉɹℲ",
