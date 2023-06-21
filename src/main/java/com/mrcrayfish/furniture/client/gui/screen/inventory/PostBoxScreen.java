@@ -61,6 +61,7 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
         this.imageHeight = 187;
         this.mailBoxList = container.getMailBoxes();
         this.filteredMailBoxList.addAll(this.mailBoxList);
+        this.inventoryLabelY = 94;
     }
 
     @Override
@@ -111,7 +112,8 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
     @Override
     protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY)
     {
-        //TODO fix labels
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+        super.renderLabels(graphics, mouseX, mouseY);
 
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         int scrollBarY = this.getScrollBarY(mouseY);

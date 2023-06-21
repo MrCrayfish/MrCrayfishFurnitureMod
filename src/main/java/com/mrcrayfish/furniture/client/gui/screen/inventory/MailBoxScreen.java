@@ -32,6 +32,7 @@ public class MailBoxScreen extends AbstractContainerScreen<MailBoxMenu>
         super(container, playerInventory, title);
         this.imageHeight = 132;
         this.playerId = playerInventory.player.getUUID();
+        this.inventoryLabelY = 39;
     }
 
     @Override

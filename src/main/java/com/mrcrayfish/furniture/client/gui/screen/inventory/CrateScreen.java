@@ -33,6 +33,7 @@ public class CrateScreen extends AbstractContainerScreen<CrateMenu>
     {
         super(container, playerInventory, title);
         this.playerId = playerInventory.player.getUUID();
+        this.inventoryLabelY = this.imageHeight - 93;
     }
 
     @Override
