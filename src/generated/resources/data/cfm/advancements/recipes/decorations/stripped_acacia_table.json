@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:stripped_acacia_table"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

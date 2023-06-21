@@ -30,5 +30,6 @@
     "recipes": [
       "cfm:pink_picket_fence"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

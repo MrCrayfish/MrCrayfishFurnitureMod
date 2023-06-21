@@ -54,5 +54,6 @@
     "recipes": [
       "cfm:crimson_kitchen_drawer"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

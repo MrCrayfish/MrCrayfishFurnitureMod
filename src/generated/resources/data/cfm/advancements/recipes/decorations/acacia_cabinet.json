@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:acacia_cabinet"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

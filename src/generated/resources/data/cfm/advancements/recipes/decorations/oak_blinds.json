@@ -30,5 +30,6 @@
     "recipes": [
       "cfm:oak_blinds"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

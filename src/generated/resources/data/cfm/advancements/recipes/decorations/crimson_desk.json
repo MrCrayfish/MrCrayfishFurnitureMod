@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:crimson_desk"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

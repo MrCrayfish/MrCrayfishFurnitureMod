@@ -30,5 +30,6 @@
     "recipes": [
       "cfm:mangrove_hedge"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

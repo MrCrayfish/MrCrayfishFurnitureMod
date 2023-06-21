@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:dark_oak_bedside_cabinet"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

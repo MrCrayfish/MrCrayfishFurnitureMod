@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:stripped_spruce_mail_box"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

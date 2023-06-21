@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:stripped_jungle_coffee_table"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

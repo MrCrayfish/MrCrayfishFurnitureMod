@@ -54,5 +54,6 @@
     "recipes": [
       "cfm:stripped_spruce_kitchen_drawer"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

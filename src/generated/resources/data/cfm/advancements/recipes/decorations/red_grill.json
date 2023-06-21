@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:red_grill"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

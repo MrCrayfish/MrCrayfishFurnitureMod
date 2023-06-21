@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:magenta_cooler"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

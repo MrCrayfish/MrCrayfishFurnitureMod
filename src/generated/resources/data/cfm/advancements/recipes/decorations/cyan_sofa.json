@@ -30,5 +30,6 @@
     "recipes": [
       "cfm:cyan_sofa"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

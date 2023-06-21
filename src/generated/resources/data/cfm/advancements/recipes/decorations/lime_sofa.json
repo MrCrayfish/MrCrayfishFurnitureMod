@@ -30,5 +30,6 @@
     "recipes": [
       "cfm:lime_sofa"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

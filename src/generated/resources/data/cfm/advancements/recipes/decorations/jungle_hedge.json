@@ -30,5 +30,6 @@
     "recipes": [
       "cfm:jungle_hedge"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

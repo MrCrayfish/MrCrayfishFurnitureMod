@@ -22,7 +22,7 @@
         "items": [
           {
             "items": [
-              "minecraft:black_wool"
+              "minecraft:brown_wool"
             ]
           }
         ]
@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:trampoline"
     ]
-  }
+  },
+  "sends_telemetry_event": true
 }

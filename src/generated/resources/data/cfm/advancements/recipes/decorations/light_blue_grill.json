@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:light_blue_grill"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

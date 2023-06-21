@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:spruce_table"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

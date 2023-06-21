@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:jungle_table"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

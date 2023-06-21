@@ -30,5 +30,6 @@
     "recipes": [
       "cfm:dark_oak_hedge"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:dye_magenta_picket_gate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

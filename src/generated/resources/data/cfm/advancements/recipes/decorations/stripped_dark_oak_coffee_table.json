@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:stripped_dark_oak_coffee_table"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

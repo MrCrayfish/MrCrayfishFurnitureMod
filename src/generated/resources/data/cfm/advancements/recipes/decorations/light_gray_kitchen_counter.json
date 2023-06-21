@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:light_gray_kitchen_counter"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

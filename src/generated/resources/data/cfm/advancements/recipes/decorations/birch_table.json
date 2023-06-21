@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:birch_table"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

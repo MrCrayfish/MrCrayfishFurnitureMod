@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:stripped_spruce_desk"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

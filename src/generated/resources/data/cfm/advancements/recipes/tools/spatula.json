@@ -28,5 +28,6 @@
     "recipes": [
       "cfm:spatula"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

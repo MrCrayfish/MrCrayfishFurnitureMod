@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:stripped_crimson_park_bench"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

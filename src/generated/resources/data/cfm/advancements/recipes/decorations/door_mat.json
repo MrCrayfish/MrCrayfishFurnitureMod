@@ -28,5 +28,6 @@
     "recipes": [
       "cfm:door_mat"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

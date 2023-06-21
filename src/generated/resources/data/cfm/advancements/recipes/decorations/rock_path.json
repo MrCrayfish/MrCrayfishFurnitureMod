@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:rock_path"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:crimson_crate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

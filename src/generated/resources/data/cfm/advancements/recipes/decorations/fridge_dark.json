@@ -39,5 +39,6 @@
     "recipes": [
       "cfm:fridge_dark"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

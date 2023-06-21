@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:mangrove_table"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

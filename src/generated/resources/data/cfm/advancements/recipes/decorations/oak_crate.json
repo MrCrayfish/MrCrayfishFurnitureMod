@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:oak_crate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

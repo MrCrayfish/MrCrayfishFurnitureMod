@@ -30,5 +30,6 @@
     "recipes": [
       "cfm:mangrove_upgraded_fence"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

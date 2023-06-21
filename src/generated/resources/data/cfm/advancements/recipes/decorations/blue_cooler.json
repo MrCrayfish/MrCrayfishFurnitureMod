@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:blue_cooler"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -56,5 +56,6 @@
     "recipes": [
       "cfm:spruce_kitchen_sink_light"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

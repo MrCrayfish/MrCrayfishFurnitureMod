@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:orange_grill"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

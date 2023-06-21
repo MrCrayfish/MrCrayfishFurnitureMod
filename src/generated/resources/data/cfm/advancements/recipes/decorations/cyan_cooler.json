@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:cyan_cooler"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

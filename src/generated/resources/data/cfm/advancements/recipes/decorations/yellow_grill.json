@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:yellow_grill"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

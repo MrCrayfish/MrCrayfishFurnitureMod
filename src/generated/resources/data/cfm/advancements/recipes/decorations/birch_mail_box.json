@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:birch_mail_box"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

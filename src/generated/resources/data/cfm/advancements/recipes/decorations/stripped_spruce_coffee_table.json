@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:stripped_spruce_coffee_table"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:stripped_warped_park_bench"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

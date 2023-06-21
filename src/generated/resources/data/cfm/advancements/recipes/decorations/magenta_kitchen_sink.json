@@ -56,5 +56,6 @@
     "recipes": [
       "cfm:magenta_kitchen_sink"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

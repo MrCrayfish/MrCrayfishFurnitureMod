@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:stripped_crimson_upgraded_gate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

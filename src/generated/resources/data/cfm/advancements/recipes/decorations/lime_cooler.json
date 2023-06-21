@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:lime_cooler"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

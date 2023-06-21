@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:birch_crate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

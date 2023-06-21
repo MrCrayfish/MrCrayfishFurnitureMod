@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:lime_picket_gate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

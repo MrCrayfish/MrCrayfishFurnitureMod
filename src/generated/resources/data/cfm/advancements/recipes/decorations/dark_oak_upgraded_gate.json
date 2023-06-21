@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:dark_oak_upgraded_gate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

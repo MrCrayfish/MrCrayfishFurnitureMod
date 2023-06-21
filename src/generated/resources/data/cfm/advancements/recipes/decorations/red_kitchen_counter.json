@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:red_kitchen_counter"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

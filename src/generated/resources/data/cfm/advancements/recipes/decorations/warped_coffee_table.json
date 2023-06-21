@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:warped_coffee_table"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

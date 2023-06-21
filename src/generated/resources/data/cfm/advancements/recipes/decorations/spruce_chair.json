@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:spruce_chair"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

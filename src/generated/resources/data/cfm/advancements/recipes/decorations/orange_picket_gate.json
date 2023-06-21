@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:orange_picket_gate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

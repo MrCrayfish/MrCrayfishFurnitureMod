@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:stripped_oak_mail_box"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

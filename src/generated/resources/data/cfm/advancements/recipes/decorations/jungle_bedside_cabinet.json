@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:jungle_bedside_cabinet"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

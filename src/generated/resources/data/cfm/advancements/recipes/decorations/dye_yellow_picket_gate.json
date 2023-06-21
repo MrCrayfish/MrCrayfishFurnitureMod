@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:dye_yellow_picket_gate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

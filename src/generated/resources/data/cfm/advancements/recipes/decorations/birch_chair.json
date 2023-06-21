@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:birch_chair"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

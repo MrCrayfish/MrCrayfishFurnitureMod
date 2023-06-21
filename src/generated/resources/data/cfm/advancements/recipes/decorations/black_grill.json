@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:black_grill"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

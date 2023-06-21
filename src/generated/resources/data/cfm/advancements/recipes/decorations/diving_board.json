@@ -28,5 +28,6 @@
     "recipes": [
       "cfm:diving_board"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

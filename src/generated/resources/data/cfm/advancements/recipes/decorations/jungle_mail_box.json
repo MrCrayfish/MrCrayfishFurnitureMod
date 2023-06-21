@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:jungle_mail_box"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -54,5 +54,6 @@
     "recipes": [
       "cfm:light_blue_kitchen_drawer"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

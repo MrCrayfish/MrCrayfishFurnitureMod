@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:crimson_bedside_cabinet"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

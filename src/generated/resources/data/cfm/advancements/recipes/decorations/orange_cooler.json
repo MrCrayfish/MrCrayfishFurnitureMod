@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:orange_cooler"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

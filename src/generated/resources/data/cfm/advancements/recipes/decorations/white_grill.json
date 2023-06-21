@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:white_grill"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

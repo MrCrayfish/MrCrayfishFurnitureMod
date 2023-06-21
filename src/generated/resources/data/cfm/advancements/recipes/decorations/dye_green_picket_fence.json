@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:dye_green_picket_fence"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

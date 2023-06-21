@@ -30,5 +30,6 @@
     "recipes": [
       "cfm:acacia_hedge"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:light_gray_cooler"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

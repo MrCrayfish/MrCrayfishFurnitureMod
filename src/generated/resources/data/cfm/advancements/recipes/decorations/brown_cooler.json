@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:brown_cooler"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

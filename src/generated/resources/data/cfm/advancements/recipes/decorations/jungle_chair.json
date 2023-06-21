@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:jungle_chair"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

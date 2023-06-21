@@ -41,5 +41,6 @@
     "recipes": [
       "cfm:brown_grill"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

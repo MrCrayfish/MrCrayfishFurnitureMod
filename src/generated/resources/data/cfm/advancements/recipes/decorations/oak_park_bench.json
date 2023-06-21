@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:oak_park_bench"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

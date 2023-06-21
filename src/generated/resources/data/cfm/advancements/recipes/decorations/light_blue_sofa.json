@@ -30,5 +30,6 @@
     "recipes": [
       "cfm:light_blue_sofa"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:stripped_warped_chair"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

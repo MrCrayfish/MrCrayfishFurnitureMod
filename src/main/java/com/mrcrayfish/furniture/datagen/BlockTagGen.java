@@ -101,7 +101,9 @@ public class BlockTagGen extends BlockTagsProvider
         }
 
         // Adds upgraded fences and gates to normal fence and gate tags
+        this.tag(BlockTags.FENCES).addTag(ModTags.Blocks.PICKET_FENCES);
         this.tag(BlockTags.FENCES).addTag(ModTags.Blocks.UPGRADED_FENCES);
+        this.tag(BlockTags.FENCE_GATES).addTag(ModTags.Blocks.PICKET_FENCE_GATES);
         this.tag(BlockTags.FENCE_GATES).addTag(ModTags.Blocks.UPGRADED_FENCE_GATES);
 
         // Dynamically gets all wooden blocks and marks them as mineable with an axe

@@ -43,5 +43,6 @@
     "recipes": [
       "cfm:mangrove_crate"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

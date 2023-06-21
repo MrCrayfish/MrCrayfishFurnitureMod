@@ -56,5 +56,6 @@
     "recipes": [
       "cfm:birch_kitchen_sink_dark"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "minecraft:packed_ice_from_freezing"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }
