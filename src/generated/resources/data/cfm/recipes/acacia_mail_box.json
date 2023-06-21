@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "mail_box",
   "key": {
     "C": {
@@ -16,5 +17,6 @@
   ],
   "result": {
     "item": "cfm:acacia_mail_box"
-  }
+  },
+  "show_notification": true
 }

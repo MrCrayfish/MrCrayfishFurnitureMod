@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "A": {
       "item": "minecraft:andesite"
@@ -15,5 +16,6 @@
   "result": {
     "count": 16,
     "item": "cfm:rock_path"
-  }
+  },
+  "show_notification": true
 }

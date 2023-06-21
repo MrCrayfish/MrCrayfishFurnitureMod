@@ -2,6 +2,8 @@ package com.mrcrayfish.furniture.common.mail;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
@@ -133,7 +135,7 @@ public class MailBox implements INBTSerializable<CompoundTag>
         this.ownerId = compound.getUUID("OwnerUUID");
         this.ownerName = compound.getString("OwnerName");
         this.pos = BlockPos.of(compound.getLong("Pos"));
-        this.levelResourceKey = ResourceKey.create(Registry.DIMENSION_REGISTRY, new ResourceLocation(compound.getString("World")));
+        this.levelResourceKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(compound.getString("World")));
 
         if(compound.contains("MailStorage", Tag.TAG_LIST))
         {

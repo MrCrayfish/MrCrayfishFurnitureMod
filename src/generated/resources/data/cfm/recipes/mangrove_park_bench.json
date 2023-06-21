@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "park_bench",
   "key": {
     "L": {
@@ -17,5 +18,6 @@
   "result": {
     "count": 4,
     "item": "cfm:mangrove_park_bench"
-  }
+  },
+  "show_notification": true
 }

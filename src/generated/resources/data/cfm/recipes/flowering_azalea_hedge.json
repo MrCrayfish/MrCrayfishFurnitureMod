@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "hedge",
   "key": {
     "L": {
@@ -13,5 +14,6 @@
   "result": {
     "count": 12,
     "item": "cfm:flowering_azalea_hedge"
-  }
+  },
+  "show_notification": true
 }

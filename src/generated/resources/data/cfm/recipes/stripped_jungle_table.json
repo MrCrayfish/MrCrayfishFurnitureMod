@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "table",
   "key": {
     "L": {
@@ -17,5 +18,6 @@
   "result": {
     "count": 4,
     "item": "cfm:stripped_jungle_table"
-  }
+  },
+  "show_notification": true
 }

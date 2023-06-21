@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "chair",
   "key": {
     "L": {
@@ -17,5 +18,6 @@
   "result": {
     "count": 4,
     "item": "cfm:crimson_chair"
-  }
+  },
+  "show_notification": true
 }

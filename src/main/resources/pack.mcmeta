@@ -1,6 +1,8 @@
 {
     "pack": {
-        "description": "Furniture resources",
-        "pack_format": 9
+        "description": "MrCrayfish's Furniture Mod resources",
+        "pack_format": 13,
+        "forge:resource_pack_format": 13,
+        "forge:data_pack_format": 12
     }
 }

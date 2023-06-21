@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "trampoline",
   "key": {
     "I": {
@@ -20,5 +21,6 @@
   "result": {
     "item": "cfm:trampoline",
     "nbt": "{BlockEntityTag:{Color:2}}"
-  }
+  },
+  "show_notification": true
 }

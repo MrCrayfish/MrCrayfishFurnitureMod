@@ -14,7 +14,9 @@ import com.mrcrayfish.furniture.datagen.BlockTagGen;
 import com.mrcrayfish.furniture.datagen.ItemTagGen;
 import com.mrcrayfish.furniture.datagen.LootTableGen;
 import com.mrcrayfish.furniture.datagen.RecipeGen;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -30,11 +32,12 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.concurrent.CompletableFuture;
+
 @Mod(Reference.MOD_ID)
 public class FurnitureMod
 {
     public static final Logger LOGGER = LogManager.getLogger(Reference.MOD_ID);
-    public static final CreativeModeTab GROUP = new FurnitureModTab(Reference.MOD_ID);
 
     public FurnitureMod()
     {
@@ -57,6 +60,7 @@ public class FurnitureMod
             eventBus.addListener(ClientHandler::onRegisterItemColors);
             eventBus.addListener(ClientHandler::onRegisterRenderers);
             eventBus.addListener(ClientHandler::onRegisterGeometryLoaders);
+            eventBus.addListener(ClientHandler::onRegisterCreativeTab);
         });
     }
 
@@ -73,11 +77,13 @@ public class FurnitureMod
     private void onGatherData(GatherDataEvent event)
     {
         DataGenerator generator = event.getGenerator();
+        PackOutput output = generator.getPackOutput();
         ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-        BlockTagGen blockTagGen = new BlockTagGen(generator, existingFileHelper);
-        generator.addProvider(event.includeServer(), new RecipeGen(generator));
-        generator.addProvider(event.includeServer(), new LootTableGen(generator));
+        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
+        BlockTagGen blockTagGen = new BlockTagGen(output, lookupProvider, existingFileHelper);
+        generator.addProvider(event.includeServer(), new RecipeGen(output));
+        generator.addProvider(event.includeServer(), new LootTableGen(output));
         generator.addProvider(event.includeServer(), blockTagGen);
-        generator.addProvider(event.includeServer(), new ItemTagGen(generator, blockTagGen, existingFileHelper));
+        generator.addProvider(event.includeServer(), new ItemTagGen(output, lookupProvider, blockTagGen.contentsGetter(), existingFileHelper));
     }
 }

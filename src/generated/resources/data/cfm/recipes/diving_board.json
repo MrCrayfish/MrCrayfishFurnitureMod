@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "C": {
       "item": "minecraft:white_concrete"
@@ -18,5 +19,6 @@
   ],
   "result": {
     "item": "cfm:diving_board"
-  }
+  },
+  "show_notification": true
 }

@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "equipment",
   "key": {
     "B": {
       "item": "minecraft:iron_bars"
@@ -18,5 +19,6 @@
   ],
   "result": {
     "item": "cfm:spatula"
-  }
+  },
+  "show_notification": true
 }

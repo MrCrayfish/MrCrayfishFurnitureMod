@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "kitchen_sink",
   "key": {
     "B": {
@@ -23,5 +24,6 @@
   "result": {
     "count": 2,
     "item": "cfm:crimson_kitchen_sink_light"
-  }
+  },
+  "show_notification": true
 }

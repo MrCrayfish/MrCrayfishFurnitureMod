@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.client.event;
 import com.google.common.collect.Lists;
 import com.mrcrayfish.furniture.FurnitureMod;
 import com.mrcrayfish.furniture.Reference;
+import com.mrcrayfish.furniture.client.ClientHandler;
 import com.mrcrayfish.furniture.client.gui.widget.button.IconButton;
 import com.mrcrayfish.furniture.client.gui.widget.button.TagButton;
 import com.mrcrayfish.furniture.common.ModTags;
@@ -10,12 +11,15 @@ import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
@@ -39,6 +43,7 @@ public class CreativeScreenEvents
 {
     private static final ResourceLocation ICONS = new ResourceLocation(Reference.MOD_ID, "textures/gui/icons.png");
     private static int startIndex;
+    private static CreativeModeTab lastTab = CreativeModeTabs.getDefaultTab();
 
     private List<TagFilter> filters;
     private List<TagButton> buttons;
@@ -46,7 +51,6 @@ public class CreativeScreenEvents
     private Button btnScrollDown;
     private Button btnEnableAll;
     private Button btnDisableAll;
-    private boolean viewingFurnitureTab;
     private int guiCenterX = 0;
     private int guiCenterY = 0;
 
@@ -66,22 +70,22 @@ public class CreativeScreenEvents
                 this.compileItems();
             }
 
-            this.viewingFurnitureTab = false;
             this.guiCenterX = creativeScreen.getGuiLeft();
             this.guiCenterY = creativeScreen.getGuiTop();
-            this.buttons = new ArrayList<>();
+            this.buttons = this.createTagButtons();
+            this.buttons.forEach(event::addListener);
 
-            event.addListener(this.btnScrollUp = new IconButton(this.guiCenterX - 22, this.guiCenterY - 12, Component.translatable("gui.button.cfm.scroll_filters_up"), button -> {
+            event.addListener(this.btnScrollUp = new IconButton(this.guiCenterX - 22, this.guiCenterY - 12, button -> {
                 if(startIndex > 0) startIndex--;
                 this.updateTagButtons();
             }, ICONS, 64, 0));
 
-            event.addListener(this.btnScrollDown = new IconButton(this.guiCenterX - 22, this.guiCenterY + 127, Component.translatable("gui.button.cfm.scroll_filters_down"), button -> {
+            event.addListener(this.btnScrollDown = new IconButton(this.guiCenterX - 22, this.guiCenterY + 127, button -> {
                 if(startIndex <= filters.size() - 4 - 1) startIndex++;
                 this.updateTagButtons();
             }, ICONS, 80, 0));
 
-            event.addListener(this.btnEnableAll = new IconButton(this.guiCenterX - 50, this.guiCenterY + 10, Component.translatable("gui.button.cfm.enable_filters"), button -> {
+            event.addListener(this.btnEnableAll = new IconButton(this.guiCenterX - 50, this.guiCenterY + 10, button -> {
                 this.filters.forEach(filters -> filters.setEnabled(true));
                 this.buttons.forEach(TagButton::updateState);
                 Screen screen = Minecraft.getInstance().screen;
@@ -90,8 +94,9 @@ public class CreativeScreenEvents
                     this.updateItems((CreativeModeInventoryScreen) screen);
                 }
             }, ICONS, 96, 0));
+            this.btnEnableAll.setTooltip(Tooltip.create(Component.translatable("gui.button.cfm.enable_filters")));
 
-            event.addListener(this.btnDisableAll = new IconButton(this.guiCenterX - 50, this.guiCenterY + 32, Component.translatable("gui.button.cfm.disable_filters"), button -> {
+            event.addListener(this.btnDisableAll = new IconButton(this.guiCenterX - 50, this.guiCenterY + 32, button -> {
                 this.filters.forEach(filters -> filters.setEnabled(false));
                 this.buttons.forEach(TagButton::updateState);
                 Screen screen = Minecraft.getInstance().screen;
@@ -100,65 +105,9 @@ public class CreativeScreenEvents
                     this.updateItems((CreativeModeInventoryScreen) screen);
                 }
             }, ICONS, 112, 0));
+            this.btnDisableAll.setTooltip(Tooltip.create(Component.translatable("gui.button.cfm.disable_filters")));
 
-            this.btnScrollUp.visible = false;
-            this.btnScrollDown.visible = false;
-            this.btnEnableAll.visible = false;
-            this.btnDisableAll.visible = false;
-
-            this.updateTagButtons();
-
-            if(creativeScreen.getSelectedTab() == FurnitureMod.GROUP.getId())
-            {
-                this.btnScrollUp.visible = true;
-                this.btnScrollDown.visible = true;
-                this.btnEnableAll.visible = true;
-                this.btnDisableAll.visible = true;
-                this.viewingFurnitureTab = true;
-                this.buttons.forEach(button -> button.visible = true);
-                this.updateItems(creativeScreen);
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public void onScreenClick(ScreenEvent.MouseButtonPressed.Pre event)
-    {
-        if(event.getButton() != GLFW.GLFW_MOUSE_BUTTON_LEFT)
-            return;
-
-        if(event.getScreen() instanceof CreativeModeInventoryScreen)
-        {
-            for(Button button : this.buttons)
-            {
-                if(button.isMouseOver(event.getMouseX(), event.getMouseY()))
-                {
-                    if(button.mouseClicked(event.getMouseX(), event.getMouseY(), event.getButton()))
-                    {
-                        return;
-                    }
-                }
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public void onScreenDrawPre(ScreenEvent.Render.Pre event)
-    {
-        if(event.getScreen() instanceof CreativeModeInventoryScreen creativeScreen)
-        {
-            if(creativeScreen.getSelectedTab() == FurnitureMod.GROUP.getId())
-            {
-                if(!this.viewingFurnitureTab)
-                {
-                    this.updateItems(creativeScreen);
-                    this.viewingFurnitureTab = true;
-                }
-            }
-            else
-            {
-                this.viewingFurnitureTab = false;
-            }
+            this.onSwitchCreativeTab(CreativeModeInventoryScreen.selectedTab, creativeScreen);
         }
     }
 
@@ -170,65 +119,62 @@ public class CreativeScreenEvents
             this.guiCenterX = creativeScreen.getGuiLeft();
             this.guiCenterY = creativeScreen.getGuiTop();
 
-            if(creativeScreen.getSelectedTab() == FurnitureMod.GROUP.getId())
+            CreativeModeTab tab = CreativeModeInventoryScreen.selectedTab;
+            if(lastTab != tab)
             {
-                this.btnScrollUp.visible = true;
-                this.btnScrollDown.visible = true;
-                this.btnEnableAll.visible = true;
-                this.btnDisableAll.visible = true;
-                this.buttons.forEach(button -> button.visible = true);
-
-                /* Render buttons */
-                this.buttons.forEach(button ->
-                {
-                    button.render(event.getPoseStack(), event.getMouseX(), event.getMouseY(), event.getPartialTick());
-                });
-
-                /* Render tooltips after so it renders above buttons */
-                this.buttons.forEach(button ->
-                {
-                    if(button.isMouseOver(event.getMouseX(), event.getMouseY()))
-                    {
-                        creativeScreen.renderTooltip(event.getPoseStack(), button.getCategory().getName(), event.getMouseX(), event.getMouseY());
-                    }
-                });
-
-                if(this.btnEnableAll.isMouseOver(event.getMouseX(), event.getMouseY()))
-                {
-                    creativeScreen.renderTooltip(event.getPoseStack(), this.btnEnableAll.getMessage(), event.getMouseX(), event.getMouseY());
-                }
-
-                if(this.btnDisableAll.isMouseOver(event.getMouseX(), event.getMouseY()))
-                {
-                    creativeScreen.renderTooltip(event.getPoseStack(), this.btnDisableAll.getMessage(), event.getMouseX(), event.getMouseY());
-                }
-            }
-            else
-            {
-                this.btnScrollUp.visible = false;
-                this.btnScrollDown.visible = false;
-                this.btnEnableAll.visible = false;
-                this.btnDisableAll.visible = false;
-                this.buttons.forEach(button -> button.visible = false);
+                this.onSwitchCreativeTab(tab, creativeScreen);
+                lastTab = tab;
             }
         }
     }
 
+    private void onSwitchCreativeTab(CreativeModeTab tab, CreativeModeInventoryScreen screen)
+    {
+        if(tab == ClientHandler.creativeTab)
+        {
+            this.btnScrollUp.visible = true;
+            this.btnScrollDown.visible = true;
+            this.btnEnableAll.visible = true;
+            this.btnDisableAll.visible = true;
+            this.updateTagButtons();
+            this.updateItems(screen);
+        }
+        else
+        {
+            this.btnScrollUp.visible = false;
+            this.btnScrollDown.visible = false;
+            this.btnEnableAll.visible = false;
+            this.btnDisableAll.visible = false;
+            this.buttons.forEach(button -> button.visible = false);
+        }
+    }
+
+    private List<TagButton> createTagButtons()
+    {
+        List<TagButton> tagButtons = new ArrayList<>();
+        for(TagFilter filter : this.filters)
+        {
+            TagButton tagButton = new TagButton(this.guiCenterX - 28, this.guiCenterY, filter, button -> {
+                Screen screen = Minecraft.getInstance().screen;
+                if(screen instanceof CreativeModeInventoryScreen creativeScreen)
+                {
+                    this.updateItems(creativeScreen);
+                }
+            });
+            tagButton.visible = false;
+            tagButtons.add(tagButton);
+        }
+        return tagButtons;
+    }
+
     private void updateTagButtons()
     {
-        final Button.OnPress onPress = button ->
+        this.buttons.forEach(button -> button.visible = false);
+        for(int i = startIndex; i < startIndex + 4 && i < this.buttons.size(); i++)
         {
-            Screen screen = Minecraft.getInstance().screen;
-            if(screen instanceof CreativeModeInventoryScreen creativeScreen)
-            {
-                this.updateItems(creativeScreen);
-            }
-        };
-        this.buttons.clear();
-        for(int i = startIndex; i < startIndex + 4 && i < this.filters.size(); i++)
-        {
-            TagButton button = new TagButton(this.guiCenterX - 28, this.guiCenterY + 29 * (i - startIndex) + 10, this.filters.get(i), onPress);
-            this.buttons.add(button);
+            TagButton button = this.buttons.get(i);
+            button.setY(this.guiCenterY + 29 * (i - startIndex) + 11);
+            button.visible = true;
         }
         this.btnScrollUp.active = startIndex > 0;
         this.btnScrollDown.active = startIndex <= this.filters.size() - 4 - 1;
@@ -249,7 +195,7 @@ public class CreativeScreenEvents
         NonNullList<ItemStack> newItems = NonNullList.create();
         for(Item item : categorisedItems)
         {
-            item.fillItemCategory(FurnitureMod.GROUP, newItems);
+            newItems.add(new ItemStack(item));
         }
 
         menu.items.clear();
@@ -270,7 +216,6 @@ public class CreativeScreenEvents
         };
 
         ForgeRegistries.ITEMS.getValues().stream()
-            .filter(item -> item.getItemCategory() == FurnitureMod.GROUP)
             .filter(item -> Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item)).getNamespace().equals(Reference.MOD_ID))
             .forEach(item -> {
                 ForgeRegistries.ITEMS.getHolder(item).ifPresent(holder -> {

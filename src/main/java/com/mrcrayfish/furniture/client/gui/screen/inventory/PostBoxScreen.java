@@ -12,6 +12,7 @@ import com.mrcrayfish.furniture.util.RenderUtil;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -70,7 +71,8 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
         this.searchField.setMaxLength(32);
         this.searchField.setTextColor(16777215);
         this.addWidget(this.searchField);
-        this.btnSend = this.addRenderableWidget(new IconButton(this.leftPos + 147, this.topPos + 53, Component.translatable("gui.button.cfm.send_mail"), this::sendMail, ICONS_TEXTURE, 32, 0));
+        this.btnSend = this.addRenderableWidget(new IconButton(this.leftPos + 147, this.topPos + 53, this::sendMail, ICONS_TEXTURE, 32, 0));
+        this.btnSend.setTooltip(Tooltip.create(Component.translatable("gui.button.cfm.send_mail")));
         this.btnSend.active = false;
     }
 

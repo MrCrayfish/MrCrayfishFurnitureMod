@@ -11,11 +11,15 @@ import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.advancements.RequirementsStrategy;
 import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.recipes.CraftingRecipeBuilder;
 import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
@@ -29,27 +33,30 @@ import java.util.function.Consumer;
 /**
  * Since Forge allows NBT tag on the output of the crafting item, this builder allows you to set
  * that tag. This is used only for data generators.
- *
+ * <p>
  * Author: MrCrayfish
  */
-public class ForgeShapedRecipeBuilder
+public class ForgeShapedRecipeBuilder extends CraftingRecipeBuilder
 {
+    private final RecipeCategory category;
     private final String key;
     private final ItemStack result;
     private final List<String> pattern = Lists.newArrayList();
     private final Map<Character, Ingredient> ingredientMap = Maps.newLinkedHashMap();
     private final Advancement.Builder advancementBuilder = Advancement.Builder.advancement();
     private String group;
+    private boolean showNotification = true;
 
-    private ForgeShapedRecipeBuilder(String key, ItemStack resultIn)
+    private ForgeShapedRecipeBuilder(RecipeCategory category, String key, ItemStack resultIn)
     {
+        this.category = category;
         this.key = key;
         this.result = resultIn.copy();
     }
 
-    public static ForgeShapedRecipeBuilder shapedRecipe(String key, ItemStack resultIn)
+    public static ForgeShapedRecipeBuilder shapedRecipe(RecipeCategory category, String key, ItemStack resultIn)
     {
-        return new ForgeShapedRecipeBuilder(key, resultIn);
+        return new ForgeShapedRecipeBuilder(category, key, resultIn);
     }
 
     public ForgeShapedRecipeBuilder key(Character symbol, TagKey<Item> tagIn)
@@ -106,12 +113,12 @@ public class ForgeShapedRecipeBuilder
 
     public void build(Consumer<FinishedRecipe> consumerIn)
     {
-        this.build(consumerIn, Registry.ITEM.getKey(this.result.getItem()));
+        this.build(consumerIn, BuiltInRegistries.ITEM.getKey(this.result.getItem()));
     }
 
     public void build(Consumer<FinishedRecipe> consumerIn, String save)
     {
-        ResourceLocation resourcelocation = Registry.ITEM.getKey(this.result.getItem());
+        ResourceLocation resourcelocation = BuiltInRegistries.ITEM.getKey(this.result.getItem());
         if((new ResourceLocation(save)).equals(resourcelocation))
         {
             throw new IllegalStateException("Shaped Recipe " + save + " should remove its 'save' argument");
@@ -129,7 +136,7 @@ public class ForgeShapedRecipeBuilder
     {
         this.validate(id);
         this.advancementBuilder.parent(new ResourceLocation("recipes/root")).addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(id)).rewards(AdvancementRewards.Builder.recipe(id)).requirements(RequirementsStrategy.OR);
-        consumerIn.accept(new Result(this.key, id, this.result, this.group == null ? "" : this.group, this.pattern, this.ingredientMap, this.advancementBuilder, new ResourceLocation(id.getNamespace(), "recipes/" + this.result.getItem().getItemCategory().getRecipeFolderName() + "/" + id.getPath())));
+        consumerIn.accept(new Result(this.key, id, this.result, this.group == null ? "" : this.group, determineBookCategory(this.category), this.pattern, this.ingredientMap, this.advancementBuilder, id.withPrefix("recipes/" + this.category.getFolderName() + "/"), this.showNotification));
     }
 
     /**
@@ -175,7 +182,7 @@ public class ForgeShapedRecipeBuilder
         }
     }
 
-    public static class Result implements FinishedRecipe
+    public static class Result extends CraftingRecipeBuilder.CraftingResult
     {
         private final String key;
         private final ResourceLocation id;
@@ -185,21 +192,27 @@ public class ForgeShapedRecipeBuilder
         private final Map<Character, Ingredient> ingredientMap;
         private final Advancement.Builder advancementBuilder;
         private final ResourceLocation advancementId;
+        private final boolean showNotification;
 
-        public Result(String key, ResourceLocation idIn, ItemStack resultIn, String groupIn, List<String> patternIn, Map<Character, Ingredient> keyIn, Advancement.Builder advancementBuilderIn, ResourceLocation advancementIdIn)
+        public Result(String key, ResourceLocation id, ItemStack result, String group, CraftingBookCategory category, List<String> pattern, Map<Character, Ingredient> ingredientMap, Advancement.Builder advancementBuilder, ResourceLocation advancementId, boolean showNotification)
         {
+            super(category);
             this.key = key;
-            this.id = idIn;
-            this.result = resultIn;
-            this.group = groupIn;
-            this.pattern = patternIn;
-            this.ingredientMap = keyIn;
-            this.advancementBuilder = advancementBuilderIn;
-            this.advancementId = advancementIdIn;
+            this.id = id;
+            this.result = result;
+            this.group = group;
+            this.pattern = pattern;
+            this.ingredientMap = ingredientMap;
+            this.advancementBuilder = advancementBuilder;
+            this.advancementId = advancementId;
+            this.showNotification = showNotification;
         }
 
+        @Override
         public void serializeRecipeData(JsonObject json)
         {
+            super.serializeRecipeData(json);
+
             if(!this.group.isEmpty())
             {
                 json.addProperty("group", this.group);
@@ -222,7 +235,7 @@ public class ForgeShapedRecipeBuilder
 
             json.add("key", jsonobject);
             JsonObject result = new JsonObject();
-            result.addProperty("item", Registry.ITEM.getKey(this.result.getItem()).toString());
+            result.addProperty("item", BuiltInRegistries.ITEM.getKey(this.result.getItem()).toString());
             if(this.result.getCount() > 1)
             {
                 result.addProperty("count", this.result.getCount());
@@ -232,6 +245,7 @@ public class ForgeShapedRecipeBuilder
                 result.addProperty("nbt", this.result.getTag().toString());
             }
             json.add("result", result);
+            json.addProperty("show_notification", this.showNotification);
         }
 
         //TODO figure out what happened to serializers

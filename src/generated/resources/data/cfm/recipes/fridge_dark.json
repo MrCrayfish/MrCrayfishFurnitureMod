@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "fridge",
   "key": {
     "B": {
@@ -19,5 +20,6 @@
   ],
   "result": {
     "item": "cfm:fridge_dark"
-  }
+  },
+  "show_notification": true
 }

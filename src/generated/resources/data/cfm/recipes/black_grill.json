@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "grill",
   "key": {
     "B": {
@@ -19,5 +20,6 @@
   ],
   "result": {
     "item": "cfm:black_grill"
-  }
+  },
+  "show_notification": true
 }

@@ -7,6 +7,7 @@ import com.mrcrayfish.furniture.client.gui.screen.MailBoxSettingsScreen;
 import com.mrcrayfish.furniture.client.gui.widget.button.IconButton;
 import com.mrcrayfish.furniture.inventory.container.MailBoxMenu;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
@@ -36,9 +37,10 @@ public class MailBoxScreen extends AbstractContainerScreen<MailBoxMenu>
     protected void init()
     {
         super.init();
-        this.settingsButton = this.addRenderableWidget(new IconButton(this.leftPos + this.imageWidth + 2, this.topPos + 17, Component.translatable("gui.button.cfm.lock"), button -> {
+        this.settingsButton = this.addRenderableWidget(new IconButton(this.leftPos + this.imageWidth + 2, this.topPos + 17, button -> {
             this.minecraft.setScreen(new MailBoxSettingsScreen(this.menu.getMailBoxBlockEntity()));
         }, ICONS_TEXTURE, 48, 0));
+        this.settingsButton.setTooltip(Tooltip.create(Component.translatable("gui.button.cfm.lock")));
         this.settingsButton.visible = this.playerId.equals(this.menu.getMailBoxBlockEntity().getOwnerId());
     }
 

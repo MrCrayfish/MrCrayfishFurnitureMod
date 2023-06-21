@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "trampoline",
   "key": {
     "C": {
@@ -20,5 +21,6 @@
   "result": {
     "count": 2,
     "item": "cfm:light_gray_cooler"
-  }
+  },
+  "show_notification": true
 }

@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "kitchen_drawer",
   "key": {
     "B": {
@@ -23,5 +24,6 @@
   "result": {
     "count": 4,
     "item": "cfm:green_kitchen_drawer"
-  }
+  },
+  "show_notification": true
 }

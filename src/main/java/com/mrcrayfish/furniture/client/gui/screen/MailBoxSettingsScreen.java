@@ -48,21 +48,16 @@ public class MailBoxSettingsScreen extends Screen
         }
         this.addWidget(this.nameField);
 
-        this.btnSave = this.addRenderableWidget(new Button(guiLeft + 7, guiTop + 42, 79, 20, Component.translatable("gui.button.cfm.save"), button ->
-        {
-            if(this.isValidName())
-            {
-                PacketHandler.getPlayChannel()
-                        .sendToServer(new C2SMessageSetMailBoxName(this.nameField.getValue(), this.mailBoxBlockEntity.getBlockPos()));
+        this.btnSave = this.addRenderableWidget(Button.builder(Component.translatable("gui.button.cfm.save"), button -> {
+            if(this.isValidName()) {
+                PacketHandler.getPlayChannel().sendToServer(new C2SMessageSetMailBoxName(this.nameField.getValue(), this.mailBoxBlockEntity.getBlockPos()));
             }
-        }));
+        }).pos(guiLeft + 7, guiTop + 42).size(79, 20).build());
         this.btnSave.active = false;
 
-        this.addRenderableWidget(new Button(guiLeft + 91, guiTop + 42, 79, 20, Component.translatable("gui.button.cfm.back"), button ->
-        {
-            PacketHandler.getPlayChannel()
-                    .sendToServer(new C2SMessageOpenMailBox(this.mailBoxBlockEntity.getBlockPos()));
-        }));
+        this.addRenderableWidget(Button.builder(Component.translatable("gui.button.cfm.back"), button -> {
+            PacketHandler.getPlayChannel().sendToServer(new C2SMessageOpenMailBox(this.mailBoxBlockEntity.getBlockPos()));
+        }).pos(guiLeft + 91, guiTop + 42).size(79, 20).build());
     }
 
     @Override

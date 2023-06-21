@@ -20,6 +20,7 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 minecraft {
     mappings channel: project.property('mappings.channel'), version: project.property('mappings.version')
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     runs {
         client {
@@ -65,6 +66,7 @@ minecraft {
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
             args '--mod', 'cfm', '--all', '--output', file('src/generated/resources/')
+            arg '-mixin.config=cfm.mixins.json'
             mods {
                 cfm {
                     source sourceSets.main
@@ -81,9 +83,9 @@ repositories {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.19.2-43.2.0'
-    implementation fg.deobf('curse.maven:configured-457570:4011355')
-    implementation fg.deobf('curse.maven:catalogue-459701:3873264')
+    minecraft 'net.minecraftforge:forge:1.19.4-45.1.0'
+    implementation fg.deobf('curse.maven:configured-457570:4462894')
+    implementation fg.deobf('curse.maven:catalogue-459701:4496718')
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 

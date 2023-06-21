@@ -1,7 +1,7 @@
 {
     "required": true,
     "package": "com.mrcrayfish.furniture.mixin",
-    "compatibilityLevel": "JAVA_8",
+    "compatibilityLevel": "JAVA_17",
     "minVersion": "0.8",
     "refmap": "cfm.refmap.json",
     "client": [
@@ -9,5 +9,6 @@
     ],
     "injectors": {
         "defaultRequire": 1
-    }
+    },
+    "mixins": [ "client.SimpleCookingRecipeBuilderMixin" ]
 }

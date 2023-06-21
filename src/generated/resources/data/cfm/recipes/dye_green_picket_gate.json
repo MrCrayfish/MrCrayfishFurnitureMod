@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "picket_fence",
   "key": {
     "D": {
@@ -17,5 +18,6 @@
   "result": {
     "count": 8,
     "item": "cfm:green_picket_gate"
-  }
+  },
+  "show_notification": true
 }

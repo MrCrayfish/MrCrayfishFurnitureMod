@@ -12,6 +12,7 @@ import com.mrcrayfish.furniture.tileentity.MailBoxBlockEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.Tag;
+import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraftforge.network.IContainerFactory;
@@ -56,7 +57,6 @@ public class ModContainers
 
     private static <T extends AbstractContainerMenu> RegistryObject<MenuType<T>> register(String key, MenuType.MenuSupplier<T> supplier)
     {
-        MenuType<T> type = new MenuType<>(supplier);
-        return REGISTER.register(key, () -> type);
+        return REGISTER.register(key, () -> new MenuType<>(supplier, FeatureFlags.DEFAULT_FLAGS));
     }
 }

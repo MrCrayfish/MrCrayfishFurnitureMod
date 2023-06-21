@@ -31,8 +31,8 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.SidedInvWrapper;
 
@@ -204,7 +204,7 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
     {
         if(!this.items.get(0).isEmpty() && recipe != null)
         {
-            ItemStack outputStack = recipe.getResultItem();
+            ItemStack outputStack = recipe.getResultItem(this.level.registryAccess());
             if(outputStack.isEmpty())
             {
                 return false;
@@ -236,7 +236,7 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
         if(recipe != null && this.canFreeze(recipe))
         {
             ItemStack sourceStack = this.items.get(0);
-            ItemStack outputStack = recipe.getResultItem();
+            ItemStack outputStack = recipe.getResultItem(this.level.registryAccess());
             ItemStack resultStack = this.items.get(2);
             if(resultStack.isEmpty())
             {
@@ -466,7 +466,7 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
     @Override
     public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing)
     {
-        if(!this.remove && facing != null && capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+        if(!this.remove && facing != null && capability == ForgeCapabilities.ITEM_HANDLER)
         {
             if(facing == Direction.UP)
             {

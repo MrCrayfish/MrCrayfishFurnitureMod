@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "group": "kitchen_counter",
   "key": {
     "C": {
@@ -20,5 +21,6 @@
   "result": {
     "count": 8,
     "item": "cfm:magenta_kitchen_counter"
-  }
+  },
+  "show_notification": true
 }

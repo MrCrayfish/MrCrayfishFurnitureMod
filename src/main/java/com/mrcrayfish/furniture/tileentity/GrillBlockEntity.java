@@ -328,7 +328,7 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
                             Optional<GrillCookingRecipe> optional = this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.GRILL_COOKING.get(), new SimpleContainer(this.grill.get(i)), this.level);
                             if(optional.isPresent())
                             {
-                                this.grill.set(i, optional.get().getResultItem().copy());
+                                this.grill.set(i, optional.get().getResultItem(this.level.registryAccess()).copy());
 
                             }
                         }
