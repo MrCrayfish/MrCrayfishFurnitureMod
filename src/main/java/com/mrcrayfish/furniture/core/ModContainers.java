@@ -33,7 +33,7 @@ public class ModContainers
 
     @SuppressWarnings("ConstantConditions")
     public static final RegistryObject<MenuType<CrateMenu>> CRATE = register("crate", (IContainerFactory<CrateMenu>) (windowId, playerInventory, data) -> {
-        CrateBlockEntity crateBlockEntity = (CrateBlockEntity) playerInventory.player.level.getBlockEntity(data.readBlockPos());
+        CrateBlockEntity crateBlockEntity = (CrateBlockEntity) playerInventory.player.level().getBlockEntity(data.readBlockPos());
         return new CrateMenu(windowId, playerInventory, crateBlockEntity, crateBlockEntity.isLocked());
     });
 
@@ -46,12 +46,12 @@ public class ModContainers
     });
 
     public static final RegistryObject<MenuType<MailBoxMenu>> MAIL_BOX = register("mail_box", (IContainerFactory<MailBoxMenu>) (windowId, playerInventory, data) -> {
-        MailBoxBlockEntity mailBoxBlockEntity = (MailBoxBlockEntity) playerInventory.player.level.getBlockEntity(data.readBlockPos());
+        MailBoxBlockEntity mailBoxBlockEntity = (MailBoxBlockEntity) playerInventory.player.level().getBlockEntity(data.readBlockPos());
         return new MailBoxMenu(windowId, playerInventory, mailBoxBlockEntity);
     });
 
     public static final RegistryObject<MenuType<FreezerMenu>> FREEZER = register("freezer", (IContainerFactory<FreezerMenu>) (windowId, playerInventory, data) -> {
-        FreezerBlockEntity freezerBlockEntity = (FreezerBlockEntity) playerInventory.player.level.getBlockEntity(data.readBlockPos());
+        FreezerBlockEntity freezerBlockEntity = (FreezerBlockEntity) playerInventory.player.level().getBlockEntity(data.readBlockPos());
         return new FreezerMenu(windowId, playerInventory, freezerBlockEntity);
     });
 

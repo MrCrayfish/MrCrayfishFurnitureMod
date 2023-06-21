@@ -34,7 +34,7 @@ public class FreezerMenu extends AbstractContainerMenu
 
         this.blockEntity = blockEntity;
         this.data = blockEntity.getFreezerData();
-        this.level = playerInventory.player.level;
+        this.level = playerInventory.player.level();
 
         this.addSlot(new Slot(blockEntity, 0, 56, 17));
         this.addSlot(new FreezerFuelSlot(this, blockEntity, 1, 56, 53));

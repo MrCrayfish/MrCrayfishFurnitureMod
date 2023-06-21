@@ -8,6 +8,7 @@ import com.mrcrayfish.furniture.client.gui.widget.button.IconButton;
 import com.mrcrayfish.furniture.client.gui.widget.button.TagButton;
 import com.mrcrayfish.furniture.common.ModTags;
 import com.mrcrayfish.furniture.core.ModBlocks;
+import com.mrcrayfish.furniture.core.ModCreativeTabs;
 import com.mrcrayfish.furniture.core.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
@@ -130,7 +131,7 @@ public class CreativeScreenEvents
 
     private void onSwitchCreativeTab(CreativeModeTab tab, CreativeModeInventoryScreen screen)
     {
-        if(tab == ClientHandler.creativeTab)
+        if(tab == ModCreativeTabs.MAIN.get())
         {
             this.btnScrollUp.visible = true;
             this.btnScrollDown.visible = true;

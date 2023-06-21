@@ -215,7 +215,7 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
             {
                 return true;
             }
-            else if(!resultStack.sameItem(outputStack))
+            else if(!ItemStack.isSameItem(resultStack, outputStack))
             {
                 return false;
             }
@@ -330,7 +330,7 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
     {
         for(Map.Entry<ResourceLocation, Integer> entry : this.usedRecipeCount.entrySet())
         {
-            player.level.getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) ->
+            player.level().getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) ->
             {
                 spawnExperienceOrbs(player, entry.getValue(), ((AbstractCookingRecipe) recipe).getExperience());
             });
@@ -358,7 +358,7 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
         {
             int splitExp = ExperienceOrb.getExperienceValue(count);
             count -= splitExp;
-            player.level.addFreshEntity(new ExperienceOrb(player.level, player.getX(), player.getY() + 0.5, player.getZ(), splitExp));
+            player.level().addFreshEntity(new ExperienceOrb(player.level(), player.getX(), player.getY() + 0.5, player.getZ(), splitExp));
         }
     }
 

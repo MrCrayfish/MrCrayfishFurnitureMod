@@ -9,6 +9,7 @@ import com.mojang.blaze3d.vertex.Tesselator;
 import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mrcrayfish.furniture.client.event.CreativeScreenEvents;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
@@ -54,20 +55,15 @@ public class TagButton extends Button
     }
 
     @Override
-    public void renderWidget(PoseStack poseStack, int mouseX, int mouseY, float partialTicks)
+    public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks)
     {
-        Minecraft minecraft = Minecraft.getInstance();
-        RenderSystem.setShaderTexture(0, TABS);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, this.alpha);
-
         int width = this.toggled ? 32 : 28;
         int textureX = 26;
         int textureY = this.toggled ? 32 : 0;
-        this.drawRotatedTexture(poseStack.last().pose(), this.getX(), this.getY(), textureX, textureY, width, 26);
-
-        ItemRenderer renderer = minecraft.getItemRenderer();
-        renderer.renderAndDecorateItem(poseStack, this.stack, this.getX() + 8, this.getY() + 5);
-        renderer.renderGuiItemDecorations(poseStack, minecraft.font, this.stack, this.getX() + 8, this.getY() + 5);
+        RenderSystem.setShaderTexture(0, TABS);
+        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, this.alpha);
+        this.drawRotatedTexture(graphics.pose().last().pose(), this.getX(), this.getY(), textureX, textureY, width, 26);
+        graphics.renderItem(this.stack, this.getX() + 8, this.getY() + 5);
     }
 
     private void drawRotatedTexture(Matrix4f matrix4f, int x, int y, int textureX, int textureY, int width, int height)

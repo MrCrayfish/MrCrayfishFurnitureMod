@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.client.gui.widget.button;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
@@ -37,15 +38,14 @@ public class IconButton extends Button
     }
 
     @Override
-    public void renderWidget(PoseStack poseStack, int mouseX, int mouseY, float partialTicks)
+    public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks)
     {
-        super.renderWidget(poseStack, mouseX, mouseY, partialTicks);
+        super.renderWidget(graphics, mouseX, mouseY, partialTicks);
         if(!this.active)
         {
             RenderSystem.setShaderColor(0.5F, 0.5F, 0.5F, 1.0F);
         }
-        RenderSystem.setShaderTexture(0, this.iconResource);
-        blit(poseStack, this.getX() + 2, this.getY() + 2, this.iconU, this.iconV, 16, 16);
+        graphics.blit(this.iconResource, this.getX() + 2, this.getY() + 2, this.iconU, this.iconV, 16, 16);
     }
 
     @Override

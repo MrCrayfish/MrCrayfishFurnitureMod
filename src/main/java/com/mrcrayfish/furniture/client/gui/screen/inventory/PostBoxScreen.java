@@ -10,6 +10,7 @@ import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.C2SMessageSendMail;
 import com.mrcrayfish.furniture.util.RenderUtil;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.components.Tooltip;
@@ -92,35 +93,30 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
     }
 
     @Override
-    protected void renderBg(PoseStack poseStack, float partialTicks, int mouseX, int mouseY)
+    protected void renderBg(GuiGraphics graphics, float partialTicks, int mouseX, int mouseY)
     {
-        RenderSystem.setShader(GameRenderer::getPositionColorTexShader);
-        RenderSystem.setShaderTexture(0, GUI_TEXTURE);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         int startX = (this.width - this.imageWidth) / 2;
         int startY = (this.height - this.imageHeight) / 2;
-        this.blit(poseStack, startX, startY, 0, 0, this.imageWidth, this.imageHeight);
+        graphics.blit(GUI_TEXTURE, startX, startY, 0, 0, this.imageWidth, this.imageHeight);
 
         if(this.menu.getMail().isEmpty())
         {
-            this.blit(poseStack, startX + 149, startY + 33, 116, 202, 16, 16);
+            graphics.blit(GUI_TEXTURE, startX + 149, startY + 33, 116, 202, 16, 16);
         }
 
-        this.searchField.render(poseStack,mouseX, mouseY, partialTicks);
+        this.searchField.render(graphics, mouseX, mouseY, partialTicks);
     }
 
     @Override
-    protected void renderLabels(PoseStack poseStack, int mouseX, int mouseY)
+    protected void renderLabels(GuiGraphics graphics, int mouseX, int mouseY)
     {
-        this.font.draw(poseStack, this.title.getString(), 8.0F, 6.0F, 0x404040);
-        this.font.draw(poseStack, this.playerInventoryTitle, 8.0F, (float) (this.imageHeight - 96 + 2), 0x404040);
+        //TODO fix labels
 
-        RenderSystem.setShader(GameRenderer::getPositionColorTexShader);
-        RenderSystem.setShaderTexture(0, GUI_TEXTURE);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         int scrollBarY = this.getScrollBarY(mouseY);
         int scrollBarUOffset = this.getMaxScroll() <= 0 ? SCROLL_BAR_WIDTH : 0;
-        this.blit(poseStack, 128, 32 + scrollBarY, 116 + scrollBarUOffset, 187, SCROLL_BAR_WIDTH, SCROLL_BAR_HEIGHT);
+        graphics.blit(GUI_TEXTURE, 128, 32 + scrollBarY, 116 + scrollBarUOffset, 187, SCROLL_BAR_WIDTH, SCROLL_BAR_HEIGHT);
 
         RenderUtil.scissor(this.leftPos + 8, this.topPos + 32, 116, 57);
         {
@@ -132,29 +128,28 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
             int startIndex = scroll / ITEM_HEIGHT;
             for(int i = startIndex; i < Math.min(startIndex + MAX_VISIBLE_ITEMS, this.filteredMailBoxList.size()); i++)
             {
+                PoseStack poseStack = graphics.pose();
                 poseStack.pushPose();
                 poseStack.translate(8, 32, 0);
                 poseStack.translate(0, -scroll, 0);
                 poseStack.translate(0, i * ITEM_HEIGHT, 0);
 
                 MailBoxEntry entry = this.filteredMailBoxList.get(i);
-
-                RenderSystem.setShaderTexture(0, GUI_TEXTURE);
-                RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-
                 boolean isSelected = entry == selected;
-                this.blit(poseStack, 0, 0, 0, 211 - (isSelected ? ITEM_HEIGHT : 0), ITEM_WIDTH, ITEM_HEIGHT);
+
+                RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
+                graphics.blit(GUI_TEXTURE, 0, 0, 0, 211 - (isSelected ? ITEM_HEIGHT : 0), ITEM_WIDTH, ITEM_HEIGHT);
 
                 if(isSelected)
                 {
-                    this.blit(poseStack, ITEM_WIDTH - 20, 5, 140, 187, 14, 12);
-                    this.font.draw(poseStack, ChatFormatting.BOLD + entry.getName(), 3, 3, 16777045);
-                    this.font.draw(poseStack, entry.getOwnerName(), 3, 13, 0xFFFFFF);
+                    graphics.blit(GUI_TEXTURE, ITEM_WIDTH - 20, 5, 140, 187, 14, 12);
+                    graphics.drawString(this.font, ChatFormatting.BOLD + entry.getName(), 3, 3, 16777045);
+                    graphics.drawString(this.font, entry.getOwnerName(), 3, 13, 0xFFFFFF);
                 }
                 else
                 {
-                    this.font.draw(poseStack, entry.getName(), 3, 3, 0xFFFFFF);
-                    this.font.draw(poseStack, entry.getOwnerName(), 3, 13, 0x777777);
+                    graphics.drawString(this.font, entry.getName(), 3, 3, 0xFFFFFF);
+                    graphics.drawString(this.font, entry.getOwnerName(), 3, 13, 0x777777);
                 }
 
                 poseStack.popPose();
@@ -164,11 +159,11 @@ public class PostBoxScreen extends AbstractContainerScreen<PostBoxMenu>
     }
 
     @Override
-    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks)
+    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks)
     {
-        this.renderBackground(poseStack);
-        super.render(poseStack,mouseX, mouseY, partialTicks);
-        this.renderTooltip(poseStack, mouseX, mouseY);
+        this.renderBackground(graphics);
+        super.render(graphics,mouseX, mouseY, partialTicks);
+        this.renderTooltip(graphics, mouseX, mouseY);
     }
 
     @Override

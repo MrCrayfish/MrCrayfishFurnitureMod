@@ -105,7 +105,7 @@ public class PostOffice extends SavedData
     {
         PostOffice office = get(player.server);
         Map<UUID, MailBox> mailBoxMap = office.playerMailboxMap.computeIfAbsent(player.getUUID(), uuid -> new HashMap<>());
-        mailBoxMap.put(mailBoxId, new MailBox(mailBoxId, name, player.getUUID(), player.getName().getString(), pos, player.level.dimension()));
+        mailBoxMap.put(mailBoxId, new MailBox(mailBoxId, name, player.getUUID(), player.getName().getString(), pos, player.level().dimension()));
         office.setDirty();
     }
 

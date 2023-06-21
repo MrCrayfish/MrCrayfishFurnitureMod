@@ -41,12 +41,12 @@ public class SeatEntity extends Entity
     public void tick()
     {
         super.tick();
-        if(!this.level.isClientSide)
+        if(!this.level().isClientSide)
         {
-            if(this.getPassengers().isEmpty() || this.level.isEmptyBlock(this.blockPosition()))
+            if(this.getPassengers().isEmpty() || this.level().isEmptyBlock(this.blockPosition()))
             {
                 this.remove(RemovalReason.DISCARDED);
-                this.level.updateNeighbourForOutputSignal(blockPosition(), this.level.getBlockState(blockPosition()).getBlock());
+                this.level().updateNeighbourForOutputSignal(blockPosition(), this.level().getBlockState(blockPosition()).getBlock());
             }
         }
     }
@@ -100,7 +100,7 @@ public class SeatEntity extends Entity
         Direction[] offsets = {original, original.getClockWise(), original.getCounterClockWise(), original.getOpposite()};
         for(Direction dir : offsets)
         {
-            Vec3 safeVec = DismountHelper.findSafeDismountLocation(entity.getType(), this.level, this.blockPosition().relative(dir), false);
+            Vec3 safeVec = DismountHelper.findSafeDismountLocation(entity.getType(), this.level(), this.blockPosition().relative(dir), false);
             if(safeVec != null)
             {
                 return safeVec.add(0, 0.25, 0);
@@ -117,9 +117,9 @@ public class SeatEntity extends Entity
     }
 
     @Override
-    public void positionRider(Entity entity)
+    public void positionRider(Entity entity, Entity.MoveFunction function)
     {
-        super.positionRider(entity);
+        super.positionRider(entity, function);
         this.clampYaw(entity);
     }
 

@@ -6,6 +6,7 @@ import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.C2SMessageSetDoorMat;
 import com.mrcrayfish.furniture.tileentity.DoorMatBlockEntity;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;
 import net.minecraft.client.gui.screens.Screen;
@@ -79,18 +80,16 @@ public class DoorMatScreen extends Screen
     }
 
     @Override
-    public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTicks)
+    public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks)
     {
-        this.renderBackground(poseStack);
-        RenderSystem.setShader(GameRenderer::getPositionColorTexShader);
-        RenderSystem.setShaderTexture(0, GUI_TEXTURE);
+        this.renderBackground(graphics);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         int startX = (this.width - this.xSize) / 2;
         int startY = (this.height - this.ySize) / 2;
-        this.blit(poseStack, startX, startY, 0, 0, this.xSize, this.ySize);
-        super.render(poseStack, mouseX, mouseY, partialTicks);
-        this.font.draw(poseStack, this.title.getString(), startX + 8.0F, startY + 6.0F, 0x404040);
-        this.nameField.render(poseStack, mouseX, mouseY, partialTicks);
+        graphics.blit(GUI_TEXTURE, startX, startY, 0, 0, this.xSize, this.ySize);
+        super.render(graphics, mouseX, mouseY, partialTicks);
+        graphics.drawString(this.font, this.title, startX + 8, startY + 6, 0x404040);
+        this.nameField.render(graphics, mouseX, mouseY, partialTicks);
     }
 
     private boolean isValidName()

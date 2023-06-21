@@ -46,7 +46,7 @@ public class ServerPlayHandler
 
     public static void handleOpenMailBoxMessage(ServerPlayer player, C2SMessageOpenMailBox message)
     {
-        Level level = player.getLevel();
+        Level level = player.level();
         if(!level.isLoaded(message.getPos()))
             return;
 
@@ -80,7 +80,7 @@ public class ServerPlayHandler
 
     public static void handleSetDoorMatMessage(ServerPlayer player, C2SMessageSetDoorMat message)
     {
-        Level level = player.getLevel();
+        Level level = player.level();
         if(!level.isLoaded(message.getPos()))
             return;
 
@@ -92,7 +92,7 @@ public class ServerPlayHandler
 
     public static void handleSetMailBoxNameMessage(ServerPlayer player, C2SMessageSetMailBoxName message)
     {
-        Level level = player.getLevel();
+        Level level = player.level();
         if(!level.isLoaded(message.getPos()))
             return;
 

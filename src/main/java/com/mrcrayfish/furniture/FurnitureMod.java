@@ -5,6 +5,7 @@ import com.mrcrayfish.furniture.common.CommonHandler;
 import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModContainers;
+import com.mrcrayfish.furniture.core.ModCreativeTabs;
 import com.mrcrayfish.furniture.core.ModEntities;
 import com.mrcrayfish.furniture.core.ModItems;
 import com.mrcrayfish.furniture.core.ModRecipeSerializers;
@@ -50,6 +51,7 @@ public class FurnitureMod
         ModSounds.REGISTER.register(eventBus);
         ModRecipeTypes.REGISTER.register(eventBus);
         ModRecipeSerializers.REGISTER.register(eventBus);
+        ModCreativeTabs.REGISTER.register(eventBus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, FurnitureConfig.clientSpec);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FurnitureConfig.commonSpec);
         eventBus.addListener(this::onCommonSetup);
@@ -60,7 +62,6 @@ public class FurnitureMod
             eventBus.addListener(ClientHandler::onRegisterItemColors);
             eventBus.addListener(ClientHandler::onRegisterRenderers);
             eventBus.addListener(ClientHandler::onRegisterGeometryLoaders);
-            eventBus.addListener(ClientHandler::onRegisterCreativeTab);
         });
     }
 

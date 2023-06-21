@@ -55,8 +55,8 @@ public class FreezerResultSlot extends Slot
     @Override
     protected void checkTakeAchievements(ItemStack stack)
     {
-        stack.onCraftedBy(this.player.level, this.player, this.removeCount);
-        if(!this.player.level.isClientSide && this.container instanceof FreezerBlockEntity)
+        stack.onCraftedBy(this.player.level(), this.player, this.removeCount);
+        if(!this.player.level().isClientSide && this.container instanceof FreezerBlockEntity)
         {
             ((FreezerBlockEntity) this.container).spawnExperience(this.player);
         }

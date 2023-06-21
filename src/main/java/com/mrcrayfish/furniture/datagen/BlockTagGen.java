@@ -9,7 +9,7 @@ import net.minecraft.data.tags.IntrinsicHolderTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagBuilder;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
@@ -107,14 +107,14 @@ public class BlockTagGen extends BlockTagsProvider
         // Dynamically gets all wooden blocks and marks them as mineable with an axe
         IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block> mineableWithAxe = this.tag(BlockTags.MINEABLE_WITH_AXE);
         ModBlocks.REGISTER.getEntries().stream()
-                .filter(s -> s.get().defaultBlockState().getMaterial() == Material.WOOD)
+                .filter(s -> s.get().defaultBlockState().getSoundType() == SoundType.WOOD)
                 .map(RegistryObject::get)
                 .forEach(mineableWithAxe::add);
 
         // Dynamically gets all stone blocks and marks them as mineable with an pickaxe
         IntrinsicHolderTagsProvider.IntrinsicTagAppender<Block> mineableWithPickaxe = this.tag(BlockTags.MINEABLE_WITH_PICKAXE);
         ModBlocks.REGISTER.getEntries().stream()
-                .filter(s -> s.get().defaultBlockState().getMaterial() == Material.STONE || s.get().defaultBlockState().getMaterial() == Material.METAL)
+                .filter(s -> s.get().defaultBlockState().getSoundType() == SoundType.STONE || s.get().defaultBlockState().getSoundType() == SoundType.METAL)
                 .map(RegistryObject::get)
                 .forEach(mineableWithPickaxe::add);
     }
