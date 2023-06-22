@@ -42,6 +42,7 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements EntityBlock
     public GrillBlock(Properties properties)
     {
         super(properties);
+        this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false));
     }
 
     @Override

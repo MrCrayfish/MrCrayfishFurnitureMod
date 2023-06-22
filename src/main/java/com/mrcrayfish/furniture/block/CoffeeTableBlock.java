@@ -37,7 +37,7 @@ public class CoffeeTableBlock extends FurnitureWaterloggedBlock
     public CoffeeTableBlock(Properties properties)
     {
         super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(NORTH, false).setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false).setValue(TALL, false));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(NORTH, false).setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false).setValue(TALL, false).setValue(WATERLOGGED, false));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
 

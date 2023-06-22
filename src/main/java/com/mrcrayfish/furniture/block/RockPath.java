@@ -17,6 +17,7 @@ public class RockPath extends FurnitureWaterloggedBlock
     public RockPath(Properties properties)
     {
         super(properties);
+        this.registerDefaultState(this.getStateDefinition().any().setValue(WATERLOGGED, false));
     }
 
     @Override

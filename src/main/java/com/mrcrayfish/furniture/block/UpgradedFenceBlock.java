@@ -39,7 +39,7 @@ public class UpgradedFenceBlock extends FurnitureWaterloggedBlock
     public UpgradedFenceBlock(Properties properties)
     {
         super(properties);
-        this.registerDefaultState(this.getStateDefinition().any().setValue(NORTH, false).setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false));
+        this.registerDefaultState(this.getStateDefinition().any().setValue(NORTH, false).setValue(EAST, false).setValue(SOUTH, false).setValue(WEST, false).setValue(WATERLOGGED, false));
         SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates(), false);
         COLLISION_SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates(), true);
     }
