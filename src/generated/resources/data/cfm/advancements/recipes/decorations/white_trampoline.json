@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "cfm:trampoline"
+        "recipe": "cfm:white_trampoline"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -22,7 +22,7 @@
         "items": [
           {
             "items": [
-              "minecraft:brown_wool"
+              "minecraft:white_wool"
             ]
           }
         ]
@@ -39,7 +39,7 @@
   ],
   "rewards": {
     "recipes": [
-      "cfm:trampoline"
+      "cfm:white_trampoline"
     ]
   },
   "sends_telemetry_event": true

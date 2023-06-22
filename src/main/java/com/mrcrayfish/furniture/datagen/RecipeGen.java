@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.datagen;
 
+import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModItems;
 import com.mrcrayfish.furniture.core.ModRecipeSerializers;
@@ -607,7 +608,7 @@ public class RecipeGen extends RecipeProvider
                 .setGroup("trampoline")
                 .addCriterion("has_wool", has(wool))
                 .addCriterion("has_iron", has(Tags.Items.INGOTS_IRON))
-                .build(recipeConsumer);
+                .build(recipeConsumer, new ResourceLocation(Reference.MOD_ID, color.getName() + "_trampoline"));
     }
 
     private static void cooler(Consumer<FinishedRecipe> recipeConsumer, ItemLike cooler, ItemLike terracotta)
