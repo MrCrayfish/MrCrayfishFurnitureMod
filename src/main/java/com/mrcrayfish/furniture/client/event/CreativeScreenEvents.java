@@ -10,6 +10,7 @@ import com.mrcrayfish.furniture.common.ModTags;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModCreativeTabs;
 import com.mrcrayfish.furniture.core.ModItems;
+import com.mrcrayfish.furniture.item.CreativeItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
@@ -196,7 +197,14 @@ public class CreativeScreenEvents
         NonNullList<ItemStack> newItems = NonNullList.create();
         for(Item item : categorisedItems)
         {
-            newItems.add(new ItemStack(item));
+            if(item instanceof CreativeItem creativeItem)
+            {
+                creativeItem.fill(newItems::add);
+            }
+            else
+            {
+                newItems.add(new ItemStack(item));
+            }
         }
 
         menu.items.clear();

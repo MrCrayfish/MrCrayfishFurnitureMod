@@ -16,11 +16,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
 import javax.annotation.Nullable;
+import java.util.function.Consumer;
 
 /**
  * Author: MrCrayfish
  */
-public class TrampolineItem extends BlockItem
+public class TrampolineItem extends BlockItem implements CreativeItem
 {
     public TrampolineItem(Block blockIn, Item.Properties builder)
     {
@@ -56,22 +57,18 @@ public class TrampolineItem extends BlockItem
         return super.getDescriptionId(stack);
     }
 
-    //TODO figure this out
-    /*@Override
-    public void fillItemCategory(CreativeModeTab tab, NonNullList<ItemStack> items)
+    @Override
+    public void fill(Consumer<ItemStack> output)
     {
-        if(this.allowedIn(tab))
+        for(DyeColor color : DyeColor.values())
         {
-            for(DyeColor color : DyeColor.values())
-            {
-                ItemStack stack = new ItemStack(this);
-                CompoundTag tag = new CompoundTag();
-                CompoundTag blockEntityTag = new CompoundTag();
-                blockEntityTag.putInt("Color", color.getId());
-                tag.put("BlockEntityTag", blockEntityTag);
-                stack.setTag(tag);
-                items.add(stack);
-            }
+            ItemStack stack = new ItemStack(this);
+            CompoundTag tag = new CompoundTag();
+            CompoundTag blockEntityTag = new CompoundTag();
+            blockEntityTag.putInt("Color", color.getId());
+            tag.put("BlockEntityTag", blockEntityTag);
+            stack.setTag(tag);
+            output.accept(stack);
         }
-    }*/
+    }
 }
