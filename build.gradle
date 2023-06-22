@@ -123,3 +123,10 @@ task signJar(type: SignJar, dependsOn: jar) {
 
 jar.finalizedBy 'signJar'
 signJar.mustRunAfter 'reobfJar'
+
+task incrementBuild {
+    doLast {
+        int version = file('/release_build').text.toInteger()
+        file('/release_build').text = version + 1
+    }
+}
