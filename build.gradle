@@ -118,7 +118,7 @@ task signJar(type: SignJar, dependsOn: jar) {
     keyStore = project.findProperty('keyStore') ?: System.getenv("KEYSTORE")
     alias = project.findProperty('keyStoreAlias') ?: System.getenv("KEYSTORE_ALIAS")
     storePass = project.findProperty('keyStorePass') ?: System.getenv("KEYSTORE_PASS")
-    inputFile = outputFile = tasks.jarJar.archiveFile
+    inputFile = outputFile = jar.archiveFile
 }
 
 jar.finalizedBy 'signJar'
