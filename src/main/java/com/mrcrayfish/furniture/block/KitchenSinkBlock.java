@@ -1,5 +1,7 @@
 package com.mrcrayfish.furniture.block;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.tileentity.KitchenSinkBlockEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.core.BlockPos;
@@ -46,49 +48,47 @@ public class KitchenSinkBlock extends FurnitureHorizontalBlock implements Entity
 {
     private final boolean bigSink;
 
-    public final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
+    public final ImmutableMap<BlockState, VoxelShape> SHAPES;
 
     public KitchenSinkBlock(Properties properties, boolean bigSink)
     {
         super(properties);
         this.bigSink = bigSink;
+        SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
 
-    private VoxelShape getShape(BlockState state)
+    private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
     {
-        if(SHAPES.containsKey(state))
+        ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
+        for(BlockState state : states)
         {
-            return SHAPES.get(state);
+            List<VoxelShape> shapes = new ArrayList<>();
+            Direction direction = state.getValue(DIRECTION);
+            if(this.bigSink)
+            {
+                shapes.add(VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0.0, 0.0, 0.0, 16.0, 9.0, 15.0), Direction.SOUTH))[direction.get2DDataValue()]);
+                shapes.add(VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0.0, 9.0, 0.0, 16.0, 16.0, 16.0), Direction.SOUTH))[direction.get2DDataValue()]);
+            }
+            else
+            {
+                shapes.add(VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0.0, 0.0, 0.0, 16.0, 13.0, 15.0), Direction.SOUTH))[direction.get2DDataValue()]);
+                shapes.add(VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0.0, 13.0, 0.0, 16.0, 16.0, 16.0), Direction.SOUTH))[direction.get2DDataValue()]);
+            }
+            builder.put(state, VoxelShapeHelper.combineAll(shapes));
         }
-
-        List<VoxelShape> shapes = new ArrayList<>();
-        Direction direction = state.getValue(DIRECTION);
-        if(this.bigSink)
-        {
-            shapes.add(VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0.0, 0.0, 0.0, 16.0, 9.0, 15.0), Direction.SOUTH))[direction.get2DDataValue()]);
-            shapes.add(VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0.0, 9.0, 0.0, 16.0, 16.0, 16.0), Direction.SOUTH))[direction.get2DDataValue()]);
-        }
-        else
-        {
-            shapes.add(VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0.0, 0.0, 0.0, 16.0, 13.0, 15.0), Direction.SOUTH))[direction.get2DDataValue()]);
-            shapes.add(VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0.0, 13.0, 0.0, 16.0, 16.0, 16.0), Direction.SOUTH))[direction.get2DDataValue()]);
-        }
-
-        VoxelShape shape = VoxelShapeHelper.combineAll(shapes);
-        SHAPES.put(state, shape);
-        return shape;
+        return builder.build();
     }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
-        return this.getShape(state);
+        return SHAPES.get(state);
     }
 
     @Override
     public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
     {
-        return this.getShape(state);
+        return SHAPES.get(state);
     }
 
     @Override

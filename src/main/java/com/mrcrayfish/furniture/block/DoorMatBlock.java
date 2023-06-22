@@ -1,5 +1,7 @@
 package com.mrcrayfish.furniture.block;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.tileentity.DoorMatBlockEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.core.BlockPos;
@@ -16,7 +18,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -24,31 +28,37 @@ import java.util.Map;
  */
 public class DoorMatBlock extends FurnitureHorizontalBlock implements EntityBlock
 {
-    public final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
+    public final ImmutableMap<BlockState, VoxelShape> SHAPES;
 
     public DoorMatBlock(Properties properties)
     {
         super(properties);
+        SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
 
-    private VoxelShape getShape(BlockState state)
+    private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
     {
-        return SHAPES.computeIfAbsent(state, state1 -> {
+        ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
+        for(BlockState state : states)
+        {
             final VoxelShape[] BOXES = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 0, 2, 16, 1, 14), Direction.SOUTH));
-            return BOXES[state.getValue(DIRECTION).get2DDataValue()];
-        });
+            List<VoxelShape> shapes = new ArrayList<>();
+            shapes.add(BOXES[state.getValue(DIRECTION).get2DDataValue()]);
+            builder.put(state, VoxelShapeHelper.combineAll(shapes));
+        }
+        return builder.build();
     }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
-        return this.getShape(state);
+        return SHAPES.get(state);
     }
 
     @Override
     public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
     {
-        return this.getShape(state);
+        return SHAPES.get(state);
     }
 
     @Override

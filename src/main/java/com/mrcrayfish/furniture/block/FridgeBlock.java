@@ -1,5 +1,7 @@
 package com.mrcrayfish.furniture.block;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.tileentity.BasicLootBlockEntity;
 import com.mrcrayfish.furniture.tileentity.FridgeBlockEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
@@ -41,7 +43,7 @@ public class FridgeBlock extends FurnitureHorizontalBlock implements EntityBlock
 {
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
 
-    public final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
+    public final ImmutableMap<BlockState, VoxelShape> SHAPES;
     private final Supplier<RegistryObject<Block>> freezer;
 
     public FridgeBlock(Properties properties, Supplier<RegistryObject<Block>> freezer)
@@ -49,20 +51,22 @@ public class FridgeBlock extends FurnitureHorizontalBlock implements EntityBlock
         super(properties);
         this.freezer = freezer;
         this.registerDefaultState(this.getStateDefinition().any().setValue(DIRECTION, Direction.NORTH).setValue(OPEN, false));
+        SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
 
-    private VoxelShape getShape(BlockState state)
+    private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
     {
-        return SHAPES.computeIfAbsent(state, state1 ->
+        final VoxelShape[] BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 0, 0, 16, 16, 13), Direction.SOUTH));
+        final VoxelShape[] DOOR = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(13, 0, 13, 16, 16, 29), Direction.SOUTH));
+        ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
+        for(BlockState state : states)
         {
-            Direction direction = state1.getValue(DIRECTION);
-            boolean open = state1.getValue(OPEN);
+            Direction direction = state.getValue(DIRECTION);
+            boolean open = state.getValue(OPEN);
             List<VoxelShape> shapes = new ArrayList<>();
             shapes.add(Block.box(0, -16, 0, 16, 0, 16));
             if(open)
             {
-                final VoxelShape[] BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 0, 0, 16, 16, 13), Direction.SOUTH));
-                final VoxelShape[] DOOR = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(13, 0, 13, 16, 16, 29), Direction.SOUTH));
                 shapes.add(BASE[direction.get2DDataValue()]);
                 shapes.add(DOOR[direction.get2DDataValue()]);
             }
@@ -70,20 +74,21 @@ public class FridgeBlock extends FurnitureHorizontalBlock implements EntityBlock
             {
                 shapes.add(Block.box(0, 0, 0, 16, 16, 16));
             }
-            return VoxelShapeHelper.combineAll(shapes);
-        });
+            builder.put(state, VoxelShapeHelper.combineAll(shapes));
+        }
+        return builder.build();
     }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
-        return context == CollisionContext.empty() ? Shapes.block() : this.getShape(state);
+        return context == CollisionContext.empty() ? Shapes.block() : SHAPES.get(state);
     }
 
     @Override
     public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
     {
-        return this.getShape(state);
+        return SHAPES.get(state);
     }
 
     @Override

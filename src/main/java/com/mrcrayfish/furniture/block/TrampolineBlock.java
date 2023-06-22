@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Author: MrCrayfish
@@ -44,7 +45,8 @@ public class TrampolineBlock extends FurnitureBlock implements EntityBlock
     public static final BooleanProperty CORNER_SOUTH_EAST = BooleanProperty.create("corner_south_east");
     public static final BooleanProperty CORNER_SOUTH_WEST = BooleanProperty.create("corner_south_west");
 
-    public final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
+    // Concurrent to prevent Optifine from crashes.
+    public final Map<BlockState, VoxelShape> SHAPES = new ConcurrentHashMap<>();
 
     public TrampolineBlock(Properties properties)
     {

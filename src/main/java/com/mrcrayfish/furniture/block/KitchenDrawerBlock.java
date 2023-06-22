@@ -1,5 +1,7 @@
 package com.mrcrayfish.furniture.block;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.tileentity.BasicLootBlockEntity;
 import com.mrcrayfish.furniture.tileentity.KitchenDrawerBlockEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
@@ -36,37 +38,40 @@ public class KitchenDrawerBlock extends FurnitureHorizontalBlock implements Enti
 {
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
 
-    public final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
+    public final ImmutableMap<BlockState, VoxelShape> SHAPES;
 
     public KitchenDrawerBlock(Properties properties)
     {
         super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(OPEN, false).setValue(DIRECTION, Direction.NORTH));
+        SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
 
-    private VoxelShape getShape(BlockState state)
+    private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
     {
-        return SHAPES.computeIfAbsent(state, state1 ->
+        final VoxelShape TOP = Block.box(0, 13, 0, 16, 16, 16);
+        final VoxelShape[] DEFAULT_BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 0, 0, 16, 13, 15), Direction.SOUTH));
+        ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
+        for(BlockState state : states)
         {
-            final VoxelShape TOP = Block.box(0, 13, 0, 16, 16, 16);
-            final VoxelShape[] DEFAULT_BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 0, 0, 16, 13, 15), Direction.SOUTH));
             List<VoxelShape> shapes = new ArrayList<>();
             shapes.add(TOP);
             shapes.add(DEFAULT_BASE[state.getValue(DIRECTION).get2DDataValue()]);
-            return VoxelShapeHelper.combineAll(shapes);
-        });
+            builder.put(state, VoxelShapeHelper.combineAll(shapes));
+        }
+        return builder.build();
     }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
-        return this.getShape(state);
+        return SHAPES.get(state);
     }
 
     @Override
     public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
     {
-        return this.getShape(state);
+        return SHAPES.get(state);
     }
 
     @Override

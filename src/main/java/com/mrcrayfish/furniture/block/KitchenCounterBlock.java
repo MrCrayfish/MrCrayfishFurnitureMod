@@ -1,5 +1,7 @@
 package com.mrcrayfish.furniture.block;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -26,26 +28,27 @@ public class KitchenCounterBlock extends FurnitureHorizontalBlock
 {
     public static final EnumProperty<Type> TYPE = EnumProperty.create("type", Type.class);
 
-    public final Map<BlockState, VoxelShape> SHAPES = new HashMap<>();
+    public final ImmutableMap<BlockState, VoxelShape> SHAPES;
 
     public KitchenCounterBlock(Properties properties)
     {
         super(properties);
         this.registerDefaultState(this.getStateDefinition().any().setValue(TYPE, Type.DEFAULT).setValue(DIRECTION, Direction.NORTH));
+        SHAPES = this.generateShapes(this.getStateDefinition().getPossibleStates());
     }
 
-    private VoxelShape getShape(BlockState state)
+    private ImmutableMap<BlockState, VoxelShape> generateShapes(ImmutableList<BlockState> states)
     {
-        return SHAPES.computeIfAbsent(state, state1 ->
+        final VoxelShape TOP = Block.box(0, 13, 0, 16, 16, 16);
+        final VoxelShape[] DEFAULT_BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 0, 0, 16, 13, 15), Direction.SOUTH));
+        final VoxelShape[] LEFT_INVERTED_BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(1, 0, 0, 16, 13, 15), Direction.SOUTH));
+        final VoxelShape[] RIGHT_INVERTED_BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 0, 0, 15, 13, 15), Direction.SOUTH));
+        final VoxelShape[] LEFT_CORNER_BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 0, 15, 15, 13, 16), Direction.SOUTH));
+        final VoxelShape[] RIGHT_CORNER_BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(1, 0, 15, 16, 13, 16), Direction.SOUTH));
+        ImmutableMap.Builder<BlockState, VoxelShape> builder = new ImmutableMap.Builder<>();
+        for(BlockState state : states)
         {
-            final VoxelShape TOP = Block.box(0, 13, 0, 16, 16, 16);
-            final VoxelShape[] DEFAULT_BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 0, 0, 16, 13, 15), Direction.SOUTH));
-            final VoxelShape[] LEFT_INVERTED_BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(1, 0, 0, 16, 13, 15), Direction.SOUTH));
-            final VoxelShape[] RIGHT_INVERTED_BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 0, 0, 15, 13, 15), Direction.SOUTH));
-            final VoxelShape[] LEFT_CORNER_BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(0, 0, 15, 15, 13, 16), Direction.SOUTH));
-            final VoxelShape[] RIGHT_CORNER_BASE = VoxelShapeHelper.getRotatedShapes(VoxelShapeHelper.rotate(Block.box(1, 0, 15, 16, 13, 16), Direction.SOUTH));
-
-            Type type = state1.getValue(TYPE);
+            Type type = state.getValue(TYPE);
             List<VoxelShape> shapes = new ArrayList<>();
             shapes.add(TOP);
             switch(type)
@@ -68,20 +71,21 @@ public class KitchenCounterBlock extends FurnitureHorizontalBlock
                     shapes.add(RIGHT_INVERTED_BASE[state.getValue(DIRECTION).get2DDataValue()]);
                     break;
             }
-            return VoxelShapeHelper.combineAll(shapes);
-        });
+            builder.put(state, VoxelShapeHelper.combineAll(shapes));
+        }
+        return builder.build();
     }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
-        return this.getShape(state);
+        return SHAPES.get(state);
     }
 
     @Override
     public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
     {
-        return this.getShape(state);
+        return SHAPES.get(state);
     }
 
     @Override
