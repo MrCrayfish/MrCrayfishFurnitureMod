@@ -1,3 +1,5 @@
+import net.minecraftforge.gradle.common.tasks.SignJar
+
 plugins {
     id 'eclipse'
     id 'maven-publish'
@@ -5,9 +7,9 @@ plugins {
     id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'
 }
 
-version = project.property('mod.version') + "-" + project.property('minecraft.version')
+archivesBaseName = "${mod_id}-forge"
+version = "${minecraft_version}-${mod_version}"
 group = "com.mrcrayfish"
-archivesBaseName = "furniture"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
@@ -19,7 +21,7 @@ mixin {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 minecraft {
-    mappings channel: project.property('mappings.channel'), version: project.property('mappings.version')
+    mappings channel: mappings_channel, version: mappings_version
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
     runs {
@@ -91,12 +93,12 @@ dependencies {
 jar {
     manifest {
         attributes([
-            "Specification-Title"     : project.property('mod.name'),
-            "Specification-Vendor"    : project.property('mod.author'),
+            "Specification-Title"     : mod_name,
+            "Specification-Vendor"    : mod_author,
             "Specification-Version"   : "1",
             "Implementation-Title"    : project.name,
             "Implementation-Version"  : "${version}",
-            "Implementation-Vendor"   : project.property('mod.author'),
+            "Implementation-Vendor"   : mod_author,
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
             "MixinConfigs": "cfm.mixins.json"
         ])
@@ -108,3 +110,16 @@ jar.finalizedBy('reobfJar')
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
+
+task signJar(type: SignJar, dependsOn: jar) {
+    onlyIf {
+        project.hasProperty('keyStore') || System.getenv("KEYSTORE")
+    }
+    keyStore = project.findProperty('keyStore') ?: System.getenv("KEYSTORE")
+    alias = project.findProperty('keyStoreAlias') ?: System.getenv("KEYSTORE_ALIAS")
+    storePass = project.findProperty('keyStorePass') ?: System.getenv("KEYSTORE_PASS")
+    inputFile = outputFile = tasks.jarJar.archiveFile
+}
+
+jar.finalizedBy 'signJar'
+signJar.mustRunAfter 'reobfJar'
