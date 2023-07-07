@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "desk_cabinet",
+  "key": {
+    "L": {
+      "item": "minecraft:bamboo"
+    },
+    "P": {
+      "item": "minecraft:bamboo_planks"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "PPP",
+    "P P"
+  ],
+  "result": {
+    "count": 2,
+    "item": "cfm:bamboo_desk_cabinet"
+  },
+  "show_notification": true
+}

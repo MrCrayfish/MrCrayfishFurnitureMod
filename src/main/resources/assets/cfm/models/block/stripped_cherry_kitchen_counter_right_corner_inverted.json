@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/kitchen_counter_right_corner_inverted",
+    "textures": {
+        "top": "minecraft:block/stripped_cherry_log",
+        "base": "minecraft:block/stripped_cherry_log"
+    }
+}

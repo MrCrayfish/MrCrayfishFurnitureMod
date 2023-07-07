@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "bedside_cabinet",
+  "key": {
+    "L": {
+      "item": "minecraft:bamboo"
+    },
+    "P": {
+      "item": "minecraft:bamboo_planks"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "P P",
+    "PPP"
+  ],
+  "result": {
+    "count": 2,
+    "item": "cfm:bamboo_bedside_cabinet"
+  },
+  "show_notification": true
+}

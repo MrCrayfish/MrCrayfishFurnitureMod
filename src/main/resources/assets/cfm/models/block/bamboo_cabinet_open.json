@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/cabinet_open",
+    "textures": {
+        "door": "block/bamboo_block",
+        "base": "block/bamboo_planks"
+    }
+}

@@ -69,6 +69,15 @@
     "cfm:mangrove_chair",
     "cfm:stripped_mangrove_chair",
     "cfm:mangrove_coffee_table",
-    "cfm:stripped_mangrove_coffee_table"
+    "cfm:stripped_mangrove_coffee_table",
+    "cfm:cherry_table",
+    "cfm:stripped_cherry_table",
+    "cfm:cherry_chair",
+    "cfm:stripped_cherry_chair",
+    "cfm:cherry_coffee_table",
+    "cfm:stripped_cherry_coffee_table",
+    "cfm:bamboo_table",
+    "cfm:bamboo_chair",
+    "cfm:bamboo_coffee_table"
   ]
 }

@@ -1,0 +1,10 @@
+{
+    "parent": "cfm:block/desk_cabinet_right_open",
+    "textures": {
+        "top": "block/bamboo_block",
+        "base": "block/bamboo_planks",
+        "draw": "block/stripped_bamboo_block",
+        "draw_front": "block/bamboo_block",
+        "legs": "block/bamboo_planks"
+    }
+}

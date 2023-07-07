@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "coffee_table",
+  "key": {
+    "L": {
+      "item": "minecraft:bamboo"
+    },
+    "P": {
+      "item": "minecraft:bamboo_planks"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "P P"
+  ],
+  "result": {
+    "count": 4,
+    "item": "cfm:bamboo_coffee_table"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/kitchen_counter_left_corner",
+    "textures": {
+        "top": "minecraft:block/bamboo_block",
+        "base": "minecraft:block/bamboo_planks"
+    }
+}

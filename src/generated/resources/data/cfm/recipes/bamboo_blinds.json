@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "blinds",
+  "key": {
+    "L": {
+      "item": "minecraft:bamboo"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "SSS",
+    "SSS"
+  ],
+  "result": {
+    "count": 2,
+    "item": "cfm:bamboo_blinds"
+  },
+  "show_notification": true
+}

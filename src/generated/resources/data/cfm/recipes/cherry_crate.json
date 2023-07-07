@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "crate",
+  "key": {
+    "L": {
+      "item": "minecraft:cherry_log"
+    },
+    "P": {
+      "item": "minecraft:cherry_planks"
+    }
+  },
+  "pattern": [
+    "LPL",
+    "P P",
+    "LPL"
+  ],
+  "result": {
+    "count": 2,
+    "item": "cfm:cherry_crate"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "kitchen_drawer",
+  "key": {
+    "C": {
+      "tag": "forge:chests/wooden"
+    },
+    "L": {
+      "item": "minecraft:cherry_log"
+    },
+    "P": {
+      "item": "minecraft:cherry_planks"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "PCP",
+    "PPP"
+  ],
+  "result": {
+    "count": 4,
+    "item": "cfm:cherry_kitchen_drawer"
+  },
+  "show_notification": true
+}

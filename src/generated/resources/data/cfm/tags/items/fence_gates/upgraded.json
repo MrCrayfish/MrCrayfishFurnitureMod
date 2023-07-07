@@ -17,6 +17,9 @@
     "cfm:warped_upgraded_gate",
     "cfm:stripped_warped_upgraded_gate",
     "cfm:mangrove_upgraded_gate",
-    "cfm:stripped_mangrove_upgraded_gate"
+    "cfm:stripped_mangrove_upgraded_gate",
+    "cfm:cherry_upgraded_gate",
+    "cfm:stripped_cherry_upgraded_gate",
+    "cfm:bamboo_upgraded_gate"
   ]
 }

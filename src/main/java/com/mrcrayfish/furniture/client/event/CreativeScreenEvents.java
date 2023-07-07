@@ -209,7 +209,7 @@ public class CreativeScreenEvents
 
         menu.items.clear();
         menu.items.addAll(newItems);
-        menu.items.sort(Comparator.comparingInt(o -> Item.getId(o.getItem())));
+        menu.items.sort(Comparator.comparingInt(o -> ModItems.ITEMS.indexOf(o.getItem())));
         menu.scrollTo(0);
     }
 

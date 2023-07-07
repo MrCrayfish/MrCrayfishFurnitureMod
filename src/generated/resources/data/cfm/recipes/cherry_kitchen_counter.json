@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "kitchen_counter",
+  "key": {
+    "L": {
+      "item": "minecraft:cherry_log"
+    },
+    "P": {
+      "item": "minecraft:cherry_planks"
+    }
+  },
+  "pattern": [
+    "LLL",
+    "PPP",
+    "PPP"
+  ],
+  "result": {
+    "count": 8,
+    "item": "cfm:cherry_kitchen_counter"
+  },
+  "show_notification": true
+}

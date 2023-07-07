@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "park_bench",
+  "key": {
+    "L": {
+      "item": "minecraft:bamboo"
+    },
+    "P": {
+      "item": "minecraft:bamboo_planks"
+    }
+  },
+  "pattern": [
+    "PPP",
+    "PPP",
+    "L L"
+  ],
+  "result": {
+    "count": 4,
+    "item": "cfm:bamboo_park_bench"
+  },
+  "show_notification": true
+}

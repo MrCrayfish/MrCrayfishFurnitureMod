@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "kitchen_sink",
+  "key": {
+    "B": {
+      "item": "minecraft:bucket"
+    },
+    "C": {
+      "item": "minecraft:white_concrete"
+    },
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "P": {
+      "item": "minecraft:stripped_cherry_log"
+    }
+  },
+  "pattern": [
+    "CIC",
+    "PBP",
+    "PPP"
+  ],
+  "result": {
+    "count": 2,
+    "item": "cfm:stripped_cherry_kitchen_sink_light"
+  },
+  "show_notification": true
+}

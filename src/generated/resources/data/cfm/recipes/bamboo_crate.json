@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "crate",
+  "key": {
+    "L": {
+      "item": "minecraft:bamboo"
+    },
+    "P": {
+      "item": "minecraft:bamboo_planks"
+    }
+  },
+  "pattern": [
+    "LPL",
+    "P P",
+    "LPL"
+  ],
+  "result": {
+    "count": 2,
+    "item": "cfm:bamboo_crate"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "upgraded_fence",
+  "key": {
+    "L": {
+      "item": "minecraft:cherry_log"
+    },
+    "S": {
+      "tag": "forge:rods/wooden"
+    }
+  },
+  "pattern": [
+    "LSL",
+    "LSL"
+  ],
+  "result": {
+    "count": 12,
+    "item": "cfm:cherry_upgraded_fence"
+  },
+  "show_notification": true
+}

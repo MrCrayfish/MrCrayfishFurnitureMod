@@ -1,0 +1,84 @@
+{
+    "variants": {
+        "facing=north,type=default": {
+            "model": "cfm:block/bamboo_kitchen_counter_default",
+            "y": 0
+        },
+        "facing=north,type=left_corner": {
+            "model": "cfm:block/bamboo_kitchen_counter_left_corner",
+            "y": 0
+        },
+        "facing=north,type=right_corner": {
+            "model": "cfm:block/bamboo_kitchen_counter_right_corner",
+            "y": 0
+        },
+        "facing=north,type=left_corner_inverted": {
+            "model": "cfm:block/bamboo_kitchen_counter_left_corner_inverted",
+            "y": 0
+        },
+        "facing=north,type=right_corner_inverted": {
+            "model": "cfm:block/bamboo_kitchen_counter_right_corner_inverted",
+            "y": 0
+        },
+        "facing=east,type=default": {
+            "model": "cfm:block/bamboo_kitchen_counter_default",
+            "y": 90
+        },
+        "facing=east,type=left_corner": {
+            "model": "cfm:block/bamboo_kitchen_counter_left_corner",
+            "y": 90
+        },
+        "facing=east,type=right_corner": {
+            "model": "cfm:block/bamboo_kitchen_counter_right_corner",
+            "y": 90
+        },
+        "facing=east,type=left_corner_inverted": {
+            "model": "cfm:block/bamboo_kitchen_counter_left_corner_inverted",
+            "y": 90
+        },
+        "facing=east,type=right_corner_inverted": {
+            "model": "cfm:block/bamboo_kitchen_counter_right_corner_inverted",
+            "y": 90
+        },
+        "facing=south,type=default": {
+            "model": "cfm:block/bamboo_kitchen_counter_default",
+            "y": 180
+        },
+        "facing=south,type=left_corner": {
+            "model": "cfm:block/bamboo_kitchen_counter_left_corner",
+            "y": 180
+        },
+        "facing=south,type=right_corner": {
+            "model": "cfm:block/bamboo_kitchen_counter_right_corner",
+            "y": 180
+        },
+        "facing=south,type=left_corner_inverted": {
+            "model": "cfm:block/bamboo_kitchen_counter_left_corner_inverted",
+            "y": 180
+        },
+        "facing=south,type=right_corner_inverted": {
+            "model": "cfm:block/bamboo_kitchen_counter_right_corner_inverted",
+            "y": 180
+        },
+        "facing=west,type=default": {
+            "model": "cfm:block/bamboo_kitchen_counter_default",
+            "y": 270
+        },
+        "facing=west,type=left_corner": {
+            "model": "cfm:block/bamboo_kitchen_counter_left_corner",
+            "y": 270
+        },
+        "facing=west,type=right_corner": {
+            "model": "cfm:block/bamboo_kitchen_counter_right_corner",
+            "y": 270
+        },
+        "facing=west,type=left_corner_inverted": {
+            "model": "cfm:block/bamboo_kitchen_counter_left_corner_inverted",
+            "y": 270
+        },
+        "facing=west,type=right_corner_inverted": {
+            "model": "cfm:block/bamboo_kitchen_counter_right_corner_inverted",
+            "y": 270
+        }
+    }
+}

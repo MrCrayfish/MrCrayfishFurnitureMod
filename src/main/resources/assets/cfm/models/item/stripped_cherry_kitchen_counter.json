@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/kitchen_counter_default",
+    "textures": {
+        "base": "minecraft:block/stripped_cherry_log",
+        "top": "minecraft:block/stripped_cherry_log"
+    }
+}

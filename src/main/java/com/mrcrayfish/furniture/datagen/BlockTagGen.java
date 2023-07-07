@@ -75,6 +75,7 @@ public class BlockTagGen extends BlockTagsProvider
                 .add(ModBlocks.HEDGE_ACACIA.get())
                 .add(ModBlocks.HEDGE_DARK_OAK.get())
                 .add(ModBlocks.HEDGE_MANGROVE.get())
+                .add(ModBlocks.HEDGE_CHERRY.get())
                 .add(ModBlocks.HEDGE_AZALEA.get())
                 .add(ModBlocks.HEDGE_FLOWERING_AZALEA.get());
 

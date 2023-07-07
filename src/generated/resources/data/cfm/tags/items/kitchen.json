@@ -122,6 +122,18 @@
     "cfm:mangrove_kitchen_sink_light",
     "cfm:stripped_mangrove_kitchen_sink_light",
     "cfm:mangrove_kitchen_sink_dark",
-    "cfm:stripped_mangrove_kitchen_sink_dark"
+    "cfm:stripped_mangrove_kitchen_sink_dark",
+    "cfm:cherry_kitchen_counter",
+    "cfm:stripped_cherry_kitchen_counter",
+    "cfm:cherry_kitchen_drawer",
+    "cfm:stripped_cherry_kitchen_drawer",
+    "cfm:cherry_kitchen_sink_light",
+    "cfm:stripped_cherry_kitchen_sink_light",
+    "cfm:cherry_kitchen_sink_dark",
+    "cfm:stripped_cherry_kitchen_sink_dark",
+    "cfm:bamboo_kitchen_counter",
+    "cfm:bamboo_kitchen_drawer",
+    "cfm:bamboo_kitchen_sink_light",
+    "cfm:bamboo_kitchen_sink_dark"
   ]
 }

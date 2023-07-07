@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/kitchen_drawer_open",
+    "textures": {
+        "top": "minecraft:block/stripped_cherry_log",
+        "base": "minecraft:block/stripped_cherry_log"
+    }
+}

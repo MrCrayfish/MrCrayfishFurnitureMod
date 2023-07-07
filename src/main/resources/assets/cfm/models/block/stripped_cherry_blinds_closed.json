@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:block/blinds_closed",
+    "textures": {
+        "head_rail": "minecraft:block/stripped_cherry_log",
+        "slat": "minecraft:block/cherry_planks",
+        "cord": "minecraft:block/cherry_log"
+    }
+}

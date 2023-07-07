@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/kitchen_drawer_open",
+    "textures": {
+        "top": "minecraft:block/bamboo_block",
+        "base": "minecraft:block/bamboo_planks"
+    }
+}
