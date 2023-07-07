@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/chair",
+    "textures": {
+        "seat": "minecraft:block/bamboo_block",
+        "legs": "minecraft:block/stripped_bamboo_block"
+    }
+}

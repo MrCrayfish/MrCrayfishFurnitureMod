@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/park_bench_right",
+    "textures": {
+        "legs": "minecraft:block/bamboo_block",
+        "plank": "minecraft:block/bamboo_planks"
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:block/blinds_closed",
+    "textures": {
+        "head_rail": "minecraft:block/bamboo_block",
+        "slat": "minecraft:block/stripped_bamboo_block",
+        "cord": "minecraft:block/white_concrete"
+    }
+}
