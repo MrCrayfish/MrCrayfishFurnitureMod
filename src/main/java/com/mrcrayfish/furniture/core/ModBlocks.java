@@ -542,7 +542,7 @@ public class ModBlocks
     private static RegistryObject<Block> register(String name, Supplier<Block> block, Item.Properties properties)
     {
         RegistryObject<Block> registryObject = REGISTER.register(name, block);
-        ModItems.REGISTER.register(name, () -> new BlockItem(registryObject.get(), properties));
+        ModItems.register(name, () -> new BlockItem(registryObject.get(), properties));
         return registryObject;
     }
 
@@ -551,7 +551,7 @@ public class ModBlocks
         RegistryObject<Block> registryObject = REGISTER.register(name, block);
         if(function != null)
         {
-            ModItems.REGISTER.register(name, () -> function.apply(registryObject));
+            ModItems.register(name, () -> function.apply(registryObject));
         }
         return registryObject;
     }
