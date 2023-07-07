@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/coffee_table_short_all",
+    "textures": {
+        "top": "block/cherry_log",
+        "legs": "block/stripped_cherry_log"
+    }
+}

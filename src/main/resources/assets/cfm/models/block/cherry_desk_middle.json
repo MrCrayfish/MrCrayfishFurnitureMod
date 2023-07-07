@@ -1,0 +1,7 @@
+{
+    "parent": "cfm:block/desk_middle",
+    "textures": {
+        "base": "minecraft:block/cherry_planks",
+        "top": "minecraft:block/cherry_log"
+    }
+}

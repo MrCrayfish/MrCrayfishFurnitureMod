@@ -1,0 +1,8 @@
+{
+    "parent": "cfm:block/bedside_cabinet_closed",
+    "textures": {
+        "base": "minecraft:block/stripped_cherry_log",
+        "top": "minecraft:block/stripped_cherry_log",
+        "draw_front": "minecraft:block/cherry_log"
+    }
+}
