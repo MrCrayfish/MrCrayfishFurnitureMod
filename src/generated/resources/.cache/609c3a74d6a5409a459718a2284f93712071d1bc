@@ -1,13 +1,13 @@
-// 1.20.1	2023-07-07T15:39:54.011395	Tags for minecraft:item mod id cfm
-f101b1f69949bf3a0d563d4d7822758f9e0cb728 data/cfm/tags/items/bedroom.json
+// 1.20.1	2023-07-07T16:20:45.340478	Tags for minecraft:item mod id cfm
+e7d3714acb1a9bc539434494e0c3ed69043ad49f data/cfm/tags/items/bedroom.json
 1d77ff0e898da53822781b06790bfb3cefc0c514 data/cfm/tags/items/fence_gates/picket.json
-a9fa7b8eb331d0ab9063039fb8d5a3c02e6a67d0 data/cfm/tags/items/fence_gates/upgraded.json
+8c11815af988a9af3d7bb2cd1750c951260a50a0 data/cfm/tags/items/fence_gates/upgraded.json
 3b5b9b89ff67399babff998018a64d77e76c1905 data/cfm/tags/items/fences/hedge.json
 c2381928c291ecfd9e7bd1979e0413bfeb5eb9f9 data/cfm/tags/items/fences/picket.json
-be92677afdcee19935adc60bf300dcfb82810645 data/cfm/tags/items/fences/upgraded.json
-103fa8407697fe29369c954ec2464249b4e4709c data/cfm/tags/items/general.json
+799c371e33680a2a13809bbd9a050253a02280dd data/cfm/tags/items/fences/upgraded.json
+6f35b45cf6a90e90b0ac4b0568254835d54244e2 data/cfm/tags/items/general.json
 4b011c2fb1426373c61581613fc4b8b4d5434235 data/cfm/tags/items/items.json
-5e32989567a4ebf798233fc3d51f544c9840dd4f data/cfm/tags/items/kitchen.json
-1df733a72a92f13ebdc097de417b6d292374d0f2 data/cfm/tags/items/outdoors.json
-529cd66be710b94afbaeb748f074d734af743d41 data/cfm/tags/items/storage.json
+6520a30f9397b20331612d71d342cb21836a7f3a data/cfm/tags/items/kitchen.json
+e0a36afa47eb495fbc69250ee118d16a9e87db32 data/cfm/tags/items/outdoors.json
+d9daae3b513f90740fb200ab13b7f889b554203e data/cfm/tags/items/storage.json
 a62aa5749109a67d1ba646265d5308ba1351ea04 data/cfm/tags/items/trampoline.json

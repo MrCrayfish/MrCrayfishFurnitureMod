@@ -167,6 +167,7 @@ public class DeskBlock extends FurnitureHorizontalBlock
         STRIPPED_CRIMSON,
         STRIPPED_WARPED,
         STRIPPED_MANGROVE,
-        STRIPPED_CHERRY
+        STRIPPED_CHERRY,
+        BAMBOO
     }
 }

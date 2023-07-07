@@ -79,6 +79,10 @@
     "cfm:cherry_desk_cabinet",
     "cfm:stripped_cherry_desk_cabinet",
     "cfm:cherry_blinds",
-    "cfm:stripped_cherry_blinds"
+    "cfm:stripped_cherry_blinds",
+    "cfm:bamboo_bedside_cabinet",
+    "cfm:bamboo_desk",
+    "cfm:bamboo_desk_cabinet",
+    "cfm:bamboo_blinds"
   ]
 }

@@ -19,6 +19,7 @@
     "cfm:mangrove_upgraded_fence",
     "cfm:stripped_mangrove_upgraded_fence",
     "cfm:cherry_upgraded_fence",
-    "cfm:stripped_cherry_upgraded_fence"
+    "cfm:stripped_cherry_upgraded_fence",
+    "cfm:bamboo_upgraded_fence"
   ]
 }

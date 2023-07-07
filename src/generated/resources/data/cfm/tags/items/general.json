@@ -75,6 +75,9 @@
     "cfm:cherry_chair",
     "cfm:stripped_cherry_chair",
     "cfm:cherry_coffee_table",
-    "cfm:stripped_cherry_coffee_table"
+    "cfm:stripped_cherry_coffee_table",
+    "cfm:bamboo_table",
+    "cfm:bamboo_chair",
+    "cfm:bamboo_coffee_table"
   ]
 }

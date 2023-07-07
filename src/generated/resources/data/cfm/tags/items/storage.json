@@ -208,6 +208,14 @@
     "cfm:cherry_kitchen_sink_light",
     "cfm:stripped_cherry_kitchen_sink_light",
     "cfm:cherry_kitchen_sink_dark",
-    "cfm:stripped_cherry_kitchen_sink_dark"
+    "cfm:stripped_cherry_kitchen_sink_dark",
+    "cfm:bamboo_cabinet",
+    "cfm:bamboo_bedside_cabinet",
+    "cfm:bamboo_desk_cabinet",
+    "cfm:bamboo_crate",
+    "cfm:bamboo_mail_box",
+    "cfm:bamboo_kitchen_drawer",
+    "cfm:bamboo_kitchen_sink_light",
+    "cfm:bamboo_kitchen_sink_dark"
   ]
 }

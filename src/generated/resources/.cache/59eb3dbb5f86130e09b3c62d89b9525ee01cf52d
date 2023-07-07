@@ -1,4 +1,4 @@
-// 1.20.1	2023-07-07T15:39:54.004834	Loot Tables
+// 1.20.1	2023-07-07T16:20:45.334479	Loot Tables
 2b2dd6cd5a59b8c17fd3dc18be5122423d58fe41 data/cfm/loot_tables/blocks/acacia_bedside_cabinet.json
 3b5aaa2c8bb60dda63b727a3c8ef58b38eea64a9 data/cfm/loot_tables/blocks/acacia_blinds.json
 0ddf77e1a7a74aface58c31c66c586885b9103b0 data/cfm/loot_tables/blocks/acacia_cabinet.json
@@ -18,6 +18,23 @@ fe95175fce59be4d3fcfeca8e3637bdf4a6358c0 data/cfm/loot_tables/blocks/acacia_tabl
 569f0d04a051f9fcfdca440ae6cbafb4994b81c9 data/cfm/loot_tables/blocks/acacia_upgraded_fence.json
 53d10b5c0800fb7f71d214e0e3153fc631e0d358 data/cfm/loot_tables/blocks/acacia_upgraded_gate.json
 78c5e36ac3fb0336faf657581f3a974c070073f3 data/cfm/loot_tables/blocks/azalea_hedge.json
+9d4bb4c813b0ce124422dd470c9a18d0bbf29ee7 data/cfm/loot_tables/blocks/bamboo_bedside_cabinet.json
+7a0f86fd00bd2cb8f379f6a40bce5d17809f9c50 data/cfm/loot_tables/blocks/bamboo_blinds.json
+db3dfd10413ec87d3801c1f2a156905e88db1ee2 data/cfm/loot_tables/blocks/bamboo_cabinet.json
+b63ccda2a1db40288732dddd43f9dd0a7567a25b data/cfm/loot_tables/blocks/bamboo_chair.json
+3cbd905712e39f441d67aa5962086d9b8ec6af9d data/cfm/loot_tables/blocks/bamboo_coffee_table.json
+abbb955991df9f174889eea4e1996f508a81e156 data/cfm/loot_tables/blocks/bamboo_crate.json
+5dcea8a5176a5d4462fad133d8285a107b25e683 data/cfm/loot_tables/blocks/bamboo_desk.json
+9d7eb08748b2eae1aeb27f2ce4d4090c951f7d9d data/cfm/loot_tables/blocks/bamboo_desk_cabinet.json
+f4d00551b9cdd20cfdafeb46b8bab2ce900e0de9 data/cfm/loot_tables/blocks/bamboo_kitchen_counter.json
+dd5fe9c2053f5d5f981bb51736406f9185a1643d data/cfm/loot_tables/blocks/bamboo_kitchen_drawer.json
+6eae460f6b4a745452d95d966829b70eedbf1ea3 data/cfm/loot_tables/blocks/bamboo_kitchen_sink_dark.json
+e9ea095de5f8c24fc3e3a8e33dda87ca467fb829 data/cfm/loot_tables/blocks/bamboo_kitchen_sink_light.json
+83faf8f8f93f16b744806ba58aa05927935b7b07 data/cfm/loot_tables/blocks/bamboo_mail_box.json
+7e9164c997c90469a9b4c1ccb3558baad5331e9e data/cfm/loot_tables/blocks/bamboo_park_bench.json
+3ed7962b96463446b3aed831bbbe96d88c16db87 data/cfm/loot_tables/blocks/bamboo_table.json
+1c17e688b6e15451517f7dcc04a37331f0839ce1 data/cfm/loot_tables/blocks/bamboo_upgraded_fence.json
+d7ea8f043b8d48e0dbb7da5a71c58d91dd2a88f4 data/cfm/loot_tables/blocks/bamboo_upgraded_gate.json
 d876f090db2e9b736142bd06ba3ac4283998688d data/cfm/loot_tables/blocks/birch_bedside_cabinet.json
 5d70e0badc99ea1b1162163da0d0bcf30f81c206 data/cfm/loot_tables/blocks/birch_blinds.json
 352b1e2fbb59d9dc581e0ea6538772c5fc3b5a2f data/cfm/loot_tables/blocks/birch_cabinet.json
