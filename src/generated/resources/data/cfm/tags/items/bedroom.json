@@ -71,6 +71,14 @@
     "cfm:mangrove_desk_cabinet",
     "cfm:stripped_mangrove_desk_cabinet",
     "cfm:mangrove_blinds",
-    "cfm:stripped_mangrove_blinds"
+    "cfm:stripped_mangrove_blinds",
+    "cfm:cherry_bedside_cabinet",
+    "cfm:stripped_cherry_bedside_cabinet",
+    "cfm:cherry_desk",
+    "cfm:stripped_cherry_desk",
+    "cfm:cherry_desk_cabinet",
+    "cfm:stripped_cherry_desk_cabinet",
+    "cfm:cherry_blinds",
+    "cfm:stripped_cherry_blinds"
   ]
 }

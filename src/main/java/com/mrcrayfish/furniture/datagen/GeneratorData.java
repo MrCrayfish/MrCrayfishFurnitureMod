@@ -42,7 +42,8 @@ public class GeneratorData
     public static final Variant CRIMSON = new Variant("crimson", () -> Blocks.CRIMSON_PLANKS, () -> Blocks.CRIMSON_STEM, () -> Blocks.STRIPPED_CRIMSON_STEM, true);
     public static final Variant WARPED = new Variant("warped", () -> Blocks.WARPED_PLANKS, () -> Blocks.WARPED_STEM, () -> Blocks.STRIPPED_WARPED_STEM, true);
     public static final Variant MANGROVE = new Variant("mangrove", () -> Blocks.MANGROVE_PLANKS, () -> Blocks.MANGROVE_LOG, () -> Blocks.STRIPPED_MANGROVE_LOG, false);
-    public static final Variant[] ALL_VARIANTS = {OAK, BIRCH, SPRUCE, JUNGLE, ACACIA, DARK_OAK, CRIMSON, WARPED, MANGROVE};
+    public static final Variant CHERRY = new Variant("cherry", () -> Blocks.CHERRY_PLANKS, () -> Blocks.CHERRY_LOG, () -> Blocks.STRIPPED_CHERRY_LOG, false);
+    public static final Variant[] ALL_VARIANTS = {OAK, BIRCH, SPRUCE, JUNGLE, ACACIA, DARK_OAK, CRIMSON, WARPED, MANGROVE, CHERRY};
 
     public record FurnitureType(String id, String className, String[] args) {}
     public record Variant(String id, Supplier<Block> planks, Supplier<Block> log, @Nullable Supplier<Block> strippedLog, boolean stem) {}

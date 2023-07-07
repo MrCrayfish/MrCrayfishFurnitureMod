@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:survives_explosion"
+            }
+          ],
+          "functions": [
+            {
+              "add": false,
+              "conditions": [
+                {
+                  "block": "cfm:cherry_coffee_table",
+                  "condition": "minecraft:block_state_property",
+                  "properties": {
+                    "tall": "true"
+                  }
+                }
+              ],
+              "count": 2.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "cfm:cherry_coffee_table"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "cfm:blocks/cherry_coffee_table"
+}

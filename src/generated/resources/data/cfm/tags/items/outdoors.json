@@ -93,6 +93,12 @@
     "cfm:mangrove_mail_box",
     "cfm:stripped_mangrove_mail_box",
     "cfm:mangrove_mail_box",
-    "cfm:stripped_mangrove_mail_box"
+    "cfm:stripped_mangrove_mail_box",
+    "cfm:cherry_park_bench",
+    "cfm:stripped_cherry_park_bench",
+    "cfm:cherry_mail_box",
+    "cfm:stripped_cherry_mail_box",
+    "cfm:cherry_mail_box",
+    "cfm:stripped_cherry_mail_box"
   ]
 }

@@ -192,6 +192,22 @@
     "cfm:mangrove_kitchen_sink_light",
     "cfm:stripped_mangrove_kitchen_sink_light",
     "cfm:mangrove_kitchen_sink_dark",
-    "cfm:stripped_mangrove_kitchen_sink_dark"
+    "cfm:stripped_mangrove_kitchen_sink_dark",
+    "cfm:cherry_cabinet",
+    "cfm:stripped_cherry_cabinet",
+    "cfm:cherry_bedside_cabinet",
+    "cfm:stripped_cherry_bedside_cabinet",
+    "cfm:cherry_desk_cabinet",
+    "cfm:stripped_cherry_desk_cabinet",
+    "cfm:cherry_crate",
+    "cfm:stripped_cherry_crate",
+    "cfm:cherry_mail_box",
+    "cfm:stripped_cherry_mail_box",
+    "cfm:cherry_kitchen_drawer",
+    "cfm:stripped_cherry_kitchen_drawer",
+    "cfm:cherry_kitchen_sink_light",
+    "cfm:stripped_cherry_kitchen_sink_light",
+    "cfm:cherry_kitchen_sink_dark",
+    "cfm:stripped_cherry_kitchen_sink_dark"
   ]
 }
