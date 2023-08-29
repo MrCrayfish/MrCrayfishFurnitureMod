@@ -1,8 +1,10 @@
 package com.mrcrayfish.furniture.blocks;
 
 import com.mrcrayfish.furniture.MrCrayfishFurnitureMod;
+import com.mrcrayfish.furniture.gui.inventory.ISimpleInventory;
 import com.mrcrayfish.furniture.init.FurnitureItems;
 import com.mrcrayfish.furniture.tileentity.TileEntityCrate;
+import com.mrcrayfish.furniture.util.InventoryUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -13,6 +15,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -85,6 +88,22 @@ public class BlockCrate extends Block implements ITileEntityProvider
                     drop.setTagCompound(compound);
 
                     worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, drop));
+                }
+                else{
+                    if(tileEntity instanceof IInventory)
+                    {
+                        IInventory inv = (IInventory) tileEntity;
+                        InventoryHelper.dropInventoryItems(worldIn, pos, inv);
+                        Item.getItemFromBlock(this);
+                    }
+                    if(tileEntity instanceof ISimpleInventory)
+                    {
+                        ISimpleInventory inv = (ISimpleInventory) tileEntity;
+                        InventoryUtil.dropInventoryItems(worldIn, pos, inv);
+                        Item.getItemFromBlock(this);
+                    }
+                    super.breakBlock(worldIn, pos, state);
+
                 }
             }
         }
