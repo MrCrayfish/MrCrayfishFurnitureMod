@@ -90,18 +90,9 @@ public class BlockCrate extends Block implements ITileEntityProvider
                     worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, drop));
                 }
                 else{
-                    if(tileEntity instanceof IInventory)
-                    {
-                        IInventory inv = (IInventory) tileEntity;
-                        InventoryHelper.dropInventoryItems(worldIn, pos, inv);
-                        Item.getItemFromBlock(this);
-                    }
-                    if(tileEntity instanceof ISimpleInventory)
-                    {
-                        ISimpleInventory inv = (ISimpleInventory) tileEntity;
-                        InventoryUtil.dropInventoryItems(worldIn, pos, inv);
-                        Item.getItemFromBlock(this);
-                    }
+                    InventoryUtil.dropTileEntityInventoryItems(worldIn, pos, worldIn.getTileEntity(pos));
+                    ItemStack drop = new ItemStack(this);
+                    worldIn.spawnEntity(new EntityItem(worldIn, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, drop));
                     super.breakBlock(worldIn, pos, state);
 
                 }
